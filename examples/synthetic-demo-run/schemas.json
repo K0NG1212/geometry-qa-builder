@@ -1,0 +1,467 @@
+{
+  "bundle": {
+    "type": "object",
+    "properties": {
+      "paper_id": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "url": {
+        "type": "string"
+      },
+      "synthetic": {
+        "type": "boolean"
+      },
+      "sources": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "source_id": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string"
+            },
+            "origin": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "text",
+                "xyz"
+              ]
+            },
+            "text": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "source_id",
+            "location",
+            "origin",
+            "kind",
+            "text"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "paper_id",
+      "title",
+      "url",
+      "synthetic",
+      "sources",
+      "warnings"
+    ],
+    "additionalProperties": false
+  },
+  "evidence": {
+    "type": "object",
+    "properties": {
+      "records": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "evidence_id": {
+              "type": "string"
+            },
+            "objects": {
+              "type": "string"
+            },
+            "geometric_relation": {
+              "type": "string"
+            },
+            "scientific_result": {
+              "type": "string"
+            },
+            "conditions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "limitations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "source_refs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_id": {
+                    "type": "string"
+                  },
+                  "quote": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "source_id",
+                  "quote"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "asset_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "evidence_id",
+            "objects",
+            "geometric_relation",
+            "scientific_result",
+            "conditions",
+            "limitations",
+            "source_refs",
+            "asset_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "exclusions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "records",
+      "exclusions"
+    ],
+    "additionalProperties": false
+  },
+  "tasks": {
+    "type": "object",
+    "properties": {
+      "tasks": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string"
+            },
+            "evidence_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "domain": {
+              "type": "string"
+            },
+            "object_type": {
+              "type": "string"
+            },
+            "input_scale": {
+              "type": "string"
+            },
+            "reasoning_scale": {
+              "type": "string"
+            },
+            "ability": {
+              "type": "string",
+              "enum": [
+                "perception",
+                "inference",
+                "design"
+              ]
+            },
+            "geometry_necessity": {
+              "type": "string"
+            },
+            "input_plan": {
+              "type": "string"
+            },
+            "validation_route": {
+              "type": "string",
+              "enum": [
+                "xyz_distance",
+                "xyz_angle",
+                "evidence_review"
+              ]
+            },
+            "eligible": {
+              "type": "boolean"
+            },
+            "unmet_requirements": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "task_id",
+            "evidence_ids",
+            "domain",
+            "object_type",
+            "input_scale",
+            "reasoning_scale",
+            "ability",
+            "geometry_necessity",
+            "input_plan",
+            "validation_route",
+            "eligible",
+            "unmet_requirements"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "exclusions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "tasks",
+      "exclusions"
+    ],
+    "additionalProperties": false
+  },
+  "qa": {
+    "type": "object",
+    "properties": {
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "qa_id": {
+              "type": "string"
+            },
+            "task_id": {
+              "type": "string"
+            },
+            "evidence_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "ability": {
+              "type": "string",
+              "enum": [
+                "perception",
+                "inference",
+                "design"
+              ]
+            },
+            "question": {
+              "type": "string"
+            },
+            "model_input": {
+              "type": "string"
+            },
+            "input_asset_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "reference_answer": {
+              "type": "string"
+            },
+            "answer_numeric": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "units": {
+              "type": "string"
+            },
+            "answer_refs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_id": {
+                    "type": "string"
+                  },
+                  "quote": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "source_id",
+                  "quote"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "rubric": {
+              "type": "string"
+            },
+            "limitations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "verifier": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "xyz_distance",
+                        "xyz_angle"
+                      ]
+                    },
+                    "source_id": {
+                      "type": "string"
+                    },
+                    "atom_indices": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer"
+                      }
+                    },
+                    "tolerance": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "source_id",
+                    "atom_indices",
+                    "tolerance"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "qa_id",
+            "task_id",
+            "evidence_ids",
+            "ability",
+            "question",
+            "model_input",
+            "input_asset_ids",
+            "reference_answer",
+            "answer_numeric",
+            "units",
+            "answer_refs",
+            "rubric",
+            "limitations",
+            "verifier"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "exclusions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "items",
+      "exclusions"
+    ],
+    "additionalProperties": false
+  },
+  "review": {
+    "type": "object",
+    "properties": {
+      "reviews": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "qa_id": {
+              "type": "string"
+            },
+            "checks": {
+              "type": "object",
+              "properties": {
+                "sufficient_input": {
+                  "type": "boolean"
+                },
+                "evidence_support": {
+                  "type": "boolean"
+                },
+                "geometry_required": {
+                  "type": "boolean"
+                },
+                "no_answer_leakage": {
+                  "type": "boolean"
+                },
+                "conditions_preserved": {
+                  "type": "boolean"
+                },
+                "rubric_scorable": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "sufficient_input",
+                "evidence_support",
+                "geometry_required",
+                "no_answer_leakage",
+                "conditions_preserved",
+                "rubric_scorable"
+              ],
+              "additionalProperties": false
+            },
+            "issues": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "qa_id",
+            "checks",
+            "issues",
+            "notes"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "reviews"
+    ],
+    "additionalProperties": false
+  }
+}

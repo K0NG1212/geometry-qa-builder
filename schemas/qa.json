@@ -1,0 +1,155 @@
+{
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "qa_id": {
+            "type": "string"
+          },
+          "task_id": {
+            "type": "string"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ability": {
+            "type": "string",
+            "enum": [
+              "perception",
+              "inference",
+              "design"
+            ]
+          },
+          "question": {
+            "type": "string"
+          },
+          "model_input": {
+            "type": "string"
+          },
+          "input_asset_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reference_answer": {
+            "type": "string"
+          },
+          "answer_numeric": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "units": {
+            "type": "string"
+          },
+          "answer_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "source_id": {
+                  "type": "string"
+                },
+                "quote": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "source_id",
+                "quote"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "rubric": {
+            "type": "string"
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verifier": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "xyz_distance",
+                      "xyz_angle"
+                    ]
+                  },
+                  "source_id": {
+                    "type": "string"
+                  },
+                  "atom_indices": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    }
+                  },
+                  "tolerance": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "source_id",
+                  "atom_indices",
+                  "tolerance"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "qa_id",
+          "task_id",
+          "evidence_ids",
+          "ability",
+          "question",
+          "model_input",
+          "input_asset_ids",
+          "reference_answer",
+          "answer_numeric",
+          "units",
+          "answer_refs",
+          "rubric",
+          "limitations",
+          "verifier"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "items",
+    "exclusions"
+  ],
+  "additionalProperties": false
+}

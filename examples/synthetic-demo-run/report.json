@@ -1,0 +1,71 @@
+{
+  "paper_id": "synthetic-software-fixture",
+  "synthetic": true,
+  "benchmark_ready": false,
+  "count": 1,
+  "pending_human_audit": 1,
+  "exclusions": {
+    "evidence": [],
+    "tasks": [],
+    "qa": [],
+    "review": []
+  },
+  "items": [
+    {
+      "qa_id": "Q001",
+      "task_id": "T001",
+      "ability": "perception",
+      "domain": "synthetic test",
+      "input_scale": "two coordinates",
+      "reasoning_scale": "atom pair",
+      "question": "What is the distance between atoms 1 and 2 in angstrom?",
+      "model_input": "Use the supplied XYZ coordinates in angstrom; atoms are numbered from 1.",
+      "input_asset_ids": [
+        "S0002"
+      ],
+      "reference_answer": "2 angstrom",
+      "evidence_ids": [
+        "E001"
+      ],
+      "status": "pending_human_audit",
+      "benchmark_ready": false,
+      "checks": [
+        {
+          "kind": "sufficient_input",
+          "passed": true
+        },
+        {
+          "kind": "evidence_support",
+          "passed": true
+        },
+        {
+          "kind": "geometry_required",
+          "passed": true
+        },
+        {
+          "kind": "no_answer_leakage",
+          "passed": true
+        },
+        {
+          "kind": "conditions_preserved",
+          "passed": true
+        },
+        {
+          "kind": "rubric_scorable",
+          "passed": true
+        },
+        {
+          "kind": "xyz_distance",
+          "computed": 2.0,
+          "claimed": 2.0,
+          "passed": true
+        }
+      ],
+      "issues": [],
+      "limitations": [
+        "Software fixture only"
+      ],
+      "review_notes": "Handwritten test fixture; not a GPT-6 result or expert review."
+    }
+  ]
+}

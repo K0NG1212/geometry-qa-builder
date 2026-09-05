@@ -1,0 +1,50 @@
+{
+  "stage": "qa",
+  "mode": "test_fixture",
+  "reported_model": "none-handwritten-fixture",
+  "time": "2026-09-05T22:40:22.126066+00:00",
+  "usage": null,
+  "response_id": null,
+  "context_hash": "58417bc6fd157594622f92e7741fc674378e9583c17fa117ee53a94dd09cffc5",
+  "data_hash": "c986f85f692450b4b9d43d12ea0962b998469d0a043422cd57a172afcd621279",
+  "data": {
+    "items": [
+      {
+        "qa_id": "Q001",
+        "task_id": "T001",
+        "evidence_ids": [
+          "E001"
+        ],
+        "ability": "perception",
+        "question": "What is the distance between atoms 1 and 2 in angstrom?",
+        "model_input": "Use the supplied XYZ coordinates in angstrom; atoms are numbered from 1.",
+        "input_asset_ids": [
+          "S0002"
+        ],
+        "reference_answer": "2 angstrom",
+        "answer_numeric": 2.0,
+        "units": "angstrom",
+        "answer_refs": [
+          {
+            "source_id": "S0001",
+            "quote": "The supplied two-atom coordinates use angstrom units."
+          }
+        ],
+        "rubric": "Compute Euclidean distance, tolerance 0.001 angstrom.",
+        "limitations": [
+          "Software fixture only"
+        ],
+        "verifier": {
+          "kind": "xyz_distance",
+          "source_id": "S0002",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "tolerance": 0.001
+        }
+      }
+    ],
+    "exclusions": []
+  }
+}
