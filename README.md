@@ -1,5 +1,11 @@
 # Geometry QA Builder v0.1
 
+## GeoBench 研究网站
+
+**[打开 Research Atlas](https://k0ng1212.github.io/geometry-qa-builder/)** · [网站维护说明](docs/README.md)
+
+网站包含可筛选的资源、候选问题、覆盖图与公开样题。网站代码位于 `docs/`，内容数据独立保存在 `docs/data/catalog.json`；GitHub Pages 从 main 分支的 docs 目录发布。研究目录与下面的 QA 构建工具持续在同一个仓库迭代。
+
 这是一个调用 GPT‑6 Astra、把论文材料转成可追溯候选 QA 的研究原型。无需训练模型，不依赖 SciQAG 代码。它不是已验证的 benchmark，也不是已经安装的 Codex Skill。
 
 
