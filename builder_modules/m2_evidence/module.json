@@ -1,0 +1,23 @@
+{
+  "id": "M2",
+  "folder": "m2_evidence",
+  "name": "证据提取",
+  "version": "0.3.0",
+  "status": "AI 协议 + 检查已接通",
+  "executor": "AI + 程序",
+  "purpose": "从科学材料中提取能支持构题的证据单元，保留条件和限制。",
+  "inputs": "材料包",
+  "outputs": "evidence.json",
+  "principle": "Codex 读取独立提示词；程序检查输出格式、原句和资产引用。",
+  "checks": "唯一证据编号、原文匹配、结构资产存在",
+  "limits": "未测真实论文提取准确率；原句存在不代表它支持模型归纳的结论。",
+  "optimize": "优先修改 prompt.md；用相同材料比较漏提、误提和不当推断。",
+  "fields": [
+    "evidence_id",
+    "source_refs",
+    "asset_ids",
+    "conditions",
+    "limitations"
+  ],
+  "test_command": "python -m unittest discover -s tests -p test_m2_evidence.py -v"
+}

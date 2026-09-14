@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "properties": {
+    "synthetic": {
+      "type": "boolean"
+    },
+    "candidates_only": {
+      "type": "boolean"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "qa_id": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "model_input": {
+            "type": "string"
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "asset_id": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "xyz"
+                  ]
+                },
+                "text": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "asset_id",
+                "kind",
+                "text"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "qa_id",
+          "question",
+          "model_input",
+          "assets"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "synthetic",
+    "candidates_only",
+    "items"
+  ],
+  "additionalProperties": false
+}

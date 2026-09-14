@@ -1,8 +1,8 @@
-# Geometry QA Builder v0.2
+# Geometry QA Builder v0.3
 
 把科学材料转成有证据、可检查的候选 QA。**当前默认由 Codex 会话执行 AI 模块，不需要 API Key。**
 
-[开始使用](QUICKSTART.md) · [模块划分](modules/README.md) · [执行规程](RUNBOOK.md) · [测试说明](TESTING.md) · [Research Atlas](https://k0ng1212.github.io/geometry-qa-builder/)
+[查看模块工作台](https://k0ng1212.github.io/geometry-qa-builder/builder.html) · [开始使用](QUICKSTART.md) · [模块划分](builder_modules/README.md) · [执行规程](RUNBOOK.md) · [测试说明](TESTING.md) · [Research Atlas](https://k0ng1212.github.io/geometry-qa-builder/)
 
 ## 这一版解决什么
 
@@ -19,10 +19,10 @@
 
 | 文件 | 用途 |
 |---|---|
-| pipeline.py | v0.2 入口；不调用 API |
-| modules/ | 可独立迭代的提示词、构题计划和单位格式 |
+| pipeline.py | v0.3 入口；不调用 API |
+| builder_modules/ | 七个模块目录，各有代码、格式、说明；AI 模块另有提示词 |
 | RUNBOOK.md | Codex 逐步执行说明，无需安装全局 Skill |
-| builder.py、prompts/、schemas/ | 保留 v0.1 核心和兼容入口 |
+| builder.py、prompts/、schemas/、modules/ | 保留旧版核心、共用工具和兼容文件 |
 | tests/ | 来源、计算、快照、续跑和失败路径测试 |
 | tools/replay_demo.py | 无模型调用的合成软件回放 |
 | docs/ | 独立维护的 GitHub Pages 研究展示网站 |
@@ -32,8 +32,8 @@
 Python 3.10+，核心仅使用标准库；PDF 文字提取另需 pypdf。
 
 ```text
-python tools/replay_demo.py --run runs/demo-v02
-python pipeline.py status --run runs/demo-v02
+python tools/replay_demo.py --run runs/demo-v03
+python pipeline.py status --run runs/demo-v03
 python -m unittest discover -s tests -v
 ```
 

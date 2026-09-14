@@ -1,0 +1,22 @@
+{
+  "id": "M5",
+  "folder": "m5_quality",
+  "name": "质量筛查",
+  "version": "0.3.0",
+  "status": "基础筛查已实现",
+  "executor": "AI 审核 + 程序",
+  "purpose": "逐题检查输入、证据、几何必要性、泄漏、条件与评分标准。",
+  "inputs": "候选 QA、原始证据、AI 审核结果",
+  "outputs": "review.json、report.json / md / csv",
+  "principle": "独立目录中的程序汇总布尔检查、数值复算和当前 run 的完全重复项。",
+  "checks": "审核覆盖完整；任一检查失败进入 needs_revision",
+  "limits": "同一会话审核不是独立或专家审核；没有专家一致率、模型难度或语义去重实验。",
+  "optimize": "完善错误类型与检查器；用正负样本测误放行和误拒绝。",
+  "fields": [
+    "checks",
+    "issues",
+    "status",
+    "benchmark_ready"
+  ],
+  "test_command": "python -m unittest discover -s tests -p test_m5_quality.py -v"
+}

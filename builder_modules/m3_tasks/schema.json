@@ -1,0 +1,91 @@
+{
+  "type": "object",
+  "properties": {
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "domain": {
+            "type": "string"
+          },
+          "object_type": {
+            "type": "string"
+          },
+          "input_scale": {
+            "type": "string"
+          },
+          "reasoning_scale": {
+            "type": "string"
+          },
+          "ability": {
+            "type": "string",
+            "enum": [
+              "perception",
+              "inference",
+              "design"
+            ]
+          },
+          "geometry_necessity": {
+            "type": "string"
+          },
+          "input_plan": {
+            "type": "string"
+          },
+          "validation_route": {
+            "type": "string",
+            "enum": [
+              "xyz_distance",
+              "xyz_angle",
+              "evidence_review"
+            ]
+          },
+          "eligible": {
+            "type": "boolean"
+          },
+          "unmet_requirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "task_id",
+          "evidence_ids",
+          "domain",
+          "object_type",
+          "input_scale",
+          "reasoning_scale",
+          "ability",
+          "geometry_necessity",
+          "input_plan",
+          "validation_route",
+          "eligible",
+          "unmet_requirements"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "tasks",
+    "exclusions"
+  ],
+  "additionalProperties": false
+}

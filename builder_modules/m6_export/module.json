@@ -1,0 +1,21 @@
+{
+  "id": "M6",
+  "folder": "m6_export",
+  "name": "导出与记录",
+  "version": "0.3.0",
+  "status": "候选导出已实现",
+  "executor": "程序",
+  "purpose": "把模型可见输入与内部答案分开，并保留本轮检查报告。",
+  "inputs": "完整通过流程的运行记录",
+  "outputs": "model-inputs.json、private-answers.json、quality-report.json",
+  "principle": "白名单选取模型输入字段，清理 XYZ 注释，单独导出答案与检查限制。",
+  "checks": "阶段完整、导出格式、公开输入不包含内部答案字段",
+  "limits": "还没有正式 benchmark 划分、跨论文去重或批调度；输入文字泄漏仍需审核。",
+  "optimize": "优化字段和数据划分策略；新增导出目标不应修改上游题目。",
+  "fields": [
+    "model-inputs.json",
+    "private-answers.json",
+    "quality-report.json"
+  ],
+  "test_command": "python -m unittest discover -s tests -p test_m6_export.py -v"
+}

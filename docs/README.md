@@ -26,3 +26,10 @@
 发布前检查：统计与 JSON 一致；资源筛选、问题筛选、覆盖图跳转、详情展开、Esc 关闭、CSV 导出、空结果重置可用；390px 手机和桌面没有页面横向溢出；新增链接指向原始来源；公开数据不含内部材料。
 
 第一版为研究目录，不是模型排名或已验证 benchmark。现有 26 条候选包含 8 条数值实例与 18 条待实例化草案，仅展示 2 道完整公开示例。
+
+## Builder 模块工作台
+
+builder.html 为独立页面，builder.css / builder.js 管理布局和交互。
+每个模块的名称、边界和源码来自 builder_modules/mN_*/。
+修改模块后运行 python tools/export_modules.py，更新 data/builder-modules.json。
+只导出模块公开实现与说明，不读取 runs 或论文文件。页面不执行模型。

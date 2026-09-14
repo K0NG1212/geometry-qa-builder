@@ -1,0 +1,21 @@
+{
+  "id": "M0",
+  "folder": "m0_scope",
+  "name": "范围配置",
+  "version": "0.3.0",
+  "status": "程序基础已实现",
+  "executor": "程序 + 研究决策",
+  "purpose": "确定本轮处理多少材料、允许多少候选，并冻结运行配置。",
+  "inputs": "settings.json、材料包",
+  "outputs": "配置/材料/程序快照",
+  "principle": "验证题量和大小限制，然后建立不可覆盖的运行目录。",
+  "checks": "正整数限制、材料大小、运行目录不可覆盖",
+  "limits": "研究范围的取舍仍由人决定；分类配额和参数界面尚未实现。",
+  "optimize": "新增限制或修改默认配置；保持旧 run 的快照不变。",
+  "fields": [
+    "config.json",
+    "bundle.json",
+    "manifest.json"
+  ],
+  "test_command": "python -m unittest discover -s tests -p test_m0_scope.py -v"
+}

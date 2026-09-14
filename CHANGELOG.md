@@ -1,3 +1,11 @@
+# 0.3.0 — 2026-09-14
+
+- Extracted seven implementation directories with code, contracts, documentation and dedicated tests.
+- M0 settings and M1 preparation now have their own module entry points.
+- Pipeline delegates construction, stage checks and exports; module versions are frozen per run.
+- Added public Builder workbench with code/prompt viewers generated from actual module files.
+- Preserved the legacy core and v0.2 frozen-run compatibility.
+
 # 0.2.0 — 2026-09-14
 
 - Added subscription-session pipeline, modular prompts, construction-plan and unit contracts.

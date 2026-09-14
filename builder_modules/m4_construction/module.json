@@ -1,0 +1,22 @@
+{
+  "id": "M4",
+  "folder": "m4_construction",
+  "name": "构题与计算",
+  "version": "0.3.0",
+  "status": "距离 / 夹角已实现",
+  "executor": "AI 计划 + 可信程序",
+  "purpose": "AI 描述题目和原子选择，程序产生几何数值答案。",
+  "inputs": "构题计划、XYZ、单位依据",
+  "outputs": "qa.json、construction-receipt.json",
+  "principle": "模型不得填写数值答案；距离用欧氏距离，夹角用两向量夹角公式。",
+  "checks": "编号、单位、容差、任务关联；计算结果保留",
+  "limits": "只支持两点距离与三点夹角；题干是否与编号一致要审核。文字推断仍是候选。",
+  "optimize": "新增计算器先加入已知答案测试，再扩展计划格式和提示词。",
+  "fields": [
+    "question",
+    "verifier",
+    "answer_numeric",
+    "reference_answer"
+  ],
+  "test_command": "python -m unittest discover -s tests -p test_m4_construction.py -v"
+}

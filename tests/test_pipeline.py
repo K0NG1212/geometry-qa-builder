@@ -99,6 +99,19 @@ class ModularTests(unittest.TestCase):
         (self.run/'modules/evidence.md').write_text('different', encoding='utf-8')
         with self.assertRaisesRegex(ValueError, 'snapshot'): p.status(self.run)
 
+    def test_actual_module_prompt_change_detected(self):
+        (self.run/'builder_modules/m2_evidence/prompt.md').write_text('changed', encoding='utf-8')
+        with self.assertRaisesRegex(ValueError, 'snapshot'): p.status(self.run)
+
+    def test_current_module_change_requires_frozen_runner(self):
+        import shutil
+        from unittest.mock import patch
+        changed = self.root/'changed-source'
+        shutil.copytree(p.ROOT/'builder_modules', changed/'builder_modules')
+        (changed/'builder_modules/m4_construction/module.py').write_text('different implementation', encoding='utf-8')
+        with patch.object(p, 'ROOT', changed):
+            with self.assertRaisesRegex(ValueError, 'implementation changed'): p.status(self.run)
+
     def test_receipt_tamper_detected(self):
         self.prefix(); self.submit()
         receipt = p.b.read(self.run/'construction-receipt.json')

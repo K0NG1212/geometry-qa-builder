@@ -1,0 +1,20 @@
+{
+  "id": "M1",
+  "folder": "m1_materials",
+  "name": "材料整理",
+  "version": "0.3.0",
+  "status": "文本 / XYZ 已实现",
+  "executor": "程序 + 来源核对",
+  "purpose": "把可读原文、结构和单位依据整理成后续模块能引用的材料包。",
+  "inputs": "txt / md / 文本 PDF / XYZ、单位依据",
+  "outputs": "bundle.json、asset-units.json",
+  "principle": "文字分段并记录位置；解析坐标；逐一核对单位引用。",
+  "checks": "文本非空、XYZ 格式、单位原句与来源身份",
+  "limits": "没有自动检索、OCR、可靠表格解析；单位是否适用于该结构需要核对。",
+  "optimize": "优化解析和结构格式支持；先测试来源定位不丢失。",
+  "fields": [
+    "bundle.json",
+    "asset-units.json"
+  ],
+  "test_command": "python -m unittest discover -s tests -p test_m1_materials.py -v"
+}

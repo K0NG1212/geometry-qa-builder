@@ -1,13 +1,13 @@
 # 新版 Builder 怎么用
 
-这是 v0.2 的日常入口。你不需要 API Key，也不需要手动复制各阶段提示词。
+这是 v0.3 的日常入口。你不需要 API Key，也不需要手动复制各阶段提示词。
 在 Codex 中打开这个仓库，提供材料目录，然后说：
 
-> 阅读 RUNBOOK.md，按 v0.2 处理指定材料。已有 run 就先查看进度再继续；没有则创建新 run。
+> 阅读 RUNBOOK.md，按 v0.3 处理指定材料。已有 run 就先查看进度再继续；没有则创建新 run。
 > 使用当前可用模型，记录真实执行方式。保存每个模块的证据、输出和检查报告。
 
 新对话也可以用这句话，但要指明已有 run 的路径。项目文件保存流程，聊天不是唯一记录。
-这里没有自动安装 Skill；RUNBOOK 是执行入口，modules 是模块提示词，pipeline.py 是程序控制器。
+这里没有自动安装 Skill；RUNBOOK 是执行入口，builder_modules 是独立模块目录，pipeline.py 是程序控制器。
 
 ## 你会看到什么
 
@@ -25,8 +25,8 @@
 在仓库根目录，Python 3.10+：
 
 ```text
-python tools/replay_demo.py --run runs/demo-v02
-python pipeline.py status --run runs/demo-v02
+python tools/replay_demo.py --run runs/demo-v03
+python pipeline.py status --run runs/demo-v03
 ```
 
 示例使用公开的手写 synthetic fixture，回放四阶段并生成一题距离答案。
@@ -35,9 +35,9 @@ python pipeline.py status --run runs/demo-v02
 ## 真实材料的操作由 Codex 执行
 
 ```text
-python builder.py prepare --paper-id paper-001 --title "Paper title" --url "Original source URL" --source paper.md --xyz structure.xyz --out inputs/paper-001.json
-python pipeline.py init --bundle inputs/paper-001.json --units inputs/paper-001.units.json --run runs/paper-001-v02
-python pipeline.py next --run runs/paper-001-v02
+python pipeline.py prepare --paper-id paper-001 --title "Paper title" --url "Original source URL" --source paper.md --xyz structure.xyz --out inputs/paper-001.json
+python pipeline.py init --bundle inputs/paper-001.json --units inputs/paper-001.units.json --run runs/paper-001-v03
+python pipeline.py next --run runs/paper-001-v03
 ```
 
 units 文件格式见 examples/v02/asset-units.json。source_id 必须对应此材料包，引用要来自本包原文。
@@ -47,7 +47,7 @@ units 文件格式见 examples/v02/asset-units.json。source_id 必须对应此�
 next 输出 packet 路径和 context 哈希。Codex 读取 packet，按其中规则生成 JSON，并保存到草稿文件；然后：
 
 ```text
-python pipeline.py accept --run runs/paper-001-v02 --result inputs/evidence-result.json --model gpt-6-astra --context <next输出的context>
+python pipeline.py accept --run runs/paper-001-v03 --result inputs/evidence-result.json --model gpt-6-astra --context <next输出的context>
 ```
 
 model 是如实记录的会话模型名称，不会切换模型。无法确认时写 unknown，并告知用户。
@@ -55,7 +55,7 @@ model 是如实记录的会话模型名称，不会切换模型。无法确认�
 construction 输入不允许提供数值答案；受信任程序计算距离和夹角。文字推断答案保留待审。
 
 ```text
-python pipeline.py export --run runs/paper-001-v02
+python pipeline.py export --run runs/paper-001-v03
 ```
 
 ## 失败、续跑和改版
@@ -65,7 +65,7 @@ python pipeline.py export --run runs/paper-001-v02
 - 修改已通过的构题：fork 原 run，原件保持可追溯。
 
 ```text
-python pipeline.py fork --run runs/paper-001-v02 --target runs/paper-001-revision --before construction
+python pipeline.py fork --run runs/paper-001-v03 --target runs/paper-001-revision --before construction
 ```
 
 fork 复用原有证据、任务和规则快照，清除新副本的构题及后续输出。历史失败记录随副本继承。
@@ -74,3 +74,9 @@ fork 复用原有证据、任务和规则快照，清除新副本的构题及后
 
 提示词固定不等于生成内容相同。可复现的是材料/规则版本、已保存结果和确定性计算过程；
 重新调用模型可能得到不同证据或措辞，因此保留新旧记录，不能覆盖后假称一致。
+
+## 单独优化模块
+
+查看 builder_modules/m0_scope 到 m6_export。每个目录的 README 说明输入输出和测试命令。
+范围参数在 m0_scope/settings.json；AI 规则在对应目录的 prompt.md；实现逻辑在 module.py。
+改完模块运行其测试，再跑完整测试；用 tools/export_modules.py 同步网站上的说明和代码。

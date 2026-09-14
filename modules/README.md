@@ -1,3 +1,5 @@
+> 此目录为 v0.2 兼容存档。v0.3 的实际模块在 [builder_modules](../builder_modules/README.md)，请在那里优化。
+
 # Builder v0.2 模块边界
 
 本版是项目内 RUNBOOK + 提示词 + Python 程序，**没有安装全局 Skill**，不需要 API。

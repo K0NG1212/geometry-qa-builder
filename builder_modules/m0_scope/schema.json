@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "reasoning_effort": {
+      "type": "string"
+    },
+    "max_output_tokens": {
+      "type": "integer"
+    },
+    "max_questions": {
+      "type": "integer"
+    },
+    "max_bundle_chars": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "version",
+    "model",
+    "reasoning_effort",
+    "max_output_tokens",
+    "max_questions",
+    "max_bundle_chars"
+  ],
+  "additionalProperties": false
+}
