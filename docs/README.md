@@ -43,3 +43,9 @@ builder.html 为独立页面，builder.css / builder.js 管理布局和交互。
 - data/task-reviews.json / task-review.csv：首轮来源依据、可行性结论及导出表。
 
 来源检查与优先级不代表专家认证，也不代表任务已具备可发布实例。
+
+## 单题生成记录
+
+在候选详情点击“查看这道题的生成过程”，进入 `trace.html?qa=CNM001`。M0–M3 共享材料，M4–M6 按题号摘取输出。Builder 工作台也提供当前模块的真实记录入口。仅当前六道公开开发实例提供记录，旧题不会伪造阶段文件。
+
+本地完整查看器：各运行目录的 `run-view.html`。公开导出：`python tools/export_public_trace.py --run runs/chem-nm001-bcd`（其他两个运行同理）。只接受 catalog 中已标为公开开发示例的整个运行；材料全文不导出，保留原始文件 SHA-256，去除本地路径。导出结果在 `docs/data/traces/`。生成请求保留当次提示词，模块工作台的代码则为当前版本，二者应区分。
