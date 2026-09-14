@@ -13,7 +13,7 @@
 
 新增论文：在 `resources` 中添加唯一 `id`，填写名称、原始链接、类型（research/database/benchmark）、摘要与整理状态。再在 `questions` 添加候选，`paper` 必须对应资源 ID。
 
-候选能力取 perception / inference / design；领域暂取 quantum / chemistry / materials / biology。输入尺度与推理范围分开记录。现有覆盖图使用对象分箱，尚未实现对数长度坐标；领域层级、跨领域标签与尺寸协议是后续的数据模型升级项。
+候选能力取 perception / inference / design；领域暂取 quantum / chemistry / materials / biology。输入尺度与推理范围分开记录。新版地图展示 31 个任务规划方向，支持输入尺度/推理尺度切换和对数长度分箱。长度区间是规划参考，不是实例实测尺寸；任务方向与 26 条候选实例分开统计。尺寸测量协议仍待完善。
 
 审核状态保留 needs_revision / pending_human_audit / numeric_checked_only。未完成实例的条目为草案。所有状态都不能自动视为正式可用题目。修改目录时同步 `counts`，首页与问题页中的统计说明也需要核对。
 
@@ -33,3 +33,11 @@ builder.html 为独立页面，builder.css / builder.js 管理布局和交互。
 每个模块的名称、边界和源码来自 builder_modules/mN_*/。
 修改模块后运行 python tools/export_modules.py，更新 data/builder-modules.json。
 只导出模块公开实现与说明，不读取 runs 或论文文件。页面不执行模型。
+
+## 研究地图数据
+
+- framework.js / framework.css：地图、任务卡片、尺度切换与筛选。
+- data/task-framework.json：31 个任务方向与规划尺度。
+- data/task-reviews.json / task-review.csv：首轮来源依据、可行性结论及导出表。
+
+来源检查与优先级不代表专家认证，也不代表任务已具备可发布实例。

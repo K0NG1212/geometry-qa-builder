@@ -1,0 +1,774 @@
+{
+  "version": "0.2-review1",
+  "date": "2026-09-14",
+  "scope": "首轮来源与可行性查证；不是逐篇系统综述或独立科学审核。优先开展指下一步投入优先级，不是已可发布。",
+  "counts": {
+    "merge": 4,
+    "hold": 12,
+    "rewrite": 6,
+    "defer": 3,
+    "priority": 6
+  },
+  "sources": {
+    "landscape": {
+      "title": "Landscape17",
+      "url": "https://www.nature.com/articles/s41524-025-01878-x",
+      "locator": "Data availability；本地 first-two/L02-source-audit.json",
+      "finding": "可追踪已有乙醇坐标；局部极小点与过渡态背景。L02 已完成程序来源核查。",
+      "checked_on": "2026-09-14",
+      "access": "local_fulltext_and_archive_audit"
+    },
+    "qm7x": {
+      "title": "QM7-X",
+      "url": "https://www.nature.com/articles/s41597-021-00812-2",
+      "locator": "Calculation of physicochemical properties；Table 2；结构生成部分",
+      "finding": "结构生成与高精度性质计算使用不同理论级别；含非平衡坐标、力及偶极等性质。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "qmugs": {
+      "title": "QMugs",
+      "url": "https://www.nature.com/articles/s41597-022-01390-7",
+      "locator": "Deviation of aromatic rings from planar geometry；构象生成与优化部分",
+      "finding": "原文平面性检测使用局部平面间二面角；优化过程检查虚频。拟议全环平面残差不是原阈值。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "geom": {
+      "title": "GEOM 官方读取教程",
+      "url": "https://raw.githubusercontent.com/learningmatter-mit/geom/master/tutorials/01_loading_data.ipynb",
+      "locator": "Crude data；示例 conformers 字段及统计权重说明",
+      "finding": "数据组织含构象坐标、能量、简并度与权重；现有本地 G01 尚缺构象集合。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "qim": {
+      "title": "Quantum Inverse Mapping",
+      "url": "https://www.nature.com/articles/s41467-024-50401-1",
+      "locator": "Abstract；属性到结构生成研究",
+      "finding": "支持带量子性质目标的逆向结构生成研究动机；不提供我们候选的现成答案。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "rdkit": {
+      "title": "RDKit Book",
+      "url": "https://rdkit.org/docs/RDKit_Book.html",
+      "locator": "Interpretation of the 2D/3D Flag and Stereochemistry；Conformer Generation",
+      "finding": "三维坐标可用于立体标记，构象生成有手性约束；需要锁定版本与原子映射。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "polymer": {
+      "title": "MDAnalysis polymer analysis",
+      "url": "https://docs.mdanalysis.org/stable/documentation_pages/analysis/polymer.html",
+      "locator": "PersistenceLength；Example；sort_backbone",
+      "finding": "提供主链排序和聚酰胺轨迹测试示例；不是已核实的研究级端到端距离数据集。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "neighbors": {
+      "title": "pymatgen ChemEnv",
+      "url": "https://pymatgen.org/pymatgen.analysis.chemenv.coordination_environments.html",
+      "locator": "LocalGeometryFinder；setup_structure / setup_parameters",
+      "finding": "配位环境识别有明确方法与参数；不能把某一邻居规则当成唯一化学定义。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "periodic": {
+      "title": "pymatgen core",
+      "url": "https://pymatgen.org/pymatgen.core.html",
+      "locator": "Lattice.get_distance_and_image；PeriodicSite",
+      "finding": "提供周期晶格几何计算接口；需正确处理非正交晶格。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "elastic": {
+      "title": "Materials Project Elastic Constants",
+      "url": "https://docs.materialsproject.org/methodology/materials-methodology/elasticity",
+      "locator": "Elastic Constants；Methodology",
+      "finding": "弹性张量联系小形变应力和应变；支持有限适用范围的响应计算。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "interface": {
+      "title": "pymatgen interface builder",
+      "url": "https://pymatgen.org/pymatgen.analysis.interfaces.html",
+      "locator": "CoherentInterfaceBuilder；get_interfaces",
+      "finding": "支持构造相干界面和定义 gap、层厚等参数；程序构造不代表实验或弛豫结构。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "zeo": {
+      "title": "Zeo++ examples",
+      "url": "https://www.zeoplusplus.org/examples.html",
+      "locator": "Pore diameters；Dimensionality of channels",
+      "finding": "可参考孔尺寸、通道与探针可达性分析；尚不能直接支持修改后材料有效性。",
+      "checked_on": "2026-09-14",
+      "access": "primary_search_excerpt"
+    },
+    "tomo": {
+      "title": "Nanomaterial datasets for STEM tomography",
+      "url": "https://www.nature.com/articles/sdata201641",
+      "locator": "Abstract；Data Records",
+      "finding": "提供五类材料 STEM 断层扫描数据；尚未取得校准、重建和分割结果。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "pdb": {
+      "title": "RCSB PDB",
+      "url": "https://www.rcsb.org/",
+      "locator": "Coordinates and Experimental Data；Ligands",
+      "finding": "结构及配体数据入口；本轮不声称已下载某个具体条目。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "torsion": {
+      "title": "wwPDB EM validation guide",
+      "url": "https://www.wwpdb.org/validation/2017/EMValidationReportHelp",
+      "locator": "Ramachandran analysis",
+      "finding": "主链 phi/psi 与构象验证有关；异常值不应自动解释为错误。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "plip": {
+      "title": "PLIP documentation",
+      "url": "https://github.com/pharmai/plip/blob/master/DOCUMENTATION.md",
+      "locator": "Detection of Interactions / Hydrogen Bonds",
+      "finding": "氢键识别结合化学类型与距离角度规则；阈值法不是相互作用能或机制证据。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "pose": {
+      "title": "PoseBusters",
+      "url": "https://posebusters.readthedocs.io/en/latest/",
+      "locator": "Overview",
+      "finding": "可检查三维生成与对接姿态合理性；检查通过不等于结合活性达标。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "alignment": {
+      "title": "RCSB pairwise alignment",
+      "url": "https://www2.rcsb.org/docs/tools/pairwise-structure-alignment",
+      "locator": "Rigid Body Alignment；Flexible Alignment",
+      "finding": "支持刚体和柔性比较；测量结构域运动需要固定结构域和明确对应。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "rf": {
+      "title": "RFdiffusion",
+      "url": "https://www.nature.com/articles/s41586-023-06415-8",
+      "locator": "Abstract；对称组装设计部分",
+      "finding": "支持结构条件下的蛋白质设计研究；固定亚基摆放与从头骨架生成仍是不同任务。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "map": {
+      "title": "EMDataResource map–model validation",
+      "url": "https://www.emdataresource.org/news/wwpdb_map_model_val.html",
+      "locator": "Q-score Model-Map percentile slider",
+      "finding": "图模型质量指标依赖分辨率与结构；比较需使用相同地图和评价协议。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "atomworld": {
+      "title": "AtomWorld v1",
+      "url": "https://arxiv.org/html/2510.04704v1",
+      "locator": "§2.1；Table 1；§2.3",
+      "finding": "明确的结构操作模板、程序生成目标和结构评分；remove / super_cell 可参考缺陷构造，不能等同材料性能设计。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    },
+    "mollang": {
+      "title": "MolLangBench",
+      "url": "https://arxiv.org/abs/2505.15054",
+      "locator": "Abstract；官方数据集卡",
+      "finding": "识别、编辑、生成是语言—分子接口任务参考；不等同全部三维几何能力。",
+      "checked_on": "2026-09-14",
+      "access": "primary_abstract_and_dataset_card"
+    },
+    "molvision": {
+      "title": "MolVision",
+      "url": "https://chemvision.github.io/chemvision/",
+      "locator": "Benchmark overview",
+      "finding": "骨架图与 SMILES 的性质预测及描述参考；不能据此推断模型理解真实三维构象。",
+      "checked_on": "2026-09-14",
+      "access": "web_primary_source"
+    }
+  },
+  "reviews": {
+    "Q01": {
+      "decision": "merge",
+      "decision_label": "合并",
+      "support_level": "直接实例依据",
+      "source_ids": [
+        "landscape"
+      ],
+      "reason": "与 C01 是同一几何测量模板；使用量化数据不自动成为电子结构题。",
+      "construction": "归并到 C01，以学科上下文标签保留交叉入口。",
+      "verification": "复用距离角度计算；不重复计任务种类。",
+      "next_action": "保留编号作为历史入口，后续新增电子结构问题再单独定义。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "Q02": {
+      "decision": "hold",
+      "decision_label": "保留待补",
+      "support_level": "数据字段支持",
+      "source_ids": [
+        "qm7x"
+      ],
+      "reason": "局部力响应可测，但不能把 DFTB 优化参考结构当成 PBE0 严格驻点。",
+      "construction": "配对参考与位移结构，给出同坐标系的目标原子力。",
+      "verification": "计算 F·Δr；零值单列；限制为局部分量。",
+      "next_action": "取得配对数据、坐标系和单位，增加力方向验证器。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "Q03": {
+      "decision": "hold",
+      "decision_label": "保留待补",
+      "support_level": "论文方法支持",
+      "source_ids": [
+        "qmugs",
+        "landscape"
+      ],
+      "reason": "驻点判别有明确物理含义，但力和 Hessian 必须匹配理论级别及约束。",
+      "construction": "先选具有梯度与振动数据的结构，再提出驻点判断。",
+      "verification": "检查梯度残差、非刚体模式特征值、零模及约束。",
+      "next_action": "核实可取得的频率／Hessian，不能从 min/ts 文件名给答案。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "Q04": {
+      "decision": "rewrite",
+      "decision_label": "改写",
+      "support_level": "数据字段支持",
+      "source_ids": [
+        "qm7x",
+        "molvision"
+      ],
+      "reason": "原问法“支持指定判断”过宽；性质差异不是通用因果定律。",
+      "construction": "限定同分子成对构象，问在给定条件下偶极大小或方向的变化。",
+      "verification": "统一对齐参考系，分别评分数值和限定性解释。",
+      "next_action": "先固定明确问题；MolVision 仅作性质问答形式对照。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "Q05": {
+      "decision": "rewrite",
+      "decision_label": "改写",
+      "support_level": "论文方法支持",
+      "source_ids": [
+        "qm7x",
+        "atomworld"
+      ],
+      "reason": "按模式平移坐标是受限操作，应标为几何操作子类，不能独立代表科学设计。",
+      "construction": "保留原三能力框架，在 Design 下明确“基础结构操作”。",
+      "verification": "复算归一化模式、幅度、原子映射和变换；不评分虚构性质改善。",
+      "next_action": "需取得真实模式；可参考 AtomWorld 的程序目标构建方式。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "Q06": {
+      "decision": "defer",
+      "decision_label": "暂缓",
+      "support_level": "论文动机支持",
+      "source_ids": [
+        "qim"
+      ],
+      "reason": "方向有研究依据，但开放结构输出需要可靠量化重算和预算。",
+      "construction": "固定组成、目标性质及容差后再提出设计任务。",
+      "verification": "有效性和同级别性质达标分别评分；不设唯一标准构象。",
+      "next_action": "先落实量化计算器、预算和失败处理，当前暂缓实例化。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "C01": {
+      "decision": "priority",
+      "decision_label": "优先开展",
+      "support_level": "直接实例依据",
+      "source_ids": [
+        "landscape"
+      ],
+      "reason": "已有本地 L02 来源核验，可作为校准题并吸收 Q01。",
+      "construction": "真实坐标 + 固定原子索引 → 程序计算答案 → 模板填题。",
+      "verification": "已有距离／角度验证；L02 来源链通过，绝对单位审查仍影响距离。",
+      "next_action": "先纳入角度校准包；仍需独立审核和模型试答。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "已有局部实例",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "C02": {
+      "decision": "priority",
+      "decision_label": "优先开展",
+      "support_level": "方法与数据入口支持",
+      "source_ids": [
+        "rdkit",
+        "pdb",
+        "mollang"
+      ],
+      "reason": "三维手性辨认比泛化学知识更具体；可从结构资源选例。",
+      "construction": "选择明确四面体中心，提供拓扑、坐标及原子编号。",
+      "verification": "锁定 CIP 约定和 RDKit 版本，使用镜像与旋转对照验证。",
+      "next_action": "优先选一个公开结构，核实坐标而非文件中已有标签决定答案。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "C03": {
+      "decision": "hold",
+      "decision_label": "保留待补",
+      "support_level": "数据与方法支持",
+      "source_ids": [
+        "geom",
+        "rdkit"
+      ],
+      "reason": "构象比较方向保留；G01 的数据阻塞不影响其他方向。",
+      "construction": "同分子至少三个真实构象，固定重原子对应。",
+      "verification": "已有本地 RMSD 评分器；核实对称原子、镜像和并列约定。",
+      "next_action": "GEOM 构象仍未取得；评分器测试不能计作完成实例。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "C04": {
+      "decision": "rewrite",
+      "decision_label": "改写",
+      "support_level": "论文动机支持",
+      "source_ids": [
+        "qmugs"
+      ],
+      "reason": "原论文采用局部平面二面角；我们的整体平面残差是另一指标。",
+      "construction": "优先改成原文指标；若保留残差，显式标注为自定义扩展。",
+      "verification": "按所选定义复算；不套用原文的阈值到新指标。",
+      "next_action": "锁定一种指标后再选真实环结构。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "C05": {
+      "decision": "hold",
+      "decision_label": "保留待补",
+      "support_level": "数据与方法支持",
+      "source_ids": [
+        "geom"
+      ],
+      "reason": "能量近似与紧凑程度可以比较，但必须说明布居模型。",
+      "construction": "取得坐标、能量、简并度和温度；构造可比较的明确问法。",
+      "verification": "权重归一化与回转半径分别计算；不声称精确自由能分布。",
+      "next_action": "数据取得后审查难度，单纯排序可能仅为基础推断。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "C06": {
+      "decision": "hold",
+      "decision_label": "保留待补",
+      "support_level": "验证方法支持",
+      "source_ids": [
+        "qmugs",
+        "pose",
+        "rdkit"
+      ],
+      "reason": "能检查生成结构，但真实异常输入与可接受修复范围尚未落实。",
+      "construction": "优先真实失败结构；受控扰动需单独标 synthetic 并保存变换。",
+      "verification": "拓扑、立体化学、碰撞与几何约束；能量另验。",
+      "next_action": "先找异常结构和多个合法答案；不是用单一参考 RMSD 判全部输出。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "C07": {
+      "decision": "hold",
+      "decision_label": "保留待补",
+      "support_level": "相邻方法支持",
+      "source_ids": [
+        "polymer"
+      ],
+      "reason": "替换不贴切的 Materials Project 入口；已找到链分析方法和测试数据指引。",
+      "construction": "挑选一条有拓扑与边界信息的链，比较帧间端到端距离。",
+      "verification": "按连接关系展开周期边界，固定端点；检查标签不变性。",
+      "next_action": "轨迹测试示例不等于研究级数据，需核实来源、许可和长度。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "C08": {
+      "decision": "merge",
+      "decision_label": "合并",
+      "support_level": "相邻论文支持",
+      "source_ids": [
+        "rf"
+      ],
+      "reason": "泛化“构件摆放”与 B07 重叠，尚无独立非蛋白超分子任务证据。",
+      "construction": "先并入 B07；保留未来非蛋白组装的扩展位置。",
+      "verification": "采用组装对称性与接触约束；不重复计数。",
+      "next_action": "需要独立超分子来源才能重新拆分。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "M01": {
+      "decision": "priority",
+      "decision_label": "优先开展",
+      "support_level": "方法与数据入口支持",
+      "source_ids": [
+        "neighbors",
+        "periodic",
+        "atomworld"
+      ],
+      "reason": "邻居和局部配位可形成清楚的几何任务；必须指定规则。",
+      "construction": "从公开 CIF 选中心位点，明确采用距离或配位识别规则。",
+      "verification": "周期邻居搜索与配位几何；处理截断附近歧义。",
+      "next_action": "优先选结构简单、无部分占位的 CIF；新增周期邻居验证器。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "M02": {
+      "decision": "priority",
+      "decision_label": "优先开展",
+      "support_level": "方法支持",
+      "source_ids": [
+        "periodic",
+        "atomworld"
+      ],
+      "reason": "可补上小分子距离题缺少的周期几何，适合先做实例。",
+      "construction": "选非正交晶格，要求跨边界最短距离和对应像。",
+      "verification": "可靠最短像计算与扩大枚举交叉核验；不逐轴取整。",
+      "next_action": "选定 CIF 和单位，明确平移等价与容差。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "M03": {
+      "decision": "hold",
+      "decision_label": "保留待补",
+      "support_level": "物理方法支持",
+      "source_ids": [
+        "elastic"
+      ],
+      "reason": "线性弹性有明确条件，原始资料不保证每条记录都有所需张量。",
+      "construction": "固定应变和弹性张量，问应力响应或小形变能量。",
+      "verification": "单位、Voigt 顺序和剪切因子；线性范围内计算。",
+      "next_action": "先取得张量及计算设置，再决定是否只是公式代入题。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "M04": {
+      "decision": "rewrite",
+      "decision_label": "改写",
+      "support_level": "已有 benchmark 支持",
+      "source_ids": [
+        "atomworld"
+      ],
+      "reason": "remove 和 super_cell 已有直接任务先例，应定位结构编辑基础项。",
+      "construction": "依据 CIF 构造受限空位／超胞操作，另选新实例避免照搬测试集。",
+      "verification": "核对原子数、浓度、周期等价和目标结构；性能另评。",
+      "next_action": "明确与 AtomWorld 差异及许可，不能声称这类操作是新任务。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "M05": {
+      "decision": "hold",
+      "decision_label": "保留待补",
+      "support_level": "构建方法支持",
+      "source_ids": [
+        "interface"
+      ],
+      "reason": "已有界面构造器，但其参数 gap 不等于弛豫后真实层间距。",
+      "construction": "固定层选择和表面法向，从选定结构计算距离或错配。",
+      "verification": "层平面拟合、周期规则与空隙处理。",
+      "next_action": "挑选实际结构；程序生成者标为生成数据，不冒充实验。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "M06": {
+      "decision": "defer",
+      "decision_label": "暂缓",
+      "support_level": "相邻数据支持",
+      "source_ids": [
+        "tomo"
+      ],
+      "reason": "纳米材料数据有来源，但本轮未找到匹配“结构—能量—控制变量”的直接样本。",
+      "construction": "先限定一个材料和形变机制，取得配对计算或实验。",
+      "verification": "几何差异与能量证据分开，禁止用观察相关性替代因果。",
+      "next_action": "本轮不支持原问法，暂缓；不因找到了材料论文就升级支持等级。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "M07": {
+      "decision": "rewrite",
+      "decision_label": "改写",
+      "support_level": "几何验证方法支持",
+      "source_ids": [
+        "zeo"
+      ],
+      "reason": "孔道通行可验证，修改孔道后化学有效性与稳定性尚无方案。",
+      "construction": "先改为给定探针的孔道可达性判断；设计版另列后续目标。",
+      "verification": "固定半径模型、探针和可达通道协议，复算连通性。",
+      "next_action": "先做 Perception 几何分析版，保留原 Design 标签为待改建议。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "M08": {
+      "decision": "hold",
+      "decision_label": "保留待补",
+      "support_level": "相关原始数据支持",
+      "source_ids": [
+        "tomo"
+      ],
+      "reason": "找到材料 STEM 数据；撤销 EMDB 作为材料任务来源的关联。",
+      "construction": "选择已重建且可标定的体数据，确定分割规则再问颗粒间距。",
+      "verification": "像素／体素标定、分割与三维距离，不从二维图直接猜。",
+      "next_action": "需重建／分割结果和不确定性；实际尺度不能沿用 100–1000 nm 占位。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "B01": {
+      "decision": "merge",
+      "decision_label": "合并",
+      "support_level": "数据入口支持",
+      "source_ids": [
+        "pdb",
+        "landscape"
+      ],
+      "reason": "单一配体原子距离与 C01 重复，生物来源不足以构成新能力。",
+      "construction": "并入 C01 的生物情境；若研究口袋接触则单独定义 B03。",
+      "verification": "复用距离计算和结构索引。",
+      "next_action": "保留编号历史，不计独立题型。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "B02": {
+      "decision": "priority",
+      "decision_label": "优先开展",
+      "support_level": "验证方法与数据入口支持",
+      "source_ids": [
+        "torsion",
+        "pdb"
+      ],
+      "reason": "主链二面角有标准结构输入与验证背景，适合快速形成新实例。",
+      "construction": "选择完整残基及相邻残基，固定 chain/residue/altloc/model。",
+      "verification": "复算 phi/psi、周期区间和缺失原子；分组依据需明确。",
+      "next_action": "优先选结构并增二面角验证器；异常不能自动当结构错误。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "B03": {
+      "decision": "rewrite",
+      "decision_label": "改写",
+      "support_level": "规则方法支持",
+      "source_ids": [
+        "plip"
+      ],
+      "reason": "按给定几何阈值识别候选氢键更接近规则感知，不足以单列高阶推断。",
+      "construction": "改成规则判定并显式给出供受体、质子化及阈值。",
+      "verification": "类型与距离角度联合检查；不推出氢键能或亲和力。",
+      "next_action": "建议改为 Perception 子类；若保留 Inference 需加入独立物理证据。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "B04": {
+      "decision": "hold",
+      "decision_label": "保留待补",
+      "support_level": "输出验证方法支持",
+      "source_ids": [
+        "pose",
+        "plip"
+      ],
+      "reason": "姿态约束修复有可借鉴检查，但没有现成唯一答案。",
+      "construction": "固定口袋与配体允许自由度，给出明确可行约束。",
+      "verification": "配体立体化学、碰撞、接触约束；结合活性单独验证。",
+      "next_action": "先做可接受／不可接受输出测试集；评分器尚未接入 Builder。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "B05": {
+      "decision": "priority",
+      "decision_label": "优先开展",
+      "support_level": "方法与数据入口支持",
+      "source_ids": [
+        "alignment",
+        "pdb"
+      ],
+      "reason": "配对结构对齐支持结构域运动分析；须防止整体对齐掩盖局部运动。",
+      "construction": "指定固定结构域、移动结构域与残基对应。",
+      "verification": "先锚定固定域，再计算移动域旋转角和位移。",
+      "next_action": "选择一对同蛋白构象及结构域定义；不把算法找的对应直接当已审核答案。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "B06": {
+      "decision": "defer",
+      "decision_label": "暂缓",
+      "support_level": "相邻方法支持",
+      "source_ids": [
+        "alignment",
+        "plip"
+      ],
+      "reason": "目前只有几何比较方法，缺少直接支撑“机制”的配对实验论文。",
+      "construction": "先选具体机制和实验条件再构题；只比较接触时另归感知。",
+      "verification": "接触变化程序计算，机制结论需原文证据与领域审核。",
+      "next_action": "本轮暂缓机制推断版；不把通用工具当机制来源。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "B07": {
+      "decision": "hold",
+      "decision_label": "保留待补",
+      "support_level": "相关研究任务支持",
+      "source_ids": [
+        "rf"
+      ],
+      "reason": "已有对称蛋白设计研究，但固定亚基摆放与骨架生成需区分。",
+      "construction": "先限定固定构件、目标对称群和接触约束，选择真实模板。",
+      "verification": "旋转对称、碰撞、接触与合法组成分别评分。",
+      "next_action": "落实输出评分协议和有效实例，功能成功不能仅由几何判断。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "B08": {
+      "decision": "hold",
+      "decision_label": "保留待补",
+      "support_level": "验证方法支持",
+      "source_ids": [
+        "map"
+      ],
+      "reason": "图模型匹配有成熟指标，但不同地图／分辨率不能随意混比。",
+      "construction": "固定一张地图和标定，用两个匹配模型做比较。",
+      "verification": "锁定对齐、掩膜和同一种图模型指标。",
+      "next_action": "取得配套 map/model；地图分辨率与输入对象大小分开记录。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    },
+    "B09": {
+      "decision": "merge",
+      "decision_label": "合并",
+      "support_level": "相邻研究任务支持",
+      "source_ids": [
+        "rf"
+      ],
+      "reason": "仅按较大尺寸拆出壳层放置，尚未形成与 B07 不同的任务定义。",
+      "construction": "并入 B07，以组装大小作实例属性而非新任务。",
+      "verification": "同组装约束评分；实际尺寸按实例测量。",
+      "next_action": "若后来引入特定壳层物理约束，再考虑独立任务。",
+      "review_status": "first_pass_source_review",
+      "reviewer": "assistant; not independent domain review",
+      "instance_ready": false,
+      "input_assets": "具体资产尚待取得／核实",
+      "scale_status": "原坐标为规划占位；本轮没有核实任务实例长度",
+      "benchmark_relation": "现有 benchmark 仅作任务／协议参照，未导入其测试题。"
+    }
+  }
+}
