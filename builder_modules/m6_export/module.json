@@ -1,7 +1,7 @@
 {
   "id": "M6",
   "folder": "m6_export",
-  "name": "导出与记录",
+  "name": "导出与候选入池",
   "version": "0.3.0",
   "status": "候选导出已实现",
   "executor": "程序",
@@ -10,12 +10,28 @@
   "outputs": "model-inputs.json、private-answers.json、quality-report.json",
   "principle": "白名单选取模型输入字段，清理 XYZ 注释，单独导出答案与检查限制。",
   "checks": "阶段完整、导出格式、公开输入不包含内部答案字段",
-  "limits": "还没有正式 benchmark 划分、跨论文去重或批调度；输入文字泄漏仍需审核。",
+  "limits": "目前只导出本批候选；跨批合并、统一全局池、跨论文去重和正式入池审核尚未自动实现。导出不等于正式发布。",
   "optimize": "优化字段和数据划分策略；新增导出目标不应修改上游题目。",
   "fields": [
     "model-inputs.json",
     "private-answers.json",
     "quality-report.json"
   ],
-  "test_command": "python -m unittest discover -s tests -p test_m6_export.py -v"
+  "test_command": "python -m unittest discover -s tests -p test_m6_export.py -v",
+  "io_example": {
+    "input": {
+      "reviewed_candidates": "本批带状态的候选"
+    },
+    "output": {
+      "model_inputs": "不给被测模型看答案",
+      "private_answers": "单独存储",
+      "pool_status": "本批已导出不代表全局入池或正式发布"
+    },
+    "note": "字段含占位说明，仅解释数据流；不是实际论文结果，也不是可直接导入的完整 JSON。"
+  },
+  "inspect_files": [
+    "model-inputs.json",
+    "private-answers.json",
+    "quality-report.json"
+  ]
 }

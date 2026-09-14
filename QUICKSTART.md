@@ -80,3 +80,9 @@ fork 复用原有证据、任务和规则快照，清除新副本的构题及后
 查看 builder_modules/m0_scope 到 m6_export。每个目录的 README 说明输入输出和测试命令。
 范围参数在 m0_scope/settings.json；AI 规则在对应目录的 prompt.md；实现逻辑在 module.py。
 改完模块运行其测试，再跑完整测试；用 tools/export_modules.py 同步网站上的说明和代码。
+
+## 只有填充目标，没有论文怎么办
+
+先阅读 DATAFLOW.md。Codex 明确目标并检索材料，再进入 prepare/init；M1 程序自身不联网检索。
+已有完整 benchmark 走来源核对、分类映射和格式适配路线；通用导入器尚未实现，不能直接传任意题库。
+查看实际输入输出：python tools/inspect_run.py --run 对应目录 --html。

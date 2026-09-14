@@ -6,7 +6,7 @@
   "status": "AI 协议 + 检查已接通",
   "executor": "AI + 程序",
   "purpose": "从科学材料中提取能支持构题的证据单元，保留条件和限制。",
-  "inputs": "材料包",
+  "inputs": "已取得全文片段、结构与来源位置的 bundle，不是只有论文标题的列表",
   "outputs": "evidence.json",
   "principle": "Codex 读取独立提示词；程序检查输出格式、原句和资产引用。",
   "checks": "唯一证据编号、原文匹配、结构资产存在",
@@ -19,5 +19,27 @@
     "conditions",
     "limitations"
   ],
-  "test_command": "python -m unittest discover -s tests -p test_m2_evidence.py -v"
+  "test_command": "python -m unittest discover -s tests -p test_m2_evidence.py -v",
+  "io_example": {
+    "input": {
+      "bundle": "原文分段 + 定位信息 + 已取得结构"
+    },
+    "output": {
+      "records": [
+        {
+          "evidence_id": "E_DEMO",
+          "source_refs": "原文逐字摘录与来源 ID",
+          "geometric_relation": "从实际材料提取",
+          "conditions": [
+            "必须保留的实验/计算条件"
+          ]
+        }
+      ],
+      "note": "结构示意，非可直接导入的实际结果"
+    },
+    "note": "字段含占位说明，仅解释数据流；不是实际论文结果，也不是可直接导入的完整 JSON。"
+  },
+  "inspect_files": [
+    "evidence.packet.json → evidence.json 的 data"
+  ]
 }

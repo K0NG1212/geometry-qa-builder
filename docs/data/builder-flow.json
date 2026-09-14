@@ -1,0 +1,33 @@
+{
+  "example_goal": {
+    "domain": "chemistry",
+    "scale_axis": "input",
+    "target_range_nm": [
+      1,
+      10
+    ],
+    "target_candidates": 10,
+    "source_route": "papers_or_structures",
+    "note": "流程示例，尚未启动检索；尺度轴实际需由用户确认"
+  },
+  "routes": [
+    {
+      "id": "new",
+      "name": "从论文 / 结构构建新题",
+      "flow": "目标 → M0 → M1 检索并取得材料 → M2 证据 → M3 任务 → M4 构题 → M5 检查 → M6 本批导出",
+      "description": "M1 的检索由 Codex 执行；现有程序从已取得材料开始。M6 全局入池仍待实现。"
+    },
+    {
+      "id": "reuse",
+      "name": "复用完整 benchmark QA",
+      "flow": "目标 → M0 → M1 取得原题与许可 → M2 审核已有依据 → M3 分类映射 → M4 只适配格式 → M5 检查 → M6 候选导出",
+      "description": "不重新生成已有题。保留原题 ID、版本、split、许可和 reused 标记。通用导入适配器尚未实现，需要按选定 benchmark 做字段映射。"
+    },
+    {
+      "id": "adapt",
+      "name": "只复用数据 / 改写原题",
+      "flow": "目标 → M0 → M1 取得数据 → M2 证据 → M3 新任务 → M4 构题或改写 → M5 重新验证 → M6 本批导出",
+      "description": "只有结构/性质并不是完整 QA。改写题标记 adapted，重新检查答案；公开旧题与新构建题分组报告。"
+    }
+  ]
+}

@@ -1,20 +1,52 @@
 {
   "id": "M1",
   "folder": "m1_materials",
-  "name": "材料整理",
+  "name": "检索与材料整理",
   "version": "0.3.0",
-  "status": "文本 / XYZ 已实现",
-  "executor": "程序 + 来源核对",
-  "purpose": "把可读原文、结构和单位依据整理成后续模块能引用的材料包。",
-  "inputs": "txt / md / 文本 PDF / XYZ、单位依据",
-  "outputs": "bundle.json、asset-units.json",
-  "principle": "文字分段并记录位置；解析坐标；逐一核对单位引用。",
+  "status": "检索规程 + 材料程序",
+  "executor": "Codex 检索 + 程序整理",
+  "purpose": "按目标寻找适用来源，取得可用原文、结构和答案依据，再整理成材料包。",
+  "inputs": "goal.json → 检索结果 → 已取得的原文和结构",
+  "outputs": "sources.json（助手记录）+ bundle.json + asset-units.json",
+  "principle": "Codex 按 retrieval.md 使用检索工具，记录来源和取得情况；module.py 处理本地文本/XYZ及单位检查。只有论文列表不能交给下游构题。",
   "checks": "文本非空、XYZ 格式、单位原句与来源身份",
-  "limits": "没有自动检索、OCR、可靠表格解析；单位是否适用于该结构需要核对。",
+  "limits": "尚无自动检索器/下载队列；检索由 Codex 会话执行。OCR、可靠表格解析和检索覆盖率检查尚未实现。",
   "optimize": "优化解析和结构格式支持；先测试来源定位不丢失。",
   "fields": [
     "bundle.json",
     "asset-units.json"
   ],
-  "test_command": "python -m unittest discover -s tests -p test_m1_materials.py -v"
+  "test_command": "python -m unittest discover -s tests -p test_m1_materials.py -v",
+  "io_example": {
+    "input": {
+      "domain": "chemistry",
+      "scale_axis": "input",
+      "target_range_nm": [
+        1,
+        10
+      ],
+      "target_candidates": 10,
+      "source_route": "papers_or_structures",
+      "note": "流程示例，尚未启动检索；尺度轴实际需由用户确认"
+    },
+    "output": {
+      "sources": [
+        {
+          "source_id": "SOURCE_DEMO",
+          "url": "待实际检索填写",
+          "decision": "pending",
+          "full_text_acquired": false,
+          "structure_acquired": false,
+          "scale_verified": false
+        }
+      ],
+      "bundle_ready": false
+    },
+    "note": "字段含占位说明，仅解释数据流；不是实际论文结果，也不是可直接导入的完整 JSON。"
+  },
+  "inspect_files": [
+    "sources.json（目前由助手保存）",
+    "bundle.json",
+    "asset-units.json"
+  ]
 }

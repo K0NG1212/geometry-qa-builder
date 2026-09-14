@@ -8,7 +8,7 @@
   "purpose": "把证据转成可构题的任务模板，说明需要测什么、如何验证。",
   "inputs": "证据单元、原文与结构",
   "outputs": "tasks.json",
-  "principle": "沿用导师的领域和三类能力，分别记录输入尺度与推理尺度。",
+  "principle": "读取证据后判断适合测什么，规划具体输入、评分方法、领域、能力和双尺度；不只是划分能力标签。目标尺度与实例实际尺度分开记录。",
   "checks": "证据关联、资产可用、Design 不得误标为可直接出题",
   "limits": "模板科学意义、双尺度标签与几何必要性仍待研究审核。",
   "optimize": "优化任务识别提示词和可执行性检查；不为填满格子强行构题。",
@@ -19,5 +19,29 @@
     "ability",
     "validation_route"
   ],
-  "test_command": "python -m unittest discover -s tests -p test_m3_tasks.py -v"
+  "test_command": "python -m unittest discover -s tests -p test_m3_tasks.py -v",
+  "io_example": {
+    "input": {
+      "evidence_ids": [
+        "E_DEMO"
+      ],
+      "available_assets": "来自 M1"
+    },
+    "output": {
+      "task_id": "T_DEMO",
+      "domain": "chemistry",
+      "input_scale": "需实测，不因目标为 1–10 nm 就直接赋值",
+      "reasoning_scale": "按具体任务另记",
+      "ability": "根据实际任务选择",
+      "validation_route": "明确可执行的验证方法",
+      "eligible": false,
+      "unmet_requirements": [
+        "示意材料尚未取得"
+      ]
+    },
+    "note": "字段含占位说明，仅解释数据流；不是实际论文结果，也不是可直接导入的完整 JSON。"
+  },
+  "inspect_files": [
+    "tasks.packet.json → tasks.json 的 data"
+  ]
 }

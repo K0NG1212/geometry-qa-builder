@@ -18,5 +18,23 @@
     "answer_numeric",
     "reference_answer"
   ],
-  "test_command": "python -m unittest discover -s tests -p test_m4_construction.py -v"
+  "test_command": "python -m unittest discover -s tests -p test_m4_construction.py -v",
+  "io_example": {
+    "input": {
+      "task_id": "T_DEMO",
+      "structure": "实际坐标",
+      "construction_plan": "指定题干、原子编号、容差"
+    },
+    "output": {
+      "qa_id": "Q_DEMO",
+      "answer_numeric": null,
+      "note": "程序实际计算后才填写答案，不能凭目标或论文摘要猜测"
+    },
+    "note": "字段含占位说明，仅解释数据流；不是实际论文结果，也不是可直接导入的完整 JSON。"
+  },
+  "inspect_files": [
+    "construction.packet.json",
+    "construction-receipt.json",
+    "qa.json 的 data"
+  ]
 }

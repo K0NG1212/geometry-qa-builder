@@ -2,7 +2,7 @@
 
 把科学材料转成有证据、可检查的候选 QA。**当前默认由 Codex 会话执行 AI 模块，不需要 API Key。**
 
-[查看模块工作台](https://k0ng1212.github.io/geometry-qa-builder/builder.html) · [开始使用](QUICKSTART.md) · [模块划分](builder_modules/README.md) · [执行规程](RUNBOOK.md) · [测试说明](TESTING.md) · [Research Atlas](https://k0ng1212.github.io/geometry-qa-builder/)
+[查看模块工作台](https://k0ng1212.github.io/geometry-qa-builder/builder.html) · [数据流与 benchmark 复用](DATAFLOW.md) · [开始使用](QUICKSTART.md) · [模块划分](builder_modules/README.md) · [执行规程](RUNBOOK.md) · [测试说明](TESTING.md) · [Research Atlas](https://k0ng1212.github.io/geometry-qa-builder/)
 
 ## 这一版解决什么
 

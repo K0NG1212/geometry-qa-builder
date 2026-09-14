@@ -18,5 +18,23 @@
     "status",
     "benchmark_ready"
   ],
-  "test_command": "python -m unittest discover -s tests -p test_m5_quality.py -v"
+  "test_command": "python -m unittest discover -s tests -p test_m5_quality.py -v",
+  "io_example": {
+    "input": {
+      "qa_id": "Q_DEMO",
+      "references": "来自 M1/M2",
+      "rubric": "来自 M3/M4"
+    },
+    "output": {
+      "qa_id": "Q_DEMO",
+      "checks": "逐项检查输入、证据、条件、泄漏、评分与数值",
+      "status": "待实际检查",
+      "benchmark_ready": false
+    },
+    "note": "字段含占位说明，仅解释数据流；不是实际论文结果，也不是可直接导入的完整 JSON。"
+  },
+  "inspect_files": [
+    "review.packet.json → review.json 的 data",
+    "report.json"
+  ]
 }
