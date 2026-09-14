@@ -1,72 +1,55 @@
-# Geometry QA Builder v0.1
+# Geometry QA Builder v0.2
 
-## GeoBench 研究网站
+把科学材料转成有证据、可检查的候选 QA。**当前默认由 Codex 会话执行 AI 模块，不需要 API Key。**
 
-**[打开 Research Atlas](https://k0ng1212.github.io/geometry-qa-builder/)** · [网站维护说明](docs/README.md)
+[开始使用](QUICKSTART.md) · [模块划分](modules/README.md) · [执行规程](RUNBOOK.md) · [测试说明](TESTING.md) · [Research Atlas](https://k0ng1212.github.io/geometry-qa-builder/)
 
-网站包含可筛选的资源、候选问题、覆盖图与公开样题。网站代码位于 `docs/`，内容数据独立保存在 `docs/data/catalog.json`；GitHub Pages 从 main 分支的 docs 目录发布。研究目录与下面的 QA 构建工具持续在同一个仓库迭代。
+## 这一版解决什么
 
-这是一个调用 GPT‑6 Astra、把论文材料转成可追溯候选 QA 的研究原型。无需训练模型，不依赖 SciQAG 代码。它不是已验证的 benchmark，也不是已经安装的 Codex Skill。
-（不强制要求调用api，直接丢给ai让他用里面的方法大概就好）
+把构题过程拆成独立模块：范围配置 → 材料整理 → 证据提取 → 任务模板 → 构题与计算 → 质量筛查 → 导出。
+每一步明确输入、输出、检查范围和失败原因。AI 按项目中固定的提示词工作；程序管理记录并核验。
 
+- evidence / tasks / review：AI 输出经过格式、引用或关联校验后保存。
+- construction：AI 指定题目、结构和原子编号；程序生成距离或夹角数值答案，禁止 AI 填入猜测数值。
+- status / next：继续未完成模块，复用已通过的结果。
+- fork：修改已通过阶段时建立新分支记录，原结果保留。
+- export：候选模型输入与私有答案分开，仍需审核题干是否泄漏答案。
 
-## 固定流程
+## 文件分工
 
-材料包 → evidence 证据提取 → tasks 任务识别与验证规划 → qa 出题 → review 模型审核 → 程序检查 → 候选表。
+| 文件 | 用途 |
+|---|---|
+| pipeline.py | v0.2 入口；不调用 API |
+| modules/ | 可独立迭代的提示词、构题计划和单位格式 |
+| RUNBOOK.md | Codex 逐步执行说明，无需安装全局 Skill |
+| builder.py、prompts/、schemas/ | 保留 v0.1 核心和兼容入口 |
+| tests/ | 来源、计算、快照、续跑和失败路径测试 |
+| tools/replay_demo.py | 无模型调用的合成软件回放 |
+| docs/ | 独立维护的 GitHub Pages 研究展示网站 |
 
-- `prompts/`：独立、可修改的阶段提示词。
-- `config.json`：模型、推理强度、输出限制、每篇题量上限。
-- `schemas/*.json`：机器可读输入输出契约，由 `python builder.py schemas` 导出。
-- `builder.py`：材料导入、阶段运行、手动结果导入、核验、报告。
-- `RUNBOOK.md`：供当前任务执行的固定操作规程。
-- `tests/test_builder.py`：验证失败关闭、引用、数值和记录不可覆盖等关键逻辑。
-- `examples/`：明确标记的合成软件测试材料，不是论文数据。
+## 快速运行软件示例
 
-## 本版范围
-
-输入是可定位的文本材料，可从 UTF‑8 txt/md 或文本型 PDF 导入。PDF 只提取文字，不读取图像、可靠重建表格或执行 OCR；缺失结构/图片必须排除相关题或补充材料，禁止凭图注猜结构。每篇主文与补充材料可多次传 `--source`。XYZ 坐标以 angstrom 为单位，通过 `--xyz` 附加。
-
-本版不自动检索/下载文献、不做多模态等价性、不自动组装正式测试集、不计算量子化学性质、不执行模型生成的代码。明确支持 XYZ 距离及三点夹角核验；其他科学推断仅做证据与模型筛查，仍待领域抽审。无需强制每篇出题，0 题是有效结果。Design 只保留为候选任务，不生成正式题。
-
-## 命令
-
-需要 Python 3.10+。核心仅使用标准库；PDF 输入额外需要 `pypdf`。
-
-```text
-python builder.py schemas
-python builder.py prepare --paper-id paper-001 --title "论文标题" --url "论文链接" --source paper.md --source supplement.txt --out inputs/paper-001.json
-python builder.py prepare --paper-id paper-002 --title "论文标题" --url "论文链接" --source paper.pdf --xyz structure.xyz --out inputs/paper-002.json
-python builder.py init --bundle inputs/paper-001.json --run runs/experiment-001
-python builder.py next --run runs/experiment-001
-python builder.py accept --run runs/experiment-001 --result stage-result.json --model gpt-6-astra
-python builder.py report --run runs/experiment-001
-```
-
-`next` 生成下一阶段完整请求包；在当前任务按其内容生成 JSON，使用 `accept` 验证并导入。重复四次。请求包已经包含前序证据、输出 schema 和规则，无需手工拼提示词。
-
-API 批量方式：先在自己电脑设置 `OPENAI_API_KEY`，然后：
+Python 3.10+，核心仅使用标准库；PDF 文字提取另需 pypdf。
 
 ```text
-python builder.py run --run runs/experiment-001 --max-calls 4
+python tools/replay_demo.py --run runs/demo-v02
+python pipeline.py status --run runs/demo-v02
+python -m unittest discover -s tests -v
 ```
 
-会发起最多 4 次顺序 Responses API 请求。已有完整阶段跳过；中断、拒绝、不合法 JSON、引用错误均停止并保留失败结果。网络超时不自动重试，避免重复计费；显式重新运行才继续。每次独立请求，不向评审阶段传递隐藏思维过程。当前未配置密钥，因此交付时未做真实 API 联调。
+该示例回放手写 synthetic fixture，不是模型生成实验，也不计入 benchmark。
+处理真实材料请在 Codex 中打开项目，让助手按 [RUNBOOK](RUNBOOK.md) 执行。
 
-批量多篇：对每个材料包使用独立 run 目录重复执行；v0.1 不自动并发。材料、配置、提示词、schema 和程序快照随 run 保存；现有 run 使用旧快照，改进后新建 run 比较。API 响应保存实际返回模型和 token usage；模型别名仍可能更新，记录模型名不等于严格确定性。
+## 科学与运行边界
 
-## 输出与质量边界
+固定提示词不保证每次 AI 输出一致。保存材料、程序、规则快照和已接受结果用于追踪；重生成使用新记录。
+来源引文匹配不证明结论成立，数值检查不证明科学意义。同一会话的生成和审核不是独立专家验证。
+当前可信计算器只有 XYZ 距离、夹角；其他文字推断待审，Design 暂不出正式题。
+每条记录 benchmark_ready=false，后续仍需专家抽审、难度评测、去重和测试集划分。
 
-`report.json`、`candidates.csv`（Excel 可打开）和 `report.md` 记录每题状态。`pending_human_audit` 表示自动检查通过待人工审核；`needs_revision` 表示模型或程序发现问题；没有自动“科学认证”。`benchmark_ready` 恒为 false。空题集不会被统计为成功。
+本版不含自动文献检索、多模态解析或无限无人值守批量生成。API 是后续可替换的执行方式；
+旧版 API 入口保留用于兼容，详见 [v0.1 文档](LEGACY-v01.md)，不代表账号已获得对应模型权限。
+运行目录 inputs/、runs/ 默认不进入 Git，避免把论文全文和内部答案随代码发布。
 
-证据原句匹配只证明来源中有这句话，不证明科学正确；同一个 GPT‑6 的审核不是独立专家审核。请抽查通过与拒绝记录并保留人工判断。候选 CSV 不包含完整内部证据包，后者保留在阶段 JSON 中；不得把答案和内部原文结论直接喂给被测模型。
-
-## 版本与后续实验
-
-先跑 B（分阶段流程）。后续加 A（直接出题）和 C（更强结构验证），使用相同材料、模型及题量限制，比较盲审合格率、错误放行率、误删、成本和人工时间。本版未实现 A/C，不能声称已完成方法有效性比较。
-
-公开文档核对于 2026-09-06：
-- https://developers.openai.com/api/docs/models/gpt-6-astra
-- https://developers.openai.com/api/docs/guides/structured-outputs
-- https://developers.openai.com/api/reference/typescript/resources/beta/subresources/responses/methods/create
-
-相关方法参考（未复用代码）：SciQAG https://arxiv.org/abs/2405.09939；SPIQA https://arxiv.org/abs/2407.09413。
+研究网站与 Builder 共用仓库，但问题分类和网站布局不会决定程序是否通过验证。
+网站从 main/docs 发布，维护方式见 [网站说明](docs/README.md)。

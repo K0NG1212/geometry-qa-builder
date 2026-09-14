@@ -1,3 +1,12 @@
+# 0.2.0 — 2026-09-14
+
+- Added subscription-session pipeline, modular prompts, construction-plan and unit contracts.
+- Numeric answers originate from trusted distance/angle code in the v0.2 path.
+- Added context-bound imports, failure logs, status/resume, frozen runners and safe forks.
+- Added separate candidate-input/private-answer exports and explicit screening limitations.
+- Retained v0.1 core/API for compatibility; v0.2 makes no API calls.
+- Added offline synthetic replay and failure-path tests; no scientific certification claimed.
+
 # 版本记录
 
 ## 0.1.0 — 2026-09-06
