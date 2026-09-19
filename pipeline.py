@@ -1,4 +1,4 @@
-"""GeoBench v0.3: file-based, subscription-session pipeline. No API calls."""
+"""GeoBench v0.4: file-based, subscription-session pipeline. No API calls."""
 import argparse
 import copy
 import hashlib
@@ -61,7 +61,7 @@ def init(bundle, run, units=None):
     scope.initialize(b, ROOT, bundle, run)
     run = Path(run)
     b.write(run/'asset-units.json', unit_data)
-    b.write(run/'protocol.json', {'version': '0.3.0', 'executor': 'codex_session',
+    b.write(run/'protocol.json', {'version': '0.4.0', 'executor': 'codex_session',
         'requested_model': 'gpt-6-astra', 'api_required': False,
         'numeric_answers': 'program_computed', 'independent_review': False})
     shutil.copyfile(Path(__file__), run/'pipeline_snapshot.py')
@@ -102,7 +102,7 @@ def state(run):
 def status(run):
     run, bundle, config, previous, manifest = state(run)
     attempts = sorted((run/'attempts-v02').glob('*.json'))
-    return {'version': '0.3.0', 'paper_id': bundle['paper_id'],
+    return {'version': '0.4.0', 'paper_id': bundle['paper_id'],
         'completed': list(MODULES[:len(previous)]),
         'next': MODULES[len(previous)] if len(previous) < 4 else 'export',
         'accepted_candidates': len(previous.get('qa', {}).get('items', [])),
@@ -122,7 +122,8 @@ def packet(run):
     result = {'module': module, 'execution_mode': 'codex_session',
         'requested_model': 'gpt-6-astra', 'instructions': instructions,
         'input': {'bundle': bundle, 'previous': previous,
-                  'asset_units': b.read(run/'asset-units.json'), 'max_questions': config['max_questions']},
+                  'asset_units': b.read(run/'asset-units.json'), 'max_questions': config['max_questions'],
+                  'prototype_policy': b.read(run/'builder_modules/m0_scope/prototype-policy.json')},
         'output_schema': b.read(run/'builder_modules'/MODULE_PATHS[module]/'schema.json'),
         'context_hash': b.digest({'core': manifest['hashes'], 'previous': previous,
                                   'protocol': protocol_hashes(run)})}

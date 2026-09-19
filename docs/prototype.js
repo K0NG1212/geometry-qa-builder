@@ -1,0 +1,8 @@
+(() => {
+ const e=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ fetch('data/prototype-progress.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(p=>{
+  const section=document.createElement('section');section.className='section-block';section.id='prototype-progress';
+  section.innerHTML=`<div class="eyebrow">PROTOTYPE / REASONING SCALE</div><h2>16 个格子，每格目标 10 道。</h2><p>新规则初筛 ${p.screened_total} / ${p.target_total} · 正式可用 ${p.formal_ready} · 尚无统一实测推理尺度 ${p.unlocated_candidates} 条</p><p class="caption">每格尽量感知 / 推断 / 设计各 3 道，余下 1 道灵活安排；优先单尺度，不强行填满。大附件中的明确局部题仍可属于单尺度。旧题需复审，不因已有答案自动计入进度。</p><div class="table-scroll"><table><thead><tr><th>领域</th><th>推理尺度</th><th>初筛 / 目标</th><th>感知 / 推断 / 设计</th><th>缺额</th></tr></thead><tbody>${p.cells.map(c=>`<tr><td>${e({quantum:'量子',chemistry:'化学',materials:'材料',biology:'生物'}[c.domain])}</td><td>${c.range_nm.join('–')} nm</td><td>${c.screened_count} / ${c.target}</td><td>${c.abilities.perception} / ${c.abilities.inference} / ${c.abilities.design}</td><td>${c.remaining} · 待补材料、模板或验证</td></tr>`).join('')}</tbody></table></div><p><a class="text-link" href="prototype-update.html">查看规则更新与改写验证 ↗</a> · <a class="text-link" href="data/prototype-progress.json" download>下载缺口记录 ↓</a></p>`;
+  document.querySelector('#coverage').closest('.section-block').before(section);
+ }).catch(e=>console.error('Prototype coverage failed',e));
+})();

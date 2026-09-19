@@ -34,7 +34,8 @@ def nullable(schema):
 REF = obj(source_id=S, quote=S)
 ABILITY = enum('perception', 'inference', 'design')
 CHECKS = obj(sufficient_input=B, evidence_support=B, geometry_required=B,
-             no_answer_leakage=B, conditions_preserved=B, rubric_scorable=B)
+             no_answer_leakage=B, conditions_preserved=B, rubric_scorable=B,
+             disciplinary_meaning=B, entity_identity_clear=B, attachments_complete=B, single_scale_focus=B)
 SCHEMAS = {
  'bundle': obj(paper_id=S, title=S, url=S, synthetic=B,
      sources=arr(obj(source_id=S, location=S, origin=S, kind=enum('text','xyz'), text=S)), warnings=SS),
@@ -42,6 +43,7 @@ SCHEMAS = {
      scientific_result=S, conditions=SS, limitations=SS, source_refs=arr(REF), asset_ids=SS)), exclusions=SS),
  'tasks': obj(tasks=arr(obj(task_id=S, evidence_ids=SS, domain=S, object_type=S,
      input_scale=S, reasoning_scale=S, ability=ABILITY, geometry_necessity=S,
+     learning_objective=S, selection_rationale=S,
      input_plan=S, validation_route=enum('xyz_distance','xyz_angle','evidence_review'),
      eligible=B, unmet_requirements=SS)), exclusions=SS),
  'qa': obj(items=arr(obj(qa_id=S, task_id=S, evidence_ids=SS, ability=ABILITY,

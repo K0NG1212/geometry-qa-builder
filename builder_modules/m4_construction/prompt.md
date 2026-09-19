@@ -20,3 +20,7 @@ not model imagination. Use Q001-style IDs and preserve task_id/ability.
 
 Pass gate: schema, task linkage, unit evidence, valid indices and deterministic computation.
 Question/indices agreement and scientific significance require the review module.
+
+## v0.4 complete exam-style question
+Name the chemical/disciplinary entities and relevant relation before giving row indices. Index labels locate entities; they do not replace identities or the learning objective. XYZ atom row is one-based after two header lines; distinguish file line vs atom row. Use provided identity/connectivity evidence, never infer a bond or functional group solely from proximity.
+Provide a standalone question plus complete instructions and actual local input assets. Preserve quantity, units, central atom, conformer, rounding and rubric. Request a single-scale reasoning task; explicitly localize the relevant region of larger attachments. M6 assembles question, instructions and sanitized assets into a complete student input and a separate answer key.

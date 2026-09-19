@@ -11,7 +11,7 @@ def build():
     for path in sorted((ROOT/'builder_modules').glob('m[0-6]_*')):
         entry = json.loads((path/'module.json').read_text(encoding='utf-8'))
         entry['files'] = []
-        for name in ('README.md', 'module.py', 'prompt.md', 'schema.json', 'settings.json', 'retrieval.md'):
+        for name in ('README.md', 'module.py', 'prompt.md', 'schema.json', 'settings.json', 'retrieval.md', 'prototype-policy.json', 'coverage.py'):
             file = path/name
             if file.exists():
                 entry['files'].append({'name': name, 'path': file.relative_to(ROOT).as_posix(),
@@ -20,7 +20,7 @@ def build():
         modules.append(entry)
     if [m['id'] for m in modules] != [f'M{i}' for i in range(7)]:
         raise ValueError('Expected exactly seven module definitions')
-    return {'version': '0.3.0', 'modules': modules,
+    return {'version': '0.4.0', 'modules': modules,
         'note': '实现文件的静态展示，不会在浏览器执行 Python 或调用模型。科学质量尚待真实材料评测。'}
 
 

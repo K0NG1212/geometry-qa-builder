@@ -29,6 +29,18 @@
               },
               "rubric_scorable": {
                 "type": "boolean"
+              },
+              "disciplinary_meaning": {
+                "type": "boolean"
+              },
+              "entity_identity_clear": {
+                "type": "boolean"
+              },
+              "attachments_complete": {
+                "type": "boolean"
+              },
+              "single_scale_focus": {
+                "type": "boolean"
               }
             },
             "required": [
@@ -37,7 +49,11 @@
               "geometry_required",
               "no_answer_leakage",
               "conditions_preserved",
-              "rubric_scorable"
+              "rubric_scorable",
+              "disciplinary_meaning",
+              "entity_identity_clear",
+              "attachments_complete",
+              "single_scale_focus"
             ],
             "additionalProperties": false
           },

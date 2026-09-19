@@ -49,3 +49,10 @@
 工程试跑不能代替真实科学质量、挑战性和专家抽审实验。
 
 查看实际输入输出：python tools/inspect_run.py --run 对应运行目录 --html。生成本地私有查看器，不上传网站。
+
+
+## v0.4 原型规则
+
+新运行采用 PROTOTYPE.md。目标以解题推理尺度为主，每格10题、每能力尽量3题。M3 必填考点与对象选择理由，M5 四项新增检查不得省略；导出后在 student-packets/ 检查完整题干和所有附件。旧运行必须使用其冻结脚本，不会自动套用新规则。
+
+网站目录更新后运行 `python tools/export_prototype.py` 与 `python tools/export_modules.py`。初筛通过数、候选数和正式可用数分别统计。

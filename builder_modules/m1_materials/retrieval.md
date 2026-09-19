@@ -18,3 +18,6 @@
 
 交付：sources.json + 下载材料 + bundle + 单位依据。只有论文列表尚未完成 M1。
 当前 sources.json 是助手按此规程保存的检索记录；尚未实现自动检索器、下载队列或检索覆盖率检查。
+
+## Meeting 4 / prototype material contract
+Classify the source route: raw_structure_or_simulation, paper_evidence, existing_qa. A structural dataset is not an existing QA benchmark. Preserve original files locally, original URLs, units, atom identities/order, connectivity where used, and derivation records. Download required figure/structure assets when obtainable; mark missing assets rather than supply a link-only question. Do not invent chemical roles from XYZ element symbols alone.

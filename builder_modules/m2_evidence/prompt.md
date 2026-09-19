@@ -11,3 +11,6 @@ Do not assert that quote matching establishes the scientific conclusion.
 
 Pass gate: schema, unique IDs, nonempty verbatim quotations and existing assets.
 Not checked mechanically: entailment, completeness and scientific importance.
+
+## v0.4 additions
+Identify which source establishes atom identity, chemical motif or disciplinary relationship; distinguish source statements from computed quantities. Missing connectivity/identity evidence must be recorded. Keep claims within the supplied conformer and conditions.

@@ -30,10 +30,11 @@ def export(run):
     for id in ids:
         item=next(x for x in qa['data']['items'] if x['qa_id']==id)
         task=next(x for x in tasks['data']['tasks'] if x['task_id']==item['task_id'])
-        checks=[dict(x,qa_checks=[c for c in x['qa_checks'] if c['qa_id']==id]) for x in read(run/'independent-checks.json') if any(c['qa_id']==id for c in x['qa_checks'])]
+        raw_checks=read(run/'independent-checks.json')
+        checks=([raw_checks] if raw_checks.get('qa_id')==id else []) if isinstance(raw_checks,dict) else [dict(x,qa_checks=[c for c in x['qa_checks'] if c['qa_id']==id]) for x in raw_checks if any(c['qa_id']==id for c in x['qa_checks'])]
         filt=lambda d:{**{k:v for k,v in d.items() if k!='items'},'items':[x for x in d['items'] if x['qa_id']==id]}
         modules=[
-          dict(id='M0',name='范围配置',action='将批次目标和运行配置冻结保存。goal.json 是启动时快照，status 字段不会随本次展示改写。',inputs=[record('goal.json',read(run/'goal.json'))],outputs=[record('config.json',read(run/'config.json'))]),
+          dict(id='M0',name='范围配置',action=('goal.json 是验证结束后补记的范围说明；真实请求使用冻结的 prototype_policy。' if read(run/'goal.json').get('recording_note') else '将批次目标和运行配置冻结保存。goal.json 是启动时快照，status 字段不会随本次展示改写。'),inputs=[record('goal.json',read(run/'goal.json'))],outputs=[record('config.json',read(run/'config.json'))]),
           dict(id='M1',name='检索与材料整理',action='助手检索官方材料；PDB 转 XYZ，核实坐标、顺序与单位。此处是共享材料清单，原文件内容按来源链接追溯。',inputs=[record('sources.json',{k:sources[k] for k in ('search_queries','selection_unit','resources')})],outputs=[record('bundle.json',{'paper_id':bundle['paper_id'],'title':bundle['title'],'sources':manifest,'omitted':'Source text omitted; full XYZ available in M6 output and question detail.'}),record('asset-units.json',units)]),
           dict(id='M2',name='科学证据提取',action='按保存的提示词提取条件、坐标依据与限制。本次两道题共享证据，不是为每道题重新读一篇论文。',inputs=[packet('evidence')],outputs=[record('evidence.json',ev)]),
           dict(id='M3',name='任务模板',action='把证据转成可执行任务。本题对应 '+item['task_id']+'；保留未被采用的推断提案，说明为什么没有构题。',inputs=[packet('tasks')],outputs=[record('tasks.json',{'selected_task':task,'excluded_tasks':[t for t in tasks['data']['tasks'] if not t['eligible']],'exclusions':tasks['data'].get('exclusions',[])})]),

@@ -56,6 +56,18 @@ class ModularTests(unittest.TestCase):
         self.assertNotIn('Synthetic, not a physical equilibrium structure', json.dumps(inputs))
         self.assertFalse(p.b.read(self.run/'quality-report.json')['review_independent'])
 
+    def test_new_science_flags_block_even_correct_numeric_answer(self):
+        for _ in range(3): self.submit()
+        self.stages['review']['reviews'][0]['checks']['disciplinary_meaning'] = False
+        self.submit()
+        p.export(self.run)
+        report=p.b.read(self.run/'report.json')
+        self.assertEqual(report['items'][0]['status'],'needs_revision')
+        packet=(self.run/'student-packets/item-0001.txt').read_text(encoding='utf-8')
+        self.assertIn(self.plan['items'][0]['question'],packet)
+        self.assertTrue((self.run/'student-packets/item-0001-asset-1.xyz').exists())
+        self.assertNotIn('reference_answer',packet)
+
     def test_resume_preserves_evidence_bytes(self):
         self.submit()
         before = (self.run/'evidence.json').read_bytes()

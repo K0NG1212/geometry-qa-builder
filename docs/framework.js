@@ -3,7 +3,7 @@
   let framework;
   let reviewData;
   let decision = '';
-  let mode = 'input';
+  let mode = 'reasoning';
   let ability = '';
   const bins = ['0.1–1 nm','1–10 nm','10–100 nm','100–1000 nm'];
   const powers = ['10⁻¹⁰–10⁻⁹ m','10⁻⁹–10⁻⁸ m','10⁻⁸–10⁻⁷ m','10⁻⁷–10⁻⁶ m'];
@@ -32,7 +32,7 @@
       for(let i=0;i<4;i++){
         const lo=10**(i-1),hi=10**i;
         const selected=rows.filter(q=>q.domain===domain&&q[field]>=lo&&(q[field]<hi||(i===3&&q[field]===hi)));
-        html+=`<div class="map-cell task-cell">${selected.length?selected.map(q=>`<button class="task-chip p" data-question="${esc(q.id)}"><small>${esc(q.id)} · 待人工审核</small>${esc(q.title)}<span>${q[field].toFixed(3)} nm</span></button>`).join(''):'<span class="map-gap">暂无实测实例</span>'}</div>`;
+        html+=`<div class="map-cell task-cell">${selected.length?selected.map(q=>`<button class="task-chip p" data-question="${esc(q.id)}"><small>${esc(q.id)} · ${esc(statuses[q.status])}</small>${esc(q.title)}<span>${q[field].toFixed(3)} nm</span></button>`).join(''):'<span class="map-gap">暂无实测实例</span>'}</div>`;
       }
     }
     target.innerHTML=html;
@@ -45,10 +45,10 @@
     const section=$('#coverage').closest('.section-block');
     section.querySelector('h2').textContent='从任务类型，展开研究版图。';
     section.querySelector('.map-top p').textContent='科学领域 × 长度数量级';
-    section.querySelector('.caption').textContent='等宽区间对应 log₁₀ 长度轴；左闭右开，最右端包含 1000 nm。1 Å = 0.1 nm，1 nm = 10⁻⁹ m，1 μm = 1000 nm。任务按拟议情境放置，具体对象尺寸可跨区间；原有 26 条候选尚无统一实测值；新增 6 条的实测位置见下方独立实例图。';
+    section.querySelector('.caption').textContent='等宽区间对应 log₁₀ 长度轴；左闭右开，最右端包含 1000 nm。1 Å = 0.1 nm，1 nm = 10⁻⁹ m，1 μm = 1000 nm。任务按拟议情境放置，具体对象尺寸可跨区间；原有 26 条候选尚无统一实测值；有实测值条目的位置见下方独立实例图。';
     const controls=document.createElement('div');
     controls.className='framework-controls';
-    controls.innerHTML='<label>尺度视角 <select id="framework-mode"><option value="input">输入对象尺度</option><option value="reasoning">解题推理尺度</option></select></label><label>能力 <select id="framework-ability"><option value="">全部能力</option><option value="perception">感知</option><option value="inference">推断</option><option value="design">生成 / 设计</option></select></label><span id="framework-count"></span>';
+    controls.innerHTML='<label>尺度视角 <select id="framework-mode"><option value="reasoning">解题推理尺度（默认）</option><option value="input">输入对象尺度</option></select></label><label>能力 <select id="framework-ability"><option value="">全部能力</option><option value="perception">感知</option><option value="inference">推断</option><option value="design">生成 / 设计</option></select></label><span id="framework-count"></span>';
     const reviewFilter=document.createElement('label');
     reviewFilter.innerHTML='处理建议 <select id="framework-decision"><option value="">全部建议</option><option value="priority">优先开展</option><option value="hold">保留待补</option><option value="rewrite">改写</option><option value="merge">合并</option><option value="defer">暂缓</option></select>';
     controls.querySelector('span').before(reviewFilter);
@@ -58,7 +58,7 @@
     controls.before(summary);
     $('#coverage').classList.add('framework-map');
     const measured=document.createElement('div');
-    measured.innerHTML='<h3>已有实测位置的候选 · 6 道公开试跑示例</h3><p class="caption">与上方 31 个规划方向分别统计。沿用上方尺度视角与能力筛选；任务优先级筛选不适用于本图。仅覆盖 1.44–1.83 nm 的输入；尺度采用最大重原子中心距，局部任务采用指定子集。旧 26 条因缺少统一实测值暂不落点。<a class="text-link" href="pilot-chem.html">本轮来源与检查报告 ↗</a></p><div class="map-scroll"><div id="measured-coverage" class="framework-map"></div></div>';
+    measured.innerHTML='<h3>已有实测位置的候选 · 含旧题与改写示例</h3><p class="caption">与上方 31 个规划方向分别统计。沿用上方尺度视角与能力筛选；任务优先级筛选不适用于本图。仅覆盖 1.44–1.83 nm 的输入；尺度采用最大重原子中心距，局部任务采用指定子集。旧 26 条因缺少统一实测值暂不落点。<a class="text-link" href="pilot-chem.html">本轮来源与检查报告 ↗</a></p><div class="map-scroll"><div id="measured-coverage" class="framework-map"></div></div>';
     section.append(measured);
     $('#framework-mode').onchange=e=>{mode=e.target.value;render()};
     $('#framework-ability').onchange=e=>{ability=e.target.value;render()};

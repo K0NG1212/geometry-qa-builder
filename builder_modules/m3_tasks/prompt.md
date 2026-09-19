@@ -16,3 +16,8 @@ Design stays ineligible until a valid design evaluator exists. No forced quota f
 
 Pass gate: schema, source linkage, task eligibility and asset availability.
 Scientific relevance, two-scale labels and true geometry necessity still need review.
+
+## v0.4 prototype rules (Meeting 4)
+Use input.prototype_policy: classify by REASONING scale; input size remains metadata. A large supplied structure with an explicitly localized task can be single-reasoning-scale. Do not infer scale from object labels.
+Every task supplies learning_objective (disciplinary geometry concept tested) and selection_rationale (why these entities, not arbitrary rows). A purely arbitrary coordinate subtraction is a software baseline, not a meaningful science prototype. Renaming indices to element names alone is insufficient. Require a supported motif, relationship or scientific interpretation.
+Target 10 per domain/scale cell, approximately 3 each ability plus one flexible slot, never a mandatory quota. Design without evaluator stays deferred. Reuse one documented, versioned method per source route and template; do not create bespoke untraceable methods for every row.

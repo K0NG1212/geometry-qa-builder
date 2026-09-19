@@ -14,6 +14,19 @@ def export(b, run, bundle, previous, pipeline_status):
             lines = asset['text'].strip().splitlines()
             lines[1] = 'Coordinates in angstrom; atoms numbered from 1.'
             asset['text'] = '\n'.join(lines)+'\n'
+    packets = run/'student-packets'
+    packets.mkdir(exist_ok=True)
+    for index,q in enumerate(inputs,1):
+        # Numeric filenames avoid interpreting generated IDs as filesystem paths.
+        stem = f'item-{index:04d}'
+        attached=[]
+        for ai,asset in enumerate(q['assets'],1):
+            filename=f'{stem}-asset-{ai}.xyz'
+            (packets/filename).write_text(asset['text'],encoding='utf-8')
+            attached.append({'asset_id':asset['asset_id'],'file':filename})
+        text=q['question']+'\n\n'+q['model_input']+'\n\nAttachments:\n'+'\n'.join(x['asset_id']+': '+x['file'] for x in attached)
+        (packets/(stem+'.txt')).write_text(text,encoding='utf-8')
+    b.write(packets/'index.json',{'items':[{'qa_id':q['qa_id'],'question_file':f'item-{i:04d}.txt'} for i,q in enumerate(inputs,1)]})
     public_input = {'synthetic': bundle['synthetic'], 'candidates_only': True, 'items': inputs}
     b.validate(public_input, b.read(Path(__file__).with_name('schema.json')))
     b.write(run/'model-inputs.json', public_input)

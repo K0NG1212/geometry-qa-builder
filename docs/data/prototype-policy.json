@@ -1,0 +1,46 @@
+{
+  "version": "0.4.0",
+  "basis": "Meeting 4, user confirmation 2026-09-19",
+  "primary_scale": "reasoning",
+  "retain_input_scale": true,
+  "domains": [
+    "quantum",
+    "chemistry",
+    "materials",
+    "biology"
+  ],
+  "scale_bins_nm": [
+    [
+      0.1,
+      1
+    ],
+    [
+      1,
+      10
+    ],
+    [
+      10,
+      100
+    ],
+    [
+      100,
+      1000
+    ]
+  ],
+  "target_per_cell": 10,
+  "ability_soft_targets": {
+    "perception": 3,
+    "inference": 3,
+    "design": 3
+  },
+  "flexible_slots_per_cell": 1,
+  "single_scale_preferred": true,
+  "missing_cells": "record blocker; never fabricate or relabel to fill quota",
+  "source_routes": [
+    "raw_structure_or_simulation",
+    "paper_evidence",
+    "existing_qa"
+  ],
+  "source_balance": "roughly half paper / half data at prototype level; soft preference, not per-cell quota",
+  "design": "requires explicit constraints and working evaluator; no automatic reversal of inference"
+}

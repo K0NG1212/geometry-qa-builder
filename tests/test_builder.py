@@ -18,6 +18,7 @@ def fixtures():
         'limitations':['Not a scientific paper or equilibrium molecule'],'source_refs':refs,'asset_ids':['S0002']}],'exclusions':[]}
     tasks={'tasks':[{'task_id':'T001','evidence_ids':['E001'],'domain':'synthetic test','object_type':'two atoms',
         'input_scale':'two coordinates','reasoning_scale':'atom pair','ability':'perception','geometry_necessity':'Requires coordinate distance',
+        'learning_objective':'Software fixture only; not scientific QA','selection_rationale':'Synthetic coordinates for parser test',
         'input_plan':'XYZ coordinates and distance question','validation_route':'xyz_distance','eligible':True,'unmet_requirements':[]}],'exclusions':[]}
     qa={'items':[{'qa_id':'Q001','task_id':'T001','evidence_ids':['E001'],'ability':'perception',
         'question':'What is the distance between atoms 1 and 2 in angstrom?',

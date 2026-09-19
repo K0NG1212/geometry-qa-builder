@@ -13,7 +13,7 @@
 
 新增论文：在 `resources` 中添加唯一 `id`，填写名称、原始链接、类型（research/database/benchmark）、摘要与整理状态。再在 `questions` 添加候选，`paper` 必须对应资源 ID。
 
-候选能力取 perception / inference / design；领域暂取 quantum / chemistry / materials / biology。输入尺度与推理范围分开记录。新版地图展示 31 个任务规划方向，支持输入尺度/推理尺度切换和对数长度分箱。长度区间是规划参考，不是实例实测尺寸；任务方向与 32 条候选分开统计；实测实例图展示新增 6 条候选的输入/推理长度。尺寸测量协议仍待完善。
+候选能力取 perception / inference / design；领域暂取 quantum / chemistry / materials / biology。输入尺度与推理范围分开记录。新版地图展示 31 个任务规划方向，支持输入尺度/推理尺度切换和对数长度分箱。长度区间是规划参考，不是实例实测尺寸；任务方向与 33 条候选分开统计；实测实例图展示新增 6 条候选的输入/推理长度。尺寸测量协议仍待完善。
 
 审核状态保留 needs_revision / pending_human_audit / numeric_checked_only。未完成实例的条目为草案。所有状态都不能自动视为正式可用题目。修改目录时同步 `counts`，首页与问题页中的统计说明也需要核对。
 
@@ -25,7 +25,7 @@
 
 发布前检查：统计与 JSON 一致；资源筛选、问题筛选、覆盖图跳转、详情展开、Esc 关闭、CSV 导出、空结果重置可用；390px 手机和桌面没有页面横向溢出；新增链接指向原始来源；公开数据不含内部材料。
 
-第一版为研究目录，不是模型排名或已验证 benchmark。现有 32 条候选包含 14 条数值实例与 18 条待实例化草案，展示 8 道完整公开示例（原 2 道 + CNM001–006）。正式可用题仍为 0。公开开发示例不作为保密测试题。
+第一版为研究目录，不是模型排名或已验证 benchmark。现有 33 条候选包含 15 条数值实例与 18 条待实例化草案，展示 9 道完整公开示例（原 2 道 + CNM001–006 + CNP001）。正式可用题仍为 0。公开开发示例不作为保密测试题。
 
 `pilot-chem.html` 为本轮公开报告；新增题的结构输入来自 SAMPL9，许可见 `data/SAMPL9-LICENSE.txt`。`catalog.json` 保存唯一公开候选目录，批次导入按 id 去重，避免重复累计。实际运行记录仍保存在本地 runs，不上传。
 
@@ -49,3 +49,8 @@ builder.html 为独立页面，builder.css / builder.js 管理布局和交互。
 在候选详情点击“查看这道题的生成过程”，进入 `trace.html?qa=CNM001`。M0–M3 共享材料，M4–M6 按题号摘取输出。Builder 工作台也提供当前模块的真实记录入口。仅当前六道公开开发实例提供记录，旧题不会伪造阶段文件。
 
 本地完整查看器：各运行目录的 `run-view.html`。公开导出：`python tools/export_public_trace.py --run runs/chem-nm001-bcd`（其他两个运行同理）。只接受 catalog 中已标为公开开发示例的整个运行；材料全文不导出，保留原始文件 SHA-256，去除本地路径。导出结果在 `docs/data/traces/`。生成请求保留当次提示词，模块工作台的代码则为当前版本，二者应区分。
+
+
+## v0.4 题目优先与原型进度
+
+题目详情顺序：完整题目与本地附件 → 答案/评分 → 来源 → 方法 → 审核/追溯。新增 assets/qa 中已公开开发题的 XYZ 和完整 TXT。当前 33 条候选、15 条数值实例、18 条草案、9 道公开示例；旧六题按新规则需修订。prototype.js / prototype-progress.json 展示 16 格，按推理尺度统计，不与31个任务方向混淆。运行 tools/export_prototype.py 重建统计。
