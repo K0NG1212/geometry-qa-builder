@@ -41,7 +41,7 @@ def export(run):
           dict(id='M4',name='构题与答案计算',action='构题计划指定原子与评分器，answer_text 为空；程序根据坐标算出数值答案。输出按当前题号摘取。',inputs=[packet('construction')],outputs=[record('construction-receipt.json',{'plan':{'items':[x for x in receipt['plan']['items'] if x['qa_id']==id]}}),record('qa.json',{'stage':qa['stage'],'time':qa['time'],'data':{'items':[item]}})]),
           dict(id='M5',name='质量筛查',action='同一次会话中的 AI 筛查，加上程序计算与另一种算法复核；没有领域专家审核，题目仍是待审核状态。',inputs=[packet('review')],outputs=[record('review.json',{'reviews':[x for x in review['data']['reviews'] if x['qa_id']==id]}),record('report.json',filt(report)),record('independent-checks.json',checks)]),
           dict(id='M6',name='整理与导出',action='分离模型输入和参考答案。以下仅导出当前这道已公开开发示例；不是可直接公开所有私有运行记录的通用开关。',inputs=[record('report.json',filt(report))],outputs=[record('model-inputs.json',filt(read(run/'model-inputs.json'))),record('private-answers.json',filt(read(run/'private-answers.json')))])]
-        results.append(dict(qaId=id,title=published[id]['title'],runName=run.name,taskId=item['task_id'],evidenceIds=item['evidence_ids'],status='pending_human_audit',modules=modules))
+        results.append(dict(qaId=id,title=published[id]['title'],runName=run.name,taskId=item['task_id'],evidenceIds=item['evidence_ids'],status=next(x['status'] for x in report['items'] if x['qa_id']==id),modules=modules))
     dest=ROOT/'docs/data/traces';dest.mkdir(exist_ok=True)
     for result in results:
         text=json.dumps(result,ensure_ascii=False,indent=2)

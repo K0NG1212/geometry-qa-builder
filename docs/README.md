@@ -54,3 +54,8 @@ builder.html 为独立页面，builder.css / builder.js 管理布局和交互。
 ## v0.4 题目优先与原型进度
 
 题目详情顺序：完整题目与本地附件 → 答案/评分 → 来源 → 方法 → 审核/追溯。新增 assets/qa 中已公开开发题的 XYZ 和完整 TXT。当前 33 条候选、15 条数值实例、18 条草案、9 道公开示例；旧六题按新规则需修订。prototype.js / prototype-progress.json 展示 16 格，按推理尺度统计，不与31个任务方向混淆。运行 tools/export_prototype.py 重建统计。
+
+
+## v0.4 首格试跑批次
+
+chem-local-batch.html：新增 CNP002–004，2 道感知初筛通过，1 道推断因身份提示捷径需修订。总目录36条：17数值、1文字推断候选、18草案；新原型初筛3/160，其中化学0.1–1nm为3/10。12道公开示例包含需修订题，公开不等于合格。trace.js 从 catalog 的 traceUrl 动态枚举题号。

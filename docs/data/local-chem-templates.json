@@ -1,0 +1,42 @@
+[
+  {
+    "id": "bridge_angle",
+    "name": "桥连氧 C–O–C 键角",
+    "ability": "perception",
+    "version": "0.1",
+    "source_route": "raw_structure_or_simulation",
+    "required": "原子身份、连接表、真实坐标和单位",
+    "selection_and_limits": "选真实桥连氧及其两个碳邻居；单构象键角",
+    "status": "screening_template_not_certified"
+  },
+  {
+    "id": "ring_internal_angle",
+    "name": "环内键角",
+    "ability": "perception",
+    "version": "0.1",
+    "source_route": "raw_structure_or_simulation",
+    "required": "原始来源说明环类型，连接表确认环，坐标",
+    "selection_and_limits": "在已确认的环上选连续三原子，标明中间原子；不能从一个角证明全环平面",
+    "status": "screening_template_not_certified"
+  },
+  {
+    "id": "carboxylate_bond_metric",
+    "name": "羧酸根局部键长",
+    "ability": "perception",
+    "version": "0.1",
+    "source_route": "raw_structure_or_simulation",
+    "required": "来源明确模型中的羧酸根，连接表和坐标",
+    "selection_and_limits": "按局部官能团选 C–O，不由距离猜键级或溶液质子化",
+    "status": "screening_template_not_certified"
+  },
+  {
+    "id": "bond_equivalence_interpretation",
+    "name": "键长与电子解释",
+    "ability": "inference",
+    "version": "0.1",
+    "source_route": "raw_structure_or_simulation",
+    "required": "两键坐标、适用的科学依据、语义评分",
+    "selection_and_limits": "当前模板需修订：身份可能直接泄露解释；必须通过去几何信息的对照检查",
+    "status": "needs_revision"
+  }
+]
