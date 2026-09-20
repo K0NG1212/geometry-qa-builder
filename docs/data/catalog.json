@@ -133,6 +133,18 @@
       "role": "原始结构重新构题",
       "scope": "生物 · 1–10 nm",
       "status": "5道完整候选，待独立审核"
+    },
+    {
+      "id": "cod-materials-cell",
+      "name": "COD · cubic crystal motifs",
+      "title": "Silicon, diamond and halite: COD 9008565 / 9008564 / 9008678",
+      "summary": "原始晶体结构与周期基元：配位、晶面与理想衍射构题。",
+      "type": "database",
+      "year": "1963 / COD 2024 revision",
+      "url": "https://www.crystallography.net/cod/",
+      "role": "原始结构重新构题",
+      "scope": "材料 · 0.1–1 nm 周期基元",
+      "status": "6道完整候选，待独立审核"
     }
   ],
   "questions": [
@@ -1915,14 +1927,380 @@
       "relatedQaIds": [
         "BNP003"
       ]
+    },
+    {
+      "id": "MNP001",
+      "title": "硅的周期近邻与四面体几何",
+      "paper": "cod-materials-cell",
+      "ability": "perception",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "local_geometry",
+      "status": "pending_human_audit",
+      "family": "periodic_tetrahedral_coordination",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构与关联题不得拆分到训练/测试两侧"
+      ],
+      "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / Decimal closed forms / exact roots vs complex phase sums / Bragg inversion. evidence_review does not automatically validate semantics.",
+      "publicDemo": true,
+      "question": "For the silicon atom at fractional (0,0,0), find every atom in its shortest-distance nonzero coordination shell. Give the coordination number, shell distance, each neighbor as basis-row plus integer-cell translation, and all distinct neighbor-center-neighbor angles. What coordination polyhedron does this geometry form?",
+      "modelInput": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nsilicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:\n1 Si 0 0 0\n2 Si 0 1/2 1/2\n3 Si 1/4 1/4 1/4\n4 Si 1/4 3/4 3/4\n5 Si 1/2 0 1/2\n6 Si 1/2 1/2 0\n7 Si 3/4 1/4 3/4\n8 Si 3/4 3/4 1/4\n\nSearch n_x,n_y,n_z in {-1,0,1}; this range suffices for the requested nearest shell. Exclude only the central atom at its own location. Group distances within 0.00001 angstrom; report distances in nm to four decimals and angles in degrees to two decimals. Do not count only atoms displayed inside the single stored cell.",
+      "answer": "Coordination 4; distance 0.2351562 nm. Neighbors: row 3, translation [0, 0, 0]; row 4, translation [0, -1, -1]; row 7, translation [-1, 0, -1]; row 8, translation [-1, -1, 0]. All six pair angles are 109.471221 degrees, so the shell is tetrahedral. Periodic translations are essential to recover all neighbors.",
+      "source": "https://www.crystallography.net/cod/9008565.html",
+      "inputObject": "silicon periodic conventional cubic cell",
+      "inputSizeNm": 0.9406248320664302,
+      "reasoningSizeNm": 0.38400847965897833,
+      "sizeDefinition": "周期晶体输入按常规晶胞体对角线计量，不代表晶粒尺寸。局部配位题按所求邻居集合最大间距；晶面/结构因子题按决定答案的完整周期基元范围。maximum separation across the asked periodic neighbor shell(s), not the stored basis alone",
+      "batchId": "materials-cell-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "7 points: count (1), distance within0.0001 nm (1), complete four row/translation pairs locating distinct correct images (2), all six angles / single unique value within0.1 degree (1), tetrahedral interpretation (1), periodic rather than isolated-cell treatment (1). Equivalent Cartesian neighbor vectors accepted.",
+      "attribution": "COD 9008565; original source: R. W. G. Wyckoff, Crystal Structures, 2nd edition (1963), as cited in each CIF. COD data CC0. QA and full-cell symmetry expansion newly derived. IUCr Wallwork structure-factor notes / Bragg-law dictionary supply method support, not measured targets.",
+      "batchReport": "materials-batch.html",
+      "traceUrl": "trace.html?qa=MNP001",
+      "inputInstructions": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nsilicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:\n1 Si 0 0 0\n2 Si 0 1/2 1/2\n3 Si 1/4 1/4 1/4\n4 Si 1/4 3/4 3/4\n5 Si 1/2 0 1/2\n6 Si 1/2 1/2 0\n7 Si 3/4 1/4 3/4\n8 Si 3/4 3/4 1/4\n\nSearch n_x,n_y,n_z in {-1,0,1}; this range suffices for the requested nearest shell. Exclude only the central atom at its own location. Group distances within 0.00001 angstrom; report distances in nm to four decimals and angles in degrees to two decimals. Do not count only atoms displayed inside the single stored cell.",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "MNP001-S0006.xyz",
+          "url": "assets/qa/MNP001-S0006.xyz",
+          "description": "S0006：8个晶胞基元原子，Å；必须结合题干中的晶胞与周期条件使用"
+        }
+      ],
+      "completeInput": "For the silicon atom at fractional (0,0,0), find every atom in its shortest-distance nonzero coordination shell. Give the coordination number, shell distance, each neighbor as basis-row plus integer-cell translation, and all distinct neighbor-center-neighbor angles. What coordination polyhedron does this geometry form?\n\nUse the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nsilicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:\n1 Si 0 0 0\n2 Si 0 1/2 1/2\n3 Si 1/4 1/4 1/4\n4 Si 1/4 3/4 3/4\n5 Si 1/2 0 1/2\n6 Si 1/2 1/2 0\n7 Si 3/4 1/4 3/4\n8 Si 3/4 3/4 1/4\n\nSearch n_x,n_y,n_z in {-1,0,1}; this range suffices for the requested nearest shell. Exclude only the central atom at its own location. Group distances within 0.00001 angstrom; report distances in nm to four decimals and angles in degrees to two decimals. Do not count only atoms displayed inside the single stored cell.\n\nAttachment S0006:\n8\nCoordinates in angstrom; atoms numbered from 1.\nSi 0.00000000 0.00000000 0.00000000\nSi 0.00000000 2.71535000 2.71535000\nSi 1.35767500 1.35767500 1.35767500\nSi 1.35767500 4.07302500 4.07302500\nSi 2.71535000 0.00000000 2.71535000\nSi 2.71535000 2.71535000 0.00000000\nSi 4.07302500 1.35767500 4.07302500\nSi 4.07302500 4.07302500 1.35767500\n",
+      "inputDownload": "assets/qa/MNP001-input.txt",
+      "learningObjective": "Periodic silicon nearest-neighbor coordination and angular geometry.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "lifecycleReviewedAt": "2026-09-21",
+      "restartFrom": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "attributionLicenseUrl": "https://www.crystallography.net/cod/",
+      "derivedFrom": "原始CIF结构重新构题；非现有QA复用。理想衍射假设已明确披露。",
+      "sourceCluster": "materials-diamond-type-9008564-9008565",
+      "relatedQaIds": [
+        "MNP003",
+        "MNI001",
+        "MNI002"
+      ]
+    },
+    {
+      "id": "MNP002",
+      "title": "氯化钠：异种与同种近邻壳层",
+      "paper": "cod-materials-cell",
+      "ability": "perception",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "local_geometry",
+      "status": "pending_human_audit",
+      "family": "species_resolved_coordination_shell",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构与关联题不得拆分到训练/测试两侧"
+      ],
+      "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / Decimal closed forms / exact roots vs complex phase sums / Bragg inversion. evidence_review does not automatically validate semantics.",
+      "publicDemo": true,
+      "question": "Around the Na at fractional (0,0,0), determine separately (a) the closest Cl shell and (b) the closest noncentral Na shell. Report each distance and population, identify the first-shell coordination polyhedron, and explain why counting only basis atoms in the displayed cell can give a wrong population.",
+      "modelInput": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nhalite S0008: a=5.64056 angstrom. Row / element / fractional x,y,z:\n1 Na 0 0 0\n2 Na 0 1/2 1/2\n3 Na 1/2 0 1/2\n4 Na 1/2 1/2 0\n5 Cl 0 0 1/2\n6 Cl 0 1/2 0\n7 Cl 1/2 0 0\n8 Cl 1/2 1/2 1/2\n\nSearch translations n_x,n_y,n_z in {-1,0,1}, excluding the central Na itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals. Identify first-shell directions with displacement vectors or axis signs.",
+      "answer": "Closest Cl: 0.2820280 nm, 6 neighbors along ±x, ±y, ±z at a/2, giving an octahedron. Closest other Na: 0.3988478 nm, 12 neighbors at a/sqrt(2), with two components ±a/2 and the third0. Some neighbors belong to translated cells; an eight-atom basis is not an isolated coordination cluster.",
+      "source": "https://www.crystallography.net/cod/9008678.html",
+      "inputObject": "halite periodic conventional cubic cell",
+      "inputSizeNm": 0.9769736503140706,
+      "reasoningSizeNm": 0.7976956451379185,
+      "sizeDefinition": "周期晶体输入按常规晶胞体对角线计量，不代表晶粒尺寸。局部配位题按所求邻居集合最大间距；晶面/结构因子题按决定答案的完整周期基元范围。maximum separation across the asked periodic neighbor shell(s), not the stored basis alone",
+      "batchId": "materials-cell-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "7 points: two distances (2;0.0001 nm), two populations (2), first-shell directions (1), octahedron (1), explanation of missing periodic images (1).",
+      "attribution": "COD 9008678; original source: R. W. G. Wyckoff, Crystal Structures, 2nd edition (1963), as cited in each CIF. COD data CC0. QA and full-cell symmetry expansion newly derived. IUCr Wallwork structure-factor notes / Bragg-law dictionary supply method support, not measured targets.",
+      "batchReport": "materials-batch.html",
+      "traceUrl": "trace.html?qa=MNP002",
+      "inputInstructions": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nhalite S0008: a=5.64056 angstrom. Row / element / fractional x,y,z:\n1 Na 0 0 0\n2 Na 0 1/2 1/2\n3 Na 1/2 0 1/2\n4 Na 1/2 1/2 0\n5 Cl 0 0 1/2\n6 Cl 0 1/2 0\n7 Cl 1/2 0 0\n8 Cl 1/2 1/2 1/2\n\nSearch translations n_x,n_y,n_z in {-1,0,1}, excluding the central Na itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals. Identify first-shell directions with displacement vectors or axis signs.",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "MNP002-S0008.xyz",
+          "url": "assets/qa/MNP002-S0008.xyz",
+          "description": "S0008：8个晶胞基元原子，Å；必须结合题干中的晶胞与周期条件使用"
+        }
+      ],
+      "completeInput": "Around the Na at fractional (0,0,0), determine separately (a) the closest Cl shell and (b) the closest noncentral Na shell. Report each distance and population, identify the first-shell coordination polyhedron, and explain why counting only basis atoms in the displayed cell can give a wrong population.\n\nUse the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nhalite S0008: a=5.64056 angstrom. Row / element / fractional x,y,z:\n1 Na 0 0 0\n2 Na 0 1/2 1/2\n3 Na 1/2 0 1/2\n4 Na 1/2 1/2 0\n5 Cl 0 0 1/2\n6 Cl 0 1/2 0\n7 Cl 1/2 0 0\n8 Cl 1/2 1/2 1/2\n\nSearch translations n_x,n_y,n_z in {-1,0,1}, excluding the central Na itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals. Identify first-shell directions with displacement vectors or axis signs.\n\nAttachment S0008:\n8\nCoordinates in angstrom; atoms numbered from 1.\nNa 0.00000000 0.00000000 0.00000000\nNa 0.00000000 2.82028000 2.82028000\nNa 2.82028000 0.00000000 2.82028000\nNa 2.82028000 2.82028000 0.00000000\nCl 0.00000000 0.00000000 2.82028000\nCl 0.00000000 2.82028000 0.00000000\nCl 2.82028000 0.00000000 0.00000000\nCl 2.82028000 2.82028000 2.82028000\n",
+      "inputDownload": "assets/qa/MNP002-input.txt",
+      "learningObjective": "Differentiate unlike and like nearest-neighbor shells around Na in a periodic crystal.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "lifecycleReviewedAt": "2026-09-21",
+      "restartFrom": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "attributionLicenseUrl": "https://www.crystallography.net/cod/",
+      "derivedFrom": "原始CIF结构重新构题；非现有QA复用。理想衍射假设已明确披露。",
+      "sourceCluster": "materials-halite-9008678",
+      "relatedQaIds": [
+        "MNI003"
+      ]
+    },
+    {
+      "id": "MNP003",
+      "title": "硅与金刚石的晶面间距和取向",
+      "paper": "cod-materials-cell",
+      "ability": "perception",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic_motif",
+      "status": "pending_human_audit",
+      "family": "cubic_plane_geometry",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构与关联题不得拆分到训练/测试两侧"
+      ],
+      "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / Decimal closed forms / exact roots vs complex phase sums / Bragg inversion. evidence_review does not automatically validate semantics.",
+      "publicDemo": true,
+      "question": "Determine the perpendicular spacings d111 and d220 for each supplied crystal, and the acute angle between the (111) and (100) plane normals. Are identical Miller indices and the same cubic structure type sufficient to make the two materials' plane spacings equal?",
+      "modelInput": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nsilicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:\n1 Si 0 0 0\n2 Si 0 1/2 1/2\n3 Si 1/4 1/4 1/4\n4 Si 1/4 3/4 3/4\n5 Si 1/2 0 1/2\n6 Si 1/2 1/2 0\n7 Si 3/4 1/4 3/4\n8 Si 3/4 3/4 1/4\n\ndiamond S0007: a=3.56679 angstrom. Row / element / fractional x,y,z:\n1 C 0 0 0\n2 C 0 1/2 1/2\n3 C 1/4 1/4 1/4\n4 C 1/4 3/4 3/4\n5 C 1/2 0 1/2\n6 C 1/2 1/2 0\n7 C 3/4 1/4 3/4\n8 C 3/4 3/4 1/4\n\nIn Cartesian coordinates (X,Y,Z), define adjacent (hkl) planes by hX+kY+lZ=ma and (m+1)a. Their normal is (h,k,l). Determine spacing from these plane equations. Report nm to four decimals and the acute normal angle in degrees to two decimals. The two entries describe distinct materials, not two strained states of one specimen.",
+      "answer": "Silicon: d111=0.3135416 nm; d220=0.1920042 nm. Diamond: d111=0.2059287 nm; d220=0.1261051 nm. The (111)/(100) normal angle is 54.735610 degrees for both. Spacing is a/sqrt(h^2+k^2+l^2); matching hkl/cubic type fixes geometry ratios and orientations but not the material-specific lattice parameter.",
+      "source": "https://www.crystallography.net/cod/9008565.html",
+      "inputObject": "silicon / diamond periodic conventional cubic cell",
+      "inputSizeNm": 0.9406248320664302,
+      "reasoningSizeNm": 0.9406248320664302,
+      "sizeDefinition": "周期晶体输入按常规晶胞体对角线计量，不代表晶粒尺寸。局部配位题按所求邻居集合最大间距；晶面/结构因子题按决定答案的完整周期基元范围。conventional-cell diagonal for finite periodic motif; not grain size",
+      "batchId": "materials-cell-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "7 points: four spacings (4;0.0001 nm), normal angle (1;0.1 degree), correct perpendicular-plane derivation (1), explanation of lattice-parameter dependence without strain claim (1).",
+      "attribution": "COD 9008565, 9008564; original source: R. W. G. Wyckoff, Crystal Structures, 2nd edition (1963), as cited in each CIF. COD data CC0. QA and full-cell symmetry expansion newly derived. IUCr Wallwork structure-factor notes / Bragg-law dictionary supply method support, not measured targets.",
+      "batchReport": "materials-batch.html",
+      "traceUrl": "trace.html?qa=MNP003",
+      "inputInstructions": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nsilicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:\n1 Si 0 0 0\n2 Si 0 1/2 1/2\n3 Si 1/4 1/4 1/4\n4 Si 1/4 3/4 3/4\n5 Si 1/2 0 1/2\n6 Si 1/2 1/2 0\n7 Si 3/4 1/4 3/4\n8 Si 3/4 3/4 1/4\n\ndiamond S0007: a=3.56679 angstrom. Row / element / fractional x,y,z:\n1 C 0 0 0\n2 C 0 1/2 1/2\n3 C 1/4 1/4 1/4\n4 C 1/4 3/4 3/4\n5 C 1/2 0 1/2\n6 C 1/2 1/2 0\n7 C 3/4 1/4 3/4\n8 C 3/4 3/4 1/4\n\nIn Cartesian coordinates (X,Y,Z), define adjacent (hkl) planes by hX+kY+lZ=ma and (m+1)a. Their normal is (h,k,l). Determine spacing from these plane equations. Report nm to four decimals and the acute normal angle in degrees to two decimals. The two entries describe distinct materials, not two strained states of one specimen.",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "MNP003-S0006.xyz",
+          "url": "assets/qa/MNP003-S0006.xyz",
+          "description": "S0006：8个晶胞基元原子，Å；必须结合题干中的晶胞与周期条件使用"
+        },
+        {
+          "name": "MNP003-S0007.xyz",
+          "url": "assets/qa/MNP003-S0007.xyz",
+          "description": "S0007：8个晶胞基元原子，Å；必须结合题干中的晶胞与周期条件使用"
+        }
+      ],
+      "completeInput": "Determine the perpendicular spacings d111 and d220 for each supplied crystal, and the acute angle between the (111) and (100) plane normals. Are identical Miller indices and the same cubic structure type sufficient to make the two materials' plane spacings equal?\n\nUse the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nsilicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:\n1 Si 0 0 0\n2 Si 0 1/2 1/2\n3 Si 1/4 1/4 1/4\n4 Si 1/4 3/4 3/4\n5 Si 1/2 0 1/2\n6 Si 1/2 1/2 0\n7 Si 3/4 1/4 3/4\n8 Si 3/4 3/4 1/4\n\ndiamond S0007: a=3.56679 angstrom. Row / element / fractional x,y,z:\n1 C 0 0 0\n2 C 0 1/2 1/2\n3 C 1/4 1/4 1/4\n4 C 1/4 3/4 3/4\n5 C 1/2 0 1/2\n6 C 1/2 1/2 0\n7 C 3/4 1/4 3/4\n8 C 3/4 3/4 1/4\n\nIn Cartesian coordinates (X,Y,Z), define adjacent (hkl) planes by hX+kY+lZ=ma and (m+1)a. Their normal is (h,k,l). Determine spacing from these plane equations. Report nm to four decimals and the acute normal angle in degrees to two decimals. The two entries describe distinct materials, not two strained states of one specimen.\n\nAttachment S0006:\n8\nCoordinates in angstrom; atoms numbered from 1.\nSi 0.00000000 0.00000000 0.00000000\nSi 0.00000000 2.71535000 2.71535000\nSi 1.35767500 1.35767500 1.35767500\nSi 1.35767500 4.07302500 4.07302500\nSi 2.71535000 0.00000000 2.71535000\nSi 2.71535000 2.71535000 0.00000000\nSi 4.07302500 1.35767500 4.07302500\nSi 4.07302500 4.07302500 1.35767500\n\n\nAttachment S0007:\n8\nCoordinates in angstrom; atoms numbered from 1.\nC 0.00000000 0.00000000 0.00000000\nC 0.00000000 1.78339500 1.78339500\nC 0.89169750 0.89169750 0.89169750\nC 0.89169750 2.67509250 2.67509250\nC 1.78339500 0.00000000 1.78339500\nC 1.78339500 1.78339500 0.00000000\nC 2.67509250 0.89169750 2.67509250\nC 2.67509250 2.67509250 0.89169750\n",
+      "inputDownload": "assets/qa/MNP003-input.txt",
+      "learningObjective": "Compare actual crystallographic plane spacings and plane-normal angle in two cubic materials.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "lifecycleReviewedAt": "2026-09-21",
+      "restartFrom": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "attributionLicenseUrl": "https://www.crystallography.net/cod/",
+      "derivedFrom": "原始CIF结构重新构题；非现有QA复用。理想衍射假设已明确披露。",
+      "sourceCluster": "materials-diamond-type-9008564-9008565",
+      "relatedQaIds": [
+        "MNP001",
+        "MNI001",
+        "MNI002"
+      ]
+    },
+    {
+      "id": "MNI001",
+      "title": "晶面间距如何决定衍射角",
+      "paper": "cod-materials-cell",
+      "ability": "inference",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic_motif",
+      "status": "pending_human_audit",
+      "family": "bragg_geometry_inference",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构与关联题不得拆分到训练/测试两侧"
+      ],
+      "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / Decimal closed forms / exact roots vs complex phase sums / Bragg inversion. evidence_review does not automatically validate semantics.",
+      "publicDemo": true,
+      "question": "For first-order (111) diffraction at the stated wavelength, calculate the scattering angle 2theta for each supplied material. Which has the higher-angle reflection and what is the angular difference? Explain the direction of the shift using the structural spacing.",
+      "modelInput": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nsilicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:\n1 Si 0 0 0\n2 Si 0 1/2 1/2\n3 Si 1/4 1/4 1/4\n4 Si 1/4 3/4 3/4\n5 Si 1/2 0 1/2\n6 Si 1/2 1/2 0\n7 Si 3/4 1/4 3/4\n8 Si 3/4 3/4 1/4\n\ndiamond S0007: a=3.56679 angstrom. Row / element / fractional x,y,z:\n1 C 0 0 0\n2 C 0 1/2 1/2\n3 C 1/4 1/4 1/4\n4 C 1/4 3/4 3/4\n5 C 1/2 0 1/2\n6 C 1/2 1/2 0\n7 C 3/4 1/4 3/4\n8 C 3/4 3/4 1/4\n\nAssume ideal kinematic diffraction, lambda=0.15406 nm, n=1 and a nonzero (111) structure factor for each supplied basis. Use 2 d sin(theta)=n lambda and obtain d111 from the cubic geometry. Theta is the incident-beam/plane angle; the requested detector scattering angle is 2theta. Report degrees to two decimals. Do not predict intensities, line widths, refractive or instrumental corrections.",
+      "answer": "Silicon d111=0.3135416 nm gives 2theta=28.443706 degrees. Diamond d111=0.2059287 nm gives 2theta=43.932637 degrees. Diamond is higher by 15.488931 degrees because its smaller d requires larger sin(theta) at fixed lambda. These are ideal calculated positions, not reported measured peaks or a strain measurement between these two materials.",
+      "source": "https://www.crystallography.net/cod/9008565.html",
+      "inputObject": "silicon / diamond periodic conventional cubic cell",
+      "inputSizeNm": 0.9406248320664302,
+      "reasoningSizeNm": 0.9406248320664302,
+      "sizeDefinition": "周期晶体输入按常规晶胞体对角线计量，不代表晶粒尺寸。局部配位题按所求邻居集合最大间距；晶面/结构因子题按决定答案的完整周期基元范围。conventional-cell diagonal for finite periodic motif; not grain size",
+      "batchId": "materials-cell-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "7 points: source-specific spacings (1 combined;0.0001 nm), each 2theta (2;0.02 degree), difference (1;0.03 degree), ordering (1), correct fixed-wavelength causal geometric explanation (1), theta/2theta distinction (1).",
+      "attribution": "COD 9008565, 9008564; original source: R. W. G. Wyckoff, Crystal Structures, 2nd edition (1963), as cited in each CIF. COD data CC0. QA and full-cell symmetry expansion newly derived. IUCr Wallwork structure-factor notes / Bragg-law dictionary supply method support, not measured targets.",
+      "batchReport": "materials-batch.html",
+      "traceUrl": "trace.html?qa=MNI001",
+      "inputInstructions": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nsilicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:\n1 Si 0 0 0\n2 Si 0 1/2 1/2\n3 Si 1/4 1/4 1/4\n4 Si 1/4 3/4 3/4\n5 Si 1/2 0 1/2\n6 Si 1/2 1/2 0\n7 Si 3/4 1/4 3/4\n8 Si 3/4 3/4 1/4\n\ndiamond S0007: a=3.56679 angstrom. Row / element / fractional x,y,z:\n1 C 0 0 0\n2 C 0 1/2 1/2\n3 C 1/4 1/4 1/4\n4 C 1/4 3/4 3/4\n5 C 1/2 0 1/2\n6 C 1/2 1/2 0\n7 C 3/4 1/4 3/4\n8 C 3/4 3/4 1/4\n\nAssume ideal kinematic diffraction, lambda=0.15406 nm, n=1 and a nonzero (111) structure factor for each supplied basis. Use 2 d sin(theta)=n lambda and obtain d111 from the cubic geometry. Theta is the incident-beam/plane angle; the requested detector scattering angle is 2theta. Report degrees to two decimals. Do not predict intensities, line widths, refractive or instrumental corrections.",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "MNI001-S0006.xyz",
+          "url": "assets/qa/MNI001-S0006.xyz",
+          "description": "S0006：8个晶胞基元原子，Å；必须结合题干中的晶胞与周期条件使用"
+        },
+        {
+          "name": "MNI001-S0007.xyz",
+          "url": "assets/qa/MNI001-S0007.xyz",
+          "description": "S0007：8个晶胞基元原子，Å；必须结合题干中的晶胞与周期条件使用"
+        }
+      ],
+      "completeInput": "For first-order (111) diffraction at the stated wavelength, calculate the scattering angle 2theta for each supplied material. Which has the higher-angle reflection and what is the angular difference? Explain the direction of the shift using the structural spacing.\n\nUse the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nsilicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:\n1 Si 0 0 0\n2 Si 0 1/2 1/2\n3 Si 1/4 1/4 1/4\n4 Si 1/4 3/4 3/4\n5 Si 1/2 0 1/2\n6 Si 1/2 1/2 0\n7 Si 3/4 1/4 3/4\n8 Si 3/4 3/4 1/4\n\ndiamond S0007: a=3.56679 angstrom. Row / element / fractional x,y,z:\n1 C 0 0 0\n2 C 0 1/2 1/2\n3 C 1/4 1/4 1/4\n4 C 1/4 3/4 3/4\n5 C 1/2 0 1/2\n6 C 1/2 1/2 0\n7 C 3/4 1/4 3/4\n8 C 3/4 3/4 1/4\n\nAssume ideal kinematic diffraction, lambda=0.15406 nm, n=1 and a nonzero (111) structure factor for each supplied basis. Use 2 d sin(theta)=n lambda and obtain d111 from the cubic geometry. Theta is the incident-beam/plane angle; the requested detector scattering angle is 2theta. Report degrees to two decimals. Do not predict intensities, line widths, refractive or instrumental corrections.\n\nAttachment S0006:\n8\nCoordinates in angstrom; atoms numbered from 1.\nSi 0.00000000 0.00000000 0.00000000\nSi 0.00000000 2.71535000 2.71535000\nSi 1.35767500 1.35767500 1.35767500\nSi 1.35767500 4.07302500 4.07302500\nSi 2.71535000 0.00000000 2.71535000\nSi 2.71535000 2.71535000 0.00000000\nSi 4.07302500 1.35767500 4.07302500\nSi 4.07302500 4.07302500 1.35767500\n\n\nAttachment S0007:\n8\nCoordinates in angstrom; atoms numbered from 1.\nC 0.00000000 0.00000000 0.00000000\nC 0.00000000 1.78339500 1.78339500\nC 0.89169750 0.89169750 0.89169750\nC 0.89169750 2.67509250 2.67509250\nC 1.78339500 0.00000000 1.78339500\nC 1.78339500 1.78339500 0.00000000\nC 2.67509250 0.89169750 2.67509250\nC 2.67509250 2.67509250 0.89169750\n",
+      "inputDownload": "assets/qa/MNI001-input.txt",
+      "learningObjective": "Predict ideal Bragg peak-angle ordering and values from actual lattice geometry.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "lifecycleReviewedAt": "2026-09-21",
+      "restartFrom": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "attributionLicenseUrl": "https://www.crystallography.net/cod/",
+      "derivedFrom": "原始CIF结构重新构题；非现有QA复用。理想衍射假设已明确披露。",
+      "sourceCluster": "materials-diamond-type-9008564-9008565",
+      "relatedQaIds": [
+        "MNP001",
+        "MNP003",
+        "MNI002"
+      ]
+    },
+    {
+      "id": "MNI002",
+      "title": "硅晶胞中的相位相消与禁反射",
+      "paper": "cod-materials-cell",
+      "ability": "inference",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic_motif",
+      "status": "pending_human_audit",
+      "family": "basis_phase_extinction",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构与关联题不得拆分到训练/测试两侧"
+      ],
+      "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / Decimal closed forms / exact roots vs complex phase sums / Bragg inversion. evidence_review does not automatically validate semantics.",
+      "publicDemo": true,
+      "question": "From the supplied eight-atom silicon basis, calculate F and I* for (111), (200) and (220). Identify any cancelled reflection and demonstrate its cancellation by grouping the atomic phase contributions. Does cancellation mean the corresponding geometric lattice-plane family does not exist?",
+      "modelInput": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nsilicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:\n1 Si 0 0 0\n2 Si 0 1/2 1/2\n3 Si 1/4 1/4 1/4\n4 Si 1/4 3/4 3/4\n5 Si 1/2 0 1/2\n6 Si 1/2 1/2 0\n7 Si 3/4 1/4 3/4\n8 Si 3/4 3/4 1/4\n\nUse fractional coordinates x_j,y_j,z_j from the table and F(hkl)=sum_j f_j exp[2*pi*i*(h*x_j+k*y_j+l*z_j)], where i^2=-1. All occupancies are1. Define I*=|F|^2. This is only the basis structure-factor contribution, not a measured powder peak intensity; omit multiplicity, Lorentz/polarization, thermal and absorption corrections. Set the same constant f_j=1 for every Si site. Use the positive phase convention written above and the supplied origin; retain exact fractional positions. Treat amplitude below10^-10 as numerical zero. Report complex F and I*; do not substitute a memorized selection rule without showing the relevant phase groups.",
+      "answer": "111: F=4-4i, |F|²=32; 200: F=0+0i, |F|²=0; 220: F=8+0i, |F|²=64. For (200), four atomic factors are +1 and four are -1, hence cancellation. For (111), four are +1 and four are -i in this supplied origin; for (220), all8 are +1. The (200) plane family still exists geometrically; the ideal identical-atom basis contributions cancel there.",
+      "source": "https://www.crystallography.net/cod/9008565.html",
+      "inputObject": "silicon periodic conventional cubic cell",
+      "inputSizeNm": 0.9406248320664302,
+      "reasoningSizeNm": 0.9406248320664302,
+      "sizeDefinition": "周期晶体输入按常规晶胞体对角线计量，不代表晶粒尺寸。局部配位题按所求邻居集合最大间距；晶面/结构因子题按决定答案的完整周期基元范围。conventional-cell diagonal for finite periodic motif; not grain size",
+      "batchId": "materials-cell-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "8 points: three F values (3; absolute tolerance0.000001 per real/imag part), three I* values (1 combined;0.000001), (200) cancellation and four-plus/four-minus groups (2), demonstration of the other phase groups (1), distinction between plane geometry and reflection amplitude (1).",
+      "attribution": "COD 9008565; original source: R. W. G. Wyckoff, Crystal Structures, 2nd edition (1963), as cited in each CIF. COD data CC0. QA and full-cell symmetry expansion newly derived. IUCr Wallwork structure-factor notes / Bragg-law dictionary supply method support, not measured targets.",
+      "batchReport": "materials-batch.html",
+      "traceUrl": "trace.html?qa=MNI002",
+      "inputInstructions": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nsilicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:\n1 Si 0 0 0\n2 Si 0 1/2 1/2\n3 Si 1/4 1/4 1/4\n4 Si 1/4 3/4 3/4\n5 Si 1/2 0 1/2\n6 Si 1/2 1/2 0\n7 Si 3/4 1/4 3/4\n8 Si 3/4 3/4 1/4\n\nUse fractional coordinates x_j,y_j,z_j from the table and F(hkl)=sum_j f_j exp[2*pi*i*(h*x_j+k*y_j+l*z_j)], where i^2=-1. All occupancies are1. Define I*=|F|^2. This is only the basis structure-factor contribution, not a measured powder peak intensity; omit multiplicity, Lorentz/polarization, thermal and absorption corrections. Set the same constant f_j=1 for every Si site. Use the positive phase convention written above and the supplied origin; retain exact fractional positions. Treat amplitude below10^-10 as numerical zero. Report complex F and I*; do not substitute a memorized selection rule without showing the relevant phase groups.",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "MNI002-S0006.xyz",
+          "url": "assets/qa/MNI002-S0006.xyz",
+          "description": "S0006：8个晶胞基元原子，Å；必须结合题干中的晶胞与周期条件使用"
+        }
+      ],
+      "completeInput": "From the supplied eight-atom silicon basis, calculate F and I* for (111), (200) and (220). Identify any cancelled reflection and demonstrate its cancellation by grouping the atomic phase contributions. Does cancellation mean the corresponding geometric lattice-plane family does not exist?\n\nUse the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nsilicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:\n1 Si 0 0 0\n2 Si 0 1/2 1/2\n3 Si 1/4 1/4 1/4\n4 Si 1/4 3/4 3/4\n5 Si 1/2 0 1/2\n6 Si 1/2 1/2 0\n7 Si 3/4 1/4 3/4\n8 Si 3/4 3/4 1/4\n\nUse fractional coordinates x_j,y_j,z_j from the table and F(hkl)=sum_j f_j exp[2*pi*i*(h*x_j+k*y_j+l*z_j)], where i^2=-1. All occupancies are1. Define I*=|F|^2. This is only the basis structure-factor contribution, not a measured powder peak intensity; omit multiplicity, Lorentz/polarization, thermal and absorption corrections. Set the same constant f_j=1 for every Si site. Use the positive phase convention written above and the supplied origin; retain exact fractional positions. Treat amplitude below10^-10 as numerical zero. Report complex F and I*; do not substitute a memorized selection rule without showing the relevant phase groups.\n\nAttachment S0006:\n8\nCoordinates in angstrom; atoms numbered from 1.\nSi 0.00000000 0.00000000 0.00000000\nSi 0.00000000 2.71535000 2.71535000\nSi 1.35767500 1.35767500 1.35767500\nSi 1.35767500 4.07302500 4.07302500\nSi 2.71535000 0.00000000 2.71535000\nSi 2.71535000 2.71535000 0.00000000\nSi 4.07302500 1.35767500 4.07302500\nSi 4.07302500 4.07302500 1.35767500\n",
+      "inputDownload": "assets/qa/MNI002-input.txt",
+      "learningObjective": "Use unit-cell phases to explain systematic diffraction cancellation, separating geometry from mere plane existence.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "lifecycleReviewedAt": "2026-09-21",
+      "restartFrom": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "attributionLicenseUrl": "https://www.crystallography.net/cod/",
+      "derivedFrom": "原始CIF结构重新构题；非现有QA复用。理想衍射假设已明确披露。",
+      "sourceCluster": "materials-diamond-type-9008564-9008565",
+      "relatedQaIds": [
+        "MNP001",
+        "MNP003",
+        "MNI001"
+      ]
+    },
+    {
+      "id": "MNI003",
+      "title": "相同几何下，散射对比如何改变强度",
+      "paper": "cod-materials-cell",
+      "ability": "inference",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic_motif",
+      "status": "pending_human_audit",
+      "family": "sublattice_scattering_contrast",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构与关联题不得拆分到训练/测试两侧"
+      ],
+      "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / Decimal closed forms / exact roots vs complex phase sums / Bragg inversion. evidence_review does not automatically validate semantics.",
+      "publicDemo": true,
+      "question": "Using the supplied NaCl basis and model amplitudes, calculate F111, F200 and I*111/I*200. Repeat the ratio after setting both species' amplitudes to1 without moving any atom. Explain what this comparison demonstrates about geometry and chemical scattering contrast.",
+      "modelInput": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nhalite S0008: a=5.64056 angstrom. Row / element / fractional x,y,z:\n1 Na 0 0 0\n2 Na 0 1/2 1/2\n3 Na 1/2 0 1/2\n4 Na 1/2 1/2 0\n5 Cl 0 0 1/2\n6 Cl 0 1/2 0\n7 Cl 1/2 0 0\n8 Cl 1/2 1/2 1/2\n\nUse fractional coordinates x_j,y_j,z_j from the table and F(hkl)=sum_j f_j exp[2*pi*i*(h*x_j+k*y_j+l*z_j)], where i^2=-1. All occupancies are1. Define I*=|F|^2. This is only the basis structure-factor contribution, not a measured powder peak intensity; omit multiplicity, Lorentz/polarization, thermal and absorption corrections. In case A use real constants f_Na=11 and f_Cl=17. These are explicitly illustrative model weights, not measured ionic X-ray form factors and not a particular experimental scattering angle. In case B use f_Na=f_Cl=1. Keep coordinates, origin and positive phase convention unchanged. Report each complex F and the intensity ratios to six decimals.",
+      "answer": "Case A: F111=-24, F200=112; I*111=576 and I*200=12544, giving ratio=0.045918367. Case B: F111=0, F200=8; ratio=0. At111 the Na and Cl sublattices contribute opposite phases, while at200 they add. Equal amplitudes cancel the odd reflection in this ideal model; unequal amplitudes leave a residual despite identical atom positions. Geometry fixes phases, but intensity also depends on scattering contrast. The ratio is not a corrected experimental powder intensity ratio.",
+      "source": "https://www.crystallography.net/cod/9008678.html",
+      "inputObject": "halite periodic conventional cubic cell",
+      "inputSizeNm": 0.9769736503140706,
+      "reasoningSizeNm": 0.9769736503140706,
+      "sizeDefinition": "周期晶体输入按常规晶胞体对角线计量，不代表晶粒尺寸。局部配位题按所求邻居集合最大间距；晶面/结构因子题按决定答案的完整周期基元范围。conventional-cell diagonal for finite periodic motif; not grain size",
+      "batchId": "materials-cell-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "8 points: case A F values (2;0.000001), case A ratio (1;0.000001), case B F values (2;0.000001), case B zero ratio (1), opposite/additive phase explanation (1), contrast dependence and nonexperimental scope (1).",
+      "attribution": "COD 9008678; original source: R. W. G. Wyckoff, Crystal Structures, 2nd edition (1963), as cited in each CIF. COD data CC0. QA and full-cell symmetry expansion newly derived. IUCr Wallwork structure-factor notes / Bragg-law dictionary supply method support, not measured targets.",
+      "batchReport": "materials-batch.html",
+      "traceUrl": "trace.html?qa=MNI003",
+      "inputInstructions": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nhalite S0008: a=5.64056 angstrom. Row / element / fractional x,y,z:\n1 Na 0 0 0\n2 Na 0 1/2 1/2\n3 Na 1/2 0 1/2\n4 Na 1/2 1/2 0\n5 Cl 0 0 1/2\n6 Cl 0 1/2 0\n7 Cl 1/2 0 0\n8 Cl 1/2 1/2 1/2\n\nUse fractional coordinates x_j,y_j,z_j from the table and F(hkl)=sum_j f_j exp[2*pi*i*(h*x_j+k*y_j+l*z_j)], where i^2=-1. All occupancies are1. Define I*=|F|^2. This is only the basis structure-factor contribution, not a measured powder peak intensity; omit multiplicity, Lorentz/polarization, thermal and absorption corrections. In case A use real constants f_Na=11 and f_Cl=17. These are explicitly illustrative model weights, not measured ionic X-ray form factors and not a particular experimental scattering angle. In case B use f_Na=f_Cl=1. Keep coordinates, origin and positive phase convention unchanged. Report each complex F and the intensity ratios to six decimals.",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "MNI003-S0008.xyz",
+          "url": "assets/qa/MNI003-S0008.xyz",
+          "description": "S0008：8个晶胞基元原子，Å；必须结合题干中的晶胞与周期条件使用"
+        }
+      ],
+      "completeInput": "Using the supplied NaCl basis and model amplitudes, calculate F111, F200 and I*111/I*200. Repeat the ratio after setting both species' amplitudes to1 without moving any atom. Explain what this comparison demonstrates about geometry and chemical scattering contrast.\n\nUse the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nhalite S0008: a=5.64056 angstrom. Row / element / fractional x,y,z:\n1 Na 0 0 0\n2 Na 0 1/2 1/2\n3 Na 1/2 0 1/2\n4 Na 1/2 1/2 0\n5 Cl 0 0 1/2\n6 Cl 0 1/2 0\n7 Cl 1/2 0 0\n8 Cl 1/2 1/2 1/2\n\nUse fractional coordinates x_j,y_j,z_j from the table and F(hkl)=sum_j f_j exp[2*pi*i*(h*x_j+k*y_j+l*z_j)], where i^2=-1. All occupancies are1. Define I*=|F|^2. This is only the basis structure-factor contribution, not a measured powder peak intensity; omit multiplicity, Lorentz/polarization, thermal and absorption corrections. In case A use real constants f_Na=11 and f_Cl=17. These are explicitly illustrative model weights, not measured ionic X-ray form factors and not a particular experimental scattering angle. In case B use f_Na=f_Cl=1. Keep coordinates, origin and positive phase convention unchanged. Report each complex F and the intensity ratios to six decimals.\n\nAttachment S0008:\n8\nCoordinates in angstrom; atoms numbered from 1.\nNa 0.00000000 0.00000000 0.00000000\nNa 0.00000000 2.82028000 2.82028000\nNa 2.82028000 0.00000000 2.82028000\nNa 2.82028000 2.82028000 0.00000000\nCl 0.00000000 0.00000000 2.82028000\nCl 0.00000000 2.82028000 0.00000000\nCl 2.82028000 0.00000000 0.00000000\nCl 2.82028000 2.82028000 2.82028000\n",
+      "inputDownload": "assets/qa/MNI003-input.txt",
+      "learningObjective": "Determine how species contrast and basis phases jointly control ideal structure-factor intensity.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "lifecycleReviewedAt": "2026-09-21",
+      "restartFrom": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "attributionLicenseUrl": "https://www.crystallography.net/cod/",
+      "derivedFrom": "原始CIF结构重新构题；非现有QA复用。理想衍射假设已明确披露。",
+      "sourceCluster": "materials-halite-9008678",
+      "relatedQaIds": [
+        "MNP002"
+      ]
     }
   ],
   "counts": {
-    "candidates": 46,
+    "candidates": 52,
     "withAnswers": 18,
     "drafts": 18,
     "ready": 0,
-    "textAnswers": 10
+    "textAnswers": 16
   },
   "taxonomy": {
     "domains": [
@@ -1941,6 +2319,6 @@
     "rework": 9,
     "backlog": 18,
     "archived": 6,
-    "active": 13
+    "active": 19
   }
 }

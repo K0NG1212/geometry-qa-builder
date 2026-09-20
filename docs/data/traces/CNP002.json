@@ -57,7 +57,7 @@
     {
       "id": "M1",
       "name": "检索与材料整理",
-      "action": "助手检索官方材料；PDB 转 XYZ，核实坐标、顺序与单位。此处是共享材料清单，原文件内容按来源链接追溯。",
+      "action": "助手取得官方材料，保存结构并核对坐标、顺序与单位；材料取得方式及来源记录时间见清单。",
       "inputs": [
         {
           "file": "sources.json",
@@ -72,7 +72,7 @@
               {
                 "id": "R1",
                 "name": "SAMPL9 WP6 pinned structure and host documentation",
-                "url": "[local path omitted]",
+                "url": "https://github.com/samplchallenges/SAMPL9/tree/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6",
                 "decision": "selected",
                 "route": "raw_structure_or_simulation",
                 "acquisition": "Reuse previously downloaded pinned original material; unchanged PDB and XYZ"
@@ -80,7 +80,7 @@
               {
                 "id": "R2",
                 "name": "OpenStax Organic Chemistry 20.2",
-                "url": "[local path omitted]",
+                "url": "https://openstax.org/books/organic-chemistry/pages/20-2-structure-and-properties-of-carboxylic-acids",
                 "decision": "selected as supporting reference, not a research paper",
                 "acquisition": "Full HTML and extracted text saved locally; 14-word exact evidence excerpt in bundle",
                 "sha256": "187ba8ecdddacf62f72eb16405d1be4829faa7e6a50fc599b2454eb5cc6d55da"
@@ -88,7 +88,7 @@
               {
                 "id": "R3",
                 "name": "QMugs geometry quality checks",
-                "url": "[local path omitted]",
+                "url": "https://www.nature.com/articles/s41597-022-01390-7",
                 "decision": "hold",
                 "reason": "Local full text available; matched non-ring triple-bond/aromatic structure examples and reference assets not acquired. No coordinates fabricated."
               }
@@ -107,25 +107,25 @@
               {
                 "source_id": "S0001",
                 "location": "host_guest/WP6/README.md complete text",
-                "origin": "[local path omitted]",
+                "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/README.md",
                 "kind": "text"
               },
               {
                 "source_id": "S0002",
                 "location": "host_guest/WP6/host_files/README.md complete text",
-                "origin": "[local path omitted]",
+                "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/host_files/README.md",
                 "kind": "text"
               },
               {
                 "source_id": "S0003",
                 "location": "wwPDB PDB v3.3 coordinate section, ATOM/HETATM coordinate units",
-                "origin": "[local path omitted]",
+                "origin": "https://www.wwpdb.org/documentation/file-format-content/format33/sect9.html",
                 "kind": "text"
               },
               {
                 "source_id": "S0004",
                 "location": "host_guest/WP6/host_files/WP6.pdb full coordinate and connectivity records",
-                "origin": "[local path omitted]",
+                "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/host_files/WP6.pdb",
                 "kind": "text"
               },
               {
@@ -137,7 +137,7 @@
               {
                 "source_id": "S0006",
                 "location": "OpenStax Organic Chemistry 20.2, resonance explanation; short exact excerpt",
-                "origin": "[local path omitted]",
+                "origin": "https://openstax.org/books/organic-chemistry/pages/20-2-structure-and-properties-of-carboxylic-acids",
                 "kind": "text"
               },
               {
@@ -175,7 +175,7 @@
     {
       "id": "M2",
       "name": "科学证据提取",
-      "action": "按保存的提示词提取条件、坐标依据与限制。本次两道题共享证据，不是为每道题重新读一篇论文。",
+      "action": "按保存的提示词提取条件、坐标依据与限制。证据可能由同一批次题目共享。",
       "inputs": [
         {
           "file": "evidence.packet.json",
@@ -275,25 +275,25 @@
                 {
                   "source_id": "S0001",
                   "location": "host_guest/WP6/README.md complete text",
-                  "origin": "[local path omitted]",
+                  "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/README.md",
                   "kind": "text"
                 },
                 {
                   "source_id": "S0002",
                   "location": "host_guest/WP6/host_files/README.md complete text",
-                  "origin": "[local path omitted]",
+                  "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/host_files/README.md",
                   "kind": "text"
                 },
                 {
                   "source_id": "S0003",
                   "location": "wwPDB PDB v3.3 coordinate section, ATOM/HETATM coordinate units",
-                  "origin": "[local path omitted]",
+                  "origin": "https://www.wwpdb.org/documentation/file-format-content/format33/sect9.html",
                   "kind": "text"
                 },
                 {
                   "source_id": "S0004",
                   "location": "host_guest/WP6/host_files/WP6.pdb full coordinate and connectivity records",
-                  "origin": "[local path omitted]",
+                  "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/host_files/WP6.pdb",
                   "kind": "text"
                 },
                 {
@@ -305,7 +305,7 @@
                 {
                   "source_id": "S0006",
                   "location": "OpenStax Organic Chemistry 20.2, resonance explanation; short exact excerpt",
-                  "origin": "[local path omitted]",
+                  "origin": "https://openstax.org/books/organic-chemistry/pages/20-2-structure-and-properties-of-carboxylic-acids",
                   "kind": "text"
                 },
                 {
@@ -596,25 +596,25 @@
                 {
                   "source_id": "S0001",
                   "location": "host_guest/WP6/README.md complete text",
-                  "origin": "[local path omitted]",
+                  "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/README.md",
                   "kind": "text"
                 },
                 {
                   "source_id": "S0002",
                   "location": "host_guest/WP6/host_files/README.md complete text",
-                  "origin": "[local path omitted]",
+                  "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/host_files/README.md",
                   "kind": "text"
                 },
                 {
                   "source_id": "S0003",
                   "location": "wwPDB PDB v3.3 coordinate section, ATOM/HETATM coordinate units",
-                  "origin": "[local path omitted]",
+                  "origin": "https://www.wwpdb.org/documentation/file-format-content/format33/sect9.html",
                   "kind": "text"
                 },
                 {
                   "source_id": "S0004",
                   "location": "host_guest/WP6/host_files/WP6.pdb full coordinate and connectivity records",
-                  "origin": "[local path omitted]",
+                  "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/host_files/WP6.pdb",
                   "kind": "text"
                 },
                 {
@@ -626,7 +626,7 @@
                 {
                   "source_id": "S0006",
                   "location": "OpenStax Organic Chemistry 20.2, resonance explanation; short exact excerpt",
-                  "origin": "[local path omitted]",
+                  "origin": "https://openstax.org/books/organic-chemistry/pages/20-2-structure-and-properties-of-carboxylic-acids",
                   "kind": "text"
                 },
                 {
@@ -859,7 +859,7 @@
     {
       "id": "M4",
       "name": "构题与答案计算",
-      "action": "构题计划指定原子与评分器，answer_text 为空；程序根据坐标算出数值答案。输出按当前题号摘取。",
+      "action": "构题计划指定评分器，由通用程序计算数值答案。",
       "inputs": [
         {
           "file": "construction.packet.json",
@@ -1026,25 +1026,25 @@
                 {
                   "source_id": "S0001",
                   "location": "host_guest/WP6/README.md complete text",
-                  "origin": "[local path omitted]",
+                  "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/README.md",
                   "kind": "text"
                 },
                 {
                   "source_id": "S0002",
                   "location": "host_guest/WP6/host_files/README.md complete text",
-                  "origin": "[local path omitted]",
+                  "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/host_files/README.md",
                   "kind": "text"
                 },
                 {
                   "source_id": "S0003",
                   "location": "wwPDB PDB v3.3 coordinate section, ATOM/HETATM coordinate units",
-                  "origin": "[local path omitted]",
+                  "origin": "https://www.wwpdb.org/documentation/file-format-content/format33/sect9.html",
                   "kind": "text"
                 },
                 {
                   "source_id": "S0004",
                   "location": "host_guest/WP6/host_files/WP6.pdb full coordinate and connectivity records",
-                  "origin": "[local path omitted]",
+                  "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/host_files/WP6.pdb",
                   "kind": "text"
                 },
                 {
@@ -1056,7 +1056,7 @@
                 {
                   "source_id": "S0006",
                   "location": "OpenStax Organic Chemistry 20.2, resonance explanation; short exact excerpt",
-                  "origin": "[local path omitted]",
+                  "origin": "https://openstax.org/books/organic-chemistry/pages/20-2-structure-and-properties-of-carboxylic-acids",
                   "kind": "text"
                 },
                 {
@@ -1557,25 +1557,25 @@
                 {
                   "source_id": "S0001",
                   "location": "host_guest/WP6/README.md complete text",
-                  "origin": "[local path omitted]",
+                  "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/README.md",
                   "kind": "text"
                 },
                 {
                   "source_id": "S0002",
                   "location": "host_guest/WP6/host_files/README.md complete text",
-                  "origin": "[local path omitted]",
+                  "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/host_files/README.md",
                   "kind": "text"
                 },
                 {
                   "source_id": "S0003",
                   "location": "wwPDB PDB v3.3 coordinate section, ATOM/HETATM coordinate units",
-                  "origin": "[local path omitted]",
+                  "origin": "https://www.wwpdb.org/documentation/file-format-content/format33/sect9.html",
                   "kind": "text"
                 },
                 {
                   "source_id": "S0004",
                   "location": "host_guest/WP6/host_files/WP6.pdb full coordinate and connectivity records",
-                  "origin": "[local path omitted]",
+                  "origin": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/host_files/WP6.pdb",
                   "kind": "text"
                 },
                 {
@@ -1587,7 +1587,7 @@
                 {
                   "source_id": "S0006",
                   "location": "OpenStax Organic Chemistry 20.2, resonance explanation; short exact excerpt",
-                  "origin": "[local path omitted]",
+                  "origin": "https://openstax.org/books/organic-chemistry/pages/20-2-structure-and-properties-of-carboxylic-acids",
                   "kind": "text"
                 },
                 {

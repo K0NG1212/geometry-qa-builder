@@ -1,0 +1,26 @@
+For the silicon atom at fractional (0,0,0), find every atom in its shortest-distance nonzero coordination shell. Give the coordination number, shell distance, each neighbor as basis-row plus integer-cell translation, and all distinct neighbor-center-neighbor angles. What coordination polyhedron does this geometry form?
+
+Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied.
+silicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:
+1 Si 0 0 0
+2 Si 0 1/2 1/2
+3 Si 1/4 1/4 1/4
+4 Si 1/4 3/4 3/4
+5 Si 1/2 0 1/2
+6 Si 1/2 1/2 0
+7 Si 3/4 1/4 3/4
+8 Si 3/4 3/4 1/4
+
+Search n_x,n_y,n_z in {-1,0,1}; this range suffices for the requested nearest shell. Exclude only the central atom at its own location. Group distances within 0.00001 angstrom; report distances in nm to four decimals and angles in degrees to two decimals. Do not count only atoms displayed inside the single stored cell.
+
+Attachment S0006:
+8
+Coordinates in angstrom; atoms numbered from 1.
+Si 0.00000000 0.00000000 0.00000000
+Si 0.00000000 2.71535000 2.71535000
+Si 1.35767500 1.35767500 1.35767500
+Si 1.35767500 4.07302500 4.07302500
+Si 2.71535000 0.00000000 2.71535000
+Si 2.71535000 2.71535000 0.00000000
+Si 4.07302500 1.35767500 4.07302500
+Si 4.07302500 4.07302500 1.35767500

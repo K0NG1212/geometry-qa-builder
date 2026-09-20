@@ -7,10 +7,15 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 def read(p):return json.loads(p.read_text(encoding='utf-8-sig'))
+def contains_local_path(v):
+    if isinstance(v,dict):return any(contains_local_path(x) for x in v.values())
+    if isinstance(v,list):return any(contains_local_path(x) for x in v)
+    return isinstance(v,str) and bool(re.search(r'(?<![A-Za-z0-9])[A-Za-z]:[\\/]|file://',v))
+
 def clean(v):
     if isinstance(v,dict):return {k:clean(x) for k,x in v.items() if k not in ('local_path','run_directory')}
     if isinstance(v,list):return [clean(x) for x in v]
-    if isinstance(v,str) and re.search(r'[A-Za-z]:[\\/]|file://',v):return '[local path omitted]'
+    if isinstance(v,str) and contains_local_path(v):return '[local path omitted]'
     return v
 
 def export(run):
@@ -45,7 +50,7 @@ def export(run):
     dest=ROOT/'docs/data/traces';dest.mkdir(exist_ok=True)
     for result in results:
         text=json.dumps(result,ensure_ascii=False,indent=2)
-        if re.search(r'[A-Za-z]:\\|C:/Users|file://',text):raise ValueError('Local path remains')
+        if contains_local_path(result):raise ValueError('Local path remains')
         (dest/(result['qaId']+'.json')).write_bytes(text.encode('utf8'))
     print('Exported public excerpts:',', '.join(ids))
 

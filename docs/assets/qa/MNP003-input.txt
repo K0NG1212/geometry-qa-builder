@@ -1,0 +1,49 @@
+Determine the perpendicular spacings d111 and d220 for each supplied crystal, and the acute angle between the (111) and (100) plane normals. Are identical Miller indices and the same cubic structure type sufficient to make the two materials' plane spacings equal?
+
+Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied.
+silicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:
+1 Si 0 0 0
+2 Si 0 1/2 1/2
+3 Si 1/4 1/4 1/4
+4 Si 1/4 3/4 3/4
+5 Si 1/2 0 1/2
+6 Si 1/2 1/2 0
+7 Si 3/4 1/4 3/4
+8 Si 3/4 3/4 1/4
+
+diamond S0007: a=3.56679 angstrom. Row / element / fractional x,y,z:
+1 C 0 0 0
+2 C 0 1/2 1/2
+3 C 1/4 1/4 1/4
+4 C 1/4 3/4 3/4
+5 C 1/2 0 1/2
+6 C 1/2 1/2 0
+7 C 3/4 1/4 3/4
+8 C 3/4 3/4 1/4
+
+In Cartesian coordinates (X,Y,Z), define adjacent (hkl) planes by hX+kY+lZ=ma and (m+1)a. Their normal is (h,k,l). Determine spacing from these plane equations. Report nm to four decimals and the acute normal angle in degrees to two decimals. The two entries describe distinct materials, not two strained states of one specimen.
+
+Attachment S0006:
+8
+Coordinates in angstrom; atoms numbered from 1.
+Si 0.00000000 0.00000000 0.00000000
+Si 0.00000000 2.71535000 2.71535000
+Si 1.35767500 1.35767500 1.35767500
+Si 1.35767500 4.07302500 4.07302500
+Si 2.71535000 0.00000000 2.71535000
+Si 2.71535000 2.71535000 0.00000000
+Si 4.07302500 1.35767500 4.07302500
+Si 4.07302500 4.07302500 1.35767500
+
+
+Attachment S0007:
+8
+Coordinates in angstrom; atoms numbered from 1.
+C 0.00000000 0.00000000 0.00000000
+C 0.00000000 1.78339500 1.78339500
+C 0.89169750 0.89169750 0.89169750
+C 0.89169750 2.67509250 2.67509250
+C 1.78339500 0.00000000 1.78339500
+C 1.78339500 1.78339500 0.00000000
+C 2.67509250 0.89169750 2.67509250
+C 2.67509250 2.67509250 0.89169750

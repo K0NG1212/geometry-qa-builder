@@ -1,0 +1,26 @@
+Using the supplied NaCl basis and model amplitudes, calculate F111, F200 and I*111/I*200. Repeat the ratio after setting both species' amplitudes to1 without moving any atom. Explain what this comparison demonstrates about geometry and chemical scattering contrast.
+
+Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied.
+halite S0008: a=5.64056 angstrom. Row / element / fractional x,y,z:
+1 Na 0 0 0
+2 Na 0 1/2 1/2
+3 Na 1/2 0 1/2
+4 Na 1/2 1/2 0
+5 Cl 0 0 1/2
+6 Cl 0 1/2 0
+7 Cl 1/2 0 0
+8 Cl 1/2 1/2 1/2
+
+Use fractional coordinates x_j,y_j,z_j from the table and F(hkl)=sum_j f_j exp[2*pi*i*(h*x_j+k*y_j+l*z_j)], where i^2=-1. All occupancies are1. Define I*=|F|^2. This is only the basis structure-factor contribution, not a measured powder peak intensity; omit multiplicity, Lorentz/polarization, thermal and absorption corrections. In case A use real constants f_Na=11 and f_Cl=17. These are explicitly illustrative model weights, not measured ionic X-ray form factors and not a particular experimental scattering angle. In case B use f_Na=f_Cl=1. Keep coordinates, origin and positive phase convention unchanged. Report each complex F and the intensity ratios to six decimals.
+
+Attachment S0008:
+8
+Coordinates in angstrom; atoms numbered from 1.
+Na 0.00000000 0.00000000 0.00000000
+Na 0.00000000 2.82028000 2.82028000
+Na 2.82028000 0.00000000 2.82028000
+Na 2.82028000 2.82028000 0.00000000
+Cl 0.00000000 0.00000000 2.82028000
+Cl 0.00000000 2.82028000 0.00000000
+Cl 2.82028000 0.00000000 0.00000000
+Cl 2.82028000 2.82028000 2.82028000

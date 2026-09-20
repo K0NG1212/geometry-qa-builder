@@ -1,0 +1,26 @@
+From the supplied eight-atom silicon basis, calculate F and I* for (111), (200) and (220). Identify any cancelled reflection and demonstrate its cancellation by grouping the atomic phase contributions. Does cancellation mean the corresponding geometric lattice-plane family does not exist?
+
+Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied.
+silicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:
+1 Si 0 0 0
+2 Si 0 1/2 1/2
+3 Si 1/4 1/4 1/4
+4 Si 1/4 3/4 3/4
+5 Si 1/2 0 1/2
+6 Si 1/2 1/2 0
+7 Si 3/4 1/4 3/4
+8 Si 3/4 3/4 1/4
+
+Use fractional coordinates x_j,y_j,z_j from the table and F(hkl)=sum_j f_j exp[2*pi*i*(h*x_j+k*y_j+l*z_j)], where i^2=-1. All occupancies are1. Define I*=|F|^2. This is only the basis structure-factor contribution, not a measured powder peak intensity; omit multiplicity, Lorentz/polarization, thermal and absorption corrections. Set the same constant f_j=1 for every Si site. Use the positive phase convention written above and the supplied origin; retain exact fractional positions. Treat amplitude below10^-10 as numerical zero. Report complex F and I*; do not substitute a memorized selection rule without showing the relevant phase groups.
+
+Attachment S0006:
+8
+Coordinates in angstrom; atoms numbered from 1.
+Si 0.00000000 0.00000000 0.00000000
+Si 0.00000000 2.71535000 2.71535000
+Si 1.35767500 1.35767500 1.35767500
+Si 1.35767500 4.07302500 4.07302500
+Si 2.71535000 0.00000000 2.71535000
+Si 2.71535000 2.71535000 0.00000000
+Si 4.07302500 1.35767500 4.07302500
+Si 4.07302500 4.07302500 1.35767500

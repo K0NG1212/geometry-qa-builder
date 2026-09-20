@@ -1,0 +1,49 @@
+For first-order (111) diffraction at the stated wavelength, calculate the scattering angle 2theta for each supplied material. Which has the higher-angle reflection and what is the angular difference? Explain the direction of the shift using the structural spacing.
+
+Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied.
+silicon S0006: a=5.43070 angstrom. Row / element / fractional x,y,z:
+1 Si 0 0 0
+2 Si 0 1/2 1/2
+3 Si 1/4 1/4 1/4
+4 Si 1/4 3/4 3/4
+5 Si 1/2 0 1/2
+6 Si 1/2 1/2 0
+7 Si 3/4 1/4 3/4
+8 Si 3/4 3/4 1/4
+
+diamond S0007: a=3.56679 angstrom. Row / element / fractional x,y,z:
+1 C 0 0 0
+2 C 0 1/2 1/2
+3 C 1/4 1/4 1/4
+4 C 1/4 3/4 3/4
+5 C 1/2 0 1/2
+6 C 1/2 1/2 0
+7 C 3/4 1/4 3/4
+8 C 3/4 3/4 1/4
+
+Assume ideal kinematic diffraction, lambda=0.15406 nm, n=1 and a nonzero (111) structure factor for each supplied basis. Use 2 d sin(theta)=n lambda and obtain d111 from the cubic geometry. Theta is the incident-beam/plane angle; the requested detector scattering angle is 2theta. Report degrees to two decimals. Do not predict intensities, line widths, refractive or instrumental corrections.
+
+Attachment S0006:
+8
+Coordinates in angstrom; atoms numbered from 1.
+Si 0.00000000 0.00000000 0.00000000
+Si 0.00000000 2.71535000 2.71535000
+Si 1.35767500 1.35767500 1.35767500
+Si 1.35767500 4.07302500 4.07302500
+Si 2.71535000 0.00000000 2.71535000
+Si 2.71535000 2.71535000 0.00000000
+Si 4.07302500 1.35767500 4.07302500
+Si 4.07302500 4.07302500 1.35767500
+
+
+Attachment S0007:
+8
+Coordinates in angstrom; atoms numbered from 1.
+C 0.00000000 0.00000000 0.00000000
+C 0.00000000 1.78339500 1.78339500
+C 0.89169750 0.89169750 0.89169750
+C 0.89169750 2.67509250 2.67509250
+C 1.78339500 0.00000000 1.78339500
+C 1.78339500 1.78339500 0.00000000
+C 2.67509250 0.89169750 2.67509250
+C 2.67509250 2.67509250 0.89169750
