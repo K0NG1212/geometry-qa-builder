@@ -1,0 +1,31 @@
+In the specified virtual DNA-end FRET experiment, calculate the transfer efficiency. An analyst instead uses the length along the full sugar-marker path as the transfer distance: calculate that alternative efficiency and its signed error E_path-E_correct. Explain which distance the physical model requires and why this is not a predicted experimental efficiency for actual 1BNA.
+
+Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0008 contains 24 C1-prime sugar carbon sites from the antiparallel 1BNA DNA duplex. Rows 1..12 are A:1..12; rows 13..24 are B:13..24. For i=1..12, the supplied pairing is row i with row 25-i. Define marker c_i=(r_i+r_(25-i))/2. These arithmetic sugar midpoints are task-defined markers, not a standard base-pair center or fitted helical axis. For this idealized exercise only, place a point donor exactly at c_1 and a point acceptor exactly at c_12. Assume effective R0=3.5 nm, constant orientation/photophysical conditions, no dye-linker displacement or dynamics. No physical dyes are present in the PDB. Use E=1/[1+(r/R0)^6] with r the donor-acceptor separation. For the analyst's alternative compute L=sum_(i=1..11)||c_(i+1)-c_i|| and substitute L for r. Report both efficiencies and signed error to three decimals; lengths used in nm.
+
+Attachment S0008:
+24
+Coordinates in angstrom; atoms numbered from 1.
+C 19.231 30.482 23.944
+C 21.721 26.304 21.716
+C 21.278 21.966 19.909
+C 19.716 17.901 17.218
+C 15.851 15.732 15.569
+C 11.699 15.974 12.719
+C 9.644 18.209 9.019
+C 8.736 20.855 5.034
+C 10.241 23.483 1.157
+C 11.429 24.028 -3.587
+C 15.856 23.836 -6.414
+C 17.965 21.200 -10.269
+C 10.896 13.044 -8.837
+C 15.058 13.086 -5.671
+C 17.545 15.602 -2.872
+C 19.765 18.985 0.046
+C 18.497 23.393 2.145
+C 15.561 25.655 5.243
+C 12.426 25.645 8.799
+C 10.190 24.148 13.089
+C 10.107 21.743 17.523
+C 10.988 21.226 22.256
+C 14.312 19.508 25.568
+C 18.276 20.693 28.188

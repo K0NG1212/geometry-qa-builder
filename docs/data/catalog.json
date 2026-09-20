@@ -1,6 +1,6 @@
 {
   "version": "0.4",
-  "updated": "2026-09-20",
+  "updated": "2026-09-21",
   "resources": [
     {
       "id": "landscape17",
@@ -121,6 +121,18 @@
       "role": "论文证据构题",
       "scope": "小分子局部氢键与振动响应",
       "status": "本轮4道候选；待独立审核"
+    },
+    {
+      "id": "pdb-bio-nm",
+      "name": "PDB · protein / DNA nm models",
+      "title": "1UBQ / 1CRN / 1BNA archived structures",
+      "summary": "泛素、crambin 与 DNA 双链的真实坐标；等权位点及条件化物理模型构题。",
+      "type": "database",
+      "year": "1981–1987",
+      "url": "https://www.rcsb.org/",
+      "role": "原始结构重新构题",
+      "scope": "生物 · 1–10 nm",
+      "status": "5道完整候选，待独立审核"
     }
   ],
   "questions": [
@@ -1600,14 +1612,317 @@
       "derivedFrom": "原论文与补充坐标重新构题，非复用旧QA",
       "sourceCluster": "hbond2021-all-conformers",
       "relatedQaIds": []
+    },
+    {
+      "id": "BNP001",
+      "title": "蛋白质末端距离与整体最大尺寸",
+      "paper": "pdb-bio-nm",
+      "ability": "perception",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "family": "protein_global_extent",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构的题目须整组划分，不能当作独立科学样本"
+      ],
+      "validation": "Supplemental published calculator: centroid / Decimal pairwise Rg, distances, marker path, FRET and Guinier numeric checks; evidence_review does not grade semantics.",
+      "publicDemo": true,
+      "question": "For the crambin CA model, calculate (a) the N-to-C terminal separation and (b) the maximum distance over all pairs of CA sites. Identify the residues attaining the maximum and quantify how much the terminal distance underestimates this maximum. Would a terminal-distance measurement alone describe this model's full spatial extent?",
+      "modelInput": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. Use S0007 only: all 46 C-alpha sites of 1CRN chain A, row i = residue A:i. N-terminal site is Thr A:1; C-terminal site is Asn A:46. Define Dmax=max_(i<j)||r_i-r_j|| over all provided sites; dNC=||r_1-r_46||. Report nm to three decimals and both residue numbers of the maximum pair.",
+      "answer": "dNC=1.180957 nm; Dmax=2.902186 nm, attained by residues A:19 and A:42. Underestimate Dmax-dNC=1.721229 nm (dNC/Dmax=0.406920). The terminal separation samples just one pair and does not describe the full CA extent here.",
+      "source": "https://www.rcsb.org/structure/1CRN",
+      "inputObject": "1CRN protein CA sites",
+      "inputSizeNm": 2.9021859140999218,
+      "reasoningSizeNm": 2.9021859140999218,
+      "sizeDefinition": "实际输入为明确选定的 CA 或 C1′ 位点；尺寸为各结构选定位点的最大中心距，多结构取最大值。任务需要整体空间几何；不是用回转半径数值替代推理范围。",
+      "batchId": "bio-nm-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "6 points: dNC (1), Dmax (1), correct unordered maximizing residue pair (1), difference (1), explanation that terminal pair need not be maximally separated (1), restriction to CA model instead of all-atom/solvent envelope (1). Numeric nm tolerances 0.002.",
+      "attribution": "PDB 1CRN deposited structure coordinates, CC0 1.0 (RCSB/wwPDB usage policy). Selected CA/C1-prime representations and QA newly derived; Guinier method DOI 10.1107/S1600576716010906 and NIH MIPAV FRET documentation supply method support where applicable.",
+      "batchReport": "bio-batch.html",
+      "traceUrl": "trace.html?qa=BNP001",
+      "inputInstructions": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. Use S0007 only: all 46 C-alpha sites of 1CRN chain A, row i = residue A:i. N-terminal site is Thr A:1; C-terminal site is Asn A:46. Define Dmax=max_(i<j)||r_i-r_j|| over all provided sites; dNC=||r_1-r_46||. Report nm to three decimals and both residue numbers of the maximum pair.",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "BNP001-S0007.xyz",
+          "url": "assets/qa/BNP001-S0007.xyz",
+          "description": "S0007：46 个选定位点；Å；行号与链/残基对应见题目说明"
+        }
+      ],
+      "completeInput": "For the crambin CA model, calculate (a) the N-to-C terminal separation and (b) the maximum distance over all pairs of CA sites. Identify the residues attaining the maximum and quantify how much the terminal distance underestimates this maximum. Would a terminal-distance measurement alone describe this model's full spatial extent?\n\nCoordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. Use S0007 only: all 46 C-alpha sites of 1CRN chain A, row i = residue A:i. N-terminal site is Thr A:1; C-terminal site is Asn A:46. Define Dmax=max_(i<j)||r_i-r_j|| over all provided sites; dNC=||r_1-r_46||. Report nm to three decimals and both residue numbers of the maximum pair.\n\nAttachment S0007:\n46\nCoordinates in angstrom; atoms numbered from 1.\nC 16.967 12.784 4.338\nC 13.856 11.469 6.066\nC 13.660 10.707 9.787\nC 10.646 8.991 11.408\nC 9.448 9.034 15.012\nC 8.673 5.314 15.279\nC 8.912 2.083 13.258\nC 5.145 2.209 12.453\nC 5.598 5.767 11.082\nC 8.496 4.609 8.837\nC 6.500 1.584 7.565\nC 3.545 3.935 6.751\nC 5.929 6.358 5.055\nC 7.331 3.607 2.791\nC 3.782 2.599 1.742\nC 2.890 6.285 1.126\nC 5.895 6.489 -1.213\nC 4.933 3.431 -3.326\nC 2.792 5.376 -5.797\nC 5.366 8.191 -6.018\nC 3.767 10.609 -3.513\nC 6.143 13.513 -2.696\nC 8.114 13.103 0.500\nC 6.614 16.317 1.913\nC 3.074 14.894 1.756\nC 4.180 11.549 3.187\nC 5.879 13.502 6.026\nC 2.691 15.221 7.194\nC 0.715 12.045 6.657\nC 2.986 9.994 8.950\nC 4.769 12.336 11.360\nC 8.140 11.694 9.635\nC 10.280 14.760 8.823\nC 12.552 15.877 6.036\nC 15.930 17.454 6.941\nC 18.635 18.861 4.738\nC 21.452 16.969 6.513\nC 22.019 13.242 7.020\nC 21.936 12.911 10.809\nC 18.504 12.312 12.298\nC 17.924 13.421 15.877\nC 17.334 10.956 18.691\nC 13.564 11.573 18.836\nC 13.257 10.745 15.081\nC 15.445 7.667 15.246\nC 13.512 5.395 12.878\n",
+      "inputDownload": "assets/qa/BNP001-input.txt",
+      "learningObjective": "Distinguish N-to-C terminal separation from whole-protein maximum dimension in the supplied CA representation.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过，仍待独立审核。真实 PDB 坐标派生；等权散射、虚拟探针与 R0 均为题设假设，不是实验信号。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "lifecycleReviewedAt": "2026-09-21",
+      "restartFrom": "M5：独立审核与难度试测；来源关联组划分。",
+      "attributionLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "derivedFrom": "原始结构重新构题，非复用现有QA；物理题为显式条件化模型。",
+      "sourceCluster": "bio-nm-protein-1ubq-1crn",
+      "relatedQaIds": [
+        "BNP002",
+        "BNI001"
+      ]
+    },
+    {
+      "id": "BNP002",
+      "title": "两种蛋白质的几何回转半径",
+      "paper": "pdb-bio-nm",
+      "ability": "perception",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "family": "protein_geometric_gyration",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构的题目须整组划分，不能当作独立科学样本"
+      ],
+      "validation": "Supplemental published calculator: centroid / Decimal pairwise Rg, distances, marker path, FRET and Guinier numeric checks; evidence_review does not grade semantics.",
+      "publicDemo": true,
+      "question": "Calculate the equal-weight CA radius of gyration of each supplied protein. Which has the larger spatial spread, and what is Rg(1UBQ)/Rg(1CRN)? Does that ranking alone establish which protein is less stably folded?",
+      "modelInput": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0006 contains all 76 C-alpha carbon sites of 1UBQ chain A: row i is residue A:i (i=1..76). S0007 contains all 46 C-alpha sites of 1CRN chain A: row i is residue A:i (i=1..46). Each site has equal weight. Do not use mass weights or add waters/side chains. For each structure independently, rbar=(1/N)sum_i r_i and Rg=sqrt((1/N)sum_i||r_i-rbar||^2). Report Rg in nm to three decimals; the ratio is dimensionless. These structures have different sequences and site counts.",
+      "answer": "Rg(1UBQ)=1.149289 nm and Rg(1CRN)=0.967550 nm; ratio=1.187835. 1UBQ has larger equal-CA spatial spread. Different chain lengths/compositions and lack of free-energy or ensemble information prevent inferring folding stability from this ranking. These are unweighted geometric values, not measured SAXS radii.",
+      "source": "https://www.rcsb.org/structure/1UBQ",
+      "inputObject": "1UBQ / 1CRN protein CA sites",
+      "inputSizeNm": 3.706348409148822,
+      "reasoningSizeNm": 3.706348409148822,
+      "sizeDefinition": "实际输入为明确选定的 CA 或 C1′ 位点；尺寸为各结构选定位点的最大中心距，多结构取最大值。任务需要整体空间几何；不是用回转半径数值替代推理范围。",
+      "batchId": "bio-nm-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "6 points: each Rg (2 total; tolerance 0.002 nm), ratio (1; tolerance 0.003), spatial-spread ranking (1), no folding-stability inference (1), equal-site rather than mass/electron-density interpretation (1).",
+      "attribution": "PDB 1UBQ, 1CRN deposited structure coordinates, CC0 1.0 (RCSB/wwPDB usage policy). Selected CA/C1-prime representations and QA newly derived; Guinier method DOI 10.1107/S1600576716010906 and NIH MIPAV FRET documentation supply method support where applicable.",
+      "batchReport": "bio-batch.html",
+      "traceUrl": "trace.html?qa=BNP002",
+      "inputInstructions": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0006 contains all 76 C-alpha carbon sites of 1UBQ chain A: row i is residue A:i (i=1..76). S0007 contains all 46 C-alpha sites of 1CRN chain A: row i is residue A:i (i=1..46). Each site has equal weight. Do not use mass weights or add waters/side chains. For each structure independently, rbar=(1/N)sum_i r_i and Rg=sqrt((1/N)sum_i||r_i-rbar||^2). Report Rg in nm to three decimals; the ratio is dimensionless. These structures have different sequences and site counts.",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "BNP002-S0006.xyz",
+          "url": "assets/qa/BNP002-S0006.xyz",
+          "description": "S0006：76 个选定位点；Å；行号与链/残基对应见题目说明"
+        },
+        {
+          "name": "BNP002-S0007.xyz",
+          "url": "assets/qa/BNP002-S0007.xyz",
+          "description": "S0007：46 个选定位点；Å；行号与链/残基对应见题目说明"
+        }
+      ],
+      "completeInput": "Calculate the equal-weight CA radius of gyration of each supplied protein. Which has the larger spatial spread, and what is Rg(1UBQ)/Rg(1CRN)? Does that ranking alone establish which protein is less stably folded?\n\nCoordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0006 contains all 76 C-alpha carbon sites of 1UBQ chain A: row i is residue A:i (i=1..76). S0007 contains all 46 C-alpha sites of 1CRN chain A: row i is residue A:i (i=1..46). Each site has equal weight. Do not use mass weights or add waters/side chains. For each structure independently, rbar=(1/N)sum_i r_i and Rg=sqrt((1/N)sum_i||r_i-rbar||^2). Report Rg in nm to three decimals; the ratio is dimensionless. These structures have different sequences and site counts.\n\nAttachment S0006:\n76\nCoordinates in angstrom; atoms numbered from 1.\nC 26.266 25.413 2.842\nC 26.850 29.021 3.898\nC 26.235 30.058 7.497\nC 26.772 33.436 9.197\nC 28.605 33.965 12.503\nC 27.691 37.315 14.143\nC 30.225 38.643 16.662\nC 29.607 41.180 19.467\nC 31.422 43.940 17.553\nC 28.978 43.960 14.678\nC 31.191 42.012 12.331\nC 29.542 39.020 10.653\nC 31.720 36.289 9.176\nC 30.505 33.884 6.512\nC 31.677 30.275 6.639\nC 31.220 27.341 4.275\nC 30.288 24.245 6.193\nC 28.468 20.940 5.980\nC 25.829 19.825 8.494\nC 28.054 16.835 9.210\nC 30.796 19.083 10.566\nC 31.398 19.064 14.286\nC 31.288 22.201 16.417\nC 35.031 21.722 17.069\nC 35.590 21.945 13.302\nC 33.533 25.097 12.978\nC 35.596 26.715 15.736\nC 38.794 25.761 13.880\nC 37.471 27.391 10.668\nC 36.731 30.570 12.645\nC 40.269 30.508 14.115\nC 41.718 30.022 10.643\nC 39.808 32.994 9.233\nC 39.676 35.547 12.072\nC 42.345 34.269 14.431\nC 40.226 33.716 17.509\nC 41.461 30.751 19.594\nC 38.817 28.020 19.889\nC 39.063 28.063 23.695\nC 37.738 31.637 23.712\nC 34.738 30.875 21.473\nC 31.200 30.329 22.780\nC 28.762 29.573 19.906\nC 25.034 30.170 20.401\nC 22.126 29.062 18.183\nC 18.443 29.143 19.083\nC 19.399 29.894 22.655\nC 21.550 26.796 23.133\nC 25.349 26.872 23.643\nC 26.826 24.521 21.012\nC 29.015 21.657 22.288\nC 32.262 20.670 20.514\nC 31.568 16.962 19.825\nC 28.108 17.439 18.276\nC 27.574 18.192 14.563\nC 25.594 21.109 13.072\nC 22.924 18.583 12.025\nC 22.418 17.638 15.693\nC 21.079 21.149 16.251\nC 19.065 21.352 12.999\nC 21.184 24.263 11.690\nC 20.081 24.773 8.033\nC 21.656 26.847 5.240\nC 21.907 30.563 5.881\nC 21.419 30.253 9.620\nC 23.212 32.762 11.891\nC 25.149 31.609 14.980\nC 26.179 34.127 17.650\nC 29.801 34.145 18.829\nC 30.479 35.369 22.374\nC 34.145 35.472 23.481\nC 35.161 34.174 26.896\nC 38.668 35.502 27.680\nC 40.873 33.802 30.253\nC 41.845 36.550 32.686\nC 40.373 39.813 33.944\n\n\nAttachment S0007:\n46\nCoordinates in angstrom; atoms numbered from 1.\nC 16.967 12.784 4.338\nC 13.856 11.469 6.066\nC 13.660 10.707 9.787\nC 10.646 8.991 11.408\nC 9.448 9.034 15.012\nC 8.673 5.314 15.279\nC 8.912 2.083 13.258\nC 5.145 2.209 12.453\nC 5.598 5.767 11.082\nC 8.496 4.609 8.837\nC 6.500 1.584 7.565\nC 3.545 3.935 6.751\nC 5.929 6.358 5.055\nC 7.331 3.607 2.791\nC 3.782 2.599 1.742\nC 2.890 6.285 1.126\nC 5.895 6.489 -1.213\nC 4.933 3.431 -3.326\nC 2.792 5.376 -5.797\nC 5.366 8.191 -6.018\nC 3.767 10.609 -3.513\nC 6.143 13.513 -2.696\nC 8.114 13.103 0.500\nC 6.614 16.317 1.913\nC 3.074 14.894 1.756\nC 4.180 11.549 3.187\nC 5.879 13.502 6.026\nC 2.691 15.221 7.194\nC 0.715 12.045 6.657\nC 2.986 9.994 8.950\nC 4.769 12.336 11.360\nC 8.140 11.694 9.635\nC 10.280 14.760 8.823\nC 12.552 15.877 6.036\nC 15.930 17.454 6.941\nC 18.635 18.861 4.738\nC 21.452 16.969 6.513\nC 22.019 13.242 7.020\nC 21.936 12.911 10.809\nC 18.504 12.312 12.298\nC 17.924 13.421 15.877\nC 17.334 10.956 18.691\nC 13.564 11.573 18.836\nC 13.257 10.745 15.081\nC 15.445 7.667 15.246\nC 13.512 5.395 12.878\n",
+      "inputDownload": "assets/qa/BNP002-input.txt",
+      "learningObjective": "Compare spatial spread via an explicitly equal-weight CA radius of gyration.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过，仍待独立审核。真实 PDB 坐标派生；等权散射、虚拟探针与 R0 均为题设假设，不是实验信号。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "lifecycleReviewedAt": "2026-09-21",
+      "restartFrom": "M5：独立审核与难度试测；来源关联组划分。",
+      "attributionLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "derivedFrom": "原始结构重新构题，非复用现有QA；物理题为显式条件化模型。",
+      "sourceCluster": "bio-nm-protein-1ubq-1crn",
+      "relatedQaIds": [
+        "BNP001",
+        "BNI001"
+      ]
+    },
+    {
+      "id": "BNP003",
+      "title": "DNA 标记路径与空间端距",
+      "paper": "pdb-bio-nm",
+      "ability": "perception",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "family": "dna_marker_path",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构的题目须整组划分，不能当作独立科学样本"
+      ],
+      "validation": "Supplemental published calculator: centroid / Decimal pairwise Rg, distances, marker path, FRET and Guinier numeric checks; evidence_review does not grade semantics.",
+      "publicDemo": true,
+      "question": "For the supplied DNA paired-sugar marker sequence, calculate its polygonal path length L, its endpoint chord r, and the ratio r/L. Is this marker path a straight segment? Explain why this ratio should not be reported as a standard DNA helical-axis bend angle.",
+      "modelInput": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0008 contains 24 C1-prime sugar carbon sites from the antiparallel 1BNA DNA duplex. Rows 1..12 are A:1..12; rows 13..24 are B:13..24. For i=1..12, the supplied pairing is row i with row 25-i. Define marker c_i=(r_i+r_(25-i))/2. These arithmetic sugar midpoints are task-defined markers, not a standard base-pair center or fitted helical axis. L=sum_(i=1..11)||c_(i+1)-c_i|| and r=||c_12-c_1||. Report lengths in nm to three decimals and r/L to three decimals. Use the actual positions, not an assumed ideal rise per base pair.",
+      "answer": "L=4.101719 nm; r=3.686551 nm; r/L=0.898782. Since r<L the chosen marker path is not a straight segment. This ratio is a path straightness descriptor, not an angle. Sugar midpoints retain effects of helical sugar arrangement and are not a fitted helical axis; they cannot establish the paper's helical-axis bend angle.",
+      "source": "https://www.rcsb.org/structure/1BNA",
+      "inputObject": "1BNA DNA C1-prime sites",
+      "inputSizeNm": 3.85204131078575,
+      "reasoningSizeNm": 3.85204131078575,
+      "sizeDefinition": "实际输入为明确选定的 CA 或 C1′ 位点；尺寸为各结构选定位点的最大中心距，多结构取最大值。任务需要整体空间几何；不是用回转半径数值替代推理范围。",
+      "batchId": "bio-nm-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "6 points: L and r (2; tolerance 0.002 nm), ratio (1; tolerance 0.002), not straight based on r<L (1), dimensionless ratio is not angle (1), task-specific markers differ from helical-axis/base-pair frames (1).",
+      "attribution": "PDB 1BNA deposited structure coordinates, CC0 1.0 (RCSB/wwPDB usage policy). Selected CA/C1-prime representations and QA newly derived; Guinier method DOI 10.1107/S1600576716010906 and NIH MIPAV FRET documentation supply method support where applicable.",
+      "batchReport": "bio-batch.html",
+      "traceUrl": "trace.html?qa=BNP003",
+      "inputInstructions": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0008 contains 24 C1-prime sugar carbon sites from the antiparallel 1BNA DNA duplex. Rows 1..12 are A:1..12; rows 13..24 are B:13..24. For i=1..12, the supplied pairing is row i with row 25-i. Define marker c_i=(r_i+r_(25-i))/2. These arithmetic sugar midpoints are task-defined markers, not a standard base-pair center or fitted helical axis. L=sum_(i=1..11)||c_(i+1)-c_i|| and r=||c_12-c_1||. Report lengths in nm to three decimals and r/L to three decimals. Use the actual positions, not an assumed ideal rise per base pair.",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "BNP003-S0008.xyz",
+          "url": "assets/qa/BNP003-S0008.xyz",
+          "description": "S0008：24 个选定位点；Å；行号与链/残基对应见题目说明"
+        }
+      ],
+      "completeInput": "For the supplied DNA paired-sugar marker sequence, calculate its polygonal path length L, its endpoint chord r, and the ratio r/L. Is this marker path a straight segment? Explain why this ratio should not be reported as a standard DNA helical-axis bend angle.\n\nCoordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0008 contains 24 C1-prime sugar carbon sites from the antiparallel 1BNA DNA duplex. Rows 1..12 are A:1..12; rows 13..24 are B:13..24. For i=1..12, the supplied pairing is row i with row 25-i. Define marker c_i=(r_i+r_(25-i))/2. These arithmetic sugar midpoints are task-defined markers, not a standard base-pair center or fitted helical axis. L=sum_(i=1..11)||c_(i+1)-c_i|| and r=||c_12-c_1||. Report lengths in nm to three decimals and r/L to three decimals. Use the actual positions, not an assumed ideal rise per base pair.\n\nAttachment S0008:\n24\nCoordinates in angstrom; atoms numbered from 1.\nC 19.231 30.482 23.944\nC 21.721 26.304 21.716\nC 21.278 21.966 19.909\nC 19.716 17.901 17.218\nC 15.851 15.732 15.569\nC 11.699 15.974 12.719\nC 9.644 18.209 9.019\nC 8.736 20.855 5.034\nC 10.241 23.483 1.157\nC 11.429 24.028 -3.587\nC 15.856 23.836 -6.414\nC 17.965 21.200 -10.269\nC 10.896 13.044 -8.837\nC 15.058 13.086 -5.671\nC 17.545 15.602 -2.872\nC 19.765 18.985 0.046\nC 18.497 23.393 2.145\nC 15.561 25.655 5.243\nC 12.426 25.645 8.799\nC 10.190 24.148 13.089\nC 10.107 21.743 17.523\nC 10.988 21.226 22.256\nC 14.312 19.508 25.568\nC 18.276 20.693 28.188\n",
+      "inputDownload": "assets/qa/BNP003-input.txt",
+      "learningObjective": "Separate the DNA sugar-midpoint path length from end-to-end distance and quantify their ratio.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过，仍待独立审核。真实 PDB 坐标派生；等权散射、虚拟探针与 R0 均为题设假设，不是实验信号。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "lifecycleReviewedAt": "2026-09-21",
+      "restartFrom": "M5：独立审核与难度试测；来源关联组划分。",
+      "attributionLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "derivedFrom": "原始结构重新构题，非复用现有QA；物理题为显式条件化模型。",
+      "sourceCluster": "bio-nm-dna-1bna",
+      "relatedQaIds": [
+        "BNI002"
+      ]
+    },
+    {
+      "id": "BNI001",
+      "title": "几何尺寸、散射衰减与近似适用范围",
+      "paper": "pdb-bio-nm",
+      "ability": "inference",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "family": "conditional_guinier_inference",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构的题目须整组划分，不能当作独立科学样本"
+      ],
+      "validation": "Supplemental published calculator: centroid / Decimal pairwise Rg, distances, marker path, FRET and Guinier numeric checks; evidence_review does not grade semantics.",
+      "publicDemo": true,
+      "question": "Under the supplied equal-scatterer model, which protein has lower normalized scattering I(q)/I(0) at q=0.5 nm^-1? Calculate both values from the coordinates. At q=1.0 nm^-1, for which protein(s) does the stated Guinier-validity rule permit a prediction? Give qRg for both and predict intensity only where the rule permits.",
+      "modelInput": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0006 contains all 76 C-alpha carbon sites of 1UBQ chain A: row i is residue A:i (i=1..76). S0007 contains all 46 C-alpha sites of 1CRN chain A: row i is residue A:i (i=1..46). Each site has equal weight. Do not use mass weights or add waters/side chains. Assume each CA is an identical point scatterer in a rigid isolated molecule, random orientations, no intermolecular interactions, hydration or solvent correction. This is a conditional model, not an experimental SAXS prediction. Rg^2=(1/N)sum_i||r_i-rbar||^2, with rbar the centroid. Use I(q)/I(0)=exp(-q^2 Rg^2/3). For this task, only apply the approximation if qRg<1.1 (strict). Use Rg in nm and q in nm^-1; outside the rule report not supported, not zero scattering.",
+      "answer": "Rg: 1UBQ 1.149289 nm, 1CRN 0.967550 nm. At q=0.5, qRg=0.574645 and 0.483775; both satisfy the rule. Normalized intensities are 0.895769 and 0.924953, respectively; 1UBQ is lower. At q=1.0 the products are 1.149289 and 0.967550. Only 1CRN passes, giving 0.731944. The stipulated approximation supplies no prediction for 1UBQ at that q; this does not mean its scattering vanishes.",
+      "source": "https://www.rcsb.org/structure/1UBQ",
+      "inputObject": "1UBQ / 1CRN protein CA sites",
+      "inputSizeNm": 3.706348409148822,
+      "reasoningSizeNm": 3.706348409148822,
+      "sizeDefinition": "实际输入为明确选定的 CA 或 C1′ 位点；尺寸为各结构选定位点的最大中心距，多结构取最大值。任务需要整体空间几何；不是用回转半径数值替代推理范围。",
+      "batchId": "bio-nm-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "8 points: both geometric Rg values (1 combined; 0.002 nm), both q=0.5 intensities (2; 0.002), correct ranking (1), q=1 products (1 combined; 0.002), validity classifications (1), accepted 1CRN intensity (1; 0.002), explicit refusal for 1UBQ without zero/experimental-intensity claim (1).",
+      "attribution": "PDB 1UBQ, 1CRN deposited structure coordinates, CC0 1.0 (RCSB/wwPDB usage policy). Selected CA/C1-prime representations and QA newly derived; Guinier method DOI 10.1107/S1600576716010906 and NIH MIPAV FRET documentation supply method support where applicable.",
+      "batchReport": "bio-batch.html",
+      "traceUrl": "trace.html?qa=BNI001",
+      "inputInstructions": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0006 contains all 76 C-alpha carbon sites of 1UBQ chain A: row i is residue A:i (i=1..76). S0007 contains all 46 C-alpha sites of 1CRN chain A: row i is residue A:i (i=1..46). Each site has equal weight. Do not use mass weights or add waters/side chains. Assume each CA is an identical point scatterer in a rigid isolated molecule, random orientations, no intermolecular interactions, hydration or solvent correction. This is a conditional model, not an experimental SAXS prediction. Rg^2=(1/N)sum_i||r_i-rbar||^2, with rbar the centroid. Use I(q)/I(0)=exp(-q^2 Rg^2/3). For this task, only apply the approximation if qRg<1.1 (strict). Use Rg in nm and q in nm^-1; outside the rule report not supported, not zero scattering.",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "BNI001-S0006.xyz",
+          "url": "assets/qa/BNI001-S0006.xyz",
+          "description": "S0006：76 个选定位点；Å；行号与链/残基对应见题目说明"
+        },
+        {
+          "name": "BNI001-S0007.xyz",
+          "url": "assets/qa/BNI001-S0007.xyz",
+          "description": "S0007：46 个选定位点；Å；行号与链/残基对应见题目说明"
+        }
+      ],
+      "completeInput": "Under the supplied equal-scatterer model, which protein has lower normalized scattering I(q)/I(0) at q=0.5 nm^-1? Calculate both values from the coordinates. At q=1.0 nm^-1, for which protein(s) does the stated Guinier-validity rule permit a prediction? Give qRg for both and predict intensity only where the rule permits.\n\nCoordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0006 contains all 76 C-alpha carbon sites of 1UBQ chain A: row i is residue A:i (i=1..76). S0007 contains all 46 C-alpha sites of 1CRN chain A: row i is residue A:i (i=1..46). Each site has equal weight. Do not use mass weights or add waters/side chains. Assume each CA is an identical point scatterer in a rigid isolated molecule, random orientations, no intermolecular interactions, hydration or solvent correction. This is a conditional model, not an experimental SAXS prediction. Rg^2=(1/N)sum_i||r_i-rbar||^2, with rbar the centroid. Use I(q)/I(0)=exp(-q^2 Rg^2/3). For this task, only apply the approximation if qRg<1.1 (strict). Use Rg in nm and q in nm^-1; outside the rule report not supported, not zero scattering.\n\nAttachment S0006:\n76\nCoordinates in angstrom; atoms numbered from 1.\nC 26.266 25.413 2.842\nC 26.850 29.021 3.898\nC 26.235 30.058 7.497\nC 26.772 33.436 9.197\nC 28.605 33.965 12.503\nC 27.691 37.315 14.143\nC 30.225 38.643 16.662\nC 29.607 41.180 19.467\nC 31.422 43.940 17.553\nC 28.978 43.960 14.678\nC 31.191 42.012 12.331\nC 29.542 39.020 10.653\nC 31.720 36.289 9.176\nC 30.505 33.884 6.512\nC 31.677 30.275 6.639\nC 31.220 27.341 4.275\nC 30.288 24.245 6.193\nC 28.468 20.940 5.980\nC 25.829 19.825 8.494\nC 28.054 16.835 9.210\nC 30.796 19.083 10.566\nC 31.398 19.064 14.286\nC 31.288 22.201 16.417\nC 35.031 21.722 17.069\nC 35.590 21.945 13.302\nC 33.533 25.097 12.978\nC 35.596 26.715 15.736\nC 38.794 25.761 13.880\nC 37.471 27.391 10.668\nC 36.731 30.570 12.645\nC 40.269 30.508 14.115\nC 41.718 30.022 10.643\nC 39.808 32.994 9.233\nC 39.676 35.547 12.072\nC 42.345 34.269 14.431\nC 40.226 33.716 17.509\nC 41.461 30.751 19.594\nC 38.817 28.020 19.889\nC 39.063 28.063 23.695\nC 37.738 31.637 23.712\nC 34.738 30.875 21.473\nC 31.200 30.329 22.780\nC 28.762 29.573 19.906\nC 25.034 30.170 20.401\nC 22.126 29.062 18.183\nC 18.443 29.143 19.083\nC 19.399 29.894 22.655\nC 21.550 26.796 23.133\nC 25.349 26.872 23.643\nC 26.826 24.521 21.012\nC 29.015 21.657 22.288\nC 32.262 20.670 20.514\nC 31.568 16.962 19.825\nC 28.108 17.439 18.276\nC 27.574 18.192 14.563\nC 25.594 21.109 13.072\nC 22.924 18.583 12.025\nC 22.418 17.638 15.693\nC 21.079 21.149 16.251\nC 19.065 21.352 12.999\nC 21.184 24.263 11.690\nC 20.081 24.773 8.033\nC 21.656 26.847 5.240\nC 21.907 30.563 5.881\nC 21.419 30.253 9.620\nC 23.212 32.762 11.891\nC 25.149 31.609 14.980\nC 26.179 34.127 17.650\nC 29.801 34.145 18.829\nC 30.479 35.369 22.374\nC 34.145 35.472 23.481\nC 35.161 34.174 26.896\nC 38.668 35.502 27.680\nC 40.873 33.802 30.253\nC 41.845 36.550 32.686\nC 40.373 39.813 33.944\n\n\nAttachment S0007:\n46\nCoordinates in angstrom; atoms numbered from 1.\nC 16.967 12.784 4.338\nC 13.856 11.469 6.066\nC 13.660 10.707 9.787\nC 10.646 8.991 11.408\nC 9.448 9.034 15.012\nC 8.673 5.314 15.279\nC 8.912 2.083 13.258\nC 5.145 2.209 12.453\nC 5.598 5.767 11.082\nC 8.496 4.609 8.837\nC 6.500 1.584 7.565\nC 3.545 3.935 6.751\nC 5.929 6.358 5.055\nC 7.331 3.607 2.791\nC 3.782 2.599 1.742\nC 2.890 6.285 1.126\nC 5.895 6.489 -1.213\nC 4.933 3.431 -3.326\nC 2.792 5.376 -5.797\nC 5.366 8.191 -6.018\nC 3.767 10.609 -3.513\nC 6.143 13.513 -2.696\nC 8.114 13.103 0.500\nC 6.614 16.317 1.913\nC 3.074 14.894 1.756\nC 4.180 11.549 3.187\nC 5.879 13.502 6.026\nC 2.691 15.221 7.194\nC 0.715 12.045 6.657\nC 2.986 9.994 8.950\nC 4.769 12.336 11.360\nC 8.140 11.694 9.635\nC 10.280 14.760 8.823\nC 12.552 15.877 6.036\nC 15.930 17.454 6.941\nC 18.635 18.861 4.738\nC 21.452 16.969 6.513\nC 22.019 13.242 7.020\nC 21.936 12.911 10.809\nC 18.504 12.312 12.298\nC 17.924 13.421 15.877\nC 17.334 10.956 18.691\nC 13.564 11.573 18.836\nC 13.257 10.745 15.081\nC 15.445 7.667 15.246\nC 13.512 5.395 12.878\n",
+      "inputDownload": "assets/qa/BNI001-input.txt",
+      "learningObjective": "Connect global geometry to normalized small-angle scattering decay, enforcing an explicit approximation range.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过，仍待独立审核。真实 PDB 坐标派生；等权散射、虚拟探针与 R0 均为题设假设，不是实验信号。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "lifecycleReviewedAt": "2026-09-21",
+      "restartFrom": "M5：独立审核与难度试测；来源关联组划分。",
+      "attributionLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "derivedFrom": "原始结构重新构题，非复用现有QA；物理题为显式条件化模型。",
+      "sourceCluster": "bio-nm-protein-1ubq-1crn",
+      "relatedQaIds": [
+        "BNP001",
+        "BNP002"
+      ]
+    },
+    {
+      "id": "BNI002",
+      "title": "DNA 虚拟探针：FRET 应使用哪种距离",
+      "paper": "pdb-bio-nm",
+      "ability": "inference",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "family": "conditional_fret_inference",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构的题目须整组划分，不能当作独立科学样本"
+      ],
+      "validation": "Supplemental published calculator: centroid / Decimal pairwise Rg, distances, marker path, FRET and Guinier numeric checks; evidence_review does not grade semantics.",
+      "publicDemo": true,
+      "question": "In the specified virtual DNA-end FRET experiment, calculate the transfer efficiency. An analyst instead uses the length along the full sugar-marker path as the transfer distance: calculate that alternative efficiency and its signed error E_path-E_correct. Explain which distance the physical model requires and why this is not a predicted experimental efficiency for actual 1BNA.",
+      "modelInput": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0008 contains 24 C1-prime sugar carbon sites from the antiparallel 1BNA DNA duplex. Rows 1..12 are A:1..12; rows 13..24 are B:13..24. For i=1..12, the supplied pairing is row i with row 25-i. Define marker c_i=(r_i+r_(25-i))/2. These arithmetic sugar midpoints are task-defined markers, not a standard base-pair center or fitted helical axis. For this idealized exercise only, place a point donor exactly at c_1 and a point acceptor exactly at c_12. Assume effective R0=3.5 nm, constant orientation/photophysical conditions, no dye-linker displacement or dynamics. No physical dyes are present in the PDB. Use E=1/[1+(r/R0)^6] with r the donor-acceptor separation. For the analyst's alternative compute L=sum_(i=1..11)||c_(i+1)-c_i|| and substitute L for r. Report both efficiencies and signed error to three decimals; lengths used in nm.",
+      "answer": "Interprobe straight-line r=3.686551 nm gives E_correct=0.422731. Marker path L=4.101719 nm gives E_path=0.278511; signed error=-0.144220. FRET uses spatial donor-acceptor separation, not distance along the molecular marker path. Actual dye locations, orientation factors, linker motion and photophysics are not established by these sugar coordinates or the assumed effective R0; this is a conditional virtual-probe calculation only.",
+      "source": "https://www.rcsb.org/structure/1BNA",
+      "inputObject": "1BNA DNA C1-prime sites",
+      "inputSizeNm": 3.85204131078575,
+      "reasoningSizeNm": 3.85204131078575,
+      "sizeDefinition": "实际输入为明确选定的 CA 或 C1′ 位点；尺寸为各结构选定位点的最大中心距，多结构取最大值。任务需要整体空间几何；不是用回转半径数值替代推理范围。",
+      "batchId": "bio-nm-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "7 points: r and L (2; 0.002 nm), correct and alternative E (2; 0.002), signed error (1; 0.003), spatial vs path explanation (1), distinction between assumed virtual probes and real measured FRET (1).",
+      "attribution": "PDB 1BNA deposited structure coordinates, CC0 1.0 (RCSB/wwPDB usage policy). Selected CA/C1-prime representations and QA newly derived; Guinier method DOI 10.1107/S1600576716010906 and NIH MIPAV FRET documentation supply method support where applicable.",
+      "batchReport": "bio-batch.html",
+      "traceUrl": "trace.html?qa=BNI002",
+      "inputInstructions": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0008 contains 24 C1-prime sugar carbon sites from the antiparallel 1BNA DNA duplex. Rows 1..12 are A:1..12; rows 13..24 are B:13..24. For i=1..12, the supplied pairing is row i with row 25-i. Define marker c_i=(r_i+r_(25-i))/2. These arithmetic sugar midpoints are task-defined markers, not a standard base-pair center or fitted helical axis. For this idealized exercise only, place a point donor exactly at c_1 and a point acceptor exactly at c_12. Assume effective R0=3.5 nm, constant orientation/photophysical conditions, no dye-linker displacement or dynamics. No physical dyes are present in the PDB. Use E=1/[1+(r/R0)^6] with r the donor-acceptor separation. For the analyst's alternative compute L=sum_(i=1..11)||c_(i+1)-c_i|| and substitute L for r. Report both efficiencies and signed error to three decimals; lengths used in nm.",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "BNI002-S0008.xyz",
+          "url": "assets/qa/BNI002-S0008.xyz",
+          "description": "S0008：24 个选定位点；Å；行号与链/残基对应见题目说明"
+        }
+      ],
+      "completeInput": "In the specified virtual DNA-end FRET experiment, calculate the transfer efficiency. An analyst instead uses the length along the full sugar-marker path as the transfer distance: calculate that alternative efficiency and its signed error E_path-E_correct. Explain which distance the physical model requires and why this is not a predicted experimental efficiency for actual 1BNA.\n\nCoordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshots without optimization, crystallographic symmetry expansion or periodic wrapping. These are explicitly selected-site models, not complete all-atom or solution-ensemble models. S0008 contains 24 C1-prime sugar carbon sites from the antiparallel 1BNA DNA duplex. Rows 1..12 are A:1..12; rows 13..24 are B:13..24. For i=1..12, the supplied pairing is row i with row 25-i. Define marker c_i=(r_i+r_(25-i))/2. These arithmetic sugar midpoints are task-defined markers, not a standard base-pair center or fitted helical axis. For this idealized exercise only, place a point donor exactly at c_1 and a point acceptor exactly at c_12. Assume effective R0=3.5 nm, constant orientation/photophysical conditions, no dye-linker displacement or dynamics. No physical dyes are present in the PDB. Use E=1/[1+(r/R0)^6] with r the donor-acceptor separation. For the analyst's alternative compute L=sum_(i=1..11)||c_(i+1)-c_i|| and substitute L for r. Report both efficiencies and signed error to three decimals; lengths used in nm.\n\nAttachment S0008:\n24\nCoordinates in angstrom; atoms numbered from 1.\nC 19.231 30.482 23.944\nC 21.721 26.304 21.716\nC 21.278 21.966 19.909\nC 19.716 17.901 17.218\nC 15.851 15.732 15.569\nC 11.699 15.974 12.719\nC 9.644 18.209 9.019\nC 8.736 20.855 5.034\nC 10.241 23.483 1.157\nC 11.429 24.028 -3.587\nC 15.856 23.836 -6.414\nC 17.965 21.200 -10.269\nC 10.896 13.044 -8.837\nC 15.058 13.086 -5.671\nC 17.545 15.602 -2.872\nC 19.765 18.985 0.046\nC 18.497 23.393 2.145\nC 15.561 25.655 5.243\nC 12.426 25.645 8.799\nC 10.190 24.148 13.089\nC 10.107 21.743 17.523\nC 10.988 21.226 22.256\nC 14.312 19.508 25.568\nC 18.276 20.693 28.188\n",
+      "inputDownload": "assets/qa/BNI002-input.txt",
+      "learningObjective": "Choose the physically relevant distance for idealized FRET and quantify the contour-substitution error.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过，仍待独立审核。真实 PDB 坐标派生；等权散射、虚拟探针与 R0 均为题设假设，不是实验信号。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "lifecycleReviewedAt": "2026-09-21",
+      "restartFrom": "M5：独立审核与难度试测；来源关联组划分。",
+      "attributionLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "derivedFrom": "原始结构重新构题，非复用现有QA；物理题为显式条件化模型。",
+      "sourceCluster": "bio-nm-dna-1bna",
+      "relatedQaIds": [
+        "BNP003"
+      ]
     }
   ],
   "counts": {
-    "candidates": 41,
+    "candidates": 46,
     "withAnswers": 18,
     "drafts": 18,
     "ready": 0,
-    "textAnswers": 5
+    "textAnswers": 10
   },
   "taxonomy": {
     "domains": [
@@ -1626,6 +1941,6 @@
     "rework": 9,
     "backlog": 18,
     "archived": 6,
-    "active": 8
+    "active": 13
   }
 }

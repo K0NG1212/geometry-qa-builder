@@ -1,0 +1,118 @@
+{
+  "search_queries": [
+    "site.rcsb.org/structure/1UBQ ubiquitin 1.8 angstrom",
+    "site.rcsb.org/structure/1CRN crambin",
+    "site.iucr.org Guinier approximation radius gyration exp q Rg SAXS",
+    "site.pmc.ncbi.nlm.nih.gov FRET efficiency 1 R R0 sixth power distance DNA tutorial"
+  ],
+  "selection_unit": "actual coordinate entries plus original method/source documentation",
+  "resources": [
+    {
+      "id": "1UBQ",
+      "url": "https://www.rcsb.org/structure/1UBQ",
+      "decision": "selected",
+      "route": "raw_structure_or_simulation",
+      "license": "PDB data CC0 1.0",
+      "materials": [
+        "PDB full coordinate entry",
+        "selected coordinate XYZ",
+        "exact atom map"
+      ]
+    },
+    {
+      "id": "1CRN",
+      "url": "https://www.rcsb.org/structure/1CRN",
+      "decision": "selected",
+      "route": "raw_structure_or_simulation",
+      "license": "PDB data CC0 1.0",
+      "materials": [
+        "PDB full coordinate entry",
+        "selected coordinate XYZ",
+        "exact atom map"
+      ]
+    },
+    {
+      "id": "1BNA",
+      "url": "https://www.rcsb.org/structure/1BNA",
+      "decision": "selected",
+      "route": "raw_structure_or_simulation",
+      "license": "PDB data CC0 1.0",
+      "materials": [
+        "PDB full coordinate entry",
+        "selected coordinate XYZ",
+        "exact atom map"
+      ]
+    },
+    {
+      "id": "guinier2016",
+      "url": "https://doi.org/10.1107/S1600576716010906",
+      "decision": "method support",
+      "full_text_acquired": true
+    },
+    {
+      "id": "nih-fret",
+      "url": "https://mipav.cit.nih.gov/pubwiki/Microscopy_Fluorescent_Resonance_Energy_Transfer_FRET_Bleed_Through_and_Efficiency.html",
+      "decision": "method support, not measured label or experimental paper",
+      "full_text_acquired": true
+    }
+  ],
+  "downloads": [
+    {
+      "file": "1UBQ.pdb",
+      "url": "https://files.rcsb.org/download/1UBQ.pdb",
+      "sha256": "d4a6812d8951cf6594e6a0763f089e35f5a80b62acb3c117b2c5565228a7b161",
+      "bytes": 78570
+    },
+    {
+      "file": "1CRN.pdb",
+      "url": "https://files.rcsb.org/download/1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "bytes": 49491
+    },
+    {
+      "file": "1BNA.pdb",
+      "url": "https://files.rcsb.org/download/1BNA.pdb",
+      "sha256": "df42f1506792f191b957227b061360652adcf6f813eb69d9ec553067ea584670",
+      "bytes": 76464
+    },
+    {
+      "file": "pdb-format.html",
+      "url": "https://www.wwpdb.org/documentation/file-format-content/format33/sect9.html",
+      "sha256": "cfeb13f433c4897dc46925ef8baf5914319213b13824cd4bd94527cd0de8e418",
+      "bytes": 36187
+    },
+    {
+      "file": "policies.html",
+      "url": "https://www.rcsb.org/pages/policies",
+      "sha256": "be886a97aaa7c37e7e8ff60034f241edc9fcd782c995b1e7d297ebb9c8ea6b49",
+      "bytes": 56752
+    },
+    {
+      "file": "guinier.html",
+      "url": "https://journals.iucr.org/j/issues/2016/05/00/vg5047/",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "file": "fret.xml",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC22352/fullTextXML",
+      "error": "HTTP Error 500: "
+    },
+    {
+      "file": "guinier.xml",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5045725/fullTextXML",
+      "sha256": "c45fe4a95e2beb82d1ac0715e4a12ea1de99dc7d96ff568ce46588abadc3192d",
+      "bytes": 64546
+    },
+    {
+      "file": "fret.html",
+      "url": "https://mipav.cit.nih.gov/pubwiki/Microscopy_Fluorescent_Resonance_Energy_Transfer_FRET_Bleed_Through_and_Efficiency.html",
+      "sha256": "1a4e32c6819b1044d9a67e747097f64627b132b2365426fdab7cdac6756316c4",
+      "bytes": 43645
+    }
+  ],
+  "acquired_date": "2026-09-21",
+  "limits": [
+    "Some attempted full-text endpoints unavailable; unused PMC FRET papers do not supply evidence.",
+    "Paper-derived signal examples were not acquired; raw-coordinate route disclosed."
+  ]
+}
