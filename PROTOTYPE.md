@@ -23,3 +23,9 @@ python tools/export_prototype.py 更新16格缺口；候选只有显式 prototyp
 本轮重新评估旧六题，并在真实 BCD 材料上完成 CNP001 改写运行；仅一项正例，未验证广泛生成质量。科学意义筛查不是可由字段非空或布尔值证明的事实，仍需独立审查和模型难度验证。
 
 后续按缺口分批获取材料、生成和复审。现有评分器仅距离/夹角，设计无评分器时不得冒充完成。不能以同一个计算模板重复实例代替能力覆盖。
+
+## 题库处置与审核状态分离
+
+目录的 lifecycle 表示 active（当前原型）、rework（待重构）、backlog（待材料草案）、archived（历史归档）。status 仍表示原审核结果，不因目录整理而覆盖历史运行。每条保存 lifecycleReason、restartFrom 和处置日期，有新版替代时使用 supersededBy。
+
+默认仅展示 active；初筛配额同时要求 active、prototypeScreeningPassed=true、pending_human_audit。旧数据未标注 lifecycle 时沿用原统计兼容行为，新目录必须显式标注。M6 导出的新候选不会自动成为正式题或进入 active；需先核对当前规则、材料完整性及审核结论，再更新网站目录。所有处置记录见 docs/data/qa-disposition.md。

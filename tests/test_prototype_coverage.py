@@ -6,6 +6,11 @@ class CoverageTests(unittest.TestCase):
   q={'id':'X','domain':'chemistry','ability':'perception','reasoningSizeNm':.24,'inputSizeNm':1.44,'prototypeScreeningPassed':True,'status':'pending_human_audit'}
   result=summarize({'questions':[q],'counts':{'ready':0}},policy)
   self.assertEqual(result['cells'][0]['screened_count'],1);self.assertEqual(result['cells'][1]['screened_count'],0)
+  for state in ['archived','backlog','rework']:
+   q['lifecycle']=state
+   self.assertEqual(summarize({'questions':[q],'counts':{'ready':0}},policy)['screened_total'],0)
+  q['lifecycle']='active'
+  self.assertEqual(summarize({'questions':[q],'counts':{'ready':0}},policy)['screened_total'],1)
   q['status']='needs_revision'
   self.assertEqual(summarize({'questions':[q],'counts':{'ready':0}},policy)['screened_total'],0)
  def test_boundaries_unknown_and_nonfinite(self):
