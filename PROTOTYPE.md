@@ -29,3 +29,7 @@ python tools/export_prototype.py 更新16格缺口；候选只有显式 prototyp
 目录的 lifecycle 表示 active（当前原型）、rework（待重构）、backlog（待材料草案）、archived（历史归档）。status 仍表示原审核结果，不因目录整理而覆盖历史运行。每条保存 lifecycleReason、restartFrom 和处置日期，有新版替代时使用 supersededBy。
 
 默认仅展示 active；初筛配额同时要求 active、prototypeScreeningPassed=true、pending_human_audit。旧数据未标注 lifecycle 时沿用原统计兼容行为，新目录必须显式标注。M6 导出的新候选不会自动成为正式题或进入 active；需先核对当前规则、材料完整性及审核结论，再更新网站目录。所有处置记录见 docs/data/qa-disposition.md。
+
+## 统一目录准入统计
+
+更新目录后依次运行 tools/export_prototype.py、tools/export_admission_audit.py、tools/export_modules.py。audit.html 展示每格缺口、待人工审核清单和每条记录的同一检查标准。准入统计仅检查材料字段、附件存在性和保存的初筛状态，不代替 M2–M5 重跑或领域审核；Q02 本轮另有真实新运行 q02-force-v04-001。规划方向编号与实际 QA 编号分开，Q02 对应 QNP001。目标160：初筛缺口与正式审核缺口分别报告。

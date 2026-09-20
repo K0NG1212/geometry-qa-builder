@@ -1,0 +1,55 @@
+For the supplied paired molecular geometries A and B, does the total force at B oppose or reinforce continuing the specific A-to-B deformation? Compute S = sum_i F_i(B) dot [r_i(B)-r_i(A)] in eV to four decimal places. For the path r_i(lambda) = r_i(A) + lambda [r_i(B)-r_i(A)], state the sign of dE/dlambda at lambda=1. Explain whether this establishes that A is a stable minimum of the PBE0+MBD energy.
+
+A is the supplied DFTB3+MBD optimized reference; B is its paired displaced QM7-X structure. Use the supplied cleaned total PBE0+MBD forces at B, not forces at A. Coordinates are in angstrom and forces in eV/angstrom. All 14 atoms participate; row i in both XYZ attachments and this force table is the same atom, in the unchanged common Cartesian frame. Do not realign the structures or independently translate them. XYZ atom rows start after the two header lines. Interpret |S| <= 0.000001 eV as near-zero for this task (an operational threshold, not a physical uncertainty). lambda is dimensionless; no mass weighting or normalized displacement is used.
+
+Atom row, atomic number, Fx, Fy, Fz (eV/angstrom):
+1 6 0.845558 3.203896 1.914728
+2 6 -0.5454290000000001 0.722251 2.007141
+3 6 0.758028 -2.771126 -0.162324
+4 6 -0.658867 -1.203233 -0.838856
+5 7 -1.926709 0.689101 -0.034319
+6 6 1.285559 -0.916082 -0.722454
+7 16 -0.47722 0.745875 0.651559
+8 1 0.793651 -2.366121 0.42509
+9 1 -0.043852 0.240934 -0.831441
+10 1 -0.628895 -1.211622 -1.204166
+11 1 -0.393234 -1.234859 -0.476948
+12 1 0.298948 0.230404 -1.27399
+13 1 0.682832 0.944775 0.499173
+14 1 0.009627999999999999 2.925805 0.046808
+
+A.xyz:
+14
+QM7-X native coordinates in angstrom
+C -1.735423 1.960173 -0.689885
+C -0.22056 1.801821 -0.588892
+C 0.213802 0.483333 -0.012776
+C 1.122921 0.267251 0.994686
+N 1.364685 -1.057603 1.324287
+C 0.655142 -1.874117 0.585038
+S -0.384728 -1.06666 -0.59403
+H -1.993444 2.928769 -1.113257
+H -2.20344 1.884267 0.28906
+H -2.164792 1.18848 -1.326129
+H 0.194868 2.605804 0.029359
+H 0.217026 1.932043 -1.588953
+H 1.643101 1.05748 1.532874
+H 0.69424 -2.957833 0.682488
+
+B.xyz:
+14
+QM7-X native coordinates in angstrom
+C -1.797948 1.973697 -0.73122
+C -0.244323 1.808159 -0.687632
+C 0.19093 0.577959 0.074894
+C 1.130095 0.223465 1.028426
+N 1.426809 -1.13616 1.272612
+C 0.586582 -1.904501 0.616172
+S -0.327301 -1.03534 -0.568237
+H -2.114941 3.094997 -0.97484
+H -2.139607 1.763541 0.31138
+H -2.312333 1.34681 -1.384219
+H 0.196229 2.742591 -0.211583
+H 0.200671 1.692944 -1.639883
+H 1.631959 0.900989 1.655155
+H 0.59514 -3.095969 0.623654

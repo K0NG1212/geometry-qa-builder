@@ -1,6 +1,6 @@
 {
   "version": "0.4",
-  "updated": "2026-09-19",
+  "updated": "2026-09-20",
   "resources": [
     {
       "id": "landscape17",
@@ -1278,14 +1278,73 @@
       "lifecycleReason": "推断可借助题干身份绕过几何输入，几何必要性不足。",
       "lifecycleReviewedAt": "2026-09-20",
       "restartFrom": "M3：重新设计必须依赖几何的推断任务；再执行 M4–M6，无法支撑则更换材料。"
+    },
+    {
+      "id": "QNP001",
+      "title": "QM7-X · 力是否反对指定分子形变？",
+      "paper": "qm7x",
+      "ability": "inference",
+      "domain": "quantum",
+      "scale": "small_molecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "family": "force_displacement_projection",
+      "missing": [
+        "待独立领域审核和模型难度测试",
+        "推断评分需语义审核；力点积为补充计算器，尚未接入通用 M4 自动分派"
+      ],
+      "validation": "Supplementary force_projection.py + Decimal recomputation; semantic review pending",
+      "publicDemo": true,
+      "question": "For the supplied paired molecular geometries A and B, does the total force at B oppose or reinforce continuing the specific A-to-B deformation? Compute S = sum_i F_i(B) dot [r_i(B)-r_i(A)] in eV to four decimal places. For the path r_i(lambda) = r_i(A) + lambda [r_i(B)-r_i(A)], state the sign of dE/dlambda at lambda=1. Explain whether this establishes that A is a stable minimum of the PBE0+MBD energy.",
+      "modelInput": "A is the supplied DFTB3+MBD optimized reference; B is its paired displaced QM7-X structure. Use the supplied cleaned total PBE0+MBD forces at B, not forces at A. Coordinates are in angstrom and forces in eV/angstrom. All 14 atoms participate; row i in both XYZ attachments and this force table is the same atom, in the unchanged common Cartesian frame. Do not realign the structures or independently translate them. XYZ atom rows start after the two header lines. Interpret |S| <= 0.000001 eV as near-zero for this task (an operational threshold, not a physical uncertainty). lambda is dimensionless; no mass weighting or normalized displacement is used.\n\nAtom row, atomic number, Fx, Fy, Fz (eV/angstrom):\n1 6 0.845558 3.203896 1.914728\n2 6 -0.5454290000000001 0.722251 2.007141\n3 6 0.758028 -2.771126 -0.162324\n4 6 -0.658867 -1.203233 -0.838856\n5 7 -1.926709 0.689101 -0.034319\n6 6 1.285559 -0.916082 -0.722454\n7 16 -0.47722 0.745875 0.651559\n8 1 0.793651 -2.366121 0.42509\n9 1 -0.043852 0.240934 -0.831441\n10 1 -0.628895 -1.211622 -1.204166\n11 1 -0.393234 -1.234859 -0.476948\n12 1 0.298948 0.230404 -1.27399\n13 1 0.682832 0.944775 0.499173\n14 1 0.009627999999999999 2.925805 0.046808",
+      "answer": "S = -1.8479097251 eV (rounded: -1.8479 eV), below the negative threshold: the instantaneous force projection opposes the specified A-to-B deformation at B. Since forces are minus the Cartesian energy gradient, dE/dlambda at lambda=1 = -S = 1.8479097251 eV, positive. This is a local directional derivative, not E(B)-E(A). It does not establish a stable PBE0+MBD minimum at A: A was optimized at a different level, and neither a stationary-point check nor curvature in all relevant directions is provided.",
+      "source": "https://zenodo.org/records/4288677",
+      "inputObject": "QM7-X molecule 7001; 14 atoms, paired native frames",
+      "inputSizeNm": 0.6944622531696953,
+      "reasoningSizeNm": 0.6944622531696953,
+      "sizeDefinition": "A、B 中分别计算所有原子中心最大距离，取较大值；全部原子参与同一分子形变，不把位移幅度误当推理范围。",
+      "batchId": "q02-force-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "5 points: S within 0.0001 eV of independently calculated reference (1); oppose classification using stated threshold (1); positive dE/dlambda with value -S (1); distinguish local derivative from finite energy change (1); no claim of stable minimum, with differing optimization level or missing stationarity/curvature as a reason (1). Interpretive points require semantic review.",
+      "attribution": "QM7-X: Hoja et al., Scientific Data 8, 43 (2021), DOI 10.1038/s41597-021-00812-2; Zenodo 4288677, CC BY 4.0. Extracted native pair; newly authored QA.",
+      "batchReport": "audit.html",
+      "traceUrl": "trace.html?qa=QNP001",
+      "inputInstructions": "A、B 是同一分子的配对坐标；完整输入中的力表对应 B。下载两份 XYZ，或直接展开完整模型输入。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "QNP001-A.xyz",
+          "url": "assets/qa/QNP001-A.xyz",
+          "description": "参考结构 A，14 个原子，单位 Å"
+        },
+        {
+          "name": "QNP001-B.xyz",
+          "url": "assets/qa/QNP001-B.xyz",
+          "description": "位移结构 B，与力表逐行对应"
+        }
+      ],
+      "completeInput": "For the supplied paired molecular geometries A and B, does the total force at B oppose or reinforce continuing the specific A-to-B deformation? Compute S = sum_i F_i(B) dot [r_i(B)-r_i(A)] in eV to four decimal places. For the path r_i(lambda) = r_i(A) + lambda [r_i(B)-r_i(A)], state the sign of dE/dlambda at lambda=1. Explain whether this establishes that A is a stable minimum of the PBE0+MBD energy.\n\nA is the supplied DFTB3+MBD optimized reference; B is its paired displaced QM7-X structure. Use the supplied cleaned total PBE0+MBD forces at B, not forces at A. Coordinates are in angstrom and forces in eV/angstrom. All 14 atoms participate; row i in both XYZ attachments and this force table is the same atom, in the unchanged common Cartesian frame. Do not realign the structures or independently translate them. XYZ atom rows start after the two header lines. Interpret |S| <= 0.000001 eV as near-zero for this task (an operational threshold, not a physical uncertainty). lambda is dimensionless; no mass weighting or normalized displacement is used.\n\nAtom row, atomic number, Fx, Fy, Fz (eV/angstrom):\n1 6 0.845558 3.203896 1.914728\n2 6 -0.5454290000000001 0.722251 2.007141\n3 6 0.758028 -2.771126 -0.162324\n4 6 -0.658867 -1.203233 -0.838856\n5 7 -1.926709 0.689101 -0.034319\n6 6 1.285559 -0.916082 -0.722454\n7 16 -0.47722 0.745875 0.651559\n8 1 0.793651 -2.366121 0.42509\n9 1 -0.043852 0.240934 -0.831441\n10 1 -0.628895 -1.211622 -1.204166\n11 1 -0.393234 -1.234859 -0.476948\n12 1 0.298948 0.230404 -1.27399\n13 1 0.682832 0.944775 0.499173\n14 1 0.009627999999999999 2.925805 0.046808\n\nA.xyz:\n14\nQM7-X native coordinates in angstrom\nC -1.735423 1.960173 -0.689885\nC -0.22056 1.801821 -0.588892\nC 0.213802 0.483333 -0.012776\nC 1.122921 0.267251 0.994686\nN 1.364685 -1.057603 1.324287\nC 0.655142 -1.874117 0.585038\nS -0.384728 -1.06666 -0.59403\nH -1.993444 2.928769 -1.113257\nH -2.20344 1.884267 0.28906\nH -2.164792 1.18848 -1.326129\nH 0.194868 2.605804 0.029359\nH 0.217026 1.932043 -1.588953\nH 1.643101 1.05748 1.532874\nH 0.69424 -2.957833 0.682488\n\nB.xyz:\n14\nQM7-X native coordinates in angstrom\nC -1.797948 1.973697 -0.73122\nC -0.244323 1.808159 -0.687632\nC 0.19093 0.577959 0.074894\nC 1.130095 0.223465 1.028426\nN 1.426809 -1.13616 1.272612\nC 0.586582 -1.904501 0.616172\nS -0.327301 -1.03534 -0.568237\nH -2.114941 3.094997 -0.97484\nH -2.139607 1.763541 0.31138\nH -2.312333 1.34681 -1.384219\nH 0.196229 2.742591 -0.211583\nH 0.200671 1.692944 -1.639883\nH 1.631959 0.900989 1.655155\nH 0.59514 -3.095969 0.623654\n",
+      "inputDownload": "assets/qa/QNP001-input.txt",
+      "learningObjective": "由实际分子形变与原子力判断瞬时方向响应，区分方向导数、有限能量差和整体稳定性。",
+      "answerKind": "text",
+      "policyReview": "新版同会话初筛通过；补充计算器与 Decimal 复核数值。物理解读待独立审核。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "完整真实数据实例通过同会话初筛，待独立审核。",
+      "lifecycleReviewedAt": "2026-09-20",
+      "restartFrom": "M5：领域审核、几何消融与模型难度试测。",
+      "attributionLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "derivedFrom": "Q02（规划方向）；关联旧草案 X02"
     }
   ],
   "counts": {
-    "candidates": 36,
+    "candidates": 37,
     "withAnswers": 17,
     "drafts": 18,
     "ready": 0,
-    "textAnswers": 1
+    "textAnswers": 2
   },
   "taxonomy": {
     "domains": [
@@ -1301,7 +1360,7 @@
     ]
   },
   "lifecycleCounts": {
-    "active": 3,
+    "active": 4,
     "rework": 9,
     "backlog": 18,
     "archived": 6

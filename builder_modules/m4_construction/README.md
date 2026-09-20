@@ -32,3 +32,7 @@ AI 描述题目和原子选择，程序产生几何数值答案。
 ```text
 python -m unittest discover -s tests -p test_m4_construction.py -v
 ```
+
+## 力—位移补充计算器（Q02）
+
+force_projection.py 接受同一原子顺序、同一坐标系中的 A/B 坐标和 B 处力，检查单位与非零位移，计算全原子力—位移点积和方向导数。它是显式调用的补充计算器，尚未加入通用 construction 的 verifier 分派；QNP001 的解释题沿用 evidence_review，不能把语义答案称为自动评分通过。tests/test_force_projection.py 验证正负号、近零、平移不变性与无效输入拒绝。QNP001 另外采用 Decimal 算术复核真实数据。

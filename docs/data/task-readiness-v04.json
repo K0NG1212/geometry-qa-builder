@@ -1,14 +1,14 @@
 {
   "date": "2026-09-20",
   "builder_version": "0.4.0",
-  "scope": "以最新 Builder 字段、现有材料和评分器做方向级就绪审查；不是将31项全部执行M0–M6，不是重新检索所有原始论文，不是QA认证。",
+  "scope": "以最新 Builder 字段、现有材料和评分器做方向级就绪审查；不是将31项全部执行M0–M6，不是重新检索所有原始论文，不是QA认证。 Q02 后续已在真实材料上执行 q02-force-v04-001，单独更新对应条目；其余方向仍为就绪审查。",
   "method": "Assistant-authored per-task assessment against current module rules and saved inventories; program checks ID coverage and source hashes.",
   "counts": {
     "merge": 4,
-    "materials_or_scorer_missing": 16,
+    "instances_available": 2,
+    "materials_or_scorer_missing": 15,
     "definition_revision": 3,
-    "evaluator_missing": 7,
-    "instances_available": 1
+    "evaluator_missing": 7
   },
   "input_hashes": {
     "docs\\data\\task-framework.json": "45d2010846100c4cacc152a1121e1b3178071b224db88410e1cec8f22bb84785",
@@ -37,19 +37,21 @@
     },
     "Q02": {
       "id": "Q02",
-      "readiness": "materials_or_scorer_missing",
-      "label": "待补材料／评分器",
-      "reason": "缺匹配的力—位移实例和点积评分器",
-      "qa_run_completed": false,
-      "linked_candidates": [],
+      "readiness": "instances_available",
+      "label": "已有完整新版实例",
+      "reason": "已取得 QM7-X 官方配对坐标与力，生成 QNP001；数值复核通过，尚待人工审核。",
+      "qa_run_completed": true,
+      "linked_candidates": [
+        "QNP001"
+      ],
       "checks": {
-        "reasoning_scale": "规划位置，非实例实测值",
-        "learning_objective": "需在具体模板中填写并审核",
-        "complete_attachments": "未在本轮确认齐备",
-        "disciplinary_meaning": "逐题审查，不由任务标题推定",
-        "scorer": "缺匹配的力—位移实例和点积评分器"
+        "reasoning_scale": "实例 0.694462 nm；规划位置不替代实测值",
+        "learning_objective": "由分子形变与力判断瞬时方向响应；实例任务和评分已保存。",
+        "complete_attachments": "两份 XYZ 和完整力表已公开",
+        "disciplinary_meaning": "关联原子力与方向能量导数；科学价值和难度仍待独立审核。",
+        "scorer": "补充 force_projection.py + Decimal；通用 evidence_review 路线，语义待审核"
       },
-      "next_action": "取得配对数据、坐标系和单位，增加力方向验证器。",
+      "next_action": "审核 QNP001 的科学意义、推断难度和评分；单例不表示整个方向完成。",
       "old_decision": "hold"
     },
     "Q03": {

@@ -11,7 +11,7 @@ def build():
     for path in sorted((ROOT/'builder_modules').glob('m[0-6]_*')):
         entry = json.loads((path/'module.json').read_text(encoding='utf-8'))
         entry['files'] = []
-        for name in ('README.md', 'module.py', 'prompt.md', 'schema.json', 'settings.json', 'retrieval.md', 'prototype-policy.json', 'coverage.py'):
+        for name in ('README.md', 'module.py', 'prompt.md', 'schema.json', 'settings.json', 'retrieval.md', 'prototype-policy.json', 'coverage.py', 'force_projection.py'):
             file = path/name
             if file.exists():
                 entry['files'].append({'name': name, 'path': file.relative_to(ROOT).as_posix(),
