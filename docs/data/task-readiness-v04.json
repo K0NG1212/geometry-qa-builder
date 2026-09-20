@@ -1,0 +1,554 @@
+{
+  "date": "2026-09-20",
+  "builder_version": "0.4.0",
+  "scope": "以最新 Builder 字段、现有材料和评分器做方向级就绪审查；不是将31项全部执行M0–M6，不是重新检索所有原始论文，不是QA认证。",
+  "method": "Assistant-authored per-task assessment against current module rules and saved inventories; program checks ID coverage and source hashes.",
+  "counts": {
+    "merge": 4,
+    "materials_or_scorer_missing": 16,
+    "definition_revision": 3,
+    "evaluator_missing": 7,
+    "instances_available": 1
+  },
+  "input_hashes": {
+    "docs\\data\\task-framework.json": "45d2010846100c4cacc152a1121e1b3178071b224db88410e1cec8f22bb84785",
+    "docs\\data\\task-reviews.json": "f888a8f8b263cdd91890b68726ba01ae067d1348e55c134ae2682dfeb51ec7b2",
+    "builder_modules\\m0_scope\\prototype-policy.json": "ba7d3c03dfa0a5f4a88260b5c8fb668594f0261ab445c439746a880863af7585",
+    "builder_modules\\m3_tasks\\schema.json": "b723a678bdbdd7ee36f8c498bd2a494a7c376646b65399298bceb6c7c1d4ebac",
+    "builder_modules\\m5_quality\\schema.json": "6e05a38ab6b5f571b9c504eb0eaf04378f8955ac039723c8b4767e2012bf1032"
+  },
+  "reviews": {
+    "Q01": {
+      "id": "Q01",
+      "readiness": "merge",
+      "label": "合并方向",
+      "reason": "通用测量模板并入 C01，不能仅凭数据来自量化领域就称电子结构题",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "通用测量模板并入 C01，不能仅凭数据来自量化领域就称电子结构题"
+      },
+      "next_action": "保留编号作为历史入口，后续新增电子结构问题再单独定义。",
+      "old_decision": "merge"
+    },
+    "Q02": {
+      "id": "Q02",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺匹配的力—位移实例和点积评分器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺匹配的力—位移实例和点积评分器"
+      },
+      "next_action": "取得配对数据、坐标系和单位，增加力方向验证器。",
+      "old_decision": "hold"
+    },
+    "Q03": {
+      "id": "Q03",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺同级别 Hessian／频率与约束处理",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺同级别 Hessian／频率与约束处理"
+      },
+      "next_action": "核实可取得的频率／Hessian，不能从 min/ts 文件名给答案。",
+      "old_decision": "hold"
+    },
+    "Q04": {
+      "id": "Q04",
+      "readiness": "definition_revision",
+      "label": "先修订题型",
+      "reason": "需改成几何必要的明确判断，并取得配对偶极数据",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "需改成几何必要的明确判断，并取得配对偶极数据"
+      },
+      "next_action": "先固定明确问题；MolVision 仅作性质问答形式对照。",
+      "old_decision": "rewrite"
+    },
+    "Q05": {
+      "id": "Q05",
+      "readiness": "evaluator_missing",
+      "label": "设计暂不可执行",
+      "reason": "模式位移属于受限操作；缺模式输入及评分器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "模式位移属于受限操作；缺模式输入及评分器"
+      },
+      "next_action": "需取得真实模式；可参考 AtomWorld 的程序目标构建方式。",
+      "old_decision": "rewrite"
+    },
+    "Q06": {
+      "id": "Q06",
+      "readiness": "evaluator_missing",
+      "label": "设计暂不可执行",
+      "reason": "缺性质重算器与可执行设计目标",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺性质重算器与可执行设计目标"
+      },
+      "next_action": "先落实量化计算器、预算和失败处理，当前暂缓实例化。",
+      "old_decision": "defer"
+    },
+    "C01": {
+      "id": "C01",
+      "readiness": "instances_available",
+      "label": "已有新版试跑",
+      "reason": "已用 v0.4 执行四道公开候选：三道感知初筛通过，一道推断因几何捷径需修订。旧任意距离题不自动通过。",
+      "qa_run_completed": true,
+      "linked_candidates": [
+        "CNP001",
+        "CNP002",
+        "CNP003",
+        "CNP004"
+      ],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "已有所链接的新版实例",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "distance/angle + evidence_review with manual semantic screening"
+      },
+      "next_action": "先纳入角度校准包；仍需独立审核和模型试答。",
+      "old_decision": "priority"
+    },
+    "C02": {
+      "id": "C02",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺已核实的手性结构、优先级输入及手性验证器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺已核实的手性结构、优先级输入及手性验证器"
+      },
+      "next_action": "优先选一个公开结构，核实坐标而非文件中已有标签决定答案。",
+      "old_decision": "priority"
+    },
+    "C03": {
+      "id": "C03",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "GEOM 实例仍未取得；独立 RMSD 测试未接入当前构题路线",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "GEOM 实例仍未取得；独立 RMSD 测试未接入当前构题路线"
+      },
+      "next_action": "GEOM 构象仍未取得；评分器测试不能计作完成实例。",
+      "old_decision": "hold"
+    },
+    "C04": {
+      "id": "C04",
+      "readiness": "definition_revision",
+      "label": "先修订题型",
+      "reason": "需固定平面性定义、真实环结构和评分器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "需固定平面性定义、真实环结构和评分器"
+      },
+      "next_action": "锁定一种指标后再选真实环结构。",
+      "old_decision": "rewrite"
+    },
+    "C05": {
+      "id": "C05",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺匹配构象、能量、简并度和统计评分",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺匹配构象、能量、简并度和统计评分"
+      },
+      "next_action": "数据取得后审查难度，单纯排序可能仅为基础推断。",
+      "old_decision": "hold"
+    },
+    "C06": {
+      "id": "C06",
+      "readiness": "evaluator_missing",
+      "label": "设计暂不可执行",
+      "reason": "缺真实异常结构、多解约束和修复验证器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺真实异常结构、多解约束和修复验证器"
+      },
+      "next_action": "先找异常结构和多个合法答案；不是用单一参考 RMSD 判全部输出。",
+      "old_decision": "hold"
+    },
+    "C07": {
+      "id": "C07",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺链结构与周期展开规则；现有两点距离不能直接处理周期链",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺链结构与周期展开规则；现有两点距离不能直接处理周期链"
+      },
+      "next_action": "轨迹测试示例不等于研究级数据，需核实来源、许可和长度。",
+      "old_decision": "hold"
+    },
+    "C08": {
+      "id": "C08",
+      "readiness": "merge",
+      "label": "合并方向",
+      "reason": "与 B07 合并建议保留；缺独立超分子约束实例",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "与 B07 合并建议保留；缺独立超分子约束实例"
+      },
+      "next_action": "需要独立超分子来源才能重新拆分。",
+      "old_decision": "merge"
+    },
+    "M01": {
+      "id": "M01",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺 CIF 输入、周期邻居规则及验证器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺 CIF 输入、周期邻居规则及验证器"
+      },
+      "next_action": "优先选结构简单、无部分占位的 CIF；新增周期邻居验证器。",
+      "old_decision": "priority"
+    },
+    "M02": {
+      "id": "M02",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺周期结构和一般晶格最短像验证器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺周期结构和一般晶格最短像验证器"
+      },
+      "next_action": "选定 CIF 和单位，明确平移等价与容差。",
+      "old_decision": "priority"
+    },
+    "M03": {
+      "id": "M03",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺匹配应力应变与条件，需避免纯公式代入",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺匹配应力应变与条件，需避免纯公式代入"
+      },
+      "next_action": "先取得张量及计算设置，再决定是否只是公式代入题。",
+      "old_decision": "hold"
+    },
+    "M04": {
+      "id": "M04",
+      "readiness": "evaluator_missing",
+      "label": "设计暂不可执行",
+      "reason": "结构编辑基础项，缺编辑验证器与适用实例",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "结构编辑基础项，缺编辑验证器与适用实例"
+      },
+      "next_action": "明确与 AtomWorld 差异及许可，不能声称这类操作是新任务。",
+      "old_decision": "rewrite"
+    },
+    "M05": {
+      "id": "M05",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺实际界面、层定义和周期／拟合评分",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺实际界面、层定义和周期／拟合评分"
+      },
+      "next_action": "挑选实际结构；程序生成者标为生成数据，不冒充实验。",
+      "old_decision": "hold"
+    },
+    "M06": {
+      "id": "M06",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺匹配结构、能量和受控物理证据",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺匹配结构、能量和受控物理证据"
+      },
+      "next_action": "本轮不支持原问法，暂缓；不因找到了材料论文就升级支持等级。",
+      "old_decision": "defer"
+    },
+    "M07": {
+      "id": "M07",
+      "readiness": "evaluator_missing",
+      "label": "设计暂不可执行",
+      "reason": "原设计任务需改写；几何通行与扩散性质不能混同",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "原设计任务需改写；几何通行与扩散性质不能混同"
+      },
+      "next_action": "先做 Perception 几何分析版，保留原 Design 标签为待改建议。",
+      "old_decision": "rewrite"
+    },
+    "M08": {
+      "id": "M08",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺实际标定后的分割材料和几何统计器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺实际标定后的分割材料和几何统计器"
+      },
+      "next_action": "需重建／分割结果和不确定性；实际尺度不能沿用 100–1000 nm 占位。",
+      "old_decision": "hold"
+    },
+    "B01": {
+      "id": "B01",
+      "readiness": "merge",
+      "label": "合并方向",
+      "reason": "通用原子距离并入 C01，生物来源不自动形成独立能力",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "通用原子距离并入 C01，生物来源不自动形成独立能力"
+      },
+      "next_action": "保留编号历史，不计独立题型。",
+      "old_decision": "merge"
+    },
+    "B02": {
+      "id": "B02",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺指定蛋白实例与二面角评分器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺指定蛋白实例与二面角评分器"
+      },
+      "next_action": "优先选结构并增二面角验证器；异常不能自动当结构错误。",
+      "old_decision": "priority"
+    },
+    "B03": {
+      "id": "B03",
+      "readiness": "definition_revision",
+      "label": "先修订题型",
+      "reason": "阈值判别更接近感知；高阶推断证据不足",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "阈值判别更接近感知；高阶推断证据不足"
+      },
+      "next_action": "建议改为 Perception 子类；若保留 Inference 需加入独立物理证据。",
+      "old_decision": "rewrite"
+    },
+    "B04": {
+      "id": "B04",
+      "readiness": "evaluator_missing",
+      "label": "设计暂不可执行",
+      "reason": "缺口袋配体、自由度和可接受输出验证器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺口袋配体、自由度和可接受输出验证器"
+      },
+      "next_action": "先做可接受／不可接受输出测试集；评分器尚未接入 Builder。",
+      "old_decision": "hold"
+    },
+    "B05": {
+      "id": "B05",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺同蛋白配对结构、结构域和对齐评分器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺同蛋白配对结构、结构域和对齐评分器"
+      },
+      "next_action": "选择一对同蛋白构象及结构域定义；不把算法找的对应直接当已审核答案。",
+      "old_decision": "priority"
+    },
+    "B06": {
+      "id": "B06",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺机制证据；几何差异不能替代机制",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺机制证据；几何差异不能替代机制"
+      },
+      "next_action": "本轮暂缓机制推断版；不把通用工具当机制来源。",
+      "old_decision": "defer"
+    },
+    "B07": {
+      "id": "B07",
+      "readiness": "evaluator_missing",
+      "label": "设计暂不可执行",
+      "reason": "缺亚基输入、对称／碰撞约束和评分器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺亚基输入、对称／碰撞约束和评分器"
+      },
+      "next_action": "落实输出评分协议和有效实例，功能成功不能仅由几何判断。",
+      "old_decision": "hold"
+    },
+    "B08": {
+      "id": "B08",
+      "readiness": "materials_or_scorer_missing",
+      "label": "待补材料／评分器",
+      "reason": "缺匹配 map/model、标定和密度匹配评分器",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "缺匹配 map/model、标定和密度匹配评分器"
+      },
+      "next_action": "取得配套 map/model；地图分辨率与输入对象大小分开记录。",
+      "old_decision": "hold"
+    },
+    "B09": {
+      "id": "B09",
+      "readiness": "merge",
+      "label": "合并方向",
+      "reason": "暂并入 B07，不按尺度重复造新任务",
+      "qa_run_completed": false,
+      "linked_candidates": [],
+      "checks": {
+        "reasoning_scale": "规划位置，非实例实测值",
+        "learning_objective": "需在具体模板中填写并审核",
+        "complete_attachments": "未在本轮确认齐备",
+        "disciplinary_meaning": "逐题审查，不由任务标题推定",
+        "scorer": "暂并入 B07，不按尺度重复造新任务"
+      },
+      "next_action": "若后来引入特定壳层物理约束，再考虑独立任务。",
+      "old_decision": "merge"
+    }
+  }
+}
