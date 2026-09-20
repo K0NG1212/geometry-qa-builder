@@ -109,6 +109,18 @@
       "status": "3 个结构已整理",
       "scope": "主体分子 · 1.44–1.83 nm",
       "role": "结构输入来源"
+    },
+    {
+      "id": "hbond2021",
+      "name": "Competing intramolecular H bonds (2021)",
+      "type": "research",
+      "year": 2021,
+      "title": "Focal Point Evaluation of Energies for Tautomers and Isomers for 3-Hydroxy-2-Butenamide",
+      "url": "https://doi.org/10.3390/molecules26092623",
+      "summary": "竞争性分子内氢键研究，提供编号结构、笛卡尔坐标和局部力常数。",
+      "role": "论文证据构题",
+      "scope": "小分子局部氢键与振动响应",
+      "status": "本轮4道候选；待独立审核"
     }
   ],
   "questions": [
@@ -1337,14 +1349,265 @@
       "restartFrom": "M5：领域审核、几何消融与模型难度试测。",
       "attributionLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "derivedFrom": "Q02（规划方向）；关联旧草案 X02"
+    },
+    {
+      "id": "HBP001",
+      "title": "氢键供体—受体距离：以坐标核查接触",
+      "paper": "hbond2021",
+      "ability": "perception",
+      "domain": "chemistry",
+      "scale": "small_molecule",
+      "reasoning": "local_geometry",
+      "status": "pending_human_audit",
+      "family": "donor_acceptor_distance",
+      "missing": [
+        "待独立领域审核与难度测试",
+        "同一论文、同一分子家族不可跨训练/测试划分；相关题不算独立来源样本"
+      ],
+      "validation": "Builder distance verifier / supplementary Decimal distance and atan2 angle checks; interpretation remains semantic review",
+      "publicDemo": true,
+      "question": "What is the donor-acceptor O6...O14 separation in the indicated intramolecular hydroxyl/carbonyl contact? Calculate it from the supplied coordinates and report angstrom to three decimals.",
+      "modelInput": "Use the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Use S0005. The hydroxyl oxygen is atom row 6, its hydrogen is row 5, and the carbonyl oxygen is row 14. Measure O6 to O14, not H5 to O14.",
+      "answer": "2.538116731 angstrom",
+      "source": "https://doi.org/10.3390/molecules26092623",
+      "inputObject": "3-hydroxy-2-butenamide source conformers TWO",
+      "inputSizeNm": 0.6417149429458535,
+      "reasoningSizeNm": 0.25381167309641217,
+      "sizeDefinition": "输入范围为所给构象全原子最大中心距；推理范围为任务指定的供体、氢与受体原子子集最大距离，各构象分别计算后取最大值。",
+      "batchId": "paper-batch-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "Euclidean separation of atom rows 6 and 14. Accept within 0.001 angstrom; use coordinates, not a published rounded annotation.",
+      "attribution": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021), DOI 10.3390/molecules26092623; CC BY 4.0. Coordinate tables extracted from SI pages 3–6; QA newly authored.",
+      "batchReport": "paper-batch.html",
+      "traceUrl": "trace.html?qa=HBP001",
+      "inputInstructions": "Use the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Use S0005. The hydroxyl oxygen is atom row 6, its hydrogen is row 5, and the carbonyl oxygen is row 14. Measure O6 to O14, not H5 to O14.",
+      "sourceRoute": "paper_evidence",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "HBP001-S0005.xyz",
+          "url": "assets/qa/HBP001-S0005.xyz",
+          "description": "S0005：原文编号顺序，14个原子，Å；已移除答案性注释"
+        }
+      ],
+      "completeInput": "What is the donor-acceptor O6...O14 separation in the indicated intramolecular hydroxyl/carbonyl contact? Calculate it from the supplied coordinates and report angstrom to three decimals.\n\nUse the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Use S0005. The hydroxyl oxygen is atom row 6, its hydrogen is row 5, and the carbonyl oxygen is row 14. Measure O6 to O14, not H5 to O14.\n\nAttachment S0005:\n14\nCoordinates in angstrom; atoms numbered from 1.\nC 1.1679 -0.0705 0.0003\nC -0.0054 -0.7575 -0.0073\nC -1.2628 -0.0311 -0.0040\nH 0.0109 -1.8351 -0.0197\nH 0.2587 1.5453 0.0028\nO 1.2197 1.2584 0.0073\nC 2.5078 -0.7195 0.0012\nH 3.0645 -0.4049 0.8827\nH 3.0700 -0.3954 -0.8734\nH 2.4225 -1.8019 -0.0050\nN -2.4053 -0.7683 -0.0315\nH -2.3779 -1.7539 0.1480\nH -3.2714 -0.2776 0.1026\nO -1.3180 1.2134 -0.0022\n",
+      "inputDownload": "assets/qa/HBP001-input.txt",
+      "learningObjective": "Audit a published hydrogen-bond donor-acceptor distance against supplied coordinates.",
+      "answerKind": "numeric",
+      "policyReview": "同会话辅助初筛通过。SI标注与坐标冲突已记录；数值以明确给定坐标为准。独立领域审核和难度验证未完成。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "论文依据、完整结构、答案与评分已保存，辅助初筛通过，待人工审核。",
+      "lifecycleReviewedAt": "2026-09-20",
+      "restartFrom": "M5：独立审核、几何必要性与难度试测；按论文/构象家族整组划分。",
+      "attributionLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "derivedFrom": "原论文与补充坐标重新构题，非复用旧QA",
+      "sourceCluster": "hbond2021-all-conformers",
+      "relatedQaIds": [
+        "HBP001",
+        "HBP002",
+        "HBI001"
+      ]
+    },
+    {
+      "id": "HBP002",
+      "title": "羟基朝向：距离与方向联合判断",
+      "paper": "hbond2021",
+      "ability": "perception",
+      "domain": "chemistry",
+      "scale": "small_molecule",
+      "reasoning": "local_geometry",
+      "status": "pending_human_audit",
+      "family": "donor_orientation_screen",
+      "missing": [
+        "待独立领域审核与难度测试",
+        "同一论文、同一分子家族不可跨训练/测试划分；相关题不算独立来源样本"
+      ],
+      "validation": "Builder distance verifier / supplementary Decimal distance and atan2 angle checks; interpretation remains semantic review",
+      "publicDemo": true,
+      "question": "Which conformer satisfies both the stated short-contact and directional criteria for the indicated O-H...O arrangement? Report H...O distance and O-H...O angle for A and B, then classify each. Explain why donor-acceptor proximity alone is not sufficient.",
+      "modelInput": "Use the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Conformer A is asset S0005: hydroxyl donor O6, its covalently bound H5, and carbonyl acceptor O14. Conformer B is asset S0006: hydroxyl donor O5, its covalently bound H14, and carbonyl acceptor O6. The numbers locate atom rows, not file line numbers. For this geometry-screening exercise require H...O <= 2.2 angstrom and O-H...O angle >= 130 degrees (vertex at H). These are explicit task criteria, not a universal definition of hydrogen bonding.",
+      "answer": "A: H...O = 1.611262 angstrom, angle = 151.490090 degrees; passes both. B: H...O = 3.733213 angstrom, angle = 8.966231 degrees; fails both. Close O...O centers do not establish a correctly oriented donor-H group.",
+      "source": "https://doi.org/10.3390/molecules26092623",
+      "inputObject": "3-hydroxy-2-butenamide source conformers TWO, THREE",
+      "inputSizeNm": 0.6445062811951486,
+      "reasoningSizeNm": 0.37332128937417963,
+      "sizeDefinition": "输入范围为所给构象全原子最大中心距；推理范围为任务指定的供体、氢与受体原子子集最大距离，各构象分别计算后取最大值。",
+      "batchId": "paper-batch-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "1 point per distance within 0.002 angstrom and per angle within 0.2 degree (4); 1 for both classifications; 1 for distinguishing orientation from donor-acceptor distance.",
+      "attribution": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021), DOI 10.3390/molecules26092623; CC BY 4.0. Coordinate tables extracted from SI pages 3–6; QA newly authored.",
+      "batchReport": "paper-batch.html",
+      "traceUrl": "trace.html?qa=HBP002",
+      "inputInstructions": "Use the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Conformer A is asset S0005: hydroxyl donor O6, its covalently bound H5, and carbonyl acceptor O14. Conformer B is asset S0006: hydroxyl donor O5, its covalently bound H14, and carbonyl acceptor O6. The numbers locate atom rows, not file line numbers. For this geometry-screening exercise require H...O <= 2.2 angstrom and O-H...O angle >= 130 degrees (vertex at H). These are explicit task criteria, not a universal definition of hydrogen bonding.",
+      "sourceRoute": "paper_evidence",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "HBP002-S0005.xyz",
+          "url": "assets/qa/HBP002-S0005.xyz",
+          "description": "S0005：原文编号顺序，14个原子，Å；已移除答案性注释"
+        },
+        {
+          "name": "HBP002-S0006.xyz",
+          "url": "assets/qa/HBP002-S0006.xyz",
+          "description": "S0006：原文编号顺序，14个原子，Å；已移除答案性注释"
+        }
+      ],
+      "completeInput": "Which conformer satisfies both the stated short-contact and directional criteria for the indicated O-H...O arrangement? Report H...O distance and O-H...O angle for A and B, then classify each. Explain why donor-acceptor proximity alone is not sufficient.\n\nUse the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Conformer A is asset S0005: hydroxyl donor O6, its covalently bound H5, and carbonyl acceptor O14. Conformer B is asset S0006: hydroxyl donor O5, its covalently bound H14, and carbonyl acceptor O6. The numbers locate atom rows, not file line numbers. For this geometry-screening exercise require H...O <= 2.2 angstrom and O-H...O angle >= 130 degrees (vertex at H). These are explicit task criteria, not a universal definition of hydrogen bonding.\n\nAttachment S0005:\n14\nCoordinates in angstrom; atoms numbered from 1.\nC 1.1679 -0.0705 0.0003\nC -0.0054 -0.7575 -0.0073\nC -1.2628 -0.0311 -0.0040\nH 0.0109 -1.8351 -0.0197\nH 0.2587 1.5453 0.0028\nO 1.2197 1.2584 0.0073\nC 2.5078 -0.7195 0.0012\nH 3.0645 -0.4049 0.8827\nH 3.0700 -0.3954 -0.8734\nH 2.4225 -1.8019 -0.0050\nN -2.4053 -0.7683 -0.0315\nH -2.3779 -1.7539 0.1480\nH -3.2714 -0.2776 0.1026\nO -1.3180 1.2134 -0.0022\n\n\nAttachment S0006:\n14\nCoordinates in angstrom; atoms numbered from 1.\nC -1.3359 0.0434 -0.0285\nH -0.0391 -1.7351 -0.1183\nC 1.1689 -0.0649 0.0023\nC -0.0391 -0.6578 -0.0510\nO 1.2971 1.2792 0.0882\nO -1.4834 1.2539 -0.0865\nN -2.4169 -0.8174 0.0136\nH -3.2967 -0.3752 0.2206\nH -2.2852 -1.7402 0.3865\nC 2.4479 -0.8375 -0.0261\nH 3.0513 -0.5323 -0.8826\nH 2.2643 -1.9049 -0.0955\nH 3.0267 -0.6418 0.8782\nH 2.2367 1.4872 0.1216\n",
+      "inputDownload": "assets/qa/HBP002-input.txt",
+      "learningObjective": "Distinguish an inward OH contact from an outward OH orientation using both contact distance and angle.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过。SI标注与坐标冲突已记录；数值以明确给定坐标为准。独立领域审核和难度验证未完成。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "论文依据、完整结构、答案与评分已保存，辅助初筛通过，待人工审核。",
+      "lifecycleReviewedAt": "2026-09-20",
+      "restartFrom": "M5：独立审核、几何必要性与难度试测；按论文/构象家族整组划分。",
+      "attributionLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "derivedFrom": "原论文与补充坐标重新构题，非复用旧QA",
+      "sourceCluster": "hbond2021-all-conformers",
+      "relatedQaIds": [
+        "HBP001",
+        "HBP002",
+        "HBI001"
+      ]
+    },
+    {
+      "id": "HBI001",
+      "title": "几何变化与 O–H 红移趋势",
+      "paper": "hbond2021",
+      "ability": "inference",
+      "domain": "chemistry",
+      "scale": "small_molecule",
+      "reasoning": "local_geometry",
+      "status": "pending_human_audit",
+      "family": "geometry_redshift_inference",
+      "missing": [
+        "待独立领域审核与难度测试",
+        "同一论文、同一分子家族不可跨训练/测试划分；相关题不算独立来源样本"
+      ],
+      "validation": "Builder distance verifier / supplementary Decimal distance and atan2 angle checks; interpretation remains semantic review",
+      "publicDemo": true,
+      "question": "Within the conventional red-shifting OH hydrogen-bond regime studied for this conformer pair, which structure is expected to have the lower OH stretching frequency? Support the qualitative assignment with the O-H bond lengths and the orientation/contact of the donor toward its carbonyl acceptor. Can these coordinates determine an exact frequency?",
+      "modelInput": "Use the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Conformer A is asset S0005: hydroxyl donor O6, its covalently bound H5, and carbonyl acceptor O14. Conformer B is asset S0006: hydroxyl donor O5, its covalently bound H14, and carbonyl acceptor O6. The numbers locate atom rows, not file line numbers. Use the usual qualitative association of strengthened intramolecular OH...O interaction with O-H elongation and OH red shift, restricted to this pair. Blue-shifting cases are outside this conditional task. No frequencies or force constants are supplied.",
+      "answer": "A has the lower expected OH stretching frequency under the stated interpretation. Its O-H bond is 1.002922 angstrom versus 0.962927 angstrom for B. A also points toward the acceptor (H...O 1.611262 angstrom, angle 151.490090 degrees); B points away (H...O 3.733213 angstrom, angle 8.966231 degrees). This supports the qualitative red-shift assignment for this pair, not a universal law. Coordinates alone do not yield an exact frequency without a force-constant/Hessian calculation.",
+      "source": "https://doi.org/10.3390/molecules26092623",
+      "inputObject": "3-hydroxy-2-butenamide source conformers TWO, THREE",
+      "inputSizeNm": 0.6445062811951486,
+      "reasoningSizeNm": 0.37332128937417963,
+      "sizeDefinition": "输入范围为所给构象全原子最大中心距；推理范围为任务指定的供体、氢与受体原子子集最大距离，各构象分别计算后取最大值。",
+      "batchId": "paper-batch-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "1 point for each O-H length within 0.002 angstrom (2); 1 for geometry-supported contact/orientation comparison; 1 for A as lower frequency under stated scope; 1 for refusing an exact frequency and naming missing curvature information.",
+      "attribution": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021), DOI 10.3390/molecules26092623; CC BY 4.0. Coordinate tables extracted from SI pages 3–6; QA newly authored.",
+      "batchReport": "paper-batch.html",
+      "traceUrl": "trace.html?qa=HBI001",
+      "inputInstructions": "Use the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Conformer A is asset S0005: hydroxyl donor O6, its covalently bound H5, and carbonyl acceptor O14. Conformer B is asset S0006: hydroxyl donor O5, its covalently bound H14, and carbonyl acceptor O6. The numbers locate atom rows, not file line numbers. Use the usual qualitative association of strengthened intramolecular OH...O interaction with O-H elongation and OH red shift, restricted to this pair. Blue-shifting cases are outside this conditional task. No frequencies or force constants are supplied.",
+      "sourceRoute": "paper_evidence",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "HBI001-S0005.xyz",
+          "url": "assets/qa/HBI001-S0005.xyz",
+          "description": "S0005：原文编号顺序，14个原子，Å；已移除答案性注释"
+        },
+        {
+          "name": "HBI001-S0006.xyz",
+          "url": "assets/qa/HBI001-S0006.xyz",
+          "description": "S0006：原文编号顺序，14个原子，Å；已移除答案性注释"
+        }
+      ],
+      "completeInput": "Within the conventional red-shifting OH hydrogen-bond regime studied for this conformer pair, which structure is expected to have the lower OH stretching frequency? Support the qualitative assignment with the O-H bond lengths and the orientation/contact of the donor toward its carbonyl acceptor. Can these coordinates determine an exact frequency?\n\nUse the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Conformer A is asset S0005: hydroxyl donor O6, its covalently bound H5, and carbonyl acceptor O14. Conformer B is asset S0006: hydroxyl donor O5, its covalently bound H14, and carbonyl acceptor O6. The numbers locate atom rows, not file line numbers. Use the usual qualitative association of strengthened intramolecular OH...O interaction with O-H elongation and OH red shift, restricted to this pair. Blue-shifting cases are outside this conditional task. No frequencies or force constants are supplied.\n\nAttachment S0005:\n14\nCoordinates in angstrom; atoms numbered from 1.\nC 1.1679 -0.0705 0.0003\nC -0.0054 -0.7575 -0.0073\nC -1.2628 -0.0311 -0.0040\nH 0.0109 -1.8351 -0.0197\nH 0.2587 1.5453 0.0028\nO 1.2197 1.2584 0.0073\nC 2.5078 -0.7195 0.0012\nH 3.0645 -0.4049 0.8827\nH 3.0700 -0.3954 -0.8734\nH 2.4225 -1.8019 -0.0050\nN -2.4053 -0.7683 -0.0315\nH -2.3779 -1.7539 0.1480\nH -3.2714 -0.2776 0.1026\nO -1.3180 1.2134 -0.0022\n\n\nAttachment S0006:\n14\nCoordinates in angstrom; atoms numbered from 1.\nC -1.3359 0.0434 -0.0285\nH -0.0391 -1.7351 -0.1183\nC 1.1689 -0.0649 0.0023\nC -0.0391 -0.6578 -0.0510\nO 1.2971 1.2792 0.0882\nO -1.4834 1.2539 -0.0865\nN -2.4169 -0.8174 0.0136\nH -3.2967 -0.3752 0.2206\nH -2.2852 -1.7402 0.3865\nC 2.4479 -0.8375 -0.0261\nH 3.0513 -0.5323 -0.8826\nH 2.2643 -1.9049 -0.0955\nH 3.0267 -0.6418 0.8782\nH 2.2367 1.4872 0.1216\n",
+      "inputDownload": "assets/qa/HBI001-input.txt",
+      "learningObjective": "Infer the qualitative OH red-shift tendency from local geometry within the specified conformer pair, with explicit limits.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过。SI标注与坐标冲突已记录；数值以明确给定坐标为准。独立领域审核和难度验证未完成。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "论文依据、完整结构、答案与评分已保存，辅助初筛通过，待人工审核。",
+      "lifecycleReviewedAt": "2026-09-20",
+      "restartFrom": "M5：独立审核、几何必要性与难度试测；按论文/构象家族整组划分。",
+      "attributionLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "derivedFrom": "原论文与补充坐标重新构题，非复用旧QA",
+      "sourceCluster": "hbond2021-all-conformers",
+      "relatedQaIds": [
+        "HBP001",
+        "HBP002",
+        "HBI001"
+      ]
+    },
+    {
+      "id": "HBI002",
+      "title": "识别氢键方向并比较局部刚度",
+      "paper": "hbond2021",
+      "ability": "inference",
+      "domain": "chemistry",
+      "scale": "small_molecule",
+      "reasoning": "local_geometry",
+      "status": "pending_human_audit",
+      "family": "geometry_conditioned_stiffness_lookup",
+      "missing": [
+        "待独立领域审核与难度测试",
+        "同一论文、同一分子家族不可跨训练/测试划分；相关题不算独立来源样本"
+      ],
+      "validation": "Builder distance verifier / supplementary Decimal distance and atan2 angle checks; interpretation remains semantic review",
+      "publicDemo": true,
+      "question": "Identify the closer donor-H...acceptor direction in each supplied conformer, assign its local interaction force constant using the pair-specific lookup, and state which local interaction is stiffer and by what ratio. Does this establish which entire conformer is thermodynamically more stable?",
+      "modelInput": "Use the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Conformer A is S0007: N3 is covalently bonded to H4 and H5; hydroxyl O13 is covalently bonded to H14. Conformer B is S0008: N11 is covalently bonded to H12 and H13; hydroxyl O5 is covalently bonded to H4. For each conformer compare N-H...O and O-H...N directions using the shortest donor-H to opposite-heteroatom distance, with its donor-H-acceptor angle as a consistency check. Use this lookup ONLY for the supplied pair: N-H donor to hydroxyl-O acceptor has reported local interaction force constant 0.150 millidynes/angstrom; O-H donor to N acceptor has 0.201 millidynes/angstrom. Do not treat the lookup as a universal value for a bond type.",
+      "answer": "A selects N3-H5...O13: H...O 2.008861 angstrom, angle 128.561836 degrees, hence 0.150 millidynes/angstrom. B selects O5-H4...N11: H...N 1.926478 angstrom, angle 138.283726 degrees, hence 0.201 millidynes/angstrom. B has the stiffer local interaction by 0.201/0.150 = 1.340. This does not establish total conformer thermodynamic stability: local curvature is not total energy or free energy.",
+      "source": "https://doi.org/10.3390/molecules26092623",
+      "inputObject": "3-hydroxy-2-butenamide source conformers FOUR, FIVE",
+      "inputSizeNm": 0.594778270450426,
+      "reasoningSizeNm": 0.45992090580881406,
+      "sizeDefinition": "输入范围为所给构象全原子最大中心距；推理范围为任务指定的供体、氢与受体原子子集最大距离，各构象分别计算后取最大值。",
+      "batchId": "paper-batch-v04-001",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "1 point for each direction with geometry evidence (2); 1 for correct pair-specific assignments; 1 for ratio within 0.002; 1 for separating local stiffness from overall thermodynamic stability. Distances within 0.002 angstrom and angles within 0.2 degree.",
+      "attribution": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021), DOI 10.3390/molecules26092623; CC BY 4.0. Coordinate tables extracted from SI pages 3–6; QA newly authored.",
+      "batchReport": "paper-batch.html",
+      "traceUrl": "trace.html?qa=HBI002",
+      "inputInstructions": "Use the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Conformer A is S0007: N3 is covalently bonded to H4 and H5; hydroxyl O13 is covalently bonded to H14. Conformer B is S0008: N11 is covalently bonded to H12 and H13; hydroxyl O5 is covalently bonded to H4. For each conformer compare N-H...O and O-H...N directions using the shortest donor-H to opposite-heteroatom distance, with its donor-H-acceptor angle as a consistency check. Use this lookup ONLY for the supplied pair: N-H donor to hydroxyl-O acceptor has reported local interaction force constant 0.150 millidynes/angstrom; O-H donor to N acceptor has 0.201 millidynes/angstrom. Do not treat the lookup as a universal value for a bond type.",
+      "sourceRoute": "paper_evidence",
+      "prototypeScreeningPassed": true,
+      "attachments": [
+        {
+          "name": "HBI002-S0007.xyz",
+          "url": "assets/qa/HBI002-S0007.xyz",
+          "description": "S0007：原文编号顺序，14个原子，Å；已移除答案性注释"
+        },
+        {
+          "name": "HBI002-S0008.xyz",
+          "url": "assets/qa/HBI002-S0008.xyz",
+          "description": "S0008：原文编号顺序，14个原子，Å；已移除答案性注释"
+        }
+      ],
+      "completeInput": "Identify the closer donor-H...acceptor direction in each supplied conformer, assign its local interaction force constant using the pair-specific lookup, and state which local interaction is stiffer and by what ratio. Does this establish which entire conformer is thermodynamically more stable?\n\nUse the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Conformer A is S0007: N3 is covalently bonded to H4 and H5; hydroxyl O13 is covalently bonded to H14. Conformer B is S0008: N11 is covalently bonded to H12 and H13; hydroxyl O5 is covalently bonded to H4. For each conformer compare N-H...O and O-H...N directions using the shortest donor-H to opposite-heteroatom distance, with its donor-H-acceptor angle as a consistency check. Use this lookup ONLY for the supplied pair: N-H donor to hydroxyl-O acceptor has reported local interaction force constant 0.150 millidynes/angstrom; O-H donor to N acceptor has 0.201 millidynes/angstrom. Do not treat the lookup as a universal value for a bond type.\n\nAttachment S0007:\n14\nCoordinates in angstrom; atoms numbered from 1.\nC 1.4076 -0.2178 -0.0026\nO 2.3605 -0.9897 0.0260\nN 1.5654 1.1340 -0.0441\nH 2.5019 1.4832 0.0480\nH 0.7797 1.7510 0.0378\nC 0.0240 -0.7420 -0.0146\nH -0.0283 -1.8188 -0.0256\nC -1.1416 -0.0757 -0.0004\nC -2.4764 -0.7417 -0.0052\nH -3.0446 -0.4620 0.8838\nH -3.0503 -0.4363 -0.8819\nH -2.3703 -1.8215 -0.0212\nO -1.1769 1.2961 0.0203\nH -2.0963 1.5786 0.0346\n\n\nAttachment S0008:\n14\nCoordinates in angstrom; atoms numbered from 1.\nC 1.1439 -0.0462 -0.0029\nC 0.0228 -0.7783 0.1943\nH 0.1266 -1.8386 0.3559\nH 0.2435 1.5542 -0.4421\nO 1.1690 1.2652 -0.3243\nC 2.5174 -0.6156 0.0806\nH 3.1008 -0.0582 0.8123\nH 3.0162 -0.5119 -0.8820\nH 2.4905 -1.6631 0.3629\nO -2.2874 -0.9775 -0.3051\nN -1.5009 1.1067 0.2421\nH -2.4756 1.3703 0.1846\nH -1.0735 1.4338 1.0988\nC -1.3467 -0.2825 0.0363\n",
+      "inputDownload": "assets/qa/HBI002-input.txt",
+      "learningObjective": "Use donor-direction geometry to assign pair-specific local stiffness, while separating local stiffness from total stability.",
+      "answerKind": "text",
+      "policyReview": "同会话辅助初筛通过。SI标注与坐标冲突已记录；数值以明确给定坐标为准。独立领域审核和难度验证未完成。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "论文依据、完整结构、答案与评分已保存，辅助初筛通过，待人工审核。",
+      "lifecycleReviewedAt": "2026-09-20",
+      "restartFrom": "M5：独立审核、几何必要性与难度试测；按论文/构象家族整组划分。",
+      "attributionLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "derivedFrom": "原论文与补充坐标重新构题，非复用旧QA",
+      "sourceCluster": "hbond2021-all-conformers",
+      "relatedQaIds": []
     }
   ],
   "counts": {
-    "candidates": 37,
-    "withAnswers": 17,
+    "candidates": 41,
+    "withAnswers": 18,
     "drafts": 18,
     "ready": 0,
-    "textAnswers": 2
+    "textAnswers": 5
   },
   "taxonomy": {
     "domains": [
@@ -1360,9 +1623,9 @@
     ]
   },
   "lifecycleCounts": {
-    "active": 4,
     "rework": 9,
     "backlog": 18,
-    "archived": 6
+    "archived": 6,
+    "active": 8
   }
 }

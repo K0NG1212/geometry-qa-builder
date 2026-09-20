@@ -1,0 +1,40 @@
+Identify the closer donor-H...acceptor direction in each supplied conformer, assign its local interaction force constant using the pair-specific lookup, and state which local interaction is stiffer and by what ratio. Does this establish which entire conformer is thermodynamically more stable?
+
+Use the complete supplied XYZ coordinates in angstrom without optimization. Atom row numbers are one-based after the two XYZ header lines. Atom correspondence is given separately for each conformer; do not assume row numbers match across files. These are computed conformers, not solution measurements. Conformer A is S0007: N3 is covalently bonded to H4 and H5; hydroxyl O13 is covalently bonded to H14. Conformer B is S0008: N11 is covalently bonded to H12 and H13; hydroxyl O5 is covalently bonded to H4. For each conformer compare N-H...O and O-H...N directions using the shortest donor-H to opposite-heteroatom distance, with its donor-H-acceptor angle as a consistency check. Use this lookup ONLY for the supplied pair: N-H donor to hydroxyl-O acceptor has reported local interaction force constant 0.150 millidynes/angstrom; O-H donor to N acceptor has 0.201 millidynes/angstrom. Do not treat the lookup as a universal value for a bond type.
+
+Attachment S0007:
+14
+Coordinates in angstrom; atoms numbered from 1.
+C 1.4076 -0.2178 -0.0026
+O 2.3605 -0.9897 0.0260
+N 1.5654 1.1340 -0.0441
+H 2.5019 1.4832 0.0480
+H 0.7797 1.7510 0.0378
+C 0.0240 -0.7420 -0.0146
+H -0.0283 -1.8188 -0.0256
+C -1.1416 -0.0757 -0.0004
+C -2.4764 -0.7417 -0.0052
+H -3.0446 -0.4620 0.8838
+H -3.0503 -0.4363 -0.8819
+H -2.3703 -1.8215 -0.0212
+O -1.1769 1.2961 0.0203
+H -2.0963 1.5786 0.0346
+
+
+Attachment S0008:
+14
+Coordinates in angstrom; atoms numbered from 1.
+C 1.1439 -0.0462 -0.0029
+C 0.0228 -0.7783 0.1943
+H 0.1266 -1.8386 0.3559
+H 0.2435 1.5542 -0.4421
+O 1.1690 1.2652 -0.3243
+C 2.5174 -0.6156 0.0806
+H 3.1008 -0.0582 0.8123
+H 3.0162 -0.5119 -0.8820
+H 2.4905 -1.6631 0.3629
+O -2.2874 -0.9775 -0.3051
+N -1.5009 1.1067 0.2421
+H -2.4756 1.3703 0.1846
+H -1.0735 1.4338 1.0988
+C -1.3467 -0.2825 0.0363

@@ -1,0 +1,52 @@
+{
+  "search_queries": [
+    "molecular geometry benchmark bond length aromatic planarity QMugs geometric checks paper dataset",
+    "molecular geometry intramolecular hydrogen bond supplementary Cartesian coordinates",
+    "DOI:10.3390/molecules26092623"
+  ],
+  "selection_unit": "papers with actual structure/answer evidence",
+  "resources": [
+    {
+      "id": "landscape17",
+      "url": "https://www.nature.com/articles/s41524-025-01878-x",
+      "full_text_acquired": true,
+      "decision": "held",
+      "reason": "Existing coordinate units still lack explicit matched source confirmation; do not silently assume ASE convention."
+    },
+    {
+      "id": "qmugs",
+      "url": "https://www.nature.com/articles/s41597-022-01390-7",
+      "full_text_acquired": true,
+      "decision": "held",
+      "reason": "Quality-control method available but no matched real ring/triple-bond structure assets acquired for this batch."
+    },
+    {
+      "id": "inverse-mapping",
+      "url": "https://www.nature.com/articles/s41467-024-50401-1",
+      "full_text_acquired": true,
+      "decision": "held",
+      "reason": "Property-conditioned design lacks paired target structures and executable design evaluator."
+    },
+    {
+      "id": "hbond2021",
+      "url": "https://doi.org/10.3390/molecules26092623",
+      "full_text_acquired": true,
+      "decision": "selected",
+      "materials": [
+        "full XML",
+        "supplementary ZIP",
+        "geometry PDF",
+        "coordinate tables pages 3-6",
+        "Table 5 local force constants"
+      ],
+      "route": "paper_evidence",
+      "license": "CC BY 4.0 as stated in article XML",
+      "source_conflict": "Primary paper Table 5 reports local interaction force constants (millidynes/angstrom): species FOUR, NH donor to hydroxyl O acceptor, 0.150; species FIVE, OH donor to N acceptor, 0.201. These are values for these particular reported conformers, not universal constants by interaction type. Supplement geometry pages 3-6 provide numbered atom identity diagrams and coordinate tables. Printed page 3 O...O=3.538 angstrom conflicts with its coordinate-derived O6-O14=2.538116731 angstrom. Printed page 4 O...O=2.787 angstrom agrees within 0.001 angstrom with coordinate-derived 2.786097706 angstrom. All four numbered diagrams and coordinate tables were visually checked. Coordinate scale is confirmed by comparison to the angstrom-labelled page 4 distance; page 3 inconsistent scalar is not used as a numeric answer."
+    }
+  ],
+  "source_hashes": {
+    "hbond-article.xml": "b6aefb29dba08aa55b0ad03d916d7b6096d725c8539951d07cf0f24da423eebf",
+    "hbond-supplement.zip": "d0a54680384771ede050b7dae016d8a002adcc58e38df2b717edb64160730939",
+    "SI-geometryandAIM.pdf": "d8b5ab31e24f4118244455741452e557c4c8eb5a0ff14cb144ec5b321517a20e"
+  }
+}

@@ -2,22 +2,26 @@
   "date": "2026-09-20",
   "scope": "对全部目录记录采用相同准入清单；本轮仅Q02新增实例真正执行新版M0–M6。其他记录未伪称重跑。",
   "target": 160,
-  "screened": 4,
-  "remaining_screened": 156,
+  "screened": 8,
+  "remaining_screened": 152,
   "formal_ready": 0,
   "remaining_formal": 160,
-  "human_review_count": 4,
+  "human_review_count": 8,
   "human_review_ids": [
     "CNP001",
     "CNP002",
     "CNP003",
-    "QNP001"
+    "QNP001",
+    "HBP001",
+    "HBP002",
+    "HBI001",
+    "HBI002"
   ],
   "lifecycle_counts": {
-    "active": 4,
     "rework": 9,
     "backlog": 18,
-    "archived": 6
+    "archived": 6,
+    "active": 8
   },
   "records": [
     {
@@ -685,6 +689,78 @@
       "reason": "完整真实数据实例通过同会话初筛，待独立审核。",
       "next": "M5：领域审核、几何消融与模型难度试测。",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "HBP001",
+      "title": "氢键供体—受体距离：以坐标核查接触",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "论文依据、完整结构、答案与评分已保存，辅助初筛通过，待人工审核。",
+      "next": "M5：独立审核、几何必要性与难度试测；按论文/构象家族整组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "HBP002",
+      "title": "羟基朝向：距离与方向联合判断",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "论文依据、完整结构、答案与评分已保存，辅助初筛通过，待人工审核。",
+      "next": "M5：独立审核、几何必要性与难度试测；按论文/构象家族整组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "HBI001",
+      "title": "几何变化与 O–H 红移趋势",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "论文依据、完整结构、答案与评分已保存，辅助初筛通过，待人工审核。",
+      "next": "M5：独立审核、几何必要性与难度试测；按论文/构象家族整组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "HBI002",
+      "title": "识别氢键方向并比较局部刚度",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "论文依据、完整结构、答案与评分已保存，辅助初筛通过，待人工审核。",
+      "next": "M5：独立审核、几何必要性与难度试测；按论文/构象家族整组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     }
   ],
   "directions": [
@@ -984,23 +1060,27 @@
         1
       ],
       "target": 10,
-      "located_candidates": 7,
-      "screened_count": 3,
-      "remaining": 7,
+      "located_candidates": 11,
+      "screened_count": 7,
+      "remaining": 3,
       "abilities": {
-        "perception": 3,
-        "inference": 0,
+        "perception": 5,
+        "inference": 2,
         "design": 0
       },
       "ability_shortfalls": {
         "perception": 0,
-        "inference": 3,
+        "inference": 1,
         "design": 3
       },
       "qa_ids": [
         "CNP001",
         "CNP002",
-        "CNP003"
+        "CNP003",
+        "HBP001",
+        "HBP002",
+        "HBI001",
+        "HBI002"
       ],
       "blocker": "Still missing validated task/material coverage; absence is not proof the task is impossible."
     },

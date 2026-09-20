@@ -1,0 +1,55 @@
+{
+  "batch_id": "paper-batch-v04-001",
+  "paper_count_screened": 4,
+  "papers_used": 1,
+  "target_candidates": 10,
+  "constructed": 4,
+  "screened": 4,
+  "human_audit_pending": 4,
+  "formal_ready": 0,
+  "source_route": "paper_evidence",
+  "ability_counts": {
+    "perception": 2,
+    "inference": 2,
+    "design": 0
+  },
+  "not_independent_samples": "Three questions share TWO/THREE; fourth uses FOUR/FIVE from the same molecule family. Entire paper/conformer family must remain in one split.",
+  "held": [
+    {
+      "proposal": "298K conformer populations",
+      "stage": "M3",
+      "reason": "Missing free-energy corrections and possible geometry shortcut."
+    },
+    {
+      "proposal": "New hydrogen-bond conformer design",
+      "stage": "M3",
+      "reason": "No valid generated-structure/energy evaluator."
+    },
+    {
+      "proposal": "Landscape17 energy barrier with geometry matching",
+      "stage": "M1",
+      "reason": "Coordinate-unit evidence not sufficiently explicit for this batch; no silent ASE-unit assumption."
+    },
+    {
+      "proposal": "Landscape17 Hessian classification",
+      "stage": "M1/M3",
+      "reason": "Stationary-label/eigenvalue lookup can bypass geometry; task and units need revision."
+    },
+    {
+      "proposal": "QMugs aromatic/triple-bond geometry screening",
+      "stage": "M1",
+      "reason": "Matched real SDF topology/geometry examples not acquired."
+    },
+    {
+      "proposal": "Inverse mapping constrained design",
+      "stage": "M1/M3",
+      "reason": "Missing property-target structure pairs and design evaluator."
+    }
+  ],
+  "limits": [
+    "Not10 generated QA: four candidates plus six held proposals.",
+    "Single-paper source diversity remains limited.",
+    "No quantum or design instance produced in this batch.",
+    "Numeric recomputation and same-session review do not establish difficulty or expert certification."
+  ]
+}
