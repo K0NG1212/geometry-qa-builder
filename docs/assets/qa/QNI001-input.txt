@@ -1,0 +1,16 @@
+For the supplied paired molecular geometries A and B of QM7-X molecule 7002 (A is the attached optimized reference, B is its attached paired displaced structure), does the total force at B oppose or reinforce continuing the specific A-to-B deformation? Compute S = sum_i F_i(B) dot [r_i(B)-r_i(A)] in eV to four decimal places. For the path r_i(lambda) = r_i(A) + lambda [r_i(B)-r_i(A)], state the sign of dE/dlambda at lambda=1. Explain whether this establishes that A is a stable minimum of the PBE0+MBD energy.
+
+A is the attached DFTB3+MBD optimized reference (S0002); B is its attached paired displaced QM7-X structure (S0003). Use the supplied cleaned total PBE0+MBD forces at B below, not forces at A. Coordinates are in angstrom and forces in eV/angstrom. Row i in the attached XYZ files and in this force table is the same atom, in the unchanged common Cartesian frame. Do not realign the structures or independently translate them. XYZ atom rows start after the two header lines. Interpret |S| <= 0.000001 eV as near-zero for this task (an operational threshold, not a physical uncertainty). lambda is dimensionless; no mass weighting or normalized displacement is used.
+
+Atom row, atomic number, Fx, Fy, Fz (eV/angstrom):
+1 6 -1.1452 1.521469 1.179678
+2 6 -0.934678 -1.024476 -0.271237
+3 6 -0.230861 -0.221558 -1.529905
+4 6 0.148376 -1.046538 0.181656
+5 7 -0.655786 0.023951 1.329184
+6 7 -1.181192 1.156503 0.071924
+7 16 2.260652 1.249441 0.138142
+8 1 0.758576 -1.477713 -0.511748
+9 1 0.411803 0.150022 -0.271185
+10 1 0.738116 0.091801 -0.242589
+11 1 -0.169807 -0.422901 -0.07392

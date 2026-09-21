@@ -1,0 +1,39 @@
+QM7-X molecule 7040 has one optimized reference A (attached) and two independently generated displaced structures, d1 and d2 (both attached), each paired with A in the same atom order. For each displacement, compute S = sum_i F_i(displaced) dot [r_i(displaced)-r_i(A)] in eV using the supplied total force table at that displaced geometry. Report S_d1 and S_d2 to four decimal places, state whether the total force opposes or reinforces continuing each specified deformation, and identify which of the two displacements the total force opposes more strongly (larger magnitude of a negative S).
+
+A is the attached DFTB3+MBD optimized reference (S0010). d1 (S0011) and d2 (S0013) are two separate attached paired displaced QM7-X structures, each in the same atom order as A. Use the supplied cleaned total PBE0+MBD forces at each displaced geometry, not forces at A. Coordinates are in angstrom and forces in eV/angstrom. Row i in the attached XYZ files and in this force table is the same atom, in the unchanged common Cartesian frame. Do not realign the structures or independently translate them. XYZ atom rows start after the two header lines. Interpret |S| <= 0.000001 eV as near-zero for this task (an operational threshold, not a physical uncertainty). lambda is dimensionless; no mass weighting or normalized displacement is used.
+
+Forces at d1 -- atom row, atomic number, Fx, Fy, Fz (eV/angstrom):
+1 6 -1.327406 -1.985359 2.588839
+2 6 -1.46925 1.661281 -2.274532
+3 16 -3.957624 0.399893 4.701641
+4 8 4.109387 3.469233 -2.989338
+5 8 -1.527456 -0.280033 -0.541606
+6 7 1.834297 -1.436681 -0.031566
+7 6 1.241637 0.851784 2.386943
+8 1 3.329434 -0.200343 -3.07191
+9 1 1.117987 2.261457 0.897077
+10 1 0.058403 1.255038 -0.361939
+11 1 1.429127 -4.084555 0.136903
+12 1 1.805392 0.551899 -1.941094
+13 1 -2.971974 -2.012568 -0.105996
+14 1 -0.055329 3.225397 -0.38181
+15 1 -2.993656 -2.733353 0.35418
+16 1 -0.622968 -0.94309 0.634208
+
+Forces at d2 -- atom row, atomic number, Fx, Fy, Fz (eV/angstrom):
+1 6 -3.080407 0.325449 -1.703138
+2 6 -2.43416 0.364407 -1.342171
+3 16 -2.230096 2.955811 3.166527
+4 8 0.619199 -0.171294 -1.021654
+5 8 0.58416 -0.413307 -0.071595
+6 7 3.158794 -0.665113 -0.53541
+7 6 0.249786 -1.147606 -1.087058
+8 1 0.672363 -0.768247 -0.674255
+9 1 2.901388 2.670409 1.932452
+10 1 -0.011618 -0.765724 1.185392
+11 1 -0.013997 -0.131303 1.253943
+12 1 0.752089 -0.186177 -0.664896
+13 1 -2.249907 -1.215405 -1.35508
+14 1 1.052882 0.384773 -1.351311
+15 1 -2.023276 -0.899029 0.683864
+16 1 2.052799 -0.337643 1.58439
