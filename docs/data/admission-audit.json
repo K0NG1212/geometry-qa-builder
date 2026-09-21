@@ -2,11 +2,11 @@
   "date": "2026-09-21",
   "scope": "对全部目录记录采用相同准入清单；本轮仅Q02新增实例真正执行新版M0–M6。其他记录未伪称重跑。",
   "target": 160,
-  "screened": 19,
-  "remaining_screened": 141,
+  "screened": 23,
+  "remaining_screened": 137,
   "formal_ready": 0,
   "remaining_formal": 160,
-  "human_review_count": 19,
+  "human_review_count": 23,
   "human_review_ids": [
     "CNP001",
     "CNP002",
@@ -26,13 +26,17 @@
     "MNP003",
     "MNI001",
     "MNI002",
-    "MNI003"
+    "MNI003",
+    "MNP004",
+    "MNP005",
+    "MNI004",
+    "MNI005"
   ],
   "lifecycle_counts": {
     "rework": 9,
     "backlog": 18,
     "archived": 6,
-    "active": 19
+    "active": 23
   },
   "records": [
     {
@@ -970,6 +974,78 @@
       "reason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
       "next": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNP004",
+      "title": "氧化镁：异种与同种近邻壳层",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "next": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNP005",
+      "title": "氯化铯：立方体角配位壳层",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "next": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNI004",
+      "title": "氧化镁晶面间距如何决定衍射角",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "next": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNI005",
+      "title": "原胞化学对比：超结构禁反射如何产生",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "next": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     }
   ],
   "directions": [
@@ -1369,12 +1445,12 @@
         1
       ],
       "target": 10,
-      "located_candidates": 6,
-      "screened_count": 6,
-      "remaining": 4,
+      "located_candidates": 10,
+      "screened_count": 10,
+      "remaining": 0,
       "abilities": {
-        "perception": 3,
-        "inference": 3,
+        "perception": 5,
+        "inference": 5,
         "design": 0
       },
       "ability_shortfalls": {
@@ -1388,9 +1464,13 @@
         "MNP003",
         "MNI001",
         "MNI002",
-        "MNI003"
+        "MNI003",
+        "MNP004",
+        "MNP005",
+        "MNI004",
+        "MNI005"
       ],
-      "blocker": "Still missing validated task/material coverage; absence is not proof the task is impossible."
+      "blocker": ""
     },
     {
       "domain": "materials",

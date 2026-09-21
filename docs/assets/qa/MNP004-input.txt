@@ -1,0 +1,17 @@
+Around the Mg at fractional (0,0,0), determine separately (a) the closest O shell and (b) the closest noncentral Mg shell. Report each distance and population, identify the first-shell coordination polyhedron, and explain why counting only basis atoms in the displayed cell can give a wrong population.
+
+Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. 
+MgO S0010: a=4.21700 angstrom. Row / element / fractional x,y,z:
+1 Mg 0 0 0
+2 Mg 0 1/2 1/2
+3 Mg 1/2 0 1/2
+4 Mg 1/2 1/2 0
+5 O 0 0 1/2
+6 O 0 1/2 0
+7 O 1/2 0 0
+8 O 1/2 1/2 1/2
+
+Search translations n_x,n_y,n_z in {-1,0,1}, excluding the central Mg itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals. Identify first-shell directions with displacement vectors or axis signs.
+
+Attachments:
+S0010: item-0001-asset-1.xyz

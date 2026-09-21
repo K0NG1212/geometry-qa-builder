@@ -2293,14 +2293,250 @@
       "relatedQaIds": [
         "MNP002"
       ]
+    },
+    {
+      "paper": "cod-materials-cell",
+      "domain": "materials",
+      "scale": "crystal",
+      "status": "pending_human_audit",
+      "publicDemo": true,
+      "source": "https://www.crystallography.net/cod/",
+      "batchId": "materials-cell-v04-002",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "batchReport": "materials-batch.html",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "answerKind": "text",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReviewedAt": "2026-09-21",
+      "attributionLicenseUrl": "https://www.crystallography.net/cod/",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构与关联题不得拆分到训练/测试两侧"
+      ],
+      "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / closed-form distance checks / direct structure-factor summation vs closed-form phase check. evidence_review does not automatically validate semantics.",
+      "restartFrom": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
+      "id": "MNP004",
+      "title": "氧化镁：异种与同种近邻壳层",
+      "ability": "perception",
+      "reasoning": "local_geometry",
+      "family": "species_resolved_coordination_shell",
+      "question": "Around the Mg at fractional (0,0,0), determine separately (a) the closest O shell and (b) the closest noncentral Mg shell. Report each distance and population, identify the first-shell coordination polyhedron, and explain why counting only basis atoms in the displayed cell can give a wrong population.",
+      "modelInput": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nMgO S0010: a=4.21700 angstrom. Row / element / fractional x,y,z:\n1 Mg 0 0 0\n2 Mg 0 1/2 1/2\n3 Mg 1/2 0 1/2\n4 Mg 1/2 1/2 0\n5 O 0 0 1/2\n6 O 0 1/2 0\n7 O 1/2 0 0\n8 O 1/2 1/2 1/2\n\nSearch translations n_x,n_y,n_z in {-1,0,1}, excluding the central Mg itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals. Identify first-shell directions with displacement vectors or axis signs.",
+      "answer": "Closest O: 0.2108500 nm, 6 neighbors along +-x, +-y, +-z at a/2, giving an octahedron. Closest other Mg: 0.2981869 nm, 12 neighbors at a/sqrt(2), with two Cartesian components +-a/2 and the third 0. Some neighbors belong to translated cells; the eight-atom basis stored in one cell is not itself an isolated coordination cluster, so counting only its 8 rows without periodic images would miss most of the 6 O and all but a few of the 12 Mg neighbors.",
+      "inputObject": "MgO periclase periodic conventional cubic cell",
+      "rubric": "7 points: two distances (2; 0.0001 nm), two populations (2), first-shell directions (1), octahedron (1), explanation of missing periodic images (1).",
+      "attribution": "COD 1000053; original source: Sasaki, Fujino, Takeuchi, Proc. Japan Acad. Ser. B 55(2), 43-48 (1979), doi:10.2183/pjab.55.43, as cited in the CIF. COD data CC0. QA and full-cell symmetry expansion newly derived. Assistant-authored Bragg-law / structure-factor method notes (IUCr direct retrieval blocked, HTTP 403) supply method support, not measured targets.",
+      "traceUrl": "trace.html?qa=MNP004",
+      "inputInstructions": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nMgO S0010: a=4.21700 angstrom. Row / element / fractional x,y,z:\n1 Mg 0 0 0\n2 Mg 0 1/2 1/2\n3 Mg 1/2 0 1/2\n4 Mg 1/2 1/2 0\n5 O 0 0 1/2\n6 O 0 1/2 0\n7 O 1/2 0 0\n8 O 1/2 1/2 1/2\n\nSearch translations n_x,n_y,n_z in {-1,0,1}, excluding the central Mg itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals. Identify first-shell directions with displacement vectors or axis signs.",
+      "attachments": [
+        {
+          "name": "MNP004-S0010.xyz",
+          "url": "assets/qa/MNP004-S0010.xyz",
+          "description": "S0010：8个晶胞基元原子（MgO periclase），Å；必须结合题干中的晶胞与周期条件使用"
+        }
+      ],
+      "completeInput": "Around the Mg at fractional (0,0,0), determine separately (a) the closest O shell and (b) the closest noncentral Mg shell. Report each distance and population, identify the first-shell coordination polyhedron, and explain why counting only basis atoms in the displayed cell can give a wrong population.\n\nUse the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nMgO S0010: a=4.21700 angstrom. Row / element / fractional x,y,z:\n1 Mg 0 0 0\n2 Mg 0 1/2 1/2\n3 Mg 1/2 0 1/2\n4 Mg 1/2 1/2 0\n5 O 0 0 1/2\n6 O 0 1/2 0\n7 O 1/2 0 0\n8 O 1/2 1/2 1/2\n\nSearch translations n_x,n_y,n_z in {-1,0,1}, excluding the central Mg itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals. Identify first-shell directions with displacement vectors or axis signs.\n\nAttachment S0010:\n8\nCoordinates in angstrom; atoms numbered from 1.\nMg 0.00000000 0.00000000 0.00000000\nMg 0.00000000 2.10850000 2.10850000\nMg 2.10850000 0.00000000 2.10850000\nMg 2.10850000 2.10850000 0.00000000\nO 0.00000000 0.00000000 2.10850000\nO 0.00000000 2.10850000 0.00000000\nO 2.10850000 0.00000000 0.00000000\nO 2.10850000 2.10850000 2.10850000\n",
+      "inputDownload": "assets/qa/MNP004-input.txt",
+      "learningObjective": "Periodic MgO rock-salt nearest-neighbor coordination (octahedral Mg-O shell and second-shell Mg-Mg distance).",
+      "lifecycleReason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "derivedFrom": "原始CIF结构重新构题；非现有QA复用。与卤化钠同为岩盐型结构但化学与晶格常数独立取得，非同一模板复用。",
+      "sourceCluster": "materials-periclase-1000053",
+      "relatedQaIds": [
+        "MNP005",
+        "MNI004"
+      ],
+      "inputSizeNm": 0.7304058255517955,
+      "reasoningSizeNm": 0.29818693,
+      "sizeDefinition": "周期晶体输入按常规晶胞体对角线计量，不代表晶粒尺寸。局部配位题按所求邻居集合最大间距；晶面/结构因子题按决定答案的完整周期基元范围。maximum separation across the asked periodic neighbor shell(s), not the stored basis alone"
+    },
+    {
+      "paper": "cod-materials-cell",
+      "domain": "materials",
+      "scale": "crystal",
+      "status": "pending_human_audit",
+      "publicDemo": true,
+      "source": "https://www.crystallography.net/cod/",
+      "batchId": "materials-cell-v04-002",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "batchReport": "materials-batch.html",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "answerKind": "text",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReviewedAt": "2026-09-21",
+      "attributionLicenseUrl": "https://www.crystallography.net/cod/",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构与关联题不得拆分到训练/测试两侧"
+      ],
+      "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / closed-form distance checks / direct structure-factor summation vs closed-form phase check. evidence_review does not automatically validate semantics.",
+      "restartFrom": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
+      "id": "MNP005",
+      "title": "氯化铯：立方体角配位壳层",
+      "ability": "perception",
+      "reasoning": "local_geometry",
+      "family": "primitive_cubic_coordination_shell",
+      "question": "Around the Cs at fractional (0,0,0), determine separately (a) the closest Cl shell and (b) the closest noncentral Cs shell. Report each distance and population, identify the first-shell coordination polyhedron and its full set of distinct neighbor-neighbor angles about the central Cs, and explain why counting only the two atoms in the displayed primitive cell cannot give either population.",
+      "modelInput": "Use the supplied periodic primitive cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. This primitive cell holds only 2 atoms (Z=1 formula unit), unlike the 8-atom conventional cells used elsewhere in this project. \nCsCl S0011: a=4.12300 angstrom. Row / element / fractional x,y,z:\n1 Cs 0 0 0\n2 Cl 1/2 1/2 1/2\n\nSearch translations n_x,n_y,n_z in {-1,0,1}, excluding the central Cs itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals and angles in degrees to two decimals.",
+      "answer": "Closest Cl: 0.3570623 nm (=a*sqrt(3)/2), 8 neighbors at the corners of a cube centered on the Cs atom, at Cartesian displacements (+-a/2,+-a/2,+-a/2) for all 8 sign combinations. Closest other Cs: 0.4123000 nm (=a), 6 neighbors along +-x, +-y, +-z (the simple-cubic Cs sublattice). Among the 28 pairs of the 8 Cl neighbors, pairs differing in exactly one sign (12 pairs) subtend 70.53 degrees, pairs differing in exactly two signs (12 pairs) subtend 109.47 degrees, and the 4 antipodal (through-center) pairs subtend 180.00 degrees; these are the standard cube vertex-center-vertex angles. The stored primitive cell has only 2 atoms, so neither the 8-fold Cl shell nor the 6-fold Cs shell can be read off it directly; both require the translated images r_j+a*(n_x,n_y,n_z).",
+      "inputObject": "CsCl periodic primitive cubic cell",
+      "rubric": "8 points: two distances (2; 0.0001 nm), two populations (2), cube (1), all three distinct angle values within 0.1 degree (2), explanation of missing periodic images (1).",
+      "attribution": "COD 9008789; original source: R. W. G. Wyckoff, Crystal Structures, 2nd edition (1963), pp.85-237, as cited in the CIF (same source volume already used for halite in materials-cell-v04-001). COD data CC0. QA and full-cell symmetry expansion newly derived. Assistant-authored Bragg-law / structure-factor method notes (IUCr direct retrieval blocked, HTTP 403) supply method support, not measured targets.",
+      "traceUrl": "trace.html?qa=MNP005",
+      "inputInstructions": "Use the supplied periodic primitive cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. This primitive cell holds only 2 atoms (Z=1 formula unit), unlike the 8-atom conventional cells used elsewhere in this project. \nCsCl S0011: a=4.12300 angstrom. Row / element / fractional x,y,z:\n1 Cs 0 0 0\n2 Cl 1/2 1/2 1/2\n\nSearch translations n_x,n_y,n_z in {-1,0,1}, excluding the central Cs itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals and angles in degrees to two decimals.",
+      "attachments": [
+        {
+          "name": "MNP005-S0011.xyz",
+          "url": "assets/qa/MNP005-S0011.xyz",
+          "description": "S0011：2个原胞基元原子（CsCl），Å；必须结合题干中的晶胞与周期条件使用"
+        }
+      ],
+      "completeInput": "Around the Cs at fractional (0,0,0), determine separately (a) the closest Cl shell and (b) the closest noncentral Cs shell. Report each distance and population, identify the first-shell coordination polyhedron and its full set of distinct neighbor-neighbor angles about the central Cs, and explain why counting only the two atoms in the displayed primitive cell cannot give either population.\n\nUse the supplied periodic primitive cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. This primitive cell holds only 2 atoms (Z=1 formula unit), unlike the 8-atom conventional cells used elsewhere in this project. \nCsCl S0011: a=4.12300 angstrom. Row / element / fractional x,y,z:\n1 Cs 0 0 0\n2 Cl 1/2 1/2 1/2\n\nSearch translations n_x,n_y,n_z in {-1,0,1}, excluding the central Cs itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals and angles in degrees to two decimals.\n\nAttachment S0011:\n2\nCoordinates in angstrom; atoms numbered from 1.\nCs 0.00000000 0.00000000 0.00000000\nCl 2.06150000 2.06150000 2.06150000\n",
+      "inputDownload": "assets/qa/MNP005-input.txt",
+      "learningObjective": "Periodic CsCl primitive-cubic 8-fold cube-corner coordination, distinct from the octahedral/tetrahedral shells already covered in this cell.",
+      "lifecycleReason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "derivedFrom": "原始CIF结构重新构题；非现有QA复用。原胞仅2原子，非本项目此前使用的8原子惯用晶胞，构题已在题干中明确说明。",
+      "sourceCluster": "materials-cscl-9008789",
+      "relatedQaIds": [
+        "MNP004",
+        "MNI005"
+      ],
+      "inputSizeNm": 0.7141245479606482,
+      "reasoningSizeNm": 0.4123,
+      "sizeDefinition": "周期晶体输入按常规晶胞体对角线计量，不代表晶粒尺寸。局部配位题按所求邻居集合最大间距；晶面/结构因子题按决定答案的完整周期基元范围。maximum separation across the asked periodic neighbor shell(s), not the stored basis alone"
+    },
+    {
+      "paper": "cod-materials-cell",
+      "domain": "materials",
+      "scale": "crystal",
+      "status": "pending_human_audit",
+      "publicDemo": true,
+      "source": "https://www.crystallography.net/cod/",
+      "batchId": "materials-cell-v04-002",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "batchReport": "materials-batch.html",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "answerKind": "text",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReviewedAt": "2026-09-21",
+      "attributionLicenseUrl": "https://www.crystallography.net/cod/",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构与关联题不得拆分到训练/测试两侧"
+      ],
+      "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / closed-form distance checks / direct structure-factor summation vs closed-form phase check. evidence_review does not automatically validate semantics.",
+      "restartFrom": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
+      "id": "MNI004",
+      "title": "氧化镁晶面间距如何决定衍射角",
+      "ability": "inference",
+      "reasoning": "periodic_motif",
+      "family": "bragg_geometry_inference",
+      "question": "For first-order (111) and (200) diffraction at the stated wavelength, calculate the scattering angle 2theta for the supplied MgO structure. Which reflection is at the higher angle and what is the angular difference? Explain the direction of the shift using the structural spacing.",
+      "modelInput": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nMgO S0010: a=4.21700 angstrom. Row / element / fractional x,y,z:\n1 Mg 0 0 0\n2 Mg 0 1/2 1/2\n3 Mg 1/2 0 1/2\n4 Mg 1/2 1/2 0\n5 O 0 0 1/2\n6 O 0 1/2 0\n7 O 1/2 0 0\n8 O 1/2 1/2 1/2\n\nAssume ideal kinematic diffraction, lambda=0.15406 nm, n=1 and a nonzero (111) and (200) structure factor for this basis (not asked to be shown here). Use 2 d sin(theta)=n lambda and obtain d from d_hkl=a/sqrt(h^2+k^2+l^2). Theta is the incident-beam/plane angle; the requested detector scattering angle is 2theta. Report degrees to two decimals. Do not predict intensities, line widths, refractive or instrumental corrections.",
+      "answer": "d111=0.2434686 nm gives 2theta=36.888982 degrees. d200=0.2108500 nm gives 2theta=42.855885 degrees. (200) is at the higher angle, by 5.966903 degrees, because its smaller d (fewer atoms fit between planes normal to (200) than (111) for this rock-salt cell geometry) requires a larger sin(theta) at the same fixed wavelength. These are ideal calculated positions, not measured peak intensities, and do not by themselves establish whether the (200) reflection is experimentally strong or weak.",
+      "inputObject": "MgO periclase periodic conventional cubic cell",
+      "rubric": "7 points: two spacings (2; 0.0001 nm), each 2theta (2; 0.02 degree), difference (1; 0.03 degree), correct ordering with fixed-wavelength geometric explanation (1), theta/2theta distinction (1).",
+      "attribution": "COD 1000053; original source: Sasaki, Fujino, Takeuchi, Proc. Japan Acad. Ser. B 55(2), 43-48 (1979), doi:10.2183/pjab.55.43, as cited in the CIF. COD data CC0. QA and full-cell symmetry expansion newly derived. Assistant-authored Bragg-law / structure-factor method notes (IUCr direct retrieval blocked, HTTP 403) supply method support, not measured targets.",
+      "traceUrl": "trace.html?qa=MNI004",
+      "inputInstructions": "Use the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nMgO S0010: a=4.21700 angstrom. Row / element / fractional x,y,z:\n1 Mg 0 0 0\n2 Mg 0 1/2 1/2\n3 Mg 1/2 0 1/2\n4 Mg 1/2 1/2 0\n5 O 0 0 1/2\n6 O 0 1/2 0\n7 O 1/2 0 0\n8 O 1/2 1/2 1/2\n\nAssume ideal kinematic diffraction, lambda=0.15406 nm, n=1 and a nonzero (111) and (200) structure factor for this basis (not asked to be shown here). Use 2 d sin(theta)=n lambda and obtain d from d_hkl=a/sqrt(h^2+k^2+l^2). Theta is the incident-beam/plane angle; the requested detector scattering angle is 2theta. Report degrees to two decimals. Do not predict intensities, line widths, refractive or instrumental corrections.",
+      "attachments": [
+        {
+          "name": "MNI004-S0010.xyz",
+          "url": "assets/qa/MNI004-S0010.xyz",
+          "description": "S0010：8个晶胞基元原子（MgO periclase），Å；必须结合题干中的晶胞与周期条件使用"
+        }
+      ],
+      "completeInput": "For first-order (111) and (200) diffraction at the stated wavelength, calculate the scattering angle 2theta for the supplied MgO structure. Which reflection is at the higher angle and what is the angular difference? Explain the direction of the shift using the structural spacing.\n\nUse the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nMgO S0010: a=4.21700 angstrom. Row / element / fractional x,y,z:\n1 Mg 0 0 0\n2 Mg 0 1/2 1/2\n3 Mg 1/2 0 1/2\n4 Mg 1/2 1/2 0\n5 O 0 0 1/2\n6 O 0 1/2 0\n7 O 1/2 0 0\n8 O 1/2 1/2 1/2\n\nAssume ideal kinematic diffraction, lambda=0.15406 nm, n=1 and a nonzero (111) and (200) structure factor for this basis (not asked to be shown here). Use 2 d sin(theta)=n lambda and obtain d from d_hkl=a/sqrt(h^2+k^2+l^2). Theta is the incident-beam/plane angle; the requested detector scattering angle is 2theta. Report degrees to two decimals. Do not predict intensities, line widths, refractive or instrumental corrections.\n\nAttachment S0010:\n8\nCoordinates in angstrom; atoms numbered from 1.\nMg 0.00000000 0.00000000 0.00000000\nMg 0.00000000 2.10850000 2.10850000\nMg 2.10850000 0.00000000 2.10850000\nMg 2.10850000 2.10850000 0.00000000\nO 0.00000000 0.00000000 2.10850000\nO 0.00000000 2.10850000 0.00000000\nO 2.10850000 0.00000000 0.00000000\nO 2.10850000 2.10850000 2.10850000\n",
+      "inputDownload": "assets/qa/MNI004-input.txt",
+      "learningObjective": "Apply cubic plane-spacing geometry and Bragg's law to an independently sourced lattice parameter; explain why 2theta grows with the Miller-index sum at fixed wavelength.",
+      "lifecycleReason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "derivedFrom": "原始CIF结构重新构题；非现有QA复用。理想衍射假设已明确披露。",
+      "sourceCluster": "materials-periclase-1000053",
+      "relatedQaIds": [
+        "MNP004",
+        "MNI005"
+      ],
+      "inputSizeNm": 0.7304058255517955,
+      "reasoningSizeNm": 0.7304058255517955,
+      "sizeDefinition": "周期晶体输入按常规晶胞体对角线计量，不代表晶粒尺寸。局部配位题按所求邻居集合最大间距；晶面/结构因子题按决定答案的完整周期基元范围。conventional-cell diagonal for finite periodic motif; not grain size"
+    },
+    {
+      "paper": "cod-materials-cell",
+      "domain": "materials",
+      "scale": "crystal",
+      "status": "pending_human_audit",
+      "publicDemo": true,
+      "source": "https://www.crystallography.net/cod/",
+      "batchId": "materials-cell-v04-002",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "batchReport": "materials-batch.html",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "answerKind": "text",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReviewedAt": "2026-09-21",
+      "attributionLicenseUrl": "https://www.crystallography.net/cod/",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构与关联题不得拆分到训练/测试两侧"
+      ],
+      "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / closed-form distance checks / direct structure-factor summation vs closed-form phase check. evidence_review does not automatically validate semantics.",
+      "restartFrom": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
+      "id": "MNI005",
+      "title": "原胞化学对比：超结构禁反射如何产生",
+      "ability": "inference",
+      "reasoning": "periodic_motif",
+      "family": "bcc_superlattice_extinction",
+      "question": "Using the supplied CsCl basis and model amplitudes, calculate F and I* at (100), (110) and (111) for case A (real atomic-number weights) and case B (equal weights, both unchanged coordinates). Identify which reflections vanish in case B, name the resulting selection rule, and explain what the comparison shows about the difference between a plane family's geometric existence and its experimental diffraction visibility.",
+      "modelInput": "Use the supplied periodic primitive cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. This primitive cell holds only 2 atoms (Z=1 formula unit). \nCsCl S0011: a=4.12300 angstrom. Row / element / fractional x,y,z:\n1 Cs 0 0 0\n2 Cl 1/2 1/2 1/2\n\nUse fractional coordinates x_j,y_j,z_j from the table and F(hkl)=sum_j f_j exp[2*pi*i*(h*x_j+k*y_j+l*z_j)], where i^2=-1. Occupancy is 1 for both sites. Define I*=|F|^2. This is only the basis structure-factor contribution, not a measured powder peak intensity; omit multiplicity, Lorentz/polarization, thermal and absorption corrections. In case A use real constants f_Cs=55 and f_Cl=17 (atomic numbers). These are explicitly illustrative model weights, not measured ionic X-ray form factors and not a particular experimental scattering angle. In case B use f_Cs=f_Cl=1. Keep coordinates, origin and the positive phase convention unchanged. Report each complex F and I* to six decimals (integers may be given exactly).",
+      "answer": "Case A (f_Cs=55, f_Cl=17): F100=38, I*100=1444; F110=72, I*110=5184; F111=38, I*111=1444 (all real, zero imaginary part in this origin choice). Case B (f_Cs=f_Cl=1): F100=0, I*100=0; F110=2, I*110=4; F111=0, I*111=0. In case B, (100) and (111) vanish because h+k+l is odd there, which is exactly the body-centered-cubic selection rule F=0 for h+k+l odd (this primitive 2-atom basis with equal weights is geometrically equivalent to a BCC lattice); (110) survives because h+k+l=2 is even. The (100) and (111) plane families exist geometrically in either case (d_hkl=a/sqrt(h^2+k^2+l^2) is unaffected by the weights), but their case-A reflections are nonzero only because Cs and Cl scatter unequally: their presence in a real diffraction pattern is direct evidence of chemical contrast between the two sites, not merely of the lattice geometry.",
+      "inputObject": "CsCl periodic primitive cubic cell",
+      "rubric": "9 points: case A three F values (3; exact integers), case A three I* values (1 combined), case B three F values (2; exact integers, includes the two zeros), naming the body-centered-cubic h+k+l-odd selection rule (1), geometric-existence-vs-diffraction-visibility explanation (2).",
+      "attribution": "COD 9008789; original source: R. W. G. Wyckoff, Crystal Structures, 2nd edition (1963), pp.85-237, as cited in the CIF (same source volume already used for halite in materials-cell-v04-001). COD data CC0. QA and full-cell symmetry expansion newly derived. Assistant-authored Bragg-law / structure-factor method notes (IUCr direct retrieval blocked, HTTP 403) supply method support, not measured targets.",
+      "traceUrl": "trace.html?qa=MNI005",
+      "inputInstructions": "Use the supplied periodic primitive cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. This primitive cell holds only 2 atoms (Z=1 formula unit). \nCsCl S0011: a=4.12300 angstrom. Row / element / fractional x,y,z:\n1 Cs 0 0 0\n2 Cl 1/2 1/2 1/2\n\nUse fractional coordinates x_j,y_j,z_j from the table and F(hkl)=sum_j f_j exp[2*pi*i*(h*x_j+k*y_j+l*z_j)], where i^2=-1. Occupancy is 1 for both sites. Define I*=|F|^2. This is only the basis structure-factor contribution, not a measured powder peak intensity; omit multiplicity, Lorentz/polarization, thermal and absorption corrections. In case A use real constants f_Cs=55 and f_Cl=17 (atomic numbers). These are explicitly illustrative model weights, not measured ionic X-ray form factors and not a particular experimental scattering angle. In case B use f_Cs=f_Cl=1. Keep coordinates, origin and the positive phase convention unchanged. Report each complex F and I* to six decimals (integers may be given exactly).",
+      "attachments": [
+        {
+          "name": "MNI005-S0011.xyz",
+          "url": "assets/qa/MNI005-S0011.xyz",
+          "description": "S0011：2个原胞基元原子（CsCl），Å；必须结合题干中的晶胞与周期条件使用"
+        }
+      ],
+      "completeInput": "Using the supplied CsCl basis and model amplitudes, calculate F and I* at (100), (110) and (111) for case A (real atomic-number weights) and case B (equal weights, both unchanged coordinates). Identify which reflections vanish in case B, name the resulting selection rule, and explain what the comparison shows about the difference between a plane family's geometric existence and its experimental diffraction visibility.\n\nUse the supplied periodic primitive cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. This primitive cell holds only 2 atoms (Z=1 formula unit). \nCsCl S0011: a=4.12300 angstrom. Row / element / fractional x,y,z:\n1 Cs 0 0 0\n2 Cl 1/2 1/2 1/2\n\nUse fractional coordinates x_j,y_j,z_j from the table and F(hkl)=sum_j f_j exp[2*pi*i*(h*x_j+k*y_j+l*z_j)], where i^2=-1. Occupancy is 1 for both sites. Define I*=|F|^2. This is only the basis structure-factor contribution, not a measured powder peak intensity; omit multiplicity, Lorentz/polarization, thermal and absorption corrections. In case A use real constants f_Cs=55 and f_Cl=17 (atomic numbers). These are explicitly illustrative model weights, not measured ionic X-ray form factors and not a particular experimental scattering angle. In case B use f_Cs=f_Cl=1. Keep coordinates, origin and the positive phase convention unchanged. Report each complex F and I* to six decimals (integers may be given exactly).\n\nAttachment S0011:\n2\nCoordinates in angstrom; atoms numbered from 1.\nCs 0.00000000 0.00000000 0.00000000\nCl 2.06150000 2.06150000 2.06150000\n",
+      "inputDownload": "assets/qa/MNI005-input.txt",
+      "learningObjective": "Distinguish lattice-centering (geometric) extinction from chemical-contrast (superlattice) extinction using the CsCl primitive-cell structure factor; identify the body-centered-cubic h+k+l-odd selection rule as the equal-weight limit.",
+      "lifecycleReason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
+      "derivedFrom": "原始CIF结构重新构题；非现有QA复用。等权重情形为明确的题设假设，不是对实际化学替换的声称。",
+      "sourceCluster": "materials-cscl-9008789",
+      "relatedQaIds": [
+        "MNP005",
+        "MNI004"
+      ],
+      "inputSizeNm": 0.7141245479606482,
+      "reasoningSizeNm": 0.7141245479606482,
+      "sizeDefinition": "周期晶体输入按常规晶胞体对角线计量，不代表晶粒尺寸。局部配位题按所求邻居集合最大间距；晶面/结构因子题按决定答案的完整周期基元范围。conventional-cell diagonal for finite periodic motif; not grain size"
     }
   ],
   "counts": {
-    "candidates": 52,
+    "candidates": 56,
     "withAnswers": 18,
     "drafts": 18,
     "ready": 0,
-    "textAnswers": 16
+    "textAnswers": 20
   },
   "taxonomy": {
     "domains": [
@@ -2319,6 +2555,6 @@
     "rework": 9,
     "backlog": 18,
     "archived": 6,
-    "active": 19
+    "active": 23
   }
 }

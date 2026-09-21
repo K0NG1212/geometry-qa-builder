@@ -1,0 +1,80 @@
+{
+  "search_queries": [
+    "crystallography.net/cod result.php text=periclase",
+    "crystallography.net/cod result.php el1=Cs el2=Cl",
+    "crystallography.net/cod result.php text=gallium arsenide (held: no clean 1:1 GaAs zinc-blende entry located)",
+    "crystallography.net/cod result.php el1=Cu nel=1 (held: element-only query too broad/slow to isolate a clean elemental-copper entry in-session)"
+  ],
+  "selection_unit": "Official COD crystal structures plus assistant-authored method notes",
+  "resources": [
+    {
+      "id": "1000053",
+      "url": "https://www.crystallography.net/cod/1000053.html",
+      "decision": "selected",
+      "route": "raw_structure_or_simulation",
+      "materials": [
+        "complete CIF",
+        "information card"
+      ],
+      "license": "CC0 per COD policy; original Sasaki/Fujino/Takeuchi 1979 (Proc. Japan Acad. Ser. B 55(2):43-48, doi:10.2183/pjab.55.43) attribution retained"
+    },
+    {
+      "id": "9008789",
+      "url": "https://www.crystallography.net/cod/9008789.html",
+      "decision": "selected",
+      "route": "raw_structure_or_simulation",
+      "materials": [
+        "complete CIF",
+        "information card"
+      ],
+      "license": "CC0 per COD policy; original Wyckoff Crystal Structures 1963 attribution retained (same source volume already used for halite in materials-cell-v04-001)"
+    },
+    {
+      "id": "gaas-search",
+      "url": "https://www.crystallography.net/cod/result.php?el1=Ga&el2=As&format=json",
+      "decision": "hold",
+      "acquisition": "117 Ga/As-containing entries reviewed; no clean 1:1 zinc-blende GaAs entry (formula Ga1As1, 8 atoms/cell) found among them within this session. Not substituted with an unverified or mismatched structure.",
+      "reason": "Session time budget; a dedicated retrieval pass could search AMCSD or a materials database directly for a semiconductor zinc-blende GaAs deposit in a future batch."
+    },
+    {
+      "id": "cu-search",
+      "url": "https://www.crystallography.net/cod/result.php?el1=Cu&nel=1&format=json",
+      "decision": "hold",
+      "acquisition": "Query returned the full single-element COD subset (over 10 MB, request timed out before completion); no elemental-copper entry was isolated and verified in-session.",
+      "reason": "Would need a narrower, ID-targeted lookup rather than a broad element filter; deferred to a future batch."
+    }
+  ],
+  "downloads": [
+    {
+      "file": "1000053.cif",
+      "url": "https://www.crystallography.net/cod/1000053.cif",
+      "bytes": 4997
+    },
+    {
+      "file": "1000053-card.html",
+      "url": "https://www.crystallography.net/cod/1000053.html",
+      "bytes": 7540
+    },
+    {
+      "file": "9008789.cif",
+      "url": "https://www.crystallography.net/cod/9008789.cif",
+      "bytes": 2529
+    },
+    {
+      "file": "9008789-card.html",
+      "url": "https://www.crystallography.net/cod/9008789.html",
+      "bytes": 13144
+    },
+    {
+      "file": "structure-factor",
+      "url": "https://www.iucr.org/what-we-do/education/pamphlets/introduction-calculation-of-structure-factors",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "file": "bragg",
+      "url": "https://dictionary.iucr.org/Bragg%27s_law",
+      "error": "HTTP Error 403: Forbidden"
+    }
+  ],
+  "acquired_date": "2026-09-21"
+}

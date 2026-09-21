@@ -1,0 +1,11 @@
+Using the supplied CsCl basis and model amplitudes, calculate F and I* at (100), (110) and (111) for case A (real atomic-number weights) and case B (equal weights, both unchanged coordinates). Identify which reflections vanish in case B, name the resulting selection rule, and explain what the comparison shows about the difference between a plane family's geometric existence and its experimental diffraction visibility.
+
+Use the supplied periodic primitive cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. This primitive cell holds only 2 atoms (Z=1 formula unit). 
+CsCl S0011: a=4.12300 angstrom. Row / element / fractional x,y,z:
+1 Cs 0 0 0
+2 Cl 1/2 1/2 1/2
+
+Use fractional coordinates x_j,y_j,z_j from the table and F(hkl)=sum_j f_j exp[2*pi*i*(h*x_j+k*y_j+l*z_j)], where i^2=-1. Occupancy is 1 for both sites. Define I*=|F|^2. This is only the basis structure-factor contribution, not a measured powder peak intensity; omit multiplicity, Lorentz/polarization, thermal and absorption corrections. In case A use real constants f_Cs=55 and f_Cl=17 (atomic numbers). These are explicitly illustrative model weights, not measured ionic X-ray form factors and not a particular experimental scattering angle. In case B use f_Cs=f_Cl=1. Keep coordinates, origin and the positive phase convention unchanged. Report each complex F and I* to six decimals (integers may be given exactly).
+
+Attachments:
+S0011: item-0004-asset-1.xyz

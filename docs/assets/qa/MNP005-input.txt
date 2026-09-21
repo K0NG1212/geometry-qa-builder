@@ -1,0 +1,11 @@
+Around the Cs at fractional (0,0,0), determine separately (a) the closest Cl shell and (b) the closest noncentral Cs shell. Report each distance and population, identify the first-shell coordination polyhedron and its full set of distinct neighbor-neighbor angles about the central Cs, and explain why counting only the two atoms in the displayed primitive cell cannot give either population.
+
+Use the supplied periodic primitive cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. This primitive cell holds only 2 atoms (Z=1 formula unit), unlike the 8-atom conventional cells used elsewhere in this project. 
+CsCl S0011: a=4.12300 angstrom. Row / element / fractional x,y,z:
+1 Cs 0 0 0
+2 Cl 1/2 1/2 1/2
+
+Search translations n_x,n_y,n_z in {-1,0,1}, excluding the central Cs itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals and angles in degrees to two decimals.
+
+Attachments:
+S0011: item-0002-asset-1.xyz
