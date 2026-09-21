@@ -1,10 +1,10 @@
 # 当前交接状态
 
-更新：2026-09-21，执行助手 Claude Sonnet 5（Claude Code 会话，claude-sonnet-5）。本文件是这次会话六轮工作的**合并总结**（此前分批提交逐步更新，现整合为一份连贯记录，方便下一位助手/智能体接手）。
+更新：2026-09-22，执行助手 Claude Sonnet 5（Claude Code 会话，claude-sonnet-5）。本文件是这次会话七轮工作的**合并总结**（此前分批提交逐步更新，现整合为一份连贯记录，方便下一位助手/智能体接手）。
 
-**用户指示**：读取 CLAUDE.md/PROJECT_STATUS.md 核对状态后，按现有 Builder 继续生成候选题；数量不设 6 道上限，由助手自行判断规模；用户随后四次说"继续"/"再做一批吧，这次多做点，不用在意运行时间"/"继续做下一批,量子1-10nm"。
+**用户指示**：读取 CLAUDE.md/PROJECT_STATUS.md 核对状态后，按现有 Builder 继续生成候选题；数量不设 6 道上限，由助手自行判断规模；用户随后五次说"继续"/"再做一批吧，这次多做点，不用在意运行时间"/"继续做下一批,量子1-10nm"/"继续下一批,材料1-10nm"。
 
-**本次会话总产出**：新增 **41 道**候选题（19→60，占目标 160 的比例从 12% 提升到 38%），补满 **6 个尺度格**（材料×0.1–1nm、化学×0.1–1nm、生物×0.1–1nm、生物×1–10nm、量子×0.1–1nm、量子×1–10nm），全部走完整 M0–M6、双方法独立复核、pending_human_audit。前 5 批已推送到 origin/main；第 6 批（quantum-nm，量子 1–10nm）为本次更新新增，见下方提交表最后一行：
+**本次会话总产出**：新增 **51 道**候选题（19→70，占目标 160 的比例从 12% 提升到 44%），补满 **7 个尺度格**（材料×0.1–1nm、化学×0.1–1nm、生物×0.1–1nm、生物×1–10nm、量子×0.1–1nm、量子×1–10nm、材料×1–10nm），全部走完整 M0–M6、双方法独立复核、pending_human_audit。前 6 批已推送到 origin/main；第 7 批（materials-nm，材料 1–10nm）为本次更新新增，见下方提交表最后一行：
 
 | 提交 | 内容 | 新增题数 |
 |---|---|---:|
@@ -13,13 +13,14 @@
 | `8ded5f0` | chem-local-v04-003（SAMPL9 H26DM-B-CD 新结构）+ 修复测试可移植性 bug | 3 |
 | `2e35100` | bio-nm-v04-003/004/005（复用已验证结构，挖掘亚纳米局部几何，零新检索） | 10 |
 | `58b54cd`→`5514a49` | q02-force-v04-002（QM7-X 新增 5 分子，量子×0.1–1nm 补满） | 9 |
-| `387915b` | quantum-nm-v04-001/002（OE62 数据集新引入，量子×1–10nm 补满） | 10 |
+| `387915b`→`44a01e5` | quantum-nm-v04-001/002（OE62 数据集新引入，量子×1–10nm 补满） | 10 |
+| (本次提交) | materials-nm-v04-001（COD 大晶胞 MOF 新引入，材料×1–10nm 补满） | 10 |
 
 ## 当前基线
 
-- HEAD：`387915b`（quantum-nm-v04-001/002，已推送），父提交 `5514a49`。
-- 构题标准：PROTOTYPE.md 和 builder_modules/m0_scope/prototype-policy.json 的 v0.4，本会话未变更任何 Builder 代码逻辑（仅新增复算/发布脚本，属于既定模式的延伸）。本批次首次引入 OE62 数据集（此前只用过 QM7-X/COD/RCSB PDB/SAMPL9），全部题目走 evidence_review（全局尺度扫描、回转半径、能隙提取/比较均非 xyz_distance/xyz_angle 注册验证器类型）。
-- 目标 160，完整初筛候选 **60**，缺 100；正式可用计数仍为 0（无专家审核）。60 条均 pending_human_audit。
+- HEAD：本次提交（materials-nm-v04-001），父提交 `44a01e5`。
+- 构题标准：PROTOTYPE.md 和 builder_modules/m0_scope/prototype-policy.json 的 v0.4，本会话未变更任何 Builder 代码逻辑（仅新增复算/发布脚本，属于既定模式的延伸；本批次复用 tools/recompute_materials_batch2.py 的通用立方 CIF 对称展开函数，未修改该文件本身，只是新写了一层薄封装）。全部题目走 evidence_review（周期结构的全局尺度扫描、晶面间距、结构因子消光定则均非 xyz_distance/xyz_angle 注册验证器类型）。
+- 目标 160，完整初筛候选 **70**，缺 90；正式可用计数仍为 0（无专家审核）。70 条均 pending_human_audit。
 - 31 个旧规划方向及 33 条历史记录不计入当前候选；本会话未触碰这些历史记录。
 
 ## 16 格覆盖现状（docs/audit.html 实时数据，docs/data/prototype-progress.json 来源）
@@ -28,10 +29,10 @@
 |---|---:|---:|---:|---:|
 | 量子/电子结构 | **10/10** ✅ | **10/10** ✅ | 0/10 | 0/10 |
 | 化学 | **10/10** ✅ | 0/10 | 0/10 | 0/10 |
-| 材料 | **10/10** ✅ | 0/10 | 0/10 | 0/10 |
+| 材料 | **10/10** ✅ | **10/10** ✅ | 0/10 | 0/10 |
 | 生物 | **10/10** ✅ | **10/10** ✅ | 0/10 | 0/10 |
 
-本会话前状态：材料 6/10、化学 7/10、生物 0.1–1nm 0/10、生物 1–10nm 5/10、量子 0.1–1nm 1/10、量子 1–10nm 0/10。六格全部由本会话补满。0.1–1nm 起步格（量子/化学/材料）与生物两格现已全部见底；量子 1–10nm 是本会话第一个突破 0.1–1nm 起步格的尺度格。
+本会话前状态：材料 6/10、化学 7/10、生物 0.1–1nm 0/10、生物 1–10nm 5/10、量子 0.1–1nm 1/10、量子 1–10nm 0/10、材料 1–10nm 0/10。七格全部由本会话补满。0.1–1nm 起步格（量子/化学/材料）与生物两格现已全部见底；量子 1–10nm 和材料 1–10nm 是本会话突破 0.1–1nm 起步格的两个尺度格，均通过"引入专门覆盖更大尺度的新数据源"实现，方法论可复用于化学域 1–10nm。
 
 ## 已完成的当前题库（完整清单）
 
@@ -44,6 +45,7 @@
 | **q02-force-v04-002**（本会话） | QNP002–006、QNI001–004 | 9 |
 | **quantum-nm-v04-001**（本会话） | QNP007–011、QNI005–008 | 9 |
 | **quantum-nm-v04-002**（本会话） | QNI009 | 1 |
+| **materials-nm-v04-001**（本会话） | MNP006–010、MNI006–010 | 10 |
 | paper-hbond-v04-001-r1 | HBP001、HBP002、HBI001、HBI002 | 4 |
 | bio-nm-v04-001 | BNP001–003、BNI001–002 | 5 |
 | **bio-nm-v04-002**（本会话） | BNP004–006、BNI003–004 | 5 |
@@ -109,43 +111,53 @@
 - **产物**：runs/quantum-nm-v04-001/、runs/quantum-nm-v04-002/（各含 build_bundle.py/author_*.py/independent_checks.py/publish_assets_and_catalog.py 系列作者脚本）、新页面 docs/quantum-nm-batch.html、docs/assets/qa/ 下 10 道题共 12 个 xyz 附件 + 10 个 input.txt、docs/data/traces/{QNP007,QNP008,QNP009,QNP010,QNP011,QNI005,QNI006,QNI007,QNI008,QNI009}.json、tests/test_quantum_nm_geometry.py（12 项新测试，全部从已提交的 docs/assets/qa/ 读取，不依赖 runs/）。
 - **未提交内容**：df_62k.json（387MB）与 df_5k.json（51MB）留在本机 runs/quantum-nm-v04-001/materials/，gitignored，不随 Git 同步；异机接手需按 sources.json 记录的 FTP 端点重新下载并核对 SHA512。
 
+### 7. materials-nm-v04-001 — 材料 × 1–10 nm（0/10 → 10/10）
+
+- **背景**：已用 COD 结构（Si、金刚石、NaCl、MgO、CsCl）晶胞全部远小于 1nm，无法直接扩展。研究后选定两个真实金属有机框架（MOF）晶体，其自身常规立方晶胞就落在 1–10nm：**ZIF-8**（COD 4118891，a=1.68303 nm，体心立方 I-43m，48 个对称操作；Karagiaridi et al., *J. Am. Chem. Soc.* 134, 18790 (2012)）与 **MOF-5**（COD 1516287，a=2.58247 nm，面心立方 Fm-3m，192 个对称操作，无无序；Lock et al., *J. Phys. Chem. C* 114, 16181 (2010)）。两条目均由 COD 贡献者置于公有领域，直接 curl 下载。
+- **对称展开方法复用**：直接 import 已审核通过的 `tools/recompute_materials_batch2.py` 的 `read_cubic_cif`（用于 materials-cell-v04-002 的 MgO/CsCl），未修改该文件；展开后晶胞组成（ZIF-8: Zn12 C72 H72 N48；MOF-5: Zn32 O104 C192 H96）与 COD 官方 API 自带 cellformula 字段完全一致，独立确认展开正确。ZIF-8 的 CIF 用两列 `_space_group_symop_id`+`_space_group_symop_operation_xyz` 格式（该函数原本只认单列格式），因此写了一层预处理归一化，不改动共享工具本身。
+- **无序处理**：ZIF-8 原始 CIF 记录一对连接体碳/氢（C2A/H2A）为 37% 占位的次要位点，本批工作坐标只用 63% 占位的主要位点（C2/H2）或完全有序原子（Zn1/N1/C1/H1），已在 bundle 证据中明确披露，不是隐藏处理。MOF-5 无任何无序。
+- **内容**（5 感知 + 5 推断，设计=0）：**全局尺度**族 MNP006/007（ZIF-8/MOF-5 Zn 亚晶格穷举扫描）、MNP010（MOF-5 全部原子穷举扫描，与 MNP007 对照），复用生物/量子域已验证的全局尺度方法族，首次推广到周期性材料对象；**晶面间距**族 MNP008/009（ZIF-8 d(110)、MOF-5 d(111)），复用材料×0.1–1nm 已验证的立方晶面公式（MNP003），因晶胞大一个数量级使低阶反射间距本身落入 1–10nm；**布拉格角**族 MNI006/007，复用 MNI001/MNI004 方法族；**结构因子消光**族 MNI008（ZIF-8 体心 h+k+l=even 定则）/MNI009（MOF-5 面心全同奇偶定则），复用 MNI002/MNI005 方法族，在真实大晶胞骨架上验证；**比较**题 MNI010，引用 MNI008/MNI009 已算出的结果（不重算），推理出决定选择定则的是晶格中心化类型而非晶胞尺寸，并明确两个实例的结论边界（不是套话式免责声明——两个结构确实呈现出不同定则，用真实计算结果驱动论证）。
+- **复核**：`runs/materials-nm-v04-001/independent_checks.py` 从零重写 CIF 对称展开（不导入 tools/recompute_materials_batch2.py，用 Decimal 精度 + 不同的字典去重算法），独立重新解析两份原始 CIF；10/10 全部通过。过程中发现并修复一处 Decimal 陷阱：`Decimal('-0.25') % 1` 不像 float/int 那样自动包裹到 [0,1)（返回 -0.25 而非 0.75），已显式补加包裹逻辑。
+- **产物**：runs/materials-nm-v04-001/（含 build_bundle.py/compute_materials_nm.py/author_*.py/independent_checks.py/publish_assets_and_catalog.py 系列作者脚本）、新页面 docs/materials-nm-batch.html、docs/assets/qa/ 下 10 道题共 11 个 xyz 附件 + 10 个 input.txt、docs/data/traces/{MNP006,MNP007,MNP008,MNP009,MNP010,MNI006,MNI007,MNI008,MNI009,MNI010}.json、tests/test_materials_nm_geometry.py（12 项新测试，全部从已提交的 docs/assets/qa/ 读取，不依赖 runs/）。
+- **未提交内容**：原始 CIF 文件（4118891.cif、1516287.cif，各约 11KB，公有领域）留在本机 runs/materials-nm-v04-001/materials/，gitignored；异机接手可直接从 crystallography.net 按 COD ID 重新下载，无需任何特殊权限。
+
 ## 实际执行的检查（全会话）
 
-- `python -m unittest discover -s tests -v`：**118 项全部通过**（初始 63 → +6 材料 +8 生物(v2) +5 化学 +14 生物(v3/4/5) +10 量子(0.1-1nm) +12 量子(1-10nm) = 118）。
+- `python -m unittest discover -s tests -v`：**130 项全部通过**（初始 63 → +6 材料 +8 生物(v2) +5 化学 +14 生物(v3/4/5) +10 量子(0.1-1nm) +12 量子(1-10nm) +12 材料(1-10nm) = 130）。
 - `tools/export_prototype.py` / `export_admission_audit.py` / `export_modules.py`：每个子批次后都重跑成功，最终状态见上方覆盖表。
-- 本地起 HTTP 服务器（Python `http.server`）+ 浏览器实测：index.html 候选列表（60 道全部可见）、audit.html 16 格覆盖表（量子两行均显示 10/10）、trace.html 对新题的 M0–M6 生成记录（含 QNI008 两份分子附件）、六个批次报告页（materials-batch.html / bio-batch.html / chem-local-batch.html / quantum-batch.html / quantum-nm-batch.html）新区块渲染、全部新增静态资源（.xyz/输入文本/JSON）返回 200。
-- 过程中发现并修复两处小问题：① audit.html 里因遗漏 `</p><p>` 换行导致两个入口链接粘连；② 上述 test_materials_batch2.py 依赖被 Git 忽略目录的可移植性 bug。本批次另发现并修复：construction 阶段 evidence_review 路由要求 `units` 字段必须为空字符串（回转半径题最初误填 'angstrom'）、evidence 阶段 `asset_ids` 必须只含 xyz 类型来源（能隙证据最初误把能级文本来源也列入）。
+- 本地起 HTTP 服务器（Python `http.server`）+ 浏览器实测：index.html 候选列表（70 道全部可见）、audit.html 16 格覆盖表（量子两行、材料两行均显示 10/10）、trace.html 对新题的 M0–M6 生成记录、七个批次报告页（materials-batch.html / bio-batch.html / chem-local-batch.html / quantum-batch.html / quantum-nm-batch.html / materials-nm-batch.html）新区块渲染、全部新增静态资源（.xyz/输入文本/JSON）返回 200。**此外本会话还额外验证了 GitHub Pages 线上部署**：用户报告网站上看不到新内容，排查后确认是 CDN 边缘缓存传播延迟（部署记录显示 push 后约 1-2 分钟已触发新部署，只是首次抓取命中了未刷新的缓存节点），几分钟后重新抓取 `https://k0ng1212.github.io/geometry-qa-builder/data/catalog.json` 已显示最新数据；这是本会话首次实际验证 Pages 部署链路是通的，此前六批都只做了本地服务器验证。
+- 过程中发现并修复三处小问题：① audit.html 里因遗漏 `</p><p>` 换行导致两个入口链接粘连；② test_materials_batch2.py 依赖被 Git 忽略目录的可移植性 bug；③ construction 阶段 evidence_review 路由要求 `units` 字段必须为空字符串、evidence 阶段 `asset_ids` 必须只含 xyz 类型来源（量子1-10nm批次）；④ `Decimal.__mod__` 不自动包裹负值到 [0,1)（材料1-10nm批次独立复核脚本中发现并修复）。
 - **未做**：专家审核、模型难度试测。所有新题 status 均为 pending_human_audit，未擅自改动任何题目的人工审核状态。
 
 ## 下一项工作（给下一位接手者）
 
-**六格已满**：材料×0.1–1nm、化学×0.1–1nm、生物×0.1–1nm、生物×1–10nm、量子×0.1–1nm、量子×1–10nm。三域（量子/化学/材料）的 0.1–1nm 起步格与生物两格全部见底；**量子域已突破到 1–10nm**，证明"起步格用尽后引入全新数据源继续推进"这条路径可行。剩余 100 个缺口中，化学/材料/生物各缺 3 个 1nm 以上尺度格，量子缺 2 个（10–100nm、100–1000nm）。
+**七格已满**：材料×0.1–1nm、化学×0.1–1nm、生物×0.1–1nm、生物×1–10nm、量子×0.1–1nm、量子×1–10nm、材料×1–10nm。三域（量子/化学/材料）的 0.1–1nm 起步格与生物两格全部见底；**量子域和材料域都已突破到 1–10nm**，两次都是通过"引入专门覆盖更大尺度的新数据源 + 用全局尺度/晶胞级方法代替局部键角方法"实现，这条路径现已有两次成功先例，可信度较高。剩余 90 个缺口中，化学/生物各缺 3 个 1nm 以上尺度格，量子/材料各缺 2 个（10–100nm、100–1000nm）。
 
 **建议优先级**（按可行性从高到低）：
 
-1. **化学/材料域 1–10nm 格**：可参照量子域本次的思路——SAMPL9/COD 现有材料天然偏小，需要新数据源。材料域可考虑更大的周期性超胞或纳米颗粒模型；化学域 bCD guest_files 目录下 CPZ/PMT/PMZ/TDZ/TFP 等真实药物分子仍未使用，但需先核实其尺度是否真的达到 1nm（未必，多数药物分子仍在 0.1–1nm）。
-2. **"复用已验证结构挖掘局部特征"这条思路已在 0.1–1nm 格用尽**：材料域 COD 结构、化学域 SAMPL9 host/guest、QM7-X 分子内局部几何均已挖掘出多道题；**这条捷径填不了 1nm 以上的格**，因为局部特征的推理尺度本质上受限于原子间距量级——量子域这次改用"全局尺度/回转半径"（跨越整个大分子的性质，而非局部键角）加"引入专门覆盖更大分子的新数据集"才突破了这个限制，这条经验可推广到其他领域。
-3. **量子域 10–100nm 与 100–1000nm 格**：OE62 最大分子约 174 原子，可能仍不够大；需要更大尺度的数据源（如聚合物链段、超分子组装体的量子化学数据），本会话未探索。
-4. **化学/材料/生物/量子的 100–1000nm 尺度格**（共 4 格）：全新尺度，需要真正更大尺度的真实材料（纳米颗粒、超胞、超分子组装体、大分子复合物等），local-feature 挖掘方法不适用。
+1. **化学域 1–10nm 格**：是四领域中唯一还没有 1nm+ 尺度格的。可参照本次两次成功经验——SAMPL9 现有 host/guest 结构天然偏小（多数 <1.5nm），需要新数据源。候选方向：环糊精/葫芦脲等大环主体的更大同系物、树状大分子（dendrimer）晶体结构、大环化合物的 COD/CSD 条目。
+2. **"复用已验证结构挖掘局部特征"这条思路已在 0.1–1nm 格用尽**：材料域 COD 结构、化学域 SAMPL9 host/guest、QM7-X 分子内局部几何均已挖掘出多道题；**这条捷径填不了 1nm 以上的格**，因为局部特征的推理尺度本质上受限于原子间距量级。量子域和材料域都改用"全局尺度/回转半径/晶胞级性质"（跨越整个对象的性质，而非局部键角）加"引入专门覆盖更大对象的新数据集"才突破了这个限制，化学域大概率也需要同样的思路。
+3. **量子域与材料域的 10–100nm、100–1000nm 格**：OE62 最大分子约 174 原子，MOF 晶胞展开到超胞也有实际计算量上限，可能都不够大；需要更大尺度的数据源（聚合物链段、超分子组装体、更大 COD/CSD 晶胞或多晶胞超胞模型），本会话未探索。
+4. **生物域 10–100nm、100–1000nm 格**：需要病毒衣壳、大分子复合物、染色质等更大尺度的真实结构数据（如冷冻电镜 PDB/EMDB 条目），本会话未探索。
 
 **执行规范**（继续遵循 AGENTS.md/CLAUDE.md）：先确认来源、材料和验证器，再跑新批次；允许不足，不为凑齐设计题降低验证标准；每批完成后更新本文件、跑测试、跑三个 export 脚本、本地起服务器核实渲染、提交前 `git fetch` 确认无分叉。用户已明确批次数量不设固定上限，由助手依材料可得性和验证质量自行判断规模。
 
 ## 提交/远端同步/Pages 状态
 
 - 每次提交前均 `git fetch` 确认与 origin/main 一致（全程无分叉）。
-- 全部提交均已推送：`8f9d138` → `7a5f96a` → `8ded5f0` → `2e35100` → `58b54cd` → `5514a49` → `387915b`（当前 HEAD）。
-- Pages 部署未在本会话验证（无法访问已部署的 GitHub Pages URL），仅本地服务器验证过静态资源可达，上线情况需下一位助手或用户核实。
+- 前六批提交均已推送：`8f9d138` → `7a5f96a` → `8ded5f0` → `2e35100` → `58b54cd` → `5514a49` → `387915b` → `44a01e5`。本次 materials-nm 批次提交见本文件更新后的 `git log` 最新一条；提交前同样执行了 `git fetch` 核对无分叉。
+- **Pages 部署已在本会话验证**（见上方"实际执行的检查"）：确认 GitHub Pages 从 main 分支 /docs 目录自动部署，push 后约 1-2 分钟触发新部署；线上 `https://k0ng1212.github.io/geometry-qa-builder/` 内容与本地仓库一致，只是偶尔有几分钟的 CDN 边缘缓存传播延迟，不是配置问题。
 
 ## 接手时哪些东西可获得
 
 | 位置 | 用途与限制 |
 |---|---|
 | GitHub 仓库 | 代码、规则、公开题目、附件和公开 trace；可在新机器使用 |
-| 本地 runs/<run-id>/ | 冻结 pipeline、packet、context、全部阶段结果、报告；只有这份才可恢复原运行（本会话 11 个新 run 均在本机 runs/ 下：materials-cell-v04-002、bio-nm-v04-002/003/004/005、chem-local-v04-003、q02-force-v04-002、quantum-nm-v04-001/002） |
+| 本地 runs/<run-id>/ | 冻结 pipeline、packet、context、全部阶段结果、报告；只有这份才可恢复原运行（本会话 12 个新 run 均在本机 runs/ 下：materials-cell-v04-002、bio-nm-v04-002/003/004/005、chem-local-v04-003、q02-force-v04-002、quantum-nm-v04-001/002、materials-nm-v04-001） |
 | 本地 inputs/ 及仓库外工作目录 | 部分原始下载和辅助脚本；不随 Git 同步 |
 | docs/data/traces/<QA-ID>.json | 脱敏公开摘录，不能当成完整恢复包 |
 
-同机接手可直接用 runs/ 下的 11 个新 run（本会话在同一台电脑完成）。异机接手：本会话新增的题目材料来源都是公开的（COD/RCSB PDB/SAMPL9 GitHub/Zenodo QM7-X/TUM mediaTUM OE62），可重新检索获取，不依赖任何私有材料；但 runs/ 下的完整冻结记录不会同步（包括量子×0.1–1nm 批次本地缓存的 8000.hdf5 826MB、量子×1–10nm 批次本地缓存的 df_62k.json 387MB + df_5k.json 51MB，均未提交），只能参考已发布的 docs/ 内容新建 run。OE62 的 mediaTUM 网页本身访问受限，需改用其官方 FTP 端点（sources.json 中记录了完整地址和 SHA512 校验值）。
+同机接手可直接用 runs/ 下的 12 个新 run（本会话在同一台电脑完成）。异机接手：本会话新增的题目材料来源都是公开的（COD/RCSB PDB/SAMPL9 GitHub/Zenodo QM7-X/TUM mediaTUM OE62/crystallography.net MOF CIF），可重新检索获取，不依赖任何私有材料；但 runs/ 下的完整冻结记录不会同步（包括量子×0.1–1nm 批次本地缓存的 8000.hdf5 826MB、量子×1–10nm 批次本地缓存的 df_62k.json 387MB + df_5k.json 51MB，均未提交），只能参考已发布的 docs/ 内容新建 run。OE62 的 mediaTUM 网页本身访问受限，需改用其官方 FTP 端点（sources.json 中记录了完整地址和 SHA512 校验值）；materials-nm-v04-001 的两份 CIF 体积很小（各约 11KB），异机接手直接从 crystallography.net 按 COD ID（4118891、1516287）重新下载即可，没有 OE62 那样的访问限制。
 
 ## 每次交接更新模板
 
