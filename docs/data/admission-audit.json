@@ -2,11 +2,11 @@
   "date": "2026-09-21",
   "scope": "对全部目录记录采用相同准入清单；本轮仅Q02新增实例真正执行新版M0–M6。其他记录未伪称重跑。",
   "target": 160,
-  "screened": 31,
-  "remaining_screened": 129,
+  "screened": 41,
+  "remaining_screened": 119,
   "formal_ready": 0,
   "remaining_formal": 160,
-  "human_review_count": 31,
+  "human_review_count": 41,
   "human_review_ids": [
     "CNP001",
     "CNP002",
@@ -38,13 +38,23 @@
     "BNI004",
     "CNP005",
     "CNP006",
-    "CNI001"
+    "CNI001",
+    "BNP007",
+    "BNP008",
+    "BNP009",
+    "BNI005",
+    "BNI006",
+    "BNP010",
+    "BNI007",
+    "BNP011",
+    "BNI008",
+    "BNP012"
   ],
   "lifecycle_counts": {
     "rework": 9,
     "backlog": 18,
     "archived": 6,
-    "active": 31
+    "active": 41
   },
   "records": [
     {
@@ -1198,6 +1208,186 @@
       "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
       "next": "M5：独立审核与模型试测，不重复生成已核验数值。",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP007",
+      "title": "溶菌酶二硫键 Cys6-Cys127 键长",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP008",
+      "title": "溶菌酶二硫键 Cys30-Cys115 键长",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP009",
+      "title": "α螺旋相邻/隔四残基 Cα 间距",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI005",
+      "title": "两个二硫键长度的化学一致性推断",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI006",
+      "title": "α螺旋规律性推断（两组隔四残基间距对比）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP010",
+      "title": "Crambin 二硫键 Cys16-Cys26 键长",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI007",
+      "title": "两个二硫键长度的化学一致性推断（Crambin）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP011",
+      "title": "Crambin α螺旋隔四残基 Cα 间距",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI008",
+      "title": "跨蛋白质α螺旋规律性推断（Crambin vs 溶菌酶）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP012",
+      "title": "Watson-Crick G-C 碱基对氢键几何",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     }
   ],
   "directions": [
@@ -1703,21 +1893,32 @@
         1
       ],
       "target": 10,
-      "located_candidates": 0,
-      "screened_count": 0,
-      "remaining": 10,
+      "located_candidates": 10,
+      "screened_count": 10,
+      "remaining": 0,
       "abilities": {
-        "perception": 0,
-        "inference": 0,
+        "perception": 6,
+        "inference": 4,
         "design": 0
       },
       "ability_shortfalls": {
-        "perception": 3,
-        "inference": 3,
+        "perception": 0,
+        "inference": 0,
         "design": 3
       },
-      "qa_ids": [],
-      "blocker": "Still missing validated task/material coverage; absence is not proof the task is impossible."
+      "qa_ids": [
+        "BNP007",
+        "BNP008",
+        "BNP009",
+        "BNI005",
+        "BNI006",
+        "BNP010",
+        "BNI007",
+        "BNP011",
+        "BNI008",
+        "BNP012"
+      ],
+      "blocker": ""
     },
     {
       "domain": "biology",

@@ -1,14 +1,13 @@
 # 当前交接状态
 
-更新：2026-09-21，执行助手 Claude Sonnet 5（Claude Code 会话，claude-sonnet-5）。任务：按用户指示读取 CLAUDE.md/PROJECT_STATUS.md 核对状态后，按现有 Builder 继续生成候选题；用户明确表示数量不设 6 道上限，由助手自行判断，并要求"继续做下一批"。本轮共完成三个子批次：materials-cell-v04-002（4 道）、bio-nm-v04-002（5 道）、chem-local-v04-003（3 道），合计新增 12 道，材料/生物/化学三格全部补满 10/10。
+更新：2026-09-21，执行助手 Claude Sonnet 5（Claude Code 会话，claude-sonnet-5）。任务：用户要求"继续"生成下一批，数量不设上限，由助手自行判断。本轮新增 10 道生物候选（bio-nm-v04-003/004/005 三个子运行），全部通过复用本项目已验证、已提交的真实结构（6LYZ、1CRN、1BNA）挖掘此前未问过的亚纳米局部几何特征（二硫键键长、α螺旋 Cα 间距、Watson-Crick 碱基对氢键），**未做任何新的网络检索**。生物 × 0.1–1 nm 由空格（0/10）补满到 10/10，与已完成的生物 × 1–10 nm 一起，生物域两格全部完成。
 
 ## 当前基线
 
-- 本次提交前 HEAD：`7a5f96a`（"Add five lysozyme/tRNA biology QA..."，上一轮已推送）；本次新增 3 道 QA 的提交见 Git 实际记录，本文件不是提交锁。
+- 本次提交前 HEAD：`8ded5f0`（"Add three H26DM-B-CD chemistry QA..."，上一轮已推送）；本次新增 10 道 QA 的提交见 Git 实际记录，本文件不是提交锁。
 - 当前构题标准：PROTOTYPE.md 和 builder_modules/m0_scope/prototype-policy.json 的 v0.4，未变更。
-- 目标 160，完整初筛候选 31（28+3），缺 129；正式可用计数 0。31 条均待人工审核。
+- 目标 160，完整初筛候选 41（31+10），缺 119；正式可用计数 0。41 条均待人工审核。
 - 31 个旧规划方向及 33 条历史记录不计入当前候选；不要重新放回主图充数。
-- **修复**：发现 tests/test_materials_batch2.py 此前误从本地 runs/materials-cell-v04-002/ 读取材料和脚本（该目录被 Git 忽略，新机器不存在），会导致该测试在新 clone 上失败；已改为从 docs/assets/materials/（已提交）读取，并把计算脚本正式发布为 tools/recompute_materials_batch2.py（之前只存在于本地 run，未提交，是遗漏）。tests/test_chem_geometry3.py 同理从提交的 docs/assets/qa/DMBCD.xyz 读取，未依赖 runs/。
 
 ## 已完成的当前题库
 
@@ -21,47 +20,42 @@
 | paper-hbond-v04-001-r1 | HBP001、HBP002、HBI001、HBI002 | 4 |
 | bio-nm-v04-001 | BNP001–003、BNI001–002 | 5 |
 | bio-nm-v04-002 | BNP004–006、BNI003–004 | 5 |
+| bio-nm-v04-003 | BNP007–009、BNI005–006 | 5 |
+| bio-nm-v04-004 | BNP010–011、BNI007–008 | 4 |
+| bio-nm-v04-005 | BNP012 | 1 |
 | materials-cell-v04-001 | MNP001–003、MNI001–003 | 6 |
 | materials-cell-v04-002 | MNP004、MNP005、MNI004、MNI005 | 4 |
 
 运行目录均在本仓库本地 runs/ 下且被 Git 忽略。题号归属和当前处置以 docs/data/catalog.json 为准；缺口查 docs/data/prototype-progress.json，审核入口为 docs/audit.html。
 
-## 本轮第三批：chem-local-v04-003（化学 × 0.1–1 nm，补满至 10/10）
+## 本轮：bio-nm-v04-003 / 004 / 005（生物 × 0.1–1 nm，从空格补满至 10/10）
 
-- 2 感知、1 推断、0 设计；化学 × 0.1–1 nm 格由 7/10 补齐到 **10/10**（该格初筛缺口清零）。
-- 来源：SAMPL9 官方仓库 host_guest/bCD/host_files/H26DM-B-CD.pdb（heptakis-2,6-di-O-methyl-β-环糊精），与 CNP001（B-CD）同目录、同生成方式（Gilson group 提供，MOE v2019.01）。此前只被归档题 CNM003/CNM004 使用过（坐标与本批完全相同，已核实），未进入任何当前候选；本批不复用其旧题内容，重新走完整 M0–M6。
-- 内容：**CNP005** 桥连糖苷氧 C4-O3-C37 键角（116.0251189°，与 CNP001 的未甲基化 B-CD 数值差异仅约 4×10⁻⁸ 度）；**CNP006** 甲基醚局部键角与两个 C-O 键长（未甲基化 B-CD 中不存在的新局部基元）；**CNI001** 推断远端 2,6-位甲基化是否扰动 1,4-糖苷环连接几何——直接引用 CNP001 已通过数值作比较，不重新计算，并要求说明单一构象对比不能证明的结论边界。
-- 计算与复核：直接在题目构造中用 acos 计算，配套 runs/chem-local-v04-003/independent_checks.py 用 atan2 公式和 Decimal 精度独立复核，3 道全部通过；新增 tests/test_chem_geometry3.py（5 项单元测试，从已提交的 docs/assets/qa/DMBCD.xyz 读取，不依赖本地 runs/）。
-- 报告：[chem-local-batch.html](docs/chem-local-batch.html) 已扩充第二次续跑区块（页面原有 v04-002 记录未改写）；题目附件复用已存在的 docs/assets/qa/DMBCD.xyz（与归档 CNM003/CNM004 共享同一真实构象文件，坐标核实字节相同）；公开模块摘录在 docs/data/traces/；处置记录见 docs/data/qa-disposition.md。
-- docs/audit.html 新增"化学批次：已补满 10/10"入口链接。
+这三个子运行是同一条思路的延伸：**不做新检索，只在已验证结构里挖掘此前未问过的亚纳米局部特征**。凡是把多个局部特征合并会让推理范围超过该格 [0.1,1) nm 上限的组合（例如同一蛋白质的全部二硫键一起问），题目都明确拆开或换用跨度更小的原子子集，并在 evidence/tasks 里写清原因，没有为了省事而超出尺度定义。
 
-## 本轮第一批：materials-cell-v04-002（材料 × 0.1–1 nm，补满至 10/10）
+- **bio-nm-v04-003**（复用 6LYZ.pdb，与 bio-nm-v04-002 用的文件逐字节核对一致）：BNP007/BNP008 分别测溶菌酶两个真实二硫键（Cys6-Cys127、Cys30-Cys115）SG-SG 键长，与条目自带 SSBOND 记录独立核对一致；BNP009 测 α 螺旋（HELIX 记录，残基25-35）相邻/隔四残基 Cα 间距；BNI005 比较另两个二硫键（Cys64-Cys80 vs Cys76-Cys94，4 原子组合刚好在 1nm 边界内）的键长差异，推断化学合理性；BNI006 比较螺旋内两组隔四残基间距的规律性。
+- **bio-nm-v04-004**（复用 1CRN.pdb，与 bio-nm-v04-001 用的文件逐字节核对一致）：BNP010 测 crambin 第三个二硫键（Cys16-Cys26）；BNI007 比较另两个二硫键（Cys3-Cys40 vs Cys4-Cys32）；BNP011 测 crambin 螺旋隔四残基间距（残基 9-13，避开条目自带记录里标注为畸变的 17/19 区域）；BNI008 是跨蛋白质推断——直接引用 bio-nm-v04-003 已通过的 BNP009 数值（6LYZ，6.248 Å）与 crambin 的新测值（6.065 Å）比较，两个互不相关蛋白质的螺旋隔四残基间距相差不到 3%，支持"规则 α 螺旋此间距是跨蛋白共有几何规律"的结论；不重新计算 BNP009。
+- **bio-nm-v04-005**（复用 1BNA.pdb，与 bio-nm-v04-001 用的文件逐字节核对一致）：BNP012 测真实 Watson-Crick G(链A第2位)-C(链B第23位) 碱基对的三条氢键供体-受体距离（N1-N3、N2-O2、O6-N4，均落在经典 2.7–2.9 Å 范围），与条目自带 SEQRES 记录核对碱基身份，并推理 G-C（3 条氢键）比 A-T（2 条氢键）更耐热的教科书结论。恰好补满该格最后 1 个名额。
+- 计算与复核：每个子运行都有独立的 `independent_checks.py`（Decimal 精度重算，并与条目自带 SSBOND/SEQRES 记录交叉核对），10 道全部通过；新增 tests/test_bio_geometry3.py、test_bio_geometry4.py、test_bio_geometry5.py（共 17 项单元测试，全部从已提交的 docs/assets/bio/*.pdb 读取，不依赖本地 runs/）。
+- 报告：[bio-batch.html](docs/bio-batch.html) 已扩充第三批区块（合并展示三个子运行，因主题高度统一）；题目附件在 docs/assets/qa/；原始 PDB 复用既有 docs/assets/bio/{6LYZ,1CRN,1BNA}.pdb（未新增文件）；公开模块摘录在 docs/data/traces/；处置记录见 docs/data/qa-disposition.md。
+- docs/audit.html "生物批次" 入口文字已更新为"两格已各补满 10/10"。
 
-- 2 感知、2 推断、0 设计；材料 × 0.1–1 nm 格由 6/10 补齐到 **10/10**（该格初筛缺口清零）。
-- 来源：官方 COD 结构 1000053（MgO periclase，Sasaki/Fujino/Takeuchi 1979，doi:10.2183/pjab.55.43）、9008789（CsCl，Wyckoff 1963，与本项目卤化钠同一来源卷）。原始结构路线，非复用既有 QA；CsCl 原胞仅 2 原子（非本项目此前惯用的 8 原子晶胞），已在题干中明确披露。
-- 内容：MgO 岩盐型异种/同种近邻壳层（MNP004）、CsCl 原生纯净立方体角配位壳层（MNP005，配位数 8，新几何类型）、MgO 晶面间距与 Bragg 角（MNI004）、CsCl 结构因子化学对比与体心立方型消光选择定则（MNI005，区分"晶格禁戒"与"化学对比禁戒"两类概念，非既有题模板的重复实例）。
-- 计算与复核：新脚本 runs/materials-cell-v04-002/compute_new_materials.py，配套 independent_checks.py 用第二种独立方法交叉核验，4 道全部通过；新增 tests/test_materials_batch2.py（6 项单元测试）。
-- 报告：[materials-batch.html](docs/materials-batch.html) 已扩充第二批区块；来源/计算见 docs/data/materials-batch-v2-*.json；原 CIF 在 docs/assets/materials/；题目附件在 docs/assets/qa/；公开模块摘录在 docs/data/traces/；处置记录见 docs/data/qa-disposition.md。
-- 曾尝试寻找 GaAs 闪锌矿和单质铜条目补充覆盖，均未在会话时间内定位到干净可用的 COD 记录，已如实记录在 runs/materials-cell-v04-002/sources.json，留给后续批次。
+## 上一轮（已推送，供参考）：materials-cell-v04-002 / bio-nm-v04-002 / chem-local-v04-003 各批要点
 
-## 本轮第二批：bio-nm-v04-002（生物 × 1–10 nm，补满至 10/10）
+- **materials-cell-v04-002**：MgO/CsCl 新 COD 结构，补满材料 × 0.1–1 nm。
+- **bio-nm-v04-002**：6LYZ/1EHZ（本项目首个 RNA 结构）新检索，补满生物 × 1–10 nm。
+- **chem-local-v04-003**：SAMPL9 的 H26DM-B-CD 新检索，补满化学 × 0.1–1 nm；同时修复了 tests/test_materials_batch2.py 误读本地被忽略的 runs/ 目录的可移植性问题，把计算脚本正式发布为 tools/recompute_materials_batch2.py。
+- 详见 Git 历史提交 `8f9d138`、`7a5f96a`、`8ded5f0` 的完整说明。
 
-- 3 感知、2 推断、0 设计；生物 × 1–10 nm 格由 5/10 补齐到 **10/10**（该格初筛缺口清零）。
-- 来源：官方 RCSB PDB 结构 6LYZ（鸡蛋清溶菌酶，Diamond 1974 real-space refinement 经典结构，129 个 Cα）、1EHZ（酵母苯丙氨酸 tRNA，Shi & Moore 2000，1.93 Å，76 个 C1′，其中 14 个修饰核苷酸以 HETATM 记录、已核实合并为无缺口骨架）。这是本项目第一次使用 RNA 结构，补上蛋白质/DNA 之外的第三类真实生物大分子。
-- 内容：溶菌酶端距/最大尺寸/催化裂隙（Glu35–Asp52，身份由条目自带 HELIX 与立体化学核查记录独立确认，BNP004）、tRNA 骨架路径长度是端到端直线距离的约 24 倍（L 形折叠的直接几何证据，BNP005）、反密码子三联体局部构象（134.53°，非完全共线，与 SEQRES 记录核对身份为 OMG-A-A，BNP006）、溶菌酶与已通过的 1UBQ/1CRN 三者回转半径比较（复用旧批次已发表数值，未重算，BNI003）、tRNA 受体端到反密码子的虚拟 FRET 探针量程不匹配推断（r≈7.23nm 远超 R0=3.5nm 有效范围，效率降到约 0.0127，属实验设计类推断而非单纯代公式，BNI004）。
-- 计算与复核：新工具 tools/recompute_bio_batch2.py（延续 tools/recompute_bio_batch.py 风格，独立于其硬编码三结构版本），内建双重验证（全扫描 vs 原方法、pairwise-distance 恒等式 Rg、atan2 夹角、Decimal 精度 FRET）；新增 tests/test_bio_geometry2.py（8 项单元测试）。
-- 报告：[bio-batch.html](docs/bio-batch.html) 已扩充第二批区块；来源/计算见 docs/data/bio-batch-v2-*.json；原始 PDB 在 docs/assets/bio/；题目附件在 docs/assets/qa/；公开模块摘录在 docs/data/traces/；处置记录见 docs/data/qa-disposition.md。
+## 实际执行的检查（本轮）
 
-## 实际执行的检查（三批共同）
-
-- `python -m unittest discover -s tests -v` 全部 82 项通过（63 旧 + 6 材料新 + 8 生物新 + 5 化学新）。
-- `tools/export_prototype.py`/`export_admission_audit.py`/`export_modules.py` 均重跑成功（含化学批次后的最终重跑）。
-- 本地起 HTTP 服务器用浏览器核对了 index.html 候选列表（31 道）、audit.html 16 格覆盖表（材料/生物/化学三格均 10/10）、trace.html 对新题（含 CNI001）的 M0–M6 记录、materials-batch.html / bio-batch.html / chem-local-batch.html 新区块、以及全部新增静态资源（.xyz/.pdb/.cif/输入文本/JSON）的 200 响应；同步更新了 audit.html 中三处指向批次报告的静态入口文字（发现并修复了一处因遗漏 `</p><p>` 换行导致两个链接粘连的问题）。
-- 未做专家审核或模型难度试测。初筛数 31、人工待审 31、无已明确人工确认的题号（与上一份交接记录一致，用户此前提到"审核了几条"但未指定编号，未据此改状态）。
+- `python -m unittest discover -s tests -v` 全部 96 项通过（82 旧 + 6 test_bio_geometry3 + 5 test_bio_geometry4 + 3 test_bio_geometry5）。
+- `tools/export_prototype.py`/`export_admission_audit.py`/`export_modules.py` 均重跑成功。
+- 本地起 HTTP 服务器用浏览器核对了 index.html 候选列表（41 道）、audit.html 16 格覆盖表（生物两格均 10/10）、trace.html 对新题（含 BNI008、BNP012）的 M0–M6 记录、bio-batch.html 新区块、以及全部新增静态资源（.xyz/输入文本）的 200 响应。
+- 未做专家审核或模型难度试测。初筛数 41、人工待审 41、无已明确人工确认的题号（与上一份交接记录一致，用户此前提到"审核了几条"但未指定编号，未据此改状态）。
 
 ## 下一项工作
 
-材料 × 0.1–1 nm、生物 × 1–10 nm、化学 × 0.1–1 nm 三格已补满。下一步按覆盖统计（docs/audit.html 16 格表）选缺口继续：量子域全部四格（各 9–10 缺口，全库最大空白，且 QNP001 之外无其他已用材料/方法可直接复用，需要新的计算化学数据源）、化学 1–1000 nm 三格（各 10 缺口，全新尺度需新材料）、材料 1–1000 nm 三格（各 10 缺口）、生物 0.1–1 nm 及 10–1000 nm（各 9–10 缺口）都是空白。继续遵循：先确认来源、材料和验证器，再跑新批次；允许不足，不为凑齐设计题降低验证标准。用户已明确本轮批次数量不设固定上限，由助手依材料可得性和验证质量自行判断规模。
+材料 × 0.1–1 nm、生物 × 0.1–1 nm、生物 × 1–10 nm、化学 × 0.1–1 nm 四格已补满。下一步按覆盖统计（docs/audit.html 16 格表）选缺口继续：量子域全部四格（各 9–10 缺口，全库最大空白，QNP001 之外无其他已用材料/方法可直接复用，需要新的计算化学数据源）、化学 1–1000 nm 三格（各 10 缺口，全新尺度需新材料）、材料 1–1000 nm 三格（各 10 缺口）、生物 10–1000 nm（10 缺口，空白）。"复用已验证结构挖掘未问过的局部特征"这条思路（本轮对生物域的做法）值得在其他领域尝试：比如材料域已用的 COD 结构里是否还有未问过的局部几何（键角、次近邻壳层等），化学域的 SAMPL9 host/guest 复合物是否有未测的局部基元，但要注意扩大到 1–1000 nm 尺度格时通常仍需全新材料（局部特征挖掘只能填同一尺度格内的空缺，不能跨尺度）。继续遵循：先确认来源、材料和验证器，再跑新批次；允许不足，不为凑齐设计题降低验证标准。用户已明确本轮批次数量不设固定上限，由助手依材料可得性和验证质量自行判断规模。
 
 ## 提交/远端同步/Pages 状态
 
