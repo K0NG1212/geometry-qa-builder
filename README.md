@@ -2,6 +2,8 @@
 
 把科学材料转成有证据、可检查的候选 QA。**当前默认由 Codex 会话执行 AI 模块，不需要 API Key。**
 
+**跨助手接手入口：** [共用工作规则](AGENTS.md) · [Claude Code 入口](CLAUDE.md) · [当前进度与交接](PROJECT_STATUS.md)。新构题采用 [v0.4 原型要求](PROTOTYPE.md)；下面保留 v0.3 架构说明。Codex 与 Claude Code 均可按固定 packet 执行，完整本地运行不会自动随 GitHub 同步。
+
 [查看模块工作台](https://k0ng1212.github.io/geometry-qa-builder/builder.html) · [数据流与 benchmark 复用](DATAFLOW.md) · [开始使用](QUICKSTART.md) · [模块划分](builder_modules/README.md) · [执行规程](RUNBOOK.md) · [测试说明](TESTING.md) · [Research Atlas](https://k0ng1212.github.io/geometry-qa-builder/)
 
 ## 这一版解决什么
