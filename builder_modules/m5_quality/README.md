@@ -32,3 +32,7 @@
 ```text
 python -m unittest discover -s tests -p test_m5_quality.py -v
 ```
+
+
+## 2026-09-22 几何依赖检查
+真实新运行必须提供 geometry_audit，字段见 schema.json 与 prompt.md。程序检查记录完整性及判断与通过标志是否矛盾；不能自动判断科学语义是否正确。旧运行用冻结脚本，不能回填伪造历史。测试：`python -m unittest discover -s tests -p test_geometry_audit.py -v`。

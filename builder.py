@@ -54,6 +54,15 @@ SCHEMAS = {
  'review': obj(reviews=arr(obj(qa_id=S, checks=CHECKS, issues=SS, notes=S)))
 }
 
+# Optional for legacy records; mandatory for real new runs in M3/M5 validators.
+GEOMETRY_AUDIT = obj(
+    geometry_inputs=S, without_geometry=S, dependent_score_items=S,
+    scale_basis=S, claim_limits=S, template_family=S,
+    geometry_dependency=enum('necessary', 'partial', 'none', 'uncertain'),
+    scale_consistent=B, claims_supported=B)
+for _stage, _key in (("tasks", "tasks"), ("review", "reviews")):
+    SCHEMAS[_stage]["properties"][_key]["items"]["properties"]["geometry_audit"] = GEOMETRY_AUDIT
+
 def validate(value, schema, at='$'):
     """Validate the deliberately small schema vocabulary used here (not general JSON Schema)."""
     if 'anyOf' in schema:
@@ -75,7 +84,7 @@ def validate(value, schema, at='$'):
     if 'enum' in schema and value not in schema['enum']:
         raise ValueError(at + ': invalid enum')
     if t == 'object':
-        if set(value) != set(schema['properties']):
+        if not set(schema.get('required', schema['properties'])).issubset(value) or (schema.get('additionalProperties') is False and not set(value).issubset(schema['properties'])):
             raise ValueError(at + ': missing or unexpected keys')
         for k,v in value.items(): validate(v, schema['properties'][k], at+'.'+k)
     if t == 'array':

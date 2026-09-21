@@ -8,6 +8,19 @@ def validate(b, data, bundle, previous, config):
     reviews = b.unique(data['reviews'],'qa_id')
     if set(reviews)!=set(q['qa_id'] for q in previous['qa']['items']):
         raise ValueError('review coverage incomplete or invented')
+    for r in reviews.values():
+        audit = r.get('geometry_audit')
+        if not bundle['synthetic'] and audit is None:
+            raise ValueError('real review requires geometry_audit')
+        if audit is not None:
+            if any(not audit[k].strip() for k in ('geometry_inputs','without_geometry','dependent_score_items','scale_basis','claim_limits','template_family')):
+                raise ValueError('geometry_audit requires concrete reasons')
+            failed = []
+            if audit['geometry_dependency'] in ('none','uncertain'): failed.append('geometry_required')
+            if not audit['scale_consistent']: failed.append('single_scale_focus')
+            if not audit['claims_supported']: failed.extend(('evidence_support','rubric_scorable'))
+            if any(r['checks'][k] for k in failed) or (failed and not r['issues']):
+                raise ValueError('review checks contradict geometry_audit; record failure and issues')
 
 
 def report(b, run):
@@ -31,7 +44,7 @@ def report(b, run):
             'question':q['question'],'model_input':q['model_input'],'input_asset_ids':q['input_asset_ids'],
             'reference_answer':q['reference_answer'],'evidence_ids':q['evidence_ids'],
             'status':'pending_human_audit' if okay else 'needs_revision',
-            'benchmark_ready':False,'checks':checks,'issues':issues,'limitations':q['limitations'],'review_notes':r['notes']})
+            'benchmark_ready':False,'checks':checks,'issues':issues,'limitations':q['limitations'],'review_notes':r['notes'],'geometry_audit':r.get('geometry_audit')})
     result={'paper_id':bundle['paper_id'],'synthetic':bundle['synthetic'],'benchmark_ready':False,
         'count':len(rows),'pending_human_audit':sum(r['status']=='pending_human_audit' for r in rows),
         'exclusions':{s:p[s].get('exclusions',[]) for s in b.STAGES},'items':rows}

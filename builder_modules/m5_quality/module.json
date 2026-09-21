@@ -2,21 +2,22 @@
   "id": "M5",
   "folder": "m5_quality",
   "name": "质量筛查",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "status": "基础筛查已实现",
   "executor": "AI 审核 + 程序",
   "purpose": "逐题检查输入、证据、几何必要性、泄漏、条件与评分标准。",
   "inputs": "候选 QA、原始证据、AI 审核结果",
   "outputs": "review.json、report.json / md / csv",
   "principle": "独立目录中的程序汇总布尔检查、数值复算和当前 run 的完全重复项。",
-  "checks": "审核覆盖完整；任一检查失败进入 needs_revision；新增学科意义、身份清晰、附件完整、单尺度聚焦，失败则需修订",
-  "limits": "同一会话审核不是独立或专家审核；没有专家一致率、模型难度或语义去重实验。",
+  "checks": "审核覆盖完整；任一检查失败进入 needs_revision；新增学科意义、身份清晰、附件完整、单尺度聚焦，失败则需修订；真实任务强制几何依赖、尺度依据与结论边界记录，程序拒绝自相矛盾的通过结论",
+  "limits": "同一会话审核不是独立或专家审核；没有专家一致率、模型难度或语义去重实验。；文本理由仍是 AI 判断，结构化检查不证明语义正确。",
   "optimize": "完善错误类型与检查器；用正负样本测误放行和误拒绝。",
   "fields": [
     "checks",
     "issues",
     "status",
-    "benchmark_ready"
+    "benchmark_ready",
+    "geometry_audit"
   ],
   "test_command": "python -m unittest discover -s tests -p test_m5_quality.py -v",
   "io_example": {
@@ -29,7 +30,8 @@
       "qa_id": "Q_DEMO",
       "checks": "逐项检查输入、证据、条件、泄漏、评分与数值",
       "status": "待实际检查",
-      "benchmark_ready": false
+      "benchmark_ready": false,
+      "geometry_audit": "见 schema：几何输入、删除后剩余得分、依赖评分项、尺度依据、结论边界、任务族及判断"
     },
     "note": "字段含占位说明，仅解释数据流；不是实际论文结果，也不是可直接导入的完整 JSON。"
   },

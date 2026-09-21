@@ -65,6 +65,56 @@
           },
           "notes": {
             "type": "string"
+          },
+          "geometry_audit": {
+            "type": "object",
+            "properties": {
+              "geometry_inputs": {
+                "type": "string"
+              },
+              "without_geometry": {
+                "type": "string"
+              },
+              "dependent_score_items": {
+                "type": "string"
+              },
+              "scale_basis": {
+                "type": "string"
+              },
+              "claim_limits": {
+                "type": "string"
+              },
+              "template_family": {
+                "type": "string"
+              },
+              "geometry_dependency": {
+                "type": "string",
+                "enum": [
+                  "necessary",
+                  "partial",
+                  "none",
+                  "uncertain"
+                ]
+              },
+              "scale_consistent": {
+                "type": "boolean"
+              },
+              "claims_supported": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "geometry_inputs",
+              "without_geometry",
+              "dependent_score_items",
+              "scale_basis",
+              "claim_limits",
+              "template_family",
+              "geometry_dependency",
+              "scale_consistent",
+              "claims_supported"
+            ]
           }
         },
         "required": [

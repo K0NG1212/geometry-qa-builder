@@ -56,3 +56,7 @@
 新运行采用 PROTOTYPE.md。目标以解题推理尺度为主，每格10题、每能力尽量3题。M3 必填考点与对象选择理由，M5 四项新增检查不得省略；导出后在 student-packets/ 检查完整题干和所有附件。旧运行必须使用其冻结脚本，不会自动套用新规则。
 
 网站目录更新后运行 `python tools/export_prototype.py` 与 `python tools/export_modules.py`。初筛通过数、候选数和正式可用数分别统计。
+
+
+## 当前 M3/M5 补丁 0.4.1
+新真实运行必须按 packet 填 geometry_audit，逐题说明移除几何后的可答部分、依赖评分、推理尺度和结论边界。未做模型消融不能称为实测消融。程序拒绝 none/uncertain 的合格任务及审核矛盾。设计与来源配额不可替代质量。修订旧题新建 run；历史快照保持原样。既有题专项结果见 docs/data/focused-screening.json；先修可复用材料的项目，再扩量。
