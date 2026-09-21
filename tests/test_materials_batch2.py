@@ -8,13 +8,14 @@ def load(name, file):
     s.loader.exec_module(m)
     return m
 
-m = load('material_calc2', ROOT / 'runs' / 'materials-cell-v04-002' / 'compute_new_materials.py')
+m = load('material_calc2', ROOT / 'tools' / 'recompute_materials_batch2.py')
+MATERIALS_DIR = ROOT / 'docs' / 'assets' / 'materials'
 
 
 class SymmetryExpansionChecks(unittest.TestCase):
     def test_mgo_and_cscl_row_counts_and_lattice(self):
-        mgo = m.read_cubic_cif(ROOT / 'runs' / 'materials-cell-v04-002' / 'materials' / '1000053.cif')
-        cscl = m.read_cubic_cif(ROOT / 'runs' / 'materials-cell-v04-002' / 'materials' / '9008789.cif')
+        mgo = m.read_cubic_cif(MATERIALS_DIR / '1000053.cif')
+        cscl = m.read_cubic_cif(MATERIALS_DIR / '9008789.cif')
         self.assertEqual(len(mgo['rows']), 8)
         self.assertEqual(len(cscl['rows']), 2)
         self.assertAlmostEqual(mgo['a_A'], 4.217, places=3)
@@ -29,13 +30,13 @@ class SymmetryExpansionChecks(unittest.TestCase):
 
 class CoordinationChecks(unittest.TestCase):
     def test_mgo_octahedral_shell_matches_closed_form(self):
-        mgo = m.read_cubic_cif(ROOT / 'runs' / 'materials-cell-v04-002' / 'materials' / '1000053.cif')
+        mgo = m.read_cubic_cif(MATERIALS_DIR / '1000053.cif')
         shell = m.neighbors_for_row0(mgo)
         self.assertEqual(shell['coordination'], 6)
         self.assertAlmostEqual(shell['distance_A'], mgo['a_A'] / 2, places=9)
 
     def test_cscl_cube_corner_shell_matches_closed_form(self):
-        cscl = m.read_cubic_cif(ROOT / 'runs' / 'materials-cell-v04-002' / 'materials' / '9008789.cif')
+        cscl = m.read_cubic_cif(MATERIALS_DIR / '9008789.cif')
         if cscl['rows'][0]['element'] != 'Cs':
             cscl['rows'] = list(reversed(cscl['rows']))
         shell = m.neighbors_for_row0(cscl)

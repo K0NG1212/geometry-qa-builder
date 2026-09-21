@@ -1,13 +1,14 @@
 # 当前交接状态
 
-更新：2026-09-21，执行助手 Claude Sonnet 5（Claude Code 会话，claude-sonnet-5）。任务：按用户指示读取 CLAUDE.md/PROJECT_STATUS.md 核对状态后，按现有 Builder 继续生成候选题；用户明确表示数量不设 6 道上限，由助手自行判断。本轮共完成两个子批次：materials-cell-v04-002（4 道）与 bio-nm-v04-002（5 道），合计新增 9 道。
+更新：2026-09-21，执行助手 Claude Sonnet 5（Claude Code 会话，claude-sonnet-5）。任务：按用户指示读取 CLAUDE.md/PROJECT_STATUS.md 核对状态后，按现有 Builder 继续生成候选题；用户明确表示数量不设 6 道上限，由助手自行判断，并要求"继续做下一批"。本轮共完成三个子批次：materials-cell-v04-002（4 道）、bio-nm-v04-002（5 道）、chem-local-v04-003（3 道），合计新增 12 道，材料/生物/化学三格全部补满 10/10。
 
 ## 当前基线
 
-- 本次提交前 HEAD：`8f9d138`（"Add four MgO/CsCl materials QA..."，上一轮已推送）；本次新增 5 道 QA 的提交见 Git 实际记录，本文件不是提交锁。
+- 本次提交前 HEAD：`7a5f96a`（"Add five lysozyme/tRNA biology QA..."，上一轮已推送）；本次新增 3 道 QA 的提交见 Git 实际记录，本文件不是提交锁。
 - 当前构题标准：PROTOTYPE.md 和 builder_modules/m0_scope/prototype-policy.json 的 v0.4，未变更。
-- 目标 160，完整初筛候选 28（23+5），缺 132；正式可用计数 0。28 条均待人工审核。
+- 目标 160，完整初筛候选 31（28+3），缺 129；正式可用计数 0。31 条均待人工审核。
 - 31 个旧规划方向及 33 条历史记录不计入当前候选；不要重新放回主图充数。
+- **修复**：发现 tests/test_materials_batch2.py 此前误从本地 runs/materials-cell-v04-002/ 读取材料和脚本（该目录被 Git 忽略，新机器不存在），会导致该测试在新 clone 上失败；已改为从 docs/assets/materials/（已提交）读取，并把计算脚本正式发布为 tools/recompute_materials_batch2.py（之前只存在于本地 run，未提交，是遗漏）。tests/test_chem_geometry3.py 同理从提交的 docs/assets/qa/DMBCD.xyz 读取，未依赖 runs/。
 
 ## 已完成的当前题库
 
@@ -15,14 +16,24 @@
 |---|---|---:|
 | prototype-v04-bcd-001 | CNP001 | 1 |
 | chem-local-v04-002-r1 | CNP002、CNP003（其他历史记录不自动计入） | 2 |
+| chem-local-v04-003 | CNP005、CNP006、CNI001 | 3 |
 | q02-force-v04-001 | QNP001 | 1 |
 | paper-hbond-v04-001-r1 | HBP001、HBP002、HBI001、HBI002 | 4 |
 | bio-nm-v04-001 | BNP001–003、BNI001–002 | 5 |
+| bio-nm-v04-002 | BNP004–006、BNI003–004 | 5 |
 | materials-cell-v04-001 | MNP001–003、MNI001–003 | 6 |
 | materials-cell-v04-002 | MNP004、MNP005、MNI004、MNI005 | 4 |
-| bio-nm-v04-002 | BNP004–006、BNI003–004 | 5 |
 
 运行目录均在本仓库本地 runs/ 下且被 Git 忽略。题号归属和当前处置以 docs/data/catalog.json 为准；缺口查 docs/data/prototype-progress.json，审核入口为 docs/audit.html。
+
+## 本轮第三批：chem-local-v04-003（化学 × 0.1–1 nm，补满至 10/10）
+
+- 2 感知、1 推断、0 设计；化学 × 0.1–1 nm 格由 7/10 补齐到 **10/10**（该格初筛缺口清零）。
+- 来源：SAMPL9 官方仓库 host_guest/bCD/host_files/H26DM-B-CD.pdb（heptakis-2,6-di-O-methyl-β-环糊精），与 CNP001（B-CD）同目录、同生成方式（Gilson group 提供，MOE v2019.01）。此前只被归档题 CNM003/CNM004 使用过（坐标与本批完全相同，已核实），未进入任何当前候选；本批不复用其旧题内容，重新走完整 M0–M6。
+- 内容：**CNP005** 桥连糖苷氧 C4-O3-C37 键角（116.0251189°，与 CNP001 的未甲基化 B-CD 数值差异仅约 4×10⁻⁸ 度）；**CNP006** 甲基醚局部键角与两个 C-O 键长（未甲基化 B-CD 中不存在的新局部基元）；**CNI001** 推断远端 2,6-位甲基化是否扰动 1,4-糖苷环连接几何——直接引用 CNP001 已通过数值作比较，不重新计算，并要求说明单一构象对比不能证明的结论边界。
+- 计算与复核：直接在题目构造中用 acos 计算，配套 runs/chem-local-v04-003/independent_checks.py 用 atan2 公式和 Decimal 精度独立复核，3 道全部通过；新增 tests/test_chem_geometry3.py（5 项单元测试，从已提交的 docs/assets/qa/DMBCD.xyz 读取，不依赖本地 runs/）。
+- 报告：[chem-local-batch.html](docs/chem-local-batch.html) 已扩充第二次续跑区块（页面原有 v04-002 记录未改写）；题目附件复用已存在的 docs/assets/qa/DMBCD.xyz（与归档 CNM003/CNM004 共享同一真实构象文件，坐标核实字节相同）；公开模块摘录在 docs/data/traces/；处置记录见 docs/data/qa-disposition.md。
+- docs/audit.html 新增"化学批次：已补满 10/10"入口链接。
 
 ## 本轮第一批：materials-cell-v04-002（材料 × 0.1–1 nm，补满至 10/10）
 
@@ -41,16 +52,16 @@
 - 计算与复核：新工具 tools/recompute_bio_batch2.py（延续 tools/recompute_bio_batch.py 风格，独立于其硬编码三结构版本），内建双重验证（全扫描 vs 原方法、pairwise-distance 恒等式 Rg、atan2 夹角、Decimal 精度 FRET）；新增 tests/test_bio_geometry2.py（8 项单元测试）。
 - 报告：[bio-batch.html](docs/bio-batch.html) 已扩充第二批区块；来源/计算见 docs/data/bio-batch-v2-*.json；原始 PDB 在 docs/assets/bio/；题目附件在 docs/assets/qa/；公开模块摘录在 docs/data/traces/；处置记录见 docs/data/qa-disposition.md。
 
-## 实际执行的检查（两批共同）
+## 实际执行的检查（三批共同）
 
-- `python -m unittest discover -s tests -v` 全部 77 项通过（63 旧 + 6 材料新 + 8 生物新）。
-- `tools/export_prototype.py`/`export_admission_audit.py`/`export_modules.py` 均重跑成功。
-- 本地起 HTTP 服务器用浏览器核对了 index.html 候选列表（28 道）、audit.html 16 格覆盖表（材料/生物两格均 10/10）、trace.html 对新题的 M0–M6 记录、materials-batch.html 与 bio-batch.html 新区块、以及全部新增静态资源（.xyz/.pdb/.cif/输入文本/JSON）的 200 响应；同步更新了 audit.html 中两处指向批次报告的静态入口文字。
-- 未做专家审核或模型难度试测。初筛数 28、人工待审 28、无已明确人工确认的题号（与上一份交接记录一致，用户此前提到"审核了几条"但未指定编号，未据此改状态）。
+- `python -m unittest discover -s tests -v` 全部 82 项通过（63 旧 + 6 材料新 + 8 生物新 + 5 化学新）。
+- `tools/export_prototype.py`/`export_admission_audit.py`/`export_modules.py` 均重跑成功（含化学批次后的最终重跑）。
+- 本地起 HTTP 服务器用浏览器核对了 index.html 候选列表（31 道）、audit.html 16 格覆盖表（材料/生物/化学三格均 10/10）、trace.html 对新题（含 CNI001）的 M0–M6 记录、materials-batch.html / bio-batch.html / chem-local-batch.html 新区块、以及全部新增静态资源（.xyz/.pdb/.cif/输入文本/JSON）的 200 响应；同步更新了 audit.html 中三处指向批次报告的静态入口文字（发现并修复了一处因遗漏 `</p><p>` 换行导致两个链接粘连的问题）。
+- 未做专家审核或模型难度试测。初筛数 31、人工待审 31、无已明确人工确认的题号（与上一份交接记录一致，用户此前提到"审核了几条"但未指定编号，未据此改状态）。
 
 ## 下一项工作
 
-材料 × 0.1–1 nm、生物 × 1–10 nm 两格已补满。下一步按覆盖统计（docs/audit.html 16 格表）选缺口继续：量子域全部四格（各 9–10 缺口，最大空白）、化学 1–1000 nm 三格（各 10 缺口）、材料 1–1000 nm 三格（各 10 缺口）、生物 0.1–1 nm 及 10–1000 nm（各 9–10 缺口）都是空白。化学 0.1–1 nm 还差 3（已有 11 条 located、7 screened，其余为 rework/backlog 历史条目，需先核实是否可重构而非直接复用）。继续遵循：先确认来源、材料和验证器，再跑新批次；允许不足，不为凑齐设计题降低验证标准。用户已明确本轮批次数量不设固定上限，由助手依材料可得性和验证质量自行判断规模。
+材料 × 0.1–1 nm、生物 × 1–10 nm、化学 × 0.1–1 nm 三格已补满。下一步按覆盖统计（docs/audit.html 16 格表）选缺口继续：量子域全部四格（各 9–10 缺口，全库最大空白，且 QNP001 之外无其他已用材料/方法可直接复用，需要新的计算化学数据源）、化学 1–1000 nm 三格（各 10 缺口，全新尺度需新材料）、材料 1–1000 nm 三格（各 10 缺口）、生物 0.1–1 nm 及 10–1000 nm（各 9–10 缺口）都是空白。继续遵循：先确认来源、材料和验证器，再跑新批次；允许不足，不为凑齐设计题降低验证标准。用户已明确本轮批次数量不设固定上限，由助手依材料可得性和验证质量自行判断规模。
 
 ## 提交/远端同步/Pages 状态
 
