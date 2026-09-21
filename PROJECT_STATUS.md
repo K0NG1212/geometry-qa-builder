@@ -14,11 +14,11 @@
 | `2e35100` | bio-nm-v04-003/004/005（复用已验证结构，挖掘亚纳米局部几何，零新检索） | 10 |
 | `58b54cd`→`5514a49` | q02-force-v04-002（QM7-X 新增 5 分子，量子×0.1–1nm 补满） | 9 |
 | `387915b`→`44a01e5` | quantum-nm-v04-001/002（OE62 数据集新引入，量子×1–10nm 补满） | 10 |
-| (本次提交) | materials-nm-v04-001（COD 大晶胞 MOF 新引入，材料×1–10nm 补满） | 10 |
+| `f309aab` | materials-nm-v04-001（COD 大晶胞 MOF 新引入，材料×1–10nm 补满） | 10 |
 
 ## 当前基线
 
-- HEAD：本次提交（materials-nm-v04-001），父提交 `44a01e5`。
+- HEAD：`f309aab`（materials-nm-v04-001，已推送），父提交 `44a01e5`。
 - 构题标准：PROTOTYPE.md 和 builder_modules/m0_scope/prototype-policy.json 的 v0.4，本会话未变更任何 Builder 代码逻辑（仅新增复算/发布脚本，属于既定模式的延伸；本批次复用 tools/recompute_materials_batch2.py 的通用立方 CIF 对称展开函数，未修改该文件本身，只是新写了一层薄封装）。全部题目走 evidence_review（周期结构的全局尺度扫描、晶面间距、结构因子消光定则均非 xyz_distance/xyz_angle 注册验证器类型）。
 - 目标 160，完整初筛候选 **70**，缺 90；正式可用计数仍为 0（无专家审核）。70 条均 pending_human_audit。
 - 31 个旧规划方向及 33 条历史记录不计入当前候选；本会话未触碰这些历史记录。
@@ -145,7 +145,7 @@
 ## 提交/远端同步/Pages 状态
 
 - 每次提交前均 `git fetch` 确认与 origin/main 一致（全程无分叉）。
-- 前六批提交均已推送：`8f9d138` → `7a5f96a` → `8ded5f0` → `2e35100` → `58b54cd` → `5514a49` → `387915b` → `44a01e5`。本次 materials-nm 批次提交见本文件更新后的 `git log` 最新一条；提交前同样执行了 `git fetch` 核对无分叉。
+- 全部提交均已推送：`8f9d138` → `7a5f96a` → `8ded5f0` → `2e35100` → `58b54cd` → `5514a49` → `387915b` → `44a01e5` → `f309aab`（当前 HEAD）。
 - **Pages 部署已在本会话验证**（见上方"实际执行的检查"）：确认 GitHub Pages 从 main 分支 /docs 目录自动部署，push 后约 1-2 分钟触发新部署；线上 `https://k0ng1212.github.io/geometry-qa-builder/` 内容与本地仓库一致，只是偶尔有几分钟的 CDN 边缘缓存传播延迟，不是配置问题。
 
 ## 接手时哪些东西可获得
