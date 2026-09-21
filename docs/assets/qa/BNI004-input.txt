@@ -1,0 +1,6 @@
+In a virtual FRET experiment placing a point donor at the tRNA's residue-76 C1' site (the 3' acceptor terminus) and a point acceptor at the residue-35 C1' site (anticodon center), calculate the transfer efficiency assuming an effective R0=3.5 nm. Given that documented R0 values for real dye pairs are typically in the 1 to 7 nm range, is this R0/dye-pair choice well matched to the measured donor-acceptor distance? What would an experimentalist need to change to get a more informative efficiency reading for this particular distance?
+
+Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping. Use S0020: all 76 C1' sites of 1EHZ chain A. Place a point donor exactly at row 76 (the 3' terminal C1') and a point acceptor exactly at row 35 (anticodon center C1'); r=||r_76-r_35||. Assume effective R0=3.5 nm, constant orientation/photophysical conditions, no dye-linker displacement or dynamics; no physical dyes are present in the PDB, this is an idealized exercise only. Use E=1/[1+(r/R0)^6]. Report r in nm to three decimals and E to six decimals.
+
+Attachments:
+S0020: item-0005-asset-1.xyz

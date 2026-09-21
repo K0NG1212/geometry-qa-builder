@@ -1,0 +1,6 @@
+For the supplied hen egg-white lysozyme CA model, calculate (a) the N-to-C terminal separation, (b) the maximum distance over all pairs of CA sites, and (c) the CA-CA distance between the catalytic residues Glu35 and Asp52. Identify the residues attaining the maximum pairwise distance. Why must (c) be small enough for a two-carboxylate acid/base mechanism to work, yet nonzero?
+
+Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization, crystallographic symmetry expansion or periodic wrapping; this is a single deposited model, not a solution-state ensemble. Use S0019 only: all 129 CA sites of 6LYZ chain A, row i = residue A:i. N-terminal site is Lys A:1; C-terminal site is Leu A:129; row 35 is Glu A:35; row 52 is Asp A:52 (confirmed by this entry's own HELIX and stereochemistry-check records, not assumed from a generic residue table). Define Dmax=max_(i<j)||r_i-r_j|| over all 129 sites; dNC=||r_1-r_129||; d_cat=||r_35-r_52||. Report nm to three decimals and both residue numbers of the maximum pair. This is a geometric measurement on one static crystal structure, not a claim about which conformation is catalytically active or a kinetic rate.
+
+Attachments:
+S0019: item-0001-asset-1.xyz

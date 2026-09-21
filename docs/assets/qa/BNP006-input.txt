@@ -1,0 +1,6 @@
+For the anticodon triplet (residues 34, 35, 36) of the supplied tRNA, calculate the three pairwise C1'-C1' distances (34-35, 35-36, 34-36) and the angle at residue 35 (vertex 35, using the 34-35 and 35-36 vectors). Is this triplet closer to a straight line, a right angle, or a folded-back hairpin? What does that geometry indicate about the availability of these three bases for pairing with an mRNA codon?
+
+Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping. Use S0020 only: all 76 C1' sites of 1EHZ chain A in residue order 1-76; rows 34, 35, 36 are the residues of interest (identities OMG, A, A per this entry's own SEQRES record). Compute d(34,35)=||r_35-r_34||, d(35,36)=||r_36-r_35||, d(34,36)=||r_36-r_34||, and the angle at residue 35 between vectors (r_34-r_35) and (r_36-r_35) using the standard dot-product formula. Report nm to three decimals and the angle in degrees to two decimals.
+
+Attachments:
+S0020: item-0003-asset-1.xyz

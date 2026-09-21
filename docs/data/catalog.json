@@ -2529,14 +2529,307 @@
       "inputSizeNm": 0.7141245479606482,
       "reasoningSizeNm": 0.7141245479606482,
       "sizeDefinition": "周期晶体输入按常规晶胞体对角线计量，不代表晶粒尺寸。局部配位题按所求邻居集合最大间距；晶面/结构因子题按决定答案的完整周期基元范围。conventional-cell diagonal for finite periodic motif; not grain size"
+    },
+    {
+      "paper": "pdb-bio-nm",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "publicDemo": true,
+      "batchId": "bio-nm-v04-002",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "batchReport": "bio-batch.html",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "answerKind": "text",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReviewedAt": "2026-09-21",
+      "attributionLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构的题目须整组划分，不能当作独立科学样本"
+      ],
+      "validation": "Supplemental calculator: separate full-scan / pairwise-distance-identity Rg / atan2 angle / Decimal FRET recomputation, independent of the primary computation module; evidence_review does not grade semantics.",
+      "restartFrom": "M5：独立审核与难度试测；来源关联组划分。",
+      "policyReview": "同会话辅助初筛通过，仍待独立审核。真实 PDB 坐标派生；等权散射、虚拟探针与 R0 均为题设假设，不是实验信号。",
+      "sizeDefinition": "实际输入为明确选定的 CA 或 C1′ 位点；尺寸为各结构选定位点的最大中心距，多结构取最大值。任务需要整体空间几何；不是用回转半径数值替代推理范围。",
+      "id": "BNP004",
+      "title": "溶菌酶末端距离、最大尺寸与活性位点裂隙",
+      "ability": "perception",
+      "family": "protein_extent_and_catalytic_cleft",
+      "question": "For the supplied hen egg-white lysozyme CA model, calculate (a) the N-to-C terminal separation, (b) the maximum distance over all pairs of CA sites, and (c) the CA-CA distance between the catalytic residues Glu35 and Asp52. Identify the residues attaining the maximum pairwise distance. Why must (c) be small enough for a two-carboxylate acid/base mechanism to work, yet nonzero?",
+      "modelInput": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization, crystallographic symmetry expansion or periodic wrapping; this is a single deposited model, not a solution-state ensemble. Use S0019 only: all 129 CA sites of 6LYZ chain A, row i = residue A:i. N-terminal site is Lys A:1; C-terminal site is Leu A:129; row 35 is Glu A:35; row 52 is Asp A:52 (confirmed by this entry's own HELIX and stereochemistry-check records, not assumed from a generic residue table). Define Dmax=max_(i<j)||r_i-r_j|| over all 129 sites; dNC=||r_1-r_129||; d_cat=||r_35-r_52||. Report nm to three decimals and both residue numbers of the maximum pair. This is a geometric measurement on one static crystal structure, not a claim about which conformation is catalytically active or a kinetic rate.",
+      "answer": "dNC=2.092 nm (residues Lys A:1 to Leu A:129). Dmax=4.384 nm, attained by residues A:70 and A:126. d_cat=0.973 nm between Glu35 and Asp52. A gap of about 1 nm across the substrate-binding cleft is small enough that both carboxylate side chains can simultaneously reach the sugar ring/glycosidic-bond region of a bound oligosaccharide substrate spanning the cleft, but the two residues remain on opposite faces of that substrate, letting one act as a general acid (protonating the leaving-group oxygen) while the other stabilizes the developing positive charge on the other face; if the gap were much larger neither residue could reach the reacting bond, and if it were near zero the two carboxylates could not independently address two different chemical roles on either side of the substrate.",
+      "inputObject": "6LYZ protein CA sites",
+      "rubric": "8 points: dNC (1; 0.001 nm), Dmax (1; 0.001 nm), maximum-pair residue numbers (1), d_cat (2; 0.001 nm), explanation that a catalytic gap must be small enough for both carboxylates to contact the substrate's glycosidic bond region yet nonzero so each can independently protonate/stabilize different atoms (3).",
+      "attribution": "PDB 6LYZ deposited structure coordinates (Diamond, 1974 real-space refinement), CC0 1.0 (RCSB/wwPDB usage policy). Selected CA representation and QA newly derived; catalytic-residue significance is established literature consensus cited in this entry's own reference list, not newly asserted.",
+      "traceUrl": "trace.html?qa=BNP004",
+      "inputInstructions": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization, crystallographic symmetry expansion or periodic wrapping; this is a single deposited model, not a solution-state ensemble. Use S0019 only: all 129 CA sites of 6LYZ chain A, row i = residue A:i. N-terminal site is Lys A:1; C-terminal site is Leu A:129; row 35 is Glu A:35; row 52 is Asp A:52 (confirmed by this entry's own HELIX and stereochemistry-check records, not assumed from a generic residue table). Define Dmax=max_(i<j)||r_i-r_j|| over all 129 sites; dNC=||r_1-r_129||; d_cat=||r_35-r_52||. Report nm to three decimals and both residue numbers of the maximum pair. This is a geometric measurement on one static crystal structure, not a claim about which conformation is catalytically active or a kinetic rate.",
+      "attachments": [
+        {
+          "name": "BNP004-S0019.xyz",
+          "url": "assets/qa/BNP004-S0019.xyz",
+          "description": "S0019：选定位点坐标，Å；行号与残基对应见题目说明"
+        }
+      ],
+      "inputDownload": "assets/qa/BNP004-input.txt",
+      "learningObjective": "Measure lysozyme's overall CA extent and its active-site cleft width (Glu35-Asp52) from real deposited coordinates, and relate cleft width to a two-carboxylate acid/base catalytic mechanism.",
+      "lifecycleReason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "derivedFrom": "原始结构重新构题，非复用现有QA；催化残基的科学意义引自条目自带文献列表，不是本次新主张。",
+      "sourceCluster": "bio-nm-protein-6lyz",
+      "relatedQaIds": [
+        "BNI003"
+      ],
+      "inputSizeNm": 4.383701688071395,
+      "reasoningSizeNm": 4.383701688071395,
+      "source": "https://www.rcsb.org/structure/6LYZ",
+      "completeInput": "For the supplied hen egg-white lysozyme CA model, calculate (a) the N-to-C terminal separation, (b) the maximum distance over all pairs of CA sites, and (c) the CA-CA distance between the catalytic residues Glu35 and Asp52. Identify the residues attaining the maximum pairwise distance. Why must (c) be small enough for a two-carboxylate acid/base mechanism to work, yet nonzero?\n\nCoordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization, crystallographic symmetry expansion or periodic wrapping; this is a single deposited model, not a solution-state ensemble. Use S0019 only: all 129 CA sites of 6LYZ chain A, row i = residue A:i. N-terminal site is Lys A:1; C-terminal site is Leu A:129; row 35 is Glu A:35; row 52 is Asp A:52 (confirmed by this entry's own HELIX and stereochemistry-check records, not assumed from a generic residue table). Define Dmax=max_(i<j)||r_i-r_j|| over all 129 sites; dNC=||r_1-r_129||; d_cat=||r_35-r_52||. Report nm to three decimals and both residue numbers of the maximum pair. This is a geometric measurement on one static crystal structure, not a claim about which conformation is catalytically active or a kinetic rate.\n\nAttachment S0019:\n129\nCoordinates in angstrom; atoms numbered from 1.\nC 2.445 10.457 9.182\nC 2.396 13.826 7.425\nC -1.200 15.052 7.311\nC -2.797 17.128 4.559\nC -3.979 20.606 5.546\nC -7.588 19.557 4.979\nC -7.298 15.981 6.233\nC -6.065 17.161 9.628\nC -8.681 19.915 9.821\nC -11.227 17.143 9.311\nC -9.710 14.962 12.030\nC -9.312 17.616 14.723\nC -12.968 18.474 14.148\nC -14.069 14.856 14.511\nC -12.027 14.963 17.717\nC -14.018 17.896 19.087\nC -11.404 20.640 18.766\nC -13.365 23.109 16.641\nC -14.080 25.848 19.183\nC -12.724 23.927 22.172\nC -12.261 26.661 24.776\nC -13.140 29.194 22.079\nC -10.435 28.571 19.482\nC -11.779 28.107 15.961\nC -10.673 24.992 14.084\nC -8.312 27.181 12.063\nC -6.430 28.273 15.179\nC -5.505 24.609 15.559\nC -4.492 23.682 12.017\nC -2.402 26.857 12.026\nC -0.578 26.085 15.269\nC 0.120 22.587 13.962\nC 1.476 23.709 10.595\nC 4.120 25.982 12.108\nC 4.710 23.725 15.105\nC 5.349 20.531 13.150\nC 4.540 20.923 9.459\nC 1.700 18.438 9.899\nC 4.274 15.746 10.644\nC 3.383 13.702 13.723\nC 6.824 12.104 13.957\nC 8.427 15.463 14.730\nC 10.622 16.061 17.776\nC 12.810 18.940 18.949\nC 15.147 19.257 21.932\nC 15.139 22.458 23.991\nC 18.089 23.781 25.985\nC 16.589 22.875 29.352\nC 16.855 19.284 28.170\nC 13.145 18.685 27.636\nC 11.971 17.581 24.194\nC 8.885 18.518 22.183\nC 6.636 15.841 20.700\nC 4.046 15.335 17.966\nC 1.911 17.349 15.555\nC 1.284 19.842 18.359\nC 4.742 19.591 19.921\nC 3.805 18.812 23.524\nC 6.598 19.187 26.079\nC 8.135 16.486 28.270\nC 8.935 18.674 31.277\nC 5.215 18.747 32.059\nC 2.811 16.826 29.828\nC 4.418 13.486 28.994\nC 7.171 11.074 30.027\nC 10.020 10.221 27.666\nC 12.121 9.074 30.620\nC 15.050 11.459 30.212\nC 13.568 14.735 31.414\nC 14.000 15.011 35.179\nC 11.889 17.797 36.660\nC 9.195 15.862 34.820\nC 5.530 16.009 35.808\nC 3.595 13.783 33.416\nC 0.284 15.630 33.645\nC -1.035 13.954 30.501\nC -0.117 10.529 31.844\nC 1.253 9.486 28.457\nC 4.713 8.330 27.412\nC 5.808 10.997 24.936\nC 6.261 8.425 22.176\nC 2.489 7.969 22.134\nC 2.138 11.547 20.933\nC 3.978 10.584 17.749\nC 1.743 7.858 16.338\nC -0.493 8.474 13.328\nC -3.703 8.580 15.349\nC -3.676 12.058 16.882\nC -6.137 11.073 19.601\nC -3.609 11.188 22.439\nC -2.271 14.538 21.243\nC -5.696 16.168 21.065\nC -6.649 14.687 24.429\nC -3.491 16.132 25.968\nC -3.642 19.372 23.984\nC -7.077 19.930 25.515\nC -5.564 19.899 29.003\nC -2.695 22.188 28.043\nC -5.126 24.777 26.684\nC -7.754 24.640 29.429\nC -5.195 25.028 32.101\nC -4.564 28.766 31.850\nC -2.659 30.551 29.085\nC -4.933 29.247 26.332\nC -2.996 28.667 23.113\nC -0.252 31.077 24.179\nC 1.231 27.860 25.559\nC 2.358 27.366 21.961\nC 5.094 29.887 21.171\nC 4.474 29.226 17.483\nC 0.732 29.873 17.670\nC 1.321 33.104 19.591\nC 3.974 34.485 17.242\nC 2.707 33.315 13.854\nC -0.977 32.469 14.254\nC -2.486 34.814 16.838\nC -4.378 37.635 15.138\nC -4.023 36.614 11.496\nC -7.293 35.432 9.966\nC -6.730 31.751 10.726\nC -9.825 30.681 8.823\nC -7.629 30.645 5.725\nC -6.268 27.322 6.975\nC -9.607 25.561 6.574\nC -10.680 27.053 3.257\nC -11.354 24.358 0.661\nC -12.328 21.822 3.316\nC -15.407 19.600 3.434\nC -15.930 20.242 7.145\n"
+    },
+    {
+      "paper": "pdb-bio-nm",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "publicDemo": true,
+      "batchId": "bio-nm-v04-002",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "batchReport": "bio-batch.html",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "answerKind": "text",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReviewedAt": "2026-09-21",
+      "attributionLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构的题目须整组划分，不能当作独立科学样本"
+      ],
+      "validation": "Supplemental calculator: separate full-scan / pairwise-distance-identity Rg / atan2 angle / Decimal FRET recomputation, independent of the primary computation module; evidence_review does not grade semantics.",
+      "restartFrom": "M5：独立审核与难度试测；来源关联组划分。",
+      "policyReview": "同会话辅助初筛通过，仍待独立审核。真实 PDB 坐标派生；等权散射、虚拟探针与 R0 均为题设假设，不是实验信号。",
+      "sizeDefinition": "实际输入为明确选定的 CA 或 C1′ 位点；尺寸为各结构选定位点的最大中心距，多结构取最大值。任务需要整体空间几何；不是用回转半径数值替代推理范围。",
+      "id": "BNP005",
+      "title": "tRNA骨架路径长度与折叠证据",
+      "ability": "perception",
+      "family": "rna_backbone_path",
+      "question": "For the supplied yeast phenylalanine tRNA C1' backbone model, calculate (a) the polygonal backbone path length from residue 1 to residue 76, (b) the endpoint chord (residue 1 to residue 76 straight-line distance), and (c) the path/chord ratio. Is this molecule's backbone close to a straight or gently curved chain, or is it folded back on itself? What does a large path/chord ratio show about the tertiary structure that the path length or chord alone would not?",
+      "modelInput": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping; this is a single deposited crystal model. Use S0020 only: all 76 C1' sites of 1EHZ chain A in residue order 1-76 (the 14 chemically modified nucleotides are included at their correct sequence positions, not omitted). Define the polygonal path length L=sum_(i=1..75)||r_(i+1)-r_i||, the endpoint chord c=||r_76-r_1||, and the ratio c/L. Report nm to three decimals and the dimensionless ratio to three decimals. This path follows only the 76 backbone sites actually supplied; it is not a fitted helical axis or a claim about every atom's position.",
+      "answer": "L=45.376 nm; c=1.900 nm; ratio c/L=0.042 (equivalently L/c=23.888). The chain is folded back on itself, not straight or gently curved: the backbone travels roughly 24 times farther than the direct distance between its two ends. Path length alone would only say the chain is long; the chord alone would only say the two ends happen to be close together. Their large ratio together is direct geometric evidence that the intervening backbone loops back through space, consistent with tRNA's known folded L-shaped tertiary structure rather than an extended or lightly bent single strand.",
+      "inputObject": "1EHZ RNA C1-prime sites",
+      "rubric": "7 points: L (2; 0.001 nm), c (1; 0.001 nm), ratio (1; 0.001), correct qualitative statement that the chain is folded back on itself rather than straight or gently curved (2), explanation that a large ratio shows extensive compact folding that neither the path length nor the chord alone would reveal (1).",
+      "attribution": "PDB 1EHZ deposited structure coordinates (Shi & Moore, 2000, 1.93 A resolution), CC0 1.0 (RCSB/wwPDB usage policy). Selected C1' representation and QA newly derived; NIH MIPAV FRET documentation supplies method support for the FRET task.",
+      "traceUrl": "trace.html?qa=BNP005",
+      "inputInstructions": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping; this is a single deposited crystal model. Use S0020 only: all 76 C1' sites of 1EHZ chain A in residue order 1-76 (the 14 chemically modified nucleotides are included at their correct sequence positions, not omitted). Define the polygonal path length L=sum_(i=1..75)||r_(i+1)-r_i||, the endpoint chord c=||r_76-r_1||, and the ratio c/L. Report nm to three decimals and the dimensionless ratio to three decimals. This path follows only the 76 backbone sites actually supplied; it is not a fitted helical axis or a claim about every atom's position.",
+      "attachments": [
+        {
+          "name": "BNP005-S0020.xyz",
+          "url": "assets/qa/BNP005-S0020.xyz",
+          "description": "S0020：选定位点坐标，Å；行号与残基对应见题目说明"
+        }
+      ],
+      "inputDownload": "assets/qa/BNP005-input.txt",
+      "learningObjective": "Show, from real coordinates, that tRNA's backbone path length greatly exceeds its endpoint chord, as direct geometric evidence for the characteristic folded L-shaped tertiary structure.",
+      "lifecycleReason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "derivedFrom": "原始结构重新构题，非复用现有QA。",
+      "sourceCluster": "bio-nm-rna-1ehz",
+      "relatedQaIds": [
+        "BNP006",
+        "BNI004"
+      ],
+      "inputSizeNm": 7.754673913195835,
+      "reasoningSizeNm": 7.754673913195835,
+      "source": "https://www.rcsb.org/structure/1EHZ",
+      "completeInput": "For the supplied yeast phenylalanine tRNA C1' backbone model, calculate (a) the polygonal backbone path length from residue 1 to residue 76, (b) the endpoint chord (residue 1 to residue 76 straight-line distance), and (c) the path/chord ratio. Is this molecule's backbone close to a straight or gently curved chain, or is it folded back on itself? What does a large path/chord ratio show about the tertiary structure that the path length or chord alone would not?\n\nCoordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping; this is a single deposited crystal model. Use S0020 only: all 76 C1' sites of 1EHZ chain A in residue order 1-76 (the 14 chemically modified nucleotides are included at their correct sequence positions, not omitted). Define the polygonal path length L=sum_(i=1..75)||r_(i+1)-r_i||, the endpoint chord c=||r_76-r_1||, and the ratio c/L. Report nm to three decimals and the dimensionless ratio to three decimals. This path follows only the 76 backbone sites actually supplied; it is not a fitted helical axis or a claim about every atom's position.\n\nAttachment S0020:\n76\nCoordinates in angstrom; atoms numbered from 1.\nC 51.502 47.007 54.836\nC 57.022 45.836 55.356\nC 62.018 44.572 53.194\nC 65.192 43.241 49.051\nC 65.646 42.719 43.615\nC 64.413 45.113 39.057\nC 63.015 49.475 35.442\nC 68.407 51.830 29.255\nC 65.985 50.969 21.571\nC 60.152 47.173 19.012\nC 62.189 42.294 22.230\nC 66.013 40.478 25.565\nC 69.909 42.919 28.054\nC 75.325 45.147 28.805\nC 76.941 49.779 30.686\nC 78.428 53.548 33.551\nC 86.102 56.903 36.958\nC 80.191 61.615 36.658\nC 81.965 63.912 30.283\nC 80.836 58.580 23.876\nC 74.304 56.666 24.955\nC 75.605 50.671 23.444\nC 75.210 45.010 21.771\nC 72.412 40.925 20.073\nC 67.844 39.818 17.685\nC 64.147 42.470 14.901\nC 63.159 46.064 10.787\nC 65.046 48.767 5.987\nC 69.196 48.789 2.509\nC 73.839 46.903 0.605\nC 76.518 42.403 -0.649\nC 75.756 37.560 -2.358\nC 72.289 33.769 -5.226\nC 68.999 31.433 -10.593\nC 66.202 32.251 -6.217\nC 67.143 31.833 -1.328\nC 68.645 30.761 3.410\nC 73.308 31.178 6.015\nC 77.325 34.455 6.488\nC 79.168 39.648 6.065\nC 78.651 45.424 5.527\nC 75.657 49.688 6.671\nC 71.295 52.730 8.219\nC 67.208 53.996 10.887\nC 65.456 53.277 15.954\nC 65.949 56.384 22.900\nC 60.798 60.075 28.167\nC 68.291 55.799 30.245\nC 60.568 54.849 34.825\nC 58.966 60.259 36.646\nC 60.143 64.799 39.378\nC 63.119 67.888 42.237\nC 68.019 68.537 43.991\nC 73.711 68.026 44.082\nC 77.461 69.118 40.100\nC 81.174 72.955 35.333\nC 78.571 68.404 33.655\nC 73.908 63.150 35.551\nC 71.808 56.483 32.934\nC 75.336 56.786 37.306\nC 74.974 60.515 43.421\nC 70.711 62.312 46.995\nC 65.541 62.713 48.233\nC 60.283 61.983 47.026\nC 57.142 59.262 44.032\nC 55.595 55.117 40.311\nC 55.669 50.417 38.391\nC 57.286 45.028 38.018\nC 58.796 41.050 41.019\nC 60.163 37.591 45.267\nC 59.915 36.661 50.374\nC 57.184 38.082 54.963\nC 52.823 40.304 57.196\nC 47.080 40.621 56.662\nC 43.631 36.926 54.915\nC 35.314 37.959 58.950\n"
+    },
+    {
+      "paper": "pdb-bio-nm",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "publicDemo": true,
+      "batchId": "bio-nm-v04-002",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "batchReport": "bio-batch.html",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "answerKind": "text",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReviewedAt": "2026-09-21",
+      "attributionLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构的题目须整组划分，不能当作独立科学样本"
+      ],
+      "validation": "Supplemental calculator: separate full-scan / pairwise-distance-identity Rg / atan2 angle / Decimal FRET recomputation, independent of the primary computation module; evidence_review does not grade semantics.",
+      "restartFrom": "M5：独立审核与难度试测；来源关联组划分。",
+      "policyReview": "同会话辅助初筛通过，仍待独立审核。真实 PDB 坐标派生；等权散射、虚拟探针与 R0 均为题设假设，不是实验信号。",
+      "sizeDefinition": "实际输入为明确选定的 CA 或 C1′ 位点；尺寸为各结构选定位点的最大中心距，多结构取最大值。任务需要整体空间几何；不是用回转半径数值替代推理范围。",
+      "id": "BNP006",
+      "title": "反密码子三联体的局部构象",
+      "ability": "perception",
+      "family": "anticodon_loop_geometry",
+      "question": "For the anticodon triplet (residues 34, 35, 36) of the supplied tRNA, calculate the three pairwise C1'-C1' distances (34-35, 35-36, 34-36) and the angle at residue 35 (vertex 35, using the 34-35 and 35-36 vectors). Is this triplet closer to a straight line, a right angle, or a folded-back hairpin? What does that geometry indicate about the availability of these three bases for pairing with an mRNA codon?",
+      "modelInput": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping. Use S0020 only: all 76 C1' sites of 1EHZ chain A in residue order 1-76; rows 34, 35, 36 are the residues of interest (identities OMG, A, A per this entry's own SEQRES record). Compute d(34,35)=||r_35-r_34||, d(35,36)=||r_36-r_35||, d(34,36)=||r_36-r_34||, and the angle at residue 35 between vectors (r_34-r_35) and (r_36-r_35) using the standard dot-product formula. Report nm to three decimals and the angle in degrees to two decimals.",
+      "answer": "d(34,35)=0.526 nm; d(35,36)=0.500 nm; d(34,36)=0.946 nm; angle at residue 35 = 134.53 degrees. This is neither a straight line (180 degrees) nor a folded-back hairpin (a small angle with d(34,36) much less than d(34,35)+d(35,36)); it is a gently bent, largely extended single-stranded segment (d(34,36)=0.946 nm is close to but slightly less than the 1.025 nm sum of the two adjacent distances). This open, non-folded-back conformation leaves the anticodon triplet's base-pairing edges exposed and roughly aligned along the loop, consistent with its role of presenting three consecutive bases for antiparallel Watson-Crick pairing with an mRNA codon rather than burying them in internal contacts.",
+      "inputObject": "1EHZ RNA C1-prime sites",
+      "rubric": "7 points: three distances (3; 0.001 nm), angle (2; 0.02 degree), correct qualitative call of a gently bent, largely extended single-stranded segment rather than a straight line or a folded-back hairpin (1), correct explanation that this open, accessible conformation is what lets the three bases stack in a way that presents their Watson-Crick edges for antiparallel codon pairing (1).",
+      "attribution": "PDB 1EHZ deposited structure coordinates (Shi & Moore, 2000, 1.93 A resolution), CC0 1.0 (RCSB/wwPDB usage policy). Selected C1' representation and QA newly derived; NIH MIPAV FRET documentation supplies method support for the FRET task.",
+      "traceUrl": "trace.html?qa=BNP006",
+      "inputInstructions": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping. Use S0020 only: all 76 C1' sites of 1EHZ chain A in residue order 1-76; rows 34, 35, 36 are the residues of interest (identities OMG, A, A per this entry's own SEQRES record). Compute d(34,35)=||r_35-r_34||, d(35,36)=||r_36-r_35||, d(34,36)=||r_36-r_34||, and the angle at residue 35 between vectors (r_34-r_35) and (r_36-r_35) using the standard dot-product formula. Report nm to three decimals and the angle in degrees to two decimals.",
+      "attachments": [
+        {
+          "name": "BNP006-S0020.xyz",
+          "url": "assets/qa/BNP006-S0020.xyz",
+          "description": "S0020：选定位点坐标，Å；行号与残基对应见题目说明"
+        }
+      ],
+      "inputDownload": "assets/qa/BNP006-input.txt",
+      "learningObjective": "Verify, from real coordinates, the near-collinear single-stranded conformation of the anticodon triplet expected for codon recognition.",
+      "lifecycleReason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "derivedFrom": "原始结构重新构题，非复用现有QA；反密码子身份核对自条目自带SEQRES记录。",
+      "sourceCluster": "bio-nm-rna-1ehz",
+      "relatedQaIds": [
+        "BNP005",
+        "BNI004"
+      ],
+      "inputSizeNm": 7.754673913195835,
+      "reasoningSizeNm": 7.754673913195835,
+      "source": "https://www.rcsb.org/structure/1EHZ",
+      "completeInput": "For the anticodon triplet (residues 34, 35, 36) of the supplied tRNA, calculate the three pairwise C1'-C1' distances (34-35, 35-36, 34-36) and the angle at residue 35 (vertex 35, using the 34-35 and 35-36 vectors). Is this triplet closer to a straight line, a right angle, or a folded-back hairpin? What does that geometry indicate about the availability of these three bases for pairing with an mRNA codon?\n\nCoordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping. Use S0020 only: all 76 C1' sites of 1EHZ chain A in residue order 1-76; rows 34, 35, 36 are the residues of interest (identities OMG, A, A per this entry's own SEQRES record). Compute d(34,35)=||r_35-r_34||, d(35,36)=||r_36-r_35||, d(34,36)=||r_36-r_34||, and the angle at residue 35 between vectors (r_34-r_35) and (r_36-r_35) using the standard dot-product formula. Report nm to three decimals and the angle in degrees to two decimals.\n\nAttachment S0020:\n76\nCoordinates in angstrom; atoms numbered from 1.\nC 51.502 47.007 54.836\nC 57.022 45.836 55.356\nC 62.018 44.572 53.194\nC 65.192 43.241 49.051\nC 65.646 42.719 43.615\nC 64.413 45.113 39.057\nC 63.015 49.475 35.442\nC 68.407 51.830 29.255\nC 65.985 50.969 21.571\nC 60.152 47.173 19.012\nC 62.189 42.294 22.230\nC 66.013 40.478 25.565\nC 69.909 42.919 28.054\nC 75.325 45.147 28.805\nC 76.941 49.779 30.686\nC 78.428 53.548 33.551\nC 86.102 56.903 36.958\nC 80.191 61.615 36.658\nC 81.965 63.912 30.283\nC 80.836 58.580 23.876\nC 74.304 56.666 24.955\nC 75.605 50.671 23.444\nC 75.210 45.010 21.771\nC 72.412 40.925 20.073\nC 67.844 39.818 17.685\nC 64.147 42.470 14.901\nC 63.159 46.064 10.787\nC 65.046 48.767 5.987\nC 69.196 48.789 2.509\nC 73.839 46.903 0.605\nC 76.518 42.403 -0.649\nC 75.756 37.560 -2.358\nC 72.289 33.769 -5.226\nC 68.999 31.433 -10.593\nC 66.202 32.251 -6.217\nC 67.143 31.833 -1.328\nC 68.645 30.761 3.410\nC 73.308 31.178 6.015\nC 77.325 34.455 6.488\nC 79.168 39.648 6.065\nC 78.651 45.424 5.527\nC 75.657 49.688 6.671\nC 71.295 52.730 8.219\nC 67.208 53.996 10.887\nC 65.456 53.277 15.954\nC 65.949 56.384 22.900\nC 60.798 60.075 28.167\nC 68.291 55.799 30.245\nC 60.568 54.849 34.825\nC 58.966 60.259 36.646\nC 60.143 64.799 39.378\nC 63.119 67.888 42.237\nC 68.019 68.537 43.991\nC 73.711 68.026 44.082\nC 77.461 69.118 40.100\nC 81.174 72.955 35.333\nC 78.571 68.404 33.655\nC 73.908 63.150 35.551\nC 71.808 56.483 32.934\nC 75.336 56.786 37.306\nC 74.974 60.515 43.421\nC 70.711 62.312 46.995\nC 65.541 62.713 48.233\nC 60.283 61.983 47.026\nC 57.142 59.262 44.032\nC 55.595 55.117 40.311\nC 55.669 50.417 38.391\nC 57.286 45.028 38.018\nC 58.796 41.050 41.019\nC 60.163 37.591 45.267\nC 59.915 36.661 50.374\nC 57.184 38.082 54.963\nC 52.823 40.304 57.196\nC 47.080 40.621 56.662\nC 43.631 36.926 54.915\nC 35.314 37.959 58.950\n"
+    },
+    {
+      "paper": "pdb-bio-nm",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "publicDemo": true,
+      "batchId": "bio-nm-v04-002",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "batchReport": "bio-batch.html",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "answerKind": "text",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReviewedAt": "2026-09-21",
+      "attributionLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构的题目须整组划分，不能当作独立科学样本"
+      ],
+      "validation": "Supplemental calculator: separate full-scan / pairwise-distance-identity Rg / atan2 angle / Decimal FRET recomputation, independent of the primary computation module; evidence_review does not grade semantics.",
+      "restartFrom": "M5：独立审核与难度试测；来源关联组划分。",
+      "policyReview": "同会话辅助初筛通过，仍待独立审核。真实 PDB 坐标派生；等权散射、虚拟探针与 R0 均为题设假设，不是实验信号。",
+      "sizeDefinition": "实际输入为明确选定的 CA 或 C1′ 位点；尺寸为各结构选定位点的最大中心距，多结构取最大值。任务需要整体空间几何；不是用回转半径数值替代推理范围。",
+      "id": "BNI003",
+      "title": "三种蛋白质的回转半径与链长关系",
+      "ability": "inference",
+      "family": "cross_protein_gyration_comparison",
+      "question": "Calculate the equal-weight CA radius of gyration of the supplied lysozyme structure. Using the already-established values Rg(1UBQ)=1.149289 nm and Rg(1CRN)=0.967550 nm, rank all three proteins by Rg and by chain length (129, 76, 46 residues respectively). Do the two rankings agree? Does that agreement alone establish that longer chains always fold less compactly, or that compactness is fully determined by length?",
+      "modelInput": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping. Use S0019: all 129 CA sites of 6LYZ chain A. Define the equal-weight (unweighted) radius of gyration Rg=sqrt[(1/N) sum_i ||r_i - r_centroid||^2] where r_centroid is the mean of all N=129 supplied CA positions; this is a geometric point-mass quantity over the selected backbone sites, not a measured SAXS Rg. Report nm to three decimals. The two comparison values for 1UBQ and 1CRN are taken as already-established (from bio-nm-v04-001) and must not be recomputed from any other assumption.",
+      "answer": "Rg(lysozyme)=1.375 nm. Ranking by Rg: lysozyme (1.375 nm) > 1UBQ (1.149289 nm) > 1CRN (0.967550 nm). Ranking by chain length: lysozyme (129) > 1UBQ (76) > 1CRN (46). The two rankings agree exactly for these three proteins. This agreement does not establish a general rule that longer chains always fold less compactly: with only three data points, different folds (an alpha/beta hydrolase, a beta-grasp fold, and a small disulfide-stabilized fold), and no free-energy or ensemble information, this ranking cannot separate a genuine length-compactness trend from coincidence among these particular three structures, and radius of gyration by itself says nothing about folding stability.",
+      "inputObject": "6LYZ protein CA sites (compared with already-accepted 1UBQ/1CRN values)",
+      "rubric": "7 points: Rg(lysozyme) (2; 0.001 nm), correct ranking by Rg and by length (2), correct statement that the rankings agree here (1), correct caveat that three data points with different folds cannot establish a general length-compactness law and that Rg alone does not measure folding stability or free energy (2).",
+      "attribution": "PDB 6LYZ deposited structure coordinates (Diamond, 1974 real-space refinement), CC0 1.0 (RCSB/wwPDB usage policy). Selected CA representation and QA newly derived; catalytic-residue significance is established literature consensus cited in this entry's own reference list, not newly asserted.",
+      "traceUrl": "trace.html?qa=BNI003",
+      "inputInstructions": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping. Use S0019: all 129 CA sites of 6LYZ chain A. Define the equal-weight (unweighted) radius of gyration Rg=sqrt[(1/N) sum_i ||r_i - r_centroid||^2] where r_centroid is the mean of all N=129 supplied CA positions; this is a geometric point-mass quantity over the selected backbone sites, not a measured SAXS Rg. Report nm to three decimals. The two comparison values for 1UBQ and 1CRN are taken as already-established (from bio-nm-v04-001) and must not be recomputed from any other assumption.",
+      "attachments": [
+        {
+          "name": "BNI003-S0019.xyz",
+          "url": "assets/qa/BNI003-S0019.xyz",
+          "description": "S0019：选定位点坐标，Å；行号与残基对应见题目说明"
+        }
+      ],
+      "inputDownload": "assets/qa/BNI003-input.txt",
+      "learningObjective": "Compare lysozyme's radius of gyration against the two previously accepted proteins and reason about chain-length versus compactness without overclaiming stability.",
+      "lifecycleReason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "derivedFrom": "原始结构重新构题；与已通过的 bio-nm-v04-001 数值比较，未重新计算旧数据。",
+      "sourceCluster": "bio-nm-protein-6lyz",
+      "relatedQaIds": [
+        "BNP004"
+      ],
+      "inputSizeNm": 4.383701688071395,
+      "reasoningSizeNm": 4.383701688071395,
+      "source": "https://www.rcsb.org/structure/6LYZ",
+      "completeInput": "Calculate the equal-weight CA radius of gyration of the supplied lysozyme structure. Using the already-established values Rg(1UBQ)=1.149289 nm and Rg(1CRN)=0.967550 nm, rank all three proteins by Rg and by chain length (129, 76, 46 residues respectively). Do the two rankings agree? Does that agreement alone establish that longer chains always fold less compactly, or that compactness is fully determined by length?\n\nCoordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping. Use S0019: all 129 CA sites of 6LYZ chain A. Define the equal-weight (unweighted) radius of gyration Rg=sqrt[(1/N) sum_i ||r_i - r_centroid||^2] where r_centroid is the mean of all N=129 supplied CA positions; this is a geometric point-mass quantity over the selected backbone sites, not a measured SAXS Rg. Report nm to three decimals. The two comparison values for 1UBQ and 1CRN are taken as already-established (from bio-nm-v04-001) and must not be recomputed from any other assumption.\n\nAttachment S0019:\n129\nCoordinates in angstrom; atoms numbered from 1.\nC 2.445 10.457 9.182\nC 2.396 13.826 7.425\nC -1.200 15.052 7.311\nC -2.797 17.128 4.559\nC -3.979 20.606 5.546\nC -7.588 19.557 4.979\nC -7.298 15.981 6.233\nC -6.065 17.161 9.628\nC -8.681 19.915 9.821\nC -11.227 17.143 9.311\nC -9.710 14.962 12.030\nC -9.312 17.616 14.723\nC -12.968 18.474 14.148\nC -14.069 14.856 14.511\nC -12.027 14.963 17.717\nC -14.018 17.896 19.087\nC -11.404 20.640 18.766\nC -13.365 23.109 16.641\nC -14.080 25.848 19.183\nC -12.724 23.927 22.172\nC -12.261 26.661 24.776\nC -13.140 29.194 22.079\nC -10.435 28.571 19.482\nC -11.779 28.107 15.961\nC -10.673 24.992 14.084\nC -8.312 27.181 12.063\nC -6.430 28.273 15.179\nC -5.505 24.609 15.559\nC -4.492 23.682 12.017\nC -2.402 26.857 12.026\nC -0.578 26.085 15.269\nC 0.120 22.587 13.962\nC 1.476 23.709 10.595\nC 4.120 25.982 12.108\nC 4.710 23.725 15.105\nC 5.349 20.531 13.150\nC 4.540 20.923 9.459\nC 1.700 18.438 9.899\nC 4.274 15.746 10.644\nC 3.383 13.702 13.723\nC 6.824 12.104 13.957\nC 8.427 15.463 14.730\nC 10.622 16.061 17.776\nC 12.810 18.940 18.949\nC 15.147 19.257 21.932\nC 15.139 22.458 23.991\nC 18.089 23.781 25.985\nC 16.589 22.875 29.352\nC 16.855 19.284 28.170\nC 13.145 18.685 27.636\nC 11.971 17.581 24.194\nC 8.885 18.518 22.183\nC 6.636 15.841 20.700\nC 4.046 15.335 17.966\nC 1.911 17.349 15.555\nC 1.284 19.842 18.359\nC 4.742 19.591 19.921\nC 3.805 18.812 23.524\nC 6.598 19.187 26.079\nC 8.135 16.486 28.270\nC 8.935 18.674 31.277\nC 5.215 18.747 32.059\nC 2.811 16.826 29.828\nC 4.418 13.486 28.994\nC 7.171 11.074 30.027\nC 10.020 10.221 27.666\nC 12.121 9.074 30.620\nC 15.050 11.459 30.212\nC 13.568 14.735 31.414\nC 14.000 15.011 35.179\nC 11.889 17.797 36.660\nC 9.195 15.862 34.820\nC 5.530 16.009 35.808\nC 3.595 13.783 33.416\nC 0.284 15.630 33.645\nC -1.035 13.954 30.501\nC -0.117 10.529 31.844\nC 1.253 9.486 28.457\nC 4.713 8.330 27.412\nC 5.808 10.997 24.936\nC 6.261 8.425 22.176\nC 2.489 7.969 22.134\nC 2.138 11.547 20.933\nC 3.978 10.584 17.749\nC 1.743 7.858 16.338\nC -0.493 8.474 13.328\nC -3.703 8.580 15.349\nC -3.676 12.058 16.882\nC -6.137 11.073 19.601\nC -3.609 11.188 22.439\nC -2.271 14.538 21.243\nC -5.696 16.168 21.065\nC -6.649 14.687 24.429\nC -3.491 16.132 25.968\nC -3.642 19.372 23.984\nC -7.077 19.930 25.515\nC -5.564 19.899 29.003\nC -2.695 22.188 28.043\nC -5.126 24.777 26.684\nC -7.754 24.640 29.429\nC -5.195 25.028 32.101\nC -4.564 28.766 31.850\nC -2.659 30.551 29.085\nC -4.933 29.247 26.332\nC -2.996 28.667 23.113\nC -0.252 31.077 24.179\nC 1.231 27.860 25.559\nC 2.358 27.366 21.961\nC 5.094 29.887 21.171\nC 4.474 29.226 17.483\nC 0.732 29.873 17.670\nC 1.321 33.104 19.591\nC 3.974 34.485 17.242\nC 2.707 33.315 13.854\nC -0.977 32.469 14.254\nC -2.486 34.814 16.838\nC -4.378 37.635 15.138\nC -4.023 36.614 11.496\nC -7.293 35.432 9.966\nC -6.730 31.751 10.726\nC -9.825 30.681 8.823\nC -7.629 30.645 5.725\nC -6.268 27.322 6.975\nC -9.607 25.561 6.574\nC -10.680 27.053 3.257\nC -11.354 24.358 0.661\nC -12.328 21.822 3.316\nC -15.407 19.600 3.434\nC -15.930 20.242 7.145\n"
+    },
+    {
+      "paper": "pdb-bio-nm",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "publicDemo": true,
+      "batchId": "bio-nm-v04-002",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "batchReport": "bio-batch.html",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "answerKind": "text",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReviewedAt": "2026-09-21",
+      "attributionLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "missing": [
+        "待独立领域审核及难度试测",
+        "共享结构的题目须整组划分，不能当作独立科学样本"
+      ],
+      "validation": "Supplemental calculator: separate full-scan / pairwise-distance-identity Rg / atan2 angle / Decimal FRET recomputation, independent of the primary computation module; evidence_review does not grade semantics.",
+      "restartFrom": "M5：独立审核与难度试测；来源关联组划分。",
+      "policyReview": "同会话辅助初筛通过，仍待独立审核。真实 PDB 坐标派生；等权散射、虚拟探针与 R0 均为题设假设，不是实验信号。",
+      "sizeDefinition": "实际输入为明确选定的 CA 或 C1′ 位点；尺寸为各结构选定位点的最大中心距，多结构取最大值。任务需要整体空间几何；不是用回转半径数值替代推理范围。",
+      "id": "BNI004",
+      "title": "tRNA虚拟FRET探针与量程匹配",
+      "ability": "inference",
+      "family": "fret_range_mismatch_inference",
+      "question": "In a virtual FRET experiment placing a point donor at the tRNA's residue-76 C1' site (the 3' acceptor terminus) and a point acceptor at the residue-35 C1' site (anticodon center), calculate the transfer efficiency assuming an effective R0=3.5 nm. Given that documented R0 values for real dye pairs are typically in the 1 to 7 nm range, is this R0/dye-pair choice well matched to the measured donor-acceptor distance? What would an experimentalist need to change to get a more informative efficiency reading for this particular distance?",
+      "modelInput": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping. Use S0020: all 76 C1' sites of 1EHZ chain A. Place a point donor exactly at row 76 (the 3' terminal C1') and a point acceptor exactly at row 35 (anticodon center C1'); r=||r_76-r_35||. Assume effective R0=3.5 nm, constant orientation/photophysical conditions, no dye-linker displacement or dynamics; no physical dyes are present in the PDB, this is an idealized exercise only. Use E=1/[1+(r/R0)^6]. Report r in nm to three decimals and E to six decimals.",
+      "answer": "r=7.234 nm; E=0.012663. This R0/dye-pair choice is poorly matched to the measured distance: FRET efficiency falls off as the sixth power of r/R0, and at r/R0 approximately 2.07 the predicted efficiency is already down near the assay's practical noise floor, well past the steep, informative part of the E(r) curve that lies close to R0. Since documented R0 values for real dye pairs are typically in the 1 to 7 nm range, an experimentalist studying a ~7.2 nm separation should choose a donor-acceptor pair with a larger R0 (closer to this distance) so that E responds sensitively to conformational changes, or instead measure the distance with multiple shorter-range FRET pairs placed along intermediate points of the fold, or use a different distance-sensitive method (e.g. paramagnetic relaxation, cross-linking) better suited to this length scale.",
+      "inputObject": "1EHZ RNA C1-prime sites",
+      "rubric": "8 points: r (2; 0.001 nm), E (2; 1e-6), correct statement that E is very small/near floor and that r is well beyond the R0-comparable range where FRET is most sensitive (2), concrete recommendation such as choosing a longer-R0 dye pair, using multiple shorter-range FRET pairs along the path, or an entirely different distance-sensitive method for r on this scale (2).",
+      "attribution": "PDB 1EHZ deposited structure coordinates (Shi & Moore, 2000, 1.93 A resolution), CC0 1.0 (RCSB/wwPDB usage policy). Selected C1' representation and QA newly derived; NIH MIPAV FRET documentation supplies method support for the FRET task.",
+      "traceUrl": "trace.html?qa=BNI004",
+      "inputInstructions": "Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping. Use S0020: all 76 C1' sites of 1EHZ chain A. Place a point donor exactly at row 76 (the 3' terminal C1') and a point acceptor exactly at row 35 (anticodon center C1'); r=||r_76-r_35||. Assume effective R0=3.5 nm, constant orientation/photophysical conditions, no dye-linker displacement or dynamics; no physical dyes are present in the PDB, this is an idealized exercise only. Use E=1/[1+(r/R0)^6]. Report r in nm to three decimals and E to six decimals.",
+      "attachments": [
+        {
+          "name": "BNI004-S0020.xyz",
+          "url": "assets/qa/BNI004-S0020.xyz",
+          "description": "S0020：选定位点坐标，Å；行号与残基对应见题目说明"
+        }
+      ],
+      "inputDownload": "assets/qa/BNI004-input.txt",
+      "learningObjective": "Apply the Forster efficiency relation to a real measured distance at/beyond typical R0 values, and reason about experimental-design consequences rather than only computing a number.",
+      "lifecycleReason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "derivedFrom": "原始结构重新构题，非复用现有QA；R0 为明确题设假设，不代表任何具体真实染料对。",
+      "sourceCluster": "bio-nm-rna-1ehz",
+      "relatedQaIds": [
+        "BNP005",
+        "BNP006"
+      ],
+      "inputSizeNm": 7.754673913195835,
+      "reasoningSizeNm": 7.754673913195835,
+      "source": "https://www.rcsb.org/structure/1EHZ",
+      "completeInput": "In a virtual FRET experiment placing a point donor at the tRNA's residue-76 C1' site (the 3' acceptor terminus) and a point acceptor at the residue-35 C1' site (anticodon center), calculate the transfer efficiency assuming an effective R0=3.5 nm. Given that documented R0 values for real dye pairs are typically in the 1 to 7 nm range, is this R0/dye-pair choice well matched to the measured donor-acceptor distance? What would an experimentalist need to change to get a more informative efficiency reading for this particular distance?\n\nCoordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping. Use S0020: all 76 C1' sites of 1EHZ chain A. Place a point donor exactly at row 76 (the 3' terminal C1') and a point acceptor exactly at row 35 (anticodon center C1'); r=||r_76-r_35||. Assume effective R0=3.5 nm, constant orientation/photophysical conditions, no dye-linker displacement or dynamics; no physical dyes are present in the PDB, this is an idealized exercise only. Use E=1/[1+(r/R0)^6]. Report r in nm to three decimals and E to six decimals.\n\nAttachment S0020:\n76\nCoordinates in angstrom; atoms numbered from 1.\nC 51.502 47.007 54.836\nC 57.022 45.836 55.356\nC 62.018 44.572 53.194\nC 65.192 43.241 49.051\nC 65.646 42.719 43.615\nC 64.413 45.113 39.057\nC 63.015 49.475 35.442\nC 68.407 51.830 29.255\nC 65.985 50.969 21.571\nC 60.152 47.173 19.012\nC 62.189 42.294 22.230\nC 66.013 40.478 25.565\nC 69.909 42.919 28.054\nC 75.325 45.147 28.805\nC 76.941 49.779 30.686\nC 78.428 53.548 33.551\nC 86.102 56.903 36.958\nC 80.191 61.615 36.658\nC 81.965 63.912 30.283\nC 80.836 58.580 23.876\nC 74.304 56.666 24.955\nC 75.605 50.671 23.444\nC 75.210 45.010 21.771\nC 72.412 40.925 20.073\nC 67.844 39.818 17.685\nC 64.147 42.470 14.901\nC 63.159 46.064 10.787\nC 65.046 48.767 5.987\nC 69.196 48.789 2.509\nC 73.839 46.903 0.605\nC 76.518 42.403 -0.649\nC 75.756 37.560 -2.358\nC 72.289 33.769 -5.226\nC 68.999 31.433 -10.593\nC 66.202 32.251 -6.217\nC 67.143 31.833 -1.328\nC 68.645 30.761 3.410\nC 73.308 31.178 6.015\nC 77.325 34.455 6.488\nC 79.168 39.648 6.065\nC 78.651 45.424 5.527\nC 75.657 49.688 6.671\nC 71.295 52.730 8.219\nC 67.208 53.996 10.887\nC 65.456 53.277 15.954\nC 65.949 56.384 22.900\nC 60.798 60.075 28.167\nC 68.291 55.799 30.245\nC 60.568 54.849 34.825\nC 58.966 60.259 36.646\nC 60.143 64.799 39.378\nC 63.119 67.888 42.237\nC 68.019 68.537 43.991\nC 73.711 68.026 44.082\nC 77.461 69.118 40.100\nC 81.174 72.955 35.333\nC 78.571 68.404 33.655\nC 73.908 63.150 35.551\nC 71.808 56.483 32.934\nC 75.336 56.786 37.306\nC 74.974 60.515 43.421\nC 70.711 62.312 46.995\nC 65.541 62.713 48.233\nC 60.283 61.983 47.026\nC 57.142 59.262 44.032\nC 55.595 55.117 40.311\nC 55.669 50.417 38.391\nC 57.286 45.028 38.018\nC 58.796 41.050 41.019\nC 60.163 37.591 45.267\nC 59.915 36.661 50.374\nC 57.184 38.082 54.963\nC 52.823 40.304 57.196\nC 47.080 40.621 56.662\nC 43.631 36.926 54.915\nC 35.314 37.959 58.950\n"
     }
   ],
   "counts": {
-    "candidates": 56,
+    "candidates": 61,
     "withAnswers": 18,
     "drafts": 18,
     "ready": 0,
-    "textAnswers": 20
+    "textAnswers": 25
   },
   "taxonomy": {
     "domains": [
@@ -2555,6 +2848,6 @@
     "rework": 9,
     "backlog": 18,
     "archived": 6,
-    "active": 23
+    "active": 28
   }
 }

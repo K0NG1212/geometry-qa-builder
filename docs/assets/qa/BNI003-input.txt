@@ -1,0 +1,6 @@
+Calculate the equal-weight CA radius of gyration of the supplied lysozyme structure. Using the already-established values Rg(1UBQ)=1.149289 nm and Rg(1CRN)=0.967550 nm, rank all three proteins by Rg and by chain length (129, 76, 46 residues respectively). Do the two rankings agree? Does that agreement alone establish that longer chains always fold less compactly, or that compactness is fully determined by length?
+
+Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping. Use S0019: all 129 CA sites of 6LYZ chain A. Define the equal-weight (unweighted) radius of gyration Rg=sqrt[(1/N) sum_i ||r_i - r_centroid||^2] where r_centroid is the mean of all N=129 supplied CA positions; this is a geometric point-mass quantity over the selected backbone sites, not a measured SAXS Rg. Report nm to three decimals. The two comparison values for 1UBQ and 1CRN are taken as already-established (from bio-nm-v04-001) and must not be recomputed from any other assumption.
+
+Attachments:
+S0019: item-0004-asset-1.xyz

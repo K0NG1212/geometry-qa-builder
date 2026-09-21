@@ -1,0 +1,28 @@
+{
+  "batch_id": "bio-nm-v04-002",
+  "target_candidates": 5,
+  "constructed": 5,
+  "screened": 5,
+  "human_audit_pending": 5,
+  "formal_ready": 0,
+  "domain": "biology",
+  "reasoning_bin_nm": "1-10",
+  "source_route": "raw_structure_or_simulation",
+  "structure_entries": ["6LYZ", "1EHZ"],
+  "ability_counts": {
+    "perception": 3,
+    "inference": 2,
+    "design": 0
+  },
+  "source_groups": [
+    ["BNP004", "BNI003"],
+    ["BNP005", "BNP006", "BNI004"]
+  ],
+  "limitations": [
+    "Single static deposited crystal models, not solution-state ensembles.",
+    "Equal-weight geometric radius of gyration, not a measured SAXS Rg.",
+    "FRET R0=3.5 nm is an explicit task assumption, not a measured photophysical constant for any real dye pair.",
+    "Catalytic role of lysozyme's Glu35/Asp52 is established literature consensus cited in the entry's own reference list, not re-derived here."
+  ],
+  "note": "Completes the biology x 1-10 nm cell to 10/10 together with bio-nm-v04-001. First RNA structure used in this project (1EHZ), adding a third macromolecule class alongside protein and DNA."
+}

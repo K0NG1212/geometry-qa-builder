@@ -2,11 +2,11 @@
   "date": "2026-09-21",
   "scope": "对全部目录记录采用相同准入清单；本轮仅Q02新增实例真正执行新版M0–M6。其他记录未伪称重跑。",
   "target": 160,
-  "screened": 23,
-  "remaining_screened": 137,
+  "screened": 28,
+  "remaining_screened": 132,
   "formal_ready": 0,
   "remaining_formal": 160,
-  "human_review_count": 23,
+  "human_review_count": 28,
   "human_review_ids": [
     "CNP001",
     "CNP002",
@@ -30,13 +30,18 @@
     "MNP004",
     "MNP005",
     "MNI004",
-    "MNI005"
+    "MNI005",
+    "BNP004",
+    "BNP005",
+    "BNP006",
+    "BNI003",
+    "BNI004"
   ],
   "lifecycle_counts": {
     "rework": 9,
     "backlog": 18,
     "archived": 6,
-    "active": 23
+    "active": 28
   },
   "records": [
     {
@@ -1046,6 +1051,96 @@
       "reason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
       "next": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP004",
+      "title": "溶菌酶末端距离、最大尺寸与活性位点裂隙",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP005",
+      "title": "tRNA骨架路径长度与折叠证据",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP006",
+      "title": "反密码子三联体的局部构象",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI003",
+      "title": "三种蛋白质的回转半径与链长关系",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI004",
+      "title": "tRNA虚拟FRET探针与量程匹配",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
+      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     }
   ],
   "directions": [
@@ -1571,17 +1666,17 @@
         10
       ],
       "target": 10,
-      "located_candidates": 5,
-      "screened_count": 5,
-      "remaining": 5,
+      "located_candidates": 10,
+      "screened_count": 10,
+      "remaining": 0,
       "abilities": {
-        "perception": 3,
-        "inference": 2,
+        "perception": 6,
+        "inference": 4,
         "design": 0
       },
       "ability_shortfalls": {
         "perception": 0,
-        "inference": 1,
+        "inference": 0,
         "design": 3
       },
       "qa_ids": [
@@ -1589,9 +1684,14 @@
         "BNP002",
         "BNP003",
         "BNI001",
-        "BNI002"
+        "BNI002",
+        "BNP004",
+        "BNP005",
+        "BNP006",
+        "BNI003",
+        "BNI004"
       ],
-      "blocker": "Still missing validated task/material coverage; absence is not proof the task is impossible."
+      "blocker": ""
     },
     {
       "domain": "biology",

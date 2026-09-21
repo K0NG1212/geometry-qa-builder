@@ -1,0 +1,6 @@
+For the supplied yeast phenylalanine tRNA C1' backbone model, calculate (a) the polygonal backbone path length from residue 1 to residue 76, (b) the endpoint chord (residue 1 to residue 76 straight-line distance), and (c) the path/chord ratio. Is this molecule's backbone close to a straight or gently curved chain, or is it folded back on itself? What does a large path/chord ratio show about the tertiary structure that the path length or chord alone would not?
+
+Coordinates are in angstrom (1 nm = 10 angstrom). XYZ atom rows are one-based after the two header lines. Use the supplied coordinate snapshot without optimization or periodic wrapping; this is a single deposited crystal model. Use S0020 only: all 76 C1' sites of 1EHZ chain A in residue order 1-76 (the 14 chemically modified nucleotides are included at their correct sequence positions, not omitted). Define the polygonal path length L=sum_(i=1..75)||r_(i+1)-r_i||, the endpoint chord c=||r_76-r_1||, and the ratio c/L. Report nm to three decimals and the dimensionless ratio to three decimals. This path follows only the 76 backbone sites actually supplied; it is not a fitted helical axis or a claim about every atom's position.
+
+Attachments:
+S0020: item-0002-asset-1.xyz

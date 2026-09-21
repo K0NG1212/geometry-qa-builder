@@ -1,0 +1,43 @@
+{
+  "search_queries": [
+    "files.rcsb.org download 1EHZ.pdb (yeast phenylalanine tRNA)",
+    "files.rcsb.org download 6LYZ.pdb (hen egg-white lysozyme, Diamond 1974 real-space refinement)",
+    "mipav.cit.nih.gov FRET Bleed Through and Efficiency documentation (method support)"
+  ],
+  "selection_unit": "Official RCSB PDB structures plus NIH MIPAV method documentation",
+  "resources": [
+    {
+      "id": "1EHZ",
+      "url": "https://www.rcsb.org/structure/1EHZ",
+      "decision": "selected",
+      "route": "raw_structure_or_simulation",
+      "materials": ["complete PDB coordinate entry (1.93 A)", "header/SEQRES records"],
+      "license": "PDB data CC0 1.0"
+    },
+    {
+      "id": "6LYZ",
+      "url": "https://www.rcsb.org/structure/6LYZ",
+      "decision": "selected",
+      "route": "raw_structure_or_simulation",
+      "materials": ["complete PDB coordinate entry (Diamond 1974 real-space refinement)", "header/SEQRES/HELIX/SHEET/stereochemistry records"],
+      "license": "PDB data CC0 1.0"
+    },
+    {
+      "id": "nih-fret-mipav",
+      "url": "https://mipav.cit.nih.gov/pubwiki/Microscopy_Fluorescent_Resonance_Energy_Transfer_FRET_Bleed_Through_and_Efficiency.html",
+      "decision": "method support",
+      "acquisition": "Direct HTTP retrieval succeeded (HTTP 200); Background section excerpt retained locally, not the whole page."
+    },
+    {
+      "id": "guinier2016-iucr",
+      "url": "https://doi.org/10.1107/S1600576716010906",
+      "decision": "not used this batch",
+      "acquisition": "Direct HTTP retrieval blocked, HTTP 403 (same IUCr block observed in materials-cell-v04-001/v04-002). Not needed this batch since no SAXS I(q) scattering-intensity task was constructed; only Rg geometry was used."
+    }
+  ],
+  "downloads": [
+    {"file": "1EHZ.pdb", "url": "https://files.rcsb.org/download/1EHZ.pdb", "bytes": 228825},
+    {"file": "6LYZ.pdb", "url": "https://files.rcsb.org/download/6LYZ.pdb", "bytes": 134460}
+  ],
+  "acquired_date": "2026-09-21"
+}
