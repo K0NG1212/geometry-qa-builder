@@ -1,17 +1,52 @@
 {
   "version": "0.1.0",
-  "status": "specified_not_implemented",
+  "status": "numeric_pilot_implemented",
   "choice_format": "single_choice_4",
-  "labels": ["A", "B", "C", "D"],
+  "labels": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
   "option_count": 4,
   "correct_count": 1,
   "model_output": "one_label",
-  "perception_options": ["numeric_values", "spatial_relations", "structure_images"],
-  "inference_options": ["property_values", "nonoverlapping_ranges", "physical_conclusions"],
-  "design_options": ["candidate_structures", "explicit_modification_plans"],
-  "required_reviewer_fields": ["correct_label", "evidence_for_correct", "reason_each_distractor_is_wrong", "uniqueness_check", "option_permutation_seed", "asset_label_mapping"],
-  "rules": ["validate_all_four_options", "unknown_is_not_false", "no_equivalent_duplicate_options", "no_rounding_or_tolerance_ambiguity", "do_not_leak_answer_evidence_to_student", "record_template_version"],
+  "perception_options": [
+    "numeric_values",
+    "spatial_relations",
+    "structure_images"
+  ],
+  "inference_options": [
+    "property_values",
+    "nonoverlapping_ranges",
+    "physical_conclusions"
+  ],
+  "design_options": [
+    "candidate_structures",
+    "explicit_modification_plans"
+  ],
+  "required_reviewer_fields": [
+    "correct_label",
+    "evidence_for_correct",
+    "reason_each_distractor_is_wrong",
+    "uniqueness_check",
+    "option_permutation_seed",
+    "asset_label_mapping"
+  ],
+  "rules": [
+    "validate_all_four_options",
+    "unknown_is_not_false",
+    "no_equivalent_duplicate_options",
+    "no_rounding_or_tolerance_ambiguity",
+    "do_not_leak_answer_evidence_to_student",
+    "record_template_version"
+  ],
   "numeric_direct_answer_remains_available": true,
   "existing_numeric_pilot_unchanged": true,
-  "design_choice_is_not_open_generation": true
+  "design_choice_is_not_open_generation": true,
+  "implemented_templates": [
+    "global_extent",
+    "equal_weight_rg"
+  ],
+  "design_choice_status": "not_implemented"
 }

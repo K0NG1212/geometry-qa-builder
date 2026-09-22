@@ -60,3 +60,15 @@ python tools/export_modules.py
 
 ## 第五次会议更新
 当前方法按 [METHODOLOGY.md](METHODOLOGY.md) 的定义、构造、验证三步组织。M0–M6 是实现细节；优先按题型复用计算与验证，模板集中审查，实例程序全量检查并分层抽查。数值/选项/结构是三种目标输出；当前新增批量试跑仅实现最大间距和等权回转半径数值题。解释和论文证据保留审核侧，不默认给被测模型。设计选择与开放生成分开规划，未实现能力不冒称已接通。
+
+
+## 两类数值题的四选一适配器（2026-09-23）
+`choice_engine.py` 读取已验证的数值试跑，复核输入哈希并重算答案，再生成三项错误计算、排除舍入/容差重复、按记录种子打乱标签、输出独立学生包与审核包。凑不齐则记录失败，不生成任意数值。此入口对应 M4–M6 的专用试跑，尚未自动接入旧 pipeline 的通用构题路径，也不自动改变题库准入。
+
+```text
+python template_engine.py --manifest templates/pilot-manifest.json --out runs/numeric-new
+python choice_engine.py --source runs/numeric-new --out runs/choice-new --seed geobench-choice-v1
+python tools/export_choice_workbench.py --run runs/choice-new --public-development-examples
+```
+
+只允许已公开 pilot 材料通过此发布器。新 run 保存输入学生包、源报告与 manifest 副本、两个执行脚本、答案/错误机制/映射及验证报告。快照供审计；完整复现应在匹配版本的仓库根目录使用版本化 docs/assets 与上述命令，不把快照目录当作独立安装包。12例是原有题的格式试跑，不新增题数，不代替人工科学审核。网页 templates.html 可切换实例并展开记录。标签评分接受大小写和首尾空白，拒绝长文本。位置分布和干扰项质量需在更大批次检查；种子排序并不保证小批次均匀。

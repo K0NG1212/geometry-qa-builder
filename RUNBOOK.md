@@ -67,4 +67,16 @@
 
 
 ## 四选一规则
-选择题统一为四项 A/B/C/D、唯一正确；感知用数值/空间关系，推断用性质/范围/结论，设计选择用四个结构或明确修改方案。详见 [ANSWER_FORMATS.md](ANSWER_FORMATS.md)。自动选项构造与四项科学验证尚未实现；现有12个数值试跑不变。
+选择题统一为四项 A/B/C/D、唯一正确；感知用数值/空间关系，推断用性质/范围/结论，设计选择用四个结构或明确修改方案。详见 [ANSWER_FORMATS.md](ANSWER_FORMATS.md)。两类数值题的选项构造与数值唯一性检查已实现；推断与设计的四项科学验证未实现。现有数值试跑保留。
+
+
+## 两类数值题的四选一适配器（2026-09-23）
+`choice_engine.py` 读取已验证的数值试跑，复核输入哈希并重算答案，再生成三项错误计算、排除舍入/容差重复、按记录种子打乱标签、输出独立学生包与审核包。凑不齐则记录失败，不生成任意数值。此入口对应 M4–M6 的专用试跑，尚未自动接入旧 pipeline 的通用构题路径，也不自动改变题库准入。
+
+```text
+python template_engine.py --manifest templates/pilot-manifest.json --out runs/numeric-new
+python choice_engine.py --source runs/numeric-new --out runs/choice-new --seed geobench-choice-v1
+python tools/export_choice_workbench.py --run runs/choice-new --public-development-examples
+```
+
+只允许已公开 pilot 材料通过此发布器。新 run 保存输入学生包、源报告与 manifest 副本、两个执行脚本、答案/错误机制/映射及验证报告。快照供审计；完整复现应在匹配版本的仓库根目录使用版本化 docs/assets 与上述命令，不把快照目录当作独立安装包。12例是原有题的格式试跑，不新增题数，不代替人工科学审核。网页 templates.html 可切换实例并展开记录。标签评分接受大小写和首尾空白，拒绝长文本。位置分布和干扰项质量需在更大批次检查；种子排序并不保证小批次均匀。
