@@ -37,3 +37,7 @@ Do not mark scale_consistent or claims_supported true when the evidence is uncer
 ## Meeting 5: define by reusable type
 Plan a template family before multiplying structures. Consult templates/registry.json at the project level; the current packet remains the actual run contract. Separate template-level scientific justification from instance-specific selection, scope, units and source identity. Reuse a reviewed formula across structures instead of inventing a bespoke calculator for every QA. Same-template instances are valid data, not different abilities.
 Choose an explicit output contract: numeric value, option label/set, or structure. Keep long explanations and paper evidence on the reviewer side. Never expose the target answer to the evaluated model. Design-choice and open-structure design are different routes; the current legacy pipeline still blocks design until its evidence/constraint evaluator is implemented. Do not bypass that check.
+
+
+## Four-option single-choice policy
+For new choice templates use exactly four options A/B/C/D and exactly one correct under stated conditions. Define option content by ability: perception uses values/spatial relations; inference uses properties/ranges/conclusions; design-choice uses four candidate structures or explicit modifications. Consult ANSWER_FORMATS.md and templates/answer-policy.json before planning. Current option generation/admission is not implemented; keep ineligible until the particular route is implemented and all four candidates can be checked.

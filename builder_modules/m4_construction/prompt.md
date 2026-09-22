@@ -28,3 +28,7 @@ Provide a standalone question plus complete instructions and actual local input 
 ## Meeting 5: concise answers and calculator reuse
 Prefer one scored numeric quantity or a clearly defined choice, with explicit units and rounding. Do not require a long essay for a basic calculation. Keep supporting explanation in reviewer records, not the student question or the target response. Do not alter this packet's schema to pretend an unimplemented choice/structure grader exists.
 The separate template_engine.py batch pilot implements global_extent and equal_weight_rg with one numeric response per instance. Use that registered route for a template pilot, not evidence_review with a copied guessed number. It is not yet automatic M0–M6 admission. Existing local distance/angle tasks continue using the trusted verifier above.
+
+
+## Four-option single-choice policy
+When a choice route is implemented, construct four comparable A/B/C/D options with exactly one correct. Record the error mechanism of each distractor on the reviewer side. Numeric distractors must be distinct after rounding and outside the correct tolerance; structure distractors must not be equivalent valid answers. Shuffle with a recorded seed and preserve asset-label mapping. Student output is one letter, not an essay. Existing numeric pilot remains unchanged; do not invent unsupported fields in this packet.

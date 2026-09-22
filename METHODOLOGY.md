@@ -47,3 +47,7 @@ python -m unittest discover -s tests -p test_template_engine.py -v
 网站 templates.html 显示题型状态、实际输入输出、浏览器复算、Python 交叉核验及代码。builder.html 用三步组织工作，保留七模块实现查看器。
 
 下一步：优先把 32 道小修按题型归组，先改模板；再迁移局部距离/角度的短答案批量接口；为推断选择、设计选择各找一个证据充分的具体模板。不要把已有纯数值感知换标签当设计。
+
+
+## 四选一规则
+选择题统一为四项 A/B/C/D、唯一正确；感知用数值/空间关系，推断用性质/范围/结论，设计选择用四个结构或明确修改方案。详见 [ANSWER_FORMATS.md](ANSWER_FORMATS.md)。自动选项构造与四项科学验证尚未实现；现有12个数值试跑不变。
