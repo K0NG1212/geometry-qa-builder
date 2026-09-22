@@ -1,5 +1,8 @@
 # Geometry QA Builder v0.3
 
+**第五次会议后的入口：** [三步方法](METHODOLOGY.md) · [题型与计算器工作台](https://k0ng1212.github.io/geometry-qa-builder/templates.html)。2 类可复用函数已在 12 份既有真实结构上完成数值短答案试跑，不增加题库计数。
+
+
 把科学材料转成有证据、可检查的候选 QA。**当前默认由 Codex 会话执行 AI 模块，不需要 API Key。**
 
 **跨助手接手入口：** [共用工作规则](AGENTS.md) · [Claude Code 入口](CLAUDE.md) · [当前进度与交接](PROJECT_STATUS.md)。新构题采用 [v0.4 原型要求](PROTOTYPE.md)；下面保留 v0.3 架构说明。Codex 与 Claude Code 均可按固定 packet 执行，完整本地运行不会自动随 GitHub 同步。

@@ -1,0 +1,713 @@
+{
+  "registry": {
+    "version": "0.1.0",
+    "basis": "Meeting 5; three stages, type-based reuse, deterministic instance checks and semantic sampling",
+    "templates": [
+      {
+        "id": "global_extent",
+        "name": "全局最大间距",
+        "ability": "perception",
+        "status": "implemented",
+        "output": "numeric",
+        "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Return only one value rounded to four decimal places and unit angstrom.",
+        "principle": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+        "inputs": "一个已确认 Å 单位的 XYZ，明确点集与结构选择范围。",
+        "validation": "逐对欧氏距离最大值；另行读取原始十进制坐标复算。原题给出的数值另外比较，不用于生成新答案。",
+        "limits": "仅有限点集范围，不等于晶粒尺寸或孔径；周期晶胞内点集的值依赖表示。并列极值不影响单数值评分。",
+        "template_review": "题型已做本轮 AI 方法审读，尚待人工确认；程序检查不能证明科学意义与数据来源正确。"
+      },
+      {
+        "id": "equal_weight_rg",
+        "name": "等权回转半径",
+        "ability": "perception",
+        "status": "implemented",
+        "output": "numeric",
+        "question": "Compute the equal-weight radius of gyration of all supplied sites: Rg = sqrt(sum_i ||ri-centroid||^2 / N). Return only one value rounded to four decimal places and unit angstrom. Do not use mass weights.",
+        "principle": "质心法生成答案；用 Rg² = sum(i<j)|ri-rj|² / N² 复核。",
+        "inputs": "一个已确认 Å 单位的 XYZ；明确所有点等权。",
+        "validation": "质心公式与成对距离恒等式交叉检查；在多个结构上复用相同代码。",
+        "limits": "不是质量加权或实测 SAXS Rg；不能据此断言折叠稳定性。",
+        "template_review": "题型已做本轮 AI 方法审读，尚待人工确认；程序检查不能证明科学意义与数据来源正确。"
+      },
+      {
+        "id": "local_distance_angle",
+        "name": "局部距离／角度",
+        "ability": "perception",
+        "status": "existing_legacy",
+        "output": "numeric",
+        "inputs": "XYZ、索引、顶点、单位与选点依据。",
+        "principle": "复用 M4 已有 xyz_distance / xyz_angle。",
+        "validation": "已有验证器；尚未迁入本次数值短答案批量接口。",
+        "limits": "保留局部尺度，不能从任意行号自动赋予化学意义。",
+        "template_review": "既有模块，非本轮新增题型。"
+      },
+      {
+        "id": "evidence_inference_choice",
+        "name": "证据支持的物理推断选择",
+        "ability": "inference",
+        "status": "planned",
+        "output": "choice",
+        "inputs": "学生几何条件与选项；审核侧保留论文原文定位、条件及答案依据。",
+        "principle": "模板审查因果与适用条件；实例检查引用和唯一正确选项。",
+        "validation": "需建立具体题型的证据映射和干扰项验证；尚未实施通用语义验证。",
+        "limits": "论文中的答案证据不默认给被测模型，必要物理条件必须写在题目里。",
+        "template_review": "待建立首个经证据支持的模板。"
+      },
+      {
+        "id": "design_choice",
+        "name": "有证据的结构优化选择",
+        "ability": "design",
+        "status": "planned",
+        "output": "choice",
+        "inputs": "初始结构、目标、限制、候选修改；审核侧保存真实 S1/S2 及性质证据。",
+        "principle": "从论文中的实证优化案例或按规则取得的结构对构题。",
+        "validation": "需先验证候选身份、目标性质与约束，再用选项标签评分。",
+        "limits": "选项评分容易不代表选项科学正确；S1/S2 不同并不证明优化；当前 M3 旧门槛尚未接通此路线。",
+        "template_review": "本轮定义路线，不虚称已产生设计题。"
+      },
+      {
+        "id": "open_structure_design",
+        "name": "开放结构生成",
+        "ability": "design",
+        "status": "blocked",
+        "output": "structure",
+        "inputs": "起始结构、可变部分、目标、约束与输出结构格式。",
+        "principle": "输出可能有多个有效结构，不能要求与唯一坐标逐字相同。",
+        "validation": "必须有结构合法性、约束和目标评价器。",
+        "limits": "暂无通用评价器，不计入完成。",
+        "template_review": "保留路线，当前不开放。"
+      }
+    ]
+  },
+  "report": {
+    "version": "0.1.0",
+    "kind": "existing_material_template_pilot",
+    "count": 12,
+    "passed": 12,
+    "model_calls": 0,
+    "new_benchmark_questions": 0,
+    "code_sha256": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
+    "registry_sha256": "9b9324edab091e631eecf9e38012da99ee9269693660792c1970a6649b2d148a",
+    "limits": "Numeric checks only. Templates and source selection remain pending human review. Not a complete M0–M6 rerun or new catalog admission.",
+    "items": [
+      {
+        "id": "TP-QNP007",
+        "qa_id": "QNP007",
+        "template": "global_extent",
+        "atom_count": 41,
+        "input": "assets/qa/QNP007-MAJHUB.xyz",
+        "scope": "MAJHUB PBE+vdW-relaxed几何；41 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+        "source": "https://doi.org/10.1038/s41597-020-0385-y",
+        "input_sha256": "be37c6ef16ef31ace7a6c35de675d65b087d7676d7a38e66ff92fc1d65d89ca5",
+        "computed": 10.000288639514498,
+        "decimal_crosscheck": "10.0002886395144977635247680000153249529881335",
+        "numeric_agreement": true,
+        "legacy_reference": 10.0003,
+        "legacy_numeric_agreement": true,
+        "short_answer": {
+          "id": "TP-QNP007",
+          "value": 10.0003,
+          "unit": "angstrom",
+          "absolute_tolerance": 5e-05,
+          "rounding": "half_up_four_decimals",
+          "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+          "source": "https://doi.org/10.1038/s41597-020-0385-y"
+        },
+        "status": "numeric_verified",
+        "human_review": "pending",
+        "catalog_admitted": false
+      },
+      {
+        "id": "TP-QNP008",
+        "qa_id": "QNP008",
+        "template": "global_extent",
+        "atom_count": 57,
+        "input": "assets/qa/QNP008-JIMHOC.xyz",
+        "scope": "JIMHOC PBE+vdW-relaxed几何；57 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+        "source": "https://doi.org/10.1038/s41597-020-0385-y",
+        "input_sha256": "22bd86983a57a2b4eb449ba8dd2426da683b5c4c0fde16e553da927fe0b737c2",
+        "computed": 11.878358185479865,
+        "decimal_crosscheck": "11.8783581854798678275742586082008757681591764",
+        "numeric_agreement": true,
+        "legacy_reference": 11.8784,
+        "legacy_numeric_agreement": true,
+        "short_answer": {
+          "id": "TP-QNP008",
+          "value": 11.8784,
+          "unit": "angstrom",
+          "absolute_tolerance": 5e-05,
+          "rounding": "half_up_four_decimals",
+          "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+          "source": "https://doi.org/10.1038/s41597-020-0385-y"
+        },
+        "status": "numeric_verified",
+        "human_review": "pending",
+        "catalog_admitted": false
+      },
+      {
+        "id": "TP-QNP009",
+        "qa_id": "QNP009",
+        "template": "global_extent",
+        "atom_count": 64,
+        "input": "assets/qa/QNP009-KEGPOC.xyz",
+        "scope": "KEGPOC PBE+vdW-relaxed几何；64 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+        "source": "https://doi.org/10.1038/s41597-020-0385-y",
+        "input_sha256": "d1695226cf2c0bfe07056e6402f9e5f89d7bdfaf5d1607a307beac170379c379",
+        "computed": 14.086975240908776,
+        "decimal_crosscheck": "14.0869752409087754774521108312667726389115503",
+        "numeric_agreement": true,
+        "legacy_reference": 14.087,
+        "legacy_numeric_agreement": true,
+        "short_answer": {
+          "id": "TP-QNP009",
+          "value": 14.087,
+          "unit": "angstrom",
+          "absolute_tolerance": 5e-05,
+          "rounding": "half_up_four_decimals",
+          "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+          "source": "https://doi.org/10.1038/s41597-020-0385-y"
+        },
+        "status": "numeric_verified",
+        "human_review": "pending",
+        "catalog_admitted": false
+      },
+      {
+        "id": "TP-QNP010",
+        "qa_id": "QNP010",
+        "template": "equal_weight_rg",
+        "atom_count": 48,
+        "input": "assets/qa/QNP010-KEWGID.xyz",
+        "scope": "KEWGID PBE+vdW-relaxed几何；48 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+        "source": "https://doi.org/10.1038/s41597-020-0385-y",
+        "input_sha256": "0b9e688cae489548bc5a914b4d09bf9b0b22da6e61bbf92efe9cf2aa93598c8f",
+        "computed": 4.246675716951223,
+        "decimal_crosscheck": "4.24667571695122272562849778599533829648172857",
+        "numeric_agreement": true,
+        "legacy_reference": 4.2467,
+        "legacy_numeric_agreement": true,
+        "short_answer": {
+          "id": "TP-QNP010",
+          "value": 4.2467,
+          "unit": "angstrom",
+          "absolute_tolerance": 5e-05,
+          "rounding": "half_up_four_decimals",
+          "explanation": "质心法生成答案；用 Rg² = sum(i<j)|ri-rj|² / N² 复核。",
+          "source": "https://doi.org/10.1038/s41597-020-0385-y"
+        },
+        "status": "numeric_verified",
+        "human_review": "pending",
+        "catalog_admitted": false
+      },
+      {
+        "id": "TP-QNP011",
+        "qa_id": "QNP011",
+        "template": "equal_weight_rg",
+        "atom_count": 70,
+        "input": "assets/qa/QNP011-PEKZAG.xyz",
+        "scope": "PEKZAG PBE+vdW-relaxed几何；70 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+        "source": "https://doi.org/10.1038/s41597-020-0385-y",
+        "input_sha256": "80bd2cb0bc8be11bb28675caa442b06e3ff1bdaa45486625d26c963735ef6c86",
+        "computed": 4.615608606392985,
+        "decimal_crosscheck": "4.61560860639298471955762252864590411284146362",
+        "numeric_agreement": true,
+        "legacy_reference": 4.6156,
+        "legacy_numeric_agreement": true,
+        "short_answer": {
+          "id": "TP-QNP011",
+          "value": 4.6156,
+          "unit": "angstrom",
+          "absolute_tolerance": 5e-05,
+          "rounding": "half_up_four_decimals",
+          "explanation": "质心法生成答案；用 Rg² = sum(i<j)|ri-rj|² / N² 复核。",
+          "source": "https://doi.org/10.1038/s41597-020-0385-y"
+        },
+        "status": "numeric_verified",
+        "human_review": "pending",
+        "catalog_admitted": false
+      },
+      {
+        "id": "TP-MNP006",
+        "qa_id": "MNP006",
+        "template": "global_extent",
+        "atom_count": 12,
+        "input": "assets/qa/MNP006-ZIF8-Zn.xyz",
+        "scope": "ZIF-8 Zn 亚晶格；12 个原子，一个常规立方晶胞，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+        "source": "https://www.crystallography.net/cod/4118891.html",
+        "input_sha256": "4434a7836bbb96875c4dc21cef817884b94349d5b1d5a7ff95494c737138b8bb",
+        "computed": 17.851228889105926,
+        "decimal_crosscheck": "17.8512288891059261998852963012998611788133614",
+        "numeric_agreement": true,
+        "legacy_reference": 17.8512,
+        "legacy_numeric_agreement": true,
+        "short_answer": {
+          "id": "TP-MNP006",
+          "value": 17.8512,
+          "unit": "angstrom",
+          "absolute_tolerance": 5e-05,
+          "rounding": "half_up_four_decimals",
+          "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+          "source": "https://www.crystallography.net/cod/4118891.html"
+        },
+        "status": "numeric_verified",
+        "human_review": "pending",
+        "catalog_admitted": false
+      },
+      {
+        "id": "TP-MNP007",
+        "qa_id": "MNP007",
+        "template": "global_extent",
+        "atom_count": 32,
+        "input": "assets/qa/MNP007-MOF5-Zn.xyz",
+        "scope": "MOF-5 Zn 亚晶格；32 个原子，一个常规立方晶胞，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+        "source": "https://www.crystallography.net/cod/4118891.html",
+        "input_sha256": "5639a11c92f42c67e5070a727cdda6859a381f04c0f7ddaac19bd5b948636cde",
+        "computed": 23.945863807458586,
+        "decimal_crosscheck": "23.9458638074585859833222949996355569720051322",
+        "numeric_agreement": true,
+        "legacy_reference": 23.9459,
+        "legacy_numeric_agreement": true,
+        "short_answer": {
+          "id": "TP-MNP007",
+          "value": 23.9459,
+          "unit": "angstrom",
+          "absolute_tolerance": 5e-05,
+          "rounding": "half_up_four_decimals",
+          "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+          "source": "https://www.crystallography.net/cod/4118891.html"
+        },
+        "status": "numeric_verified",
+        "human_review": "pending",
+        "catalog_admitted": false
+      },
+      {
+        "id": "TP-MNP010",
+        "qa_id": "MNP010",
+        "template": "global_extent",
+        "atom_count": 424,
+        "input": "assets/qa/MNP010-MOF5-full.xyz",
+        "scope": "MOF-5 完整框架；424 个原子，一个常规立方晶胞，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+        "source": "https://www.crystallography.net/cod/4118891.html",
+        "input_sha256": "e34fbbfd771f540945f8facdc04b62d852203b4edb35c76b2d131335c69ac5a0",
+        "computed": 30.610212656809093,
+        "decimal_crosscheck": "30.6102126568090916504240010710302294027861685",
+        "numeric_agreement": true,
+        "legacy_reference": 30.6102,
+        "legacy_numeric_agreement": true,
+        "short_answer": {
+          "id": "TP-MNP010",
+          "value": 30.6102,
+          "unit": "angstrom",
+          "absolute_tolerance": 5e-05,
+          "rounding": "half_up_four_decimals",
+          "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+          "source": "https://www.crystallography.net/cod/4118891.html"
+        },
+        "status": "numeric_verified",
+        "human_review": "pending",
+        "catalog_admitted": false
+      },
+      {
+        "id": "TP-CNP007",
+        "qa_id": "CNP007",
+        "template": "global_extent",
+        "atom_count": 132,
+        "input": "assets/qa/CNP007-1AA5-chainA.xyz",
+        "scope": "1AA5 vancomycin单体（chain A）；132 个原子，坐标单位 Å，仅主占位/主构象；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+        "source": "https://www.rcsb.org/structure/1AA5",
+        "input_sha256": "3f7087fd4f400d9d131ef84b3580300cae18b7cbddd51663320908c53ccfb902",
+        "computed": 19.56978119448452,
+        "decimal_crosscheck": "19.5697811944845208583522510164305927473429899",
+        "numeric_agreement": true,
+        "legacy_reference": 19.5698,
+        "legacy_numeric_agreement": true,
+        "short_answer": {
+          "id": "TP-CNP007",
+          "value": 19.5698,
+          "unit": "angstrom",
+          "absolute_tolerance": 5e-05,
+          "rounding": "half_up_four_decimals",
+          "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+          "source": "https://www.rcsb.org/structure/1AA5"
+        },
+        "status": "numeric_verified",
+        "human_review": "pending",
+        "catalog_admitted": false
+      },
+      {
+        "id": "TP-CNP008",
+        "qa_id": "CNP008",
+        "template": "global_extent",
+        "atom_count": 132,
+        "input": "assets/qa/CNP008-1AA5-chainB.xyz",
+        "scope": "1AA5 vancomycin单体（chain B）；132 个原子，坐标单位 Å，仅主占位/主构象；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+        "source": "https://www.rcsb.org/structure/1AA5",
+        "input_sha256": "e0562fddd94929083dff0344d0fa912d4f59eec0554a7cf691984064446a25cf",
+        "computed": 19.26457689646985,
+        "decimal_crosscheck": "19.2645768964698521353858037768262595617398550",
+        "numeric_agreement": true,
+        "legacy_reference": 19.2646,
+        "legacy_numeric_agreement": true,
+        "short_answer": {
+          "id": "TP-CNP008",
+          "value": 19.2646,
+          "unit": "angstrom",
+          "absolute_tolerance": 5e-05,
+          "rounding": "half_up_four_decimals",
+          "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+          "source": "https://www.rcsb.org/structure/1AA5"
+        },
+        "status": "numeric_verified",
+        "human_review": "pending",
+        "catalog_admitted": false
+      },
+      {
+        "id": "TP-CNP009",
+        "qa_id": "CNP009",
+        "template": "global_extent",
+        "atom_count": 264,
+        "input": "assets/qa/CNP009-1AA5-dimer.xyz",
+        "scope": "1AA5 完整不对称二聚体（chain A+B）；264 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+        "source": "https://www.rcsb.org/structure/1AA5",
+        "input_sha256": "b668b1176e91d8d8a72b5b5ee758e70464ebe77f6a4a1b0d778ea30d019dfd2b",
+        "computed": 28.719248353673883,
+        "decimal_crosscheck": "28.7192483536738823195298317879243191084999384",
+        "numeric_agreement": true,
+        "legacy_reference": 28.7192,
+        "legacy_numeric_agreement": true,
+        "short_answer": {
+          "id": "TP-CNP009",
+          "value": 28.7192,
+          "unit": "angstrom",
+          "absolute_tolerance": 5e-05,
+          "rounding": "half_up_four_decimals",
+          "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+          "source": "https://www.rcsb.org/structure/1AA5"
+        },
+        "status": "numeric_verified",
+        "human_review": "pending",
+        "catalog_admitted": false
+      },
+      {
+        "id": "TP-CNP011",
+        "qa_id": "CNP011",
+        "template": "equal_weight_rg",
+        "atom_count": 264,
+        "input": "assets/qa/CNP011-1AA5-dimer.xyz",
+        "scope": "1AA5 完整二聚体；264 个原子，Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+        "source": "https://www.rcsb.org/structure/1AA5",
+        "input_sha256": "b668b1176e91d8d8a72b5b5ee758e70464ebe77f6a4a1b0d778ea30d019dfd2b",
+        "computed": 8.261683045423688,
+        "decimal_crosscheck": "8.26168304542368700581543447491093315201070687",
+        "numeric_agreement": true,
+        "legacy_reference": 8.2617,
+        "legacy_numeric_agreement": true,
+        "short_answer": {
+          "id": "TP-CNP011",
+          "value": 8.2617,
+          "unit": "angstrom",
+          "absolute_tolerance": 5e-05,
+          "rounding": "half_up_four_decimals",
+          "explanation": "质心法生成答案；用 Rg² = sum(i<j)|ri-rj|² / N² 复核。",
+          "source": "https://www.rcsb.org/structure/1AA5"
+        },
+        "status": "numeric_verified",
+        "human_review": "pending",
+        "catalog_admitted": false
+      }
+    ]
+  },
+  "student_packets": [
+    {
+      "id": "TP-QNP007",
+      "derived_from": "QNP007",
+      "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Return only one value rounded to four decimal places and unit angstrom.",
+      "scope": "MAJHUB PBE+vdW-relaxed几何；41 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+      "input": {
+        "format": "xyz",
+        "unit": "angstrom",
+        "text": "41\r\n\r\nC      18.53240516      34.43021051      30.47797422 \r\nH      19.38328668      34.37008281      29.78515105 \r\nC      17.47540562      33.44951853      29.95484252 \r\nH      16.84676717      33.01728422      30.73515856 \r\nC      16.63071162      34.22991543      28.92923929 \r\nH      16.68450866      33.79155280      27.92026852 \r\nH      15.57324802      34.21475438      29.25007708 \r\nN      18.11555327      32.22402502      29.29435330 \r\nO      19.16899430      32.36798069      28.68338055 \r\nO      17.48674507      31.17269036      29.40309125 \r\nC      19.01571722      34.19190793      31.88912921 \r\nC      20.36383710      34.37682515      32.24665535 \r\nC      19.90855725      33.81781874      34.54913769 \r\nC      18.56565019      33.62617775      34.22654898 \r\nH      17.84978138      33.33215989      34.99296151 \r\nC      18.13628049      33.81055080      32.91546537 \r\nH      17.08066374      33.67039877      32.68636745 \r\nN      17.20190145      35.57177249      28.92939817 \r\nC      17.86660095      35.82416246      30.18123680 \r\nC      16.36561249      36.61495706      28.36616050 \r\nH      16.92642942      37.55714229      28.32884967 \r\nH      15.42343041      36.77694332      28.92583539 \r\nH      16.10867829      36.34635190      27.33276924 \r\nC      18.94694032      36.93954263      30.10670622 \r\nO      19.64151899      37.19331598      29.14379414 \r\nC      18.92509342      37.64658851      31.41016844 \r\nC      19.85507091      38.54623654      31.93127705 \r\nH      20.74283670      38.81323596      31.35905627 \r\nC      19.61170812      39.07549134      33.19716539 \r\nH      20.31975033      39.77929793      33.63465836 \r\nC      18.46332628      38.71596566      33.92583945 \r\nH      18.30356483      39.14879135      34.91340774 \r\nC      17.53372764      37.81880279      33.40464994 \r\nH      16.64342966      37.52900680      33.96186045 \r\nC      17.77779786      37.28734428      32.13716681 \r\nC      16.99237504      36.28715046      31.38000868 \r\nO      15.86041875      35.89650266      31.62059036 \r\nC      20.80979354      34.19199248      33.55650295 \r\nH      20.26028476      33.67387160      35.57025230 \r\nCl      21.54628014      34.85529835      31.05891692 \r\nH      21.86324051      34.34253245      33.78441315 \r\n"
+      },
+      "response_format": {
+        "value": "one number rounded to four decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "TP-QNP008",
+      "derived_from": "QNP008",
+      "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Return only one value rounded to four decimal places and unit angstrom.",
+      "scope": "JIMHOC PBE+vdW-relaxed几何；57 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+      "input": {
+        "format": "xyz",
+        "unit": "angstrom",
+        "text": "57\r\n\r\nC      29.02017577      44.49989876      35.79756574 \r\nC      26.35245204      44.14822419      34.31220168 \r\nC      28.38119805      41.74420657      34.43402701 \r\nC      29.04408868      42.18385502      33.11421989 \r\nC      27.24335256      40.74984674      34.13314366 \r\nC      29.42754681      41.06217798      35.33652013 \r\nC      23.87547265      42.84752254      36.93867527 \r\nO      26.95469318      42.61855095      36.70550757 \r\nSi      27.67776150      43.27869950      35.31756589 \r\nH      29.78745456      44.03396350      36.42925998 \r\nH      26.79623385      44.68866880      33.46484367 \r\nH      25.61024376      43.44289370      33.91706223 \r\nH      28.32957882      42.66886811      32.43327517 \r\nH      29.87793941      42.88129034      33.28010162 \r\nH      29.45446998      41.30845821      32.58414374 \r\nH      26.48926933      41.17677772      33.45657214 \r\nH      27.64687615      39.84877586      33.64209881 \r\nH      26.73032293      40.42810620      35.04958361 \r\nH      28.99562224      40.75184785      36.29810545 \r\nH      29.82356559      40.15856850      34.84396666 \r\nH      30.28407049      41.71877022      35.54602717 \r\nH      23.21931899      43.67050081      36.61188511 \r\nH      24.34133888      42.40339347      36.05094664 \r\nC      26.27961353      43.30774787      37.65102050 \r\nC      24.94403361      43.34032691      37.84680937 \r\nC      28.05799883      43.47342822      39.32204607 \r\nC      23.86453239      43.85600909      40.05559672 \r\nC      21.93967246      42.66621189      40.70042792 \r\nN      24.70919324      44.16086786      39.01026455 \r\nN      26.99778317      44.12504952      38.55097537 \r\nO      23.94157232      44.33876328      41.17634376 \r\nO      22.89585738      42.97408398      39.67299529 \r\nH      26.16164728      44.77305352      40.40057829 \r\nH      28.68947065      44.23063735      39.80228990 \r\nH      27.66323060      42.79196555      40.09895563 \r\nH      28.68390495      42.89093842      38.63652803 \r\nH      23.23470215      42.09101882      37.40811650 \r\nH      21.24447463      41.95563649      40.24319087 \r\nH      22.43063322      42.21412371      41.57129581 \r\nH      21.40601277      43.56942733      41.02249360 \r\nH      24.68290850      46.18574698      37.19257545 \r\nH      25.62729739      47.68706029      37.25636752 \r\nH      26.42968656      46.16066521      36.84285483 \r\nH      28.58822486      45.33704540      36.36067394 \r\nH      29.51420789      44.90723808      34.90432417 \r\nH      25.82097107      44.88053099      34.93463322 \r\nC      25.97481281      44.86673088      39.32057956 \r\nC      25.95190801      46.38517583      38.96606828 \r\nC      24.88188464      47.09220611      39.81330505 \r\nC      25.65533008      46.61062970      37.47636419 \r\nC      27.33658761      46.95978140      39.30905457 \r\nH      23.87321351      46.73564726      39.56800408 \r\nH      25.03860400      46.92562889      40.88690401 \r\nH      24.91112717      48.17436893      39.62327139 \r\nH      28.12470645      46.48599625      38.70883271 \r\nH      27.57854275      46.81520172      40.37252452 \r\nH      27.36150624      48.03950326      39.10780948 \r\n"
+      },
+      "response_format": {
+        "value": "one number rounded to four decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "TP-QNP009",
+      "derived_from": "QNP009",
+      "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Return only one value rounded to four decimal places and unit angstrom.",
+      "scope": "KEGPOC PBE+vdW-relaxed几何；64 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+      "input": {
+        "format": "xyz",
+        "unit": "angstrom",
+        "text": "64\r\n\r\nO      19.86010280      28.28309660      32.76717029 \r\nO      18.64302191      30.24973211      36.66819098 \r\nO      14.17063436      29.25007521      37.95162424 \r\nO      15.95917704      27.85833360      33.65559508 \r\nN      18.88812771      27.97236471      33.70952443 \r\nC      18.41153689      29.04725706      34.22957826 \r\nC      19.02007011      30.32575557      33.66461054 \r\nC      17.29559340      29.03974314      35.18489197 \r\nC      17.41839193      29.69869638      36.42909188 \r\nC      16.36309869      29.75696120      37.33661883 \r\nC      15.14846998      29.14910609      37.00219233 \r\nC      14.97951288      28.49516250      35.77949975 \r\nC      16.05492384      28.44776911      34.87944620 \r\nC      17.09397330      30.62892824      32.04104121 \r\nC      18.86504822      30.89264659      37.91815901 \r\nC      12.90907666      28.65014877      37.67843982 \r\nC      14.71265278      27.29638411      33.26899424 \r\nH      19.45885684      30.60597922      30.83374819 \r\nH      16.44943352      30.24848255      38.30107832 \r\nH      14.03178916      28.03524484      35.52329007 \r\nH      17.21033782      29.58675850      31.74318305 \r\nH      18.72957339      30.19433270      38.75845394 \r\nH      12.29079369      28.84462937      38.56032074 \r\nH      12.43002506      29.09908614      36.79369970 \r\nH      13.00124223      27.56207975      37.53261893 \r\nH      14.87021608      26.89931947      32.26116046 \r\nH      14.41305329      26.47263054      33.93621643 \r\nH      13.91452537      28.05589934      33.24109085 \r\nF      14.93387776      33.45946830      31.32882155 \r\nC      17.94537848      31.16986464      33.01620021 \r\nC      16.08176179      31.39305808      31.46469697 \r\nC      15.92085486      32.70870381      31.88436017 \r\nC      16.73071921      33.27611872      32.85912781 \r\nC      17.74036237      32.49311688      33.41984982 \r\nH      19.47548555      30.89337410      34.48657325 \r\nH      15.41735243      30.98170848      30.70640491 \r\nH      16.56502183      34.30604969      33.17084777 \r\nH      18.38033946      32.92120668      34.19207344 \r\nH      18.19953295      31.76029300      38.05216415 \r\nH      21.19003756      29.39422698      29.49801415 \r\nO      21.86440899      29.72767874      34.53432815 \r\nC      22.47895069      30.35722921      32.23058594 \r\nC      21.56833616      29.90638764      33.37255988 \r\nC      20.13919188      29.73715401      32.76735001 \r\nC      20.37052872      30.25246313      31.32876083 \r\nC      21.12435731      29.14409259      30.56352917 \r\nC      22.51973061      29.14465613      31.24407887 \r\nH      20.61877840      28.17811568      30.64283113 \r\nH      22.72633987      28.20773527      31.77718439 \r\nH      23.33779630      29.28983607      30.52482113 \r\nH      24.38838054      30.07366358      33.19794455 \r\nC      21.48542516      31.33909160      31.50826913 \r\nC      21.09755046      32.54460558      32.37638690 \r\nC      22.00814726      31.88883040      30.17418125 \r\nC      23.83327225      30.86593040      32.67823465 \r\nH      20.82732947      32.27697321      33.40539771 \r\nH      21.93962136      33.24710415      32.44308756 \r\nH      20.24841401      33.08454647      31.93770108 \r\nH      22.42009162      31.12250086      29.50906936 \r\nH      21.19695730      32.39806308      29.63376320 \r\nH      22.79862355      32.63047208      30.35188255 \r\nH      24.43531063      31.19494515      31.82017271 \r\nH      23.74042481      31.70543855      33.37981358 \r\nH      19.90593213      31.22976477      37.89251805 \r\n"
+      },
+      "response_format": {
+        "value": "one number rounded to four decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "TP-QNP010",
+      "derived_from": "QNP010",
+      "question": "Compute the equal-weight radius of gyration of all supplied sites: Rg = sqrt(sum_i ||ri-centroid||^2 / N). Return only one value rounded to four decimal places and unit angstrom. Do not use mass weights.",
+      "scope": "KEWGID PBE+vdW-relaxed几何；48 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+      "input": {
+        "format": "xyz",
+        "unit": "angstrom",
+        "text": "48\r\n\r\nH      11.41449474      27.63253451      23.84217972 \r\nC      11.79033011      31.29439926      22.47104573 \r\nC      11.84957660      28.89168458      22.18174242 \r\nH      12.00962564      28.08901685      21.46330482 \r\nC      12.20884587      30.30185869      20.21449874 \r\nH      12.65423229      29.35506816      19.88726740 \r\nC      13.10708630      31.46734022      19.76180802 \r\nH      13.71414049      31.88770503      20.57192907 \r\nC      12.14141453      32.49228291      19.10608015 \r\nH      12.16622453      33.47706499      19.58785908 \r\nC      10.78624875      31.82410215      19.23075357 \r\nC       9.57745707      32.50653888      19.79908813 \r\nC       9.58688800      32.15840708      18.35093591 \r\nH       9.71416060      32.95339822      17.61775895 \r\nH       8.96975147      31.31430402      18.04521226 \r\nC      13.86894325      31.99164159      17.64555144 \r\nC      14.94145139      33.06012238      17.87571536 \r\nH      14.81599713      33.54457141      18.85260725 \r\nH      14.87439760      33.83334748      17.10059149 \r\nH      15.94084171      32.60901968      17.84062043 \r\nC      13.99535764      31.29059981      16.30660445 \r\nH      14.97090965      30.79616303      16.22746341 \r\nH      13.90421274      32.01761570      15.49091035 \r\nH      13.20148144      30.54169939      16.21098518 \r\nF       9.63452601      33.80860423      20.17854703 \r\nF       8.76436597      31.81806529      20.64438111 \r\nN      12.00504758      30.16109280      21.66705145 \r\nO      11.86784307      32.43688352      22.03731589 \r\nO      13.91184845      30.99558155      18.68298131 \r\nO      12.55504730      32.56201414      17.74091008 \r\nO      10.98195529      30.44600744      19.51021882 \r\nC      11.30072328      29.74345845      24.39087504 \r\nC      11.52317164      28.64622009      23.46965168 \r\nC      11.38223119      32.21263077      24.69610672 \r\nC      10.04902818      32.83279610      24.79102913 \r\nC       9.89395114      33.92265319      25.66455966 \r\nH      10.75481864      34.25596905      26.24206461 \r\nC       8.66071627      34.55197765      25.77862609 \r\nH       8.54125700      35.39530618      26.45814683 \r\nC       7.57430390      34.10439572      25.01919120 \r\nH       6.60852199      34.60230875      25.10660400 \r\nC       7.72353155      33.02359780      24.14828922 \r\nH       6.88010734      32.67897931      23.55135574 \r\nC       8.95534263      32.38530979      24.03566248 \r\nH       9.06612430      31.54777271      23.35069610 \r\nN      11.48267823      31.02061085      23.79057287 \r\nO      10.97787097      29.65836848      25.56717255 \r\nO      12.37783831      32.57076693      25.27248757 \r\n"
+      },
+      "response_format": {
+        "value": "one number rounded to four decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "TP-QNP011",
+      "derived_from": "QNP011",
+      "question": "Compute the equal-weight radius of gyration of all supplied sites: Rg = sqrt(sum_i ||ri-centroid||^2 / N). Return only one value rounded to four decimal places and unit angstrom. Do not use mass weights.",
+      "scope": "PEKZAG PBE+vdW-relaxed几何；70 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+      "input": {
+        "format": "xyz",
+        "unit": "angstrom",
+        "text": "70\r\n\r\nC       9.86753234      24.00547579      37.72369608 \r\nC      14.14751623      24.04591492      36.36939350 \r\nC      13.64289010      22.73835111      36.40085762 \r\nC      14.49979167      21.63781333      36.34567308 \r\nC      15.87934402      21.82078462      36.25290940 \r\nC      16.39302832      23.11722231      36.18968070 \r\nC      15.53761138      24.21437073      36.23559668 \r\nC      14.75069576      23.55261338      39.67227062 \r\nC      13.79400494      22.66419065      40.15502597 \r\nC      13.25498313      22.83716181      41.43075113 \r\nC      13.69461579      23.90264784      42.21562946 \r\nC      17.79237077      23.61059745      39.51642765 \r\nH       7.94073349      24.15697268      36.75571753 \r\nH       9.48135953      23.48559217      38.60056070 \r\nH      12.56981474      22.57267196      36.46614877 \r\nH      14.08090391      20.63147488      36.37113358 \r\nH      16.54929224      20.96178550      36.21998494 \r\nH      17.46697586      23.27970048      36.11434813 \r\nH      15.16350230      23.39861961      38.67975192 \r\nH      13.47076814      21.83723673      39.52249887 \r\nH      12.50447386      22.14465448      41.81223493 \r\nH      13.29243579      24.04631406      43.21861139 \r\nH      17.22222555      23.05041142      40.25487467 \r\nC      14.14121121      26.60547470      32.97377344 \r\nC      14.02599431      27.98678383      33.13284464 \r\nH      14.40572453      26.18485623      32.00342361 \r\nH      14.20574632      28.65567854      32.29123118 \r\nS      13.43986154      26.14540690      38.18834568 \r\nS      15.31631331      26.76175470      38.54897177 \r\nC      13.25906725      25.27575679      36.45080613 \r\nC      13.57919136      26.25832726      35.31992161 \r\nC      13.92150831      25.75281754      34.05484034 \r\nC      13.67853195      28.50110867      34.38178695 \r\nC      13.45430298      27.64608883      35.46118356 \r\nC      11.76136374      24.96655692      36.52722624 \r\nC      10.88159274      25.34644815      35.50416647 \r\nC       9.52008040      25.05113083      35.58324450 \r\nC       9.00549705      24.38131512      36.69261256 \r\nC      11.22853110      24.29332575      37.64350739 \r\nC      16.22205019      25.59490825      39.87434865 \r\nC      15.20283804      24.63243919      40.44972094 \r\nC      14.65871963      24.78878903      41.73178310 \r\nC      17.39137462      24.90790964      39.16929126 \r\nC      18.17564699      25.61137523      38.24216771 \r\nC      16.75031952      26.60285831      40.90665374 \r\nC      16.43953719      28.54539467      42.34569121 \r\nC      15.96991091      27.68014414      41.35884645 \r\nH      14.01221853      24.67689881      33.91338990 \r\nH      13.58160417      29.57773873      34.52283778 \r\nH      13.17891749      28.06065905      36.42893736 \r\nH      11.26236800      25.87455490      34.63242006 \r\nH       8.85917353      25.35308259      34.77063112 \r\nH      11.88541728      23.99416023      38.45953822 \r\nH      15.95331960      25.21763477      36.17594927 \r\nH      14.99477445      25.60370706      42.36925386 \r\nH      17.90029448      26.62911440      37.96729979 \r\nH      15.81147714      29.37352755      42.67448989 \r\nH      14.98550451      27.84517070      40.92521307 \r\nC      18.92124585      23.02705134      38.93776703 \r\nC      19.68076477      23.73222005      38.00615231 \r\nH      19.20676705      22.01485096      39.22463683 \r\nH      20.56165136      23.27722665      37.55343586 \r\nC      19.30215393      25.03279481      37.66346976 \r\nC      18.01867272      26.42647140      41.48035439 \r\nC      18.48894316      27.29178066      42.46875555 \r\nC      17.70406586      28.35813983      42.90502401 \r\nH      19.88883328      25.60236519      36.94254879 \r\nH      18.64862586      25.60029572      41.15683188 \r\nH      19.47874530      27.12865558      42.89544110 \r\nH      18.07472768      29.03921459      43.67101959 \r\n"
+      },
+      "response_format": {
+        "value": "one number rounded to four decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "TP-MNP006",
+      "derived_from": "MNP006",
+      "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Return only one value rounded to four decimal places and unit angstrom.",
+      "scope": "ZIF-8 Zn 亚晶格；12 个原子，一个常规立方晶胞，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+      "input": {
+        "format": "xyz",
+        "unit": "angstrom",
+        "text": "12\r\nZIF-8 Zn sublattice, one conventional cell, angstrom\r\nZn 0.0 4.207575 8.41515\r\nZn 0.0 8.41515 4.207575\r\nZn 0.0 8.41515 12.622725\r\nZn 0.0 12.622725 8.41515\r\nZn 4.207575 0.0 8.41515\r\nZn 4.207575 8.41515 0.0\r\nZn 8.41515 0.0 4.207575\r\nZn 8.41515 0.0 12.622725\r\nZn 8.41515 4.207575 0.0\r\nZn 8.41515 12.622725 0.0\r\nZn 12.622725 0.0 8.41515\r\nZn 12.622725 8.41515 0.0\r\n"
+      },
+      "response_format": {
+        "value": "one number rounded to four decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "TP-MNP007",
+      "derived_from": "MNP007",
+      "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Return only one value rounded to four decimal places and unit angstrom.",
+      "scope": "MOF-5 Zn 亚晶格；32 个原子，一个常规立方晶胞，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+      "input": {
+        "format": "xyz",
+        "unit": "angstrom",
+        "text": "32\r\nMOF-5 Zn sublattice, one conventional cell, angstrom\r\nZn 5.3321291078 5.3321291078 7.5802208922\r\nZn 5.3321291078 5.3321291078 18.2444791078\r\nZn 5.3321291078 7.5802208922 5.3321291078\r\nZn 5.3321291078 7.5802208922 20.4925708922\r\nZn 5.3321291078 18.2444791078 5.3321291078\r\nZn 5.3321291078 18.2444791078 20.4925708922\r\nZn 5.3321291078 20.4925708922 7.5802208922\r\nZn 5.3321291078 20.4925708922 18.2444791078\r\nZn 7.5802208922 5.3321291078 5.3321291078\r\nZn 7.5802208922 5.3321291078 20.4925708922\r\nZn 7.5802208922 7.5802208922 7.5802208922\r\nZn 7.5802208922 7.5802208922 18.2444791078\r\nZn 7.5802208922 18.2444791078 7.5802208922\r\nZn 7.5802208922 18.2444791078 18.2444791078\r\nZn 7.5802208922 20.4925708922 5.3321291078\r\nZn 7.5802208922 20.4925708922 20.4925708922\r\nZn 18.2444791078 5.3321291078 5.3321291078\r\nZn 18.2444791078 5.3321291078 20.4925708922\r\nZn 18.2444791078 7.5802208922 7.5802208922\r\nZn 18.2444791078 7.5802208922 18.2444791078\r\nZn 18.2444791078 18.2444791078 7.5802208922\r\nZn 18.2444791078 18.2444791078 18.2444791078\r\nZn 18.2444791078 20.4925708922 5.3321291078\r\nZn 18.2444791078 20.4925708922 20.4925708922\r\nZn 20.4925708922 5.3321291078 7.5802208922\r\nZn 20.4925708922 5.3321291078 18.2444791078\r\nZn 20.4925708922 7.5802208922 5.3321291078\r\nZn 20.4925708922 7.5802208922 20.4925708922\r\nZn 20.4925708922 18.2444791078 5.3321291078\r\nZn 20.4925708922 18.2444791078 20.4925708922\r\nZn 20.4925708922 20.4925708922 7.5802208922\r\nZn 20.4925708922 20.4925708922 18.2444791078\r\n"
+      },
+      "response_format": {
+        "value": "one number rounded to four decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "TP-MNP010",
+      "derived_from": "MNP010",
+      "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Return only one value rounded to four decimal places and unit angstrom.",
+      "scope": "MOF-5 完整框架；424 个原子，一个常规立方晶胞，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+      "input": {
+        "format": "xyz",
+        "unit": "angstrom",
+        "text": "424\r\nMOF-5 full framework, one conventional cell, angstrom\r\nZn 5.3321291078 5.3321291078 7.5802208922\r\nZn 5.3321291078 5.3321291078 18.2444791078\r\nZn 5.3321291078 7.5802208922 5.3321291078\r\nZn 5.3321291078 7.5802208922 20.4925708922\r\nZn 5.3321291078 18.2444791078 5.3321291078\r\nZn 5.3321291078 18.2444791078 20.4925708922\r\nZn 5.3321291078 20.4925708922 7.5802208922\r\nZn 5.3321291078 20.4925708922 18.2444791078\r\nZn 7.5802208922 5.3321291078 5.3321291078\r\nZn 7.5802208922 5.3321291078 20.4925708922\r\nZn 7.5802208922 7.5802208922 7.5802208922\r\nZn 7.5802208922 7.5802208922 18.2444791078\r\nZn 7.5802208922 18.2444791078 7.5802208922\r\nZn 7.5802208922 18.2444791078 18.2444791078\r\nZn 7.5802208922 20.4925708922 5.3321291078\r\nZn 7.5802208922 20.4925708922 20.4925708922\r\nZn 18.2444791078 5.3321291078 5.3321291078\r\nZn 18.2444791078 5.3321291078 20.4925708922\r\nZn 18.2444791078 7.5802208922 7.5802208922\r\nZn 18.2444791078 7.5802208922 18.2444791078\r\nZn 18.2444791078 18.2444791078 7.5802208922\r\nZn 18.2444791078 18.2444791078 18.2444791078\r\nZn 18.2444791078 20.4925708922 5.3321291078\r\nZn 18.2444791078 20.4925708922 20.4925708922\r\nZn 20.4925708922 5.3321291078 7.5802208922\r\nZn 20.4925708922 5.3321291078 18.2444791078\r\nZn 20.4925708922 7.5802208922 5.3321291078\r\nZn 20.4925708922 7.5802208922 20.4925708922\r\nZn 20.4925708922 18.2444791078 5.3321291078\r\nZn 20.4925708922 18.2444791078 20.4925708922\r\nZn 20.4925708922 20.4925708922 7.5802208922\r\nZn 20.4925708922 20.4925708922 18.2444791078\r\nO 6.456175 6.456175 6.456175\r\nO 6.456175 6.456175 19.368525\r\nO 6.456175 19.368525 6.456175\r\nO 6.456175 19.368525 19.368525\r\nO 19.368525 6.456175 6.456175\r\nO 19.368525 6.456175 19.368525\r\nO 19.368525 19.368525 6.456175\r\nO 19.368525 19.368525 19.368525\r\nO 3.456636095 5.668779897 7.243570103\r\nO 3.456636095 5.668779897 18.581129897\r\nO 3.456636095 7.243570103 5.668779897\r\nO 3.456636095 7.243570103 20.155920103\r\nO 3.456636095 18.581129897 5.668779897\r\nO 3.456636095 18.581129897 20.155920103\r\nO 3.456636095 20.155920103 7.243570103\r\nO 3.456636095 20.155920103 18.581129897\r\nO 5.668779897 3.456636095 7.243570103\r\nO 5.668779897 3.456636095 18.581129897\r\nO 5.668779897 5.668779897 9.455713905\r\nO 5.668779897 5.668779897 16.368986095\r\nO 5.668779897 7.243570103 3.456636095\r\nO 5.668779897 7.243570103 22.368063905\r\nO 5.668779897 9.455713905 5.668779897\r\nO 5.668779897 9.455713905 20.155920103\r\nO 5.668779897 16.368986095 5.668779897\r\nO 5.668779897 16.368986095 20.155920103\r\nO 5.668779897 18.581129897 3.456636095\r\nO 5.668779897 18.581129897 22.368063905\r\nO 5.668779897 20.155920103 9.455713905\r\nO 5.668779897 20.155920103 16.368986095\r\nO 5.668779897 22.368063905 7.243570103\r\nO 5.668779897 22.368063905 18.581129897\r\nO 7.243570103 3.456636095 5.668779897\r\nO 7.243570103 3.456636095 20.155920103\r\nO 7.243570103 5.668779897 3.456636095\r\nO 7.243570103 5.668779897 22.368063905\r\nO 7.243570103 7.243570103 9.455713905\r\nO 7.243570103 7.243570103 16.368986095\r\nO 7.243570103 9.455713905 7.243570103\r\nO 7.243570103 9.455713905 18.581129897\r\nO 7.243570103 16.368986095 7.243570103\r\nO 7.243570103 16.368986095 18.581129897\r\nO 7.243570103 18.581129897 9.455713905\r\nO 7.243570103 18.581129897 16.368986095\r\nO 7.243570103 20.155920103 3.456636095\r\nO 7.243570103 20.155920103 22.368063905\r\nO 7.243570103 22.368063905 5.668779897\r\nO 7.243570103 22.368063905 20.155920103\r\nO 9.455713905 5.668779897 5.668779897\r\nO 9.455713905 5.668779897 20.155920103\r\nO 9.455713905 7.243570103 7.243570103\r\nO 9.455713905 7.243570103 18.581129897\r\nO 9.455713905 18.581129897 7.243570103\r\nO 9.455713905 18.581129897 18.581129897\r\nO 9.455713905 20.155920103 5.668779897\r\nO 9.455713905 20.155920103 20.155920103\r\nO 16.368986095 5.668779897 5.668779897\r\nO 16.368986095 5.668779897 20.155920103\r\nO 16.368986095 7.243570103 7.243570103\r\nO 16.368986095 7.243570103 18.581129897\r\nO 16.368986095 18.581129897 7.243570103\r\nO 16.368986095 18.581129897 18.581129897\r\nO 16.368986095 20.155920103 5.668779897\r\nO 16.368986095 20.155920103 20.155920103\r\nO 18.581129897 3.456636095 5.668779897\r\nO 18.581129897 3.456636095 20.155920103\r\nO 18.581129897 5.668779897 3.456636095\r\nO 18.581129897 5.668779897 22.368063905\r\nO 18.581129897 7.243570103 9.455713905\r\nO 18.581129897 7.243570103 16.368986095\r\nO 18.581129897 9.455713905 7.243570103\r\nO 18.581129897 9.455713905 18.581129897\r\nO 18.581129897 16.368986095 7.243570103\r\nO 18.581129897 16.368986095 18.581129897\r\nO 18.581129897 18.581129897 9.455713905\r\nO 18.581129897 18.581129897 16.368986095\r\nO 18.581129897 20.155920103 3.456636095\r\nO 18.581129897 20.155920103 22.368063905\r\nO 18.581129897 22.368063905 5.668779897\r\nO 18.581129897 22.368063905 20.155920103\r\nO 20.155920103 3.456636095 7.243570103\r\nO 20.155920103 3.456636095 18.581129897\r\nO 20.155920103 5.668779897 9.455713905\r\nO 20.155920103 5.668779897 16.368986095\r\nO 20.155920103 7.243570103 3.456636095\r\nO 20.155920103 7.243570103 22.368063905\r\nO 20.155920103 9.455713905 5.668779897\r\nO 20.155920103 9.455713905 20.155920103\r\nO 20.155920103 16.368986095 5.668779897\r\nO 20.155920103 16.368986095 20.155920103\r\nO 20.155920103 18.581129897 3.456636095\r\nO 20.155920103 18.581129897 22.368063905\r\nO 20.155920103 20.155920103 9.455713905\r\nO 20.155920103 20.155920103 16.368986095\r\nO 20.155920103 22.368063905 7.243570103\r\nO 20.155920103 22.368063905 18.581129897\r\nO 22.368063905 5.668779897 7.243570103\r\nO 22.368063905 5.668779897 18.581129897\r\nO 22.368063905 7.243570103 5.668779897\r\nO 22.368063905 7.243570103 20.155920103\r\nO 22.368063905 18.581129897 5.668779897\r\nO 22.368063905 18.581129897 20.155920103\r\nO 22.368063905 20.155920103 7.243570103\r\nO 22.368063905 20.155920103 18.581129897\r\nC 2.878937556 6.456175 6.456175\r\nC 2.878937556 6.456175 19.368525\r\nC 2.878937556 19.368525 6.456175\r\nC 2.878937556 19.368525 19.368525\r\nC 6.456175 2.878937556 6.456175\r\nC 6.456175 2.878937556 19.368525\r\nC 6.456175 6.456175 2.878937556\r\nC 6.456175 6.456175 10.033412444\r\nC 6.456175 6.456175 15.791287556\r\nC 6.456175 6.456175 22.945762444\r\nC 6.456175 10.033412444 6.456175\r\nC 6.456175 10.033412444 19.368525\r\nC 6.456175 15.791287556 6.456175\r\nC 6.456175 15.791287556 19.368525\r\nC 6.456175 19.368525 2.878937556\r\nC 6.456175 19.368525 10.033412444\r\nC 6.456175 19.368525 15.791287556\r\nC 6.456175 19.368525 22.945762444\r\nC 6.456175 22.945762444 6.456175\r\nC 6.456175 22.945762444 19.368525\r\nC 10.033412444 6.456175 6.456175\r\nC 10.033412444 6.456175 19.368525\r\nC 10.033412444 19.368525 6.456175\r\nC 10.033412444 19.368525 19.368525\r\nC 15.791287556 6.456175 6.456175\r\nC 15.791287556 6.456175 19.368525\r\nC 15.791287556 19.368525 6.456175\r\nC 15.791287556 19.368525 19.368525\r\nC 19.368525 2.878937556 6.456175\r\nC 19.368525 2.878937556 19.368525\r\nC 19.368525 6.456175 2.878937556\r\nC 19.368525 6.456175 10.033412444\r\nC 19.368525 6.456175 15.791287556\r\nC 19.368525 6.456175 22.945762444\r\nC 19.368525 10.033412444 6.456175\r\nC 19.368525 10.033412444 19.368525\r\nC 19.368525 15.791287556 6.456175\r\nC 19.368525 15.791287556 19.368525\r\nC 19.368525 19.368525 2.878937556\r\nC 19.368525 19.368525 10.033412444\r\nC 19.368525 19.368525 15.791287556\r\nC 19.368525 19.368525 22.945762444\r\nC 19.368525 22.945762444 6.456175\r\nC 19.368525 22.945762444 19.368525\r\nC 22.945762444 6.456175 6.456175\r\nC 22.945762444 6.456175 19.368525\r\nC 22.945762444 19.368525 6.456175\r\nC 22.945762444 19.368525 19.368525\r\nC 1.385495155 6.456175 6.456175\r\nC 1.385495155 6.456175 19.368525\r\nC 1.385495155 19.368525 6.456175\r\nC 1.385495155 19.368525 19.368525\r\nC 6.456175 1.385495155 6.456175\r\nC 6.456175 1.385495155 19.368525\r\nC 6.456175 6.456175 1.385495155\r\nC 6.456175 6.456175 11.526854845\r\nC 6.456175 6.456175 14.297845155\r\nC 6.456175 6.456175 24.439204845\r\nC 6.456175 11.526854845 6.456175\r\nC 6.456175 11.526854845 19.368525\r\nC 6.456175 14.297845155 6.456175\r\nC 6.456175 14.297845155 19.368525\r\nC 6.456175 19.368525 1.385495155\r\nC 6.456175 19.368525 11.526854845\r\nC 6.456175 19.368525 14.297845155\r\nC 6.456175 19.368525 24.439204845\r\nC 6.456175 24.439204845 6.456175\r\nC 6.456175 24.439204845 19.368525\r\nC 11.526854845 6.456175 6.456175\r\nC 11.526854845 6.456175 19.368525\r\nC 11.526854845 19.368525 6.456175\r\nC 11.526854845 19.368525 19.368525\r\nC 14.297845155 6.456175 6.456175\r\nC 14.297845155 6.456175 19.368525\r\nC 14.297845155 19.368525 6.456175\r\nC 14.297845155 19.368525 19.368525\r\nC 19.368525 1.385495155 6.456175\r\nC 19.368525 1.385495155 19.368525\r\nC 19.368525 6.456175 1.385495155\r\nC 19.368525 6.456175 11.526854845\r\nC 19.368525 6.456175 14.297845155\r\nC 19.368525 6.456175 24.439204845\r\nC 19.368525 11.526854845 6.456175\r\nC 19.368525 11.526854845 19.368525\r\nC 19.368525 14.297845155 6.456175\r\nC 19.368525 14.297845155 19.368525\r\nC 19.368525 19.368525 1.385495155\r\nC 19.368525 19.368525 11.526854845\r\nC 19.368525 19.368525 14.297845155\r\nC 19.368525 19.368525 24.439204845\r\nC 19.368525 24.439204845 6.456175\r\nC 19.368525 24.439204845 19.368525\r\nC 24.439204845 6.456175 6.456175\r\nC 24.439204845 6.456175 19.368525\r\nC 24.439204845 19.368525 6.456175\r\nC 24.439204845 19.368525 19.368525\r\nC 0.685129291 5.626427389 7.285922611\r\nC 0.685129291 5.626427389 18.538777389\r\nC 0.685129291 7.285922611 5.626427389\r\nC 0.685129291 7.285922611 20.198272611\r\nC 0.685129291 18.538777389 5.626427389\r\nC 0.685129291 18.538777389 20.198272611\r\nC 0.685129291 20.198272611 7.285922611\r\nC 0.685129291 20.198272611 18.538777389\r\nC 5.626427389 0.685129291 7.285922611\r\nC 5.626427389 0.685129291 18.538777389\r\nC 5.626427389 5.626427389 12.227220709\r\nC 5.626427389 5.626427389 13.597479291\r\nC 5.626427389 7.285922611 0.685129291\r\nC 5.626427389 7.285922611 25.139570709\r\nC 5.626427389 12.227220709 5.626427389\r\nC 5.626427389 12.227220709 20.198272611\r\nC 5.626427389 13.597479291 5.626427389\r\nC 5.626427389 13.597479291 20.198272611\r\nC 5.626427389 18.538777389 0.685129291\r\nC 5.626427389 18.538777389 25.139570709\r\nC 5.626427389 20.198272611 12.227220709\r\nC 5.626427389 20.198272611 13.597479291\r\nC 5.626427389 25.139570709 7.285922611\r\nC 5.626427389 25.139570709 18.538777389\r\nC 7.285922611 0.685129291 5.626427389\r\nC 7.285922611 0.685129291 20.198272611\r\nC 7.285922611 5.626427389 0.685129291\r\nC 7.285922611 5.626427389 25.139570709\r\nC 7.285922611 7.285922611 12.227220709\r\nC 7.285922611 7.285922611 13.597479291\r\nC 7.285922611 12.227220709 7.285922611\r\nC 7.285922611 12.227220709 18.538777389\r\nC 7.285922611 13.597479291 7.285922611\r\nC 7.285922611 13.597479291 18.538777389\r\nC 7.285922611 18.538777389 12.227220709\r\nC 7.285922611 18.538777389 13.597479291\r\nC 7.285922611 20.198272611 0.685129291\r\nC 7.285922611 20.198272611 25.139570709\r\nC 7.285922611 25.139570709 5.626427389\r\nC 7.285922611 25.139570709 20.198272611\r\nC 12.227220709 5.626427389 5.626427389\r\nC 12.227220709 5.626427389 20.198272611\r\nC 12.227220709 7.285922611 7.285922611\r\nC 12.227220709 7.285922611 18.538777389\r\nC 12.227220709 18.538777389 7.285922611\r\nC 12.227220709 18.538777389 18.538777389\r\nC 12.227220709 20.198272611 5.626427389\r\nC 12.227220709 20.198272611 20.198272611\r\nC 13.597479291 5.626427389 5.626427389\r\nC 13.597479291 5.626427389 20.198272611\r\nC 13.597479291 7.285922611 7.285922611\r\nC 13.597479291 7.285922611 18.538777389\r\nC 13.597479291 18.538777389 7.285922611\r\nC 13.597479291 18.538777389 18.538777389\r\nC 13.597479291 20.198272611 5.626427389\r\nC 13.597479291 20.198272611 20.198272611\r\nC 18.538777389 0.685129291 5.626427389\r\nC 18.538777389 0.685129291 20.198272611\r\nC 18.538777389 5.626427389 0.685129291\r\nC 18.538777389 5.626427389 25.139570709\r\nC 18.538777389 7.285922611 12.227220709\r\nC 18.538777389 7.285922611 13.597479291\r\nC 18.538777389 12.227220709 7.285922611\r\nC 18.538777389 12.227220709 18.538777389\r\nC 18.538777389 13.597479291 7.285922611\r\nC 18.538777389 13.597479291 18.538777389\r\nC 18.538777389 18.538777389 12.227220709\r\nC 18.538777389 18.538777389 13.597479291\r\nC 18.538777389 20.198272611 0.685129291\r\nC 18.538777389 20.198272611 25.139570709\r\nC 18.538777389 25.139570709 5.626427389\r\nC 18.538777389 25.139570709 20.198272611\r\nC 20.198272611 0.685129291 7.285922611\r\nC 20.198272611 0.685129291 18.538777389\r\nC 20.198272611 5.626427389 12.227220709\r\nC 20.198272611 5.626427389 13.597479291\r\nC 20.198272611 7.285922611 0.685129291\r\nC 20.198272611 7.285922611 25.139570709\r\nC 20.198272611 12.227220709 5.626427389\r\nC 20.198272611 12.227220709 20.198272611\r\nC 20.198272611 13.597479291 5.626427389\r\nC 20.198272611 13.597479291 20.198272611\r\nC 20.198272611 18.538777389 0.685129291\r\nC 20.198272611 18.538777389 25.139570709\r\nC 20.198272611 20.198272611 12.227220709\r\nC 20.198272611 20.198272611 13.597479291\r\nC 20.198272611 25.139570709 7.285922611\r\nC 20.198272611 25.139570709 18.538777389\r\nC 25.139570709 5.626427389 7.285922611\r\nC 25.139570709 5.626427389 18.538777389\r\nC 25.139570709 7.285922611 5.626427389\r\nC 25.139570709 7.285922611 20.198272611\r\nC 25.139570709 18.538777389 5.626427389\r\nC 25.139570709 18.538777389 20.198272611\r\nC 25.139570709 20.198272611 7.285922611\r\nC 25.139570709 20.198272611 18.538777389\r\nH 1.14403421 5.05389379 7.85845621\r\nH 1.14403421 5.05389379 17.96624379\r\nH 1.14403421 7.85845621 5.05389379\r\nH 1.14403421 7.85845621 20.77080621\r\nH 1.14403421 17.96624379 5.05389379\r\nH 1.14403421 17.96624379 20.77080621\r\nH 1.14403421 20.77080621 7.85845621\r\nH 1.14403421 20.77080621 17.96624379\r\nH 5.05389379 1.14403421 7.85845621\r\nH 5.05389379 1.14403421 17.96624379\r\nH 5.05389379 5.05389379 11.76831579\r\nH 5.05389379 5.05389379 14.05638421\r\nH 5.05389379 7.85845621 1.14403421\r\nH 5.05389379 7.85845621 24.68066579\r\nH 5.05389379 11.76831579 5.05389379\r\nH 5.05389379 11.76831579 20.77080621\r\nH 5.05389379 14.05638421 5.05389379\r\nH 5.05389379 14.05638421 20.77080621\r\nH 5.05389379 17.96624379 1.14403421\r\nH 5.05389379 17.96624379 24.68066579\r\nH 5.05389379 20.77080621 11.76831579\r\nH 5.05389379 20.77080621 14.05638421\r\nH 5.05389379 24.68066579 7.85845621\r\nH 5.05389379 24.68066579 17.96624379\r\nH 7.85845621 1.14403421 5.05389379\r\nH 7.85845621 1.14403421 20.77080621\r\nH 7.85845621 5.05389379 1.14403421\r\nH 7.85845621 5.05389379 24.68066579\r\nH 7.85845621 7.85845621 11.76831579\r\nH 7.85845621 7.85845621 14.05638421\r\nH 7.85845621 11.76831579 7.85845621\r\nH 7.85845621 11.76831579 17.96624379\r\nH 7.85845621 14.05638421 7.85845621\r\nH 7.85845621 14.05638421 17.96624379\r\nH 7.85845621 17.96624379 11.76831579\r\nH 7.85845621 17.96624379 14.05638421\r\nH 7.85845621 20.77080621 1.14403421\r\nH 7.85845621 20.77080621 24.68066579\r\nH 7.85845621 24.68066579 5.05389379\r\nH 7.85845621 24.68066579 20.77080621\r\nH 11.76831579 5.05389379 5.05389379\r\nH 11.76831579 5.05389379 20.77080621\r\nH 11.76831579 7.85845621 7.85845621\r\nH 11.76831579 7.85845621 17.96624379\r\nH 11.76831579 17.96624379 7.85845621\r\nH 11.76831579 17.96624379 17.96624379\r\nH 11.76831579 20.77080621 5.05389379\r\nH 11.76831579 20.77080621 20.77080621\r\nH 14.05638421 5.05389379 5.05389379\r\nH 14.05638421 5.05389379 20.77080621\r\nH 14.05638421 7.85845621 7.85845621\r\nH 14.05638421 7.85845621 17.96624379\r\nH 14.05638421 17.96624379 7.85845621\r\nH 14.05638421 17.96624379 17.96624379\r\nH 14.05638421 20.77080621 5.05389379\r\nH 14.05638421 20.77080621 20.77080621\r\nH 17.96624379 1.14403421 5.05389379\r\nH 17.96624379 1.14403421 20.77080621\r\nH 17.96624379 5.05389379 1.14403421\r\nH 17.96624379 5.05389379 24.68066579\r\nH 17.96624379 7.85845621 11.76831579\r\nH 17.96624379 7.85845621 14.05638421\r\nH 17.96624379 11.76831579 7.85845621\r\nH 17.96624379 11.76831579 17.96624379\r\nH 17.96624379 14.05638421 7.85845621\r\nH 17.96624379 14.05638421 17.96624379\r\nH 17.96624379 17.96624379 11.76831579\r\nH 17.96624379 17.96624379 14.05638421\r\nH 17.96624379 20.77080621 1.14403421\r\nH 17.96624379 20.77080621 24.68066579\r\nH 17.96624379 24.68066579 5.05389379\r\nH 17.96624379 24.68066579 20.77080621\r\nH 20.77080621 1.14403421 7.85845621\r\nH 20.77080621 1.14403421 17.96624379\r\nH 20.77080621 5.05389379 11.76831579\r\nH 20.77080621 5.05389379 14.05638421\r\nH 20.77080621 7.85845621 1.14403421\r\nH 20.77080621 7.85845621 24.68066579\r\nH 20.77080621 11.76831579 5.05389379\r\nH 20.77080621 11.76831579 20.77080621\r\nH 20.77080621 14.05638421 5.05389379\r\nH 20.77080621 14.05638421 20.77080621\r\nH 20.77080621 17.96624379 1.14403421\r\nH 20.77080621 17.96624379 24.68066579\r\nH 20.77080621 20.77080621 11.76831579\r\nH 20.77080621 20.77080621 14.05638421\r\nH 20.77080621 24.68066579 7.85845621\r\nH 20.77080621 24.68066579 17.96624379\r\nH 24.68066579 5.05389379 7.85845621\r\nH 24.68066579 5.05389379 17.96624379\r\nH 24.68066579 7.85845621 5.05389379\r\nH 24.68066579 7.85845621 20.77080621\r\nH 24.68066579 17.96624379 5.05389379\r\nH 24.68066579 17.96624379 20.77080621\r\nH 24.68066579 20.77080621 7.85845621\r\nH 24.68066579 20.77080621 17.96624379\r\n"
+      },
+      "response_format": {
+        "value": "one number rounded to four decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "TP-CNP007",
+      "derived_from": "CNP007",
+      "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Return only one value rounded to four decimal places and unit angstrom.",
+      "scope": "1AA5 vancomycin单体（chain A）；132 个原子，坐标单位 Å，仅主占位/主构象；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+      "input": {
+        "format": "xyz",
+        "unit": "angstrom",
+        "text": "132\r\nVancomycin 1AA5 chainA, major altLoc/occupancy only, angstrom\r\nN 10.127 8.826 -4.03\r\nC 10.446 10.141 -4.639\r\nC 8.858 8.812 -3.244\r\nC 7.715 9.246 -4.189\r\nO 7.547 8.688 -5.252\r\nC 8.552 7.426 -2.726\r\nC 9.587 6.788 -1.78\r\nC 9.125 5.395 -1.392\r\nC 9.835 7.62 -0.583\r\nH 10.887 8.557 -3.424\r\nH 11.271 10.077 -5.126\r\nH 10.533 10.801 -3.948\r\nH 9.74 10.396 -5.238\r\nH 8.925 9.44 -2.494\r\nH 8.44 6.837 -3.489\r\nH 7.701 7.46 -2.261\r\nH 10.432 6.702 -2.269\r\nH 8.972 4.876 -2.185\r\nH 8.311 5.457 -0.888\r\nH 9.801 4.971 -0.858\r\nH 10.127 8.494 -0.855\r\nH 10.515 7.21 -0.043\r\nH 9.025 7.698 -0.073\r\nH 10.062 8.136 -4.764\r\nN 6.894 10.223 -3.742\r\nC 5.824 10.725 -4.588\r\nC 4.491 9.963 -4.459\r\nO 3.547 10.291 -5.161\r\nC 5.544 12.254 -4.376\r\nO 6.731 13.006 -4.505\r\nC 4.868 12.532 -3.066\r\nC 3.489 12.76 -3.038\r\nC 5.577 12.564 -1.859\r\nC 2.836 12.923 -1.83\r\nCL 1.135 13.234 -1.833\r\nC 4.904 12.695 -0.669\r\nC 3.523 12.845 -0.655\r\nO 2.866 12.894 0.557\r\nH 7.005 10.548 -2.953\r\nH 6.123 10.618 -5.515\r\nH 4.935 12.542 -5.088\r\nH 7.083 12.839 -5.227\r\nH 3.009 12.801 -3.834\r\nH 6.505 12.495 -1.863\r\nH 5.375 12.684 0.132\r\nN 4.449 8.963 -3.584\r\nC 3.334 8.009 -3.566\r\nC 2.302 8.294 -2.468\r\nO 1.165 8.692 -2.806\r\nC 3.841 6.575 -3.629\r\nC 4.943 6.227 -2.632\r\nO 5.227 6.979 -1.683\r\nN 5.555 5.076 -2.861\r\nH 5.089 8.874 -3.016\r\nH 2.859 8.152 -4.411\r\nH 3.092 5.978 -3.479\r\nH 4.173 6.406 -4.525\r\nH 5.321 4.591 -3.531\r\nH 6.186 4.813 -2.339\r\nN 2.669 8.1 -1.216\r\nC 1.695 8.107 -0.115\r\nC 1.887 6.862 0.723\r\nO 2.988 6.455 1.041\r\nC 1.72 9.379 0.737\r\nC 1.139 9.408 1.973\r\nC 1.145 10.574 2.737\r\nC 1.693 11.737 2.232\r\nO 1.794 12.903 3.004\r\nC 2.275 11.709 0.977\r\nC 2.29 10.55 0.247\r\nH 3.5 7.966 -1.039\r\nH 0.804 8.049 -0.519\r\nH 0.734 8.641 2.309\r\nH 2.69 10.545 -0.592\r\nN 0.734 6.293 1.15\r\nC 0.718 5.365 2.242\r\nC -0.686 5.468 2.895\r\nO -1.628 5.852 2.205\r\nC 0.93 3.872 1.977\r\nC 1.938 3.204 2.649\r\nC 2.017 1.808 2.682\r\nC 1.043 1.086 1.989\r\nO 1.089 -0.286 2.062\r\nC 0.08 1.751 1.263\r\nC 0.018 3.128 1.238\r\nH -0.005 6.492 0.758\r\nH 1.384 5.656 2.9\r\nH 2.586 3.701 3.094\r\nH 0.476 -0.604 1.619\r\nH -0.543 1.26 0.779\r\nH -0.631 3.558 0.73\r\nN -0.841 5.066 4.156\r\nC 0.153 4.642 5.068\r\nO 0.644 10.625 4.037\r\nC -0.746 8.966 5.056\r\nC 1.622 8.643 5.053\r\nC 0.519 9.416 4.702\r\nC 0.211 6.945 5.959\r\nC -0.899 7.756 5.699\r\nC 1.487 7.428 5.657\r\nC 0.072 5.496 6.406\r\nCL 3.25 9.214 4.691\r\nO -0.998 2.532 5.187\r\nC 0.071 3.128 5.32\r\nO -1.15 5.269 7.029\r\nH -1.648 5.066 4.453\r\nH 1.024 4.823 4.657\r\nH -1.493 9.483 4.859\r\nH -1.747 7.477 5.961\r\nH 2.24 6.923 5.867\r\nH 0.808 5.255 7.006\r\nH -1.198 4.483 7.258\r\nN 1.23 2.52 5.592\r\nO 4.706 1.291 1.808\r\nC 4.329 0.915 3.056\r\nC 3.042 1.139 3.548\r\nC 5.301 0.282 3.852\r\nC 5.003 -0.095 5.14\r\nO 5.881 -0.668 5.984\r\nC 3.708 0.139 5.646\r\nC 2.747 0.764 4.868\r\nC 1.363 1.079 5.448\r\nC 1.094 0.328 6.804\r\nO 0.845 -0.905 6.648\r\nO 1.168 0.946 7.841\r\nH 1.904 2.986 5.854\r\nH 0.691 0.779 4.801\r\nH 4.075 1.65 1.428\r\nH 6.148 0.117 3.505\r\nH 6.605 -0.752 5.609\r\nH 3.497 -0.129 6.511\r\nH 1.007 0.445 8.47\r\n"
+      },
+      "response_format": {
+        "value": "one number rounded to four decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "TP-CNP008",
+      "derived_from": "CNP008",
+      "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Return only one value rounded to four decimal places and unit angstrom.",
+      "scope": "1AA5 vancomycin单体（chain B）；132 个原子，坐标单位 Å，仅主占位/主构象；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+      "input": {
+        "format": "xyz",
+        "unit": "angstrom",
+        "text": "132\r\nVancomycin 1AA5 chainB, major altLoc/occupancy only, angstrom\r\nN -13.037 5.891 5.853\r\nC -13.354 6.417 7.214\r\nC -11.668 6.227 5.337\r\nC -10.68 5.657 6.376\r\nO -10.897 4.548 6.863\r\nC -11.446 5.565 4.011\r\nC -12.393 6.014 2.858\r\nC -12.226 7.481 2.576\r\nC -12.173 5.19 1.667\r\nH -13.719 6.252 5.204\r\nH -14.244 6.153 7.459\r\nH -13.294 7.375 7.209\r\nH -12.728 6.06 7.849\r\nH -11.56 7.197 5.259\r\nH -11.542 4.607 4.129\r\nH -10.531 5.734 3.736\r\nH -13.316 5.869 3.156\r\nH -12.378 7.981 3.381\r\nH -12.857 7.752 1.906\r\nH -11.334 7.646 2.261\r\nH -12.287 4.264 1.893\r\nH -11.281 5.332 1.34\r\nH -12.805 5.434 0.988\r\nH -13.135 4.887 5.868\r\nN -9.595 6.386 6.606\r\nC -8.669 5.974 7.643\r\nC -7.321 5.484 7.113\r\nO -6.505 5.032 7.901\r\nC -8.491 7.054 8.771\r\nO -9.827 7.384 9.115\r\nC -7.687 8.239 8.256\r\nC -6.305 8.231 8.391\r\nC -8.286 9.252 7.515\r\nC -5.54 9.185 7.786\r\nCL -3.792 9.156 7.959\r\nC -7.501 10.204 6.908\r\nC -6.125 10.166 6.999\r\nO -5.357 11.066 6.297\r\nH -9.442 7.096 6.145\r\nH -9.083 5.2 8.078\r\nH -8.037 6.656 9.543\r\nH -10.213 6.713 9.385\r\nH -5.896 7.568 8.899\r\nH -9.212 9.286 7.431\r\nH -7.906 10.889 6.426\r\nN -7.112 5.548 5.815\r\nC -5.998 4.818 5.152\r\nC -4.911 5.737 4.594\r\nO -3.748 5.59 4.929\r\nC -6.618 3.973 4.021\r\nC -7.785 3.135 4.507\r\nO -8.787 2.996 3.707\r\nN -7.794 2.711 5.722\r\nH -7.638 6.029 5.334\r\nH -5.59 4.213 5.805\r\nH -6.922 4.562 3.313\r\nH -5.939 3.388 3.651\r\nH -7.104 2.825 6.222\r\nH -8.49 2.314 6.034\r\nN -5.305 6.651 3.696\r\nC -4.357 7.502 2.979\r\nC -4.675 7.472 1.489\r\nO -5.801 7.694 1.08\r\nC -4.356 8.956 3.449\r\nC -3.777 9.919 2.663\r\nC -3.797 11.247 3.031\r\nC -4.341 11.623 4.272\r\nO -4.46 12.901 4.633\r\nC -4.877 10.637 5.059\r\nC -4.907 9.32 4.661\r\nH -6.145 6.741 3.537\r\nH -3.457 7.136 3.109\r\nH -3.363 9.671 1.868\r\nH -5.297 8.677 5.207\r\nN -3.61 7.273 0.699\r\nC -3.568 7.559 -0.722\r\nC -2.155 8.154 -0.982\r\nO -1.274 7.96 -0.146\r\nC -3.685 6.352 -1.651\r\nC -4.596 6.395 -2.683\r\nC -4.575 5.431 -3.71\r\nC -3.674 4.397 -3.602\r\nO -3.656 3.446 -4.61\r\nC -2.786 4.305 -2.548\r\nC -2.804 5.296 -1.57\r\nH -2.899 6.953 1.062\r\nH -4.254 8.22 -0.948\r\nH -5.235 7.071 -2.703\r\nH -3.085 2.881 -4.443\r\nH -2.189 3.594 -2.491\r\nH -2.213 5.245 -0.854\r\nN -1.902 8.752 -2.152\r\nC -2.859 9.265 -3.103\r\nO -3.27 12.255 2.245\r\nC -1.886 11.848 0.322\r\nC -4.262 11.822 0.098\r\nC -3.16 11.966 0.892\r\nC -2.897 11.345 -1.809\r\nC -1.763 11.54 -0.991\r\nC -4.142 11.521 -1.24\r\nC -2.749 10.819 -3.21\r\nCL -5.874 11.966 0.776\r\nO -1.604 8.141 -4.814\r\nC -2.725 8.504 -4.422\r\nO -1.529 11.143 -3.827\r\nH -1.073 8.84 -2.362\r\nH -3.75 9.065 -2.748\r\nH -1.128 11.98 0.844\r\nH -0.914 11.456 -1.362\r\nH -4.905 11.435 -1.764\r\nH -3.487 11.157 -3.76\r\nH -1.07 11.583 -3.309\r\nN -3.857 8.19 -5.027\r\nO -6.947 4.049 -3.745\r\nC -6.762 4.9 -4.778\r\nC -5.537 5.58 -4.858\r\nC -7.697 5.012 -5.788\r\nC -7.456 5.863 -6.892\r\nO -8.36 6.001 -7.86\r\nC -6.235 6.54 -6.918\r\nC -5.29 6.418 -5.928\r\nC -3.95 7.169 -6.078\r\nC -3.708 7.803 -7.496\r\nO -3.359 7.033 -8.352\r\nO -3.957 8.963 -7.662\r\nH -4.574 8.603 -4.794\r\nH -3.231 6.521 -5.92\r\nH -7.661 3.657 -3.838\r\nH -8.488 4.525 -5.743\r\nH -9.014 5.537 -7.691\r\nH -6.054 7.1 -7.638\r\nH -3.789 9.17 -8.438\r\n"
+      },
+      "response_format": {
+        "value": "one number rounded to four decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "TP-CNP009",
+      "derived_from": "CNP009",
+      "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Return only one value rounded to four decimal places and unit angstrom.",
+      "scope": "1AA5 完整不对称二聚体（chain A+B）；264 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+      "input": {
+        "format": "xyz",
+        "unit": "angstrom",
+        "text": "264\r\nVancomycin 1AA5 dimer, major altLoc/occupancy only, angstrom\r\nN 10.127 8.826 -4.03\r\nC 10.446 10.141 -4.639\r\nC 8.858 8.812 -3.244\r\nC 7.715 9.246 -4.189\r\nO 7.547 8.688 -5.252\r\nC 8.552 7.426 -2.726\r\nC 9.587 6.788 -1.78\r\nC 9.125 5.395 -1.392\r\nC 9.835 7.62 -0.583\r\nH 10.887 8.557 -3.424\r\nH 11.271 10.077 -5.126\r\nH 10.533 10.801 -3.948\r\nH 9.74 10.396 -5.238\r\nH 8.925 9.44 -2.494\r\nH 8.44 6.837 -3.489\r\nH 7.701 7.46 -2.261\r\nH 10.432 6.702 -2.269\r\nH 8.972 4.876 -2.185\r\nH 8.311 5.457 -0.888\r\nH 9.801 4.971 -0.858\r\nH 10.127 8.494 -0.855\r\nH 10.515 7.21 -0.043\r\nH 9.025 7.698 -0.073\r\nH 10.062 8.136 -4.764\r\nN 6.894 10.223 -3.742\r\nC 5.824 10.725 -4.588\r\nC 4.491 9.963 -4.459\r\nO 3.547 10.291 -5.161\r\nC 5.544 12.254 -4.376\r\nO 6.731 13.006 -4.505\r\nC 4.868 12.532 -3.066\r\nC 3.489 12.76 -3.038\r\nC 5.577 12.564 -1.859\r\nC 2.836 12.923 -1.83\r\nCL 1.135 13.234 -1.833\r\nC 4.904 12.695 -0.669\r\nC 3.523 12.845 -0.655\r\nO 2.866 12.894 0.557\r\nH 7.005 10.548 -2.953\r\nH 6.123 10.618 -5.515\r\nH 4.935 12.542 -5.088\r\nH 7.083 12.839 -5.227\r\nH 3.009 12.801 -3.834\r\nH 6.505 12.495 -1.863\r\nH 5.375 12.684 0.132\r\nN 4.449 8.963 -3.584\r\nC 3.334 8.009 -3.566\r\nC 2.302 8.294 -2.468\r\nO 1.165 8.692 -2.806\r\nC 3.841 6.575 -3.629\r\nC 4.943 6.227 -2.632\r\nO 5.227 6.979 -1.683\r\nN 5.555 5.076 -2.861\r\nH 5.089 8.874 -3.016\r\nH 2.859 8.152 -4.411\r\nH 3.092 5.978 -3.479\r\nH 4.173 6.406 -4.525\r\nH 5.321 4.591 -3.531\r\nH 6.186 4.813 -2.339\r\nN 2.669 8.1 -1.216\r\nC 1.695 8.107 -0.115\r\nC 1.887 6.862 0.723\r\nO 2.988 6.455 1.041\r\nC 1.72 9.379 0.737\r\nC 1.139 9.408 1.973\r\nC 1.145 10.574 2.737\r\nC 1.693 11.737 2.232\r\nO 1.794 12.903 3.004\r\nC 2.275 11.709 0.977\r\nC 2.29 10.55 0.247\r\nH 3.5 7.966 -1.039\r\nH 0.804 8.049 -0.519\r\nH 0.734 8.641 2.309\r\nH 2.69 10.545 -0.592\r\nN 0.734 6.293 1.15\r\nC 0.718 5.365 2.242\r\nC -0.686 5.468 2.895\r\nO -1.628 5.852 2.205\r\nC 0.93 3.872 1.977\r\nC 1.938 3.204 2.649\r\nC 2.017 1.808 2.682\r\nC 1.043 1.086 1.989\r\nO 1.089 -0.286 2.062\r\nC 0.08 1.751 1.263\r\nC 0.018 3.128 1.238\r\nH -0.005 6.492 0.758\r\nH 1.384 5.656 2.9\r\nH 2.586 3.701 3.094\r\nH 0.476 -0.604 1.619\r\nH -0.543 1.26 0.779\r\nH -0.631 3.558 0.73\r\nN -0.841 5.066 4.156\r\nC 0.153 4.642 5.068\r\nO 0.644 10.625 4.037\r\nC -0.746 8.966 5.056\r\nC 1.622 8.643 5.053\r\nC 0.519 9.416 4.702\r\nC 0.211 6.945 5.959\r\nC -0.899 7.756 5.699\r\nC 1.487 7.428 5.657\r\nC 0.072 5.496 6.406\r\nCL 3.25 9.214 4.691\r\nO -0.998 2.532 5.187\r\nC 0.071 3.128 5.32\r\nO -1.15 5.269 7.029\r\nH -1.648 5.066 4.453\r\nH 1.024 4.823 4.657\r\nH -1.493 9.483 4.859\r\nH -1.747 7.477 5.961\r\nH 2.24 6.923 5.867\r\nH 0.808 5.255 7.006\r\nH -1.198 4.483 7.258\r\nN 1.23 2.52 5.592\r\nO 4.706 1.291 1.808\r\nC 4.329 0.915 3.056\r\nC 3.042 1.139 3.548\r\nC 5.301 0.282 3.852\r\nC 5.003 -0.095 5.14\r\nO 5.881 -0.668 5.984\r\nC 3.708 0.139 5.646\r\nC 2.747 0.764 4.868\r\nC 1.363 1.079 5.448\r\nC 1.094 0.328 6.804\r\nO 0.845 -0.905 6.648\r\nO 1.168 0.946 7.841\r\nH 1.904 2.986 5.854\r\nH 0.691 0.779 4.801\r\nH 4.075 1.65 1.428\r\nH 6.148 0.117 3.505\r\nH 6.605 -0.752 5.609\r\nH 3.497 -0.129 6.511\r\nH 1.007 0.445 8.47\r\nN -13.037 5.891 5.853\r\nC -13.354 6.417 7.214\r\nC -11.668 6.227 5.337\r\nC -10.68 5.657 6.376\r\nO -10.897 4.548 6.863\r\nC -11.446 5.565 4.011\r\nC -12.393 6.014 2.858\r\nC -12.226 7.481 2.576\r\nC -12.173 5.19 1.667\r\nH -13.719 6.252 5.204\r\nH -14.244 6.153 7.459\r\nH -13.294 7.375 7.209\r\nH -12.728 6.06 7.849\r\nH -11.56 7.197 5.259\r\nH -11.542 4.607 4.129\r\nH -10.531 5.734 3.736\r\nH -13.316 5.869 3.156\r\nH -12.378 7.981 3.381\r\nH -12.857 7.752 1.906\r\nH -11.334 7.646 2.261\r\nH -12.287 4.264 1.893\r\nH -11.281 5.332 1.34\r\nH -12.805 5.434 0.988\r\nH -13.135 4.887 5.868\r\nN -9.595 6.386 6.606\r\nC -8.669 5.974 7.643\r\nC -7.321 5.484 7.113\r\nO -6.505 5.032 7.901\r\nC -8.491 7.054 8.771\r\nO -9.827 7.384 9.115\r\nC -7.687 8.239 8.256\r\nC -6.305 8.231 8.391\r\nC -8.286 9.252 7.515\r\nC -5.54 9.185 7.786\r\nCL -3.792 9.156 7.959\r\nC -7.501 10.204 6.908\r\nC -6.125 10.166 6.999\r\nO -5.357 11.066 6.297\r\nH -9.442 7.096 6.145\r\nH -9.083 5.2 8.078\r\nH -8.037 6.656 9.543\r\nH -10.213 6.713 9.385\r\nH -5.896 7.568 8.899\r\nH -9.212 9.286 7.431\r\nH -7.906 10.889 6.426\r\nN -7.112 5.548 5.815\r\nC -5.998 4.818 5.152\r\nC -4.911 5.737 4.594\r\nO -3.748 5.59 4.929\r\nC -6.618 3.973 4.021\r\nC -7.785 3.135 4.507\r\nO -8.787 2.996 3.707\r\nN -7.794 2.711 5.722\r\nH -7.638 6.029 5.334\r\nH -5.59 4.213 5.805\r\nH -6.922 4.562 3.313\r\nH -5.939 3.388 3.651\r\nH -7.104 2.825 6.222\r\nH -8.49 2.314 6.034\r\nN -5.305 6.651 3.696\r\nC -4.357 7.502 2.979\r\nC -4.675 7.472 1.489\r\nO -5.801 7.694 1.08\r\nC -4.356 8.956 3.449\r\nC -3.777 9.919 2.663\r\nC -3.797 11.247 3.031\r\nC -4.341 11.623 4.272\r\nO -4.46 12.901 4.633\r\nC -4.877 10.637 5.059\r\nC -4.907 9.32 4.661\r\nH -6.145 6.741 3.537\r\nH -3.457 7.136 3.109\r\nH -3.363 9.671 1.868\r\nH -5.297 8.677 5.207\r\nN -3.61 7.273 0.699\r\nC -3.568 7.559 -0.722\r\nC -2.155 8.154 -0.982\r\nO -1.274 7.96 -0.146\r\nC -3.685 6.352 -1.651\r\nC -4.596 6.395 -2.683\r\nC -4.575 5.431 -3.71\r\nC -3.674 4.397 -3.602\r\nO -3.656 3.446 -4.61\r\nC -2.786 4.305 -2.548\r\nC -2.804 5.296 -1.57\r\nH -2.899 6.953 1.062\r\nH -4.254 8.22 -0.948\r\nH -5.235 7.071 -2.703\r\nH -3.085 2.881 -4.443\r\nH -2.189 3.594 -2.491\r\nH -2.213 5.245 -0.854\r\nN -1.902 8.752 -2.152\r\nC -2.859 9.265 -3.103\r\nO -3.27 12.255 2.245\r\nC -1.886 11.848 0.322\r\nC -4.262 11.822 0.098\r\nC -3.16 11.966 0.892\r\nC -2.897 11.345 -1.809\r\nC -1.763 11.54 -0.991\r\nC -4.142 11.521 -1.24\r\nC -2.749 10.819 -3.21\r\nCL -5.874 11.966 0.776\r\nO -1.604 8.141 -4.814\r\nC -2.725 8.504 -4.422\r\nO -1.529 11.143 -3.827\r\nH -1.073 8.84 -2.362\r\nH -3.75 9.065 -2.748\r\nH -1.128 11.98 0.844\r\nH -0.914 11.456 -1.362\r\nH -4.905 11.435 -1.764\r\nH -3.487 11.157 -3.76\r\nH -1.07 11.583 -3.309\r\nN -3.857 8.19 -5.027\r\nO -6.947 4.049 -3.745\r\nC -6.762 4.9 -4.778\r\nC -5.537 5.58 -4.858\r\nC -7.697 5.012 -5.788\r\nC -7.456 5.863 -6.892\r\nO -8.36 6.001 -7.86\r\nC -6.235 6.54 -6.918\r\nC -5.29 6.418 -5.928\r\nC -3.95 7.169 -6.078\r\nC -3.708 7.803 -7.496\r\nO -3.359 7.033 -8.352\r\nO -3.957 8.963 -7.662\r\nH -4.574 8.603 -4.794\r\nH -3.231 6.521 -5.92\r\nH -7.661 3.657 -3.838\r\nH -8.488 4.525 -5.743\r\nH -9.014 5.537 -7.691\r\nH -6.054 7.1 -7.638\r\nH -3.789 9.17 -8.438\r\n"
+      },
+      "response_format": {
+        "value": "one number rounded to four decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "TP-CNP011",
+      "derived_from": "CNP011",
+      "question": "Compute the equal-weight radius of gyration of all supplied sites: Rg = sqrt(sum_i ||ri-centroid||^2 / N). Return only one value rounded to four decimal places and unit angstrom. Do not use mass weights.",
+      "scope": "1AA5 完整二聚体；264 个原子，Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+      "input": {
+        "format": "xyz",
+        "unit": "angstrom",
+        "text": "264\r\nVancomycin 1AA5 dimer, major altLoc/occupancy only, angstrom\r\nN 10.127 8.826 -4.03\r\nC 10.446 10.141 -4.639\r\nC 8.858 8.812 -3.244\r\nC 7.715 9.246 -4.189\r\nO 7.547 8.688 -5.252\r\nC 8.552 7.426 -2.726\r\nC 9.587 6.788 -1.78\r\nC 9.125 5.395 -1.392\r\nC 9.835 7.62 -0.583\r\nH 10.887 8.557 -3.424\r\nH 11.271 10.077 -5.126\r\nH 10.533 10.801 -3.948\r\nH 9.74 10.396 -5.238\r\nH 8.925 9.44 -2.494\r\nH 8.44 6.837 -3.489\r\nH 7.701 7.46 -2.261\r\nH 10.432 6.702 -2.269\r\nH 8.972 4.876 -2.185\r\nH 8.311 5.457 -0.888\r\nH 9.801 4.971 -0.858\r\nH 10.127 8.494 -0.855\r\nH 10.515 7.21 -0.043\r\nH 9.025 7.698 -0.073\r\nH 10.062 8.136 -4.764\r\nN 6.894 10.223 -3.742\r\nC 5.824 10.725 -4.588\r\nC 4.491 9.963 -4.459\r\nO 3.547 10.291 -5.161\r\nC 5.544 12.254 -4.376\r\nO 6.731 13.006 -4.505\r\nC 4.868 12.532 -3.066\r\nC 3.489 12.76 -3.038\r\nC 5.577 12.564 -1.859\r\nC 2.836 12.923 -1.83\r\nCL 1.135 13.234 -1.833\r\nC 4.904 12.695 -0.669\r\nC 3.523 12.845 -0.655\r\nO 2.866 12.894 0.557\r\nH 7.005 10.548 -2.953\r\nH 6.123 10.618 -5.515\r\nH 4.935 12.542 -5.088\r\nH 7.083 12.839 -5.227\r\nH 3.009 12.801 -3.834\r\nH 6.505 12.495 -1.863\r\nH 5.375 12.684 0.132\r\nN 4.449 8.963 -3.584\r\nC 3.334 8.009 -3.566\r\nC 2.302 8.294 -2.468\r\nO 1.165 8.692 -2.806\r\nC 3.841 6.575 -3.629\r\nC 4.943 6.227 -2.632\r\nO 5.227 6.979 -1.683\r\nN 5.555 5.076 -2.861\r\nH 5.089 8.874 -3.016\r\nH 2.859 8.152 -4.411\r\nH 3.092 5.978 -3.479\r\nH 4.173 6.406 -4.525\r\nH 5.321 4.591 -3.531\r\nH 6.186 4.813 -2.339\r\nN 2.669 8.1 -1.216\r\nC 1.695 8.107 -0.115\r\nC 1.887 6.862 0.723\r\nO 2.988 6.455 1.041\r\nC 1.72 9.379 0.737\r\nC 1.139 9.408 1.973\r\nC 1.145 10.574 2.737\r\nC 1.693 11.737 2.232\r\nO 1.794 12.903 3.004\r\nC 2.275 11.709 0.977\r\nC 2.29 10.55 0.247\r\nH 3.5 7.966 -1.039\r\nH 0.804 8.049 -0.519\r\nH 0.734 8.641 2.309\r\nH 2.69 10.545 -0.592\r\nN 0.734 6.293 1.15\r\nC 0.718 5.365 2.242\r\nC -0.686 5.468 2.895\r\nO -1.628 5.852 2.205\r\nC 0.93 3.872 1.977\r\nC 1.938 3.204 2.649\r\nC 2.017 1.808 2.682\r\nC 1.043 1.086 1.989\r\nO 1.089 -0.286 2.062\r\nC 0.08 1.751 1.263\r\nC 0.018 3.128 1.238\r\nH -0.005 6.492 0.758\r\nH 1.384 5.656 2.9\r\nH 2.586 3.701 3.094\r\nH 0.476 -0.604 1.619\r\nH -0.543 1.26 0.779\r\nH -0.631 3.558 0.73\r\nN -0.841 5.066 4.156\r\nC 0.153 4.642 5.068\r\nO 0.644 10.625 4.037\r\nC -0.746 8.966 5.056\r\nC 1.622 8.643 5.053\r\nC 0.519 9.416 4.702\r\nC 0.211 6.945 5.959\r\nC -0.899 7.756 5.699\r\nC 1.487 7.428 5.657\r\nC 0.072 5.496 6.406\r\nCL 3.25 9.214 4.691\r\nO -0.998 2.532 5.187\r\nC 0.071 3.128 5.32\r\nO -1.15 5.269 7.029\r\nH -1.648 5.066 4.453\r\nH 1.024 4.823 4.657\r\nH -1.493 9.483 4.859\r\nH -1.747 7.477 5.961\r\nH 2.24 6.923 5.867\r\nH 0.808 5.255 7.006\r\nH -1.198 4.483 7.258\r\nN 1.23 2.52 5.592\r\nO 4.706 1.291 1.808\r\nC 4.329 0.915 3.056\r\nC 3.042 1.139 3.548\r\nC 5.301 0.282 3.852\r\nC 5.003 -0.095 5.14\r\nO 5.881 -0.668 5.984\r\nC 3.708 0.139 5.646\r\nC 2.747 0.764 4.868\r\nC 1.363 1.079 5.448\r\nC 1.094 0.328 6.804\r\nO 0.845 -0.905 6.648\r\nO 1.168 0.946 7.841\r\nH 1.904 2.986 5.854\r\nH 0.691 0.779 4.801\r\nH 4.075 1.65 1.428\r\nH 6.148 0.117 3.505\r\nH 6.605 -0.752 5.609\r\nH 3.497 -0.129 6.511\r\nH 1.007 0.445 8.47\r\nN -13.037 5.891 5.853\r\nC -13.354 6.417 7.214\r\nC -11.668 6.227 5.337\r\nC -10.68 5.657 6.376\r\nO -10.897 4.548 6.863\r\nC -11.446 5.565 4.011\r\nC -12.393 6.014 2.858\r\nC -12.226 7.481 2.576\r\nC -12.173 5.19 1.667\r\nH -13.719 6.252 5.204\r\nH -14.244 6.153 7.459\r\nH -13.294 7.375 7.209\r\nH -12.728 6.06 7.849\r\nH -11.56 7.197 5.259\r\nH -11.542 4.607 4.129\r\nH -10.531 5.734 3.736\r\nH -13.316 5.869 3.156\r\nH -12.378 7.981 3.381\r\nH -12.857 7.752 1.906\r\nH -11.334 7.646 2.261\r\nH -12.287 4.264 1.893\r\nH -11.281 5.332 1.34\r\nH -12.805 5.434 0.988\r\nH -13.135 4.887 5.868\r\nN -9.595 6.386 6.606\r\nC -8.669 5.974 7.643\r\nC -7.321 5.484 7.113\r\nO -6.505 5.032 7.901\r\nC -8.491 7.054 8.771\r\nO -9.827 7.384 9.115\r\nC -7.687 8.239 8.256\r\nC -6.305 8.231 8.391\r\nC -8.286 9.252 7.515\r\nC -5.54 9.185 7.786\r\nCL -3.792 9.156 7.959\r\nC -7.501 10.204 6.908\r\nC -6.125 10.166 6.999\r\nO -5.357 11.066 6.297\r\nH -9.442 7.096 6.145\r\nH -9.083 5.2 8.078\r\nH -8.037 6.656 9.543\r\nH -10.213 6.713 9.385\r\nH -5.896 7.568 8.899\r\nH -9.212 9.286 7.431\r\nH -7.906 10.889 6.426\r\nN -7.112 5.548 5.815\r\nC -5.998 4.818 5.152\r\nC -4.911 5.737 4.594\r\nO -3.748 5.59 4.929\r\nC -6.618 3.973 4.021\r\nC -7.785 3.135 4.507\r\nO -8.787 2.996 3.707\r\nN -7.794 2.711 5.722\r\nH -7.638 6.029 5.334\r\nH -5.59 4.213 5.805\r\nH -6.922 4.562 3.313\r\nH -5.939 3.388 3.651\r\nH -7.104 2.825 6.222\r\nH -8.49 2.314 6.034\r\nN -5.305 6.651 3.696\r\nC -4.357 7.502 2.979\r\nC -4.675 7.472 1.489\r\nO -5.801 7.694 1.08\r\nC -4.356 8.956 3.449\r\nC -3.777 9.919 2.663\r\nC -3.797 11.247 3.031\r\nC -4.341 11.623 4.272\r\nO -4.46 12.901 4.633\r\nC -4.877 10.637 5.059\r\nC -4.907 9.32 4.661\r\nH -6.145 6.741 3.537\r\nH -3.457 7.136 3.109\r\nH -3.363 9.671 1.868\r\nH -5.297 8.677 5.207\r\nN -3.61 7.273 0.699\r\nC -3.568 7.559 -0.722\r\nC -2.155 8.154 -0.982\r\nO -1.274 7.96 -0.146\r\nC -3.685 6.352 -1.651\r\nC -4.596 6.395 -2.683\r\nC -4.575 5.431 -3.71\r\nC -3.674 4.397 -3.602\r\nO -3.656 3.446 -4.61\r\nC -2.786 4.305 -2.548\r\nC -2.804 5.296 -1.57\r\nH -2.899 6.953 1.062\r\nH -4.254 8.22 -0.948\r\nH -5.235 7.071 -2.703\r\nH -3.085 2.881 -4.443\r\nH -2.189 3.594 -2.491\r\nH -2.213 5.245 -0.854\r\nN -1.902 8.752 -2.152\r\nC -2.859 9.265 -3.103\r\nO -3.27 12.255 2.245\r\nC -1.886 11.848 0.322\r\nC -4.262 11.822 0.098\r\nC -3.16 11.966 0.892\r\nC -2.897 11.345 -1.809\r\nC -1.763 11.54 -0.991\r\nC -4.142 11.521 -1.24\r\nC -2.749 10.819 -3.21\r\nCL -5.874 11.966 0.776\r\nO -1.604 8.141 -4.814\r\nC -2.725 8.504 -4.422\r\nO -1.529 11.143 -3.827\r\nH -1.073 8.84 -2.362\r\nH -3.75 9.065 -2.748\r\nH -1.128 11.98 0.844\r\nH -0.914 11.456 -1.362\r\nH -4.905 11.435 -1.764\r\nH -3.487 11.157 -3.76\r\nH -1.07 11.583 -3.309\r\nN -3.857 8.19 -5.027\r\nO -6.947 4.049 -3.745\r\nC -6.762 4.9 -4.778\r\nC -5.537 5.58 -4.858\r\nC -7.697 5.012 -5.788\r\nC -7.456 5.863 -6.892\r\nO -8.36 6.001 -7.86\r\nC -6.235 6.54 -6.918\r\nC -5.29 6.418 -5.928\r\nC -3.95 7.169 -6.078\r\nC -3.708 7.803 -7.496\r\nO -3.359 7.033 -8.352\r\nO -3.957 8.963 -7.662\r\nH -4.574 8.603 -4.794\r\nH -3.231 6.521 -5.92\r\nH -7.661 3.657 -3.838\r\nH -8.488 4.525 -5.743\r\nH -9.014 5.537 -7.691\r\nH -6.054 7.1 -7.638\r\nH -3.789 9.17 -8.438\r\n"
+      },
+      "response_format": {
+        "value": "one number rounded to four decimals",
+        "unit": "angstrom"
+      }
+    }
+  ],
+  "teacher_answers": [
+    {
+      "id": "TP-QNP007",
+      "value": 10.0003,
+      "unit": "angstrom",
+      "absolute_tolerance": 5e-05,
+      "rounding": "half_up_four_decimals",
+      "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+      "source": "https://doi.org/10.1038/s41597-020-0385-y"
+    },
+    {
+      "id": "TP-QNP008",
+      "value": 11.8784,
+      "unit": "angstrom",
+      "absolute_tolerance": 5e-05,
+      "rounding": "half_up_four_decimals",
+      "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+      "source": "https://doi.org/10.1038/s41597-020-0385-y"
+    },
+    {
+      "id": "TP-QNP009",
+      "value": 14.087,
+      "unit": "angstrom",
+      "absolute_tolerance": 5e-05,
+      "rounding": "half_up_four_decimals",
+      "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+      "source": "https://doi.org/10.1038/s41597-020-0385-y"
+    },
+    {
+      "id": "TP-QNP010",
+      "value": 4.2467,
+      "unit": "angstrom",
+      "absolute_tolerance": 5e-05,
+      "rounding": "half_up_four_decimals",
+      "explanation": "质心法生成答案；用 Rg² = sum(i<j)|ri-rj|² / N² 复核。",
+      "source": "https://doi.org/10.1038/s41597-020-0385-y"
+    },
+    {
+      "id": "TP-QNP011",
+      "value": 4.6156,
+      "unit": "angstrom",
+      "absolute_tolerance": 5e-05,
+      "rounding": "half_up_four_decimals",
+      "explanation": "质心法生成答案；用 Rg² = sum(i<j)|ri-rj|² / N² 复核。",
+      "source": "https://doi.org/10.1038/s41597-020-0385-y"
+    },
+    {
+      "id": "TP-MNP006",
+      "value": 17.8512,
+      "unit": "angstrom",
+      "absolute_tolerance": 5e-05,
+      "rounding": "half_up_four_decimals",
+      "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+      "source": "https://www.crystallography.net/cod/4118891.html"
+    },
+    {
+      "id": "TP-MNP007",
+      "value": 23.9459,
+      "unit": "angstrom",
+      "absolute_tolerance": 5e-05,
+      "rounding": "half_up_four_decimals",
+      "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+      "source": "https://www.crystallography.net/cod/4118891.html"
+    },
+    {
+      "id": "TP-MNP010",
+      "value": 30.6102,
+      "unit": "angstrom",
+      "absolute_tolerance": 5e-05,
+      "rounding": "half_up_four_decimals",
+      "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+      "source": "https://www.crystallography.net/cod/4118891.html"
+    },
+    {
+      "id": "TP-CNP007",
+      "value": 19.5698,
+      "unit": "angstrom",
+      "absolute_tolerance": 5e-05,
+      "rounding": "half_up_four_decimals",
+      "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+      "source": "https://www.rcsb.org/structure/1AA5"
+    },
+    {
+      "id": "TP-CNP008",
+      "value": 19.2646,
+      "unit": "angstrom",
+      "absolute_tolerance": 5e-05,
+      "rounding": "half_up_four_decimals",
+      "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+      "source": "https://www.rcsb.org/structure/1AA5"
+    },
+    {
+      "id": "TP-CNP009",
+      "value": 28.7192,
+      "unit": "angstrom",
+      "absolute_tolerance": 5e-05,
+      "rounding": "half_up_four_decimals",
+      "explanation": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+      "source": "https://www.rcsb.org/structure/1AA5"
+    },
+    {
+      "id": "TP-CNP011",
+      "value": 8.2617,
+      "unit": "angstrom",
+      "absolute_tolerance": 5e-05,
+      "rounding": "half_up_four_decimals",
+      "explanation": "质心法生成答案；用 Rg² = sum(i<j)|ri-rj|² / N² 复核。",
+      "source": "https://www.rcsb.org/structure/1AA5"
+    }
+  ],
+  "code": "\"\"\"Reusable numeric template pilot: define -> construct -> verify. No model/API calls.\n\nFinite, explicitly selected XYZ point sets only. No periodic wrapping or chemistry\ninference. Outputs are development previews, never automatic catalog admissions.\n\"\"\"\nimport argparse\nimport hashlib\nimport json\nimport math\nfrom decimal import Decimal, localcontext, ROUND_HALF_UP\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parent\nVERSION = '0.1.0'\n\n\ndef parse_xyz(text):\n    lines = text.splitlines()\n    if len(lines) < 3:\n        raise ValueError('XYZ requires count, comment and atom rows')\n    try:\n        n = int(lines[0].strip())\n    except ValueError:\n        raise ValueError('Invalid XYZ count')\n    rows = [line.split() for line in lines[2:] if line.strip()]\n    if n < 2 or n > 5000 or len(rows) != n:\n        raise ValueError('Expected 2..5000 atoms and exact row count')\n    points = []\n    for row in rows:\n        if len(row) != 4 or not row[0].isalpha():\n            raise ValueError('Expected element and three coordinates')\n        point = tuple(float(v) for v in row[1:])\n        if not all(math.isfinite(v) for v in point):\n            raise ValueError('Nonfinite coordinate')\n        points.append(point)\n    return points\n\n\ndef calculate(points, template):\n    if template == 'global_extent':\n        return max(math.dist(a, b) for i, a in enumerate(points) for b in points[i+1:])\n    if template == 'equal_weight_rg':\n        center = [math.fsum(p[k] for p in points)/len(points) for k in range(3)]\n        return math.sqrt(math.fsum(math.dist(p, center)**2 for p in points)/len(points))\n    raise ValueError('Unsupported template: '+template)\n\n\ndef verify_decimal(text, template):\n    \"\"\"Re-read decimal coordinates; Rg uses pair-distance identity, not centroid.\n    Dmax necessarily uses the same definition with separately implemented loops.\n    This is numerical cross-checking, not independent scientific certification.\n    \"\"\"\n    parse_xyz(text)\n    with localcontext() as ctx:\n        ctx.prec = 45\n        rows = [[Decimal(x) for x in line.split()[1:]] for line in text.splitlines()[2:] if line.strip()]\n        maximum = Decimal(0)\n        total = Decimal(0)\n        for i in range(len(rows)):\n            for j in range(i):\n                squared = sum((rows[i][k]-rows[j][k])**2 for k in range(3))\n                maximum = max(maximum, squared)\n                total += squared\n        if template == 'global_extent':\n            return maximum.sqrt()\n        if template == 'equal_weight_rg':\n            return (total/Decimal(len(rows)**2)).sqrt()\n        raise ValueError('Unsupported template')\n\n\ndef score_numeric(response, expected, tolerance, unit='angstrom'):\n    \"\"\"Structured response: one finite value + exact declared unit; no text judge.\"\"\"\n    if unit != 'angstrom' or not math.isfinite(float(expected)) or not math.isfinite(float(tolerance)) or tolerance <= 0:\n        raise ValueError('Invalid scoring contract')\n    if not isinstance(response, dict) or set(response) != {'value', 'unit'}:\n        return False\n    if type(response['value']) not in (int, float) or response['unit'] != unit:\n        return False\n    value = response['value']\n    return math.isfinite(value) and abs(value-float(expected)) <= tolerance\n\n\ndef run(manifest_path, out):\n    manifest = json.loads(Path(manifest_path).read_text(encoding='utf-8'))\n    registry_path = ROOT/'templates/registry.json'\n    registry = {t['id']: t for t in json.loads(registry_path.read_text(encoding='utf-8'))['templates']}\n    out = Path(out)\n    if out.exists():\n        raise ValueError('Output exists; use a new directory to preserve history')\n    ids = [x['id'] for x in manifest['items']]\n    if not ids or len(set(ids)) != len(ids):\n        raise ValueError('Empty batch or duplicate ID')\n    results, students, answers = [], [], []\n    for item in manifest['items']:\n        template = registry[item['template']]\n        if template['status'] != 'implemented' or item['unit'] != 'angstrom' or not item['scope'].strip() or not item['source'].strip():\n            raise ValueError('Missing scope/source, unsupported unit or template')\n        asset = (ROOT/'docs'/item['asset']).resolve()\n        if not asset.is_relative_to((ROOT/'docs/assets').resolve()):\n            raise ValueError('Asset must stay inside docs/assets')\n        raw = asset.read_bytes()\n        text = raw.decode('utf-8-sig')\n        points = parse_xyz(text)\n        computed = calculate(points, item['template'])\n        verified = verify_decimal(text, item['template'])\n        short_answer = float(verified.quantize(Decimal('0.0001'), rounding=ROUND_HALF_UP))\n        agreement = math.isclose(computed, float(verified), abs_tol=1e-9, rel_tol=1e-12)\n        legacy_matches = abs(short_answer-item['legacy_numeric_reference']) <= 0.0001\n        student = {'id': item['id'], 'derived_from': item['qa_id'],\n                   'question': template['question'], 'scope': item['scope'],\n                   'input': {'format': 'xyz', 'unit': 'angstrom', 'text': text},\n                   'response_format': {'value': 'one number rounded to four decimals', 'unit': 'angstrom'}}\n        answer = {'id': item['id'], 'value': short_answer, 'unit': 'angstrom',\n                  'absolute_tolerance': 0.00005, 'rounding': 'half_up_four_decimals',\n                  'explanation': template['principle'], 'source': item['source']}\n        results.append({'id': item['id'], 'qa_id': item['qa_id'], 'template': item['template'],\n                        'atom_count': len(points), 'input': item['asset'], 'scope': item['scope'],\n                        'source': item['source'], 'input_sha256': hashlib.sha256(raw).hexdigest(),\n                        'computed': computed, 'decimal_crosscheck': str(verified),\n                        'numeric_agreement': agreement, 'legacy_reference': item['legacy_numeric_reference'],\n                        'legacy_numeric_agreement': legacy_matches, 'short_answer': answer,\n                        'status': 'numeric_verified' if agreement and legacy_matches else 'needs_revision',\n                        'human_review': 'pending', 'catalog_admitted': False})\n        students.append(student)\n        answers.append(answer)\n    report = {'version': VERSION, 'kind': 'existing_material_template_pilot',\n              'count': len(results), 'passed': sum(x['status']=='numeric_verified' for x in results),\n              'model_calls': 0, 'new_benchmark_questions': 0,\n              'code_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),\n              'registry_sha256': hashlib.sha256(registry_path.read_bytes()).hexdigest(),\n              'limits': 'Numeric checks only. Templates and source selection remain pending human review. Not a complete M0–M6 rerun or new catalog admission.',\n              'items': results}\n    out.mkdir(parents=True)\n    for name, data in [('manifest.json',manifest),('student-packets.json',students),('private-answers.json',answers),('verification.json',report)]:\n        (out/name).write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\\n',encoding='utf-8',newline='\\n')\n    (out/'template_engine_snapshot.py').write_bytes(Path(__file__).read_bytes())\n    (out/'registry_snapshot.json').write_bytes(registry_path.read_bytes())\n    return report\n\n\nif __name__ == '__main__':\n    parser=argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('--manifest',type=Path,required=True)\n    parser.add_argument('--out',type=Path,required=True)\n    args=parser.parse_args()\n    result=run(args.manifest,args.out)\n    print(json.dumps({'count':result['count'],'passed':result['passed'],'model_calls':0}))\n",
+  "note": "Explicitly public development examples; student packet and teacher answer are separate. Do not use these as a hidden test set."
+}

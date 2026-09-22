@@ -1,0 +1,80 @@
+{
+  "version": "0.1.0",
+  "basis": "Meeting 5; three stages, type-based reuse, deterministic instance checks and semantic sampling",
+  "templates": [
+    {
+      "id": "global_extent",
+      "name": "全局最大间距",
+      "ability": "perception",
+      "status": "implemented",
+      "output": "numeric",
+      "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Return only one value rounded to four decimal places and unit angstrom.",
+      "principle": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
+      "inputs": "一个已确认 Å 单位的 XYZ，明确点集与结构选择范围。",
+      "validation": "逐对欧氏距离最大值；另行读取原始十进制坐标复算。原题给出的数值另外比较，不用于生成新答案。",
+      "limits": "仅有限点集范围，不等于晶粒尺寸或孔径；周期晶胞内点集的值依赖表示。并列极值不影响单数值评分。",
+      "template_review": "题型已做本轮 AI 方法审读，尚待人工确认；程序检查不能证明科学意义与数据来源正确。"
+    },
+    {
+      "id": "equal_weight_rg",
+      "name": "等权回转半径",
+      "ability": "perception",
+      "status": "implemented",
+      "output": "numeric",
+      "question": "Compute the equal-weight radius of gyration of all supplied sites: Rg = sqrt(sum_i ||ri-centroid||^2 / N). Return only one value rounded to four decimal places and unit angstrom. Do not use mass weights.",
+      "principle": "质心法生成答案；用 Rg² = sum(i<j)|ri-rj|² / N² 复核。",
+      "inputs": "一个已确认 Å 单位的 XYZ；明确所有点等权。",
+      "validation": "质心公式与成对距离恒等式交叉检查；在多个结构上复用相同代码。",
+      "limits": "不是质量加权或实测 SAXS Rg；不能据此断言折叠稳定性。",
+      "template_review": "题型已做本轮 AI 方法审读，尚待人工确认；程序检查不能证明科学意义与数据来源正确。"
+    },
+    {
+      "id": "local_distance_angle",
+      "name": "局部距离／角度",
+      "ability": "perception",
+      "status": "existing_legacy",
+      "output": "numeric",
+      "inputs": "XYZ、索引、顶点、单位与选点依据。",
+      "principle": "复用 M4 已有 xyz_distance / xyz_angle。",
+      "validation": "已有验证器；尚未迁入本次数值短答案批量接口。",
+      "limits": "保留局部尺度，不能从任意行号自动赋予化学意义。",
+      "template_review": "既有模块，非本轮新增题型。"
+    },
+    {
+      "id": "evidence_inference_choice",
+      "name": "证据支持的物理推断选择",
+      "ability": "inference",
+      "status": "planned",
+      "output": "choice",
+      "inputs": "学生几何条件与选项；审核侧保留论文原文定位、条件及答案依据。",
+      "principle": "模板审查因果与适用条件；实例检查引用和唯一正确选项。",
+      "validation": "需建立具体题型的证据映射和干扰项验证；尚未实施通用语义验证。",
+      "limits": "论文中的答案证据不默认给被测模型，必要物理条件必须写在题目里。",
+      "template_review": "待建立首个经证据支持的模板。"
+    },
+    {
+      "id": "design_choice",
+      "name": "有证据的结构优化选择",
+      "ability": "design",
+      "status": "planned",
+      "output": "choice",
+      "inputs": "初始结构、目标、限制、候选修改；审核侧保存真实 S1/S2 及性质证据。",
+      "principle": "从论文中的实证优化案例或按规则取得的结构对构题。",
+      "validation": "需先验证候选身份、目标性质与约束，再用选项标签评分。",
+      "limits": "选项评分容易不代表选项科学正确；S1/S2 不同并不证明优化；当前 M3 旧门槛尚未接通此路线。",
+      "template_review": "本轮定义路线，不虚称已产生设计题。"
+    },
+    {
+      "id": "open_structure_design",
+      "name": "开放结构生成",
+      "ability": "design",
+      "status": "blocked",
+      "output": "structure",
+      "inputs": "起始结构、可变部分、目标、约束与输出结构格式。",
+      "principle": "输出可能有多个有效结构，不能要求与唯一坐标逐字相同。",
+      "validation": "必须有结构合法性、约束和目标评价器。",
+      "limits": "暂无通用评价器，不计入完成。",
+      "template_review": "保留路线，当前不开放。"
+    }
+  ]
+}
