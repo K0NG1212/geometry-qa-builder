@@ -63,3 +63,26 @@ python tools/export_choice_workbench.py --run runs/choice-new --public-developme
 ```
 
 只允许已公开 pilot 材料通过此发布器。新 run 保存输入学生包、源报告与 manifest 副本、两个执行脚本、答案/错误机制/映射及验证报告。快照供审计；完整复现应在匹配版本的仓库根目录使用版本化 docs/assets 与上述命令，不把快照目录当作独立安装包。12例是原有题的格式试跑，不新增题数，不代替人工科学审核。网页 templates.html 可切换实例并展开记录。标签评分接受大小写和首尾空白，拒绝长文本。位置分布和干扰项质量需在更大批次检查；种子排序并不保证小批次均匀。
+
+
+## 可复用题型族接口（2026-09-24）
+`task_families/` 把共用机制放在 `kit.py`（严格 XYZ 解析、距离/键角/二面角两种实现、成键规则、舍入、干扰项选择、四项校验、单字母评分、捷径诊断），每个题型族只写科学部分：问什么、正确答案怎么算、哪些错误机制产生干扰项。`family_engine.py` 按 `templates/family-manifest.json` 分派族函数，不按题号选算法；输出学生包、数值作答学生包、审核包、阶段记录与代码快照，已有目录拒绝覆盖。
+
+| 能力 | 族 | 实例（真实输入） |
+|---|---|---|
+| 感知 | named_bond_angle | β-CD 桥氧、WP6 环内角、DM-β-CD 甲醚（SAMPL9） |
+| 感知 | backbone_torsion | 1CRN Gly20 φ、1UBQ Val26 ψ、6LYZ Thr43 φ |
+| 推断 | force_path_derivative | QM7-X 7001/7002/7035（路径方向在实例间变化） |
+| 推断 | kinematic_extinction | NaCl、金刚石、SALEM-2、MOF-5（COD） |
+| 设计选择 | conformer_target_selection | QM7-X 7050/7206/7095/7032（7063 无唯一最优，记录失败） |
+| 感知（选项 v0.2） | extent_choice_v2 | 原 12 份最大间距/回转半径输入 |
+
+数值选项升序排列，正确值的秩在同一族批次内轮换；易排除的干扰项和“±”配对都计惩罚；分类选项把正确项放在批次轮换位置。凑不齐三个有依据的干扰项或唯一最优时记录失败。设计选择只用计算性质证据并逐项检查约束，旧 M3 对 design 的拒绝未改动。
+
+```text
+python family_engine.py --manifest templates/family-manifest.json --out runs/family-new --seed geobench-family-v1
+python tools/export_family_workbench.py --run runs/family-new --public-development-examples
+python tools/export_coverage.py
+```
+
+`templates/registry.json`（v0.2）是题型覆盖总表的唯一定义来源，`docs/data/task-coverage.json` 由它导出；旧 80 道候选与 50 个筛查族全部映射到其中一行（测试强制）。

@@ -33,7 +33,7 @@
  $('instance').addEventListener('change',render);
  fetch('data/template-workbench.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{
   data=d;$('result-count').textContent=d.report.passed+' / '+d.report.count;
-  $('families').innerHTML=d.registry.templates.map(t=>`<article><span class="state">${esc(states[t.status])}</span><h3>${esc(t.name)}</h3><p><b>输入：</b>${esc(t.inputs)}</p><p><b>方法：</b>${esc(t.principle)}</p><details><summary>验证方式与限制</summary><p>${esc(t.validation)}</p><p>${esc(t.limits)}</p><p>${esc(t.template_review)}</p></details></article>`).join('');
+  if($('families'))$('families').innerHTML=d.registry.templates.map(t=>`<article><span class="state">${esc(states[t.status])}</span><h3>${esc(t.name)}</h3><p><b>输入：</b>${esc(t.inputs)}</p><p><b>方法：</b>${esc(t.principle)}</p><details><summary>验证方式与限制</summary><p>${esc(t.validation)}</p><p>${esc(t.limits)}</p><p>${esc(t.template_review)}</p></details></article>`).join('');
   $('instance').innerHTML=d.report.items.map(x=>`<option value="${esc(x.id)}">${esc(x.qa_id)} · ${x.template==='global_extent'?'最大间距':'回转半径'} · ${x.atom_count} 个原子</option>`).join('');
   $('batch-rows').innerHTML=d.report.items.map(x=>`<tr><td><a href="index.html?qa=${encodeURIComponent(x.qa_id)}#questions">${esc(x.qa_id)}</a></td><td>${x.template==='global_extent'?'最大间距':'回转半径'}</td><td>${x.atom_count}</td><td>${x.status==='numeric_verified'?'通过':'待修订'}</td></tr>`).join('');
   $('calculator-code').textContent=d.code;render();

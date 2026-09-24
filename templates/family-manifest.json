@@ -1,0 +1,416 @@
+{
+ "kind": "reusable family development pilot; not catalog admission",
+ "version": "0.1.0",
+ "items": [
+  {
+   "id": "FA-ANG-BCD",
+   "family": "named_bond_angle",
+   "asset": "assets/qa/BCD.xyz",
+   "legacy_qa": "CNP001",
+   "source": "https://github.com/samplchallenges/SAMPL9/blob/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/bCD/host_files/B-CD.pdb",
+   "license": "SAMPL9 repository (MIT)",
+   "atoms": [
+    {
+     "row": 4,
+     "name": "C4",
+     "element": "C"
+    },
+    {
+     "row": 45,
+     "name": "O3",
+     "element": "O"
+    },
+    {
+     "row": 37,
+     "name": "C37",
+     "element": "C"
+    }
+   ],
+   "context": "The supplied XYZ is one beta-cyclodextrin host conformer (147 atoms, angstrom).",
+   "linkage": "the bridging ether linkage between two glucose units, O3 bonded to C4 and C37 as in the source PDB CONECT record",
+   "ideal": {
+    "value": 109.47,
+    "basis": "sp3 tetrahedral"
+   },
+   "scope": "SAMPL9 提供的单一 β-CD 构象；按行号指定 PDB 原子名；只测该构象，不优化、不推断结合。"
+  },
+  {
+   "id": "FA-ANG-WP6",
+   "family": "named_bond_angle",
+   "asset": "assets/qa/WP6.xyz",
+   "legacy_qa": "CNP002",
+   "source": "https://github.com/samplchallenges/SAMPL9/blob/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/host_files/WP6.pdb",
+   "license": "SAMPL9 repository (MIT)",
+   "atoms": [
+    {
+     "row": 3,
+     "name": "C3",
+     "element": "C"
+    },
+    {
+     "row": 1,
+     "name": "C1",
+     "element": "C"
+    },
+    {
+     "row": 4,
+     "name": "C4",
+     "element": "C"
+    }
+   ],
+   "context": "The supplied XYZ is one WP6 (carboxylated pillar[6]arene) host conformer (150 atoms, angstrom); labels are element plus XYZ row.",
+   "linkage": "an internal angle of the phenylene ring C1-C4-C5-C2-C6-C3",
+   "ideal": {
+    "value": 120.0,
+    "basis": "regular hexagon / sp2 aromatic"
+   },
+   "scope": "SAMPL9 单一 WP6 构象；只问该环内角，不证明整环平面性。"
+  },
+  {
+   "id": "FA-ANG-DMBCD",
+   "family": "named_bond_angle",
+   "asset": "assets/qa/DMBCD.xyz",
+   "legacy_qa": "CNP006",
+   "source": "https://github.com/samplchallenges/SAMPL9/blob/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/bCD/host_files/H26DM-B-CD.pdb",
+   "license": "SAMPL9 repository (MIT)",
+   "atoms": [
+    {
+     "row": 3,
+     "name": "C3",
+     "element": "C"
+    },
+    {
+     "row": 44,
+     "name": "O2",
+     "element": "O"
+    },
+    {
+     "row": 45,
+     "name": "CH3-C45",
+     "element": "C"
+    }
+   ],
+   "context": "The supplied XYZ is one heptakis(2,6-di-O-methyl)-beta-cyclodextrin host conformer (189 atoms, angstrom).",
+   "linkage": "an exocyclic methyl-ether linkage: ring carbon C3, ether oxygen O2 and its methyl carbon (row 45)",
+   "ideal": {
+    "value": 109.47,
+    "basis": "sp3 tetrahedral"
+   },
+   "scope": "SAMPL9 单一 DM-β-CD 构象；只测该醚键角；典型值只作干扰机制，不评分。"
+  },
+  {
+   "id": "FA-TOR-1CRN-G20",
+   "family": "backbone_torsion",
+   "asset": "assets/bio/1CRN.pdb",
+   "pdb": "1CRN",
+   "chain": "A",
+   "residue": 20,
+   "torsion": "phi",
+   "context": "crambin, X-ray",
+   "source": "https://www.rcsb.org/structure/1CRN",
+   "license": "wwPDB (CC0)",
+   "scope": "只含残基 19–21 的 ATOM 记录；无替代构象；按 IUPAC 符号约定。"
+  },
+  {
+   "id": "FA-TOR-1UBQ-V26",
+   "family": "backbone_torsion",
+   "asset": "assets/bio/1UBQ.pdb",
+   "pdb": "1UBQ",
+   "chain": "A",
+   "residue": 26,
+   "torsion": "psi",
+   "context": "ubiquitin, X-ray",
+   "source": "https://www.rcsb.org/structure/1UBQ",
+   "license": "wwPDB (CC0)",
+   "scope": "只含残基 25–27 的 ATOM 记录；无替代构象；按 IUPAC 符号约定。"
+  },
+  {
+   "id": "FA-TOR-6LYZ-T43",
+   "family": "backbone_torsion",
+   "asset": "assets/bio/6LYZ.pdb",
+   "pdb": "6LYZ",
+   "chain": "A",
+   "residue": 43,
+   "torsion": "phi",
+   "context": "hen egg-white lysozyme, X-ray",
+   "source": "https://www.rcsb.org/structure/6LYZ",
+   "license": "wwPDB (CC0)",
+   "scope": "只含残基 42–44 的 ATOM 记录；无替代构象；按 IUPAC 符号约定。"
+  },
+  {
+   "id": "FA-FP-QM7X-7001",
+   "family": "force_path_derivative",
+   "asset": "assets/families/force-path/QM7X-7001-c1-d1.json",
+   "legacy_qa": "QNP001",
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "scope": "QM7-X 分子 7001：A 为 DFTB3+MBD 优化结构，B 为配对位移结构；B 处 PBE0+MBD 总力；只问 λ=1 处方向导数。",
+   "direction": "A_to_B"
+  },
+  {
+   "id": "FA-FP-QM7X-7002",
+   "family": "force_path_derivative",
+   "asset": "assets/families/force-path/QM7X-7002-c1-d1.json",
+   "legacy_qa": "QNI001",
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "scope": "QM7-X 分子 7002：A 为 DFTB3+MBD 优化结构，B 为配对位移结构；B 处 PBE0+MBD 总力；路径从 B 指向 A，只问 λ=0（即 B 处）方向导数。",
+   "direction": "B_to_A"
+  },
+  {
+   "id": "FA-FP-QM7X-7035",
+   "family": "force_path_derivative",
+   "asset": "assets/families/force-path/QM7X-7035-c1-d1.json",
+   "legacy_qa": "QNI002",
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "scope": "QM7-X 分子 7035：A 为 DFTB3+MBD 优化结构，B 为配对位移结构；B 处 PBE0+MBD 总力；只问 λ=1 处方向导数。",
+   "direction": "A_to_B"
+  },
+  {
+   "id": "FA-EXT-NACL",
+   "family": "kinematic_extinction",
+   "source_kind": "cif",
+   "asset": "assets/materials/9008678.cif",
+   "name": "halite (NaCl, COD 9008678)",
+   "weights": {
+    "Na": 11,
+    "Cl": 17
+   },
+   "source": "https://www.crystallography.net/cod/9008678.html",
+   "license": "COD (public domain)",
+   "scope": "常规立方晶胞 8 个原子（对称展开）；零角度原子序数权重。"
+  },
+  {
+   "id": "FA-EXT-DIAMOND",
+   "family": "kinematic_extinction",
+   "source_kind": "cif",
+   "asset": "assets/materials/9008564.cif",
+   "name": "diamond (C, COD 9008564)",
+   "weights": {
+    "C": 6
+   },
+   "source": "https://www.crystallography.net/cod/9008564.html",
+   "license": "COD (public domain)",
+   "scope": "常规立方晶胞 8 个原子（对称展开）；同种原子。"
+  },
+  {
+   "id": "FA-EXT-SALEM2",
+   "family": "kinematic_extinction",
+   "source_kind": "xyz_cell",
+   "asset": "assets/qa/MNI008-ZIF8-full.xyz",
+   "a": 16.8303,
+   "name": "Zn(imidazolate)2 with ZIF-8 sodalite topology (SALEM-2, COD 4118891; major-occupancy linker sites)",
+   "weights": {
+    "Zn": 30,
+    "N": 7,
+    "C": 6,
+    "H": 1
+   },
+   "source": "https://www.crystallography.net/cod/4118891.html",
+   "license": "COD (public domain)",
+   "legacy_qa": "MNI008",
+   "scope": "一个常规立方晶胞 204 个原子；只用主占位连接体位点；零角度原子序数权重。"
+  },
+  {
+   "id": "FA-EXT-MOF5",
+   "family": "kinematic_extinction",
+   "source_kind": "xyz_cell",
+   "asset": "assets/qa/MNI009-MOF5-full.xyz",
+   "a": 25.8247,
+   "name": "MOF-5 (Zn4O(BDC)3, COD 1516287)",
+   "weights": {
+    "Zn": 30,
+    "O": 8,
+    "C": 6,
+    "H": 1
+   },
+   "source": "https://www.crystallography.net/cod/1516287.html",
+   "license": "COD (public domain)",
+   "legacy_qa": "MNI009",
+   "scope": "一个常规立方晶胞 424 个原子；零角度原子序数权重。"
+  },
+  {
+   "id": "FA-CONF-7050-max_dipole",
+   "family": "conformer_target_selection",
+   "asset": "assets/families/conformers/QM7X-7050-i1-opt.json",
+   "objective": "max_dipole",
+   "s0": "Geom-m7050-i1-c1-opt",
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "scope": "QM7-X 分子 7050 同一立体异构体（i1）的 DFTB3+MBD 优化构象；只允许单键旋转；性质为数据集 PBE0+MBD 计算值。"
+  },
+  {
+   "id": "FA-CONF-7206-min_energy",
+   "family": "conformer_target_selection",
+   "asset": "assets/families/conformers/QM7X-7206-i1-opt.json",
+   "objective": "min_energy",
+   "s0": "Geom-m7206-i1-c1-opt",
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "scope": "QM7-X 分子 7206 同一立体异构体（i1）的 DFTB3+MBD 优化构象；只允许单键旋转；性质为数据集 PBE0+MBD 计算值。"
+  },
+  {
+   "id": "FA-CONF-7095-min_energy",
+   "family": "conformer_target_selection",
+   "asset": "assets/families/conformers/QM7X-7095-i1-opt.json",
+   "objective": "min_energy",
+   "s0": "Geom-m7095-i1-c1-opt",
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "scope": "QM7-X 分子 7095 同一立体异构体（i1）的 DFTB3+MBD 优化构象；只允许单键旋转；性质为数据集 PBE0+MBD 计算值。"
+  },
+  {
+   "id": "FA-CONF-7032-max_dipole",
+   "family": "conformer_target_selection",
+   "asset": "assets/families/conformers/QM7X-7032-i1-opt.json",
+   "objective": "max_dipole",
+   "s0": "Geom-m7032-i1-c1-opt",
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "scope": "QM7-X 分子 7032 同一立体异构体（i1）的 DFTB3+MBD 优化构象；只允许单键旋转；性质为数据集 PBE0+MBD 计算值。"
+  },
+  {
+   "id": "FA-CONF-7063-max_dipole",
+   "family": "conformer_target_selection",
+   "asset": "assets/families/conformers/QM7X-7063-i1-opt.json",
+   "objective": "max_dipole",
+   "s0": "Geom-m7063-i1-c1-opt",
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "scope": "QM7-X 分子 7063 同一立体异构体（i1）的 DFTB3+MBD 优化构象；只允许单键旋转；性质为数据集 PBE0+MBD 计算值。"
+  },
+  {
+   "id": "FC-QNP007",
+   "family": "extent_choice_v2",
+   "template": "global_extent",
+   "asset": "assets/qa/QNP007-MAJHUB.xyz",
+   "legacy_qa": "QNP007",
+   "source": "https://doi.org/10.1038/s41597-020-0385-y",
+   "scope": "MAJHUB PBE+vdW-relaxed几何；41 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+   "legacy_numeric_reference": 10.0003,
+   "license": ""
+  },
+  {
+   "id": "FC-QNP008",
+   "family": "extent_choice_v2",
+   "template": "global_extent",
+   "asset": "assets/qa/QNP008-JIMHOC.xyz",
+   "legacy_qa": "QNP008",
+   "source": "https://doi.org/10.1038/s41597-020-0385-y",
+   "scope": "JIMHOC PBE+vdW-relaxed几何；57 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+   "legacy_numeric_reference": 11.8784,
+   "license": ""
+  },
+  {
+   "id": "FC-QNP009",
+   "family": "extent_choice_v2",
+   "template": "global_extent",
+   "asset": "assets/qa/QNP009-KEGPOC.xyz",
+   "legacy_qa": "QNP009",
+   "source": "https://doi.org/10.1038/s41597-020-0385-y",
+   "scope": "KEGPOC PBE+vdW-relaxed几何；64 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+   "legacy_numeric_reference": 14.087,
+   "license": ""
+  },
+  {
+   "id": "FC-QNP010",
+   "family": "extent_choice_v2",
+   "template": "equal_weight_rg",
+   "asset": "assets/qa/QNP010-KEWGID.xyz",
+   "legacy_qa": "QNP010",
+   "source": "https://doi.org/10.1038/s41597-020-0385-y",
+   "scope": "KEWGID PBE+vdW-relaxed几何；48 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+   "legacy_numeric_reference": 4.2467,
+   "license": ""
+  },
+  {
+   "id": "FC-QNP011",
+   "family": "extent_choice_v2",
+   "template": "equal_weight_rg",
+   "asset": "assets/qa/QNP011-PEKZAG.xyz",
+   "legacy_qa": "QNP011",
+   "source": "https://doi.org/10.1038/s41597-020-0385-y",
+   "scope": "PEKZAG PBE+vdW-relaxed几何；70 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+   "legacy_numeric_reference": 4.6156,
+   "license": ""
+  },
+  {
+   "id": "FC-MNP006",
+   "family": "extent_choice_v2",
+   "template": "global_extent",
+   "asset": "assets/qa/MNP006-ZIF8-Zn.xyz",
+   "legacy_qa": "MNP006",
+   "source": "https://www.crystallography.net/cod/4118891.html",
+   "scope": "ZIF-8 Zn 亚晶格；12 个原子，一个常规立方晶胞，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+   "legacy_numeric_reference": 17.8512,
+   "license": ""
+  },
+  {
+   "id": "FC-MNP007",
+   "family": "extent_choice_v2",
+   "template": "global_extent",
+   "asset": "assets/qa/MNP007-MOF5-Zn.xyz",
+   "legacy_qa": "MNP007",
+   "source": "https://www.crystallography.net/cod/4118891.html",
+   "scope": "MOF-5 Zn 亚晶格；32 个原子，一个常规立方晶胞，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+   "legacy_numeric_reference": 23.9459,
+   "license": ""
+  },
+  {
+   "id": "FC-MNP010",
+   "family": "extent_choice_v2",
+   "template": "global_extent",
+   "asset": "assets/qa/MNP010-MOF5-full.xyz",
+   "legacy_qa": "MNP010",
+   "source": "https://www.crystallography.net/cod/4118891.html",
+   "scope": "MOF-5 完整框架；424 个原子，一个常规立方晶胞，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+   "legacy_numeric_reference": 30.6102,
+   "license": ""
+  },
+  {
+   "id": "FC-CNP007",
+   "family": "extent_choice_v2",
+   "template": "global_extent",
+   "asset": "assets/qa/CNP007-1AA5-chainA.xyz",
+   "legacy_qa": "CNP007",
+   "source": "https://www.rcsb.org/structure/1AA5",
+   "scope": "1AA5 vancomycin单体（chain A）；132 个原子，坐标单位 Å，仅主占位/主构象；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+   "legacy_numeric_reference": 19.5698,
+   "license": ""
+  },
+  {
+   "id": "FC-CNP008",
+   "family": "extent_choice_v2",
+   "template": "global_extent",
+   "asset": "assets/qa/CNP008-1AA5-chainB.xyz",
+   "legacy_qa": "CNP008",
+   "source": "https://www.rcsb.org/structure/1AA5",
+   "scope": "1AA5 vancomycin单体（chain B）；132 个原子，坐标单位 Å，仅主占位/主构象；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+   "legacy_numeric_reference": 19.2646,
+   "license": ""
+  },
+  {
+   "id": "FC-CNP009",
+   "family": "extent_choice_v2",
+   "template": "global_extent",
+   "asset": "assets/qa/CNP009-1AA5-dimer.xyz",
+   "legacy_qa": "CNP009",
+   "source": "https://www.rcsb.org/structure/1AA5",
+   "scope": "1AA5 完整不对称二聚体（chain A+B）；264 个原子，坐标单位 Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+   "legacy_numeric_reference": 28.7192,
+   "license": ""
+  },
+  {
+   "id": "FC-CNP011",
+   "family": "extent_choice_v2",
+   "template": "equal_weight_rg",
+   "asset": "assets/qa/CNP011-1AA5-dimer.xyz",
+   "legacy_qa": "CNP011",
+   "source": "https://www.rcsb.org/structure/1AA5",
+   "scope": "1AA5 完整二聚体；264 个原子，Å；仅计算该文件实际点集，不做周期扩展，不优化、不添加或删除原子。",
+   "legacy_numeric_reference": 8.2617,
+   "license": ""
+  }
+ ]
+}

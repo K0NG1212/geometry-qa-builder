@@ -72,3 +72,6 @@ python tools/export_choice_workbench.py --run runs/choice-new --public-developme
 ```
 
 只允许已公开 pilot 材料通过此发布器。新 run 保存输入学生包、源报告与 manifest 副本、两个执行脚本、答案/错误机制/映射及验证报告。快照供审计；完整复现应在匹配版本的仓库根目录使用版本化 docs/assets 与上述命令，不把快照目录当作独立安装包。12例是原有题的格式试跑，不新增题数，不代替人工科学审核。网页 templates.html 可切换实例并展开记录。标签评分接受大小写和首尾空白，拒绝长文本。位置分布和干扰项质量需在更大批次检查；种子排序并不保证小批次均匀。
+
+## 可复用题型族（2026-09-24）
+新增题型时优先写一个 `task_families/<族>.py` 并在 `task_families/__init__.py` 登记，复用 `kit.py` 的解析、几何核、干扰项选择、四项校验与评分；在 `templates/registry.json` 补全覆盖总表字段（测试会检查字段、代码/测试路径与旧题映射）。改注册表后运行 `python tools/export_coverage.py`；新族试跑写入新的 `runs/family-*`，经 `tools/export_family_workbench.py --public-development-examples`（完整重放通过才发布）更新网页。族引擎不按题号分派，不自动改变题库准入；设计选择族不解除旧 M3 对 design 的拒绝。

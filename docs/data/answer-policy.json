@@ -1,6 +1,6 @@
 {
-  "version": "0.1.0",
-  "status": "numeric_pilot_implemented",
+  "version": "0.2.0",
+  "status": "family_pilots_implemented",
   "choice_format": "single_choice_4",
   "labels": [
     "A",
@@ -46,7 +46,14 @@
   "design_choice_is_not_open_generation": true,
   "implemented_templates": [
     "global_extent",
-    "equal_weight_rg"
+    "equal_weight_rg",
+    "named_bond_angle",
+    "backbone_torsion",
+    "force_path_derivative",
+    "kinematic_extinction",
+    "conformer_target_selection"
   ],
-  "design_choice_status": "not_implemented"
+  "design_choice_status": "candidate_selection_pilot: conformer_target_selection (computed property evidence); literature design_choice not implemented",
+  "numeric_option_order": "ascending; correct rank balanced per family batch (v0.2)",
+  "categorical_option_order": "correct placed at batch-balanced position; others seeded"
 }

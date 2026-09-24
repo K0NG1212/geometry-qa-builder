@@ -1,5 +1,30 @@
 # 当前交接状态
 
+## 最新：题型覆盖扩展（2026-09-24，Claude Code 会话，模型 claude-opus-5-5）
+
+按 CLAUDE_HANDOFF.md 执行 A–D。基线 27a3463。已参考五次会议记录（用户提供的 docx，本地阅读，未入库）。
+
+**已完成**
+- A 盘点：`templates/registry.json` 升为 v0.2 覆盖总表（19 行，唯一定义来源），字段含考点、能力、领域、输入/推理尺度及限制、物理条件、输出、来源、答案方法、≥3 类干扰机制、四选一校验、代码/测试路径、M0–M6 对应、状态、缺口、优先级。旧 80 道候选与 50 个筛查族全部映射（测试强制）。导出 `docs/data/task-coverage.json`（`tools/export_coverage.py`）。状态：已接通 2、新族试跑 5、旧题待迁移 7、已规划 3、需重建 1、暂不开放 1。
+- B 接口与真实试跑：`task_families/`（kit + 5 个新族 + extent v0.2）与 `family_engine.py`；输入全部来自 docs/assets（新增 `docs/assets/families/` 的 QM7-X 受力与构象 JSON，由 `tools/build_family_assets.py` 从本地 8000.hdf5 提取，并与已发布 QNP001/QNI001/QNI002 坐标、受力逐项一致；QM7-X 为 CC BY 4.0）。运行 `runs/family-pilot-v01`（本地，未入库；种子 geobench-family-v1）：尝试 30、程序核验通过 29、失败 1（FA-CONF-7063-max_dipole：无唯一最优四元组，按规则记录，不强凑）。模型调用 0。
+  - 感知：named_bond_angle（FA-ANG-BCD/WP6/DMBCD，对应 CNP001/002/006，答案与旧题一致）；backbone_torsion（FA-TOR-1CRN-G20 φ=+106.3°、1UBQ-V26 ψ、6LYZ-T43 φ，新题型）。
+  - 推断：force_path_derivative（FA-FP-QM7X-7001/7002/7035，7002 为 B→A 方向，数值与 QNP001 等一致）；kinematic_extinction（NaCl、金刚石、SALEM-2、MOF-5）。
+  - 设计选择：conformer_target_selection（FA-CONF-7050 最大偶极、7206/7095 最低能量、7032 最大偶极）。四候选均检查原子、键连图、立体中心、与 S0 不同、偶极一致，去除同一/镜像构象，唯一最优领先 ≥ 阈值；学生包不含数据集编号和性质。旧 M3 对 design 的拒绝未改动。
+- C 捷径：`extent_choice_v2` 在同 12 份输入上重建选项（新增重原子、包围盒对角线、两最大中心距之和、含范德华半径、质量加权、N−1 等机制）；数值选项升序、正确秩按批次轮换。v0.1 中最大间距“总选最大”5/9、回转半径“总选最小”2/3，合计 7/12；v0.2 同 12 题“总选最大”1/12、“总选最小”3/12、第二/第三各 4/12。v0.1 运行与页面记录保留。各族捷径统计见运行报告；**程序通过 ≠ 难度合格**。
+- D 网站：templates.html 顶部新增覆盖总表（能力/状态筛选、逐行展开）与题型工作台（族→实例→学生输入、A–D 作答、学生包下载、审核侧答案/机制/排除项/检查/阶段记录/代码/批次报告）；v0.1 两段历史试跑保留在页面下部。本地 HTTP 检查：19 行、6 个族、选项评分、学生包无答案泄漏、375px 无横向溢出、无控制台错误。
+- 测试 184 项通过（新增 tests/test_task_families.py 22 项）。答案位置 A6/B10/C7/D6。
+
+**待人工审核**：29 个开发实例全部 pending，新增题库 0，42 active 不变。重点：（1）DMBCD 键角仍含一个易排除项（36.14°）；（2）二面角 3/3 含 ± 配对线索，受力路径 1/3；（3）NaCl、SALEM-2、MOF-5 的消光正确项仅凭中心化规则即可答对（已在 rule_shortcuts 披露），只有金刚石需要滑移消光；（4）构象设计的性质为 QM7-X 计算值，未独立重算，7206/7095/7032 领先幅度见审核包；（5）extent v0.2 中 CNP009 两最大中心距之和与正确值仅差 0.086 Å。
+
+**阻塞与发现**
+- 论文优化案例式 design_choice：本轮未取得四个候选均有测量值且可公开的案例，未虚构，保持 planned。
+- 旧目录来源错误（未修改旧记录）：MOF-5 相关旧题（MNP007、MNP010、MNI007、MNI009 及 pilot-manifest 的 TP-MNP007/010）来源写为 COD 4118891，实际 MOF-5 为 COD 1516287；COD 4118891 是未取代咪唑的 ZIF-8 拓扑结构（SALEM-2，Karagiaridi 2012），旧题称“ZIF-8”不准确。新族已用正确名称与来源；旧目录需单独修订（改动会影响已发布 pilot 的复现比对，需同时更新导出校验）。
+- 立体构型（R/S、顺反）题型仍为 planned；局部距离、配位壳层、FRET/Guinier 等旧计算器尚未迁入族接口。
+
+**复现**：`python family_engine.py --manifest templates/family-manifest.json --out runs/family-new --seed geobench-family-v1`，再 `python tools/export_family_workbench.py --run runs/family-new --public-development-examples` 与 `python tools/export_coverage.py`。发布前的完整重放会与已发布记录逐项比较。
+
+**下一步建议**：人工抽查 5 个新族的模板语义与干扰机制；把局部距离/配位壳层迁入 kit；立体构型族；修正旧 MOF-5/SALEM-2 来源；寻找带完整候选测量值的优化论文以实现 design_choice。提交与 Pages 状态见下一条记录。
+
 ## 下一阶段交接（2026-09-24）
 
 用户指出两个计算模板仅覆盖感知的一小部分，要求交接Claude Code推进更广题型。下一阶段顺序改为：盘点有依据的题型覆盖→复用既有代码建立可扩展接口→推进不同能力的代表模板与少量真实试跑→网站展示；已有选项捷径同时处理，但不再把整轮工作限制于两个计算器。任务书见 [CLAUDE_HANDOFF.md](CLAUDE_HANDOFF.md)，入口CLAUDE.md已链接。此轮仅补交接文档，未新增题、未改变准入或审核状态，未实施上述下一阶段任务。实现基线d726700；下方2026-09-23的“下一步”已由本条更新。
