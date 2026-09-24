@@ -11,4 +11,4 @@ RUNBOOK 中“Codex 执行”指助手会话按 packet 工作；你可以用当�
 
 ## 当前下一阶段任务
 
-阅读 [CLAUDE_HANDOFF.md](CLAUDE_HANDOFF.md)（2026-09-24）：用户最新重点是扩展感知、推断、设计选择的可复用题型覆盖，不再只围绕最大间距与Rg扩量。该文件是本轮任务书；实际进度以PROJECT_STATUS.md顶部为准。
+先读 [HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md)：上一份任务书 [CLAUDE_HANDOFF.md](CLAUDE_HANDOFF.md) 的 A–D 已完成（可复用题型族、覆盖总表、独立检查器、网站工作台），交接文件列出已完成内容、待审核项、阻塞与下一步。实际进度以 PROJECT_STATUS.md 顶部为准。
