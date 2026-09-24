@@ -23,7 +23,9 @@
 
 **复现**：`python family_engine.py --manifest templates/family-manifest.json --out runs/family-new --seed geobench-family-v1`，再 `python tools/export_family_workbench.py --run runs/family-new --public-development-examples` 与 `python tools/export_coverage.py`。发布前的完整重放会与已发布记录逐项比较。
 
-**下一步建议**：人工抽查 5 个新族的模板语义与干扰机制；把局部距离/配位壳层迁入 kit；立体构型族；修正旧 MOF-5/SALEM-2 来源；寻找带完整候选测量值的优化论文以实现 design_choice。提交与 Pages 状态见下一条记录。
+**下一步建议**：人工抽查 5 个新族的模板语义与干扰机制；把局部距离/配位壳层迁入 kit；立体构型族；修正旧 MOF-5/SALEM-2 来源；寻找带完整候选测量值的优化论文以实现 design_choice。
+
+**发布**：实现提交 b8e96df 已推送 origin/main（普通推送）。GitHub Pages 已单独核查：templates.html、families.js、data/task-coverage.json、data/family-workbench.json 均返回 200；线上页面加载 19 行总表、6 个族，线上 family-workbench.json 的 family_engine.py 哈希与本地一致。本条状态更新另以后续提交推送。
 
 ## 下一阶段交接（2026-09-24）
 
