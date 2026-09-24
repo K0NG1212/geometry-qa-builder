@@ -1,5 +1,14 @@
 # 当前交接状态
 
+## 最新：题型级独立检查器（2026-09-24，Claude Code 会话，模型 claude-opus-5-5）
+
+按第五次会议“每种题型写确定性代码检查 input→output、模型只抽查”的要求实现：
+- 新增 `checkers/`（common.py、families.py，覆盖全部 6 个族引擎、7 个运行中题型）与 `verify_all.py`。检查器不导入任何出题代码（测试强制），只读学生包与答案键；参数从题干读出，换公式重算，核验四个选项、答案键、学生包泄漏与来源 SHA-256。细节见 METHODOLOGY.md 末节。
+- `runs/family-pilot-v01`：29/29 通过（报告 `runs/family-pilot-v01-independent-check.json`，本地）。`tools/export_family_workbench.py` 现在先跑独立检查，任一失败即拒绝发布，并写出 `docs/data/independent-check.json`（含检查器代码）。已发布的 family-workbench.json 重新导出后内容不变。
+- 注册表新增 `independent_checker` 字段；覆盖总表与 templates.html 工作台显示每例独立检查状态、重算记录与检查器代码。
+- 测试 198 项通过（新增 tests/test_checkers.py 14 项：独立性、手算例、篡改例）。
+- 仍待办：分层抽样的语义审查（模型/人工）尚未实施，比例未定；检查器本身待人工代码审阅。旧 v0.1 数值/选项运行未纳入 verify_all（其答案由 test_template_engine / test_choice_engine 覆盖）。
+
 ## 最新：题型覆盖扩展（2026-09-24，Claude Code 会话，模型 claude-opus-5-5）
 
 按 CLAUDE_HANDOFF.md 执行 A–D。基线 27a3463。已参考五次会议记录（用户提供的 docx，本地阅读，未入库）。

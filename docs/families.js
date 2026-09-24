@@ -6,7 +6,7 @@
  const STATUS={implemented:'已接通',pilot:'新族试跑',existing_legacy:'旧题待迁移',rebuild_needed:'需重建',planned:'已规划',blocked:'暂不开放'};
  const DOMAIN={quantum:'量子',chemistry:'化学',materials:'材料',biology:'生物'};
  const pretty=x=>JSON.stringify(x,null,2);
- let cov,fam,ability='all',student,teacher,numeric;
+ let cov,fam,indep,ability='all',student,teacher,numeric;
 
  function save(obj,name){const url=URL.createObjectURL(new Blob([pretty(obj)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 
@@ -14,7 +14,7 @@
  function counters(){
   const s=cov.summary,st=s.status;
   const cells=[[s.types_defined,'题型已定义'],[s.types_with_running_code,'题型有可运行代码（已接通 '+(st.implemented||0)+' + 新族 '+(st.pilot||0)+'）'],
-   [s.development_instances,'新开发实例（全部待审）'],[s.instance_failures,'实例构造失败（已记录）'],[s.legacy_candidates,'旧候选（保留 '+s.legacy_decisions.retain+' / 小修 '+s.legacy_decisions.revise+' / 重建 '+s.legacy_decisions.rebuild+'）']];
+   [s.development_instances,'新开发实例（全部待审）'],[s.independent_pass+' / '+s.independent_checked,'独立检查器通过'],[s.instance_failures,'实例构造失败（已记录）'],[s.legacy_candidates,'旧候选（保留 '+s.legacy_decisions.retain+' / 小修 '+s.legacy_decisions.revise+' / 重建 '+s.legacy_decisions.rebuild+'）']];
   $('cov-counters').innerHTML=cells.map(([n,t])=>`<div><strong>${esc(n)}</strong><span>${esc(t)}</span></div>`).join('')+
    '<div class="by-ability">'+Object.entries(s.by_ability).map(([a,c])=>`<p><b>${esc(ABILITY[a])}</b> `+Object.entries(c).map(([k,v])=>`${esc(STATUS[k]||k)} ${v}`).join(' · ')+'</p>').join('')+'</div>';
   $('cov-headline').textContent=s.types_with_running_code+' 类 · '+s.development_instances+' 例';
@@ -26,7 +26,7 @@
   return `<dl class="facts"><dt>考点与意义</dt><dd>${esc(r.concept)}</dd><dt>输入</dt><dd>${esc(r.inputs)}</dd><dt>物理条件</dt><dd>${esc(r.physical_conditions)}</dd>
   <dt>输入尺度</dt><dd>${esc(r.input_scale)}</dd><dt>推理尺度</dt><dd>${esc(r.reasoning_scale)}；声明区间 ${list(r.scale_cells)}；实例实测 ${list(r.instance_reasoning_cells)}</dd><dt>尺度限制</dt><dd>${esc(r.scale_limits)}</dd>
   <dt>来源依据</dt><dd>${esc(r.source_basis)}</dd><dt>正确答案怎么得到</dt><dd>${esc(r.answer_method)}</dd><dt>干扰项机制</dt><dd>${list(r.distractor_mechanisms)}</dd><dt>四选一校验</dt><dd>${esc(r.four_choice_validation)}</dd>
-  <dt>代码</dt><dd>${links(r.code)}</dd><dt>测试</dt><dd>${links(r.tests)}</dd><dt>M0–M6</dt><dd>${esc(r.builder_modules)}</dd>
+  <dt>独立检查器</dt><dd>${esc(r.independent_checker||'—')}${r.instance_count?`（${r.independent_pass}/${r.instance_count} 通过）`:''}</dd><dt>代码</dt><dd>${links(r.code)}</dd><dt>测试</dt><dd>${links(r.tests)}</dd><dt>M0–M6</dt><dd>${esc(r.builder_modules)}</dd>
   <dt>旧题族 / 旧题</dt><dd>${list(r.legacy_families)}<br>${list(r.legacy_qa)}</dd><dt>新实例</dt><dd>${list(r.instance_ids)}${r.instance_failures?`（另有 ${r.instance_failures} 例构造失败，已记录）`:''}</dd><dt>缺口 / 下一步</dt><dd>${esc(r.gap)}</dd></dl>`;
  }
  function table(){
@@ -60,6 +60,10 @@
   $('fam-checks').textContent=pretty({checks:teacher.checks,scales:teacher.scales,rank:teacher.rank,rank_shortcuts:teacher.rank_shortcuts,target_position:teacher.target_position,option_order:teacher.option_order,input_hashes:teacher.input_hashes});
   $('fam-excluded').textContent=pretty(teacher.excluded_candidates);
   $('fam-stages').textContent=pretty(stage);
+  const ic=indep.results.find(x=>x.id===id);
+  $('fam-independent').textContent=ic?(ic.status==='pass'?'独立检查器：通过（'+ic.method+'）':'独立检查器：未通过 — '+ic.problem):'独立检查器：无记录';
+  $('fam-independent').className='independent '+(ic&&ic.status==='pass'?'ok':'bad');
+  $('fam-independent-json').textContent=pretty(ic||{});
   const module=fam.report&&fam.stage_records.find(s=>s.id===id).define.module;$('fam-code').textContent=fam.code[module]||'';
  }
  function renderFamily(){
@@ -73,8 +77,10 @@
  $('fam-download').addEventListener('click',()=>student&&save(student,student.id+'-student.json'));
  $('fam-download-numeric').addEventListener('click',()=>numeric&&save(numeric,numeric.id+'-student.json'));
 
- Promise.all(['data/task-coverage.json','data/family-workbench.json'].map(u=>fetch(u).then(r=>{if(!r.ok)throw Error(u+' '+r.status);return r.json()}))).then(([c,f])=>{
-  cov=c;fam=f;counters();
+ Promise.all(['data/task-coverage.json','data/family-workbench.json','data/independent-check.json'].map(u=>fetch(u).then(r=>{if(!r.ok)throw Error(u+' '+r.status);return r.json()}))).then(([c,f,i])=>{
+  cov=c;fam=f;indep=i;counters();
+  $('fam-independent-summary').textContent=`本批 ${i.checked} 例，独立检查通过 ${i.passed} 例，失败 ${i.failed.length} 例；模型调用 ${i.model_calls}。检查器版本 ${i.checker_version}。`;
+  $('fam-checker-code').textContent=Object.entries(i.checker_code||{}).map(([k,v])=>'# ==== '+k+'\n'+v).join('\n');
   $('cov-status').innerHTML='<option value="all">全部状态</option>'+Object.keys(cov.axes.status).map(k=>`<option value="${esc(k)}">${esc(STATUS[k]||k)}</option>`).join('');
   table();
   const order=['named_bond_angle','backbone_torsion','force_path_derivative','kinematic_extinction','conformer_target_selection','extent_choice_v2'];

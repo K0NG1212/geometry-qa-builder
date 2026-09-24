@@ -60,6 +60,8 @@
   },
   "development_instances": 29,
   "instance_failures": 1,
+  "independent_pass": 29,
+  "independent_checked": 29,
   "legacy_candidates": 80,
   "legacy_decisions": {
    "retain": 42,
@@ -128,18 +130,21 @@
    "code": [
     "template_engine.py",
     "choice_engine.py",
-    "task_families/extent_choice.py"
+    "task_families/extent_choice.py",
+    "checkers/families.py"
    ],
    "tests": [
     "tests/test_template_engine.py",
     "tests/test_choice_engine.py",
-    "tests/test_task_families.py"
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
    ],
    "builder_modules": "专用试跑覆盖 M0/M1/M4/M5/M6 的等价检查；未走旧 pipeline。",
    "gap": "已足量；本轮不再扩量，只改进干扰项。",
    "engine_families": [
     "extent_choice_v2"
    ],
+   "independent_checker": "checkers/families.py:extent",
    "instance_ids": [
     "FC-QNP007",
     "FC-QNP008",
@@ -152,6 +157,7 @@
     "FC-CNP009"
    ],
    "instance_count": 9,
+   "independent_pass": 9,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "1-10"
@@ -210,24 +216,28 @@
    "code": [
     "template_engine.py",
     "choice_engine.py",
-    "task_families/extent_choice.py"
+    "task_families/extent_choice.py",
+    "checkers/families.py"
    ],
    "tests": [
     "tests/test_template_engine.py",
     "tests/test_choice_engine.py",
-    "tests/test_task_families.py"
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
    ],
    "builder_modules": "同上。",
    "gap": "已足量；本轮不再扩量。",
    "engine_families": [
     "extent_choice_v2"
    ],
+   "independent_checker": "checkers/families.py:extent",
    "instance_ids": [
     "FC-QNP010",
     "FC-QNP011",
     "FC-CNP011"
    ],
    "instance_count": 3,
+   "independent_pass": 3,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "1-10"
@@ -284,22 +294,26 @@
    ],
    "code": [
     "task_families/local_geometry.py",
-    "task_families/kit.py"
+    "task_families/kit.py",
+    "checkers/families.py"
    ],
    "tests": [
-    "tests/test_task_families.py"
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
    ],
    "builder_modules": "M0 范围、M1 输入哈希、M3 族契约、M4 构造、M5 四项核验、M6 分包（族引擎内等价实现）。",
    "gap": "局部距离（二硫键、氢键给体–受体）尚未迁入同一接口；下一步复用同一 kit。",
    "engine_families": [
     "named_bond_angle"
    ],
+   "independent_checker": "checkers/families.py:named_bond_angle",
    "instance_ids": [
     "FA-ANG-BCD",
     "FA-ANG-WP6",
     "FA-ANG-DMBCD"
    ],
    "instance_count": 3,
+   "independent_pass": 3,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "0.1-1"
@@ -347,22 +361,26 @@
    "legacy_qa": [],
    "code": [
     "task_families/local_geometry.py",
-    "task_families/kit.py"
+    "task_families/kit.py",
+    "checkers/families.py"
    ],
    "tests": [
-    "tests/test_task_families.py"
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
    ],
    "builder_modules": "同 named_bond_angle。",
    "gap": "尚无立体构型（R/S、顺反）题型；建议按会议 2 的感知→推断→设计梯子继续。",
    "engine_families": [
     "backbone_torsion"
    ],
+   "independent_checker": "checkers/families.py:backbone_torsion",
    "instance_ids": [
     "FA-TOR-1CRN-G20",
     "FA-TOR-1UBQ-V26",
     "FA-TOR-6LYZ-T43"
    ],
    "instance_count": 3,
+   "independent_pass": 3,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "0.1-1"
@@ -431,8 +449,10 @@
    "builder_modules": "旧 M0–M6 pipeline。",
    "gap": "迁入族接口：复用 kit 距离核与 local_geometry 的实体确认。",
    "engine_families": [],
+   "independent_checker": "",
    "instance_ids": [],
    "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
    "legacy_decisions": {
@@ -492,8 +512,10 @@
    "builder_modules": "旧 pipeline。",
    "gap": "迁入族接口；四选一可用整数配位数（需排除等价答案）。",
    "engine_families": [],
+   "independent_checker": "",
    "instance_ids": [],
    "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
    "legacy_decisions": {
@@ -549,8 +571,10 @@
    "builder_modules": "旧 pipeline。",
    "gap": "优先级低：易退化为公式题。",
    "engine_families": [],
+   "independent_checker": "",
    "instance_ids": [],
    "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
    "legacy_decisions": {
@@ -615,8 +639,10 @@
    "builder_modules": "旧 pipeline。",
    "gap": "需要先拆成若干可复用子族（路径长度、弦长、局部间距）。",
    "engine_families": [],
+   "independent_checker": "",
    "instance_ids": [],
    "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
    "legacy_decisions": {
@@ -662,8 +688,10 @@
    "builder_modules": "未开始。",
    "gap": "下一轮候选：conformer_design.stereocentres() 已有带符号体积核。",
    "engine_families": [],
+   "independent_checker": "",
    "instance_ids": [],
    "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
    "legacy_decisions": {},
@@ -714,23 +742,27 @@
    "code": [
     "task_families/force_path.py",
     "builder_modules/m4_construction/force_projection.py",
-    "tools/build_family_assets.py"
+    "tools/build_family_assets.py",
+    "checkers/families.py"
    ],
    "tests": [
     "tests/test_task_families.py",
-    "tests/test_force_projection.py"
+    "tests/test_force_projection.py",
+    "tests/test_checkers.py"
    ],
    "builder_modules": "M1 资产由 tools/build_family_assets.py 从 QM7-X 提取并与已发布旧题坐标/受力逐项核对。",
    "gap": "可扩到“受力是否指向降低能量的方向”的结论选择题。",
    "engine_families": [
     "force_path_derivative"
    ],
+   "independent_checker": "checkers/families.py:force_path",
    "instance_ids": [
     "FA-FP-QM7X-7001",
     "FA-FP-QM7X-7002",
     "FA-FP-QM7X-7035"
    ],
    "instance_count": 3,
+   "independent_pass": 3,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "0.1-1"
@@ -788,17 +820,20 @@
    ],
    "code": [
     "task_families/extinction.py",
-    "tools/recompute_materials_batch.py"
+    "tools/recompute_materials_batch.py",
+    "checkers/families.py"
    ],
    "tests": [
     "tests/test_task_families.py",
-    "tests/test_materials_batch.py"
+    "tests/test_materials_batch.py",
+    "tests/test_checkers.py"
    ],
    "builder_modules": "M1 直接读取已发布 CIF/XYZ；M5 记录规则捷径。",
    "gap": "旧 MOF-5 题来源误记为 COD 4118891（应为 1516287），旧“ZIF-8”实为未取代咪唑的 SALEM-2；新族已更正，旧目录待修。",
    "engine_families": [
     "kinematic_extinction"
    ],
+   "independent_checker": "checkers/families.py:extinction",
    "instance_ids": [
     "FA-EXT-NACL",
     "FA-EXT-DIAMOND",
@@ -806,6 +841,7 @@
     "FA-EXT-MOF5"
    ],
    "instance_count": 4,
+   "independent_pass": 4,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "0.1-1",
@@ -865,8 +901,10 @@
    "builder_modules": "旧 pipeline。",
    "gap": "低优先：与消光族合并为“衍射图样”推断更有几何必要性。",
    "engine_families": [],
+   "independent_checker": "",
    "instance_ids": [],
    "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
    "legacy_decisions": {
@@ -924,8 +962,10 @@
    "builder_modules": "旧 pipeline。",
    "gap": "适合下一轮迁入：四个不重叠效率区间可做四选一。",
    "engine_families": [],
+   "independent_checker": "",
    "instance_ids": [],
    "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
    "legacy_decisions": {
@@ -978,8 +1018,10 @@
    "builder_modules": "旧 pipeline M2 证据模块。",
    "gap": "待建立首个经证据支持的通用模板。",
    "engine_families": [],
+   "independent_checker": "",
    "instance_ids": [],
    "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
    "legacy_decisions": {
@@ -1051,8 +1093,10 @@
    "builder_modules": "旧 pipeline。",
    "gap": "需要先确认哪些比较真正需要推断；否则并入感知族。",
    "engine_families": [],
+   "independent_checker": "",
    "instance_ids": [],
    "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
    "legacy_decisions": {
@@ -1102,8 +1146,10 @@
    "builder_modules": "旧 pipeline。",
    "gap": "重建方向：改为 conformer_target_selection 式的“由结构选性质”题，而不是给出能级。",
    "engine_families": [],
+   "independent_checker": "",
    "instance_ids": [],
    "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
    "legacy_decisions": {
@@ -1145,16 +1191,19 @@
    "legacy_qa": [],
    "code": [
     "task_families/conformer_design.py",
-    "tools/build_family_assets.py"
+    "tools/build_family_assets.py",
+    "checkers/families.py"
    ],
    "tests": [
-    "tests/test_task_families.py"
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
    ],
    "builder_modules": "旧 M3 仍拒绝 design；本族在族引擎内实现独立约束与唯一性检查，未改动旧门槛。",
    "gap": "论文 S0→S1 优化案例（design_choice）仍缺实例。",
    "engine_families": [
     "conformer_target_selection"
    ],
+   "independent_checker": "checkers/families.py:conformer_selection",
    "instance_ids": [
     "FA-CONF-7050-max_dipole",
     "FA-CONF-7206-min_energy",
@@ -1162,6 +1211,7 @@
     "FA-CONF-7032-max_dipole"
    ],
    "instance_count": 4,
+   "independent_pass": 4,
    "instance_failures": 1,
    "instance_reasoning_cells": [
     "0.1-1"
@@ -1207,8 +1257,10 @@
    "builder_modules": "M3 旧门槛拒绝 design，不删除保护。",
    "gap": "本轮未取得带四个候选测量值且许可可公开的案例；未虚构。",
    "engine_families": [],
+   "independent_checker": "",
    "instance_ids": [],
    "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
    "legacy_decisions": {},
@@ -1245,8 +1297,10 @@
    "builder_modules": "未开放。",
    "gap": "保留路线。",
    "engine_families": [],
+   "independent_checker": "",
    "instance_ids": [],
    "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
    "legacy_decisions": {},

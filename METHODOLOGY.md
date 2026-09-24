@@ -86,3 +86,16 @@ python tools/export_coverage.py
 ```
 
 `templates/registry.json`（v0.2）是题型覆盖总表的唯一定义来源，`docs/data/task-coverage.json` 由它导出；旧 80 道候选与 50 个筛查族全部映射到其中一行（测试强制）。
+
+## 独立检查器：题型级轻量验证（2026-09-24）
+第五次会议要求“每种题型写一段确定性代码检查 input→output，代码正确即可检查该题型全部实例，模型只做抽查”。实现为 `checkers/`：
+- **独立**：不导入 task_families、family_engine、template_engine、choice_engine 或 tools（测试以语法树检查强制）；只读取被测模型看到的学生包（题干、附件、选项）与答案键。
+- **从题干读参数**：原子行号、二面角定义、路径方向、散射权重、设计目标都从题干文字中重新读出；读不出即失败，表示题目不能仅凭自身作答。
+- **换公式重算**：键角用三边余弦定理（出题用向量点积）；二面角用法向量 acos 加三重积定号（出题用两种 atan2）；尺度量用 40 位 Decimal；受力投影逐原子 Decimal 求和；消光用独立 cos/sin 求和；设计题用自己的成键图、四配位中心手性和距离矩阵检查约束，按坐标（不按标签或编号）匹配数据集性质。
+- **全部四项**：恰好一项等于重算值的舍入结果，其余在容差外；答案键字母与数值一致；学生包无答案键字段；输入与公开来源 SHA-256 一致（二面角片段须逐行出自原 PDB，受力与坐标须与资产一致）。
+- **不做的事**：不判断科学意义、来源解读和适用条件，这些仍由模板审查与分层抽查负责。
+
+```text
+python verify_all.py --run runs/family-pilot-v01 --out runs/family-pilot-v01-independent-check.json
+```
+任何实例不一致时退出码为 1，`tools/export_family_workbench.py` 也会拒绝发布；通过的报告连同检查器代码写入 `docs/data/independent-check.json`。测试含手算例（正方形、类水分子键角、IUPAC −90° 二面角）与篡改例（改答案键、重复选项、改坐标、改 PDB 片段、删物理条件、换候选、泄漏编号、哈希不符），检查器必须全部拒绝。

@@ -15,6 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 import family_engine
+import verify_all
 from task_families import kit
 
 
@@ -38,6 +39,11 @@ def export(run, public=False):
         for name in ['student-packets.json', 'numeric-student-packets.json', 'private-answers.json', 'stage-records.json']:
             if read(replay / name) != read(run / name):
                 raise ValueError('Replay mismatch: ' + name)
+    # Independent checkers (no generation code) must agree on every instance before publication.
+    independent = verify_all.verify(read(run / 'student-packets.json'), read(run / 'private-answers.json'),
+                                    dict(source=run.name))
+    if independent['failed']:
+        raise ValueError('Independent check failed: %s' % independent['failed'])
     code = {rel: (run / 'snapshot' / rel).read_text(encoding='utf-8') for rel in report['code_sha256']
             if rel.startswith('task_families/') or rel == 'family_engine.py'}
     payload = dict(report=report, registry=read(run / 'snapshot/registry.json'),
@@ -52,6 +58,9 @@ def export(run, public=False):
                         'All pending human audit; no catalog admissions; not a hidden test set.')
     path = ROOT / 'docs/data/family-workbench.json'
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
+    independent['checker_code'] = {rel: (ROOT / rel).read_text(encoding='utf-8') for rel in independent['checker_sha256']}
+    (ROOT / 'docs/data/independent-check.json').write_text(json.dumps(independent, ensure_ascii=False, indent=1) + '\n',
+                                                            encoding='utf-8', newline='\n')
     return path
 
 

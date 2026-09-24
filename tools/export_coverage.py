@@ -26,6 +26,7 @@ def build():
     screening = read('docs/data/focused-screening.json')
     families = read('docs/data/family-workbench.json')
     legacy_choice = read('docs/data/choice-workbench.json')
+    independent = {x['id']: x['status'] for x in read('docs/data/independent-check.json')['results']}
     decisions = {x['id']: x['decision'] for x in screening['items']}
     by_engine = {}
     for t in families['teacher_answers']:
@@ -44,9 +45,10 @@ def build():
                                'reasoning_scale', 'scale_cells', 'scale_limits', 'inputs', 'physical_conditions',
                                'output_forms', 'source_basis', 'answer_method', 'distractor_mechanisms',
                                'four_choice_validation', 'legacy_families', 'legacy_qa', 'code', 'tests',
-                               'builder_modules', 'gap', 'engine_families')},
+                               'builder_modules', 'gap', 'engine_families', 'independent_checker')},
             instance_ids=[x['id'] for x in instances],
             instance_count=len(instances),
+            independent_pass=sum(independent.get(x['id']) == 'pass' for x in instances),
             instance_failures=sum(failures[f] for f in t['engine_families']),
             instance_reasoning_cells=cells,
             legacy_decisions=dict(legacy),
@@ -56,6 +58,7 @@ def build():
     summary = dict(types_defined=len(rows), types_with_running_code=sum(r['status'] in ('implemented', 'pilot') for r in rows),
                    status=dict(status), by_ability=ability,
                    development_instances=families['report']['passed'], instance_failures=len(families['report']['failures']),
+                   independent_pass=sum(v == 'pass' for v in independent.values()), independent_checked=len(independent),
                    legacy_candidates=len(decisions), legacy_decisions=dict(Counter(decisions.values())),
                    note='“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。')
     return dict(version=registry['version'], updated=registry['updated'], axes=registry['axes'], summary=summary,
