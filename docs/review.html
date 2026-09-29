@@ -1,0 +1,23 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>审核体系 L1–L3 — GeoBench</title><link rel="stylesheet" href="styles.css"><style>
+.rv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.rv-grid article{padding:18px;background:var(--paper);border:1px solid var(--line)}.rv-grid strong{display:block;font-size:28px}
+.rv-table{width:100%;border-collapse:collapse;font-size:14px}.rv-table th,.rv-table td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.pill{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;border:1px solid var(--line)}.pill.pending{background:#fff4d6}.pill.approved{background:#e3f5e1}.pill.stale,.pill.revise{background:#fde2e2}
+.rv-card{margin:6px 0 12px;padding:10px 12px;background:var(--paper);border:1px solid var(--line)}.rv-card pre{white-space:pre-wrap;font-size:12px;max-height:260px;overflow:auto}
+.rv-filter button{margin-right:6px}.mono{font-family:ui-monospace,Consolas,monospace;font-size:12px;word-break:break-all}
+@media (max-width:760px){.rv-grid{grid-template-columns:repeat(2,1fr)}.rv-table{font-size:13px}}
+</style></head><body><header class="site-header"><a class="brand" href="index.html">GeoBench <small>REVIEW L1–L3</small></a><nav><a href="audit.html">审核队列</a><a href="templates.html#workbench">题型工作台</a><a href="data/review-queue.json" download>下载待审清单 ↓</a></nav></header>
+<main><div class="page-heading"><div class="eyebrow">REVIEW SYSTEM · BUILT, NOT YET RUN</div><h1>审核体系：题型审定、检查器审阅、分层抽查</h1>
+<p id="rv-note">加载中…</p></div>
+<div id="rv-stats" class="rv-grid"></div>
+<section class="section-block"><h2>流程</h2><div class="table-scroll"><table class="rv-table"><thead><tr><th>层级</th><th>频率</th><th>做什么</th><th>状态</th></tr></thead><tbody>
+<tr><td>L0 自动核验</td><td>每个实例</td><td>独立检查器重算、四项唯一、答案键一致、无泄漏、来源哈希</td><td>已运行</td></tr>
+<tr><td>L1 题型审定</td><td>每个题型一次</td><td>人工读题型卡片（考点、题干、物理条件、干扰机制、限制）与两个样例，结论为通过或修改；记录绑定生成代码与注册表行的哈希，任一改变即失效</td><td>工具已建，未运行</td></tr>
+<tr><td>L2 检查器审阅</td><td>每个题型一次</td><td>人工读独立检查器代码（可附一次模型代码审阅）；记录绑定检查器代码哈希</td><td>工具已建，未运行</td></tr>
+<tr><td>L3 分层抽查</td><td>每批</td><td>按 题型 × 来源 × 尺度格 分层；新题型或新来源首批全检，稳定后每层 max(2, 10%)；轻量模型答固定四问，被标记的全部转人工，另抽模型判“通过”的题给人工校准</td><td>工具已建，未运行</td></tr>
+<tr><td>L4 难度测试</td><td>每批（不属于审核）</td><td>模型实际作答学生包，得到正确率</td><td>未建（用户决定暂缓）</td></tr>
+</tbody></table></div><p>实例状态：生成 → L0（可暂计配额）→ L1 + L2（题型已审定）→ L3 抽查通过 → 正式计入。抽查不合格：改题型模板，整个题型重新生成一批，不逐题手工修补。</p></section>
+<section class="section-block"><h2>L3 固定四问</h2><ol id="rv-questions"></ol><p class="mono" id="rv-qsha"></p></section>
+<section class="section-block"><h2>L1 / L2 待审单元</h2><div class="rv-filter"><button type="button" data-kind="all" aria-pressed="true">全部</button><button type="button" data-kind="family" aria-pressed="false">题型族</button><button type="button" data-kind="legacy" aria-pressed="false">旧模板</button></div>
+<div class="table-scroll"><table class="rv-table"><thead><tr><th>单元</th><th>能力</th><th>实例</th><th>L1</th><th>L2</th><th>检查器</th></tr></thead><tbody id="rv-units"></tbody></table></div></section>
+<section class="section-block"><h2 id="rv-l3-title">下一批 L3 抽样计划</h2><p id="rv-l3-note"></p><div class="table-scroll"><table class="rv-table"><thead><tr><th>层（单元 | 来源 | 尺度格）</th><th>层内</th><th>抽取</th><th>规则</th><th>抽中</th></tr></thead><tbody id="rv-l3"></tbody></table></div></section>
+<p id="rv-error" hidden role="alert">未能加载 data/review-queue.json，请通过 HTTP 服务打开并刷新。</p></main><script src="review.js" defer></script></body></html>

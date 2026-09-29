@@ -1,0 +1,31 @@
+{
+ "version": "1.0.0",
+ "purpose": "L3 stratified spot check: the fixed four questions a lightweight model reviewer (and the human for flagged or calibration items) answers for one instance. Changing this file changes its hash and makes earlier L3 results stale.",
+ "questions": [
+  {
+   "id": "q1_answerable",
+   "label": "能否仅凭题干和附件作答",
+   "prompt": "Using only the student packet (question text, attached inputs and the four options), can a competent solver determine exactly one correct option without information that is absent from the packet? Flag if a needed parameter, definition, convention or condition is missing, or if more than one option could be defended."
+  },
+  {
+   "id": "q2_scientific_meaning",
+   "label": "科学意义",
+   "prompt": "Does the question test a scientifically meaningful structure–property or geometry concept at the stated scale, rather than bookkeeping or string matching? Is the physics or chemistry in the question and in the correct option right? Flag errors or trivialities."
+  },
+  {
+   "id": "q3_source_correspondence",
+   "label": "来源对应",
+   "prompt": "Do the inputs, numbers, conditions and units in the packet correspond to the cited source as described in the reviewer packet (including any stated reduction or paper-parameter model)? Flag any mismatch or any source claim that the reviewer packet does not support."
+  },
+  {
+   "id": "q4_overclaiming",
+   "label": "结论是否过度",
+   "prompt": "Does the question, the answer or its explanation claim more than the evidence supports (for example, presenting a model as a measurement, using a formula outside its stated validity, or treating a correlation as a mechanism)? Flag overclaiming."
+  }
+ ],
+ "output_schema": {
+  "instance": "instance id exactly as given",
+  "answers": "object with the four question ids as keys; each value is {\"verdict\": \"pass\" | \"flag\", \"reason\": \"one or two sentences\"}"
+ },
+ "instructions": "You are reviewing one benchmark question for quality; you are not answering it for credit. Read the student packet and the reviewer packet. Answer each of the four questions independently with pass or flag and a short reason. Return only one JSON object matching the output schema, with no other text."
+}

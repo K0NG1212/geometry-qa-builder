@@ -35,7 +35,7 @@ AI 可由当前 Codex 或 Claude Code 会话执行固定 packet；无需为更�
 
 ## 审核和网站
 
-所有新通过项保持 pending_human_audit；没有明确题号及人工结论，不得替用户批准。目录 lifecycle 与审核状态分别管理。active 只收完整且初筛通过的候选；历史方向、草案、软件示例不得计入完成数。
+所有新通过项保持 pending_human_audit；没有明确题号及人工结论，不得替用户批准。目录 lifecycle 与审核状态分别管理。审核记录（reviews/ 下的 L1/L2/L3）只能由 tools/review.py 按具名人工审核者的明确结论写入；助手不得自行创建或补写审核结论，模型抽查结果只能作为 L3 的模型意见录入，不能代替人工。active 只收完整且初筛通过的候选；历史方向、草案、软件示例不得计入完成数。
 
 目录来源为 docs/data/catalog.json。更新后依次运行：
 
