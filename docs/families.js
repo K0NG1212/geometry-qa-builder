@@ -98,7 +98,7 @@
   $('fam-checker-code').textContent=Object.entries(i.checker_code||{}).map(([k,v])=>'# ==== '+k+'\n'+v).join('\n');
   $('cov-status').innerHTML='<option value="all">全部状态</option>'+Object.keys(cov.axes.status).map(k=>`<option value="${esc(k)}">${esc(STATUS[k]||k)}</option>`).join('');
   table();
-  const order=['assembly_extent','assembly_rg','capsid_architecture','debye_intensity','scattering_q_design','stereo_relationship','stereo_property_inference','stereo_design_selection','named_bond_distance','coordination_shell','first_diffraction_peak','fret_efficiency','guinier_intensity','named_bond_angle','backbone_torsion','force_path_derivative','kinematic_extinction','conformer_target_selection','extent_choice_v2'];
+  const order=['superlattice_shell','superlattice_metric','superlattice_saxs','superlattice_design','assembly_extent','assembly_rg','capsid_architecture','debye_intensity','scattering_q_design','stereo_relationship','stereo_property_inference','stereo_design_selection','named_bond_distance','coordination_shell','first_diffraction_peak','fret_efficiency','guinier_intensity','named_bond_angle','backbone_torsion','force_path_derivative','kinematic_extinction','conformer_target_selection','extent_choice_v2'];
   const present=order.filter(x=>fam.teacher_answers.some(t=>t.family===x));
   $('fam-select').innerHTML=present.map(x=>{const t=fam.teacher_answers.find(y=>y.family===x);return `<option value="${esc(x)}">${esc(ABILITY[t.ability])} · ${esc(familyName(x))}</option>`}).join('');
   const r=fam.report;$('fam-summary').textContent=`运行 ${fam.run}：尝试 ${r.attempted} 例，程序核验通过 ${r.passed} 例，构造失败 ${r.failures.length} 例（已记录原因）；模型调用 0；全部待人工审核。构造阶段不直接写入题库，去重后的暂计入库见上方“160 道原型”进度。`;

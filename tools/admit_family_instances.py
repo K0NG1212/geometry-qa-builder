@@ -22,7 +22,7 @@ sys.path.insert(0, str(ROOT))
 from verify_all import rehydrate  # noqa: E402
 DOCS = ROOT / 'docs'
 ASSET_DIR = 'assets/families/instances'
-UNITS = {'angstrom': ' Å', 'degree': '°', 'eV': ' eV', 'nm': ' nm', 'nm^-1': ' nm⁻¹'}
+UNITS = {'angstrom': ' Å', 'degree': '°', 'eV': ' eV', 'nm': ' nm', 'nm^-1': ' nm⁻¹', '%': ' %'}
 
 
 def read(path):

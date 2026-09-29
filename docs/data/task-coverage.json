@@ -29,11 +29,11 @@
   }
  },
  "summary": {
-  "types_defined": 25,
-  "types_with_running_code": 18,
+  "types_defined": 28,
+  "types_with_running_code": 21,
   "status": {
    "implemented": 2,
-   "pilot": 16,
+   "pilot": 19,
    "existing_legacy": 3,
    "planned": 2,
    "rebuild_needed": 1,
@@ -42,25 +42,25 @@
   "by_ability": {
    "perception": {
     "implemented": 2,
-    "pilot": 6,
+    "pilot": 7,
     "existing_legacy": 2
    },
    "inference": {
-    "pilot": 7,
+    "pilot": 8,
     "planned": 1,
     "existing_legacy": 1,
     "rebuild_needed": 1
    },
    "design": {
-    "pilot": 3,
+    "pilot": 4,
     "planned": 1,
     "blocked": 1
    }
   },
-  "development_instances": 92,
+  "development_instances": 102,
   "instance_failures": 1,
-  "independent_pass": 92,
-  "independent_checked": 92,
+  "independent_pass": 102,
+  "independent_checked": 102,
   "legacy_candidates": 80,
   "legacy_decisions": {
    "retain": 42,
@@ -69,7 +69,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v07",
+ "family_run": "family-pilot-v08",
  "rows": [
   {
    "id": "global_extent",
@@ -834,6 +834,209 @@
    "instance_reasoning_cells": [
     "10-100",
     "100-1000"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "superlattice_geometry",
+   "name": "纳米粒子超晶格几何（最近邻壳层 / 晶胞 / 密排面间距）",
+   "ability": "perception",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "从旋转后的粒子中心坐标识别晶格：最近邻壳层（个数与距离）、常规立方晶胞边长、最密排面间距，均在晶格周期尺度（10–100 nm）。",
+   "domains": [
+    "materials"
+   ],
+   "input_scale": "整个晶粒（约 170–340 nm）",
+   "reasoning_scale": "晶格周期（常规晶胞边长 a，约 40–77 nm）",
+   "scale_cells": [
+    "10-100"
+   ],
+   "scale_limits": "按论文参数构建的模型，不是实测粒子坐标；不含位置无序、峰宽与形状因子。",
+   "inputs": "DNA 连接金纳米粒子超晶格晶粒模型的粒子中心 XYZ（nm，约 177 个，经确定性旋转）；设计题给四个候选文件。",
+   "physical_conditions": "理想无限 FCC 晶格（按论文 SAXS 晶胞边长）；粒子视为相同点散射体；金核直径 10.3 nm 在题干给出。",
+   "output_forms": [
+    "choice",
+    "numeric"
+   ],
+   "source_basis": "Hill et al., Nano Lett. 8, 2341 (2008) 表 1：五种 DNA 连接子的 SAXS 晶胞边长（论文参数模型）",
+   "answer_method": "中心粒子周围分壳（容差 1e-4 nm），核对 12/6 与 √2 比例（FCC），并与表 1 晶胞边长一致。",
+   "distractor_mechanisms": [
+    "second_shell",
+    "surface_particle",
+    "bcc_assumption",
+    "nearest_neighbour",
+    "face_diagonal",
+    "primitive_cell_root",
+    "d200",
+    "in_layer_row_spacing",
+    "d220"
+   ],
+   "four_choice_validation": "壳层选项互不相同；数值与正确值 > 1 nm；升序排列，秩按批次轮换。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/superlattice.py",
+    "checkers/superlattice.py",
+    "tools/build_superlattice_assets.py"
+   ],
+   "tests": [
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
+   ],
+   "builder_modules": "族引擎内等价实现；资产由论文表 1 参数确定性生成，sources.json 记录参数与构建方式。",
+   "gap": "目前 1 篇论文的 5 个晶格；可加入其他超晶格（BCC、二元）。",
+   "engine_families": [
+    "superlattice_shell",
+    "superlattice_metric"
+   ],
+   "independent_checker": "checkers/superlattice.py:superlattice_shell, superlattice_quantity",
+   "instance_ids": [
+    "FA-SL-SHELL-X",
+    "FA-SL-EDGE-26",
+    "FA-SL-EDGE-52",
+    "FA-SL-D111-39"
+   ],
+   "instance_count": 4,
+   "independent_pass": 4,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "10-100"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "superlattice_scattering",
+   "name": "纳米粒子超晶格 SAXS 反射与金含量",
+   "ability": "inference",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "由粒子坐标推断可观测量：第一与第二个非零 Bragg 反射的 q（q = 4π sinθ/λ），以及给定金核直径时的金体积百分数。",
+   "domains": [
+    "materials"
+   ],
+   "input_scale": "整个晶粒（约 170–340 nm）",
+   "reasoning_scale": "晶格周期（常规晶胞边长 a，约 40–77 nm）",
+   "scale_cells": [
+    "10-100"
+   ],
+   "scale_limits": "按论文参数构建的模型，不是实测粒子坐标；不含位置无序、峰宽与形状因子。",
+   "inputs": "DNA 连接金纳米粒子超晶格晶粒模型的粒子中心 XYZ（nm，约 177 个，经确定性旋转）；设计题给四个候选文件。",
+   "physical_conditions": "理想无限 FCC 晶格（按论文 SAXS 晶胞边长）；粒子视为相同点散射体；金核直径 10.3 nm 在题干给出。",
+   "output_forms": [
+    "choice",
+    "numeric"
+   ],
+   "source_basis": "Hill et al., Nano Lett. 8, 2341 (2008) 表 1：五种 DNA 连接子的 SAXS 晶胞边长（论文参数模型）",
+   "answer_method": "q* = 2π√3/a，q(200) = 4π/a；金含量 = 4·(4/3)πr³/a³。",
+   "distractor_mechanisms": [
+    "q_100_forbidden",
+    "q_from_nearest_neighbour",
+    "q_200",
+    "q_111_first_peak",
+    "q_220",
+    "missing_two_pi",
+    "per_angstrom",
+    "one_particle_per_cell",
+    "two_particles_per_cell",
+    "diameter_as_radius",
+    "four_per_primitive_cell"
+   ],
+   "four_choice_validation": "与正确值 > 0.005 nm⁻¹ 或 0.05 个百分点；升序排列，秩按批次轮换。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/superlattice.py",
+    "checkers/superlattice.py",
+    "tools/build_superlattice_assets.py"
+   ],
+   "tests": [
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
+   ],
+   "builder_modules": "族引擎内等价实现；资产由论文表 1 参数确定性生成，sources.json 记录参数与构建方式。",
+   "gap": "同上。",
+   "engine_families": [
+    "superlattice_saxs"
+   ],
+   "independent_checker": "checkers/superlattice.py:superlattice_quantity",
+   "instance_ids": [
+    "FA-SL-QSTAR-X",
+    "FA-SL-Q200-13",
+    "FA-SL-GOLD-52"
+   ],
+   "instance_count": 3,
+   "independent_pass": 3,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "10-100"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "superlattice_design",
+   "name": "超晶格连接子设计选择",
+   "ability": "design",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "在论文实际做出的四种 DNA 连接子中选择一种，使超晶格达到目标（首个 Bragg 反射、最近邻间距，或在金含量约束下间距最大）；四个候选各有模型晶粒。",
+   "domains": [
+    "materials"
+   ],
+   "input_scale": "整个晶粒（约 170–340 nm）",
+   "reasoning_scale": "晶格周期（常规晶胞边长 a，约 40–77 nm）",
+   "scale_cells": [
+    "10-100"
+   ],
+   "scale_limits": "按论文参数构建的模型，不是实测粒子坐标；不含位置无序、峰宽与形状因子。",
+   "inputs": "DNA 连接金纳米粒子超晶格晶粒模型的粒子中心 XYZ（nm，约 177 个，经确定性旋转）；设计题给四个候选文件。",
+   "physical_conditions": "理想无限 FCC 晶格（按论文 SAXS 晶胞边长）；粒子视为相同点散射体；金核直径 10.3 nm 在题干给出。",
+   "output_forms": [
+    "choice"
+   ],
+   "source_basis": "Hill et al., Nano Lett. 8, 2341 (2008) 表 1：五种 DNA 连接子的 SAXS 晶胞边长（论文参数模型）",
+   "answer_method": "逐个候选由坐标计算性质，按目标规则取唯一最优；要求领先幅度足够。",
+   "distractor_mechanisms": [
+    "q_from_nearest_neighbour",
+    "q_200_as_first",
+    "cell_edge_as_spacing",
+    "plane_spacing_as_spacing",
+    "diameter_as_radius_passes",
+    "highest_gold_not_largest_spacing",
+    "satisfies_but_smaller_spacing",
+    "farther_from_target"
+   ],
+   "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明在哪种错误下会被选中。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/superlattice.py",
+    "checkers/superlattice.py",
+    "tools/build_superlattice_assets.py"
+   ],
+   "tests": [
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
+   ],
+   "builder_modules": "族引擎内等价实现；资产由论文表 1 参数确定性生成，sources.json 记录参数与构建方式。",
+   "gap": "同上。",
+   "engine_families": [
+    "superlattice_design"
+   ],
+   "independent_checker": "checkers/superlattice.py:superlattice_design",
+   "instance_ids": [
+    "FA-SL-DES-QSTAR",
+    "FA-SL-DES-NN",
+    "FA-SL-DES-GOLD"
+   ],
+   "instance_count": 3,
+   "independent_pass": 3,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "10-100"
    ],
    "legacy_decisions": {},
    "legacy_choice_v01": 0

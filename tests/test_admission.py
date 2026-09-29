@@ -113,6 +113,8 @@ class CoveragePlanTests(unittest.TestCase):
         for c in large:
             ready = {a for a, v in c['abilities'].items() if v['best_route'] == 'ready'}
             expected = {'perception', 'inference', 'design'} if c['domain'] in ('chemistry', 'biology') else set()
+            if (c['domain'], c['cell']) == ('materials', '10-100'):
+                expected = {'perception', 'inference', 'design'}      # superlattice paper-parameter models
             if c['domain'] == 'chemistry' and c['cell'] == '100-1000':
                 expected = set()                        # families exist, but no 100-1000 nm chemistry object (excluded_cells)
             self.assertEqual(ready, expected, (c['domain'], c['cell']))

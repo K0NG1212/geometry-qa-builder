@@ -253,6 +253,7 @@ def conformer_selection(packet, key):
 
 from . import stereo as _stereo
 from . import migrated as _migrated
+from . import superlattice as _superlattice
 
 CHECKERS = {
     'stereo_relationship': _stereo.stereo_relationship,
@@ -265,4 +266,5 @@ CHECKERS = {
     'kinematic_extinction': extinction,
     'conformer_target_selection': conformer_selection,
     **_migrated.CHECKERS,
+    **_superlattice.CHECKERS,
 }

@@ -249,5 +249,38 @@ class ScatteringTests(unittest.TestCase):
         self.assertTrue(fails(p, k))
 
 
+class SuperlatticeTests(unittest.TestCase):
+    def test_reciprocal_lattice_of_a_hand_built_fcc_cluster(self):
+        import itertools
+        import numpy as np
+        from checkers.superlattice import analyse
+        a = 50.0
+        basis = [(0, 0, 0), (0.5, 0.5, 0), (0.5, 0, 0.5), (0, 0.5, 0.5)]
+        pts = np.array(sorted({((i + b[0]) * a, (j + b[1]) * a, (k + b[2]) * a) for i, j, k in itertools.product(range(-2, 3), repeat=3)
+                               for b in basis if max(abs(i + b[0]), abs(j + b[1]), abs(k + b[2])) <= 2}))
+        lat = analyse(pts)
+        self.assertTrue(lat['fcc'])
+        self.assertAlmostEqual(lat['nn'], a / math.sqrt(2), places=9)
+        self.assertAlmostEqual(lat['volume'], a ** 3 / 4, places=6)
+        self.assertAlmostEqual(lat['g'][0], 2 * math.pi * math.sqrt(3) / a, places=9)     # (111)
+        self.assertAlmostEqual(lat['g'][1], 4 * math.pi / a, places=9)                    # (200); (100) is absent
+
+    def test_parameters_and_files_are_enforced(self):
+        p, k = pair('FA-SL-QSTAR-X')
+        p['question'] = p['question'].replace('first (lowest-q)', 'second distinct')
+        self.assertTrue(fails(p, k))
+        p, k = pair('FA-SL-GOLD-52')
+        p['question'] = p['question'].replace('core diameter of 10.3 nm', 'core diameter of 13.0 nm')
+        self.assertTrue(fails(p, k))
+        p, k = pair('FA-SL-DES-NN')
+        p['question'] = p['question'].replace('closest to 45 nm', 'closest to 33 nm')
+        self.assertTrue(fails(p, k))
+        p, k = pair('FA-SL-SHELL-X')
+        lines = p['inputs'][0]['text'].splitlines()
+        lines[2] = lines[2][:-1] + ('1' if lines[2][-1] != '1' else '2')      # move one particle by 1e-6 nm
+        p['inputs'][0]['text'] = '\n'.join(lines) + '\n'
+        self.assertTrue(fails(p, k, 'model crystallite'))
+
+
 if __name__ == '__main__':
     unittest.main()

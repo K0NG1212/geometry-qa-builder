@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0",
+  "version": "0.6.0",
   "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
   "rules": {
     "new": "Genuinely new question: added as a new catalog record (provisional).",
@@ -159,6 +159,42 @@
       "reasoning": "ensemble",
       "learningObjective": "推断的逆问题：为整个颗粒选择测量 q，使取向平均散射强度首次降到目标值（测量条件设计）。",
       "sizeDefinition": "输入：整个颗粒约简点集最大间距；推理：所选点集最大间距。"
+    },
+    "superlattice_shell": {
+      "domain": "materials",
+      "scale": "nanoparticle_superlattice",
+      "reasoning": "periodic",
+      "paper": "paper-dna-au-superlattice",
+      "attribution": "参数取自 Hill, Macfarlane, Senesi, Lee, Park, Mirkin, Nano Lett. 8, 2341 (2008) 表 1（事实数据）；模型坐标由本项目生成（见 docs/assets/families/superlattices/sources.json）。",
+      "sizeDefinition": "输入：整个晶粒最大间距（约 170–340 nm）；推理：晶格周期（常规晶胞边长 a），壳层题为中心粒子与最近壳层的最大间距。",
+      "learningObjective": "从旋转后的粒子中心坐标识别超晶格的最近邻壳层（个数与距离），区分表面粒子与次近邻壳层。"
+    },
+    "superlattice_metric": {
+      "domain": "materials",
+      "scale": "nanoparticle_superlattice",
+      "reasoning": "periodic",
+      "paper": "paper-dna-au-superlattice",
+      "attribution": "参数取自 Hill, Macfarlane, Senesi, Lee, Park, Mirkin, Nano Lett. 8, 2341 (2008) 表 1（事实数据）；模型坐标由本项目生成（见 docs/assets/families/superlattices/sources.json）。",
+      "sizeDefinition": "输入：整个晶粒最大间距（约 170–340 nm）；推理：晶格周期（常规晶胞边长 a），壳层题为中心粒子与最近壳层的最大间距。",
+      "learningObjective": "从粒子坐标识别 FCC 超晶格并确定常规晶胞边长或最密排面间距（10–100 nm 晶格周期）。"
+    },
+    "superlattice_saxs": {
+      "domain": "materials",
+      "scale": "nanoparticle_superlattice",
+      "reasoning": "periodic",
+      "paper": "paper-dna-au-superlattice",
+      "attribution": "参数取自 Hill, Macfarlane, Senesi, Lee, Park, Mirkin, Nano Lett. 8, 2341 (2008) 表 1（事实数据）；模型坐标由本项目生成（见 docs/assets/families/superlattices/sources.json）。",
+      "sizeDefinition": "输入：整个晶粒最大间距（约 170–340 nm）；推理：晶格周期（常规晶胞边长 a），壳层题为中心粒子与最近壳层的最大间距。",
+      "learningObjective": "由粒子坐标推断超晶格的 SAXS Bragg 反射位置（含消光规则）与金体积含量。"
+    },
+    "superlattice_design": {
+      "domain": "materials",
+      "scale": "nanoparticle_superlattice",
+      "reasoning": "periodic",
+      "paper": "paper-dna-au-superlattice",
+      "attribution": "参数取自 Hill, Macfarlane, Senesi, Lee, Park, Mirkin, Nano Lett. 8, 2341 (2008) 表 1（事实数据）；模型坐标由本项目生成（见 docs/assets/families/superlattices/sources.json）。",
+      "sizeDefinition": "输入：整个晶粒最大间距（约 170–340 nm）；推理：晶格周期（常规晶胞边长 a），壳层题为中心粒子与最近壳层的最大间距。",
+      "learningObjective": "在论文实际做出的 DNA 连接子中选择一种，使超晶格达到目标 q*、间距或金含量约束（设计 = 推断的逆问题）。"
     }
   },
   "instances": [
@@ -804,6 +840,66 @@
       "action": "new",
       "catalog_id": "BND001",
       "title": "HSV-1 衣壳 6CGR · 使 VP5 外壳强度降到 0.50 的测量 q（四选一）"
+    },
+    {
+      "instance": "FA-SL-SHELL-X",
+      "action": "new",
+      "catalog_id": "MNP015",
+      "title": "金纳米粒子超晶格（X 连接子）· 最近邻壳层（四选一）"
+    },
+    {
+      "instance": "FA-SL-EDGE-26",
+      "action": "new",
+      "catalog_id": "MNP016",
+      "title": "金纳米粒子超晶格（26 连接子）· 常规晶胞边长（四选一）"
+    },
+    {
+      "instance": "FA-SL-EDGE-52",
+      "action": "new",
+      "catalog_id": "MNP017",
+      "title": "金纳米粒子超晶格（52 连接子）· 常规晶胞边长（四选一）"
+    },
+    {
+      "instance": "FA-SL-D111-39",
+      "action": "new",
+      "catalog_id": "MNP018",
+      "title": "金纳米粒子超晶格（39 连接子）· 密排面间距（四选一）"
+    },
+    {
+      "instance": "FA-SL-QSTAR-X",
+      "action": "new",
+      "catalog_id": "MNI020",
+      "title": "金纳米粒子超晶格（X 连接子）· 首个 Bragg 反射 q*（四选一）"
+    },
+    {
+      "instance": "FA-SL-Q200-13",
+      "action": "new",
+      "catalog_id": "MNI021",
+      "title": "金纳米粒子超晶格（13 连接子）· 第二个 Bragg 反射（四选一）"
+    },
+    {
+      "instance": "FA-SL-GOLD-52",
+      "action": "new",
+      "catalog_id": "MNI022",
+      "title": "金纳米粒子超晶格（52 连接子）· 金体积百分数（四选一）"
+    },
+    {
+      "instance": "FA-SL-DES-QSTAR",
+      "action": "new",
+      "catalog_id": "MND001",
+      "title": "超晶格连接子选择 · 目标 q* = 0.19 nm⁻¹（四选一）"
+    },
+    {
+      "instance": "FA-SL-DES-NN",
+      "action": "new",
+      "catalog_id": "MND002",
+      "title": "超晶格连接子选择 · 目标间距 45 nm（四选一）"
+    },
+    {
+      "instance": "FA-SL-DES-GOLD",
+      "action": "new",
+      "catalog_id": "MND003",
+      "title": "超晶格连接子选择 · 金含量 ≥ 1% 下间距最大（四选一）"
     }
   ]
 }

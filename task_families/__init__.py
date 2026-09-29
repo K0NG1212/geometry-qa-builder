@@ -1,6 +1,6 @@
 """Reusable task families. Each family id maps to one build function and one
 ability; the engine never dispatches by question ID."""
-from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly
+from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice
 
 FAMILIES = {
     'named_bond_angle': dict(build=local_geometry.build_bond_angle, ability='perception',
@@ -41,4 +41,12 @@ FAMILIES = {
                             output='choice+numeric', version=assembly.VERSION, module='task_families/assembly.py'),
     'scattering_q_design': dict(build=assembly.build_q_design, ability='design',
                                 output='choice+numeric', version=assembly.VERSION, module='task_families/assembly.py'),
+    'superlattice_shell': dict(build=superlattice.build_shell, ability='perception',
+                               output='choice', version=superlattice.VERSION, module='task_families/superlattice.py'),
+    'superlattice_metric': dict(build=superlattice.build_perception, ability='perception',
+                                output='choice+numeric', version=superlattice.VERSION, module='task_families/superlattice.py'),
+    'superlattice_saxs': dict(build=superlattice.build_inference, ability='inference',
+                              output='choice+numeric', version=superlattice.VERSION, module='task_families/superlattice.py'),
+    'superlattice_design': dict(build=superlattice.build_design, ability='design',
+                                output='choice', version=superlattice.VERSION, module='task_families/superlattice.py'),
 }

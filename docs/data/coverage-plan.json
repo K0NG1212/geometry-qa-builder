@@ -3,8 +3,8 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 116,
-  "capped_total": 94,
+  "current_total": 126,
+  "capped_total": 104,
   "over_target_cells": [
    "quantum 0.1-1",
    "chemistry 0.1-1",
@@ -12,14 +12,14 @@
    "materials 1-10",
    "biology 1-10"
   ],
-  "provisional_total": 74,
-  "ability_gaps": 27,
-  "gap_slots": 78,
+  "provisional_total": 84,
+  "ability_gaps": 24,
+  "gap_slots": 69,
   "gaps_by_best_route": {
    "ready": 3,
    "migrate": 2,
    "build": 3,
-   "none": 19
+   "none": 16
   },
   "note": "capped_total 为每格最多按目标 10 道计的有效覆盖；超额题有效但不填补其他格。能力软目标来自 prototype-policy（每格感知/推断/设计各 3，外加 1 个机动名额）；路线只表示注册表声明可覆盖，不保证该格一定有合适数据。"
  },
@@ -684,33 +684,54 @@
    "domain": "materials",
    "cell": "10-100",
    "target": 10,
-   "current": 0,
-   "provisional": 0,
-   "remaining": 10,
+   "current": 10,
+   "provisional": 10,
+   "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 0,
+     "current": 4,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "superlattice_geometry",
+       "name": "纳米粒子超晶格几何（最近邻壳层 / 晶胞 / 密排面间距）",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     },
     "inference": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "superlattice_scattering",
+       "name": "纳米粒子超晶格 SAXS 反射与金含量",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "superlattice_design",
+       "name": "超晶格连接子设计选择",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     }
    },
    "feasibility": {

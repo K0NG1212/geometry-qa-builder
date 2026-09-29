@@ -6,7 +6,7 @@ from decimal import Decimal
 from pathlib import Path
 
 import family_engine
-from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly
+from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice
 
 ROOT = Path(__file__).resolve().parents[1]
 SEED = 'geobench-family-v1'
@@ -365,6 +365,32 @@ class WholeParticleScatteringTests(unittest.TestCase):
         self.assertGreater(r['checks']['q_rg'], 1.3)          # beyond the Guinier range: the exact sum matters
         with self.assertRaises(ValueError):                   # inside the Guinier range the Debye family refuses
             assembly.build_debye(dict(spec, id='T-DEB', q_per_nm=0.05), root, 'seed')
+
+
+class SuperlatticeFamilyTests(unittest.TestCase):
+    ROOT = Path(__file__).resolve().parents[1]
+    A = 'assets/families/superlattices/Au-FCC-%s.xyz'
+
+    def spec(self, linker, a, **extra):
+        return dict(dict(id='T-SL-' + linker, asset=self.A % linker, a_nm=a, table1={}, scope='t', core_nm=10.3), **extra)
+
+    def test_assets_match_table1_and_formulas(self):
+        for linker, a in (('X-linker', 39.8), ('26-linker', 57.0), ('52-linker', 76.6)):
+            r = superlattice.build_perception(self.spec(linker, a, ask='cell_edge'), self.ROOT, 's')
+            self.assertEqual(r['numeric']['value'], '%.2f' % a)
+            q = superlattice.build_inference(self.spec(linker, a, ask='q_star'), self.ROOT, 's')
+            self.assertEqual(q['numeric']['value'], kit.display(2 * math.pi * math.sqrt(3) / a, 4))
+        with self.assertRaises(ValueError):          # the file must agree with the stated Table 1 edge
+            superlattice.build_perception(self.spec('26-linker', 57.5, ask='cell_edge'), self.ROOT, 's')
+        with self.assertRaises(ValueError):          # an inference quantity cannot be built as perception
+            superlattice.build_perception(self.spec('26-linker', 57.0, ask='q_star'), self.ROOT, 's')
+
+    def test_design_needs_a_clear_winner(self):
+        c = ['13-linker', '26-linker', '39-linker', '52-linker']
+        spec = dict(id='T-SL-D', candidates=[self.A % l for l in c], edges={self.A % l: e for l, e in zip(c, (45.9, 57.0, 67.5, 76.6))},
+                    goal='nn', target=44.0, core_nm=10.3, scope='t')
+        with self.assertRaises(ValueError):          # 40.31 vs 47.73 nm: too close to call
+            superlattice.build_design(spec, self.ROOT, 's')
 
 
 if __name__ == '__main__':
