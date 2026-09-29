@@ -379,5 +379,30 @@ class EvidenceFamilyTests(unittest.TestCase):
         self.assertTrue(fails(p, k, 'Penton'))
 
 
+class DesignGapTests(unittest.TestCase):
+    def test_diffraction_design(self):
+        for iid in ('FA-XD-CRYSTAL-CU', 'FA-XD-ANODE-MOF5', 'FA-XD-WAVE-MOF5'):
+            p, k = pair(iid)
+            self.assertEqual(checkers.check(p, k)['status'], 'pass', iid)
+        p, k = pair('FA-XD-CRYSTAL-CU')
+        p['question'] = p['question'].replace('closest to 2θ = 37.00°', 'closest to 2θ = 27.00°')
+        self.assertTrue(fails(p, k))                          # NaCl (111) would win instead of MgO (111)
+        p, k = pair('FA-XD-ANODE-NACL')
+        p['question'] = p['question'].replace('closest to 2θ = 32.00°', 'closest to 2θ = 41.00°')
+        self.assertTrue(fails(p, k))
+
+    def test_disulfide_design_windows(self):
+        p, k = pair('FA-DS-6LYZ')
+        self.assertEqual(checkers.check(p, k)['status'], 'pass')
+        p['question'] = p['question'].replace('between 4.4 and 6.8 Å', 'between 4.0 and 6.8 Å')
+        self.assertTrue(fails(p, k, 'pairs meet'))            # Asp18–Leu25 (Cα 4.16 Å) now also qualifies
+
+    def test_fret_design_r0(self):
+        p, k = pair('FA-FD-1UBQ')
+        self.assertEqual(checkers.check(p, k)['status'], 'pass')
+        p['question'] = p['question'].replace('R0 = 2.5 nm', 'R0 = 3.5 nm')
+        self.assertTrue(fails(p, k))
+
+
 if __name__ == '__main__':
     unittest.main()

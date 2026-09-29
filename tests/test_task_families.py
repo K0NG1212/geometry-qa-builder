@@ -6,7 +6,7 @@ from decimal import Decimal
 from pathlib import Path
 
 import family_engine
-from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire, hostguest, quantum_dot
+from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire, hostguest, quantum_dot, diffraction_design, protein_design
 
 ROOT = Path(__file__).resolve().parents[1]
 SEED = 'geobench-family-v1'
@@ -449,6 +449,28 @@ class EvidenceBuilderTests(unittest.TestCase):
         self.assertAlmostEqual(quantum_dot.diameter_curve(quantum_dot.peak(3.0)), 3.0, places=9)
         self.assertIsNone(quantum_dot.peak(20.0))             # outside the fitted range
         self.assertAlmostEqual(quantum_dot.eps(4.0), 5857 * 4.0 ** 2.65)
+
+
+class DesignGapBuilderTests(unittest.TestCase):
+    ROOT = Path(__file__).resolve().parents[1]
+
+    def test_disulfide_requires_exactly_one_pair(self):
+        spec = dict(id='T-DS', pdb='1UBQ', context='t', asset='assets/bio/1UBQ.pdb', chain='A', scope='t')
+        with self.assertRaises(ValueError):                   # two pairs inside both windows
+            protein_design.build_disulfide(dict(spec, pairs=[[4, 66], [27, 38], [1, 16], [1, 15]]), self.ROOT, 's')
+
+    def test_fret_margin(self):
+        spec = dict(id='T-FD', pdb='1UBQ', context='t', asset='assets/bio/1UBQ.pdb', chain='A', atom='CA', r0_nm=2.5, scope='t',
+                    pairs=[[61, 71], [2, 72], [11, 29], [64, 74]])
+        with self.assertRaises(ValueError):                   # 0.751 vs 0.501 around a 0.62 target: too close to call
+            protein_design.build_fret(dict(spec, target=0.62), self.ROOT, 's')
+
+    def test_first_allowed_reflection_skips_extinctions(self):
+        import json
+        m = {x['id']: x for x in json.loads((self.ROOT / 'templates/family-manifest.json').read_text(encoding='utf-8'))['items']}
+        info = diffraction_design.crystal_info(m['FA-PEAK-NACL'], self.ROOT)
+        self.assertEqual(info['first']['hkl'], (1, 1, 1))
+        self.assertEqual(info['lowest']['hkl'], (1, 0, 0))    # (100) is extinct in rock salt
 
 
 if __name__ == '__main__':

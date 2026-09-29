@@ -1,6 +1,6 @@
 """Reusable task families. Each family id maps to one build function and one
 ability; the engine never dispatches by question ID."""
-from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire, hostguest, quantum_dot
+from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire, hostguest, quantum_dot, diffraction_design, protein_design
 
 FAMILIES = {
     'named_bond_angle': dict(build=local_geometry.build_bond_angle, ability='perception',
@@ -71,4 +71,10 @@ FAMILIES = {
                         output='choice+numeric', version=quantum_dot.VERSION, module='task_families/quantum_dot.py'),
     'qdot_design': dict(build=quantum_dot.build_design, ability='design',
                         output='choice', version=quantum_dot.VERSION, module='task_families/quantum_dot.py'),
+    'diffraction_design': dict(build=diffraction_design.build, ability='design',
+                               output='choice', version=diffraction_design.VERSION, module='task_families/diffraction_design.py'),
+    'disulfide_design': dict(build=protein_design.build_disulfide, ability='design',
+                             output='choice', version=protein_design.VERSION, module='task_families/protein_design.py'),
+    'fret_design': dict(build=protein_design.build_fret, ability='design',
+                        output='choice', version=protein_design.VERSION, module='task_families/protein_design.py'),
 }

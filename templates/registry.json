@@ -686,7 +686,7 @@
       "principle": "设计 = 推断的逆问题：选测量条件使可观测量达到目标。",
       "validation": "独立检查器用求积取向平均，自行以 0.013/Rg 步进并用 Illinois 试位法求根。",
       "limits": "这是测量条件设计（选 q），不是改变结构的分子设计；是否计为“设计题”需教授审定。",
-      "gap": "7ARQ、6CGR、6NCL。",
+      "gap": "7ARQ、6CGR、6NCL、1AON、1KX5、1A34。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/migrated.py:scattering_q_design",
       "excluded_cells": [
@@ -1493,6 +1493,165 @@
       "gap": "2 题。",
       "template_review": "本轮新建（A2/A3），待人工审核。",
       "independent_checker": "checkers/quantum_dot.py:qdot_design"
+    },
+    {
+      "id": "diffraction_design",
+      "name": "衍射设计：选晶体、选谱线或定波长",
+      "ability": "design",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "first_diffraction_peak 的逆问题：在四种晶体中选首个非零反射最接近目标 2θ 者；为一种晶体在四条 X 射线谱线中选最接近目标角者；或求使首个非零反射落在目标角的波长。",
+      "domains": [
+        "materials"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "inputs": "COD 晶体（NaCl、MgO、CsCl、金刚石、MOF-5、SALEM-2）的整胞分数坐标表；谱线波长在题干给出。",
+      "physical_conditions": "运动学结构因子、原子序数权重；一级 Bragg 衍射。",
+      "input_scale": "晶胞",
+      "reasoning_scale": "首个非零反射的晶面间距 d",
+      "scale_cells": [
+        "0.1-1",
+        "1-10"
+      ],
+      "scale_limits": "不含原子散射因子角度依赖与吸收。",
+      "source_basis": "COD 晶体结构（公有领域）",
+      "answer_method": "从全部原子坐标求第一个 |F| ≠ 0 的反射，再按目标规则选择或反解。",
+      "distractor_mechanisms": [
+        "lowest_index_ignoring_extinction",
+        "theta_not_two_theta",
+        "assumed_simple_cubic",
+        "d_equals_a",
+        "two_theta_as_theta",
+        "missing_factor_two",
+        "second_allowed",
+        "farther_from_target"
+      ],
+      "four_choice_validation": "选择题：胜者领先 ≥ 1.5 倍且 ≥ 0.5°；数值题：与正确值 > 0.05 Å。",
+      "engine_families": [
+        "diffraction_design"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/diffraction_design.py",
+        "checkers/design_extra.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现。",
+      "principle": "设计 = 推断的逆问题（测量条件或材料选择）。",
+      "validation": "独立检查器自行枚举 hkl 并求结构因子，从题干与选项读权重、波长和目标。",
+      "limits": "选谱线、定波长属于测量条件设计，是否计为设计题需 L1 审定；选晶体属于材料选择。",
+      "gap": "6 题。",
+      "template_review": "本轮新建（设计补缺），待人工审核。",
+      "independent_checker": "checkers/design_extra.py:diffraction_design"
+    },
+    {
+      "id": "disulfide_design",
+      "name": "二硫键工程位点选择",
+      "ability": "design",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "蛋白工程：在真实蛋白的四个残基对中，选唯一满足题给 Cα–Cα 与 Cβ–Cβ 距离窗口、可突变为半胱氨酸形成二硫键的一对；其余每对至少偏离一个窗口 0.2 Å。",
+      "domains": [
+        "biology"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "inputs": "PDB ATOM 片段（涉及的残基，逐行照抄）。",
+      "physical_conditions": "题给几何筛选窗口（含端点）。",
+      "input_scale": "涉及残基",
+      "reasoning_scale": "候选残基对中最大的 Cα–Cα 距离（< 1 nm）",
+      "scale_cells": [
+        "0.1-1"
+      ],
+      "scale_limits": "只按几何窗口筛选。",
+      "source_basis": "RCSB PDB 1UBQ、6LYZ（仓库已有）",
+      "answer_method": "Cα–Cα、Cβ–Cβ 距离与窗口比较；恰好一对满足。",
+      "distractor_mechanisms": [
+        "calpha_only",
+        "cbeta_only",
+        "both_out"
+      ],
+      "four_choice_validation": "恰好一对满足；其余偏离窗口 ≥ 0.2 Å。",
+      "engine_families": [
+        "disulfide_design"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/protein_design.py",
+        "checkers/design_extra.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现。",
+      "principle": "二硫键工程的几何预筛（Cα、Cβ 距离）。",
+      "validation": "独立检查器用 Decimal 距离与题干窗口重算。",
+      "limits": "不评估二面角、应变能与稳定性。",
+      "gap": "3 题。",
+      "template_review": "本轮新建（设计补缺），待人工审核。",
+      "independent_checker": "checkers/design_extra.py:disulfide_design"
+    },
+    {
+      "id": "fret_design",
+      "name": "FRET 标记位点设计",
+      "ability": "design",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "在真实蛋白或 tRNA 的四个候选标记对中，选点偶极 FRET 效率（题给 R0）最接近目标的一对；推断的逆问题。",
+      "domains": [
+        "biology"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "inputs": "PDB ATOM 片段（涉及的残基或核苷酸，逐行照抄）。",
+      "physical_conditions": "点偶极 Förster 定律；R0 为题设参数。",
+      "input_scale": "涉及残基",
+      "reasoning_scale": "候选标记对中最大的点间距离（1–10 nm）",
+      "scale_cells": [
+        "1-10"
+      ],
+      "scale_limits": "不含染料连接臂与构象涨落。",
+      "source_basis": "RCSB PDB 1EHZ、1UBQ、6LYZ（仓库已有）",
+      "answer_method": "E = 1/(1+(r/R0)^6)，选最接近目标者；领先幅度检查。",
+      "distractor_mechanisms": [
+        "complement",
+        "inverse_square",
+        "farther_from_target"
+      ],
+      "four_choice_validation": "胜者领先 ≥ 1.5 倍且 ≥ 0.05。",
+      "engine_families": [
+        "fret_design"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/protein_design.py",
+        "checkers/design_extra.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现。",
+      "principle": "设计 = 推断的逆问题（选择标记位点）。",
+      "validation": "独立检查器用 Decimal 距离与题干 R0、目标重算。",
+      "limits": "R0 为模型参数，未对应具体染料。",
+      "gap": "3 题。",
+      "template_review": "本轮新建（设计补缺），待人工审核。",
+      "independent_checker": "checkers/design_extra.py:fret_design"
     },
     {
       "id": "lattice_plane_geometry",

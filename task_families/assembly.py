@@ -361,7 +361,7 @@ def build_q_design(spec, root, seed):
     """Inverse of build_debye: choose the measurement q at which I(q)/I(0) first falls to a target."""
     text, fmt, pts, which, radius, dm, digest, whole = scatter_setup(spec, root)
     t = spec['target']
-    step, qmax = 0.02 / radius, 12 / radius
+    step, qmax = 0.1 / radius, 12 / radius          # coarse bracket, then 60 bisections; the checker marches with its own finer step
     value = first_crossing(lambda q: debye(pts, q), t, step, qmax)
     if value is None or abs(debye_check(pts, value) - t) > 1e-6:
         raise ValueError('No verified first crossing')

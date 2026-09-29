@@ -2105,6 +2105,463 @@
    ],
    "goal": "beyond",
    "target_nm": 565
+  },
+  {
+   "id": "FA-XD-CRYSTAL-CU",
+   "family": "diffraction_design",
+   "mode": "crystal",
+   "asset": "assets/materials/9008678.cif",
+   "wavelength_A": 1.54056,
+   "target_2theta": 37.0,
+   "candidates": [
+    {
+     "asset": "assets/materials/9008678.cif",
+     "source_kind": "cif",
+     "name": "halite (NaCl, COD 9008678)",
+     "weights": {
+      "Na": 11,
+      "Cl": 17
+     },
+     "id": "NaCl",
+     "short": "NaCl"
+    },
+    {
+     "asset": "assets/materials/1000053.cif",
+     "source_kind": "cif",
+     "name": "periclase (MgO, COD 1000053)",
+     "weights": {
+      "Mg": 12,
+      "O": 8
+     },
+     "id": "MgO",
+     "short": "MgO"
+    },
+    {
+     "asset": "assets/materials/9008789.cif",
+     "source_kind": "cif",
+     "name": "caesium chloride (CsCl, COD 9008789)",
+     "weights": {
+      "Cs": 55,
+      "Cl": 17
+     },
+     "id": "CsCl",
+     "short": "CsCl"
+    },
+    {
+     "asset": "assets/materials/9008564.cif",
+     "source_kind": "cif",
+     "name": "diamond (C, COD 9008564)",
+     "weights": {
+      "C": 6
+     },
+     "id": "diamond",
+     "short": "diamond"
+    }
+   ],
+   "source": "Crystallography Open Database: NaCl 9008678, MgO 1000053, CsCl 9008789, diamond 9008564 (https://www.crystallography.net/cod/)",
+   "license": "COD (public domain)",
+   "scope": "运动学模型、原子序数权重；X 射线谱线波长在题干给出；设计选择基于计算证据。"
+  },
+  {
+   "id": "FA-XD-CRYSTAL-MO",
+   "family": "diffraction_design",
+   "mode": "crystal",
+   "asset": "assets/materials/9008678.cif",
+   "wavelength_A": 0.7093,
+   "target_2theta": 12.5,
+   "candidates": [
+    {
+     "asset": "assets/materials/9008678.cif",
+     "source_kind": "cif",
+     "name": "halite (NaCl, COD 9008678)",
+     "weights": {
+      "Na": 11,
+      "Cl": 17
+     },
+     "id": "NaCl",
+     "short": "NaCl"
+    },
+    {
+     "asset": "assets/materials/1000053.cif",
+     "source_kind": "cif",
+     "name": "periclase (MgO, COD 1000053)",
+     "weights": {
+      "Mg": 12,
+      "O": 8
+     },
+     "id": "MgO",
+     "short": "MgO"
+    },
+    {
+     "asset": "assets/materials/9008789.cif",
+     "source_kind": "cif",
+     "name": "caesium chloride (CsCl, COD 9008789)",
+     "weights": {
+      "Cs": 55,
+      "Cl": 17
+     },
+     "id": "CsCl",
+     "short": "CsCl"
+    },
+    {
+     "asset": "assets/materials/9008564.cif",
+     "source_kind": "cif",
+     "name": "diamond (C, COD 9008564)",
+     "weights": {
+      "C": 6
+     },
+     "id": "diamond",
+     "short": "diamond"
+    }
+   ],
+   "source": "Crystallography Open Database: NaCl 9008678, MgO 1000053, CsCl 9008789, diamond 9008564 (https://www.crystallography.net/cod/)",
+   "license": "COD (public domain)",
+   "scope": "运动学模型、原子序数权重；X 射线谱线波长在题干给出；设计选择基于计算证据。"
+  },
+  {
+   "asset": "assets/materials/9008678.cif",
+   "source_kind": "cif",
+   "name": "halite (NaCl, COD 9008678)",
+   "weights": {
+    "Na": 11,
+    "Cl": 17
+   },
+   "id": "FA-XD-ANODE-NACL",
+   "short": "NaCl",
+   "family": "diffraction_design",
+   "mode": "anode",
+   "lines": [
+    [
+     "Cr Kα1",
+     2.2897
+    ],
+    [
+     "Co Kα1",
+     1.78897
+    ],
+    [
+     "Cu Kα1",
+     1.54056
+    ],
+    [
+     "Mo Kα1",
+     0.7093
+    ]
+   ],
+   "target_2theta": 32.0,
+   "source": "https://www.crystallography.net/cod/9008678.html",
+   "license": "COD (public domain)",
+   "scope": "运动学模型、原子序数权重；X 射线谱线波长在题干给出；设计选择基于计算证据。"
+  },
+  {
+   "asset": "assets/qa/MNI009-MOF5-full.xyz",
+   "source_kind": "xyz_cell",
+   "name": "MOF-5 (Zn4O(BDC)3, COD 1516287)",
+   "weights": {
+    "Zn": 30,
+    "O": 8,
+    "C": 6,
+    "H": 1
+   },
+   "a": 25.8247,
+   "id": "FA-XD-ANODE-MOF5",
+   "short": "MOF-5",
+   "family": "diffraction_design",
+   "mode": "anode",
+   "lines": [
+    [
+     "Cr Kα1",
+     2.2897
+    ],
+    [
+     "Co Kα1",
+     1.78897
+    ],
+    [
+     "Cu Kα1",
+     1.54056
+    ],
+    [
+     "Mo Kα1",
+     0.7093
+    ]
+   ],
+   "target_2theta": 7.0,
+   "source": "https://www.crystallography.net/cod/1516287.html",
+   "license": "COD (public domain)",
+   "scope": "424 原子整胞；运动学模型、原子序数权重；X 射线谱线波长在题干给出；设计选择基于计算证据。"
+  },
+  {
+   "asset": "assets/qa/MNI008-ZIF8-full.xyz",
+   "source_kind": "xyz_cell",
+   "name": "Zn(imidazolate)2 with ZIF-8 sodalite topology (SALEM-2, COD 4118891; major-occupancy linker sites)",
+   "weights": {
+    "Zn": 30,
+    "N": 7,
+    "C": 6,
+    "H": 1
+   },
+   "a": 16.8303,
+   "id": "FA-XD-ANODE-SALEM2",
+   "short": "SALEM-2",
+   "family": "diffraction_design",
+   "mode": "anode",
+   "lines": [
+    [
+     "Cr Kα1",
+     2.2897
+    ],
+    [
+     "Co Kα1",
+     1.78897
+    ],
+    [
+     "Cu Kα1",
+     1.54056
+    ],
+    [
+     "Mo Kα1",
+     0.7093
+    ]
+   ],
+   "target_2theta": 11.0,
+   "source": "https://www.crystallography.net/cod/4118891.html",
+   "license": "COD (public domain)",
+   "scope": "204 原子整胞；运动学模型、原子序数权重；X 射线谱线波长在题干给出；设计选择基于计算证据。"
+  },
+  {
+   "asset": "assets/qa/MNI009-MOF5-full.xyz",
+   "source_kind": "xyz_cell",
+   "name": "MOF-5 (Zn4O(BDC)3, COD 1516287)",
+   "weights": {
+    "Zn": 30,
+    "O": 8,
+    "C": 6,
+    "H": 1
+   },
+   "a": 25.8247,
+   "id": "FA-XD-WAVE-MOF5",
+   "short": "MOF-5",
+   "family": "diffraction_design",
+   "mode": "wavelength",
+   "target_2theta": 5.0,
+   "source": "https://www.crystallography.net/cod/1516287.html",
+   "license": "COD (public domain)",
+   "scope": "424 原子整胞；运动学模型、原子序数权重；X 射线谱线波长在题干给出；设计选择基于计算证据。"
+  },
+  {
+   "id": "FA-DS-1UBQ-A",
+   "family": "disulfide_design",
+   "pdb": "1UBQ",
+   "context": "ubiquitin, X-ray",
+   "asset": "assets/bio/1UBQ.pdb",
+   "chain": "A",
+   "pairs": [
+    [
+     4,
+     66
+    ],
+    [
+     1,
+     16
+    ],
+    [
+     2,
+     14
+    ],
+    [
+     1,
+     15
+    ]
+   ],
+   "source": "https://www.rcsb.org/structure/1UBQ",
+   "license": "wwPDB (CC0)",
+   "scope": "ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。"
+  },
+  {
+   "id": "FA-DS-1UBQ-B",
+   "family": "disulfide_design",
+   "pdb": "1UBQ",
+   "context": "ubiquitin, X-ray",
+   "asset": "assets/bio/1UBQ.pdb",
+   "chain": "A",
+   "pairs": [
+    [
+     27,
+     38
+    ],
+    [
+     1,
+     17
+    ],
+    [
+     1,
+     62
+    ],
+    [
+     2,
+     18
+    ]
+   ],
+   "source": "https://www.rcsb.org/structure/1UBQ",
+   "license": "wwPDB (CC0)",
+   "scope": "ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。"
+  },
+  {
+   "id": "FA-DS-6LYZ",
+   "family": "disulfide_design",
+   "pdb": "6LYZ",
+   "context": "hen egg-white lysozyme, X-ray",
+   "asset": "assets/bio/6LYZ.pdb",
+   "chain": "A",
+   "pairs": [
+    [
+     29,
+     123
+    ],
+    [
+     18,
+     25
+    ],
+    [
+     1,
+     39
+    ],
+    [
+     1,
+     38
+    ]
+   ],
+   "source": "https://www.rcsb.org/structure/6LYZ",
+   "license": "wwPDB (CC0)",
+   "scope": "ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。"
+  },
+  {
+   "id": "FA-FD-1EHZ",
+   "family": "fret_design",
+   "pdb": "1EHZ",
+   "context": "yeast tRNA-Phe, X-ray",
+   "asset": "assets/bio/1EHZ.pdb",
+   "chain": "A",
+   "atom": "P",
+   "nucleic": true,
+   "r0_nm": 5.4,
+   "target": 0.5,
+   "pairs": [
+    [
+     35,
+     61
+    ],
+    [
+     20,
+     33
+    ],
+    [
+     36,
+     74
+    ],
+    [
+     31,
+     76
+    ]
+   ],
+   "source": "https://www.rcsb.org/structure/1EHZ",
+   "license": "wwPDB (CC0)",
+   "scope": "ATOM 片段逐行照抄；点偶极、R0 为题设模型参数（取向因子含于 R0）。"
+  },
+  {
+   "id": "FA-FD-1UBQ",
+   "family": "fret_design",
+   "pdb": "1UBQ",
+   "context": "ubiquitin, X-ray",
+   "asset": "assets/bio/1UBQ.pdb",
+   "chain": "A",
+   "atom": "CA",
+   "r0_nm": 2.5,
+   "target": 0.75,
+   "pairs": [
+    [
+     61,
+     71
+    ],
+    [
+     2,
+     72
+    ],
+    [
+     11,
+     29
+    ],
+    [
+     64,
+     74
+    ]
+   ],
+   "source": "https://www.rcsb.org/structure/1UBQ",
+   "license": "wwPDB (CC0)",
+   "scope": "ATOM 片段逐行照抄；点偶极、R0 为题设模型参数（取向因子含于 R0）。"
+  },
+  {
+   "id": "FA-FD-6LYZ",
+   "family": "fret_design",
+   "pdb": "6LYZ",
+   "context": "hen egg-white lysozyme, X-ray",
+   "asset": "assets/bio/6LYZ.pdb",
+   "chain": "A",
+   "atom": "CA",
+   "r0_nm": 3.0,
+   "target": 0.25,
+   "pairs": [
+    [
+     7,
+     71
+    ],
+    [
+     17,
+     48
+    ],
+    [
+     43,
+     124
+    ],
+    [
+     70,
+     128
+    ]
+   ],
+   "source": "https://www.rcsb.org/structure/6LYZ",
+   "license": "wwPDB (CC0)",
+   "scope": "ATOM 片段逐行照抄；点偶极、R0 为题设模型参数（取向因子含于 R0）。"
+  },
+  {
+   "id": "FA-QDES-1AON",
+   "family": "scattering_q_design",
+   "asset": "assets/families/assemblies/1AON-residue-points.xyz",
+   "source": "https://www.rcsb.org/structure/1AON",
+   "license": "wwPDB (CC0)",
+   "scope": "约简表示：每残基一个点（Cα）；晶体结构 3.0 Å；不代表溶液中的构象柔性。",
+   "context": "The XYZ file lists one point per residue (protein Cα written as C) of the GroEL–GroES–(ADP)7 chaperonin complex, all 21 chains of PDB 1AON (angstrom).",
+   "target": 0.5
+  },
+  {
+   "id": "FA-QDES-1KX5",
+   "family": "scattering_q_design",
+   "asset": "assets/families/assemblies/1KX5-residue-points.xyz",
+   "source": "https://www.rcsb.org/structure/1KX5",
+   "license": "wwPDB (CC0)",
+   "scope": "约简表示：每残基一个点（蛋白 Cα、DNA P）；晶体结构 1.94 Å；组蛋白尾部位置取沉积模型。",
+   "context": "The XYZ file lists one point per residue (protein Cα as C, DNA phosphorus as P) of the nucleosome core particle NCP147, PDB 1KX5 (angstrom).",
+   "target": 0.5
+  },
+  {
+   "id": "FA-QDES-1A34",
+   "family": "scattering_q_design",
+   "asset": "assets/families/assemblies/1A34-capsid-CA.xyz",
+   "source": "https://www.rcsb.org/structure/1A34",
+   "license": "wwPDB (CC0)",
+   "scope": "约简表示：衣壳蛋白 Cα × 60 个沉积的二十面体操作；RNA 未包含。",
+   "context": "The XYZ file lists the capsid-protein Cα atoms of the complete satellite tobacco mosaic virus capsid: the deposited copy of PDB 1A34 expanded with its 60 icosahedral operators (angstrom).",
+   "target": 0.5
   }
  ]
 }

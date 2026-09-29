@@ -1,0 +1,86 @@
+The excerpt contains the ATOM records of the 8 residues involved, from chain A of PDB entry 1UBQ (ubiquitin, X-ray), copied unchanged (angstrom). You will attach a donor and an acceptor dye to one of the four candidate pairs; treat each dye as a point at the CA atom of its residue, with Förster radius R0 = 2.5 nm and the standard point-dipole Förster law. You want a steady-state FRET efficiency as close as possible to 0.75. Which pair should you label?
+
+选项：
+A. Lys11–Lys29
+B. Gln2–Arg72
+C. Ile61–Leu71
+D. Glu64–Arg74
+
+附件：1UBQ-1UBQ-design-excerpt.pdb（均为本题完整输入）。范围：ATOM 片段逐行照抄；点偶极、R0 为题设模型参数（取向因子含于 R0）。 只回答一个字母 A、B、C 或 D。
+
+===== 1UBQ-1UBQ-design-excerpt.pdb =====
+ATOM      9  N   GLN A   2      26.335  27.770   3.258  1.00  9.27           N
+ATOM     10  CA  GLN A   2      26.850  29.021   3.898  1.00  9.07           C
+ATOM     11  C   GLN A   2      26.100  29.253   5.202  1.00  8.72           C
+ATOM     12  O   GLN A   2      24.865  29.024   5.330  1.00  8.22           O
+ATOM     13  CB  GLN A   2      26.733  30.148   2.905  1.00 14.46           C
+ATOM     14  CG  GLN A   2      26.882  31.546   3.409  1.00 17.01           C
+ATOM     15  CD  GLN A   2      26.786  32.562   2.270  1.00 20.10           C
+ATOM     16  OE1 GLN A   2      27.783  33.160   1.870  1.00 21.89           O
+ATOM     17  NE2 GLN A   2      25.562  32.733   1.806  1.00 19.49           N
+ATOM     79  N   LYS A  11      30.563  42.623  13.495  1.00 13.56           N
+ATOM     80  CA  LYS A  11      31.191  42.012  12.331  1.00 11.91           C
+ATOM     81  C   LYS A  11      30.459  40.666  12.130  1.00 10.18           C
+ATOM     82  O   LYS A  11      30.253  39.991  13.133  1.00  9.10           O
+ATOM     83  CB  LYS A  11      32.672  41.717  12.505  1.00 13.43           C
+ATOM     84  CG  LYS A  11      33.280  41.086  11.227  1.00 16.69           C
+ATOM     85  CD  LYS A  11      34.762  40.799  11.470  1.00 17.92           C
+ATOM     86  CE  LYS A  11      35.614  40.847  10.240  1.00 20.81           C
+ATOM     87  NZ  LYS A  11      35.100  40.073   9.101  1.00 21.93           N
+ATOM    217  N   LYS A  29      37.633  26.543  11.867  1.00  8.96           N
+ATOM    218  CA  LYS A  29      37.471  27.391  10.668  1.00  7.90           C
+ATOM    219  C   LYS A  29      37.441  28.882  11.052  1.00  6.92           C
+ATOM    220  O   LYS A  29      38.020  29.772  10.382  1.00  6.87           O
+ATOM    221  CB  LYS A  29      36.193  27.058   9.911  1.00 10.28           C
+ATOM    222  CG  LYS A  29      36.153  25.620   9.409  1.00 14.94           C
+ATOM    223  CD  LYS A  29      34.758  25.280   8.900  1.00 19.69           C
+ATOM    224  CE  LYS A  29      34.793  24.264   7.767  1.00 22.63           C
+ATOM    225  NZ  LYS A  29      34.914  24.944   6.441  1.00 24.98           N
+ATOM    475  N   ILE A  61      20.717  22.964  12.260  1.00 11.08           N
+ATOM    476  CA  ILE A  61      21.184  24.263  11.690  1.00 11.78           C
+ATOM    477  C   ILE A  61      21.110  24.111  10.173  1.00 13.74           C
+ATOM    478  O   ILE A  61      21.841  23.198   9.686  1.00 14.60           O
+ATOM    479  CB  ILE A  61      22.650  24.516  12.172  1.00 11.80           C
+ATOM    480  CG1 ILE A  61      22.662  24.819  13.699  1.00 11.56           C
+ATOM    481  CG2 ILE A  61      23.376  25.645  11.409  1.00 13.29           C
+ATOM    482  CD1 ILE A  61      24.123  24.981  14.195  1.00 11.42           C
+ATOM    501  N   GLU A  64      22.099  29.163   5.605  1.00 10.04           N
+ATOM    502  CA  GLU A  64      21.907  30.563   5.881  1.00 10.94           C
+ATOM    503  C   GLU A  64      21.466  30.953   7.261  1.00  9.74           C
+ATOM    504  O   GLU A  64      21.066  32.112   7.533  1.00  9.42           O
+ATOM    505  CB  GLU A  64      21.023  31.223   4.784  1.00 18.31           C
+ATOM    506  CG  GLU A  64      21.861  31.342   3.474  1.00 24.16           C
+ATOM    507  CD  GLU A  64      21.156  30.726   2.311  1.00 29.00           C
+ATOM    508  OE1 GLU A  64      19.942  30.793   2.170  1.00 31.72           O
+ATOM    509  OE2 GLU A  64      21.954  30.152   1.535  1.00 32.61           O
+ATOM    556  N   LEU A  71      32.763  35.831  23.090  1.00 12.71           N
+ATOM    557  CA  LEU A  71      34.145  35.472  23.481  1.00 16.06           C
+ATOM    558  C   LEU A  71      34.239  35.353  24.979  1.00 18.09           C
+ATOM    559  O   LEU A  71      33.707  36.197  25.728  1.00 19.26           O
+ATOM    560  CB  LEU A  71      35.114  36.564  22.907  1.00 17.10           C
+ATOM    561  CG  LEU A  71      35.926  35.979  21.737  1.00 19.37           C
+ATOM    562  CD1 LEU A  71      35.003  35.084  20.920  1.00 17.51           C
+ATOM    563  CD2 LEU A  71      36.533  37.087  20.917  1.00 19.57           C
+ATOM    564  N   ARG A  72      34.930  34.384  25.451  1.00 21.47           N
+ATOM    565  CA  ARG A  72      35.161  34.174  26.896  1.00 25.83           C
+ATOM    566  C   ARG A  72      36.671  34.296  27.089  1.00 27.74           C
+ATOM    567  O   ARG A  72      37.305  33.233  26.795  1.00 30.65           O
+ATOM    568  CB  ARG A  72      34.717  32.760  27.286  1.00 28.49           C
+ATOM    569  CG  ARG A  72      35.752  32.054  28.160  1.00 31.79           C
+ATOM    570  CD  ARG A  72      35.612  30.577  28.044  1.00 34.05           C
+ATOM    571  NE  ARG A  72      35.040  30.252  26.730  1.00 35.08           N
+ATOM    572  CZ  ARG A  72      34.338  29.103  26.650  1.00 34.67           C
+ATOM    573  NH1 ARG A  72      34.110  28.437  27.768  1.00 35.02           N
+ATOM    574  NH2 ARG A  72      34.014  28.657  25.457  1.00 34.97           N
+ATOM    583  N   ARG A  74      40.294  34.412  29.045  0.45 33.82           N
+ATOM    584  CA  ARG A  74      40.873  33.802  30.253  0.45 35.33           C
+ATOM    585  C   ARG A  74      41.765  34.829  30.944  0.45 36.22           C
+ATOM    586  O   ARG A  74      42.945  34.994  30.583  0.45 36.70           O
+ATOM    587  CB  ARG A  74      41.651  32.529  29.923  0.45 36.91           C
+ATOM    588  CG  ARG A  74      41.608  31.444  30.989  0.45 38.62           C
+ATOM    589  CD  ARG A  74      41.896  30.080  30.456  0.45 39.75           C
+ATOM    590  NE  ARG A  74      43.311  29.735  30.563  0.45 41.13           N
+ATOM    591  CZ  ARG A  74      44.174  29.905  29.554  0.45 41.91           C
+ATOM    592  NH1 ARG A  74      43.754  30.312  28.356  0.45 42.75           N
+ATOM    593  NH2 ARG A  74      45.477  29.726  29.763  0.45 41.93           N
+END

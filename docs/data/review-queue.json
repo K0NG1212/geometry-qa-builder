@@ -2,33 +2,33 @@
  "kind": "review_queue",
  "date": "2026-09-30",
  "summary": {
-  "units": 61,
-  "families": 34,
+  "units": 64,
+  "families": 37,
   "legacy_units": 27,
   "L1": {
-   "pending": 61,
+   "pending": 64,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
   "L2": {
-   "pending": 61,
+   "pending": 64,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
-  "instances": 162,
+  "instances": 177,
   "stages": {
    "not-verified": 0,
-   "L0": 162,
+   "L0": 177,
    "L1+L2": 0,
    "L3": 0,
    "formal": 0
   },
   "next_l3_batch": "l3-batch-001",
-  "l3_sample": 162,
-  "l3_strata": 79,
-  "l3_steady_state_sample": 127,
+  "l3_sample": 177,
+  "l3_strata": 84,
+  "l3_steady_state_sample": 137,
   "model_calls": 0,
   "reviews_recorded": {
    "L1": 0,
@@ -80,7 +80,7 @@
    "bindings": {
     "L1": {
      "registry_row": "87bfd5144bc900372a509f192771c9b908ef59b9cb8d54cf4fb2b65f35c3ad33",
-     "task_families/assembly.py": "8b413f51e7a157a3e2bad5064db38d521634ed0aa5926e67a7bc4dfd87dccc11"
+     "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
     },
     "L2": {
      "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
@@ -235,7 +235,7 @@
    "bindings": {
     "L1": {
      "registry_row": "87bfd5144bc900372a509f192771c9b908ef59b9cb8d54cf4fb2b65f35c3ad33",
-     "task_families/assembly.py": "8b413f51e7a157a3e2bad5064db38d521634ed0aa5926e67a7bc4dfd87dccc11"
+     "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
     },
     "L2": {
      "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
@@ -393,7 +393,7 @@
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f"
     },
     "L2": {
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67",
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -849,7 +849,7 @@
    "bindings": {
     "L1": {
      "registry_row": "9dffa0f771eabb6fd3ed55d7320337d63a62ec0a6949d920752398a3b3d1c3a1",
-     "task_families/assembly.py": "8b413f51e7a157a3e2bad5064db38d521634ed0aa5926e67a7bc4dfd87dccc11"
+     "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
     },
     "L2": {
      "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
@@ -1011,7 +1011,7 @@
      "task_families/conformer_design.py": "c1df20bcb3ca7c59938dcfc28012c37beca3d235e0181495fb2b6d9e9d54a211"
     },
     "L2": {
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67",
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1306,7 +1306,7 @@
    "bindings": {
     "L1": {
      "registry_row": "7304530e6eb26a7bd8f7b039c34fc76740aee58a3f7e0be72f3098c27b144f46",
-     "task_families/assembly.py": "8b413f51e7a157a3e2bad5064db38d521634ed0aa5926e67a7bc4dfd87dccc11"
+     "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
     },
     "L2": {
      "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
@@ -1454,6 +1454,299 @@
    }
   },
   {
+   "unit": "diffraction_design",
+   "kind": "family",
+   "ability": "design",
+   "registry_id": "diffraction_design",
+   "generator": "task_families/diffraction_design.py",
+   "checker": "checkers/design_extra.py",
+   "checker_function": "diffraction_design",
+   "bindings": {
+    "L1": {
+     "registry_row": "9dc887771310868f148005cb1f05e8c260e8205dcbd7d618d456f2db2f1f2978",
+     "task_families/diffraction_design.py": "c5d0db622de2e07a776e620a4afa8bfdbae220816f24f730613a7ade6645870e"
+    },
+    "L2": {
+     "checkers/design_extra.py": "0d42baeb6018399150e5e6f85a3b805b533388ba28d7198deb1cd22f4ba2a02d",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 6,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "衍射设计：选晶体、选谱线或定波长",
+     "concept": "first_diffraction_peak 的逆问题：在四种晶体中选首个非零反射最接近目标 2θ 者；为一种晶体在四条 X 射线谱线中选最接近目标角者；或求使首个非零反射落在目标角的波长。",
+     "inputs": "COD 晶体（NaCl、MgO、CsCl、金刚石、MOF-5、SALEM-2）的整胞分数坐标表；谱线波长在题干给出。",
+     "physical_conditions": "运动学结构因子、原子序数权重；一级 Bragg 衍射。",
+     "reasoning_scale": "首个非零反射的晶面间距 d",
+     "scale_limits": "不含原子散射因子角度依赖与吸收。",
+     "source_basis": "COD 晶体结构（公有领域）",
+     "answer_method": "从全部原子坐标求第一个 |F| ≠ 0 的反射，再按目标规则选择或反解。",
+     "distractor_mechanisms": [
+      "lowest_index_ignoring_extinction",
+      "theta_not_two_theta",
+      "assumed_simple_cubic",
+      "d_equals_a",
+      "two_theta_as_theta",
+      "missing_factor_two",
+      "second_allowed",
+      "farther_from_target"
+     ],
+     "four_choice_validation": "选择题：胜者领先 ≥ 1.5 倍且 ≥ 0.5°；数值题：与正确值 > 0.05 Å。",
+     "principle": "设计 = 推断的逆问题（测量条件或材料选择）。",
+     "validation": "独立检查器自行枚举 hkl 并求结构因子，从题干与选项读权重、波长和目标。",
+     "limits": "选谱线、定波长属于测量条件设计，是否计为设计题需 L1 审定；选晶体属于材料选择。",
+     "template_review": "本轮新建（设计补缺），待人工审核。"
+    },
+    "samples": [
+     {
+      "instance": "FA-XD-ANODE-MOF5",
+      "question": "The table lists every atom of one conventional cubic cell of MOF-5 (Zn4O(BDC)3, COD 1516287). Use the kinematic structure factor with atomic numbers as angle-independent weights and first-order Bragg diffraction; the relevant peak is the lowest-angle reflection with non-zero intensity. Weights: C = 6, H = 1, O = 8, Zn = 30. You must choose the X-ray source line that places this lowest-angle reflection with non-zero intensity closest to 2θ = 7.00° (for example, to keep it clear of the beam stop while resolving it well). Which line should you choose?",
+      "options": [
+       {
+        "label": "A",
+        "value": "Cr Kα1 (λ = 2.28970 Å)"
+       },
+       {
+        "label": "B",
+        "value": "Co Kα1 (λ = 1.78897 Å)"
+       },
+       {
+        "label": "C",
+        "value": "Cu Kα1 (λ = 1.54056 Å)"
+       },
+       {
+        "label": "D",
+        "value": "Mo Kα1 (λ = 0.70930 Å)"
+       }
+      ],
+      "inputs": [
+       "FA-XD-ANODE-MOF5-cell.txt"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "lowest_index_ignoring_extinction",
+        "reason": "取最低指数反射、未检查消光时它最接近目标（5.08°）。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "首个非零反射 (1 1 1)，d = 14.9099 Å，2θ = 6.88°。"
+       },
+       {
+        "label": "C",
+        "rule": "farther_from_target",
+        "reason": "首个非零反射在 2θ = 5.92°，离目标更远。"
+       },
+       {
+        "label": "D",
+        "rule": "farther_from_target",
+        "reason": "首个非零反射在 2θ = 2.73°，离目标更远。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-XD-ANODE-NACL",
+      "question": "The table lists every atom of one conventional cubic cell of halite (NaCl, COD 9008678). Use the kinematic structure factor with atomic numbers as angle-independent weights and first-order Bragg diffraction; the relevant peak is the lowest-angle reflection with non-zero intensity. Weights: Cl = 17, Na = 11. You must choose the X-ray source line that places this lowest-angle reflection with non-zero intensity closest to 2θ = 32.00° (for example, to keep it clear of the beam stop while resolving it well). Which line should you choose?",
+      "options": [
+       {
+        "label": "A",
+        "value": "Co Kα1 (λ = 1.78897 Å)"
+       },
+       {
+        "label": "B",
+        "value": "Cr Kα1 (λ = 2.28970 Å)"
+       },
+       {
+        "label": "C",
+        "value": "Cu Kα1 (λ = 1.54056 Å)"
+       },
+       {
+        "label": "D",
+        "value": "Mo Kα1 (λ = 0.70930 Å)"
+       }
+      ],
+      "inputs": [
+       "FA-XD-ANODE-NACL-cell.txt"
+      ],
+      "correct_label": "A",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "correct",
+        "reason": "首个非零反射 (1 1 1)，d = 3.2566 Å，2θ = 31.88°。"
+       },
+       {
+        "label": "B",
+        "rule": "lowest_index_ignoring_extinction",
+        "reason": "取最低指数反射、未检查消光时它最接近目标（23.42°）。"
+       },
+       {
+        "label": "C",
+        "rule": "farther_from_target",
+        "reason": "首个非零反射在 2θ = 27.36°，离目标更远。"
+       },
+       {
+        "label": "D",
+        "rule": "farther_from_target",
+        "reason": "首个非零反射在 2θ = 12.50°，离目标更远。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "unit": "disulfide_design",
+   "kind": "family",
+   "ability": "design",
+   "registry_id": "disulfide_design",
+   "generator": "task_families/protein_design.py",
+   "checker": "checkers/design_extra.py",
+   "checker_function": "disulfide_design",
+   "bindings": {
+    "L1": {
+     "registry_row": "8514ef5c18c3de43a3697a41cf6b5a8c3c6c4c6648eaef87bba65976635ee812",
+     "task_families/protein_design.py": "2786e0ba067eb1fd9ff993de8182a44a9abab151b8adaed66905c485b25b83d2"
+    },
+    "L2": {
+     "checkers/design_extra.py": "0d42baeb6018399150e5e6f85a3b805b533388ba28d7198deb1cd22f4ba2a02d",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 3,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "二硫键工程位点选择",
+     "concept": "蛋白工程：在真实蛋白的四个残基对中，选唯一满足题给 Cα–Cα 与 Cβ–Cβ 距离窗口、可突变为半胱氨酸形成二硫键的一对；其余每对至少偏离一个窗口 0.2 Å。",
+     "inputs": "PDB ATOM 片段（涉及的残基，逐行照抄）。",
+     "physical_conditions": "题给几何筛选窗口（含端点）。",
+     "reasoning_scale": "候选残基对中最大的 Cα–Cα 距离（< 1 nm）",
+     "scale_limits": "只按几何窗口筛选。",
+     "source_basis": "RCSB PDB 1UBQ、6LYZ（仓库已有）",
+     "answer_method": "Cα–Cα、Cβ–Cβ 距离与窗口比较；恰好一对满足。",
+     "distractor_mechanisms": [
+      "calpha_only",
+      "cbeta_only",
+      "both_out"
+     ],
+     "four_choice_validation": "恰好一对满足；其余偏离窗口 ≥ 0.2 Å。",
+     "principle": "二硫键工程的几何预筛（Cα、Cβ 距离）。",
+     "validation": "独立检查器用 Decimal 距离与题干窗口重算。",
+     "limits": "不评估二面角、应变能与稳定性。",
+     "template_review": "本轮新建（设计补缺），待人工审核。"
+    },
+    "samples": [
+     {
+      "instance": "FA-DS-1UBQ-A",
+      "question": "The excerpt contains the ATOM records of the 7 residues involved, from chain A of PDB entry 1UBQ (ubiquitin, X-ray), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?",
+      "options": [
+       {
+        "label": "A",
+        "value": "Met1–Glu16"
+       },
+       {
+        "label": "B",
+        "value": "Gln2–Thr14"
+       },
+       {
+        "label": "C",
+        "value": "Met1–Leu15"
+       },
+       {
+        "label": "D",
+        "value": "Phe4–Thr66"
+       }
+      ],
+      "inputs": [
+       "1UBQ-A-design-excerpt.pdb"
+      ],
+      "correct_label": "D",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "calpha_only",
+        "reason": "Cα–Cα 5.51 Å 在窗口内，但 Cβ–Cβ 7.16 Å 不在 3.45–4.50 Å（只看 Cα 会误选）。"
+       },
+       {
+        "label": "B",
+        "rule": "calpha_only",
+        "reason": "Cα–Cα 6.62 Å 在窗口内，但 Cβ–Cβ 5.83 Å 不在 3.45–4.50 Å（只看 Cα 会误选）。"
+       },
+       {
+        "label": "C",
+        "rule": "both_out",
+        "reason": "Cα–Cα 8.21 Å、Cβ–Cβ 9.17 Å 均不在窗口内。"
+       },
+       {
+        "label": "D",
+        "rule": "correct",
+        "reason": "Cα–Cα 4.52 Å，Cβ–Cβ 4.27 Å，两项均在窗口内。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-DS-1UBQ-B",
+      "question": "The excerpt contains the ATOM records of the 7 residues involved, from chain A of PDB entry 1UBQ (ubiquitin, X-ray), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?",
+      "options": [
+       {
+        "label": "A",
+        "value": "Lys27–Pro38"
+       },
+       {
+        "label": "B",
+        "value": "Met1–Gln62"
+       },
+       {
+        "label": "C",
+        "value": "Gln2–Glu18"
+       },
+       {
+        "label": "D",
+        "value": "Met1–Val17"
+       }
+      ],
+      "inputs": [
+       "1UBQ-B-design-excerpt.pdb"
+      ],
+      "correct_label": "A",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "correct",
+        "reason": "Cα–Cα 5.42 Å，Cβ–Cβ 4.03 Å，两项均在窗口内。"
+       },
+       {
+        "label": "B",
+        "rule": "both_out",
+        "reason": "Cα–Cα 8.10 Å、Cβ–Cβ 7.69 Å 均不在窗口内。"
+       },
+       {
+        "label": "C",
+        "rule": "both_out",
+        "reason": "Cα–Cα 8.50 Å、Cβ–Cβ 11.05 Å 均不在窗口内。"
+       },
+       {
+        "label": "D",
+        "rule": "calpha_only",
+        "reason": "Cα–Cα 5.36 Å 在窗口内，但 Cβ–Cβ 6.26 Å 不在 3.45–4.50 Å（只看 Cα 会误选）。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
    "unit": "extent_choice_v2",
    "kind": "family",
    "ability": "perception",
@@ -1467,7 +1760,7 @@
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f"
     },
     "L2": {
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67",
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1777,7 +2070,7 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af"
     },
     "L2": {
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67",
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1915,6 +2208,150 @@
         "label": "D",
         "rule": "magnitude_product",
         "reason": "只乘力与位移的模长，忽略夹角。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "unit": "fret_design",
+   "kind": "family",
+   "ability": "design",
+   "registry_id": "fret_design",
+   "generator": "task_families/protein_design.py",
+   "checker": "checkers/design_extra.py",
+   "checker_function": "fret_design",
+   "bindings": {
+    "L1": {
+     "registry_row": "bfc6a89e6cf3159ded832a0f27a4090ce8f66bccb7666e289b71939244e6a996",
+     "task_families/protein_design.py": "2786e0ba067eb1fd9ff993de8182a44a9abab151b8adaed66905c485b25b83d2"
+    },
+    "L2": {
+     "checkers/design_extra.py": "0d42baeb6018399150e5e6f85a3b805b533388ba28d7198deb1cd22f4ba2a02d",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 3,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "FRET 标记位点设计",
+     "concept": "在真实蛋白或 tRNA 的四个候选标记对中，选点偶极 FRET 效率（题给 R0）最接近目标的一对；推断的逆问题。",
+     "inputs": "PDB ATOM 片段（涉及的残基或核苷酸，逐行照抄）。",
+     "physical_conditions": "点偶极 Förster 定律；R0 为题设参数。",
+     "reasoning_scale": "候选标记对中最大的点间距离（1–10 nm）",
+     "scale_limits": "不含染料连接臂与构象涨落。",
+     "source_basis": "RCSB PDB 1EHZ、1UBQ、6LYZ（仓库已有）",
+     "answer_method": "E = 1/(1+(r/R0)^6)，选最接近目标者；领先幅度检查。",
+     "distractor_mechanisms": [
+      "complement",
+      "inverse_square",
+      "farther_from_target"
+     ],
+     "four_choice_validation": "胜者领先 ≥ 1.5 倍且 ≥ 0.05。",
+     "principle": "设计 = 推断的逆问题（选择标记位点）。",
+     "validation": "独立检查器用 Decimal 距离与题干 R0、目标重算。",
+     "limits": "R0 为模型参数，未对应具体染料。",
+     "template_review": "本轮新建（设计补缺），待人工审核。"
+    },
+    "samples": [
+     {
+      "instance": "FA-FD-1EHZ",
+      "question": "The excerpt contains the ATOM records of the 8 nucleotides involved, from chain A of PDB entry 1EHZ (yeast tRNA-Phe, X-ray), copied unchanged (angstrom). You will attach a donor and an acceptor dye to one of the four candidate pairs; treat each dye as a point at the P atom of its nucleotide, with Förster radius R0 = 5.4 nm and the standard point-dipole Förster law. You want a steady-state FRET efficiency as close as possible to 0.50. Which pair should you label?",
+      "options": [
+       {
+        "label": "A",
+        "value": "G20–U33"
+       },
+       {
+        "label": "B",
+        "value": "A35–C61"
+       },
+       {
+        "label": "C",
+        "value": "A36–C74"
+       },
+       {
+        "label": "D",
+        "value": "A31–A76"
+       }
+      ],
+      "inputs": [
+       "1EHZ-1EHZ-design-excerpt.pdb"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "farther_from_target",
+        "reason": "r = 4.30 nm，E = 0.797，离目标更远。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "r = 5.40 nm，E = 0.499，最接近目标。"
+       },
+       {
+        "label": "C",
+        "rule": "farther_from_target",
+        "reason": "r = 6.62 nm，E = 0.228，离目标更远。"
+       },
+       {
+        "label": "D",
+        "rule": "farther_from_target",
+        "reason": "r = 7.19 nm，E = 0.152，离目标更远。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-FD-1UBQ",
+      "question": "The excerpt contains the ATOM records of the 8 residues involved, from chain A of PDB entry 1UBQ (ubiquitin, X-ray), copied unchanged (angstrom). You will attach a donor and an acceptor dye to one of the four candidate pairs; treat each dye as a point at the CA atom of its residue, with Förster radius R0 = 2.5 nm and the standard point-dipole Förster law. You want a steady-state FRET efficiency as close as possible to 0.75. Which pair should you label?",
+      "options": [
+       {
+        "label": "A",
+        "value": "Lys11–Lys29"
+       },
+       {
+        "label": "B",
+        "value": "Gln2–Arg72"
+       },
+       {
+        "label": "C",
+        "value": "Ile61–Leu71"
+       },
+       {
+        "label": "D",
+        "value": "Glu64–Arg74"
+       }
+      ],
+      "inputs": [
+       "1UBQ-1UBQ-design-excerpt.pdb"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "inverse_square",
+        "reason": "把 r⁶ 写成 r²时它最接近目标（0.709）。"
+       },
+       {
+        "label": "B",
+        "rule": "farther_from_target",
+        "reason": "r = 2.50 nm，E = 0.501，离目标更远。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "r = 2.08 nm，E = 0.751，最接近目标。"
+       },
+       {
+        "label": "D",
+        "rule": "complement",
+        "reason": "把效率算成 1 − E时它最接近目标（0.786）。"
        }
       ]
      }
@@ -2247,7 +2684,7 @@
      "task_families/extinction.py": "00d55fe1a92e6521076d61e3863d410d68f150b3803a181435c4db17a65164bc"
     },
     "L2": {
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67",
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2867,7 +3304,7 @@
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f"
     },
     "L2": {
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67",
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3954,8 +4391,8 @@
    "checker_function": "scattering_q_design",
    "bindings": {
     "L1": {
-     "registry_row": "44074909ef0c821b47adb7156fc740d8dcc91218c688906e5307086eba0c543e",
-     "task_families/assembly.py": "8b413f51e7a157a3e2bad5064db38d521634ed0aa5926e67a7bc4dfd87dccc11"
+     "registry_row": "e7f61acdd9567ad18170ce6de9826add33ffabadf28c5708482e60061178f3d3",
+     "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
     },
     "L2": {
      "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
@@ -3964,7 +4401,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 5,
+   "instances": 8,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -3996,32 +4433,32 @@
     },
     "samples": [
      {
-      "instance": "FA-QDES-6CGR",
-      "question": "The table lists the Cα centroid of every protein chain of the herpes simplex virus 1 capsid with tegument complexes (PDB 6CGR), expanded to the whole particle with the 60 deposited icosahedral operators; columns are component (VP5, VP26, VP19C, VP23, pUL17, pUL25, pUL36), copy, x, y, z (angstrom). Select all points labelled VP5. Treat each selected point as an identical point scatterer (no form factor, no solvent). A small-angle scattering measurement is to be set at the q where the orientation-averaged normalized intensity I(q)/I(0) of the selected points first falls to 0.50. Starting from q = 0, at which q (in nm⁻¹, q = 4π sinθ/λ) does I(q)/I(0) first reach 0.50? Compute the intensity exactly from all point pairs.",
+      "instance": "FA-QDES-1A34",
+      "question": "The XYZ file lists the capsid-protein Cα atoms of the complete satellite tobacco mosaic virus capsid: the deposited copy of PDB 1A34 expanded with its 60 icosahedral operators (angstrom). Select all supplied points. Treat each selected point as an identical point scatterer (no form factor, no solvent). A small-angle scattering measurement is to be set at the q where the orientation-averaged normalized intensity I(q)/I(0) of the selected points first falls to 0.50. Starting from q = 0, at which q (in nm⁻¹, q = 4π sinθ/λ) does I(q)/I(0) first reach 0.50? Compute the intensity exactly from all point pairs.",
       "options": [
        {
         "label": "A",
-        "value": "0.0041",
+        "value": "0.030",
         "unit": "nm^-1"
        },
        {
         "label": "B",
-        "value": "0.0259",
+        "value": "0.190",
         "unit": "nm^-1"
        },
        {
         "label": "C",
-        "value": "0.0338",
+        "value": "0.210",
         "unit": "nm^-1"
        },
        {
         "label": "D",
-        "value": "0.0353",
+        "value": "0.340",
         "unit": "nm^-1"
        }
       ],
       "inputs": [
-       "6CGR-chain-centroids.txt"
+       "1A34-capsid-CA.xyz"
       ],
       "correct_label": "B",
       "audit": [
@@ -4037,55 +4474,55 @@
        },
        {
         "label": "C",
-        "rule": "sphere_radius_equals_rg_root",
-        "reason": "把回转半径直接当作均匀球的半径求交点（球偏小，q 偏大）。"
+        "rule": "dmax_sphere_root",
+        "reason": "把颗粒当作直径等于最大尺寸的实心球。"
        },
        {
         "label": "D",
-        "rule": "target_as_amplitude",
-        "reason": "把目标值当作振幅比（强度的平方根）求交点。"
+        "rule": "guinier_single_axis_root",
+        "reason": "用 Guinier 反解，且把单一坐标轴的均方根离散度当作 Rg。"
        }
       ]
      },
      {
-      "instance": "FA-QDES-6NCL",
-      "question": "The table lists the Cα centroid of every protein chain of the Paramecium bursaria chlorella virus 1 (PBCV-1) capsid (PDB 6NCL), expanded to the whole particle with the 60 deposited icosahedral operators; columns are component (Vp54 = major capsid protein; P1–P14 = penton and minor capsid proteins), copy, x, y, z (angstrom). Select all points labelled Vp54. Treat each selected point as an identical point scatterer (no form factor, no solvent). A small-angle scattering measurement is to be set at the q where the orientation-averaged normalized intensity I(q)/I(0) of the selected points first falls to 0.50. Starting from q = 0, at which q (in nm⁻¹, q = 4π sinθ/λ) does I(q)/I(0) first reach 0.50? Compute the intensity exactly from all point pairs.",
+      "instance": "FA-QDES-1AON",
+      "question": "The XYZ file lists one point per residue (protein Cα written as C) of the GroEL–GroES–(ADP)7 chaperonin complex, all 21 chains of PDB 1AON (angstrom). Select all supplied points. Treat each selected point as an identical point scatterer (no form factor, no solvent). A small-angle scattering measurement is to be set at the q where the orientation-averaged normalized intensity I(q)/I(0) of the selected points first falls to 0.50. Starting from q = 0, at which q (in nm⁻¹, q = 4π sinθ/λ) does I(q)/I(0) first reach 0.50? Compute the intensity exactly from all point pairs.",
       "options": [
        {
         "label": "A",
-        "value": "0.0029",
+        "value": "0.207",
         "unit": "nm^-1"
        },
        {
         "label": "B",
-        "value": "0.0180",
+        "value": "0.265",
         "unit": "nm^-1"
        },
        {
         "label": "C",
-        "value": "0.0245",
+        "value": "0.288",
         "unit": "nm^-1"
        },
        {
         "label": "D",
-        "value": "0.0322",
+        "value": "0.296",
         "unit": "nm^-1"
        }
       ],
       "inputs": [
-       "6NCL-chain-centroids.txt"
+       "1AON-residue-points.xyz"
       ],
-      "correct_label": "B",
+      "correct_label": "A",
       "audit": [
        {
         "label": "A",
-        "rule": "reported_as_s",
-        "reason": "求对了交点，却以 s = 2 sinθ/λ（= q/2π）报告。"
+        "rule": "correct",
+        "reason": "Debye 公式（全部点对、取向平均）从 q = 0 起步进并二分，得首次降到 0.50 的 q。"
        },
        {
         "label": "B",
-        "rule": "correct",
-        "reason": "Debye 公式（全部点对、取向平均）从 q = 0 起步进并二分，得首次降到 0.50 的 q。"
+        "rule": "sphere_radius_equals_rg_root",
+        "reason": "把回转半径直接当作均匀球的半径求交点（球偏小，q 偏大）。"
        },
        {
         "label": "C",
@@ -5286,7 +5723,7 @@
     "L2": {
      "task_families/extinction.py": "00d55fe1a92e6521076d61e3863d410d68f150b3803a181435c4db17a65164bc",
      "tools/recompute_materials_batch.py": "df46676f8635db858bf9e9ab7a0b7613e580863306ca987f4ffbc19e7e9446e7",
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67"
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
     }
    },
    "L1": "pending",
@@ -5951,7 +6388,7 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af",
      "builder_modules/m4_construction/force_projection.py": "bddf6ed6aceb2b9203748df44d74ee79c44f73308f7ef9c0dd5e53fff943bfb9",
      "tools/build_family_assets.py": "ec3bf549831dcb14874c47854ee51f58df0ad82b535ccecdc3eca998d08863b1",
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67"
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
     }
    },
    "L1": "pending",
@@ -6020,7 +6457,7 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af",
      "builder_modules/m4_construction/force_projection.py": "bddf6ed6aceb2b9203748df44d74ee79c44f73308f7ef9c0dd5e53fff943bfb9",
      "tools/build_family_assets.py": "ec3bf549831dcb14874c47854ee51f58df0ad82b535ccecdc3eca998d08863b1",
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67"
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
     }
    },
    "L1": "pending",
@@ -6185,7 +6622,7 @@
      "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
      "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67"
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
     }
    },
    "L1": "pending",
@@ -6311,7 +6748,7 @@
     "L2": {
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f",
      "task_families/kit.py": "d060c9006667542779c54b2fc9b6e9554a0857d4a05d098bf9925647e41bcb79",
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67"
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
     }
    },
    "L1": "pending",
@@ -6374,7 +6811,7 @@
      "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
      "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67"
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
     }
    },
    "L1": "pending",
@@ -6506,7 +6943,7 @@
      "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
      "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67"
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
     }
    },
    "L1": "pending",
@@ -6570,7 +7007,7 @@
      "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
      "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67"
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
     }
    },
    "L1": "pending",
@@ -6635,7 +7072,7 @@
      "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
      "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67"
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
     }
    },
    "L1": "pending",
@@ -6703,7 +7140,7 @@
     "L2": {
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f",
      "task_families/kit.py": "d060c9006667542779c54b2fc9b6e9554a0857d4a05d098bf9925647e41bcb79",
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67"
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
     }
    },
    "L1": "pending",
@@ -6825,7 +7262,7 @@
     "L2": {
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f",
      "task_families/kit.py": "d060c9006667542779c54b2fc9b6e9554a0857d4a05d098bf9925647e41bcb79",
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67"
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
     }
    },
    "L1": "pending",
@@ -6892,7 +7329,7 @@
     "L2": {
      "task_families/extinction.py": "00d55fe1a92e6521076d61e3863d410d68f150b3803a181435c4db17a65164bc",
      "tools/recompute_materials_batch.py": "df46676f8635db858bf9e9ab7a0b7613e580863306ca987f4ffbc19e7e9446e7",
-     "checkers/families.py": "d8ce17168603ded0671605e0d1b0acf25dd88f09f2f0ec8d94b6bc2e3f36de67"
+     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
     }
    },
    "L1": "pending",
@@ -7149,6 +7586,48 @@
    ]
   },
   {
+   "stratum": "diffraction_design | cod-materials-cell | materials 0.1-1",
+   "unit": "diffraction_design",
+   "source": "cod-materials-cell",
+   "cell": "materials 0.1-1",
+   "size": 3,
+   "sample": 3,
+   "rule": "first batch: all",
+   "ids": [
+    "MND007",
+    "MND008",
+    "MND009"
+   ]
+  },
+  {
+   "stratum": "diffraction_design | cod-materials-cell | materials 1-10",
+   "unit": "diffraction_design",
+   "source": "cod-materials-cell",
+   "cell": "materials 1-10",
+   "size": 3,
+   "sample": 3,
+   "rule": "first batch: all",
+   "ids": [
+    "MND010",
+    "MND011",
+    "MND012"
+   ]
+  },
+  {
+   "stratum": "disulfide_design | pdb-bio-nm | biology 0.1-1",
+   "unit": "disulfide_design",
+   "source": "pdb-bio-nm",
+   "cell": "biology 0.1-1",
+   "size": 3,
+   "sample": 3,
+   "rule": "first batch: all",
+   "ids": [
+    "BND003",
+    "BND004",
+    "BND005"
+   ]
+  },
+  {
    "stratum": "first_diffraction_peak | cod-materials-cell | materials 0.1-1",
    "unit": "first_diffraction_peak",
    "source": "cod-materials-cell",
@@ -7173,6 +7652,20 @@
    "ids": [
     "MNI018",
     "MNI019"
+   ]
+  },
+  {
+   "stratum": "fret_design | pdb-bio-nm | biology 1-10",
+   "unit": "fret_design",
+   "source": "pdb-bio-nm",
+   "cell": "biology 1-10",
+   "size": 3,
+   "sample": 3,
+   "rule": "first batch: all",
+   "ids": [
+    "BND006",
+    "BND007",
+    "BND008"
    ]
   },
   {
@@ -7824,6 +8317,20 @@
    ]
   },
   {
+   "stratum": "scattering_q_design | pdb-bio-nm | biology 10-100",
+   "unit": "scattering_q_design",
+   "source": "pdb-bio-nm",
+   "cell": "biology 10-100",
+   "size": 3,
+   "sample": 3,
+   "rule": "first batch: all",
+   "ids": [
+    "BND009",
+    "BND010",
+    "BND011"
+   ]
+  },
+  {
    "stratum": "scattering_q_design | pdb-bio-nm | biology 100-1000",
    "unit": "scattering_q_design",
    "source": "pdb-bio-nm",
@@ -8129,7 +8636,22 @@
   "QNI015": "L0",
   "QNI016": "L0",
   "QND008": "L0",
-  "QND009": "L0"
+  "QND009": "L0",
+  "MND007": "L0",
+  "MND008": "L0",
+  "MND009": "L0",
+  "MND010": "L0",
+  "MND011": "L0",
+  "MND012": "L0",
+  "BND003": "L0",
+  "BND004": "L0",
+  "BND005": "L0",
+  "BND006": "L0",
+  "BND007": "L0",
+  "BND008": "L0",
+  "BND009": "L0",
+  "BND010": "L0",
+  "BND011": "L0"
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer."
 }

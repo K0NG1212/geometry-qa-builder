@@ -1,0 +1,50 @@
+The four tables list every atom of one conventional cubic cell of four crystals (files named by crystal). Use the kinematic structure factor with atomic numbers as angle-independent weights and first-order Bragg diffraction; the relevant peak is the lowest-angle reflection with non-zero intensity. Weights: NaCl: Cl = 17, Na = 11; MgO: Mg = 12, O = 8; CsCl: Cl = 17, Cs = 55; diamond: C = 6. For X-rays of wavelength 1.54056 Å, you must choose the crystal whose lowest-angle reflection with non-zero intensity lies closest to 2θ = 37.00° (for example, to calibrate a detector at that angle). Which crystal should you choose?
+
+选项：
+A. diamond (diamond-cell.txt)
+B. NaCl (NaCl-cell.txt)
+C. MgO (MgO-cell.txt)
+D. CsCl (CsCl-cell.txt)
+
+附件：NaCl-cell.txt、MgO-cell.txt、CsCl-cell.txt、diamond-cell.txt（均为本题完整输入）。范围：运动学模型、原子序数权重；X 射线谱线波长在题干给出；设计选择基于计算证据。 只回答一个字母 A、B、C 或 D。
+
+===== NaCl-cell.txt =====
+halite (NaCl, COD 9008678); cubic a = 5.64056 angstrom; 8 atoms; element x y z (fractional)
+Na 0.00000000 0.00000000 0.00000000
+Na 0.00000000 0.50000000 0.50000000
+Na 0.50000000 0.00000000 0.50000000
+Na 0.50000000 0.50000000 0.00000000
+Cl 0.00000000 0.00000000 0.50000000
+Cl 0.00000000 0.50000000 0.00000000
+Cl 0.50000000 0.00000000 0.00000000
+Cl 0.50000000 0.50000000 0.50000000
+
+
+===== MgO-cell.txt =====
+periclase (MgO, COD 1000053); cubic a = 4.21700 angstrom; 8 atoms; element x y z (fractional)
+Mg 0.00000000 0.00000000 0.00000000
+Mg 0.00000000 0.50000000 0.50000000
+Mg 0.50000000 0.00000000 0.50000000
+Mg 0.50000000 0.50000000 0.00000000
+O 0.00000000 0.00000000 0.50000000
+O 0.00000000 0.50000000 0.00000000
+O 0.50000000 0.00000000 0.00000000
+O 0.50000000 0.50000000 0.50000000
+
+
+===== CsCl-cell.txt =====
+caesium chloride (CsCl, COD 9008789); cubic a = 4.12300 angstrom; 2 atoms; element x y z (fractional)
+Cs 0.00000000 0.00000000 0.00000000
+Cl 0.50000000 0.50000000 0.50000000
+
+
+===== diamond-cell.txt =====
+diamond (C, COD 9008564); cubic a = 3.56679 angstrom; 8 atoms; element x y z (fractional)
+C 0.00000000 0.00000000 0.00000000
+C 0.00000000 0.50000000 0.50000000
+C 0.25000000 0.25000000 0.25000000
+C 0.25000000 0.75000000 0.75000000
+C 0.50000000 0.00000000 0.50000000
+C 0.50000000 0.50000000 0.00000000
+C 0.75000000 0.25000000 0.75000000
+C 0.75000000 0.75000000 0.25000000

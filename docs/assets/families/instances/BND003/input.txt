@@ -1,0 +1,71 @@
+The excerpt contains the ATOM records of the 7 residues involved, from chain A of PDB entry 1UBQ (ubiquitin, X-ray), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?
+
+选项：
+A. Met1–Glu16
+B. Gln2–Thr14
+C. Met1–Leu15
+D. Phe4–Thr66
+
+附件：1UBQ-A-design-excerpt.pdb（均为本题完整输入）。范围：ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。 只回答一个字母 A、B、C 或 D。
+
+===== 1UBQ-A-design-excerpt.pdb =====
+ATOM      1  N   MET A   1      27.340  24.430   2.614  1.00  9.67           N
+ATOM      2  CA  MET A   1      26.266  25.413   2.842  1.00 10.38           C
+ATOM      3  C   MET A   1      26.913  26.639   3.531  1.00  9.62           C
+ATOM      4  O   MET A   1      27.886  26.463   4.263  1.00  9.62           O
+ATOM      5  CB  MET A   1      25.112  24.880   3.649  1.00 13.77           C
+ATOM      6  CG  MET A   1      25.353  24.860   5.134  1.00 16.29           C
+ATOM      7  SD  MET A   1      23.930  23.959   5.904  1.00 17.17           S
+ATOM      8  CE  MET A   1      24.447  23.984   7.620  1.00 16.11           C
+ATOM      9  N   GLN A   2      26.335  27.770   3.258  1.00  9.27           N
+ATOM     10  CA  GLN A   2      26.850  29.021   3.898  1.00  9.07           C
+ATOM     11  C   GLN A   2      26.100  29.253   5.202  1.00  8.72           C
+ATOM     12  O   GLN A   2      24.865  29.024   5.330  1.00  8.22           O
+ATOM     13  CB  GLN A   2      26.733  30.148   2.905  1.00 14.46           C
+ATOM     14  CG  GLN A   2      26.882  31.546   3.409  1.00 17.01           C
+ATOM     15  CD  GLN A   2      26.786  32.562   2.270  1.00 20.10           C
+ATOM     16  OE1 GLN A   2      27.783  33.160   1.870  1.00 21.89           O
+ATOM     17  NE2 GLN A   2      25.562  32.733   1.806  1.00 19.49           N
+ATOM     26  N   PHE A   4      26.214  32.097   8.771  1.00  4.55           N
+ATOM     27  CA  PHE A   4      26.772  33.436   9.197  1.00  4.68           C
+ATOM     28  C   PHE A   4      27.151  33.362  10.650  1.00  5.30           C
+ATOM     29  O   PHE A   4      26.350  32.778  11.395  1.00  5.58           O
+ATOM     30  CB  PHE A   4      25.695  34.498   8.946  1.00  4.83           C
+ATOM     31  CG  PHE A   4      25.288  34.609   7.499  1.00  7.97           C
+ATOM     32  CD1 PHE A   4      24.147  33.966   7.038  1.00  6.69           C
+ATOM     33  CD2 PHE A   4      26.136  35.346   6.640  1.00  8.34           C
+ATOM     34  CE1 PHE A   4      23.812  34.031   5.677  1.00  9.10           C
+ATOM     35  CE2 PHE A   4      25.810  35.392   5.267  1.00 10.61           C
+ATOM     36  CZ  PHE A   4      24.620  34.778   4.853  1.00  8.90           C
+ATOM    103  N   THR A  14      31.244  34.986   7.197  1.00  9.39           N
+ATOM    104  CA  THR A  14      30.505  33.884   6.512  1.00  9.63           C
+ATOM    105  C   THR A  14      31.409  32.680   6.446  1.00 11.20           C
+ATOM    106  O   THR A  14      32.619  32.812   6.125  1.00 11.63           O
+ATOM    107  CB  THR A  14      30.091  34.393   5.078  1.00 10.38           C
+ATOM    108  OG1 THR A  14      31.440  34.513   4.487  1.00 16.30           O
+ATOM    109  CG2 THR A  14      29.420  35.756   5.119  1.00 11.66           C
+ATOM    110  N   LEU A  15      30.884  31.485   6.666  1.00  8.29           N
+ATOM    111  CA  LEU A  15      31.677  30.275   6.639  1.00  9.03           C
+ATOM    112  C   LEU A  15      31.022  29.288   5.665  1.00  8.59           C
+ATOM    113  O   LEU A  15      29.809  29.395   5.545  1.00  7.79           O
+ATOM    114  CB  LEU A  15      31.562  29.686   8.045  1.00 11.08           C
+ATOM    115  CG  LEU A  15      32.631  29.444   9.060  1.00 15.79           C
+ATOM    116  CD1 LEU A  15      33.814  30.390   9.030  1.00 15.88           C
+ATOM    117  CD2 LEU A  15      31.945  29.449  10.436  1.00 15.27           C
+ATOM    118  N   GLU A  16      31.834  28.412   5.125  1.00 11.04           N
+ATOM    119  CA  GLU A  16      31.220  27.341   4.275  1.00 11.50           C
+ATOM    120  C   GLU A  16      31.440  26.079   5.080  1.00 10.13           C
+ATOM    121  O   GLU A  16      32.576  25.802   5.461  1.00  9.83           O
+ATOM    122  CB  GLU A  16      31.827  27.262   2.894  1.00 17.22           C
+ATOM    123  CG  GLU A  16      31.363  28.410   1.962  1.00 23.33           C
+ATOM    124  CD  GLU A  16      31.671  28.291   0.498  1.00 26.99           C
+ATOM    125  OE1 GLU A  16      30.869  28.621  -0.366  1.00 28.86           O
+ATOM    126  OE2 GLU A  16      32.835  27.861   0.278  1.00 28.90           O
+ATOM    516  N   THR A  66      22.241  31.873  11.241  1.00  4.48           N
+ATOM    517  CA  THR A  66      23.212  32.762  11.891  1.00  3.80           C
+ATOM    518  C   THR A  66      23.509  32.224  13.290  1.00  4.60           C
+ATOM    519  O   THR A  66      22.544  31.942  14.034  1.00  5.33           O
+ATOM    520  CB  THR A  66      22.699  34.267  11.985  1.00  2.85           C
+ATOM    521  OG1 THR A  66      22.495  34.690  10.589  1.00  2.15           O
+ATOM    522  CG2 THR A  66      23.727  35.131  12.722  1.00  3.40           C
+END

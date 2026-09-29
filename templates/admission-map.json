@@ -1,5 +1,5 @@
 {
-  "version": "0.9.0",
+  "version": "0.10.0",
   "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
   "rules": {
     "new": "Genuinely new question: added as a new catalog record (provisional).",
@@ -294,6 +294,33 @@
       "attribution": "经验曲线系数取自 Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003)（事实数据）；纳米晶模型由本项目构建（见 docs/assets/families/qdots/sources.json）。",
       "sizeDefinition": "输入与推理：纳米晶最大原子间距（2.8–5.0 nm）。",
       "learningObjective": "按经验曲线选择纳米晶粒径，使吸收达到目标颜色（设计 = 推断的逆问题）。"
+    },
+    "diffraction_design": {
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "paper": "cod-materials-cell",
+      "attribution": "Crystallography Open Database（公有领域）。",
+      "learningObjective": "按首个非零衍射反射选择晶体、X 射线谱线或波长，使反射落在目标角度（设计 = 推断的逆问题）。",
+      "sizeDefinition": "输入：晶胞；推理：首个非零反射的晶面间距 d。"
+    },
+    "disulfide_design": {
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "local_geometry",
+      "paper": "pdb-bio-nm",
+      "attribution": "RCSB PDB（wwPDB，CC0）；ATOM 片段逐行照抄。",
+      "learningObjective": "按 Cα–Cα 与 Cβ–Cβ 几何窗口筛选可引入二硫键的残基对（蛋白工程设计）。",
+      "sizeDefinition": "推理：候选残基对中最大的 Cα–Cα 距离。"
+    },
+    "fret_design": {
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "paper": "pdb-bio-nm",
+      "attribution": "RCSB PDB（wwPDB，CC0）；ATOM 片段逐行照抄。",
+      "learningObjective": "按目标 FRET 效率选择染料标记位点（设计 = 推断的逆问题）。",
+      "sizeDefinition": "推理：候选标记对中最大的点间距离。"
     }
   },
   "instances": [
@@ -1235,6 +1262,99 @@
       "action": "new",
       "catalog_id": "QND009",
       "title": "CdSe 量子点设计 · 吸收峰 ≥ 565 nm 的最小粒子（四选一）"
+    },
+    {
+      "instance": "FA-XD-CRYSTAL-CU",
+      "action": "new",
+      "catalog_id": "MND007",
+      "title": "衍射设计 · Cu Kα 下首峰最接近 37° 的晶体（四选一）"
+    },
+    {
+      "instance": "FA-XD-CRYSTAL-MO",
+      "action": "new",
+      "catalog_id": "MND008",
+      "title": "衍射设计 · Mo Kα 下首峰最接近 12.5° 的晶体（四选一）"
+    },
+    {
+      "instance": "FA-XD-ANODE-NACL",
+      "action": "new",
+      "catalog_id": "MND009",
+      "title": "衍射设计 · NaCl 首峰落在 32° 的谱线（四选一）"
+    },
+    {
+      "instance": "FA-XD-ANODE-MOF5",
+      "action": "new",
+      "catalog_id": "MND010",
+      "title": "衍射设计 · MOF-5 首峰落在 7° 的谱线（四选一）"
+    },
+    {
+      "instance": "FA-XD-ANODE-SALEM2",
+      "action": "new",
+      "catalog_id": "MND011",
+      "title": "衍射设计 · SALEM-2 首峰落在 11° 的谱线（四选一）"
+    },
+    {
+      "instance": "FA-XD-WAVE-MOF5",
+      "action": "new",
+      "catalog_id": "MND012",
+      "title": "衍射设计 · 使 MOF-5 首峰位于 5° 的波长（四选一）"
+    },
+    {
+      "instance": "FA-DS-1UBQ-A",
+      "action": "new",
+      "catalog_id": "BND003",
+      "title": "二硫键工程 · 泛素候选位点（一）（四选一）"
+    },
+    {
+      "instance": "FA-DS-1UBQ-B",
+      "action": "new",
+      "catalog_id": "BND004",
+      "title": "二硫键工程 · 泛素候选位点（二）（四选一）"
+    },
+    {
+      "instance": "FA-DS-6LYZ",
+      "action": "new",
+      "catalog_id": "BND005",
+      "title": "二硫键工程 · 溶菌酶候选位点（四选一）"
+    },
+    {
+      "instance": "FA-FD-1EHZ",
+      "action": "new",
+      "catalog_id": "BND006",
+      "title": "FRET 标记设计 · tRNA 效率最接近 0.50（四选一）"
+    },
+    {
+      "instance": "FA-FD-1UBQ",
+      "action": "new",
+      "catalog_id": "BND007",
+      "title": "FRET 标记设计 · 泛素效率最接近 0.75（四选一）"
+    },
+    {
+      "instance": "FA-FD-6LYZ",
+      "action": "new",
+      "catalog_id": "BND008",
+      "title": "FRET 标记设计 · 溶菌酶效率最接近 0.25（四选一）"
+    },
+    {
+      "instance": "FA-QDES-1AON",
+      "action": "new",
+      "catalog_id": "BND009",
+      "title": "GroEL–GroES 1AON · 使强度降到 0.50 的测量 q（四选一）",
+      "learningObjective": "推断的逆问题：为整个组装体选择测量 q，使取向平均散射强度首次降到目标值（测量条件设计）。"
+    },
+    {
+      "instance": "FA-QDES-1KX5",
+      "action": "new",
+      "catalog_id": "BND010",
+      "title": "核小体 1KX5 · 使强度降到 0.50 的测量 q（四选一）",
+      "learningObjective": "推断的逆问题：为整个组装体选择测量 q，使取向平均散射强度首次降到目标值（测量条件设计）。"
+    },
+    {
+      "instance": "FA-QDES-1A34",
+      "action": "new",
+      "catalog_id": "BND011",
+      "title": "STMV 衣壳 1A34 · 使强度降到 0.50 的测量 q（四选一）",
+      "learningObjective": "推断的逆问题：为整个组装体选择测量 q，使取向平均散射强度首次降到目标值（测量条件设计）。"
     }
   ]
 }

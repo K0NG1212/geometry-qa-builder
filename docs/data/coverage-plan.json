@@ -3,23 +3,25 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 162,
+  "current_total": 177,
   "capped_total": 140,
   "over_target_cells": [
    "quantum 0.1-1",
    "chemistry 0.1-1",
    "materials 0.1-1",
    "materials 1-10",
-   "biology 1-10"
+   "biology 0.1-1",
+   "biology 1-10",
+   "biology 10-100"
   ],
-  "provisional_total": 120,
-  "ability_gaps": 14,
-  "gap_slots": 36,
+  "provisional_total": 135,
+  "ability_gaps": 9,
+  "gap_slots": 21,
   "gaps_by_best_route": {
-   "ready": 4,
+   "ready": 3,
    "migrate": 0,
-   "build": 2,
-   "none": 8
+   "build": 0,
+   "none": 6
   },
   "note": "capped_total 为每格最多按目标 10 道计的有效覆盖；超额题有效但不填补其他格。能力软目标来自 prototype-policy（每格感知/推断/设计各 3，外加 1 个机动名额）；路线只表示注册表声明可覆盖，不保证该格一定有合适数据。"
  },
@@ -593,8 +595,8 @@
    "domain": "materials",
    "cell": "0.1-1",
    "target": 10,
-   "current": 13,
-   "provisional": 7,
+   "current": 16,
+   "provisional": 10,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -648,12 +650,19 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "diffraction_design",
+       "name": "衍射设计：选晶体、选谱线或定波长",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     }
    },
    "feasibility": null
@@ -662,8 +671,8 @@
    "domain": "materials",
    "cell": "1-10",
    "target": 10,
-   "current": 11,
-   "provisional": 6,
+   "current": 14,
+   "provisional": 9,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -717,12 +726,19 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "diffraction_design",
+       "name": "衍射设计：选晶体、选谱线或定波长",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     }
    },
    "feasibility": null
@@ -860,8 +876,8 @@
    "domain": "biology",
    "cell": "0.1-1",
    "target": 10,
-   "current": 10,
-   "provisional": 7,
+   "current": 13,
+   "provisional": 10,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -939,10 +955,16 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
+     "shortfall": 0,
      "routes": [
+      {
+       "family": "disulfide_design",
+       "name": "二硫键工程位点选择",
+       "kind": "ready",
+       "status": "pilot"
+      },
       {
        "family": "design_choice",
        "name": "有证据的结构优化选择（论文案例）",
@@ -951,7 +973,7 @@
       }
      ],
      "rework_in_cell": [],
-     "best_route": "build"
+     "best_route": "ready"
     }
    },
    "feasibility": {
@@ -968,8 +990,8 @@
    "domain": "biology",
    "cell": "1-10",
    "target": 10,
-   "current": 11,
-   "provisional": 6,
+   "current": 14,
+   "provisional": 9,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -1027,10 +1049,16 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
+     "shortfall": 0,
      "routes": [
+      {
+       "family": "fret_design",
+       "name": "FRET 标记位点设计",
+       "kind": "ready",
+       "status": "pilot"
+      },
       {
        "family": "design_choice",
        "name": "有证据的结构优化选择（论文案例）",
@@ -1039,7 +1067,7 @@
       }
      ],
      "rework_in_cell": [],
-     "best_route": "build"
+     "best_route": "ready"
     }
    },
    "feasibility": null
@@ -1048,8 +1076,8 @@
    "domain": "biology",
    "cell": "10-100",
    "target": 10,
-   "current": 10,
-   "provisional": 10,
+   "current": 13,
+   "provisional": 13,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -1095,9 +1123,9 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
+     "shortfall": 0,
      "routes": [
       {
        "family": "scattering_q_design",
