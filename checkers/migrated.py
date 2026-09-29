@@ -5,6 +5,7 @@ import cmath
 import itertools
 import math
 import re
+import numpy as np
 from decimal import Decimal, localcontext
 from .common import need, find, read_xyz, verify_hashes, judge_numeric, LABELS
 
@@ -155,12 +156,17 @@ def guinier_intensity(packet, key):
     atoms = read_xyz(inp['text'])
     pts = [tuple(float(c) for c in p) for _, p in atoms]
     n = len(pts)
-    # Pair identity Rg^2 = sum_{i<j} d_ij^2 / N^2 (the generator uses the centroid form).
-    s = math.fsum((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2 for i, a in enumerate(pts) for b in pts[i + 1:])
+    # Pair identity Rg^2 = sum_{i<j} d_ij^2 / N^2 (the generator uses the centroid form); chunked numpy for large N.
+    arr = np.asarray(pts)
+    s = math.fsum(float((((arr[i:i + 500, None, :] - arr[None, :, :]) ** 2).sum(axis=2)).sum()) for i in range(0, n, 500)) / 2
     rg = math.sqrt(s) / n / 10
     need(qv * rg <= 1.3, 'q*Rg above the Guinier validity limit')
-    # Provenance: the XYZ must be exactly the non-hydrogen main-altloc ATOM records of the named chains.
     [path] = verify_hashes(key).values()
+    if path.suffix == '.xyz':           # reduced assembly asset: the input must be that file verbatim
+        need(path.read_bytes() == inp['text'].encode('utf-8'), 'XYZ differs from the published reduced asset')
+        return dict(judge_numeric(packet, key, math.exp(-(qv * rg) ** 2 / 3)), parameters=dict(q_per_nm=qv, rg_nm=rg, atoms=n),
+                    method='pair-distance Rg; Guinier law')
+    # Provenance: the XYZ must be exactly the non-hydrogen main-altloc ATOM records of the named chains.
     chains = find(r'chains ([A-Z]+)\)', q, 'Chains missing').group(1)
     src = [tuple(float(l[c:c + 8]) for c in (30, 38, 46)) for l in path.read_text(encoding='utf-8').split('ENDMDL')[0].splitlines()
            if l.startswith('ATOM') and l[21] in chains and l[16] in ' A' and (l[76:78].strip() or l[12:16].strip()[0]).upper() != 'H']
@@ -173,3 +179,66 @@ def guinier_intensity(packet, key):
 CHECKERS = {'named_bond_distance': named_bond_distance, 'coordination_shell': coordination_shell,
             'first_diffraction_peak': first_diffraction_peak, 'fret_efficiency': fret_efficiency,
             'guinier_intensity': guinier_intensity}
+
+
+# ------------------------------------------------------------------ large assemblies
+def assembly_points(packet, key):
+    [inp] = packet['inputs']
+    [path] = verify_hashes(key).values()
+    need(path.read_bytes() == inp['text'].encode('utf-8'), 'Input differs from the published reduced asset')
+    if inp['format'] == 'xyz':
+        rows = read_xyz(inp['text'])
+        return [e for e, _ in rows], np.asarray([[float(c) for c in p] for _, p in rows])
+    rows = [l.split() for l in inp['text'].splitlines()[1:] if l.strip()]
+    return [r[0] for r in rows], np.asarray([[float(x) for x in r[2:5]] for r in rows])
+
+
+def selection(packet, key):
+    labels, pts = assembly_points(packet, key)
+    m = re.search(r'Select all points labelled (\S+?)\.', packet['question'])
+    if m:
+        pts = pts[[l == m.group(1) for l in labels]]
+    else:
+        need('Select all supplied points' in packet['question'], 'Point selection not stated')
+    need(len(pts) >= 2, 'Selection is empty')
+    return pts
+
+
+def assembly_extent(packet, key):
+    pts = selection(packet, key)
+    best, pair = -1.0, None
+    for i in range(0, len(pts), 700):                # own chunking; Decimal on the winning pair
+        d2 = ((pts[i:i + 700, None, :] - pts[None, :, :]) ** 2).sum(axis=2)
+        k = int(d2.argmax())
+        if d2.flat[k] > best:
+            best, pair = float(d2.flat[k]), (i + k // len(pts), k % len(pts))
+    d = dec_dist(pts[pair[0]].tolist(), pts[pair[1]].tolist()) / 10
+    return dict(judge_numeric(packet, key, d), parameters=dict(points=len(pts)), method='chunked brute force + Decimal pair')
+
+
+def assembly_rg(packet, key):
+    pts = selection(packet, key)
+    n = len(pts)
+    s = math.fsum(float((((pts[i:i + 500, None, :] - pts[None, :, :]) ** 2).sum(axis=2)).sum()) for i in range(0, n, 500)) / 2
+    return dict(judge_numeric(packet, key, math.sqrt(s) / n / 10), parameters=dict(points=n), method='pair-distance identity')
+
+
+def capsid_architecture(packet, key):
+    q = packet['question']
+    labels, _ = assembly_points(packet, key)
+    component = find(r'shell formed by (\S+?)\?', q, 'Shell component not stated').group(1)
+    n = sum(1 for l in labels if l == component)
+    need(n > 0 and n % 60 == 0, 'Copy number is not a multiple of 60')
+    t = n // 60
+    if 'triangulation number' in q:
+        value = t
+    elif 'hexameric capsomers' in q:
+        value = 10 * (t - 1)
+    else:
+        need('total number of capsomers' in q, 'Unknown architecture question')
+        value = 12 + 10 * (t - 1)
+    return dict(judge_numeric(packet, key, value), parameters=dict(component=component, copies=n, T=t),
+                method='count copies; Caspar–Klug relations')
+
+
+CHECKERS.update(assembly_extent=assembly_extent, assembly_rg=assembly_rg, capsid_architecture=capsid_architecture)

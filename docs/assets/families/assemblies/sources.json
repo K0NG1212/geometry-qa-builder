@@ -1,0 +1,61 @@
+{
+ "license": "wwPDB data: CC0 1.0",
+ "note": "Raw downloads are kept locally in inputs/pdb (not in Git).",
+ "files": {
+  "1AON-residue-points.xyz": {
+   "pdb": "1AON",
+   "source": "https://files.rcsb.org/download/1AON.pdb",
+   "sha256": "5cddcf0ebe222238073f73f4fcc0f579a090389f9c3d152399b4e41ca4a0ed3e",
+   "bytes": 4973076,
+   "points": 8015,
+   "reduction": "CA of every protein residue and P of every nucleotide, main alternate location",
+   "asset_sha256": "d3587366c916dbd2e00b65dd08078d3c6fff2b4a27f88566b2a14d5961086d70"
+  },
+  "1KX5-residue-points.xyz": {
+   "pdb": "1KX5",
+   "source": "https://files.rcsb.org/download/1KX5.pdb",
+   "sha256": "6f99aa27cffb3174d0406ebd644eba6475bed61047305aac94fb844d3718112a",
+   "bytes": 1457676,
+   "points": 1266,
+   "reduction": "CA of every protein residue and P of every nucleotide, main alternate location",
+   "asset_sha256": "390e38ca9381d50b1bcf8b50f86bcf1c079bd875de61b115d48bd7ec1c95a19e"
+  },
+  "1A34-capsid-CA.xyz": {
+   "pdb": "1A34",
+   "source": "https://files.rcsb.org/download/1A34.cif",
+   "sha256": "981e7605461c59eb95870c72a20ea896c0c148e0f5861fc674b100f5c5c5e6be",
+   "bytes": 438031,
+   "points": 8820,
+   "reduction": "capsid-protein CA atoms (147 per copy) expanded by operators 1-60 of assembly 1",
+   "asset_sha256": "7b54ce07230e83764053971e3fb1d2f7280bc00b28b0d2af09cb6f23dab35ab0"
+  },
+  "1A34-subunit-centroids.txt": {
+   "pdb": "1A34",
+   "source": "https://files.rcsb.org/download/1A34.cif",
+   "sha256": "981e7605461c59eb95870c72a20ea896c0c148e0f5861fc674b100f5c5c5e6be",
+   "bytes": 438031,
+   "points": 60,
+   "reduction": "capsid-protein CA atoms (147 per copy) expanded by operators 1-60 of assembly 1",
+   "asset_sha256": "4f1f0dd1cce1a169482537e82e8bcc149623b0798d43ae40a380a408b2bb5335"
+  },
+  "6CGR-chain-centroids.txt": {
+   "pdb": "6CGR",
+   "source": "https://files.rcsb.org/download/6CGR.cif.gz",
+   "sha256": "b10c3794dd333d1694f349763c5d896ae4183b57eb85f83a3e1faafb7876f412",
+   "bytes": 4949079,
+   "points": 3060,
+   "chains_per_unit": 51,
+   "components": {
+    "VP19C": 300,
+    "VP23": 600,
+    "VP26": 900,
+    "VP5": 960,
+    "pUL17": 120,
+    "pUL25": 60,
+    "pUL36": 120
+   },
+   "reduction": "CA centroid per protein chain, expanded by operators 1-60 of assembly 1",
+   "asset_sha256": "ac131b47d238f2caca8b7e49ecdfeca1dacb17fd05dd87909b6efc884c6aff33"
+  }
+ }
+}

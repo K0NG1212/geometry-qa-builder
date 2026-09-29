@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.4.0",
   "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
   "rules": {
     "new": "Genuinely new question: added as a new catalog record (provisional).",
@@ -114,6 +114,33 @@
       "learningObjective": "测定按化学含义指定的键角（如磺酰 O=S=O），顶点与两端的成键由规则确认。",
       "sizeDefinition": "输入：分子最大原子间距；推理：三原子两两最大间距。",
       "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0。"
+    },
+    "assembly_extent": {
+      "domain": "biology",
+      "scale": "macromolecule",
+      "paper": "pdb-bio-nm",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基一点或每链质心）。",
+      "reasoning": "molecular",
+      "learningObjective": "在整个颗粒尺度（10–1000 nm）上确定大型生物组装体的最大尺寸，区分最大点对间距与包围盒、半径等相近量。",
+      "sizeDefinition": "输入：整个组装体约简点集最大间距；推理：所选点集最大间距。"
+    },
+    "assembly_rg": {
+      "domain": "biology",
+      "scale": "macromolecule",
+      "paper": "pdb-bio-nm",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基一点或每链质心）。",
+      "reasoning": "ensemble",
+      "learningObjective": "计算大型组装体（或指定组分外壳）的等权回转半径，区分回转半径与半径、单轴离散度。",
+      "sizeDefinition": "输入：整个组装体约简点集最大间距；推理：所选点集最大间距。"
+    },
+    "capsid_architecture": {
+      "domain": "biology",
+      "scale": "macromolecule",
+      "paper": "pdb-bio-nm",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基一点或每链质心）。",
+      "reasoning": "ensemble",
+      "learningObjective": "由整个衣壳中外壳蛋白的拷贝数推断三角剖分数 T、壳粒与六邻体数目（Caspar–Klug 结构理论）。",
+      "sizeDefinition": "输入：整个衣壳；推理：所选组分外壳的最大间距。"
     }
   },
   "instances": [
@@ -515,6 +542,108 @@
       "action": "new",
       "catalog_id": "BNI014",
       "title": "B-DNA 1BNA · Guinier 强度（四选一）"
+    },
+    {
+      "instance": "FA-ASM-EXT-1AON",
+      "action": "new",
+      "catalog_id": "BNP017",
+      "title": "GroEL–GroES 1AON · 整体最大尺寸（四选一）"
+    },
+    {
+      "instance": "FA-ASM-RG-1AON",
+      "action": "new",
+      "catalog_id": "BNP018",
+      "title": "GroEL–GroES 1AON · 回转半径（四选一）"
+    },
+    {
+      "instance": "FA-ASM-GUIN-1AON",
+      "action": "new",
+      "catalog_id": "BNI015",
+      "title": "GroEL–GroES 1AON · Guinier 强度（四选一）",
+      "reasoning": "ensemble",
+      "sizeDefinition": "输入与推理：整个组装体约简点集最大间距。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基一点或每链质心）。",
+      "learningObjective": "由大型组装体的约简点集求等权回转半径，并在 Guinier 适用范围内推断归一化小角散射强度。"
+    },
+    {
+      "instance": "FA-ASM-EXT-1KX5",
+      "action": "new",
+      "catalog_id": "BNP019",
+      "title": "核小体 1KX5 · 整体最大尺寸（四选一）"
+    },
+    {
+      "instance": "FA-ASM-RG-1KX5",
+      "action": "new",
+      "catalog_id": "BNP020",
+      "title": "核小体 1KX5 · 回转半径（四选一）"
+    },
+    {
+      "instance": "FA-ASM-GUIN-1KX5",
+      "action": "new",
+      "catalog_id": "BNI016",
+      "title": "核小体 1KX5 · Guinier 强度（四选一）",
+      "reasoning": "ensemble",
+      "sizeDefinition": "输入与推理：整个组装体约简点集最大间距。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基一点或每链质心）。",
+      "learningObjective": "由大型组装体的约简点集求等权回转半径，并在 Guinier 适用范围内推断归一化小角散射强度。"
+    },
+    {
+      "instance": "FA-ASM-EXT-1A34",
+      "action": "new",
+      "catalog_id": "BNP021",
+      "title": "STMV 衣壳 1A34 · 整体最大尺寸（四选一）"
+    },
+    {
+      "instance": "FA-ASM-RG-1A34",
+      "action": "new",
+      "catalog_id": "BNP022",
+      "title": "STMV 衣壳 1A34 · 回转半径（四选一）"
+    },
+    {
+      "instance": "FA-ASM-GUIN-1A34",
+      "action": "new",
+      "catalog_id": "BNI017",
+      "title": "STMV 衣壳 1A34 · Guinier 强度（四选一）",
+      "reasoning": "ensemble",
+      "sizeDefinition": "输入与推理：整个组装体约简点集最大间距。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基一点或每链质心）。",
+      "learningObjective": "由大型组装体的约简点集求等权回转半径，并在 Guinier 适用范围内推断归一化小角散射强度。"
+    },
+    {
+      "instance": "FA-ASM-CAPS-1A34",
+      "action": "new",
+      "catalog_id": "BNI018",
+      "title": "STMV 衣壳 1A34 · 壳粒数（T=1）（四选一）"
+    },
+    {
+      "instance": "FA-ASM-EXT-6CGR",
+      "action": "new",
+      "catalog_id": "BNP023",
+      "title": "HSV-1 衣壳 6CGR · VP5 外壳最大尺寸（四选一）"
+    },
+    {
+      "instance": "FA-ASM-RG-6CGR",
+      "action": "new",
+      "catalog_id": "BNP024",
+      "title": "HSV-1 衣壳 6CGR · VP5 外壳回转半径（四选一）"
+    },
+    {
+      "instance": "FA-ASM-T-6CGR",
+      "action": "new",
+      "catalog_id": "BNI019",
+      "title": "HSV-1 衣壳 6CGR · 三角剖分数 T（四选一）"
+    },
+    {
+      "instance": "FA-ASM-CAPS-6CGR",
+      "action": "new",
+      "catalog_id": "BNI020",
+      "title": "HSV-1 衣壳 6CGR · 壳粒总数（四选一）"
+    },
+    {
+      "instance": "FA-ASM-HEX-6CGR",
+      "action": "new",
+      "catalog_id": "BNI021",
+      "title": "HSV-1 衣壳 6CGR · 六邻体数（四选一）"
     }
   ]
 }

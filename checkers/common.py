@@ -122,7 +122,7 @@ def judge_numeric(packet, key, value, period=None):
     units = {o.get('unit') for o in packet['options']}
     need(units == {numeric['unit']}, 'Option units differ from the answer unit')
     for o in packet['options']:
-        need(re.fullmatch(r'-?\d+\.\d{%d}' % decimals, o['value']) is not None,
+        need(re.fullmatch(r'-?\d+\.\d{%d}' % decimals if decimals else r'-?\d+', o['value']) is not None,
              'Option %s not shown with %d decimals' % (o['label'], decimals))
     hits = [o['label'] for o in packet['options'] if gap(Decimal(o['value']), exact, period) <= tol]
     need(len(hits) == 1, 'Recomputed value matches %d options (need exactly 1)' % len(hits))

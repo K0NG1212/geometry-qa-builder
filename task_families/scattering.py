@@ -97,15 +97,21 @@ def rg(points):
 
 def build_guinier(spec, root, seed):
     raw = (root / 'docs' / spec['asset']).read_bytes()
-    atoms, _ = read_chain(raw.decode('utf-8'), spec['chains'])
-    text = kit.xyz_text([a['element'] for a in atoms], [a['xyz'] for a in atoms],
-                        '%s chains %s, non-hydrogen ATOM records (main alternate location), angstrom' % (spec['pdb'], spec['chains']))
-    points = kit.parse_xyz(text)[1]
+    if spec['asset'].endswith('.xyz'):          # reduced large assembly: supplied points as they are
+        text = raw.decode('utf-8')
+        points = kit.parse_xyz(text, max_atoms=20000)[1]
+    else:
+        atoms, _ = read_chain(raw.decode('utf-8'), spec['chains'])
+        text = kit.xyz_text([a['element'] for a in atoms], [a['xyz'] for a in atoms],
+                            '%s chains %s, non-hydrogen ATOM records (main alternate location), angstrom' % (spec['pdb'], spec['chains']))
+        points = kit.parse_xyz(text)[1]
     radius = rg(points) / 10                                    # nm
     q = spec['q_per_nm']
     if q * radius > 1.3:
         raise ValueError('q*Rg above the Guinier validity limit')
     value = math.exp(-(q * radius) ** 2 / 3)
+    centre = [math.fsum(p[k] for p in points) / len(points) for k in range(3)]
+    axis_rms = max(math.sqrt(math.fsum((p[k] - centre[k]) ** 2 for p in points) / len(points)) for k in range(3)) / 10
     dm = kit.dmax(points) / 10
     cands = [dict(rule='missing_one_third', value=math.exp(-(q * radius) ** 2), plausibility=3, reason='指数中漏掉 1/3。'),
              dict(rule='half_dmax_as_rg', value=math.exp(-(q * dm / 2) ** 2 / 3), plausibility=2, reason='把最大尺寸的一半当作回转半径。'),
@@ -116,7 +122,9 @@ def build_guinier(spec, root, seed):
              dict(rule='amplitude_not_intensity', value=math.sqrt(value), plausibility=2,
                   reason='报告了散射振幅比（强度的平方根）而非强度比。'),
              dict(rule='q_unit_conversion', value=math.exp(-(q / 10 * radius) ** 2 / 3), plausibility=1,
-                  reason='q 换算单位时多除以 10（nm⁻¹ 当作 Å⁻¹ 处理）。')]
+                  reason='q 换算单位时多除以 10（nm⁻¹ 当作 Å⁻¹ 处理）。'),
+             dict(rule='single_axis_spread_as_rg', value=math.exp(-(q * axis_rms) ** 2 / 3), plausibility=2,
+                  reason='把单一坐标轴方向的均方根离散度当作回转半径（偏小），强度因而偏大。')]
     decimals, tol, sep = 3, '0.0005', '0.020'
     chosen, rejected, goal, rank = kit.choose_numeric(value, cands, decimals=decimals, tolerance=tol, min_separation=sep, seed=seed,
                                                       context=spec['id'], lower=0, upper=1, target=spec.get('target_position'),
@@ -125,12 +133,16 @@ def build_guinier(spec, root, seed):
                                        correct_reason='等权 Rg = %.4f nm，qRg = %.3f ≤ 1.3，I/I0 = exp(−q²Rg²/3)。' % (radius, q * radius))
     key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=sep, unit='',
                                distractor_separation='0.010')
-    question = ('The XYZ file lists every non-hydrogen atom of %s (PDB %s, chains %s). Treat each supplied atom as an identical '
-                'point scatterer. In the Guinier approximation (which applies at this q), what is the normalized small-angle '
-                'scattering intensity I(q)/I(0) at q = %.2f nm⁻¹?') % (spec['context'], spec['pdb'], spec['chains'], q)
+    subject = (('The XYZ file lists %s of %s (PDB %s). Treat each supplied point as an identical point scatterer.' %
+                (spec['representation'], spec['context'], spec['pdb'])) if spec['asset'].endswith('.xyz') else
+               ('The XYZ file lists every non-hydrogen atom of %s (PDB %s, chains %s). Treat each supplied atom as an identical '
+                'point scatterer.' % (spec['context'], spec['pdb'], spec['chains'])))
+    question = ('%s In the Guinier approximation (which applies at this q), what is the normalized small-angle '
+                'scattering intensity I(q)/I(0) at q = %.2f nm⁻¹?') % (subject, q)
     return dict(
         question=question, scope=spec['scope'],
-        inputs=[dict(name='%s-heavy-atoms.xyz' % spec['pdb'], format='xyz', unit='angstrom', text=text)],
+        inputs=[dict(name=spec['asset'].rsplit('/', 1)[1] if spec['asset'].endswith('.xyz') else '%s-heavy-atoms.xyz' % spec['pdb'],
+                     format='xyz', unit='angstrom', text=text)],
         numeric=dict(value=kit.display(value, decimals), unit='', decimals=decimals, tolerance=tol),
         options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected, rank=dict(target=goal, achieved=rank),
         checks=dict(rg_nm=radius, q_per_nm=q, q_rg=q * radius, dmax_nm=dm, atoms=len(points),

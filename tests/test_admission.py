@@ -107,7 +107,11 @@ class CoveragePlanTests(unittest.TestCase):
             self.assertIn(note['route'], FEASIBILITY['evidence_routes'])
             self.assertTrue(all(src['url'].startswith('https://') and src['license'] for src in note['sources']))
         large = [c for c in result['cells'] if c['cell'] in ('10-100', '100-1000')]
-        self.assertTrue(all(v['best_route'] == 'none' for c in large for v in c['abilities'].values()))
+        # A4: only the biology large cells have ready (checked) routes so far; design is still open there.
+        for c in large:
+            ready = {a for a, v in c['abilities'].items() if v['best_route'] == 'ready'}
+            self.assertEqual(ready, {'perception', 'inference'} if c['domain'] == 'biology' else set(), (c['domain'], c['cell']))
+            self.assertEqual(c['abilities']['design']['best_route'], 'none')
 
 
 if __name__ == '__main__':

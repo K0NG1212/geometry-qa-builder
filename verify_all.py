@@ -19,13 +19,26 @@ import checkers
 ROOT = Path(__file__).resolve().parent
 
 
+def rehydrate(packets):
+    """Published workbench inputs larger than ~40 kB are stored as {url, sha256} pointing at the
+    committed asset; restore the text and check the hash."""
+    for packet in packets:
+        for item in packet.get('inputs', []):
+            if 'text' not in item and 'url' in item:
+                raw = (ROOT / 'docs' / item['url']).read_bytes()
+                if hashlib.sha256(raw).hexdigest() != item['sha256']:
+                    raise ValueError('Referenced input hash mismatch: ' + item['url'])
+                item['text'] = raw.decode('utf-8')
+    return packets
+
+
 def load(run=None, workbench=None):
     if run:
         run = Path(run)
         read = lambda n: json.loads((run / n).read_text(encoding='utf-8'))
         return read('student-packets.json'), read('private-answers.json'), dict(source=str(run.name))
     data = json.loads(Path(workbench).read_text(encoding='utf-8'))
-    return data['student_packets'], data['teacher_answers'], dict(source=Path(workbench).name, run=data['run'])
+    return rehydrate(data['student_packets']), data['teacher_answers'], dict(source=Path(workbench).name, run=data['run'])
 
 
 def verify(packets, keys, origin):

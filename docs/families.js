@@ -50,7 +50,9 @@
   const stage=fam.stage_records.find(s=>s.id===id);
   $('fam-meta').textContent=`${id} · ${ABILITY[teacher.ability]} · 族版本 ${teacher.family_version} · 来源 ${teacher.source}${teacher.license?' · 许可 '+teacher.license:''}${teacher.legacy_qa?' · 对应旧题 '+teacher.legacy_qa:''}`;
   $('fam-question').textContent=student.question;$('fam-scope').textContent='范围：'+student.scope;
-  $('fam-inputs').innerHTML=student.inputs.map((x,i)=>`<details><summary>输入 ${i+1}：${esc(x.name)}（${esc(x.format)}，${esc(x.unit)}，${x.text.split('\n').length-1} 行）</summary><pre>${esc(x.text)}</pre></details>`).join('');
+  $('fam-inputs').innerHTML=student.inputs.map((x,i)=>x.text!==undefined?`<details><summary>输入 ${i+1}：${esc(x.name)}（${esc(x.format)}，${esc(x.unit)}，${x.text.split('\n').length-1} 行）</summary><pre>${esc(x.text)}</pre></details>`
+   :`<details data-url="${esc(x.url)}"><summary>输入 ${i+1}：${esc(x.name)}（${esc(x.format)}，${esc(x.unit)}，${Math.round(x.chars/1024)} KB，展开时加载）</summary><p><a class="text-link" href="${esc(x.url)}" download>下载原文件 ↓</a> · SHA-256 ${esc(x.sha256.slice(0,12))}…</p><pre></pre></details>`).join('');
+  $('fam-inputs').querySelectorAll('details[data-url]').forEach(d=>d.addEventListener('toggle',()=>{const pre=d.querySelector('pre');if(d.open&&!pre.textContent)fetch(d.dataset.url).then(r=>r.text()).then(t=>{pre.textContent=t.length>200000?t.slice(0,200000)+'\n…（仅显示前 200 KB，完整内容请下载）':t})}));
   $('fam-options').replaceChildren(...student.options.map(o=>{const b=document.createElement('button');b.type='button';b.textContent=o.label+' · '+o.value+(o.unit?' '+(o.unit==='angstrom'?'Å':o.unit==='degree'?'°':o.unit):'');b.addEventListener('click',()=>{$('fam-grade').textContent=o.label===teacher.correct_label?'回答正确（仅标签评分，不代表科学审核通过）。':'回答错误。可展开右侧审核记录查看原因。'});return b}));
   $('fam-grade').textContent='';$('fam-download-numeric').hidden=!numeric;
   $('fam-student').textContent=pretty(student);
@@ -74,8 +76,10 @@
   renderInstance();
  }
  $('fam-select').addEventListener('change',renderFamily);$('fam-instance').addEventListener('change',renderInstance);
- $('fam-download').addEventListener('click',()=>student&&save(student,student.id+'-student.json'));
- $('fam-download-numeric').addEventListener('click',()=>numeric&&save(numeric,numeric.id+'-student.json'));
+ // Referenced large inputs are fetched and embedded so the downloaded student pack is complete.
+ const full=async p=>({...p,inputs:await Promise.all(p.inputs.map(async x=>x.text!==undefined?x:{name:x.name,format:x.format,unit:x.unit,text:await (await fetch(x.url)).text()}))});
+ $('fam-download').addEventListener('click',async()=>student&&save(await full(student),student.id+'-student.json'));
+ $('fam-download-numeric').addEventListener('click',async()=>numeric&&save(await full(numeric),numeric.id+'-student.json'));
 
  const ROUTE={ready:'有代码可直接出题',migrate:'需迁移旧计算器',build:'已定义待实现',none:'无路线，需调研数据源'},SHORT={perception:'感',inference:'推',design:'设'};
  function renderPlan(plan){
@@ -94,7 +98,7 @@
   $('fam-checker-code').textContent=Object.entries(i.checker_code||{}).map(([k,v])=>'# ==== '+k+'\n'+v).join('\n');
   $('cov-status').innerHTML='<option value="all">全部状态</option>'+Object.keys(cov.axes.status).map(k=>`<option value="${esc(k)}">${esc(STATUS[k]||k)}</option>`).join('');
   table();
-  const order=['stereo_relationship','stereo_property_inference','stereo_design_selection','named_bond_distance','coordination_shell','first_diffraction_peak','fret_efficiency','guinier_intensity','named_bond_angle','backbone_torsion','force_path_derivative','kinematic_extinction','conformer_target_selection','extent_choice_v2'];
+  const order=['assembly_extent','assembly_rg','capsid_architecture','stereo_relationship','stereo_property_inference','stereo_design_selection','named_bond_distance','coordination_shell','first_diffraction_peak','fret_efficiency','guinier_intensity','named_bond_angle','backbone_torsion','force_path_derivative','kinematic_extinction','conformer_target_selection','extent_choice_v2'];
   const present=order.filter(x=>fam.teacher_answers.some(t=>t.family===x));
   $('fam-select').innerHTML=present.map(x=>{const t=fam.teacher_answers.find(y=>y.family===x);return `<option value="${esc(x)}">${esc(ABILITY[t.ability])} · ${esc(familyName(x))}</option>`}).join('');
   const r=fam.report;$('fam-summary').textContent=`运行 ${fam.run}：尝试 ${r.attempted} 例，程序核验通过 ${r.passed} 例，构造失败 ${r.failures.length} 例（已记录原因）；模型调用 0；全部待人工审核。构造阶段不直接写入题库，去重后的暂计入库见上方“160 道原型”进度。`;

@@ -29,11 +29,11 @@
   }
  },
  "summary": {
-  "types_defined": 21,
-  "types_with_running_code": 14,
+  "types_defined": 23,
+  "types_with_running_code": 16,
   "status": {
    "implemented": 2,
-   "pilot": 12,
+   "pilot": 14,
    "existing_legacy": 3,
    "planned": 2,
    "rebuild_needed": 1,
@@ -42,11 +42,11 @@
   "by_ability": {
    "perception": {
     "implemented": 2,
-    "pilot": 5,
+    "pilot": 6,
     "existing_legacy": 2
    },
    "inference": {
-    "pilot": 5,
+    "pilot": 6,
     "planned": 1,
     "existing_legacy": 1,
     "rebuild_needed": 1
@@ -57,10 +57,10 @@
     "blocked": 1
    }
   },
-  "development_instances": 65,
+  "development_instances": 80,
   "instance_failures": 1,
-  "independent_pass": 65,
-  "independent_checked": 65,
+  "independent_pass": 80,
+  "independent_checked": 80,
   "legacy_candidates": 80,
   "legacy_decisions": {
    "retain": 42,
@@ -69,7 +69,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v03",
+ "family_run": "family-pilot-v05",
  "rows": [
   {
    "id": "global_extent",
@@ -551,6 +551,145 @@
     "retain": 2,
     "revise": 2
    },
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "assembly_size",
+   "name": "大型组装体尺寸（最大间距 / 回转半径）",
+   "ability": "perception",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "整个颗粒尺度的几何量：分子伴侣、核小体、病毒衣壳的最大间距与等权回转半径（10–1000 nm）。",
+   "domains": [
+    "biology"
+   ],
+   "input_scale": "整个组装体",
+   "reasoning_scale": "所选点集的最大间距（整个颗粒）",
+   "scale_cells": [
+    "10-100",
+    "100-1000"
+   ],
+   "scale_limits": "约简表示上的几何量，不是溶液中的流体力学尺寸。",
+   "inputs": "每残基一点的 XYZ，或按组分标记的链质心表（可只选某一组分，如 VP5 外壳）。",
+   "physical_conditions": "约简表示；几何量在所给点集上定义。",
+   "output_forms": [
+    "numeric",
+    "choice"
+   ],
+   "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR），经沉积的对称操作展开并约简为每残基一点或每链质心",
+   "answer_method": "numpy 分块搜索最大点对 + Decimal 复核；回转半径用质心公式并以 Decimal 复核。",
+   "distractor_mechanisms": [
+    "bounding_box_diagonal",
+    "centroid_diameter",
+    "largest_axis_span",
+    "sphere_radius_from_rg",
+    "single_axis_rms",
+    "wrong_selection"
+   ],
+   "four_choice_validation": "与正确值 > 0.3 nm；升序排列，秩按批次轮换（加入偏小的错误机制，避免正确项总是最小）。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/assembly.py",
+    "checkers/migrated.py",
+    "tools/build_assembly_assets.py"
+   ],
+   "tests": [
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
+   ],
+   "builder_modules": "族引擎内等价实现；原始下载保存在本地 inputs/pdb（不入库），约简资产及来源哈希入库。",
+   "gap": "化学、材料的大尺度对象待接入（7ARQ 等）。",
+   "engine_families": [
+    "assembly_extent",
+    "assembly_rg"
+   ],
+   "independent_checker": "checkers/migrated.py:assembly_extent, assembly_rg",
+   "instance_ids": [
+    "FA-ASM-EXT-1AON",
+    "FA-ASM-EXT-1KX5",
+    "FA-ASM-EXT-1A34",
+    "FA-ASM-EXT-6CGR",
+    "FA-ASM-RG-1AON",
+    "FA-ASM-RG-1KX5",
+    "FA-ASM-RG-1A34",
+    "FA-ASM-RG-6CGR"
+   ],
+   "instance_count": 8,
+   "independent_pass": 8,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "10-100",
+    "100-1000"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "capsid_architecture",
+   "name": "病毒衣壳结构（Caspar–Klug）",
+   "ability": "inference",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "由外壳蛋白拷贝数 N 推断二十面体衣壳的三角剖分数 T=N/60、壳粒总数 10T+2 与六邻体数 10(T−1)；需要从整个衣壳计数并运用结构理论。",
+   "domains": [
+    "biology"
+   ],
+   "input_scale": "整个衣壳",
+   "reasoning_scale": "整个外壳（所选组分点集的最大间距）",
+   "scale_cells": [
+    "10-100",
+    "100-1000"
+   ],
+   "scale_limits": "假设完整二十面体外壳，不区分门户顶点等局部不对称。",
+   "inputs": "按组分标记的链质心表（沉积的 60 个二十面体操作展开）。",
+   "physical_conditions": "约简表示；几何量在所给点集上定义。",
+   "output_forms": [
+    "numeric",
+    "choice"
+   ],
+   "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR），经沉积的对称操作展开并约简为每残基一点或每链质心",
+   "answer_method": "计数所选组分的拷贝数，按 Caspar–Klug 关系计算。",
+   "distractor_mechanisms": [
+    "neighbouring_allowed_T",
+    "all_hexamers",
+    "all_pentamers",
+    "hexons_only",
+    "pentons_only",
+    "hexon_subunits"
+   ],
+   "four_choice_validation": "整数选项互不相同；独立检查器重新计数。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/assembly.py",
+    "checkers/migrated.py",
+    "tools/build_assembly_assets.py"
+   ],
+   "tests": [
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
+   ],
+   "builder_modules": "族引擎内等价实现；原始下载保存在本地 inputs/pdb（不入库），约简资产及来源哈希入库。",
+   "gap": "目前 2 个衣壳（STMV T=1、HSV-1 T=16）。",
+   "engine_families": [
+    "capsid_architecture"
+   ],
+   "independent_checker": "checkers/migrated.py:capsid_architecture",
+   "instance_ids": [
+    "FA-ASM-CAPS-1A34",
+    "FA-ASM-T-6CGR",
+    "FA-ASM-CAPS-6CGR",
+    "FA-ASM-HEX-6CGR"
+   ],
+   "instance_count": 4,
+   "independent_pass": 4,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "10-100",
+    "100-1000"
+   ],
+   "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
   {
@@ -1116,7 +1255,8 @@
    "input_scale": "蛋白（1–10 nm）",
    "reasoning_scale": "全局尺度",
    "scale_cells": [
-    "1-10"
+    "1-10",
+    "10-100"
    ],
    "scale_limits": "模型假设需人工审核。",
    "inputs": "PDB 链 ATOM 片段（FRET）或整分子重原子 XYZ（Guinier）。",
@@ -1148,8 +1288,9 @@
     "BNI004"
    ],
    "code": [
+    "checkers/migrated.py",
     "task_families/scattering.py",
-    "checkers/migrated.py"
+    "tools/build_assembly_assets.py"
    ],
    "tests": [
     "tests/test_task_families.py",
@@ -1168,13 +1309,17 @@
     "FA-FRET-6LYZ",
     "FA-GUIN-6LYZ",
     "FA-GUIN-1EHZ",
-    "FA-GUIN-1BNA"
+    "FA-GUIN-1BNA",
+    "FA-ASM-GUIN-1AON",
+    "FA-ASM-GUIN-1KX5",
+    "FA-ASM-GUIN-1A34"
    ],
-   "instance_count": 6,
-   "independent_pass": 6,
+   "instance_count": 9,
+   "independent_pass": 9,
    "instance_failures": 0,
    "instance_reasoning_cells": [
-    "1-10"
+    "1-10",
+    "10-100"
    ],
    "legacy_decisions": {
     "retain": 2,

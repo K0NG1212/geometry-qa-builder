@@ -15,8 +15,11 @@ import copy
 import json
 from collections import Counter
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from verify_all import rehydrate  # noqa: E402
 DOCS = ROOT / 'docs'
 ASSET_DIR = 'assets/families/instances'
 UNITS = {'angstrom': ' Å', 'degree': '°', 'eV': ' eV'}
@@ -34,23 +37,28 @@ def build_record(entry, family, student, teacher, numeric, check, run, date):
     cid, inst = entry['catalog_id'], entry['instance']
     files, attachments = {}, []
     for item in student['inputs']:
-        rel = '%s/%s/%s' % (ASSET_DIR, cid, item['name'])
-        files[rel] = item['text']
         lines = len(item['text'].rstrip('\n').splitlines())
+        if item.get('url'):          # large input published once as a shared asset: link it, do not copy
+            rel = item['url']
+        else:
+            rel = '%s/%s/%s' % (ASSET_DIR, cid, item['name'])
+            files[rel] = item['text']
         attachments.append(dict(name=item['name'], url=rel,
                                 description='%s；%s；%d 行' % (item['format'], item['unit'], lines)))
     names = '、'.join(a['name'] for a in attachments)
     instructions = ('附件：%s（均为本题完整输入）。范围：%s 只回答一个字母 A、B、C 或 D。' % (names, student['scope']))
     complete = '\n\n'.join([student['question'], '选项：\n' + option_text(student['options']), instructions])
     files['%s/%s/input.txt' % (ASSET_DIR, cid)] = complete + ''.join(
-        '\n\n===== %s =====\n%s' % (i['name'], i['text']) for i in student['inputs'])
+        '\n\n===== %s =====\n%s' % (i['name'], '（大文件，见附件 %s）\n' % i['url'] if i.get('url') else i['text'])
+        for i in student['inputs'])
     right = next(o for o in teacher['option_audit'] if o['is_correct'])
     answer = '%s · %s' % (teacher['correct_label'], right['value'])
     rubric = '四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。'
     if teacher['numeric_answer']:
         n = teacher['numeric_answer']
-        answer += '（数值作答：%s %s）' % (n['value'], n['unit'])
-        rubric += ' 数值作答形式：%d 位小数，绝对容差 %s %s。' % (n['decimals'], n['tolerance'], n['unit'])
+        unit = (' ' + n['unit']) if n['unit'] else ''       # counts (capsid T, capsomers) have no unit
+        answer += '（数值作答：%s%s）' % (n['value'], unit)
+        rubric += ' 数值作答形式：%d 位小数，绝对容差 %s%s。' % (n['decimals'], n['tolerance'], unit)
     record = dict(
         id=cid, title=entry['title'], paper=entry.get('paper', family['paper']), ability=teacher['ability'],
         domain=family['domain'], scale=family['scale'], reasoning=family['reasoning'], status='pending_human_audit',
@@ -79,6 +87,8 @@ def build_record(entry, family, student, teacher, numeric, check, run, date):
 def admit(catalog, workbench, independent, amap, date):
     """Pure function: returns (new catalog, {relative asset path: text})."""
     catalog = copy.deepcopy(catalog)
+    workbench = copy.deepcopy(workbench)
+    rehydrate(workbench['student_packets'])     # restores 'text'; 'url' stays for shared large inputs
     teachers = {t['id']: t for t in workbench['teacher_answers']}
     students = {s['id']: s for s in workbench['student_packets']}
     numerics = {n['inputs_same_as']: n for n in workbench['numeric_student_packets']}

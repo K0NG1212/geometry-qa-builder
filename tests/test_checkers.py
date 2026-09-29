@@ -10,7 +10,7 @@ import verify_all
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKBENCH = json.loads((ROOT / 'docs/data/family-workbench.json').read_text(encoding='utf-8'))
-PACKETS = {p['id']: p for p in WORKBENCH['student_packets']}
+PACKETS = {p['id']: p for p in verify_all.rehydrate(copy.deepcopy(WORKBENCH['student_packets']))}
 KEYS = {k['id']: k for k in WORKBENCH['teacher_answers']}
 
 
@@ -57,7 +57,7 @@ class IndependenceTests(unittest.TestCase):
         self.assertEqual(engine, set(checkers.CHECKERS))
 
     def test_published_batch_passes(self):
-        report = verify_all.verify(WORKBENCH['student_packets'], WORKBENCH['teacher_answers'], {})
+        report = verify_all.verify(list(PACKETS.values()), WORKBENCH['teacher_answers'], {})
         self.assertEqual(report['failed'], [])
         self.assertEqual(report['passed'], len(WORKBENCH['teacher_answers']))
         self.assertEqual(report['model_calls'], 0)

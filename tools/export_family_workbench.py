@@ -7,12 +7,14 @@ automatically.
 python tools/export_family_workbench.py --run runs/family-pilot-v01 --public-development-examples
 """
 import argparse
+import hashlib
 import json
 import sys
 import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+LARGE = 40000        # characters; larger inputs are published by reference to their asset file
 sys.path.insert(0, str(ROOT))
 import family_engine
 import verify_all
@@ -46,8 +48,20 @@ def export(run, public=False):
         raise ValueError('Independent check failed: %s' % independent['failed'])
     code = {rel: (run / 'snapshot' / rel).read_text(encoding='utf-8') for rel in report['code_sha256']
             if rel.startswith('task_families/') or rel == 'family_engine.py'}
+    students = read(run / 'student-packets.json')
+    hashes = {t['id']: t['input_hashes'] for t in read(run / 'private-answers.json')}
+    for packet in students:            # large inputs identical to a committed asset: publish by reference
+        for item in packet['inputs']:
+            if len(item['text']) <= LARGE:
+                continue
+            digest = hashlib.sha256(item['text'].encode('utf-8')).hexdigest()
+            for rel, asset_digest in hashes[packet['id']].items():
+                if asset_digest == digest:
+                    chars = len(item.pop('text'))
+                    item.update(url=rel, sha256=digest, chars=chars)
+                    break
     payload = dict(report=report, registry=read(run / 'snapshot/registry.json'),
-                   student_packets=read(run / 'student-packets.json'),
+                   student_packets=students,
                    # Same inputs as the choice packet; the page re-attaches them for download.
                    numeric_student_packets=[dict({k: v for k, v in n.items() if k != 'inputs'}, inputs_same_as=n['id'][2:])
                                             for n in read(run / 'numeric-student-packets.json')],

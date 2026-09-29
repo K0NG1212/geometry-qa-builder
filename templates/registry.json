@@ -443,6 +443,121 @@
       "independent_checker": "checkers/migrated.py:coordination_shell"
     },
     {
+      "id": "assembly_size",
+      "name": "大型组装体尺寸（最大间距 / 回转半径）",
+      "ability": "perception",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "整个颗粒尺度的几何量：分子伴侣、核小体、病毒衣壳的最大间距与等权回转半径（10–1000 nm）。",
+      "domains": [
+        "biology"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "numeric",
+        "choice"
+      ],
+      "inputs": "每残基一点的 XYZ，或按组分标记的链质心表（可只选某一组分，如 VP5 外壳）。",
+      "physical_conditions": "约简表示；几何量在所给点集上定义。",
+      "input_scale": "整个组装体",
+      "reasoning_scale": "所选点集的最大间距（整个颗粒）",
+      "scale_cells": [
+        "10-100",
+        "100-1000"
+      ],
+      "scale_limits": "约简表示上的几何量，不是溶液中的流体力学尺寸。",
+      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR），经沉积的对称操作展开并约简为每残基一点或每链质心",
+      "answer_method": "numpy 分块搜索最大点对 + Decimal 复核；回转半径用质心公式并以 Decimal 复核。",
+      "distractor_mechanisms": [
+        "bounding_box_diagonal",
+        "centroid_diameter",
+        "largest_axis_span",
+        "sphere_radius_from_rg",
+        "single_axis_rms",
+        "wrong_selection"
+      ],
+      "four_choice_validation": "与正确值 > 0.3 nm；升序排列，秩按批次轮换（加入偏小的错误机制，避免正确项总是最小）。",
+      "engine_families": [
+        "assembly_extent",
+        "assembly_rg"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/assembly.py",
+        "checkers/migrated.py",
+        "tools/build_assembly_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现；原始下载保存在本地 inputs/pdb（不入库），约简资产及来源哈希入库。",
+      "principle": "Dmax = max‖ri−rj‖；Rg = √(Σ‖ri−c‖²/N)。",
+      "validation": "两种实现一致；独立检查器用成对恒等式复核。",
+      "limits": "邻近亚基间距（约 5 nm）属于 1–10 nm 格，不在本题型中使用。",
+      "gap": "化学、材料的大尺度对象待接入（7ARQ 等）。",
+      "template_review": "本轮新建（A4），待人工审核。",
+      "independent_checker": "checkers/migrated.py:assembly_extent, assembly_rg"
+    },
+    {
+      "id": "capsid_architecture",
+      "name": "病毒衣壳结构（Caspar–Klug）",
+      "ability": "inference",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "由外壳蛋白拷贝数 N 推断二十面体衣壳的三角剖分数 T=N/60、壳粒总数 10T+2 与六邻体数 10(T−1)；需要从整个衣壳计数并运用结构理论。",
+      "domains": [
+        "biology"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "numeric",
+        "choice"
+      ],
+      "inputs": "按组分标记的链质心表（沉积的 60 个二十面体操作展开）。",
+      "physical_conditions": "约简表示；几何量在所给点集上定义。",
+      "input_scale": "整个衣壳",
+      "reasoning_scale": "整个外壳（所选组分点集的最大间距）",
+      "scale_cells": [
+        "10-100",
+        "100-1000"
+      ],
+      "scale_limits": "假设完整二十面体外壳，不区分门户顶点等局部不对称。",
+      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR），经沉积的对称操作展开并约简为每残基一点或每链质心",
+      "answer_method": "计数所选组分的拷贝数，按 Caspar–Klug 关系计算。",
+      "distractor_mechanisms": [
+        "neighbouring_allowed_T",
+        "all_hexamers",
+        "all_pentamers",
+        "hexons_only",
+        "pentons_only",
+        "hexon_subunits"
+      ],
+      "four_choice_validation": "整数选项互不相同；独立检查器重新计数。",
+      "engine_families": [
+        "capsid_architecture"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/assembly.py",
+        "checkers/migrated.py",
+        "tools/build_assembly_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现；原始下载保存在本地 inputs/pdb（不入库），约简资产及来源哈希入库。",
+      "principle": "N = 60T；壳粒 = 12 + 10(T−1)。",
+      "validation": "独立检查器重新计数并套用同一关系。",
+      "limits": "只适用于完整二十面体外壳。",
+      "gap": "目前 2 个衣壳（STMV T=1、HSV-1 T=16）。",
+      "template_review": "本轮新建（A4），待人工审核。",
+      "independent_checker": "checkers/migrated.py:capsid_architecture"
+    },
+    {
       "id": "lattice_plane_geometry",
       "name": "晶面间距",
       "ability": "perception",
@@ -936,7 +1051,8 @@
       "input_scale": "蛋白（1–10 nm）",
       "reasoning_scale": "全局尺度",
       "scale_cells": [
-        "1-10"
+        "1-10",
+        "10-100"
       ],
       "scale_limits": "模型假设需人工审核。",
       "source_basis": "PDB + 教科书/论文模型",
@@ -966,8 +1082,9 @@
         "BNI004"
       ],
       "code": [
+        "checkers/migrated.py",
         "task_families/scattering.py",
-        "checkers/migrated.py"
+        "tools/build_assembly_assets.py"
       ],
       "tests": [
         "tests/test_task_families.py",
