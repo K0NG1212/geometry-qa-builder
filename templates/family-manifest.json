@@ -1722,6 +1722,185 @@
    "material": "polystyrene",
    "n_sphere": 1.59,
    "n_medium": 1.0
+  },
+  {
+   "id": "FA-MO-PERIOD-K079",
+   "family": "moire_geometry",
+   "asset": "assets/families/moire/TBG-K079-AA-map.txt",
+   "ask": "period",
+   "sample": "K079",
+   "twist_deg": 0.79,
+   "source": "Kerelsky et al., arXiv:1812.08776 (Nature 572, 95 (2019)): STM regions at 1.10° and 0.79°; λ = a/(2 sin(θ/2)). https://arxiv.org/abs/1812.08776",
+   "license": "只使用论文报道的转角数值（事实数据），未转载文字或图",
+   "scope": "按论文转角构建的刚性转角模型（无晶格弛豫、无异质应变）；AA 位点图相当于 STM 形貌的亮点位置，不是实测图像。"
+  },
+  {
+   "id": "FA-MO-AREA-M2",
+   "family": "moire_geometry",
+   "asset": "assets/families/moire/TBG-M2-AA-map.txt",
+   "ask": "area",
+   "sample": "M2",
+   "twist_deg": 1.05,
+   "source": "Cao et al., arXiv:1803.02342 (Nature 556, 43 (2018)): device twist angles M1 1.16°, M2 1.05°, D1 1.08°; n_s = 4/A, a = 0.246 nm. https://arxiv.org/abs/1803.02342",
+   "license": "只使用论文报道的转角数值（事实数据），未转载文字或图",
+   "scope": "按论文转角构建的刚性转角模型（无晶格弛豫、无异质应变）；AA 位点图相当于 STM 形貌的亮点位置，不是实测图像。"
+  },
+  {
+   "id": "FA-MO-PERIOD-D1",
+   "family": "moire_geometry",
+   "asset": "assets/families/moire/TBG-D1-AA-map.txt",
+   "ask": "period",
+   "sample": "D1",
+   "twist_deg": 1.08,
+   "source": "Cao et al., arXiv:1803.02342 (Nature 556, 43 (2018)): device twist angles M1 1.16°, M2 1.05°, D1 1.08°; n_s = 4/A, a = 0.246 nm. https://arxiv.org/abs/1803.02342",
+   "license": "只使用论文报道的转角数值（事实数据），未转载文字或图",
+   "scope": "按论文转角构建的刚性转角模型（无晶格弛豫、无异质应变）；AA 位点图相当于 STM 形貌的亮点位置，不是实测图像。"
+  },
+  {
+   "id": "FA-MO-ATOMS-K110",
+   "family": "moire_inference",
+   "asset": "assets/families/moire/TBG-K110-atoms.xyz",
+   "ask": "period_from_atoms",
+   "sample": "K110",
+   "twist_deg": 1.1,
+   "source": "Kerelsky et al., arXiv:1812.08776 (Nature 572, 95 (2019)): STM regions at 1.10° and 0.79°; λ = a/(2 sin(θ/2)). https://arxiv.org/abs/1812.08776",
+   "license": "只使用论文报道的转角数值（事实数据），未转载文字或图",
+   "scope": "按论文转角构建的刚性转角模型（无晶格弛豫、无异质应变）；AA 位点图相当于 STM 形貌的亮点位置，不是实测图像。"
+  },
+  {
+   "id": "FA-MO-NFULL-M1",
+   "family": "moire_inference",
+   "asset": "assets/families/moire/TBG-M1-AA-map.txt",
+   "ask": "n_full",
+   "sample": "M1",
+   "twist_deg": 1.16,
+   "source": "Cao et al., arXiv:1803.02342 (Nature 556, 43 (2018)): device twist angles M1 1.16°, M2 1.05°, D1 1.08°; n_s = 4/A, a = 0.246 nm. https://arxiv.org/abs/1803.02342",
+   "license": "只使用论文报道的转角数值（事实数据），未转载文字或图",
+   "scope": "按论文转角构建的刚性转角模型（无晶格弛豫、无异质应变）；AA 位点图相当于 STM 形貌的亮点位置，不是实测图像。"
+  },
+  {
+   "id": "FA-MO-NHALF-K079",
+   "family": "moire_inference",
+   "asset": "assets/families/moire/TBG-K079-AA-map.txt",
+   "ask": "n_half",
+   "sample": "K079",
+   "twist_deg": 0.79,
+   "source": "Kerelsky et al., arXiv:1812.08776 (Nature 572, 95 (2019)): STM regions at 1.10° and 0.79°; λ = a/(2 sin(θ/2)). https://arxiv.org/abs/1812.08776",
+   "license": "只使用论文报道的转角数值（事实数据），未转载文字或图",
+   "scope": "按论文转角构建的刚性转角模型（无晶格弛豫、无异质应变）；AA 位点图相当于 STM 形貌的亮点位置，不是实测图像。"
+  },
+  {
+   "id": "FA-MO-TWIST-D1",
+   "family": "moire_inference",
+   "asset": "assets/families/moire/TBG-D1-AA-map.txt",
+   "ask": "twist",
+   "sample": "D1",
+   "twist_deg": 1.08,
+   "source": "Cao et al., arXiv:1803.02342 (Nature 556, 43 (2018)): device twist angles M1 1.16°, M2 1.05°, D1 1.08°; n_s = 4/A, a = 0.246 nm. https://arxiv.org/abs/1803.02342",
+   "license": "只使用论文报道的转角数值（事实数据），未转载文字或图",
+   "scope": "按论文转角构建的刚性转角模型（无晶格弛豫、无异质应变）；AA 位点图相当于 STM 形貌的亮点位置，不是实测图像。"
+  },
+  {
+   "id": "FA-MO-DES-HALF",
+   "family": "moire_design",
+   "asset": "assets/families/moire/TBG-M2-AA-map.txt",
+   "candidates": [
+    "assets/families/moire/TBG-M2-AA-map.txt",
+    "assets/families/moire/TBG-D1-AA-map.txt",
+    "assets/families/moire/TBG-K110-AA-map.txt",
+    "assets/families/moire/TBG-M1-AA-map.txt"
+   ],
+   "twists": [
+    [
+     "M2",
+     1.05
+    ],
+    [
+     "D1",
+     1.08
+    ],
+    [
+     "K110",
+     1.1
+    ],
+    [
+     "M1",
+     1.16
+    ]
+   ],
+   "goal": "half",
+   "target": 1.3,
+   "source": "Cao et al., arXiv:1803.02342 (Nature 556, 43 (2018)): device twist angles M1 1.16°, M2 1.05°, D1 1.08°; n_s = 4/A, a = 0.246 nm. https://arxiv.org/abs/1803.02342 ; Kerelsky et al., arXiv:1812.08776 (Nature 572, 95 (2019)): STM regions at 1.10° and 0.79°; λ = a/(2 sin(θ/2)). https://arxiv.org/abs/1812.08776",
+   "license": "只使用论文报道的转角数值（事实数据），未转载文字或图",
+   "scope": "按论文转角构建的刚性转角模型（无晶格弛豫、无异质应变）；AA 位点图相当于 STM 形貌的亮点位置，不是实测图像。"
+  },
+  {
+   "id": "FA-MO-DES-PERIOD",
+   "family": "moire_design",
+   "asset": "assets/families/moire/TBG-K079-AA-map.txt",
+   "candidates": [
+    "assets/families/moire/TBG-K079-AA-map.txt",
+    "assets/families/moire/TBG-M2-AA-map.txt",
+    "assets/families/moire/TBG-D1-AA-map.txt",
+    "assets/families/moire/TBG-M1-AA-map.txt"
+   ],
+   "twists": [
+    [
+     "K079",
+     0.79
+    ],
+    [
+     "M2",
+     1.05
+    ],
+    [
+     "D1",
+     1.08
+    ],
+    [
+     "M1",
+     1.16
+    ]
+   ],
+   "goal": "period",
+   "target": 13.5,
+   "source": "Cao et al., arXiv:1803.02342 (Nature 556, 43 (2018)): device twist angles M1 1.16°, M2 1.05°, D1 1.08°; n_s = 4/A, a = 0.246 nm. https://arxiv.org/abs/1803.02342 ; Kerelsky et al., arXiv:1812.08776 (Nature 572, 95 (2019)): STM regions at 1.10° and 0.79°; λ = a/(2 sin(θ/2)). https://arxiv.org/abs/1812.08776",
+   "license": "只使用论文报道的转角数值（事实数据），未转载文字或图",
+   "scope": "按论文转角构建的刚性转角模型（无晶格弛豫、无异质应变）；AA 位点图相当于 STM 形貌的亮点位置，不是实测图像。"
+  },
+  {
+   "id": "FA-MO-DES-FULL",
+   "family": "moire_design",
+   "asset": "assets/families/moire/TBG-K079-AA-map.txt",
+   "candidates": [
+    "assets/families/moire/TBG-K079-AA-map.txt",
+    "assets/families/moire/TBG-D1-AA-map.txt",
+    "assets/families/moire/TBG-K110-AA-map.txt",
+    "assets/families/moire/TBG-M1-AA-map.txt"
+   ],
+   "twists": [
+    [
+     "K079",
+     0.79
+    ],
+    [
+     "D1",
+     1.08
+    ],
+    [
+     "K110",
+     1.1
+    ],
+    [
+     "M1",
+     1.16
+    ]
+   ],
+   "goal": "full",
+   "target": 2.8,
+   "source": "Cao et al., arXiv:1803.02342 (Nature 556, 43 (2018)): device twist angles M1 1.16°, M2 1.05°, D1 1.08°; n_s = 4/A, a = 0.246 nm. https://arxiv.org/abs/1803.02342 ; Kerelsky et al., arXiv:1812.08776 (Nature 572, 95 (2019)): STM regions at 1.10° and 0.79°; λ = a/(2 sin(θ/2)). https://arxiv.org/abs/1812.08776",
+   "license": "只使用论文报道的转角数值（事实数据），未转载文字或图",
+   "scope": "按论文转角构建的刚性转角模型（无晶格弛豫、无异质应变）；AA 位点图相当于 STM 形貌的亮点位置，不是实测图像。"
   }
  ]
 }

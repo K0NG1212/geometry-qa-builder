@@ -6,7 +6,7 @@ from decimal import Decimal
 from pathlib import Path
 
 import family_engine
-from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic
+from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire
 
 ROOT = Path(__file__).resolve().parents[1]
 SEED = 'geobench-family-v1'
@@ -411,6 +411,22 @@ class OpalFamilyTests(unittest.TestCase):
             photonic.build_geometry(self.spec('PS-S3', 340.0, ask='diameter'), self.ROOT, 's')
         with self.assertRaises(ValueError):                  # 900 nm is not reachable at any angle for this film
             photonic.build_bragg(self.spec('SiO2-266', 266.0, ask='angle', n_eff=1.35, target_nm=900), self.ROOT, 's')
+
+
+class MoireFamilyTests(unittest.TestCase):
+    ROOT = Path(__file__).resolve().parents[1]
+
+    def test_maps_and_atoms_match_published_angles(self):
+        spec = dict(id='T-MO', asset='assets/families/moire/TBG-M2-AA-map.txt', ask='period', sample='M2', twist_deg=1.05, scope='t')
+        self.assertEqual(moire.build_geometry(spec, self.ROOT, 's')['numeric']['value'], '13.42')
+        with self.assertRaises(ValueError):            # the map must agree with the stated twist angle
+            moire.build_geometry(dict(spec, twist_deg=1.10), self.ROOT, 's')
+        atoms = dict(spec, asset='assets/families/moire/TBG-K110-atoms.xyz', ask='period_from_atoms', sample='K110', twist_deg=1.10)
+        self.assertEqual(moire.build_inference(atoms, self.ROOT, 's')['numeric']['value'], '12.81')
+        with self.assertRaises(ValueError):
+            moire.build_inference(dict(atoms, twist_deg=1.05), self.ROOT, 's')
+        with self.assertRaises(ValueError):            # a perception quantity cannot be built as inference
+            moire.build_inference(spec, self.ROOT, 's')
 
 
 if __name__ == '__main__':

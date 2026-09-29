@@ -309,5 +309,33 @@ class OpalTests(unittest.TestCase):
         self.assertTrue(fails(p, k))
 
 
+class MoireTests(unittest.TestCase):
+    def test_hand_computed_moire(self):
+        # Cao et al.: n_s = 4/A with A = (sqrt(3)/2) lambda^2; at 1.05 deg n_s/2 ~ 1.28e12 cm^-2 (paper: 1.2-1.6e12).
+        lam = 0.246 / (2 * math.sin(math.radians(1.05) / 2))
+        self.assertAlmostEqual(lam, 13.424, places=3)
+        self.assertAlmostEqual(2 / (math.sqrt(3) / 2 * lam ** 2) * 100, 1.282, places=3)
+        import numpy as np
+        from checkers.moire import moire_cell
+        pts = np.array([[lam * (i + j / 2), lam * j * math.sqrt(3) / 2] for i in range(-3, 4) for j in range(-3, 4)])
+        period, area = moire_cell(pts)
+        self.assertAlmostEqual(period, lam, places=9)
+        self.assertAlmostEqual(area, math.sqrt(3) / 2 * lam ** 2, places=6)
+
+    def test_conditions_are_enforced(self):
+        p, k = pair('FA-MO-TWIST-D1')
+        p['question'] = p['question'].replace('lattice constant is 0.246 nm', 'lattice constant is 0.142 nm')
+        self.assertTrue(fails(p, k))
+        p, k = pair('FA-MO-NFULL-M1')
+        p['question'] = p['question'].replace('completely fills one set', 'fills part of one set')
+        self.assertTrue(fails(p, k, 'Filling'))
+        p, k = pair('FA-MO-ATOMS-K110')
+        p['question'] = p['question'].replace('unstrained and rigidly twisted', 'relaxed')
+        self.assertTrue(fails(p, k, 'Rigid'))
+        p, k = pair('FA-MO-DES-PERIOD')
+        p['question'] = p['question'].replace('closest to 13.5 nm', 'closest to 17 nm')
+        self.assertTrue(fails(p, k))
+
+
 if __name__ == '__main__':
     unittest.main()

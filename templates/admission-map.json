@@ -1,5 +1,5 @@
 {
-  "version": "0.7.0",
+  "version": "0.8.0",
   "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
   "rules": {
     "new": "Genuinely new question: added as a new catalog record (provisional).",
@@ -222,6 +222,33 @@
       "attribution": "参数取自 Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/opals/sources.json）。",
       "sizeDefinition": "输入：整个晶粒最大间距（约 1.3–3.3 µm）；推理：晶格周期（常规晶胞边长 a，约 295–522 nm）。",
       "learningObjective": "在论文实际合成的样品中选择球径，使胶体晶体膜的反射达到目标颜色或满足波长上限（设计 = 推断的逆问题）。"
+    },
+    "moire_geometry": {
+      "domain": "quantum",
+      "scale": "moire_superlattice",
+      "reasoning": "periodic",
+      "paper": "paper-cao-magic-angle",
+      "attribution": "转角取自 Cao et al., arXiv:1803.02342（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/moire/sources.json）。",
+      "sizeDefinition": "输入：AA 图约 70–90 nm 或原子块约 4 nm；推理：莫尔周期 λ（12–18 nm）。",
+      "learningObjective": "从 AA 堆垛区中心图识别转角双层石墨烯的莫尔周期与莫尔晶胞面积。"
+    },
+    "moire_inference": {
+      "domain": "quantum",
+      "scale": "moire_superlattice",
+      "reasoning": "periodic",
+      "paper": "paper-cao-magic-angle",
+      "attribution": "转角取自 Cao et al., arXiv:1803.02342（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/moire/sources.json）。",
+      "sizeDefinition": "输入：AA 图约 70–90 nm 或原子块约 4 nm；推理：莫尔周期 λ（12–18 nm）。",
+      "learningObjective": "由原子坐标求两层转角与莫尔周期，或由莫尔晶胞推断填满自旋×谷简并能带所需的载流子密度与转角。"
+    },
+    "moire_design": {
+      "domain": "quantum",
+      "scale": "moire_superlattice",
+      "reasoning": "periodic",
+      "paper": "paper-cao-magic-angle",
+      "attribution": "转角取自 Cao et al., arXiv:1803.02342（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/moire/sources.json）。",
+      "sizeDefinition": "输入：AA 图约 70–90 nm 或原子块约 4 nm；推理：莫尔周期 λ（12–18 nm）。",
+      "learningObjective": "在论文实际样品中按目标载流子密度或莫尔周期选择转角（设计 = 推断的逆问题）。"
     }
   },
   "instances": [
@@ -993,6 +1020,75 @@
       "action": "new",
       "catalog_id": "MND006",
       "title": "结构色设计 · 反射低于 700 nm 时球径最大（四选一）"
+    },
+    {
+      "instance": "FA-MO-PERIOD-K079",
+      "action": "new",
+      "catalog_id": "QNP017",
+      "title": "转角石墨烯（0.79°，STM 区域）· 莫尔周期（四选一）",
+      "paper": "paper-kerelsky-tbg-stm",
+      "attribution": "转角取自 Kerelsky et al., arXiv:1812.08776（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/moire/sources.json）。"
+    },
+    {
+      "instance": "FA-MO-AREA-M2",
+      "action": "new",
+      "catalog_id": "QNP018",
+      "title": "转角石墨烯（器件 M2）· 莫尔晶胞面积（四选一）"
+    },
+    {
+      "instance": "FA-MO-PERIOD-D1",
+      "action": "new",
+      "catalog_id": "QNP019",
+      "title": "转角石墨烯（器件 D1）· 莫尔周期（四选一）"
+    },
+    {
+      "instance": "FA-MO-ATOMS-K110",
+      "action": "new",
+      "catalog_id": "QNI010",
+      "title": "转角石墨烯（1.10°）· 由两层原子求莫尔周期（四选一）",
+      "paper": "paper-kerelsky-tbg-stm",
+      "attribution": "转角取自 Kerelsky et al., arXiv:1812.08776（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/moire/sources.json）。"
+    },
+    {
+      "instance": "FA-MO-NFULL-M1",
+      "action": "new",
+      "catalog_id": "QNI011",
+      "title": "转角石墨烯（器件 M1）· 超晶格密度 n_s（四选一）"
+    },
+    {
+      "instance": "FA-MO-NHALF-K079",
+      "action": "new",
+      "catalog_id": "QNI012",
+      "title": "转角石墨烯（0.79°）· 半满载流子密度（四选一）",
+      "paper": "paper-kerelsky-tbg-stm",
+      "attribution": "转角取自 Kerelsky et al., arXiv:1812.08776（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/moire/sources.json）。"
+    },
+    {
+      "instance": "FA-MO-TWIST-D1",
+      "action": "new",
+      "catalog_id": "QNI013",
+      "title": "转角石墨烯（器件 D1）· 由莫尔图反推转角（四选一）"
+    },
+    {
+      "instance": "FA-MO-DES-HALF",
+      "action": "new",
+      "catalog_id": "QND005",
+      "title": "转角石墨烯选样 · 半满密度最接近 1.3×10¹² cm⁻²（四选一）",
+      "attribution": "转角取自 Cao et al., arXiv:1803.02342 与 Kerelsky et al., arXiv:1812.08776（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/moire/sources.json）。"
+    },
+    {
+      "instance": "FA-MO-DES-PERIOD",
+      "action": "new",
+      "catalog_id": "QND006",
+      "title": "转角石墨烯选样 · 莫尔周期最接近 13.5 nm（四选一）",
+      "attribution": "转角取自 Cao et al., arXiv:1803.02342 与 Kerelsky et al., arXiv:1812.08776（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/moire/sources.json）。"
+    },
+    {
+      "instance": "FA-MO-DES-FULL",
+      "action": "new",
+      "catalog_id": "QND007",
+      "title": "转角石墨烯选样 · n_s 最接近 2.8×10¹² cm⁻²（四选一）",
+      "attribution": "转角取自 Cao et al., arXiv:1803.02342 与 Kerelsky et al., arXiv:1812.08776（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/moire/sources.json）。"
     }
   ]
 }

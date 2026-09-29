@@ -1,0 +1,73 @@
+{
+ "route": "paper_parameter_model",
+ "papers": {
+  "cao": {
+   "citation": "Cao Y. et al., arXiv:1803.02342 (Nature 556, 43 (2018))",
+   "url": "https://arxiv.org/abs/1803.02342",
+   "numbers": "devices M1 1.16 deg, M2 1.05 deg, D1 1.08 deg; n_s = 4/A; a = 0.246 nm"
+  },
+  "kerelsky": {
+   "citation": "Kerelsky A. et al., arXiv:1812.08776 (Nature 572, 95 (2019))",
+   "url": "https://arxiv.org/abs/1812.08776",
+   "numbers": "STM regions at 1.10 deg and 0.79 deg; lambda = a/(2 sin(theta/2)) without strain"
+  }
+ },
+ "lattice_constant_nm": 0.246,
+ "model": "rigid twist (no lattice relaxation, no heterostrain); AA map within 45 nm; atomistic patch within 2.0 nm, layer spacing 3.35 A",
+ "files": {
+  "TBG-M1-AA-map.txt": {
+   "paper": "cao",
+   "sample": "M1",
+   "twist_deg": 1.16,
+   "period_nm": 12.150864211972351,
+   "points": 55,
+   "kind": "AA-site map",
+   "asset_sha256": "765ad424554cb23a0c6de2767055f33f0ebf8639d64d65779f24461d5f6cf33b"
+  },
+  "TBG-M2-AA-map.txt": {
+   "paper": "cao",
+   "sample": "M2",
+   "twist_deg": 1.05,
+   "period_nm": 13.423770471680017,
+   "points": 37,
+   "kind": "AA-site map",
+   "asset_sha256": "e99595faf42309b4475402cbb367e78af98f499be373fa3f8368e4565b79c7c3"
+  },
+  "TBG-D1-AA-map.txt": {
+   "paper": "cao",
+   "sample": "D1",
+   "twist_deg": 1.08,
+   "period_nm": 13.050898543485864,
+   "points": 37,
+   "kind": "AA-site map",
+   "asset_sha256": "5abfe1b2f1d9f1c34c1556a257dc1c21011dabcc0192903efe86c6e9b5c844c0"
+  },
+  "TBG-K110-AA-map.txt": {
+   "paper": "kerelsky",
+   "sample": "K110",
+   "twist_deg": 1.1,
+   "period_nm": 12.81361657000531,
+   "points": 43,
+   "kind": "AA-site map",
+   "asset_sha256": "7865f8c7cd02af022792ea034503cc7ca4f1503347e5811e460e308aa1b3d0fe"
+  },
+  "TBG-K079-AA-map.txt": {
+   "paper": "kerelsky",
+   "sample": "K079",
+   "twist_deg": 0.79,
+   "period_nm": 17.841611911374585,
+   "points": 19,
+   "kind": "AA-site map",
+   "asset_sha256": "f10a2aa554058decb03781fe7f1641ee0131edbcd0a26bd1631c8492a7237ee3"
+  },
+  "TBG-K110-atoms.xyz": {
+   "paper": "kerelsky",
+   "sample": "K110",
+   "twist_deg": 1.1,
+   "period_nm": 12.81361657000531,
+   "points": 962,
+   "kind": "atomistic patch",
+   "asset_sha256": "9661b02cf3f1beb1a95dfa01771a4171008c7f1be5a05a91605890ba22f711d6"
+  }
+ }
+}

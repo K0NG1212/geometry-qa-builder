@@ -1046,6 +1046,184 @@
       "independent_checker": "checkers/superlattice.py:opal_design"
     },
     {
+      "id": "moire_geometry",
+      "name": "转角石墨烯莫尔晶格几何（周期 / 晶胞面积）",
+      "ability": "perception",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "从 AA 堆垛区中心图识别莫尔晶格：莫尔周期与莫尔晶胞面积（10–100 nm 尺度）。",
+      "domains": [
+        "quantum"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice",
+        "numeric"
+      ],
+      "inputs": "转角双层石墨烯模型：AA 堆垛区中心图（nm，每行 \"AA x y\"，相当于 STM 形貌亮点，确定性旋转）或 AA 位点附近两层全部碳原子（Å）；设计题给四个候选图。",
+      "physical_conditions": "刚性转角（无晶格弛豫、无异质应变）；石墨烯晶格常数 0.246 nm；自旋×谷四重简并（n_s = 4/A）。",
+      "input_scale": "AA 图约 70–90 nm；原子块约 4 nm",
+      "reasoning_scale": "莫尔周期 λ（12–18 nm）",
+      "scale_cells": [
+        "10-100"
+      ],
+      "scale_limits": "按论文转角构建的模型；实测样品常有少量异质应变，使莫尔周期偏离理想值（Kerelsky et al. 讨论）。",
+      "source_basis": "Cao et al., arXiv:1803.02342（Nature 2018）器件 M1/M2/D1 转角与 n_s = 4/A 定义；Kerelsky et al., arXiv:1812.08776（Nature 2019）STM 区域 1.10°、0.79°",
+      "answer_method": "中心位点周围 6 个等距近邻，核对与论文转角给出的周期一致。",
+      "distractor_mechanisms": [
+        "aa_to_ab_distance",
+        "row_spacing",
+        "second_neighbour",
+        "half_period",
+        "double_period",
+        "square_cell",
+        "triangle_only",
+        "hexagon_twice",
+        "ab_spacing_cell"
+      ],
+      "four_choice_validation": "与正确值 > 0.3 nm 或 3 nm²；升序排列，秩按批次轮换。",
+      "engine_families": [
+        "moire_geometry"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/moire.py",
+        "checkers/moire.py",
+        "tools/build_moire_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现；资产由论文转角确定性生成，sources.json 记录出处与模型。",
+      "principle": "刚性转角：λ = a/(2 sin(θ/2))；三角晶格晶胞面积 (√3/2)λ²。",
+      "validation": "独立检查器由最近邻矢量选初基基矢，验证所有位点为整数组合，面积取叉积。",
+      "limits": "只含理想刚性转角。",
+      "gap": "两篇论文的 5 个转角（0.79–1.16°）。",
+      "template_review": "本轮新建（A4），待人工审核。",
+      "independent_checker": "checkers/moire.py:moire_quantity"
+    },
+    {
+      "id": "moire_inference",
+      "name": "转角石墨烯莫尔推断（周期、载流子密度、转角）",
+      "ability": "inference",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "由原子坐标推断两层转角并求莫尔周期；由莫尔晶胞推断完全填满与半满一组自旋×谷简并能带的载流子密度；由莫尔周期反推转角。",
+      "domains": [
+        "quantum"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice",
+        "numeric"
+      ],
+      "inputs": "转角双层石墨烯模型：AA 堆垛区中心图（nm，每行 \"AA x y\"，相当于 STM 形貌亮点，确定性旋转）或 AA 位点附近两层全部碳原子（Å）；设计题给四个候选图。",
+      "physical_conditions": "刚性转角（无晶格弛豫、无异质应变）；石墨烯晶格常数 0.246 nm；自旋×谷四重简并（n_s = 4/A）。",
+      "input_scale": "AA 图约 70–90 nm；原子块约 4 nm",
+      "reasoning_scale": "莫尔周期 λ（12–18 nm）",
+      "scale_cells": [
+        "10-100"
+      ],
+      "scale_limits": "按论文转角构建的模型；实测样品常有少量异质应变，使莫尔周期偏离理想值（Kerelsky et al. 讨论）。",
+      "source_basis": "Cao et al., arXiv:1803.02342（Nature 2018）器件 M1/M2/D1 转角与 n_s = 4/A 定义；Kerelsky et al., arXiv:1812.08776（Nature 2019）STM 区域 1.10°、0.79°",
+      "answer_method": "λ = a/(2 sin(θ/2))；n_s = 4/A（A = (√3/2)λ²），半满 n_s/2；θ = 2 arcsin(a/2λ)。",
+      "distractor_mechanisms": [
+        "sin_full_angle",
+        "bond_length_as_lattice_constant",
+        "angle_of_one_layer",
+        "second_neighbour",
+        "layer_spacing_as_lattice_constant",
+        "no_degeneracy",
+        "spin_only",
+        "square_cell",
+        "eight_per_cell",
+        "ab_distance_as_period",
+        "full_filling",
+        "half_angle",
+        "radians_as_degrees"
+      ],
+      "four_choice_validation": "与正确值 > 0.3 nm、0.05×10¹² cm⁻² 或 0.05°；升序排列，秩按批次轮换。",
+      "engine_families": [
+        "moire_inference"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/moire.py",
+        "checkers/moire.py",
+        "tools/build_moire_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现；资产由论文转角确定性生成，sources.json 记录出处与模型。",
+      "principle": "莫尔几何与能带填充：每个莫尔晶胞 4 个态（自旋×谷）填满一组能带。",
+      "validation": "原子块：独立检查器用每层晶格矢量的六重相位平均求取向，再求转角与晶格常数；AA 图：叉积面积。",
+      "limits": "刚性转角模型；n_s 定义沿用 Cao et al.。",
+      "gap": "同上。",
+      "template_review": "本轮新建（A4），待人工审核。",
+      "independent_checker": "checkers/moire.py:moire_quantity"
+    },
+    {
+      "id": "moire_design",
+      "name": "转角石墨烯样品选择设计",
+      "ability": "design",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "在论文实际样品中选一个，使半满或完全填满密度、或莫尔周期最接近目标；四个候选各有 AA 图。",
+      "domains": [
+        "quantum"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "inputs": "转角双层石墨烯模型：AA 堆垛区中心图（nm，每行 \"AA x y\"，相当于 STM 形貌亮点，确定性旋转）或 AA 位点附近两层全部碳原子（Å）；设计题给四个候选图。",
+      "physical_conditions": "刚性转角（无晶格弛豫、无异质应变）；石墨烯晶格常数 0.246 nm；自旋×谷四重简并（n_s = 4/A）。",
+      "input_scale": "AA 图约 70–90 nm；原子块约 4 nm",
+      "reasoning_scale": "莫尔周期 λ（12–18 nm）",
+      "scale_cells": [
+        "10-100"
+      ],
+      "scale_limits": "按论文转角构建的模型；实测样品常有少量异质应变，使莫尔周期偏离理想值（Kerelsky et al. 讨论）。",
+      "source_basis": "Cao et al., arXiv:1803.02342（Nature 2018）器件 M1/M2/D1 转角与 n_s = 4/A 定义；Kerelsky et al., arXiv:1812.08776（Nature 2019）STM 区域 1.10°、0.79°",
+      "answer_method": "逐个候选由 AA 图计算周期与面积，按目标规则取唯一最优；要求领先幅度足够。",
+      "distractor_mechanisms": [
+        "full_filling",
+        "no_degeneracy",
+        "spin_only",
+        "square_cell",
+        "aa_to_ab_distance",
+        "second_neighbour",
+        "farther_from_target"
+      ],
+      "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明在哪种错误下会被选中。",
+      "engine_families": [
+        "moire_design"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/moire.py",
+        "checkers/moire.py",
+        "tools/build_moire_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现；资产由论文转角确定性生成，sources.json 记录出处与模型。",
+      "principle": "设计 = 推断的逆问题：按目标密度或周期选择转角。",
+      "validation": "独立检查器逐文件重算并按题干目标重选。",
+      "limits": "候选性质来自刚性模型。",
+      "gap": "同上。",
+      "template_review": "本轮新建（A4），待人工审核。",
+      "independent_checker": "checkers/moire.py:moire_design"
+    },
+    {
       "id": "lattice_plane_geometry",
       "name": "晶面间距",
       "ability": "perception",
