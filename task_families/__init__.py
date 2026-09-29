@@ -1,6 +1,6 @@
 """Reusable task families. Each family id maps to one build function and one
 ability; the engine never dispatches by question ID."""
-from . import local_geometry, force_path, extinction, conformer_design, extent_choice
+from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo
 
 FAMILIES = {
     'named_bond_angle': dict(build=local_geometry.build_bond_angle, ability='perception',
@@ -15,4 +15,10 @@ FAMILIES = {
                                  output='choice', version=extinction.VERSION, module='task_families/extinction.py'),
     'conformer_target_selection': dict(build=conformer_design.build, ability='design',
                                        output='choice', version=conformer_design.VERSION, module='task_families/conformer_design.py'),
+    'stereo_relationship': dict(build=stereo.build_relationship, ability='perception',
+                                output='choice', version=stereo.VERSION, module='task_families/stereo.py'),
+    'stereo_property_inference': dict(build=stereo.build_property, ability='inference',
+                                      output='choice', version=stereo.VERSION, module='task_families/stereo.py'),
+    'stereo_design_selection': dict(build=stereo.build_design, ability='design',
+                                    output='choice', version=stereo.VERSION, module='task_families/stereo.py'),
 }

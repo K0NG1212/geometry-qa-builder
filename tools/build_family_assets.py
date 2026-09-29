@@ -68,6 +68,26 @@ def main(args):
                                            e_pbe0_mbd_eV=float(g['ePBE0+MBD'][0]), dipole_eA=float(g['DIP'][0]),
                                            vdip_eA=[float(x) for x in g['vDIP'][:]]))
         write(OUT / 'conformers' / ('QM7X-%s-i1-opt.json' % mol), data)
+    for mol in args.stereo or []:
+        # All stereoisomers (i1, i2, ...) with all optimized conformers: needed to tell
+        # conformers, enantiomers and diastereomers apart and to supply property evidence.
+        opts = sorted(k for k in f[mol].keys() if k.endswith('-opt'))
+        first = f[mol][opts[0]]
+        elements = [SYMBOL[int(z)] for z in first['atNUM'][:]]
+        counts = {e: elements.count(e) for e in sorted(set(elements))}
+        data = dict(source=dict(SOURCE, hdf5_sha256=digest), molecule=mol,
+                    formula=''.join('%s%d' % kv for kv in counts.items()),
+                    level='PBE0+MBD single points at DFTB3+MBD-optimized geometries (QM7-X "opt" structures)',
+                    note='Isomer labels i1, i2, ... are QM7-X stereoisomers of one SMILES; atom order is shared within the molecule.',
+                    elements=elements, conformers=[])
+        for k in opts:
+            g = f[mol][k]
+            if [SYMBOL[int(z)] for z in g['atNUM'][:]] != elements:
+                raise SystemExit('Atom order differs within ' + mol)
+            data['conformers'].append(dict(id=k, isomer=k.split('-')[2], xyz=[[float(x) for x in r] for r in g['atXYZ'][:]],
+                                           e_pbe0_mbd_eV=float(g['ePBE0+MBD'][0]), dipole_eA=float(g['DIP'][0]),
+                                           vdip_eA=[float(x) for x in g['vDIP'][:]]))
+        write(OUT / 'stereo' / ('QM7X-%s.json' % mol), data)
 
 
 if __name__ == '__main__':
@@ -75,4 +95,5 @@ if __name__ == '__main__':
     p.add_argument('--hdf5', required=True)
     p.add_argument('--force', nargs='*')
     p.add_argument('--conformers', nargs='*')
+    p.add_argument('--stereo', nargs='*')
     main(p.parse_args())

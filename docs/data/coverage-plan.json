@@ -3,17 +3,21 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 53,
-  "provisional_total": 11,
-  "ability_gaps": 38,
-  "gap_slots": 108,
+  "current_total": 68,
+  "capped_total": 54,
+  "over_target_cells": [
+   "chemistry 0.1-1"
+  ],
+  "provisional_total": 26,
+  "ability_gaps": 36,
+  "gap_slots": 104,
   "gaps_by_best_route": {
-   "ready": 3,
-   "migrate": 4,
+   "ready": 2,
+   "migrate": 3,
    "build": 3,
    "none": 28
   },
-  "note": "能力软目标来自 prototype-policy（每格感知/推断/设计各 3，外加 1 个机动名额）；路线只表示注册表声明可覆盖，不保证该格一定有合适数据。"
+  "note": "capped_total 为每格最多按目标 10 道计的有效覆盖；超额题有效但不填补其他格。能力软目标来自 prototype-policy（每格感知/推断/设计各 3，外加 1 个机动名额）；路线只表示注册表声明可覆盖，不保证该格一定有合适数据。"
  },
  "cells": [
   {
@@ -46,12 +50,6 @@
        "name": "命名局部距离",
        "kind": "migrate",
        "status": "existing_legacy"
-      },
-      {
-       "family": "stereo_configuration",
-       "name": "立体构型判别（R/S、顺/反）",
-       "kind": "build",
-       "status": "planned"
       }
      ],
      "rework_in_cell": [
@@ -73,12 +71,6 @@
        "name": "受力沿路径的一阶能量变化",
        "kind": "ready",
        "status": "pilot"
-      },
-      {
-       "family": "stereo_property_inference",
-       "name": "立体异构体性质推断",
-       "kind": "build",
-       "status": "planned"
       }
      ],
      "rework_in_cell": [
@@ -96,12 +88,6 @@
        "name": "构象设计选择",
        "kind": "ready",
        "status": "pilot"
-      },
-      {
-       "family": "stereo_design_selection",
-       "name": "立体构型设计选择",
-       "kind": "build",
-       "status": "planned"
       }
      ],
      "rework_in_cell": [],
@@ -234,12 +220,12 @@
    "domain": "chemistry",
    "cell": "0.1-1",
    "target": 10,
-   "current": 9,
-   "provisional": 0,
-   "remaining": 1,
+   "current": 24,
+   "provisional": 15,
+   "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 7,
+     "current": 15,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -262,26 +248,32 @@
        "status": "pilot"
       },
       {
+       "family": "stereo_relationship",
+       "name": "立体关系判别",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
        "family": "named_bond_distance",
        "name": "命名局部距离",
        "kind": "migrate",
        "status": "existing_legacy"
-      },
-      {
-       "family": "stereo_configuration",
-       "name": "立体构型判别（R/S、顺/反）",
-       "kind": "build",
-       "status": "planned"
       }
      ],
      "rework_in_cell": [],
      "best_route": "ready"
     },
     "inference": {
-     "current": 2,
+     "current": 6,
      "soft_target": 3,
-     "shortfall": 1,
+     "shortfall": 0,
      "routes": [
+      {
+       "family": "stereo_property_inference",
+       "name": "立体异构体性质推断",
+       "kind": "ready",
+       "status": "pilot"
+      },
       {
        "family": "structure_comparison_inference",
        "name": "结构比较推断",
@@ -293,24 +285,18 @@
        "name": "论文证据支持的物理推断选择",
        "kind": "build",
        "status": "planned"
-      },
-      {
-       "family": "stereo_property_inference",
-       "name": "立体异构体性质推断",
-       "kind": "build",
-       "status": "planned"
       }
      ],
      "rework_in_cell": [
       "CNP004",
       "CNI001"
      ],
-     "best_route": "migrate"
+     "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
+     "shortfall": 0,
      "routes": [
       {
        "family": "conformer_target_selection",
@@ -319,14 +305,14 @@
        "status": "pilot"
       },
       {
-       "family": "design_choice",
-       "name": "有证据的结构优化选择（论文案例）",
-       "kind": "build",
-       "status": "planned"
-      },
-      {
        "family": "stereo_design_selection",
        "name": "立体构型设计选择",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "design_choice",
+       "name": "有证据的结构优化选择（论文案例）",
        "kind": "build",
        "status": "planned"
       }

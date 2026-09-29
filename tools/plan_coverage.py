@@ -55,11 +55,14 @@ def plan(catalog, policy, registry):
                          provisional=len(cell['provisional_ids']), remaining=cell['remaining'], abilities=abilities))
     gaps = [(r['domain'], r['cell'], a, v) for r in rows for a, v in r['abilities'].items() if v['shortfall']]
     summary = dict(target_total=progress['target_total'], current_total=progress['screened_total'],
+                   capped_total=sum(min(r['current'], r['target']) for r in rows),
+                   over_target_cells=[r['domain'] + ' ' + r['cell'] for r in rows if r['current'] > r['target']],
                    provisional_total=progress['provisional_total'],
                    ability_gaps=len(gaps), gap_slots=sum(v['shortfall'] for *_, v in gaps),
                    gaps_by_best_route={k: sum(1 for *_, v in gaps if v['best_route'] == k)
                                        for k in ('ready', 'migrate', 'build', 'none')},
-                   note='能力软目标来自 prototype-policy（每格感知/推断/设计各 3，外加 1 个机动名额）；'
+                   note='capped_total 为每格最多按目标 10 道计的有效覆盖；超额题有效但不填补其他格。'
+                        '能力软目标来自 prototype-policy（每格感知/推断/设计各 3，外加 1 个机动名额）；'
                         '路线只表示注册表声明可覆盖，不保证该格一定有合适数据。')
     return dict(version='0.1.0', basis='prototype-policy + registry', summary=summary, cells=rows)
 

@@ -548,66 +548,75 @@
       "independent_checker": ""
     },
     {
-      "id": "stereo_configuration",
-      "name": "立体构型判别（R/S、顺/反）",
+      "id": "stereo_relationship",
+      "name": "立体关系判别",
       "ability": "perception",
-      "status": "planned",
-      "priority": 2,
-      "concept": "由三维坐标判断手性中心构型或双键顺反；会议 2 建议的感知→推断→设计梯子的第一级。",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "判断结构 X 相对 S0 是同一化合物（仅构象/取向不同）、对映体、非对映体还是构造异构体；需要在三维中区分旋转与镜像、构象改变与构型改变（会议 2 立体化学梯子第一级）。",
       "domains": [
-        "chemistry",
-        "quantum"
+        "chemistry"
       ],
       "output": "choice",
       "output_forms": [
         "choice"
       ],
-      "inputs": "XYZ + 指定原子；CIP 优先级需给出或可计算。",
-      "physical_conditions": "单一构象。",
-      "input_scale": "分子",
-      "reasoning_scale": "手性中心第一壳层",
+      "inputs": "S0.xyz 与 X.xyz（Å）；X 经刚性旋转平移，原子顺序可能不同。",
+      "physical_conditions": "单键旋转可互变的结构视为同一化合物。",
+      "input_scale": "两个分子",
+      "reasoning_scale": "整分子立体构型（0.4–0.8 nm）",
       "scale_cells": [
         "0.1-1"
       ],
-      "scale_limits": "CIP 规则复杂分支需限制适用分子。",
-      "source_basis": "QM7-X 立体异构体（i1/i2）可作真实输入",
-      "answer_method": "带符号体积 + 预先给定优先级。",
+      "scale_limits": "立体中心按第一配位层判定；与数据集标签不一致的实例拒绝。",
+      "source_basis": "QM7-X 立体异构体与构象（CC BY 4.0），15 个分子的全部优化构象",
+      "answer_method": "共价半径成键图 + 图不变量判定键连；四配位中心、锥形 S/P、氮杂环丙烷 N 的手性符号与双键顺反描述符判定构型关系。",
       "distractor_mechanisms": [
-        "mirror_configuration",
-        "priority_order_error",
-        "viewing_direction_error"
+        "conformation_mistaken_for_configuration",
+        "rotation_mistaken_for_reflection",
+        "partial_vs_full_inversion",
+        "same_formula_assumed_same_bonding"
       ],
-      "four_choice_validation": "未实现。",
-      "engine_families": [],
+      "four_choice_validation": "四个固定类别恰好一个成立；批次内每类 2 例以平衡位置；独立检查器用自有实现复核。",
+      "engine_families": [
+        "stereo_relationship"
+      ],
       "legacy_families": [],
       "legacy_qa": [],
-      "code": [],
-      "tests": [],
-      "builder_modules": "未开始。",
-      "principle": "带符号体积判定手性。",
-      "validation": "待实现。",
-      "limits": "需避免 CIP 优先级本身成为主要难点。",
-      "gap": "下一轮候选：conformer_design.stereocentres() 已有带符号体积核。",
-      "template_review": "路线定义。",
-      "independent_checker": ""
+      "code": [
+        "task_families/stereo.py",
+        "task_families/kit.py",
+        "checkers/stereo.py",
+        "tools/build_family_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现 M0–M6；所有判定与数据集立体异构体标签交叉核对，不一致即拒绝。",
+      "principle": "构型描述符在旋转与构象变化下不变、在镜像下全部翻转。",
+      "validation": "生成端与独立检查器一致；数据集标签交叉核对。",
+      "limits": "不给 R/S 描述符（需 CIP 优先级，RDKit 未安装）；7165 真对映体因数据集缺镜像构象被保守拒绝。",
+      "gap": "R/S、E/Z 命名需 CIP 优先级；可在获准安装 RDKit 后加入。",
+      "template_review": "本轮新建，待人工审核。",
+      "independent_checker": "checkers/stereo.py:stereo_relationship"
     },
     {
       "id": "stereo_property_inference",
       "name": "立体异构体性质推断",
       "ability": "inference",
-      "status": "planned",
-      "priority": 2,
+      "status": "pilot",
+      "priority": 1,
       "concept": "同一分子的两个或多个立体异构体，由三维构型推断哪一个的指定性质（偶极、能量或文献报道的活性）更高或落在哪个区间。",
       "domains": [
-        "chemistry",
-        "quantum"
+        "chemistry"
       ],
       "output": "choice",
       "output_forms": [
         "choice",
         "numeric"
       ],
-      "inputs": "各立体异构体 XYZ（Å）；性质证据只在审核侧。",
+      "inputs": "S0.xyz 与 X.xyz：同一分子两个非对映体各自的数据集最低能构象；X 刚性旋转。",
       "physical_conditions": "性质为数据集计算值或论文实测值，题干写明来源类型与条件。",
       "input_scale": "分子",
       "reasoning_scale": "立体中心周围与整分子取向",
@@ -615,43 +624,52 @@
         "0.1-1"
       ],
       "scale_limits": "构型差异须由几何决定；性质差须超过阈值。",
-      "source_basis": "QM7-X 立体异构体（i1/i2）；手性药物论文",
-      "answer_method": "按坐标匹配数据集性质或引文数值；检查构型确实不同。",
+      "source_basis": "QM7-X 立体异构体与构象（CC BY 4.0），15 个分子的全部优化构象",
+      "answer_method": "由数据集 PBE0+MBD 能量与偶极得到 ΔE、Δμ 的符号；两者均须超过阈值（1 kcal/mol、0.10 e·Å）。",
       "distractor_mechanisms": [
-        "mirror_configuration_confusion",
-        "conformer_vs_configuration",
-        "property_direction_reversed"
+        "energy_direction_reversed",
+        "dipole_direction_reversed",
+        "both_reversed"
       ],
-      "four_choice_validation": "四个候选或四个区间，唯一正确且领先阈值。",
-      "engine_families": [],
+      "four_choice_validation": "四个陈述覆盖符号组合，恰好一个成立；位置按批次轮换。",
+      "engine_families": [
+        "stereo_property_inference"
+      ],
       "legacy_families": [],
       "legacy_qa": [],
-      "code": [],
-      "tests": [],
-      "builder_modules": "未开始（路线 A1）。",
+      "code": [
+        "task_families/stereo.py",
+        "task_families/kit.py",
+        "checkers/stereo.py",
+        "tools/build_family_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现 M0–M6；所有判定与数据集立体异构体标签交叉核对，不一致即拒绝。",
       "principle": "立体构型 → 性质。",
-      "validation": "待实现。",
+      "validation": "独立检查器按距离矩阵与手性匹配数据集结构后重算。",
       "limits": "手性药物的活性需论文证据。",
-      "gap": "路线 A1 第二级。",
-      "template_review": "路线定义。",
-      "independent_checker": ""
+      "gap": "仅 4 对满足阈值的非对映体；更多需下载 QM7-X 其他分卷。",
+      "template_review": "本轮新建，待人工审核。",
+      "independent_checker": "checkers/stereo.py:stereo_property_inference"
     },
     {
       "id": "stereo_design_selection",
       "name": "立体构型设计选择",
       "ability": "design",
-      "status": "planned",
-      "priority": 2,
-      "concept": "给定起始立体异构体与目标性质，只允许改变指定立体中心或双键构型，从四个候选中选出满足目标者（推断的逆问题）。",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "给定 S0 与目标（能量降低 ≥1 kcal/mol），只允许改变构型（立体中心手性或双键顺反），从四个候选中选唯一满足者；陷阱：镜像（构型变但能量不变）、只改构象（能量更低但不允许）、构造异构体（键连不同）。",
       "domains": [
-        "chemistry",
-        "quantum"
+        "chemistry"
       ],
       "output": "choice",
       "output_forms": [
         "choice"
       ],
-      "inputs": "S0 与四个候选 XYZ；允许修改的立体中心；性质证据在审核侧。",
+      "inputs": "S0 与四个候选 XYZ（均刚性旋转；构造异构体原子顺序不同）；性质证据在审核侧。",
       "physical_conditions": "同 stereo_property_inference。",
       "input_scale": "分子",
       "reasoning_scale": "立体中心与整分子",
@@ -659,26 +677,36 @@
         "0.1-1"
       ],
       "scale_limits": "候选须满足约束且互不等价（排除镜像/构象重复）。",
-      "source_basis": "QM7-X 立体异构体；手性药物论文",
-      "answer_method": "约束检查（只改指定构型）+ 性质证据唯一最优。",
+      "source_basis": "QM7-X 立体异构体与构象（CC BY 4.0），15 个分子的全部优化构象",
+      "answer_method": "逐项判定与 S0 的关系（是否只改构型）+ 能量证据（数据集值；镜像按反演对称等于 S0）。",
       "distractor_mechanisms": [
-        "changes_disallowed_centre",
-        "mirror_equivalent",
-        "worse_property"
+        "mirror_image_no_energy_change",
+        "conformation_only_change",
+        "constitution_changed"
       ],
-      "four_choice_validation": "四候选均合法、唯一最优。",
-      "engine_families": [],
+      "four_choice_validation": "恰好一项同时满足约束与目标；独立检查器复核每一项。",
+      "engine_families": [
+        "stereo_design_selection"
+      ],
       "legacy_families": [],
       "legacy_qa": [],
-      "code": [],
-      "tests": [],
-      "builder_modules": "未开始（路线 A1）。",
+      "code": [
+        "task_families/stereo.py",
+        "task_families/kit.py",
+        "checkers/stereo.py",
+        "tools/build_family_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现 M0–M6；所有判定与数据集立体异构体标签交叉核对，不一致即拒绝。",
       "principle": "设计 = 推断的逆问题。",
-      "validation": "待实现。",
+      "validation": "独立检查器重算关系与能量差。",
       "limits": "计算证据只对所述理论水平成立。",
-      "gap": "路线 A1 第三级。",
-      "template_review": "路线定义。",
-      "independent_checker": ""
+      "gap": "3 个分子；目标暂只有降低能量。",
+      "template_review": "本轮新建，待人工审核。",
+      "independent_checker": "checkers/stereo.py:stereo_design_selection"
     },
     {
       "id": "force_path_derivative",

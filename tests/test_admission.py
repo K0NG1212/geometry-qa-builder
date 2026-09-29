@@ -24,11 +24,11 @@ class AdmissionMapTests(unittest.TestCase):
         instances = [e['instance'] for e in AMAP['instances']]
         self.assertEqual(Counter(instances), Counter(t['id'] for t in WORKBENCH['teacher_answers']))
         actions = Counter(e['action'] for e in AMAP['instances'])
-        self.assertEqual(actions, Counter(new=9, supersede=2, reformat=18))
-        # Only new and supersede entries create counted records.
+        self.assertEqual(actions['reformat'], 18)
+        # Only new and supersede entries create counted records; the 42 screened legacy items stay.
         counted = [q for q in CATALOG['questions'] if q.get('familyInstance') and q['lifecycle'] == 'active']
-        self.assertEqual(len(counted), 11)
-        self.assertEqual(CATALOG['lifecycleCounts']['active'], 53)
+        self.assertEqual(len(counted), actions['new'] + actions['supersede'])
+        self.assertEqual(CATALOG['lifecycleCounts']['active'], 42 + actions['new'] + actions['supersede'])
 
     def test_new_records_are_complete_and_provisional(self):
         for e in AMAP['instances']:
@@ -84,7 +84,8 @@ class CoveragePlanTests(unittest.TestCase):
         progress = summarize(CATALOG, POLICY)
         self.assertEqual(len(result['cells']), 16)
         self.assertEqual(result['summary']['current_total'], progress['screened_total'])
-        self.assertEqual(result['summary']['provisional_total'], 11)
+        self.assertEqual(result['summary']['provisional_total'],
+                         sum(e['action'] != 'reformat' for e in AMAP['instances']))
         self.assertEqual(read('docs/data/coverage-plan.json'), result)
         cell = next(c for c in result['cells'] if c['domain'] == 'biology' and c['cell'] == '0.1-1')
         self.assertIn('backbone_torsion', [r['family'] for r in cell['abilities']['perception']['routes']])

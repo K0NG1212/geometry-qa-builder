@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
   "rules": {
     "new": "Genuinely new question: added as a new catalog record (provisional).",
@@ -8,53 +8,310 @@
   },
   "families": {
     "backbone_torsion": {
-      "domain": "biology", "scale": "macromolecule", "reasoning": "local_geometry", "paper": "pdb-bio-nm",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "local_geometry",
+      "paper": "pdb-bio-nm",
       "learningObjective": "按 IUPAC 符号约定，从晶体结构三残基片段测定指定残基的主链二面角；符号区分左/右手构象。",
       "sizeDefinition": "输入：三残基片段全部原子最大间距；推理：二面角首末两原子间距。",
       "attribution": "RCSB PDB（wwPDB，CC0）；ATOM 记录原样摘录。"
     },
     "kinematic_extinction": {
-      "domain": "materials", "scale": "crystal", "reasoning": "periodic", "paper": "cod-materials-cell",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "paper": "cod-materials-cell",
       "learningObjective": "由常规晶胞全部原子坐标与运动学结构因子推断哪一反射强度为零；区分中心化、滑移与基元导致的消光。",
       "sizeDefinition": "输入与推理均为立方晶胞边长 a（相位求和跨越整个晶胞）。",
       "attribution": "Crystallography Open Database（公有领域）；对称展开或已发布整胞坐标。"
     },
     "conformer_target_selection": {
-      "domain": "quantum", "scale": "small_molecule", "reasoning": "molecular", "paper": "qm7x",
+      "domain": "quantum",
+      "scale": "small_molecule",
+      "reasoning": "molecular",
+      "paper": "qm7x",
       "learningObjective": "在只允许单键旋转的约束下，从四个真实候选构象中选出满足目标性质（最低能量或最大偶极）的唯一最优者；性质证据为 QM7-X PBE0+MBD 计算值。",
       "sizeDefinition": "输入与推理均为 S0 全部原子最大间距（整分子构象比较）。",
       "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0。"
+    },
+    "stereo_relationship": {
+      "domain": "chemistry",
+      "scale": "small_molecule",
+      "reasoning": "molecular",
+      "paper": "qm7x",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0；结构经刚性旋转平移（内部几何不变）。",
+      "learningObjective": "在三维中区分旋转与镜像、构象改变与构型改变，判断两结构是同一化合物、对映体、非对映体还是构造异构体（立体化学梯子第一级）。",
+      "sizeDefinition": "输入：两结构最大原子间距；推理：S0 最大原子间距（整分子立体构型）。"
+    },
+    "stereo_property_inference": {
+      "domain": "chemistry",
+      "scale": "small_molecule",
+      "reasoning": "molecular",
+      "paper": "qm7x",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0；结构经刚性旋转平移（内部几何不变）。",
+      "learningObjective": "由两个非对映体的三维构型推断其相对能量与偶极大小（立体化学梯子第二级）；证据为 QM7-X PBE0+MBD 计算值。",
+      "sizeDefinition": "输入与推理均为 S0 最大原子间距。"
+    },
+    "stereo_design_selection": {
+      "domain": "chemistry",
+      "scale": "small_molecule",
+      "reasoning": "molecular",
+      "paper": "qm7x",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0；结构经刚性旋转平移（内部几何不变）。",
+      "learningObjective": "在只允许改变构型的约束下选择能量更低的结构，识别镜像（能量不变）、仅构象改变与构造改变等陷阱（立体化学梯子第三级，推断的逆问题）。",
+      "sizeDefinition": "输入与推理均为 S0 最大原子间距。"
     }
   },
   "instances": [
-    {"instance": "FA-TOR-1CRN-G20", "action": "new", "catalog_id": "BNP013", "title": "1CRN · Gly20 主链 φ 二面角（四选一）"},
-    {"instance": "FA-TOR-1UBQ-V26", "action": "new", "catalog_id": "BNP014", "title": "1UBQ · Val26 主链 ψ 二面角（四选一）"},
-    {"instance": "FA-TOR-6LYZ-T43", "action": "new", "catalog_id": "BNP015", "title": "6LYZ · Thr43 主链 φ 二面角（四选一）"},
-    {"instance": "FA-EXT-NACL", "action": "new", "catalog_id": "MNI011", "title": "NaCl · 哪一反射消光（四选一）"},
-    {"instance": "FA-EXT-DIAMOND", "action": "new", "catalog_id": "MNI012", "title": "金刚石 · 哪一反射消光（四选一）"},
-    {"instance": "FA-EXT-SALEM2", "action": "supersede", "catalog_id": "MNI013", "supersedes": "MNI008", "title": "SALEM-2（ZIF-8 拓扑）· 哪一反射消光（四选一）", "paper": "cod-mof"},
-    {"instance": "FA-EXT-MOF5", "action": "supersede", "catalog_id": "MNI014", "supersedes": "MNI009", "title": "MOF-5 · 哪一反射消光（四选一）", "paper": "cod-mof"},
-    {"instance": "FA-CONF-7050-max_dipole", "action": "new", "catalog_id": "QND001", "title": "QM7-X 7050 · 选偶极最大的构象（设计选择）"},
-    {"instance": "FA-CONF-7206-min_energy", "action": "new", "catalog_id": "QND002", "title": "QM7-X 7206 · 选能量最低的构象（设计选择）"},
-    {"instance": "FA-CONF-7095-min_energy", "action": "new", "catalog_id": "QND003", "title": "QM7-X 7095 · 选能量最低的构象（设计选择）"},
-    {"instance": "FA-CONF-7032-max_dipole", "action": "new", "catalog_id": "QND004", "title": "QM7-X 7032 · 选偶极最大的构象（设计选择）"},
-    {"instance": "FA-ANG-BCD", "action": "reformat", "catalog_id": "CNP001"},
-    {"instance": "FA-ANG-WP6", "action": "reformat", "catalog_id": "CNP002"},
-    {"instance": "FA-ANG-DMBCD", "action": "reformat", "catalog_id": "CNP006"},
-    {"instance": "FA-FP-QM7X-7001", "action": "reformat", "catalog_id": "QNP001"},
-    {"instance": "FA-FP-QM7X-7002", "action": "reformat", "catalog_id": "QNI001"},
-    {"instance": "FA-FP-QM7X-7035", "action": "reformat", "catalog_id": "QNI002"},
-    {"instance": "FC-QNP007", "action": "reformat", "catalog_id": "QNP007"},
-    {"instance": "FC-QNP008", "action": "reformat", "catalog_id": "QNP008"},
-    {"instance": "FC-QNP009", "action": "reformat", "catalog_id": "QNP009"},
-    {"instance": "FC-QNP010", "action": "reformat", "catalog_id": "QNP010"},
-    {"instance": "FC-QNP011", "action": "reformat", "catalog_id": "QNP011"},
-    {"instance": "FC-MNP006", "action": "reformat", "catalog_id": "MNP006"},
-    {"instance": "FC-MNP007", "action": "reformat", "catalog_id": "MNP007"},
-    {"instance": "FC-MNP010", "action": "reformat", "catalog_id": "MNP010"},
-    {"instance": "FC-CNP007", "action": "reformat", "catalog_id": "CNP007"},
-    {"instance": "FC-CNP008", "action": "reformat", "catalog_id": "CNP008"},
-    {"instance": "FC-CNP009", "action": "reformat", "catalog_id": "CNP009"},
-    {"instance": "FC-CNP011", "action": "reformat", "catalog_id": "CNP011"}
+    {
+      "instance": "FA-TOR-1CRN-G20",
+      "action": "new",
+      "catalog_id": "BNP013",
+      "title": "1CRN · Gly20 主链 φ 二面角（四选一）"
+    },
+    {
+      "instance": "FA-TOR-1UBQ-V26",
+      "action": "new",
+      "catalog_id": "BNP014",
+      "title": "1UBQ · Val26 主链 ψ 二面角（四选一）"
+    },
+    {
+      "instance": "FA-TOR-6LYZ-T43",
+      "action": "new",
+      "catalog_id": "BNP015",
+      "title": "6LYZ · Thr43 主链 φ 二面角（四选一）"
+    },
+    {
+      "instance": "FA-EXT-NACL",
+      "action": "new",
+      "catalog_id": "MNI011",
+      "title": "NaCl · 哪一反射消光（四选一）"
+    },
+    {
+      "instance": "FA-EXT-DIAMOND",
+      "action": "new",
+      "catalog_id": "MNI012",
+      "title": "金刚石 · 哪一反射消光（四选一）"
+    },
+    {
+      "instance": "FA-EXT-SALEM2",
+      "action": "supersede",
+      "catalog_id": "MNI013",
+      "supersedes": "MNI008",
+      "title": "SALEM-2（ZIF-8 拓扑）· 哪一反射消光（四选一）",
+      "paper": "cod-mof"
+    },
+    {
+      "instance": "FA-EXT-MOF5",
+      "action": "supersede",
+      "catalog_id": "MNI014",
+      "supersedes": "MNI009",
+      "title": "MOF-5 · 哪一反射消光（四选一）",
+      "paper": "cod-mof"
+    },
+    {
+      "instance": "FA-CONF-7050-max_dipole",
+      "action": "new",
+      "catalog_id": "QND001",
+      "title": "QM7-X 7050 · 选偶极最大的构象（设计选择）"
+    },
+    {
+      "instance": "FA-CONF-7206-min_energy",
+      "action": "new",
+      "catalog_id": "QND002",
+      "title": "QM7-X 7206 · 选能量最低的构象（设计选择）"
+    },
+    {
+      "instance": "FA-CONF-7095-min_energy",
+      "action": "new",
+      "catalog_id": "QND003",
+      "title": "QM7-X 7095 · 选能量最低的构象（设计选择）"
+    },
+    {
+      "instance": "FA-CONF-7032-max_dipole",
+      "action": "new",
+      "catalog_id": "QND004",
+      "title": "QM7-X 7032 · 选偶极最大的构象（设计选择）"
+    },
+    {
+      "instance": "FA-ANG-BCD",
+      "action": "reformat",
+      "catalog_id": "CNP001"
+    },
+    {
+      "instance": "FA-ANG-WP6",
+      "action": "reformat",
+      "catalog_id": "CNP002"
+    },
+    {
+      "instance": "FA-ANG-DMBCD",
+      "action": "reformat",
+      "catalog_id": "CNP006"
+    },
+    {
+      "instance": "FA-FP-QM7X-7001",
+      "action": "reformat",
+      "catalog_id": "QNP001"
+    },
+    {
+      "instance": "FA-FP-QM7X-7002",
+      "action": "reformat",
+      "catalog_id": "QNI001"
+    },
+    {
+      "instance": "FA-FP-QM7X-7035",
+      "action": "reformat",
+      "catalog_id": "QNI002"
+    },
+    {
+      "instance": "FC-QNP007",
+      "action": "reformat",
+      "catalog_id": "QNP007"
+    },
+    {
+      "instance": "FC-QNP008",
+      "action": "reformat",
+      "catalog_id": "QNP008"
+    },
+    {
+      "instance": "FC-QNP009",
+      "action": "reformat",
+      "catalog_id": "QNP009"
+    },
+    {
+      "instance": "FC-QNP010",
+      "action": "reformat",
+      "catalog_id": "QNP010"
+    },
+    {
+      "instance": "FC-QNP011",
+      "action": "reformat",
+      "catalog_id": "QNP011"
+    },
+    {
+      "instance": "FC-MNP006",
+      "action": "reformat",
+      "catalog_id": "MNP006"
+    },
+    {
+      "instance": "FC-MNP007",
+      "action": "reformat",
+      "catalog_id": "MNP007"
+    },
+    {
+      "instance": "FC-MNP010",
+      "action": "reformat",
+      "catalog_id": "MNP010"
+    },
+    {
+      "instance": "FC-CNP007",
+      "action": "reformat",
+      "catalog_id": "CNP007"
+    },
+    {
+      "instance": "FC-CNP008",
+      "action": "reformat",
+      "catalog_id": "CNP008"
+    },
+    {
+      "instance": "FC-CNP009",
+      "action": "reformat",
+      "catalog_id": "CNP009"
+    },
+    {
+      "instance": "FC-CNP011",
+      "action": "reformat",
+      "catalog_id": "CNP011"
+    },
+    {
+      "instance": "FA-SREL-7029-SAME",
+      "action": "new",
+      "catalog_id": "CNP012",
+      "title": "QM7-X 7029 · 两结构的立体关系（四选一）"
+    },
+    {
+      "instance": "FA-SREL-7052-SAME",
+      "action": "new",
+      "catalog_id": "CNP013",
+      "title": "QM7-X 7052 · 两结构的立体关系（四选一）"
+    },
+    {
+      "instance": "FA-SREL-7208-ENAN",
+      "action": "new",
+      "catalog_id": "CNP014",
+      "title": "QM7-X 7208 · 两结构的立体关系（四选一）"
+    },
+    {
+      "instance": "FA-SREL-7111-ENAN",
+      "action": "new",
+      "catalog_id": "CNP015",
+      "title": "QM7-X 7111 · 两结构的立体关系（四选一）"
+    },
+    {
+      "instance": "FA-SREL-7110-DIAS",
+      "action": "new",
+      "catalog_id": "CNP016",
+      "title": "QM7-X 7110 · 两结构的立体关系（四选一）"
+    },
+    {
+      "instance": "FA-SREL-7043-DIAS",
+      "action": "new",
+      "catalog_id": "CNP017",
+      "title": "QM7-X 7043 · 两结构的立体关系（四选一）"
+    },
+    {
+      "instance": "FA-SREL-7082-CONS",
+      "action": "new",
+      "catalog_id": "CNP018",
+      "title": "QM7-X 7082 · 两结构的立体关系（四选一）"
+    },
+    {
+      "instance": "FA-SREL-7033-CONS",
+      "action": "new",
+      "catalog_id": "CNP019",
+      "title": "QM7-X 7033 · 两结构的立体关系（四选一）"
+    },
+    {
+      "instance": "FA-SPROP-7082",
+      "action": "new",
+      "catalog_id": "CNI007",
+      "title": "QM7-X 7082 · 非对映体的能量与偶极比较（四选一）"
+    },
+    {
+      "instance": "FA-SPROP-7089",
+      "action": "new",
+      "catalog_id": "CNI008",
+      "title": "QM7-X 7089 · 非对映体的能量与偶极比较（四选一）"
+    },
+    {
+      "instance": "FA-SPROP-7110",
+      "action": "new",
+      "catalog_id": "CNI009",
+      "title": "QM7-X 7110 · 非对映体的能量与偶极比较（四选一）"
+    },
+    {
+      "instance": "FA-SPROP-7114",
+      "action": "new",
+      "catalog_id": "CNI010",
+      "title": "QM7-X 7114 · 非对映体的能量与偶极比较（四选一）"
+    },
+    {
+      "instance": "FA-SDES-7029",
+      "action": "new",
+      "catalog_id": "CND001",
+      "title": "QM7-X 7029 · 只改构型降低能量（设计选择）"
+    },
+    {
+      "instance": "FA-SDES-7033",
+      "action": "new",
+      "catalog_id": "CND002",
+      "title": "QM7-X 7033 · 只改构型降低能量（设计选择）"
+    },
+    {
+      "instance": "FA-SDES-7110",
+      "action": "new",
+      "catalog_id": "CND003",
+      "title": "QM7-X 7110 · 只改构型降低能量（设计选择）"
+    }
   ]
 }

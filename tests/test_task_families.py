@@ -6,7 +6,7 @@ from decimal import Decimal
 from pathlib import Path
 
 import family_engine
-from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice
+from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo
 
 ROOT = Path(__file__).resolve().parents[1]
 SEED = 'geobench-family-v1'
@@ -190,6 +190,55 @@ class DesignTests(unittest.TestCase):
     def test_no_valid_set_is_recorded_not_forced(self):
         with self.assertRaisesRegex(ValueError, 'unique best'):
             conformer_design.build(spec('FA-CONF-7063-max_dipole'), ROOT, SEED)
+
+
+class StereoTests(unittest.TestCase):
+    def data(self, mol):
+        return json.loads((ROOT / ('docs/assets/families/stereo/QM7X-%s.json' % mol)).read_text())
+
+    def test_relationship_categories_on_real_pairs(self):
+        expect = {'FA-SREL-7029-SAME': 'same', 'FA-SREL-7052-SAME': 'same', 'FA-SREL-7208-ENAN': 'enantiomer',
+                  'FA-SREL-7111-ENAN': 'enantiomer', 'FA-SREL-7110-DIAS': 'diastereomer', 'FA-SREL-7043-DIAS': 'diastereomer',
+                  'FA-SREL-7082-CONS': 'constitutional', 'FA-SREL-7033-CONS': 'constitutional'}
+        for sid, relation in expect.items():
+            built = stereo.build_relationship(spec(sid), ROOT, SEED)
+            self.assertEqual(built['checks']['relation'], relation, sid)
+            self.assertEqual(built['correct_label'], 'ABCD'[[r for r, _ in stereo.RELATIONS].index(relation)])
+
+    def test_pose_is_proper_and_mirror_flips_every_centre(self):
+        d = self.data('7208')
+        el, pts = d['elements'], [tuple(p) for p in d['conformers'][0]['xyz']]
+        moved = stereo.placed(pts, SEED, 'x')
+        self.assertLess(conformer_design.distance_rmsd(pts, moved), 1e-9)
+        self.assertEqual(stereo.relationship(el, pts, el, moved, True)[0], 'same')
+        self.assertEqual(stereo.relationship(el, pts, el, stereo.mirror(pts), True)[0], 'enantiomer')
+
+    def test_aziridine_nitrogen_and_label_cross_check(self):
+        d = self.data('7110')
+        a = stereo.best(d, 'i1')
+        edges = kit.bond_graph(d['elements'], a['xyz'])
+        self.assertIn(5, stereo.descriptors(d['elements'], a['xyz'], edges)['centres'])   # ring N
+        d = self.data('7165')     # true enantiomers, but only different ring puckers are in the data
+        with self.assertRaisesRegex(ValueError, 'equal lowest energies'):
+            stereo.check_labels(d, 'enantiomer', stereo.best(d, 'i1'), stereo.best(d, 'i2'))
+        with self.assertRaisesRegex(ValueError, 'no difference'):
+            stereo.check_labels(d, 'same', stereo.best(d, 'i1'), stereo.best(d, 'i2'))
+
+    def test_property_needs_diastereomers_and_margins(self):
+        built = stereo.build_property(spec('FA-SPROP-7089'), ROOT, SEED)
+        self.assertLess(built['checks']['delta_energy_eV'], -stereo.MARGIN_E)
+        with self.assertRaisesRegex(ValueError, 'margins'):
+            stereo.build_property(dict(spec('FA-SPROP-7089'), asset='assets/families/stereo/QM7X-7043.json'), ROOT, SEED)
+
+    def test_design_traps(self):
+        built = stereo.build_design(spec('FA-SDES-7029'), ROOT, SEED)
+        kinds = {a['kind']: a for a in built['option_audit']}
+        self.assertTrue(kinds['diastereomer_lower']['is_correct'])
+        self.assertLess(kinds['conformer_only']['delta_energy_eV'], -stereo.MARGIN_E)     # lower but not allowed
+        self.assertFalse(kinds['conformer_only']['allowed_modification'])
+        self.assertEqual(kinds['mirror_image']['delta_energy_eV'], 0.0)
+        self.assertEqual(kinds['constitutional_isomer']['relation'], 'constitutional')
+        self.assertNotIn('Geom-', json.dumps(built['inputs']))
 
 
 class ExtentAndEngineTests(unittest.TestCase):

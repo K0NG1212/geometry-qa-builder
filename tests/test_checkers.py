@@ -171,5 +171,38 @@ class MutationTests(unittest.TestCase):
         self.assertTrue(fails(p, k, 'belong together'))
 
 
+def mirror_text(text):
+    lines = text.splitlines()
+    rows = [line.split() for line in lines[2:]]
+    return '\n'.join(lines[:2] + ['%s %s %s %.8f' % (r[0], r[1], r[2], -float(r[3])) for r in rows]) + '\n'
+
+
+class StereoMutationTests(unittest.TestCase):
+    def test_mirrored_x_changes_relationship(self):
+        p, k = pair('FA-SREL-7208-ENAN')
+        x = next(i for i in p['inputs'] if i['name'] == 'X.xyz')
+        x['text'] = mirror_text(x['text'])          # mirror of the enantiomer = S0 configuration
+        self.assertTrue(fails(p, k))
+
+    def test_disclosure_and_key(self):
+        p, k = pair('FA-SREL-7082-CONS')
+        p['question'] = p['question'].replace('atom order may differ', 'atom order is the same')
+        self.assertTrue(fails(p, k, 'disclose'))
+        p, k = pair('FA-SPROP-7110')
+        k['correct_label'] = next(l for l in 'ABCD' if l != k['correct_label'])
+        self.assertTrue(fails(p, k, 'Key label'))
+
+    def test_design_candidate_swap_and_margin(self):
+        p, k = pair('FA-SDES-7033')
+        files = {i['name']: i for i in p['inputs']}
+        right = 'candidate_%s.xyz' % k['correct_label']
+        other = next(n for n in files if n.startswith('candidate_') and n != right)
+        files[right]['text'], files[other]['text'] = files[other]['text'], files[right]['text']
+        self.assertTrue(fails(p, k, 'Key label'))
+        p, k = pair('FA-SDES-7033')
+        p['question'] = p['question'].replace('0.0434 eV (1 kcal/mol) lower', '0.5 eV (1 kcal/mol) lower')
+        self.assertTrue(fails(p, k, 'need exactly 1'))
+
+
 if __name__ == '__main__':
     unittest.main()

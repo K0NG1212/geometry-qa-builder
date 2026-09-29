@@ -251,7 +251,12 @@ def conformer_selection(packet, key):
                 method='own bond graph, handedness and distance-matrix checks; property matched by coordinates')
 
 
+from . import stereo as _stereo
+
 CHECKERS = {
+    'stereo_relationship': _stereo.stereo_relationship,
+    'stereo_property_inference': _stereo.stereo_property_inference,
+    'stereo_design_selection': _stereo.stereo_design_selection,
     'named_bond_angle': named_bond_angle,
     'backbone_torsion': backbone_torsion,
     'extent_choice_v2': extent,

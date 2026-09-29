@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "kind": "reusable_family_development_pilot",
   "seed": "geobench-family-v1",
-  "attempted": 30,
-  "passed": 29,
+  "attempted": 45,
+  "passed": 44,
   "failures": [
    {
     "id": "FA-CONF-7063-max_dipole",
@@ -70,24 +70,40 @@
      "mirror_pair_cue": 0
     },
     "attempted": 12
+   },
+   "stereo_relationship": {
+    "passed": 8,
+    "shortcut_hits": {},
+    "attempted": 8
+   },
+   "stereo_property_inference": {
+    "passed": 4,
+    "shortcut_hits": {},
+    "attempted": 4
+   },
+   "stereo_design_selection": {
+    "passed": 3,
+    "shortcut_hits": {},
+    "attempted": 3
    }
   },
   "correct_position_counts": {
-   "A": 6,
-   "B": 10,
-   "C": 7,
-   "D": 6
+   "A": 10,
+   "B": 13,
+   "C": 11,
+   "D": 10
   },
-  "manifest_sha256": "c0350e5a2bd106e35a912385e5100034084f33787ea22459b75dd6367527fcef",
-  "registry_sha256": "ec0af8e2737229617fe932afa261802674a87c3358f96a0e975099713bf969ce",
+  "manifest_sha256": "f07cf8af6c04ad6efc64311a91841f5a635235f49693672e0910208e251d2575",
+  "registry_sha256": "44c31f14f2f96085096ff1b777b7c64a29e8f5753f72e844c59bc64575488605",
   "code_sha256": {
-   "task_families/__init__.py": "34cca3a02f83c528e51c5c8374793c0390e2fa0656c647cd9f83b72ccd28fca2",
+   "task_families/__init__.py": "66a77d5a074f0e8d998c15aae7d48e3f94d0bfcd77d59e1c202de91aaa940f60",
    "task_families/conformer_design.py": "c1df20bcb3ca7c59938dcfc28012c37beca3d235e0181495fb2b6d9e9d54a211",
    "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
    "task_families/extinction.py": "00d55fe1a92e6521076d61e3863d410d68f150b3803a181435c4db17a65164bc",
    "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af",
    "task_families/kit.py": "5e377e5684202b03c1aac0f5d24fc5e7fd2132bcac763f1b4b57bdb03258ac1c",
    "task_families/local_geometry.py": "066207f27f41beec88a4c08c5c6b2e07acd86cc96ce4e56eb9957febe3acabf3",
+   "task_families/stereo.py": "6b3b6af008d12b295cd89020110e1259d4941ec02424273e8f5f758e8401c370",
    "family_engine.py": "50230f6b84d5c2d522164dd646ccc42b59318ac106902c4ec7932562c24fa663",
    "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
    "tools/recompute_materials_batch.py": "df46676f8635db858bf9e9ab7a0b7613e580863306ca987f4ffbc19e7e9446e7"
@@ -191,18 +207,21 @@
     "code": [
      "template_engine.py",
      "choice_engine.py",
-     "task_families/extent_choice.py"
+     "task_families/extent_choice.py",
+     "checkers/families.py"
     ],
     "tests": [
      "tests/test_template_engine.py",
      "tests/test_choice_engine.py",
-     "tests/test_task_families.py"
+     "tests/test_task_families.py",
+     "tests/test_checkers.py"
     ],
     "builder_modules": "专用试跑覆盖 M0/M1/M4/M5/M6 的等价检查；未走旧 pipeline。",
     "validation": "逐对欧氏距离最大值；另行读取原始十进制坐标复算。原题给出的数值另外比较，不用于生成新答案。",
     "limits": "仅有限点集范围，不等于晶粒尺寸或孔径；周期晶胞内点集的值依赖表示。并列极值不影响单数值评分。",
     "gap": "已足量；本轮不再扩量，只改进干扰项。",
-    "template_review": "题型已做本轮 AI 方法审读，尚待人工确认；程序检查不能证明科学意义与数据来源正确。"
+    "template_review": "题型已做本轮 AI 方法审读，尚待人工确认；程序检查不能证明科学意义与数据来源正确。",
+    "independent_checker": "checkers/families.py:extent"
    },
    {
     "id": "equal_weight_rg",
@@ -259,18 +278,21 @@
     "code": [
      "template_engine.py",
      "choice_engine.py",
-     "task_families/extent_choice.py"
+     "task_families/extent_choice.py",
+     "checkers/families.py"
     ],
     "tests": [
      "tests/test_template_engine.py",
      "tests/test_choice_engine.py",
-     "tests/test_task_families.py"
+     "tests/test_task_families.py",
+     "tests/test_checkers.py"
     ],
     "builder_modules": "同上。",
     "validation": "质心公式与成对距离恒等式交叉检查；在多个结构上复用相同代码。",
     "limits": "不是质量加权或实测 SAXS Rg；不能据此断言折叠稳定性。",
     "gap": "已足量；本轮不再扩量。",
-    "template_review": "题型已做本轮 AI 方法审读，尚待人工确认；程序检查不能证明科学意义与数据来源正确。"
+    "template_review": "题型已做本轮 AI 方法审读，尚待人工确认；程序检查不能证明科学意义与数据来源正确。",
+    "independent_checker": "checkers/families.py:extent"
    },
    {
     "id": "named_bond_angle",
@@ -323,17 +345,20 @@
     ],
     "code": [
      "task_families/local_geometry.py",
-     "task_families/kit.py"
+     "task_families/kit.py",
+     "checkers/families.py"
     ],
     "tests": [
-     "tests/test_task_families.py"
+     "tests/test_task_families.py",
+     "tests/test_checkers.py"
     ],
     "builder_modules": "M0 范围、M1 输入哈希、M3 族契约、M4 构造、M5 四项核验、M6 分包（族引擎内等价实现）。",
     "principle": "θ = arccos(u·v/|u||v|)，u、v 为顶点指向两端原子的键矢量。",
     "validation": "两种实现一致；四个选项逐一核验。",
     "limits": "键角接近理想值时难以构造足够分散的高迷惑干扰项（DMBCD 实例仍含一个易排除项）。",
     "gap": "局部距离（二硫键、氢键给体–受体）尚未迁入同一接口；下一步复用同一 kit。",
-    "template_review": "本轮新建，待人工审核。"
+    "template_review": "本轮新建，待人工审核。",
+    "independent_checker": "checkers/families.py:named_bond_angle"
    },
    {
     "id": "backbone_torsion",
@@ -376,17 +401,20 @@
     "legacy_qa": [],
     "code": [
      "task_families/local_geometry.py",
-     "task_families/kit.py"
+     "task_families/kit.py",
+     "checkers/families.py"
     ],
     "tests": [
-     "tests/test_task_families.py"
+     "tests/test_task_families.py",
+     "tests/test_checkers.py"
     ],
     "builder_modules": "同 named_bond_angle。",
     "principle": "IUPAC 二面角：沿中心键从第二原子看向第三原子，前键顺时针转到后键为正。",
     "validation": "两种实现一致；周期间隔检查；四项逐一核验。",
     "limits": "反号干扰项形成 ± 配对线索（本批 3/3），需人工判断是否保留。",
     "gap": "尚无立体构型（R/S、顺反）题型；建议按会议 2 的感知→推断→设计梯子继续。",
-    "template_review": "本轮新建，待人工审核。"
+    "template_review": "本轮新建，待人工审核。",
+    "independent_checker": "checkers/families.py:backbone_torsion"
    },
    {
     "id": "named_bond_distance",
@@ -453,7 +481,8 @@
     "validation": "旧验证器。",
     "limits": "QNP002–006 需说明元素对选择的化学意义（待小修）。",
     "gap": "迁入族接口：复用 kit 距离核与 local_geometry 的实体确认。",
-    "template_review": "既有模块。"
+    "template_review": "既有模块。",
+    "independent_checker": ""
    },
    {
     "id": "coordination_shell",
@@ -510,7 +539,8 @@
     "validation": "独立 Decimal 公式复核。",
     "limits": "MNP004/005 待小修。",
     "gap": "迁入族接口；四选一可用整数配位数（需排除等价答案）。",
-    "template_review": "既有模块。"
+    "template_review": "既有模块。",
+    "independent_checker": ""
    },
    {
     "id": "lattice_plane_geometry",
@@ -563,7 +593,8 @@
     "validation": "旧验证。",
     "limits": "几何必要性弱（只用 a）。",
     "gap": "优先级低：易退化为公式题。",
-    "template_review": "既有模块。"
+    "template_review": "既有模块。",
+    "independent_checker": ""
    },
    {
     "id": "biopolymer_path_geometry",
@@ -626,50 +657,169 @@
     "validation": "旧验证。",
     "limits": "多为小修。",
     "gap": "需要先拆成若干可复用子族（路径长度、弦长、局部间距）。",
-    "template_review": "既有模块。"
+    "template_review": "既有模块。",
+    "independent_checker": ""
    },
    {
-    "id": "stereo_configuration",
-    "name": "立体构型判别（R/S、顺/反）",
+    "id": "stereo_relationship",
+    "name": "立体关系判别",
     "ability": "perception",
-    "status": "planned",
-    "priority": 2,
-    "concept": "由三维坐标判断手性中心构型或双键顺反；会议 2 建议的感知→推断→设计梯子的第一级。",
+    "status": "pilot",
+    "priority": 1,
+    "concept": "判断结构 X 相对 S0 是同一化合物（仅构象/取向不同）、对映体、非对映体还是构造异构体；需要在三维中区分旋转与镜像、构象改变与构型改变（会议 2 立体化学梯子第一级）。",
     "domains": [
-     "chemistry",
-     "quantum"
+     "chemistry"
     ],
     "output": "choice",
     "output_forms": [
      "choice"
     ],
-    "inputs": "XYZ + 指定原子；CIP 优先级需给出或可计算。",
-    "physical_conditions": "单一构象。",
-    "input_scale": "分子",
-    "reasoning_scale": "手性中心第一壳层",
+    "inputs": "S0.xyz 与 X.xyz（Å）；X 经刚性旋转平移，原子顺序可能不同。",
+    "physical_conditions": "单键旋转可互变的结构视为同一化合物。",
+    "input_scale": "两个分子",
+    "reasoning_scale": "整分子立体构型（0.4–0.8 nm）",
     "scale_cells": [
      "0.1-1"
     ],
-    "scale_limits": "CIP 规则复杂分支需限制适用分子。",
-    "source_basis": "QM7-X 立体异构体（i1/i2）可作真实输入",
-    "answer_method": "带符号体积 + 预先给定优先级。",
+    "scale_limits": "立体中心按第一配位层判定；与数据集标签不一致的实例拒绝。",
+    "source_basis": "QM7-X 立体异构体与构象（CC BY 4.0），15 个分子的全部优化构象",
+    "answer_method": "共价半径成键图 + 图不变量判定键连；四配位中心、锥形 S/P、氮杂环丙烷 N 的手性符号与双键顺反描述符判定构型关系。",
     "distractor_mechanisms": [
-     "mirror_configuration",
-     "priority_order_error",
-     "viewing_direction_error"
+     "conformation_mistaken_for_configuration",
+     "rotation_mistaken_for_reflection",
+     "partial_vs_full_inversion",
+     "same_formula_assumed_same_bonding"
     ],
-    "four_choice_validation": "未实现。",
-    "engine_families": [],
+    "four_choice_validation": "四个固定类别恰好一个成立；批次内每类 2 例以平衡位置；独立检查器用自有实现复核。",
+    "engine_families": [
+     "stereo_relationship"
+    ],
     "legacy_families": [],
     "legacy_qa": [],
-    "code": [],
-    "tests": [],
-    "builder_modules": "未开始。",
-    "principle": "带符号体积判定手性。",
-    "validation": "待实现。",
-    "limits": "需避免 CIP 优先级本身成为主要难点。",
-    "gap": "下一轮候选：conformer_design.stereocentres() 已有带符号体积核。",
-    "template_review": "路线定义。"
+    "code": [
+     "task_families/stereo.py",
+     "task_families/kit.py",
+     "checkers/stereo.py",
+     "tools/build_family_assets.py"
+    ],
+    "tests": [
+     "tests/test_task_families.py",
+     "tests/test_checkers.py"
+    ],
+    "builder_modules": "族引擎内等价实现 M0–M6；所有判定与数据集立体异构体标签交叉核对，不一致即拒绝。",
+    "principle": "构型描述符在旋转与构象变化下不变、在镜像下全部翻转。",
+    "validation": "生成端与独立检查器一致；数据集标签交叉核对。",
+    "limits": "不给 R/S 描述符（需 CIP 优先级，RDKit 未安装）；7165 真对映体因数据集缺镜像构象被保守拒绝。",
+    "gap": "R/S、E/Z 命名需 CIP 优先级；可在获准安装 RDKit 后加入。",
+    "template_review": "本轮新建，待人工审核。",
+    "independent_checker": "checkers/stereo.py:stereo_relationship"
+   },
+   {
+    "id": "stereo_property_inference",
+    "name": "立体异构体性质推断",
+    "ability": "inference",
+    "status": "pilot",
+    "priority": 1,
+    "concept": "同一分子的两个或多个立体异构体，由三维构型推断哪一个的指定性质（偶极、能量或文献报道的活性）更高或落在哪个区间。",
+    "domains": [
+     "chemistry"
+    ],
+    "output": "choice",
+    "output_forms": [
+     "choice",
+     "numeric"
+    ],
+    "inputs": "S0.xyz 与 X.xyz：同一分子两个非对映体各自的数据集最低能构象；X 刚性旋转。",
+    "physical_conditions": "性质为数据集计算值或论文实测值，题干写明来源类型与条件。",
+    "input_scale": "分子",
+    "reasoning_scale": "立体中心周围与整分子取向",
+    "scale_cells": [
+     "0.1-1"
+    ],
+    "scale_limits": "构型差异须由几何决定；性质差须超过阈值。",
+    "source_basis": "QM7-X 立体异构体与构象（CC BY 4.0），15 个分子的全部优化构象",
+    "answer_method": "由数据集 PBE0+MBD 能量与偶极得到 ΔE、Δμ 的符号；两者均须超过阈值（1 kcal/mol、0.10 e·Å）。",
+    "distractor_mechanisms": [
+     "energy_direction_reversed",
+     "dipole_direction_reversed",
+     "both_reversed"
+    ],
+    "four_choice_validation": "四个陈述覆盖符号组合，恰好一个成立；位置按批次轮换。",
+    "engine_families": [
+     "stereo_property_inference"
+    ],
+    "legacy_families": [],
+    "legacy_qa": [],
+    "code": [
+     "task_families/stereo.py",
+     "task_families/kit.py",
+     "checkers/stereo.py",
+     "tools/build_family_assets.py"
+    ],
+    "tests": [
+     "tests/test_task_families.py",
+     "tests/test_checkers.py"
+    ],
+    "builder_modules": "族引擎内等价实现 M0–M6；所有判定与数据集立体异构体标签交叉核对，不一致即拒绝。",
+    "principle": "立体构型 → 性质。",
+    "validation": "独立检查器按距离矩阵与手性匹配数据集结构后重算。",
+    "limits": "手性药物的活性需论文证据。",
+    "gap": "仅 4 对满足阈值的非对映体；更多需下载 QM7-X 其他分卷。",
+    "template_review": "本轮新建，待人工审核。",
+    "independent_checker": "checkers/stereo.py:stereo_property_inference"
+   },
+   {
+    "id": "stereo_design_selection",
+    "name": "立体构型设计选择",
+    "ability": "design",
+    "status": "pilot",
+    "priority": 1,
+    "concept": "给定 S0 与目标（能量降低 ≥1 kcal/mol），只允许改变构型（立体中心手性或双键顺反），从四个候选中选唯一满足者；陷阱：镜像（构型变但能量不变）、只改构象（能量更低但不允许）、构造异构体（键连不同）。",
+    "domains": [
+     "chemistry"
+    ],
+    "output": "choice",
+    "output_forms": [
+     "choice"
+    ],
+    "inputs": "S0 与四个候选 XYZ（均刚性旋转；构造异构体原子顺序不同）；性质证据在审核侧。",
+    "physical_conditions": "同 stereo_property_inference。",
+    "input_scale": "分子",
+    "reasoning_scale": "立体中心与整分子",
+    "scale_cells": [
+     "0.1-1"
+    ],
+    "scale_limits": "候选须满足约束且互不等价（排除镜像/构象重复）。",
+    "source_basis": "QM7-X 立体异构体与构象（CC BY 4.0），15 个分子的全部优化构象",
+    "answer_method": "逐项判定与 S0 的关系（是否只改构型）+ 能量证据（数据集值；镜像按反演对称等于 S0）。",
+    "distractor_mechanisms": [
+     "mirror_image_no_energy_change",
+     "conformation_only_change",
+     "constitution_changed"
+    ],
+    "four_choice_validation": "恰好一项同时满足约束与目标；独立检查器复核每一项。",
+    "engine_families": [
+     "stereo_design_selection"
+    ],
+    "legacy_families": [],
+    "legacy_qa": [],
+    "code": [
+     "task_families/stereo.py",
+     "task_families/kit.py",
+     "checkers/stereo.py",
+     "tools/build_family_assets.py"
+    ],
+    "tests": [
+     "tests/test_task_families.py",
+     "tests/test_checkers.py"
+    ],
+    "builder_modules": "族引擎内等价实现 M0–M6；所有判定与数据集立体异构体标签交叉核对，不一致即拒绝。",
+    "principle": "设计 = 推断的逆问题。",
+    "validation": "独立检查器重算关系与能量差。",
+    "limits": "计算证据只对所述理论水平成立。",
+    "gap": "3 个分子；目标暂只有降低能量。",
+    "template_review": "本轮新建，待人工审核。",
+    "independent_checker": "checkers/stereo.py:stereo_design_selection"
    },
    {
     "id": "force_path_derivative",
@@ -720,18 +870,21 @@
     "code": [
      "task_families/force_path.py",
      "builder_modules/m4_construction/force_projection.py",
-     "tools/build_family_assets.py"
+     "tools/build_family_assets.py",
+     "checkers/families.py"
     ],
     "tests": [
      "tests/test_task_families.py",
-     "tests/test_force_projection.py"
+     "tests/test_force_projection.py",
+     "tests/test_checkers.py"
     ],
     "builder_modules": "M1 资产由 tools/build_family_assets.py 从 QM7-X 提取并与已发布旧题坐标/受力逐项核对。",
     "principle": "dE/dλ = −Σ F_i(B)·(dr_i/dλ)。",
     "validation": "两种求和一致；四项逐一核验。",
     "limits": "仍依赖题干给出物理关系；推断深度有限。",
     "gap": "可扩到“受力是否指向降低能量的方向”的结论选择题。",
-    "template_review": "本轮新建，待人工审核。"
+    "template_review": "本轮新建，待人工审核。",
+    "independent_checker": "checkers/families.py:force_path"
    },
    {
     "id": "kinematic_extinction",
@@ -785,18 +938,21 @@
     ],
     "code": [
      "task_families/extinction.py",
-     "tools/recompute_materials_batch.py"
+     "tools/recompute_materials_batch.py",
+     "checkers/families.py"
     ],
     "tests": [
      "tests/test_task_families.py",
-     "tests/test_materials_batch.py"
+     "tests/test_materials_batch.py",
+     "tests/test_checkers.py"
     ],
     "builder_modules": "M1 直接读取已发布 CIF/XYZ；M5 记录规则捷径。",
     "principle": "F(hkl) = Σ Z_j exp[2πi(hx+ky+lz)]。",
     "validation": "四项逐一计算。",
     "limits": "NaCl、SALEM-2、MOF-5 的正确项仅需中心化规则即可答对（已在 rule_shortcuts 中披露）。",
     "gap": "旧 MOF-5 题来源误记为 COD 4118891（应为 1516287），旧“ZIF-8”实为未取代咪唑的 SALEM-2；新族已更正，旧目录待修。",
-    "template_review": "本轮新建，待人工审核。"
+    "template_review": "本轮新建，待人工审核。",
+    "independent_checker": "checkers/families.py:extinction"
    },
    {
     "id": "bragg_angle_inference",
@@ -850,7 +1006,8 @@
     "validation": "旧验证。",
     "limits": "多为小修。",
     "gap": "低优先：与消光族合并为“衍射图样”推断更有几何必要性。",
-    "template_review": "既有模块。"
+    "template_review": "既有模块。",
+    "independent_checker": ""
    },
    {
     "id": "scattering_model_inference",
@@ -905,7 +1062,8 @@
     "validation": "旧验证。",
     "limits": "证据段落需审核。",
     "gap": "适合下一轮迁入：四个不重叠效率区间可做四选一。",
-    "template_review": "既有模块。"
+    "template_review": "既有模块。",
+    "independent_checker": ""
    },
    {
     "id": "evidence_inference_choice",
@@ -955,7 +1113,8 @@
     "validation": "需建立具体题型的证据映射和干扰项验证；尚未实施通用语义验证。",
     "limits": "论文中的答案证据不默认给被测模型，必要物理条件必须写在题目里。",
     "gap": "待建立首个经证据支持的通用模板。",
-    "template_review": "待建立首个经证据支持的模板。"
+    "template_review": "待建立首个经证据支持的模板。",
+    "independent_checker": ""
    },
    {
     "id": "structure_comparison_inference",
@@ -1025,7 +1184,8 @@
     "validation": "旧验证。",
     "limits": "多为小修。",
     "gap": "需要先确认哪些比较真正需要推断；否则并入感知族。",
-    "template_review": "既有模块。"
+    "template_review": "既有模块。",
+    "independent_checker": ""
    },
    {
     "id": "electronic_property_from_geometry",
@@ -1073,7 +1233,8 @@
     "validation": "—",
     "limits": "不扩量。",
     "gap": "重建方向：改为 conformer_target_selection 式的“由结构选性质”题，而不是给出能级。",
-    "template_review": "筛查判定 rebuild。"
+    "template_review": "筛查判定 rebuild。",
+    "independent_checker": ""
    },
    {
     "id": "conformer_target_selection",
@@ -1113,17 +1274,20 @@
     "legacy_qa": [],
     "code": [
      "task_families/conformer_design.py",
-     "tools/build_family_assets.py"
+     "tools/build_family_assets.py",
+     "checkers/families.py"
     ],
     "tests": [
-     "tests/test_task_families.py"
+     "tests/test_task_families.py",
+     "tests/test_checkers.py"
     ],
     "builder_modules": "旧 M3 仍拒绝 design；本族在族引擎内实现独立约束与唯一性检查，未改动旧门槛。",
     "principle": "候选选择 + 计算性质证据。",
     "validation": "约束与唯一性；性质值来自数据集，未独立重算 DFT。",
     "limits": "未独立复算 PBE0+MBD；目标只对所述理论水平成立。",
     "gap": "论文 S0→S1 优化案例（design_choice）仍缺实例。",
-    "template_review": "本轮新建，待人工审核。"
+    "template_review": "本轮新建，待人工审核。用户 2026-09-28 确认：以计算性质为证据的构象选择算设计题。",
+    "independent_checker": "checkers/families.py:conformer_selection"
    },
    {
     "id": "design_choice",
@@ -1167,7 +1331,8 @@
     "validation": "需先验证候选身份、目标性质与约束，再用选项标签评分。",
     "limits": "选项评分容易不代表选项科学正确；S1/S2 不同并不证明优化；当前 M3 旧门槛尚未接通此路线。",
     "gap": "本轮未取得带四个候选测量值且许可可公开的案例；未虚构。",
-    "template_review": "本轮定义路线，不虚称已产生设计题。"
+    "template_review": "本轮定义路线，不虚称已产生设计题。",
+    "independent_checker": ""
    },
    {
     "id": "open_structure_design",
@@ -1204,7 +1369,8 @@
     "validation": "必须有结构合法性、约束和目标评价器。",
     "limits": "暂无通用评价器，不计入完成。",
     "gap": "保留路线。",
-    "template_review": "保留路线，当前不开放。"
+    "template_review": "保留路线，当前不开放。",
+    "independent_checker": ""
    }
   ]
  },
@@ -2407,6 +2573,660 @@
      "label": "D",
      "value": "10.6989",
      "unit": "angstrom"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SREL-7029-SAME",
+   "family": "stereo_relationship",
+   "ability": "perception",
+   "question": "S0.xyz and X.xyz each contain one structure of formula C4H8N2S1 (angstrom). X has been rigidly rotated and translated, and its atom order may differ from S0. Treat structures that interconvert only by rotation about single bonds as the same compound. Which describes X relative to S0?",
+   "scope": "QM7-X 分子 7029 同一立体异构体的两个构象。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\nS0, angstrom\nC -3.31187900 0.12536200 0.38631700\nC -1.82775100 0.00960800 0.23706500\nC -1.07745700 1.02521200 -0.22717000\nN 0.32149300 1.05776300 -0.42224900\nC 1.28350100 0.11081200 -0.20909700\nS 1.04454700 -1.45404200 0.39827000\nN 2.56387000 0.51474500 -0.51296600\nH -3.61445000 -0.04585700 1.42105800\nH -3.82424300 -0.62598700 -0.21766300\nH -3.67241500 1.10696800 0.08424900\nH -1.36517200 -0.93239900 0.51704500\nH -1.54390200 1.97163800 -0.50721200\nH 0.66054400 1.94560400 -0.78783300\nH 2.74729000 1.38391300 -0.99840900\nH 3.30356800 -0.17272400 -0.45973400\n"
+    },
+    {
+     "name": "X.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\nX (rigidly rotated and translated), angstrom\nC 0.03551649 -6.03676548 -2.05051782\nC 0.56541839 -4.73742172 -2.56974655\nC -0.03580128 -3.55209621 -2.34999731\nN 0.47832600 -2.34435689 -2.84560011\nC -0.08911136 -1.11631566 -2.65387009\nS -1.51911225 -0.87127951 -1.77696122\nN 0.56279721 -0.05511365 -3.22606008\nH -0.17509557 -6.73053054 -2.86680036\nH -0.88093798 -5.89068357 -1.48455472\nH 0.76391536 -6.52677881 -1.40142901\nH 1.48576076 -4.77226347 -3.15182937\nH -0.95526904 -3.44899783 -1.77687539\nH 1.33915747 -2.39851772 -3.38819819\nH 1.44683772 -0.16183580 -3.70705844\nH 0.19625995 0.87490256 -3.07487413\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "the same compound as S0 (only conformation and/or orientation differ)"
+    },
+    {
+     "label": "B",
+     "value": "an enantiomer of S0 (its non-superimposable mirror image)"
+    },
+    {
+     "label": "C",
+     "value": "a diastereomer of S0 (a stereoisomer that is not its mirror image)"
+    },
+    {
+     "label": "D",
+     "value": "a constitutional isomer of S0 (same formula, different bonding)"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SREL-7052-SAME",
+   "family": "stereo_relationship",
+   "ability": "perception",
+   "question": "S0.xyz and X.xyz each contain one structure of formula C3H8O3S1 (angstrom). X has been rigidly rotated and translated, and its atom order may differ from S0. Treat structures that interconvert only by rotation about single bonds as the same compound. Which describes X relative to S0?",
+   "scope": "QM7-X 分子 7052（含一个立体中心）同一立体异构体的两个构象。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\nS0, angstrom\nC 1.73500300 0.10443600 -1.32214600\nC 1.22631800 -0.05297400 0.11317000\nS -0.66185600 -0.11250400 0.22394500\nO -1.04995600 -0.65227300 1.52429500\nO -1.11912500 1.21652600 -0.19684200\nC -1.17662300 -1.33325800 -1.07105900\nO 1.58561600 1.04698400 0.91753100\nH 2.81006300 0.27170000 -1.31473600\nH 1.26763100 0.95573100 -1.81391800\nH 1.53650000 -0.78627700 -1.91497800\nH 1.64479400 -0.95821500 0.58434600\nH -2.25312900 -1.47381500 -1.00323100\nH -0.69432800 -2.29458700 -0.91207200\nH -0.93806500 -0.97117600 -2.06736500\nH 1.17576500 1.85757500 0.57916700\n"
+    },
+    {
+     "name": "X.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\nX (rigidly rotated and translated), angstrom\nC 2.29374099 -2.33640012 1.76424932\nC 1.99520481 -0.84186571 1.86529272\nS 0.23713320 -0.47733229 1.28700157\nO 0.21917510 -0.71344166 -0.16050422\nO -0.72807760 -1.15142017 2.16088926\nC 0.12031186 1.34136799 1.56991451\nO 2.85111690 -0.06879446 1.04649046\nH 3.31981472 -2.53493598 2.06830073\nH 2.16820326 -2.68966643 0.74212560\nH 1.62791828 -2.90785495 2.40697869\nH 2.11558132 -0.48297035 2.90177578\nH -0.81211661 1.70302561 1.14212919\nH 0.94947164 1.85441793 1.08936256\nH 0.12732206 1.56541018 2.63370466\nH 2.85758824 -0.42652935 0.14599362\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "the same compound as S0 (only conformation and/or orientation differ)"
+    },
+    {
+     "label": "B",
+     "value": "an enantiomer of S0 (its non-superimposable mirror image)"
+    },
+    {
+     "label": "C",
+     "value": "a diastereomer of S0 (a stereoisomer that is not its mirror image)"
+    },
+    {
+     "label": "D",
+     "value": "a constitutional isomer of S0 (same formula, different bonding)"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SREL-7208-ENAN",
+   "family": "stereo_relationship",
+   "ability": "perception",
+   "question": "S0.xyz and X.xyz each contain one structure of formula C4H6N2S1 (angstrom). X has been rigidly rotated and translated, and its atom order may differ from S0. Treat structures that interconvert only by rotation about single bonds as the same compound. Which describes X relative to S0?",
+   "scope": "QM7-X 分子 7208 的两个立体异构体（两个立体中心均反转）。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "13\nS0, angstrom\nS -2.06724500 -0.00000200 1.07665600\nC -0.64459000 -0.00000600 0.16409700\nN 0.01816500 -1.11407000 -0.27179200\nC 1.25525300 -0.75284800 -0.91904700\nC 1.25526300 0.75287000 -0.91903100\nN 0.01815800 1.11406700 -0.27179900\nC 2.25888900 -0.00000700 -0.06792800\nH -0.25323700 -2.05843800 -0.02563600\nH 1.58506400 -1.37463900 -1.75492900\nH 1.58506100 1.37463900 -1.75494100\nH -0.25323900 2.05843000 -0.02564900\nH 2.12361900 0.00000500 1.00830500\nH 3.28550600 0.00000500 -0.41705000\n"
+    },
+    {
+     "name": "X.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "13\nX (rigidly rotated and translated), angstrom\nS 0.58495856 -0.67670506 4.02437838\nC 1.85913143 -1.15091597 3.02032453\nN 3.02567626 -1.72934723 3.43869774\nC 3.83924519 -2.11319702 2.31149988\nC 3.07596817 -1.62112084 1.11048454\nN 1.89617742 -1.00115163 1.66142061\nC 3.22163274 -3.11081093 1.35141571\nH 3.20652165 -1.99161262 4.40022917\nH 4.92364341 -2.04700479 2.42900579\nH 3.52999343 -1.14850103 0.23607162\nH 1.11962469 -0.64616248 1.11645048\nH 3.90610057 -3.64150377 0.69897765\nH 2.34946641 -3.66699615 1.67780967\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "the same compound as S0 (only conformation and/or orientation differ)"
+    },
+    {
+     "label": "B",
+     "value": "an enantiomer of S0 (its non-superimposable mirror image)"
+    },
+    {
+     "label": "C",
+     "value": "a diastereomer of S0 (a stereoisomer that is not its mirror image)"
+    },
+    {
+     "label": "D",
+     "value": "a constitutional isomer of S0 (same formula, different bonding)"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SREL-7111-ENAN",
+   "family": "stereo_relationship",
+   "ability": "perception",
+   "question": "S0.xyz and X.xyz each contain one structure of formula C3H6O3S1 (angstrom). X has been rigidly rotated and translated, and its atom order may differ from S0. Treat structures that interconvert only by rotation about single bonds as the same compound. Which describes X relative to S0?",
+   "scope": "QM7-X 分子 7111 的两个立体异构体中互为镜像的一对构象。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "13\nS0, angstrom\nC 0.80398600 1.25573000 -1.56497500\nS 0.67688600 0.12005400 -0.10663600\nO 1.56063900 -1.01298200 -0.34705400\nO 0.79537400 0.92429400 1.10606800\nC -1.08598700 -0.43970700 -0.24709100\nO -1.46341900 -1.29094300 0.82692100\nC -2.07679300 -0.02002900 0.77224500\nH 1.81884900 1.64262600 -1.62111200\nH 0.12012200 2.09534600 -1.46893600\nH 0.58928500 0.72493200 -2.48911200\nH -1.42224000 -0.78010200 -1.23963000\nH -1.77998100 0.68047800 1.56143000\nH -3.14419200 -0.02305600 0.51498400\n"
+    },
+    {
+     "name": "X.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "13\nX (rigidly rotated and translated), angstrom\nC -1.75798587 -1.16437493 1.22512614\nS -1.21845332 0.49018122 1.82441291\nO -2.38387000 1.20411402 2.34686727\nO -0.02453077 0.31513542 2.64947989\nC -0.71583260 1.31244373 0.24334699\nO 0.06340142 0.47860396 -0.61001908\nC 0.71513349 1.59015219 -0.02247802\nH -2.02722608 -1.77716517 2.08284617\nH -0.95210409 -1.65155614 0.68236380\nH -2.62398789 -1.07302463 0.57429370\nH -1.49603048 1.89333422 -0.27133482\nH 0.98390627 2.39535658 -0.71730280\nH 1.46397393 1.34624606 0.73899008\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "the same compound as S0 (only conformation and/or orientation differ)"
+    },
+    {
+     "label": "B",
+     "value": "an enantiomer of S0 (its non-superimposable mirror image)"
+    },
+    {
+     "label": "C",
+     "value": "a diastereomer of S0 (a stereoisomer that is not its mirror image)"
+    },
+    {
+     "label": "D",
+     "value": "a constitutional isomer of S0 (same formula, different bonding)"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SREL-7110-DIAS",
+   "family": "stereo_relationship",
+   "ability": "perception",
+   "question": "S0.xyz and X.xyz each contain one structure of formula C3H7N1O2S1 (angstrom). X has been rigidly rotated and translated, and its atom order may differ from S0. Treat structures that interconvert only by rotation about single bonds as the same compound. Which describes X relative to S0?",
+   "scope": "QM7-X 分子 7110（氮杂环丙烷）两个立体异构体的最低能构象。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "14\nS0, angstrom\nC -1.48785200 0.36135800 1.44991400\nS -0.01832900 -0.36532000 0.60173900\nO 1.16940700 0.36775900 1.04041200\nO -0.09136700 -1.81861100 0.73737600\nC -0.32994800 0.09795900 -1.14813500\nN 0.12718800 1.41911700 -1.57994800\nC 0.84926000 0.25019100 -2.05567800\nH -1.41365100 0.15961700 2.51618400\nH -2.40697000 -0.08371300 1.07711300\nH -1.52677800 1.43750200 1.30172500\nH -1.28873600 -0.22414600 -1.56713700\nH 0.65392500 1.88739400 -0.83485800\nH 1.84421100 0.06976900 -1.64633700\nH 0.72786300 0.01465900 -3.11378400\n"
+    },
+    {
+     "name": "X.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "14\nX (rigidly rotated and translated), angstrom\nC 0.14586222 -3.51175185 0.50078506\nS -1.11819904 -3.09469633 1.77576325\nO -2.13514872 -2.24567747 1.15473507\nO -1.50126539 -4.32913528 2.45649920\nC -0.15519986 -2.04346483 2.94607271\nN 1.16682314 -2.56026728 3.31067110\nC 0.12603946 -2.53905785 4.32695530\nH -0.30876551 -4.16321656 -0.24231489\nH 0.98722554 -4.02923626 0.95355390\nH 0.50273402 -2.61320792 0.00415163\nH -0.24302482 -0.96439487 2.78183236\nH 1.83480065 -1.79657701 3.44239778\nH 0.21164299 -1.80039419 5.12644050\nH -0.25831898 -3.51416643 4.62602704\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "the same compound as S0 (only conformation and/or orientation differ)"
+    },
+    {
+     "label": "B",
+     "value": "an enantiomer of S0 (its non-superimposable mirror image)"
+    },
+    {
+     "label": "C",
+     "value": "a diastereomer of S0 (a stereoisomer that is not its mirror image)"
+    },
+    {
+     "label": "D",
+     "value": "a constitutional isomer of S0 (same formula, different bonding)"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SREL-7043-DIAS",
+   "family": "stereo_relationship",
+   "ability": "perception",
+   "question": "S0.xyz and X.xyz each contain one structure of formula C3H6O3S1 (angstrom). X has been rigidly rotated and translated, and its atom order may differ from S0. Treat structures that interconvert only by rotation about single bonds as the same compound. Which describes X relative to S0?",
+   "scope": "QM7-X 分子 7043 两个立体异构体（双键顺反）的最低能构象。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "13\nS0, angstrom\nC -3.13865600 -0.82920000 0.19364500\nC -1.65077000 -0.78194600 0.25884300\nC -0.90432500 0.22123800 -0.22586500\nS 0.89865300 0.17246300 -0.16300700\nO 1.30716000 -1.01343600 0.57670600\nO 1.42838800 0.46879600 -1.47029400\nO 1.20540800 1.46950200 0.76619500\nH -3.46526200 -1.71029800 -0.36021900\nH -3.55084600 0.05464500 -0.28638600\nH -3.56183900 -0.91167700 1.19559200\nH -1.15263400 -1.62905000 0.73297300\nH -1.36687000 1.07274700 -0.72247700\nH 1.35387500 1.30477100 1.70802800\n"
+    },
+    {
+     "name": "X.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "13\nX (rigidly rotated and translated), angstrom\nC -0.95747808 -1.87525679 4.09092959\nC -0.74561582 -1.65552607 2.63320388\nC -1.53378502 -2.07234182 1.62921770\nS -3.04519088 -3.05193784 1.81536754\nO -3.57193404 -3.29800639 0.48235108\nO -2.83955297 -4.12850239 2.75374269\nO -4.03033852 -1.98462375 2.54845315\nH -0.11228027 -2.42217167 4.51129409\nH -1.86727195 -2.42732155 4.30449070\nH -0.99936002 -0.91676730 4.61052611\nH 0.15011399 -1.08892704 2.36898142\nH -1.25622022 -1.84235520 0.60224945\nH -4.61251113 -1.46952372 1.97186441\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "the same compound as S0 (only conformation and/or orientation differ)"
+    },
+    {
+     "label": "B",
+     "value": "an enantiomer of S0 (its non-superimposable mirror image)"
+    },
+    {
+     "label": "C",
+     "value": "a diastereomer of S0 (a stereoisomer that is not its mirror image)"
+    },
+    {
+     "label": "D",
+     "value": "a constitutional isomer of S0 (same formula, different bonding)"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SREL-7082-CONS",
+   "family": "stereo_relationship",
+   "ability": "perception",
+   "question": "S0.xyz and X.xyz each contain one structure of formula C4H6N2S1 (angstrom). X has been rigidly rotated and translated, and its atom order may differ from S0. Treat structures that interconvert only by rotation about single bonds as the same compound. Which describes X relative to S0?",
+   "scope": "QM7-X 分子 7082 与同分子式的 7089。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "13\nS0, angstrom\nC -1.86542100 1.91090200 -0.43964300\nN -0.43168900 1.78815900 -0.32585900\nC 0.11730100 0.64580300 -0.10034900\nC 1.54635300 0.39184900 0.02200300\nC 1.90052800 -0.90041100 0.24933900\nN 0.90707100 -1.82708700 0.50347800\nS -0.80798300 -0.94289900 0.09308500\nH -2.13066100 2.46591500 -1.34796600\nH -2.26879600 2.47469400 0.41169200\nH -2.37270900 0.92967600 -0.46950600\nH 2.26656000 1.19437600 -0.08689600\nH 2.93095500 -1.25387700 0.32067200\nH 0.98213900 -2.74077300 0.05122000\n"
+    },
+    {
+     "name": "X.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "13\nX (rigidly rotated and translated), angstrom\nC -0.08530786 -1.65099983 -3.12429932\nN 0.40699737 -0.55546874 -2.29440744\nC 1.45536095 0.10077023 -2.69795300\nS 2.17162702 1.46406304 -1.79311479\nC 3.42733920 1.66994253 -3.03616923\nC 3.27547128 0.76058396 -4.02981716\nN 2.20081380 -0.10565901 -3.85743146\nH -1.00315361 -2.05954659 -2.69360604\nH 0.64397905 -2.47341859 -3.19715044\nH -0.31252553 -1.32755882 -4.15312907\nH 4.19116195 2.43055280 -2.96993298\nH 3.89893046 0.65724190 -4.91258514\nH 1.96724149 -0.83558898 -4.52085927\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "the same compound as S0 (only conformation and/or orientation differ)"
+    },
+    {
+     "label": "B",
+     "value": "an enantiomer of S0 (its non-superimposable mirror image)"
+    },
+    {
+     "label": "C",
+     "value": "a diastereomer of S0 (a stereoisomer that is not its mirror image)"
+    },
+    {
+     "label": "D",
+     "value": "a constitutional isomer of S0 (same formula, different bonding)"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SREL-7033-CONS",
+   "family": "stereo_relationship",
+   "ability": "perception",
+   "question": "S0.xyz and X.xyz each contain one structure of formula C4H8O2S1 (angstrom). X has been rigidly rotated and translated, and its atom order may differ from S0. Treat structures that interconvert only by rotation about single bonds as the same compound. Which describes X relative to S0?",
+   "scope": "QM7-X 分子 7033 与同分子式的 7034。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\nS0, angstrom\nC -3.20608800 0.54471500 -0.33990000\nC -1.72328600 0.66140100 -0.24744400\nC -0.90612900 -0.34240400 0.10242900\nS 0.88367200 -0.08463500 0.24394700\nO 1.17484200 1.31185900 -0.07016800\nO 1.35182200 -0.68166700 1.49148400\nC 1.51283500 -1.12673000 -1.14564700\nH -3.54723000 0.80429400 -1.34294600\nH -3.68470200 1.24330900 0.34768200\nH -3.54904800 -0.46001500 -0.10604200\nH -1.28983600 1.63604100 -0.47666800\nH -1.29815800 -1.32478200 0.36042500\nH 1.13013200 -0.77258000 -2.09905700\nH 1.22390500 -2.16560300 -1.00990800\nH 2.59888300 -1.06994000 -1.16379700\n"
+    },
+    {
+     "name": "X.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\nX (rigidly rotated and translated), angstrom\nC -0.09301724 -2.11769474 -2.29626532\nC -1.43061076 -1.88341325 -1.65878956\nC -1.60631186 -1.40747909 -0.42124823\nS -2.90692580 -2.34235015 -2.64692967\nO -2.61267196 -3.57419227 -3.37636707\nO -4.08999095 -2.24116205 -1.79636758\nC -2.97074455 -0.96267726 -3.87636568\nH 0.71381222 -1.87852206 -1.60760326\nH 0.02735701 -1.50681134 -3.19262777\nH 0.00506878 -3.15908022 -2.60192757\nH -0.75875524 -1.14920264 0.20497035\nH -2.60179305 -1.28298315 -0.00893939\nH -2.05945700 -0.92930109 -4.46768914\nH -3.10808462 -0.00658155 -3.37845205\nH -3.81133672 -1.13007762 -4.54601476\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "the same compound as S0 (only conformation and/or orientation differ)"
+    },
+    {
+     "label": "B",
+     "value": "an enantiomer of S0 (its non-superimposable mirror image)"
+    },
+    {
+     "label": "C",
+     "value": "a diastereomer of S0 (a stereoisomer that is not its mirror image)"
+    },
+    {
+     "label": "D",
+     "value": "a constitutional isomer of S0 (same formula, different bonding)"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SPROP-7082",
+   "family": "stereo_property_inference",
+   "ability": "inference",
+   "question": "S0 and X are two stereoisomers of the same neutral C4H6N2S1 molecule; atom order is shared and X has been rigidly rotated and translated. Each structure is the lowest-energy QM7-X conformer of its configuration. Compare X with S0 by PBE0+MBD total energy and dipole-moment magnitude at the supplied geometries; each difference is at least 0.0434 eV (1 kcal/mol) in energy and 0.10 e·Å in dipole. Which statement is correct?",
+   "scope": "QM7-X 分子 7082 两个非对映体各自的数据集最低能构象；性质为 PBE0+MBD 计算值。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "13\nS0, angstrom\nC -1.86542100 1.91090200 -0.43964300\nN -0.43168900 1.78815900 -0.32585900\nC 0.11730100 0.64580300 -0.10034900\nC 1.54635300 0.39184900 0.02200300\nC 1.90052800 -0.90041100 0.24933900\nN 0.90707100 -1.82708700 0.50347800\nS -0.80798300 -0.94289900 0.09308500\nH -2.13066100 2.46591500 -1.34796600\nH -2.26879600 2.47469400 0.41169200\nH -2.37270900 0.92967600 -0.46950600\nH 2.26656000 1.19437600 -0.08689600\nH 2.93095500 -1.25387700 0.32067200\nH 0.98213900 -2.74077300 0.05122000\n"
+    },
+    {
+     "name": "X.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "13\nX (rigidly rotated and translated), angstrom\nC -1.47530352 -3.66346094 -0.04792565\nN -1.79464148 -2.25045679 -0.21839221\nC -0.92141451 -1.47194824 -0.77017831\nC 0.41150972 -1.75619061 -1.31392762\nC 1.06899928 -0.68406365 -1.82885304\nN 0.51883930 0.57369778 -1.66402926\nS -1.29982242 0.28491498 -0.97232913\nH -2.29963770 -4.17440220 0.45884701\nH -0.56737855 -3.80907784 0.55361749\nH -1.31423019 -4.16279302 -1.01352724\nH 0.82289181 -2.75888156 -1.31761838\nH 2.05016950 -0.73070785 -2.30577054\nH 0.53319986 1.20969220 -2.46426156\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "X is higher in energy than S0 and has a smaller dipole moment"
+    },
+    {
+     "label": "B",
+     "value": "X is lower in energy than S0 and has a larger dipole moment"
+    },
+    {
+     "label": "C",
+     "value": "X is higher in energy than S0 and has a larger dipole moment"
+    },
+    {
+     "label": "D",
+     "value": "X is lower in energy than S0 and has a smaller dipole moment"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SPROP-7089",
+   "family": "stereo_property_inference",
+   "ability": "inference",
+   "question": "S0 and X are two stereoisomers of the same neutral C4H6N2S1 molecule; atom order is shared and X has been rigidly rotated and translated. Each structure is the lowest-energy QM7-X conformer of its configuration. Compare X with S0 by PBE0+MBD total energy and dipole-moment magnitude at the supplied geometries; each difference is at least 0.0434 eV (1 kcal/mol) in energy and 0.10 e·Å in dipole. Which statement is correct?",
+   "scope": "QM7-X 分子 7089 两个非对映体各自的数据集最低能构象；性质为 PBE0+MBD 计算值。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "13\nS0, angstrom\nC -2.42610400 -0.71908400 1.17056500\nN -0.97198400 -0.80963200 1.26335200\nC -0.25801100 -0.22412800 0.34684100\nS 1.52790500 -0.24558100 0.32733800\nC 1.55440400 0.73195100 -1.15863400\nC 0.29494500 1.02339500 -1.56625700\nN -0.70730800 0.50555000 -0.75243400\nH -2.88413100 -1.19783900 2.03996300\nH -2.81418800 -1.22115100 0.27008800\nH -2.77942000 0.32436700 1.13724200\nH 2.47326300 1.03182700 -1.64041500\nH 0.01627300 1.60372100 -2.44045600\nH -1.69464300 0.64412900 -0.93534300\n"
+    },
+    {
+     "name": "X.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "13\nX (rigidly rotated and translated), angstrom\nC -0.94653459 1.39620317 -0.21050195\nN -1.00257047 0.15840775 -0.97636245\nC -1.17957713 -0.95033858 -0.32305296\nS -1.37226212 -1.18182568 1.46341028\nC -1.53473315 -2.93877434 1.23448804\nC -1.44538535 -3.27008566 -0.07774284\nN -1.25158900 -2.19281326 -0.93245173\nH -0.79320745 2.24830414 -0.87806402\nH -0.12395296 1.38374536 0.52088462\nH -1.87704481 1.56722475 0.35219206\nH -1.68426065 -3.61759682 2.06116044\nH -1.51041049 -4.26881977 -0.49831512\nH -1.16783692 -2.29072447 -1.93809997\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "X is higher in energy than S0 and has a smaller dipole moment"
+    },
+    {
+     "label": "B",
+     "value": "X is lower in energy than S0 and has a larger dipole moment"
+    },
+    {
+     "label": "C",
+     "value": "X is higher in energy than S0 and has a larger dipole moment"
+    },
+    {
+     "label": "D",
+     "value": "X is lower in energy than S0 and has a smaller dipole moment"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SPROP-7110",
+   "family": "stereo_property_inference",
+   "ability": "inference",
+   "question": "S0 and X are two stereoisomers of the same neutral C3H7N1O2S1 molecule; atom order is shared and X has been rigidly rotated and translated. Each structure is the lowest-energy QM7-X conformer of its configuration. Compare X with S0 by PBE0+MBD total energy and dipole-moment magnitude at the supplied geometries; each difference is at least 0.0434 eV (1 kcal/mol) in energy and 0.10 e·Å in dipole. Which statement is correct?",
+   "scope": "QM7-X 分子 7110 两个非对映体各自的数据集最低能构象；性质为 PBE0+MBD 计算值。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "14\nS0, angstrom\nC -1.48785200 0.36135800 1.44991400\nS -0.01832900 -0.36532000 0.60173900\nO 1.16940700 0.36775900 1.04041200\nO -0.09136700 -1.81861100 0.73737600\nC -0.32994800 0.09795900 -1.14813500\nN 0.12718800 1.41911700 -1.57994800\nC 0.84926000 0.25019100 -2.05567800\nH -1.41365100 0.15961700 2.51618400\nH -2.40697000 -0.08371300 1.07711300\nH -1.52677800 1.43750200 1.30172500\nH -1.28873600 -0.22414600 -1.56713700\nH 0.65392500 1.88739400 -0.83485800\nH 1.84421100 0.06976900 -1.64633700\nH 0.72786300 0.01465900 -3.11378400\n"
+    },
+    {
+     "name": "X.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "14\nX (rigidly rotated and translated), angstrom\nC -2.89753964 0.42990938 0.64623682\nS -2.33575899 2.03244172 1.36292934\nO -2.92542886 3.11847692 0.57965886\nO -2.52882420 1.97553421 2.80981156\nC -0.52716311 2.00493888 1.00195307\nN 0.15371913 0.74321771 1.30563159\nC 0.45105972 1.90682870 2.12667491\nH -3.96486209 0.32147496 0.82611158\nH -2.37644619 -0.40046228 1.11488008\nH -2.72099119 0.40475154 -0.42594841\nH -0.22748878 2.52811975 0.08786491\nH 0.90120848 0.55923333 0.63170421\nH 1.42501070 2.38344062 1.99865491\nH 0.07672865 1.86792629 3.14959959\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "X is higher in energy than S0 and has a larger dipole moment"
+    },
+    {
+     "label": "B",
+     "value": "X is higher in energy than S0 and has a smaller dipole moment"
+    },
+    {
+     "label": "C",
+     "value": "X is lower in energy than S0 and has a smaller dipole moment"
+    },
+    {
+     "label": "D",
+     "value": "X is lower in energy than S0 and has a larger dipole moment"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SPROP-7114",
+   "family": "stereo_property_inference",
+   "ability": "inference",
+   "question": "S0 and X are two stereoisomers of the same neutral C3H7N1O2S1 molecule; atom order is shared and X has been rigidly rotated and translated. Each structure is the lowest-energy QM7-X conformer of its configuration. Compare X with S0 by PBE0+MBD total energy and dipole-moment magnitude at the supplied geometries; each difference is at least 0.0434 eV (1 kcal/mol) in energy and 0.10 e·Å in dipole. Which statement is correct?",
+   "scope": "QM7-X 分子 7114 两个非对映体各自的数据集最低能构象；性质为 PBE0+MBD 计算值。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "14\nS0, angstrom\nN -3.07122100 -0.37211700 0.68323900\nC -1.70182600 -0.33053500 0.70965200\nC -0.93098900 0.21594200 -0.26932700\nS 0.85408000 0.22817000 -0.09890000\nO 1.37437100 1.54827000 -0.44759500\nO 1.19276400 -0.38697900 1.18587300\nC 1.38842700 -0.93469000 -1.43395000\nH -3.57351800 -0.62281700 1.52325300\nH -3.56644800 0.17734500 -0.00752700\nH -1.23699000 -0.80852800 1.57209800\nH -1.38005900 0.71640200 -1.12202900\nH 1.04050200 -0.59021700 -2.40399900\nH 1.00416500 -1.93498000 -1.25429200\nH 2.47486100 -0.97774500 -1.45225300\n"
+    },
+    {
+     "name": "X.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "14\nX (rigidly rotated and translated), angstrom\nN 2.39448534 -0.54870396 1.67465922\nC 2.02169934 -0.79056296 0.38553519\nC 0.98934854 -1.58239799 -0.03179208\nS -0.02547286 -2.59451194 1.04625898\nO -0.25342990 -3.89434349 0.42275640\nO 0.50562549 -2.52138890 2.41708640\nC -1.63910110 -1.69355960 1.04245955\nH 3.26609311 -0.07024920 1.85452636\nH 1.98302658 -1.11021270 2.41757967\nH 2.60676896 -0.25430989 -0.36557151\nH 0.81794766 -1.68493391 -1.09752007\nH -2.04110183 -1.63560815 0.03471202\nH -1.52347307 -0.68747471 1.43605385\nH -2.34763924 -2.23204401 1.66738941\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "X is higher in energy than S0 and has a larger dipole moment"
+    },
+    {
+     "label": "B",
+     "value": "X is lower in energy than S0 and has a smaller dipole moment"
+    },
+    {
+     "label": "C",
+     "value": "X is higher in energy than S0 and has a smaller dipole moment"
+    },
+    {
+     "label": "D",
+     "value": "X is lower in energy than S0 and has a larger dipole moment"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SDES-7029",
+   "family": "stereo_design_selection",
+   "ability": "design",
+   "question": "S0 is one conformer of a C4H8N2S1 molecule. You may change it only by changing the configuration of its stereo elements (the handedness of stereocentres or the cis/trans arrangement at double bonds): same atoms, same bonds; a change of conformation alone does not count. Goal: a structure whose PBE0+MBD energy (single point at the supplied geometry) is at least 0.0434 eV (1 kcal/mol) lower than that of S0. Candidates A–D have been rigidly rotated and their atom order may differ from S0. Which candidate satisfies both the allowed modification and the goal?",
+   "scope": "QM7-X 分子 7029 的立体异构体与构象；构造异构体取同分子式的 7030；能量为 PBE0+MBD 计算值。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\nS0 starting structure, angstrom\nC -3.51037900 -0.63214400 -0.03014300\nC -2.01460300 -0.58128400 -0.00715500\nC -1.31195500 0.36272100 -0.66587700\nN 0.08722900 0.50456300 -0.71284000\nC 1.04294500 0.13261400 0.19148000\nS 2.68144400 0.34636400 -0.19948500\nN 0.67346400 -0.39191100 1.39722800\nH -3.92362700 -0.52301300 0.97473400\nH -3.86068500 -1.59204900 -0.41211600\nH -3.92525000 0.15583600 -0.65412800\nH -1.51018600 -1.36582900 0.55020200\nH -1.83644700 1.09616900 -1.28223700\nH 0.45027100 0.98903000 -1.53021700\nH -0.26863000 -0.25805200 1.74628400\nH 1.41054500 -0.52393600 2.07868700\n"
+    },
+    {
+     "name": "candidate_A.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\ncandidate A (rigidly rotated), angstrom\nC -1.21736087 4.58395260 4.85118354\nC -0.92711588 3.31971780 4.08458276\nC -0.00350192 2.42943098 4.50975218\nN -1.67424627 3.20780908 2.89636977\nC -2.01769773 2.10652931 2.15532063\nS -2.83411463 2.32832731 0.68372888\nN -1.72441595 0.85582514 2.60995228\nH -0.60185415 4.64848056 5.74278289\nH -2.26468078 4.62819060 5.15103801\nH -1.02202165 5.46174205 4.23454883\nH 0.52526489 2.61855091 5.43233482\nH 0.29087178 1.56635368 3.93152283\nH -2.05781824 4.08033490 2.54006700\nH -1.48217893 0.70000500 3.58142980\nH -2.10411431 0.07753146 2.08555687\n"
+    },
+    {
+     "name": "candidate_B.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\ncandidate B (rigidly rotated), angstrom\nC -2.77707995 2.80367489 -0.35414860\nC -2.57504568 1.57845385 -1.18989772\nC -3.20476174 1.39363236 -2.36806283\nN -3.09004182 0.28748850 -3.23022618\nC -2.78127959 -1.01619676 -2.95708808\nS -2.61419465 -2.11462777 -4.24112609\nN -2.62364076 -1.42285977 -1.66277509\nH -3.18664605 2.54897210 0.62556736\nH -1.82911576 3.31335012 -0.17629942\nH -3.45686644 3.50403479 -0.83349611\nH -1.86767811 0.84461984 -0.81344989\nH -3.85289391 2.17842858 -2.76424090\nH -3.30101223 0.47171880 -4.20806237\nH -2.99446943 -0.86467164 -0.90237287\nH -2.52999854 -2.41924648 -1.50931488\n"
+    },
+    {
+     "name": "candidate_C.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\ncandidate C (rigidly rotated), angstrom\nC 1.47956869 1.02145103 0.42234228\nC 1.62787866 -0.46614362 0.50395156\nC 0.81762149 -1.32160563 1.16319699\nN -0.31519438 -0.94069965 1.89202123\nC -1.17840896 -1.74671168 2.57703389\nS -2.49236813 -1.05307456 3.40120889\nN -0.97792917 -3.09558506 2.59895956\nH 2.35688340 1.52014428 0.83833853\nH 0.60441195 1.38505116 0.95518676\nH 1.39748179 1.34402269 -0.61696363\nH 2.47693827 -0.89270539 -0.02254018\nH 1.03236952 -2.38920960 1.14887757\nH -0.53018047 0.05301147 1.92398372\nH -0.22971896 -3.54836412 2.09130154\nH -1.64662017 -3.66717454 3.09704632\n"
+    },
+    {
+     "name": "candidate_D.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\ncandidate D (rigidly rotated), angstrom\nC 0.33592010 0.56588325 -1.82856971\nC -0.47983699 0.15691223 -0.64400887\nC -0.48857154 0.83576202 0.52166133\nN -1.26037934 0.43592623 1.62106835\nC -1.35316415 1.03703510 2.84359366\nS -2.36388003 0.36421172 4.03146491\nN -0.63491316 2.16766738 3.09926240\nH -0.29940976 0.75671548 -2.69562345\nH 1.03223831 -0.22391809 -2.11693254\nH 0.90987919 1.46673729 -1.62350298\nH -1.09244609 -0.73697973 -0.74365340\nH 0.11295457 1.73377635 0.65444923\nH -1.82393688 -0.40299070 1.50270208\nH -0.02823797 2.59898138 2.41493956\nH -0.72564662 2.59334658 4.01169350\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "candidate_A.xyz"
+    },
+    {
+     "label": "B",
+     "value": "candidate_B.xyz"
+    },
+    {
+     "label": "C",
+     "value": "candidate_C.xyz"
+    },
+    {
+     "label": "D",
+     "value": "candidate_D.xyz"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SDES-7033",
+   "family": "stereo_design_selection",
+   "ability": "design",
+   "question": "S0 is one conformer of a C4H8O2S1 molecule. You may change it only by changing the configuration of its stereo elements (the handedness of stereocentres or the cis/trans arrangement at double bonds): same atoms, same bonds; a change of conformation alone does not count. Goal: a structure whose PBE0+MBD energy (single point at the supplied geometry) is at least 0.0434 eV (1 kcal/mol) lower than that of S0. Candidates A–D have been rigidly rotated and their atom order may differ from S0. Which candidate satisfies both the allowed modification and the goal?",
+   "scope": "QM7-X 分子 7033 的立体异构体与构象；构造异构体取同分子式的 7034；能量为 PBE0+MBD 计算值。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\nS0 starting structure, angstrom\nC -1.08922200 2.08036200 -0.98917600\nC 0.38108100 1.84437000 -0.86097900\nC 0.97634900 0.77963800 -0.29954200\nS 0.12028700 -0.61499200 0.49176000\nO 1.05422300 -1.23020000 1.42924100\nO -1.21153800 -0.20766900 0.93464500\nC -0.08932100 -1.76954900 -0.93707000\nH -1.28515700 3.04814100 -1.44267600\nH -1.58084100 2.04706600 -0.01831900\nH -1.55963600 1.31738100 -1.61031500\nH 1.03196500 2.62100500 -1.26697900\nH 2.06293700 0.73261000 -0.26065800\nH 0.87609800 -2.04982000 -1.34989700\nH -0.69136700 -1.31310100 -1.71824000\nH -0.59337800 -2.66937300 -0.59156300\n"
+    },
+    {
+     "name": "candidate_A.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\ncandidate A (rigidly rotated), angstrom\nC 1.31811837 -2.31180788 3.04128909\nC 0.72036660 -1.31113350 3.96951534\nC -0.22547705 -0.39573200 3.70475802\nS -1.08431846 -0.13215666 2.12308566\nO -1.06717981 -1.34681671 1.31030075\nO -2.34650002 0.53552271 2.42317498\nC 0.02829559 1.10147789 1.31131615\nH 1.19649473 -3.31435559 3.45280812\nH 2.39245932 -2.14021892 2.95157546\nH 0.87398030 -2.28779130 2.05146789\nH 1.11009124 -1.33851593 4.99022129\nH -0.56013957 0.26137538 4.50565509\nH 1.01666360 0.68158363 1.14548772\nH 0.11986415 1.99723621 1.91962845\nH -0.39751843 1.37812686 0.34941943\n"
+    },
+    {
+     "name": "candidate_B.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\ncandidate B (rigidly rotated), angstrom\nC 0.18771466 -2.81645005 -4.69730531\nC -0.87138206 -2.44526542 -3.70183772\nC -2.02484330 -1.84378620 -4.01271176\nS -0.50801643 -2.80239139 -1.93917596\nO 0.90540393 -2.52518523 -1.69118627\nO -1.54622885 -2.19097804 -1.11356907\nC -0.74015493 -4.63586218 -1.87934602\nH -0.09357798 -2.50366506 -5.70003796\nH 0.35629093 -3.89469126 -4.70789062\nH 1.13552044 -2.34587246 -4.43700754\nH -2.26583634 -1.59173876 -5.04013723\nH -2.74044361 -1.57987555 -3.24151272\nH -0.05683065 -5.13455349 -2.56169293\nH -1.76099767 -4.90536319 -2.13653971\nH -0.53316139 -4.98142595 -0.86900583\n"
+    },
+    {
+     "name": "candidate_C.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\ncandidate C (rigidly rotated), angstrom\nC 0.66975374 -0.18100526 -3.40720248\nC 1.23122845 0.59505418 -2.25985968\nC 1.37357700 0.16663899 -0.99518303\nS 0.95921492 -1.49627831 -0.38937451\nO 1.74867929 -1.73573588 0.81436718\nO 0.97942378 -2.45715735 -1.49033774\nC -0.80149693 -1.26614121 0.12581792\nH 0.72027771 0.39867937 -4.32484185\nH 1.21171704 -1.11340489 -3.55642684\nH -0.37422346 -0.44412094 -3.23363767\nH 1.55740283 1.61343364 -2.47931685\nH 1.80829221 0.83093308 -0.25078184\nH -0.87982502 -0.50654633 0.89905278\nH -1.41776414 -0.97654314 -0.72116402\nH -1.17767979 -2.20609687 0.52343783\n"
+    },
+    {
+     "name": "candidate_D.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "15\ncandidate D (rigidly rotated), angstrom\nC 2.46635032 2.58392259 -1.01071590\nC 2.08979830 2.27626847 0.39797960\nC 1.86573271 3.20322602 1.34048979\nS 1.46968631 2.72637557 3.04507793\nO 1.46418708 1.26796527 3.12664293\nO 2.28243475 3.52146224 3.96117692\nC -0.27555565 3.31410271 3.19166194\nH 1.74198175 2.15149303 -1.70220361\nH 3.43450906 2.14163981 -1.24931293\nH 2.52166137 3.65454676 -1.19098815\nH 2.00060065 1.22241948 0.66591947\nH 1.96514374 4.26513259 1.12188718\nH -0.91585355 2.80832296 2.47397128\nH -0.33606600 4.38689437 3.02850777\nH -0.63671580 3.09642156 4.19427505\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "candidate_A.xyz"
+    },
+    {
+     "label": "B",
+     "value": "candidate_B.xyz"
+    },
+    {
+     "label": "C",
+     "value": "candidate_C.xyz"
+    },
+    {
+     "label": "D",
+     "value": "candidate_D.xyz"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-SDES-7110",
+   "family": "stereo_design_selection",
+   "ability": "design",
+   "question": "S0 is one conformer of a C3H7N1O2S1 molecule. You may change it only by changing the configuration of its stereo elements (the handedness of stereocentres or the cis/trans arrangement at double bonds): same atoms, same bonds; a change of conformation alone does not count. Goal: a structure whose PBE0+MBD energy (single point at the supplied geometry) is at least 0.0434 eV (1 kcal/mol) lower than that of S0. Candidates A–D have been rigidly rotated and their atom order may differ from S0. Which candidate satisfies both the allowed modification and the goal?",
+   "scope": "QM7-X 分子 7110 的立体异构体与构象；构造异构体取同分子式的 7038；能量为 PBE0+MBD 计算值。",
+   "inputs": [
+    {
+     "name": "S0.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "14\nS0 starting structure, angstrom\nC -2.10633800 0.32473300 -0.16658100\nS -0.28303300 0.64182500 -0.13573000\nO 0.19909200 0.64351600 -1.51196500\nO -0.04864200 1.78435800 0.74252700\nC 0.32466400 -0.88433900 0.70178600\nN 1.76963900 -1.07456500 0.57129600\nC 0.88902300 -2.01407400 -0.09785800\nH -2.60547800 1.18211500 -0.61170000\nH -2.49324700 0.18788200 0.83996900\nH -2.33952200 -0.55577100 -0.75970200\nH -0.12173000 -1.10265900 1.67878200\nH 2.16946400 -1.46428900 1.42778900\nH 0.80452100 -3.02192100 0.31547800\nH 0.87935800 -1.95351200 -1.18658600\n"
+    },
+    {
+     "name": "candidate_A.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "14\ncandidate A (rigidly rotated), angstrom\nC 2.45609430 -4.09159197 1.52239138\nS 1.85551443 -2.77235846 2.66514524\nO 1.97206575 -3.26968756 4.03614311\nO 2.48425372 -1.51318451 2.27150259\nC 0.06561255 -2.71121934 2.25733878\nN -0.80984778 -3.65414613 2.95401126\nC -0.88167023 -2.24837804 3.31836360\nH 3.52335382 -4.23241138 1.67816031\nH 2.29266950 -3.80716671 0.48593526\nH 1.94911608 -5.03295075 1.71829403\nH -0.18191958 -2.53414435 1.20569197\nH -0.29057944 -4.18243757 3.66335100\nH -0.47206906 -1.95573308 4.28615772\nH -1.78946729 -1.72476996 3.01580792\n"
+    },
+    {
+     "name": "candidate_B.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "14\ncandidate B (rigidly rotated), angstrom\nC 0.45652719 -1.77751909 -0.61452328\nC 0.27107108 -1.93463521 0.85489142\nC -0.40109724 -1.06726664 1.62789599\nS -0.55540717 -1.31864072 3.40045755\nO 0.24112328 -2.45176002 3.81440000\nO -0.54671959 -0.05005524 4.09228630\nN -2.46382865 -1.94553554 3.48661314\nH 1.51825806 -1.72708145 -0.85898948\nH -0.02957581 -0.88100191 -0.99087592\nH 0.05235280 -2.64195557 -1.14303211\nH 0.72685510 -2.81141060 1.31719252\nH -0.86454889 -0.17650979 1.20794066\nH -2.57672813 -2.77535189 2.90547210\nH -3.07811996 -1.20217694 3.15619007\n"
+    },
+    {
+     "name": "candidate_C.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "14\ncandidate C (rigidly rotated), angstrom\nC -0.51026609 -0.12498847 -2.42398104\nS -0.70392497 -0.28358454 -0.59786519\nO -0.90531016 -1.69696606 -0.27772092\nO 0.37053986 0.47288712 0.04030151\nC -2.30269707 0.58705140 -0.30121697\nN -2.45106898 1.87547650 -0.98364507\nC -2.31657820 1.86937764 0.46493669\nH 0.42948898 -0.58764255 -2.71741209\nH -0.49242255 0.92156975 -2.71566490\nH -1.32253399 -0.62786802 -2.94235971\nH -3.18417251 -0.06121609 -0.25843374\nH -3.42147892 2.02880617 -1.26923791\nH -3.20367566 2.09938160 1.05847257\nH -1.37656787 2.26349841 0.85102145\n"
+    },
+    {
+     "name": "candidate_D.xyz",
+     "format": "xyz",
+     "unit": "angstrom",
+     "text": "14\ncandidate D (rigidly rotated), angstrom\nC -2.48222853 -2.56518755 2.94169172\nS -2.61507494 -0.71953278 2.89867382\nO -2.43079489 -0.22104525 4.25662124\nO -3.80997318 -0.38090438 2.13107682\nC -1.12653449 -0.28349299 1.90166736\nN -0.77930899 1.13590550 1.97853530\nC 0.12850989 0.17256187 2.57331483\nH -3.33693477 -2.96738799 3.48028954\nH -2.48622865 -2.97782471 1.93606542\nH -1.57502507 -2.87956257 3.45120603\nH -1.05294922 -0.76326860 0.91888916\nH -0.43858663 1.48180209 1.07876371\nH 1.07639334 -0.02076996 2.06549343\nH 0.17617837 0.18404144 3.66266591\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "candidate_A.xyz"
+    },
+    {
+     "label": "B",
+     "value": "candidate_B.xyz"
+    },
+    {
+     "label": "C",
+     "value": "candidate_C.xyz"
+    },
+    {
+     "label": "D",
+     "value": "candidate_D.xyz"
     }
    ],
    "response_format": "one label: A/B/C/D"
@@ -6014,6 +6834,1196 @@
    "option_order": "numeric ascending (label = rank)",
    "human_review": "pending",
    "catalog_admitted": false
+  },
+  {
+   "id": "FA-SREL-7029-SAME",
+   "family": "stereo_relationship",
+   "family_version": "0.1.0",
+   "ability": "perception",
+   "correct_label": "A",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "same",
+     "is_correct": true,
+     "reason": "键连相同且所有立体描述符一致：仅构象/取向不同。"
+    },
+    {
+     "label": "B",
+     "value": "enantiomer",
+     "is_correct": false,
+     "reason": "不满足“全部立体中心反转、双键不变”的镜像关系。"
+    },
+    {
+     "label": "C",
+     "value": "diastereomer",
+     "is_correct": false,
+     "reason": "不是“键连相同而构型部分不同”的情形。"
+    },
+    {
+     "label": "D",
+     "value": "constitutional",
+     "is_correct": false,
+     "reason": "键连图相同，不是构造异构体。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "relation": "same",
+    "dataset_ids": [
+     "Geom-m7029-i1-c1-opt",
+     "Geom-m7029-i1-c3-opt"
+    ],
+    "dataset_isomers": [
+     "i1",
+     "i1"
+    ],
+    "same_dataset_molecule": true,
+    "bond_rule": "covalent radii sum × 1.2",
+    "bond_graphs_equal": true,
+    "stereocentres": [],
+    "stereo_bonds": [
+     [
+      1,
+      2
+     ]
+    ],
+    "centres_inverted": [],
+    "bonds_switched": [],
+    "limits": "立体中心按第一配位层四（或三）个不同基团判定；与数据集立体异构体标签交叉核对，不一致即拒绝。"
+   },
+   "scales": {
+    "input_nm": 0.7617336296539106,
+    "reasoning_nm": 0.7170247334037858,
+    "reasoning_definition": "整分子立体构型比较：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7029.json": "d7d8705f92693f33a72cc9fd3ca09d818f8918cf95355df3d624d9852739bf82"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 2,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SREL-7052-SAME",
+   "family": "stereo_relationship",
+   "family_version": "0.1.0",
+   "ability": "perception",
+   "correct_label": "A",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "same",
+     "is_correct": true,
+     "reason": "键连相同且所有立体描述符一致：仅构象/取向不同。"
+    },
+    {
+     "label": "B",
+     "value": "enantiomer",
+     "is_correct": false,
+     "reason": "不满足“全部立体中心反转、双键不变”的镜像关系。"
+    },
+    {
+     "label": "C",
+     "value": "diastereomer",
+     "is_correct": false,
+     "reason": "不是“键连相同而构型部分不同”的情形。"
+    },
+    {
+     "label": "D",
+     "value": "constitutional",
+     "is_correct": false,
+     "reason": "键连图相同，不是构造异构体。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "relation": "same",
+    "dataset_ids": [
+     "Geom-m7052-i1-c1-opt",
+     "Geom-m7052-i1-c2-opt"
+    ],
+    "dataset_isomers": [
+     "i1",
+     "i1"
+    ],
+    "same_dataset_molecule": true,
+    "bond_rule": "covalent radii sum × 1.2",
+    "bond_graphs_equal": true,
+    "stereocentres": [
+     1
+    ],
+    "stereo_bonds": [],
+    "centres_inverted": [],
+    "bonds_switched": [],
+    "limits": "立体中心按第一配位层四（或三）个不同基团判定；与数据集立体异构体标签交叉核对，不一致即拒绝。"
+   },
+   "scales": {
+    "input_nm": 0.5990907166336069,
+    "reasoning_nm": 0.5364678108620684,
+    "reasoning_definition": "整分子立体构型比较：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7052.json": "c9e7a0261c30ad9e6698ef187e1c2843b3b6b90b01163055a2256778a27fb389"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 3,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SREL-7208-ENAN",
+   "family": "stereo_relationship",
+   "family_version": "0.1.0",
+   "ability": "perception",
+   "correct_label": "B",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "same",
+     "is_correct": false,
+     "reason": "存在构型差异或键连不同，不是同一化合物。"
+    },
+    {
+     "label": "B",
+     "value": "enantiomer",
+     "is_correct": true,
+     "reason": "所有立体中心反转且双键构型不变：互为镜像。"
+    },
+    {
+     "label": "C",
+     "value": "diastereomer",
+     "is_correct": false,
+     "reason": "不是“键连相同而构型部分不同”的情形。"
+    },
+    {
+     "label": "D",
+     "value": "constitutional",
+     "is_correct": false,
+     "reason": "键连图相同，不是构造异构体。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "relation": "enantiomer",
+    "dataset_ids": [
+     "Geom-m7208-i1-c1-opt",
+     "Geom-m7208-i2-c1-opt"
+    ],
+    "dataset_isomers": [
+     "i1",
+     "i2"
+    ],
+    "same_dataset_molecule": true,
+    "bond_rule": "covalent radii sum × 1.2",
+    "bond_graphs_equal": true,
+    "stereocentres": [
+     3,
+     4
+    ],
+    "stereo_bonds": [],
+    "centres_inverted": [
+     3,
+     4
+    ],
+    "bonds_switched": [],
+    "limits": "立体中心按第一配位层四（或三）个不同基团判定；与数据集立体异构体标签交叉核对，不一致即拒绝。"
+   },
+   "scales": {
+    "input_nm": 0.5557256596782805,
+    "reasoning_nm": 0.5557256596782805,
+    "reasoning_definition": "整分子立体构型比较：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7208.json": "502935b17b76cc9395897597b3f38d79942c5bb9d76474d2ae0fe04f1d16cfb3"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 4,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SREL-7111-ENAN",
+   "family": "stereo_relationship",
+   "family_version": "0.1.0",
+   "ability": "perception",
+   "correct_label": "B",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "same",
+     "is_correct": false,
+     "reason": "存在构型差异或键连不同，不是同一化合物。"
+    },
+    {
+     "label": "B",
+     "value": "enantiomer",
+     "is_correct": true,
+     "reason": "所有立体中心反转且双键构型不变：互为镜像。"
+    },
+    {
+     "label": "C",
+     "value": "diastereomer",
+     "is_correct": false,
+     "reason": "不是“键连相同而构型部分不同”的情形。"
+    },
+    {
+     "label": "D",
+     "value": "constitutional",
+     "is_correct": false,
+     "reason": "键连图相同，不是构造异构体。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "relation": "enantiomer",
+    "dataset_ids": [
+     "Geom-m7111-i1-c2-opt",
+     "Geom-m7111-i2-c1-opt"
+    ],
+    "dataset_isomers": [
+     "i1",
+     "i2"
+    ],
+    "same_dataset_molecule": true,
+    "bond_rule": "covalent radii sum × 1.2",
+    "bond_graphs_equal": true,
+    "stereocentres": [
+     4
+    ],
+    "stereo_bonds": [],
+    "centres_inverted": [
+     4
+    ],
+    "bonds_switched": [],
+    "limits": "立体中心按第一配位层四（或三）个不同基团判定；与数据集立体异构体标签交叉核对，不一致即拒绝。"
+   },
+   "scales": {
+    "input_nm": 0.5858130250995759,
+    "reasoning_nm": 0.5654129341819216,
+    "reasoning_definition": "整分子立体构型比较：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7111.json": "1cb8ade9c5a9b4d0e47a5496a85995c467633c3b1c24dcdcb73f944bac9e804f"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 1,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SREL-7110-DIAS",
+   "family": "stereo_relationship",
+   "family_version": "0.1.0",
+   "ability": "perception",
+   "correct_label": "C",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "same",
+     "is_correct": false,
+     "reason": "存在构型差异或键连不同，不是同一化合物。"
+    },
+    {
+     "label": "B",
+     "value": "enantiomer",
+     "is_correct": false,
+     "reason": "不满足“全部立体中心反转、双键不变”的镜像关系。"
+    },
+    {
+     "label": "C",
+     "value": "diastereomer",
+     "is_correct": true,
+     "reason": "键连相同，构型部分改变（或双键顺反改变），但不是镜像。"
+    },
+    {
+     "label": "D",
+     "value": "constitutional",
+     "is_correct": false,
+     "reason": "键连图相同，不是构造异构体。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "relation": "diastereomer",
+    "dataset_ids": [
+     "Geom-m7110-i1-c1-opt",
+     "Geom-m7110-i2-c1-opt"
+    ],
+    "dataset_isomers": [
+     "i1",
+     "i2"
+    ],
+    "same_dataset_molecule": true,
+    "bond_rule": "covalent radii sum × 1.2",
+    "bond_graphs_equal": true,
+    "stereocentres": [
+     4,
+     5
+    ],
+    "stereo_bonds": [],
+    "centres_inverted": [
+     4
+    ],
+    "bonds_switched": [],
+    "limits": "立体中心按第一配位层四（或三）个不同基团判定；与数据集立体异构体标签交叉核对，不一致即拒绝。"
+   },
+   "scales": {
+    "input_nm": 0.6025249763701418,
+    "reasoning_nm": 0.6025249763701418,
+    "reasoning_definition": "整分子立体构型比较：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7110.json": "0037a5a26fd07c795af0067e8f16d696a72574267e95fc31dfe583630a283fbd"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 2,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SREL-7043-DIAS",
+   "family": "stereo_relationship",
+   "family_version": "0.1.0",
+   "ability": "perception",
+   "correct_label": "C",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "same",
+     "is_correct": false,
+     "reason": "存在构型差异或键连不同，不是同一化合物。"
+    },
+    {
+     "label": "B",
+     "value": "enantiomer",
+     "is_correct": false,
+     "reason": "不满足“全部立体中心反转、双键不变”的镜像关系。"
+    },
+    {
+     "label": "C",
+     "value": "diastereomer",
+     "is_correct": true,
+     "reason": "键连相同，构型部分改变（或双键顺反改变），但不是镜像。"
+    },
+    {
+     "label": "D",
+     "value": "constitutional",
+     "is_correct": false,
+     "reason": "键连图相同，不是构造异构体。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "relation": "diastereomer",
+    "dataset_ids": [
+     "Geom-m7043-i1-c1-opt",
+     "Geom-m7043-i2-c2-opt"
+    ],
+    "dataset_isomers": [
+     "i1",
+     "i2"
+    ],
+    "same_dataset_molecule": true,
+    "bond_rule": "covalent radii sum × 1.2",
+    "bond_graphs_equal": true,
+    "stereocentres": [],
+    "stereo_bonds": [
+     [
+      1,
+      2
+     ]
+    ],
+    "centres_inverted": [],
+    "bonds_switched": [
+     [
+      1,
+      2
+     ]
+    ],
+    "limits": "立体中心按第一配位层四（或三）个不同基团判定；与数据集立体异构体标签交叉核对，不一致即拒绝。"
+   },
+   "scales": {
+    "input_nm": 0.6049162599280912,
+    "reasoning_nm": 0.6049162599280912,
+    "reasoning_definition": "整分子立体构型比较：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7043.json": "3378374442cb36fa9206e47c23b51a73adab8709fdb6e3e07cc88d31cfa94954"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 3,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SREL-7082-CONS",
+   "family": "stereo_relationship",
+   "family_version": "0.1.0",
+   "ability": "perception",
+   "correct_label": "D",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "same",
+     "is_correct": false,
+     "reason": "存在构型差异或键连不同，不是同一化合物。"
+    },
+    {
+     "label": "B",
+     "value": "enantiomer",
+     "is_correct": false,
+     "reason": "不满足“全部立体中心反转、双键不变”的镜像关系。"
+    },
+    {
+     "label": "C",
+     "value": "diastereomer",
+     "is_correct": false,
+     "reason": "不是“键连相同而构型部分不同”的情形。"
+    },
+    {
+     "label": "D",
+     "value": "constitutional",
+     "is_correct": true,
+     "reason": "键连图不同（图不变量不同）。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "relation": "constitutional",
+    "dataset_ids": [
+     "Geom-m7082-i1-c1-opt",
+     "Geom-m7089-i1-c1-opt"
+    ],
+    "dataset_isomers": [
+     "i1",
+     "i1"
+    ],
+    "same_dataset_molecule": false,
+    "bond_rule": "covalent radii sum × 1.2",
+    "bond_graphs_equal": false,
+    "limits": "立体中心按第一配位层四（或三）个不同基团判定；与数据集立体异构体标签交叉核对，不一致即拒绝。"
+   },
+   "scales": {
+    "input_nm": 0.687155464554465,
+    "reasoning_nm": 0.649932010519285,
+    "reasoning_definition": "整分子立体构型比较：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7082.json": "719b3eed302eaf1b328aad4b525e33b6a93392d22f3f90b06c18f90b88e36693",
+    "assets/families/stereo/QM7X-7089.json": "c8f1af618399ac8e2678ccd728d9e647865e0475f65b29bbf68ffc2d97ffb363"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 4,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SREL-7033-CONS",
+   "family": "stereo_relationship",
+   "family_version": "0.1.0",
+   "ability": "perception",
+   "correct_label": "D",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "same",
+     "is_correct": false,
+     "reason": "存在构型差异或键连不同，不是同一化合物。"
+    },
+    {
+     "label": "B",
+     "value": "enantiomer",
+     "is_correct": false,
+     "reason": "不满足“全部立体中心反转、双键不变”的镜像关系。"
+    },
+    {
+     "label": "C",
+     "value": "diastereomer",
+     "is_correct": false,
+     "reason": "不是“键连相同而构型部分不同”的情形。"
+    },
+    {
+     "label": "D",
+     "value": "constitutional",
+     "is_correct": true,
+     "reason": "键连图不同（图不变量不同）。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "relation": "constitutional",
+    "dataset_ids": [
+     "Geom-m7033-i1-c2-opt",
+     "Geom-m7034-i1-c1-opt"
+    ],
+    "dataset_isomers": [
+     "i1",
+     "i1"
+    ],
+    "same_dataset_molecule": false,
+    "bond_rule": "covalent radii sum × 1.2",
+    "bond_graphs_equal": false,
+    "limits": "立体中心按第一配位层四（或三）个不同基团判定；与数据集立体异构体标签交叉核对，不一致即拒绝。"
+   },
+   "scales": {
+    "input_nm": 0.6864337561314057,
+    "reasoning_nm": 0.6864337561314057,
+    "reasoning_definition": "整分子立体构型比较：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7033.json": "1240e372684e76f76cbf261a0edf21df09f39baf1ae1cd2bcdd5f81911aee304",
+    "assets/families/stereo/QM7X-7034.json": "30340f708e8dc45c8dfb10d3924d749d12e970148b901569cf080adf99ca0e29"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 1,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SPROP-7082",
+   "family": "stereo_property_inference",
+   "family_version": "0.1.0",
+   "ability": "inference",
+   "correct_label": "C",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "X is higher in energy than S0 and has a smaller dipole moment",
+     "is_correct": false,
+     "reason": "与数据集计算值不符：偶极方向相反。"
+    },
+    {
+     "label": "B",
+     "value": "X is lower in energy than S0 and has a larger dipole moment",
+     "is_correct": false,
+     "reason": "与数据集计算值不符：能量方向相反。"
+    },
+    {
+     "label": "C",
+     "value": "X is higher in energy than S0 and has a larger dipole moment",
+     "is_correct": true,
+     "reason": "ΔE = +0.1100 eV，Δμ = +0.2468 e·Å（X − S0，数据集计算值）。"
+    },
+    {
+     "label": "D",
+     "value": "X is lower in energy than S0 and has a smaller dipole moment",
+     "is_correct": false,
+     "reason": "与数据集计算值不符：能量方向、偶极方向相反。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "relation": "diastereomer",
+    "dataset_ids": [
+     "Geom-m7082-i1-c1-opt",
+     "Geom-m7082-i2-c1-opt"
+    ],
+    "delta_energy_eV": 0.110025,
+    "delta_dipole_eA": 0.246827,
+    "margins": {
+     "energy_eV": 0.0434,
+     "dipole_eA": 0.1
+    },
+    "level": "PBE0+MBD single points at DFTB3+MBD-optimized geometries (QM7-X \"opt\" structures)",
+    "bond_graphs_equal": true,
+    "stereocentres": [],
+    "stereo_bonds": [
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      3
+     ],
+     [
+      3,
+      4
+     ]
+    ],
+    "centres_inverted": [],
+    "bonds_switched": [
+     [
+      1,
+      2
+     ]
+    ],
+    "limits": "计算证据只对所述理论水平与给定几何成立；比较的是各构型在数据集中的最低能构象。"
+   },
+   "scales": {
+    "input_nm": 0.649932010519285,
+    "reasoning_nm": 0.649932010519285,
+    "reasoning_definition": "整分子立体构型对性质的影响：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7082.json": "719b3eed302eaf1b328aad4b525e33b6a93392d22f3f90b06c18f90b88e36693"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 3,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SPROP-7089",
+   "family": "stereo_property_inference",
+   "family_version": "0.1.0",
+   "ability": "inference",
+   "correct_label": "D",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "X is higher in energy than S0 and has a smaller dipole moment",
+     "is_correct": false,
+     "reason": "与数据集计算值不符：能量方向相反。"
+    },
+    {
+     "label": "B",
+     "value": "X is lower in energy than S0 and has a larger dipole moment",
+     "is_correct": false,
+     "reason": "与数据集计算值不符：偶极方向相反。"
+    },
+    {
+     "label": "C",
+     "value": "X is higher in energy than S0 and has a larger dipole moment",
+     "is_correct": false,
+     "reason": "与数据集计算值不符：能量方向、偶极方向相反。"
+    },
+    {
+     "label": "D",
+     "value": "X is lower in energy than S0 and has a smaller dipole moment",
+     "is_correct": true,
+     "reason": "ΔE = -0.1533 eV，Δμ = -0.3029 e·Å（X − S0，数据集计算值）。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "relation": "diastereomer",
+    "dataset_ids": [
+     "Geom-m7089-i1-c1-opt",
+     "Geom-m7089-i2-c1-opt"
+    ],
+    "delta_energy_eV": -0.153327,
+    "delta_dipole_eA": -0.302921,
+    "margins": {
+     "energy_eV": 0.0434,
+     "dipole_eA": 0.1
+    },
+    "level": "PBE0+MBD single points at DFTB3+MBD-optimized geometries (QM7-X \"opt\" structures)",
+    "bond_graphs_equal": true,
+    "stereocentres": [],
+    "stereo_bonds": [
+     [
+      1,
+      2
+     ],
+     [
+      4,
+      5
+     ]
+    ],
+    "centres_inverted": [],
+    "bonds_switched": [
+     [
+      1,
+      2
+     ]
+    ],
+    "limits": "计算证据只对所述理论水平与给定几何成立；比较的是各构型在数据集中的最低能构象。"
+   },
+   "scales": {
+    "input_nm": 0.6871554639648585,
+    "reasoning_nm": 0.6871554639648585,
+    "reasoning_definition": "整分子立体构型对性质的影响：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7089.json": "c8f1af618399ac8e2678ccd728d9e647865e0475f65b29bbf68ffc2d97ffb363"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 4,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SPROP-7110",
+   "family": "stereo_property_inference",
+   "family_version": "0.1.0",
+   "ability": "inference",
+   "correct_label": "A",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "X is higher in energy than S0 and has a larger dipole moment",
+     "is_correct": true,
+     "reason": "ΔE = +0.0801 eV，Δμ = +0.4116 e·Å（X − S0，数据集计算值）。"
+    },
+    {
+     "label": "B",
+     "value": "X is higher in energy than S0 and has a smaller dipole moment",
+     "is_correct": false,
+     "reason": "与数据集计算值不符：偶极方向相反。"
+    },
+    {
+     "label": "C",
+     "value": "X is lower in energy than S0 and has a smaller dipole moment",
+     "is_correct": false,
+     "reason": "与数据集计算值不符：能量方向、偶极方向相反。"
+    },
+    {
+     "label": "D",
+     "value": "X is lower in energy than S0 and has a larger dipole moment",
+     "is_correct": false,
+     "reason": "与数据集计算值不符：能量方向相反。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "relation": "diastereomer",
+    "dataset_ids": [
+     "Geom-m7110-i1-c1-opt",
+     "Geom-m7110-i2-c1-opt"
+    ],
+    "delta_energy_eV": 0.080082,
+    "delta_dipole_eA": 0.411569,
+    "margins": {
+     "energy_eV": 0.0434,
+     "dipole_eA": 0.1
+    },
+    "level": "PBE0+MBD single points at DFTB3+MBD-optimized geometries (QM7-X \"opt\" structures)",
+    "bond_graphs_equal": true,
+    "stereocentres": [
+     4,
+     5
+    ],
+    "stereo_bonds": [],
+    "centres_inverted": [
+     4
+    ],
+    "bonds_switched": [],
+    "limits": "计算证据只对所述理论水平与给定几何成立；比较的是各构型在数据集中的最低能构象。"
+   },
+   "scales": {
+    "input_nm": 0.6025249763701418,
+    "reasoning_nm": 0.6025249763701418,
+    "reasoning_definition": "整分子立体构型对性质的影响：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7110.json": "0037a5a26fd07c795af0067e8f16d696a72574267e95fc31dfe583630a283fbd"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 1,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SPROP-7114",
+   "family": "stereo_property_inference",
+   "family_version": "0.1.0",
+   "ability": "inference",
+   "correct_label": "B",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "X is higher in energy than S0 and has a larger dipole moment",
+     "is_correct": false,
+     "reason": "与数据集计算值不符：能量方向、偶极方向相反。"
+    },
+    {
+     "label": "B",
+     "value": "X is lower in energy than S0 and has a smaller dipole moment",
+     "is_correct": true,
+     "reason": "ΔE = -0.0932 eV，Δμ = -0.2199 e·Å（X − S0，数据集计算值）。"
+    },
+    {
+     "label": "C",
+     "value": "X is higher in energy than S0 and has a smaller dipole moment",
+     "is_correct": false,
+     "reason": "与数据集计算值不符：能量方向相反。"
+    },
+    {
+     "label": "D",
+     "value": "X is lower in energy than S0 and has a larger dipole moment",
+     "is_correct": false,
+     "reason": "与数据集计算值不符：偶极方向相反。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "relation": "diastereomer",
+    "dataset_ids": [
+     "Geom-m7114-i1-c2-opt",
+     "Geom-m7114-i2-c2-opt"
+    ],
+    "delta_energy_eV": -0.09323,
+    "delta_dipole_eA": -0.219906,
+    "margins": {
+     "energy_eV": 0.0434,
+     "dipole_eA": 0.1
+    },
+    "level": "PBE0+MBD single points at DFTB3+MBD-optimized geometries (QM7-X \"opt\" structures)",
+    "bond_graphs_equal": true,
+    "stereocentres": [],
+    "stereo_bonds": [
+     [
+      1,
+      2
+     ]
+    ],
+    "centres_inverted": [],
+    "bonds_switched": [
+     [
+      1,
+      2
+     ]
+    ],
+    "limits": "计算证据只对所述理论水平与给定几何成立；比较的是各构型在数据集中的最低能构象。"
+   },
+   "scales": {
+    "input_nm": 0.6749999879174888,
+    "reasoning_nm": 0.6749999879174888,
+    "reasoning_definition": "整分子立体构型对性质的影响：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7114.json": "09b0fdb0cadaa95e3fa13236235ad107d24912c508197f3e72c909191b464646"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 2,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SDES-7029",
+   "family": "stereo_design_selection",
+   "family_version": "0.1.0",
+   "ability": "design",
+   "correct_label": "C",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "candidate_A.xyz",
+     "source_id": "Geom-m7030-i1-c3-opt",
+     "is_correct": false,
+     "kind": "constitutional_isomer",
+     "relation": "constitutional",
+     "delta_energy_eV": -0.091096,
+     "allowed_modification": false,
+     "reason": "分子式相同但键连不同（构造异构体），违反“键连不变”。"
+    },
+    {
+     "label": "B",
+     "value": "candidate_B.xyz",
+     "source_id": "mirror of Geom-m7029-i1-c2-opt",
+     "is_correct": false,
+     "kind": "mirror_image",
+     "relation": "same",
+     "delta_energy_eV": 0.0,
+     "allowed_modification": false,
+     "reason": "S0 无手性中心，镜像仍是同一化合物（仅构象镜像），未改变构型且能量相同。"
+    },
+    {
+     "label": "C",
+     "value": "candidate_C.xyz",
+     "source_id": "Geom-m7029-i2-c2-opt",
+     "is_correct": true,
+     "kind": "diastereomer_lower",
+     "relation": "diastereomer",
+     "delta_energy_eV": -0.059006,
+     "allowed_modification": true,
+     "reason": "只改变构型（非对映体），能量低 0.0590 eV，满足目标。"
+    },
+    {
+     "label": "D",
+     "value": "candidate_D.xyz",
+     "source_id": "Geom-m7029-i1-c4-opt",
+     "is_correct": false,
+     "kind": "conformer_only",
+     "relation": "same",
+     "delta_energy_eV": -0.05441,
+     "allowed_modification": false,
+     "reason": "能量更低（-0.0544 eV）但只是同一构型的另一构象，不属于允许的修改。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "s0": "Geom-m7029-i1-c2-opt",
+    "s0_energy_eV": -18085.559811,
+    "margin_eV": 0.0434,
+    "level": "PBE0+MBD single points at DFTB3+MBD-optimized geometries (QM7-X \"opt\" structures)",
+    "selection_rule": "S0 取有更低能非对映体（≥1 kcal/mol）且有更低能同构型构象的构象，按种子选择；陷阱：镜像（能量不变）、仅构象改变（更低但不允许）、构造异构体（键连不同）。",
+    "energy_of_mirror": "反演对称：镜像结构能量与 S0 相同（物理定律，非数据集查值）。",
+    "limits": "计算证据只对所述理论水平与给定几何成立；不是自由能或实验。"
+   },
+   "scales": {
+    "input_nm": 0.6826573719910377,
+    "reasoning_nm": 0.6826573719910377,
+    "reasoning_definition": "整分子立体构型设计：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7029.json": "d7d8705f92693f33a72cc9fd3ca09d818f8918cf95355df3d624d9852739bf82",
+    "assets/families/stereo/QM7X-7030.json": "6c499d08ac33fe696144fed75e5cffe9e6e99fbbdc52852d65e9ced8b090a288"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 3,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SDES-7033",
+   "family": "stereo_design_selection",
+   "family_version": "0.1.0",
+   "ability": "design",
+   "correct_label": "D",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "candidate_A.xyz",
+     "source_id": "Geom-m7033-i2-c2-opt",
+     "is_correct": false,
+     "kind": "conformer_only",
+     "relation": "same",
+     "delta_energy_eV": -0.053962,
+     "allowed_modification": false,
+     "reason": "能量更低（-0.0540 eV）但只是同一构型的另一构象，不属于允许的修改。"
+    },
+    {
+     "label": "B",
+     "value": "candidate_B.xyz",
+     "source_id": "Geom-m7034-i1-c1-opt",
+     "is_correct": false,
+     "kind": "constitutional_isomer",
+     "relation": "constitutional",
+     "delta_energy_eV": -0.149146,
+     "allowed_modification": false,
+     "reason": "分子式相同但键连不同（构造异构体），违反“键连不变”。"
+    },
+    {
+     "label": "C",
+     "value": "candidate_C.xyz",
+     "source_id": "mirror of Geom-m7033-i2-c1-opt",
+     "is_correct": false,
+     "kind": "mirror_image",
+     "relation": "same",
+     "delta_energy_eV": 0.0,
+     "allowed_modification": false,
+     "reason": "S0 无手性中心，镜像仍是同一化合物（仅构象镜像），未改变构型且能量相同。"
+    },
+    {
+     "label": "D",
+     "value": "candidate_D.xyz",
+     "source_id": "Geom-m7033-i1-c2-opt",
+     "is_correct": true,
+     "kind": "diastereomer_lower",
+     "relation": "diastereomer",
+     "delta_energy_eV": -0.171284,
+     "allowed_modification": true,
+     "reason": "只改变构型（非对映体），能量低 0.1713 eV，满足目标。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "s0": "Geom-m7033-i2-c1-opt",
+    "s0_energy_eV": -19198.400248,
+    "margin_eV": 0.0434,
+    "level": "PBE0+MBD single points at DFTB3+MBD-optimized geometries (QM7-X \"opt\" structures)",
+    "selection_rule": "S0 取有更低能非对映体（≥1 kcal/mol）且有更低能同构型构象的构象，按种子选择；陷阱：镜像（能量不变）、仅构象改变（更低但不允许）、构造异构体（键连不同）。",
+    "energy_of_mirror": "反演对称：镜像结构能量与 S0 相同（物理定律，非数据集查值）。",
+    "limits": "计算证据只对所述理论水平与给定几何成立；不是自由能或实验。"
+   },
+   "scales": {
+    "input_nm": 0.5821762436222042,
+    "reasoning_nm": 0.5821762436222042,
+    "reasoning_definition": "整分子立体构型设计：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7033.json": "1240e372684e76f76cbf261a0edf21df09f39baf1ae1cd2bcdd5f81911aee304",
+    "assets/families/stereo/QM7X-7034.json": "30340f708e8dc45c8dfb10d3924d749d12e970148b901569cf080adf99ca0e29"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 4,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-SDES-7110",
+   "family": "stereo_design_selection",
+   "family_version": "0.1.0",
+   "ability": "design",
+   "correct_label": "A",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "candidate_A.xyz",
+     "source_id": "Geom-m7110-i1-c1-opt",
+     "is_correct": true,
+     "kind": "diastereomer_lower",
+     "relation": "diastereomer",
+     "delta_energy_eV": -0.176277,
+     "allowed_modification": true,
+     "reason": "只改变构型（非对映体），能量低 0.1763 eV，满足目标。"
+    },
+    {
+     "label": "B",
+     "value": "candidate_B.xyz",
+     "source_id": "Geom-m7038-i1-c1-opt",
+     "is_correct": false,
+     "kind": "constitutional_isomer",
+     "relation": "constitutional",
+     "delta_energy_eV": 0.005973,
+     "allowed_modification": false,
+     "reason": "分子式相同但键连不同（构造异构体），违反“键连不变”。"
+    },
+    {
+     "label": "C",
+     "value": "candidate_C.xyz",
+     "source_id": "Geom-m7110-i2-c1-opt",
+     "is_correct": false,
+     "kind": "conformer_only",
+     "relation": "same",
+     "delta_energy_eV": -0.096195,
+     "allowed_modification": false,
+     "reason": "能量更低（-0.0962 eV）但只是同一构型的另一构象，不属于允许的修改。"
+    },
+    {
+     "label": "D",
+     "value": "candidate_D.xyz",
+     "source_id": "mirror of Geom-m7110-i2-c2-opt",
+     "is_correct": false,
+     "kind": "mirror_image",
+     "relation": "enantiomer",
+     "delta_energy_eV": 0.0,
+     "allowed_modification": true,
+     "reason": "镜像（对映体）：构型改变但能量按反演对称与 S0 完全相同，未达到降低目标。"
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "s0": "Geom-m7110-i2-c2-opt",
+    "s0_energy_eV": -19634.2953,
+    "margin_eV": 0.0434,
+    "level": "PBE0+MBD single points at DFTB3+MBD-optimized geometries (QM7-X \"opt\" structures)",
+    "selection_rule": "S0 取有更低能非对映体（≥1 kcal/mol）且有更低能同构型构象的构象，按种子选择；陷阱：镜像（能量不变）、仅构象改变（更低但不允许）、构造异构体（键连不同）。",
+    "energy_of_mirror": "反演对称：镜像结构能量与 S0 相同（物理定律，非数据集查值）。",
+    "limits": "计算证据只对所述理论水平与给定几何成立；不是自由能或实验。"
+   },
+   "scales": {
+    "input_nm": 0.5827781792045839,
+    "reasoning_nm": 0.5827781792045839,
+    "reasoning_definition": "整分子立体构型设计：S0 最大原子间距"
+   },
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/stereo/QM7X-7110.json": "0037a5a26fd07c795af0067e8f16d696a72574267e95fc31dfe583630a283fbd",
+    "assets/families/stereo/QM7X-7038.json": "72d42a6cc275e767b1138c0e10f894540e37e6c1451d457882818d62f070361a"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 1,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
   }
  ],
  "stage_records": [
@@ -7218,18 +9228,705 @@
     "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
     "M6": "导出：学生包 / 审核包分离与运行快照"
    }
+  },
+  {
+   "id": "FA-SREL-7029-SAME",
+   "family": "stereo_relationship",
+   "define": {
+    "family": "stereo_relationship",
+    "version": "0.1.0",
+    "ability": "perception",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 563
+     },
+     {
+      "name": "X.xyz",
+      "format": "xyz",
+      "chars": 608
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "A",
+    "checks": [
+     "bond_graphs_equal",
+     "same_dataset_molecule"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SREL-7052-SAME",
+   "family": "stereo_relationship",
+   "define": {
+    "family": "stereo_relationship",
+    "version": "0.1.0",
+    "ability": "perception",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 566
+     },
+     {
+      "name": "X.xyz",
+      "format": "xyz",
+      "chars": 587
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "A",
+    "checks": [
+     "bond_graphs_equal",
+     "same_dataset_molecule"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SREL-7208-ENAN",
+   "family": "stereo_relationship",
+   "define": {
+    "family": "stereo_relationship",
+    "version": "0.1.0",
+    "ability": "perception",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 492
+     },
+     {
+      "name": "X.xyz",
+      "format": "xyz",
+      "chars": 516
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "B",
+    "checks": [
+     "bond_graphs_equal",
+     "same_dataset_molecule"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SREL-7111-ENAN",
+   "family": "stereo_relationship",
+   "define": {
+    "family": "stereo_relationship",
+    "version": "0.1.0",
+    "ability": "perception",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 491
+     },
+     {
+      "name": "X.xyz",
+      "format": "xyz",
+      "chars": 520
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "B",
+    "checks": [
+     "bond_graphs_equal",
+     "same_dataset_molecule"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SREL-7110-DIAS",
+   "family": "stereo_relationship",
+   "define": {
+    "family": "stereo_relationship",
+    "version": "0.1.0",
+    "ability": "perception",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 525
+     },
+     {
+      "name": "X.xyz",
+      "format": "xyz",
+      "chars": 560
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "C",
+    "checks": [
+     "bond_graphs_equal",
+     "same_dataset_molecule"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SREL-7043-DIAS",
+   "family": "stereo_relationship",
+   "define": {
+    "family": "stereo_relationship",
+    "version": "0.1.0",
+    "ability": "perception",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 491
+     },
+     {
+      "name": "X.xyz",
+      "format": "xyz",
+      "chars": 528
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "C",
+    "checks": [
+     "bond_graphs_equal",
+     "same_dataset_molecule"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SREL-7082-CONS",
+   "family": "stereo_relationship",
+   "define": {
+    "family": "stereo_relationship",
+    "version": "0.1.0",
+    "ability": "perception",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 488
+     },
+     {
+      "name": "X.xyz",
+      "format": "xyz",
+      "chars": 526
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "D",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SREL-7033-CONS",
+   "family": "stereo_relationship",
+   "define": {
+    "family": "stereo_relationship",
+    "version": "0.1.0",
+    "ability": "perception",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 568
+     },
+     {
+      "name": "X.xyz",
+      "format": "xyz",
+      "chars": 614
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "D",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SPROP-7082",
+   "family": "stereo_property_inference",
+   "define": {
+    "family": "stereo_property_inference",
+    "version": "0.1.0",
+    "ability": "inference",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 488
+     },
+     {
+      "name": "X.xyz",
+      "format": "xyz",
+      "chars": 531
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "C",
+    "checks": [
+     "bond_graphs_equal"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SPROP-7089",
+   "family": "stereo_property_inference",
+   "define": {
+    "family": "stereo_property_inference",
+    "version": "0.1.0",
+    "ability": "inference",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 491
+     },
+     {
+      "name": "X.xyz",
+      "format": "xyz",
+      "chars": 532
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "D",
+    "checks": [
+     "bond_graphs_equal"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SPROP-7110",
+   "family": "stereo_property_inference",
+   "define": {
+    "family": "stereo_property_inference",
+    "version": "0.1.0",
+    "ability": "inference",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 525
+     },
+     {
+      "name": "X.xyz",
+      "format": "xyz",
+      "chars": 549
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "A",
+    "checks": [
+     "bond_graphs_equal"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SPROP-7114",
+   "family": "stereo_property_inference",
+   "define": {
+    "family": "stereo_property_inference",
+    "version": "0.1.0",
+    "ability": "inference",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 531
+     },
+     {
+      "name": "X.xyz",
+      "format": "xyz",
+      "chars": 561
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "B",
+    "checks": [
+     "bond_graphs_equal"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SDES-7029",
+   "family": "stereo_design_selection",
+   "define": {
+    "family": "stereo_design_selection",
+    "version": "0.1.0",
+    "ability": "design",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 586
+     },
+     {
+      "name": "candidate_A.xyz",
+      "format": "xyz",
+      "chars": 581
+     },
+     {
+      "name": "candidate_B.xyz",
+      "format": "xyz",
+      "chars": 602
+     },
+     {
+      "name": "candidate_C.xyz",
+      "format": "xyz",
+      "chars": 587
+     },
+     {
+      "name": "candidate_D.xyz",
+      "format": "xyz",
+      "chars": 588
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "C",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SDES-7033",
+   "family": "stereo_design_selection",
+   "define": {
+    "family": "stereo_design_selection",
+    "version": "0.1.0",
+    "ability": "design",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 587
+     },
+     {
+      "name": "candidate_A.xyz",
+      "format": "xyz",
+      "chars": 583
+     },
+     {
+      "name": "candidate_B.xyz",
+      "format": "xyz",
+      "chars": 609
+     },
+     {
+      "name": "candidate_C.xyz",
+      "format": "xyz",
+      "chars": 594
+     },
+     {
+      "name": "candidate_D.xyz",
+      "format": "xyz",
+      "chars": 576
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "D",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-SDES-7110",
+   "family": "stereo_design_selection",
+   "define": {
+    "family": "stereo_design_selection",
+    "version": "0.1.0",
+    "ability": "design",
+    "output": "choice",
+    "module": "task_families/stereo.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "S0.xyz",
+      "format": "xyz",
+      "chars": 547
+     },
+     {
+      "name": "candidate_A.xyz",
+      "format": "xyz",
+      "chars": 553
+     },
+     {
+      "name": "candidate_B.xyz",
+      "format": "xyz",
+      "chars": 559
+     },
+     {
+      "name": "candidate_C.xyz",
+      "format": "xyz",
+      "chars": 561
+     },
+     {
+      "name": "candidate_D.xyz",
+      "format": "xyz",
+      "chars": 554
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "A",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
   }
  ],
  "code": {
-  "task_families/__init__.py": "\"\"\"Reusable task families. Each family id maps to one build function and one\nability; the engine never dispatches by question ID.\"\"\"\nfrom . import local_geometry, force_path, extinction, conformer_design, extent_choice\n\nFAMILIES = {\n    'named_bond_angle': dict(build=local_geometry.build_bond_angle, ability='perception',\n                             output='choice+numeric', version=local_geometry.VERSION, module='task_families/local_geometry.py'),\n    'backbone_torsion': dict(build=local_geometry.build_backbone_torsion, ability='perception',\n                             output='choice+numeric', version=local_geometry.VERSION, module='task_families/local_geometry.py'),\n    'extent_choice_v2': dict(build=extent_choice.build, ability='perception',\n                             output='choice+numeric', version=extent_choice.VERSION, module='task_families/extent_choice.py'),\n    'force_path_derivative': dict(build=force_path.build, ability='inference',\n                                  output='choice+numeric', version=force_path.VERSION, module='task_families/force_path.py'),\n    'kinematic_extinction': dict(build=extinction.build, ability='inference',\n                                 output='choice', version=extinction.VERSION, module='task_families/extinction.py'),\n    'conformer_target_selection': dict(build=conformer_design.build, ability='design',\n                                       output='choice', version=conformer_design.VERSION, module='task_families/conformer_design.py'),\n}\n",
+  "task_families/__init__.py": "\"\"\"Reusable task families. Each family id maps to one build function and one\nability; the engine never dispatches by question ID.\"\"\"\nfrom . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo\n\nFAMILIES = {\n    'named_bond_angle': dict(build=local_geometry.build_bond_angle, ability='perception',\n                             output='choice+numeric', version=local_geometry.VERSION, module='task_families/local_geometry.py'),\n    'backbone_torsion': dict(build=local_geometry.build_backbone_torsion, ability='perception',\n                             output='choice+numeric', version=local_geometry.VERSION, module='task_families/local_geometry.py'),\n    'extent_choice_v2': dict(build=extent_choice.build, ability='perception',\n                             output='choice+numeric', version=extent_choice.VERSION, module='task_families/extent_choice.py'),\n    'force_path_derivative': dict(build=force_path.build, ability='inference',\n                                  output='choice+numeric', version=force_path.VERSION, module='task_families/force_path.py'),\n    'kinematic_extinction': dict(build=extinction.build, ability='inference',\n                                 output='choice', version=extinction.VERSION, module='task_families/extinction.py'),\n    'conformer_target_selection': dict(build=conformer_design.build, ability='design',\n                                       output='choice', version=conformer_design.VERSION, module='task_families/conformer_design.py'),\n    'stereo_relationship': dict(build=stereo.build_relationship, ability='perception',\n                                output='choice', version=stereo.VERSION, module='task_families/stereo.py'),\n    'stereo_property_inference': dict(build=stereo.build_property, ability='inference',\n                                      output='choice', version=stereo.VERSION, module='task_families/stereo.py'),\n    'stereo_design_selection': dict(build=stereo.build_design, ability='design',\n                                    output='choice', version=stereo.VERSION, module='task_families/stereo.py'),\n}\n",
   "task_families/conformer_design.py": "\"\"\"Design-selection family: choose one of four candidate conformers for a stated target.\n\nS0, the allowed modification (single-bond rotation only: same atoms, same bonding,\nsame configuration at stereocentres) and the target property are given. The four\ncandidates are real dataset structures; the property evidence is the dataset's\ncomputed value at a stated level of theory. The checker verifies every candidate\nagainst the constraints and requires a unique best candidate by a stated margin.\nThis is candidate selection, not open structure generation, and the answer holds\nonly for the stated computational criterion, not for experiment.\n\"\"\"\nimport itertools\nimport json\nimport math\nfrom . import kit\n\nVERSION = '0.1.0'\nCONSTRAINTS = ('same_atoms', 'same_bonding', 'same_configuration', 'distinct_from_S0', 'dipole_consistent')\nOBJECTIVES = {\n    'min_energy': dict(key='e_pbe0_mbd_eV', sense=-1, margin=0.0434, unit='eV',\n                       text='the lowest total PBE0+MBD energy (single-point energies at the supplied geometries)',\n                       margin_basis='1 kcal/mol ≈ 0.0434 eV，高于常见构象能相对误差量级'),\n    'max_dipole': dict(key='dipole_eA', sense=1, margin=0.10, unit='e·Å',\n                       text='the largest total dipole-moment magnitude (PBE0+MBD, at the supplied geometries)',\n                       margin_basis='0.10 e·Å，约为该类小分子偶极的 10%'),\n}\n\n\ndef distance_rmsd(p, q):\n    \"\"\"Rotation/translation/reflection-invariant comparison via interatomic distances.\"\"\"\n    pairs = list(itertools.combinations(range(len(p)), 2))\n    return math.sqrt(math.fsum((math.dist(p[i], p[j]) - math.dist(q[i], q[j])) ** 2 for i, j in pairs) / len(pairs))\n\n\ndef stereocentres(elements, points, edges):\n    centres = {}\n    for i in range(len(points)):\n        nb = kit.neighbors(edges, i)\n        if len(nb) != 4:\n            continue\n        shells = [(elements[j], tuple(sorted(elements[k] for k in kit.neighbors(edges, j) if k != i))) for j in nb]\n        if len(set(shells)) != 4:\n            continue           # not a stereocentre under this first-shell rule\n        v = [kit.sub(points[j], points[i]) for j in nb[:3]]\n        centres[i] = 1 if kit.dot(kit.cross(v[0], v[1]), v[2]) > 0 else -1\n    return centres\n\n\ndef rg(points):\n    c = [math.fsum(p[k] for p in points) / len(points) for k in range(3)]\n    return math.sqrt(math.fsum(math.dist(p, c) ** 2 for p in points) / len(points))\n\n\ndef build(spec, root, seed):\n    path = root / 'docs' / spec['asset']\n    raw = path.read_bytes()\n    data = json.loads(raw)\n    objective = OBJECTIVES[spec['objective']]\n    elements = data['elements']\n    confs = {c['id']: c for c in data['conformers']}\n    s0 = confs[spec['s0']]\n    graph0 = kit.bond_graph(elements, s0['xyz'])\n    chiral0 = stereocentres(elements, s0['xyz'], graph0)\n    checks, pool = {}, []\n    for cid, c in confs.items():\n        if cid == spec['s0']:\n            continue\n        graph = kit.bond_graph(elements, c['xyz'])\n        chiral = stereocentres(elements, c['xyz'], graph)\n        vdip = math.sqrt(sum(x * x for x in c['vdip_eA']))\n        record = dict(same_atoms=len(c['xyz']) == len(elements), same_bonding=graph == graph0,\n                      same_configuration=chiral == chiral0,\n                      distinct_from_S0=distance_rmsd(s0['xyz'], c['xyz']) > 0.05,\n                      dipole_consistent=abs(vdip - c['dipole_eA']) < 1e-4)\n        checks[cid] = record\n        if all(record[k] for k in CONSTRAINTS):\n            pool.append(c)\n    unique = []\n    for c in sorted(pool, key=lambda c: c['id']):\n        if any(distance_rmsd(c['xyz'], u['xyz']) <= 0.05 or\n               (abs(c['e_pbe0_mbd_eV'] - u['e_pbe0_mbd_eV']) < 0.002 and abs(c['dipole_eA'] - u['dipole_eA']) < 0.005)\n               for u in unique):\n            checks[c['id']]['excluded'] = 'equivalent to another candidate (same or mirror conformer)'\n            continue\n        unique.append(c)\n    value = lambda c: objective['sense'] * c[objective['key']]\n    combos = []\n    for combo in itertools.combinations(unique, 4):\n        ranked = sorted(combo, key=value, reverse=True)\n        if value(ranked[0]) - value(ranked[1]) < objective['margin']:\n            continue\n        radii = sorted(combo, key=lambda c: rg(c['xyz']))\n        extreme = ranked[0] in (radii[0], radii[-1])\n        thin = value(ranked[0]) - value(ranked[1]) < 1.5 * objective['margin']   # prefer a clear margin when available\n        combos.append(((extreme, thin, kit.digest(seed, spec['id'], *sorted(c['id'] for c in combo))), combo, ranked))\n    if not combos:\n        raise ValueError('No four-candidate set with a unique best above the margin')\n    _, combo, ranked = min(combos, key=lambda x: x[0])\n    best = ranked[0]\n    permutation = kit.place(best, [c for c in combo if c is not best], spec.get('target_position'), seed, spec['id'],\n                            key=lambda c: c['id'])\n    options = [dict(label=l, value='candidate_%s.xyz' % l) for l in kit.LABELS]   # dataset ids stay reviewer-side\n    verdicts = [c is best and all(checks[c['id']][k] for k in CONSTRAINTS) for c in permutation]\n    key = kit.validate_verdicts([dict(o, source=c['id']) for o, c in zip(options, permutation)], verdicts,\n                               key=lambda o: o['source'])\n    margin = value(ranked[0]) - value(ranked[1])\n    ref = best[objective['key']]\n    audit = []\n    for l, c in zip(kit.LABELS, permutation):\n        diff = c[objective['key']] - ref\n        audit.append(dict(label=l, value='candidate_%s.xyz' % l, source_id=c['id'], is_correct=c is best, property=c[objective['key']],\n                          difference_from_best=round(diff, 6), unit=objective['unit'],\n                          rg_A=round(rg(c['xyz']), 4), change_from_S0_A=round(distance_rmsd(s0['xyz'], c['xyz']), 4),\n                          constraints=checks[c['id']],\n                          reason='满足约束且目标值唯一最优（领先第二名 %.4f %s）。' % (margin, objective['unit']) if c is best else\n                          '满足约束，但目标值比正确项差 %.4f %s（计算证据，非实验）。' % (abs(diff), objective['unit'])))\n    radii = sorted(permutation, key=lambda c: rg(c['xyz']))\n    change = sorted(permutation, key=lambda c: distance_rmsd(s0['xyz'], c['xyz']))\n    shortcuts = dict(most_compact_rg=radii[0] is best, most_extended_rg=radii[-1] is best,\n                     closest_to_S0=change[0] is best, farthest_from_S0=change[-1] is best)\n    inputs = [dict(name='S0.xyz', format='xyz', unit='angstrom',\n                   text=kit.xyz_text(elements, s0['xyz'], 'S0 starting conformer, angstrom'))]\n    for l, c in zip(kit.LABELS, permutation):\n        inputs.append(dict(name='candidate_%s.xyz' % l, format='xyz', unit='angstrom',\n                           text=kit.xyz_text(elements, c['xyz'], 'candidate %s, angstrom' % l)))\n    for item in inputs:\n        kit.parse_xyz(item['text'])\n    formula = ''.join('%s%s' % (e, elements.count(e) if elements.count(e) > 1 else '')\n                      for e in sorted(set(elements), key=lambda e: (e != 'C', e != 'H', e)))\n    question = ('S0 is a conformer of a neutral %s molecule. You may change it only by rotating about single bonds: '\n                'the same atoms in the same order, the same bonds and the same configuration at every stereocentre. '\n                'Goal: obtain %s. All four candidates A–D satisfy the allowed modification. Which candidate best meets the goal?') % (\n        formula, objective['text'])\n    return dict(\n        question=question,\n        scope=spec['scope'],\n        inputs=inputs,\n        numeric=None,\n        options=options, correct_label=key, option_audit=audit,\n        excluded_candidates=[dict(id=k, **v) for k, v in checks.items() if 'excluded' in v or not all(v[x] for x in CONSTRAINTS)],\n        rank=None,\n        checks=dict(objective=spec['objective'], margin=round(margin, 6), required_margin=objective['margin'],\n                    margin_basis=objective['margin_basis'], level=data['level'], s0=spec['s0'],\n                    candidate_pool=len(unique), valid_sets=len(combos), stereocentres=len(chiral0),\n                    shortcut_diagnostics=shortcuts,\n                    selection_rule='在满足约束且唯一最优的四元组中，优先让正确项不是回转半径最小或最大者，其次优先领先幅度 ≥1.5 倍阈值，再按种子选择。',\n                    limits='计算证据仅对所述理论水平与给定几何成立；不是实验构象分布、自由能或开放式分子设计。'),\n        scales=dict(input_nm=kit.dmax(s0['xyz']) / 10, reasoning_nm=kit.dmax(s0['xyz']) / 10,\n                    reasoning_definition='整分子构象比较：S0 最大原子间距'),\n        input_hashes={spec['asset']: kit.sha256(raw)})\n",
   "task_families/extent_choice.py": "\"\"\"Version 0.2 four-choice construction for the two existing size templates.\n\nSame numeric answers as template_engine (reused, not re-derived). Distractors now\ncome from error mechanisms on both sides of the correct value (e.g. heavy-atom only\nand axis span below Dmax; bounding-box diagonal and 2x max radius above), and the\ncorrect value's numeric rank is balanced by seed so that \"always pick the largest\n(or smallest)\" no longer answers the batch. Legacy choice_engine v0.1 runs are kept.\n\"\"\"\nimport itertools\nimport math\nfrom pathlib import Path\nfrom . import kit\nimport template_engine as numeric\n\nVERSION = '0.2.0'\nMASS = {'H': 1.008, 'C': 12.011, 'N': 14.007, 'O': 15.999, 'S': 32.06, 'Cl': 35.45, 'Zn': 65.38,\n        'P': 30.974, 'F': 18.998, 'Si': 28.085, 'Na': 22.990, 'Mg': 24.305}\n\n\ndef _rg(points, weights=None):\n    w = weights or [1.0] * len(points)\n    total = math.fsum(w)\n    c = [math.fsum(wi * p[k] for wi, p in zip(w, points)) / total for k in range(3)]\n    return math.sqrt(math.fsum(wi * math.dist(p, c) ** 2 for wi, p in zip(w, points)) / total)\n\n\nVDW = {'H': 1.20, 'C': 1.70, 'N': 1.55, 'O': 1.52, 'S': 1.80, 'Cl': 1.75, 'Zn': 1.39, 'P': 1.80, 'F': 1.47,\n       'Si': 2.10, 'Na': 2.27, 'Mg': 1.73}   # Bondi radii, Zn/Si/Na/Mg from the same compilation\n\n\ndef _extent_with_vdw(elements, points):\n    best = max(((math.dist(points[i], points[j]), i, j) for i, j in itertools.combinations(range(len(points)), 2)))\n    return best[0] + VDW[elements[best[1]]] + VDW[elements[best[2]]]\n\n\ndef candidates(elements, points, template):\n    heavy = [p for e, p in zip(elements, points) if e != 'H']\n    center = [math.fsum(p[k] for p in points) / len(points) for k in range(3)]\n    radii = [math.dist(p, center) for p in points]\n    pairs = [math.dist(a, b) for a, b in itertools.combinations(points, 2)]\n    spans = [max(p[k] for p in points) - min(p[k] for p in points) for k in range(3)]\n    rg = _rg(points)\n    common = [dict(rule='mean_pair_distance', value=math.fsum(pairs) / len(pairs), plausibility=1,\n                   reason='把全部点对距离的算术平均当作目标量。'),\n              dict(rule='rms_pair_distance', value=math.sqrt(math.fsum(d * d for d in pairs) / len(pairs)), plausibility=1,\n                   reason='用点对距离的均方根替代题目定义。')]\n    if template == 'global_extent':\n        return common + [\n            dict(rule='radius_as_extent', value=rg, plausibility=1, reason='把等权回转半径误当最大点对间距。'),\n            dict(rule='centroid_diameter', value=2 * max(radii), plausibility=2,\n                 reason='用两倍最大中心距代替最大点对间距（前者 ≥ 后者，一般不相等）。'),\n            dict(rule='first_last_rows', value=math.dist(points[0], points[-1]), plausibility=1,\n                 reason='只算 XYZ 首末两行；行序不表示链端。'),\n            dict(rule='heavy_atoms_only', value=numeric.calculate(heavy, 'global_extent') if len(heavy) > 1 else None,\n                 plausibility=3, reason='忽略氢原子，只在重原子中找最大间距；题目要求全部点。'),\n            dict(rule='bounding_box_diagonal', value=math.sqrt(math.fsum(s * s for s in spans)), plausibility=3,\n                 reason='用坐标轴对齐包围盒对角线代替实际最大点对间距（前者 ≥ 后者）。'),\n            dict(rule='largest_axis_span', value=max(spans), plausibility=2,\n                 reason='只取单一坐标轴上的最大跨度，忽略斜向点对。'),\n            dict(rule='two_largest_radii', value=sum(sorted(radii)[-2:]), plausibility=2,\n                 reason='把两个最大中心距相加，默认最远两点位于质心两侧（该和 ≥ 实际最大间距）。'),\n            dict(rule='with_vdw_radii', value=_extent_with_vdw(elements, points), plausibility=2,\n                 reason='给最远点对两端再加范德华半径，报告“分子外形尺寸”而非点集最大间距。'),\n        ]\n    if template == 'equal_weight_rg':\n        n = len(points)\n        return common + [\n            dict(rule='mean_radius', value=math.fsum(radii) / n, plausibility=2, reason='用中心距算术平均替代均方根。'),\n            dict(rule='maximum_radius', value=max(radii), plausibility=1, reason='用最大中心距替代均方根。'),\n            dict(rule='diameter_for_radius', value=2 * rg, plausibility=1, reason='把回转半径乘二，输出直径式量。'),\n            dict(rule='mass_weighted', value=_rg(points, [MASS[e] for e in elements]), plausibility=3,\n                 reason='使用原子质量加权；题目明确要求所有点等权。'),\n            dict(rule='heavy_atoms_only', value=_rg(heavy) if len(heavy) > 1 else None, plausibility=3,\n                 reason='只统计重原子，忽略氢。'),\n            dict(rule='n_minus_one', value=math.sqrt(math.fsum(r * r for r in radii) / (n - 1)), plausibility=2,\n                 reason='用 N−1 作分母（样本方差习惯），不是题目定义。'),\n        ]\n    raise ValueError('Unsupported template')\n\n\ndef build(spec, root, seed):\n    path = root / 'docs' / spec['asset']\n    raw = path.read_bytes()\n    text = raw.decode('utf-8-sig')\n    elements, points = kit.parse_xyz(text)\n    template = spec['template']\n    exact = numeric.verify_decimal(text, template)\n    computed = numeric.calculate(points, template)\n    if not math.isclose(computed, float(exact), abs_tol=1e-9, rel_tol=1e-12):\n        raise ValueError('Numeric crosscheck failed')\n    decimals, tol, sep = 4, '0.00005', '0.0500'\n    chosen, rejected, goal, rank = kit.choose_numeric(exact, candidates(elements, points, template), decimals=decimals,\n                                                      tolerance=tol, min_separation=sep, seed=seed,\n                                                      context=spec['id'], lower=0, target=spec.get('target_position'))\n    options, audit = kit.label_numeric(exact, chosen, decimals=decimals, unit='angstrom', seed=seed, context=spec['id'],\n                                       correct_reason='template_engine 定义计算，并以十进制实现复核。')\n    key = kit.validate_numeric(options, exact, decimals=decimals, tolerance=tol, min_separation=sep, unit='angstrom')\n    registry = {t['id']: t for t in __import__('json').loads((root / 'templates/registry.json').read_text(encoding='utf-8'))['templates']}\n    question = registry[template]['question'].replace(\n        'Return only one value rounded to four decimal places and unit angstrom.', '').strip()\n    return dict(\n        question=question + ' Choose the correct value (angstrom, four decimals).',\n        scope=spec['scope'],\n        inputs=[dict(name=path.name, format='xyz', unit='angstrom', text=text)],\n        numeric=dict(value=kit.display(exact, decimals), unit='angstrom', decimals=decimals, tolerance=tol),\n        options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected,\n        rank=dict(target=goal, achieved=rank),\n        checks=dict(float_value=computed, decimal_crosscheck=str(exact), legacy_reference=spec.get('legacy_numeric_reference'),\n                    legacy_agreement=abs(float(kit.display(exact, 4)) - spec['legacy_numeric_reference']) <= 0.0001\n                    if spec.get('legacy_numeric_reference') is not None else None),\n        scales=dict(input_nm=kit.dmax(points) / 10,\n                    reasoning_nm=(computed if template == 'global_extent' else kit.dmax(points)) / 10,\n                    reasoning_definition='全局点集：最大点对间距'),\n        input_hashes={spec['asset']: kit.sha256(raw)})\n",
   "task_families/extinction.py": "\"\"\"Inference family: which reflection is extinct for this real cell (kinematic model).\n\nPhysical model stated in the question: F(hkl) = sum_j Z_j exp[2 pi i (h x_j + k y_j + l z_j)],\natomic numbers as angle-independent weights. The checker evaluates all four options\nfrom the same coordinate table the student receives; exactly one must vanish and the\nother three must be clearly nonzero. Centering rules are necessary conditions only;\nthe answer comes from the actual coordinates, not from a rule lookup.\n\"\"\"\nimport cmath\nimport itertools\nimport math\nimport sys\nfrom fractions import Fraction\nfrom . import kit\n\nVERSION = '0.1.0'\nZERO = 1e-6      # |F| / F(000) at or below: extinct\nCLEAR = 0.05     # |F| / F(000) at or above: clearly nonzero; between: ambiguous, never used\n\n\ndef cell_from_cif(root, asset):\n    sys.path.insert(0, str(root / 'tools'))\n    import recompute_materials_batch as legacy  # limited cubic reader, reused unchanged\n    crystal = legacy.read_cubic(root / 'docs' / asset)\n    rows = [(r['element'], [Fraction(x) for x in r['fractional_exact']]) for r in crystal['rows']]\n    return crystal['a_A'], [(e, [float(x) for x in f]) for e, f in rows]\n\n\ndef cell_from_xyz(root, asset, a):\n    elements, points = kit.parse_xyz((root / 'docs' / asset).read_text(encoding='utf-8-sig'))\n    frac = [[x / a for x in p] for p in points]\n    if any(not -1e-9 <= x < 1 + 1e-9 for p in frac for x in p):\n        raise ValueError('Coordinates are not inside one conventional cell')\n    return a, list(zip(elements, frac))\n\n\ndef table(a, rows, name):\n    lines = ['%s; cubic a = %.5f angstrom; %d atoms; element x y z (fractional)' % (name, a, len(rows))]\n    lines += ['%s %.8f %.8f %.8f' % (e, *f) for e, f in rows]\n    return '\\n'.join(lines) + '\\n'\n\n\ndef parse_table(text):\n    lines = text.splitlines()\n    rows = [line.split() for line in lines[1:] if line.strip()]\n    return [(r[0], [float(x) for x in r[1:]]) for r in rows]\n\n\ndef factor(rows, hkl, weights):\n    return sum(weights[e] * cmath.exp(2j * math.pi * sum(h * x for h, x in zip(hkl, f))) for e, f in rows)\n\n\ndef rule_absent(rule, hkl):\n    h, k, l = hkl\n    if rule == 'I':\n        return (h + k + l) % 2 == 1\n    if rule == 'F':\n        return len({h % 2, k % 2, l % 2}) > 1\n    if rule == 'F+d':\n        return rule_absent('F', hkl) or (h % 2 == k % 2 == l % 2 == 0 and (h + k + l) % 4 == 2)\n    return False\n\n\nRULES = {'P': '简单立方（无中心化消光）', 'I': '体心 I：h+k+l 为奇数消光',\n         'F': '面心 F：奇偶混合消光', 'F+d': '面心 F 加金刚石滑移：另有全偶且 h+k+l=4n+2 消光'}\n\n\ndef build(spec, root, seed):\n    raw = (root / 'docs' / spec['asset']).read_bytes()\n    if spec['source_kind'] == 'cif':\n        a, rows = cell_from_cif(root, spec['asset'])\n    else:\n        a, rows = cell_from_xyz(root, spec['asset'], spec['a'])\n    weights = spec['weights']\n    if set(e for e, _ in rows) != set(weights):\n        raise ValueError('Weights must cover exactly the elements present')\n    text = table(a, rows, spec['name'])\n    rows = parse_table(text)            # evaluate exactly what the student receives\n    f000 = sum(weights[e] for e, _ in rows)\n    equal = {e: 1 for e in weights}\n    pool = []\n    for hkl in itertools.product(range(5), repeat=3):\n        if hkl == (0, 0, 0) or not (hkl[0] >= hkl[1] >= hkl[2]) or sum(x * x for x in hkl) > 20:\n            continue\n        amp = abs(factor(rows, hkl, weights)) / f000\n        amp_equal = abs(factor(rows, hkl, equal)) / len(rows)\n        pool.append(dict(hkl=hkl, rel=amp, rel_equal=amp_equal))\n    zeros = [p for p in pool if p['rel'] <= ZERO]\n    clear = [p for p in pool if p['rel'] >= CLEAR]\n    if not zeros or len(clear) < 3:\n        raise ValueError('Need at least one extinct and three clearly nonzero reflections')\n    low = [p for p in zeros if sum(x * x for x in p['hkl']) <= 12] or zeros\n    # Prefer extinctions caused by the basis (not predicted by I or F centering alone),\n    # so the answer depends on the coordinates rather than on recalling a lattice rule.\n    basis = [p for p in low if not rule_absent('I', p['hkl']) and not rule_absent('F', p['hkl'])]\n    correct = kit.ordered(basis or low, seed, spec['id'] + '/correct', key=lambda p: p['hkl'])[0]\n    correct_origin = 'basis_or_glide' if basis else 'lattice_centering'\n    for p in clear:\n        mechanisms = []\n        for rule in ('I', 'F', 'F+d'):\n            if rule_absent(rule, p['hkl']):\n                mechanisms.append((3, 'wrong_rule:' + rule, '按“%s”会判为消光，但本结构实际坐标给出非零 |F|。' % RULES[rule]))\n        if p['rel_equal'] <= ZERO:\n            mechanisms.append((3, 'identical_atom_assumption', '若把所有原子当作同种原子会相消；实际不同原子序数使其不为零。'))\n        if p['rel'] < 0.25:\n            mechanisms.append((2, 'weak_not_absent', '强度较弱（|F|/F000=%.3f），但不为零，弱不等于消光。' % p['rel']))\n        if not mechanisms:\n            mechanisms.append((1, 'allowed_generic', '普通允许反射，非零。'))\n        p['plausibility'], p['rule'], p['reason'] = max(mechanisms)\n        p['all_mechanisms'] = [m[1] for m in mechanisms]\n    ranked = sorted(clear, key=lambda p: (-p['plausibility'], sum(x * x for x in p['hkl']),\n                                          kit.digest(seed, spec['id'], p['hkl'])))\n    chosen, used = [], set()\n    for p in ranked:                  # prefer distinct mechanisms, then fill\n        if p['rule'] not in used and len(chosen) < 3:\n            chosen.append(p)\n            used.add(p['rule'])\n    for p in ranked:\n        if len(chosen) < 3 and p not in chosen:\n            chosen.append(p)\n    permutation = kit.place(dict(correct, rule='correct', reason='由表中全部原子坐标求和，|F|/F000 ≤ 1e-6。'),\n                            chosen, spec.get('target_position'), seed, spec['id'], key=lambda p: p['hkl'])\n    show = lambda hkl: '(%d %d %d)' % hkl\n    options = [dict(label=l, value=show(p['hkl'])) for l, p in zip(kit.LABELS, permutation)]\n    verdicts = [abs(factor(rows, p['hkl'], weights)) / f000 <= ZERO for p in permutation]\n    key = kit.validate_verdicts(options, verdicts)\n    if any(ZERO < abs(factor(rows, p['hkl'], weights)) / f000 < CLEAR for p in permutation):\n        raise ValueError('Ambiguous weak reflection among options')\n    audit = [dict(label=l, value=show(p['hkl']), rule=p['rule'], reason=p['reason'], is_correct=v,\n                  relative_amplitude=round(p['rel'], 8), mechanisms=p.get('all_mechanisms', []))\n             for l, p, v in zip(kit.LABELS, permutation, verdicts)]\n    shortcuts = {}\n    for rule in RULES:\n        predicted = [o['label'] for o, p in zip(options, permutation) if rule_absent(rule, p['hkl'])]\n        shortcuts[rule] = dict(predicted_absent=predicted, uniquely_correct=predicted == [key])\n    wlist = ', '.join('%s = %s' % kv for kv in sorted(weights.items()))\n    question = ('The table lists every atom of one conventional cubic cell of %s as fractional coordinates. '\n                'Use the kinematic structure factor F(hkl) = Σ_j Z_j exp[2πi(h x_j + k y_j + l z_j)] with atomic numbers '\n                'as angle-independent weights (%s). Exactly one of the four reflections below has |F| = 0. Which one?') % (spec['name'], wlist)\n    return dict(\n        question=question,\n        scope=spec['scope'],\n        inputs=[dict(name=spec['id'] + '-cell.txt', format='fractional-cell-table', unit='fractional; a in angstrom', text=text)],\n        numeric=None,\n        options=options, correct_label=key, option_audit=audit,\n        excluded_candidates=[dict(hkl=show(p['hkl']), relative_amplitude=round(p['rel'], 6))\n                             for p in pool if ZERO < p['rel'] < CLEAR],\n        rank=None,\n        checks=dict(f000=f000, extinction_origin=correct_origin, zero_threshold=ZERO, clear_threshold=CLEAR, atoms=len(rows), a_A=a,\n                    extinct_pool=[show(p['hkl']) for p in zeros], rule_shortcuts=shortcuts,\n                    limits='零角度原子序数权重的运动学模型；不含原子散射因子角度依赖、热振动或多重散射。'),\n        scales=dict(input_nm=a / 10, reasoning_nm=a / 10, reasoning_definition='晶胞边长 a：相位求和跨越整个晶胞'),\n        input_hashes={spec['asset']: kit.sha256(raw)})\n",
   "task_families/force_path.py": "\"\"\"Inference family: first-order energy change along a specified deformation path.\n\nPhysical relation supplied in the question: F_i = -dE/dr_i. Along the straight path\nr(lambda) = r_A + lambda (r_B - r_A), dE/dlambda at B = -sum_i F_i(B) . (r_B - r_A).\nGeometry is necessary: removing either structure removes the displacement.\nThis is a local directional derivative, never E(B) - E(A) or a stability claim.\n\"\"\"\nimport json\nimport math\nfrom decimal import Decimal, localcontext\nfrom . import kit\n\nVERSION = '0.1.0'\n\n\ndef force_table(elements, forces):\n    rows = ['%d %s %.6f %.6f %.6f' % (i + 1, e, *f) for i, (e, f) in enumerate(zip(elements, forces))]\n    return 'row element Fx Fy Fz (eV/angstrom), total PBE0+MBD force at B\\n' + '\\n'.join(rows) + '\\n'\n\n\ndef parse_forces(text, n):\n    rows = [line.split() for line in text.splitlines()[1:] if line.strip()]\n    if len(rows) != n or any(len(r) != 5 or int(r[0]) != i + 1 for i, r in enumerate(rows)):\n        raise ValueError('Force table rows do not match atoms')\n    return [r[1] for r in rows], [tuple(Decimal(x) for x in r[2:]) for r in rows]\n\n\ndef build(spec, root, seed):\n    path = root / 'docs' / spec['asset']\n    raw = path.read_bytes()\n    data = json.loads(raw)\n    if data['coordinate_unit'] != 'angstrom' or data['force_unit'] != 'eV/angstrom':\n        raise ValueError('Unsupported units')\n    a_text = kit.xyz_text(data['elements'], data['reference_xyz'], 'A: %s (DFTB3+MBD optimized reference), angstrom' % data['reference_id'])\n    b_text = kit.xyz_text(data['elements'], data['displaced_xyz'], 'B: %s (paired displaced structure), angstrom' % data['displaced_id'])\n    f_text = force_table(data['elements'], data['forces_at_displaced'])\n    ea, pa = kit.parse_xyz(a_text)\n    eb, pb = kit.parse_xyz(b_text)\n    ef, fd = parse_forces(f_text, len(pa))\n    if not ea == eb == ef:\n        raise ValueError('Atom order differs between A, B and forces')\n    with localcontext() as ctx:\n        ctx.prec = 40\n        da = [[Decimal(x) for x in line.split()[1:]] for line in a_text.splitlines()[2:]]\n        db = [[Decimal(x) for x in line.split()[1:]] for line in b_text.splitlines()[2:]]\n        delta = [[y - x for x, y in zip(r, s)] for r, s in zip(da, db)]\n        if not any(x for r in delta for x in r):\n            raise ValueError('Zero displacement')\n        s_exact = sum(f * d for fs, ds in zip(fd, delta) for f, d in zip(fs, ds))\n        heavy = sum(f * d for e, fs, ds in zip(ea, fd, delta) if e != 'H' for f, d in zip(fs, ds))\n        per_atom = [sum(f * d for f, d in zip(fs, ds)) for fs, ds in zip(fd, delta)]\n    fl = [[float(x) for x in r] for r in fd]\n    dl = [[float(x) for x in r] for r in delta]\n    s_float = math.fsum(f * d for fs, ds in zip(fl, dl) for f, d in zip(fs, ds))\n    if abs(s_float - float(s_exact)) > 1e-9:\n        raise ValueError('Float and decimal projections disagree')\n    # A_to_B: path from A, derivative at lambda = 1 (at B).  B_to_A: path from B toward A,\n    # derivative at lambda = 0 (also at B); reversing the direction flips the sign.\n    direction = spec.get('direction', 'A_to_B')\n    if direction not in ('A_to_B', 'B_to_A'):\n        raise ValueError('Unsupported path direction')\n    sign = 1 if direction == 'A_to_B' else -1\n    derivative = -s_exact * sign\n    candidates = [\n        dict(rule='sign_convention', value=-derivative, plausibility=3,\n             reason='把力当作能量梯度（漏掉 F = −∂E/∂r 的负号），或忽略题目给定的路径方向。'),\n        dict(rule='heavy_atoms_only', value=-heavy * sign, plausibility=2,\n             reason='只累加重原子，忽略氢原子的受力与位移。'),\n        dict(rule='trapezoid_energy_estimate', value=-s_exact * sign / 2, plausibility=2,\n             reason='按 A 处受力为零的梯形估计给出能量差，而题目问的是 B 处的导数。'),\n        dict(rule='abs_projection_sum', value=sum(abs(x) for x in per_atom), plausibility=2,\n             reason='逐原子取投影绝对值后相加，丢失相互抵消。'),\n        dict(rule='magnitude_product', value=math.fsum(kit.norm(f) * kit.norm(d) for f, d in zip(fl, dl)), plausibility=2,\n             reason='只乘力与位移的模长，忽略夹角。'),\n    ]\n    decimals, tol, sep = 4, '0.00005', '0.0500'\n    chosen, rejected, goal, rank = kit.choose_numeric(derivative, candidates, decimals=decimals, tolerance=tol,\n                                                      min_separation=sep, seed=seed, context=spec['id'], target=spec.get('target_position'))\n    options, audit = kit.label_numeric(derivative, chosen, decimals=decimals, unit='eV', seed=seed, context=spec['id'],\n                                       correct_reason='B 处沿给定路径方向的导数 = −Σ F_i(B)·(路径方向位移)；十进制与浮点实现一致。')\n    key = kit.validate_numeric(options, derivative, decimals=decimals, tolerance=tol, min_separation=sep, unit='eV')\n    path = ('r_i(λ) = r_i(A) + λ[r_i(B) − r_i(A)], what is dE/dλ at λ = 1 (that is, at B)' if sign > 0 else\n            'r_i(λ) = r_i(B) + λ[r_i(A) − r_i(B)], which starts at B and moves toward A, what is dE/dλ at λ = 0 (that is, at B)')\n    question = ('Structures A and B of the same molecule share atom order and one Cartesian frame (angstrom). '\n                'The table gives the total PBE0+MBD force on every atom at B (eV/angstrom), with F_i = −∂E/∂r_i. '\n                'Along the straight path %s, in eV? Do not realign, mass-weight or normalize the displacement.') % path\n    return dict(\n        question=question,\n        scope=spec['scope'],\n        inputs=[dict(name='A.xyz', format='xyz', unit='angstrom', text=a_text),\n                dict(name='B.xyz', format='xyz', unit='angstrom', text=b_text),\n                dict(name='forces_B.txt', format='force-table', unit='eV/angstrom', text=f_text)],\n        numeric=dict(value=kit.display(derivative, decimals), unit='eV', decimals=decimals, tolerance=tol),\n        options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected,\n        rank=dict(target=goal, achieved=rank),\n        checks=dict(decimal_projection_S_eV=str(s_exact), float_projection_S_eV=s_float,\n                    derivative_eV=str(derivative), direction=direction, atom_order_consistent=True,\n                    source_ids=[data['reference_id'], data['displaced_id']], force_key=data['force_key'],\n                    limits='局部方向导数，不是 E(B)−E(A)，也不证明 A 是 PBE0+MBD 极小点。'),\n        scales=dict(input_nm=kit.dmax(pb) / 10, reasoning_nm=kit.dmax(pb) / 10,\n                    reasoning_definition='全部原子参与：B 的最大原子间距'),\n        input_hashes={spec['asset']: kit.sha256(raw)})\n",
   "task_families/kit.py": "\"\"\"Shared mechanics for reusable task families: parsing, geometry kernels, rounding,\ndistractor selection, four-option validation and scoring. No model/API calls.\n\nFamilies supply the science (what is asked, how the answer is computed, which\nerror mechanisms produce distractors); this module supplies the common checks so\nthat every family is validated the same way.\n\"\"\"\nimport hashlib\nimport itertools\nimport math\nfrom decimal import Decimal, ROUND_HALF_UP\n\nLABELS = 'ABCD'\nELEMENTS = {'H', 'C', 'N', 'O', 'S', 'Cl', 'P', 'F', 'Zn', 'Si', 'Na', 'Mg', 'Cs', 'Br', 'I'}\nCOVALENT = {'H': 0.31, 'C': 0.76, 'N': 0.71, 'O': 0.66, 'S': 1.05, 'Cl': 1.02, 'P': 1.07,\n            'F': 0.57, 'Zn': 1.22, 'Si': 1.11, 'Br': 1.20, 'I': 1.39}\n\n\ndef sha256(data):\n    return hashlib.sha256(data if isinstance(data, bytes) else data.encode('utf-8')).hexdigest()\n\n\ndef parse_xyz(text, max_atoms=5000):\n    \"\"\"Strict XYZ: count line, comment line, exactly count rows of element x y z.\"\"\"\n    lines = text.splitlines()\n    if len(lines) < 3:\n        raise ValueError('XYZ requires count, comment and atom rows')\n    try:\n        n = int(lines[0].strip())\n    except ValueError:\n        raise ValueError('Invalid XYZ count')\n    rows = [line.split() for line in lines[2:] if line.strip()]\n    if n < 1 or n > max_atoms or len(rows) != n:\n        raise ValueError('Atom count does not match rows')\n    elements, points = [], []\n    for row in rows:\n        symbol = row[0].capitalize() if len(row) == 4 else ''   # e.g. PDB-style 'CL' -> 'Cl'\n        if symbol not in ELEMENTS:\n            raise ValueError('Expected known element and three coordinates')\n        point = tuple(float(v) for v in row[1:])\n        if not all(math.isfinite(v) for v in point):\n            raise ValueError('Nonfinite coordinate')\n        elements.append(symbol)\n        points.append(point)\n    return elements, points\n\n\ndef xyz_text(elements, points, comment):\n    rows = ['%s %.8f %.8f %.8f' % (e, *p) for e, p in zip(elements, points)]\n    return '\\n'.join([str(len(rows)), comment] + rows) + '\\n'\n\n\ndef sub(a, b):\n    return [x - y for x, y in zip(a, b)]\n\n\ndef dot(a, b):\n    return math.fsum(x * y for x, y in zip(a, b))\n\n\ndef cross(a, b):\n    return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]\n\n\ndef norm(a):\n    return math.sqrt(dot(a, a))\n\n\ndef angle_acos(a, vertex, b):\n    u, v = sub(a, vertex), sub(b, vertex)\n    return math.degrees(math.acos(max(-1.0, min(1.0, dot(u, v) / (norm(u) * norm(v))))))\n\n\ndef angle_atan2(a, vertex, b):\n    \"\"\"Second implementation (atan2 of |u x v| and u.v), used as a cross-check.\"\"\"\n    u, v = sub(a, vertex), sub(b, vertex)\n    return math.degrees(math.atan2(norm(cross(u, v)), dot(u, v)))\n\n\ndef dihedral_normals(p0, p1, p2, p3):\n    \"\"\"IUPAC signed torsion via plane normals, range (-180, 180].\"\"\"\n    b1, b2, b3 = sub(p1, p0), sub(p2, p1), sub(p3, p2)\n    n1, n2 = cross(b1, b2), cross(b2, b3)\n    return math.degrees(math.atan2(norm(b2) * dot(b1, n2), dot(n1, n2)))\n\n\ndef dihedral_projection(p0, p1, p2, p3):\n    \"\"\"Second implementation: project outer bonds onto the plane normal to the axis.\"\"\"\n    b0, b1, b2 = sub(p0, p1), sub(p2, p1), sub(p3, p2)\n    axis = [x / norm(b1) for x in b1]\n    v = [x - dot(b0, axis) * y for x, y in zip(b0, axis)]\n    w = [x - dot(b2, axis) * y for x, y in zip(b2, axis)]\n    return math.degrees(math.atan2(dot(cross(axis, v), w), dot(v, w)))\n\n\ndef bond_graph(elements, points, scale=1.2):\n    \"\"\"Covalent-radius connectivity; an operational rule, stated in audits.\"\"\"\n    edges = set()\n    for i, j in itertools.combinations(range(len(points)), 2):\n        limit = scale * (COVALENT[elements[i]] + COVALENT[elements[j]])\n        if math.dist(points[i], points[j]) <= limit:\n            edges.add((i, j))\n    return edges\n\n\ndef neighbors(edges, i):\n    return sorted({b if a == i else a for a, b in edges if i in (a, b)})\n\n\ndef dmax(points):\n    return max((math.dist(a, b) for a, b in itertools.combinations(points, 2)), default=0.0)\n\n\ndef display(value, decimals):\n    quantum = Decimal(1).scaleb(-decimals)\n    return str(Decimal(str(value)).quantize(quantum, rounding=ROUND_HALF_UP))\n\n\ndef digest(*parts):\n    return hashlib.sha256('|'.join(map(str, parts)).encode('utf-8')).digest()\n\n\ndef ordered(items, seed, context, key=lambda x: x[0]):\n    \"\"\"Version-independent deterministic permutation keyed by seed and context.\"\"\"\n    return sorted(items, key=lambda x: digest(seed, context, key(x)))\n\n\ndef target_rank(seed, context):\n    return 1 + digest(seed, context, 'rank')[0] % 4\n\n\ndef gap(a, b, period=None):\n    \"\"\"Absolute difference; for periodic quantities (torsions) the circular distance.\"\"\"\n    d = abs(a - b)\n    if period is not None:\n        period = Decimal(str(period))\n        d = min(d % period, period - d % period)\n    return d\n\n\ndef choose_numeric(correct, candidates, *, decimals, tolerance, min_separation, seed, context,\n                   lower=None, upper=None, period=None, target=None, distractor_separation=None):\n    \"\"\"Pick three misconception distractors.\n\n    candidates: dicts with rule, value, reason and plausibility (1 low .. 3 high).\n    Among all valid triples (pairwise separated by more than min_separation and\n    from the correct value) prefer the one whose correct-answer numeric rank equals\n    a target rank (assigned per batch by the engine, else seeded), so that \"always\n    pick largest/smallest\" does not work, then the most plausible mechanisms.\n    min_separation applies to the correct value; distractor_separation (default the\n    same) only keeps wrong options visibly distinct from each other.\n    Returns (chosen, rejected, target, achieved rank).\n    \"\"\"\n    tolerance, min_separation = Decimal(str(tolerance)), Decimal(str(min_separation))\n    between = Decimal(str(distractor_separation)) if distractor_separation is not None else min_separation\n    if between <= 2 * tolerance:\n        raise ValueError('Distractors must not share tolerance intervals')\n    if min_separation < 2 * tolerance:\n        raise ValueError('Separation must exceed both tolerance intervals')\n    right = Decimal(display(correct, decimals))\n    valid, rejected = [], []\n    for c in candidates:\n        value = c['value']\n        if value is None or not math.isfinite(float(value)):\n            rejected.append(dict(rule=c['rule'], value=None, reason='not defined for this input'))\n            continue\n        shown = Decimal(display(value, decimals))\n        if (lower is not None and shown < Decimal(str(lower))) or (upper is not None and shown > Decimal(str(upper))):\n            rejected.append(dict(rule=c['rule'], value=str(shown), reason='outside the defined value range'))\n        elif gap(shown, right, period) <= min_separation:\n            rejected.append(dict(rule=c['rule'], value=str(shown), reason='too close to the correct value'))\n        else:\n            valid.append(dict(c, shown=shown))\n    best = None\n    goal = target if target is not None else target_rank(seed, context)\n    for combo in itertools.combinations(valid, 3):\n        values = [x['shown'] for x in combo]\n        if any(gap(a, b, period) <= between for a, b in itertools.combinations(values, 2)):\n            continue\n        rank = 1 + sum(v < right for v in values)\n        weak = sum(x.get('plausibility', 1) <= 1 for x in combo)   # easily dismissed option: worse than any rank miss\n        mirror = right != 0 and any(x['shown'] == -right for x in combo)   # a '+/-' pair cue\n        score = (abs(rank - goal) + 4 * weak + int(mirror), -sum(x.get('plausibility', 1) for x in combo),\n                 digest(seed, context, *sorted(x['rule'] for x in combo)))\n        if best is None or score < best[0]:\n            best = (score, combo, rank)\n    if best is None:\n        raise ValueError('Fewer than three separated misconception distractors')\n    chosen = list(best[1])\n    names = {x['rule'] for x in chosen}\n    for x in valid:\n        if x['rule'] not in names:\n            rejected.append(dict(rule=x['rule'], value=str(x['shown']), reason='valid but not selected (rank balance / plausibility)'))\n    return chosen, rejected, goal, best[2]\n\n\ndef label_numeric(correct, chosen, *, decimals, unit, seed, context, correct_reason):\n    \"\"\"Options in ascending numeric order, so label position equals numeric rank;\n    the balanced target rank therefore also balances answer positions.\"\"\"\n    entries = [('correct', display(correct, decimals), correct_reason)] +               [(x['rule'], str(x['shown']), x['reason']) for x in chosen]\n    permutation = sorted(entries, key=lambda e: Decimal(e[1]))\n    options = [{'label': l, 'value': v, 'unit': unit} for l, (_, v, _) in zip(LABELS, permutation)]\n    audit = [{'label': l, 'rule': r, 'value': v, 'reason': why, 'is_correct': r == 'correct',\n              'absolute_error': str(abs(Decimal(v) - Decimal(str(correct))))}\n             for l, (r, v, why) in zip(LABELS, permutation)]\n    return options, audit\n\n\ndef place(correct, others, target, seed, context, key):\n    \"\"\"Categorical options: others in seeded order, correct inserted at the target index.\"\"\"\n    rest = ordered(list(others), seed, context + '/labels', key=key)\n    index = (target - 1) if target is not None else target_rank(seed, context) - 1\n    return rest[:index] + [correct] + rest[index:]\n\n\ndef validate_numeric(options, expected, *, decimals, tolerance, min_separation, unit, period=None,\n                     distractor_separation=None):\n    if len(options) != 4 or [o['label'] for o in options] != list(LABELS):\n        raise ValueError('Exactly A/B/C/D required')\n    values = [Decimal(o['value']) for o in options]\n    if any(o['unit'] != unit or not v.is_finite() or o['value'] != display(v, decimals) for o, v in zip(options, values)):\n        raise ValueError('Invalid unit, value or precision')\n    between = Decimal(str(distractor_separation if distractor_separation is not None else min_separation))\n    if any(gap(a, b, period) <= between for a, b in itertools.combinations(values, 2)):\n        raise ValueError('Options not separated')\n    hits = [o['label'] for o, v in zip(options, values) if gap(v, Decimal(str(expected)), period) <= Decimal(str(tolerance))]\n    if len(hits) != 1:\n        raise ValueError('Not exactly one correct option')\n    right = values[[o['label'] for o in options].index(hits[0])]\n    if any(gap(v, right, period) <= Decimal(str(min_separation)) for v in values if v is not right):\n        raise ValueError('A distractor is too close to the correct value')\n    return hits[0]\n\n\ndef validate_verdicts(options, verdicts, key=lambda o: o['value']):\n    \"\"\"Categorical options: all four verified by the family checker, exactly one true.\"\"\"\n    if len(options) != 4 or [o['label'] for o in options] != list(LABELS):\n        raise ValueError('Exactly A/B/C/D required')\n    if len({repr(key(o)) for o in options}) != 4:\n        raise ValueError('Duplicate options')\n    if len(verdicts) != 4 or any(v not in (True, False) for v in verdicts):\n        raise ValueError('Every option needs a verified verdict')\n    hits = [o['label'] for o, v in zip(options, verdicts) if v]\n    if len(hits) != 1:\n        raise ValueError('Not exactly one correct option')\n    return hits[0]\n\n\ndef score_choice(response, correct):\n    if correct not in LABELS or len(correct) != 1:\n        raise ValueError('Invalid answer key')\n    return isinstance(response, str) and response.strip().upper() == correct\n\n\ndef score_numeric(response, expected, tolerance, unit):\n    if not isinstance(response, dict) or set(response) != {'value', 'unit'}:\n        return False\n    value = response['value']\n    if type(value) not in (int, float) or response['unit'] != unit or not math.isfinite(value):\n        return False\n    return abs(Decimal(str(value)) - Decimal(str(expected))) <= Decimal(str(tolerance))\n\n\ndef mirror_pair_cue(option_values, correct_label):\n    \"\"\"True when the correct value's negation is also an option (a test-wise cue).\"\"\"\n    values = dict(option_values)\n    right = Decimal(values[correct_label])\n    return right != 0 and any(Decimal(v) == -right for l, v in option_values if l != correct_label)\n\n\ndef rank_shortcuts(option_values, correct_label):\n    \"\"\"Option-only baselines: which label would 'largest', 'smallest', 'second' pick.\"\"\"\n    order = sorted(option_values, key=lambda x: Decimal(x[1]))\n    picks = {'always_smallest': order[0][0], 'always_second': order[1][0],\n             'always_third': order[2][0], 'always_largest': order[3][0]}\n    return {k: v == correct_label for k, v in picks.items()}\n",
   "task_families/local_geometry.py": "\"\"\"Perception families on named local geometry: bond angle and protein backbone torsion.\n\nChemical identity (which atoms, which linkage) is part of the template input and\nis checked against connectivity; the model never receives arbitrary row pairs.\n\"\"\"\nimport math\nfrom pathlib import Path\nfrom . import kit\n\nVERSION = '0.1.0'\n\n\ndef _angle_candidates(elements, points, edges, a, v, b, names, ideal):\n    \"\"\"Error mechanisms for an A-V-B bond angle.\"\"\"\n    theta = kit.angle_acos(points[a], points[v], points[b])\n    label = lambda i: '%s(row %d)' % (elements[i], i + 1)\n    out = [dict(rule='supplement', value=180 - theta, plausibility=1,\n                reason='用 180°−θ：把其中一根键矢量方向取反（从顶点指出的方向写反）。'),\n           dict(rule='triangle_angle_at_first_atom', value=kit.angle_acos(points[v], points[a], points[b]), plausibility=1,\n                reason='把三角形 %s–%s–%s 的顶点错放在 %s 上。' % (names[0], names[1], names[2], names[0]))]\n    if ideal:\n        out.append(dict(rule='idealized_value', value=ideal['value'], plausibility=3,\n                        reason='直接套用理想杂化角 %s（%s），没有测量这一构象。' % (ideal['value'], ideal['basis'])))\n    for x in kit.neighbors(edges, v):\n        if x in (a, b):\n            continue\n        out.append(dict(rule='other_neighbor:%s-%s-%s' % (names[0], names[1], label(x)),\n                        value=kit.angle_acos(points[a], points[v], points[x]), plausibility=3,\n                        reason='顶点正确，但另一端选成与 %s 相连的 %s。' % (names[1], label(x))))\n        out.append(dict(rule='other_neighbor:%s-%s-%s' % (label(x), names[1], names[2]),\n                        value=kit.angle_acos(points[x], points[v], points[b]), plausibility=3,\n                        reason='顶点正确，但一端选成与 %s 相连的 %s。' % (names[1], label(x))))\n    for end, other, name in ((a, b, names[0]), (b, a, names[2])):\n        for y in kit.neighbors(edges, end):\n            if y == v:\n                continue\n            out.append(dict(rule='angle_at_adjacent_atom:%s-%s-%s' % (names[1], name, label(y)),\n                            value=kit.angle_acos(points[v], points[end], points[y]), plausibility=2,\n                            reason='测成相邻原子 %s 处的键角，而非题目指定的顶点 %s。' % (name, names[1])))\n    return theta, out\n\n\ndef build_bond_angle(spec, root, seed):\n    path = root / 'docs' / spec['asset']\n    raw = path.read_bytes()\n    text = raw.decode('utf-8-sig')\n    elements, points = kit.parse_xyz(text)\n    a, v, b = [x['row'] - 1 for x in spec['atoms']]\n    names = [x['name'] for x in spec['atoms']]\n    for x, idx in zip(spec['atoms'], (a, v, b)):\n        if not 0 <= idx < len(points) or elements[idx] != x['element']:\n            raise ValueError('Named atom does not match XYZ row element')\n    edges = kit.bond_graph(elements, points)\n    bonded = [(min(a, v), max(a, v)) in edges, (min(b, v), max(b, v)) in edges]\n    if not all(bonded):\n        raise ValueError('Named angle atoms are not bonded to the vertex under the covalent-radius rule')\n    theta, candidates = _angle_candidates(elements, points, edges, a, v, b, names, spec.get('ideal'))\n    second = kit.angle_atan2(points[a], points[v], points[b])\n    if abs(theta - second) > 1e-9:\n        raise ValueError('Angle implementations disagree')\n    decimals, tol, sep = 2, '0.005', '1.50'\n    context = spec['id']\n    chosen, rejected, goal, rank = kit.choose_numeric(theta, candidates, decimals=decimals, tolerance=tol,\n                                                      min_separation=sep, seed=seed, context=context, target=spec.get('target_position'),\n                                                      lower=0, upper=180, distractor_separation='0.50')\n    options, audit = kit.label_numeric(theta, chosen, decimals=decimals, unit='degree', seed=seed,\n                                       context=context, correct_reason='按向量夹角公式在指定顶点计算；另以 atan2 实现复核。')\n    key = kit.validate_numeric(options, theta, decimals=decimals, tolerance=tol, min_separation=sep, unit='degree',\n                               distractor_separation='0.50')\n    rows = ', '.join('%s = row %d' % (x['name'], x['row']) for x in spec['atoms'])\n    question = ('%s Atoms %s–%s–%s form %s (%s; rows counted from 1 after the two XYZ header lines). '\n                'What is the %s–%s–%s bond angle at %s in this supplied conformer?') % (\n        spec['context'], names[0], names[1], names[2], spec['linkage'], rows, names[0], names[1], names[2], names[1])\n    span = max(math.dist(points[i], points[j]) for i in (a, v, b) for j in (a, v, b)) / 10\n    return dict(\n        question=question,\n        scope=spec['scope'],\n        inputs=[dict(name=path.name, format='xyz', unit='angstrom', text=text)],\n        numeric=dict(value=kit.display(theta, decimals), unit='degree', decimals=decimals, tolerance=tol),\n        options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected,\n        rank=dict(target=goal, achieved=rank),\n        checks=dict(bond_rule='covalent radii sum × 1.2', vertex_bonded_to_both=True,\n                    acos_deg=theta, atan2_deg=second, implementations_agree=True,\n                    vertex_neighbors=[kit.neighbors(edges, v)]),\n        scales=dict(input_nm=kit.dmax(points) / 10, reasoning_nm=span,\n                    reasoning_definition='指定三原子两两最大间距（局部 0.1–1 nm）'),\n        input_hashes={spec['asset']: kit.sha256(raw)})\n\n\ndef read_pdb_residues(text, chain):\n    residues, order, altloc = {}, [], set()\n    for line in text.splitlines():\n        if line.startswith('ENDMDL'):\n            break\n        if not line.startswith('ATOM') or line[21] != chain:\n            continue\n        number = int(line[22:26])\n        if line[16] != ' ':\n            altloc.add(number)\n        if number not in residues:\n            residues[number] = dict(name=line[17:20], atoms={}, lines=[])\n            order.append(number)\n        residues[number]['atoms'][line[12:16].strip()] = tuple(float(line[c:c + 8]) for c in (30, 38, 46))\n        residues[number]['lines'].append(line.rstrip())\n    return residues, order, altloc\n\n\nTORSIONS = {\n    'phi': (('C', -1), ('N', 0), ('CA', 0), ('C', 0)),\n    'psi': (('N', 0), ('CA', 0), ('C', 0), ('N', 1)),\n    'omega': (('CA', 0), ('C', 0), ('N', 1), ('CA', 1)),\n}\nSYMBOL = {'phi': 'φ', 'psi': 'ψ', 'omega': 'ω'}\n\n\ndef torsion(residues, number, kind, implementation=kit.dihedral_normals):\n    pts = []\n    for atom, offset in TORSIONS[kind]:\n        res = residues.get(number + offset)\n        if not res or atom not in res['atoms']:\n            return None\n        pts.append(res['atoms'][atom])\n    return implementation(*pts)\n\n\ndef build_backbone_torsion(spec, root, seed):\n    path = root / 'docs' / spec['asset']\n    raw = path.read_bytes()\n    residues, order, altloc = read_pdb_residues(raw.decode('utf-8'), spec['chain'])\n    n, kind = spec['residue'], spec['torsion']\n    window = [n - 1, n, n + 1]\n    if kind not in ('phi', 'psi') or any(r not in residues for r in window) or altloc & set(window):\n        raise ValueError('Residue window missing, has alternate locations or unsupported torsion')\n    for left, right in ((n - 1, n), (n, n + 1)):\n        if math.dist(residues[left]['atoms']['C'], residues[right]['atoms']['N']) > 1.5:\n            raise ValueError('Chain break between residues %d and %d' % (left, right))\n    value = torsion(residues, n, kind)\n    second = torsion(residues, n, kind, kit.dihedral_projection)\n    if value is None or abs(value - second) > 1e-8:\n        raise ValueError('Torsion implementations disagree or atoms missing')\n    if abs(abs(value) - 180) < 1.0:\n        raise ValueError('Correct value too close to the ±180° boundary for unambiguous rounding')\n    other = 'psi' if kind == 'phi' else 'phi'\n    res = residues[n]\n    name = '%s%d' % (res['name'].title(), n)\n    tau = kit.angle_acos(res['atoms']['N'], res['atoms']['CA'], res['atoms']['C'])\n    neighbor = n + 1 if kind == 'phi' else n - 1\n    omega_residue = n - 1 if kind == 'phi' else n\n    candidates = [\n        dict(rule='opposite_sign', value=-value, plausibility=3,\n             reason='符号约定取反：相当于把镜像手性当成原构象。'),\n        dict(rule='other_backbone_torsion', value=torsion(residues, n, other), plausibility=3,\n             reason='算成同一残基的 %s 而非 %s。' % (SYMBOL[other], SYMBOL[kind])),\n        dict(rule='neighbor_residue_same_torsion', value=torsion(residues, neighbor, kind), plausibility=2,\n             reason='算成相邻残基 %d 的 %s。' % (neighbor, SYMBOL[kind])),\n        dict(rule='peptide_omega', value=torsion(residues, omega_residue, 'omega'), plausibility=1,\n             reason='算成肽键扭转角 ω（残基 %d–%d）。' % (omega_residue, omega_residue + 1)),\n        dict(rule='unsigned_plane_angle', value=180 - abs(value), plausibility=1,\n             reason='用两平面法向量夹角且方向取反，丢失符号（180°−|θ|）。'),\n        dict(rule='backbone_bond_angle', value=tau, plausibility=1,\n             reason='算成 N–CA–C 键角 τ，而非二面角。'),\n    ]\n    decimals, tol, sep = 1, '0.05', '5.0'\n    chosen, rejected, goal, rank = kit.choose_numeric(value, candidates, decimals=decimals, tolerance=tol,\n                                                      min_separation=sep, seed=seed, context=spec['id'], target=spec.get('target_position'),\n                                                      lower=-180, upper=180, period=360)\n    options, audit = kit.label_numeric(value, chosen, decimals=decimals, unit='degree', seed=seed,\n                                       context=spec['id'], correct_reason='IUPAC 符号约定的二面角；法向量与投影两种实现一致。')\n    key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=sep,\n                               unit='degree', period=360)\n    atoms = TORSIONS[kind]\n    definition = '–'.join('%s(%d)' % (a, n + o) for a, o in atoms)\n    excerpt = '\\n'.join(line for r in window for line in residues[r]['lines']) + '\\nEND\\n'\n    chain_label = spec['chain'] if spec['chain'].strip() else '(blank)'\n    question = ('The excerpt contains residues %d–%d of chain %s from PDB entry %s (%s), ATOM records copied '\n                'unchanged (coordinates in angstrom). Compute the backbone torsion %s of %s, defined by atoms %s, '\n                'using the IUPAC sign convention (range −180° to +180°).') % (\n        n - 1, n + 1, chain_label, spec['pdb'], spec['context'], SYMBOL[kind], name, definition)\n    pts = [residues[n + o]['atoms'][a] for a, o in atoms]\n    return dict(\n        question=question,\n        scope=spec['scope'],\n        inputs=[dict(name='%s-%s%d-excerpt.pdb' % (spec['pdb'], spec['chain'].strip() or '_', n),\n                     format='pdb-excerpt', unit='angstrom', text=excerpt)],\n        numeric=dict(value=kit.display(value, decimals), unit='degree', decimals=decimals, tolerance=tol),\n        options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected,\n        rank=dict(target=goal, achieved=rank),\n        checks=dict(normals_deg=value, projection_deg=second, implementations_agree=True,\n                    chain_continuity_max_C_N_A=1.5, altloc_in_window=False,\n                    periodic_separation=True, residue=name, torsion=kind),\n        scales=dict(input_nm=kit.dmax([p for r in window for p in residues[r]['atoms'].values()]) / 10,\n                    reasoning_nm=math.dist(pts[0], pts[3]) / 10,\n                    reasoning_definition='二面角首末原子间距（局部 0.1–1 nm）'),\n        input_hashes={spec['asset']: kit.sha256(raw)})\n",
+  "task_families/stereo.py": "\"\"\"Stereochemistry ladder: perception -> inference -> design (meeting 2 example).\n\nNo CIP priorities are needed: every answer is decided from geometry and bonding.\n  * constitution: covalent-radius bond graph (plus a graph invariant across molecules);\n  * stereocentres: 4-coordinate atoms with four different first-shell neighbour classes,\n    pyramidal 3-coordinate S/P, and aziridine-type N (3-ring, slow inversion), each with\n    distinct neighbour classes; descriptor = sign of the\n    triple product of neighbour vectors (index order) - flips under reflection only;\n  * stereo double bonds: bond between trigonal C (3 neighbours) / N (2 neighbours) whose\n    ends carry distinguishable substituents; descriptor = same/opposite side.\nEvery classification is cross-checked against the dataset's own stereoisomer labels, and\ninstances that disagree are rejected, not relabelled.\n\"\"\"\nimport hashlib\nimport json\nimport math\nfrom . import kit\n\nVERSION = '0.1.0'\nMARGIN_E = 0.0434      # eV, 1 kcal/mol\nMARGIN_MU = 0.10       # e*angstrom\nRELATIONS = [('same', 'the same compound as S0 (only conformation and/or orientation differ)'),\n             ('enantiomer', 'an enantiomer of S0 (its non-superimposable mirror image)'),\n             ('diastereomer', 'a diastereomer of S0 (a stereoisomer that is not its mirror image)'),\n             ('constitutional', 'a constitutional isomer of S0 (same formula, different bonding)')]\n\n\ndef load(root, asset):\n    raw = (root / 'docs' / asset).read_bytes()\n    return json.loads(raw), kit.sha256(raw)\n\n\ndef conformer(data, cid):\n    matches = [c for c in data['conformers'] if c['id'] == cid]\n    if len(matches) != 1:\n        raise ValueError('Unknown conformer ' + cid)\n    return matches[0]\n\n\ndef shell_classes(elements, edges):\n    return [(elements[i], tuple(sorted(elements[j] for j in kit.neighbors(edges, i)))) for i in range(len(elements))]\n\n\ndef descriptors(elements, points, edges):\n    cls = shell_classes(elements, edges)\n    centres, bonds = {}, {}\n    for i in range(len(points)):\n        nb = kit.neighbors(edges, i)\n        distinct = len({cls[j] for j in nb}) == len(nb)\n        # Pyramidal N only inside a three-membered ring (aziridine): inversion is slow there,\n        # so the nitrogen configuration is a stable stereo element; ordinary amines invert.\n        in_small_ring = any(j in kit.neighbors(edges, k) for j in nb for k in nb if j < k)\n        pyramidal = len(nb) == 3 and distinct and (elements[i] in ('S', 'P') or (elements[i] == 'N' and in_small_ring))\n        if len(nb) == 4 and distinct or pyramidal:\n            v = [kit.sub(points[j], points[i]) for j in nb[:3]]\n            volume = kit.dot(kit.cross(v[0], v[1]), v[2])\n            if len(nb) == 3 and abs(volume) < 0.1 * kit.norm(v[0]) * kit.norm(v[1]) * kit.norm(v[2]):\n                continue                     # planar: not a stereocentre\n            centres[i] = 1 if volume > 0 else -1\n    trigonal = {i for i in range(len(points)) if (elements[i] == 'C' and len(kit.neighbors(edges, i)) == 3)\n                or (elements[i] == 'N' and len(kit.neighbors(edges, i)) == 2)}\n    for i, j in sorted(edges):\n        if i not in trigonal or j not in trigonal:\n            continue\n        subs_i = [k for k in kit.neighbors(edges, i) if k != j]\n        subs_j = [k for k in kit.neighbors(edges, j) if k != i]\n        if any(len(s) == 2 and cls[s[0]] == cls[s[1]] for s in (subs_i, subs_j)):\n            continue                         # e.g. =CH2: no cis/trans isomerism\n        angle = kit.dihedral_normals(points[min(subs_i)], points[i], points[j], points[min(subs_j)])\n        bonds[(i, j)] = 'same' if abs(angle) < 90 else 'opposite'\n    return dict(centres=centres, bonds=bonds)\n\n\ndef graph_invariant(elements, edges, rounds=4):\n    labels = list(elements)\n    for _ in range(rounds):\n        labels = [hashlib.sha256((labels[i] + '|' + ','.join(sorted(labels[j] for j in kit.neighbors(edges, i))))\n                                 .encode()).hexdigest()[:16] for i in range(len(labels))]\n    return hashlib.sha256('|'.join(sorted(labels)).encode()).hexdigest()\n\n\ndef relationship(el_a, pts_a, el_b, pts_b, same_order):\n    \"\"\"Returns (relation, facts). Raises if the rules cannot decide.\"\"\"\n    if sorted(el_a) != sorted(el_b):\n        raise ValueError('Different formulas')\n    ea, eb = kit.bond_graph(el_a, pts_a), kit.bond_graph(el_b, pts_b)\n    if not same_order or el_a != el_b or ea != eb:\n        if graph_invariant(el_a, ea) == graph_invariant(el_b, eb):\n            raise ValueError('Same graph invariant but no atom correspondence: undecidable')\n        return 'constitutional', dict(bond_graphs_equal=False)\n    da, db = descriptors(el_a, pts_a, ea), descriptors(el_b, pts_b, eb)\n    if set(da['centres']) != set(db['centres']) or set(da['bonds']) != set(db['bonds']):\n        raise ValueError('Different stereo elements detected: undecidable')\n    flipped = sorted(k for k in da['centres'] if da['centres'][k] != db['centres'][k])\n    switched = sorted(k for k in da['bonds'] if da['bonds'][k] != db['bonds'][k])\n    facts = dict(bond_graphs_equal=True, stereocentres=sorted(da['centres']), stereo_bonds=sorted(da['bonds']),\n                 centres_inverted=flipped, bonds_switched=switched)\n    if not flipped and not switched:\n        return 'same', facts\n    if da['centres'] and len(flipped) == len(da['centres']) and not switched:\n        return 'enantiomer', facts\n    return 'diastereomer', facts\n\n\ndef placed(points, seed, context):\n    \"\"\"Deterministic proper rotation + translation (internal geometry unchanged).\"\"\"\n    d = kit.digest(seed, context, 'pose')\n    q = [int.from_bytes(d[k:k + 4], 'big') / 2 ** 31 - 1 for k in (0, 4, 8, 12)]\n    n = math.sqrt(sum(x * x for x in q))\n    w, x, y, z = (c / n for c in q)\n    r = [[1 - 2 * (y * y + z * z), 2 * (x * y - z * w), 2 * (x * z + y * w)],\n         [2 * (x * y + z * w), 1 - 2 * (x * x + z * z), 2 * (y * z - x * w)],\n         [2 * (x * z - y * w), 2 * (y * z + x * w), 1 - 2 * (x * x + y * y)]]\n    shift = [(d[16 + k] / 255 - 0.5) * 6 for k in range(3)]\n    return [tuple(sum(r[i][k] * p[k] for k in range(3)) + shift[i] for i in range(3)) for p in points]\n\n\ndef mirror(points):\n    return [(x, y, -z) for x, y, z in points]\n\n\ndef as_xyz(elements, points, comment):\n    text = kit.xyz_text(elements, points, comment)\n    return text, kit.parse_xyz(text)[1]          # evaluate what the student receives\n\n\ndef best(data, isomer):\n    return min((c for c in data['conformers'] if c['isomer'] == isomer), key=lambda c: c['e_pbe0_mbd_eV'])\n\n\ndef check_labels(data, relation, a, b):\n    \"\"\"Dataset labels must agree with the geometric classification.\"\"\"\n    same_isomer = a['isomer'] == b['isomer']\n    if relation == 'same' and not same_isomer:\n        raise ValueError('Dataset lists different stereoisomers but geometry finds no difference')\n    if relation in ('enantiomer', 'diastereomer') and same_isomer:\n        raise ValueError('Dataset lists one stereoisomer but geometry finds a configuration change')\n    if relation == 'enantiomer':\n        gap = abs(best(data, a['isomer'])['e_pbe0_mbd_eV'] - best(data, b['isomer'])['e_pbe0_mbd_eV'])\n        if gap > 0.01:\n            raise ValueError('Enantiomers must have equal lowest energies; dataset gap %.4f eV' % gap)\n\n\n# ------------------------------------------------------------------ perception\ndef build_relationship(spec, root, seed):\n    da, ha = load(root, spec['s0']['asset'])\n    db, hb = load(root, spec['x']['asset'])\n    a, b = conformer(da, spec['s0']['id']), conformer(db, spec['x']['id'])\n    same_molecule = da['molecule'] == db['molecule']\n    s0_text, s0_pts = as_xyz(da['elements'], a['xyz'], 'S0, angstrom')\n    x_text, x_pts = as_xyz(db['elements'], placed(b['xyz'], seed, spec['id']), 'X (rigidly rotated and translated), angstrom')\n    relation, facts = relationship(da['elements'], s0_pts, db['elements'], x_pts, same_molecule)\n    if same_molecule:\n        check_labels(da, relation, a, b)\n    elif relation != 'constitutional':\n        raise ValueError('Different dataset molecules must be constitutional isomers')\n    options = [dict(label=l, value=text) for l, (_, text) in zip(kit.LABELS, RELATIONS)]\n    key = kit.validate_verdicts(options, [r == relation for r, _ in RELATIONS])\n    why = {\n        'same': '键连相同且所有立体描述符一致：仅构象/取向不同。' if relation == 'same' else '存在构型差异或键连不同，不是同一化合物。',\n        'enantiomer': '所有立体中心反转且双键构型不变：互为镜像。' if relation == 'enantiomer' else '不满足“全部立体中心反转、双键不变”的镜像关系。',\n        'diastereomer': '键连相同，构型部分改变（或双键顺反改变），但不是镜像。' if relation == 'diastereomer' else '不是“键连相同而构型部分不同”的情形。',\n        'constitutional': '键连图不同（图不变量不同）。' if relation == 'constitutional' else '键连图相同，不是构造异构体。'}\n    audit = [dict(label=l, value=r, is_correct=r == relation, reason=why[r]) for l, (r, _) in zip(kit.LABELS, RELATIONS)]\n    question = ('S0.xyz and X.xyz each contain one structure of formula %s (angstrom). X has been rigidly rotated and '\n                'translated, and its atom order may differ from S0. Treat structures that interconvert only by rotation '\n                'about single bonds as the same compound. Which describes X relative to S0?') % da['formula']\n    return dict(\n        question=question, scope=spec['scope'],\n        inputs=[dict(name='S0.xyz', format='xyz', unit='angstrom', text=s0_text),\n                dict(name='X.xyz', format='xyz', unit='angstrom', text=x_text)],\n        numeric=None, options=options, correct_label=key, option_audit=audit, excluded_candidates=[], rank=None,\n        checks=dict(relation=relation, dataset_ids=[a['id'], b['id']], dataset_isomers=[a['isomer'], b['isomer']],\n                    same_dataset_molecule=same_molecule, bond_rule='covalent radii sum × 1.2', **facts,\n                    limits='立体中心按第一配位层四（或三）个不同基团判定；与数据集立体异构体标签交叉核对，不一致即拒绝。'),\n        scales=dict(input_nm=max(kit.dmax(s0_pts), kit.dmax(x_pts)) / 10, reasoning_nm=kit.dmax(s0_pts) / 10,\n                    reasoning_definition='整分子立体构型比较：S0 最大原子间距'),\n        input_hashes={spec['s0']['asset']: ha, spec['x']['asset']: hb})\n\n\n# ------------------------------------------------------------------ inference\nSTATEMENTS = {(-1, 1): 'X is lower in energy than S0 and has a larger dipole moment',\n              (-1, -1): 'X is lower in energy than S0 and has a smaller dipole moment',\n              (1, 1): 'X is higher in energy than S0 and has a larger dipole moment',\n              (1, -1): 'X is higher in energy than S0 and has a smaller dipole moment'}\n\n\ndef build_property(spec, root, seed):\n    data, digest = load(root, spec['asset'])\n    a, b = best(data, spec['s0_isomer']), best(data, spec['x_isomer'])\n    s0_text, s0_pts = as_xyz(data['elements'], a['xyz'], 'S0, angstrom')\n    x_text, x_pts = as_xyz(data['elements'], placed(b['xyz'], seed, spec['id']), 'X (rigidly rotated and translated), angstrom')\n    relation, facts = relationship(data['elements'], s0_pts, data['elements'], x_pts, True)\n    check_labels(data, relation, a, b)\n    if relation != 'diastereomer':\n        raise ValueError('Property comparison needs diastereomers (enantiomers have equal scalar properties)')\n    de, dmu = b['e_pbe0_mbd_eV'] - a['e_pbe0_mbd_eV'], b['dipole_eA'] - a['dipole_eA']\n    if abs(de) < MARGIN_E or abs(dmu) < MARGIN_MU:\n        raise ValueError('Differences below the stated margins')\n    truth = (1 if de > 0 else -1, 1 if dmu > 0 else -1)\n    others = [k for k in STATEMENTS if k != truth]\n    order = kit.place(truth, others, spec.get('target_position'), seed, spec['id'], key=lambda k: STATEMENTS[k])\n    options = [dict(label=l, value=STATEMENTS[k]) for l, k in zip(kit.LABELS, order)]\n    key = kit.validate_verdicts(options, [k == truth for k in order])\n    audit = []\n    for l, k in zip(kit.LABELS, order):\n        wrong = [name for name, s, t in (('能量方向', k[0], truth[0]), ('偶极方向', k[1], truth[1])) if s != t]\n        audit.append(dict(label=l, value=STATEMENTS[k], is_correct=k == truth,\n                          reason='ΔE = %+.4f eV，Δμ = %+.4f e·Å（X − S0，数据集计算值）。' % (de, dmu) if k == truth else\n                          '与数据集计算值不符：' + '、'.join(wrong) + '相反。'))\n    question = ('S0 and X are two stereoisomers of the same neutral %s molecule; atom order is shared and X has been rigidly '\n                'rotated and translated. Each structure is the lowest-energy QM7-X conformer of its configuration. Compare X '\n                'with S0 by PBE0+MBD total energy and dipole-moment magnitude at the supplied geometries; each difference is at '\n                'least 0.0434 eV (1 kcal/mol) in energy and 0.10 e·Å in dipole. Which statement is correct?') % data['formula']\n    return dict(\n        question=question, scope=spec['scope'],\n        inputs=[dict(name='S0.xyz', format='xyz', unit='angstrom', text=s0_text),\n                dict(name='X.xyz', format='xyz', unit='angstrom', text=x_text)],\n        numeric=None, options=options, correct_label=key, option_audit=audit, excluded_candidates=[], rank=None,\n        checks=dict(relation=relation, dataset_ids=[a['id'], b['id']], delta_energy_eV=round(de, 6),\n                    delta_dipole_eA=round(dmu, 6), margins=dict(energy_eV=MARGIN_E, dipole_eA=MARGIN_MU), level=data['level'],\n                    **facts, limits='计算证据只对所述理论水平与给定几何成立；比较的是各构型在数据集中的最低能构象。'),\n        scales=dict(input_nm=kit.dmax(s0_pts) / 10, reasoning_nm=kit.dmax(s0_pts) / 10,\n                    reasoning_definition='整分子立体构型对性质的影响：S0 最大原子间距'),\n        input_hashes={spec['asset']: digest})\n\n\n# ------------------------------------------------------------------ design\ndef build_design(spec, root, seed):\n    data, digest = load(root, spec['asset'])\n    mate, mate_digest = load(root, spec['mate_asset'])\n    isomers = sorted({c['isomer'] for c in data['conformers']})\n    if len(isomers) != 2:\n        raise ValueError('Design template expects exactly two stereoisomers')\n    setups = []\n    for a_iso in isomers:\n        b_best = best(data, [i for i in isomers if i != a_iso][0])\n        own = [c for c in data['conformers'] if c['isomer'] == a_iso]\n        for s0 in own:\n            lower = [c for c in own if c['e_pbe0_mbd_eV'] <= s0['e_pbe0_mbd_eV'] - MARGIN_E]\n            if lower and s0['e_pbe0_mbd_eV'] >= b_best['e_pbe0_mbd_eV'] + MARGIN_E:\n                setups.append((s0, b_best, min(lower, key=lambda c: c['e_pbe0_mbd_eV'])))\n    if not setups:\n        raise ValueError('No S0 with both a lower diastereomer and a lower same-configuration conformer')\n    s0, target, trap = min(setups, key=lambda s: kit.digest(seed, spec['id'], s[0]['id']))\n    const = min(mate['conformers'], key=lambda c: c['e_pbe0_mbd_eV'])\n    s0_text, s0_pts = as_xyz(data['elements'], s0['xyz'], 'S0 starting structure, angstrom')\n    pool = [('diastereomer_lower', data['elements'], target['xyz'], target['e_pbe0_mbd_eV'], target['id']),\n            ('mirror_image', data['elements'], mirror(s0['xyz']), s0['e_pbe0_mbd_eV'], 'mirror of ' + s0['id']),\n            ('conformer_only', data['elements'], trap['xyz'], trap['e_pbe0_mbd_eV'], trap['id']),\n            ('constitutional_isomer', mate['elements'], const['xyz'], const['e_pbe0_mbd_eV'], const['id'])]\n    order = kit.place(pool[0], pool[1:], spec.get('target_position'), seed, spec['id'], key=lambda p: p[0])\n    inputs = [dict(name='S0.xyz', format='xyz', unit='angstrom', text=s0_text)]\n    options, verdicts, audit = [], [], []\n    for label, (kind, elements, xyz, energy, source_id) in zip(kit.LABELS, order):\n        text, pts = as_xyz(elements, placed(xyz, seed, spec['id'] + label), 'candidate %s (rigidly rotated), angstrom' % label)\n        inputs.append(dict(name='candidate_%s.xyz' % label, format='xyz', unit='angstrom', text=text))\n        try:\n            relation, facts = relationship(data['elements'], s0_pts, elements, pts, elements == data['elements'] and kind != 'constitutional_isomer')\n        except ValueError as error:\n            raise ValueError('Candidate %s undecidable: %s' % (label, error))\n        expected = {'diastereomer_lower': ('diastereomer',), 'mirror_image': ('enantiomer', 'same'),\n                    'conformer_only': ('same',), 'constitutional_isomer': ('constitutional',)}[kind]\n        if relation not in expected:\n            raise ValueError('Candidate %s (%s) classified as %s' % (label, kind, relation))\n        de = energy - s0['e_pbe0_mbd_eV']\n        allowed = relation in ('enantiomer', 'diastereomer')\n        ok = allowed and de <= -MARGIN_E\n        verdicts.append(ok)\n        options.append(dict(label=label, value='candidate_%s.xyz' % label))\n        reason = {'diastereomer_lower': '只改变构型（非对映体），能量低 %.4f eV，满足目标。' % -de,\n                  'mirror_image': ('镜像（对映体）：构型改变但能量按反演对称与 S0 完全相同，未达到降低目标。' if relation == 'enantiomer'\n                                   else 'S0 无手性中心，镜像仍是同一化合物（仅构象镜像），未改变构型且能量相同。'),\n                  'conformer_only': '能量更低（%.4f eV）但只是同一构型的另一构象，不属于允许的修改。' % de,\n                  'constitutional_isomer': '分子式相同但键连不同（构造异构体），违反“键连不变”。'}[kind]\n        audit.append(dict(label=label, value='candidate_%s.xyz' % label, source_id=source_id, is_correct=ok, kind=kind,\n                          relation=relation, delta_energy_eV=round(de, 6), allowed_modification=allowed, reason=reason))\n    options_checked = [dict(o, source=a['source_id']) for o, a in zip(options, audit)]\n    key = kit.validate_verdicts(options_checked, verdicts, key=lambda o: o['source'])\n    question = ('S0 is one conformer of a %s molecule. You may change it only by changing the configuration of its stereo '\n                'elements (the handedness of stereocentres or the cis/trans arrangement at double bonds): same atoms, same '\n                'bonds; a change of conformation alone does not count. Goal: a structure whose PBE0+MBD energy (single point at '\n                'the supplied geometry) is at least 0.0434 eV (1 kcal/mol) lower than that of S0. Candidates A–D have been '\n                'rigidly rotated and their atom order may differ from S0. Which candidate satisfies both the allowed '\n                'modification and the goal?') % data['formula']\n    return dict(\n        question=question, scope=spec['scope'], inputs=inputs, numeric=None, options=options, correct_label=key,\n        option_audit=audit, excluded_candidates=[], rank=None,\n        checks=dict(s0=s0['id'], s0_energy_eV=s0['e_pbe0_mbd_eV'], margin_eV=MARGIN_E, level=data['level'],\n                    selection_rule='S0 取有更低能非对映体（≥1 kcal/mol）且有更低能同构型构象的构象，按种子选择；'\n                                   '陷阱：镜像（能量不变）、仅构象改变（更低但不允许）、构造异构体（键连不同）。',\n                    energy_of_mirror='反演对称：镜像结构能量与 S0 相同（物理定律，非数据集查值）。',\n                    limits='计算证据只对所述理论水平与给定几何成立；不是自由能或实验。'),\n        scales=dict(input_nm=kit.dmax(s0_pts) / 10, reasoning_nm=kit.dmax(s0_pts) / 10,\n                    reasoning_definition='整分子立体构型设计：S0 最大原子间距'),\n        input_hashes={spec['asset']: digest, spec['mate_asset']: mate_digest})\n",
   "family_engine.py": "\"\"\"Run reusable task families over a manifest of real inputs: define -> construct -> verify.\n\nNo model/API calls. Every instance is built by its family function, all four options\nare verified, and student packets (no answers, evidence or mechanisms) are written\nseparately from reviewer packets. Output directories are never overwritten.\nDevelopment pilots only: nothing here admits questions to the catalog.\n\npython family_engine.py --manifest templates/family-manifest.json --out runs/family-new --seed geobench-family-v1\n\"\"\"\nimport argparse\nimport hashlib\nimport json\nfrom collections import Counter\nfrom pathlib import Path\nfrom task_families import FAMILIES, kit\n\nROOT = Path(__file__).resolve().parent\nVERSION = '0.1.0'\nMODULES = {\n    'M0': '范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）',\n    'M1': '材料：docs/assets 输入、来源、许可与 SHA-256',\n    'M2': '证据：计算器复核或数据集性质记录（审核侧）',\n    'M3': '题型契约：registry.json 中的族定义与适用条件',\n    'M4': '构造：族函数生成题干、正确值与候选错误机制',\n    'M5': '质量：四项逐一核验、唯一性、分隔、捷径诊断',\n    'M6': '导出：学生包 / 审核包分离与运行快照',\n}\n\n\ndef code_files():\n    files = sorted((ROOT / 'task_families').glob('*.py')) + [ROOT / 'family_engine.py', ROOT / 'template_engine.py',\n                                                              ROOT / 'tools/recompute_materials_batch.py']\n    return {str(p.relative_to(ROOT)).replace('\\\\', '/'): p for p in files}\n\n\ndef build_instance(spec, seed):\n    family = FAMILIES[spec['family']]\n    if not spec.get('scope', '').strip() or not spec.get('source', '').strip():\n        raise ValueError('Missing scope or source')\n    asset = (ROOT / 'docs' / spec['asset']).resolve()\n    if not asset.is_relative_to((ROOT / 'docs/assets').resolve()):\n        raise ValueError('Asset must stay inside docs/assets')\n    return family, family['build'](spec, ROOT, seed)\n\n\ndef run(manifest_path, out, seed='geobench-family-v1'):\n    manifest_path, out = Path(manifest_path), Path(out)\n    if out.exists():\n        raise ValueError('Output exists; use a new directory to preserve history')\n    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))\n    ids = [x['id'] for x in manifest['items']]\n    if not ids or len(set(ids)) != len(ids):\n        raise ValueError('Empty batch or duplicate ID')\n    students, numeric_students, teachers, stages, failures = [], [], [], [], []\n    counters = Counter()\n    for spec in manifest['items']:\n        # Batch-level balance: within each family, correct positions cycle A..D from a seeded offset.\n        offset = kit.digest(seed, spec['family'], 'offset')[0] % 4\n        spec = dict(spec, target_position=1 + (offset + counters[spec['family']]) % 4)\n        counters[spec['family']] += 1\n        try:\n            family, built = build_instance(spec, seed)\n        except (ValueError, KeyError) as error:\n            failures.append(dict(id=spec['id'], family=spec['family'], stage='construct/verify', reason=str(error)))\n            continue\n        students.append(dict(id=spec['id'], family=spec['family'], ability=family['ability'],\n                             question=built['question'], scope=built['scope'], inputs=built['inputs'],\n                             options=built['options'], response_format='one label: A/B/C/D'))\n        if built['numeric']:\n            n = built['numeric']\n            numeric_students.append(dict(id='N-' + spec['id'], family=spec['family'], ability=family['ability'],\n                                         question=built['question'], scope=built['scope'], inputs=built['inputs'],\n                                         response_format=dict(value='one number rounded to %d decimals' % n['decimals'],\n                                                              unit=n['unit'])))\n        shortcuts = None\n        if built['rank']:\n            pairs = [(o['label'], o['value']) for o in built['options']]\n            shortcuts = dict(kit.rank_shortcuts(pairs, built['correct_label']),\n                             mirror_pair_cue=kit.mirror_pair_cue(pairs, built['correct_label']))\n        teachers.append(dict(id=spec['id'], family=spec['family'], family_version=family['version'],\n                             ability=family['ability'], correct_label=built['correct_label'],\n                             numeric_answer=built['numeric'], option_audit=built['option_audit'],\n                             excluded_candidates=built['excluded_candidates'], rank=built['rank'],\n                             rank_shortcuts=shortcuts, checks=built['checks'], scales=built['scales'],\n                             source=spec['source'], license=spec.get('license', ''), legacy_qa=spec.get('legacy_qa'),\n                             input_hashes=built['input_hashes'], seed=seed, target_position=spec['target_position'],\n                             option_order='numeric ascending (label = rank)' if built['rank'] else 'correct at batch-balanced target; others sha256-sorted',\n                             human_review='pending', catalog_admitted=False))\n        stages.append(dict(id=spec['id'], family=spec['family'],\n                           define=dict(family=spec['family'], version=family['version'], ability=family['ability'],\n                                       output=family['output'], module=family['module']),\n                           construct=dict(inputs=[dict(name=i['name'], format=i['format'], chars=len(i['text']))\n                                                  for i in built['inputs']],\n                                          candidates_considered=len(built['option_audit']) + len(built['excluded_candidates'])),\n                           verify=dict(four_options_verified=True, unique_correct=True, correct_label=built['correct_label'],\n                                       checks=sorted(k for k, v in built['checks'].items() if v is True)),\n                           modules=MODULES))\n    positions = Counter(t['correct_label'] for t in teachers)\n    by_family = {}\n    for t in teachers:\n        f = by_family.setdefault(t['family'], dict(passed=0, shortcut_hits=Counter()))\n        f['passed'] += 1\n        for k, v in (t['rank_shortcuts'] or {}).items():\n            f['shortcut_hits'][k] += int(v)\n    for f in failures:\n        by_family.setdefault(f['family'], dict(passed=0, shortcut_hits=Counter()))\n    for name, f in by_family.items():\n        f['attempted'] = sum(1 for s in manifest['items'] if s['family'] == name)\n        f['shortcut_hits'] = dict(f['shortcut_hits'])\n    code = code_files()\n    report = dict(version=VERSION, kind='reusable_family_development_pilot', seed=seed,\n                  attempted=len(ids), passed=len(teachers), failures=failures, model_calls=0,\n                  catalog_admitted=0, human_review='pending', by_family=by_family,\n                  correct_position_counts={l: positions.get(l, 0) for l in kit.LABELS},\n                  manifest_sha256=kit.sha256(manifest_path.read_bytes()),\n                  registry_sha256=kit.sha256((ROOT / 'templates/registry.json').read_bytes()),\n                  code_sha256={k: kit.sha256(p.read_bytes()) for k, p in code.items()},\n                  difficulty_note='程序通过只说明四项已核验且唯一正确；难度、迷惑性与科学意义仍需人工审核与模型实验。',\n                  limits='开发试跑，不计入题库；模板与来源选择待人工审核。')\n    out.mkdir(parents=True)\n    for name, data in [('student-packets.json', students), ('numeric-student-packets.json', numeric_students),\n                       ('private-answers.json', teachers), ('stage-records.json', stages), ('verification.json', report)]:\n        (out / name).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\\n', encoding='utf-8', newline='\\n')\n    snap = out / 'snapshot'\n    for rel, p in code.items():\n        (snap / rel).parent.mkdir(parents=True, exist_ok=True)\n        (snap / rel).write_bytes(p.read_bytes())\n    (snap / 'manifest.json').write_bytes(manifest_path.read_bytes())\n    (snap / 'registry.json').write_bytes((ROOT / 'templates/registry.json').read_bytes())\n    return report\n\n\nif __name__ == '__main__':\n    p = argparse.ArgumentParser(description=__doc__)\n    p.add_argument('--manifest', type=Path, required=True)\n    p.add_argument('--out', type=Path, required=True)\n    p.add_argument('--seed', default='geobench-family-v1')\n    a = p.parse_args()\n    r = run(a.manifest, a.out, a.seed)\n    print(json.dumps(dict(attempted=r['attempted'], passed=r['passed'], failures=r['failures'],\n                          positions=r['correct_position_counts'], model_calls=0), ensure_ascii=False))\n"
  },
- "run": "family-pilot-v01",
+ "run": "family-pilot-v02",
  "note": "Public development examples; student packets and reviewer packets are separate. All pending human audit; no catalog admissions; not a hidden test set."
 }
