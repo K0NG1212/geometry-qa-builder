@@ -11,7 +11,7 @@ import math
 from decimal import Decimal, ROUND_HALF_UP
 
 LABELS = 'ABCD'
-ELEMENTS = {'H', 'C', 'N', 'O', 'S', 'Cl', 'P', 'F', 'Zn', 'Si', 'Na', 'Mg', 'Cs', 'Br', 'I', 'Au'}
+ELEMENTS = {'H', 'C', 'N', 'O', 'S', 'Cl', 'P', 'F', 'Zn', 'Si', 'Na', 'Mg', 'Cs', 'Br', 'I', 'Au', 'Cd', 'Se'}
 COVALENT = {'H': 0.31, 'C': 0.76, 'N': 0.71, 'O': 0.66, 'S': 1.05, 'Cl': 1.02, 'P': 1.07,
             'F': 0.57, 'Zn': 1.22, 'Si': 1.11, 'Br': 1.20, 'I': 1.39}
 

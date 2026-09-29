@@ -1,6 +1,6 @@
 """Reusable task families. Each family id maps to one build function and one
 ability; the engine never dispatches by question ID."""
-from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire
+from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire, hostguest, quantum_dot
 
 FAMILIES = {
     'named_bond_angle': dict(build=local_geometry.build_bond_angle, ability='perception',
@@ -61,4 +61,14 @@ FAMILIES = {
                             output='choice+numeric', version=moire.VERSION, module='task_families/moire.py'),
     'moire_design': dict(build=moire.build_design, ability='design',
                          output='choice', version=moire.VERSION, module='task_families/moire.py'),
+    'secondary_structure': dict(build=local_geometry.build_secondary_structure, ability='inference',
+                                output='choice', version=local_geometry.VERSION, module='task_families/local_geometry.py'),
+    'binding_evidence_choice': dict(build=hostguest.build_evidence, ability='inference',
+                                    output='choice', version=hostguest.VERSION, module='task_families/hostguest.py'),
+    'binding_design_choice': dict(build=hostguest.build_design, ability='design',
+                                  output='choice', version=hostguest.VERSION, module='task_families/hostguest.py'),
+    'qdot_optics': dict(build=quantum_dot.build_inference, ability='inference',
+                        output='choice+numeric', version=quantum_dot.VERSION, module='task_families/quantum_dot.py'),
+    'qdot_design': dict(build=quantum_dot.build_design, ability='design',
+                        output='choice', version=quantum_dot.VERSION, module='task_families/quantum_dot.py'),
 }

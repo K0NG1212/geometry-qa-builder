@@ -1901,6 +1901,210 @@
    "source": "Cao et al., arXiv:1803.02342 (Nature 556, 43 (2018)): device twist angles M1 1.16°, M2 1.05°, D1 1.08°; n_s = 4/A, a = 0.246 nm. https://arxiv.org/abs/1803.02342 ; Kerelsky et al., arXiv:1812.08776 (Nature 572, 95 (2019)): STM regions at 1.10° and 0.79°; λ = a/(2 sin(θ/2)). https://arxiv.org/abs/1812.08776",
    "license": "只使用论文报道的转角数值（事实数据），未转载文字或图",
    "scope": "按论文转角构建的刚性转角模型（无晶格弛豫、无异质应变）；AA 位点图相当于 STM 形貌的亮点位置，不是实测图像。"
+  },
+  {
+   "asset": "assets/families/assemblies/6NCL-chain-centroids.txt",
+   "source": "https://www.rcsb.org/structure/6NCL",
+   "license": "wwPDB (CC0)",
+   "scope": "约简表示：每条蛋白链一个 Cα 质心 × 60 个沉积的二十面体操作；冷冻电镜 3.5 Å（二十面体平均）。",
+   "context": "The table lists the Cα centroid of every protein chain of the Paramecium bursaria chlorella virus 1 (PBCV-1) capsid (PDB 6NCL), expanded to the whole particle with the 60 deposited icosahedral operators; columns are component (Vp54 = major capsid protein; P1–P14 = penton and minor capsid proteins), copy, x, y, z (angstrom).",
+   "component": "Vp54",
+   "id": "FA-ASM-EXT-6NCL",
+   "family": "assembly_extent"
+  },
+  {
+   "asset": "assets/families/assemblies/6NCL-chain-centroids.txt",
+   "source": "https://www.rcsb.org/structure/6NCL",
+   "license": "wwPDB (CC0)",
+   "scope": "约简表示：每条蛋白链一个 Cα 质心 × 60 个沉积的二十面体操作；冷冻电镜 3.5 Å（二十面体平均）。",
+   "context": "The table lists the Cα centroid of every protein chain of the Paramecium bursaria chlorella virus 1 (PBCV-1) capsid (PDB 6NCL), expanded to the whole particle with the 60 deposited icosahedral operators; columns are component (Vp54 = major capsid protein; P1–P14 = penton and minor capsid proteins), copy, x, y, z (angstrom).",
+   "component": "Vp54",
+   "id": "FA-ASM-T-6NCL",
+   "family": "capsid_architecture",
+   "capsomer_form": "trimer",
+   "ask": "T"
+  },
+  {
+   "asset": "assets/families/assemblies/6NCL-chain-centroids.txt",
+   "source": "https://www.rcsb.org/structure/6NCL",
+   "license": "wwPDB (CC0)",
+   "scope": "约简表示：每条蛋白链一个 Cα 质心 × 60 个沉积的二十面体操作；冷冻电镜 3.5 Å（二十面体平均）。",
+   "context": "The table lists the Cα centroid of every protein chain of the Paramecium bursaria chlorella virus 1 (PBCV-1) capsid (PDB 6NCL), expanded to the whole particle with the 60 deposited icosahedral operators; columns are component (Vp54 = major capsid protein; P1–P14 = penton and minor capsid proteins), copy, x, y, z (angstrom).",
+   "component": "Vp54",
+   "id": "FA-QDES-6NCL",
+   "family": "scattering_q_design",
+   "target": 0.5
+  },
+  {
+   "id": "FA-SS-1UBQ-43",
+   "family": "secondary_structure",
+   "asset": "assets/bio/1UBQ.pdb",
+   "pdb": "1UBQ",
+   "chain": "A",
+   "residue": 43,
+   "context": "ubiquitin, X-ray",
+   "source": "https://www.rcsb.org/structure/1UBQ",
+   "license": "wwPDB (CC0)",
+   "scope": "只含残基 42–44 的 ATOM 记录；参考构象中心为教科书典型值；条目的 HELIX/SHEET 记录作为审核证据，不给考生。"
+  },
+  {
+   "id": "FA-SS-6LYZ-90",
+   "family": "secondary_structure",
+   "asset": "assets/bio/6LYZ.pdb",
+   "pdb": "6LYZ",
+   "chain": "A",
+   "residue": 90,
+   "context": "hen egg-white lysozyme, X-ray",
+   "source": "https://www.rcsb.org/structure/6LYZ",
+   "license": "wwPDB (CC0)",
+   "scope": "只含残基 89–91 的 ATOM 记录；参考构象中心为教科书典型值；条目的 HELIX/SHEET 记录作为审核证据，不给考生。"
+  },
+  {
+   "id": "FA-SS-1CRN-34",
+   "family": "secondary_structure",
+   "asset": "assets/bio/1CRN.pdb",
+   "pdb": "1CRN",
+   "chain": "A",
+   "residue": 34,
+   "context": "crambin, X-ray",
+   "source": "https://www.rcsb.org/structure/1CRN",
+   "license": "wwPDB (CC0)",
+   "scope": "只含残基 33–35 的 ATOM 记录；参考构象中心为教科书典型值；条目的 HELIX/SHEET 记录作为审核证据，不给考生。"
+  },
+  {
+   "asset": "assets/families/hostguest/WP6-binding.json",
+   "source": "SAMPL9 host-guest challenge (MIT License): https://github.com/samplchallenges/SAMPL9 ; experimental_data/experimental_measurements.csv (ITC, Isaacs lab); guest structures host_guest/WP6/guest_files",
+   "license": "MIT (SAMPL9 repository)",
+   "scope": "主体与客体为 SAMPL9 提供的 3D 结构；答案依据实测 ITC 结合自由能（1× PBS，pH 7.40，298.15 K，1:1），证据只在审核侧。",
+   "id": "FA-HG-EV1",
+   "family": "binding_evidence_choice",
+   "guests": [
+    "G12",
+    "G6",
+    "G7",
+    "G1"
+   ]
+  },
+  {
+   "asset": "assets/families/hostguest/WP6-binding.json",
+   "source": "SAMPL9 host-guest challenge (MIT License): https://github.com/samplchallenges/SAMPL9 ; experimental_data/experimental_measurements.csv (ITC, Isaacs lab); guest structures host_guest/WP6/guest_files",
+   "license": "MIT (SAMPL9 repository)",
+   "scope": "主体与客体为 SAMPL9 提供的 3D 结构；答案依据实测 ITC 结合自由能（1× PBS，pH 7.40，298.15 K，1:1），证据只在审核侧。",
+   "id": "FA-HG-EV2",
+   "family": "binding_evidence_choice",
+   "guests": [
+    "G10",
+    "G4",
+    "G9",
+    "G5"
+   ]
+  },
+  {
+   "asset": "assets/families/hostguest/WP6-binding.json",
+   "source": "SAMPL9 host-guest challenge (MIT License): https://github.com/samplchallenges/SAMPL9 ; experimental_data/experimental_measurements.csv (ITC, Isaacs lab); guest structures host_guest/WP6/guest_files",
+   "license": "MIT (SAMPL9 repository)",
+   "scope": "主体与客体为 SAMPL9 提供的 3D 结构；答案依据实测 ITC 结合自由能（1× PBS，pH 7.40，298.15 K，1:1），证据只在审核侧。",
+   "id": "FA-HG-EV3",
+   "family": "binding_evidence_choice",
+   "guests": [
+    "G3",
+    "G11",
+    "G8",
+    "G5"
+   ]
+  },
+  {
+   "asset": "assets/families/hostguest/WP6-binding.json",
+   "source": "SAMPL9 host-guest challenge (MIT License): https://github.com/samplchallenges/SAMPL9 ; experimental_data/experimental_measurements.csv (ITC, Isaacs lab); guest structures host_guest/WP6/guest_files",
+   "license": "MIT (SAMPL9 repository)",
+   "scope": "主体与客体为 SAMPL9 提供的 3D 结构；答案依据实测 ITC 结合自由能（1× PBS，pH 7.40，298.15 K，1:1），证据只在审核侧。",
+   "id": "FA-HG-DES1",
+   "family": "binding_design_choice",
+   "reference": "G7",
+   "gain": 2.0,
+   "guests": [
+    "G2",
+    "G6",
+    "G3",
+    "G1"
+   ]
+  },
+  {
+   "asset": "assets/families/hostguest/WP6-binding.json",
+   "source": "SAMPL9 host-guest challenge (MIT License): https://github.com/samplchallenges/SAMPL9 ; experimental_data/experimental_measurements.csv (ITC, Isaacs lab); guest structures host_guest/WP6/guest_files",
+   "license": "MIT (SAMPL9 repository)",
+   "scope": "主体与客体为 SAMPL9 提供的 3D 结构；答案依据实测 ITC 结合自由能（1× PBS，pH 7.40，298.15 K，1:1），证据只在审核侧。",
+   "id": "FA-HG-DES2",
+   "family": "binding_design_choice",
+   "reference": "G13",
+   "gain": 1.8,
+   "guests": [
+    "G12",
+    "G10",
+    "G5",
+    "G6"
+   ]
+  },
+  {
+   "source": "Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003), CdSe sizing polynomial and extinction law, https://doi.org/10.1021/cm034081k",
+   "license": "只使用论文中的拟合系数（事实数据），未转载文字或图",
+   "scope": "按论文经验曲线出题；纳米晶为本项目构建的模型（理想闪锌矿球形切割，a = 6.08 Å，无配体），不是实测结构。",
+   "id": "FA-QD-PEAK-C",
+   "family": "qdot_optics",
+   "asset": "assets/families/qdots/CdSe-QD-C.xyz",
+   "ask": "peak"
+  },
+  {
+   "source": "Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003), CdSe sizing polynomial and extinction law, https://doi.org/10.1021/cm034081k",
+   "license": "只使用论文中的拟合系数（事实数据），未转载文字或图",
+   "scope": "按论文经验曲线出题；纳米晶为本项目构建的模型（理想闪锌矿球形切割，a = 6.08 Å，无配体），不是实测结构。",
+   "id": "FA-QD-EPS-E",
+   "family": "qdot_optics",
+   "asset": "assets/families/qdots/CdSe-QD-E.xyz",
+   "ask": "epsilon"
+  },
+  {
+   "source": "Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003), CdSe sizing polynomial and extinction law, https://doi.org/10.1021/cm034081k",
+   "license": "只使用论文中的拟合系数（事实数据），未转载文字或图",
+   "scope": "按论文经验曲线出题；纳米晶为本项目构建的模型（理想闪锌矿球形切割，a = 6.08 Å，无配体），不是实测结构。",
+   "id": "FA-QD-CONC-B",
+   "family": "qdot_optics",
+   "asset": "assets/families/qdots/CdSe-QD-B.xyz",
+   "ask": "concentration",
+   "absorbance": 0.25,
+   "path_cm": 1.0
+  },
+  {
+   "source": "Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003), CdSe sizing polynomial and extinction law, https://doi.org/10.1021/cm034081k",
+   "license": "只使用论文中的拟合系数（事实数据），未转载文字或图",
+   "scope": "按论文经验曲线出题；纳米晶为本项目构建的模型（理想闪锌矿球形切割，a = 6.08 Å，无配体），不是实测结构。",
+   "id": "FA-QD-DES-590",
+   "family": "qdot_design",
+   "asset": "assets/families/qdots/CdSe-QD-B.xyz",
+   "candidates": [
+    "assets/families/qdots/CdSe-QD-B.xyz",
+    "assets/families/qdots/CdSe-QD-C.xyz",
+    "assets/families/qdots/CdSe-QD-D.xyz",
+    "assets/families/qdots/CdSe-QD-E.xyz"
+   ],
+   "goal": "closest",
+   "target_nm": 590
+  },
+  {
+   "source": "Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003), CdSe sizing polynomial and extinction law, https://doi.org/10.1021/cm034081k",
+   "license": "只使用论文中的拟合系数（事实数据），未转载文字或图",
+   "scope": "按论文经验曲线出题；纳米晶为本项目构建的模型（理想闪锌矿球形切割，a = 6.08 Å，无配体），不是实测结构。",
+   "id": "FA-QD-DES-565",
+   "family": "qdot_design",
+   "asset": "assets/families/qdots/CdSe-QD-A.xyz",
+   "candidates": [
+    "assets/families/qdots/CdSe-QD-A.xyz",
+    "assets/families/qdots/CdSe-QD-B.xyz",
+    "assets/families/qdots/CdSe-QD-C.xyz",
+    "assets/families/qdots/CdSe-QD-D.xyz"
+   ],
+   "goal": "beyond",
+   "target_nm": 565
   }
  ]
 }

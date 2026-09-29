@@ -12,7 +12,7 @@ import numpy as np
 from . import kit
 
 VERSION = '0.2.0'
-ALLOWED_T = sorted({h * h + h * k + k * k for h in range(0, 8) for k in range(0, 8) if h + k > 0})
+ALLOWED_T = sorted({h * h + h * k + k * k for h in range(0, 16) for k in range(0, 16) if h + k > 0})
 
 
 def load(root, spec):
@@ -136,12 +136,49 @@ def build_rg(spec, root, seed):
     return build_size(spec, root, seed, 'rg')
 
 
+def build_trimer_capsid(spec, text, fmt, points, shell, digest, seed):
+    """Large dsDNA-virus capsids (e.g. PBCV-1): the major capsid protein forms trimeric pseudo-hexameric
+    capsomers, 10(T-1) of them, and the 12 pentons are a different protein, so N = 30(T-1)."""
+    n = len(shell)
+    if n % 30 or n // 30 + 1 not in ALLOWED_T:
+        raise ValueError('Major-capsid-protein copies are not 30(T-1) for an allowed T')
+    t = n // 30 + 1
+    near = sorted((x for x in ALLOWED_T if x != t), key=lambda x: (abs(x - t), x))
+    cands = [dict(rule='monomer_60T_rule', value=n / 60, plausibility=3, reason='按单体外壳 N = 60T 计算（忽略三聚体壳粒）。'),
+             dict(rule='trimers_as_60T', value=n / 180, plausibility=2, reason='把三聚体数当作 60T 个亚基。'),
+             dict(rule='forgot_pentons', value=n / 30, plausibility=3, reason='漏掉 +1：三聚体壳粒只占 10(T−1)，五邻体另由其他蛋白构成。'),
+             dict(rule='hexamer_rule', value=n / 60 + 1, plausibility=2, reason='把三聚体当成六聚体计（N = 60(T−1)）。')]
+    cands += [dict(rule='neighbouring_allowed_T_%d' % x, value=x, plausibility=1, reason='相邻的允许三角剖分数 T=%d；与 N/30 + 1 不符。' % x)
+              for x in near[:2]]
+    picked, rejected, goal, rank = kit.choose_numeric(t, [c for c in cands if c['value'] == int(c['value'])], decimals=0,
+                                                      tolerance='0.4', min_separation='0.9', seed=seed, context=spec['id'],
+                                                      lower=0, target=spec.get('target_position'))
+    options, audit = kit.label_numeric(t, picked, decimals=0, unit='', seed=seed, context=spec['id'],
+                                       correct_reason='N = %d 个 %s，三聚体壳粒 N/3 = 10(T−1)，T = N/30 + 1 = %d。' % (n, spec['component'], t))
+    key = kit.validate_numeric(options, t, decimals=0, tolerance='0.4', min_separation='0.9', unit='')
+    question = ('%s Each row is one copy of a protein, labelled by component. In this capsid the major capsid protein %s forms trimeric '
+                'pseudo-hexameric capsomers, and the 12 pentamers at the vertices are formed by a different protein. What is the '
+                'triangulation number T of the icosahedral shell?' % (spec['context'], spec['component']))
+    return dict(
+        question=question, scope=spec['scope'],
+        inputs=[dict(name=spec['asset'].rsplit('/', 1)[1], format=fmt, unit='angstrom', text=text)],
+        numeric=dict(value=str(t), unit='', decimals=0, tolerance='0.4'),
+        options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected, rank=dict(target=goal, achieved=rank),
+        checks=dict(copies=n, T=t, component=spec['component'], relation='trimeric capsomers: N = 3 × 10(T−1)',
+                    limits='假设完整二十面体外壳（沉积的对称操作）；五邻体蛋白不计入 N。'),
+        scales=dict(input_nm=dmax_pair(points)[0] / 10, reasoning_nm=dmax_pair(shell)[0] / 10,
+                    reasoning_definition='整个外壳：所选组分点集的最大间距'),
+        input_hashes={spec['asset']: digest})
+
+
 def build_capsid(spec, root, seed):
     """Caspar–Klug architecture from the copy number N of the shell protein: T = N / 60,
     capsomers = 10T + 2 (12 pentamers + 10(T-1) hexamers)."""
     text, fmt, labels, points, digest = load(root, spec)
     shell = select(labels, points, spec['component'])
     n = len(shell)
+    if spec.get('capsomer_form') == 'trimer':
+        return build_trimer_capsid(spec, text, fmt, points, shell, digest, seed)
     if n % 60 or n // 60 not in ALLOWED_T:
         raise ValueError('Shell copy number is not 60T for an allowed T')
     t = n // 60

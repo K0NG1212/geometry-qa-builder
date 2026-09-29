@@ -467,7 +467,7 @@
         "100-1000"
       ],
       "scale_limits": "约简表示上的几何量，不是溶液中的流体力学尺寸。暂无数据源的格：chemistry 100-1000（规划器不据此给出路线）。",
-      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR、7ARQ），经沉积的对称操作展开并约简为每残基/每核苷酸一点或每链质心",
+      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR、6NCL、7ARQ），经沉积的对称操作展开并约简为每残基/每核苷酸一点或每链质心",
       "answer_method": "numpy 分块搜索最大点对 + Decimal 复核；回转半径用质心公式并以 Decimal 复核。",
       "distractor_mechanisms": [
         "bounding_box_diagonal",
@@ -510,7 +510,7 @@
       "ability": "inference",
       "status": "pilot",
       "priority": 1,
-      "concept": "由外壳蛋白拷贝数 N 推断二十面体衣壳的三角剖分数 T=N/60、壳粒总数 10T+2 与六邻体数 10(T−1)；需要从整个衣壳计数并运用结构理论。",
+      "concept": "由外壳蛋白拷贝数 N 推断二十面体衣壳的三角剖分数 T=N/60、壳粒总数 10T+2 与六邻体数 10(T−1)；需要从整个衣壳计数并运用结构理论。 大型 dsDNA 病毒（PBCV-1）的主衣壳蛋白形成三聚体假六聚壳粒、五邻体由另一蛋白构成：N = 30(T−1)。",
       "domains": [
         "biology"
       ],
@@ -528,7 +528,7 @@
         "100-1000"
       ],
       "scale_limits": "假设完整二十面体外壳，不区分门户顶点等局部不对称。",
-      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR、7ARQ），经沉积的对称操作展开并约简为每残基/每核苷酸一点或每链质心",
+      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR、6NCL、7ARQ），经沉积的对称操作展开并约简为每残基/每核苷酸一点或每链质心",
       "answer_method": "计数所选组分的拷贝数，按 Caspar–Klug 关系计算。",
       "distractor_mechanisms": [
         "neighbouring_allowed_T",
@@ -536,7 +536,11 @@
         "all_pentamers",
         "hexons_only",
         "pentons_only",
-        "hexon_subunits"
+        "hexon_subunits",
+        "monomer_60T_rule",
+        "trimers_as_60T",
+        "forgot_pentons",
+        "hexamer_rule"
       ],
       "four_choice_validation": "整数选项互不相同；独立检查器重新计数。",
       "engine_families": [
@@ -557,7 +561,7 @@
       "principle": "N = 60T；壳粒 = 12 + 10(T−1)。",
       "validation": "独立检查器重新计数并套用同一关系。",
       "limits": "只适用于完整二十面体外壳。",
-      "gap": "目前 2 个衣壳（STMV T=1、HSV-1 T=16）。",
+      "gap": "目前 3 个衣壳（STMV T=1、HSV-1 T=16、PBCV-1 T=169）。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/migrated.py:capsid_architecture"
     },
@@ -586,7 +590,7 @@
         "100-1000"
       ],
       "scale_limits": "约简表示；非实测 SAXS。暂无数据源的格：chemistry 100-1000（规划器不据此给出路线）。",
-      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR、7ARQ），经沉积的对称操作展开并约简为每残基/每核苷酸一点或每链质心",
+      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR、6NCL、7ARQ），经沉积的对称操作展开并约简为每残基/每核苷酸一点或每链质心",
       "answer_method": "Debye 公式 [N + 2Σ_{i<j} sin(qr)/(qr)]/N²，两种实现（i<j sinc 求和、全矩阵 sin/x 分块）一致。",
       "distractor_mechanisms": [
         "guinier_outside_range",
@@ -618,7 +622,7 @@
       "principle": "I(q) = Σ_ij sin(q r_ij)/(q r_ij)（Debye 1915），取向平均的精确结果。",
       "validation": "独立检查器不用 Debye 公式，而是对方向直接做高阶 Gauss–Legendre × 均匀 φ 求积平均 |Σ exp(iq·r)|²。",
       "limits": "等权点散射体只刻画形状；真实 SAXS 还需形状因子、溶剂对比与涨落。",
-      "gap": "目前 7ARQ（2 个 q）与 6CGR VP5 外壳。",
+      "gap": "7ARQ、6CGR、6NCL。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/migrated.py:debye_intensity",
       "excluded_cells": [
@@ -650,7 +654,7 @@
         "100-1000"
       ],
       "scale_limits": "约简表示；非实测 SAXS。暂无数据源的格：chemistry 100-1000（规划器不据此给出路线）。",
-      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR、7ARQ），经沉积的对称操作展开并约简为每残基/每核苷酸一点或每链质心",
+      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR、6NCL、7ARQ），经沉积的对称操作展开并约简为每残基/每核苷酸一点或每链质心",
       "answer_method": "从 q = 0 以 0.02/Rg 步进找首个穿越点，再二分 60 次；两种 Debye 实现在解处一致。",
       "distractor_mechanisms": [
         "guinier_root",
@@ -682,7 +686,7 @@
       "principle": "设计 = 推断的逆问题：选测量条件使可观测量达到目标。",
       "validation": "独立检查器用求积取向平均，自行以 0.013/Rg 步进并用 Illinois 试位法求根。",
       "limits": "这是测量条件设计（选 q），不是改变结构的分子设计；是否计为“设计题”需教授审定。",
-      "gap": "结构修改型设计（有证据的候选）仍缺，见 A3。",
+      "gap": "7ARQ、6CGR、6NCL。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/migrated.py:scattering_q_design",
       "excluded_cells": [
@@ -1222,6 +1226,273 @@
       "gap": "同上。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/moire.py:moire_design"
+    },
+    {
+      "id": "secondary_structure",
+      "name": "由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）",
+      "ability": "inference",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "由三残基 ATOM 片段计算中心残基的 φ/ψ，按题给参考构象（右手 α、β 链、PPII、左手 α）取最近者；条目自身的 HELIX/SHEET 记录作为审核证据，二者不一致即拒绝出题。",
+      "domains": [
+        "biology"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "inputs": "PDB 三残基 ATOM 片段（逐行照抄）。",
+      "physical_conditions": "IUPAC 符号约定；(φ, ψ) 平面距离，360° 周期。",
+      "input_scale": "三残基（约 1 nm）",
+      "reasoning_scale": "定义 φ、ψ 的五个主链原子（约 0.3–0.4 nm）",
+      "scale_cells": [
+        "0.1-1"
+      ],
+      "scale_limits": "单残基局部构象；不判断整段二级结构。",
+      "source_basis": "RCSB PDB 1UBQ、6LYZ、1CRN（仓库已有）",
+      "answer_method": "两种二面角实现一致；最近参考构象领先 ≥ 30%；与 HELIX/SHEET 记录一致。",
+      "distractor_mechanisms": [
+        "second_nearest_reference",
+        "mirror_image",
+        "other_reference"
+      ],
+      "four_choice_validation": "四个选项恰为四个参考构象；唯一最近者。",
+      "engine_families": [
+        "secondary_structure"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/local_geometry.py",
+        "checkers/migrated.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现。",
+      "principle": "Ramachandran 区域；作者指认的 HELIX/SHEET 为证据。",
+      "validation": "独立检查器用 acos+三重积求二面角，并从源文件读取 HELIX/SHEET 记录核对。",
+      "limits": "参考中心为教科书典型值；HELIX/SHEET 是作者指认。",
+      "gap": "3 个残基（2 个 β、1 个 α）。",
+      "template_review": "本轮新建（A2/A3），待人工审核。",
+      "independent_checker": "checkers/migrated.py:secondary_structure"
+    },
+    {
+      "id": "binding_evidence_choice",
+      "name": "主客体结合强弱（实测证据）",
+      "ability": "inference",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "给 WP6 主体与四个客体的 3D 结构，推断哪一个结合最强；答案依据 SAMPL9 实测 ITC ΔG（证据只在审核侧），最强者须领先 ≥ 0.8 kcal/mol。",
+      "domains": [
+        "chemistry"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "inputs": "WP6 主体与四个客体 XYZ（SAMPL9 结构）。",
+      "physical_conditions": "ITC，1× PBS，pH 7.40，298.15 K，1:1。",
+      "input_scale": "主体约 1.8 nm",
+      "reasoning_scale": "主客体复合物（主体最大原子间距）",
+      "scale_cells": [
+        "1-10"
+      ],
+      "scale_limits": "结合强弱取决于电荷、尺寸匹配、溶剂化等，不能单凭几何算出。",
+      "source_basis": "SAMPL9 WP6 主客体挑战（MIT）：实测结合自由能与客体结构",
+      "answer_method": "按实测 ΔG 排序；领先幅度检查。",
+      "distractor_mechanisms": [
+        "next_strongest",
+        "dication_but_weaker",
+        "weaker_binder"
+      ],
+      "four_choice_validation": "四个候选均有实测值；最强者领先 ≥ 0.8 kcal/mol。",
+      "engine_families": [
+        "binding_evidence_choice"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/hostguest.py",
+        "checkers/hostguest.py",
+        "tools/build_hostguest_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现；实测表逐项转录并记录原表哈希。",
+      "principle": "证据型推断（A2）：答案来自实验，不来自计算。",
+      "validation": "独立检查器读取转录表（哈希核对），核对客体文件与名称一一对应、题干写明条件，并重新排序。",
+      "limits": "实验误差约 0.02–0.06 kcal/mol；只用 WP6（条件有文档）。",
+      "gap": "3 组候选。",
+      "template_review": "本轮新建（A2/A3），待人工审核。",
+      "independent_checker": "checkers/hostguest.py:binding_evidence_choice"
+    },
+    {
+      "id": "binding_design_choice",
+      "name": "客体设计选择（实测证据）",
+      "ability": "design",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "从参考客体出发，在四个候选替换中选出唯一一个使实测结合增强至少给定幅度的；四个候选均有实测值，且都离阈值 ≥ 0.3 kcal/mol。",
+      "domains": [
+        "chemistry"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "inputs": "WP6 主体与四个候选客体 XYZ。",
+      "physical_conditions": "同上。",
+      "input_scale": "主体约 1.8 nm",
+      "reasoning_scale": "主客体复合物",
+      "scale_cells": [
+        "1-10"
+      ],
+      "scale_limits": "同上。",
+      "source_basis": "SAMPL9 WP6（MIT）",
+      "answer_method": "实测 ΔG 与阈值比较。",
+      "distractor_mechanisms": [
+        "improves_but_below_target",
+        "weakens_binding",
+        "dication_not_sufficient"
+      ],
+      "four_choice_validation": "恰好一个候选达到目标；阈值附近无候选。",
+      "engine_families": [
+        "binding_design_choice"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/hostguest.py",
+        "checkers/hostguest.py",
+        "tools/build_hostguest_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现。",
+      "principle": "有实验证据的设计题（A3）：S0 → S1，候选全部有测量值。",
+      "validation": "独立检查器重算每个候选的改善幅度与阈值关系。",
+      "limits": "同上。",
+      "gap": "2 题。",
+      "template_review": "本轮新建（A2/A3），待人工审核。",
+      "independent_checker": "checkers/hostguest.py:binding_design_choice"
+    },
+    {
+      "id": "qdot_optics",
+      "name": "CdSe 量子点尺寸与光学（经验曲线）",
+      "ability": "inference",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "由纳米晶模型坐标确定粒径（最大原子间距），用 Yu et al. (2003) 的经验曲线推断第一激子吸收峰、摩尔消光系数，或由吸光度求浓度。",
+      "domains": [
+        "quantum"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice",
+        "numeric"
+      ],
+      "inputs": "闪锌矿 CdSe 纳米晶模型 XYZ（本项目构建）。",
+      "physical_conditions": "题干给出经验多项式、适用范围与消光定律。",
+      "input_scale": "整个纳米晶（2.8–5.0 nm）",
+      "reasoning_scale": "纳米晶最大原子间距",
+      "scale_cells": [
+        "1-10"
+      ],
+      "scale_limits": "经验曲线只在拟合尺寸范围内可靠；模型无配体。",
+      "source_basis": "Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003)：CdSe 尺寸多项式与 ε = 5857 D^2.65",
+      "answer_method": "二分法反解 D(λ)；Beer–Lambert。",
+      "distractor_mechanisms": [
+        "bounding_box_diagonal",
+        "two_rg",
+        "radius_as_diameter",
+        "diameter_in_angstrom",
+        "cubic_exponent",
+        "exponent_as_factor",
+        "path_in_mm"
+      ],
+      "four_choice_validation": "与正确值 > 3 nm、0.1×10⁵ 或 0.05 µM；升序排列，秩按批次轮换。",
+      "engine_families": [
+        "qdot_optics"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/quantum_dot.py",
+        "checkers/quantum_dot.py",
+        "tools/build_qdot_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现。",
+      "principle": "量子限域：粒径越小吸收越蓝移（经验标定）。",
+      "validation": "独立检查器用 Decimal 复核最大间距，用多项式求根（numpy.roots）反解。",
+      "limits": "论文参数模型；晶格常数 6.08 Å 为模型假设，答案只取决于所给坐标。",
+      "gap": "5 个模型粒子。",
+      "template_review": "本轮新建（A2/A3），待人工审核。",
+      "independent_checker": "checkers/quantum_dot.py:qdot_quantity"
+    },
+    {
+      "id": "qdot_design",
+      "name": "量子点粒径选择设计",
+      "ability": "design",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "在四个纳米晶模型中选一个，使第一激子吸收峰最接近目标，或选吸收峰不短于阈值的最小粒子（推断的逆问题）。",
+      "domains": [
+        "quantum"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "inputs": "四个 CdSe 纳米晶模型 XYZ。",
+      "physical_conditions": "同上。",
+      "input_scale": "纳米晶 2.8–5.0 nm",
+      "reasoning_scale": "候选最大粒径",
+      "scale_cells": [
+        "1-10"
+      ],
+      "scale_limits": "同上。",
+      "source_basis": "Yu et al. (2003) 经验曲线",
+      "answer_method": "逐个候选反解吸收峰，按目标规则选择。",
+      "distractor_mechanisms": [
+        "radius_as_diameter",
+        "two_rg",
+        "bounding_box_diagonal",
+        "passes_if_bounding_box_diagonal",
+        "meets_but_larger",
+        "farther_from_target"
+      ],
+      "four_choice_validation": "恰好一个候选满足目标；领先幅度或阈值距离足够。",
+      "engine_families": [
+        "qdot_design"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/quantum_dot.py",
+        "checkers/quantum_dot.py",
+        "tools/build_qdot_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现。",
+      "principle": "设计 = 推断的逆问题。",
+      "validation": "独立检查器逐文件重算。",
+      "limits": "候选为模型粒子。",
+      "gap": "2 题。",
+      "template_review": "本轮新建（A2/A3），待人工审核。",
+      "independent_checker": "checkers/quantum_dot.py:qdot_design"
     },
     {
       "id": "lattice_plane_geometry",
@@ -1815,7 +2086,7 @@
       "principle": "模板审查因果与适用条件；实例检查引用和唯一正确选项。",
       "validation": "需建立具体题型的证据映射和干扰项验证；尚未实施通用语义验证。",
       "limits": "论文中的答案证据不默认给被测模型，必要物理条件必须写在题目里。",
-      "gap": "待建立首个经证据支持的通用模板。",
+      "gap": "待建立首个经证据支持的通用模板。 已由 secondary_structure（生物 0.1–1）与 binding_evidence_choice（化学 1–10）部分实现。",
       "template_review": "待建立首个经证据支持的模板。",
       "independent_checker": ""
     },
@@ -2033,7 +2304,7 @@
       "principle": "从论文中的实证优化案例或按规则取得的结构对构题。",
       "validation": "需先验证候选身份、目标性质与约束，再用选项标签评分。",
       "limits": "选项评分容易不代表选项科学正确；S1/S2 不同并不证明优化；当前 M3 旧门槛尚未接通此路线。",
-      "gap": "本轮未取得带四个候选测量值且许可可公开的案例；未虚构。",
+      "gap": "本轮未取得带四个候选测量值且许可可公开的案例；未虚构。 化学 1–10 已由 binding_design_choice（SAMPL9 实测）实现。",
       "template_review": "本轮定义路线，不虚称已产生设计题。",
       "independent_checker": ""
     },

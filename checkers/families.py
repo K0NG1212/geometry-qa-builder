@@ -255,6 +255,8 @@ from . import stereo as _stereo
 from . import migrated as _migrated
 from . import superlattice as _superlattice
 from . import moire as _moire
+from . import hostguest as _hostguest
+from . import quantum_dot as _quantum_dot
 
 CHECKERS = {
     'stereo_relationship': _stereo.stereo_relationship,
@@ -269,4 +271,6 @@ CHECKERS = {
     **_migrated.CHECKERS,
     **_superlattice.CHECKERS,
     **_moire.CHECKERS,
+    **_hostguest.CHECKERS,
+    **_quantum_dot.CHECKERS,
 }

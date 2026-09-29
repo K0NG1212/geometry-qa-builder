@@ -3,8 +3,8 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 146,
-  "capped_total": 124,
+  "current_total": 162,
+  "capped_total": 140,
   "over_target_cells": [
    "quantum 0.1-1",
    "chemistry 0.1-1",
@@ -12,14 +12,14 @@
    "materials 1-10",
    "biology 1-10"
   ],
-  "provisional_total": 104,
-  "ability_gaps": 18,
-  "gap_slots": 51,
+  "provisional_total": 120,
+  "ability_gaps": 14,
+  "gap_slots": 36,
   "gaps_by_best_route": {
-   "ready": 3,
-   "migrate": 2,
-   "build": 3,
-   "none": 10
+   "ready": 4,
+   "migrate": 0,
+   "build": 2,
+   "none": 8
   },
   "note": "capped_total 为每格最多按目标 10 道计的有效覆盖；超额题有效但不填补其他格。能力软目标来自 prototype-policy（每格感知/推断/设计各 3，外加 1 个机动名额）；路线只表示注册表声明可覆盖，不保证该格一定有合适数据。"
  },
@@ -98,9 +98,9 @@
    "domain": "quantum",
    "cell": "1-10",
    "target": 10,
-   "current": 5,
-   "provisional": 0,
-   "remaining": 5,
+   "current": 10,
+   "provisional": 5,
+   "remaining": 0,
    "abilities": {
     "perception": {
      "current": 5,
@@ -124,10 +124,17 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "qdot_optics",
+       "name": "CdSe 量子点尺寸与光学（经验曲线）",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [
       "QNI007",
       "QNI005",
@@ -135,15 +142,22 @@
       "QNI008",
       "QNI009"
      ],
-     "best_route": "none"
+     "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 2,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 1,
+     "routes": [
+      {
+       "family": "qdot_design",
+       "name": "量子点粒径选择设计",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     }
    },
    "feasibility": {
@@ -374,9 +388,9 @@
    "domain": "chemistry",
    "cell": "1-10",
    "target": 10,
-   "current": 5,
-   "provisional": 0,
-   "remaining": 5,
+   "current": 10,
+   "provisional": 5,
+   "remaining": 0,
    "abilities": {
     "perception": {
      "current": 5,
@@ -400,10 +414,16 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
+     "shortfall": 0,
      "routes": [
+      {
+       "family": "binding_evidence_choice",
+       "name": "主客体结合强弱（实测证据）",
+       "kind": "ready",
+       "status": "pilot"
+      },
       {
        "family": "structure_comparison_inference",
        "name": "结构比较推断",
@@ -418,13 +438,19 @@
       "CNI005",
       "CNI006"
      ],
-     "best_route": "migrate"
+     "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 2,
      "soft_target": 3,
-     "shortfall": 3,
+     "shortfall": 1,
      "routes": [
+      {
+       "family": "binding_design_choice",
+       "name": "客体设计选择（实测证据）",
+       "kind": "ready",
+       "status": "pilot"
+      },
       {
        "family": "design_choice",
        "name": "有证据的结构优化选择（论文案例）",
@@ -433,7 +459,7 @@
       }
      ],
      "rework_in_cell": [],
-     "best_route": "build"
+     "best_route": "ready"
     }
    },
    "feasibility": {
@@ -834,9 +860,9 @@
    "domain": "biology",
    "cell": "0.1-1",
    "target": 10,
-   "current": 7,
-   "provisional": 4,
-   "remaining": 3,
+   "current": 10,
+   "provisional": 7,
+   "remaining": 0,
    "abilities": {
     "perception": {
      "current": 7,
@@ -881,10 +907,16 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
+     "shortfall": 0,
      "routes": [
+      {
+       "family": "secondary_structure",
+       "name": "由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）",
+       "kind": "ready",
+       "status": "pilot"
+      },
       {
        "family": "structure_comparison_inference",
        "name": "结构比较推断",
@@ -904,7 +936,7 @@
       "BNI007",
       "BNI008"
      ],
-     "best_route": "migrate"
+     "best_route": "ready"
     },
     "design": {
      "current": 0,
@@ -1098,14 +1130,14 @@
    "domain": "biology",
    "cell": "100-1000",
    "target": 10,
-   "current": 7,
-   "provisional": 7,
-   "remaining": 3,
+   "current": 10,
+   "provisional": 10,
+   "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 2,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 1,
+     "shortfall": 0,
      "routes": [
       {
        "family": "assembly_size",
@@ -1118,7 +1150,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 4,
+     "current": 5,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -1139,9 +1171,9 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 1,
+     "current": 2,
      "soft_target": 3,
-     "shortfall": 2,
+     "shortfall": 1,
      "routes": [
       {
        "family": "scattering_q_design",

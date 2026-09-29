@@ -6,6 +6,8 @@ Deterministic reductions, all disclosed in docs/assets/families/assemblies/sourc
     plus a table of the 60 subunit centroids.
   * 6CGR (HSV-1): CA centroid of every protein chain of the asymmetric unit, expanded by the
     60 deposited operators (about 3,000 points, labelled by component).
+  * 6NCL (PBCV-1): CA centroid of every protein chain of the asymmetric unit, expanded by the 60
+    deposited operators (6,900 points; major capsid protein labelled Vp54, others by their entity names).
   * 7ARQ (DNA-origami 16-helix bundle, cryo-EM pseudo-atomic model): the C1' atom of every
     nucleotide, labelled scaffold or staple (one table row per nucleotide).
 Operators come from the files' own _pdbx_struct_oper_list; nothing is guessed.
@@ -141,6 +143,25 @@ def main():
     files['6CGR-chain-centroids.txt'] = table(rows, '6CGR HSV-1 capsid with tegument complexes: CA centroid of every protein chain '
                                                     'of the asymmetric unit x 60 deposited icosahedral operators')
     sources['6CGR-chain-centroids.txt'] = dict(pdb='6CGR', source=URL % '6CGR.cif.gz', sha256=digest, bytes=size, points=len(rows),
+                                               chains_per_unit=len(chains),
+                                               components={c: sum(1 for x in rows if x[0] == c) for c in sorted({x[0] for x in rows})},
+                                               reduction='CA centroid per protein chain, expanded by operators 1-60 of assembly 1')
+    text, digest, size = read('6NCL.cif.gz')
+    ops = operators(text)
+    entity = {r['id']: r.get('pdbx_description', '').strip("'") for r in cif_loop(text, '_entity')}
+    entity = {k: ('Vp54' if v == 'Major capsid protein' else v) for k, v in entity.items()}
+    chains = {}
+    for r in cif_atoms(text):
+        if r['label_atom_id'] == 'CA':
+            chains.setdefault((r['label_entity_id'], r['label_asym_id']), []).append(
+                (float(r['Cartn_x']), float(r['Cartn_y']), float(r['Cartn_z'])))
+    rows = []
+    for k, op in enumerate(ops):
+        for (ent, asym), pts in sorted(chains.items()):
+            rows.append((entity[ent], '%s.%02d' % (asym, k + 1), apply(op, centroid(pts))))
+    files['6NCL-chain-centroids.txt'] = table(rows, '6NCL PBCV-1 capsid (cryo-EM 3.5 A, icosahedrally averaged): CA centroid of every protein '
+                                                    'chain of the asymmetric unit x 60 deposited icosahedral operators')
+    sources['6NCL-chain-centroids.txt'] = dict(pdb='6NCL', source=URL % '6NCL.cif.gz', sha256=digest, bytes=size, points=len(rows),
                                                chains_per_unit=len(chains),
                                                components={c: sum(1 for x in rows if x[0] == c) for c in sorted({x[0] for x in rows})},
                                                reduction='CA centroid per protein chain, expanded by operators 1-60 of assembly 1')

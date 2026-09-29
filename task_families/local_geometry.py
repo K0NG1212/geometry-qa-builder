@@ -194,6 +194,89 @@ def build_backbone_torsion(spec, root, seed):
         input_hashes={spec['asset']: kit.sha256(raw)})
 
 
+
+# ------------------------------------------------------------------ secondary structure from phi/psi
+REFERENCE = [('right-handed α-helix', -57, -47), ('β-strand', -120, 130), ('polyproline II', -75, 145), ('left-handed α-helix', 57, 47)]
+RECORD_CLASS = {'HELIX': 'right-handed α-helix', 'SHEET': 'β-strand'}
+
+
+def ramachandran_distance(phi, psi, ref):
+    wrap = lambda x: (x + 180) % 360 - 180
+    return math.hypot(wrap(phi - ref[1]), wrap(psi - ref[2]))
+
+
+def structure_records(text, chain, number):
+    """HELIX/SHEET records of the entry that contain the residue (author assignment = evidence)."""
+    hits = []
+    for line in text.splitlines():
+        if line.startswith('HELIX ') and line[19] == chain and int(line[21:25]) <= number <= int(line[33:37]):
+            hits.append(('HELIX', line.rstrip()))
+        if line.startswith('SHEET ') and line[21] == chain and int(line[22:26]) <= number <= int(line[33:37]):
+            hits.append(('SHEET', line.rstrip()))
+    return hits
+
+
+def build_secondary_structure(spec, root, seed):
+    path = root / 'docs' / spec['asset']
+    raw = path.read_bytes()
+    text = raw.decode('utf-8')
+    residues, order, altloc = read_pdb_residues(text, spec['chain'])
+    n = spec['residue']
+    window = [n - 1, n, n + 1]
+    if any(r not in residues for r in window) or altloc & set(window):
+        raise ValueError('Residue window missing or has alternate locations')
+    for left, right in ((n - 1, n), (n, n + 1)):
+        if math.dist(residues[left]['atoms']['C'], residues[right]['atoms']['N']) > 1.5:
+            raise ValueError('Chain break')
+    phi, psi = torsion(residues, n, 'phi'), torsion(residues, n, 'psi')
+    if abs(phi - torsion(residues, n, 'phi', kit.dihedral_projection)) > 1e-8 or abs(psi - torsion(residues, n, 'psi', kit.dihedral_projection)) > 1e-8:
+        raise ValueError('Torsion implementations disagree')
+    ranked = sorted(REFERENCE, key=lambda r: ramachandran_distance(phi, psi, r))
+    d1, d2 = ramachandran_distance(phi, psi, ranked[0]), ramachandran_distance(phi, psi, ranked[1])
+    if d1 > 0.7 * d2:
+        raise ValueError('Nearest reference conformation not clear enough')
+    records = structure_records(text, spec['chain'], n)
+    kinds = {k for k, _ in records}
+    if len(kinds) != 1 or RECORD_CLASS[kinds.pop()] != ranked[0][0]:
+        raise ValueError('Dihedral class disagrees with (or lacks) the HELIX/SHEET record')
+    right = ranked[0][0]
+    mirror = {'right-handed α-helix': 'left-handed α-helix', 'left-handed α-helix': 'right-handed α-helix'}
+    others = []
+    for ref in REFERENCE:
+        if ref[0] == right:
+            continue
+        dist = ramachandran_distance(phi, psi, ref)
+        if ref is ranked[1]:
+            others.append(('second_nearest_reference', ref[0], '次近的参考构象（距离 %.0f°，正确者 %.0f°）；两者易混。' % (dist, d1), 3))
+        elif mirror.get(right) == ref[0]:
+            others.append(('mirror_image', ref[0], 'φ、ψ 符号全部取反（镜像）时会落在这里（距离 %.0f°）。' % dist, 2))
+        else:
+            others.append(('other_reference', ref[0], '距离 %.0f°，明显更远。' % dist, 1))
+    order_ = kit.place(('correct', right, 'φ = %.1f°，ψ = %.1f°，最近参考构象（%.0f°）；与条目 %s 记录一致。' % (phi, psi, d1, records[0][0]), 3),
+                       others, spec.get('target_position'), seed, spec['id'], key=lambda q: q[0])
+    options = [dict(label=l, value=q[1]) for l, q in zip(kit.LABELS, order_)]
+    key = kit.validate_verdicts(options, [q[0] == 'correct' for q in order_])
+    audit = [dict(label=l, value=q[1], rule=q[0], reason=q[2], is_correct=q[0] == 'correct') for l, q in zip(kit.LABELS, order_)]
+    name = '%s%d' % (residues[n]['name'].title(), n)
+    sign = lambda x: ('+%d' % x) if x > 0 else ('−%d' % -x)
+    refs = ', '.join('%s (φ %s°, ψ %s°)' % (r[0], sign(r[1]), sign(r[2])) for r in REFERENCE)
+    question = ('The excerpt contains residues %d–%d of chain %s from PDB entry %s (%s), ATOM records copied unchanged (coordinates in '
+                'angstrom). Compute the backbone dihedrals φ and ψ of %s (IUPAC sign convention) and assign the residue to the nearest '
+                'of these reference backbone conformations, measuring distance in the (φ, ψ) plane with 360° periodicity: %s. '
+                'Which conformation does %s adopt?') % (n - 1, n + 1, spec['chain'], spec['pdb'], spec['context'], name, refs, name)
+    excerpt = '\n'.join(line for r in window for line in residues[r]['lines']) + '\nEND\n'
+    pts = [residues[n - 1]['atoms']['C'], residues[n]['atoms']['N'], residues[n]['atoms']['CA'], residues[n]['atoms']['C'],
+           residues[n + 1]['atoms']['N']]
+    return dict(
+        question=question, scope=spec['scope'],
+        inputs=[dict(name='%s-%s%d-excerpt.pdb' % (spec['pdb'], spec['chain'], n), format='pdb-excerpt', unit='angstrom', text=excerpt)],
+        numeric=None, options=options, correct_label=key, option_audit=audit, excluded_candidates=[], rank=None,
+        checks=dict(phi_deg=phi, psi_deg=psi, nearest_distance_deg=d1, second_distance_deg=d2, evidence_records=[r for _, r in records],
+                    residue=name, limits='参考构象中心为教科书典型值；HELIX/SHEET 为条目作者的指认，作为审核证据，不给考生。'),
+        scales=dict(input_nm=kit.dmax([q for r in window for q in residues[r]['atoms'].values()]) / 10,
+                    reasoning_nm=kit.dmax(pts) / 10, reasoning_definition='定义 φ 与 ψ 的五个主链原子的最大间距（局部）'),
+        input_hashes={spec['asset']: kit.sha256(raw)})
+
 # ------------------------------------------------------------------ named bond distance
 BOHR_PER_ANGSTROM = 1.8897261246
 

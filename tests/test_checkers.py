@@ -337,5 +337,47 @@ class MoireTests(unittest.TestCase):
         self.assertTrue(fails(p, k))
 
 
+class EvidenceFamilyTests(unittest.TestCase):
+    def test_secondary_structure_evidence_is_enforced(self):
+        p, k = pair('FA-SS-1UBQ-43')
+        self.assertEqual(checkers.check(p, k)['status'], 'pass')
+        p['question'] = p['question'].replace('β-strand (φ −120°, ψ +130°)', 'β-strand (φ −75°, ψ +145°)').replace(
+            'polyproline II (φ −75°, ψ +145°)', 'polyproline II (φ −120°, ψ +130°)')
+        self.assertTrue(fails(p, k))                       # swapped reference centres change the nearest class
+        p, k = pair('FA-SS-6LYZ-90')
+        lines = p['inputs'][0]['text'].splitlines()
+        lines[3] = lines[3][:31] + ('9' if lines[3][31] != '9' else '8') + lines[3][32:]
+        p['inputs'][0]['text'] = '\n'.join(lines) + '\n'
+        self.assertTrue(fails(p, k))
+
+    def test_hostguest_uses_measured_table(self):
+        p, k = pair('FA-HG-EV3')
+        self.assertEqual(checkers.check(p, k)['status'], 'pass')
+        p['question'] = p['question'].replace('pH 7.40', 'pH 5.0')
+        self.assertTrue(fails(p, k, 'conditions'))
+        p, k = pair('FA-HG-DES1')
+        p['question'] = p['question'].replace('at least 2.0 kcal/mol', 'at least 0.5 kcal/mol')
+        self.assertTrue(fails(p, k))
+        p, k = pair('FA-HG-EV1')
+        p['options'][0]['value'] = p['options'][0]['value'].replace('(WP6-', '(WP6-X')
+        self.assertTrue(fails(p, k))
+
+    def test_quantum_dot_curve_is_read_from_question(self):
+        p, k = pair('FA-QD-PEAK-C')
+        self.assertEqual(checkers.check(p, k)['status'], 'pass')
+        p['question'] = p['question'].replace('0.4277·λ', '0.4300·λ')
+        self.assertTrue(fails(p, k))
+        p, k = pair('FA-QD-CONC-B')
+        p['question'] = p['question'].replace('in a 1.0 cm cuvette', 'in a 0.5 cm cuvette')
+        self.assertTrue(fails(p, k))
+
+    def test_trimeric_capsid(self):
+        p, k = pair('FA-ASM-T-6NCL')
+        self.assertEqual(checkers.check(p, k)['status'], 'pass')
+        self.assertEqual(k['numeric_answer']['value'], '169')
+        p['question'] = p['question'].replace('12 pentamers at the vertices are formed by a different protein', 'pentamers are also Vp54')
+        self.assertTrue(fails(p, k, 'Penton'))
+
+
 if __name__ == '__main__':
     unittest.main()

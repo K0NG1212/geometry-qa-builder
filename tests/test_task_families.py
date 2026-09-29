@@ -6,7 +6,7 @@ from decimal import Decimal
 from pathlib import Path
 
 import family_engine
-from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire
+from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire, hostguest, quantum_dot
 
 ROOT = Path(__file__).resolve().parents[1]
 SEED = 'geobench-family-v1'
@@ -427,6 +427,28 @@ class MoireFamilyTests(unittest.TestCase):
             moire.build_inference(dict(atoms, twist_deg=1.05), self.ROOT, 's')
         with self.assertRaises(ValueError):            # a perception quantity cannot be built as inference
             moire.build_inference(spec, self.ROOT, 's')
+
+
+class EvidenceBuilderTests(unittest.TestCase):
+    ROOT = Path(__file__).resolve().parents[1]
+
+    def test_secondary_structure_requires_record_agreement(self):
+        spec = dict(id='T-SS', asset='assets/bio/1UBQ.pdb', pdb='1UBQ', chain='A', context='t', scope='t')
+        with self.assertRaises(ValueError):                 # residue 20 has no HELIX/SHEET record agreeing with its class
+            local_geometry.build_secondary_structure(dict(spec, residue=20), self.ROOT, 's')
+        r = local_geometry.build_secondary_structure(dict(spec, residue=26), self.ROOT, 's')
+        self.assertIn('HELIX', r['checks']['evidence_records'][0])
+
+    def test_binding_policies(self):
+        with self.assertRaises(ValueError):                 # G13 -8.47 vs G3 -7.91: below the 0.8 kcal/mol margin
+            hostguest.build_evidence(dict(id='T', guests=['G13', 'G3', 'G11', 'G8'], scope='t'), self.ROOT, 's')
+        with self.assertRaises(ValueError):                 # G10 improves 1.36 vs a 1.5 threshold: too close
+            hostguest.build_design(dict(id='T', reference='G13', gain=1.5, guests=['G12', 'G10', 'G5', 'G6'], scope='t'), self.ROOT, 's')
+
+    def test_quantum_dot_curve(self):
+        self.assertAlmostEqual(quantum_dot.diameter_curve(quantum_dot.peak(3.0)), 3.0, places=9)
+        self.assertIsNone(quantum_dot.peak(20.0))             # outside the fitted range
+        self.assertAlmostEqual(quantum_dot.eps(4.0), 5857 * 4.0 ** 2.65)
 
 
 if __name__ == '__main__':

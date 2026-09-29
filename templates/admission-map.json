@@ -1,5 +1,5 @@
 {
-  "version": "0.8.0",
+  "version": "0.9.0",
   "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
   "rules": {
     "new": "Genuinely new question: added as a new catalog record (provisional).",
@@ -249,6 +249,51 @@
       "attribution": "转角取自 Cao et al., arXiv:1803.02342（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/moire/sources.json）。",
       "sizeDefinition": "输入：AA 图约 70–90 nm 或原子块约 4 nm；推理：莫尔周期 λ（12–18 nm）。",
       "learningObjective": "在论文实际样品中按目标载流子密度或莫尔周期选择转角（设计 = 推断的逆问题）。"
+    },
+    "secondary_structure": {
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "local_geometry",
+      "paper": "pdb-bio-nm",
+      "attribution": "RCSB PDB（wwPDB，CC0）；ATOM 片段逐行照抄，HELIX/SHEET 记录作为审核证据。",
+      "learningObjective": "由主链二面角 φ/ψ 推断残基所处的二级结构类型，并以条目自身的 HELIX/SHEET 记录为证据。",
+      "sizeDefinition": "输入：三残基片段；推理：定义 φ、ψ 的五个主链原子最大间距。"
+    },
+    "binding_evidence_choice": {
+      "domain": "chemistry",
+      "scale": "host_molecule",
+      "reasoning": "molecular",
+      "paper": "sampl9",
+      "attribution": "SAMPL9 主客体挑战（MIT License）：实测 ITC 数据（Isaacs 课题组）与客体结构；转录表见 docs/assets/families/hostguest/WP6-binding.json。",
+      "sizeDefinition": "输入与推理：主体 WP6 最大原子间距（约 1.8 nm）。",
+      "learningObjective": "由主体与客体的三维结构推断哪一个客体与 WP6 结合最强（以实测 ITC 结合自由能为证据）。"
+    },
+    "binding_design_choice": {
+      "domain": "chemistry",
+      "scale": "host_molecule",
+      "reasoning": "molecular",
+      "paper": "sampl9",
+      "attribution": "SAMPL9 主客体挑战（MIT License）：实测 ITC 数据（Isaacs 课题组）与客体结构；转录表见 docs/assets/families/hostguest/WP6-binding.json。",
+      "sizeDefinition": "输入与推理：主体 WP6 最大原子间距（约 1.8 nm）。",
+      "learningObjective": "从参考客体出发，选出使实测结合增强达到目标幅度的替换客体（有实验证据的设计）。"
+    },
+    "qdot_optics": {
+      "domain": "quantum",
+      "scale": "nanocrystal",
+      "reasoning": "molecular",
+      "paper": "paper-yu-cdse-2003",
+      "attribution": "经验曲线系数取自 Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003)（事实数据）；纳米晶模型由本项目构建（见 docs/assets/families/qdots/sources.json）。",
+      "sizeDefinition": "输入与推理：纳米晶最大原子间距（2.8–5.0 nm）。",
+      "learningObjective": "由纳米晶坐标确定粒径，并用经验曲线推断第一激子吸收峰、消光系数或溶液浓度（量子限域）。"
+    },
+    "qdot_design": {
+      "domain": "quantum",
+      "scale": "nanocrystal",
+      "reasoning": "molecular",
+      "paper": "paper-yu-cdse-2003",
+      "attribution": "经验曲线系数取自 Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003)（事实数据）；纳米晶模型由本项目构建（见 docs/assets/families/qdots/sources.json）。",
+      "sizeDefinition": "输入与推理：纳米晶最大原子间距（2.8–5.0 nm）。",
+      "learningObjective": "按经验曲线选择纳米晶粒径，使吸收达到目标颜色（设计 = 推断的逆问题）。"
     }
   },
   "instances": [
@@ -1089,6 +1134,107 @@
       "catalog_id": "QND007",
       "title": "转角石墨烯选样 · n_s 最接近 2.8×10¹² cm⁻²（四选一）",
       "attribution": "转角取自 Cao et al., arXiv:1803.02342 与 Kerelsky et al., arXiv:1812.08776（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/moire/sources.json）。"
+    },
+    {
+      "instance": "FA-ASM-EXT-6NCL",
+      "action": "new",
+      "catalog_id": "BNP025",
+      "title": "PBCV-1 衣壳 6NCL · Vp54 外壳最大尺寸（四选一）",
+      "attribution": "RCSB PDB 6NCL（wwPDB，CC0）；按 sources.json 所述约简（每链 Cα 质心 × 60 个二十面体操作）。"
+    },
+    {
+      "instance": "FA-ASM-T-6NCL",
+      "action": "new",
+      "catalog_id": "BNI023",
+      "title": "PBCV-1 衣壳 6NCL · 三聚体壳粒的三角剖分数 T（四选一）",
+      "attribution": "RCSB PDB 6NCL（wwPDB，CC0）；按 sources.json 所述约简（每链 Cα 质心 × 60 个二十面体操作）。",
+      "learningObjective": "由主衣壳蛋白拷贝数与三聚体壳粒结构推断大型病毒衣壳的三角剖分数 T（N = 30(T−1)）。"
+    },
+    {
+      "instance": "FA-QDES-6NCL",
+      "action": "new",
+      "catalog_id": "BND002",
+      "title": "PBCV-1 衣壳 6NCL · 使 Vp54 外壳强度降到 0.50 的测量 q（四选一）",
+      "attribution": "RCSB PDB 6NCL（wwPDB，CC0）；按 sources.json 所述约简（每链 Cα 质心 × 60 个二十面体操作）。",
+      "learningObjective": "推断的逆问题：为整个 PBCV-1 外壳选择测量 q，使取向平均散射强度首次降到目标值（测量条件设计）。"
+    },
+    {
+      "instance": "FA-SS-1UBQ-43",
+      "action": "new",
+      "catalog_id": "BNI024",
+      "title": "泛素 1UBQ Glu43 · 由 φ/ψ 判断构象（四选一）"
+    },
+    {
+      "instance": "FA-SS-6LYZ-90",
+      "action": "new",
+      "catalog_id": "BNI025",
+      "title": "溶菌酶 6LYZ Ile90 · 由 φ/ψ 判断构象（四选一）"
+    },
+    {
+      "instance": "FA-SS-1CRN-34",
+      "action": "new",
+      "catalog_id": "BNI026",
+      "title": "crambin 1CRN Ile34 · 由 φ/ψ 判断构象（四选一）"
+    },
+    {
+      "instance": "FA-HG-EV1",
+      "action": "new",
+      "catalog_id": "CNI014",
+      "title": "WP6 主客体 · 四个客体中结合最强者（一）（四选一）"
+    },
+    {
+      "instance": "FA-HG-EV2",
+      "action": "new",
+      "catalog_id": "CNI015",
+      "title": "WP6 主客体 · 四个客体中结合最强者（二）（四选一）"
+    },
+    {
+      "instance": "FA-HG-EV3",
+      "action": "new",
+      "catalog_id": "CNI016",
+      "title": "WP6 主客体 · 四个客体中结合最强者（三）（四选一）"
+    },
+    {
+      "instance": "FA-HG-DES1",
+      "action": "new",
+      "catalog_id": "CND007",
+      "title": "WP6 客体设计 · 从环己基铵出发增强 ≥ 2.0 kcal/mol（四选一）"
+    },
+    {
+      "instance": "FA-HG-DES2",
+      "action": "new",
+      "catalog_id": "CND008",
+      "title": "WP6 客体设计 · 从甲基紫精出发增强 ≥ 1.8 kcal/mol（四选一）"
+    },
+    {
+      "instance": "FA-QD-PEAK-C",
+      "action": "new",
+      "catalog_id": "QNI014",
+      "title": "CdSe 量子点 · 第一激子吸收峰（四选一）"
+    },
+    {
+      "instance": "FA-QD-EPS-E",
+      "action": "new",
+      "catalog_id": "QNI015",
+      "title": "CdSe 量子点 · 摩尔消光系数（四选一）"
+    },
+    {
+      "instance": "FA-QD-CONC-B",
+      "action": "new",
+      "catalog_id": "QNI016",
+      "title": "CdSe 量子点 · 由吸光度求浓度（四选一）"
+    },
+    {
+      "instance": "FA-QD-DES-590",
+      "action": "new",
+      "catalog_id": "QND008",
+      "title": "CdSe 量子点设计 · 吸收峰最接近 590 nm（四选一）"
+    },
+    {
+      "instance": "FA-QD-DES-565",
+      "action": "new",
+      "catalog_id": "QND009",
+      "title": "CdSe 量子点设计 · 吸收峰 ≥ 565 nm 的最小粒子（四选一）"
     }
   ]
 }

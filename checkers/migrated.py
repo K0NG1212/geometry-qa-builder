@@ -228,6 +228,15 @@ def assembly_rg(packet, key):
 def capsid_architecture(packet, key):
     q = packet['question']
     labels, _ = assembly_points(packet, key)
+    trimer = re.search(r'major capsid protein (\S+) forms trimeric pseudo-hexameric capsomers', q)
+    if trimer:
+        need('12 pentamers at the vertices are formed by a different protein' in q, 'Penton composition not stated')
+        n = sum(1 for l in labels if l == trimer.group(1))
+        need(n > 0 and n % 30 == 0, 'Copy number is not 30(T-1)')
+        t = n // 3 // 10 + 1                           # trimers = 10(T-1)
+        need('triangulation number' in q, 'Unknown architecture question')
+        return dict(judge_numeric(packet, key, t), parameters=dict(component=trimer.group(1), copies=n, T=t),
+                    method='count copies; trimeric capsomers = 10(T-1)')
     component = find(r'shell formed by (\S+?)\?', q, 'Shell component not stated').group(1)
     n = sum(1 for l in labels if l == component)
     need(n > 0 and n % 60 == 0, 'Copy number is not a multiple of 60')
@@ -310,3 +319,54 @@ def scattering_q_design(packet, key):
 
 
 CHECKERS.update(debye_intensity=debye_intensity, scattering_q_design=scattering_q_design)
+
+
+# ------------------------------------------------------------------ secondary structure from phi/psi
+def _dihedral(p0, p1, p2, p3):
+    """Signed dihedral from plane normals: acos for the magnitude, triple product for the sign."""
+    b1, b2, b3 = np.subtract(p1, p0), np.subtract(p2, p1), np.subtract(p3, p2)
+    n1, n2 = np.cross(b1, b2), np.cross(b2, b3)
+    angle = math.degrees(math.acos(max(-1.0, min(1.0, float(np.dot(n1, n2) / (np.linalg.norm(n1) * np.linalg.norm(n2)))))))
+    return -angle if float(np.dot(np.cross(n1, n2), b2)) < 0 else angle
+
+
+def secondary_structure(packet, key):
+    q = packet['question']
+    need('IUPAC' in q and '360° periodicity' in q, 'Sign convention or periodic distance not stated')
+    m = find(r'dihedrals φ and ψ of ([A-Z][a-z]{2})(\d+)', q, 'Residue not named')
+    n = int(m.group(2))
+    refs = [(name.strip(), float(a.replace('−', '-')), float(b.replace('−', '-')))
+            for name, a, b in re.findall(r'([\w\- α-ωΑ-Ω]+?) \(φ ([+−-]?\d+)°, ψ ([+−-]?\d+)°\)', q)]
+    refs = [(name.split(': ')[-1].lstrip(', '), a, b) for name, a, b in refs]
+    need(len(refs) == 4, 'Expected four reference conformations')
+    [inp] = packet['inputs']
+    atoms = {}
+    for line in inp['text'].splitlines():
+        if line.startswith('ATOM'):
+            atoms[(line[12:16].strip(), int(line[22:26]))] = tuple(float(line[c:c + 8]) for c in (30, 38, 46))
+    for a in (('C', n - 1), ('N', n), ('CA', n), ('C', n), ('N', n + 1)):
+        need(a in atoms, 'Backbone atom %s(%d) missing' % a)
+    phi = _dihedral(atoms[('C', n - 1)], atoms[('N', n)], atoms[('CA', n)], atoms[('C', n)])
+    psi = _dihedral(atoms[('N', n)], atoms[('CA', n)], atoms[('C', n)], atoms[('N', n + 1)])
+    wrap = lambda x: (x + 180) % 360 - 180
+    dist = {name: math.hypot(wrap(phi - a), wrap(psi - b)) for name, a, b in refs}
+    best = min(dist, key=dist.get)
+    need(sorted(dist.values())[1] - dist[best] > 5, 'Nearest reference not decisive')
+    need(sorted(o['value'] for o in packet['options']) == sorted(dist), 'Options are not exactly the reference conformations')
+    hits = [o['label'] for o in packet['options'] if o['value'] == best]
+    need(key['correct_label'] == hits[0], 'Key label disagrees with recomputed class')
+    # Provenance and evidence: excerpt lines verbatim; the entry's HELIX/SHEET record must agree with the class.
+    [path] = verify_hashes(key).values()
+    source = path.read_text(encoding='utf-8').splitlines()
+    lines = set(l.rstrip() for l in source)
+    need(all(l in lines for l in inp['text'].splitlines() if l.startswith('ATOM')), 'Excerpt lines are not copied unchanged')
+    chain = inp['text'].splitlines()[0][21]
+    kinds = {l[:5] for l in source if (l.startswith('HELIX') and l[19] == chain and int(l[21:25]) <= n <= int(l[33:37]))
+             or (l.startswith('SHEET') and l[21] == chain and int(l[22:26]) <= n <= int(l[33:37]))}
+    need(kinds in ({'HELIX'}, {'SHEET'}), 'No unique HELIX/SHEET record for the residue')
+    need(('α-helix' in best and 'right' in best) if kinds == {'HELIX'} else best == 'β-strand', 'Class disagrees with the entry record')
+    return dict(label=hits[0], parameters=dict(phi=phi, psi=psi, distances=dist, record=sorted(kinds)[0]),
+                method='acos dihedrals; nearest reference; HELIX/SHEET evidence')
+
+
+CHECKERS.update(secondary_structure=secondary_structure)
