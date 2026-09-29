@@ -29,7 +29,8 @@ MODULES = {
 
 def code_files():
     files = sorted((ROOT / 'task_families').glob('*.py')) + [ROOT / 'family_engine.py', ROOT / 'template_engine.py',
-                                                              ROOT / 'tools/recompute_materials_batch.py']
+                                                              ROOT / 'tools/recompute_materials_batch.py',
+                                                              ROOT / 'tools/recompute_materials_batch2.py']
     return {str(p.relative_to(ROOT)).replace('\\', '/'): p for p in files}
 
 

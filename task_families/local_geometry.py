@@ -192,3 +192,90 @@ def build_backbone_torsion(spec, root, seed):
                     reasoning_nm=math.dist(pts[0], pts[3]) / 10,
                     reasoning_definition='二面角首末原子间距（局部 0.1–1 nm）'),
         input_hashes={spec['asset']: kit.sha256(raw)})
+
+
+# ------------------------------------------------------------------ named bond distance
+BOHR_PER_ANGSTROM = 1.8897261246
+
+
+def _distance_candidates(elements, points, edges, a, b, labels, typical):
+    d = math.dist(points[a], points[b])
+    out = [dict(rule='covalent_radii_sum', value=kit.COVALENT[elements[a]] + kit.COVALENT[elements[b]], plausibility=2,
+                reason='用共价半径之和估计，没有测量这一结构。'),
+           dict(rule='bohr_units', value=d * BOHR_PER_ANGSTROM, plausibility=1, reason='把埃换算成玻尔半径后报告。')]
+    if typical:
+        out.append(dict(rule='typical_value', value=typical['value'], plausibility=3,
+                        reason='套用教科书典型值 %s Å（%s），没有测量。' % (typical['value'], typical['basis'])))
+    for end, other in ((a, b), (b, a)):
+        for x in kit.neighbors(edges, end):
+            if x == other:
+                continue
+            out.append(dict(rule='other_bond:%s-%s' % (labels(end), labels(x)), value=math.dist(points[end], points[x]),
+                            plausibility=3, reason='量成 %s 的另一根键（到 %s）。' % (labels(end), labels(x))))
+    near = sorted((math.dist(points[a], points[j]), j) for j in range(len(points))
+                  if j not in (a, b) and elements[j] == elements[b] and (min(a, j), max(a, j)) not in edges)
+    if near:
+        out.append(dict(rule='nearest_nonbonded_same_element', value=near[0][0], plausibility=2,
+                        reason='量到最近的另一个同种元素原子（%s，未成键）。' % labels(near[0][1])))
+    return d, out
+
+
+def build_bond_distance(spec, root, seed):
+    path = root / 'docs' / spec['asset']
+    raw = path.read_bytes()
+    if spec.get('pdb'):
+        residues, _, altloc = read_pdb_residues(raw.decode('utf-8'), spec['chain'])
+        wanted = [r for r, _ in spec['pdb_atoms']]
+        if altloc & set(wanted):
+            raise ValueError('Alternate locations in named residues')
+        lines = [l for r in sorted(set(wanted)) for l in residues[r]['lines']]
+        ssbond = [l.rstrip() for l in raw.decode('utf-8').splitlines() if l.startswith('SSBOND')
+                  and {int(l[17:21]), int(l[31:35])} == set(wanted)]
+        text = '\n'.join(ssbond + lines) + '\nEND\n'
+        names, elements, points = [], [], []
+        for r in sorted(set(wanted)):
+            for n, xyz in residues[r]['atoms'].items():
+                names.append('%s(%s%d)' % (n, residues[r]['name'].title(), r))
+                elements.append(n[0] if n[0] in 'CNOS' else 'H')
+                points.append(xyz)
+        index = {(r, n): i for i, (r, n) in enumerate((r, n) for r in sorted(set(wanted)) for n in residues[r]['atoms'])}
+        a, b = [index[tuple(x)] for x in spec['pdb_atoms']]
+        inputs = [dict(name='%s-excerpt.pdb' % spec['pdb'], format='pdb-excerpt', unit='angstrom', text=text)]
+        label = lambda i: names[i]
+        where = 'atoms %s and %s' % (names[a], names[b])
+    else:
+        text = raw.decode('utf-8-sig')
+        elements, points = kit.parse_xyz(text)
+        rows = spec['atoms']
+        a, b = rows[0]['row'] - 1, rows[1]['row'] - 1
+        for x, idx in zip(rows, (a, b)):
+            if elements[idx] != x['element']:
+                raise ValueError('Named atom does not match XYZ row element')
+        inputs = [dict(name=path.name, format='xyz', unit='angstrom', text=text)]
+        label = lambda i: '%s%d' % (elements[i], i + 1)
+        where = 'atoms %s (row %d) and %s (row %d)' % (rows[0]['name'], a + 1, rows[1]['name'], b + 1)
+    edges = kit.bond_graph(elements, points)
+    if (min(a, b), max(a, b)) not in edges:
+        raise ValueError('Named atoms are not bonded under the covalent-radius rule')
+    d, candidates = _distance_candidates(elements, points, edges, a, b, label, spec.get('typical'))
+    second = float(sum((kit.Decimal(repr(x)) - kit.Decimal(repr(y))) ** 2 for x, y in zip(points[a], points[b])).sqrt())
+    if abs(d - second) > 1e-9:
+        raise ValueError('Distance implementations disagree')
+    decimals, tol, sep = 3, '0.0005', '0.020'
+    chosen, rejected, goal, rank = kit.choose_numeric(d, candidates, decimals=decimals, tolerance=tol, min_separation=sep,
+                                                      seed=seed, context=spec['id'], lower=0, target=spec.get('target_position'),
+                                                      distractor_separation='0.010')
+    options, audit = kit.label_numeric(d, chosen, decimals=decimals, unit='angstrom', seed=seed, context=spec['id'],
+                                       correct_reason='两指定原子的欧氏距离；另以 Decimal 实现复核。')
+    key = kit.validate_numeric(options, d, decimals=decimals, tolerance=tol, min_separation=sep, unit='angstrom',
+                               distractor_separation='0.010')
+    question = '%s In this supplied structure, %s form %s. What is this bond length?' % (spec['context'], where, spec['bond'])
+    return dict(
+        question=question, scope=spec['scope'], inputs=inputs,
+        numeric=dict(value=kit.display(d, decimals), unit='angstrom', decimals=decimals, tolerance=tol),
+        options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected,
+        rank=dict(target=goal, achieved=rank),
+        checks=dict(bonded=True, bond_rule='covalent radii sum × 1.2', float_A=d, decimal_A=second,
+                    limits='单一结构中的键长；不据此单独判定成键状态或键级。'),
+        scales=dict(input_nm=kit.dmax(points) / 10, reasoning_nm=d / 10, reasoning_definition='两成键原子间距'),
+        input_hashes={spec['asset']: kit.sha256(raw)})

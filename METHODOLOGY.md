@@ -76,6 +76,8 @@ python tools/export_choice_workbench.py --run runs/choice-new --public-developme
 | 推断 | kinematic_extinction | NaCl、金刚石、SALEM-2、MOF-5（COD） |
 | 设计选择 | conformer_target_selection | QM7-X 7050/7206/7095/7032（7063 无唯一最优，记录失败） |
 | 感知（选项 v0.2） | extent_choice_v2 | 原 12 份最大间距/回转半径输入 |
+| 感知 | named_bond_distance / coordination_shell | QM7-X 键长、6LYZ 二硫键；MgO、CsCl、SALEM-2 Zn–Zn、MOF-5 节点壳层 |
+| 推断 | first_diffraction_peak / fret_efficiency / guinier_intensity | NaCl、CsCl、MgO、SALEM-2、MOF-5；1EHZ、1UBQ、6LYZ、1BNA |
 | 感知 / 推断 / 设计 | stereo_relationship / stereo_property_inference / stereo_design_selection | QM7-X 立体异构体（15 个分子）；不依赖 CIP，由成键图、手性符号与双键顺反判定，并与数据集标签交叉核对 |
 
 数值选项升序排列，正确值的秩在同一族批次内轮换；易排除的干扰项和“±”配对都计惩罚；分类选项把正确项放在批次轮换位置。凑不齐三个有依据的干扰项或唯一最优时记录失败。设计选择只用计算性质证据并逐项检查约束，旧 M3 对 design 的拒绝未改动。

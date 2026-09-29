@@ -1170,7 +1170,7 @@
         {
           "instance": "FA-ANG-BCD",
           "family": "named_bond_angle",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FA-ANG-BCD#workbench",
           "counted": false
@@ -1237,7 +1237,7 @@
         {
           "instance": "FA-ANG-WP6",
           "family": "named_bond_angle",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FA-ANG-WP6#workbench",
           "counted": false
@@ -1421,7 +1421,7 @@
         {
           "instance": "FA-FP-QM7X-7001",
           "family": "force_path_derivative",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FA-FP-QM7X-7001#workbench",
           "counted": false
@@ -2452,8 +2452,8 @@
       "sourceRoute": "raw_structure_or_simulation",
       "prototypeScreeningPassed": true,
       "answerKind": "text",
-      "lifecycle": "rework",
-      "lifecycleLabel": "待修订",
+      "lifecycle": "archived",
+      "lifecycleLabel": "历史归档",
       "lifecycleReviewedAt": "2026-09-22",
       "attributionLicenseUrl": "https://www.crystallography.net/cod/",
       "missing": [
@@ -2461,7 +2461,7 @@
         "共享结构与关联题不得拆分到训练/测试两侧"
       ],
       "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / closed-form distance checks / direct structure-factor summation vs closed-form phase check. evidence_review does not automatically validate semantics.",
-      "restartFrom": "M3/M4/M5：重算完整参与壳层点集跨度；预计不跨格，保留两壳层数值。",
+      "restartFrom": "见新版 MNP011",
       "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
       "id": "MNP004",
       "title": "氧化镁：异种与同种近邻壳层",
@@ -2486,7 +2486,7 @@
       "completeInput": "Around the Mg at fractional (0,0,0), determine separately (a) the closest O shell and (b) the closest noncentral Mg shell. Report each distance and population, identify the first-shell coordination polyhedron, and explain why counting only basis atoms in the displayed cell can give a wrong population.\n\nUse the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nMgO S0010: a=4.21700 angstrom. Row / element / fractional x,y,z:\n1 Mg 0 0 0\n2 Mg 0 1/2 1/2\n3 Mg 1/2 0 1/2\n4 Mg 1/2 1/2 0\n5 O 0 0 1/2\n6 O 0 1/2 0\n7 O 1/2 0 0\n8 O 1/2 1/2 1/2\n\nSearch translations n_x,n_y,n_z in {-1,0,1}, excluding the central Mg itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals. Identify first-shell directions with displacement vectors or axis signs.\n\nAttachment S0010:\n8\nCoordinates in angstrom; atoms numbered from 1.\nMg 0.00000000 0.00000000 0.00000000\nMg 0.00000000 2.10850000 2.10850000\nMg 2.10850000 0.00000000 2.10850000\nMg 2.10850000 2.10850000 0.00000000\nO 0.00000000 0.00000000 2.10850000\nO 0.00000000 2.10850000 0.00000000\nO 2.10850000 0.00000000 0.00000000\nO 2.10850000 2.10850000 2.10850000\n",
       "inputDownload": "assets/qa/MNP004-input.txt",
       "learningObjective": "Periodic MgO rock-salt nearest-neighbor coordination (octahedral Mg-O shell and second-shell Mg-Mg distance).",
-      "lifecycleReason": "2026-09-22 专项筛查：壳层题 reasoningSizeNm=0.29818693 使用最大中心距，与 MNP002 的壳层点集最大跨度约定不一致。",
+      "lifecycleReason": "已有新版改写 MNP011（题型族 coordination_shell，暂计），保留原始版本以追溯，不重复计数。",
       "derivedFrom": "原始CIF结构重新构题；非现有QA复用。与卤化钠同为岩盐型结构但化学与晶格常数独立取得，非同一模板复用。",
       "sourceCluster": "materials-periclase-1000053",
       "relatedQaIds": [
@@ -2501,7 +2501,8 @@
         "decision": "revise",
         "reason": "壳层题 reasoningSizeNm=0.29818693 使用最大中心距，与 MNP002 的壳层点集最大跨度约定不一致。",
         "report": "screening.html#MNP004"
-      }
+      },
+      "supersededBy": "MNP011"
     },
     {
       "paper": "cod-materials-cell",
@@ -2517,8 +2518,8 @@
       "sourceRoute": "raw_structure_or_simulation",
       "prototypeScreeningPassed": true,
       "answerKind": "text",
-      "lifecycle": "rework",
-      "lifecycleLabel": "待修订",
+      "lifecycle": "archived",
+      "lifecycleLabel": "历史归档",
       "lifecycleReviewedAt": "2026-09-22",
       "attributionLicenseUrl": "https://www.crystallography.net/cod/",
       "missing": [
@@ -2526,7 +2527,7 @@
         "共享结构与关联题不得拆分到训练/测试两侧"
       ],
       "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / closed-form distance checks / direct structure-factor summation vs closed-form phase check. evidence_review does not automatically validate semantics.",
-      "restartFrom": "M3/M4/M5：按全部被比较周期近邻的最大跨度统一尺度元数据，保存计算依据。",
+      "restartFrom": "见新版 MNP012",
       "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
       "id": "MNP005",
       "title": "氯化铯：立方体角配位壳层",
@@ -2551,7 +2552,7 @@
       "completeInput": "Around the Cs at fractional (0,0,0), determine separately (a) the closest Cl shell and (b) the closest noncentral Cs shell. Report each distance and population, identify the first-shell coordination polyhedron and its full set of distinct neighbor-neighbor angles about the central Cs, and explain why counting only the two atoms in the displayed primitive cell cannot give either population.\n\nUse the supplied periodic primitive cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. This primitive cell holds only 2 atoms (Z=1 formula unit), unlike the 8-atom conventional cells used elsewhere in this project. \nCsCl S0011: a=4.12300 angstrom. Row / element / fractional x,y,z:\n1 Cs 0 0 0\n2 Cl 1/2 1/2 1/2\n\nSearch translations n_x,n_y,n_z in {-1,0,1}, excluding the central Cs itself. Treat distinct periodic images as distinct neighbors; use 0.00001 angstrom shell tolerance. Report distances in nm to four decimals and angles in degrees to two decimals.\n\nAttachment S0011:\n2\nCoordinates in angstrom; atoms numbered from 1.\nCs 0.00000000 0.00000000 0.00000000\nCl 2.06150000 2.06150000 2.06150000\n",
       "inputDownload": "assets/qa/MNP005-input.txt",
       "learningObjective": "Periodic CsCl primitive-cubic 8-fold cube-corner coordination, distinct from the octahedral/tetrahedral shells already covered in this cell.",
-      "lifecycleReason": "2026-09-22 专项筛查：reasoningSizeNm=0.4123 是 Cs 最近邻中心距，没有覆盖完整 Cs/Cl 壳层。",
+      "lifecycleReason": "已有新版改写 MNP012（题型族 coordination_shell，暂计），保留原始版本以追溯，不重复计数。",
       "derivedFrom": "原始CIF结构重新构题；非现有QA复用。原胞仅2原子，非本项目此前使用的8原子惯用晶胞，构题已在题干中明确说明。",
       "sourceCluster": "materials-cscl-9008789",
       "relatedQaIds": [
@@ -2566,7 +2567,8 @@
         "decision": "revise",
         "reason": "reasoningSizeNm=0.4123 是 Cs 最近邻中心距，没有覆盖完整 Cs/Cl 壳层。",
         "report": "screening.html#MNP005"
-      }
+      },
+      "supersededBy": "MNP012"
     },
     {
       "paper": "cod-materials-cell",
@@ -2582,8 +2584,8 @@
       "sourceRoute": "raw_structure_or_simulation",
       "prototypeScreeningPassed": true,
       "answerKind": "text",
-      "lifecycle": "rework",
-      "lifecycleLabel": "待修订",
+      "lifecycle": "archived",
+      "lifecycleLabel": "历史归档",
       "lifecycleReviewedAt": "2026-09-22",
       "attributionLicenseUrl": "https://www.crystallography.net/cod/",
       "missing": [
@@ -2591,7 +2593,7 @@
         "共享结构与关联题不得拆分到训练/测试两侧"
       ],
       "validation": "Supplemental calculator: exact rational symmetry / periodic enumeration / closed-form distance checks / direct structure-factor summation vs closed-form phase check. evidence_review does not automatically validate semantics.",
-      "restartFrom": "M3/M4/M5：删除原子计数解释，改为固定波长下 d 与 sin(theta) 的关系。",
+      "restartFrom": "见新版 MNI017",
       "policyReview": "同会话辅助初筛通过；原始CIF对称操作展开，晶胞单位有官方条目卡依据。散射权重和波长为明确题设；结果不是实测峰强度。",
       "id": "MNI004",
       "title": "氧化镁晶面间距如何决定衍射角",
@@ -2616,7 +2618,7 @@
       "completeInput": "For first-order (111) and (200) diffraction at the stated wavelength, calculate the scattering angle 2theta for the supplied MgO structure. Which reflection is at the higher angle and what is the angular difference? Explain the direction of the shift using the structural spacing.\n\nUse the supplied periodic conventional cubic cell, not an isolated XYZ cluster. Cartesian XYZ coordinates are in angstrom; 1 nm=10 angstrom. XYZ atom rows start at one after the two header lines. Fractional positions below are exact; each listed basis atom has occupancy 1. Cell vectors are (a,0,0),(0,a,0),(0,0,a); all angles 90 degrees. Crystal images are r_j+a*(n_x,n_y,n_z) for integer n. No relaxation, defects, thermal motion or finite crystallite envelope is supplied. \nMgO S0010: a=4.21700 angstrom. Row / element / fractional x,y,z:\n1 Mg 0 0 0\n2 Mg 0 1/2 1/2\n3 Mg 1/2 0 1/2\n4 Mg 1/2 1/2 0\n5 O 0 0 1/2\n6 O 0 1/2 0\n7 O 1/2 0 0\n8 O 1/2 1/2 1/2\n\nAssume ideal kinematic diffraction, lambda=0.15406 nm, n=1 and a nonzero (111) and (200) structure factor for this basis (not asked to be shown here). Use 2 d sin(theta)=n lambda and obtain d from d_hkl=a/sqrt(h^2+k^2+l^2). Theta is the incident-beam/plane angle; the requested detector scattering angle is 2theta. Report degrees to two decimals. Do not predict intensities, line widths, refractive or instrumental corrections.\n\nAttachment S0010:\n8\nCoordinates in angstrom; atoms numbered from 1.\nMg 0.00000000 0.00000000 0.00000000\nMg 0.00000000 2.10850000 2.10850000\nMg 2.10850000 0.00000000 2.10850000\nMg 2.10850000 2.10850000 0.00000000\nO 0.00000000 0.00000000 2.10850000\nO 0.00000000 2.10850000 0.00000000\nO 2.10850000 0.00000000 0.00000000\nO 2.10850000 2.10850000 2.10850000\n",
       "inputDownload": "assets/qa/MNI004-input.txt",
       "learningObjective": "Apply cubic plane-spacing geometry and Bragg's law to an independently sourced lattice parameter; explain why 2theta grows with the Miller-index sum at fixed wavelength.",
-      "lifecycleReason": "2026-09-22 专项筛查：答案用“fewer atoms fit between planes”解释较小晶面间距，输入与公式没有支持该原子计数解释。",
+      "lifecycleReason": "已有新版改写 MNI017（题型族 first_diffraction_peak，暂计），保留原始版本以追溯，不重复计数。",
       "derivedFrom": "原始CIF结构重新构题；非现有QA复用。理想衍射假设已明确披露。",
       "sourceCluster": "materials-periclase-1000053",
       "relatedQaIds": [
@@ -2631,7 +2633,8 @@
         "decision": "revise",
         "reason": "答案用“fewer atoms fit between planes”解释较小晶面间距，输入与公式没有支持该原子计数解释。",
         "report": "screening.html#MNI004"
-      }
+      },
+      "supersededBy": "MNI017"
     },
     {
       "paper": "cod-materials-cell",
@@ -2970,8 +2973,8 @@
       "sourceRoute": "raw_structure_or_simulation",
       "prototypeScreeningPassed": true,
       "answerKind": "text",
-      "lifecycle": "rework",
-      "lifecycleLabel": "待修订",
+      "lifecycle": "archived",
+      "lifecycleLabel": "历史归档",
       "lifecycleReviewedAt": "2026-09-22",
       "attributionLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "missing": [
@@ -2979,7 +2982,7 @@
         "共享结构的题目须整组划分，不能当作独立科学样本"
       ],
       "validation": "Supplemental calculator: separate full-scan / pairwise-distance-identity Rg / atan2 angle / Decimal FRET recomputation, independent of the primary computation module; evidence_review does not grade semantics.",
-      "restartFrom": "M3/M4/M5：保留 r/E 与给定模型敏感性；移除未支持的噪声底和特定技术推荐；推理范围按探针对。",
+      "restartFrom": "见新版 BNI009",
       "policyReview": "同会话辅助初筛通过，仍待独立审核。真实 PDB 坐标派生；等权散射、虚拟探针与 R0 均为题设假设，不是实验信号。",
       "sizeDefinition": "实际输入为明确选定的 CA 或 C1′ 位点；尺寸为各结构选定位点的最大中心距，多结构取最大值。任务需要整体空间几何；不是用回转半径数值替代推理范围。",
       "id": "BNI004",
@@ -3003,7 +3006,7 @@
       ],
       "inputDownload": "assets/qa/BNI004-input.txt",
       "learningObjective": "Apply the Forster efficiency relation to a real measured distance at/beyond typical R0 values, and reason about experimental-design consequences rather than only computing a number.",
-      "lifecycleReason": "2026-09-22 专项筛查：虚拟模型算出小 E，但未提供仪器噪声或替代测量方案的适用证据，评分却要求近噪声底和实验建议。",
+      "lifecycleReason": "已有新版改写 BNI009（题型族 fret_efficiency，暂计），保留原始版本以追溯，不重复计数。",
       "derivedFrom": "原始结构重新构题，非复用现有QA；R0 为明确题设假设，不代表任何具体真实染料对。",
       "sourceCluster": "bio-nm-rna-1ehz",
       "relatedQaIds": [
@@ -3019,7 +3022,8 @@
         "decision": "revise",
         "reason": "虚拟模型算出小 E，但未提供仪器噪声或替代测量方案的适用证据，评分却要求近噪声底和实验建议。",
         "report": "screening.html#BNI004"
-      }
+      },
+      "supersededBy": "BNI009"
     },
     {
       "paper": "sampl9",
@@ -3152,7 +3156,7 @@
         {
           "instance": "FA-ANG-DMBCD",
           "family": "named_bond_angle",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FA-ANG-DMBCD#workbench",
           "counted": false
@@ -3238,8 +3242,8 @@
       "sourceRoute": "raw_structure_or_simulation",
       "prototypeScreeningPassed": true,
       "answerKind": "text",
-      "lifecycle": "rework",
-      "lifecycleLabel": "待修订",
+      "lifecycle": "archived",
+      "lifecycleLabel": "历史归档",
       "lifecycleReviewedAt": "2026-09-22",
       "attributionLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "missing": [
@@ -3247,7 +3251,7 @@
         "共享结构的题目须整组划分，不能当作独立科学样本"
       ],
       "validation": "Supplemental calculator: Decimal-precision recomputation cross-checked against this entry's own SSBOND-reported distances (perception disulfide tasks) or against an independent second measurement (inference tasks); evidence_review does not grade semantics.",
-      "restartFrom": "M3/M4/M5：保留距离与记录一致性，说明仅凭一条距离不能独立判定成键状态。",
+      "restartFrom": "见新版 BNP016",
       "policyReview": "同会话辅助初筛通过，仍待独立审核。真实 PDB 坐标派生（复用已验证的 6LYZ 文件，未做新检索）。",
       "sizeDefinition": "实际输入为明确选定的 CA 或 C1′ 位点；尺寸为各结构选定位点的最大中心距，多结构取最大值。任务需要整体空间几何；不是用回转半径数值替代推理范围。",
       "attribution": "PDB 6LYZ deposited structure coordinates (Diamond, 1974 real-space refinement), CC0 1.0 (RCSB/wwPDB usage policy). 局部二硫键与螺旋几何为新测量，非复用 bio-nm-v04-002 已发表数值。",
@@ -3275,7 +3279,7 @@
       ],
       "inputDownload": "assets/qa/BNP007-input.txt",
       "learningObjective": "Measure a real covalent disulfide S-S bond length directly from deposited coordinates and relate it to tertiary-structure stabilization.",
-      "lifecycleReason": "2026-09-22 专项筛查：距离与条目身份支持一致性检查，但解释把长度判据变成共价成键的确定性判定。",
+      "lifecycleReason": "已有新版改写 BNP016（题型族 named_bond_distance，暂计），保留原始版本以追溯，不重复计数。",
       "relatedQaIds": [
         "BNP008",
         "BNI005",
@@ -3288,7 +3292,8 @@
         "decision": "revise",
         "reason": "距离与条目身份支持一致性检查，但解释把长度判据变成共价成键的确定性判定。",
         "report": "screening.html#BNP007"
-      }
+      },
+      "supersededBy": "BNP016"
     },
     {
       "paper": "pdb-bio-nm",
@@ -3898,8 +3903,8 @@
       "sourceRoute": "raw_structure_or_simulation",
       "prototypeScreeningPassed": true,
       "answerKind": "text",
-      "lifecycle": "rework",
-      "lifecycleLabel": "待修订",
+      "lifecycle": "archived",
+      "lifecycleLabel": "历史归档",
       "lifecycleReviewedAt": "2026-09-22",
       "attributionLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "missing": [
@@ -3909,7 +3914,7 @@
       "sizeDefinition": "输入按单个几何全部原子的最大中心距计；推理按题目中明确指出的原子子集（2-3个原子，或全分子在力/偶极题中）计算，不把附件整体规模当作推理范围。",
       "attribution": "QM7-X: Hoja et al., Scientific Data 8, 43 (2021), DOI 10.1038/s41597-021-00812-2; Zenodo 4288677, CC BY 4.0. Extracted native geometries/forces/dipole fields; newly authored QA.",
       "policyReview": "新版同会话初筛通过；感知题使用通用 xyz_distance/xyz_angle 数值验证器，由程序而非模型自行计算参考答案；推断题使用补充计算器与独立 Decimal 复核。物理解读待独立审核。",
-      "restartFrom": "M3/M4/M5：在 M3 补充有来源的选点理由/几何考点；保留基础测量时说明其不测电子结构能力。",
+      "restartFrom": "见新版 QNP014",
       "id": "QNP004",
       "title": "QM7-X 分子7002 · 两个氮原子间距",
       "ability": "perception",
@@ -3933,7 +3938,7 @@
       "completeInput": "In the attached optimized QM7-X geometry for molecule 7002 (11 atoms), row 5 and row 6 are the molecule's only two nitrogen atoms. What is the distance between row 5 and row 6? Report the value in angstrom to four decimal places.\n\nThe attachment is one complete optimized XYZ structure, 11 atoms, coordinates in angstrom. Atom rows are numbered starting at 1, immediately after the two header lines. Do not renumber or reorder atoms; use the row numbers exactly as given.\n\nQNP004-7002-opt.xyz:\n11\nQM7-X native coordinates in angstrom (molecule 7002, Geom-m7002-i1-c1-opt)\nC -0.233392 2.632893 1.080141\nC -0.733248 1.390913 0.995824\nC -0.158391 0.294992 0.21314\nC 1.010299 0.431791 -0.550629\nN 1.382938 -0.716616 -1.210631\nN 0.816931 -1.759865 -1.181911\nS -0.914057 -1.248333 0.198843\nH -0.723297 3.386883 1.683969\nH 0.66721 2.932451 0.556106\nH -1.641549 1.156214 1.54775\nH 1.611855 1.329609 -0.652383\n",
       "inputDownload": "assets/qa/QNP004-input.txt",
       "learningObjective": "从三维坐标中直接读出指定原子对的空间间距。",
-      "lifecycleReason": "2026-09-22 专项筛查：几何计算成立，但题目主要以元素和行号指定对象；量子来源标签不能代替领域考点。",
+      "lifecycleReason": "已有新版改写 QNP014（题型族 named_bond_distance，暂计），保留原始版本以追溯，不重复计数。",
       "derivedFrom": "Q02（规划方向）；官方 QM7-X 8000 分片中与 QNP001 不同的分子；批次 q02-force-v04-002。",
       "sourceCluster": "qm7x-8000-7002",
       "relatedQaIds": [
@@ -3945,7 +3950,8 @@
         "decision": "revise",
         "reason": "几何计算成立，但题目主要以元素和行号指定对象；量子来源标签不能代替领域考点。",
         "report": "screening.html#QNP004"
-      }
+      },
+      "supersededBy": "QNP014"
     },
     {
       "paper": "qm7x",
@@ -4019,7 +4025,7 @@
         {
           "instance": "FA-FP-QM7X-7002",
           "family": "force_path_derivative",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FA-FP-QM7X-7002#workbench",
           "counted": false
@@ -4041,8 +4047,8 @@
       "sourceRoute": "raw_structure_or_simulation",
       "prototypeScreeningPassed": true,
       "answerKind": "text",
-      "lifecycle": "rework",
-      "lifecycleLabel": "待修订",
+      "lifecycle": "archived",
+      "lifecycleLabel": "历史归档",
       "lifecycleReviewedAt": "2026-09-22",
       "attributionLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "missing": [
@@ -4052,7 +4058,7 @@
       "sizeDefinition": "输入按单个几何全部原子的最大中心距计；推理按题目中明确指出的原子子集（2-3个原子，或全分子在力/偶极题中）计算，不把附件整体规模当作推理范围。",
       "attribution": "QM7-X: Hoja et al., Scientific Data 8, 43 (2021), DOI 10.1038/s41597-021-00812-2; Zenodo 4288677, CC BY 4.0. Extracted native geometries/forces/dipole fields; newly authored QA.",
       "policyReview": "新版同会话初筛通过；感知题使用通用 xyz_distance/xyz_angle 数值验证器，由程序而非模型自行计算参考答案；推断题使用补充计算器与独立 Decimal 复核。物理解读待独立审核。",
-      "restartFrom": "M3/M4/M5：在 M3 补充有来源的选点理由/几何考点；保留基础测量时说明其不测电子结构能力。",
+      "restartFrom": "见新版 QNP012",
       "id": "QNP002",
       "title": "QM7-X 分子7035 · 硫氧最短间距",
       "ability": "perception",
@@ -4076,7 +4082,7 @@
       "completeInput": "In the attached optimized QM7-X geometry for molecule 7035 (17 atoms), row 3 is the molecule's only sulfur atom, and row 4 is one of the two oxygen atoms with the shortest measured distance to row 3. What is the distance between row 3 and row 4? Report the value in angstrom to four decimal places.\n\nThe attachment is one complete optimized XYZ structure, 17 atoms, coordinates in angstrom. Atom rows are numbered starting at 1, immediately after the two header lines. Do not renumber or reorder atoms; use the row numbers exactly as given.\n\nQNP002-7035-opt.xyz:\n17\nQM7-X native coordinates in angstrom (molecule 7035, Geom-m7035-i1-c1-opt)\nC -1.803805 0.956598 0.700986\nC -0.277892 0.883232 0.74227\nS 0.359943 -0.520427 -0.326716\nO -0.301352 -0.458879 -1.628666\nO 1.819585 -0.530336 -0.238604\nC -0.265897 -2.013642 0.565\nC 0.374815 2.184206 0.267456\nH -2.257788 0.051888 1.101268\nH -2.156888 1.092619 -0.318304\nH -2.155011 1.7983 1.29454\nH 0.050639 0.674767 1.771035\nH -1.352047 -2.042641 0.567397\nH 0.095052 -2.034048 1.58988\nH 0.101548 -2.899391 0.051948\nH 0.085882 2.412062 -0.755997\nH 1.458862 2.111317 0.310205\nH 0.061474 3.013307 0.899368\n",
       "inputDownload": "assets/qa/QNP002-input.txt",
       "learningObjective": "从三维坐标中直接读出指定原子对的空间间距（硫氧最短接触）。",
-      "lifecycleReason": "2026-09-22 专项筛查：几何计算成立，但题目主要以元素和行号指定对象；量子来源标签不能代替领域考点。",
+      "lifecycleReason": "已有新版改写 QNP012（题型族 named_bond_distance，暂计），保留原始版本以追溯，不重复计数。",
       "derivedFrom": "Q02（规划方向）；官方 QM7-X 8000 分片中与 QNP001 不同的分子；批次 q02-force-v04-002。",
       "sourceCluster": "qm7x-8000-7035",
       "relatedQaIds": [
@@ -4088,7 +4094,8 @@
         "decision": "revise",
         "reason": "几何计算成立，但题目主要以元素和行号指定对象；量子来源标签不能代替领域考点。",
         "report": "screening.html#QNP002"
-      }
+      },
+      "supersededBy": "QNP012"
     },
     {
       "paper": "qm7x",
@@ -4162,7 +4169,7 @@
         {
           "instance": "FA-FP-QM7X-7035",
           "family": "force_path_derivative",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FA-FP-QM7X-7035#workbench",
           "counted": false
@@ -4184,8 +4191,8 @@
       "sourceRoute": "raw_structure_or_simulation",
       "prototypeScreeningPassed": true,
       "answerKind": "text",
-      "lifecycle": "rework",
-      "lifecycleLabel": "待修订",
+      "lifecycle": "archived",
+      "lifecycleLabel": "历史归档",
       "lifecycleReviewedAt": "2026-09-22",
       "attributionLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "missing": [
@@ -4195,7 +4202,7 @@
       "sizeDefinition": "输入按单个几何全部原子的最大中心距计；推理按题目中明确指出的原子子集（2-3个原子，或全分子在力/偶极题中）计算，不把附件整体规模当作推理范围。",
       "attribution": "QM7-X: Hoja et al., Scientific Data 8, 43 (2021), DOI 10.1038/s41597-021-00812-2; Zenodo 4288677, CC BY 4.0. Extracted native geometries/forces/dipole fields; newly authored QA.",
       "policyReview": "新版同会话初筛通过；感知题使用通用 xyz_distance/xyz_angle 数值验证器，由程序而非模型自行计算参考答案；推断题使用补充计算器与独立 Decimal 复核。物理解读待独立审核。",
-      "restartFrom": "M3/M4/M5：在 M3 补充有来源的选点理由/几何考点；保留基础测量时说明其不测电子结构能力。",
+      "restartFrom": "见新版 QNP016",
       "id": "QNP005",
       "title": "QM7-X 分子7040 · 硫两侧最近氧的夹角",
       "ability": "perception",
@@ -4219,7 +4226,7 @@
       "completeInput": "In the attached optimized QM7-X geometry for molecule 7040 (16 atoms), row 3 is the molecule's only sulfur atom, and rows 4 and 5 are the two oxygen atoms with the shortest measured distance to row 3. What is the angle at row 3, measured from row 4 to row 3 to row 5? Report the value in degrees to two decimal places.\n\nThe attachment is one complete optimized XYZ structure, 16 atoms, coordinates in angstrom. Atom rows are numbered starting at 1, immediately after the two header lines. Do not renumber or reorder atoms; use the row numbers exactly as given.\n\nQNP005-7040-opt.xyz:\n16\nQM7-X native coordinates in angstrom (molecule 7040, Geom-m7040-i1-c1-opt)\nC -1.77265 0.280127 -1.146552\nC -0.247209 0.339636 -1.102341\nS 0.380931 -0.135934 0.574068\nO -0.232798 -1.36958 1.028974\nO 1.812654 0.087645 0.660931\nN -0.502155 1.369477 1.604364\nC 0.406963 -0.575382 -2.14081\nH -2.207035 0.94264 -0.401714\nH -2.12945 -0.73033 -0.960239\nH -2.128576 0.588782 -2.127483\nH 0.082008 1.373946 -1.274672\nH -1.104668 0.935496 2.305181\nH 0.244727 1.874634 2.083786\nH 0.12385 -1.613898 -1.98248\nH 1.491545 -0.50468 -2.098485\nH 0.086326 -0.288806 -3.140561\n",
       "inputDownload": "assets/qa/QNP005-input.txt",
       "learningObjective": "从三维坐标中直接读出指定三原子夹角（硫两侧最近氧）。",
-      "lifecycleReason": "2026-09-22 专项筛查：几何计算成立，但题目主要以元素和行号指定对象；量子来源标签不能代替领域考点。",
+      "lifecycleReason": "已有新版改写 QNP016（题型族 named_bond_angle，暂计），保留原始版本以追溯，不重复计数。",
       "derivedFrom": "Q02（规划方向）；官方 QM7-X 8000 分片中与 QNP001 不同的分子；批次 q02-force-v04-002。",
       "sourceCluster": "qm7x-8000-7040",
       "relatedQaIds": [
@@ -4231,7 +4238,8 @@
         "decision": "revise",
         "reason": "几何计算成立，但题目主要以元素和行号指定对象；量子来源标签不能代替领域考点。",
         "report": "screening.html#QNP005"
-      }
+      },
+      "supersededBy": "QNP016"
     },
     {
       "paper": "qm7x",
@@ -4322,8 +4330,8 @@
       "sourceRoute": "raw_structure_or_simulation",
       "prototypeScreeningPassed": true,
       "answerKind": "text",
-      "lifecycle": "rework",
-      "lifecycleLabel": "待修订",
+      "lifecycle": "archived",
+      "lifecycleLabel": "历史归档",
       "lifecycleReviewedAt": "2026-09-22",
       "attributionLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "missing": [
@@ -4333,7 +4341,7 @@
       "sizeDefinition": "输入按单个几何全部原子的最大中心距计；推理按题目中明确指出的原子子集（2-3个原子，或全分子在力/偶极题中）计算，不把附件整体规模当作推理范围。",
       "attribution": "QM7-X: Hoja et al., Scientific Data 8, 43 (2021), DOI 10.1038/s41597-021-00812-2; Zenodo 4288677, CC BY 4.0. Extracted native geometries/forces/dipole fields; newly authored QA.",
       "policyReview": "新版同会话初筛通过；感知题使用通用 xyz_distance/xyz_angle 数值验证器，由程序而非模型自行计算参考答案；推断题使用补充计算器与独立 Decimal 复核。物理解读待独立审核。",
-      "restartFrom": "M3/M4/M5：在 M3 补充有来源的选点理由/几何考点；保留基础测量时说明其不测电子结构能力。",
+      "restartFrom": "见新版 QNP013",
       "id": "QNP003",
       "title": "QM7-X 分子7070 · 氯碳最短间距",
       "ability": "perception",
@@ -4357,7 +4365,7 @@
       "completeInput": "In the attached optimized QM7-X geometry for molecule 7070 (10 atoms), row 1 is a chlorine atom and row 2 is the carbon atom with the shortest measured distance to row 1. What is the distance between row 1 and row 2? Report the value in angstrom to four decimal places.\n\nThe attachment is one complete optimized XYZ structure, 10 atoms, coordinates in angstrom. Atom rows are numbered starting at 1, immediately after the two header lines. Do not renumber or reorder atoms; use the row numbers exactly as given.\n\nQNP003-7070-opt.xyz:\n10\nQM7-X native coordinates in angstrom (molecule 7070, Geom-m7070-i1-c1-opt)\nCl -2.004459 0.67375 -0.009863\nC -0.267314 0.668684 -0.00096\nC 0.5696 1.772579 0.00402\nN 1.856811 1.298618 0.010338\nC 1.860398 -0.073074 0.009508\nC 0.536387 -0.480503 0.002457\nCl -0.054817 -2.113973 -0.001601\nH 0.34946 2.831326 0.003539\nH 2.686794 1.87912 0.014959\nH 2.77935 -0.643088 0.013879\n",
       "inputDownload": "assets/qa/QNP003-input.txt",
       "learningObjective": "从三维坐标中直接读出指定原子对的空间间距。",
-      "lifecycleReason": "2026-09-22 专项筛查：几何计算成立，但题目主要以元素和行号指定对象；量子来源标签不能代替领域考点。",
+      "lifecycleReason": "已有新版改写 QNP013（题型族 named_bond_distance，暂计），保留原始版本以追溯，不重复计数。",
       "derivedFrom": "Q02（规划方向）；官方 QM7-X 8000 分片中与 QNP001 不同的分子；批次 q02-force-v04-002。",
       "sourceCluster": "qm7x-8000-7070",
       "relatedQaIds": [
@@ -4369,7 +4377,8 @@
         "decision": "revise",
         "reason": "几何计算成立，但题目主要以元素和行号指定对象；量子来源标签不能代替领域考点。",
         "report": "screening.html#QNP003"
-      }
+      },
+      "supersededBy": "QNP013"
     },
     {
       "paper": "qm7x",
@@ -4455,8 +4464,8 @@
       "sourceRoute": "raw_structure_or_simulation",
       "prototypeScreeningPassed": true,
       "answerKind": "text",
-      "lifecycle": "rework",
-      "lifecycleLabel": "待修订",
+      "lifecycle": "archived",
+      "lifecycleLabel": "历史归档",
       "lifecycleReviewedAt": "2026-09-22",
       "attributionLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "missing": [
@@ -4466,7 +4475,7 @@
       "sizeDefinition": "输入按单个几何全部原子的最大中心距计；推理按题目中明确指出的原子子集（2-3个原子，或全分子在力/偶极题中）计算，不把附件整体规模当作推理范围。",
       "attribution": "QM7-X: Hoja et al., Scientific Data 8, 43 (2021), DOI 10.1038/s41597-021-00812-2; Zenodo 4288677, CC BY 4.0. Extracted native geometries/forces/dipole fields; newly authored QA.",
       "policyReview": "新版同会话初筛通过；感知题使用通用 xyz_distance/xyz_angle 数值验证器，由程序而非模型自行计算参考答案；推断题使用补充计算器与独立 Decimal 复核。物理解读待独立审核。",
-      "restartFrom": "M3/M4/M5：在 M3 补充有来源的选点理由/几何考点；保留基础测量时说明其不测电子结构能力。",
+      "restartFrom": "见新版 QNP015",
       "id": "QNP006",
       "title": "QM7-X 分子7122 · 碳氮最短间距",
       "ability": "perception",
@@ -4490,7 +4499,7 @@
       "completeInput": "In the attached optimized QM7-X geometry for molecule 7122 (11 atoms), row 7 is the molecule's only nitrogen atom, and row 5 is the carbon atom with the shortest measured distance to row 7. What is the distance between row 5 and row 7? Report the value in angstrom to four decimal places.\n\nThe attachment is one complete optimized XYZ structure, 11 atoms, coordinates in angstrom. Atom rows are numbered starting at 1, immediately after the two header lines. Do not renumber or reorder atoms; use the row numbers exactly as given.\n\nQNP006-7122-opt.xyz:\n11\nQM7-X native coordinates in angstrom (molecule 7122, Geom-m7122-i1-c1-opt)\nCl -2.420266 0.367376 0.081827\nC -0.685705 0.221908 0.021352\nC 0.197748 1.264676 0.010128\nO 1.467804 0.755458 -0.041067\nC 1.37612 -0.577775 -0.056707\nC 0.060119 -0.992887 -0.025013\nN 2.575376 -1.295667 -0.157538\nH 0.084812 2.339953 0.033725\nH -0.321044 -2.002339 -0.032243\nH 3.394628 -0.797591 0.174103\nH 2.526364 -2.25494 0.166108\n",
       "inputDownload": "assets/qa/QNP006-input.txt",
       "learningObjective": "从三维坐标中直接读出指定原子对的空间间距。",
-      "lifecycleReason": "2026-09-22 专项筛查：几何计算成立，但题目主要以元素和行号指定对象；量子来源标签不能代替领域考点。",
+      "lifecycleReason": "已有新版改写 QNP015（题型族 named_bond_distance，暂计），保留原始版本以追溯，不重复计数。",
       "derivedFrom": "Q02（规划方向）；官方 QM7-X 8000 分片中与 QNP001 不同的分子；批次 q02-force-v04-002。",
       "sourceCluster": "qm7x-8000-7122",
       "relatedQaIds": [],
@@ -4500,7 +4509,8 @@
         "decision": "revise",
         "reason": "几何计算成立，但题目主要以元素和行号指定对象；量子来源标签不能代替领域考点。",
         "report": "screening.html#QNP006"
-      }
+      },
+      "supersededBy": "QNP015"
     },
     {
       "paper": "oe62",
@@ -4569,7 +4579,7 @@
         {
           "instance": "FC-QNP007",
           "family": "extent_choice_v2",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FC-QNP007#workbench",
           "counted": false
@@ -4707,7 +4717,7 @@
         {
           "instance": "FC-QNP008",
           "family": "extent_choice_v2",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FC-QNP008#workbench",
           "counted": false
@@ -4779,7 +4789,7 @@
         {
           "instance": "FC-QNP009",
           "family": "extent_choice_v2",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FC-QNP009#workbench",
           "counted": false
@@ -4851,7 +4861,7 @@
         {
           "instance": "FC-QNP010",
           "family": "extent_choice_v2",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FC-QNP010#workbench",
           "counted": false
@@ -4923,7 +4933,7 @@
         {
           "instance": "FC-QNP011",
           "family": "extent_choice_v2",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FC-QNP011#workbench",
           "counted": false
@@ -5252,7 +5262,7 @@
         {
           "instance": "FC-MNP006",
           "family": "extent_choice_v2",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FC-MNP006#workbench",
           "counted": false
@@ -5327,7 +5337,7 @@
         {
           "instance": "FC-MNP007",
           "family": "extent_choice_v2",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FC-MNP007#workbench",
           "counted": false
@@ -5529,7 +5539,7 @@
         {
           "instance": "FC-MNP010",
           "family": "extent_choice_v2",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FC-MNP010#workbench",
           "counted": false
@@ -5551,8 +5561,8 @@
       "sourceRoute": "raw_structure_or_simulation",
       "prototypeScreeningPassed": true,
       "answerKind": "text",
-      "lifecycle": "rework",
-      "lifecycleLabel": "待修订",
+      "lifecycle": "archived",
+      "lifecycleLabel": "历史归档",
       "lifecycleReviewedAt": "2026-09-22",
       "attributionLicenseUrl": "https://www.crystallography.net/cod/",
       "missing": [
@@ -5562,7 +5572,7 @@
       "sizeDefinition": "全局尺度题：推理尺度为该子集（Zn 或全部原子）在一个常规晶胞内的最大原子间距。晶面间距/衍射角题：推理尺度为该晶面间距本身。结构因子题：推理尺度按整个晶胞参数计，因为求和覆盖晶胞内全部原子的分数坐标。比较题取两晶体晶胞参数中的较大值。",
       "attribution": "COD 4118891 (ZIF-8): Karagiaridi et al., J. Am. Chem. Soc. 134, 18790 (2012), DOI 10.1021/ja308786r；COD 1516287 (MOF-5): Lock et al., J. Phys. Chem. C 114, 16181 (2010), DOI 10.1021/jp103212z。两条目均为 Crystallography Open Database 贡献者置于公有领域。对称展开、全局尺度扫描、晶面间距/衍射角、结构因子消光定则的具体数值均为本批新计算，不是论文直接给出的数字。",
       "policyReview": "新版同会话初筛通过；全部题目走 evidence_review + 补充计算器（Decimal 精度、独立重新解析 CIF、独立算法实现），非通用注册数值验证器。物理解读待独立审核。",
-      "restartFrom": "M3/M4/M5：给明确的参考 d 与相同波长/级次，限制为条件衍射几何。",
+      "restartFrom": "见新版 MNI018",
       "id": "MNI006",
       "title": "ZIF-8 · 由晶面间距推导衍射角",
       "ability": "inference",
@@ -5586,7 +5596,7 @@
       "completeInput": "Using d(110)=1.1900819259 nm for ZIF-8 (from the preceding plane-spacing calculation) and a CuKa X-ray wavelength of 0.15406 nm, apply Bragg's law 2*d*sin(theta)=n*lambda (n=1) to find the first-order diffraction angle 2*theta. Report the value in degrees to two decimal places. Is this angle larger or smaller than you would get from a typical small-unit-cell inorganic salt (a a1-2 angstrom scale reflection)? Explain why in one sentence referencing the cell size.\n\nThis is a pure calculation from the stated d-spacing and wavelength; no coordinate file is needed beyond the ZIF-8 structural context already established (S0002 attached for that context). Use n=1 (first order) and the exact stated wavelength.\n\nMNI006-ZIF8-Zn.xyz:\n12\nZIF-8 Zn sublattice, one conventional cell, angstrom\nZn 0.0 4.207575 8.41515\nZn 0.0 8.41515 4.207575\nZn 0.0 8.41515 12.622725\nZn 0.0 12.622725 8.41515\nZn 4.207575 0.0 8.41515\nZn 4.207575 8.41515 0.0\nZn 8.41515 0.0 4.207575\nZn 8.41515 0.0 12.622725\nZn 8.41515 4.207575 0.0\nZn 8.41515 12.622725 0.0\nZn 12.622725 0.0 8.41515\nZn 12.622725 8.41515 0.0\n",
       "inputDownload": "assets/qa/MNI006-input.txt",
       "learningObjective": "由晶面间距通过布拉格定律推导衍射角，复用材料×0.1–1nm 批次已通过的方法族，并要求解释大晶胞如何导致更小衍射角。",
-      "lifecycleReason": "2026-09-22 专项筛查：比较对象写成含糊的 typical salt / a1-2 angstrom scale reflection，不能得到确定比较条件。",
+      "lifecycleReason": "已有新版改写 MNI018（题型族 first_diffraction_peak，暂计），保留原始版本以追溯，不重复计数。",
       "derivedFrom": "COD 官方结构新检索；批次 materials-nm-v04-001，填补材料域 1–10 nm 格。",
       "sourceCluster": "cod-zif8-4118891",
       "relatedQaIds": [
@@ -5598,7 +5608,8 @@
         "decision": "revise",
         "reason": "比较对象写成含糊的 typical salt / a1-2 angstrom scale reflection，不能得到确定比较条件。",
         "report": "screening.html#MNI006"
-      }
+      },
+      "supersededBy": "MNI018"
     },
     {
       "paper": "cod-mof",
@@ -5615,8 +5626,8 @@
       "sourceRoute": "raw_structure_or_simulation",
       "prototypeScreeningPassed": true,
       "answerKind": "text",
-      "lifecycle": "rework",
-      "lifecycleLabel": "待修订",
+      "lifecycle": "archived",
+      "lifecycleLabel": "历史归档",
       "lifecycleReviewedAt": "2026-09-22",
       "attributionLicenseUrl": "https://www.crystallography.net/cod/",
       "missing": [
@@ -5626,7 +5637,7 @@
       "sizeDefinition": "全局尺度题：推理尺度为该子集（Zn 或全部原子）在一个常规晶胞内的最大原子间距。晶面间距/衍射角题：推理尺度为该晶面间距本身。结构因子题：推理尺度按整个晶胞参数计，因为求和覆盖晶胞内全部原子的分数坐标。比较题取两晶体晶胞参数中的较大值。",
       "attribution": "COD 4118891 (ZIF-8): Karagiaridi et al., J. Am. Chem. Soc. 134, 18790 (2012), DOI 10.1021/ja308786r；COD 1516287 (MOF-5): Lock et al., J. Phys. Chem. C 114, 16181 (2010), DOI 10.1021/jp103212z。两条目均为 Crystallography Open Database 贡献者置于公有领域。对称展开、全局尺度扫描、晶面间距/衍射角、结构因子消光定则的具体数值均为本批新计算，不是论文直接给出的数字。",
       "policyReview": "新版同会话初筛通过；全部题目走 evidence_review + 补充计算器（Decimal 精度、独立重新解析 CIF、独立算法实现），非通用注册数值验证器。物理解读待独立审核。",
-      "restartFrom": "M3/M4/M5：在本题输入补齐参考 d 或角度及条件，再同步评分。",
+      "restartFrom": "见新版 MNI019",
       "id": "MNI007",
       "title": "MOF-5 · 由晶面间距推导衍射角",
       "ability": "inference",
@@ -5650,7 +5661,7 @@
       "completeInput": "Using d(111)=1.4909897497 nm for MOF-5 (from the preceding plane-spacing calculation) and a CuKa X-ray wavelength of 0.15406 nm, apply Bragg's law 2*d*sin(theta)=n*lambda (n=1) to find the first-order diffraction angle 2*theta. Report the value in degrees to two decimal places. Is this angle larger or smaller than the ZIF-8 (110) angle computed previously, and why?\n\nThis is a pure calculation from the stated d-spacing and wavelength; S0004 is attached for structural context. Use n=1 and the exact stated wavelength.\n\nMNI007-MOF5-Zn.xyz:\n32\nMOF-5 Zn sublattice, one conventional cell, angstrom\nZn 5.3321291078 5.3321291078 7.5802208922\nZn 5.3321291078 5.3321291078 18.2444791078\nZn 5.3321291078 7.5802208922 5.3321291078\nZn 5.3321291078 7.5802208922 20.4925708922\nZn 5.3321291078 18.2444791078 5.3321291078\nZn 5.3321291078 18.2444791078 20.4925708922\nZn 5.3321291078 20.4925708922 7.5802208922\nZn 5.3321291078 20.4925708922 18.2444791078\nZn 7.5802208922 5.3321291078 5.3321291078\nZn 7.5802208922 5.3321291078 20.4925708922\nZn 7.5802208922 7.5802208922 7.5802208922\nZn 7.5802208922 7.5802208922 18.2444791078\nZn 7.5802208922 18.2444791078 7.5802208922\nZn 7.5802208922 18.2444791078 18.2444791078\nZn 7.5802208922 20.4925708922 5.3321291078\nZn 7.5802208922 20.4925708922 20.4925708922\nZn 18.2444791078 5.3321291078 5.3321291078\nZn 18.2444791078 5.3321291078 20.4925708922\nZn 18.2444791078 7.5802208922 7.5802208922\nZn 18.2444791078 7.5802208922 18.2444791078\nZn 18.2444791078 18.2444791078 7.5802208922\nZn 18.2444791078 18.2444791078 18.2444791078\nZn 18.2444791078 20.4925708922 5.3321291078\nZn 18.2444791078 20.4925708922 20.4925708922\nZn 20.4925708922 5.3321291078 7.5802208922\nZn 20.4925708922 5.3321291078 18.2444791078\nZn 20.4925708922 7.5802208922 5.3321291078\nZn 20.4925708922 7.5802208922 20.4925708922\nZn 20.4925708922 18.2444791078 5.3321291078\nZn 20.4925708922 18.2444791078 20.4925708922\nZn 20.4925708922 20.4925708922 7.5802208922\nZn 20.4925708922 20.4925708922 18.2444791078\n",
       "inputDownload": "assets/qa/MNI007-input.txt",
       "learningObjective": "同上方法，并要求与 ZIF-8 结果比较。",
-      "lifecycleReason": "2026-09-22 专项筛查：要求比较 preceding ZIF-8 结果但当前输入未明确完整提供参考数值；不应依赖读者打开前题。",
+      "lifecycleReason": "已有新版改写 MNI019（题型族 first_diffraction_peak，暂计），保留原始版本以追溯，不重复计数。",
       "derivedFrom": "COD 官方结构新检索；批次 materials-nm-v04-001，填补材料域 1–10 nm 格。",
       "sourceCluster": "cod-mof5-1516287",
       "relatedQaIds": [
@@ -5662,7 +5673,8 @@
         "decision": "revise",
         "reason": "要求比较 preceding ZIF-8 结果但当前输入未明确完整提供参考数值；不应依赖读者打开前题。",
         "report": "screening.html#MNI007"
-      }
+      },
+      "supersededBy": "MNI019"
     },
     {
       "paper": "cod-mof",
@@ -5933,7 +5945,7 @@
         {
           "instance": "FC-CNP007",
           "family": "extent_choice_v2",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FC-CNP007#workbench",
           "counted": false
@@ -6007,7 +6019,7 @@
         {
           "instance": "FC-CNP008",
           "family": "extent_choice_v2",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FC-CNP008#workbench",
           "counted": false
@@ -6081,7 +6093,7 @@
         {
           "instance": "FC-CNP009",
           "family": "extent_choice_v2",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FC-CNP009#workbench",
           "counted": false
@@ -6224,7 +6236,7 @@
         {
           "instance": "FC-CNP011",
           "family": "extent_choice_v2",
-          "run": "family-pilot-v02",
+          "run": "family-pilot-v03",
           "independentCheck": "pass",
           "url": "templates.html?instance=FC-CNP011#workbench",
           "counted": false
@@ -6594,7 +6606,7 @@
       "inputSizeNm": 0.7393619073227942,
       "reasoningSizeNm": 0.3433890068129729,
       "sizeDefinition": "输入：三残基片段全部原子最大间距；推理：二面角首末两原子间距。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：1 位小数，绝对容差 0.05 degree。",
@@ -6622,7 +6634,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-TOR-1CRN-G20",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass",
       "numericVariant": {
         "value": "one number rounded to 1 decimals",
@@ -6652,7 +6664,7 @@
       "inputSizeNm": 1.2456284759108551,
       "reasoningSizeNm": 0.27801185226533054,
       "sizeDefinition": "输入：三残基片段全部原子最大间距；推理：二面角首末两原子间距。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：1 位小数，绝对容差 0.05 degree。",
@@ -6680,7 +6692,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-TOR-1UBQ-V26",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass",
       "numericVariant": {
         "value": "one number rounded to 1 decimals",
@@ -6710,7 +6722,7 @@
       "inputSizeNm": 0.9817885464803506,
       "reasoningSizeNm": 0.35989438728604833,
       "sizeDefinition": "输入：三残基片段全部原子最大间距；推理：二面角首末两原子间距。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：1 位小数，绝对容差 0.05 degree。",
@@ -6738,7 +6750,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-TOR-6LYZ-T43",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass",
       "numericVariant": {
         "value": "one number rounded to 1 decimals",
@@ -6768,7 +6780,7 @@
       "inputSizeNm": 0.564056,
       "reasoningSizeNm": 0.564056,
       "sizeDefinition": "输入与推理均为立方晶胞边长 a（相位求和跨越整个晶胞）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -6796,7 +6808,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-EXT-NACL",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -6822,7 +6834,7 @@
       "inputSizeNm": 0.356679,
       "reasoningSizeNm": 0.356679,
       "sizeDefinition": "输入与推理均为立方晶胞边长 a（相位求和跨越整个晶胞）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -6850,7 +6862,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-EXT-DIAMOND",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -6876,7 +6888,7 @@
       "inputSizeNm": 1.68303,
       "reasoningSizeNm": 1.68303,
       "sizeDefinition": "输入与推理均为立方晶胞边长 a（相位求和跨越整个晶胞）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -6904,7 +6916,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-EXT-SALEM2",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass",
       "derivedFrom": "MNI008"
     },
@@ -6931,7 +6943,7 @@
       "inputSizeNm": 2.58247,
       "reasoningSizeNm": 2.58247,
       "sizeDefinition": "输入与推理均为立方晶胞边长 a（相位求和跨越整个晶胞）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -6959,7 +6971,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-EXT-MOF5",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass",
       "derivedFrom": "MNI009"
     },
@@ -6986,7 +6998,7 @@
       "inputSizeNm": 0.6713871008624235,
       "reasoningSizeNm": 0.6713871008624235,
       "sizeDefinition": "输入与推理均为 S0 全部原子最大间距（整分子构象比较）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7034,7 +7046,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-CONF-7050-max_dipole",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7060,7 +7072,7 @@
       "inputSizeNm": 0.6615956540057455,
       "reasoningSizeNm": 0.6615956540057455,
       "sizeDefinition": "输入与推理均为 S0 全部原子最大间距（整分子构象比较）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7108,7 +7120,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-CONF-7206-min_energy",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7134,7 +7146,7 @@
       "inputSizeNm": 0.7170415396946609,
       "reasoningSizeNm": 0.7170415396946609,
       "sizeDefinition": "输入与推理均为 S0 全部原子最大间距（整分子构象比较）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7182,7 +7194,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-CONF-7095-min_energy",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7208,7 +7220,7 @@
       "inputSizeNm": 0.7088220342708457,
       "reasoningSizeNm": 0.7088220342708457,
       "sizeDefinition": "输入与推理均为 S0 全部原子最大间距（整分子构象比较）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7256,7 +7268,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-CONF-7032-max_dipole",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7282,7 +7294,7 @@
       "inputSizeNm": 0.7617336296539106,
       "reasoningSizeNm": 0.7170247334037858,
       "sizeDefinition": "输入：两结构最大原子间距；推理：S0 最大原子间距（整分子立体构型）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7315,7 +7327,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SREL-7029-SAME",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7341,7 +7353,7 @@
       "inputSizeNm": 0.5990907166336069,
       "reasoningSizeNm": 0.5364678108620684,
       "sizeDefinition": "输入：两结构最大原子间距；推理：S0 最大原子间距（整分子立体构型）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7374,7 +7386,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SREL-7052-SAME",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7400,7 +7412,7 @@
       "inputSizeNm": 0.5557256596782805,
       "reasoningSizeNm": 0.5557256596782805,
       "sizeDefinition": "输入：两结构最大原子间距；推理：S0 最大原子间距（整分子立体构型）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7433,7 +7445,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SREL-7208-ENAN",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7459,7 +7471,7 @@
       "inputSizeNm": 0.5858130250995759,
       "reasoningSizeNm": 0.5654129341819216,
       "sizeDefinition": "输入：两结构最大原子间距；推理：S0 最大原子间距（整分子立体构型）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7492,7 +7504,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SREL-7111-ENAN",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7518,7 +7530,7 @@
       "inputSizeNm": 0.6025249763701418,
       "reasoningSizeNm": 0.6025249763701418,
       "sizeDefinition": "输入：两结构最大原子间距；推理：S0 最大原子间距（整分子立体构型）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7551,7 +7563,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SREL-7110-DIAS",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7577,7 +7589,7 @@
       "inputSizeNm": 0.6049162599280912,
       "reasoningSizeNm": 0.6049162599280912,
       "sizeDefinition": "输入：两结构最大原子间距；推理：S0 最大原子间距（整分子立体构型）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7610,7 +7622,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SREL-7043-DIAS",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7636,7 +7648,7 @@
       "inputSizeNm": 0.687155464554465,
       "reasoningSizeNm": 0.649932010519285,
       "sizeDefinition": "输入：两结构最大原子间距；推理：S0 最大原子间距（整分子立体构型）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7669,7 +7681,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SREL-7082-CONS",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7695,7 +7707,7 @@
       "inputSizeNm": 0.6864337561314057,
       "reasoningSizeNm": 0.6864337561314057,
       "sizeDefinition": "输入：两结构最大原子间距；推理：S0 最大原子间距（整分子立体构型）。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7728,7 +7740,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SREL-7033-CONS",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7754,7 +7766,7 @@
       "inputSizeNm": 0.649932010519285,
       "reasoningSizeNm": 0.649932010519285,
       "sizeDefinition": "输入与推理均为 S0 最大原子间距。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7787,7 +7799,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SPROP-7082",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7813,7 +7825,7 @@
       "inputSizeNm": 0.6871554639648585,
       "reasoningSizeNm": 0.6871554639648585,
       "sizeDefinition": "输入与推理均为 S0 最大原子间距。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7846,7 +7858,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SPROP-7089",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7872,7 +7884,7 @@
       "inputSizeNm": 0.6025249763701418,
       "reasoningSizeNm": 0.6025249763701418,
       "sizeDefinition": "输入与推理均为 S0 最大原子间距。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7905,7 +7917,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SPROP-7110",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7931,7 +7943,7 @@
       "inputSizeNm": 0.6749999879174888,
       "reasoningSizeNm": 0.6749999879174888,
       "sizeDefinition": "输入与推理均为 S0 最大原子间距。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -7964,7 +7976,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SPROP-7114",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -7990,7 +8002,7 @@
       "inputSizeNm": 0.6826573719910377,
       "reasoningSizeNm": 0.6826573719910377,
       "sizeDefinition": "输入与推理均为 S0 最大原子间距。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -8038,7 +8050,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SDES-7029",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -8064,7 +8076,7 @@
       "inputSizeNm": 0.5821762436222042,
       "reasoningSizeNm": 0.5821762436222042,
       "sizeDefinition": "输入与推理均为 S0 最大原子间距。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -8112,7 +8124,7 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SDES-7033",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
     },
     {
@@ -8138,7 +8150,7 @@
       "inputSizeNm": 0.5827781792045839,
       "reasoningSizeNm": 0.5827781792045839,
       "sizeDefinition": "输入与推理均为 S0 最大原子间距。",
-      "batchId": "family-pilot-v02",
+      "batchId": "family-pilot-v03",
       "benchmarkReady": false,
       "releaseRole": "public_development_example",
       "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
@@ -8186,12 +8198,1226 @@
       "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "admission": "provisional_auto_verified",
       "familyInstance": "FA-SDES-7110",
-      "familyRun": "family-pilot-v02",
+      "familyRun": "family-pilot-v03",
       "independentCheck": "pass"
+    },
+    {
+      "id": "QNP012",
+      "title": "QM7-X 7035 · 磺酰 S=O 键长（四选一）",
+      "paper": "qm7x",
+      "ability": "perception",
+      "domain": "quantum",
+      "scale": "small_molecule",
+      "reasoning": "atom_pair",
+      "status": "pending_human_audit",
+      "family": "named_bond_distance",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（Decimal distance; own bonding rule）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7035, an alkyl methyl sulfone (17 atoms, angstrom); rows are counted from 1 after the two header lines. In this supplied structure, atoms S3 (row 3) and O4 (row 4) form one of the two S=O bonds of the sulfonyl group (S3 carries two O atoms and two C atoms). What is this bond length?",
+      "modelInput": "附件：QNP002-7035-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7035 优化几何；只测该结构中的键长，不据此判断键级。 只回答一个字母 A、B、C 或 D。",
+      "answer": "B · 1.462（数值作答：1.462 angstrom）",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "inputSizeNm": 0.59732507247796,
+      "reasoningSizeNm": 0.14615652690964573,
+      "sizeDefinition": "输入：分子最大原子间距；推理：两成键原子间距。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：3 位小数，绝对容差 0.0005 angstrom。",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-DIST-7035-SO#workbench",
+      "inputInstructions": "附件：QNP002-7035-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7035 优化几何；只测该结构中的键长，不据此判断键级。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "QNP002-7035-opt.xyz",
+          "url": "assets/families/instances/QNP012/QNP002-7035-opt.xyz",
+          "description": "xyz；angstrom；19 行"
+        }
+      ],
+      "completeInput": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7035, an alkyl methyl sulfone (17 atoms, angstrom); rows are counted from 1 after the two header lines. In this supplied structure, atoms S3 (row 3) and O4 (row 4) form one of the two S=O bonds of the sulfonyl group (S3 carries two O atoms and two C atoms). What is this bond length?\n\n选项：\nA. 1.440 Å\nB. 1.462 Å\nC. 1.848 Å\nD. 1.876 Å\n\n附件：QNP002-7035-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7035 优化几何；只测该结构中的键长，不据此判断键级。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/QNP012/input.txt",
+      "learningObjective": "测定按化学含义指定的键长（磺酰 S=O、芳环 C–Cl、N–N、C–NH2），原子由成键关系确认，不是任意行号。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-DIST-7035-SO",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "derivedFrom": "QNP002",
+      "numericVariant": {
+        "value": "one number rounded to 3 decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "QNP013",
+      "title": "QM7-X 7070 · 芳环 C–Cl 键长（四选一）",
+      "paper": "qm7x",
+      "ability": "perception",
+      "domain": "quantum",
+      "scale": "small_molecule",
+      "reasoning": "atom_pair",
+      "status": "pending_human_audit",
+      "family": "named_bond_distance",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（Decimal distance; own bonding rule）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7070, a dichloro-1H-pyrrole (10 atoms, angstrom); rows are counted from 1 after the two header lines. In this supplied structure, atoms Cl1 (row 1) and C2 (row 2) form the bond between a chlorine substituent and its ring carbon. What is this bond length?",
+      "modelInput": "附件：QNP003-7070-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7070 优化几何；只测该结构中的键长。 只回答一个字母 A、B、C 或 D。",
+      "answer": "B · 1.737（数值作答：1.737 angstrom）",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "inputSizeNm": 0.49617995273175836,
+      "reasoningSizeNm": 0.17371752009483674,
+      "sizeDefinition": "输入：分子最大原子间距；推理：两成键原子间距。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：3 位小数，绝对容差 0.0005 angstrom。",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-DIST-7070-CCl#workbench",
+      "inputInstructions": "附件：QNP003-7070-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7070 优化几何；只测该结构中的键长。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "QNP003-7070-opt.xyz",
+          "url": "assets/families/instances/QNP013/QNP003-7070-opt.xyz",
+          "description": "xyz；angstrom；12 行"
+        }
+      ],
+      "completeInput": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7070, a dichloro-1H-pyrrole (10 atoms, angstrom); rows are counted from 1 after the two header lines. In this supplied structure, atoms Cl1 (row 1) and C2 (row 2) form the bond between a chlorine substituent and its ring carbon. What is this bond length?\n\n选项：\nA. 1.402 Å\nB. 1.737 Å\nC. 1.780 Å\nD. 2.791 Å\n\n附件：QNP003-7070-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7070 优化几何；只测该结构中的键长。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/QNP013/input.txt",
+      "learningObjective": "测定按化学含义指定的键长（磺酰 S=O、芳环 C–Cl、N–N、C–NH2），原子由成键关系确认，不是任意行号。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-DIST-7070-CCl",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "derivedFrom": "QNP003",
+      "numericVariant": {
+        "value": "one number rounded to 3 decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "QNP014",
+      "title": "QM7-X 7002 · 末端 N–N 键长（四选一）",
+      "paper": "qm7x",
+      "ability": "perception",
+      "domain": "quantum",
+      "scale": "small_molecule",
+      "reasoning": "atom_pair",
+      "status": "pending_human_audit",
+      "family": "named_bond_distance",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（Decimal distance; own bonding rule）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7002 (11 atoms, angstrom); rows are counted from 1 after the two header lines. N6 is terminal and bonded only to N5. In this supplied structure, atoms N5 (row 5) and N6 (row 6) form the nitrogen–nitrogen bond at the end of the N–N=N-type chain (N5 bonded to C4 and N6). What is this bond length?",
+      "modelInput": "附件：QNP004-7002-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7002 优化几何；只测该结构中的键长，不据此判断键级。 只回答一个字母 A、B、C 或 D。",
+      "answer": "A · 1.187（数值作答：1.187 angstrom）",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "inputSizeNm": 0.6088890329270844,
+      "reasoningSizeNm": 0.11872477578205823,
+      "sizeDefinition": "输入：分子最大原子间距；推理：两成键原子间距。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：3 位小数，绝对容差 0.0005 angstrom。",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-DIST-7002-NN#workbench",
+      "inputInstructions": "附件：QNP004-7002-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7002 优化几何；只测该结构中的键长，不据此判断键级。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "QNP004-7002-opt.xyz",
+          "url": "assets/families/instances/QNP014/QNP004-7002-opt.xyz",
+          "description": "xyz；angstrom；13 行"
+        }
+      ],
+      "completeInput": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7002 (11 atoms, angstrom); rows are counted from 1 after the two header lines. N6 is terminal and bonded only to N5. In this supplied structure, atoms N5 (row 5) and N6 (row 6) form the nitrogen–nitrogen bond at the end of the N–N=N-type chain (N5 bonded to C4 and N6). What is this bond length?\n\n选项：\nA. 1.187 Å\nB. 1.376 Å\nC. 1.420 Å\nD. 2.244 Å\n\n附件：QNP004-7002-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7002 优化几何；只测该结构中的键长，不据此判断键级。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/QNP014/input.txt",
+      "learningObjective": "测定按化学含义指定的键长（磺酰 S=O、芳环 C–Cl、N–N、C–NH2），原子由成键关系确认，不是任意行号。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-DIST-7002-NN",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "derivedFrom": "QNP004",
+      "numericVariant": {
+        "value": "one number rounded to 3 decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "QNP015",
+      "title": "QM7-X 7122 · C–NH2 键长（四选一）",
+      "paper": "qm7x",
+      "ability": "perception",
+      "domain": "quantum",
+      "scale": "small_molecule",
+      "reasoning": "atom_pair",
+      "status": "pending_human_audit",
+      "family": "named_bond_distance",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（Decimal distance; own bonding rule）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7122, an amino-substituted chlorofuran (11 atoms, angstrom); rows are counted from 1 after the two header lines. In this supplied structure, atoms C5 (row 5) and N7 (row 7) form the bond joining the NH2 group (N7 with two H) to the furan ring carbon C5. What is this bond length?",
+      "modelInput": "附件：QNP006-7122-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7122 优化几何；只测该结构中的键长。 只回答一个字母 A、B、C 或 D。",
+      "answer": "C · 1.401（数值作答：1.401 angstrom）",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "inputSizeNm": 0.5931159684454719,
+      "reasoningSizeNm": 0.14013389196625486,
+      "sizeDefinition": "输入：分子最大原子间距；推理：两成键原子间距。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：3 位小数，绝对容差 0.0005 angstrom。",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-DIST-7122-CN#workbench",
+      "inputInstructions": "附件：QNP006-7122-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7122 优化几何；只测该结构中的键长。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "QNP006-7122-opt.xyz",
+          "url": "assets/families/instances/QNP015/QNP006-7122-opt.xyz",
+          "description": "xyz；angstrom；13 行"
+        }
+      ],
+      "completeInput": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7122, an amino-substituted chlorofuran (11 atoms, angstrom); rows are counted from 1 after the two header lines. In this supplied structure, atoms C5 (row 5) and N7 (row 7) form the bond joining the NH2 group (N7 with two H) to the furan ring carbon C5. What is this bond length?\n\n选项：\nA. 1.336 Å\nB. 1.380 Å\nC. 1.401 Å\nD. 1.470 Å\n\n附件：QNP006-7122-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7122 优化几何；只测该结构中的键长。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/QNP015/input.txt",
+      "learningObjective": "测定按化学含义指定的键长（磺酰 S=O、芳环 C–Cl、N–N、C–NH2），原子由成键关系确认，不是任意行号。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-DIST-7122-CN",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "derivedFrom": "QNP006",
+      "numericVariant": {
+        "value": "one number rounded to 3 decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "BNP016",
+      "title": "6LYZ · Cys6–Cys127 二硫键 SG–SG 距离（四选一）",
+      "paper": "pdb-bio-nm",
+      "ability": "perception",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "local_geometry",
+      "status": "pending_human_audit",
+      "family": "named_bond_distance",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（Decimal distance; own bonding rule）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The excerpt gives the SSBOND record and the ATOM records of Cys6 and Cys127 of hen egg-white lysozyme (PDB 6LYZ, chain A), copied unchanged (angstrom). In this supplied structure, atoms SG(Cys6) and SG(Cys127) form the disulfide bridge listed in the SSBOND record. What is this bond length?",
+      "modelInput": "附件：6LYZ-excerpt.pdb（均为本题完整输入）。范围：6LYZ 晶体结构两个半胱氨酸；只测 SG–SG 距离，不据此单独判定成键状态。 只回答一个字母 A、B、C 或 D。",
+      "answer": "B · 2.031（数值作答：2.031 angstrom）",
+      "source": "https://www.rcsb.org/structure/6LYZ",
+      "inputSizeNm": 0.8856517600050259,
+      "reasoningSizeNm": 0.20306976633659674,
+      "sizeDefinition": "输入：两残基片段最大原子间距；推理：SG–SG 距离。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：3 位小数，绝对容差 0.0005 angstrom。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；SSBOND 与 ATOM 记录原样摘录。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-DIST-6LYZ-SS#workbench",
+      "inputInstructions": "附件：6LYZ-excerpt.pdb（均为本题完整输入）。范围：6LYZ 晶体结构两个半胱氨酸；只测 SG–SG 距离，不据此单独判定成键状态。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "6LYZ-excerpt.pdb",
+          "url": "assets/families/instances/BNP016/6LYZ-excerpt.pdb",
+          "description": "pdb-excerpt；angstrom；14 行"
+        }
+      ],
+      "completeInput": "The excerpt gives the SSBOND record and the ATOM records of Cys6 and Cys127 of hen egg-white lysozyme (PDB 6LYZ, chain A), copied unchanged (angstrom). In this supplied structure, atoms SG(Cys6) and SG(Cys127) form the disulfide bridge listed in the SSBOND record. What is this bond length?\n\n选项：\nA. 1.820 Å\nB. 2.031 Å\nC. 2.100 Å\nD. 3.837 Å\n\n附件：6LYZ-excerpt.pdb（均为本题完整输入）。范围：6LYZ 晶体结构两个半胱氨酸；只测 SG–SG 距离，不据此单独判定成键状态。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/BNP016/input.txt",
+      "learningObjective": "测定晶体结构中 SSBOND 记录所列二硫键的 SG–SG 距离；只作几何测量，不据此单独判定成键状态。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-DIST-6LYZ-SS",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "derivedFrom": "BNP007",
+      "numericVariant": {
+        "value": "one number rounded to 3 decimals",
+        "unit": "angstrom"
+      }
+    },
+    {
+      "id": "QNP016",
+      "title": "QM7-X 7040 · 磺酰 O=S=O 键角（四选一）",
+      "paper": "qm7x",
+      "ability": "perception",
+      "domain": "quantum",
+      "scale": "small_molecule",
+      "reasoning": "local_geometry",
+      "status": "pending_human_audit",
+      "family": "named_bond_angle",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（law of cosines from three Decimal distances）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7040 (16 atoms, angstrom). Atoms O4–S3–O5 form the O=S=O unit of the sulfonyl group on S3 (O4 = row 4, S3 = row 3, O5 = row 5; rows counted from 1 after the two XYZ header lines). What is the O4–S3–O5 bond angle at S3 in this supplied conformer?",
+      "modelInput": "附件：QNP005-7040-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7040 优化几何；只测该结构中的键角。 只回答一个字母 A、B、C 或 D。",
+      "answer": "D · 121.96（数值作答：121.96 degree）",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "inputSizeNm": 0.5707318812349981,
+      "reasoningSizeNm": 0.25382738691437534,
+      "sizeDefinition": "输入：分子最大原子间距；推理：三原子两两最大间距。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：2 位小数，绝对容差 0.005 degree。",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-ANG-7040-OSO#workbench",
+      "inputInstructions": "附件：QNP005-7040-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7040 优化几何；只测该结构中的键角。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "QNP005-7040-opt.xyz",
+          "url": "assets/families/instances/QNP016/QNP005-7040-opt.xyz",
+          "description": "xyz；angstrom；18 行"
+        }
+      ],
+      "completeInput": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7040 (16 atoms, angstrom). Atoms O4–S3–O5 form the O=S=O unit of the sulfonyl group on S3 (O4 = row 4, S3 = row 3, O5 = row 5; rows counted from 1 after the two XYZ header lines). What is the O4–S3–O5 bond angle at S3 in this supplied conformer?\n\n选项：\nA. 109.47°\nB. 110.43°\nC. 111.01°\nD. 121.96°\n\n附件：QNP005-7040-opt.xyz（均为本题完整输入）。范围：QM7-X 分子 7040 优化几何；只测该结构中的键角。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/QNP016/input.txt",
+      "learningObjective": "测定按化学含义指定的键角（如磺酰 O=S=O），顶点与两端的成键由规则确认。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-ANG-7040-OSO",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "derivedFrom": "QNP005",
+      "numericVariant": {
+        "value": "one number rounded to 2 decimals",
+        "unit": "degree"
+      }
+    },
+    {
+      "id": "MNP011",
+      "title": "MgO · Mg 周围 O 最近壳层（四选一）",
+      "paper": "cod-materials-cell",
+      "ability": "perception",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "status": "pending_human_audit",
+      "family": "coordination_shell",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（own periodic neighbour search over 27 cells）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The table lists every atom of one conventional cubic cell of periclase (MgO, COD 1000053). Treat the crystal as infinite and periodic. Around the Mg atom at fractional (0.0000, 0.0000, 0.0000), how many O atoms form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.",
+      "modelInput": "附件：FA-COORD-MGO-cell.txt（均为本题完整输入）。范围：常规立方晶胞对称展开；周期晶体。 只回答一个字母 A、B、C 或 D。",
+      "answer": "D · 6 at 2.109 Å",
+      "source": "https://www.crystallography.net/cod/1000053.html",
+      "inputSizeNm": 0.42169999999999996,
+      "reasoningSizeNm": 0.42169999999999996,
+      "sizeDefinition": "输入：晶胞边长；推理：中心与最近壳层全部原子的最大间距。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
+      "attribution": "Crystallography Open Database（公有领域）。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-COORD-MGO#workbench",
+      "inputInstructions": "附件：FA-COORD-MGO-cell.txt（均为本题完整输入）。范围：常规立方晶胞对称展开；周期晶体。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "FA-COORD-MGO-cell.txt",
+          "url": "assets/families/instances/MNP011/FA-COORD-MGO-cell.txt",
+          "description": "fractional-cell-table；fractional; a in angstrom；9 行"
+        }
+      ],
+      "completeInput": "The table lists every atom of one conventional cubic cell of periclase (MgO, COD 1000053). Treat the crystal as infinite and periodic. Around the Mg atom at fractional (0.0000, 0.0000, 0.0000), how many O atoms form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.\n\n选项：\nA. 8 at 3.652 Å\nB. 3 at 2.109 Å\nC. 12 at 2.982 Å\nD. 6 at 2.109 Å\n\n附件：FA-COORD-MGO-cell.txt（均为本题完整输入）。范围：常规立方晶胞对称展开；周期晶体。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/MNP011/input.txt",
+      "learningObjective": "在无限周期晶体中确定指定中心周围某物种的最近壳层（个数与距离），必须计入相邻晶胞映像；包括网络节点层面的连接数。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-COORD-MGO",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "derivedFrom": "MNP004"
+    },
+    {
+      "id": "MNP012",
+      "title": "CsCl · Cs 周围 Cl 最近壳层（四选一）",
+      "paper": "cod-materials-cell",
+      "ability": "perception",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "status": "pending_human_audit",
+      "family": "coordination_shell",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（own periodic neighbour search over 27 cells）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The table lists every atom of one conventional cubic cell of caesium chloride (CsCl, COD 9008789). Treat the crystal as infinite and periodic. Around the Cs atom at fractional (0.0000, 0.0000, 0.0000), how many Cl atoms form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.",
+      "modelInput": "附件：FA-COORD-CSCL-cell.txt（均为本题完整输入）。范围：常规立方晶胞对称展开；周期晶体。 只回答一个字母 A、B、C 或 D。",
+      "answer": "A · 8 at 3.571 Å",
+      "source": "https://www.crystallography.net/cod/9008789.html",
+      "inputSizeNm": 0.4123,
+      "reasoningSizeNm": 0.7141245479606482,
+      "sizeDefinition": "输入：晶胞边长；推理：中心与最近壳层全部原子的最大间距。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
+      "attribution": "Crystallography Open Database（公有领域）。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-COORD-CSCL#workbench",
+      "inputInstructions": "附件：FA-COORD-CSCL-cell.txt（均为本题完整输入）。范围：常规立方晶胞对称展开；周期晶体。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "FA-COORD-CSCL-cell.txt",
+          "url": "assets/families/instances/MNP012/FA-COORD-CSCL-cell.txt",
+          "description": "fractional-cell-table；fractional; a in angstrom；3 行"
+        }
+      ],
+      "completeInput": "The table lists every atom of one conventional cubic cell of caesium chloride (CsCl, COD 9008789). Treat the crystal as infinite and periodic. Around the Cs atom at fractional (0.0000, 0.0000, 0.0000), how many Cl atoms form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.\n\n选项：\nA. 8 at 3.571 Å\nB. 1 at 3.571 Å\nC. 12 at 6.837 Å\nD. 6 at 4.123 Å\n\n附件：FA-COORD-CSCL-cell.txt（均为本题完整输入）。范围：常规立方晶胞对称展开；周期晶体。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/MNP012/input.txt",
+      "learningObjective": "在无限周期晶体中确定指定中心周围某物种的最近壳层（个数与距离），必须计入相邻晶胞映像；包括网络节点层面的连接数。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-COORD-CSCL",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "derivedFrom": "MNP005"
+    },
+    {
+      "id": "MNP013",
+      "title": "SALEM-2 · Zn–Zn 最近壳层（方钠石四连接）",
+      "paper": "cod-mof",
+      "ability": "perception",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "status": "pending_human_audit",
+      "family": "coordination_shell",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（own periodic neighbour search over 27 cells）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The table lists every atom of one conventional cubic cell of Zn(imidazolate)2 with ZIF-8 sodalite topology (SALEM-2, COD 4118891; major-occupancy linker sites). Treat the crystal as infinite and periodic. Around the Zn atom at fractional (0.0000, 0.2500, 0.5000), how many other Zn atoms form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.",
+      "modelInput": "附件：FA-COORD-SALEM2-ZN-cell.txt（均为本题完整输入）。范围：一个常规立方晶胞 204 个原子；周期晶体；Zn–Zn 壳层体现方钠石拓扑的 4 连接。 只回答一个字母 A、B、C 或 D。",
+      "answer": "B · 4 at 5.950 Å",
+      "source": "https://www.crystallography.net/cod/4118891.html",
+      "inputSizeNm": 1.68303,
+      "reasoningSizeNm": 1.0306411804490931,
+      "sizeDefinition": "输入：晶胞边长；推理：中心与最近壳层全部原子的最大间距。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
+      "attribution": "Crystallography Open Database（公有领域）。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-COORD-SALEM2-ZN#workbench",
+      "inputInstructions": "附件：FA-COORD-SALEM2-ZN-cell.txt（均为本题完整输入）。范围：一个常规立方晶胞 204 个原子；周期晶体；Zn–Zn 壳层体现方钠石拓扑的 4 连接。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "FA-COORD-SALEM2-ZN-cell.txt",
+          "url": "assets/families/instances/MNP013/FA-COORD-SALEM2-ZN-cell.txt",
+          "description": "fractional-cell-table；fractional; a in angstrom；205 行"
+        }
+      ],
+      "completeInput": "The table lists every atom of one conventional cubic cell of Zn(imidazolate)2 with ZIF-8 sodalite topology (SALEM-2, COD 4118891; major-occupancy linker sites). Treat the crystal as infinite and periodic. Around the Zn atom at fractional (0.0000, 0.2500, 0.5000), how many other Zn atoms form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.\n\n选项：\nA. 3 at 5.950 Å\nB. 4 at 5.950 Å\nC. 2 at 5.950 Å\nD. 2 at 8.415 Å\n\n附件：FA-COORD-SALEM2-ZN-cell.txt（均为本题完整输入）。范围：一个常规立方晶胞 204 个原子；周期晶体；Zn–Zn 壳层体现方钠石拓扑的 4 连接。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/MNP013/input.txt",
+      "learningObjective": "在无限周期晶体中确定指定中心周围某物种的最近壳层（个数与距离），必须计入相邻晶胞映像；包括网络节点层面的连接数。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-COORD-SALEM2-ZN",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass"
+    },
+    {
+      "id": "MNP014",
+      "title": "MOF-5 · Zn4O 节点最近壳层（六连接）",
+      "paper": "cod-mof",
+      "ability": "perception",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "status": "pending_human_audit",
+      "family": "coordination_shell",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（own periodic neighbour search over 27 cells）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The table lists every atom of one conventional cubic cell of MOF-5 (Zn4O(BDC)3, COD 1516287). Treat the crystal as infinite and periodic. Around the central μ4-O atom of a Zn4O cluster (the O bonded to four Zn) at fractional (0.2500, 0.2500, 0.2500), how many other μ4-O atoms (Zn4O cluster centres) form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.",
+      "modelInput": "附件：FA-COORD-MOF5-NODE-cell.txt（均为本题完整输入）。范围：一个常规立方晶胞 424 个原子；周期晶体；节点–节点壳层体现 pcu 网络的 6 连接。 只回答一个字母 A、B、C 或 D。",
+      "answer": "C · 6 at 12.912 Å",
+      "source": "https://www.crystallography.net/cod/1516287.html",
+      "inputSizeNm": 2.58247,
+      "reasoningSizeNm": 2.58247,
+      "sizeDefinition": "输入：晶胞边长；推理：中心与最近壳层全部原子的最大间距。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。",
+      "attribution": "Crystallography Open Database（公有领域）。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-COORD-MOF5-NODE#workbench",
+      "inputInstructions": "附件：FA-COORD-MOF5-NODE-cell.txt（均为本题完整输入）。范围：一个常规立方晶胞 424 个原子；周期晶体；节点–节点壳层体现 pcu 网络的 6 连接。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "FA-COORD-MOF5-NODE-cell.txt",
+          "url": "assets/families/instances/MNP014/FA-COORD-MOF5-NODE-cell.txt",
+          "description": "fractional-cell-table；fractional; a in angstrom；425 行"
+        }
+      ],
+      "completeInput": "The table lists every atom of one conventional cubic cell of MOF-5 (Zn4O(BDC)3, COD 1516287). Treat the crystal as infinite and periodic. Around the central μ4-O atom of a Zn4O cluster (the O bonded to four Zn) at fractional (0.2500, 0.2500, 0.2500), how many other μ4-O atoms (Zn4O cluster centres) form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.\n\n选项：\nA. 12 at 3.200 Å\nB. 12 at 18.261 Å\nC. 6 at 12.912 Å\nD. 3 at 12.912 Å\n\n附件：FA-COORD-MOF5-NODE-cell.txt（均为本题完整输入）。范围：一个常规立方晶胞 424 个原子；周期晶体；节点–节点壳层体现 pcu 网络的 6 连接。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/MNP014/input.txt",
+      "learningObjective": "在无限周期晶体中确定指定中心周围某物种的最近壳层（个数与距离），必须计入相邻晶胞映像；包括网络节点层面的连接数。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-COORD-MOF5-NODE",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass"
+    },
+    {
+      "id": "MNI015",
+      "title": "NaCl · 首个衍射峰 2θ（四选一）",
+      "paper": "cod-materials-cell",
+      "ability": "inference",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "status": "pending_human_audit",
+      "family": "first_diffraction_peak",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（all (h k l) up to 5 with own structure-factor sum）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The table lists every atom of one conventional cubic cell of halite (NaCl, COD 9008678). Use the kinematic structure factor with atomic numbers as angle-independent weights (Cl = 17, Na = 11). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
+      "modelInput": "附件：FA-PEAK-NACL-cell.txt（均为本题完整输入）。范围：运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "answer": "D · 27.36（数值作答：27.36 degree）",
+      "source": "https://www.crystallography.net/cod/9008678.html",
+      "inputSizeNm": 0.564056,
+      "reasoningSizeNm": 0.3256578834380236,
+      "sizeDefinition": "输入：晶胞边长；推理：答案反射的晶面间距 d。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：2 位小数，绝对容差 0.005 degree。",
+      "attribution": "Crystallography Open Database（公有领域）。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-PEAK-NACL#workbench",
+      "inputInstructions": "附件：FA-PEAK-NACL-cell.txt（均为本题完整输入）。范围：运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "FA-PEAK-NACL-cell.txt",
+          "url": "assets/families/instances/MNI015/FA-PEAK-NACL-cell.txt",
+          "description": "fractional-cell-table；fractional; a in angstrom；9 行"
+        }
+      ],
+      "completeInput": "The table lists every atom of one conventional cubic cell of halite (NaCl, COD 9008678). Use the kinematic structure factor with atomic numbers as angle-independent weights (Cl = 17, Na = 11). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?\n\n选项：\nA. 13.68°\nB. 15.70°\nC. 22.27°\nD. 27.36°\n\n附件：FA-PEAK-NACL-cell.txt（均为本题完整输入）。范围：运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/MNI015/input.txt",
+      "learningObjective": "由全部原子坐标判断最先出现的非消光反射，再由布拉格定律求 2θ；把消光（结构）与衍射几何联系起来。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-PEAK-NACL",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "numericVariant": {
+        "value": "one number rounded to 2 decimals",
+        "unit": "degree"
+      }
+    },
+    {
+      "id": "MNI016",
+      "title": "CsCl · 首个衍射峰 2θ（四选一）",
+      "paper": "cod-materials-cell",
+      "ability": "inference",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "status": "pending_human_audit",
+      "family": "first_diffraction_peak",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（all (h k l) up to 5 with own structure-factor sum）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The table lists every atom of one conventional cubic cell of caesium chloride (CsCl, COD 9008789). Use the kinematic structure factor with atomic numbers as angle-independent weights (Cl = 17, Cs = 55). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
+      "modelInput": "附件：FA-PEAK-CSCL-cell.txt（均为本题完整输入）。范围：运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "answer": "B · 21.54（数值作答：21.54 degree）",
+      "source": "https://www.crystallography.net/cod/9008789.html",
+      "inputSizeNm": 0.4123,
+      "reasoningSizeNm": 0.4123,
+      "sizeDefinition": "输入：晶胞边长；推理：答案反射的晶面间距 d。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：2 位小数，绝对容差 0.005 degree。",
+      "attribution": "Crystallography Open Database（公有领域）。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-PEAK-CSCL#workbench",
+      "inputInstructions": "附件：FA-PEAK-CSCL-cell.txt（均为本题完整输入）。范围：运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "FA-PEAK-CSCL-cell.txt",
+          "url": "assets/families/instances/MNI016/FA-PEAK-CSCL-cell.txt",
+          "description": "fractional-cell-table；fractional; a in angstrom；3 行"
+        }
+      ],
+      "completeInput": "The table lists every atom of one conventional cubic cell of caesium chloride (CsCl, COD 9008789). Use the kinematic structure factor with atomic numbers as angle-independent weights (Cl = 17, Cs = 55). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?\n\n选项：\nA. 10.77°\nB. 21.54°\nC. 30.64°\nD. 37.76°\n\n附件：FA-PEAK-CSCL-cell.txt（均为本题完整输入）。范围：运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/MNI016/input.txt",
+      "learningObjective": "由全部原子坐标判断最先出现的非消光反射，再由布拉格定律求 2θ；把消光（结构）与衍射几何联系起来。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-PEAK-CSCL",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "numericVariant": {
+        "value": "one number rounded to 2 decimals",
+        "unit": "degree"
+      }
+    },
+    {
+      "id": "MNI017",
+      "title": "MgO · 首个衍射峰 2θ（四选一）",
+      "paper": "cod-materials-cell",
+      "ability": "inference",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "status": "pending_human_audit",
+      "family": "first_diffraction_peak",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（all (h k l) up to 5 with own structure-factor sum）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The table lists every atom of one conventional cubic cell of periclase (MgO, COD 1000053). Use the kinematic structure factor with atomic numbers as angle-independent weights (Mg = 12, O = 8). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
+      "modelInput": "附件：FA-PEAK-MGO-cell.txt（均为本题完整输入）。范围：运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "answer": "C · 36.89（数值作答：36.89 degree）",
+      "source": "https://www.crystallography.net/cod/1000053.html",
+      "inputSizeNm": 0.42169999999999996,
+      "reasoningSizeNm": 0.24346860851726518,
+      "sizeDefinition": "输入：晶胞边长；推理：答案反射的晶面间距 d。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：2 位小数，绝对容差 0.005 degree。",
+      "attribution": "Crystallography Open Database（公有领域）。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-PEAK-MGO#workbench",
+      "inputInstructions": "附件：FA-PEAK-MGO-cell.txt（均为本题完整输入）。范围：运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "FA-PEAK-MGO-cell.txt",
+          "url": "assets/families/instances/MNI017/FA-PEAK-MGO-cell.txt",
+          "description": "fractional-cell-table；fractional; a in angstrom；9 行"
+        }
+      ],
+      "completeInput": "The table lists every atom of one conventional cubic cell of periclase (MgO, COD 1000053). Use the kinematic structure factor with atomic numbers as angle-independent weights (Mg = 12, O = 8). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?\n\n选项：\nA. 21.05°\nB. 29.94°\nC. 36.89°\nD. 42.86°\n\n附件：FA-PEAK-MGO-cell.txt（均为本题完整输入）。范围：运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/MNI017/input.txt",
+      "learningObjective": "由全部原子坐标判断最先出现的非消光反射，再由布拉格定律求 2θ；把消光（结构）与衍射几何联系起来。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-PEAK-MGO",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "derivedFrom": "MNI004",
+      "numericVariant": {
+        "value": "one number rounded to 2 decimals",
+        "unit": "degree"
+      }
+    },
+    {
+      "id": "MNI018",
+      "title": "SALEM-2 · 首个衍射峰 2θ（四选一）",
+      "paper": "cod-mof",
+      "ability": "inference",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "status": "pending_human_audit",
+      "family": "first_diffraction_peak",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（all (h k l) up to 5 with own structure-factor sum）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The table lists every atom of one conventional cubic cell of Zn(imidazolate)2 with ZIF-8 sodalite topology (SALEM-2, COD 4118891; major-occupancy linker sites). Use the kinematic structure factor with atomic numbers as angle-independent weights (C = 6, H = 1, N = 7, Zn = 30). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
+      "modelInput": "附件：FA-PEAK-SALEM2-cell.txt（均为本题完整输入）。范围：204 原子整胞；运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "answer": "C · 7.42（数值作答：7.42 degree）",
+      "source": "https://www.crystallography.net/cod/4118891.html",
+      "inputSizeNm": 1.68303,
+      "reasoningSizeNm": 1.1900819259403952,
+      "sizeDefinition": "输入：晶胞边长；推理：答案反射的晶面间距 d。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：2 位小数，绝对容差 0.005 degree。",
+      "attribution": "Crystallography Open Database（公有领域）。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-PEAK-SALEM2#workbench",
+      "inputInstructions": "附件：FA-PEAK-SALEM2-cell.txt（均为本题完整输入）。范围：204 原子整胞；运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "FA-PEAK-SALEM2-cell.txt",
+          "url": "assets/families/instances/MNI018/FA-PEAK-SALEM2-cell.txt",
+          "description": "fractional-cell-table；fractional; a in angstrom；205 行"
+        }
+      ],
+      "completeInput": "The table lists every atom of one conventional cubic cell of Zn(imidazolate)2 with ZIF-8 sodalite topology (SALEM-2, COD 4118891; major-occupancy linker sites). Use the kinematic structure factor with atomic numbers as angle-independent weights (C = 6, H = 1, N = 7, Zn = 30). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?\n\n选项：\nA. 3.71°\nB. 5.25°\nC. 7.42°\nD. 9.09°\n\n附件：FA-PEAK-SALEM2-cell.txt（均为本题完整输入）。范围：204 原子整胞；运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/MNI018/input.txt",
+      "learningObjective": "由全部原子坐标判断最先出现的非消光反射，再由布拉格定律求 2θ；把消光（结构）与衍射几何联系起来。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-PEAK-SALEM2",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "derivedFrom": "MNI006",
+      "numericVariant": {
+        "value": "one number rounded to 2 decimals",
+        "unit": "degree"
+      }
+    },
+    {
+      "id": "MNI019",
+      "title": "MOF-5 · 首个衍射峰 2θ（四选一）",
+      "paper": "cod-mof",
+      "ability": "inference",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "status": "pending_human_audit",
+      "family": "first_diffraction_peak",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（all (h k l) up to 5 with own structure-factor sum）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The table lists every atom of one conventional cubic cell of MOF-5 (Zn4O(BDC)3, COD 1516287). Use the kinematic structure factor with atomic numbers as angle-independent weights (C = 6, H = 1, O = 8, Zn = 30). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
+      "modelInput": "附件：FA-PEAK-MOF5-cell.txt（均为本题完整输入）。范围：424 原子整胞；运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "answer": "D · 5.92（数值作答：5.92 degree）",
+      "source": "https://www.crystallography.net/cod/1516287.html",
+      "inputSizeNm": 2.58247,
+      "reasoningSizeNm": 1.490989749674133,
+      "sizeDefinition": "输入：晶胞边长；推理：答案反射的晶面间距 d。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：2 位小数，绝对容差 0.005 degree。",
+      "attribution": "Crystallography Open Database（公有领域）。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-PEAK-MOF5#workbench",
+      "inputInstructions": "附件：FA-PEAK-MOF5-cell.txt（均为本题完整输入）。范围：424 原子整胞；运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "FA-PEAK-MOF5-cell.txt",
+          "url": "assets/families/instances/MNI019/FA-PEAK-MOF5-cell.txt",
+          "description": "fractional-cell-table；fractional; a in angstrom；425 行"
+        }
+      ],
+      "completeInput": "The table lists every atom of one conventional cubic cell of MOF-5 (Zn4O(BDC)3, COD 1516287). Use the kinematic structure factor with atomic numbers as angle-independent weights (C = 6, H = 1, O = 8, Zn = 30). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?\n\n选项：\nA. 2.96°\nB. 3.42°\nC. 4.84°\nD. 5.92°\n\n附件：FA-PEAK-MOF5-cell.txt（均为本题完整输入）。范围：424 原子整胞；运动学模型、原子序数权重；Cu Kα。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/MNI019/input.txt",
+      "learningObjective": "由全部原子坐标判断最先出现的非消光反射，再由布拉格定律求 2θ；把消光（结构）与衍射几何联系起来。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-PEAK-MOF5",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "derivedFrom": "MNI007",
+      "numericVariant": {
+        "value": "one number rounded to 2 decimals",
+        "unit": "degree"
+      }
+    },
+    {
+      "id": "BNI009",
+      "title": "tRNA 1EHZ · A76–A35 FRET 效率（四选一）",
+      "paper": "pdb-bio-nm",
+      "ability": "inference",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "family": "fret_efficiency",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（straight-line distance; Foerster law）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The excerpt contains the ATOM records of chain A of PDB entry 1EHZ (yeast tRNA-Phe), copied unchanged. Model a FRET donor as a point at atom C1' of nucleotide A76 and an acceptor as a point at atom C1' of nucleotide A35. Assume a Förster radius R0 = 6.00 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?",
+      "modelInput": "附件：1EHZ-chainA.pdb（均为本题完整输入）。范围：虚拟点探针；R0 为题设值；不代表真实染料位置。 只回答一个字母 A、B、C 或 D。",
+      "answer": "A · 0.246（数值作答：0.246 ）",
+      "source": "https://www.rcsb.org/structure/1EHZ",
+      "inputSizeNm": 8.370236080302634,
+      "reasoningSizeNm": 7.234215712155672,
+      "sizeDefinition": "输入：链最大原子间距；推理：供体–受体直线距离。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：3 位小数，绝对容差 0.0005 。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；ATOM 记录原样摘录。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-FRET-1EHZ#workbench",
+      "inputInstructions": "附件：1EHZ-chainA.pdb（均为本题完整输入）。范围：虚拟点探针；R0 为题设值；不代表真实染料位置。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "1EHZ-chainA.pdb",
+          "url": "assets/families/instances/BNI009/1EHZ-chainA.pdb",
+          "description": "pdb-excerpt；angstrom；1330 行"
+        }
+      ],
+      "completeInput": "The excerpt contains the ATOM records of chain A of PDB entry 1EHZ (yeast tRNA-Phe), copied unchanged. Model a FRET donor as a point at atom C1' of nucleotide A76 and an acceptor as a point at atom C1' of nucleotide A35. Assume a Förster radius R0 = 6.00 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?\n\n选项：\nA. 0.246\nB. 0.408\nC. 0.500\nD. 0.754\n\n附件：1EHZ-chainA.pdb（均为本题完整输入）。范围：虚拟点探针；R0 为题设值；不代表真实染料位置。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/BNI009/input.txt",
+      "learningObjective": "由结构中两标记位点的空间直线距离与给定 R0 推断 FRET 效率；区分直线距离与沿链路径。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-FRET-1EHZ",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "derivedFrom": "BNI004",
+      "numericVariant": {
+        "value": "one number rounded to 3 decimals",
+        "unit": ""
+      }
+    },
+    {
+      "id": "BNI010",
+      "title": "泛素 1UBQ · K48–K63 FRET 效率（四选一）",
+      "paper": "pdb-bio-nm",
+      "ability": "inference",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "family": "fret_efficiency",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（straight-line distance; Foerster law）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The excerpt contains the ATOM records of chain A of PDB entry 1UBQ (ubiquitin; Lys48 and Lys63 are the two most studied chain-linkage sites), copied unchanged. Model a FRET donor as a point at atom NZ of Lys48 and an acceptor as a point at atom NZ of Lys63. Assume a Förster radius R0 = 2.50 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?",
+      "modelInput": "附件：1UBQ-chainA.pdb（均为本题完整输入）。范围：虚拟短程探针对（R0=2.5 nm）标记在两个赖氨酸 NZ；不代表真实染料。 只回答一个字母 A、B、C 或 D。",
+      "answer": "C · 0.800（数值作答：0.800 ）",
+      "source": "https://www.rcsb.org/structure/1UBQ",
+      "inputSizeNm": 4.399029916924866,
+      "reasoningSizeNm": 1.9847089484355134,
+      "sizeDefinition": "输入：链最大原子间距；推理：供体–受体直线距离。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：3 位小数，绝对容差 0.0005 。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；ATOM 记录原样摘录。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-FRET-1UBQ#workbench",
+      "inputInstructions": "附件：1UBQ-chainA.pdb（均为本题完整输入）。范围：虚拟短程探针对（R0=2.5 nm）标记在两个赖氨酸 NZ；不代表真实染料。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "1UBQ-chainA.pdb",
+          "url": "assets/families/instances/BNI010/1UBQ-chainA.pdb",
+          "description": "pdb-excerpt；angstrom；603 行"
+        }
+      ],
+      "completeInput": "The excerpt contains the ATOM records of chain A of PDB entry 1UBQ (ubiquitin; Lys48 and Lys63 are the two most studied chain-linkage sites), copied unchanged. Model a FRET donor as a point at atom NZ of Lys48 and an acceptor as a point at atom NZ of Lys63. Assume a Förster radius R0 = 2.50 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?\n\n选项：\nA. 0.007\nB. 0.200\nC. 0.800\nD. 0.929\n\n附件：1UBQ-chainA.pdb（均为本题完整输入）。范围：虚拟短程探针对（R0=2.5 nm）标记在两个赖氨酸 NZ；不代表真实染料。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/BNI010/input.txt",
+      "learningObjective": "由结构中两标记位点的空间直线距离与给定 R0 推断 FRET 效率；区分直线距离与沿链路径。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-FRET-1UBQ",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "numericVariant": {
+        "value": "one number rounded to 3 decimals",
+        "unit": ""
+      }
+    },
+    {
+      "id": "BNI011",
+      "title": "溶菌酶 6LYZ · 两端 FRET 效率（四选一）",
+      "paper": "pdb-bio-nm",
+      "ability": "inference",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "status": "pending_human_audit",
+      "family": "fret_efficiency",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（straight-line distance; Foerster law）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The excerpt contains the ATOM records of chain A of PDB entry 6LYZ (hen egg-white lysozyme; probes at the two chain termini), copied unchanged. Model a FRET donor as a point at atom CA of Lys1 and an acceptor as a point at atom CA of Leu129. Assume a Förster radius R0 = 2.20 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?",
+      "modelInput": "附件：6LYZ-chainA.pdb（均为本题完整输入）。范围：虚拟短程探针对（R0=2.2 nm）标记在 N、C 端残基 CA；不代表真实染料。 只回答一个字母 A、B、C 或 D。",
+      "answer": "D · 0.575（数值作答：0.575 ）",
+      "source": "https://www.rcsb.org/structure/6LYZ",
+      "inputSizeNm": 4.736488641388259,
+      "reasoningSizeNm": 2.0917366445133574,
+      "sizeDefinition": "输入：链最大原子间距；推理：供体–受体直线距离。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：3 位小数，绝对容差 0.0005 。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；ATOM 记录原样摘录。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-FRET-6LYZ#workbench",
+      "inputInstructions": "附件：6LYZ-chainA.pdb（均为本题完整输入）。范围：虚拟短程探针对（R0=2.2 nm）标记在 N、C 端残基 CA；不代表真实染料。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "6LYZ-chainA.pdb",
+          "url": "assets/families/instances/BNI011/6LYZ-chainA.pdb",
+          "description": "pdb-excerpt；angstrom；1002 行"
+        }
+      ],
+      "completeInput": "The excerpt contains the ATOM records of chain A of PDB entry 6LYZ (hen egg-white lysozyme; probes at the two chain termini), copied unchanged. Model a FRET donor as a point at atom CA of Lys1 and an acceptor as a point at atom CA of Leu129. Assume a Förster radius R0 = 2.20 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?\n\n选项：\nA. 0.000\nB. 0.425\nC. 0.525\nD. 0.575\n\n附件：6LYZ-chainA.pdb（均为本题完整输入）。范围：虚拟短程探针对（R0=2.2 nm）标记在 N、C 端残基 CA；不代表真实染料。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/BNI011/input.txt",
+      "learningObjective": "由结构中两标记位点的空间直线距离与给定 R0 推断 FRET 效率；区分直线距离与沿链路径。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-FRET-6LYZ",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "numericVariant": {
+        "value": "one number rounded to 3 decimals",
+        "unit": ""
+      }
+    },
+    {
+      "id": "BNI012",
+      "title": "溶菌酶 6LYZ · Guinier 强度（四选一）",
+      "paper": "pdb-bio-nm",
+      "ability": "inference",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "ensemble",
+      "status": "pending_human_audit",
+      "family": "guinier_intensity",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（pair-distance Rg; Guinier law）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The XYZ file lists every non-hydrogen atom of hen egg-white lysozyme (PDB 6LYZ, chains A). Treat each supplied atom as an identical point scatterer. In the Guinier approximation (which applies at this q), what is the normalized small-angle scattering intensity I(q)/I(0) at q = 0.60 nm⁻¹?",
+      "modelInput": "附件：6LYZ-heavy-atoms.xyz（均为本题完整输入）。范围：等权点散射体；非实测 SAXS。 只回答一个字母 A、B、C 或 D。",
+      "answer": "C · 0.791（数值作答：0.791 ）",
+      "source": "https://www.rcsb.org/structure/6LYZ",
+      "inputSizeNm": 4.736488641388259,
+      "reasoningSizeNm": 4.736488641388259,
+      "sizeDefinition": "输入与推理：整个分子最大原子间距。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：3 位小数，绝对容差 0.0005 。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；非氢 ATOM 记录转为 XYZ。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-GUIN-6LYZ#workbench",
+      "inputInstructions": "附件：6LYZ-heavy-atoms.xyz（均为本题完整输入）。范围：等权点散射体；非实测 SAXS。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "6LYZ-heavy-atoms.xyz",
+          "url": "assets/families/instances/BNI012/6LYZ-heavy-atoms.xyz",
+          "description": "xyz；angstrom；1003 行"
+        }
+      ],
+      "completeInput": "The XYZ file lists every non-hydrogen atom of hen egg-white lysozyme (PDB 6LYZ, chains A). Treat each supplied atom as an identical point scatterer. In the Guinier approximation (which applies at this q), what is the normalized small-angle scattering intensity I(q)/I(0) at q = 0.60 nm⁻¹?\n\n选项：\nA. 0.496\nB. 0.766\nC. 0.791\nD. 0.890\n\n附件：6LYZ-heavy-atoms.xyz（均为本题完整输入）。范围：等权点散射体；非实测 SAXS。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/BNI012/input.txt",
+      "learningObjective": "由原子坐标求等权回转半径，并在 Guinier 适用范围内推断归一化小角散射强度。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-GUIN-6LYZ",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "numericVariant": {
+        "value": "one number rounded to 3 decimals",
+        "unit": ""
+      }
+    },
+    {
+      "id": "BNI013",
+      "title": "tRNA 1EHZ · Guinier 强度（四选一）",
+      "paper": "pdb-bio-nm",
+      "ability": "inference",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "ensemble",
+      "status": "pending_human_audit",
+      "family": "guinier_intensity",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（pair-distance Rg; Guinier law）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The XYZ file lists every non-hydrogen atom of yeast tRNA-Phe (PDB 1EHZ, chains A). Treat each supplied atom as an identical point scatterer. In the Guinier approximation (which applies at this q), what is the normalized small-angle scattering intensity I(q)/I(0) at q = 0.40 nm⁻¹?",
+      "modelInput": "附件：1EHZ-heavy-atoms.xyz（均为本题完整输入）。范围：等权点散射体；非实测 SAXS。 只回答一个字母 A、B、C 或 D。",
+      "answer": "C · 0.766（数值作答：0.766 ）",
+      "source": "https://www.rcsb.org/structure/1EHZ",
+      "inputSizeNm": 8.370236080302634,
+      "reasoningSizeNm": 8.370236080302634,
+      "sizeDefinition": "输入与推理：整个分子最大原子间距。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：3 位小数，绝对容差 0.0005 。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；非氢 ATOM 记录转为 XYZ。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-GUIN-1EHZ#workbench",
+      "inputInstructions": "附件：1EHZ-heavy-atoms.xyz（均为本题完整输入）。范围：等权点散射体；非实测 SAXS。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "1EHZ-heavy-atoms.xyz",
+          "url": "assets/families/instances/BNI013/1EHZ-heavy-atoms.xyz",
+          "description": "xyz；angstrom；1331 行"
+        }
+      ],
+      "completeInput": "The XYZ file lists every non-hydrogen atom of yeast tRNA-Phe (PDB 1EHZ, chains A). Treat each supplied atom as an identical point scatterer. In the Guinier approximation (which applies at this q), what is the normalized small-angle scattering intensity I(q)/I(0) at q = 0.40 nm⁻¹?\n\n选项：\nA. 0.393\nB. 0.449\nC. 0.766\nD. 0.875\n\n附件：1EHZ-heavy-atoms.xyz（均为本题完整输入）。范围：等权点散射体；非实测 SAXS。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/BNI013/input.txt",
+      "learningObjective": "由原子坐标求等权回转半径，并在 Guinier 适用范围内推断归一化小角散射强度。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-GUIN-1EHZ",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "numericVariant": {
+        "value": "one number rounded to 3 decimals",
+        "unit": ""
+      }
+    },
+    {
+      "id": "BNI014",
+      "title": "B-DNA 1BNA · Guinier 强度（四选一）",
+      "paper": "pdb-bio-nm",
+      "ability": "inference",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "ensemble",
+      "status": "pending_human_audit",
+      "family": "guinier_intensity",
+      "missing": [
+        "L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行",
+        "尚无独立领域审核与难度测试"
+      ],
+      "validation": "独立检查器（pair-distance Rg; Guinier law）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。",
+      "publicDemo": true,
+      "question": "The XYZ file lists every non-hydrogen atom of the B-DNA dodecamer duplex (PDB 1BNA, chains AB). Treat each supplied atom as an identical point scatterer. In the Guinier approximation (which applies at this q), what is the normalized small-angle scattering intensity I(q)/I(0) at q = 0.70 nm⁻¹?",
+      "modelInput": "附件：1BNA-heavy-atoms.xyz（均为本题完整输入）。范围：等权点散射体（两条链）；非实测 SAXS。 只回答一个字母 A、B、C 或 D。",
+      "answer": "C · 0.754（数值作答：0.754 ）",
+      "source": "https://www.rcsb.org/structure/1BNA",
+      "inputSizeNm": 4.372427082296514,
+      "reasoningSizeNm": 4.372427082296514,
+      "sizeDefinition": "输入与推理：整个分子最大原子间距。",
+      "batchId": "family-pilot-v03",
+      "benchmarkReady": false,
+      "releaseRole": "public_development_example",
+      "rubric": "四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。 数值作答形式：3 位小数，绝对容差 0.0005 。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；非氢 ATOM 记录转为 XYZ。",
+      "batchReport": "templates.html#workbench",
+      "traceUrl": "templates.html?instance=FA-GUIN-1BNA#workbench",
+      "inputInstructions": "附件：1BNA-heavy-atoms.xyz（均为本题完整输入）。范围：等权点散射体（两条链）；非实测 SAXS。 只回答一个字母 A、B、C 或 D。",
+      "sourceRoute": "raw_structure_or_simulation",
+      "prototypeScreeningPassed": true,
+      "policyReview": "暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。",
+      "attachments": [
+        {
+          "name": "1BNA-heavy-atoms.xyz",
+          "url": "assets/families/instances/BNI014/1BNA-heavy-atoms.xyz",
+          "description": "xyz；angstrom；488 行"
+        }
+      ],
+      "completeInput": "The XYZ file lists every non-hydrogen atom of the B-DNA dodecamer duplex (PDB 1BNA, chains AB). Treat each supplied atom as an identical point scatterer. In the Guinier approximation (which applies at this q), what is the normalized small-angle scattering intensity I(q)/I(0) at q = 0.70 nm⁻¹?\n\n选项：\nA. 0.429\nB. 0.458\nC. 0.754\nD. 0.869\n\n附件：1BNA-heavy-atoms.xyz（均为本题完整输入）。范围：等权点散射体（两条链）；非实测 SAXS。 只回答一个字母 A、B、C 或 D。",
+      "inputDownload": "assets/families/instances/BNI014/input.txt",
+      "learningObjective": "由原子坐标求等权回转半径，并在 Guinier 适用范围内推断归一化小角散射强度。",
+      "lifecycle": "active",
+      "lifecycleLabel": "当前原型",
+      "lifecycleReason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "lifecycleReviewedAt": "2026-09-29",
+      "restartFrom": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "admission": "provisional_auto_verified",
+      "familyInstance": "FA-GUIN-1BNA",
+      "familyRun": "family-pilot-v03",
+      "independentCheck": "pass",
+      "numericVariant": {
+        "value": "one number rounded to 3 decimals",
+        "unit": ""
+      }
     }
   ],
   "counts": {
-    "candidates": 139,
+    "candidates": 160,
     "withAnswers": 18,
     "drafts": 18,
     "ready": 0,
@@ -8211,9 +9437,9 @@
     ]
   },
   "lifecycleCounts": {
-    "rework": 45,
+    "rework": 33,
     "backlog": 18,
-    "archived": 8,
-    "active": 68
+    "archived": 20,
+    "active": 89
   }
 }

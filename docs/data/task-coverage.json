@@ -30,11 +30,11 @@
  },
  "summary": {
   "types_defined": 21,
-  "types_with_running_code": 10,
+  "types_with_running_code": 14,
   "status": {
    "implemented": 2,
-   "pilot": 8,
-   "existing_legacy": 7,
+   "pilot": 12,
+   "existing_legacy": 3,
    "planned": 2,
    "rebuild_needed": 1,
    "blocked": 1
@@ -42,13 +42,13 @@
   "by_ability": {
    "perception": {
     "implemented": 2,
-    "pilot": 3,
-    "existing_legacy": 4
+    "pilot": 5,
+    "existing_legacy": 2
    },
    "inference": {
-    "pilot": 3,
-    "existing_legacy": 3,
+    "pilot": 5,
     "planned": 1,
+    "existing_legacy": 1,
     "rebuild_needed": 1
    },
    "design": {
@@ -57,10 +57,10 @@
     "blocked": 1
    }
   },
-  "development_instances": 44,
+  "development_instances": 65,
   "instance_failures": 1,
-  "independent_pass": 44,
-  "independent_checked": 44,
+  "independent_pass": 65,
+  "independent_checked": 65,
   "legacy_candidates": 80,
   "legacy_decisions": {
    "retain": 42,
@@ -69,7 +69,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v02",
+ "family_run": "family-pilot-v03",
  "rows": [
   {
    "id": "global_extent",
@@ -309,10 +309,11 @@
    "instance_ids": [
     "FA-ANG-BCD",
     "FA-ANG-WP6",
-    "FA-ANG-DMBCD"
+    "FA-ANG-DMBCD",
+    "FA-ANG-7040-OSO"
    ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "instance_count": 4,
+   "independent_pass": 4,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "0.1-1"
@@ -391,13 +392,13 @@
    "id": "named_bond_distance",
    "name": "命名局部距离",
    "ability": "perception",
-   "status": "existing_legacy",
-   "priority": 2,
-   "concept": "指定化学实体间距离：二硫键 SG–SG、氢键给体–受体、羧酸根 C–O、链间最近接触。",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "指定化学实体之间的键长：磺酰 S=O、芳环 C–Cl、末端 N–N、C–NH2、二硫键 SG–SG；原子由行号或 PDB 原子名加化学描述指定，并由成键规则确认。",
    "domains": [
+    "quantum",
     "biology",
-    "chemistry",
-    "quantum"
+    "chemistry"
    ],
    "input_scale": "整个结构",
    "reasoning_scale": "两原子距离（0.1–0.5 nm）",
@@ -405,19 +406,22 @@
     "0.1-1"
    ],
    "scale_limits": "单一距离不能独立判定成键状态。",
-   "inputs": "XYZ/PDB、实体身份依据（SSBOND、CONECT）、索引。",
+   "inputs": "XYZ（按行号命名）或 PDB 片段（含 SSBOND 记录与两个残基的 ATOM 行）。",
    "physical_conditions": "单一构象。",
    "output_forms": [
-    "numeric"
+    "numeric",
+    "choice"
    ],
    "source_basis": "PDB、SAMPL9、QM7-X",
-   "answer_method": "旧 M4 xyz_distance 验证器。",
+   "answer_method": "欧氏距离（浮点与 Decimal 两种实现）；共价半径规则确认成键。",
    "distractor_mechanisms": [
-    "wrong_atom_name (CA/CB 代替 SG)",
-    "nearest_other_contact",
-    "literature_typical_value"
+    "other_bond_same_atom",
+    "typical_value",
+    "covalent_radii_sum",
+    "nearest_nonbonded_same_element",
+    "bohr_units"
    ],
-   "four_choice_validation": "未实现。",
+   "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。",
    "legacy_families": [
     "disulfide_bond_length",
     "carboxylate_bond_metric",
@@ -440,20 +444,32 @@
     "BNP012"
    ],
    "code": [
-    "builder_modules/m4_construction/module.py"
+    "task_families/local_geometry.py",
+    "checkers/migrated.py"
    ],
    "tests": [
-    "tests/test_m4_construction.py"
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
    ],
-   "builder_modules": "旧 M0–M6 pipeline。",
-   "gap": "迁入族接口：复用 kit 距离核与 local_geometry 的实体确认。",
-   "engine_families": [],
-   "independent_checker": "",
-   "instance_ids": [],
-   "instance_count": 0,
-   "independent_pass": 0,
+   "builder_modules": "族引擎内等价实现；旧 QNP002–004/006、BNP007 由新版取代（supersede）。",
+   "gap": "氢键给体–受体、链间接触等非键距离尚未迁移。",
+   "engine_families": [
+    "named_bond_distance"
+   ],
+   "independent_checker": "checkers/migrated.py:named_bond_distance",
+   "instance_ids": [
+    "FA-DIST-7035-SO",
+    "FA-DIST-7070-CCl",
+    "FA-DIST-7002-NN",
+    "FA-DIST-7122-CN",
+    "FA-DIST-6LYZ-SS"
+   ],
+   "instance_count": 5,
+   "independent_pass": 5,
    "instance_failures": 0,
-   "instance_reasoning_cells": [],
+   "instance_reasoning_cells": [
+    "0.1-1"
+   ],
    "legacy_decisions": {
     "revise": 6,
     "retain": 5
@@ -464,31 +480,34 @@
    "id": "coordination_shell",
    "name": "配位壳层",
    "ability": "perception",
-   "status": "existing_legacy",
-   "priority": 3,
-   "concept": "周期晶体中给定原子的最近邻数目、距离与键角。",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "无限周期晶体中，指定中心周围某一物种的最近壳层（个数与距离）；包括网络节点层面的壳层（SALEM-2 的 Zn–Zn 四连接、MOF-5 μ4-O 节点的六连接）。",
    "domains": [
     "materials"
    ],
    "input_scale": "晶胞边长",
    "reasoning_scale": "第一壳层半径",
    "scale_cells": [
-    "0.1-1"
+    "0.1-1",
+    "1-10"
    ],
    "scale_limits": "只读立方、完全占位 CIF。",
-   "inputs": "立方 CIF（对称展开）、中心原子。",
+   "inputs": "常规立方晶胞全部原子分数坐标表 + a；中心原子的分数坐标与伙伴物种描述。",
    "physical_conditions": "周期边界；完全占位。",
    "output_forms": [
-    "numeric"
+    "choice"
    ],
    "source_basis": "COD",
-   "answer_method": "tools/recompute_materials_batch.py neighbors()。",
+   "answer_method": "含 27 个相邻晶胞映像的近邻搜索，按 0.001 Å 归组壳层。",
    "distractor_mechanisms": [
-    "second_shell_count",
+    "no_periodic_images",
+    "second_shell",
     "same_species_shell",
-    "no_periodic_images"
+    "mixed_shells",
+    "merged_first_two_shells"
    ],
-   "four_choice_validation": "未实现。",
+   "four_choice_validation": "选项为“N at D Å”，恰好一项同时匹配个数与距离。",
    "legacy_families": [
     "periodic_tetrahedral_coordination",
     "primitive_cubic_coordination_shell",
@@ -501,22 +520,33 @@
     "MNP005"
    ],
    "code": [
-    "tools/recompute_materials_batch.py",
+    "task_families/crystal.py",
+    "checkers/migrated.py",
     "tools/recompute_materials_batch2.py"
    ],
    "tests": [
-    "tests/test_materials_batch.py",
-    "tests/test_materials_batch2.py"
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
    ],
-   "builder_modules": "旧 pipeline。",
-   "gap": "迁入族接口；四选一可用整数配位数（需排除等价答案）。",
-   "engine_families": [],
-   "independent_checker": "",
-   "instance_ids": [],
-   "instance_count": 0,
-   "independent_pass": 0,
+   "builder_modules": "族引擎内等价实现；旧 MNP004/005 由新版取代。",
+   "gap": "非立方晶系尚未支持。",
+   "engine_families": [
+    "coordination_shell"
+   ],
+   "independent_checker": "checkers/migrated.py:coordination_shell",
+   "instance_ids": [
+    "FA-COORD-MGO",
+    "FA-COORD-CSCL",
+    "FA-COORD-SALEM2-ZN",
+    "FA-COORD-MOF5-NODE"
+   ],
+   "instance_count": 4,
+   "independent_pass": 4,
    "instance_failures": 0,
-   "instance_reasoning_cells": [],
+   "instance_reasoning_cells": [
+    "0.1-1",
+    "1-10"
+   ],
    "legacy_decisions": {
     "retain": 2,
     "revise": 2
@@ -999,11 +1029,11 @@
   },
   {
    "id": "bragg_angle_inference",
-   "name": "布拉格衍射角",
+   "name": "首个衍射峰（布拉格角）",
    "ability": "inference",
-   "status": "existing_legacy",
-   "priority": 5,
-   "concept": "晶面间距与波长 → 衍射角。",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "由晶胞全部原子坐标判断哪一个反射最先出现（跳过消光反射），再用布拉格定律求其 2θ；不同于只代入给定 d 的公式题。",
    "domains": [
     "materials"
    ],
@@ -1014,19 +1044,22 @@
     "1-10"
    ],
    "scale_limits": "几何必要性弱。",
-   "inputs": "d 或晶胞参数、波长。",
-   "physical_conditions": "一级衍射、给定波长。",
+   "inputs": "常规立方晶胞全部原子分数坐标表 + a；原子序数权重；波长。",
+   "physical_conditions": "运动学近似、零角度原子序数权重、一级衍射。",
    "output_forms": [
-    "numeric"
+    "numeric",
+    "choice"
    ],
    "source_basis": "COD",
-   "answer_method": "2d sinθ = λ。",
+   "answer_method": "逐一计算低指数反射的结构因子，取 |F|≠0 的最小 2θ。",
    "distractor_mechanisms": [
-    "theta_vs_2theta",
-    "radian_degree",
-    "wrong_order"
+    "lowest_index_ignoring_extinction",
+    "assumed_lattice_rule",
+    "theta_not_two_theta",
+    "second_allowed_peak",
+    "d_equals_a"
    ],
-   "four_choice_validation": "未实现。",
+   "four_choice_validation": "与正确值 > 0.3°；升序排列，秩按批次轮换。",
    "legacy_families": [
     "bragg_geometry_inference"
    ],
@@ -1037,20 +1070,33 @@
     "MNI007"
    ],
    "code": [
-    "tools/recompute_materials_batch2.py"
+    "task_families/crystal.py",
+    "checkers/migrated.py"
    ],
    "tests": [
-    "tests/test_materials_batch2.py"
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
    ],
-   "builder_modules": "旧 pipeline。",
-   "gap": "低优先：与消光族合并为“衍射图样”推断更有几何必要性。",
-   "engine_families": [],
-   "independent_checker": "",
-   "instance_ids": [],
-   "instance_count": 0,
-   "independent_pass": 0,
+   "builder_modules": "族引擎内等价实现；旧 MNI004/006/007 由新版取代（同时更正 MOF-5 来源为 COD 1516287）。",
+   "gap": "未含原子散射因子角度依赖。",
+   "engine_families": [
+    "first_diffraction_peak"
+   ],
+   "independent_checker": "checkers/migrated.py:first_diffraction_peak",
+   "instance_ids": [
+    "FA-PEAK-NACL",
+    "FA-PEAK-CSCL",
+    "FA-PEAK-MGO",
+    "FA-PEAK-SALEM2",
+    "FA-PEAK-MOF5"
+   ],
+   "instance_count": 5,
+   "independent_pass": 5,
    "instance_failures": 0,
-   "instance_reasoning_cells": [],
+   "instance_reasoning_cells": [
+    "0.1-1",
+    "1-10"
+   ],
    "legacy_decisions": {
     "retain": 1,
     "revise": 3
@@ -1061,9 +1107,9 @@
    "id": "scattering_model_inference",
    "name": "散射/FRET 模型推断",
    "ability": "inference",
-   "status": "existing_legacy",
-   "priority": 4,
-   "concept": "由结构尺寸与给定物理模型推断 Guinier 区、FRET 效率区间等。",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "由结构几何与给定模型参数推断可观测量：FRET 效率（点探针、给定 R0）与 Guinier 近似下的归一化小角散射强度（等权点散射体、给定 q）。题干给出模型输入但不给公式。",
    "domains": [
     "biology"
    ],
@@ -1073,20 +1119,24 @@
     "1-10"
    ],
    "scale_limits": "模型假设需人工审核。",
-   "inputs": "PDB、模型参数（R0、q 范围）。",
-   "physical_conditions": "模型适用条件写入题干。",
+   "inputs": "PDB 链 ATOM 片段（FRET）或整分子重原子 XYZ（Guinier）。",
+   "physical_conditions": "Förster 点偶极模型（R0 含取向与光谱因子）；Guinier 近似仅在 qRg ≤ 1.3 出题。",
    "output_forms": [
     "numeric",
     "choice"
    ],
    "source_basis": "PDB + 教科书/论文模型",
-   "answer_method": "旧专用脚本。",
+   "answer_method": "FRET：直线距离 + E=1/(1+(r/R0)^6)；Guinier：等权 Rg + exp(−q²Rg²/3)。",
    "distractor_mechanisms": [
-    "model_outside_validity",
-    "rg_vs_dmax",
-    "r0_misuse"
+    "path_length_distance",
+    "complement",
+    "wrong_acceptor_atom",
+    "missing_one_third",
+    "half_dmax_as_rg",
+    "amplitude_not_intensity",
+    "unit_mixups"
    ],
-   "four_choice_validation": "未实现。",
+   "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。",
    "legacy_families": [
     "conditional_guinier_inference",
     "conditional_fret_inference",
@@ -1098,20 +1148,34 @@
     "BNI004"
    ],
    "code": [
-    "tools/recompute_bio_batch.py"
+    "task_families/scattering.py",
+    "checkers/migrated.py"
    ],
    "tests": [
-    "tests/test_bio_geometry.py"
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
    ],
-   "builder_modules": "旧 pipeline。",
-   "gap": "适合下一轮迁入：四个不重叠效率区间可做四选一。",
-   "engine_families": [],
-   "independent_checker": "",
-   "instance_ids": [],
-   "instance_count": 0,
-   "independent_pass": 0,
+   "builder_modules": "族引擎内等价实现；旧 BNI004 由新版取代。",
+   "gap": "R0 为题设虚拟值，不对应具体染料。",
+   "engine_families": [
+    "fret_efficiency",
+    "guinier_intensity"
+   ],
+   "independent_checker": "checkers/migrated.py:fret_efficiency, guinier_intensity",
+   "instance_ids": [
+    "FA-FRET-1EHZ",
+    "FA-FRET-1UBQ",
+    "FA-FRET-6LYZ",
+    "FA-GUIN-6LYZ",
+    "FA-GUIN-1EHZ",
+    "FA-GUIN-1BNA"
+   ],
+   "instance_count": 6,
+   "independent_pass": 6,
    "instance_failures": 0,
-   "instance_reasoning_cells": [],
+   "instance_reasoning_cells": [
+    "1-10"
+   ],
    "legacy_decisions": {
     "retain": 2,
     "revise": 1

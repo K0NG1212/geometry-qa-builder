@@ -63,7 +63,7 @@ class AdmissionMapTests(unittest.TestCase):
         once, files = admit(CATALOG, WORKBENCH, INDEPENDENT, AMAP, CATALOG['updated'])
         self.assertEqual(once, CATALOG)
         for rel, text in files.items():
-            self.assertEqual((ROOT / 'docs' / rel).read_text(encoding='utf-8'), text)
+            self.assertEqual((ROOT / 'docs' / rel).read_bytes(), text.encode('utf-8'))   # some legacy assets are CRLF
         failed = copy.deepcopy(INDEPENDENT)
         failed['results'][0]['status'] = 'fail'
         with self.assertRaisesRegex(ValueError, 'independent checker'):

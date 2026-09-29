@@ -1,6 +1,6 @@
 """Reusable task families. Each family id maps to one build function and one
 ability; the engine never dispatches by question ID."""
-from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo
+from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering
 
 FAMILIES = {
     'named_bond_angle': dict(build=local_geometry.build_bond_angle, ability='perception',
@@ -21,4 +21,14 @@ FAMILIES = {
                                       output='choice', version=stereo.VERSION, module='task_families/stereo.py'),
     'stereo_design_selection': dict(build=stereo.build_design, ability='design',
                                     output='choice', version=stereo.VERSION, module='task_families/stereo.py'),
+    'named_bond_distance': dict(build=local_geometry.build_bond_distance, ability='perception',
+                                output='choice+numeric', version=local_geometry.VERSION, module='task_families/local_geometry.py'),
+    'coordination_shell': dict(build=crystal.build_coordination, ability='perception',
+                               output='choice', version=crystal.VERSION, module='task_families/crystal.py'),
+    'first_diffraction_peak': dict(build=crystal.build_first_peak, ability='inference',
+                                   output='choice+numeric', version=crystal.VERSION, module='task_families/crystal.py'),
+    'fret_efficiency': dict(build=scattering.build_fret, ability='inference',
+                            output='choice+numeric', version=scattering.VERSION, module='task_families/scattering.py'),
+    'guinier_intensity': dict(build=scattering.build_guinier, ability='inference',
+                              output='choice+numeric', version=scattering.VERSION, module='task_families/scattering.py'),
 }

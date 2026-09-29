@@ -204,5 +204,27 @@ class StereoMutationTests(unittest.TestCase):
         self.assertTrue(fails(p, k, 'need exactly 1'))
 
 
+class MigratedMutationTests(unittest.TestCase):
+    def test_excerpts_and_models_are_enforced(self):
+        p, k = pair('FA-DIST-6LYZ-SS')
+        p['inputs'][0]['text'] = '\n'.join(l for l in p['inputs'][0]['text'].splitlines() if not l.startswith('SSBOND')) + '\n'
+        self.assertTrue(fails(p, k, 'SSBOND'))
+        p, k = pair('FA-FRET-1UBQ')
+        p['question'] = p['question'].replace('R0 = 2.50 nm', 'R0 = 3.50 nm')
+        self.assertTrue(fails(p, k))
+        p, k = pair('FA-GUIN-1BNA')
+        lines = p['inputs'][0]['text'].splitlines()
+        p['inputs'][0]['text'] = '\n'.join([str(int(lines[0]) - 1)] + lines[1:-1]) + '\n'    # drop one atom
+        self.assertTrue(fails(p, k, 'source heavy atoms'))
+
+    def test_crystal_options_and_periodicity(self):
+        p, k = pair('FA-COORD-MGO')
+        p['question'] = p['question'].replace('infinite and periodic', 'finite')
+        self.assertTrue(fails(p, k, 'Periodicity'))
+        p, k = pair('FA-PEAK-CSCL')
+        p['question'] = p['question'].replace('Cl = 17', 'Cl = 55')   # identical weights: (1 0 0) becomes extinct
+        self.assertTrue(fails(p, k))
+
+
 if __name__ == '__main__':
     unittest.main()

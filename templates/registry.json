@@ -307,19 +307,20 @@
       "id": "named_bond_distance",
       "name": "命名局部距离",
       "ability": "perception",
-      "status": "existing_legacy",
-      "priority": 2,
-      "concept": "指定化学实体间距离：二硫键 SG–SG、氢键给体–受体、羧酸根 C–O、链间最近接触。",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "指定化学实体之间的键长：磺酰 S=O、芳环 C–Cl、末端 N–N、C–NH2、二硫键 SG–SG；原子由行号或 PDB 原子名加化学描述指定，并由成键规则确认。",
       "domains": [
+        "quantum",
         "biology",
-        "chemistry",
-        "quantum"
+        "chemistry"
       ],
-      "output": "numeric",
+      "output": "choice",
       "output_forms": [
-        "numeric"
+        "numeric",
+        "choice"
       ],
-      "inputs": "XYZ/PDB、实体身份依据（SSBOND、CONECT）、索引。",
+      "inputs": "XYZ（按行号命名）或 PDB 片段（含 SSBOND 记录与两个残基的 ATOM 行）。",
       "physical_conditions": "单一构象。",
       "input_scale": "整个结构",
       "reasoning_scale": "两原子距离（0.1–0.5 nm）",
@@ -328,14 +329,18 @@
       ],
       "scale_limits": "单一距离不能独立判定成键状态。",
       "source_basis": "PDB、SAMPL9、QM7-X",
-      "answer_method": "旧 M4 xyz_distance 验证器。",
+      "answer_method": "欧氏距离（浮点与 Decimal 两种实现）；共价半径规则确认成键。",
       "distractor_mechanisms": [
-        "wrong_atom_name (CA/CB 代替 SG)",
-        "nearest_other_contact",
-        "literature_typical_value"
+        "other_bond_same_atom",
+        "typical_value",
+        "covalent_radii_sum",
+        "nearest_nonbonded_same_element",
+        "bohr_units"
       ],
-      "four_choice_validation": "未实现。",
-      "engine_families": [],
+      "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。",
+      "engine_families": [
+        "named_bond_distance"
+      ],
       "legacy_families": [
         "disulfide_bond_length",
         "carboxylate_bond_metric",
@@ -358,50 +363,57 @@
         "BNP012"
       ],
       "code": [
-        "builder_modules/m4_construction/module.py"
+        "task_families/local_geometry.py",
+        "checkers/migrated.py"
       ],
       "tests": [
-        "tests/test_m4_construction.py"
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
       ],
-      "builder_modules": "旧 M0–M6 pipeline。",
+      "builder_modules": "族引擎内等价实现；旧 QNP002–004/006、BNP007 由新版取代（supersede）。",
       "principle": "欧氏距离。",
       "validation": "旧验证器。",
       "limits": "QNP002–006 需说明元素对选择的化学意义（待小修）。",
-      "gap": "迁入族接口：复用 kit 距离核与 local_geometry 的实体确认。",
-      "template_review": "既有模块。",
-      "independent_checker": ""
+      "gap": "氢键给体–受体、链间接触等非键距离尚未迁移。",
+      "template_review": "本轮迁移新建，待人工审核。",
+      "independent_checker": "checkers/migrated.py:named_bond_distance"
     },
     {
       "id": "coordination_shell",
       "name": "配位壳层",
       "ability": "perception",
-      "status": "existing_legacy",
-      "priority": 3,
-      "concept": "周期晶体中给定原子的最近邻数目、距离与键角。",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "无限周期晶体中，指定中心周围某一物种的最近壳层（个数与距离）；包括网络节点层面的壳层（SALEM-2 的 Zn–Zn 四连接、MOF-5 μ4-O 节点的六连接）。",
       "domains": [
         "materials"
       ],
-      "output": "numeric",
+      "output": "choice",
       "output_forms": [
-        "numeric"
+        "choice"
       ],
-      "inputs": "立方 CIF（对称展开）、中心原子。",
+      "inputs": "常规立方晶胞全部原子分数坐标表 + a；中心原子的分数坐标与伙伴物种描述。",
       "physical_conditions": "周期边界；完全占位。",
       "input_scale": "晶胞边长",
       "reasoning_scale": "第一壳层半径",
       "scale_cells": [
-        "0.1-1"
+        "0.1-1",
+        "1-10"
       ],
       "scale_limits": "只读立方、完全占位 CIF。",
       "source_basis": "COD",
-      "answer_method": "tools/recompute_materials_batch.py neighbors()。",
+      "answer_method": "含 27 个相邻晶胞映像的近邻搜索，按 0.001 Å 归组壳层。",
       "distractor_mechanisms": [
-        "second_shell_count",
+        "no_periodic_images",
+        "second_shell",
         "same_species_shell",
-        "no_periodic_images"
+        "mixed_shells",
+        "merged_first_two_shells"
       ],
-      "four_choice_validation": "未实现。",
-      "engine_families": [],
+      "four_choice_validation": "选项为“N at D Å”，恰好一项同时匹配个数与距离。",
+      "engine_families": [
+        "coordination_shell"
+      ],
       "legacy_families": [
         "periodic_tetrahedral_coordination",
         "primitive_cubic_coordination_shell",
@@ -414,20 +426,21 @@
         "MNP005"
       ],
       "code": [
-        "tools/recompute_materials_batch.py",
+        "task_families/crystal.py",
+        "checkers/migrated.py",
         "tools/recompute_materials_batch2.py"
       ],
       "tests": [
-        "tests/test_materials_batch.py",
-        "tests/test_materials_batch2.py"
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
       ],
-      "builder_modules": "旧 pipeline。",
+      "builder_modules": "族引擎内等价实现；旧 MNP004/005 由新版取代。",
       "principle": "含周期映像的最近邻搜索。",
       "validation": "独立 Decimal 公式复核。",
       "limits": "MNP004/005 待小修。",
-      "gap": "迁入族接口；四选一可用整数配位数（需排除等价答案）。",
-      "template_review": "既有模块。",
-      "independent_checker": ""
+      "gap": "非立方晶系尚未支持。",
+      "template_review": "本轮迁移新建，待人工审核。",
+      "independent_checker": "checkers/migrated.py:coordination_shell"
     },
     {
       "id": "lattice_plane_geometry",
@@ -843,20 +856,21 @@
     },
     {
       "id": "bragg_angle_inference",
-      "name": "布拉格衍射角",
+      "name": "首个衍射峰（布拉格角）",
       "ability": "inference",
-      "status": "existing_legacy",
-      "priority": 5,
-      "concept": "晶面间距与波长 → 衍射角。",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "由晶胞全部原子坐标判断哪一个反射最先出现（跳过消光反射），再用布拉格定律求其 2θ；不同于只代入给定 d 的公式题。",
       "domains": [
         "materials"
       ],
-      "output": "numeric",
+      "output": "choice",
       "output_forms": [
-        "numeric"
+        "numeric",
+        "choice"
       ],
-      "inputs": "d 或晶胞参数、波长。",
-      "physical_conditions": "一级衍射、给定波长。",
+      "inputs": "常规立方晶胞全部原子分数坐标表 + a；原子序数权重；波长。",
+      "physical_conditions": "运动学近似、零角度原子序数权重、一级衍射。",
       "input_scale": "晶胞",
       "reasoning_scale": "晶面间距",
       "scale_cells": [
@@ -865,14 +879,18 @@
       ],
       "scale_limits": "几何必要性弱。",
       "source_basis": "COD",
-      "answer_method": "2d sinθ = λ。",
+      "answer_method": "逐一计算低指数反射的结构因子，取 |F|≠0 的最小 2θ。",
       "distractor_mechanisms": [
-        "theta_vs_2theta",
-        "radian_degree",
-        "wrong_order"
+        "lowest_index_ignoring_extinction",
+        "assumed_lattice_rule",
+        "theta_not_two_theta",
+        "second_allowed_peak",
+        "d_equals_a"
       ],
-      "four_choice_validation": "未实现。",
-      "engine_families": [],
+      "four_choice_validation": "与正确值 > 0.3°；升序排列，秩按批次轮换。",
+      "engine_families": [
+        "first_diffraction_peak"
+      ],
       "legacy_families": [
         "bragg_geometry_inference"
       ],
@@ -883,36 +901,38 @@
         "MNI007"
       ],
       "code": [
-        "tools/recompute_materials_batch2.py"
+        "task_families/crystal.py",
+        "checkers/migrated.py"
       ],
       "tests": [
-        "tests/test_materials_batch2.py"
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
       ],
-      "builder_modules": "旧 pipeline。",
+      "builder_modules": "族引擎内等价实现；旧 MNI004/006/007 由新版取代（同时更正 MOF-5 来源为 COD 1516287）。",
       "principle": "布拉格定律。",
       "validation": "旧验证。",
       "limits": "多为小修。",
-      "gap": "低优先：与消光族合并为“衍射图样”推断更有几何必要性。",
-      "template_review": "既有模块。",
-      "independent_checker": ""
+      "gap": "未含原子散射因子角度依赖。",
+      "template_review": "本轮迁移新建，待人工审核。",
+      "independent_checker": "checkers/migrated.py:first_diffraction_peak"
     },
     {
       "id": "scattering_model_inference",
       "name": "散射/FRET 模型推断",
       "ability": "inference",
-      "status": "existing_legacy",
-      "priority": 4,
-      "concept": "由结构尺寸与给定物理模型推断 Guinier 区、FRET 效率区间等。",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "由结构几何与给定模型参数推断可观测量：FRET 效率（点探针、给定 R0）与 Guinier 近似下的归一化小角散射强度（等权点散射体、给定 q）。题干给出模型输入但不给公式。",
       "domains": [
         "biology"
       ],
-      "output": "numeric",
+      "output": "choice",
       "output_forms": [
         "numeric",
         "choice"
       ],
-      "inputs": "PDB、模型参数（R0、q 范围）。",
-      "physical_conditions": "模型适用条件写入题干。",
+      "inputs": "PDB 链 ATOM 片段（FRET）或整分子重原子 XYZ（Guinier）。",
+      "physical_conditions": "Förster 点偶极模型（R0 含取向与光谱因子）；Guinier 近似仅在 qRg ≤ 1.3 出题。",
       "input_scale": "蛋白（1–10 nm）",
       "reasoning_scale": "全局尺度",
       "scale_cells": [
@@ -920,14 +940,21 @@
       ],
       "scale_limits": "模型假设需人工审核。",
       "source_basis": "PDB + 教科书/论文模型",
-      "answer_method": "旧专用脚本。",
+      "answer_method": "FRET：直线距离 + E=1/(1+(r/R0)^6)；Guinier：等权 Rg + exp(−q²Rg²/3)。",
       "distractor_mechanisms": [
-        "model_outside_validity",
-        "rg_vs_dmax",
-        "r0_misuse"
+        "path_length_distance",
+        "complement",
+        "wrong_acceptor_atom",
+        "missing_one_third",
+        "half_dmax_as_rg",
+        "amplitude_not_intensity",
+        "unit_mixups"
       ],
-      "four_choice_validation": "未实现。",
-      "engine_families": [],
+      "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。",
+      "engine_families": [
+        "fret_efficiency",
+        "guinier_intensity"
+      ],
       "legacy_families": [
         "conditional_guinier_inference",
         "conditional_fret_inference",
@@ -939,18 +966,20 @@
         "BNI004"
       ],
       "code": [
-        "tools/recompute_bio_batch.py"
+        "task_families/scattering.py",
+        "checkers/migrated.py"
       ],
       "tests": [
-        "tests/test_bio_geometry.py"
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
       ],
-      "builder_modules": "旧 pipeline。",
+      "builder_modules": "族引擎内等价实现；旧 BNI004 由新版取代。",
       "principle": "Guinier：qRg ≲ 1.3；FRET：E = 1/(1+(r/R0)^6)。",
       "validation": "旧验证。",
       "limits": "证据段落需审核。",
-      "gap": "适合下一轮迁入：四个不重叠效率区间可做四选一。",
-      "template_review": "既有模块。",
-      "independent_checker": ""
+      "gap": "R0 为题设虚拟值，不对应具体染料。",
+      "template_review": "本轮迁移新建，待人工审核。",
+      "independent_checker": "checkers/migrated.py:fret_efficiency, guinier_intensity"
     },
     {
       "id": "evidence_inference_choice",

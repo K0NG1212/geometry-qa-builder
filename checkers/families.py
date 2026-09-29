@@ -252,6 +252,7 @@ def conformer_selection(packet, key):
 
 
 from . import stereo as _stereo
+from . import migrated as _migrated
 
 CHECKERS = {
     'stereo_relationship': _stereo.stereo_relationship,
@@ -263,4 +264,5 @@ CHECKERS = {
     'force_path_derivative': force_path,
     'kinematic_extinction': extinction,
     'conformer_target_selection': conformer_selection,
+    **_migrated.CHECKERS,
 }

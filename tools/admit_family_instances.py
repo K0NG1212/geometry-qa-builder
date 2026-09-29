@@ -109,7 +109,10 @@ def admit(catalog, workbench, independent, amap, date):
             raise ValueError('Unknown action ' + action)
         if cid in records and records[cid].get('familyInstance') != inst:
             raise ValueError('Catalog id already used by another record: ' + cid)
-        record, extra = build_record(entry, amap['families'][teacher['family']], students[inst], teacher,
+        # Per-instance overrides (e.g. one PDB instance in a mostly-QM7-X family) on top of family defaults.
+        family = dict(amap['families'][teacher['family']],
+                      **{k: entry[k] for k in ('domain', 'scale', 'reasoning', 'learningObjective', 'sizeDefinition', 'attribution') if k in entry})
+        record, extra = build_record(entry, family, students[inst], teacher,
                                      numerics.get(inst), check, workbench['run'], date)
         files.update(extra)
         if action == 'supersede':

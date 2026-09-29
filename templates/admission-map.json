@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
   "rules": {
     "new": "Genuinely new question: added as a new catalog record (provisional).",
@@ -60,6 +60,60 @@
       "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0；结构经刚性旋转平移（内部几何不变）。",
       "learningObjective": "在只允许改变构型的约束下选择能量更低的结构，识别镜像（能量不变）、仅构象改变与构造改变等陷阱（立体化学梯子第三级，推断的逆问题）。",
       "sizeDefinition": "输入与推理均为 S0 最大原子间距。"
+    },
+    "named_bond_distance": {
+      "domain": "quantum",
+      "scale": "small_molecule",
+      "reasoning": "atom_pair",
+      "paper": "qm7x",
+      "learningObjective": "测定按化学含义指定的键长（磺酰 S=O、芳环 C–Cl、N–N、C–NH2），原子由成键关系确认，不是任意行号。",
+      "sizeDefinition": "输入：分子最大原子间距；推理：两成键原子间距。",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0。"
+    },
+    "coordination_shell": {
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "paper": "cod-materials-cell",
+      "learningObjective": "在无限周期晶体中确定指定中心周围某物种的最近壳层（个数与距离），必须计入相邻晶胞映像；包括网络节点层面的连接数。",
+      "sizeDefinition": "输入：晶胞边长；推理：中心与最近壳层全部原子的最大间距。",
+      "attribution": "Crystallography Open Database（公有领域）。"
+    },
+    "first_diffraction_peak": {
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic",
+      "paper": "cod-materials-cell",
+      "learningObjective": "由全部原子坐标判断最先出现的非消光反射，再由布拉格定律求 2θ；把消光（结构）与衍射几何联系起来。",
+      "sizeDefinition": "输入：晶胞边长；推理：答案反射的晶面间距 d。",
+      "attribution": "Crystallography Open Database（公有领域）。"
+    },
+    "fret_efficiency": {
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "molecular",
+      "paper": "pdb-bio-nm",
+      "learningObjective": "由结构中两标记位点的空间直线距离与给定 R0 推断 FRET 效率；区分直线距离与沿链路径。",
+      "sizeDefinition": "输入：链最大原子间距；推理：供体–受体直线距离。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；ATOM 记录原样摘录。"
+    },
+    "guinier_intensity": {
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "ensemble",
+      "paper": "pdb-bio-nm",
+      "learningObjective": "由原子坐标求等权回转半径，并在 Guinier 适用范围内推断归一化小角散射强度。",
+      "sizeDefinition": "输入与推理：整个分子最大原子间距。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；非氢 ATOM 记录转为 XYZ。"
+    },
+    "named_bond_angle": {
+      "domain": "quantum",
+      "scale": "small_molecule",
+      "reasoning": "local_geometry",
+      "paper": "qm7x",
+      "learningObjective": "测定按化学含义指定的键角（如磺酰 O=S=O），顶点与两端的成键由规则确认。",
+      "sizeDefinition": "输入：分子最大原子间距；推理：三原子两两最大间距。",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0。"
     }
   },
   "instances": [
@@ -312,6 +366,155 @@
       "action": "new",
       "catalog_id": "CND003",
       "title": "QM7-X 7110 · 只改构型降低能量（设计选择）"
+    },
+    {
+      "instance": "FA-DIST-7035-SO",
+      "action": "supersede",
+      "catalog_id": "QNP012",
+      "title": "QM7-X 7035 · 磺酰 S=O 键长（四选一）",
+      "supersedes": "QNP002"
+    },
+    {
+      "instance": "FA-DIST-7070-CCl",
+      "action": "supersede",
+      "catalog_id": "QNP013",
+      "title": "QM7-X 7070 · 芳环 C–Cl 键长（四选一）",
+      "supersedes": "QNP003"
+    },
+    {
+      "instance": "FA-DIST-7002-NN",
+      "action": "supersede",
+      "catalog_id": "QNP014",
+      "title": "QM7-X 7002 · 末端 N–N 键长（四选一）",
+      "supersedes": "QNP004"
+    },
+    {
+      "instance": "FA-DIST-7122-CN",
+      "action": "supersede",
+      "catalog_id": "QNP015",
+      "title": "QM7-X 7122 · C–NH2 键长（四选一）",
+      "supersedes": "QNP006"
+    },
+    {
+      "instance": "FA-DIST-6LYZ-SS",
+      "action": "supersede",
+      "catalog_id": "BNP016",
+      "title": "6LYZ · Cys6–Cys127 二硫键 SG–SG 距离（四选一）",
+      "supersedes": "BNP007",
+      "paper": "pdb-bio-nm",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "reasoning": "local_geometry",
+      "attribution": "RCSB PDB（wwPDB，CC0）；SSBOND 与 ATOM 记录原样摘录。",
+      "learningObjective": "测定晶体结构中 SSBOND 记录所列二硫键的 SG–SG 距离；只作几何测量，不据此单独判定成键状态。",
+      "sizeDefinition": "输入：两残基片段最大原子间距；推理：SG–SG 距离。"
+    },
+    {
+      "instance": "FA-ANG-7040-OSO",
+      "action": "supersede",
+      "catalog_id": "QNP016",
+      "title": "QM7-X 7040 · 磺酰 O=S=O 键角（四选一）",
+      "supersedes": "QNP005"
+    },
+    {
+      "instance": "FA-COORD-MGO",
+      "action": "supersede",
+      "catalog_id": "MNP011",
+      "title": "MgO · Mg 周围 O 最近壳层（四选一）",
+      "supersedes": "MNP004"
+    },
+    {
+      "instance": "FA-COORD-CSCL",
+      "action": "supersede",
+      "catalog_id": "MNP012",
+      "title": "CsCl · Cs 周围 Cl 最近壳层（四选一）",
+      "supersedes": "MNP005"
+    },
+    {
+      "instance": "FA-COORD-SALEM2-ZN",
+      "action": "new",
+      "catalog_id": "MNP013",
+      "title": "SALEM-2 · Zn–Zn 最近壳层（方钠石四连接）",
+      "paper": "cod-mof"
+    },
+    {
+      "instance": "FA-COORD-MOF5-NODE",
+      "action": "new",
+      "catalog_id": "MNP014",
+      "title": "MOF-5 · Zn4O 节点最近壳层（六连接）",
+      "paper": "cod-mof"
+    },
+    {
+      "instance": "FA-PEAK-NACL",
+      "action": "new",
+      "catalog_id": "MNI015",
+      "title": "NaCl · 首个衍射峰 2θ（四选一）"
+    },
+    {
+      "instance": "FA-PEAK-CSCL",
+      "action": "new",
+      "catalog_id": "MNI016",
+      "title": "CsCl · 首个衍射峰 2θ（四选一）"
+    },
+    {
+      "instance": "FA-PEAK-MGO",
+      "action": "supersede",
+      "catalog_id": "MNI017",
+      "title": "MgO · 首个衍射峰 2θ（四选一）",
+      "supersedes": "MNI004"
+    },
+    {
+      "instance": "FA-PEAK-SALEM2",
+      "action": "supersede",
+      "catalog_id": "MNI018",
+      "title": "SALEM-2 · 首个衍射峰 2θ（四选一）",
+      "supersedes": "MNI006",
+      "paper": "cod-mof"
+    },
+    {
+      "instance": "FA-PEAK-MOF5",
+      "action": "supersede",
+      "catalog_id": "MNI019",
+      "title": "MOF-5 · 首个衍射峰 2θ（四选一）",
+      "supersedes": "MNI007",
+      "paper": "cod-mof"
+    },
+    {
+      "instance": "FA-FRET-1EHZ",
+      "action": "supersede",
+      "catalog_id": "BNI009",
+      "title": "tRNA 1EHZ · A76–A35 FRET 效率（四选一）",
+      "supersedes": "BNI004"
+    },
+    {
+      "instance": "FA-FRET-1UBQ",
+      "action": "new",
+      "catalog_id": "BNI010",
+      "title": "泛素 1UBQ · K48–K63 FRET 效率（四选一）"
+    },
+    {
+      "instance": "FA-FRET-6LYZ",
+      "action": "new",
+      "catalog_id": "BNI011",
+      "title": "溶菌酶 6LYZ · 两端 FRET 效率（四选一）"
+    },
+    {
+      "instance": "FA-GUIN-6LYZ",
+      "action": "new",
+      "catalog_id": "BNI012",
+      "title": "溶菌酶 6LYZ · Guinier 强度（四选一）"
+    },
+    {
+      "instance": "FA-GUIN-1EHZ",
+      "action": "new",
+      "catalog_id": "BNI013",
+      "title": "tRNA 1EHZ · Guinier 强度（四选一）"
+    },
+    {
+      "instance": "FA-GUIN-1BNA",
+      "action": "new",
+      "catalog_id": "BNI014",
+      "title": "B-DNA 1BNA · Guinier 强度（四选一）"
     }
   ]
 }

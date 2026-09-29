@@ -606,6 +606,435 @@
    "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
    "license": "CC BY 4.0",
    "scope": "QM7-X 分子 7110 的立体异构体与构象；构造异构体取同分子式的 7038；能量为 PBE0+MBD 计算值。"
+  },
+  {
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "id": "FA-DIST-7035-SO",
+   "family": "named_bond_distance",
+   "asset": "assets/qa/QNP002-7035-opt.xyz",
+   "legacy_qa": "QNP002",
+   "atoms": [
+    {
+     "row": 3,
+     "name": "S3",
+     "element": "S"
+    },
+    {
+     "row": 4,
+     "name": "O4",
+     "element": "O"
+    }
+   ],
+   "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7035, an alkyl methyl sulfone (17 atoms, angstrom); rows are counted from 1 after the two header lines.",
+   "bond": "one of the two S=O bonds of the sulfonyl group (S3 carries two O atoms and two C atoms)",
+   "typical": {
+    "value": 1.44,
+    "basis": "sulfone S=O"
+   },
+   "scope": "QM7-X 分子 7035 优化几何；只测该结构中的键长，不据此判断键级。"
+  },
+  {
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "id": "FA-DIST-7070-CCl",
+   "family": "named_bond_distance",
+   "asset": "assets/qa/QNP003-7070-opt.xyz",
+   "legacy_qa": "QNP003",
+   "atoms": [
+    {
+     "row": 1,
+     "name": "Cl1",
+     "element": "Cl"
+    },
+    {
+     "row": 2,
+     "name": "C2",
+     "element": "C"
+    }
+   ],
+   "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7070, a dichloro-1H-pyrrole (10 atoms, angstrom); rows are counted from 1 after the two header lines.",
+   "bond": "the bond between a chlorine substituent and its ring carbon",
+   "typical": {
+    "value": 1.73,
+    "basis": "aryl C–Cl"
+   },
+   "scope": "QM7-X 分子 7070 优化几何；只测该结构中的键长。"
+  },
+  {
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "id": "FA-DIST-7002-NN",
+   "family": "named_bond_distance",
+   "asset": "assets/qa/QNP004-7002-opt.xyz",
+   "legacy_qa": "QNP004",
+   "atoms": [
+    {
+     "row": 5,
+     "name": "N5",
+     "element": "N"
+    },
+    {
+     "row": 6,
+     "name": "N6",
+     "element": "N"
+    }
+   ],
+   "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7002 (11 atoms, angstrom); rows are counted from 1 after the two header lines. N6 is terminal and bonded only to N5.",
+   "bond": "the nitrogen–nitrogen bond at the end of the N–N=N-type chain (N5 bonded to C4 and N6)",
+   "scope": "QM7-X 分子 7002 优化几何；只测该结构中的键长，不据此判断键级。"
+  },
+  {
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "id": "FA-DIST-7122-CN",
+   "family": "named_bond_distance",
+   "asset": "assets/qa/QNP006-7122-opt.xyz",
+   "legacy_qa": "QNP006",
+   "atoms": [
+    {
+     "row": 5,
+     "name": "C5",
+     "element": "C"
+    },
+    {
+     "row": 7,
+     "name": "N7",
+     "element": "N"
+    }
+   ],
+   "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7122, an amino-substituted chlorofuran (11 atoms, angstrom); rows are counted from 1 after the two header lines.",
+   "bond": "the bond joining the NH2 group (N7 with two H) to the furan ring carbon C5",
+   "typical": {
+    "value": 1.4,
+    "basis": "aryl C–NH2"
+   },
+   "scope": "QM7-X 分子 7122 优化几何；只测该结构中的键长。"
+  },
+  {
+   "id": "FA-DIST-6LYZ-SS",
+   "family": "named_bond_distance",
+   "asset": "assets/bio/6LYZ.pdb",
+   "pdb": "6LYZ",
+   "chain": "A",
+   "legacy_qa": "BNP007",
+   "pdb_atoms": [
+    [
+     6,
+     "SG"
+    ],
+    [
+     127,
+     "SG"
+    ]
+   ],
+   "source": "https://www.rcsb.org/structure/6LYZ",
+   "license": "wwPDB (CC0)",
+   "context": "The excerpt gives the SSBOND record and the ATOM records of Cys6 and Cys127 of hen egg-white lysozyme (PDB 6LYZ, chain A), copied unchanged (angstrom).",
+   "bond": "the disulfide bridge listed in the SSBOND record",
+   "typical": {
+    "value": 2.05,
+    "basis": "disulfide S–S"
+   },
+   "scope": "6LYZ 晶体结构两个半胱氨酸；只测 SG–SG 距离，不据此单独判定成键状态。"
+  },
+  {
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "id": "FA-ANG-7040-OSO",
+   "family": "named_bond_angle",
+   "asset": "assets/qa/QNP005-7040-opt.xyz",
+   "legacy_qa": "QNP005",
+   "atoms": [
+    {
+     "row": 4,
+     "name": "O4",
+     "element": "O"
+    },
+    {
+     "row": 3,
+     "name": "S3",
+     "element": "S"
+    },
+    {
+     "row": 5,
+     "name": "O5",
+     "element": "O"
+    }
+   ],
+   "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7040 (16 atoms, angstrom).",
+   "linkage": "the O=S=O unit of the sulfonyl group on S3",
+   "ideal": {
+    "value": 109.47,
+    "basis": "sp3 tetrahedral"
+   },
+   "scope": "QM7-X 分子 7040 优化几何；只测该结构中的键角。"
+  },
+  {
+   "id": "FA-COORD-MGO",
+   "family": "coordination_shell",
+   "source_kind": "cif",
+   "asset": "assets/materials/1000053.cif",
+   "legacy_qa": "MNP004",
+   "name": "periclase (MgO, COD 1000053)",
+   "centre": {
+    "element": "Mg"
+   },
+   "partner": {
+    "element": "O"
+   },
+   "centre_text": "Mg atom",
+   "partner_text": "O atoms",
+   "source": "https://www.crystallography.net/cod/1000053.html",
+   "license": "COD (public domain)",
+   "scope": "常规立方晶胞对称展开；周期晶体。"
+  },
+  {
+   "id": "FA-COORD-CSCL",
+   "family": "coordination_shell",
+   "source_kind": "cif",
+   "asset": "assets/materials/9008789.cif",
+   "legacy_qa": "MNP005",
+   "name": "caesium chloride (CsCl, COD 9008789)",
+   "centre": {
+    "element": "Cs"
+   },
+   "partner": {
+    "element": "Cl"
+   },
+   "centre_text": "Cs atom",
+   "partner_text": "Cl atoms",
+   "source": "https://www.crystallography.net/cod/9008789.html",
+   "license": "COD (public domain)",
+   "scope": "常规立方晶胞对称展开；周期晶体。"
+  },
+  {
+   "id": "FA-COORD-SALEM2-ZN",
+   "family": "coordination_shell",
+   "source_kind": "xyz_cell",
+   "asset": "assets/qa/MNI008-ZIF8-full.xyz",
+   "a": 16.8303,
+   "name": "Zn(imidazolate)2 with ZIF-8 sodalite topology (SALEM-2, COD 4118891; major-occupancy linker sites)",
+   "centre": {
+    "element": "Zn"
+   },
+   "partner": {
+    "element": "Zn"
+   },
+   "centre_text": "Zn atom",
+   "partner_text": "other Zn atoms",
+   "source": "https://www.crystallography.net/cod/4118891.html",
+   "license": "COD (public domain)",
+   "scope": "一个常规立方晶胞 204 个原子；周期晶体；Zn–Zn 壳层体现方钠石拓扑的 4 连接。"
+  },
+  {
+   "id": "FA-COORD-MOF5-NODE",
+   "family": "coordination_shell",
+   "source_kind": "xyz_cell",
+   "asset": "assets/qa/MNI009-MOF5-full.xyz",
+   "a": 25.8247,
+   "name": "MOF-5 (Zn4O(BDC)3, COD 1516287)",
+   "centre": {
+    "element": "O",
+    "bonded_to": "Zn",
+    "count": 4,
+    "cutoff": 2.3
+   },
+   "partner": {
+    "element": "O",
+    "bonded_to": "Zn",
+    "count": 4,
+    "cutoff": 2.3
+   },
+   "centre_text": "central μ4-O atom of a Zn4O cluster (the O bonded to four Zn)",
+   "partner_text": "other μ4-O atoms (Zn4O cluster centres)",
+   "source": "https://www.crystallography.net/cod/1516287.html",
+   "license": "COD (public domain)",
+   "scope": "一个常规立方晶胞 424 个原子；周期晶体；节点–节点壳层体现 pcu 网络的 6 连接。"
+  },
+  {
+   "id": "FA-PEAK-NACL",
+   "family": "first_diffraction_peak",
+   "source_kind": "cif",
+   "asset": "assets/materials/9008678.cif",
+   "name": "halite (NaCl, COD 9008678)",
+   "weights": {
+    "Na": 11,
+    "Cl": 17
+   },
+   "wavelength_A": 1.5406,
+   "source": "https://www.crystallography.net/cod/9008678.html",
+   "license": "COD (public domain)",
+   "scope": "运动学模型、原子序数权重；Cu Kα。"
+  },
+  {
+   "id": "FA-PEAK-CSCL",
+   "family": "first_diffraction_peak",
+   "source_kind": "cif",
+   "asset": "assets/materials/9008789.cif",
+   "name": "caesium chloride (CsCl, COD 9008789)",
+   "weights": {
+    "Cs": 55,
+    "Cl": 17
+   },
+   "wavelength_A": 1.5406,
+   "source": "https://www.crystallography.net/cod/9008789.html",
+   "license": "COD (public domain)",
+   "scope": "运动学模型、原子序数权重；Cu Kα。"
+  },
+  {
+   "id": "FA-PEAK-MGO",
+   "family": "first_diffraction_peak",
+   "source_kind": "cif",
+   "asset": "assets/materials/1000053.cif",
+   "legacy_qa": "MNI004",
+   "name": "periclase (MgO, COD 1000053)",
+   "weights": {
+    "Mg": 12,
+    "O": 8
+   },
+   "wavelength_A": 1.5406,
+   "source": "https://www.crystallography.net/cod/1000053.html",
+   "license": "COD (public domain)",
+   "scope": "运动学模型、原子序数权重；Cu Kα。"
+  },
+  {
+   "id": "FA-PEAK-SALEM2",
+   "family": "first_diffraction_peak",
+   "source_kind": "xyz_cell",
+   "asset": "assets/qa/MNI008-ZIF8-full.xyz",
+   "a": 16.8303,
+   "legacy_qa": "MNI006",
+   "name": "Zn(imidazolate)2 with ZIF-8 sodalite topology (SALEM-2, COD 4118891; major-occupancy linker sites)",
+   "weights": {
+    "Zn": 30,
+    "N": 7,
+    "C": 6,
+    "H": 1
+   },
+   "wavelength_A": 1.5406,
+   "source": "https://www.crystallography.net/cod/4118891.html",
+   "license": "COD (public domain)",
+   "scope": "204 原子整胞；运动学模型、原子序数权重；Cu Kα。"
+  },
+  {
+   "id": "FA-PEAK-MOF5",
+   "family": "first_diffraction_peak",
+   "source_kind": "xyz_cell",
+   "asset": "assets/qa/MNI009-MOF5-full.xyz",
+   "a": 25.8247,
+   "legacy_qa": "MNI007",
+   "name": "MOF-5 (Zn4O(BDC)3, COD 1516287)",
+   "weights": {
+    "Zn": 30,
+    "O": 8,
+    "C": 6,
+    "H": 1
+   },
+   "wavelength_A": 1.5406,
+   "source": "https://www.crystallography.net/cod/1516287.html",
+   "license": "COD (public domain)",
+   "scope": "424 原子整胞；运动学模型、原子序数权重；Cu Kα。"
+  },
+  {
+   "id": "FA-FRET-1EHZ",
+   "family": "fret_efficiency",
+   "asset": "assets/bio/1EHZ.pdb",
+   "pdb": "1EHZ",
+   "chain": "A",
+   "legacy_qa": "BNI004",
+   "context": "yeast tRNA-Phe",
+   "donor": [
+    76,
+    "C1'"
+   ],
+   "acceptor": [
+    35,
+    "C1'"
+   ],
+   "R0_nm": 6.0,
+   "path_atom": "C1'",
+   "source": "https://www.rcsb.org/structure/1EHZ",
+   "license": "wwPDB (CC0)",
+   "scope": "虚拟点探针；R0 为题设值；不代表真实染料位置。"
+  },
+  {
+   "id": "FA-FRET-1UBQ",
+   "family": "fret_efficiency",
+   "asset": "assets/bio/1UBQ.pdb",
+   "pdb": "1UBQ",
+   "chain": "A",
+   "context": "ubiquitin; Lys48 and Lys63 are the two most studied chain-linkage sites",
+   "donor": [
+    48,
+    "NZ"
+   ],
+   "acceptor": [
+    63,
+    "NZ"
+   ],
+   "R0_nm": 2.5,
+   "path_atom": "CA",
+   "source": "https://www.rcsb.org/structure/1UBQ",
+   "license": "wwPDB (CC0)",
+   "scope": "虚拟短程探针对（R0=2.5 nm）标记在两个赖氨酸 NZ；不代表真实染料。"
+  },
+  {
+   "id": "FA-FRET-6LYZ",
+   "family": "fret_efficiency",
+   "asset": "assets/bio/6LYZ.pdb",
+   "pdb": "6LYZ",
+   "chain": "A",
+   "context": "hen egg-white lysozyme; probes at the two chain termini",
+   "donor": [
+    1,
+    "CA"
+   ],
+   "acceptor": [
+    129,
+    "CA"
+   ],
+   "R0_nm": 2.2,
+   "path_atom": "CA",
+   "source": "https://www.rcsb.org/structure/6LYZ",
+   "license": "wwPDB (CC0)",
+   "scope": "虚拟短程探针对（R0=2.2 nm）标记在 N、C 端残基 CA；不代表真实染料。"
+  },
+  {
+   "id": "FA-GUIN-6LYZ",
+   "family": "guinier_intensity",
+   "asset": "assets/bio/6LYZ.pdb",
+   "pdb": "6LYZ",
+   "chains": "A",
+   "context": "hen egg-white lysozyme",
+   "q_per_nm": 0.6,
+   "source": "https://www.rcsb.org/structure/6LYZ",
+   "license": "wwPDB (CC0)",
+   "scope": "等权点散射体；非实测 SAXS。"
+  },
+  {
+   "id": "FA-GUIN-1EHZ",
+   "family": "guinier_intensity",
+   "asset": "assets/bio/1EHZ.pdb",
+   "pdb": "1EHZ",
+   "chains": "A",
+   "context": "yeast tRNA-Phe",
+   "q_per_nm": 0.4,
+   "source": "https://www.rcsb.org/structure/1EHZ",
+   "license": "wwPDB (CC0)",
+   "scope": "等权点散射体；非实测 SAXS。"
+  },
+  {
+   "id": "FA-GUIN-1BNA",
+   "family": "guinier_intensity",
+   "asset": "assets/bio/1BNA.pdb",
+   "pdb": "1BNA",
+   "chains": "AB",
+   "context": "the B-DNA dodecamer duplex",
+   "q_per_nm": 0.7,
+   "source": "https://www.rcsb.org/structure/1BNA",
+   "license": "wwPDB (CC0)",
+   "scope": "等权点散射体（两条链）；非实测 SAXS。"
   }
  ]
 }
