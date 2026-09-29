@@ -1493,6 +1493,235 @@
    "source": "Hill, Macfarlane, Senesi, Lee, Park, Mirkin, Nano Lett. 8, 2341 (2008), Table 1, https://doi.org/10.1021/nl8011787 ; open author manuscript https://pmc.ncbi.nlm.nih.gov/articles/PMC8191496/",
    "license": "参数为事实数据；未转载论文文字或图",
    "scope": "按论文表 1 的 SAXS 晶胞边长构建的理想 FCC 晶粒模型（粒子中心，约 177 个，经确定性旋转）；不是实测粒子坐标，不含位置无序与峰宽。"
+  },
+  {
+   "id": "FA-OP-DIAM-S8",
+   "family": "opal_geometry",
+   "asset": "assets/families/opals/opal-PS-S8.xyz",
+   "source": "Gazmeh et al., Sci. Rep. 15, 38349 (2025), Table 3, https://doi.org/10.1038/s41598-025-22161-5 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC12583473/",
+   "license": "论文 CC BY-NC-ND 4.0；只使用数值（事实数据），未转载文字或图",
+   "scope": "按论文 FESEM 球径构建的理想接触球 FCC 晶粒模型（177 个球心，确定性旋转）；不含尺寸分布与堆垛缺陷，不是实测球心坐标。",
+   "diameter_nm": 208.85,
+   "sample": "S8",
+   "material": "polystyrene",
+   "measured_peak_nm": 492.0,
+   "ask": "diameter"
+  },
+  {
+   "id": "FA-OP-D111-S2",
+   "family": "opal_geometry",
+   "asset": "assets/families/opals/opal-PS-S2.xyz",
+   "source": "Gazmeh et al., Sci. Rep. 15, 38349 (2025), Table 3, https://doi.org/10.1038/s41598-025-22161-5 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC12583473/",
+   "license": "论文 CC BY-NC-ND 4.0；只使用数值（事实数据），未转载文字或图",
+   "scope": "按论文 FESEM 球径构建的理想接触球 FCC 晶粒模型（177 个球心，确定性旋转）；不含尺寸分布与堆垛缺陷，不是实测球心坐标。",
+   "diameter_nm": 369.38,
+   "sample": "S2",
+   "material": "polystyrene",
+   "measured_peak_nm": 872.5,
+   "ask": "d111"
+  },
+  {
+   "id": "FA-OP-EDGE-SIO2",
+   "family": "opal_geometry",
+   "asset": "assets/families/opals/opal-SiO2-266.xyz",
+   "source": "Fookes, Polo Parada, Fidalgo, Sensors 23, 1433 (2023), parameter table, https://doi.org/10.3390/s23031433 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC9920682/",
+   "license": "论文 CC BY 4.0；只使用数值",
+   "scope": "按论文 SEM 球径（266 nm）构建的理想接触球 FCC 晶粒模型；有效折射率 1.35 与入射角 30° 取自论文参数表。",
+   "diameter_nm": 266.0,
+   "sample": "266 nm",
+   "material": "silica",
+   "measured_peak_nm": null,
+   "ask": "cell_edge"
+  },
+  {
+   "id": "FA-OP-PEAK-S3",
+   "family": "opal_bragg",
+   "asset": "assets/families/opals/opal-PS-S3.xyz",
+   "source": "Gazmeh et al., Sci. Rep. 15, 38349 (2025), Table 3, https://doi.org/10.1038/s41598-025-22161-5 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC12583473/",
+   "license": "论文 CC BY-NC-ND 4.0；只使用数值（事实数据），未转载文字或图",
+   "scope": "按论文 FESEM 球径构建的理想接触球 FCC 晶粒模型（177 个球心，确定性旋转）；不含尺寸分布与堆垛缺陷，不是实测球心坐标。",
+   "diameter_nm": 341.83,
+   "sample": "S3",
+   "material": "polystyrene",
+   "measured_peak_nm": 805.0,
+   "ask": "peak",
+   "n_sphere": 1.59,
+   "n_medium": 1.0
+  },
+  {
+   "id": "FA-OP-PEAK-S7-WATER",
+   "family": "opal_bragg",
+   "asset": "assets/families/opals/opal-PS-S7.xyz",
+   "source": "Gazmeh et al., Sci. Rep. 15, 38349 (2025), Table 3, https://doi.org/10.1038/s41598-025-22161-5 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC12583473/",
+   "license": "论文 CC BY-NC-ND 4.0；只使用数值（事实数据），未转载文字或图",
+   "scope": "按论文 FESEM 球径构建的理想接触球 FCC 晶粒模型（177 个球心，确定性旋转）；不含尺寸分布与堆垛缺陷，不是实测球心坐标。 空隙充水（n = 1.33）是模型假设（论文模拟了周围介质折射率的影响），不是实测条件。",
+   "diameter_nm": 224.76,
+   "sample": "S7",
+   "material": "polystyrene",
+   "measured_peak_nm": 532.0,
+   "ask": "peak",
+   "n_sphere": 1.59,
+   "n_medium": 1.33
+  },
+  {
+   "id": "FA-OP-PEAK-SIO2-30",
+   "family": "opal_bragg",
+   "asset": "assets/families/opals/opal-SiO2-266.xyz",
+   "source": "Fookes, Polo Parada, Fidalgo, Sensors 23, 1433 (2023), parameter table, https://doi.org/10.3390/s23031433 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC9920682/",
+   "license": "论文 CC BY 4.0；只使用数值",
+   "scope": "按论文 SEM 球径（266 nm）构建的理想接触球 FCC 晶粒模型；有效折射率 1.35 与入射角 30° 取自论文参数表。",
+   "diameter_nm": 266.0,
+   "sample": "266 nm",
+   "material": "silica",
+   "measured_peak_nm": null,
+   "ask": "peak",
+   "n_eff": 1.35,
+   "theta_deg": 30,
+   "paper_expected_nm": 547
+  },
+  {
+   "id": "FA-OP-ANGLE-SIO2",
+   "family": "opal_bragg",
+   "asset": "assets/families/opals/opal-SiO2-266.xyz",
+   "source": "Fookes, Polo Parada, Fidalgo, Sensors 23, 1433 (2023), parameter table, https://doi.org/10.3390/s23031433 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC9920682/",
+   "license": "论文 CC BY 4.0；只使用数值",
+   "scope": "按论文 SEM 球径（266 nm）构建的理想接触球 FCC 晶粒模型；有效折射率 1.35 与入射角 30° 取自论文参数表。",
+   "diameter_nm": 266.0,
+   "sample": "266 nm",
+   "material": "silica",
+   "measured_peak_nm": null,
+   "ask": "angle",
+   "n_eff": 1.35,
+   "target_nm": 500
+  },
+  {
+   "id": "FA-OP-DES-540",
+   "family": "opal_design",
+   "asset": "assets/families/opals/opal-PS-S5.xyz",
+   "candidates": [
+    "assets/families/opals/opal-PS-S5.xyz",
+    "assets/families/opals/opal-PS-S6.xyz",
+    "assets/families/opals/opal-PS-S7.xyz",
+    "assets/families/opals/opal-PS-S8.xyz"
+   ],
+   "diameters": [
+    [
+     "S5",
+     258.62
+    ],
+    [
+     "S6",
+     249.11
+    ],
+    [
+     "S7",
+     224.76
+    ],
+    [
+     "S8",
+     208.85
+    ]
+   ],
+   "measured_peaks_nm": {
+    "S5": 614.5,
+    "S6": 592.0,
+    "S7": 532.0,
+    "S8": 492.0
+   },
+   "goal": "closest",
+   "target_nm": 540,
+   "source": "Gazmeh et al., Sci. Rep. 15, 38349 (2025), Table 3, https://doi.org/10.1038/s41598-025-22161-5 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC12583473/",
+   "license": "论文 CC BY-NC-ND 4.0；只使用数值（事实数据），未转载文字或图",
+   "scope": "按论文 FESEM 球径构建的理想接触球 FCC 晶粒模型（177 个球心，确定性旋转）；不含尺寸分布与堆垛缺陷，不是实测球心坐标。",
+   "material": "polystyrene",
+   "n_sphere": 1.59,
+   "n_medium": 1.0
+  },
+  {
+   "id": "FA-OP-DES-820",
+   "family": "opal_design",
+   "asset": "assets/families/opals/opal-PS-S2.xyz",
+   "candidates": [
+    "assets/families/opals/opal-PS-S2.xyz",
+    "assets/families/opals/opal-PS-S3.xyz",
+    "assets/families/opals/opal-PS-S4.xyz",
+    "assets/families/opals/opal-PS-S5.xyz"
+   ],
+   "diameters": [
+    [
+     "S2",
+     369.38
+    ],
+    [
+     "S3",
+     341.83
+    ],
+    [
+     "S4",
+     326.97
+    ],
+    [
+     "S5",
+     258.62
+    ]
+   ],
+   "measured_peaks_nm": {
+    "S2": 872.5,
+    "S3": 805.0,
+    "S4": 765.0,
+    "S5": 614.5
+   },
+   "goal": "closest",
+   "target_nm": 820,
+   "source": "Gazmeh et al., Sci. Rep. 15, 38349 (2025), Table 3, https://doi.org/10.1038/s41598-025-22161-5 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC12583473/",
+   "license": "论文 CC BY-NC-ND 4.0；只使用数值（事实数据），未转载文字或图",
+   "scope": "按论文 FESEM 球径构建的理想接触球 FCC 晶粒模型（177 个球心，确定性旋转）；不含尺寸分布与堆垛缺陷，不是实测球心坐标。",
+   "material": "polystyrene",
+   "n_sphere": 1.59,
+   "n_medium": 1.0
+  },
+  {
+   "id": "FA-OP-DES-BELOW700",
+   "family": "opal_design",
+   "asset": "assets/families/opals/opal-PS-S4.xyz",
+   "candidates": [
+    "assets/families/opals/opal-PS-S4.xyz",
+    "assets/families/opals/opal-PS-S5.xyz",
+    "assets/families/opals/opal-PS-S6.xyz",
+    "assets/families/opals/opal-PS-S7.xyz"
+   ],
+   "diameters": [
+    [
+     "S4",
+     326.97
+    ],
+    [
+     "S5",
+     258.62
+    ],
+    [
+     "S6",
+     249.11
+    ],
+    [
+     "S7",
+     224.76
+    ]
+   ],
+   "measured_peaks_nm": {
+    "S4": 765.0,
+    "S5": 614.5,
+    "S6": 592.0,
+    "S7": 532.0
+   },
+   "goal": "below",
+   "target_nm": 700,
+   "source": "Gazmeh et al., Sci. Rep. 15, 38349 (2025), Table 3, https://doi.org/10.1038/s41598-025-22161-5 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC12583473/",
+   "license": "论文 CC BY-NC-ND 4.0；只使用数值（事实数据），未转载文字或图",
+   "scope": "按论文 FESEM 球径构建的理想接触球 FCC 晶粒模型（177 个球心，确定性旋转）；不含尺寸分布与堆垛缺陷，不是实测球心坐标。",
+   "material": "polystyrene",
+   "n_sphere": 1.59,
+   "n_medium": 1.0
   }
  ]
 }

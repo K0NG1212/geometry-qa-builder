@@ -1,6 +1,6 @@
 """Reusable task families. Each family id maps to one build function and one
 ability; the engine never dispatches by question ID."""
-from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice
+from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic
 
 FAMILIES = {
     'named_bond_angle': dict(build=local_geometry.build_bond_angle, ability='perception',
@@ -49,4 +49,10 @@ FAMILIES = {
                               output='choice+numeric', version=superlattice.VERSION, module='task_families/superlattice.py'),
     'superlattice_design': dict(build=superlattice.build_design, ability='design',
                                 output='choice', version=superlattice.VERSION, module='task_families/superlattice.py'),
+    'opal_geometry': dict(build=photonic.build_geometry, ability='perception',
+                          output='choice+numeric', version=photonic.VERSION, module='task_families/photonic.py'),
+    'opal_bragg': dict(build=photonic.build_bragg, ability='inference',
+                       output='choice+numeric', version=photonic.VERSION, module='task_families/photonic.py'),
+    'opal_design': dict(build=photonic.build_design, ability='design',
+                        output='choice', version=photonic.VERSION, module='task_families/photonic.py'),
 }

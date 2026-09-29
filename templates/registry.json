@@ -868,6 +868,184 @@
       "independent_checker": "checkers/superlattice.py:superlattice_design"
     },
     {
+      "id": "opal_geometry",
+      "name": "胶体光子晶体几何（球径 / 密排面间距 / 晶胞）",
+      "ability": "perception",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "从旋转后的球心坐标识别接触球 FCC：球径（最近邻距离）、最密排面间距、常规晶胞边长，均在 100–1000 nm。",
+      "domains": [
+        "materials"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice",
+        "numeric"
+      ],
+      "inputs": "胶体晶体（蛋白石）晶粒模型的球心坐标（nm，每行 \"sphere x y z\"，177 个，经确定性旋转）；设计题给四个候选文件。",
+      "physical_conditions": "接触球理想 FCC；密排面平行于膜面；有效折射率 n_eff² = Σ f_i n_i²（或题给 n_eff）；Bragg–Snell 一级反射。",
+      "input_scale": "整个晶粒（约 1.3–3.3 µm）",
+      "reasoning_scale": "晶格周期：常规晶胞边长 a（约 295–522 nm）",
+      "scale_cells": [
+        "100-1000"
+      ],
+      "scale_limits": "按论文球径构建的模型；不含尺寸分布、堆垛缺陷与多面衍射；审核侧附实测峰值供比较。",
+      "source_basis": "Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（聚苯乙烯球径与实测反射峰）；Fookes et al., Sensors 23, 1433 (2023) 参数表（二氧化硅 266 nm、n_eff 1.35、30°）",
+      "answer_method": "中心球周围分壳，核对 12/6 与 √2 比例，并与论文球径一致。",
+      "distractor_mechanisms": [
+        "cell_edge",
+        "radius",
+        "d111",
+        "half_cell_edge",
+        "d200",
+        "in_layer_row_spacing",
+        "nearest_neighbour",
+        "third_shell_distance",
+        "face_diagonal"
+      ],
+      "four_choice_validation": "与正确值 > 3 nm；升序排列，秩按批次轮换。",
+      "engine_families": [
+        "opal_geometry"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/photonic.py",
+        "checkers/superlattice.py",
+        "tools/build_opal_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成，sources.json 记录参数、出处与实测值。",
+      "principle": "接触球 FCC：最近邻 = 球径 D，a = √2·D，d111 = a/√3。",
+      "validation": "独立检查器由初基基矢与倒格子求 d111 与常规边长。",
+      "limits": "只含理想晶格。",
+      "gap": "两篇论文（聚苯乙烯 7 个样品、二氧化硅 1 个）。",
+      "template_review": "本轮新建（A4），待人工审核。",
+      "independent_checker": "checkers/superlattice.py:opal_quantity"
+    },
+    {
+      "id": "opal_bragg",
+      "name": "胶体光子晶体 Bragg 反射与结构色",
+      "ability": "inference",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "由球心坐标与题给折射率推断结构色：一级 Bragg–Snell 反射波长（正入射或斜入射），或达到目标波长所需的入射角。",
+      "domains": [
+        "materials"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice",
+        "numeric"
+      ],
+      "inputs": "胶体晶体（蛋白石）晶粒模型的球心坐标（nm，每行 \"sphere x y z\"，177 个，经确定性旋转）；设计题给四个候选文件。",
+      "physical_conditions": "接触球理想 FCC；密排面平行于膜面；有效折射率 n_eff² = Σ f_i n_i²（或题给 n_eff）；Bragg–Snell 一级反射。",
+      "input_scale": "整个晶粒（约 1.3–3.3 µm）",
+      "reasoning_scale": "晶格周期：常规晶胞边长 a（约 295–522 nm）",
+      "scale_cells": [
+        "100-1000"
+      ],
+      "scale_limits": "按论文球径构建的模型；不含尺寸分布、堆垛缺陷与多面衍射；审核侧附实测峰值供比较。",
+      "source_basis": "Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（聚苯乙烯球径与实测反射峰）；Fookes et al., Sensors 23, 1433 (2023) 参数表（二氧化硅 266 nm、n_eff 1.35、30°）",
+      "answer_method": "λ = 2 d111 √(n_eff² − sin²θ)；n_eff² = f n_s² + (1−f) n_m²，f = π/(3√2)。",
+      "distractor_mechanisms": [
+        "diameter_as_spacing",
+        "cell_edge_as_spacing",
+        "no_factor_two",
+        "d200_planes",
+        "linear_index_average",
+        "no_index",
+        "sphere_index",
+        "voids_as_air",
+        "no_refraction",
+        "ignore_angle",
+        "angle_from_surface",
+        "refraction_angle_inside",
+        "sin_not_squared"
+      ],
+      "four_choice_validation": "波长与正确值 > 5 nm，角度 > 1°；升序排列，秩按批次轮换。",
+      "engine_families": [
+        "opal_bragg"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/photonic.py",
+        "checkers/superlattice.py",
+        "tools/build_opal_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成，sources.json 记录参数、出处与实测值。",
+      "principle": "Bragg 定律加表面折射（Bragg–Snell）；有效介质近似。",
+      "validation": "独立检查器由倒格子求 d111，由初基胞体积求球体积分数，再按题干的有效介质规则计算。",
+      "limits": "有效介质与理想晶格假设；模型值与实测峰相差约 1%（审核侧列出）。",
+      "gap": "同上。",
+      "template_review": "本轮新建（A4），待人工审核。",
+      "independent_checker": "checkers/superlattice.py:opal_quantity"
+    },
+    {
+      "id": "opal_design",
+      "name": "结构色设计：选择球径样品",
+      "ability": "design",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "在论文实际合成的四个聚苯乙烯样品中选一个，使膜的正入射反射最接近目标波长，或在波长上限内球径最大；四个候选各有模型晶粒。",
+      "domains": [
+        "materials"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "inputs": "胶体晶体（蛋白石）晶粒模型的球心坐标（nm，每行 \"sphere x y z\"，177 个，经确定性旋转）；设计题给四个候选文件。",
+      "physical_conditions": "接触球理想 FCC；密排面平行于膜面；有效折射率 n_eff² = Σ f_i n_i²（或题给 n_eff）；Bragg–Snell 一级反射。",
+      "input_scale": "整个晶粒（约 1.3–3.3 µm）",
+      "reasoning_scale": "晶格周期：常规晶胞边长 a（约 295–522 nm）",
+      "scale_cells": [
+        "100-1000"
+      ],
+      "scale_limits": "按论文球径构建的模型；不含尺寸分布、堆垛缺陷与多面衍射；审核侧附实测峰值供比较。",
+      "source_basis": "Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（聚苯乙烯球径与实测反射峰）；Fookes et al., Sensors 23, 1433 (2023) 参数表（二氧化硅 266 nm、n_eff 1.35、30°）",
+      "answer_method": "逐个候选由坐标计算反射波长，按目标规则取唯一最优；要求领先幅度足够。",
+      "distractor_mechanisms": [
+        "diameter_as_spacing",
+        "no_index",
+        "linear_index_average",
+        "sphere_index",
+        "passes_if_no_index",
+        "satisfies_but_smaller",
+        "farther_from_target"
+      ],
+      "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明在哪种错误下会被选中。",
+      "engine_families": [
+        "opal_design"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/photonic.py",
+        "checkers/superlattice.py",
+        "tools/build_opal_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成，sources.json 记录参数、出处与实测值。",
+      "principle": "设计 = 推断的逆问题；论文将这些样品用作“反射标尺”。",
+      "validation": "独立检查器逐文件分析晶格并按题干目标重选。",
+      "limits": "候选性质来自模型；实测峰值列于审核侧。",
+      "gap": "同上。",
+      "template_review": "本轮新建（A4），待人工审核。",
+      "independent_checker": "checkers/superlattice.py:opal_design"
+    },
+    {
       "id": "lattice_plane_geometry",
       "name": "晶面间距",
       "ability": "perception",

@@ -1,5 +1,5 @@
 {
-  "version": "0.6.0",
+  "version": "0.7.0",
   "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
   "rules": {
     "new": "Genuinely new question: added as a new catalog record (provisional).",
@@ -195,6 +195,33 @@
       "attribution": "参数取自 Hill, Macfarlane, Senesi, Lee, Park, Mirkin, Nano Lett. 8, 2341 (2008) 表 1（事实数据）；模型坐标由本项目生成（见 docs/assets/families/superlattices/sources.json）。",
       "sizeDefinition": "输入：整个晶粒最大间距（约 170–340 nm）；推理：晶格周期（常规晶胞边长 a），壳层题为中心粒子与最近壳层的最大间距。",
       "learningObjective": "在论文实际做出的 DNA 连接子中选择一种，使超晶格达到目标 q*、间距或金含量约束（设计 = 推断的逆问题）。"
+    },
+    "opal_geometry": {
+      "domain": "materials",
+      "scale": "colloidal_crystal",
+      "reasoning": "periodic",
+      "paper": "paper-ps-opal-rulers",
+      "attribution": "参数取自 Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/opals/sources.json）。",
+      "sizeDefinition": "输入：整个晶粒最大间距（约 1.3–3.3 µm）；推理：晶格周期（常规晶胞边长 a，约 295–522 nm）。",
+      "learningObjective": "从旋转后的球心坐标识别接触球 FCC 胶体晶体的球径、密排面间距或常规晶胞边长。"
+    },
+    "opal_bragg": {
+      "domain": "materials",
+      "scale": "colloidal_crystal",
+      "reasoning": "periodic",
+      "paper": "paper-ps-opal-rulers",
+      "attribution": "参数取自 Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/opals/sources.json）。",
+      "sizeDefinition": "输入：整个晶粒最大间距（约 1.3–3.3 µm）；推理：晶格周期（常规晶胞边长 a，约 295–522 nm）。",
+      "learningObjective": "由胶体晶体的几何与题给折射率推断结构色（Bragg–Snell 反射波长或所需入射角），区分有效介质、折射与面间距的常见错误。"
+    },
+    "opal_design": {
+      "domain": "materials",
+      "scale": "colloidal_crystal",
+      "reasoning": "periodic",
+      "paper": "paper-ps-opal-rulers",
+      "attribution": "参数取自 Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/opals/sources.json）。",
+      "sizeDefinition": "输入：整个晶粒最大间距（约 1.3–3.3 µm）；推理：晶格周期（常规晶胞边长 a，约 295–522 nm）。",
+      "learningObjective": "在论文实际合成的样品中选择球径，使胶体晶体膜的反射达到目标颜色或满足波长上限（设计 = 推断的逆问题）。"
     }
   },
   "instances": [
@@ -900,6 +927,72 @@
       "action": "new",
       "catalog_id": "MND003",
       "title": "超晶格连接子选择 · 金含量 ≥ 1% 下间距最大（四选一）"
+    },
+    {
+      "instance": "FA-OP-DIAM-S8",
+      "action": "new",
+      "catalog_id": "MNP019",
+      "title": "聚苯乙烯胶体晶体（S8）· 球径（四选一）"
+    },
+    {
+      "instance": "FA-OP-D111-S2",
+      "action": "new",
+      "catalog_id": "MNP020",
+      "title": "聚苯乙烯胶体晶体（S2）· 密排面间距（四选一）"
+    },
+    {
+      "instance": "FA-OP-EDGE-SIO2",
+      "action": "new",
+      "catalog_id": "MNP021",
+      "title": "二氧化硅胶体晶体（266 nm）· 常规晶胞边长（四选一）",
+      "paper": "paper-silica-opal",
+      "attribution": "参数取自 Fookes, Polo Parada, Fidalgo, Sensors 23, 1433 (2023) 参数表（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/opals/sources.json）。"
+    },
+    {
+      "instance": "FA-OP-PEAK-S3",
+      "action": "new",
+      "catalog_id": "MNI023",
+      "title": "聚苯乙烯胶体晶体（S3）· 正入射反射波长（四选一）"
+    },
+    {
+      "instance": "FA-OP-PEAK-S7-WATER",
+      "action": "new",
+      "catalog_id": "MNI024",
+      "title": "聚苯乙烯胶体晶体（S7）· 空隙充水后的反射波长（四选一）"
+    },
+    {
+      "instance": "FA-OP-PEAK-SIO2-30",
+      "action": "new",
+      "catalog_id": "MNI025",
+      "title": "二氧化硅胶体晶体 · 30° 入射的反射波长（四选一）",
+      "paper": "paper-silica-opal",
+      "attribution": "参数取自 Fookes, Polo Parada, Fidalgo, Sensors 23, 1433 (2023) 参数表（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/opals/sources.json）。"
+    },
+    {
+      "instance": "FA-OP-ANGLE-SIO2",
+      "action": "new",
+      "catalog_id": "MNI026",
+      "title": "二氧化硅胶体晶体 · 反射落在 500 nm 的入射角（四选一）",
+      "paper": "paper-silica-opal",
+      "attribution": "参数取自 Fookes, Polo Parada, Fidalgo, Sensors 23, 1433 (2023) 参数表（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/opals/sources.json）。"
+    },
+    {
+      "instance": "FA-OP-DES-540",
+      "action": "new",
+      "catalog_id": "MND004",
+      "title": "结构色设计 · 选样使反射最接近 540 nm（四选一）"
+    },
+    {
+      "instance": "FA-OP-DES-820",
+      "action": "new",
+      "catalog_id": "MND005",
+      "title": "结构色设计 · 选样使反射最接近 820 nm（四选一）"
+    },
+    {
+      "instance": "FA-OP-DES-BELOW700",
+      "action": "new",
+      "catalog_id": "MND006",
+      "title": "结构色设计 · 反射低于 700 nm 时球径最大（四选一）"
     }
   ]
 }

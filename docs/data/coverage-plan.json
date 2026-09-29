@@ -3,8 +3,8 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 126,
-  "capped_total": 104,
+  "current_total": 136,
+  "capped_total": 114,
   "over_target_cells": [
    "quantum 0.1-1",
    "chemistry 0.1-1",
@@ -12,14 +12,14 @@
    "materials 1-10",
    "biology 1-10"
   ],
-  "provisional_total": 84,
-  "ability_gaps": 24,
-  "gap_slots": 69,
+  "provisional_total": 94,
+  "ability_gaps": 21,
+  "gap_slots": 60,
   "gaps_by_best_route": {
    "ready": 3,
    "migrate": 2,
    "build": 3,
-   "none": 16
+   "none": 13
   },
   "note": "capped_total 为每格最多按目标 10 道计的有效覆盖；超额题有效但不填补其他格。能力软目标来自 prototype-policy（每格感知/推断/设计各 3，外加 1 个机动名额）；路线只表示注册表声明可覆盖，不保证该格一定有合适数据。"
  },
@@ -749,33 +749,54 @@
    "domain": "materials",
    "cell": "100-1000",
    "target": 10,
-   "current": 0,
-   "provisional": 0,
-   "remaining": 10,
+   "current": 10,
+   "provisional": 10,
+   "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "opal_geometry",
+       "name": "胶体光子晶体几何（球径 / 密排面间距 / 晶胞）",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     },
     "inference": {
-     "current": 0,
+     "current": 4,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "opal_bragg",
+       "name": "胶体光子晶体 Bragg 反射与结构色",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "opal_design",
+       "name": "结构色设计：选择球径样品",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     }
    },
    "feasibility": {

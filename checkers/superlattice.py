@@ -132,3 +132,91 @@ def superlattice_design(packet, key):
 
 CHECKERS = {'superlattice_shell': superlattice_shell, 'superlattice_metric': superlattice_quantity,
             'superlattice_saxs': superlattice_quantity, 'superlattice_design': superlattice_design}
+
+
+# ------------------------------------------------------------------ opal photonic crystals
+def spheres(inp):
+    lines = inp['text'].splitlines()
+    rows = [l.split() for l in lines[2:] if l.strip()]
+    need(lines and lines[0].strip().isdigit() and int(lines[0]) == len(rows), 'Sphere file count invalid')
+    need(all(len(r) == 4 and r[0] == 'sphere' for r in rows), 'Rows must be "sphere x y z"')
+    return np.asarray([[float(v) for v in r[1:]] for r in rows])
+
+
+def optics(q, lat):
+    """Effective index from the question; sphere volume fraction from the primitive cell (touching spheres)."""
+    need('neighbouring spheres touch' in q, 'Touching-sphere assumption not stated')
+    given = re.search(r'effective refractive index of ([\d.]+) for the film', q)
+    if given:
+        return float(given.group(1))
+    ns = float(find(r'spheres have refractive index ([\d.]+)', q, 'Sphere index missing').group(1))
+    nm = float(find(r'medium of refractive index ([\d.]+)', q, 'Medium index missing').group(1))
+    need('volume-weighted average of the squared refractive indices' in q, 'Effective-medium rule missing')
+    f = (math.pi / 6) * lat['nn'] ** 3 / lat['volume']
+    return math.sqrt(f * ns * ns + (1 - f) * nm * nm)
+
+
+def opal_quantity(packet, key):
+    same_as_asset(packet, key)
+    q = packet['question']
+    lat = analyse(spheres(packet['inputs'][0]))
+    d111 = 2 * math.pi / lat['g'][0]
+    if 'What is the sphere diameter' in q:
+        need('neighbouring spheres touch' in q, 'Touching-sphere assumption not stated')
+        value = lat['nn']
+    elif 'close-packed (most densely populated) planes' in q:
+        value = d111
+    elif 'conventional cubic unit cell' in q:
+        need(lat['fcc'], 'Lattice is not face-centred cubic')
+        value = (4 * lat['volume']) ** (1 / 3)
+    else:
+        need('close-packed planes parallel to the film surface' in q, 'Film orientation not stated')
+        n = optics(q, lat)
+        if 'At what angle of incidence' in q:
+            lam = float(find(r'vacuum wavelength of ([\d.]+) nm', q, 'Target wavelength missing').group(1))
+            s = n * n - (lam / (2 * d111)) ** 2
+            need(0 < s < 1, 'Target wavelength not reachable')
+            value = math.degrees(math.asin(math.sqrt(s)))
+        else:
+            need('first-order Bragg reflection' in q, 'Unknown quantity')
+            m = re.search(r'incident from air at ([\d.]+)° from the film normal', q)
+            need(m is not None or 'incident along the film normal' in q, 'Incidence not stated')
+            theta = math.radians(float(m.group(1))) if m else 0.0
+            value = 2 * d111 * math.sqrt(n * n - math.sin(theta) ** 2)
+    return dict(judge_numeric(packet, key, value), parameters=dict(nn_nm=lat['nn'], d111_nm=d111), method='reciprocal lattice; Bragg-Snell')
+
+
+def opal_design(packet, key):
+    same_as_asset(packet, key)
+    q = packet['question']
+    lam = {}
+    size = {}
+    for inp in packet['inputs']:
+        lat = analyse(spheres(inp))
+        n = optics(q, lat)
+        lam[inp['name']] = 2 * (2 * math.pi / lat['g'][0]) * n
+        size[inp['name']] = lat['nn']
+    need('normal-incidence' in q, 'Incidence not stated')
+    closest = re.search(r'close-packed planes is closest to ([\d.]+) nm', q)
+    below = re.search(r'stays below ([\d.]+) nm', q)
+    need((closest is None) != (below is None), 'Design goal not stated exactly once')
+    if closest:
+        t = float(closest.group(1))
+        ranked = sorted(lam, key=lambda k: abs(lam[k] - t))
+        need(abs(lam[ranked[1]] - t) > abs(lam[ranked[0]] - t) + 1e-6, 'Tie for closest candidate')
+        winner = ranked[0]
+    else:
+        t = float(below.group(1))
+        ok = [k for k in lam if lam[k] < t]
+        need(ok, 'No candidate satisfies the limit')
+        winner = max(ok, key=lambda k: size[k])
+    hits = [o['label'] for o in packet['options'] if o['value'].endswith('(%s)' % winner)]
+    need(len(hits) == 1 and len({o['value'] for o in packet['options']}) == 4, 'Winner not named by exactly one distinct option')
+    for o in packet['options']:
+        name = re.search(r'\((\S+\.xyz)\)$', o['value'])
+        need(name is not None and name.group(1) in lam, 'Option does not name a supplied file')
+    need(key['correct_label'] == hits[0], 'Key label disagrees with recomputed choice')
+    return dict(label=hits[0], parameters=dict(peaks_nm=lam), method='per-file reciprocal lattice; Bragg-Snell; goal rule')
+
+
+CHECKERS.update(opal_geometry=opal_quantity, opal_bragg=opal_quantity, opal_design=opal_design)

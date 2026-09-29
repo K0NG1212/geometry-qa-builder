@@ -56,7 +56,7 @@ def build_record(entry, family, student, teacher, numeric, check, run, date):
     rubric = '四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。'
     if teacher['numeric_answer']:
         n = teacher['numeric_answer']
-        unit = (' ' + n['unit'].replace('nm^-1', 'nm⁻¹')) if n['unit'] else ''       # counts (capsid T, capsomers) have no unit
+        unit = UNITS.get(n['unit'], ' ' + n['unit']) if n['unit'] else ''       # counts (capsid T, capsomers) have no unit
         answer += '（数值作答：%s%s）' % (n['value'], unit)
         rubric += ' 数值作答形式：%d 位小数，绝对容差 %s%s。' % (n['decimals'], n['tolerance'], unit)
     record = dict(

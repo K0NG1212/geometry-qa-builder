@@ -282,5 +282,32 @@ class SuperlatticeTests(unittest.TestCase):
         self.assertTrue(fails(p, k, 'model crystallite'))
 
 
+class OpalTests(unittest.TestCase):
+    def test_hand_computed_bragg_snell(self):
+        # Silica opal of the Sensors 2023 parameter table: D = 266 nm, n_eff = 1.35, 30 degrees -> ~545 nm (paper: ~547 nm).
+        d111 = 266 * math.sqrt(2) / math.sqrt(3)
+        self.assertAlmostEqual(2 * d111 * math.sqrt(1.35 ** 2 - 0.25), 544.7, delta=0.05)
+        p, k = pair('FA-OP-PEAK-SIO2-30')
+        self.assertEqual(checkers.check(p, k)['status'], 'pass')
+        self.assertEqual(k['numeric_answer']['value'], '544.7')
+
+    def test_optical_conditions_are_enforced(self):
+        p, k = pair('FA-OP-PEAK-S3')
+        p['question'] = p['question'].replace('medium of refractive index 1.00', 'medium of refractive index 1.33')
+        self.assertTrue(fails(p, k))
+        p, k = pair('FA-OP-PEAK-S3')
+        p['question'] = p['question'].replace('volume-weighted average of the squared refractive indices', 'average of the indices')
+        self.assertTrue(fails(p, k, 'Effective-medium'))
+        p, k = pair('FA-OP-PEAK-SIO2-30')
+        p['question'] = p['question'].replace('at 30° from the film normal', 'at 40° from the film normal')
+        self.assertTrue(fails(p, k))
+        p, k = pair('FA-OP-DIAM-S8')
+        p['question'] = p['question'].replace('; neighbouring spheres touch', '')
+        self.assertTrue(fails(p, k, 'Touching'))
+        p, k = pair('FA-OP-DES-BELOW700')
+        p['question'] = p['question'].replace('stays below 700 nm', 'stays below 800 nm')
+        self.assertTrue(fails(p, k))
+
+
 if __name__ == '__main__':
     unittest.main()

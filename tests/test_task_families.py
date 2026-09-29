@@ -6,7 +6,7 @@ from decimal import Decimal
 from pathlib import Path
 
 import family_engine
-from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice
+from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic
 
 ROOT = Path(__file__).resolve().parents[1]
 SEED = 'geobench-family-v1'
@@ -391,6 +391,26 @@ class SuperlatticeFamilyTests(unittest.TestCase):
                     goal='nn', target=44.0, core_nm=10.3, scope='t')
         with self.assertRaises(ValueError):          # 40.31 vs 47.73 nm: too close to call
             superlattice.build_design(spec, self.ROOT, 's')
+
+
+class OpalFamilyTests(unittest.TestCase):
+    ROOT = Path(__file__).resolve().parents[1]
+
+    def spec(self, key, diameter, **extra):
+        return dict(dict(id='T-OP-' + key, asset='assets/families/opals/opal-%s.xyz' % key, diameter_nm=diameter, sample=key,
+                         material='polystyrene', scope='t'), **extra)
+
+    def test_model_close_to_measured_peaks(self):
+        # Table 3 of the PS paper: measured normal-incidence peaks; the stated model must land within 2 %.
+        for key, d, measured in (('PS-S3', 341.83, 805.0), ('PS-S5', 258.62, 614.5), ('PS-S7', 224.76, 532.0)):
+            r = photonic.build_bragg(self.spec(key, d, ask='peak', n_sphere=1.59, n_medium=1.0), self.ROOT, 's')
+            self.assertLess(abs(float(r['numeric']['value']) - measured) / measured, 0.02)
+
+    def test_published_diameter_is_enforced(self):
+        with self.assertRaises(ValueError):
+            photonic.build_geometry(self.spec('PS-S3', 340.0, ask='diameter'), self.ROOT, 's')
+        with self.assertRaises(ValueError):                  # 900 nm is not reachable at any angle for this film
+            photonic.build_bragg(self.spec('SiO2-266', 266.0, ask='angle', n_eff=1.35, target_nm=900), self.ROOT, 's')
 
 
 if __name__ == '__main__':

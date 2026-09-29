@@ -131,6 +131,7 @@ def numeric_candidates(ask, a, nn, core):
         return a, [dict(rule='nearest_neighbour', value=nn, plausibility=3, reason='把最近邻间距当作晶胞边长。'),
                    dict(rule='face_diagonal', value=a * s2, plausibility=2, reason='报告了面对角线（2 倍最近邻）。'),
                    dict(rule='body_diagonal', value=a * s3, plausibility=1, reason='报告了体对角线。'),
+                   dict(rule='third_shell_distance', value=a * math.sqrt(1.5), plausibility=2, reason='把第三近邻距离当作晶胞边长。'),
                    dict(rule='d111', value=a / s3, plausibility=2, reason='报告了密排面间距。'),
                    dict(rule='d200', value=a / 2, plausibility=2, reason='报告了 (200) 面间距 a/2。'),
                    dict(rule='primitive_cell_root', value=a / 4 ** (1 / 3), plausibility=2,
@@ -140,7 +141,7 @@ def numeric_candidates(ask, a, nn, core):
                         dict(rule='nearest_neighbour', value=nn, plausibility=2, reason='把最近邻间距当作面间距。'),
                         dict(rule='in_layer_row_spacing', value=nn * s3 / 2, plausibility=2, reason='算成密排层内相邻原子行的间距。'),
                         dict(rule='d220', value=a / (2 * s2), plausibility=2, reason='报告了 (220) 面间距。'),
-                        dict(rule='cell_edge', value=a, plausibility=1, reason='报告了晶胞边长。'),
+                        dict(rule='cell_edge', value=a, plausibility=2, reason='报告了晶胞边长而非面间距。'),
                         dict(rule='half_nearest_neighbour', value=nn / 2, plausibility=1, reason='取最近邻间距的一半。')]
     if ask == 'q_star':
         return q_star(a), [dict(rule='q_100_forbidden', value=2 * math.pi / a, plausibility=3, reason='用 (100)，而 FCC 中 (100) 消光。'),
@@ -163,6 +164,8 @@ def numeric_candidates(ask, a, nn, core):
                dict(rule='nearest_neighbour_cube', value=f * 2 * math.sqrt(2) / 4, plausibility=2,
                     reason='用最近邻间距的立方作为每个粒子的体积。'),
                dict(rule='fraction_not_percent', value=f / 100, plausibility=1, reason='给出了体积分数而非百分数。'),
+               dict(rule='nearest_neighbour_as_cell_edge', value=f * 2 * math.sqrt(2), plausibility=2,
+                    reason='用最近邻间距当作常规晶胞边长（仍按每胞 4 个粒子）。'),
                dict(rule='four_per_primitive_cell', value=f * 4, plausibility=2, reason='用初基胞体积 a³/4，却仍按 4 个粒子计。')]
 
 
