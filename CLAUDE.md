@@ -11,4 +11,4 @@ RUNBOOK 中“Codex 执行”指助手会话按 packet 工作；你可以用当�
 
 ## 当前下一阶段任务
 
-先读 [HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md)：上一份任务书 [CLAUDE_HANDOFF.md](CLAUDE_HANDOFF.md) 的 A–D 已完成（可复用题型族、覆盖总表、独立检查器、网站工作台），交接文件列出已完成内容、待审核项、阻塞与下一步。实际进度以 PROJECT_STATUS.md 顶部为准。
+先读 [HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)：项目目的与用户已做的决定、现状数字、数据来源路线、代码地图、标准流程与经验、待决事项与建议顺序。上一份 [HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史（第 7b 节审核体系设计仍有效）。实际进度以 PROJECT_STATUS.md 顶部为准。
