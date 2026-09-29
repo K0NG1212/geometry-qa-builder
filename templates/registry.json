@@ -592,6 +592,95 @@
       "independent_checker": ""
     },
     {
+      "id": "stereo_property_inference",
+      "name": "立体异构体性质推断",
+      "ability": "inference",
+      "status": "planned",
+      "priority": 2,
+      "concept": "同一分子的两个或多个立体异构体，由三维构型推断哪一个的指定性质（偶极、能量或文献报道的活性）更高或落在哪个区间。",
+      "domains": [
+        "chemistry",
+        "quantum"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice",
+        "numeric"
+      ],
+      "inputs": "各立体异构体 XYZ（Å）；性质证据只在审核侧。",
+      "physical_conditions": "性质为数据集计算值或论文实测值，题干写明来源类型与条件。",
+      "input_scale": "分子",
+      "reasoning_scale": "立体中心周围与整分子取向",
+      "scale_cells": [
+        "0.1-1"
+      ],
+      "scale_limits": "构型差异须由几何决定；性质差须超过阈值。",
+      "source_basis": "QM7-X 立体异构体（i1/i2）；手性药物论文",
+      "answer_method": "按坐标匹配数据集性质或引文数值；检查构型确实不同。",
+      "distractor_mechanisms": [
+        "mirror_configuration_confusion",
+        "conformer_vs_configuration",
+        "property_direction_reversed"
+      ],
+      "four_choice_validation": "四个候选或四个区间，唯一正确且领先阈值。",
+      "engine_families": [],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [],
+      "tests": [],
+      "builder_modules": "未开始（路线 A1）。",
+      "principle": "立体构型 → 性质。",
+      "validation": "待实现。",
+      "limits": "手性药物的活性需论文证据。",
+      "gap": "路线 A1 第二级。",
+      "template_review": "路线定义。",
+      "independent_checker": ""
+    },
+    {
+      "id": "stereo_design_selection",
+      "name": "立体构型设计选择",
+      "ability": "design",
+      "status": "planned",
+      "priority": 2,
+      "concept": "给定起始立体异构体与目标性质，只允许改变指定立体中心或双键构型，从四个候选中选出满足目标者（推断的逆问题）。",
+      "domains": [
+        "chemistry",
+        "quantum"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "inputs": "S0 与四个候选 XYZ；允许修改的立体中心；性质证据在审核侧。",
+      "physical_conditions": "同 stereo_property_inference。",
+      "input_scale": "分子",
+      "reasoning_scale": "立体中心与整分子",
+      "scale_cells": [
+        "0.1-1"
+      ],
+      "scale_limits": "候选须满足约束且互不等价（排除镜像/构象重复）。",
+      "source_basis": "QM7-X 立体异构体；手性药物论文",
+      "answer_method": "约束检查（只改指定构型）+ 性质证据唯一最优。",
+      "distractor_mechanisms": [
+        "changes_disallowed_centre",
+        "mirror_equivalent",
+        "worse_property"
+      ],
+      "four_choice_validation": "四候选均合法、唯一最优。",
+      "engine_families": [],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [],
+      "tests": [],
+      "builder_modules": "未开始（路线 A1）。",
+      "principle": "设计 = 推断的逆问题。",
+      "validation": "待实现。",
+      "limits": "计算证据只对所述理论水平成立。",
+      "gap": "路线 A1 第三级。",
+      "template_review": "路线定义。",
+      "independent_checker": ""
+    },
+    {
       "id": "force_path_derivative",
       "name": "受力沿路径的一阶能量变化",
       "ability": "inference",

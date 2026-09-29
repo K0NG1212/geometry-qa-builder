@@ -2,6 +2,24 @@
 
 > 交接入口：[HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md)（已完成事项、文件地图、待审核、阻塞、下一步）。
 
+## 最新：A0 完成——新题入库与覆盖规划器（2026-09-29，Claude Code 会话，模型 claude-opus-5-5）
+
+- **入库（暂计）**：`templates/admission-map.json` 明文记录去重规则，由 `tools/admit_family_instances.py` 执行，只接受独立检查通过的实例，重复运行结果相同。
+  - 新增 9 道：BNP013–015（主链二面角）、MNI011–012（NaCl/金刚石消光）、QND001–004（构象设计）。
+  - 替换 2 道：MNI013/MNI014 替换 MNI008/MNI009；旧记录转历史归档，并加 supersededBy 指向新版。
+  - 另 18 道只是在旧 active 题下挂 familyVersions 链接，不重复计数。
+  - 新记录标记 admission=provisional_auto_verified，附件写在 docs/assets/families/instances/。
+  - **active 42 → 53（暂计 11）**；lifecycle：active 53 / rework 45 / backlog 18 / archived 8。
+- **覆盖规划器**：`builder_modules/m0_scope/coverage.py` 增加暂计计数；新增 `tools/plan_coverage.py` → `docs/data/coverage-plan.json`，对 16 格 × 3 能力列出现有数、软目标缺口和可用路线（有代码可直接出题 / 需迁移 / 待实现 / 无路线）。
+  - 当前 38 个能力缺口、108 个空位；按最佳路线：可直接出题 3、需迁移 4、待实现 3、无路线 28。无路线的全部集中在 10–100 和 100–1000 nm 两个尺度，以及材料的设计题。
+- 注册表新增两行规划（stereo_property_inference、stereo_design_selection，对应 A1），共 21 行。
+- 网站：
+  - templates.html 新增“160 道原型：缺口与出题路线”格子图，点格子可看细节；工作台支持 `?instance=` 直达；
+  - 题库详情页中，新题链接到工作台，旧题显示四选一版本链接；
+  - 已检查桌面与 375px 手机宽度、无控制台错误。
+- 已重新导出 prototype-progress、admission-audit、builder-modules、task-coverage。测试 203 项通过（新增 tests/test_admission.py 5 项）。
+- 下一步：A1 立体化学三级题。
+
 ## 用户决定（2026-09-29）
 
 - 第一步仍是完善“自动高质量出题系统”；先做 160 道全类型覆盖的原型，之后再批量生产。

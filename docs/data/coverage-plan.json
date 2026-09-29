@@ -1,0 +1,921 @@
+{
+ "version": "0.1.0",
+ "basis": "prototype-policy + registry",
+ "summary": {
+  "target_total": 160,
+  "current_total": 53,
+  "provisional_total": 11,
+  "ability_gaps": 38,
+  "gap_slots": 108,
+  "gaps_by_best_route": {
+   "ready": 3,
+   "migrate": 4,
+   "build": 3,
+   "none": 28
+  },
+  "note": "能力软目标来自 prototype-policy（每格感知/推断/设计各 3，外加 1 个机动名额）；路线只表示注册表声明可覆盖，不保证该格一定有合适数据。"
+ },
+ "cells": [
+  {
+   "domain": "quantum",
+   "cell": "0.1-1",
+   "target": 10,
+   "current": 8,
+   "provisional": 4,
+   "remaining": 2,
+   "abilities": {
+    "perception": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [
+      {
+       "family": "equal_weight_rg",
+       "name": "等权回转半径",
+       "kind": "ready",
+       "status": "implemented"
+      },
+      {
+       "family": "global_extent",
+       "name": "全局最大间距",
+       "kind": "ready",
+       "status": "implemented"
+      },
+      {
+       "family": "named_bond_distance",
+       "name": "命名局部距离",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      },
+      {
+       "family": "stereo_configuration",
+       "name": "立体构型判别（R/S、顺/反）",
+       "kind": "build",
+       "status": "planned"
+      }
+     ],
+     "rework_in_cell": [
+      "QNP004",
+      "QNP002",
+      "QNP005",
+      "QNP003",
+      "QNP006"
+     ],
+     "best_route": "ready"
+    },
+    "inference": {
+     "current": 4,
+     "soft_target": 3,
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "force_path_derivative",
+       "name": "受力沿路径的一阶能量变化",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "stereo_property_inference",
+       "name": "立体异构体性质推断",
+       "kind": "build",
+       "status": "planned"
+      }
+     ],
+     "rework_in_cell": [
+      "QNI004"
+     ],
+     "best_route": "ready"
+    },
+    "design": {
+     "current": 4,
+     "soft_target": 3,
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "conformer_target_selection",
+       "name": "构象设计选择",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "stereo_design_selection",
+       "name": "立体构型设计选择",
+       "kind": "build",
+       "status": "planned"
+      }
+     ],
+     "rework_in_cell": [],
+     "best_route": "ready"
+    }
+   }
+  },
+  {
+   "domain": "quantum",
+   "cell": "1-10",
+   "target": 10,
+   "current": 5,
+   "provisional": 0,
+   "remaining": 5,
+   "abilities": {
+    "perception": {
+     "current": 5,
+     "soft_target": 3,
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "equal_weight_rg",
+       "name": "等权回转半径",
+       "kind": "ready",
+       "status": "implemented"
+      },
+      {
+       "family": "global_extent",
+       "name": "全局最大间距",
+       "kind": "ready",
+       "status": "implemented"
+      }
+     ],
+     "rework_in_cell": [],
+     "best_route": "ready"
+    },
+    "inference": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [
+      "QNI007",
+      "QNI005",
+      "QNI006",
+      "QNI008",
+      "QNI009"
+     ],
+     "best_route": "none"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    }
+   }
+  },
+  {
+   "domain": "quantum",
+   "cell": "10-100",
+   "target": 10,
+   "current": 0,
+   "provisional": 0,
+   "remaining": 10,
+   "abilities": {
+    "perception": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "inference": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    }
+   }
+  },
+  {
+   "domain": "quantum",
+   "cell": "100-1000",
+   "target": 10,
+   "current": 0,
+   "provisional": 0,
+   "remaining": 10,
+   "abilities": {
+    "perception": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "inference": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    }
+   }
+  },
+  {
+   "domain": "chemistry",
+   "cell": "0.1-1",
+   "target": 10,
+   "current": 9,
+   "provisional": 0,
+   "remaining": 1,
+   "abilities": {
+    "perception": {
+     "current": 7,
+     "soft_target": 3,
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "equal_weight_rg",
+       "name": "等权回转半径",
+       "kind": "ready",
+       "status": "implemented"
+      },
+      {
+       "family": "global_extent",
+       "name": "全局最大间距",
+       "kind": "ready",
+       "status": "implemented"
+      },
+      {
+       "family": "named_bond_angle",
+       "name": "命名化学键角",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "named_bond_distance",
+       "name": "命名局部距离",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      },
+      {
+       "family": "stereo_configuration",
+       "name": "立体构型判别（R/S、顺/反）",
+       "kind": "build",
+       "status": "planned"
+      }
+     ],
+     "rework_in_cell": [],
+     "best_route": "ready"
+    },
+    "inference": {
+     "current": 2,
+     "soft_target": 3,
+     "shortfall": 1,
+     "routes": [
+      {
+       "family": "structure_comparison_inference",
+       "name": "结构比较推断",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      },
+      {
+       "family": "evidence_inference_choice",
+       "name": "论文证据支持的物理推断选择",
+       "kind": "build",
+       "status": "planned"
+      },
+      {
+       "family": "stereo_property_inference",
+       "name": "立体异构体性质推断",
+       "kind": "build",
+       "status": "planned"
+      }
+     ],
+     "rework_in_cell": [
+      "CNP004",
+      "CNI001"
+     ],
+     "best_route": "migrate"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [
+      {
+       "family": "conformer_target_selection",
+       "name": "构象设计选择",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "design_choice",
+       "name": "有证据的结构优化选择（论文案例）",
+       "kind": "build",
+       "status": "planned"
+      },
+      {
+       "family": "stereo_design_selection",
+       "name": "立体构型设计选择",
+       "kind": "build",
+       "status": "planned"
+      }
+     ],
+     "rework_in_cell": [],
+     "best_route": "ready"
+    }
+   }
+  },
+  {
+   "domain": "chemistry",
+   "cell": "1-10",
+   "target": 10,
+   "current": 5,
+   "provisional": 0,
+   "remaining": 5,
+   "abilities": {
+    "perception": {
+     "current": 5,
+     "soft_target": 3,
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "equal_weight_rg",
+       "name": "等权回转半径",
+       "kind": "ready",
+       "status": "implemented"
+      },
+      {
+       "family": "global_extent",
+       "name": "全局最大间距",
+       "kind": "ready",
+       "status": "implemented"
+      }
+     ],
+     "rework_in_cell": [],
+     "best_route": "ready"
+    },
+    "inference": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [
+      {
+       "family": "structure_comparison_inference",
+       "name": "结构比较推断",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      }
+     ],
+     "rework_in_cell": [
+      "CNI002",
+      "CNI003",
+      "CNI004",
+      "CNI005",
+      "CNI006"
+     ],
+     "best_route": "migrate"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [
+      {
+       "family": "design_choice",
+       "name": "有证据的结构优化选择（论文案例）",
+       "kind": "build",
+       "status": "planned"
+      }
+     ],
+     "rework_in_cell": [],
+     "best_route": "build"
+    }
+   }
+  },
+  {
+   "domain": "chemistry",
+   "cell": "10-100",
+   "target": 10,
+   "current": 0,
+   "provisional": 0,
+   "remaining": 10,
+   "abilities": {
+    "perception": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "inference": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    }
+   }
+  },
+  {
+   "domain": "chemistry",
+   "cell": "100-1000",
+   "target": 10,
+   "current": 0,
+   "provisional": 0,
+   "remaining": 10,
+   "abilities": {
+    "perception": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "inference": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    }
+   }
+  },
+  {
+   "domain": "materials",
+   "cell": "0.1-1",
+   "target": 10,
+   "current": 8,
+   "provisional": 2,
+   "remaining": 2,
+   "abilities": {
+    "perception": {
+     "current": 3,
+     "soft_target": 3,
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "global_extent",
+       "name": "全局最大间距",
+       "kind": "ready",
+       "status": "implemented"
+      },
+      {
+       "family": "coordination_shell",
+       "name": "配位壳层",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      },
+      {
+       "family": "lattice_plane_geometry",
+       "name": "晶面间距",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      }
+     ],
+     "rework_in_cell": [
+      "MNP004",
+      "MNP005"
+     ],
+     "best_route": "ready"
+    },
+    "inference": {
+     "current": 5,
+     "soft_target": 3,
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "kinematic_extinction",
+       "name": "晶体衍射消光判别",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "bragg_angle_inference",
+       "name": "布拉格衍射角",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      }
+     ],
+     "rework_in_cell": [
+      "MNI004",
+      "MNI005"
+     ],
+     "best_route": "ready"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    }
+   }
+  },
+  {
+   "domain": "materials",
+   "cell": "1-10",
+   "target": 10,
+   "current": 7,
+   "provisional": 2,
+   "remaining": 3,
+   "abilities": {
+    "perception": {
+     "current": 5,
+     "soft_target": 3,
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "global_extent",
+       "name": "全局最大间距",
+       "kind": "ready",
+       "status": "implemented"
+      },
+      {
+       "family": "lattice_plane_geometry",
+       "name": "晶面间距",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      }
+     ],
+     "rework_in_cell": [],
+     "best_route": "ready"
+    },
+    "inference": {
+     "current": 2,
+     "soft_target": 3,
+     "shortfall": 1,
+     "routes": [
+      {
+       "family": "kinematic_extinction",
+       "name": "晶体衍射消光判别",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "bragg_angle_inference",
+       "name": "布拉格衍射角",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      }
+     ],
+     "rework_in_cell": [
+      "MNI006",
+      "MNI007",
+      "MNI010"
+     ],
+     "best_route": "ready"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    }
+   }
+  },
+  {
+   "domain": "materials",
+   "cell": "10-100",
+   "target": 10,
+   "current": 0,
+   "provisional": 0,
+   "remaining": 10,
+   "abilities": {
+    "perception": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "inference": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    }
+   }
+  },
+  {
+   "domain": "materials",
+   "cell": "100-1000",
+   "target": 10,
+   "current": 0,
+   "provisional": 0,
+   "remaining": 10,
+   "abilities": {
+    "perception": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "inference": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    }
+   }
+  },
+  {
+   "domain": "biology",
+   "cell": "0.1-1",
+   "target": 10,
+   "current": 6,
+   "provisional": 3,
+   "remaining": 4,
+   "abilities": {
+    "perception": {
+     "current": 6,
+     "soft_target": 3,
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "backbone_torsion",
+       "name": "蛋白主链二面角 φ/ψ",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "equal_weight_rg",
+       "name": "等权回转半径",
+       "kind": "ready",
+       "status": "implemented"
+      },
+      {
+       "family": "global_extent",
+       "name": "全局最大间距",
+       "kind": "ready",
+       "status": "implemented"
+      },
+      {
+       "family": "biopolymer_path_geometry",
+       "name": "生物大分子路径与局部几何",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      },
+      {
+       "family": "named_bond_distance",
+       "name": "命名局部距离",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      }
+     ],
+     "rework_in_cell": [
+      "BNP007",
+      "BNP009",
+      "BNP012"
+     ],
+     "best_route": "ready"
+    },
+    "inference": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [
+      {
+       "family": "structure_comparison_inference",
+       "name": "结构比较推断",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      },
+      {
+       "family": "evidence_inference_choice",
+       "name": "论文证据支持的物理推断选择",
+       "kind": "build",
+       "status": "planned"
+      }
+     ],
+     "rework_in_cell": [
+      "BNI005",
+      "BNI006",
+      "BNI007",
+      "BNI008"
+     ],
+     "best_route": "migrate"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [
+      {
+       "family": "design_choice",
+       "name": "有证据的结构优化选择（论文案例）",
+       "kind": "build",
+       "status": "planned"
+      }
+     ],
+     "rework_in_cell": [],
+     "best_route": "build"
+    }
+   }
+  },
+  {
+   "domain": "biology",
+   "cell": "1-10",
+   "target": 10,
+   "current": 5,
+   "provisional": 0,
+   "remaining": 5,
+   "abilities": {
+    "perception": {
+     "current": 3,
+     "soft_target": 3,
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "equal_weight_rg",
+       "name": "等权回转半径",
+       "kind": "ready",
+       "status": "implemented"
+      },
+      {
+       "family": "global_extent",
+       "name": "全局最大间距",
+       "kind": "ready",
+       "status": "implemented"
+      },
+      {
+       "family": "biopolymer_path_geometry",
+       "name": "生物大分子路径与局部几何",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      }
+     ],
+     "rework_in_cell": [
+      "BNP004",
+      "BNP005",
+      "BNP006"
+     ],
+     "best_route": "ready"
+    },
+    "inference": {
+     "current": 2,
+     "soft_target": 3,
+     "shortfall": 1,
+     "routes": [
+      {
+       "family": "scattering_model_inference",
+       "name": "散射/FRET 模型推断",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      },
+      {
+       "family": "structure_comparison_inference",
+       "name": "结构比较推断",
+       "kind": "migrate",
+       "status": "existing_legacy"
+      }
+     ],
+     "rework_in_cell": [
+      "BNI003",
+      "BNI004"
+     ],
+     "best_route": "migrate"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [
+      {
+       "family": "design_choice",
+       "name": "有证据的结构优化选择（论文案例）",
+       "kind": "build",
+       "status": "planned"
+      }
+     ],
+     "rework_in_cell": [],
+     "best_route": "build"
+    }
+   }
+  },
+  {
+   "domain": "biology",
+   "cell": "10-100",
+   "target": 10,
+   "current": 0,
+   "provisional": 0,
+   "remaining": 10,
+   "abilities": {
+    "perception": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "inference": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    }
+   }
+  },
+  {
+   "domain": "biology",
+   "cell": "100-1000",
+   "target": 10,
+   "current": 0,
+   "provisional": 0,
+   "remaining": 10,
+   "abilities": {
+    "perception": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "inference": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    },
+    "design": {
+     "current": 0,
+     "soft_target": 3,
+     "shortfall": 3,
+     "routes": [],
+     "rework_in_cell": [],
+     "best_route": "none"
+    }
+   }
+  }
+ ]
+}

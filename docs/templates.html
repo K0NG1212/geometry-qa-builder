@@ -7,7 +7,9 @@
 <div id="cov-counters" class="counters"></div>
 <div class="filters" role="group" aria-label="按能力筛选"><button data-ability="all" aria-pressed="true">全部</button><button data-ability="perception" aria-pressed="false">感知</button><button data-ability="inference" aria-pressed="false">推断</button><button data-ability="design" aria-pressed="false">设计</button><label class="inline">状态 <select id="cov-status"><option value="all">全部状态</option></select></label></div>
 <div class="table-scroll"><table class="coverage"><thead><tr><th>题型</th><th>能力</th><th>状态</th><th>领域</th><th>推理尺度</th><th>输出</th><th>新实例</th><th>旧候选</th></tr></thead><tbody id="cov-rows"></tbody></table></div>
-<p class="footnote">点击一行展开：考点、输入与物理条件、尺度定义、答案方法、三类以上干扰机制、四选一校验、代码与测试位置、对应 M0–M6 模块及缺口。</p></section>
+<p class="footnote">点击一行展开：考点、输入与物理条件、尺度定义、答案方法、三类以上干扰机制、四选一校验、代码与测试位置、对应 M0–M6 模块及缺口。</p>
+<h3 id="plan">160 道原型：缺口与出题路线</h3><p id="plan-summary">正在读取覆盖规划…</p><p class="footnote">每格目标 10 道，感知/推断/设计各软目标 3 道（外加 1 个机动名额）；按推理尺度计。数字为当前原型数（含暂计）。颜色表示最缺的那项能力目前有什么路线：<span class="route ready">有代码可直接出题</span> <span class="route migrate">需迁移旧计算器</span> <span class="route build">已定义待实现</span> <span class="route none">无路线，需调研数据源</span>。点击格子看细节。</p>
+<div class="table-scroll"><table class="plan"><thead><tr><th>领域</th><th>0.1–1 nm</th><th>1–10 nm</th><th>10–100 nm</th><th>100–1000 nm</th></tr></thead><tbody id="plan-rows"></tbody></table></div><div id="plan-detail" class="plan-detail" hidden></div></section>
 
 <section id="workbench" class="lab"><p class="eyebrow">FAMILY WORKBENCH</p><h2>题型工作台：看一次完整的构造与验证</h2><p id="fam-summary">正在读取运行记录…</p>
 <div class="picker"><label>题型 <select id="fam-select"></select></label><label>实例 <select id="fam-instance"></select></label></div>

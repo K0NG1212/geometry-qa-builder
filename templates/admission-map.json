@@ -1,0 +1,60 @@
+{
+  "version": "0.1.0",
+  "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
+  "rules": {
+    "new": "Genuinely new question: added as a new catalog record (provisional).",
+    "supersede": "Rebuilt version of a legacy record in rework: new record added; the legacy record is archived with supersededBy, kept for traceability, not counted twice.",
+    "reformat": "Four-choice / family version of an already active legacy question: no new record and no new count; linked under the legacy record's familyVersions."
+  },
+  "families": {
+    "backbone_torsion": {
+      "domain": "biology", "scale": "macromolecule", "reasoning": "local_geometry", "paper": "pdb-bio-nm",
+      "learningObjective": "按 IUPAC 符号约定，从晶体结构三残基片段测定指定残基的主链二面角；符号区分左/右手构象。",
+      "sizeDefinition": "输入：三残基片段全部原子最大间距；推理：二面角首末两原子间距。",
+      "attribution": "RCSB PDB（wwPDB，CC0）；ATOM 记录原样摘录。"
+    },
+    "kinematic_extinction": {
+      "domain": "materials", "scale": "crystal", "reasoning": "periodic", "paper": "cod-materials-cell",
+      "learningObjective": "由常规晶胞全部原子坐标与运动学结构因子推断哪一反射强度为零；区分中心化、滑移与基元导致的消光。",
+      "sizeDefinition": "输入与推理均为立方晶胞边长 a（相位求和跨越整个晶胞）。",
+      "attribution": "Crystallography Open Database（公有领域）；对称展开或已发布整胞坐标。"
+    },
+    "conformer_target_selection": {
+      "domain": "quantum", "scale": "small_molecule", "reasoning": "molecular", "paper": "qm7x",
+      "learningObjective": "在只允许单键旋转的约束下，从四个真实候选构象中选出满足目标性质（最低能量或最大偶极）的唯一最优者；性质证据为 QM7-X PBE0+MBD 计算值。",
+      "sizeDefinition": "输入与推理均为 S0 全部原子最大间距（整分子构象比较）。",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0。"
+    }
+  },
+  "instances": [
+    {"instance": "FA-TOR-1CRN-G20", "action": "new", "catalog_id": "BNP013", "title": "1CRN · Gly20 主链 φ 二面角（四选一）"},
+    {"instance": "FA-TOR-1UBQ-V26", "action": "new", "catalog_id": "BNP014", "title": "1UBQ · Val26 主链 ψ 二面角（四选一）"},
+    {"instance": "FA-TOR-6LYZ-T43", "action": "new", "catalog_id": "BNP015", "title": "6LYZ · Thr43 主链 φ 二面角（四选一）"},
+    {"instance": "FA-EXT-NACL", "action": "new", "catalog_id": "MNI011", "title": "NaCl · 哪一反射消光（四选一）"},
+    {"instance": "FA-EXT-DIAMOND", "action": "new", "catalog_id": "MNI012", "title": "金刚石 · 哪一反射消光（四选一）"},
+    {"instance": "FA-EXT-SALEM2", "action": "supersede", "catalog_id": "MNI013", "supersedes": "MNI008", "title": "SALEM-2（ZIF-8 拓扑）· 哪一反射消光（四选一）", "paper": "cod-mof"},
+    {"instance": "FA-EXT-MOF5", "action": "supersede", "catalog_id": "MNI014", "supersedes": "MNI009", "title": "MOF-5 · 哪一反射消光（四选一）", "paper": "cod-mof"},
+    {"instance": "FA-CONF-7050-max_dipole", "action": "new", "catalog_id": "QND001", "title": "QM7-X 7050 · 选偶极最大的构象（设计选择）"},
+    {"instance": "FA-CONF-7206-min_energy", "action": "new", "catalog_id": "QND002", "title": "QM7-X 7206 · 选能量最低的构象（设计选择）"},
+    {"instance": "FA-CONF-7095-min_energy", "action": "new", "catalog_id": "QND003", "title": "QM7-X 7095 · 选能量最低的构象（设计选择）"},
+    {"instance": "FA-CONF-7032-max_dipole", "action": "new", "catalog_id": "QND004", "title": "QM7-X 7032 · 选偶极最大的构象（设计选择）"},
+    {"instance": "FA-ANG-BCD", "action": "reformat", "catalog_id": "CNP001"},
+    {"instance": "FA-ANG-WP6", "action": "reformat", "catalog_id": "CNP002"},
+    {"instance": "FA-ANG-DMBCD", "action": "reformat", "catalog_id": "CNP006"},
+    {"instance": "FA-FP-QM7X-7001", "action": "reformat", "catalog_id": "QNP001"},
+    {"instance": "FA-FP-QM7X-7002", "action": "reformat", "catalog_id": "QNI001"},
+    {"instance": "FA-FP-QM7X-7035", "action": "reformat", "catalog_id": "QNI002"},
+    {"instance": "FC-QNP007", "action": "reformat", "catalog_id": "QNP007"},
+    {"instance": "FC-QNP008", "action": "reformat", "catalog_id": "QNP008"},
+    {"instance": "FC-QNP009", "action": "reformat", "catalog_id": "QNP009"},
+    {"instance": "FC-QNP010", "action": "reformat", "catalog_id": "QNP010"},
+    {"instance": "FC-QNP011", "action": "reformat", "catalog_id": "QNP011"},
+    {"instance": "FC-MNP006", "action": "reformat", "catalog_id": "MNP006"},
+    {"instance": "FC-MNP007", "action": "reformat", "catalog_id": "MNP007"},
+    {"instance": "FC-MNP010", "action": "reformat", "catalog_id": "MNP010"},
+    {"instance": "FC-CNP007", "action": "reformat", "catalog_id": "CNP007"},
+    {"instance": "FC-CNP008", "action": "reformat", "catalog_id": "CNP008"},
+    {"instance": "FC-CNP009", "action": "reformat", "catalog_id": "CNP009"},
+    {"instance": "FC-CNP011", "action": "reformat", "catalog_id": "CNP011"}
+  ]
+}

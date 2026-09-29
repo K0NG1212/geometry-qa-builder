@@ -77,6 +77,15 @@
  $('fam-download').addEventListener('click',()=>student&&save(student,student.id+'-student.json'));
  $('fam-download-numeric').addEventListener('click',()=>numeric&&save(numeric,numeric.id+'-student.json'));
 
+ const ROUTE={ready:'有代码可直接出题',migrate:'需迁移旧计算器',build:'已定义待实现',none:'无路线，需调研数据源'},SHORT={perception:'感',inference:'推',design:'设'};
+ function renderPlan(plan){
+  const s=plan.summary;$('plan-summary').textContent=`当前 ${s.current_total} / ${s.target_total} 道（其中暂计 ${s.provisional_total} 道）；共 ${s.ability_gaps} 个能力缺口、${s.gap_slots} 个空位。按最佳路线：可直接出题 ${s.gaps_by_best_route.ready}、需迁移 ${s.gaps_by_best_route.migrate}、待实现 ${s.gaps_by_best_route.build}、无路线 ${s.gaps_by_best_route.none}。`;
+  const rank={ready:0,migrate:1,build:2,none:3};
+  $('plan-rows').innerHTML=Object.keys(DOMAIN).map(d=>`<tr><th>${DOMAIN[d]}</th>`+plan.cells.filter(c=>c.domain===d).map(c=>{const gaps=Object.values(c.abilities).filter(v=>v.shortfall);const worst=gaps.length?gaps.map(v=>v.best_route).sort((a,b)=>rank[b]-rank[a])[0]:'done';
+   return `<td><button class="plan-cell ${worst}" data-cell="${esc(d+'|'+c.cell)}"><b>${c.current}/${c.target}</b>${c.provisional?`<small>暂计 ${c.provisional}</small>`:''}<span>${Object.entries(c.abilities).map(([a,v])=>`${SHORT[a]} ${v.current}/${v.soft_target}`).join(' · ')}</span></button></td>`}).join('')+'</tr>').join('');
+  $('plan-rows').onclick=e=>{const b=e.target.closest('.plan-cell');if(!b)return;const [d,cell]=b.dataset.cell.split('|');const c=plan.cells.find(x=>x.domain===d&&x.cell===cell);
+   $('plan-detail').hidden=false;$('plan-detail').innerHTML=`<h4>${esc(DOMAIN[d])} · ${esc(cell)} nm：现有 ${c.current}/${c.target}（暂计 ${c.provisional}）</h4>`+Object.entries(c.abilities).map(([a,v])=>`<p><b>${esc(ABILITY[a])}</b> ${v.current}/${v.soft_target}${v.shortfall?`，缺 ${v.shortfall}`:'，已达软目标'} · 最佳路线：<span class="route ${v.best_route}">${esc(ROUTE[v.best_route])}</span><br>${v.routes.length?v.routes.map(r=>`${esc(r.name)}（${esc(r.family)}，${esc(ROUTE[r.kind])}）`).join('；'):'注册表中没有覆盖此格的题型'}${v.rework_in_cell.length?`<br>本格待修旧题：${v.rework_in_cell.map(esc).join('，')}`:''}</p>`).join('');};
+ }
  Promise.all(['data/task-coverage.json','data/family-workbench.json','data/independent-check.json'].map(u=>fetch(u).then(r=>{if(!r.ok)throw Error(u+' '+r.status);return r.json()}))).then(([c,f,i])=>{
   cov=c;fam=f;indep=i;counters();
   $('fam-independent-summary').textContent=`本批 ${i.checked} 例，独立检查通过 ${i.passed} 例，失败 ${i.failed.length} 例；模型调用 ${i.model_calls}。检查器版本 ${i.checker_version}。`;
@@ -87,6 +96,8 @@
   const present=order.filter(x=>fam.teacher_answers.some(t=>t.family===x));
   $('fam-select').innerHTML=present.map(x=>{const t=fam.teacher_answers.find(y=>y.family===x);return `<option value="${esc(x)}">${esc(ABILITY[t.ability])} · ${esc(familyName(x))}</option>`}).join('');
   const r=fam.report;$('fam-summary').textContent=`运行 ${fam.run}：尝试 ${r.attempted} 例，程序核验通过 ${r.passed} 例，构造失败 ${r.failures.length} 例（已记录原因）；模型调用 0；全部待人工审核，新增题库 0。`;
-  renderFamily();
+  const want=new URLSearchParams(location.search).get('instance'),hit=want&&fam.teacher_answers.find(t=>t.id===want);
+  if(hit){$('fam-select').value=hit.family;renderFamily();$('fam-instance').value=hit.id;renderInstance();$('workbench').scrollIntoView()}else renderFamily();
+  fetch('data/coverage-plan.json').then(r=>r.ok?r.json():Promise.reject(r.status)).then(renderPlan).catch(()=>{$('plan-summary').textContent='覆盖规划加载失败。'});
  }).catch(e=>{$('fam-summary').textContent='记录加载失败：'+e.message;$('load-error').hidden=false});
 })();
