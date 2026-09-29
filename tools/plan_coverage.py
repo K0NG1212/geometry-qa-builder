@@ -1,8 +1,8 @@
 """Coverage planner: for each of the 16 cells and each ability, the current count
 (from the M0 coverage summary) and the routes that could fill the gap.
 
-Routes come only from templates/registry.json (declared ability, domains, scale cells)
-and from rework records already located in the cell. The planner suggests; it never
+Routes come only from templates/registry.json (declared ability, domains, scale cells,
+minus any "excluded_cells" where the family exists but no data source does yet) and from rework records already located in the cell. The planner suggests; it never
 generates questions or changes counts.
 
   ready    task family with running code and an independent checker
@@ -41,7 +41,7 @@ def plan(catalog, policy, registry, feasibility=None):
             routes = []
             for t in registry['templates']:
                 kind = KIND.get(t['status'])
-                if kind and t['ability'] == ability and cell['domain'] in t['domains'] and name in t['scale_cells']:
+                if kind and t['ability'] == ability and cell['domain'] in t['domains'] and name in t['scale_cells']                         and '%s %s' % (cell['domain'], name) not in t.get('excluded_cells', []):
                     if kind == 'ready' and not t.get('independent_checker'):
                         kind = 'migrate'
                     routes.append(dict(family=t['id'], name=t['name'], kind=kind, status=t['status']))

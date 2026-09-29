@@ -153,8 +153,10 @@ def guinier_intensity(packet, key):
     qv = float(find(r'q = ([\d.]+) nm', q, 'q missing').group(1))
     need('identical point scatterer' in q, 'Scatterer model not stated')
     [inp] = packet['inputs']
-    atoms = read_xyz(inp['text'])
-    pts = [tuple(float(c) for c in p) for _, p in atoms]
+    if inp['format'] == 'centroid-table':      # labelled point table: every row is one scatterer
+        pts = [tuple(float(x) for x in l.split()[2:5]) for l in inp['text'].splitlines()[1:] if l.strip()]
+    else:
+        pts = [tuple(float(c) for c in p) for _, p in read_xyz(inp['text'])]
     n = len(pts)
     # Pair identity Rg^2 = sum_{i<j} d_ij^2 / N^2 (the generator uses the centroid form); chunked numpy for large N.
     arr = np.asarray(pts)
@@ -162,7 +164,7 @@ def guinier_intensity(packet, key):
     rg = math.sqrt(s) / n / 10
     need(qv * rg <= 1.3, 'q*Rg above the Guinier validity limit')
     [path] = verify_hashes(key).values()
-    if path.suffix == '.xyz':           # reduced assembly asset: the input must be that file verbatim
+    if path.suffix in ('.xyz', '.txt'):   # reduced assembly asset: the input must be that file verbatim
         need(path.read_bytes() == inp['text'].encode('utf-8'), 'XYZ differs from the published reduced asset')
         return dict(judge_numeric(packet, key, math.exp(-(qv * rg) ** 2 / 3)), parameters=dict(q_per_nm=qv, rg_nm=rg, atoms=n),
                     method='pair-distance Rg; Guinier law')
@@ -242,3 +244,69 @@ def capsid_architecture(packet, key):
 
 
 CHECKERS.update(assembly_extent=assembly_extent, assembly_rg=assembly_rg, capsid_architecture=capsid_architecture)
+
+
+# ------------------------------------------------------------------ whole-particle scattering
+# The generator uses the Debye pair sum. Here the orientation average of |sum_j exp(i q.r_j)|^2 is
+# integrated directly over directions with a product Gauss-Legendre (cos theta) x uniform (phi)
+# rule whose degree exceeds q * (particle diameter) + 30, where the plane-wave expansion has converged.
+def orientation_average(pts_nm, q):
+    centred = pts_nm - pts_nm.mean(axis=0)
+    degree = int(q * 2 * np.sqrt((centred ** 2).sum(axis=1)).max()) + 30
+    x, w = np.polynomial.legendre.leggauss(degree // 2 + 2)
+    phi = 2 * np.pi * np.arange(degree + 2) / (degree + 2)
+    s = np.sqrt(1 - x ** 2)
+    dirs = np.stack([np.outer(s, np.cos(phi)).ravel(), np.outer(s, np.sin(phi)).ravel(), np.repeat(x, len(phi))], axis=1)
+    weights = np.repeat(w, len(phi)) / 2 / len(phi)
+    total = 0.0
+    for i in range(0, len(dirs), 256):
+        amp = np.exp(1j * q * (dirs[i:i + 256] @ centred.T)).sum(axis=1)
+        total += math.fsum(weights[i:i + 256] * np.abs(amp) ** 2)
+    return total / len(pts_nm) ** 2
+
+
+def scattering_points(packet, key):
+    q = packet['question']
+    need('identical point scatterer' in q, 'Scatterer model not stated')
+    need('q = 4π sinθ/λ' in q, 'q convention not stated')
+    return selection(packet, key) / 10
+
+
+def debye_intensity(packet, key):
+    pts = scattering_points(packet, key)
+    qv = float(find(r'at q = ([\d.]+) nm⁻¹', packet['question'], 'q missing').group(1))
+    value = orientation_average(pts, qv)
+    return dict(judge_numeric(packet, key, value), parameters=dict(q_per_nm=qv, points=len(pts)),
+                method='direct orientation average (Gauss-Legendre x uniform phi quadrature)')
+
+
+def scattering_q_design(packet, key):
+    pts = scattering_points(packet, key)
+    target = float(find(r'first falls to ([\d.]+)\.', packet['question'], 'Target intensity missing').group(1))
+    centred = pts - pts.mean(axis=0)
+    rg = math.sqrt(float((centred ** 2).sum(axis=1).mean()))
+    f = lambda q: orientation_average(pts, q) - target
+    # Own search: march in steps of 0.013/Rg from q = 0 to the first sign change, then regula falsi (Illinois).
+    step, lo, flo = 0.013 / rg, 0.0, 1.0 - target
+    need(flo > 0, 'Target must be below I(0)/I(0) = 1')
+    hi = step
+    while f(hi) > 0:
+        lo, hi = hi, hi + step
+        need(hi * rg < 12, 'No crossing found below q*Rg = 12')
+    flo, fhi, side = f(lo), f(hi), 0
+    for _ in range(100):
+        mid = (lo * fhi - hi * flo) / (fhi - flo)
+        fm = f(mid)
+        if abs(fm) < 1e-13 or hi - lo < 1e-12:
+            break
+        if fm > 0:
+            lo, flo = mid, fm
+            fhi, side = (fhi / 2, 1) if side == 1 else (fhi, 1)
+        else:
+            hi, fhi = mid, fm
+            flo, side = (flo / 2, -1) if side == -1 else (flo, -1)
+    return dict(judge_numeric(packet, key, mid), parameters=dict(target=target, rg_nm=rg, points=len(pts)),
+                method='orientation-average quadrature; march + Illinois regula falsi')
+
+
+CHECKERS.update(debye_intensity=debye_intensity, scattering_q_design=scattering_q_design)

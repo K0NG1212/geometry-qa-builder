@@ -37,4 +37,8 @@ FAMILIES = {
                         output='choice+numeric', version=assembly.VERSION, module='task_families/assembly.py'),
     'capsid_architecture': dict(build=assembly.build_capsid, ability='inference',
                                 output='choice+numeric', version=assembly.VERSION, module='task_families/assembly.py'),
+    'debye_intensity': dict(build=assembly.build_debye, ability='inference',
+                            output='choice+numeric', version=assembly.VERSION, module='task_families/assembly.py'),
+    'scattering_q_design': dict(build=assembly.build_q_design, ability='design',
+                                output='choice+numeric', version=assembly.VERSION, module='task_families/assembly.py'),
 }

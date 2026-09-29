@@ -97,6 +97,7 @@ class CoveragePlanTests(unittest.TestCase):
                     self.assertEqual(t['ability'], ability)
                     self.assertIn(c['domain'], t['domains'])
                     self.assertIn(c['cell'], t['scale_cells'])
+                    self.assertNotIn('%s %s' % (c['domain'], c['cell']), t.get('excluded_cells', []))
                     if r['kind'] == 'ready':
                         self.assertTrue(t['independent_checker'])
         # Every empty or short cell has a researched feasibility note with sourced options.
@@ -107,11 +108,14 @@ class CoveragePlanTests(unittest.TestCase):
             self.assertIn(note['route'], FEASIBILITY['evidence_routes'])
             self.assertTrue(all(src['url'].startswith('https://') and src['license'] for src in note['sources']))
         large = [c for c in result['cells'] if c['cell'] in ('10-100', '100-1000')]
-        # A4: only the biology large cells have ready (checked) routes so far; design is still open there.
+        # A4: chemistry and biology large cells have checked routes (design = measurement-q design, pending L1);
+        # quantum and materials large cells have none yet.
         for c in large:
             ready = {a for a, v in c['abilities'].items() if v['best_route'] == 'ready'}
-            self.assertEqual(ready, {'perception', 'inference'} if c['domain'] == 'biology' else set(), (c['domain'], c['cell']))
-            self.assertEqual(c['abilities']['design']['best_route'], 'none')
+            expected = {'perception', 'inference', 'design'} if c['domain'] in ('chemistry', 'biology') else set()
+            if c['domain'] == 'chemistry' and c['cell'] == '100-1000':
+                expected = set()                        # families exist, but no 100-1000 nm chemistry object (excluded_cells)
+            self.assertEqual(ready, expected, (c['domain'], c['cell']))
 
 
 if __name__ == '__main__':

@@ -6,6 +6,8 @@ Deterministic reductions, all disclosed in docs/assets/families/assemblies/sourc
     plus a table of the 60 subunit centroids.
   * 6CGR (HSV-1): CA centroid of every protein chain of the asymmetric unit, expanded by the
     60 deposited operators (about 3,000 points, labelled by component).
+  * 7ARQ (DNA-origami 16-helix bundle, cryo-EM pseudo-atomic model): the C1' atom of every
+    nucleotide, labelled scaffold or staple (one table row per nucleotide).
 Operators come from the files' own _pdbx_struct_oper_list; nothing is guessed.
 
 python tools/build_assembly_assets.py
@@ -142,6 +144,16 @@ def main():
                                                chains_per_unit=len(chains),
                                                components={c: sum(1 for x in rows if x[0] == c) for c in sorted({x[0] for x in rows})},
                                                reduction='CA centroid per protein chain, expanded by operators 1-60 of assembly 1')
+    text, digest, size = read('7ARQ.cif.gz')
+    entity = {r['id']: r.get('pdbx_description', '').strip("'") for r in cif_loop(text, '_entity')}
+    rows = [('scaffold' if entity[r['label_entity_id']] == 'SCAFFOLD STRAND' else 'staple', '%s.%04d' % (r['auth_asym_id'], int(r['auth_seq_id'])),
+             (float(r['Cartn_x']), float(r['Cartn_y']), float(r['Cartn_z'])))
+            for r in cif_atoms(text) if r['label_atom_id'] == "C1'"]
+    files['7ARQ-nucleotide-points.txt'] = table(rows, "7ARQ DNA-origami 16-helix bundle (cryo-EM, 10 A pseudo-atomic model): C1' atom of every "
+                                                      'nucleotide, component = scaffold or staple strand, copy = chain.residue')
+    sources['7ARQ-nucleotide-points.txt'] = dict(pdb='7ARQ', source=URL % '7ARQ.cif.gz', sha256=digest, bytes=size, points=len(rows),
+                                                 components={c: sum(1 for x in rows if x[0] == c) for c in ('scaffold', 'staple')},
+                                                 reduction="C1' atom of every nucleotide of the deposited model (single copy; no symmetry operators)")
     for name, text in files.items():
         (OUT / name).write_text(text, encoding='utf-8', newline='\n')
         sources[name]['asset_sha256'] = hashlib.sha256(text.encode('utf-8')).hexdigest()

@@ -2,8 +2,8 @@
   "version": "0.4.0",
   "primary_scale": "reasoning",
   "target_total": 160,
-  "screened_total": 104,
-  "provisional_total": 62,
+  "screened_total": 116,
+  "provisional_total": 74,
   "formal_ready": 0,
   "unlocated_candidates": 26,
   "note": "Same-session prototype screening, not expert certification. Historical candidates are not automatically grandfathered in.",
@@ -236,22 +236,44 @@
         100
       ],
       "target": 10,
-      "located_candidates": 0,
-      "screened_count": 0,
-      "remaining": 10,
+      "located_candidates": 10,
+      "screened_count": 10,
+      "remaining": 0,
       "abilities": {
+        "perception": 4,
+        "inference": 3,
+        "design": 3
+      },
+      "ability_shortfalls": {
         "perception": 0,
         "inference": 0,
         "design": 0
       },
-      "ability_shortfalls": {
-        "perception": 3,
-        "inference": 3,
-        "design": 3
-      },
-      "qa_ids": [],
-      "provisional_ids": [],
-      "blocker": "Still missing validated task/material coverage; absence is not proof the task is impossible."
+      "qa_ids": [
+        "CNP020",
+        "CNP021",
+        "CNP022",
+        "CNP023",
+        "CNI011",
+        "CNI012",
+        "CNI013",
+        "CND004",
+        "CND005",
+        "CND006"
+      ],
+      "provisional_ids": [
+        "CNP020",
+        "CNP021",
+        "CNP022",
+        "CNP023",
+        "CNI011",
+        "CNI012",
+        "CNI013",
+        "CND004",
+        "CND005",
+        "CND006"
+      ],
+      "blocker": ""
     },
     {
       "domain": "chemistry",
@@ -547,32 +569,36 @@
         1000
       ],
       "target": 10,
-      "located_candidates": 5,
-      "screened_count": 5,
-      "remaining": 5,
+      "located_candidates": 7,
+      "screened_count": 7,
+      "remaining": 3,
       "abilities": {
         "perception": 2,
-        "inference": 3,
-        "design": 0
+        "inference": 4,
+        "design": 1
       },
       "ability_shortfalls": {
         "perception": 1,
         "inference": 0,
-        "design": 3
+        "design": 2
       },
       "qa_ids": [
         "BNP023",
         "BNP024",
         "BNI019",
         "BNI020",
-        "BNI021"
+        "BNI021",
+        "BNI022",
+        "BND001"
       ],
       "provisional_ids": [
         "BNP023",
         "BNP024",
         "BNI019",
         "BNI020",
-        "BNI021"
+        "BNI021",
+        "BNI022",
+        "BND001"
       ],
       "blocker": "Still missing validated task/material coverage; absence is not proof the task is impossible."
     }

@@ -6,7 +6,7 @@ from decimal import Decimal
 from pathlib import Path
 
 import family_engine
-from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering
+from task_families import FAMILIES, kit, local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly
 
 ROOT = Path(__file__).resolve().parents[1]
 SEED = 'geobench-family-v1'
@@ -341,6 +341,30 @@ class ExtentAndEngineTests(unittest.TestCase):
         self.assertEqual({x['family'] for x in screening['items']}, {f for t in entries for f in t['legacy_families']})
         self.assertEqual({x['id'] for x in screening['items']}, {q for t in entries for q in t['legacy_qa']})
         self.assertEqual({t['ability'] for t in entries if t['status'] == 'pilot'}, {'perception', 'inference', 'design'})
+
+
+class WholeParticleScatteringTests(unittest.TestCase):
+    def test_debye_implementations_and_two_point_limit(self):
+        pts = [(0.0, 0.0, 0.0), (30.0, 40.0, 0.0), (-12.0, 5.0, 33.0), (7.0, -21.0, 14.0)]
+        for q in (0.2, 0.9, 2.5):
+            self.assertAlmostEqual(assembly.debye(pts, q), assembly.debye_check(pts, q), places=12)
+        two = [(0.0, 0.0, 0.0), (50.0, 0.0, 0.0)]          # r = 5 nm
+        self.assertAlmostEqual(assembly.debye(two, 0.7), (1 + math.sin(3.5) / 3.5) / 2, places=12)
+
+    def test_first_crossing_is_the_first_root(self):
+        f = lambda q: assembly.sphere(q, 10.0)                # decreasing to the first zero near qR = 4.49
+        root = assembly.first_crossing(f, 0.5, 0.002, 1.0)
+        self.assertAlmostEqual(f(root), 0.5, places=9)
+        self.assertTrue(all(f(q) > 0.5 for q in (root * 0.5, root * 0.9)))
+
+    def test_published_design_and_debye_instances(self):
+        root = Path(__file__).resolve().parents[1]
+        spec = dict(id='T-QDES', asset='assets/families/assemblies/7ARQ-nucleotide-points.txt', scope='t', context='ctx.', target=0.5)
+        r = assembly.build_q_design(spec, root, 'seed')
+        self.assertEqual(r['option_audit'][[o['is_correct'] for o in r['option_audit']].index(True)]['value'], r['numeric']['value'])
+        self.assertGreater(r['checks']['q_rg'], 1.3)          # beyond the Guinier range: the exact sum matters
+        with self.assertRaises(ValueError):                   # inside the Guinier range the Debye family refuses
+            assembly.build_debye(dict(spec, id='T-DEB', q_per_nm=0.05), root, 'seed')
 
 
 if __name__ == '__main__':

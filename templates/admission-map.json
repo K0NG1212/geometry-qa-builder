@@ -1,5 +1,5 @@
 {
-  "version": "0.4.0",
+  "version": "0.5.0",
   "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
   "rules": {
     "new": "Genuinely new question: added as a new catalog record (provisional).",
@@ -141,6 +141,24 @@
       "reasoning": "ensemble",
       "learningObjective": "由整个衣壳中外壳蛋白的拷贝数推断三角剖分数 T、壳粒与六邻体数目（Caspar–Klug 结构理论）。",
       "sizeDefinition": "输入：整个衣壳；推理：所选组分外壳的最大间距。"
+    },
+    "debye_intensity": {
+      "domain": "biology",
+      "scale": "macromolecule",
+      "paper": "pdb-bio-nm",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基/每核苷酸一点或每链质心）。",
+      "reasoning": "ensemble",
+      "learningObjective": "在超出 Guinier 范围的 q 处，由整个颗粒的点集精确计算取向平均散射强度（Debye 公式），区分形状模型与近似的偏差。",
+      "sizeDefinition": "输入：整个颗粒约简点集最大间距；推理：所选点集最大间距（探测长度 2π/q 同量级）。"
+    },
+    "scattering_q_design": {
+      "domain": "biology",
+      "scale": "macromolecule",
+      "paper": "pdb-bio-nm",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基/每核苷酸一点或每链质心）。",
+      "reasoning": "ensemble",
+      "learningObjective": "推断的逆问题：为整个颗粒选择测量 q，使取向平均散射强度首次降到目标值（测量条件设计）。",
+      "sizeDefinition": "输入：整个颗粒约简点集最大间距；推理：所选点集最大间距。"
     }
   },
   "instances": [
@@ -644,6 +662,148 @@
       "action": "new",
       "catalog_id": "BNI021",
       "title": "HSV-1 衣壳 6CGR · 六邻体数（四选一）"
+    },
+    {
+      "instance": "FA-ASM-EXT-7ARQ",
+      "action": "new",
+      "catalog_id": "CNP020",
+      "title": "DNA 折纸 16 螺旋束 7ARQ · 整体最大尺寸（四选一）",
+      "domain": "chemistry",
+      "scale": "supramolecular",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基/每核苷酸一点或每链质心）。",
+      "learningObjective": "在整个 DNA 折纸螺旋束尺度（约 34 nm）上确定最大尺寸，区分最大点对间距与包围盒、单轴跨度、半径等相近量。",
+      "paper": "pdb-dna-origami",
+      "reasoning": "molecular",
+      "sizeDefinition": "输入：整个螺旋束约简点集最大间距；推理：所选点集最大间距。"
+    },
+    {
+      "instance": "FA-ASM-RG-7ARQ",
+      "action": "new",
+      "catalog_id": "CNP021",
+      "title": "DNA 折纸 16 螺旋束 7ARQ · 回转半径（四选一）",
+      "domain": "chemistry",
+      "scale": "supramolecular",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基/每核苷酸一点或每链质心）。",
+      "learningObjective": "计算 DNA 折纸螺旋束（或其脚手架链）的等权回转半径，区分回转半径与半径、单轴离散度。",
+      "paper": "pdb-dna-origami",
+      "reasoning": "ensemble",
+      "sizeDefinition": "输入：整个螺旋束约简点集最大间距；推理：所选点集最大间距。"
+    },
+    {
+      "instance": "FA-ASM-EXT-7ARQ-SCAF",
+      "action": "new",
+      "catalog_id": "CNP022",
+      "title": "DNA 折纸 7ARQ · 脚手架链最大尺寸（四选一）",
+      "domain": "chemistry",
+      "scale": "supramolecular",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基/每核苷酸一点或每链质心）。",
+      "learningObjective": "在整个 DNA 折纸螺旋束尺度（约 34 nm）上确定最大尺寸，区分最大点对间距与包围盒、单轴跨度、半径等相近量。",
+      "paper": "pdb-dna-origami",
+      "reasoning": "molecular",
+      "sizeDefinition": "输入：整个螺旋束约简点集最大间距；推理：所选点集最大间距。"
+    },
+    {
+      "instance": "FA-ASM-RG-7ARQ-SCAF",
+      "action": "new",
+      "catalog_id": "CNP023",
+      "title": "DNA 折纸 7ARQ · 脚手架链回转半径（四选一）",
+      "domain": "chemistry",
+      "scale": "supramolecular",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基/每核苷酸一点或每链质心）。",
+      "learningObjective": "计算 DNA 折纸螺旋束（或其脚手架链）的等权回转半径，区分回转半径与半径、单轴离散度。",
+      "paper": "pdb-dna-origami",
+      "reasoning": "ensemble",
+      "sizeDefinition": "输入：整个螺旋束约简点集最大间距；推理：所选点集最大间距。"
+    },
+    {
+      "instance": "FA-ASM-GUIN-7ARQ",
+      "action": "new",
+      "catalog_id": "CNI011",
+      "title": "DNA 折纸 7ARQ · Guinier 强度（四选一）",
+      "domain": "chemistry",
+      "scale": "supramolecular",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基/每核苷酸一点或每链质心）。",
+      "learningObjective": "由 DNA 折纸螺旋束的点集求等权回转半径，并在 Guinier 适用范围内推断归一化小角散射强度。",
+      "paper": "pdb-dna-origami",
+      "reasoning": "ensemble",
+      "sizeDefinition": "输入：整个螺旋束约简点集最大间距；推理：所选点集最大间距。"
+    },
+    {
+      "instance": "FA-DEB-7ARQ-018",
+      "action": "new",
+      "catalog_id": "CNI012",
+      "title": "DNA 折纸 7ARQ · q = 0.18 nm⁻¹ 的 Debye 强度（四选一）",
+      "domain": "chemistry",
+      "scale": "supramolecular",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基/每核苷酸一点或每链质心）。",
+      "learningObjective": "在超出 Guinier 范围的 q 处，由 DNA 折纸螺旋束的点集精确计算取向平均散射强度（Debye 公式）。",
+      "paper": "pdb-dna-origami",
+      "reasoning": "ensemble",
+      "sizeDefinition": "输入：整个螺旋束约简点集最大间距；推理：所选点集最大间距。"
+    },
+    {
+      "instance": "FA-DEB-7ARQ-030",
+      "action": "new",
+      "catalog_id": "CNI013",
+      "title": "DNA 折纸 7ARQ · q = 0.30 nm⁻¹ 的 Debye 强度（四选一）",
+      "domain": "chemistry",
+      "scale": "supramolecular",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基/每核苷酸一点或每链质心）。",
+      "learningObjective": "在超出 Guinier 范围的 q 处，由 DNA 折纸螺旋束的点集精确计算取向平均散射强度（Debye 公式）。",
+      "paper": "pdb-dna-origami",
+      "reasoning": "ensemble",
+      "sizeDefinition": "输入：整个螺旋束约简点集最大间距；推理：所选点集最大间距。"
+    },
+    {
+      "instance": "FA-QDES-7ARQ-050",
+      "action": "new",
+      "catalog_id": "CND004",
+      "title": "DNA 折纸 7ARQ · 使强度降到 0.50 的测量 q（四选一）",
+      "domain": "chemistry",
+      "scale": "supramolecular",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基/每核苷酸一点或每链质心）。",
+      "learningObjective": "推断的逆问题：为 DNA 折纸螺旋束选择测量 q，使取向平均散射强度首次降到目标值（测量条件设计）。",
+      "paper": "pdb-dna-origami",
+      "reasoning": "ensemble",
+      "sizeDefinition": "输入：整个螺旋束约简点集最大间距；推理：所选点集最大间距。"
+    },
+    {
+      "instance": "FA-QDES-7ARQ-030",
+      "action": "new",
+      "catalog_id": "CND005",
+      "title": "DNA 折纸 7ARQ · 使强度降到 0.30 的测量 q（四选一）",
+      "domain": "chemistry",
+      "scale": "supramolecular",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基/每核苷酸一点或每链质心）。",
+      "learningObjective": "推断的逆问题：为 DNA 折纸螺旋束选择测量 q，使取向平均散射强度首次降到目标值（测量条件设计）。",
+      "paper": "pdb-dna-origami",
+      "reasoning": "ensemble",
+      "sizeDefinition": "输入：整个螺旋束约简点集最大间距；推理：所选点集最大间距。"
+    },
+    {
+      "instance": "FA-QDES-7ARQ-SCAF-020",
+      "action": "new",
+      "catalog_id": "CND006",
+      "title": "DNA 折纸 7ARQ 脚手架链 · 使强度降到 0.20 的测量 q（四选一）",
+      "domain": "chemistry",
+      "scale": "supramolecular",
+      "attribution": "RCSB PDB（wwPDB，CC0）；按 sources.json 所述约简（沉积的对称操作展开 + 每残基/每核苷酸一点或每链质心）。",
+      "learningObjective": "推断的逆问题：为 DNA 折纸螺旋束选择测量 q，使取向平均散射强度首次降到目标值（测量条件设计）。",
+      "paper": "pdb-dna-origami",
+      "reasoning": "ensemble",
+      "sizeDefinition": "输入：整个螺旋束约简点集最大间距；推理：所选点集最大间距。"
+    },
+    {
+      "instance": "FA-DEB-6CGR",
+      "action": "new",
+      "catalog_id": "BNI022",
+      "title": "HSV-1 衣壳 6CGR · VP5 外壳 Debye 强度（四选一）"
+    },
+    {
+      "instance": "FA-QDES-6CGR",
+      "action": "new",
+      "catalog_id": "BND001",
+      "title": "HSV-1 衣壳 6CGR · 使 VP5 外壳强度降到 0.50 的测量 q（四选一）"
     }
   ]
 }

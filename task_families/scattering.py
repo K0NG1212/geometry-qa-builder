@@ -100,6 +100,9 @@ def build_guinier(spec, root, seed):
     if spec['asset'].endswith('.xyz'):          # reduced large assembly: supplied points as they are
         text = raw.decode('utf-8')
         points = kit.parse_xyz(text, max_atoms=20000)[1]
+    elif spec['asset'].endswith('.txt'):        # labelled point table (e.g. 7ARQ nucleotides): every row
+        text = raw.decode('utf-8')
+        points = [tuple(float(x) for x in line.split()[2:5]) for line in text.splitlines()[1:] if line.strip()]
     else:
         atoms, _ = read_chain(raw.decode('utf-8'), spec['chains'])
         text = kit.xyz_text([a['element'] for a in atoms], [a['xyz'] for a in atoms],
@@ -133,16 +136,17 @@ def build_guinier(spec, root, seed):
                                        correct_reason='等权 Rg = %.4f nm，qRg = %.3f ≤ 1.3，I/I0 = exp(−q²Rg²/3)。' % (radius, q * radius))
     key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=sep, unit='',
                                distractor_separation='0.010')
-    subject = (('The XYZ file lists %s of %s (PDB %s). Treat each supplied point as an identical point scatterer.' %
-                (spec['representation'], spec['context'], spec['pdb'])) if spec['asset'].endswith('.xyz') else
+    subject = (('The %s lists %s of %s (PDB %s). Treat each supplied point as an identical point scatterer.' %
+                ('XYZ file' if spec['asset'].endswith('.xyz') else 'table', spec['representation'], spec['context'], spec['pdb']))
+               if spec['asset'].endswith(('.xyz', '.txt')) else
                ('The XYZ file lists every non-hydrogen atom of %s (PDB %s, chains %s). Treat each supplied atom as an identical '
                 'point scatterer.' % (spec['context'], spec['pdb'], spec['chains'])))
     question = ('%s In the Guinier approximation (which applies at this q), what is the normalized small-angle '
                 'scattering intensity I(q)/I(0) at q = %.2f nm⁻¹?') % (subject, q)
     return dict(
         question=question, scope=spec['scope'],
-        inputs=[dict(name=spec['asset'].rsplit('/', 1)[1] if spec['asset'].endswith('.xyz') else '%s-heavy-atoms.xyz' % spec['pdb'],
-                     format='xyz', unit='angstrom', text=text)],
+        inputs=[dict(name=spec['asset'].rsplit('/', 1)[1] if spec['asset'].endswith(('.xyz', '.txt')) else '%s-heavy-atoms.xyz' % spec['pdb'],
+                     format='centroid-table' if spec['asset'].endswith('.txt') else 'xyz', unit='angstrom', text=text)],
         numeric=dict(value=kit.display(value, decimals), unit='', decimals=decimals, tolerance=tol),
         options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected, rank=dict(target=goal, achieved=rank),
         checks=dict(rg_nm=radius, q_per_nm=q, q_rg=q * radius, dmax_nm=dm, atoms=len(points),

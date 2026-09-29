@@ -3,8 +3,8 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 104,
-  "capped_total": 82,
+  "current_total": 116,
+  "capped_total": 94,
   "over_target_cells": [
    "quantum 0.1-1",
    "chemistry 0.1-1",
@@ -12,14 +12,14 @@
    "materials 1-10",
    "biology 1-10"
   ],
-  "provisional_total": 62,
-  "ability_gaps": 30,
-  "gap_slots": 88,
+  "provisional_total": 74,
+  "ability_gaps": 27,
+  "gap_slots": 78,
   "gaps_by_best_route": {
-   "ready": 1,
+   "ready": 3,
    "migrate": 2,
    "build": 3,
-   "none": 24
+   "none": 19
   },
   "note": "capped_total 为每格最多按目标 10 道计的有效覆盖；超额题有效但不填补其他格。能力软目标来自 prototype-policy（每格感知/推断/设计各 3，外加 1 个机动名额）；路线只表示注册表声明可覆盖，不保证该格一定有合适数据。"
  },
@@ -431,33 +431,60 @@
    "domain": "chemistry",
    "cell": "10-100",
    "target": 10,
-   "current": 0,
-   "provisional": 0,
-   "remaining": 10,
+   "current": 10,
+   "provisional": 10,
+   "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 0,
+     "current": 4,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "assembly_size",
+       "name": "大型组装体尺寸（最大间距 / 回转半径）",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     },
     "inference": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "scattering_model_inference",
+       "name": "散射/FRET 模型推断",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "whole_particle_scattering",
+       "name": "整颗粒散射强度（Debye，超出 Guinier 范围）",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "scattering_q_design",
+       "name": "测量条件设计：使散射强度降到目标的 q",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     }
    },
    "feasibility": {
@@ -961,6 +988,12 @@
        "name": "散射/FRET 模型推断",
        "kind": "ready",
        "status": "pilot"
+      },
+      {
+       "family": "whole_particle_scattering",
+       "name": "整颗粒散射强度（Debye，超出 Guinier 范围）",
+       "kind": "ready",
+       "status": "pilot"
       }
      ],
      "rework_in_cell": [],
@@ -970,9 +1003,16 @@
      "current": 0,
      "soft_target": 3,
      "shortfall": 3,
-     "routes": [],
+     "routes": [
+      {
+       "family": "scattering_q_design",
+       "name": "测量条件设计：使散射强度降到目标的 q",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     }
    },
    "feasibility": {
@@ -995,9 +1035,9 @@
    "domain": "biology",
    "cell": "100-1000",
    "target": 10,
-   "current": 5,
-   "provisional": 5,
-   "remaining": 5,
+   "current": 7,
+   "provisional": 7,
+   "remaining": 3,
    "abilities": {
     "perception": {
      "current": 2,
@@ -1015,7 +1055,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 3,
+     "current": 4,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -1024,18 +1064,31 @@
        "name": "病毒衣壳结构（Caspar–Klug）",
        "kind": "ready",
        "status": "pilot"
+      },
+      {
+       "family": "whole_particle_scattering",
+       "name": "整颗粒散射强度（Debye，超出 Guinier 范围）",
+       "kind": "ready",
+       "status": "pilot"
       }
      ],
      "rework_in_cell": [],
      "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 1,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 2,
+     "routes": [
+      {
+       "family": "scattering_q_design",
+       "name": "测量条件设计：使散射强度降到目标的 q",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     }
    },
    "feasibility": {

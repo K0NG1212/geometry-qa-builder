@@ -448,8 +448,9 @@
       "ability": "perception",
       "status": "pilot",
       "priority": 1,
-      "concept": "整个颗粒尺度的几何量：分子伴侣、核小体、病毒衣壳的最大间距与等权回转半径（10–1000 nm）。",
+      "concept": "整个颗粒尺度的几何量：分子伴侣、核小体、病毒衣壳、DNA 折纸螺旋束的最大间距与等权回转半径（10–1000 nm）。",
       "domains": [
+        "chemistry",
         "biology"
       ],
       "output": "choice",
@@ -465,8 +466,8 @@
         "10-100",
         "100-1000"
       ],
-      "scale_limits": "约简表示上的几何量，不是溶液中的流体力学尺寸。",
-      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR），经沉积的对称操作展开并约简为每残基一点或每链质心",
+      "scale_limits": "约简表示上的几何量，不是溶液中的流体力学尺寸。暂无数据源的格：chemistry 100-1000（规划器不据此给出路线）。",
+      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR、7ARQ），经沉积的对称操作展开并约简为每残基/每核苷酸一点或每链质心",
       "answer_method": "numpy 分块搜索最大点对 + Decimal 复核；回转半径用质心公式并以 Decimal 复核。",
       "distractor_mechanisms": [
         "bounding_box_diagonal",
@@ -496,9 +497,12 @@
       "principle": "Dmax = max‖ri−rj‖；Rg = √(Σ‖ri−c‖²/N)。",
       "validation": "两种实现一致；独立检查器用成对恒等式复核。",
       "limits": "邻近亚基间距（约 5 nm）属于 1–10 nm 格，不在本题型中使用。",
-      "gap": "化学、材料的大尺度对象待接入（7ARQ 等）。",
+      "gap": "材料、量子的大尺度对象待接入（按论文参数构建的模型）。",
       "template_review": "本轮新建（A4），待人工审核。",
-      "independent_checker": "checkers/migrated.py:assembly_extent, assembly_rg"
+      "independent_checker": "checkers/migrated.py:assembly_extent, assembly_rg",
+      "excluded_cells": [
+        "chemistry 100-1000"
+      ]
     },
     {
       "id": "capsid_architecture",
@@ -524,7 +528,7 @@
         "100-1000"
       ],
       "scale_limits": "假设完整二十面体外壳，不区分门户顶点等局部不对称。",
-      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR），经沉积的对称操作展开并约简为每残基一点或每链质心",
+      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR、7ARQ），经沉积的对称操作展开并约简为每残基/每核苷酸一点或每链质心",
       "answer_method": "计数所选组分的拷贝数，按 Caspar–Klug 关系计算。",
       "distractor_mechanisms": [
         "neighbouring_allowed_T",
@@ -556,6 +560,134 @@
       "gap": "目前 2 个衣壳（STMV T=1、HSV-1 T=16）。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/migrated.py:capsid_architecture"
+    },
+    {
+      "id": "whole_particle_scattering",
+      "name": "整颗粒散射强度（Debye，超出 Guinier 范围）",
+      "ability": "inference",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "由整个颗粒的点集精确计算取向平均的归一化散射强度 I(q)/I(0)，q·Rg > 1.3 时 Guinier 近似与形状模型均失效，必须用全部点对。",
+      "domains": [
+        "chemistry",
+        "biology"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "numeric",
+        "choice"
+      ],
+      "inputs": "按组分标记的点表（DNA 折纸每核苷酸 C1′；HSV-1 衣壳每链质心），可只选某一组分。",
+      "physical_conditions": "等权点散射体，无形状因子与溶剂；q = 4π sinθ/λ（题干写明）。",
+      "input_scale": "整个颗粒",
+      "reasoning_scale": "所选点集的最大间距（探测长度 2π/q 同量级）",
+      "scale_cells": [
+        "10-100",
+        "100-1000"
+      ],
+      "scale_limits": "约简表示；非实测 SAXS。暂无数据源的格：chemistry 100-1000（规划器不据此给出路线）。",
+      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR、7ARQ），经沉积的对称操作展开并约简为每残基/每核苷酸一点或每链质心",
+      "answer_method": "Debye 公式 [N + 2Σ_{i<j} sin(qr)/(qr)]/N²，两种实现（i<j sinc 求和、全矩阵 sin/x 分块）一致。",
+      "distractor_mechanisms": [
+        "guinier_outside_range",
+        "uniform_sphere_same_rg",
+        "single_orientation_x",
+        "without_self_terms",
+        "amplitude_not_intensity",
+        "s_convention",
+        "q_divided_by_ten",
+        "sphere_radius_equals_rg",
+        "guinier_single_axis_spread"
+      ],
+      "four_choice_validation": "与正确值 > 0.02；升序排列，秩按批次轮换。",
+      "engine_families": [
+        "debye_intensity"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/assembly.py",
+        "checkers/migrated.py",
+        "tools/build_assembly_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现；原始下载保存在本地 inputs/pdb（不入库），约简资产及来源哈希入库。",
+      "principle": "I(q) = Σ_ij sin(q r_ij)/(q r_ij)（Debye 1915），取向平均的精确结果。",
+      "validation": "独立检查器不用 Debye 公式，而是对方向直接做高阶 Gauss–Legendre × 均匀 φ 求积平均 |Σ exp(iq·r)|²。",
+      "limits": "等权点散射体只刻画形状；真实 SAXS 还需形状因子、溶剂对比与涨落。",
+      "gap": "目前 7ARQ（2 个 q）与 6CGR VP5 外壳。",
+      "template_review": "本轮新建（A4），待人工审核。",
+      "independent_checker": "checkers/migrated.py:debye_intensity",
+      "excluded_cells": [
+        "chemistry 100-1000"
+      ]
+    },
+    {
+      "id": "scattering_q_design",
+      "name": "测量条件设计：使散射强度降到目标的 q",
+      "ability": "design",
+      "status": "pilot",
+      "priority": 1,
+      "concept": "推断的逆问题：给定目标 I(q)/I(0)，选择测量 q，使整个颗粒的取向平均强度首次降到该值；需要精确 Debye 计算，形状模型与 Guinier 反解都会偏。",
+      "domains": [
+        "chemistry",
+        "biology"
+      ],
+      "output": "choice",
+      "output_forms": [
+        "numeric",
+        "choice"
+      ],
+      "inputs": "按组分标记的点表（DNA 折纸每核苷酸 C1′；HSV-1 衣壳每链质心），可只选某一组分。",
+      "physical_conditions": "等权点散射体，无形状因子与溶剂；q = 4π sinθ/λ（题干写明）。",
+      "input_scale": "整个颗粒",
+      "reasoning_scale": "所选点集的最大间距（探测长度 2π/q 同量级）",
+      "scale_cells": [
+        "10-100",
+        "100-1000"
+      ],
+      "scale_limits": "约简表示；非实测 SAXS。暂无数据源的格：chemistry 100-1000（规划器不据此给出路线）。",
+      "source_basis": "RCSB PDB 大型组装体（1AON、1KX5、1A34、6CGR、7ARQ），经沉积的对称操作展开并约简为每残基/每核苷酸一点或每链质心",
+      "answer_method": "从 q = 0 以 0.02/Rg 步进找首个穿越点，再二分 60 次；两种 Debye 实现在解处一致。",
+      "distractor_mechanisms": [
+        "guinier_root",
+        "uniform_sphere_root",
+        "single_orientation_root",
+        "target_as_amplitude",
+        "reported_as_s",
+        "dmax_sphere_root",
+        "reported_per_angstrom",
+        "sphere_radius_equals_rg_root",
+        "guinier_single_axis_root"
+      ],
+      "four_choice_validation": "与正确值相差 > 5%·q*；升序排列，秩按批次轮换。",
+      "engine_families": [
+        "scattering_q_design"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "code": [
+        "task_families/assembly.py",
+        "checkers/migrated.py",
+        "tools/build_assembly_assets.py"
+      ],
+      "tests": [
+        "tests/test_task_families.py",
+        "tests/test_checkers.py"
+      ],
+      "builder_modules": "族引擎内等价实现；原始下载保存在本地 inputs/pdb（不入库），约简资产及来源哈希入库。",
+      "principle": "设计 = 推断的逆问题：选测量条件使可观测量达到目标。",
+      "validation": "独立检查器用求积取向平均，自行以 0.013/Rg 步进并用 Illinois 试位法求根。",
+      "limits": "这是测量条件设计（选 q），不是改变结构的分子设计；是否计为“设计题”需教授审定。",
+      "gap": "结构修改型设计（有证据的候选）仍缺，见 A3。",
+      "template_review": "本轮新建（A4），待人工审核。",
+      "independent_checker": "checkers/migrated.py:scattering_q_design",
+      "excluded_cells": [
+        "chemistry 100-1000"
+      ]
     },
     {
       "id": "lattice_plane_geometry",
@@ -1039,6 +1171,7 @@
       "priority": 1,
       "concept": "由结构几何与给定模型参数推断可观测量：FRET 效率（点探针、给定 R0）与 Guinier 近似下的归一化小角散射强度（等权点散射体、给定 q）。题干给出模型输入但不给公式。",
       "domains": [
+        "chemistry",
         "biology"
       ],
       "output": "choice",
@@ -1054,8 +1187,8 @@
         "1-10",
         "10-100"
       ],
-      "scale_limits": "模型假设需人工审核。",
-      "source_basis": "PDB + 教科书/论文模型",
+      "scale_limits": "模型假设需人工审核。暂无数据源的格：chemistry 1-10（规划器不据此给出路线）。",
+      "source_basis": "PDB（含 7ARQ DNA 折纸约简点表）+ 教科书/论文模型",
       "answer_method": "FRET：直线距离 + E=1/(1+(r/R0)^6)；Guinier：等权 Rg + exp(−q²Rg²/3)。",
       "distractor_mechanisms": [
         "path_length_distance",
@@ -1096,7 +1229,10 @@
       "limits": "证据段落需审核。",
       "gap": "R0 为题设虚拟值，不对应具体染料。",
       "template_review": "本轮迁移新建，待人工审核。",
-      "independent_checker": "checkers/migrated.py:fret_efficiency, guinier_intensity"
+      "independent_checker": "checkers/migrated.py:fret_efficiency, guinier_intensity",
+      "excluded_cells": [
+        "chemistry 1-10"
+      ]
     },
     {
       "id": "evidence_inference_choice",

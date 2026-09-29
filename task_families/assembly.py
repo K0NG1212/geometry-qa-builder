@@ -1,4 +1,4 @@
-"""Large biological assemblies (10-1000 nm): whole-particle size and capsid architecture.
+"""Large assemblies (10-1000 nm): whole-particle size, capsid architecture and whole-particle scattering.
 
 Inputs are the reduced public assets built by tools/build_assembly_assets.py (one point per
 residue, or per-chain centroids after the deposited icosahedral expansion). The reasoning
@@ -6,13 +6,12 @@ scale is the whole particle, so these questions genuinely sit in the 10-100 / 10
 cells; local quantities such as neighbouring-subunit spacing (~5 nm) are deliberately not
 used here because they would belong to the 1-10 nm cell.
 """
-import json
 import math
 from decimal import Decimal, localcontext
 import numpy as np
 from . import kit
 
-VERSION = '0.1.0'
+VERSION = '0.2.0'
 ALLOWED_T = sorted({h * h + h * k + k * k for h in range(0, 8) for k in range(0, 8) if h + k > 0})
 
 
@@ -181,3 +180,188 @@ def build_capsid(spec, root, seed):
         scales=dict(input_nm=dmax_pair(points)[0] / 10, reasoning_nm=dmax_pair(shell)[0] / 10,
                     reasoning_definition='整个外壳：所选组分点集的最大间距'),
         input_hashes={spec['asset']: digest})
+
+
+# ------------------------------------------------------------------ whole-particle scattering (Debye)
+_PAIRS = {}
+
+
+def pair_distances(points):
+    """All i<j distances in nm (cached per point set)."""
+    cache_key = (len(points), points[0], points[-1], hash(tuple(points)))
+    if cache_key not in _PAIRS:
+        a = np.asarray(points, dtype=float) / 10
+        rows = [np.sqrt(((a[i + 1:] - a[i]) ** 2).sum(axis=1)) for i in range(len(a) - 1)]
+        _PAIRS[cache_key] = np.concatenate(rows)
+    return _PAIRS[cache_key]
+
+
+def debye(points, q):
+    """Orientation-averaged I(q)/I(0) of identical point scatterers:
+    [N + 2 sum_{i<j} sin(q r)/(q r)] / N^2 (q in nm^-1)."""
+    n = len(points)
+    if q == 0:
+        return 1.0
+    return (n + 2 * float(np.sinc(q * pair_distances(points) / math.pi).sum())) / n ** 2
+
+
+def debye_check(points, q):
+    """Second implementation: full N x N sum in row blocks with explicit sin(x)/x (diagonal = 1)."""
+    a = np.asarray(points, dtype=float) / 10
+    total = 0.0
+    for start in range(0, len(a), 400):
+        x = q * np.sqrt(((a[start:start + 400, None, :] - a[None, :, :]) ** 2).sum(axis=2))
+        safe = np.where(x > 0, x, 1.0)
+        total += math.fsum(np.where(x > 0, np.sin(safe) / safe, 1.0).sum(axis=1))
+    return total / len(a) ** 2
+
+
+def single_orientation(points, q):
+    """|sum exp(i q x_j)|^2 / N^2 for q along the x axis only (no orientational average)."""
+    x = np.asarray(points, dtype=float)[:, 0] / 10
+    return float(abs(np.exp(1j * q * x).sum()) ** 2) / len(x) ** 2
+
+
+def sphere(q, radius):
+    x = q * radius
+    return 1.0 if x == 0 else (3 * (math.sin(x) - x * math.cos(x)) / x ** 3) ** 2
+
+
+def first_crossing(f, target, step, qmax):
+    """Smallest q > 0 with f(q) = target: march in `step`, then bisect the bracketing interval."""
+    lo, flo = 0.0, f(0.0)
+    q = step
+    while q <= qmax:
+        fq = f(q)
+        if (fq - target) * (flo - target) <= 0 and fq != flo:
+            hi = q
+            for _ in range(60):
+                mid = (lo + hi) / 2
+                fm = f(mid)
+                if (fm - target) * (flo - target) > 0:
+                    lo, flo = mid, fm
+                else:
+                    hi = mid
+            return (lo + hi) / 2
+        lo, flo, q = q, fq, q + step
+    return None
+
+
+def subject(spec, which):
+    return '%s Select %s. Treat each selected point as an identical point scatterer (no form factor, no solvent).' % (
+        spec['context'], which)
+
+
+def axis_spread(points):
+    a = np.asarray(points, dtype=float)
+    return float(np.sqrt(((a - a.mean(axis=0)) ** 2).mean(axis=0).max())) / 10
+
+
+def scatter_setup(spec, root):
+    text, fmt, labels, points, digest = load(root, spec)
+    chosen = select(labels, points, spec.get('component'))
+    which = ('all points labelled %s' % spec['component']) if spec.get('component') else 'all supplied points'
+    return text, fmt, chosen, which, rg(chosen) / 10, dmax_pair(chosen)[0] / 10, digest, dmax_pair(points)[0] / 10
+
+
+def scatter_packet(spec, text, fmt, question, value, decimals, tol, unit, options, key, audit, rejected, goal, rank, checks,
+                   whole, dm, digest):
+    return dict(
+        question=question, scope=spec['scope'],
+        inputs=[dict(name=spec['asset'].rsplit('/', 1)[1], format=fmt, unit='angstrom', text=text)],
+        numeric=dict(value=kit.display(value, decimals), unit=unit, decimals=decimals, tolerance=tol),
+        options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected, rank=dict(target=goal, achieved=rank),
+        checks=checks,
+        scales=dict(input_nm=whole, reasoning_nm=dm, reasoning_definition='所选点集的最大间距（整个颗粒；探测长度 2π/q 同量级）'),
+        input_hashes={spec['asset']: digest})
+
+
+def build_debye(spec, root, seed):
+    text, fmt, pts, which, radius, dm, digest, whole = scatter_setup(spec, root)
+    q = spec['q_per_nm']
+    value = debye(pts, q)
+    if abs(value - debye_check(pts, q)) > 1e-9:
+        raise ValueError('Debye implementations disagree')
+    if q * radius <= 1.3:
+        raise ValueError('Use guinier_intensity inside the Guinier range')
+    n = len(pts)
+    cands = [dict(rule='guinier_outside_range', value=math.exp(-(q * radius) ** 2 / 3), plausibility=3,
+                  reason='在 qRg = %.2f > 1.3 处仍用 Guinier 近似。' % (q * radius)),
+             dict(rule='uniform_sphere_same_rg', value=sphere(q, radius * math.sqrt(5 / 3)), plausibility=3,
+                  reason='把颗粒当作 Rg 相同的均匀实心球（忽略实际形状）。'),
+             dict(rule='single_orientation_x', value=single_orientation(pts, q), plausibility=2,
+                  reason='只沿 x 轴取一个 q 方向，没有做取向平均。'),
+             dict(rule='without_self_terms', value=(value * n * n - n) / (n * (n - 1)), plausibility=2,
+                  reason='求和时漏掉 i = j 的自项，并按 N(N−1) 归一。'),
+             dict(rule='amplitude_not_intensity', value=math.sqrt(value) if value > 0 else None, plausibility=2,
+                  reason='报告了平方根（振幅比）而非强度比。'),
+             dict(rule='s_convention', value=debye(pts, 2 * math.pi * q), plausibility=1,
+                  reason='把 q = 4π sinθ/λ 当作 s = 2 sinθ/λ，在 2πq 处计算。'),
+             dict(rule='q_divided_by_ten', value=debye(pts, q / 10), plausibility=1, reason='q 换算单位时多除以 10。'),
+             dict(rule='sphere_radius_equals_rg', value=sphere(q, radius), plausibility=2,
+                  reason='把回转半径直接当作均匀球的半径（应为 √(5/3)·Rg），强度偏大。'),
+             dict(rule='guinier_single_axis_spread', value=math.exp(-(q * axis_spread(pts)) ** 2 / 3), plausibility=2,
+                  reason='用 Guinier 近似，且把单一坐标轴的均方根离散度当作 Rg。')]
+    decimals, tol, sep = 3, '0.0005', '0.020'
+    chosen, rejected, goal, rank = kit.choose_numeric(value, cands, decimals=decimals, tolerance=tol, min_separation=sep, seed=seed,
+                                                      context=spec['id'], lower=0, upper=1, target=spec.get('target_position'),
+                                                      distractor_separation='0.010')
+    options, audit = kit.label_numeric(value, chosen, decimals=decimals, unit='', seed=seed, context=spec['id'],
+                                       correct_reason='Debye 公式对全部点对取向平均：I/I0 = [N + 2Σ sin(qr)/(qr)]/N²，N = %d；qRg = %.2f。'
+                                       % (n, q * radius))
+    key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=sep, unit='',
+                               distractor_separation='0.010')
+    question = ('%s What is the orientation-averaged normalized scattering intensity I(q)/I(0) of the selected points at '
+                'q = %.3f nm⁻¹ (q = 4π sinθ/λ)? Compute it exactly from all point pairs; q·Rg is above the Guinier range here.'
+                % (subject(spec, which), q))
+    checks = dict(points=n, q_per_nm=q, rg_nm=radius, q_rg=q * radius, dmax_nm=dm, probe_length_nm=2 * math.pi / q,
+                  limits='等权点散射体（约简表示）；非实测 SAXS，不含溶剂层、形状因子与构象涨落。')
+    return scatter_packet(spec, text, fmt, question, value, decimals, tol, '', options, key, audit, rejected, goal, rank, checks,
+                          whole, dm, digest)
+
+
+def build_q_design(spec, root, seed):
+    """Inverse of build_debye: choose the measurement q at which I(q)/I(0) first falls to a target."""
+    text, fmt, pts, which, radius, dm, digest, whole = scatter_setup(spec, root)
+    t = spec['target']
+    step, qmax = 0.02 / radius, 12 / radius
+    value = first_crossing(lambda q: debye(pts, q), t, step, qmax)
+    if value is None or abs(debye_check(pts, value) - t) > 1e-6:
+        raise ValueError('No verified first crossing')
+    decimals = 3 if value >= 0.1 else 4
+    quantum = Decimal(1).scaleb(-decimals)
+    sep = Decimal(str(0.05 * value)).quantize(quantum)
+    tol = str(quantum / 2)
+    root_of = lambda f: first_crossing(f, t, step, qmax)
+    cands = [dict(rule='guinier_root', value=math.sqrt(3 * math.log(1 / t)) / radius, plausibility=3,
+                  reason='用 Guinier 近似 exp(−q²Rg²/3) = 目标值反解 q（超出 Guinier 范围时不准）。'),
+             dict(rule='uniform_sphere_root', value=root_of(lambda q: sphere(q, radius * math.sqrt(5 / 3))), plausibility=3,
+                  reason='把颗粒当作 Rg 相同的均匀实心球求交点。'),
+             dict(rule='single_orientation_root', value=root_of(lambda q: single_orientation(pts, q)), plausibility=2,
+                  reason='只沿 x 轴一个方向计算强度，没有取向平均。'),
+             dict(rule='target_as_amplitude', value=root_of(lambda q: math.sqrt(max(debye(pts, q), 0))), plausibility=2,
+                  reason='把目标值当作振幅比（强度的平方根）求交点。'),
+             dict(rule='reported_as_s', value=value / (2 * math.pi), plausibility=2,
+                  reason='求对了交点，却以 s = 2 sinθ/λ（= q/2π）报告。'),
+             dict(rule='dmax_sphere_root', value=root_of(lambda q: sphere(q, dm / 2)), plausibility=2,
+                  reason='把颗粒当作直径等于最大尺寸的实心球。'),
+             dict(rule='reported_per_angstrom', value=value / 10, plausibility=1, reason='以 Å⁻¹ 为单位的数值当作 nm⁻¹ 报告。'),
+             dict(rule='sphere_radius_equals_rg_root', value=root_of(lambda q: sphere(q, radius)), plausibility=2,
+                  reason='把回转半径直接当作均匀球的半径求交点（球偏小，q 偏大）。'),
+             dict(rule='guinier_single_axis_root', value=math.sqrt(3 * math.log(1 / t)) / axis_spread(pts), plausibility=2,
+                  reason='用 Guinier 反解，且把单一坐标轴的均方根离散度当作 Rg。')]
+    chosen, rejected, goal, rank = kit.choose_numeric(value, cands, decimals=decimals, tolerance=tol, min_separation=str(sep), seed=seed,
+                                                      context=spec['id'], lower=0, target=spec.get('target_position'),
+                                                      distractor_separation=str(sep / 2))
+    options, audit = kit.label_numeric(value, chosen, decimals=decimals, unit='nm^-1', seed=seed, context=spec['id'],
+                                       correct_reason='Debye 公式（全部点对、取向平均）从 q = 0 起步进并二分，得首次降到 %.2f 的 q。' % t)
+    key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=str(sep), unit='nm^-1',
+                               distractor_separation=str(sep / 2))
+    question = ('%s A small-angle scattering measurement is to be set at the q where the orientation-averaged normalized intensity '
+                'I(q)/I(0) of the selected points first falls to %.2f. Starting from q = 0, at which q (in nm⁻¹, q = 4π sinθ/λ) '
+                'does I(q)/I(0) first reach %.2f? Compute the intensity exactly from all point pairs.' % (subject(spec, which), t, t))
+    checks = dict(points=len(pts), target=t, q_star=value, q_rg=value * radius, rg_nm=radius, dmax_nm=dm,
+                  design_note='设计 = 推断的逆问题：选择测量条件 q 使可观测量达到目标。',
+                  limits='等权点散射体（约简表示）；非实测 SAXS。')
+    return scatter_packet(spec, text, fmt, question, value, decimals, tol, 'nm^-1', options, key, audit, rejected, goal, rank,
+                          checks, whole, dm, digest)

@@ -226,5 +226,28 @@ class MigratedMutationTests(unittest.TestCase):
         self.assertTrue(fails(p, k))
 
 
+class ScatteringTests(unittest.TestCase):
+    def test_two_point_orientation_average(self):
+        import numpy as np
+        from checkers.migrated import orientation_average
+        for q, r in ((0.3, 7.0), (1.1, 4.0), (0.05, 90.0)):
+            pts = np.array([[0.0, 0.0, 0.0], [r * 0.6, r * 0.8, 0.0]])
+            self.assertAlmostEqual(orientation_average(pts, q), (1 + math.sin(q * r) / (q * r)) / 2, places=12)
+
+    def test_debye_and_design_parameters_are_enforced(self):
+        p, k = pair('FA-DEB-7ARQ-018')
+        p['question'] = p['question'].replace('q = 0.180 nm⁻¹', 'q = 0.200 nm⁻¹')
+        self.assertTrue(fails(p, k))
+        p, k = pair('FA-DEB-7ARQ-018')
+        p['question'] = p['question'].replace('q = 4π sinθ/λ', 'q = 2 sinθ/λ')
+        self.assertTrue(fails(p, k, 'convention'))
+        p, k = pair('FA-QDES-7ARQ-050')
+        p['question'] = p['question'].replace('first falls to 0.50.', 'first falls to 0.45.')
+        self.assertTrue(fails(p, k))
+        p, k = pair('FA-QDES-7ARQ-SCAF-020')
+        p['question'] = p['question'].replace('labelled scaffold', 'labelled staple')
+        self.assertTrue(fails(p, k))
+
+
 if __name__ == '__main__':
     unittest.main()
