@@ -1,0 +1,115 @@
+{
+  "version": "0.1.0",
+  "date": "2026-09-29",
+  "scope": "A4 research record: which data sources can fill the empty large-scale cells (and the three remaining small-scale gaps). Research only; nothing downloaded yet. Sizes are estimates from atom counts where the server gives no length.",
+  "evidence_routes": {
+    "measured_structure": "Experimental atomic coordinates (PDB/COD); answers computed from coordinates.",
+    "derived_representation": "Measured coordinates reduced deterministically (e.g. symmetry expansion, chain centroids) because the full atom list is too large to give to a model; the reduction is disclosed.",
+    "paper_parameter_model": "Structure built from parameters reported in a paper (lattice constant, particle size, twist angle); geometry is exact for the stated model but not an observed atom list.",
+    "none_found": "No suitable public structure found yet."
+  },
+  "cells": [
+    {
+      "domain": "biology", "cell": "10-100", "feasibility": "high", "route": "measured_structure",
+      "sources": [
+        {"id": "1AON", "what": "GroEL–GroES–(ADP)7 chaperonin, 14+7 subunits, X-ray 3.0 Å, 58,870 atoms", "url": "https://www.rcsb.org/structure/1AON", "license": "wwPDB, CC0", "download": "files.rcsb.org/download/1AON.pdb (≈5 MB)"},
+        {"id": "1KX5", "what": "Nucleosome core particle NCP147, X-ray 1.94 Å, 16,755 atoms", "url": "https://www.rcsb.org/structure/1KX5", "license": "wwPDB, CC0", "download": "files.rcsb.org/download/1KX5.pdb (≈1.5 MB)"},
+        {"id": "1A34", "what": "Satellite tobacco mosaic virus capsid (T=1, 60 copies from BIOMT), about 17 nm", "url": "https://www.rcsb.org/structure/1A34", "license": "wwPDB, CC0", "download": "files.rcsb.org/download/1A34.cif (<1 MB)"}
+      ],
+      "families": ["global_extent / equal_weight_rg at assembly scale", "guinier_intensity (existing) at small q", "fret_efficiency (existing) across a ring or particle", "new: assembly_symmetry (subunit count and ring / icosahedral spacing from BIOMT)"],
+      "risks": "Capsid questions need symmetry expansion; must use the deposited BIOMT operators, not guessed symmetry.",
+      "needs_download": ["1AON.pdb", "1KX5.pdb", "1A34.cif"]
+    },
+    {
+      "domain": "biology", "cell": "100-1000", "feasibility": "medium", "route": "derived_representation",
+      "sources": [
+        {"id": "6CGR", "what": "HSV-1 capsid with tegument complexes, cryo-EM 4.2 Å, 219,702 atoms per asymmetric unit; icosahedral T=16, about 125 nm, 960 copies of major capsid protein", "url": "https://www.rcsb.org/structure/6CGR", "license": "wwPDB, CC0", "download": "files.rcsb.org/download/6CGR.cif.gz (≈6 MB compressed; mmCIF only)"}
+      ],
+      "families": ["capsid extent from expanded chain centroids", "new: capsomer counting / T-number from the expanded assembly", "nearest-neighbour capsomer spacing (coordination_shell analogue on centroids)"],
+      "risks": "Full expansion is ~13 M atoms: the model receives per-chain centroids (about 3,000 points), a disclosed reduction.",
+      "needs_download": ["6CGR.cif.gz"]
+    },
+    {
+      "domain": "chemistry", "cell": "10-100", "feasibility": "medium", "route": "measured_structure",
+      "sources": [
+        {"id": "7ARQ", "what": "DNA origami 16-helix bundle, cryo-EM 10 Å pseudo-atomic model, 54,985 atoms, 37 chains (Kube et al., Nat. Commun. 2020)", "url": "https://www.rcsb.org/structure/7ARQ", "license": "wwPDB, CC0", "download": "files.rcsb.org/download/7ARQ.cif.gz (≈1.5 MB compressed; mmCIF only)"}
+      ],
+      "families": ["global extent / bundle length", "new: helix-packing spacing (inter-axis distance of the square/honeycomb lattice)", "fret_efficiency (DNA-origami FRET rulers are a real use case)"],
+      "risks": "10 Å map: pseudo-atomic coordinates; questions must stay at helix / bundle scale, not base-pair detail.",
+      "needs_download": ["7ARQ.cif.gz"]
+    },
+    {
+      "domain": "chemistry", "cell": "100-1000", "feasibility": "low", "route": "none_found",
+      "sources": [
+        {"id": "nanobase.org", "what": "oxDNA coarse-grained DNA/RNA nanostructure designs, some ≥100 nm", "url": "https://nanobase.org/", "license": "per structure; many entries list N/A", "download": "only entries with an explicit open license"}
+      ],
+      "families": ["same as 10-100 on coarse-grained nucleotides, if a licensed ≥100 nm structure exists"],
+      "risks": "No atomistic public structure found; coarse models are designs or simulations, not measurements. Needs a decision from the professor.",
+      "needs_download": []
+    },
+    {
+      "domain": "materials", "cell": "10-100", "feasibility": "medium", "route": "paper_parameter_model",
+      "sources": [
+        {"id": "binary nanoparticle superlattices", "what": "Particle-centre lattices with lattice constants of tens of nm (e.g. Shevchenko et al., Nature 2006)", "url": "https://www.nature.com/articles/nature04414", "license": "parameters are facts; paper text not redistributed", "download": "none (parameters from the paper)"},
+        {"id": "atomic electron tomography", "what": "Measured 3D coordinates of an 8.4 nm FePt nanoparticle (23,196 atoms) in the Materials Data Bank", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11935922/", "license": "to be confirmed on materialsdatabank.org", "download": "not attempted (site unreachable during research); 8.4 nm is the 1-10 cell"}
+      ],
+      "families": ["coordination_shell on particle centres", "first-order superlattice diffraction (inference)"],
+      "risks": "Measured atomistic structures at 10-100 nm are rare; the superlattice route is a model from reported parameters and must say so.",
+      "needs_download": []
+    },
+    {
+      "domain": "materials", "cell": "100-1000", "feasibility": "medium", "route": "paper_parameter_model",
+      "sources": [
+        {"id": "silica opal photonic crystals", "what": "FCC packings of ~240-300 nm silica spheres; (111) Bragg reflection in the visible (e.g. Phys. Rev. B 72, 205115 (2005))", "url": "https://link.aps.org/pdf/10.1103/PhysRevB.72.205115", "license": "parameters are facts; paper text not redistributed", "download": "none (parameters from the paper)"}
+      ],
+      "families": ["perception: nearest-neighbour sphere spacing, (111) layer spacing", "inference: reflected wavelength from geometry + refractive index (Bragg–Snell)", "design selection: choose the sphere diameter that gives a target colour"],
+      "risks": "Effective refractive index is a model input and must be stated in the question.",
+      "needs_download": []
+    },
+    {
+      "domain": "quantum", "cell": "10-100", "feasibility": "medium-high", "route": "paper_parameter_model",
+      "sources": [
+        {"id": "twisted bilayer graphene", "what": "Two graphene layers (a = 2.46 Å) twisted by ~1.1° (magic angle; Cao et al., Nature 556, 43 (2018)); STM moiré periods 12.3-12.7 nm at 1.13°", "url": "https://www.nature.com/articles/nature26160", "license": "parameters are facts", "download": "none (structure built from lattice constant and twist angle)"}
+      ],
+      "families": ["perception: moiré period / twist angle from an atomic patch (~10^4 atoms)", "inference: link between twist angle and the flat-band (magic-angle) condition, with paper evidence"],
+      "risks": "Rigid-twist model: real small-angle bilayers relax; the question must state the rigid model.",
+      "needs_download": []
+    },
+    {
+      "domain": "quantum", "cell": "100-1000", "feasibility": "low", "route": "paper_parameter_model",
+      "sources": [
+        {"id": "Aharonov–Bohm rings", "what": "Mesoscopic metal rings of 0.1-1 µm; oscillation period ΔB = h/(eA) from the enclosed area (e.g. Webb et al., PRL 54, 2696 (1985))", "url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.54.2696", "license": "parameters are facts", "download": "none"}
+      ],
+      "families": ["inference: AB period from ring geometry (area from a supplied outline)"],
+      "risks": "Geometry is thin (an outline, not an atomic structure); twisted bilayers at ~0.1° (≥100 nm moiré) need millions of atoms. Needs a decision from the professor.",
+      "needs_download": []
+    },
+    {
+      "domain": "quantum", "cell": "1-10", "feasibility": "medium", "route": "paper_parameter_model",
+      "sources": [
+        {"id": "CdSe quantum dots", "what": "Empirical size–band-gap sizing curves (e.g. Yu et al., Chem. Mater. 15, 2854 (2003))", "url": "https://pubs.acs.org/doi/10.1021/cm034081k", "license": "parameters are facts", "download": "none"}
+      ],
+      "families": ["inference: band gap from particle size measured on a supplied nanocrystal model"],
+      "risks": "Empirical curve with stated validity range.",
+      "needs_download": []
+    },
+    {
+      "domain": "chemistry", "cell": "1-10", "feasibility": "high", "route": "measured_structure",
+      "sources": [
+        {"id": "SAMPL9 host–guest", "what": "Host structures already in docs/assets (β-CD, DM-β-CD, WP6) with experimentally measured guest binding free energies from the SAMPL9 challenge", "url": "https://github.com/samplchallenges/SAMPL9", "license": "SAMPL9 repository (MIT)", "download": "binding data table only (small text file)"}
+      ],
+      "families": ["inference: which guest binds more strongly (measured ΔG)", "design selection: choose the guest meeting a binding target — experimental evidence, not computed"],
+      "risks": "Binding depends on more than geometry; questions must state that the measured ΔG is the criterion.",
+      "needs_download": ["SAMPL9 experimental binding table"]
+    },
+    {
+      "domain": "biology", "cell": "0.1-1", "feasibility": "high", "route": "measured_structure",
+      "sources": [
+        {"id": "local PDB files", "what": "1CRN, 1UBQ, 6LYZ, 1EHZ already in docs/assets; HELIX/SHEET records as secondary-structure evidence", "url": "https://www.rcsb.org/", "license": "wwPDB, CC0", "download": "none"}
+      ],
+      "families": ["inference: secondary-structure region from φ/ψ with the entry's own HELIX/SHEET record as evidence"],
+      "risks": "HELIX/SHEET records are author assignments; state that they are the criterion.",
+      "needs_download": []
+    }
+  ]
+}

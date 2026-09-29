@@ -16,6 +16,7 @@ INDEPENDENT = read('docs/data/independent-check.json')
 AMAP = read('templates/admission-map.json')
 POLICY = read('builder_modules/m0_scope/prototype-policy.json')
 REGISTRY = read('templates/registry.json')
+FEASIBILITY = read('templates/scale-feasibility.json')
 BY_ID = {q['id']: q for q in CATALOG['questions']}
 
 
@@ -80,7 +81,7 @@ class AdmissionMapTests(unittest.TestCase):
 
 class CoveragePlanTests(unittest.TestCase):
     def test_plan_matches_progress_and_routes(self):
-        result = plan(CATALOG, POLICY, REGISTRY)
+        result = plan(CATALOG, POLICY, REGISTRY, FEASIBILITY)
         progress = summarize(CATALOG, POLICY)
         self.assertEqual(len(result['cells']), 16)
         self.assertEqual(result['summary']['current_total'], progress['screened_total'])
@@ -98,6 +99,13 @@ class CoveragePlanTests(unittest.TestCase):
                     self.assertIn(c['cell'], t['scale_cells'])
                     if r['kind'] == 'ready':
                         self.assertTrue(t['independent_checker'])
+        # Every empty or short cell has a researched feasibility note with sourced options.
+        for c in result['cells']:
+            if c['current'] < c['target']:
+                self.assertIsNotNone(c['feasibility'], (c['domain'], c['cell']))
+        for note in FEASIBILITY['cells']:
+            self.assertIn(note['route'], FEASIBILITY['evidence_routes'])
+            self.assertTrue(all(src['url'].startswith('https://') and src['license'] for src in note['sources']))
         large = [c for c in result['cells'] if c['cell'] in ('10-100', '100-1000')]
         self.assertTrue(all(v['best_route'] == 'none' for c in large for v in c['abilities'].values()))
 

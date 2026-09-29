@@ -28,8 +28,9 @@ def cell_name(span):
     return '%g-%g' % tuple(span)
 
 
-def plan(catalog, policy, registry):
+def plan(catalog, policy, registry, feasibility=None):
     progress = summarize(catalog, policy)
+    notes = {(c['domain'], c['cell']): c for c in (feasibility or {}).get('cells', [])}
     bins = policy['scale_bins_nm']
     rows = []
     for cell in progress['cells']:
@@ -51,8 +52,12 @@ def plan(catalog, policy, registry):
             abilities[ability] = dict(current=have, soft_target=soft, shortfall=max(0, soft - have), routes=routes,
                                       rework_in_cell=rework,
                                       best_route=routes[0]['kind'] if routes else 'none')
+        note = notes.get((cell['domain'], name))
         rows.append(dict(domain=cell['domain'], cell=name, target=cell['target'], current=cell['screened_count'],
-                         provisional=len(cell['provisional_ids']), remaining=cell['remaining'], abilities=abilities))
+                         provisional=len(cell['provisional_ids']), remaining=cell['remaining'], abilities=abilities,
+                         feasibility=dict(level=note['feasibility'], route=note['route'],
+                                          sources=[x['id'] for x in note['sources']], needs_download=note['needs_download'],
+                                          risks=note['risks']) if note else None))
     gaps = [(r['domain'], r['cell'], a, v) for r in rows for a, v in r['abilities'].items() if v['shortfall']]
     summary = dict(target_total=progress['target_total'], current_total=progress['screened_total'],
                    capped_total=sum(min(r['current'], r['target']) for r in rows),
@@ -70,7 +75,7 @@ def plan(catalog, policy, registry):
 if __name__ == '__main__':
     read = lambda p: json.loads((ROOT / p).read_text(encoding='utf-8'))
     result = plan(read('docs/data/catalog.json'), read('builder_modules/m0_scope/prototype-policy.json'),
-                  read('templates/registry.json'))
+                  read('templates/registry.json'), read('templates/scale-feasibility.json'))
     (ROOT / 'docs/data/coverage-plan.json').write_text(json.dumps(result, ensure_ascii=False, indent=1) + '\n',
                                                        encoding='utf-8', newline='\n')
     print(json.dumps(result['summary'], ensure_ascii=False))

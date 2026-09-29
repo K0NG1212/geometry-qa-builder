@@ -91,7 +91,8 @@
      "rework_in_cell": [],
      "best_route": "ready"
     }
-   }
+   },
+   "feasibility": null
   },
   {
    "domain": "quantum",
@@ -144,6 +145,15 @@
      "rework_in_cell": [],
      "best_route": "none"
     }
+   },
+   "feasibility": {
+    "level": "medium",
+    "route": "paper_parameter_model",
+    "sources": [
+     "CdSe quantum dots"
+    ],
+    "needs_download": [],
+    "risks": "Empirical curve with stated validity range."
    }
   },
   {
@@ -178,6 +188,15 @@
      "rework_in_cell": [],
      "best_route": "none"
     }
+   },
+   "feasibility": {
+    "level": "medium-high",
+    "route": "paper_parameter_model",
+    "sources": [
+     "twisted bilayer graphene"
+    ],
+    "needs_download": [],
+    "risks": "Rigid-twist model: real small-angle bilayers relax; the question must state the rigid model."
    }
   },
   {
@@ -212,6 +231,15 @@
      "rework_in_cell": [],
      "best_route": "none"
     }
+   },
+   "feasibility": {
+    "level": "low",
+    "route": "paper_parameter_model",
+    "sources": [
+     "Aharonov–Bohm rings"
+    ],
+    "needs_download": [],
+    "risks": "Geometry is thin (an outline, not an atomic structure); twisted bilayers at ~0.1° (≥100 nm moiré) need millions of atoms. Needs a decision from the professor."
    }
   },
   {
@@ -318,7 +346,8 @@
      "rework_in_cell": [],
      "best_route": "ready"
     }
-   }
+   },
+   "feasibility": null
   },
   {
    "domain": "chemistry",
@@ -385,6 +414,17 @@
      "rework_in_cell": [],
      "best_route": "build"
     }
+   },
+   "feasibility": {
+    "level": "high",
+    "route": "measured_structure",
+    "sources": [
+     "SAMPL9 host–guest"
+    ],
+    "needs_download": [
+     "SAMPL9 experimental binding table"
+    ],
+    "risks": "Binding depends on more than geometry; questions must state that the measured ΔG is the criterion."
    }
   },
   {
@@ -419,6 +459,17 @@
      "rework_in_cell": [],
      "best_route": "none"
     }
+   },
+   "feasibility": {
+    "level": "medium",
+    "route": "measured_structure",
+    "sources": [
+     "7ARQ"
+    ],
+    "needs_download": [
+     "7ARQ.cif.gz"
+    ],
+    "risks": "10 Å map: pseudo-atomic coordinates; questions must stay at helix / bundle scale, not base-pair detail."
    }
   },
   {
@@ -453,6 +504,15 @@
      "rework_in_cell": [],
      "best_route": "none"
     }
+   },
+   "feasibility": {
+    "level": "low",
+    "route": "none_found",
+    "sources": [
+     "nanobase.org"
+    ],
+    "needs_download": [],
+    "risks": "No atomistic public structure found; coarse models are designs or simulations, not measurements. Needs a decision from the professor."
    }
   },
   {
@@ -521,7 +581,8 @@
      "rework_in_cell": [],
      "best_route": "none"
     }
-   }
+   },
+   "feasibility": null
   },
   {
    "domain": "materials",
@@ -589,7 +650,8 @@
      "rework_in_cell": [],
      "best_route": "none"
     }
-   }
+   },
+   "feasibility": null
   },
   {
    "domain": "materials",
@@ -623,6 +685,16 @@
      "rework_in_cell": [],
      "best_route": "none"
     }
+   },
+   "feasibility": {
+    "level": "medium",
+    "route": "paper_parameter_model",
+    "sources": [
+     "binary nanoparticle superlattices",
+     "atomic electron tomography"
+    ],
+    "needs_download": [],
+    "risks": "Measured atomistic structures at 10-100 nm are rare; the superlattice route is a model from reported parameters and must say so."
    }
   },
   {
@@ -657,6 +729,15 @@
      "rework_in_cell": [],
      "best_route": "none"
     }
+   },
+   "feasibility": {
+    "level": "medium",
+    "route": "paper_parameter_model",
+    "sources": [
+     "silica opal photonic crystals"
+    ],
+    "needs_download": [],
+    "risks": "Effective refractive index is a model input and must be stated in the question."
    }
   },
   {
@@ -750,6 +831,15 @@
      "rework_in_cell": [],
      "best_route": "build"
     }
+   },
+   "feasibility": {
+    "level": "high",
+    "route": "measured_structure",
+    "sources": [
+     "local PDB files"
+    ],
+    "needs_download": [],
+    "risks": "HELIX/SHEET records are author assignments; state that they are the criterion."
    }
   },
   {
@@ -829,7 +919,8 @@
      "rework_in_cell": [],
      "best_route": "build"
     }
-   }
+   },
+   "feasibility": null
   },
   {
    "domain": "biology",
@@ -863,6 +954,21 @@
      "rework_in_cell": [],
      "best_route": "none"
     }
+   },
+   "feasibility": {
+    "level": "high",
+    "route": "measured_structure",
+    "sources": [
+     "1AON",
+     "1KX5",
+     "1A34"
+    ],
+    "needs_download": [
+     "1AON.pdb",
+     "1KX5.pdb",
+     "1A34.cif"
+    ],
+    "risks": "Capsid questions need symmetry expansion; must use the deposited BIOMT operators, not guessed symmetry."
    }
   },
   {
@@ -897,6 +1003,17 @@
      "rework_in_cell": [],
      "best_route": "none"
     }
+   },
+   "feasibility": {
+    "level": "medium",
+    "route": "derived_representation",
+    "sources": [
+     "6CGR"
+    ],
+    "needs_download": [
+     "6CGR.cif.gz"
+    ],
+    "risks": "Full expansion is ~13 M atoms: the model receives per-chain centroids (about 3,000 points), a disclosed reduction."
    }
   }
  ]
