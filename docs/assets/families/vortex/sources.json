@@ -1,0 +1,58 @@
+{
+ "route": "paper_parameter_model",
+ "papers": {
+  "cottet": {
+   "citation": "Cottet M. J. G. et al., arXiv:1401.4062 (MgB2, cryo-Lorentz TEM, 5 K)",
+   "url": "https://arxiv.org/abs/1401.4062"
+  },
+  "schaefermeier": {
+   "citation": "Schaefermeier C. et al., arXiv:2602.13060 (BSCCO-2212, scanning NV magnetometry, 71 K)",
+   "url": "https://arxiv.org/abs/2602.13060",
+   "license": "CC BY-NC-ND 4.0 (numbers only are used)"
+  }
+ },
+ "phi0_Wb": 2.067833848e-15,
+ "model": "ideal triangular lattice, one flux quantum per vortex; a = (2 Phi0/(sqrt3 B))^1/2 (MgB2 fields) or the measured a (BSCCO); centres within 5.2 a; SHA-256-derived rotation",
+ "files": {
+  "vortex-MgB2-508G.txt": {
+   "paper": "cottet",
+   "field_T": 0.00508,
+   "measured_spacing_nm": null,
+   "spacing_nm": 685.583959601077,
+   "vortices": 97,
+   "asset_sha256": "9c2c6d35533cef358428322ba26fad0a4bbd8ae0ec08b4338286be6654ea2832"
+  },
+  "vortex-MgB2-561G.txt": {
+   "paper": "cottet",
+   "field_T": 0.00561,
+   "measured_spacing_nm": null,
+   "spacing_nm": 652.395675348107,
+   "vortices": 97,
+   "asset_sha256": "5cb60b2d2d8f92a5c8959cbff87dc3f8e7432e3af67ff265ee53005869397d53"
+  },
+  "vortex-MgB2-1173G.txt": {
+   "paper": "cottet",
+   "field_T": 0.01173,
+   "measured_spacing_nm": null,
+   "spacing_nm": 451.1734116309352,
+   "vortices": 97,
+   "asset_sha256": "e63add25d015a29205994a2c6e5c22d7b5072672090350a1fd98613f11e5ec9c"
+  },
+  "vortex-MgB2-1887G.txt": {
+   "paper": "cottet",
+   "field_T": 0.01887,
+   "measured_spacing_nm": null,
+   "spacing_nm": 355.718583325018,
+   "vortices": 97,
+   "asset_sha256": "c281dd00b09cc7186355a92520c254338e3a119ae731ff41d5ff041656b816a5"
+  },
+  "vortex-BSCCO-855nm.txt": {
+   "paper": "schaefermeier",
+   "field_T": null,
+   "measured_spacing_nm": 855.0,
+   "spacing_nm": 855.0,
+   "vortices": 97,
+   "asset_sha256": "016f9906a19a3a60746d9d7a6de095d18230d2774e4cc682e3fc33afba12ace0"
+  }
+ }
+}

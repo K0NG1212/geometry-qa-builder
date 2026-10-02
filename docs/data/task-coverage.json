@@ -29,11 +29,11 @@
   }
  },
  "summary": {
-  "types_defined": 42,
-  "types_with_running_code": 35,
+  "types_defined": 48,
+  "types_with_running_code": 41,
   "status": {
    "implemented": 2,
-   "pilot": 33,
+   "pilot": 39,
    "existing_legacy": 3,
    "planned": 2,
    "rebuild_needed": 1,
@@ -42,25 +42,25 @@
   "by_ability": {
    "perception": {
     "implemented": 2,
-    "pilot": 9,
+    "pilot": 11,
     "existing_legacy": 2
    },
    "inference": {
-    "pilot": 13,
+    "pilot": 15,
     "planned": 1,
     "existing_legacy": 1,
     "rebuild_needed": 1
    },
    "design": {
-    "pilot": 11,
+    "pilot": 13,
     "planned": 1,
     "blocked": 1
    }
   },
-  "development_instances": 153,
+  "development_instances": 173,
   "instance_failures": 1,
-  "independent_pass": 153,
-  "independent_checked": 153,
+  "independent_pass": 173,
+  "independent_checked": 173,
   "legacy_candidates": 80,
   "legacy_decisions": {
    "retain": 42,
@@ -69,7 +69,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v17",
+ "family_run": "family-pilot-v18",
  "rows": [
   {
    "id": "global_extent",
@@ -1945,6 +1945,405 @@
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "1-10"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "vortex_geometry",
+   "name": "超导涡旋晶格几何（间距 / 密度）",
+   "ability": "perception",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "从涡旋中心图识别 Abrikosov 涡旋晶格：晶格间距与涡旋面密度。",
+   "domains": [
+    "quantum"
+   ],
+   "input_scale": "视场约 3.5–9 μm",
+   "reasoning_scale": "涡旋晶格间距 a（356–855 nm）",
+   "scale_cells": [
+    "100-1000"
+   ],
+   "scale_limits": "按论文实测磁场或实测晶格常数构建的模型；不含钉扎无序；论文指出 188.7 G 时单个涡旋已难分辨。",
+   "inputs": "涡旋中心位置图（nm，每行 \"V x y\"，约 97 个，确定性旋转）；设计题给四张不同磁场的图。",
+   "physical_conditions": "理想三角涡旋晶格，每个涡旋一个磁通量子 h/2e；题干写明 Model conditions。",
+   "output_forms": [
+    "choice",
+    "numeric"
+   ],
+   "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm）",
+   "answer_method": "中心涡旋 6 个等距近邻；与论文参数一致。",
+   "distractor_mechanisms": [
+    "row_spacing",
+    "second_neighbour",
+    "double_spacing",
+    "square_cell",
+    "half_density",
+    "circle_cell"
+   ],
+   "four_choice_validation": "与正确值 > 10 nm 或 0.15 /μm²；升序排列，秩按批次轮换。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/vortex.py",
+    "checkers/mesoscale.py",
+    "tools/build_vortex_assets.py"
+   ],
+   "tests": [
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
+   ],
+   "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
+   "gap": "MgB2 四个磁场 + BSCCO 一个样品。",
+   "engine_families": [
+    "vortex_geometry"
+   ],
+   "independent_checker": "checkers/mesoscale.py:vortex_quantity",
+   "instance_ids": [
+    "FA-VX-SPACING-561",
+    "FA-VX-DENSITY-1173",
+    "FA-VX-SPACING-BSCCO"
+   ],
+   "instance_count": 3,
+   "independent_pass": 3,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "100-1000"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "vortex_inference",
+   "name": "超导涡旋晶格推断（磁场 / 磁通量子 / 中子散射峰）",
+   "ability": "inference",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "由涡旋图推断磁感应强度（每个涡旋一个 h/2e）、每个涡旋携带的磁通，以及小角中子散射首个 Bragg 峰。",
+   "domains": [
+    "quantum"
+   ],
+   "input_scale": "视场约 3.5–9 μm",
+   "reasoning_scale": "涡旋晶格间距 a（356–855 nm）",
+   "scale_cells": [
+    "100-1000"
+   ],
+   "scale_limits": "按论文实测磁场或实测晶格常数构建的模型；不含钉扎无序；论文指出 188.7 G 时单个涡旋已难分辨。",
+   "inputs": "涡旋中心位置图（nm，每行 \"V x y\"，约 97 个，确定性旋转）；设计题给四张不同磁场的图。",
+   "physical_conditions": "理想三角涡旋晶格，每个涡旋一个磁通量子 h/2e；题干写明 Model conditions。",
+   "output_forms": [
+    "choice",
+    "numeric"
+   ],
+   "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm）",
+   "answer_method": "B = Φ0/A_cell；Φ = B·A_cell；q10 = 4π/(√3 a)。",
+   "distractor_mechanisms": [
+    "square_lattice",
+    "flux_h_over_e",
+    "flux_h_over_4e",
+    "gauss_mT_slip",
+    "second_neighbour_as_spacing",
+    "h_over_e",
+    "square_cell",
+    "triangle_cell",
+    "hbar_over_2e",
+    "two_pi_over_a",
+    "missing_two_pi",
+    "second_order_peak",
+    "square_lattice_q"
+   ],
+   "four_choice_validation": "与正确值 > 0.15 mT、0.15×10⁻¹⁵ Wb 或 0.5 μm⁻¹；升序排列，秩按批次轮换。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/vortex.py",
+    "checkers/mesoscale.py",
+    "tools/build_vortex_assets.py"
+   ],
+   "tests": [
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
+   ],
+   "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
+   "gap": "同上。",
+   "engine_families": [
+    "vortex_inference"
+   ],
+   "independent_checker": "checkers/mesoscale.py:vortex_quantity",
+   "instance_ids": [
+    "FA-VX-FIELD-BSCCO",
+    "FA-VX-FIELD-508",
+    "FA-VX-FLUX-1887",
+    "FA-VX-SANS-1173"
+   ],
+   "instance_count": 4,
+   "independent_pass": 4,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "100-1000"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "vortex_design",
+   "name": "涡旋晶格磁场选择设计",
+   "ability": "design",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "在论文实际施加的四个磁场中选一个，使涡旋间距或中子散射峰最接近目标，或在密度要求下磁场最低。",
+   "domains": [
+    "quantum"
+   ],
+   "input_scale": "视场约 3.5–9 μm",
+   "reasoning_scale": "涡旋晶格间距 a（356–855 nm）",
+   "scale_cells": [
+    "100-1000"
+   ],
+   "scale_limits": "按论文实测磁场或实测晶格常数构建的模型；不含钉扎无序；论文指出 188.7 G 时单个涡旋已难分辨。",
+   "inputs": "涡旋中心位置图（nm，每行 \"V x y\"，约 97 个，确定性旋转）；设计题给四张不同磁场的图。",
+   "physical_conditions": "理想三角涡旋晶格，每个涡旋一个磁通量子 h/2e；题干写明 Model conditions。",
+   "output_forms": [
+    "choice"
+   ],
+   "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm）",
+   "answer_method": "逐张图计算晶胞，按目标规则选择；领先幅度检查。",
+   "distractor_mechanisms": [
+    "row_spacing",
+    "second_neighbour",
+    "two_pi_over_a",
+    "second_order_peak",
+    "passes_if_square_cell",
+    "meets_but_higher_field",
+    "too_sparse",
+    "farther_from_target"
+   ],
+   "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明误选原因。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/vortex.py",
+    "checkers/mesoscale.py",
+    "tools/build_vortex_assets.py"
+   ],
+   "tests": [
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
+   ],
+   "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
+   "gap": "3 题。",
+   "engine_families": [
+    "vortex_design"
+   ],
+   "independent_checker": "checkers/mesoscale.py:vortex_design",
+   "instance_ids": [
+    "FA-VX-DES-SPACING",
+    "FA-VX-DES-SANS",
+    "FA-VX-DES-DENSITY"
+   ],
+   "instance_count": 3,
+   "independent_pass": 3,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "100-1000"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "cholesteric_geometry",
+   "name": "胆甾液晶螺旋几何（螺距 / 手性）",
+   "ability": "perception",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "从指向矢场识别胆甾螺旋的螺距（转 360° 的距离）与手性（右手定则）。",
+   "domains": [
+    "chemistry"
+   ],
+   "input_scale": "1.5 μm 指向矢场",
+   "reasoning_scale": "螺距 p（274–423 nm）",
+   "scale_cells": [
+    "100-1000"
+   ],
+   "scale_limits": "按论文参数构建的模型；模型反射与实测相差约 1–2%。",
+   "inputs": "胆甾液晶指向矢场（每行 \"site x y z nx ny nz\"，每 5 nm 一点，1.5 μm，任意取向）；设计题给四份。",
+   "physical_conditions": "理想均匀扭曲的螺旋（平面 Grandjean 织构）；λc = ⟨n⟩p，Δλ = Δn·p，p = 1/(HTP·c)；题干写明 Model conditions。",
+   "output_forms": [
+    "choice",
+    "numeric"
+   ],
+   "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层）",
+   "answer_method": "每步转角求螺距；(n_i × n_i+1)·前进方向 的符号定手性。",
+   "distractor_mechanisms": [
+    "half_pitch",
+    "double_pitch",
+    "quarter_pitch",
+    "reflection_wavelength",
+    "opposite_handedness",
+    "both_wrong"
+   ],
+   "four_choice_validation": "数值与正确值 > 10 nm；手性题四项为手性 × {p, p/2}。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/cholesteric.py",
+    "checkers/mesoscale.py",
+    "tools/build_cholesteric_assets.py"
+   ],
+   "tests": [
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
+   ],
+   "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
+   "gap": "Shaban 两种掺杂 + Dinc 两种涂层 + 模型浓度。",
+   "engine_families": [
+    "cholesteric_geometry"
+   ],
+   "independent_checker": "checkers/mesoscale.py:cholesteric_quantity",
+   "instance_ids": [
+    "FA-CH-PITCH-R5011",
+    "FA-CH-HAND-S5011",
+    "FA-CH-PITCH-LRCD"
+   ],
+   "instance_count": 3,
+   "independent_pass": 3,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "100-1000"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "cholesteric_optics",
+   "name": "胆甾液晶选择反射与扭曲力（推断）",
+   "ability": "inference",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "由螺距与题给折射率推断反射中心波长和带宽，或由螺距与浓度推断手性掺杂剂的螺旋扭曲力 HTP。",
+   "domains": [
+    "chemistry"
+   ],
+   "input_scale": "1.5 μm 指向矢场",
+   "reasoning_scale": "螺距 p（274–423 nm）",
+   "scale_cells": [
+    "100-1000"
+   ],
+   "scale_limits": "按论文参数构建的模型；模型反射与实测相差约 1–2%。",
+   "inputs": "胆甾液晶指向矢场（每行 \"site x y z nx ny nz\"，每 5 nm 一点，1.5 μm，任意取向）；设计题给四份。",
+   "physical_conditions": "理想均匀扭曲的螺旋（平面 Grandjean 织构）；λc = ⟨n⟩p，Δλ = Δn·p，p = 1/(HTP·c)；题干写明 Model conditions。",
+   "output_forms": [
+    "choice",
+    "numeric"
+   ],
+   "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层）",
+   "answer_method": "λc = ⟨n⟩p；Δλ = Δn·p；HTP = 1/(p c)。",
+   "distractor_mechanisms": [
+    "extraordinary_index",
+    "ordinary_index",
+    "half_pitch",
+    "no_index",
+    "double_pitch",
+    "central_wavelength",
+    "relative_birefringence",
+    "half_birefringence",
+    "percent_not_fraction",
+    "reflection_for_pitch",
+    "nm_um_slip"
+   ],
+   "four_choice_validation": "与正确值 > 5–8 nm 或 5 μm⁻¹；升序排列，秩按批次轮换。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/cholesteric.py",
+    "checkers/mesoscale.py",
+    "tools/build_cholesteric_assets.py"
+   ],
+   "tests": [
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
+   ],
+   "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
+   "gap": "同上。",
+   "engine_families": [
+    "cholesteric_optics"
+   ],
+   "independent_checker": "checkers/mesoscale.py:cholesteric_quantity",
+   "instance_ids": [
+    "FA-CH-LAMBDA-R5011",
+    "FA-CH-BAND-R5011",
+    "FA-CH-HTP-S5011",
+    "FA-CH-LAMBDA-RRCD"
+   ],
+   "instance_count": 4,
+   "independent_pass": 4,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "100-1000"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "cholesteric_design",
+   "name": "胆甾液晶结构色设计",
+   "ability": "design",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "在四份膜中选择：反射最接近目标色、左手且最接近目标、或在反射上限内掺杂量最少。",
+   "domains": [
+    "chemistry"
+   ],
+   "input_scale": "1.5 μm 指向矢场",
+   "reasoning_scale": "螺距 p（274–423 nm）",
+   "scale_cells": [
+    "100-1000"
+   ],
+   "scale_limits": "按论文参数构建的模型；模型反射与实测相差约 1–2%。",
+   "inputs": "胆甾液晶指向矢场（每行 \"site x y z nx ny nz\"，每 5 nm 一点，1.5 μm，任意取向）；设计题给四份。",
+   "physical_conditions": "理想均匀扭曲的螺旋（平面 Grandjean 织构）；λc = ⟨n⟩p，Δλ = Δn·p，p = 1/(HTP·c)；题干写明 Model conditions。",
+   "output_forms": [
+    "choice"
+   ],
+   "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层）",
+   "answer_method": "逐份拟合螺距与手性，按目标规则选择。",
+   "distractor_mechanisms": [
+    "extraordinary_index",
+    "half_pitch",
+    "right_handed_closer",
+    "right_handed",
+    "reflects_too_red",
+    "meets_but_more_dopant",
+    "farther_from_target"
+   ],
+   "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明误选原因。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/cholesteric.py",
+    "checkers/mesoscale.py",
+    "tools/build_cholesteric_assets.py"
+   ],
+   "tests": [
+    "tests/test_task_families.py",
+    "tests/test_checkers.py"
+   ],
+   "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
+   "gap": "3 题。",
+   "engine_families": [
+    "cholesteric_design"
+   ],
+   "independent_checker": "checkers/mesoscale.py:cholesteric_design",
+   "instance_ids": [
+    "FA-CH-DES-550",
+    "FA-CH-DES-LEFT600",
+    "FA-CH-DES-BELOW620"
+   ],
+   "instance_count": 3,
+   "independent_pass": 3,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "100-1000"
    ],
    "legacy_decisions": {},
    "legacy_choice_v01": 0

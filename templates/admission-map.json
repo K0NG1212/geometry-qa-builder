@@ -1,5 +1,5 @@
 {
-  "version": "0.10.0",
+  "version": "0.11.0",
   "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
   "rules": {
     "new": "Genuinely new question: added as a new catalog record (provisional).",
@@ -321,6 +321,60 @@
       "attribution": "RCSB PDB（wwPDB，CC0）；ATOM 片段逐行照抄。",
       "learningObjective": "按目标 FRET 效率选择染料标记位点（设计 = 推断的逆问题）。",
       "sizeDefinition": "推理：候选标记对中最大的点间距离。"
+    },
+    "vortex_geometry": {
+      "domain": "quantum",
+      "scale": "vortex_lattice",
+      "reasoning": "periodic",
+      "paper": "paper-cottet-mgb2-vortex",
+      "attribution": "参数取自 Cottet et al., arXiv:1401.4062（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/vortex/sources.json）。",
+      "sizeDefinition": "输入：涡旋图视场（约 3.5–9 μm）；推理：涡旋晶格间距 a（356–855 nm）。",
+      "learningObjective": "从涡旋中心图识别 Abrikosov 涡旋晶格的间距与面密度。"
+    },
+    "vortex_inference": {
+      "domain": "quantum",
+      "scale": "vortex_lattice",
+      "reasoning": "periodic",
+      "paper": "paper-cottet-mgb2-vortex",
+      "attribution": "参数取自 Cottet et al., arXiv:1401.4062（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/vortex/sources.json）。",
+      "sizeDefinition": "输入：涡旋图视场（约 3.5–9 μm）；推理：涡旋晶格间距 a（356–855 nm）。",
+      "learningObjective": "由涡旋晶格推断磁感应强度、每个涡旋携带的磁通量子 h/2e，以及中子散射首峰位置。"
+    },
+    "vortex_design": {
+      "domain": "quantum",
+      "scale": "vortex_lattice",
+      "reasoning": "periodic",
+      "paper": "paper-cottet-mgb2-vortex",
+      "attribution": "参数取自 Cottet et al., arXiv:1401.4062（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/vortex/sources.json）。",
+      "sizeDefinition": "输入：涡旋图视场（约 3.5–9 μm）；推理：涡旋晶格间距 a（356–855 nm）。",
+      "learningObjective": "在论文实际施加的磁场中选择，使涡旋晶格达到目标间距、散射峰或密度（设计 = 推断的逆问题）。"
+    },
+    "cholesteric_geometry": {
+      "domain": "chemistry",
+      "scale": "liquid_crystal",
+      "reasoning": "periodic",
+      "paper": "paper-shaban-cholesteric",
+      "attribution": "参数取自 Shaban et al., Materials 17, 5080 (2024)（事实数据，未转载文字或图）；指向矢场由本项目生成（见 docs/assets/families/cholesteric/sources.json）。",
+      "sizeDefinition": "输入：1.5 μm 指向矢场；推理：螺距 p（274–423 nm）。",
+      "learningObjective": "从指向矢场识别胆甾液晶螺旋的螺距与手性。"
+    },
+    "cholesteric_optics": {
+      "domain": "chemistry",
+      "scale": "liquid_crystal",
+      "reasoning": "periodic",
+      "paper": "paper-shaban-cholesteric",
+      "attribution": "参数取自 Shaban et al., Materials 17, 5080 (2024)（事实数据，未转载文字或图）；指向矢场由本项目生成（见 docs/assets/families/cholesteric/sources.json）。",
+      "sizeDefinition": "输入：1.5 μm 指向矢场；推理：螺距 p（274–423 nm）。",
+      "learningObjective": "由螺距推断胆甾液晶的选择反射波长与带宽，或推断手性掺杂剂的螺旋扭曲力。"
+    },
+    "cholesteric_design": {
+      "domain": "chemistry",
+      "scale": "liquid_crystal",
+      "reasoning": "periodic",
+      "paper": "paper-shaban-cholesteric",
+      "attribution": "参数取自 Shaban et al., Materials 17, 5080 (2024)（事实数据，未转载文字或图）；指向矢场由本项目生成（见 docs/assets/families/cholesteric/sources.json）。",
+      "sizeDefinition": "输入：1.5 μm 指向矢场；推理：螺距 p（274–423 nm）。",
+      "learningObjective": "按目标颜色、手性或掺杂量选择胆甾液晶膜（设计 = 推断的逆问题）。"
     }
   },
   "instances": [
@@ -1355,6 +1409,135 @@
       "catalog_id": "BND011",
       "title": "STMV 衣壳 1A34 · 使强度降到 0.50 的测量 q（四选一）",
       "learningObjective": "推断的逆问题：为整个组装体选择测量 q，使取向平均散射强度首次降到目标值（测量条件设计）。"
+    },
+    {
+      "instance": "FA-VX-SPACING-561",
+      "action": "new",
+      "catalog_id": "QNP020",
+      "title": "MgB2 涡旋晶格（56.1 G）· 涡旋间距（四选一）"
+    },
+    {
+      "instance": "FA-VX-DENSITY-1173",
+      "action": "new",
+      "catalog_id": "QNP021",
+      "title": "MgB2 涡旋晶格（117.3 G）· 涡旋面密度（四选一）"
+    },
+    {
+      "instance": "FA-VX-SPACING-BSCCO",
+      "action": "new",
+      "catalog_id": "QNP022",
+      "title": "BSCCO 涡旋晶格 · 涡旋间距（四选一）",
+      "paper": "paper-schaefermeier-bscco-vortex",
+      "attribution": "参数取自 Schaefermeier et al., arXiv:2602.13060（CC BY-NC-ND 4.0，只用数值）（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/vortex/sources.json）。"
+    },
+    {
+      "instance": "FA-VX-FIELD-BSCCO",
+      "action": "new",
+      "catalog_id": "QNI017",
+      "title": "BSCCO 涡旋晶格 · 由晶格反推磁场（四选一）",
+      "paper": "paper-schaefermeier-bscco-vortex",
+      "attribution": "参数取自 Schaefermeier et al., arXiv:2602.13060（CC BY-NC-ND 4.0，只用数值）（事实数据，未转载文字或图）；模型坐标由本项目生成（见 docs/assets/families/vortex/sources.json）。"
+    },
+    {
+      "instance": "FA-VX-FIELD-508",
+      "action": "new",
+      "catalog_id": "QNI018",
+      "title": "MgB2 涡旋晶格（50.8 G 样品）· 由晶格反推磁场（四选一）"
+    },
+    {
+      "instance": "FA-VX-FLUX-1887",
+      "action": "new",
+      "catalog_id": "QNI019",
+      "title": "MgB2 涡旋晶格（188.7 G）· 每个涡旋的磁通（四选一）"
+    },
+    {
+      "instance": "FA-VX-SANS-1173",
+      "action": "new",
+      "catalog_id": "QNI020",
+      "title": "MgB2 涡旋晶格（117.3 G）· 中子散射首峰（四选一）"
+    },
+    {
+      "instance": "FA-VX-DES-SPACING",
+      "action": "new",
+      "catalog_id": "QND010",
+      "title": "涡旋晶格设计 · 间距最接近 450 nm 的磁场（四选一）"
+    },
+    {
+      "instance": "FA-VX-DES-SANS",
+      "action": "new",
+      "catalog_id": "QND011",
+      "title": "涡旋晶格设计 · 散射首峰最接近 20 μm⁻¹ 的磁场（四选一）"
+    },
+    {
+      "instance": "FA-VX-DES-DENSITY",
+      "action": "new",
+      "catalog_id": "QND012",
+      "title": "涡旋晶格设计 · 密度 ≥ 4 /μm² 的最低磁场（四选一）"
+    },
+    {
+      "instance": "FA-CH-PITCH-R5011",
+      "action": "new",
+      "catalog_id": "CNP024",
+      "title": "胆甾液晶（E44 + R5011）· 螺距（四选一）"
+    },
+    {
+      "instance": "FA-CH-HAND-S5011",
+      "action": "new",
+      "catalog_id": "CNP025",
+      "title": "胆甾液晶（E44 + S5011）· 手性与螺距（四选一）"
+    },
+    {
+      "instance": "FA-CH-PITCH-LRCD",
+      "action": "new",
+      "catalog_id": "CNP026",
+      "title": "胆甾液晶涂层（LRCD）· 螺距（四选一）",
+      "paper": "paper-dinc-isosorbide",
+      "attribution": "参数取自 Dinc et al., Org. Chem. Front. (2024)（事实数据，未转载文字或图）；指向矢场由本项目生成（见 docs/assets/families/cholesteric/sources.json）。"
+    },
+    {
+      "instance": "FA-CH-LAMBDA-R5011",
+      "action": "new",
+      "catalog_id": "CNI017",
+      "title": "胆甾液晶（E44 + R5011）· 反射中心波长（四选一）"
+    },
+    {
+      "instance": "FA-CH-BAND-R5011",
+      "action": "new",
+      "catalog_id": "CNI018",
+      "title": "胆甾液晶（E44 + R5011）· 反射带宽（四选一）"
+    },
+    {
+      "instance": "FA-CH-HTP-S5011",
+      "action": "new",
+      "catalog_id": "CNI019",
+      "title": "胆甾液晶（E44 + S5011）· 螺旋扭曲力 HTP（四选一）"
+    },
+    {
+      "instance": "FA-CH-LAMBDA-RRCD",
+      "action": "new",
+      "catalog_id": "CNI020",
+      "title": "胆甾液晶涂层（RRCD）· 反射中心波长（四选一）",
+      "paper": "paper-dinc-isosorbide",
+      "attribution": "参数取自 Dinc et al., Org. Chem. Front. (2024)（事实数据，未转载文字或图）；指向矢场由本项目生成（见 docs/assets/families/cholesteric/sources.json）。"
+    },
+    {
+      "instance": "FA-CH-DES-550",
+      "action": "new",
+      "catalog_id": "CND009",
+      "title": "结构色设计 · 反射最接近 550 nm 的掺杂浓度（四选一）"
+    },
+    {
+      "instance": "FA-CH-DES-LEFT600",
+      "action": "new",
+      "catalog_id": "CND010",
+      "title": "结构色设计 · 左手且反射最接近 600 nm 的膜（四选一）",
+      "attribution": "参数取自 Shaban et al., Materials 2024 与 Dinc et al., Org. Chem. Front. 2024（事实数据，未转载文字或图）；指向矢场由本项目生成（见 docs/assets/families/cholesteric/sources.json）。"
+    },
+    {
+      "instance": "FA-CH-DES-BELOW620",
+      "action": "new",
+      "catalog_id": "CND011",
+      "title": "结构色设计 · 反射 ≤ 620 nm 时掺杂最少（四选一）"
     }
   ]
 }

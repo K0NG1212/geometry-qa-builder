@@ -415,5 +415,37 @@ class ModelConditionTests(unittest.TestCase):
             self.assertTrue(fails(p, k, 'conditions'), iid)
 
 
+class MesoscaleTests(unittest.TestCase):
+    def test_vortex_lattice_flux_quantum(self):
+        # Triangular lattice: B = 2 Phi0 / (sqrt(3) a^2); 855 nm (BSCCO, Schaefermeier et al.) gives about 3.27 mT (paper: ~3.26 mT).
+        a = 855e-9
+        self.assertAlmostEqual(2 * 2.067833848e-15 / (math.sqrt(3) * a * a) * 1e3, 3.266, places=3)
+        p, k = pair('FA-VX-FLUX-1887')
+        self.assertEqual(checkers.check(p, k)['status'], 'pass')
+        self.assertEqual(k['numeric_answer']['value'], '2.068')        # h/2e in 1e-15 Wb
+        p['question'] = p['question'].replace('B = 18.87 mT', 'B = 37.74 mT')
+        self.assertTrue(fails(p, k))
+
+    def test_cholesteric_handedness_and_conditions(self):
+        p, k = pair('FA-CH-HAND-S5011')
+        self.assertEqual(checkers.check(p, k)['status'], 'pass')
+        lines = p['inputs'][0]['text'].splitlines()
+        flipped = []
+        for line in lines[2:]:                                          # mirror the director field: x -> -x flips the handedness
+            r = line.split()
+            flipped.append(' '.join([r[0], str(-float(r[1])), r[2], r[3], str(-float(r[4])), r[5], r[6]]))
+        p['inputs'][0]['text'] = '\n'.join(lines[:2] + flipped) + '\n'
+        self.assertTrue(fails(p, k))                                    # also no longer the published file
+        p, k = pair('FA-CH-BAND-R5011')
+        p['question'] = p['question'].replace('ne = 1.7904', 'ne = 1.7404')
+        self.assertTrue(fails(p, k))
+        for iid in ('FA-CH-LAMBDA-R5011', 'FA-VX-DES-DENSITY'):
+            p, k = pair(iid)
+            start = p['question'].index('Model conditions:')
+            end = p['question'].index('.', p['question'].index('the only measured input'))
+            p['question'] = p['question'][:start] + p['question'][end + 1:]
+            self.assertTrue(fails(p, k, 'conditions'), iid)
+
+
 if __name__ == '__main__':
     unittest.main()

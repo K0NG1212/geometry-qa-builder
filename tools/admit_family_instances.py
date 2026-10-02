@@ -23,7 +23,8 @@ from verify_all import rehydrate  # noqa: E402
 DOCS = ROOT / 'docs'
 ASSET_DIR = 'assets/families/instances'
 UNITS = {'angstrom': ' Å', 'degree': '°', 'eV': ' eV', 'nm': ' nm', 'nm^-1': ' nm⁻¹', '%': ' %', 'nm^2': ' nm²',
-         '10^12 cm^-2': ' ×10¹² cm⁻²', 'uM': ' µM', '1e5 M^-1 cm^-1': ' ×10⁵ M⁻¹ cm⁻¹'}
+         '10^12 cm^-2': ' ×10¹² cm⁻²', 'uM': ' µM', '1e5 M^-1 cm^-1': ' ×10⁵ M⁻¹ cm⁻¹',
+         'um^-2': ' μm⁻²', 'um^-1': ' μm⁻¹', '1e-15 Wb': ' ×10⁻¹⁵ Wb', 'mT': ' mT'}
 
 
 def read(path):

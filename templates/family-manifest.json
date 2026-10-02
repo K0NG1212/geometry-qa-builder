@@ -2562,6 +2562,441 @@
    "scope": "约简表示：衣壳蛋白 Cα × 60 个沉积的二十面体操作；RNA 未包含。",
    "context": "The XYZ file lists the capsid-protein Cα atoms of the complete satellite tobacco mosaic virus capsid: the deposited copy of PDB 1A34 expanded with its 60 icosahedral operators (angstrom).",
    "target": 0.5
+  },
+  {
+   "id": "FA-VX-SPACING-561",
+   "family": "vortex_geometry",
+   "asset": "assets/families/vortex/vortex-MgB2-561G.txt",
+   "ask": "spacing",
+   "spacing_nm": 652.395675348107,
+   "paper": "cottet",
+   "measured_text": "the applied magnetic field (56.1 G = 5.61 mT)",
+   "source": "Cottet et al., arXiv:1401.4062 (MgB2 cryo-Lorentz TEM; applied fields 50.8, 56.1, 117.3, 188.7 G) https://arxiv.org/abs/1401.4062",
+   "license": "arXiv 非独占许可；只使用数值（事实数据）",
+   "scope": "按论文实测磁场（或实测晶格常数）构建的理想三角涡旋晶格模型（约 97 个涡旋，确定性旋转）；不是实测涡旋位置。"
+  },
+  {
+   "id": "FA-VX-DENSITY-1173",
+   "family": "vortex_geometry",
+   "asset": "assets/families/vortex/vortex-MgB2-1173G.txt",
+   "ask": "density",
+   "spacing_nm": 451.1734116309352,
+   "paper": "cottet",
+   "measured_text": "the applied magnetic field (117.3 G = 11.73 mT)",
+   "source": "Cottet et al., arXiv:1401.4062 (MgB2 cryo-Lorentz TEM; applied fields 50.8, 56.1, 117.3, 188.7 G) https://arxiv.org/abs/1401.4062",
+   "license": "arXiv 非独占许可；只使用数值（事实数据）",
+   "scope": "按论文实测磁场（或实测晶格常数）构建的理想三角涡旋晶格模型（约 97 个涡旋，确定性旋转）；不是实测涡旋位置。"
+  },
+  {
+   "id": "FA-VX-SPACING-BSCCO",
+   "family": "vortex_geometry",
+   "asset": "assets/families/vortex/vortex-BSCCO-855nm.txt",
+   "ask": "spacing",
+   "spacing_nm": 855.0,
+   "paper": "schaefermeier",
+   "measured_text": "the measured vortex lattice constant (0.855 μm)",
+   "source": "Schaefermeier et al., arXiv:2602.13060 (BSCCO-2212 NV magnetometry; a ≈ 0.855 μm) https://arxiv.org/abs/2602.13060",
+   "license": "CC BY-NC-ND 4.0；只使用数值（事实数据）",
+   "scope": "按论文实测磁场（或实测晶格常数）构建的理想三角涡旋晶格模型（约 97 个涡旋，确定性旋转）；不是实测涡旋位置。"
+  },
+  {
+   "id": "FA-VX-FIELD-BSCCO",
+   "family": "vortex_inference",
+   "asset": "assets/families/vortex/vortex-BSCCO-855nm.txt",
+   "ask": "field",
+   "spacing_nm": 855.0,
+   "paper": "schaefermeier",
+   "measured_text": "the measured vortex lattice constant (0.855 μm)",
+   "source": "Schaefermeier et al., arXiv:2602.13060 (BSCCO-2212 NV magnetometry; a ≈ 0.855 μm) https://arxiv.org/abs/2602.13060",
+   "license": "CC BY-NC-ND 4.0；只使用数值（事实数据）",
+   "scope": "按论文实测磁场（或实测晶格常数）构建的理想三角涡旋晶格模型（约 97 个涡旋，确定性旋转）；不是实测涡旋位置。"
+  },
+  {
+   "id": "FA-VX-FIELD-508",
+   "family": "vortex_inference",
+   "asset": "assets/families/vortex/vortex-MgB2-508G.txt",
+   "ask": "field",
+   "spacing_nm": 685.583959601077,
+   "paper": "cottet",
+   "measured_text": "the applied magnetic field (50.8 G = 5.08 mT)",
+   "source": "Cottet et al., arXiv:1401.4062 (MgB2 cryo-Lorentz TEM; applied fields 50.8, 56.1, 117.3, 188.7 G) https://arxiv.org/abs/1401.4062",
+   "license": "arXiv 非独占许可；只使用数值（事实数据）",
+   "scope": "按论文实测磁场（或实测晶格常数）构建的理想三角涡旋晶格模型（约 97 个涡旋，确定性旋转）；不是实测涡旋位置。"
+  },
+  {
+   "id": "FA-VX-FLUX-1887",
+   "family": "vortex_inference",
+   "asset": "assets/families/vortex/vortex-MgB2-1887G.txt",
+   "ask": "flux",
+   "spacing_nm": 355.718583325018,
+   "paper": "cottet",
+   "measured_text": "the applied magnetic field (188.7 G = 18.87 mT)",
+   "source": "Cottet et al., arXiv:1401.4062 (MgB2 cryo-Lorentz TEM; applied fields 50.8, 56.1, 117.3, 188.7 G) https://arxiv.org/abs/1401.4062",
+   "license": "arXiv 非独占许可；只使用数值（事实数据）",
+   "scope": "按论文实测磁场（或实测晶格常数）构建的理想三角涡旋晶格模型（约 97 个涡旋，确定性旋转）；不是实测涡旋位置。",
+   "field_mT": 18.87
+  },
+  {
+   "id": "FA-VX-SANS-1173",
+   "family": "vortex_inference",
+   "asset": "assets/families/vortex/vortex-MgB2-1173G.txt",
+   "ask": "sans_q",
+   "spacing_nm": 451.1734116309352,
+   "paper": "cottet",
+   "measured_text": "the applied magnetic field (117.3 G = 11.73 mT)",
+   "source": "Cottet et al., arXiv:1401.4062 (MgB2 cryo-Lorentz TEM; applied fields 50.8, 56.1, 117.3, 188.7 G) https://arxiv.org/abs/1401.4062",
+   "license": "arXiv 非独占许可；只使用数值（事实数据）",
+   "scope": "按论文实测磁场（或实测晶格常数）构建的理想三角涡旋晶格模型（约 97 个涡旋，确定性旋转）；不是实测涡旋位置。"
+  },
+  {
+   "id": "FA-VX-DES-SPACING",
+   "family": "vortex_design",
+   "asset": "assets/families/vortex/vortex-MgB2-508G.txt",
+   "candidates": [
+    "assets/families/vortex/vortex-MgB2-508G.txt",
+    "assets/families/vortex/vortex-MgB2-561G.txt",
+    "assets/families/vortex/vortex-MgB2-1173G.txt",
+    "assets/families/vortex/vortex-MgB2-1887G.txt"
+   ],
+   "fields": [
+    [
+     "50.8 G (5.08 mT)",
+     5.08,
+     685.583959601077
+    ],
+    [
+     "56.1 G (5.61 mT)",
+     5.61,
+     652.395675348107
+    ],
+    [
+     "117.3 G (11.73 mT)",
+     11.73,
+     451.1734116309352
+    ],
+    [
+     "188.7 G (18.87 mT)",
+     18.87,
+     355.718583325018
+    ]
+   ],
+   "goal": "spacing",
+   "target": 450,
+   "source": "Cottet et al., arXiv:1401.4062 (MgB2 cryo-Lorentz TEM; applied fields 50.8, 56.1, 117.3, 188.7 G) https://arxiv.org/abs/1401.4062",
+   "license": "arXiv 非独占许可；只使用数值（事实数据）",
+   "scope": "按论文实测磁场（或实测晶格常数）构建的理想三角涡旋晶格模型（约 97 个涡旋，确定性旋转）；不是实测涡旋位置。"
+  },
+  {
+   "id": "FA-VX-DES-SANS",
+   "family": "vortex_design",
+   "asset": "assets/families/vortex/vortex-MgB2-508G.txt",
+   "candidates": [
+    "assets/families/vortex/vortex-MgB2-508G.txt",
+    "assets/families/vortex/vortex-MgB2-561G.txt",
+    "assets/families/vortex/vortex-MgB2-1173G.txt",
+    "assets/families/vortex/vortex-MgB2-1887G.txt"
+   ],
+   "fields": [
+    [
+     "50.8 G (5.08 mT)",
+     5.08,
+     685.583959601077
+    ],
+    [
+     "56.1 G (5.61 mT)",
+     5.61,
+     652.395675348107
+    ],
+    [
+     "117.3 G (11.73 mT)",
+     11.73,
+     451.1734116309352
+    ],
+    [
+     "188.7 G (18.87 mT)",
+     18.87,
+     355.718583325018
+    ]
+   ],
+   "goal": "sans_q",
+   "target": 20,
+   "source": "Cottet et al., arXiv:1401.4062 (MgB2 cryo-Lorentz TEM; applied fields 50.8, 56.1, 117.3, 188.7 G) https://arxiv.org/abs/1401.4062",
+   "license": "arXiv 非独占许可；只使用数值（事实数据）",
+   "scope": "按论文实测磁场（或实测晶格常数）构建的理想三角涡旋晶格模型（约 97 个涡旋，确定性旋转）；不是实测涡旋位置。"
+  },
+  {
+   "id": "FA-VX-DES-DENSITY",
+   "family": "vortex_design",
+   "asset": "assets/families/vortex/vortex-MgB2-508G.txt",
+   "candidates": [
+    "assets/families/vortex/vortex-MgB2-508G.txt",
+    "assets/families/vortex/vortex-MgB2-561G.txt",
+    "assets/families/vortex/vortex-MgB2-1173G.txt",
+    "assets/families/vortex/vortex-MgB2-1887G.txt"
+   ],
+   "fields": [
+    [
+     "50.8 G (5.08 mT)",
+     5.08,
+     685.583959601077
+    ],
+    [
+     "56.1 G (5.61 mT)",
+     5.61,
+     652.395675348107
+    ],
+    [
+     "117.3 G (11.73 mT)",
+     11.73,
+     451.1734116309352
+    ],
+    [
+     "188.7 G (18.87 mT)",
+     18.87,
+     355.718583325018
+    ]
+   ],
+   "goal": "min_density",
+   "target": 4,
+   "source": "Cottet et al., arXiv:1401.4062 (MgB2 cryo-Lorentz TEM; applied fields 50.8, 56.1, 117.3, 188.7 G) https://arxiv.org/abs/1401.4062",
+   "license": "arXiv 非独占许可；只使用数值（事实数据）",
+   "scope": "按论文实测磁场（或实测晶格常数）构建的理想三角涡旋晶格模型（约 97 个涡旋，确定性旋转）；不是实测涡旋位置。"
+  },
+  {
+   "asset": "assets/families/cholesteric/clc-E44-R5011-2.62wt.txt",
+   "pitch_nm": 355.0505947097461,
+   "hand": 1,
+   "paper": "shaban",
+   "measured_nm": 585.0,
+   "id": "FA-CH-PITCH-R5011",
+   "family": "cholesteric_geometry",
+   "ask": "pitch",
+   "source": "Shaban et al., Materials 17, 5080 (2024), doi:10.3390/ma17205080 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC11509098/",
+   "license": "CC BY 4.0；只使用数值",
+   "scope": "按论文参数构建的理想胆甾螺旋指向矢场（每 5 nm 一点，1.5 μm，确定性取向）；不是实测结构；模型反射与实测相差约 1–2%。"
+  },
+  {
+   "asset": "assets/families/cholesteric/clc-E44-S5011-2.57wt.txt",
+   "pitch_nm": 361.95819382861276,
+   "hand": -1,
+   "paper": "shaban",
+   "measured_nm": 593.0,
+   "id": "FA-CH-HAND-S5011",
+   "family": "cholesteric_geometry",
+   "ask": "pitch_handedness",
+   "source": "Shaban et al., Materials 17, 5080 (2024), doi:10.3390/ma17205080 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC11509098/",
+   "license": "CC BY 4.0；只使用数值",
+   "scope": "按论文参数构建的理想胆甾螺旋指向矢场（每 5 nm 一点，1.5 μm，确定性取向）；不是实测结构；模型反射与实测相差约 1–2%。"
+  },
+  {
+   "asset": "assets/families/cholesteric/clc-LRCD-coating.txt",
+   "pitch_nm": 418.75,
+   "hand": -1,
+   "paper": "dinc",
+   "measured_nm": 670.0,
+   "id": "FA-CH-PITCH-LRCD",
+   "family": "cholesteric_geometry",
+   "ask": "pitch",
+   "source": "Dinc et al., Org. Chem. Front. (2024), doi:10.1039/d4qo01672f ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC11492181/",
+   "license": "CC BY 3.0；只使用数值",
+   "scope": "按论文参数构建的理想胆甾螺旋指向矢场（每 5 nm 一点，1.5 μm，确定性取向）；不是实测结构；模型反射与实测相差约 1–2%。"
+  },
+  {
+   "asset": "assets/families/cholesteric/clc-E44-R5011-2.62wt.txt",
+   "pitch_nm": 355.0505947097461,
+   "hand": 1,
+   "paper": "shaban",
+   "measured_nm": 585.0,
+   "id": "FA-CH-LAMBDA-R5011",
+   "family": "cholesteric_optics",
+   "ask": "lambda",
+   "source": "Shaban et al., Materials 17, 5080 (2024), doi:10.3390/ma17205080 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC11509098/",
+   "license": "CC BY 4.0；只使用数值",
+   "scope": "按论文参数构建的理想胆甾螺旋指向矢场（每 5 nm 一点，1.5 μm，确定性取向）；不是实测结构；模型反射与实测相差约 1–2%。"
+  },
+  {
+   "asset": "assets/families/cholesteric/clc-E44-R5011-2.62wt.txt",
+   "pitch_nm": 355.0505947097461,
+   "hand": 1,
+   "paper": "shaban",
+   "measured_nm": 585.0,
+   "id": "FA-CH-BAND-R5011",
+   "family": "cholesteric_optics",
+   "ask": "bandwidth",
+   "source": "Shaban et al., Materials 17, 5080 (2024), doi:10.3390/ma17205080 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC11509098/",
+   "license": "CC BY 4.0；只使用数值",
+   "scope": "按论文参数构建的理想胆甾螺旋指向矢场（每 5 nm 一点，1.5 μm，确定性取向）；不是实测结构；模型反射与实测相差约 1–2%。"
+  },
+  {
+   "asset": "assets/families/cholesteric/clc-E44-S5011-2.57wt.txt",
+   "pitch_nm": 361.95819382861276,
+   "hand": -1,
+   "paper": "shaban",
+   "measured_nm": 593.0,
+   "id": "FA-CH-HTP-S5011",
+   "family": "cholesteric_optics",
+   "ask": "htp",
+   "source": "Shaban et al., Materials 17, 5080 (2024), doi:10.3390/ma17205080 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC11509098/",
+   "license": "CC BY 4.0；只使用数值",
+   "scope": "按论文参数构建的理想胆甾螺旋指向矢场（每 5 nm 一点，1.5 μm，确定性取向）；不是实测结构；模型反射与实测相差约 1–2%。",
+   "concentration_wt": 2.57
+  },
+  {
+   "asset": "assets/families/cholesteric/clc-RRCD-coating.txt",
+   "pitch_nm": 376.875,
+   "hand": 1,
+   "paper": "dinc",
+   "measured_nm": 603.0,
+   "id": "FA-CH-LAMBDA-RRCD",
+   "family": "cholesteric_optics",
+   "ask": "lambda",
+   "source": "Dinc et al., Org. Chem. Front. (2024), doi:10.1039/d4qo01672f ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC11492181/",
+   "license": "CC BY 3.0；只使用数值",
+   "scope": "按论文参数构建的理想胆甾螺旋指向矢场（每 5 nm 一点，1.5 μm，确定性取向）；不是实测结构；模型反射与实测相差约 1–2%。"
+  },
+  {
+   "id": "FA-CH-DES-550",
+   "family": "cholesteric_design",
+   "asset": "assets/families/cholesteric/clc-E44-R5011-2.20wt.txt",
+   "candidates": [
+    {
+     "asset": "assets/families/cholesteric/clc-E44-R5011-2.20wt.txt",
+     "pitch_nm": 422.8329809725158,
+     "hand": 1,
+     "paper": "shaban",
+     "measured_nm": null,
+     "label": "E44-R5011-2.20wt",
+     "conc": 2.2
+    },
+    {
+     "asset": "assets/families/cholesteric/clc-E44-R5011-2.62wt.txt",
+     "pitch_nm": 355.0505947097461,
+     "hand": 1,
+     "paper": "shaban",
+     "measured_nm": 585.0,
+     "label": "E44-R5011-2.62wt",
+     "conc": 2.62
+    },
+    {
+     "asset": "assets/families/cholesteric/clc-E44-R5011-2.90wt.txt",
+     "pitch_nm": 320.76984763432233,
+     "hand": 1,
+     "paper": "shaban",
+     "measured_nm": null,
+     "label": "E44-R5011-2.90wt",
+     "conc": 2.9
+    },
+    {
+     "asset": "assets/families/cholesteric/clc-E44-R5011-3.40wt.txt",
+     "pitch_nm": 273.5978112175103,
+     "hand": 1,
+     "paper": "shaban",
+     "measured_nm": null,
+     "label": "E44-R5011-3.40wt",
+     "conc": 3.4
+    }
+   ],
+   "goal": "closest",
+   "target_nm": 550,
+   "source": "Shaban et al., Materials 17, 5080 (2024), doi:10.3390/ma17205080 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC11509098/",
+   "license": "CC BY 4.0；只使用数值",
+   "scope": "按论文参数构建的理想胆甾螺旋指向矢场（每 5 nm 一点，1.5 μm，确定性取向）；不是实测结构；模型反射与实测相差约 1–2%。"
+  },
+  {
+   "id": "FA-CH-DES-LEFT600",
+   "family": "cholesteric_design",
+   "asset": "assets/families/cholesteric/clc-E44-R5011-2.62wt.txt",
+   "candidates": [
+    {
+     "asset": "assets/families/cholesteric/clc-E44-R5011-2.62wt.txt",
+     "pitch_nm": 355.0505947097461,
+     "hand": 1,
+     "paper": "shaban",
+     "measured_nm": 585.0,
+     "label": "E44-R5011-2.62wt",
+     "conc": 2.62
+    },
+    {
+     "asset": "assets/families/cholesteric/clc-E44-S5011-2.57wt.txt",
+     "pitch_nm": 361.95819382861276,
+     "hand": -1,
+     "paper": "shaban",
+     "measured_nm": 593.0,
+     "label": "E44-S5011-2.57wt",
+     "conc": null
+    },
+    {
+     "asset": "assets/families/cholesteric/clc-LRCD-coating.txt",
+     "pitch_nm": 418.75,
+     "hand": -1,
+     "paper": "dinc",
+     "measured_nm": 670.0,
+     "label": "LRCD-coating",
+     "conc": null
+    },
+    {
+     "asset": "assets/families/cholesteric/clc-RRCD-coating.txt",
+     "pitch_nm": 376.875,
+     "hand": 1,
+     "paper": "dinc",
+     "measured_nm": 603.0,
+     "label": "RRCD-coating",
+     "conc": null
+    }
+   ],
+   "goal": "left_closest",
+   "target_nm": 600,
+   "source": "Dinc et al., Org. Chem. Front. (2024), doi:10.1039/d4qo01672f ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC11492181/ ; Shaban et al., Materials 17, 5080 (2024), doi:10.3390/ma17205080 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC11509098/",
+   "license": "CC BY 3.0；只使用数值 ; CC BY 4.0；只使用数值",
+   "scope": "按论文参数构建的理想胆甾螺旋指向矢场（每 5 nm 一点，1.5 μm，确定性取向）；不是实测结构；模型反射与实测相差约 1–2%。"
+  },
+  {
+   "id": "FA-CH-DES-BELOW620",
+   "family": "cholesteric_design",
+   "asset": "assets/families/cholesteric/clc-E44-R5011-2.20wt.txt",
+   "candidates": [
+    {
+     "asset": "assets/families/cholesteric/clc-E44-R5011-2.20wt.txt",
+     "pitch_nm": 422.8329809725158,
+     "hand": 1,
+     "paper": "shaban",
+     "measured_nm": null,
+     "label": "E44-R5011-2.20wt",
+     "conc": 2.2
+    },
+    {
+     "asset": "assets/families/cholesteric/clc-E44-R5011-2.40wt.txt",
+     "pitch_nm": 387.5968992248062,
+     "hand": 1,
+     "paper": "shaban",
+     "measured_nm": null,
+     "label": "E44-R5011-2.40wt",
+     "conc": 2.4
+    },
+    {
+     "asset": "assets/families/cholesteric/clc-E44-R5011-2.62wt.txt",
+     "pitch_nm": 355.0505947097461,
+     "hand": 1,
+     "paper": "shaban",
+     "measured_nm": 585.0,
+     "label": "E44-R5011-2.62wt",
+     "conc": 2.62
+    },
+    {
+     "asset": "assets/families/cholesteric/clc-E44-R5011-3.00wt.txt",
+     "pitch_nm": 310.07751937984494,
+     "hand": 1,
+     "paper": "shaban",
+     "measured_nm": null,
+     "label": "E44-R5011-3.00wt",
+     "conc": 3.0
+    }
+   ],
+   "goal": "min_conc",
+   "target_nm": 620,
+   "source": "Shaban et al., Materials 17, 5080 (2024), doi:10.3390/ma17205080 ; open copy https://pmc.ncbi.nlm.nih.gov/articles/PMC11509098/",
+   "license": "CC BY 4.0；只使用数值",
+   "scope": "按论文参数构建的理想胆甾螺旋指向矢场（每 5 nm 一点，1.5 μm，确定性取向）；不是实测结构；模型反射与实测相差约 1–2%。"
   }
  ]
 }

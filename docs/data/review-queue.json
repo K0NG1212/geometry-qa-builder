@@ -2,33 +2,33 @@
  "kind": "review_queue",
  "date": "2026-10-03",
  "summary": {
-  "units": 64,
-  "families": 37,
+  "units": 70,
+  "families": 43,
   "legacy_units": 27,
   "L1": {
-   "pending": 64,
+   "pending": 70,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
   "L2": {
-   "pending": 64,
+   "pending": 70,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
-  "instances": 177,
+  "instances": 197,
   "stages": {
    "not-verified": 0,
-   "L0": 177,
+   "L0": 197,
    "L1+L2": 0,
    "L3": 0,
    "formal": 0
   },
   "next_l3_batch": "l3-batch-001",
-  "l3_sample": 177,
-  "l3_strata": 84,
-  "l3_steady_state_sample": 137,
+  "l3_sample": 197,
+  "l3_strata": 94,
+  "l3_steady_state_sample": 153,
   "model_calls": 0,
   "reviews_recorded": {
    "L1": 0,
@@ -393,7 +393,7 @@
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f"
     },
     "L2": {
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a",
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -998,6 +998,471 @@
    }
   },
   {
+   "unit": "cholesteric_design",
+   "kind": "family",
+   "ability": "design",
+   "registry_id": "cholesteric_design",
+   "generator": "task_families/cholesteric.py",
+   "checker": "checkers/mesoscale.py",
+   "checker_function": "cholesteric_design",
+   "bindings": {
+    "L1": {
+     "registry_row": "b8d2931a3d1725bc756b4a24f6fbb29a96599751f82697082749bc10bd0d212a",
+     "task_families/cholesteric.py": "a4072a8c071da8195827357707ad2b722ab99215104cbc90af1eac3456313dbe"
+    },
+    "L2": {
+     "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 3,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "胆甾液晶结构色设计",
+     "concept": "在四份膜中选择：反射最接近目标色、左手且最接近目标、或在反射上限内掺杂量最少。",
+     "inputs": "胆甾液晶指向矢场（每行 \"site x y z nx ny nz\"，每 5 nm 一点，1.5 μm，任意取向）；设计题给四份。",
+     "physical_conditions": "理想均匀扭曲的螺旋（平面 Grandjean 织构）；λc = ⟨n⟩p，Δλ = Δn·p，p = 1/(HTP·c)；题干写明 Model conditions。",
+     "reasoning_scale": "螺距 p（274–423 nm）",
+     "scale_limits": "按论文参数构建的模型；模型反射与实测相差约 1–2%。",
+     "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层）",
+     "answer_method": "逐份拟合螺距与手性，按目标规则选择。",
+     "distractor_mechanisms": [
+      "extraordinary_index",
+      "half_pitch",
+      "right_handed_closer",
+      "right_handed",
+      "reflects_too_red",
+      "meets_but_more_dopant",
+      "farther_from_target"
+     ],
+     "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明误选原因。",
+     "principle": "设计 = 推断的逆问题（选掺杂浓度或膜）。",
+     "validation": "独立检查器逐文件重算。",
+     "limits": "非实测浓度的候选为按论文 HTP 计算的模型。",
+     "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
+    },
+    "samples": [
+     {
+      "instance": "FA-CH-DES-550",
+      "question": "The four files list the director fields of four model cholesteric liquid-crystal films (files named by composition; columns site x y z in nm and the unit director nx ny nz, n equivalent to −n). Model conditions: the only measured inputs are those reported by Shaban et al. (Materials 2024) for the nematic host E44 doped with the chiral dopant R5011 or S5011: the helical twisting power (107.5 μm⁻¹), the dopant concentration and the host refractive indices (ne = 1.7904, no = 1.5484 at 589 nm, 20 °C); the director twists uniformly about a straight helix axis (ideal planar Grandjean texture) with no defects, surface-anchoring distortion or temperature gradient, which is the idealization behind the paper's relations p = 1/(HTP·c) and λc = p·(ne + no)/2. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. For the E44 films use the average refractive index (ne + no)/2 of E44. You must choose one film such that its normal-incidence reflection band is centred as close as possible to 550 nm. Which film should you choose?",
+      "options": [
+       {
+        "label": "A",
+        "value": "E44-R5011-2.20wt (clc-E44-R5011-2.20wt.txt)"
+       },
+       {
+        "label": "B",
+        "value": "E44-R5011-2.90wt (clc-E44-R5011-2.90wt.txt)"
+       },
+       {
+        "label": "C",
+        "value": "E44-R5011-2.62wt (clc-E44-R5011-2.62wt.txt)"
+       },
+       {
+        "label": "D",
+        "value": "E44-R5011-3.40wt (clc-E44-R5011-3.40wt.txt)"
+       }
+      ],
+      "inputs": [
+       "clc-E44-R5011-2.20wt.txt",
+       "clc-E44-R5011-2.62wt.txt",
+       "clc-E44-R5011-2.90wt.txt",
+       "clc-E44-R5011-3.40wt.txt"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "half_pitch",
+        "reason": "用 p/2 计算时它的反射（352.9 nm）最接近目标。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "反射中心 535.5 nm，最接近目标。"
+       },
+       {
+        "label": "C",
+        "rule": "farther_from_target",
+        "reason": "反射 592.7 nm。"
+       },
+       {
+        "label": "D",
+        "rule": "farther_from_target",
+        "reason": "反射 456.7 nm。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-CH-DES-BELOW620",
+      "question": "The four files list the director fields of four model cholesteric liquid-crystal films (files named by composition; columns site x y z in nm and the unit director nx ny nz, n equivalent to −n). Model conditions: the only measured inputs are those reported by Shaban et al. (Materials 2024) for the nematic host E44 doped with the chiral dopant R5011 or S5011: the helical twisting power (107.5 μm⁻¹), the dopant concentration and the host refractive indices (ne = 1.7904, no = 1.5484 at 589 nm, 20 °C); the director twists uniformly about a straight helix axis (ideal planar Grandjean texture) with no defects, surface-anchoring distortion or temperature gradient, which is the idealization behind the paper's relations p = 1/(HTP·c) and λc = p·(ne + no)/2. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. For the E44 films use the average refractive index (ne + no)/2 of E44. You must choose one film such that as little dopant as possible is used while the normal-incidence reflection band is centred at or below 620 nm. Which film should you choose?",
+      "options": [
+       {
+        "label": "A",
+        "value": "E44-R5011-3.00wt (clc-E44-R5011-3.00wt.txt)"
+       },
+       {
+        "label": "B",
+        "value": "E44-R5011-2.20wt (clc-E44-R5011-2.20wt.txt)"
+       },
+       {
+        "label": "C",
+        "value": "E44-R5011-2.40wt (clc-E44-R5011-2.40wt.txt)"
+       },
+       {
+        "label": "D",
+        "value": "E44-R5011-2.62wt (clc-E44-R5011-2.62wt.txt)"
+       }
+      ],
+      "inputs": [
+       "clc-E44-R5011-2.20wt.txt",
+       "clc-E44-R5011-2.40wt.txt",
+       "clc-E44-R5011-2.62wt.txt",
+       "clc-E44-R5011-3.00wt.txt"
+      ],
+      "correct_label": "D",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "meets_but_more_dopant",
+        "reason": "反射 517.6 nm 满足，但掺杂剂更多。"
+       },
+       {
+        "label": "B",
+        "rule": "reflects_too_red",
+        "reason": "反射 705.9 nm，超过 620 nm；只看螺距 p（422.8 nm）会误判为满足。"
+       },
+       {
+        "label": "C",
+        "rule": "reflects_too_red",
+        "reason": "反射 647.1 nm，超过 620 nm；只看螺距 p（387.6 nm）会误判为满足。"
+       },
+       {
+        "label": "D",
+        "rule": "correct",
+        "reason": "满足上限的候选中掺杂剂最少（反射 592.7 nm）。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "unit": "cholesteric_geometry",
+   "kind": "family",
+   "ability": "perception",
+   "registry_id": "cholesteric_geometry",
+   "generator": "task_families/cholesteric.py",
+   "checker": "checkers/mesoscale.py",
+   "checker_function": "cholesteric_quantity",
+   "bindings": {
+    "L1": {
+     "registry_row": "535c3b89a6188079817dd0b48b3888a33a84719217931d3e5e5a002358223d79",
+     "task_families/cholesteric.py": "a4072a8c071da8195827357707ad2b722ab99215104cbc90af1eac3456313dbe"
+    },
+    "L2": {
+     "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 3,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "胆甾液晶螺旋几何（螺距 / 手性）",
+     "concept": "从指向矢场识别胆甾螺旋的螺距（转 360° 的距离）与手性（右手定则）。",
+     "inputs": "胆甾液晶指向矢场（每行 \"site x y z nx ny nz\"，每 5 nm 一点，1.5 μm，任意取向）；设计题给四份。",
+     "physical_conditions": "理想均匀扭曲的螺旋（平面 Grandjean 织构）；λc = ⟨n⟩p，Δλ = Δn·p，p = 1/(HTP·c)；题干写明 Model conditions。",
+     "reasoning_scale": "螺距 p（274–423 nm）",
+     "scale_limits": "按论文参数构建的模型；模型反射与实测相差约 1–2%。",
+     "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层）",
+     "answer_method": "每步转角求螺距；(n_i × n_i+1)·前进方向 的符号定手性。",
+     "distractor_mechanisms": [
+      "half_pitch",
+      "double_pitch",
+      "quarter_pitch",
+      "reflection_wavelength",
+      "opposite_handedness",
+      "both_wrong"
+     ],
+     "four_choice_validation": "数值与正确值 > 10 nm；手性题四项为手性 × {p, p/2}。",
+     "principle": "胆甾相：指向矢绕螺旋轴均匀扭转，n 与 −n 等价。",
+     "validation": "独立检查器投影解卷绕后线性拟合。",
+     "limits": "理想均匀扭曲。",
+     "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
+    },
+    "samples": [
+     {
+      "instance": "FA-CH-HAND-S5011",
+      "question": "The file lists the director (unit vector of average molecular orientation, n equivalent to −n) at sites along the helix axis of a model cholesteric liquid-crystal film; columns are site x y z (nm) nx ny nz. Model conditions: the only measured inputs are those reported by Shaban et al. (Materials 2024) for the nematic host E44 doped with the chiral dopant R5011 or S5011: the helical twisting power (107.5 μm⁻¹), the dopant concentration and the host refractive indices (ne = 1.7904, no = 1.5484 at 589 nm, 20 °C); the director twists uniformly about a straight helix axis (ideal planar Grandjean texture) with no defects, surface-anchoring distortion or temperature gradient, which is the idealization behind the paper's relations p = 1/(HTP·c) and λc = p·(ne + no)/2. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. A helix is right-handed if, with the right thumb pointing along the direction of travel along the helix axis, the director turns in the sense of the curled fingers; otherwise it is left-handed. What are the handedness and the helical pitch p (the distance over which the director rotates by 360°) of this helix?",
+      "options": [
+       {
+        "label": "A",
+        "value": "right-handed, pitch 362.0 nm"
+       },
+       {
+        "label": "B",
+        "value": "left-handed, pitch 181.0 nm"
+       },
+       {
+        "label": "C",
+        "value": "left-handed, pitch 362.0 nm"
+       },
+       {
+        "label": "D",
+        "value": "right-handed, pitch 181.0 nm"
+       }
+      ],
+      "inputs": [
+       "clc-E44-S5011-2.57wt.txt"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "opposite_handedness",
+        "reason": "螺距对，但手性判反（转向与右手定则比较时看错方向）。"
+       },
+       {
+        "label": "B",
+        "rule": "half_pitch",
+        "reason": "手性对，但报告了 p/2（指向矢转 180° 的距离）。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "每步转角给出 p = 361.958 nm；(n_i × n_i+1)·前进方向 的符号给出左手。"
+       },
+       {
+        "label": "D",
+        "rule": "both_wrong",
+        "reason": "手性判反且报告了 p/2。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-CH-PITCH-LRCD",
+      "question": "The file lists the director (unit vector of average molecular orientation, n equivalent to −n) at sites along the helix axis of a model cholesteric liquid-crystal film; columns are site x y z (nm) nx ny nz. Model conditions: the only measured input is the reflection wavelength reported by Dinc et al. (Org. Chem. Front. 2024) for this cholesteric polymer coating, converted to a pitch with the paper's average refractive index of 1.6; the director twists uniformly about a straight helix axis with no defects, which is the idealization behind the paper's relation λ = n·p. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. What is the helical pitch p (the distance along the helix axis over which the director rotates by 360°), in nm?",
+      "options": [
+       {
+        "label": "A",
+        "value": "209.37",
+        "unit": "nm"
+       },
+       {
+        "label": "B",
+        "value": "418.75",
+        "unit": "nm"
+       },
+       {
+        "label": "C",
+        "value": "670.00",
+        "unit": "nm"
+       },
+       {
+        "label": "D",
+        "value": "837.50",
+        "unit": "nm"
+       }
+      ],
+      "inputs": [
+       "clc-LRCD-coating.txt"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "half_pitch",
+        "reason": "报告了 p/2（n 与 −n 等价时的光学周期），而螺距是指向矢转 360° 的距离。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "由指向矢每步转角得螺距 p = 418.750 nm；λc = ⟨n⟩p，Δλ = Δn·p，HTP = 1/(p c)。"
+       },
+       {
+        "label": "C",
+        "rule": "reflection_wavelength",
+        "reason": "报告了反射波长 n·p 而非螺距。"
+       },
+       {
+        "label": "D",
+        "rule": "double_pitch",
+        "reason": "报告了两个螺距。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "unit": "cholesteric_optics",
+   "kind": "family",
+   "ability": "inference",
+   "registry_id": "cholesteric_optics",
+   "generator": "task_families/cholesteric.py",
+   "checker": "checkers/mesoscale.py",
+   "checker_function": "cholesteric_quantity",
+   "bindings": {
+    "L1": {
+     "registry_row": "ee0da2cd8922c78d84855b4c1fe3c2343bc9eea528c3406bb2ad53df93e12285",
+     "task_families/cholesteric.py": "a4072a8c071da8195827357707ad2b722ab99215104cbc90af1eac3456313dbe"
+    },
+    "L2": {
+     "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 4,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "胆甾液晶选择反射与扭曲力（推断）",
+     "concept": "由螺距与题给折射率推断反射中心波长和带宽，或由螺距与浓度推断手性掺杂剂的螺旋扭曲力 HTP。",
+     "inputs": "胆甾液晶指向矢场（每行 \"site x y z nx ny nz\"，每 5 nm 一点，1.5 μm，任意取向）；设计题给四份。",
+     "physical_conditions": "理想均匀扭曲的螺旋（平面 Grandjean 织构）；λc = ⟨n⟩p，Δλ = Δn·p，p = 1/(HTP·c)；题干写明 Model conditions。",
+     "reasoning_scale": "螺距 p（274–423 nm）",
+     "scale_limits": "按论文参数构建的模型；模型反射与实测相差约 1–2%。",
+     "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层）",
+     "answer_method": "λc = ⟨n⟩p；Δλ = Δn·p；HTP = 1/(p c)。",
+     "distractor_mechanisms": [
+      "extraordinary_index",
+      "ordinary_index",
+      "half_pitch",
+      "no_index",
+      "double_pitch",
+      "central_wavelength",
+      "relative_birefringence",
+      "half_birefringence",
+      "percent_not_fraction",
+      "reflection_for_pitch",
+      "nm_um_slip"
+     ],
+     "four_choice_validation": "与正确值 > 5–8 nm 或 5 μm⁻¹；升序排列，秩按批次轮换。",
+     "principle": "布拉格选择反射：λc = ⟨n⟩p，带宽 Δn·p；HTP 由掺杂剂分子手性决定。",
+     "validation": "独立检查器由拟合螺距与题干参数计算。",
+     "limits": "模型值与实测相差约 1–2%（审核侧列出实测值）。",
+     "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
+    },
+    "samples": [
+     {
+      "instance": "FA-CH-BAND-R5011",
+      "question": "The file lists the director (unit vector of average molecular orientation, n equivalent to −n) at sites along the helix axis of a model cholesteric liquid-crystal film; columns are site x y z (nm) nx ny nz. Model conditions: the only measured inputs are those reported by Shaban et al. (Materials 2024) for the nematic host E44 doped with the chiral dopant R5011 or S5011: the helical twisting power (107.5 μm⁻¹), the dopant concentration and the host refractive indices (ne = 1.7904, no = 1.5484 at 589 nm, 20 °C); the director twists uniformly about a straight helix axis (ideal planar Grandjean texture) with no defects, surface-anchoring distortion or temperature gradient, which is the idealization behind the paper's relations p = 1/(HTP·c) and λc = p·(ne + no)/2. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. At normal incidence, what is the width Δλ of the selective (Bragg) reflection band, in nm? Use the average refractive index (ne + no)/2 of the host and its birefringence ne − no.",
+      "options": [
+       {
+        "label": "A",
+        "value": "43.0",
+        "unit": "nm"
+       },
+       {
+        "label": "B",
+        "value": "51.5",
+        "unit": "nm"
+       },
+       {
+        "label": "C",
+        "value": "85.9",
+        "unit": "nm"
+       },
+       {
+        "label": "D",
+        "value": "592.7",
+        "unit": "nm"
+       }
+      ],
+      "inputs": [
+       "clc-E44-R5011-2.62wt.txt"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "half_pitch",
+        "reason": "用 p/2 计算带宽。"
+       },
+       {
+        "label": "B",
+        "rule": "relative_birefringence",
+        "reason": "用 Δn/⟨n⟩ 代替 Δn。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "由指向矢每步转角得螺距 p = 355.051 nm；λc = ⟨n⟩p，Δλ = Δn·p，HTP = 1/(p c)。"
+       },
+       {
+        "label": "D",
+        "rule": "central_wavelength",
+        "reason": "报告了反射中心波长。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-CH-HTP-S5011",
+      "question": "The file lists the director (unit vector of average molecular orientation, n equivalent to −n) at sites along the helix axis of a model cholesteric liquid-crystal film; columns are site x y z (nm) nx ny nz. Model conditions: the only measured inputs are those reported by Shaban et al. (Materials 2024) for the nematic host E44 doped with the chiral dopant R5011 or S5011: the helical twisting power (107.5 μm⁻¹), the dopant concentration and the host refractive indices (ne = 1.7904, no = 1.5484 at 589 nm, 20 °C); the director twists uniformly about a straight helix axis (ideal planar Grandjean texture) with no defects, surface-anchoring distortion or temperature gradient, which is the idealization behind the paper's relations p = 1/(HTP·c) and λc = p·(ne + no)/2. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. The film contains 2.57 wt% of the chiral dopant. What is the helical twisting power HTP = 1/(p·c) of the dopant in this host (c as a weight fraction), in μm⁻¹?",
+      "options": [
+       {
+        "label": "A",
+        "value": "1.1",
+        "unit": "um^-1"
+       },
+       {
+        "label": "B",
+        "value": "53.8",
+        "unit": "um^-1"
+       },
+       {
+        "label": "C",
+        "value": "107.5",
+        "unit": "um^-1"
+       },
+       {
+        "label": "D",
+        "value": "215.0",
+        "unit": "um^-1"
+       }
+      ],
+      "inputs": [
+       "clc-E44-S5011-2.57wt.txt"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "percent_not_fraction",
+        "reason": "浓度直接代入百分数而非质量分数。"
+       },
+       {
+        "label": "B",
+        "rule": "double_pitch",
+        "reason": "用 2p 代替螺距。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "由指向矢每步转角得螺距 p = 361.958 nm；λc = ⟨n⟩p，Δλ = Δn·p，HTP = 1/(p c)。"
+       },
+       {
+        "label": "D",
+        "rule": "half_pitch",
+        "reason": "用 p/2 代替螺距。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
    "unit": "conformer_target_selection",
    "kind": "family",
    "ability": "design",
@@ -1011,7 +1476,7 @@
      "task_families/conformer_design.py": "c1df20bcb3ca7c59938dcfc28012c37beca3d235e0181495fb2b6d9e9d54a211"
     },
     "L2": {
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a",
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1760,7 +2225,7 @@
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f"
     },
     "L2": {
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a",
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2070,7 +2535,7 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af"
     },
     "L2": {
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a",
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2684,7 +3149,7 @@
      "task_families/extinction.py": "00d55fe1a92e6521076d61e3863d410d68f150b3803a181435c4db17a65164bc"
     },
     "L2": {
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a",
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3304,7 +3769,7 @@
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f"
     },
     "L2": {
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a",
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -5704,6 +6169,478 @@
    }
   },
   {
+   "unit": "vortex_design",
+   "kind": "family",
+   "ability": "design",
+   "registry_id": "vortex_design",
+   "generator": "task_families/vortex.py",
+   "checker": "checkers/mesoscale.py",
+   "checker_function": "vortex_design",
+   "bindings": {
+    "L1": {
+     "registry_row": "bcd1d056fcc383923c80e3fb85e7959790f3e1d98ee39032c7b03718704f1202",
+     "task_families/vortex.py": "205f5e61f90c2a6c94bcebe79138d724d0e1596242dfb6ad2a3eacb123971ed5"
+    },
+    "L2": {
+     "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 3,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "涡旋晶格磁场选择设计",
+     "concept": "在论文实际施加的四个磁场中选一个，使涡旋间距或中子散射峰最接近目标，或在密度要求下磁场最低。",
+     "inputs": "涡旋中心位置图（nm，每行 \"V x y\"，约 97 个，确定性旋转）；设计题给四张不同磁场的图。",
+     "physical_conditions": "理想三角涡旋晶格，每个涡旋一个磁通量子 h/2e；题干写明 Model conditions。",
+     "reasoning_scale": "涡旋晶格间距 a（356–855 nm）",
+     "scale_limits": "按论文实测磁场或实测晶格常数构建的模型；不含钉扎无序；论文指出 188.7 G 时单个涡旋已难分辨。",
+     "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm）",
+     "answer_method": "逐张图计算晶胞，按目标规则选择；领先幅度检查。",
+     "distractor_mechanisms": [
+      "row_spacing",
+      "second_neighbour",
+      "two_pi_over_a",
+      "second_order_peak",
+      "passes_if_square_cell",
+      "meets_but_higher_field",
+      "too_sparse",
+      "farther_from_target"
+     ],
+     "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明误选原因。",
+     "principle": "设计 = 推断的逆问题（选磁场）。",
+     "validation": "独立检查器逐文件重算。",
+     "limits": "候选为论文实测磁场的理想模型。",
+     "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
+    },
+    "samples": [
+     {
+      "instance": "FA-VX-DES-DENSITY",
+      "question": "The four files list the vortex centres (nm) in model images of the Abrikosov vortex lattice of an MgB2 crystal at four applied fields (files named by field). Model conditions: the only measured input is the applied magnetic field of each image reported by Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. You must choose one applied field such that the field is as low as possible while the areal vortex density is at least 4 vortices per square micrometre. Which field should you choose?",
+      "options": [
+       {
+        "label": "A",
+        "value": "117.3 G (11.73 mT) (vortex-MgB2-1173G.txt)"
+       },
+       {
+        "label": "B",
+        "value": "188.7 G (18.87 mT) (vortex-MgB2-1887G.txt)"
+       },
+       {
+        "label": "C",
+        "value": "50.8 G (5.08 mT) (vortex-MgB2-508G.txt)"
+       },
+       {
+        "label": "D",
+        "value": "56.1 G (5.61 mT) (vortex-MgB2-561G.txt)"
+       }
+      ],
+      "inputs": [
+       "vortex-MgB2-508G.txt",
+       "vortex-MgB2-561G.txt",
+       "vortex-MgB2-1173G.txt",
+       "vortex-MgB2-1887G.txt"
+      ],
+      "correct_label": "A",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "correct",
+        "reason": "满足密度要求的候选中磁场最低（密度 5.67 /μm²）。"
+       },
+       {
+        "label": "B",
+        "rule": "meets_but_higher_field",
+        "reason": "密度 9.13 /μm² 满足，但磁场更高。"
+       },
+       {
+        "label": "C",
+        "rule": "too_sparse",
+        "reason": "密度 2.46 /μm²，未达到 4。"
+       },
+       {
+        "label": "D",
+        "rule": "too_sparse",
+        "reason": "密度 2.71 /μm²，未达到 4。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-VX-DES-SANS",
+      "question": "The four files list the vortex centres (nm) in model images of the Abrikosov vortex lattice of an MgB2 crystal at four applied fields (files named by field). Model conditions: the only measured input is the applied magnetic field of each image reported by Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. You must choose one applied field such that the first-order small-angle-neutron-scattering Bragg peak of the vortex lattice (q = 4π sinθ/λ) is closest to 20 μm⁻¹. Which field should you choose?",
+      "options": [
+       {
+        "label": "A",
+        "value": "50.8 G (5.08 mT) (vortex-MgB2-508G.txt)"
+       },
+       {
+        "label": "B",
+        "value": "117.3 G (11.73 mT) (vortex-MgB2-1173G.txt)"
+       },
+       {
+        "label": "C",
+        "value": "56.1 G (5.61 mT) (vortex-MgB2-561G.txt)"
+       },
+       {
+        "label": "D",
+        "value": "188.7 G (18.87 mT) (vortex-MgB2-1887G.txt)"
+       }
+      ],
+      "inputs": [
+       "vortex-MgB2-508G.txt",
+       "vortex-MgB2-561G.txt",
+       "vortex-MgB2-1173G.txt",
+       "vortex-MgB2-1887G.txt"
+      ],
+      "correct_label": "D",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "farther_from_target",
+        "reason": "正确计算为 10.58，离目标更远。"
+       },
+       {
+        "label": "B",
+        "rule": "farther_from_target",
+        "reason": "正确计算为 16.08，离目标更远。"
+       },
+       {
+        "label": "C",
+        "rule": "second_order_peak",
+        "reason": "用第二个峰时它最接近目标（19.26）。"
+       },
+       {
+        "label": "D",
+        "rule": "correct",
+        "reason": "正确计算为 20.40，最接近目标。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "unit": "vortex_geometry",
+   "kind": "family",
+   "ability": "perception",
+   "registry_id": "vortex_geometry",
+   "generator": "task_families/vortex.py",
+   "checker": "checkers/mesoscale.py",
+   "checker_function": "vortex_quantity",
+   "bindings": {
+    "L1": {
+     "registry_row": "8e43c92e04b2df86a789281bd913e4e35719ad4e147448e5cd407b025d9f6d28",
+     "task_families/vortex.py": "205f5e61f90c2a6c94bcebe79138d724d0e1596242dfb6ad2a3eacb123971ed5"
+    },
+    "L2": {
+     "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 3,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "超导涡旋晶格几何（间距 / 密度）",
+     "concept": "从涡旋中心图识别 Abrikosov 涡旋晶格：晶格间距与涡旋面密度。",
+     "inputs": "涡旋中心位置图（nm，每行 \"V x y\"，约 97 个，确定性旋转）；设计题给四张不同磁场的图。",
+     "physical_conditions": "理想三角涡旋晶格，每个涡旋一个磁通量子 h/2e；题干写明 Model conditions。",
+     "reasoning_scale": "涡旋晶格间距 a（356–855 nm）",
+     "scale_limits": "按论文实测磁场或实测晶格常数构建的模型；不含钉扎无序；论文指出 188.7 G 时单个涡旋已难分辨。",
+     "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm）",
+     "answer_method": "中心涡旋 6 个等距近邻；与论文参数一致。",
+     "distractor_mechanisms": [
+      "row_spacing",
+      "second_neighbour",
+      "double_spacing",
+      "square_cell",
+      "half_density",
+      "circle_cell"
+     ],
+     "four_choice_validation": "与正确值 > 10 nm 或 0.15 /μm²；升序排列，秩按批次轮换。",
+     "principle": "三角涡旋晶格：a = (2Φ0/(√3B))^1/2，n = B/Φ0。",
+     "validation": "独立检查器由初基晶胞面积计算。",
+     "limits": "理想晶格。",
+     "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
+    },
+    "samples": [
+     {
+      "instance": "FA-VX-DENSITY-1173",
+      "question": "The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor in a perpendicular magnetic field. Model conditions: the only measured input is the applied magnetic field (117.3 G = 11.73 mT) reported by Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. How many vortices are there per square micrometre (areal vortex density)?",
+      "options": [
+       {
+        "label": "A",
+        "value": "2.836",
+        "unit": "um^-2"
+       },
+       {
+        "label": "B",
+        "value": "4.913",
+        "unit": "um^-2"
+       },
+       {
+        "label": "C",
+        "value": "5.673",
+        "unit": "um^-2"
+       },
+       {
+        "label": "D",
+        "value": "6.255",
+        "unit": "um^-2"
+       }
+      ],
+      "inputs": [
+       "vortex-MgB2-1173G.txt"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "half_density",
+        "reason": "晶胞面积多乘了 2。"
+       },
+       {
+        "label": "B",
+        "rule": "square_cell",
+        "reason": "每个涡旋按 a² 的正方形面积计。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "三角涡旋晶格：a = 451.173 nm，B = 2Φ0/(√3 a²) = 11.7300 mT，n = B/Φ0。"
+       },
+       {
+        "label": "D",
+        "rule": "circle_cell",
+        "reason": "每个涡旋按直径为 a 的圆面积计。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-VX-SPACING-561",
+      "question": "The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor in a perpendicular magnetic field. Model conditions: the only measured input is the applied magnetic field (56.1 G = 5.61 mT) reported by Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. What is the vortex lattice spacing (centre-to-centre distance between neighbouring vortices), in nm?",
+      "options": [
+       {
+        "label": "A",
+        "value": "565.0",
+        "unit": "nm"
+       },
+       {
+        "label": "B",
+        "value": "607.1",
+        "unit": "nm"
+       },
+       {
+        "label": "C",
+        "value": "652.4",
+        "unit": "nm"
+       },
+       {
+        "label": "D",
+        "value": "1130.0",
+        "unit": "nm"
+       }
+      ],
+      "inputs": [
+       "vortex-MgB2-561G.txt"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "row_spacing",
+        "reason": "报告了相邻涡旋行的间距（√3/2）a。"
+       },
+       {
+        "label": "B",
+        "rule": "square_lattice_guess",
+        "reason": "按正方格子由密度反推间距。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "三角涡旋晶格：a = 652.396 nm，B = 2Φ0/(√3 a²) = 5.6100 mT，n = B/Φ0。"
+       },
+       {
+        "label": "D",
+        "rule": "second_neighbour",
+        "reason": "报告了次近邻距离 √3 a。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "unit": "vortex_inference",
+   "kind": "family",
+   "ability": "inference",
+   "registry_id": "vortex_inference",
+   "generator": "task_families/vortex.py",
+   "checker": "checkers/mesoscale.py",
+   "checker_function": "vortex_quantity",
+   "bindings": {
+    "L1": {
+     "registry_row": "c1b0fc543226b3155d05df703cfd0cb2ac83f5bf86c083e39b3e6b365715d516",
+     "task_families/vortex.py": "205f5e61f90c2a6c94bcebe79138d724d0e1596242dfb6ad2a3eacb123971ed5"
+    },
+    "L2": {
+     "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 4,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "超导涡旋晶格推断（磁场 / 磁通量子 / 中子散射峰）",
+     "concept": "由涡旋图推断磁感应强度（每个涡旋一个 h/2e）、每个涡旋携带的磁通，以及小角中子散射首个 Bragg 峰。",
+     "inputs": "涡旋中心位置图（nm，每行 \"V x y\"，约 97 个，确定性旋转）；设计题给四张不同磁场的图。",
+     "physical_conditions": "理想三角涡旋晶格，每个涡旋一个磁通量子 h/2e；题干写明 Model conditions。",
+     "reasoning_scale": "涡旋晶格间距 a（356–855 nm）",
+     "scale_limits": "按论文实测磁场或实测晶格常数构建的模型；不含钉扎无序；论文指出 188.7 G 时单个涡旋已难分辨。",
+     "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm）",
+     "answer_method": "B = Φ0/A_cell；Φ = B·A_cell；q10 = 4π/(√3 a)。",
+     "distractor_mechanisms": [
+      "square_lattice",
+      "flux_h_over_e",
+      "flux_h_over_4e",
+      "gauss_mT_slip",
+      "second_neighbour_as_spacing",
+      "h_over_e",
+      "square_cell",
+      "triangle_cell",
+      "hbar_over_2e",
+      "two_pi_over_a",
+      "missing_two_pi",
+      "second_order_peak",
+      "square_lattice_q"
+     ],
+     "four_choice_validation": "与正确值 > 0.15 mT、0.15×10⁻¹⁵ Wb 或 0.5 μm⁻¹；升序排列，秩按批次轮换。",
+     "principle": "磁通量子化：每个涡旋携带 Φ0 = h/2e。",
+     "validation": "独立检查器由晶胞面积与题干 Φ0 或 B 计算。",
+     "limits": "理想晶格。",
+     "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
+    },
+    "samples": [
+     {
+      "instance": "FA-VX-FIELD-508",
+      "question": "The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor in a perpendicular magnetic field. Model conditions: the only measured input is the applied magnetic field (50.8 G = 5.08 mT) reported by Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. Each vortex carries one superconducting flux quantum Φ0 = h/(2e) = 2.0678 × 10⁻¹⁵ Wb. What is the magnetic induction B inside the superconductor that produces this lattice, in mT?",
+      "options": [
+       {
+        "label": "A",
+        "value": "1.693",
+        "unit": "mT"
+       },
+       {
+        "label": "B",
+        "value": "2.540",
+        "unit": "mT"
+       },
+       {
+        "label": "C",
+        "value": "4.399",
+        "unit": "mT"
+       },
+       {
+        "label": "D",
+        "value": "5.080",
+        "unit": "mT"
+       }
+      ],
+      "inputs": [
+       "vortex-MgB2-508G.txt"
+      ],
+      "correct_label": "D",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "second_neighbour_as_spacing",
+        "reason": "把次近邻距离 √3a 当作晶格间距。"
+       },
+       {
+        "label": "B",
+        "rule": "flux_h_over_4e",
+        "reason": "磁通量子多除了 2。"
+       },
+       {
+        "label": "C",
+        "rule": "square_lattice",
+        "reason": "按正方格子 B = Φ0/a²。"
+       },
+       {
+        "label": "D",
+        "rule": "correct",
+        "reason": "三角涡旋晶格：a = 685.584 nm，B = 2Φ0/(√3 a²) = 5.0800 mT，n = B/Φ0。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-VX-FIELD-BSCCO",
+      "question": "The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor in a perpendicular magnetic field. Model conditions: the only measured input is the measured vortex lattice constant (0.855 μm) reported by Schaefermeier et al. (arXiv:2602.13060; BSCCO-2212, scanning NV magnetometry at 71 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. Each vortex carries one superconducting flux quantum Φ0 = h/(2e) = 2.0678 × 10⁻¹⁵ Wb. What is the magnetic induction B inside the superconductor that produces this lattice, in mT?",
+      "options": [
+       {
+        "label": "A",
+        "value": "1.633",
+        "unit": "mT"
+       },
+       {
+        "label": "B",
+        "value": "2.829",
+        "unit": "mT"
+       },
+       {
+        "label": "C",
+        "value": "3.266",
+        "unit": "mT"
+       },
+       {
+        "label": "D",
+        "value": "6.533",
+        "unit": "mT"
+       }
+      ],
+      "inputs": [
+       "vortex-BSCCO-855nm.txt"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "flux_h_over_4e",
+        "reason": "磁通量子多除了 2。"
+       },
+       {
+        "label": "B",
+        "rule": "square_lattice",
+        "reason": "按正方格子 B = Φ0/a²。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "三角涡旋晶格：a = 855.000 nm，B = 2Φ0/(√3 a²) = 3.2663 mT，n = B/Φ0。"
+       },
+       {
+        "label": "D",
+        "rule": "flux_h_over_e",
+        "reason": "用 h/e（单电子磁通量子）代替 h/2e。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
    "unit": "legacy:basis_phase_extinction",
    "kind": "legacy",
    "ability": "inference",
@@ -5723,7 +6660,7 @@
     "L2": {
      "task_families/extinction.py": "00d55fe1a92e6521076d61e3863d410d68f150b3803a181435c4db17a65164bc",
      "tools/recompute_materials_batch.py": "df46676f8635db858bf9e9ab7a0b7613e580863306ca987f4ffbc19e7e9446e7",
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
     }
    },
    "L1": "pending",
@@ -6388,7 +7325,7 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af",
      "builder_modules/m4_construction/force_projection.py": "bddf6ed6aceb2b9203748df44d74ee79c44f73308f7ef9c0dd5e53fff943bfb9",
      "tools/build_family_assets.py": "ec3bf549831dcb14874c47854ee51f58df0ad82b535ccecdc3eca998d08863b1",
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
     }
    },
    "L1": "pending",
@@ -6457,7 +7394,7 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af",
      "builder_modules/m4_construction/force_projection.py": "bddf6ed6aceb2b9203748df44d74ee79c44f73308f7ef9c0dd5e53fff943bfb9",
      "tools/build_family_assets.py": "ec3bf549831dcb14874c47854ee51f58df0ad82b535ccecdc3eca998d08863b1",
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
     }
    },
    "L1": "pending",
@@ -6622,7 +7559,7 @@
      "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
      "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
     }
    },
    "L1": "pending",
@@ -6748,7 +7685,7 @@
     "L2": {
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f",
      "task_families/kit.py": "d060c9006667542779c54b2fc9b6e9554a0857d4a05d098bf9925647e41bcb79",
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
     }
    },
    "L1": "pending",
@@ -6811,7 +7748,7 @@
      "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
      "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
     }
    },
    "L1": "pending",
@@ -6943,7 +7880,7 @@
      "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
      "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
     }
    },
    "L1": "pending",
@@ -7007,7 +7944,7 @@
      "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
      "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
     }
    },
    "L1": "pending",
@@ -7072,7 +8009,7 @@
      "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
      "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
     }
    },
    "L1": "pending",
@@ -7140,7 +8077,7 @@
     "L2": {
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f",
      "task_families/kit.py": "d060c9006667542779c54b2fc9b6e9554a0857d4a05d098bf9925647e41bcb79",
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
     }
    },
    "L1": "pending",
@@ -7262,7 +8199,7 @@
     "L2": {
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f",
      "task_families/kit.py": "d060c9006667542779c54b2fc9b6e9554a0857d4a05d098bf9925647e41bcb79",
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
     }
    },
    "L1": "pending",
@@ -7329,7 +8266,7 @@
     "L2": {
      "task_families/extinction.py": "00d55fe1a92e6521076d61e3863d410d68f150b3803a181435c4db17a65164bc",
      "tools/recompute_materials_batch.py": "df46676f8635db858bf9e9ab7a0b7613e580863306ca987f4ffbc19e7e9446e7",
-     "checkers/families.py": "7419ab77881a53c0c19ca9f373b3ca05d707862533e23bd1a18ad9e887188c8a"
+     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
     }
    },
    "L1": "pending",
@@ -7517,6 +8454,71 @@
     "BNI020",
     "BNI021",
     "BNI023"
+   ]
+  },
+  {
+   "stratum": "cholesteric_design | paper-shaban-cholesteric | chemistry 100-1000",
+   "unit": "cholesteric_design",
+   "source": "paper-shaban-cholesteric",
+   "cell": "chemistry 100-1000",
+   "size": 3,
+   "sample": 3,
+   "rule": "first batch: all",
+   "ids": [
+    "CND009",
+    "CND010",
+    "CND011"
+   ]
+  },
+  {
+   "stratum": "cholesteric_geometry | paper-dinc-isosorbide | chemistry 100-1000",
+   "unit": "cholesteric_geometry",
+   "source": "paper-dinc-isosorbide",
+   "cell": "chemistry 100-1000",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNP026"
+   ]
+  },
+  {
+   "stratum": "cholesteric_geometry | paper-shaban-cholesteric | chemistry 100-1000",
+   "unit": "cholesteric_geometry",
+   "source": "paper-shaban-cholesteric",
+   "cell": "chemistry 100-1000",
+   "size": 2,
+   "sample": 2,
+   "rule": "first batch: all",
+   "ids": [
+    "CNP024",
+    "CNP025"
+   ]
+  },
+  {
+   "stratum": "cholesteric_optics | paper-dinc-isosorbide | chemistry 100-1000",
+   "unit": "cholesteric_optics",
+   "source": "paper-dinc-isosorbide",
+   "cell": "chemistry 100-1000",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNI020"
+   ]
+  },
+  {
+   "stratum": "cholesteric_optics | paper-shaban-cholesteric | chemistry 100-1000",
+   "unit": "cholesteric_optics",
+   "source": "paper-shaban-cholesteric",
+   "cell": "chemistry 100-1000",
+   "size": 3,
+   "sample": 3,
+   "rule": "first batch: all",
+   "ids": [
+    "CNI017",
+    "CNI018",
+    "CNI019"
    ]
   },
   {
@@ -8472,6 +9474,71 @@
    "ids": [
     "MNP015"
    ]
+  },
+  {
+   "stratum": "vortex_design | paper-cottet-mgb2-vortex | quantum 100-1000",
+   "unit": "vortex_design",
+   "source": "paper-cottet-mgb2-vortex",
+   "cell": "quantum 100-1000",
+   "size": 3,
+   "sample": 3,
+   "rule": "first batch: all",
+   "ids": [
+    "QND010",
+    "QND011",
+    "QND012"
+   ]
+  },
+  {
+   "stratum": "vortex_geometry | paper-cottet-mgb2-vortex | quantum 100-1000",
+   "unit": "vortex_geometry",
+   "source": "paper-cottet-mgb2-vortex",
+   "cell": "quantum 100-1000",
+   "size": 2,
+   "sample": 2,
+   "rule": "first batch: all",
+   "ids": [
+    "QNP020",
+    "QNP021"
+   ]
+  },
+  {
+   "stratum": "vortex_geometry | paper-schaefermeier-bscco-vortex | quantum 100-1000",
+   "unit": "vortex_geometry",
+   "source": "paper-schaefermeier-bscco-vortex",
+   "cell": "quantum 100-1000",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "QNP022"
+   ]
+  },
+  {
+   "stratum": "vortex_inference | paper-cottet-mgb2-vortex | quantum 100-1000",
+   "unit": "vortex_inference",
+   "source": "paper-cottet-mgb2-vortex",
+   "cell": "quantum 100-1000",
+   "size": 3,
+   "sample": 3,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI018",
+    "QNI019",
+    "QNI020"
+   ]
+  },
+  {
+   "stratum": "vortex_inference | paper-schaefermeier-bscco-vortex | quantum 100-1000",
+   "unit": "vortex_inference",
+   "source": "paper-schaefermeier-bscco-vortex",
+   "cell": "quantum 100-1000",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI017"
+   ]
   }
  ],
  "stages": {
@@ -8651,7 +9718,27 @@
   "BND008": "L0",
   "BND009": "L0",
   "BND010": "L0",
-  "BND011": "L0"
+  "BND011": "L0",
+  "QNP020": "L0",
+  "QNP021": "L0",
+  "QNP022": "L0",
+  "QNI017": "L0",
+  "QNI018": "L0",
+  "QNI019": "L0",
+  "QNI020": "L0",
+  "QND010": "L0",
+  "QND011": "L0",
+  "QND012": "L0",
+  "CNP024": "L0",
+  "CNP025": "L0",
+  "CNP026": "L0",
+  "CNI017": "L0",
+  "CNI018": "L0",
+  "CNI019": "L0",
+  "CNI020": "L0",
+  "CND009": "L0",
+  "CND010": "L0",
+  "CND011": "L0"
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer."
 }

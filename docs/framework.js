@@ -6,7 +6,7 @@
  const section=$('#coverage').closest('.section-block');
  section.querySelector('h2').textContent='完整题目与真实缺口。';
  section.querySelector('.map-top p').textContent='4 个领域 × 4 个尺度';
- section.querySelector('.caption').textContent='按解题推理尺度统计；每格目标 10 道，感知 / 推断 / 设计各约 3 道。所有题目都已通过自动核验、仍待人工审核（见审核体系）。化学与量子 100–1000 nm 两格尚无题目，待与教授商定。';
+ const captionBase='按解题推理尺度统计；每格目标 10 道，感知 / 推断 / 设计各约 3 道。所有题目都已通过自动核验、仍待人工审核（见审核体系）。按论文参数构建的模型题在题干中写明 Model conditions。';section.querySelector('.caption').textContent=captionBase;
  const controls=document.createElement('div');controls.className='framework-controls';
  controls.innerHTML='<label>能力 <select id="framework-ability"><option value="">全部能力</option><option value="perception">感知</option><option value="inference">推断</option><option value="design">生成 / 设计</option></select></label><span id="framework-count"></span>';
  section.querySelector('.map-scroll').before(controls);$('#coverage').classList.add('framework-map','compact-map');
@@ -30,6 +30,7 @@
   }
   $('#coverage').innerHTML=html;
   $('#framework-count').textContent=`${rows.length} 道完整候选 · 每格按 10 道封顶的有效覆盖 ${capped} / 160 · 点击格子查看该格题目`;
+  const empty=$('#coverage').querySelectorAll('.cov-cell.empty').length;section.querySelector('.caption').textContent=captionBase+(empty?` 目前有 ${empty} 格尚无题目。`:'');
  };
  coverage=render;$('#framework-ability').onchange=e=>{ability=e.target.value;render()};
  $('#method-scale').innerHTML='<h2>01 / 两种尺度与数值横轴</h2><p>推理尺度是解题实际需要理解的几何范围，决定原型配额；输入尺度描述给模型的整个对象。以 0.1、1、10、100、1000 nm 为区间边界。</p><p>每道题保存测量定义。有限结构可采用指定原子集合的最大中心距；具体使用全部原子还是重原子，见题目来源说明。不能仅凭对象名称推定尺寸。主图只展示完整实例的实测位置。</p>';

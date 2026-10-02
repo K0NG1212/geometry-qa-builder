@@ -3,8 +3,8 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 177,
-  "capped_total": 140,
+  "current_total": 197,
+  "capped_total": 160,
   "over_target_cells": [
    "quantum 0.1-1",
    "chemistry 0.1-1",
@@ -14,14 +14,14 @@
    "biology 1-10",
    "biology 10-100"
   ],
-  "provisional_total": 135,
-  "ability_gaps": 9,
-  "gap_slots": 21,
+  "provisional_total": 155,
+  "ability_gaps": 3,
+  "gap_slots": 3,
   "gaps_by_best_route": {
    "ready": 3,
    "migrate": 0,
    "build": 0,
-   "none": 6
+   "none": 0
   },
   "note": "capped_total 为每格最多按目标 10 道计的有效覆盖；超额题有效但不填补其他格。能力软目标来自 prototype-policy（每格感知/推断/设计各 3，外加 1 个机动名额）；路线只表示注册表声明可覆盖，不保证该格一定有合适数据。"
  },
@@ -240,33 +240,54 @@
    "domain": "quantum",
    "cell": "100-1000",
    "target": 10,
-   "current": 0,
-   "provisional": 0,
-   "remaining": 10,
+   "current": 10,
+   "provisional": 10,
+   "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "vortex_geometry",
+       "name": "超导涡旋晶格几何（间距 / 密度）",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     },
     "inference": {
-     "current": 0,
+     "current": 4,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "vortex_inference",
+       "name": "超导涡旋晶格推断（磁场 / 磁通量子 / 中子散射峰）",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "vortex_design",
+       "name": "涡旋晶格磁场选择设计",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     }
    },
    "feasibility": {
@@ -552,33 +573,54 @@
    "domain": "chemistry",
    "cell": "100-1000",
    "target": 10,
-   "current": 0,
-   "provisional": 0,
-   "remaining": 10,
+   "current": 10,
+   "provisional": 10,
+   "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "cholesteric_geometry",
+       "name": "胆甾液晶螺旋几何（螺距 / 手性）",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     },
     "inference": {
-     "current": 0,
+     "current": 4,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "cholesteric_optics",
+       "name": "胆甾液晶选择反射与扭曲力（推断）",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     },
     "design": {
-     "current": 0,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 3,
-     "routes": [],
+     "shortfall": 0,
+     "routes": [
+      {
+       "family": "cholesteric_design",
+       "name": "胆甾液晶结构色设计",
+       "kind": "ready",
+       "status": "pilot"
+      }
+     ],
      "rework_in_cell": [],
-     "best_route": "none"
+     "best_route": "ready"
     }
    },
    "feasibility": {
