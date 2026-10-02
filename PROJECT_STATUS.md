@@ -2,7 +2,14 @@
 
 > 交接入口：[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（目的与决定、现状、来源路线、代码地图、流程与经验、待决与下一步）；上一份 [HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史。
 
-## 最新：160 道挑选、旧题处理、Excel 审核表（2026-10-03，Claude Code 会话，模型 claude-opus-5-5）
+## 最新：出题流程文档统一（2026-10-03，Claude Code 会话，模型 claude-opus-5-5）
+
+- RUNBOOK.md 改为标准执行规程。内容包括：质量原则（答案只由代码算出、独立检查器、先审代码再扩量、整族重生成、来源可核对、运行只追加、如实记录）；12 步标准流程及命令，并与 M0–M6 对照；审核 L0–L4；计划中的效率改进（标明未实现）；无法写成代码的题须先征得用户同意。
+- 旧的逐题 AI 流程 Builder v0.3（pipeline.py、builder_modules/、prompts/、template_engine.py、choice_engine.py）归档，原文保留在 RUNBOOK 末尾，只用于追溯旧运行；代码未改动。
+- AGENTS.md 的“沿用 M0–M6”一节改为“出题流程”，旧的会议与适配器说明移入“历史说明（归档）”。CLAUDE.md、README、QUICKSTART、DATAFLOW、PROTOTYPE、HANDOFF 加了指向 RUNBOOK 的说明。
+- 只改文档，没有重跑实验。
+
+## 160 道挑选、旧题处理、Excel 审核表（2026-10-03，Claude Code 会话，模型 claude-opus-5-5）
 
 - **160 道挑选（提议规则，待教授确认）**：`templates/prototype-selection-rule.json` + `tools/select_prototype.py` → `docs/data/prototype-selection.json`；审核页新增“160 道原型挑选”一节。
   - 规则：只选通过 L0 的题；先用经独立检查的题，不足 10 道才用旧模板题；同层内逐题选当前最少的能力（趋近 3/3/3）；同能力内优先不属于待教授决定的类别、审核单元和来源已选次数少；最后按 SHA-256(seed|id)，结果可复现。

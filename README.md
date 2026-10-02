@@ -1,4 +1,6 @@
-# Geometry QA Builder v0.3
+# Geometry QA Builder
+
+> **现行出题流程（2026-10-03 起）：题型族代码生成 + 独立检查器复算 + 人工审核，见 [RUNBOOK.md](RUNBOOK.md)。** 下文是 v0.3 逐题 AI 流程（Builder）的说明，已归档，只用于追溯旧运行。
 
 **第五次会议后的入口：** [三步方法](METHODOLOGY.md) · [题型与计算器工作台](https://k0ng1212.github.io/geometry-qa-builder/templates.html)。2 类可复用函数已在 12 份既有真实结构上完成数值短答案试跑，不增加题库计数。
 
