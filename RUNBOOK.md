@@ -26,12 +26,12 @@
 | 2 资产 | 生成题目附件；确定性，重跑后旧资产应逐字节不变 | `python tools/build_<类>_assets.py` → `docs/assets/families/<类>/`（含 `sources.json`） | M1 |
 | 3 题型族 | 写族函数，复用 `kit.py`；在 `FAMILIES` 中登记 | `task_families/<模块>.py`、`task_families/__init__.py` | M3–M4 |
 | 4 检查器 | 独立重算，并登记 | `checkers/<模块>.py`、`checkers/families.py` | M5 |
-| 5 注册表与规格 | 注册表加行（考点、条件、错误机制、局限）；写实例规格；网页族顺序加名 | `templates/registry.json`、`templates/family-manifest.json`、`docs/families.js` | M3 |
+| 5 注册表与规格 | 注册表加行（考点、条件、错误机制、局限）；写实例规格；网页族顺序加名。已有枚举器的族先跑容量探针（也是大样本压力测试：答案位置、拒绝原因、独立检查） | `templates/registry.json`、`templates/family-manifest.json`、`docs/families.js`；`python tools/enumerate_instances.py --out runs/enum-vNN` | M3 |
 | 6 生成 | 新目录；按族轮换答案位置；构造不出唯一答案就拒绝 | `python family_engine.py --manifest templates/family-manifest.json --out runs/family-pilot-vNN` | M4 |
 | 7 独立复核 | 全部一致才继续；与上一版比较旧实例是否不变 | `python verify_all.py --run runs/family-pilot-vNN --out runs/family-pilot-vNN-independent-check.json` | M5 |
 | 8 导出 | 完整重放，代码哈希须与运行一致 | `python tools/export_family_workbench.py --run runs/family-pilot-vNN --public-development-examples` | M6 |
 | 9 入库 | 登记 new / supersede / reformat，然后导出目录与统计 | `templates/admission-map.json` → `python tools/admit_family_instances.py --date YYYY-MM-DD` → `tools/export_prototype.py`、`tools/export_admission_audit.py`、`tools/plan_coverage.py`、`tools/export_coverage.py`、`tools/export_modules.py` | M6 |
-| 10 挑选与审核材料 | 更新 160 道挑选、审核队列和 Excel 审核表 | `python tools/select_prototype.py`、`python tools/review.py queue --date YYYY-MM-DD`、`python tools/review_sheet.py export` | — |
+| 10 挑选与审核材料 | 更新 160 道挑选、审核队列、Excel 审核表和出题系统展示页 | `python tools/select_prototype.py`、`python tools/review.py queue --date YYYY-MM-DD`、`python tools/review_sheet.py export`、`python tools/export_system.py` | — |
 | 11 测试与网页 | 全部测试；本地浏览器核对页面 | `python -m unittest discover -s tests`（约 6–9 分钟） | — |
 | 12 记录与提交 | PROJECT_STATUS 顶部加一节；提交（写实际模型）；推送后确认 Pages 已更新 | `git -c safe.directory=...`，不强推，不提交 `runs/`、`inputs/` | — |
 
@@ -52,7 +52,7 @@
 按优先级排列。每一项都不得削弱第一部分的任何一条原则。
 
 1. **总控脚本**：一条命令按顺序跑完第 6–10 步，任一步失败就停。
-2. **实例枚举器**：每个族自动从附件枚举可出的题，再按难度和来源多样性确定性抽样，取代手写规格。这是批量生产（1600 道）的前提。
+2. **实例枚举器**：已为 5 个族实现（`enumerators.py`、`tools/enumerate_instances.py`），其余族待补；按难度和来源多样性抽样、写入正式规格的步骤待做。
 3. **增量运行**：按族代码哈希缓存，未改动的族不重跑。
 4. **题干措辞变体**：每族几种确定性措辞，与检查器的解析同步测试。
 5. **低成本难度检查**：例如只给题干、不给附件看模型能否猜中；L4 数据回来后淘汰没人选的错误机制。

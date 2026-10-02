@@ -2506,13 +2506,15 @@
       "distractor_mechanisms": [
         "path_length_distance",
         "complement",
+        "closest_atom_pair",
+        "r_equals_R0_default",
         "wrong_acceptor_atom",
         "missing_one_third",
         "half_dmax_as_rg",
         "amplitude_not_intensity",
         "unit_mixups"
       ],
-      "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。",
+      "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。FRET 可由题设 R0 列表中选取使目标秩可达的值（某些秩只在 E < 0.5 或 E > 0.5 时可达；枚举探针发现只用固定 R0 时正确项总是最大）。",
       "engine_families": [
         "fret_efficiency",
         "guinier_intensity"

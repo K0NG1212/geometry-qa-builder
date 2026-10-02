@@ -1,0 +1,291 @@
+{
+ "kind": "enumeration_capacity",
+ "date": "2026-10-03",
+ "seed": "geobench-enum-v1",
+ "sample_per_structure": 40,
+ "run": "enum-v05",
+ "structures": [
+  "1UBQ",
+  "1CRN",
+  "6LYZ",
+  "1EHZ"
+ ],
+ "totals": {
+  "proposals": 7208,
+  "sampled": 585,
+  "accepted": 520,
+  "checker_pass": 520,
+  "checker_checked": 520,
+  "estimated_admissible": 7064,
+  "positions": {
+   "A": 129,
+   "B": 140,
+   "C": 138,
+   "D": 113
+  },
+  "position_balance_ok": true
+ },
+ "rows": [
+  {
+   "family": "backbone_torsion",
+   "structure": "1CRN",
+   "proposals": 91,
+   "sampled": 40,
+   "accepted": 39,
+   "rejected": {
+    "Residue window missing, has alternate locations or unsupported torsion": 1
+   },
+   "checker_pass": 39,
+   "checker_fail": 0,
+   "estimated_admissible": 89
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "1UBQ",
+   "proposals": 151,
+   "sampled": 40,
+   "accepted": 38,
+   "rejected": {
+    "Residue window missing, has alternate locations or unsupported torsion": 2
+   },
+   "checker_pass": 38,
+   "checker_fail": 0,
+   "estimated_admissible": 143
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "6LYZ",
+   "proposals": 257,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 257
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "1CRN",
+   "proposals": 45,
+   "sampled": 40,
+   "accepted": 23,
+   "rejected": {
+    "Nearest reference conformation not clear enough": 1,
+    "Dihedral class disagrees with": 14,
+    "Residue window missing or has alternate locations": 2
+   },
+   "checker_pass": 23,
+   "checker_fail": 0,
+   "estimated_admissible": 26
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "1UBQ",
+   "proposals": 75,
+   "sampled": 40,
+   "accepted": 18,
+   "rejected": {
+    "Nearest reference conformation not clear enough": 9,
+    "Dihedral class disagrees with": 11,
+    "Residue window missing or has alternate locations": 2
+   },
+   "checker_pass": 18,
+   "checker_fail": 0,
+   "estimated_admissible": 34
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "6LYZ",
+   "proposals": 128,
+   "sampled": 40,
+   "accepted": 17,
+   "rejected": {
+    "Dihedral class disagrees with": 19,
+    "Nearest reference conformation not clear enough": 4
+   },
+   "checker_pass": 17,
+   "checker_fail": 0,
+   "estimated_admissible": 54
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1CRN",
+   "proposals": 99,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 99
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1EHZ",
+   "proposals": 1244,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 1244
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1UBQ",
+   "proposals": 560,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 560
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "6LYZ",
+   "proposals": 3160,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 3160
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "1CRN",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "1UBQ",
+   "proposals": 9,
+   "sampled": 9,
+   "accepted": 9,
+   "rejected": {},
+   "checker_pass": 9,
+   "checker_fail": 0,
+   "estimated_admissible": 9
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "6LYZ",
+   "proposals": 15,
+   "sampled": 15,
+   "accepted": 15,
+   "rejected": {},
+   "checker_pass": 15,
+   "checker_fail": 0,
+   "estimated_admissible": 15
+  },
+  {
+   "family": "fret_design",
+   "structure": "1CRN",
+   "proposals": 50,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 50
+  },
+  {
+   "family": "fret_design",
+   "structure": "1EHZ",
+   "proposals": 263,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 263
+  },
+  {
+   "family": "fret_design",
+   "structure": "1UBQ",
+   "proposals": 229,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 229
+  },
+  {
+   "family": "fret_design",
+   "structure": "6LYZ",
+   "proposals": 831,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 831
+  }
+ ],
+ "position_balance": {
+  "backbone_torsion": {
+   "counts": {
+    "A": 32,
+    "B": 43,
+    "C": 26,
+    "D": 16
+   },
+   "max_deviation": 13.8,
+   "tolerance": 17.6,
+   "ok": true
+  },
+  "secondary_structure": {
+   "counts": {
+    "A": 11,
+    "B": 17,
+    "C": 10,
+    "D": 20
+   },
+   "max_deviation": 5.5,
+   "tolerance": 8.7,
+   "ok": true
+  },
+  "fret_efficiency": {
+   "counts": {
+    "A": 40,
+    "B": 33,
+    "C": 56,
+    "D": 31
+   },
+   "max_deviation": 16.0,
+   "tolerance": 24.0,
+   "ok": true
+  },
+  "disulfide_design": {
+   "counts": {
+    "A": 6,
+    "B": 7,
+    "C": 6,
+    "D": 6
+   },
+   "max_deviation": 0.8,
+   "tolerance": 4,
+   "ok": true
+  },
+  "fret_design": {
+   "counts": {
+    "A": 40,
+    "B": 40,
+    "C": 40,
+    "D": 40
+   },
+   "max_deviation": 0.0,
+   "tolerance": 24.0,
+   "ok": true
+  }
+ },
+ "model_calls": 0,
+ "note": "Capacity probe only: nothing is admitted to the catalog. Estimates scale the acceptance rate of the sample to all proposals of the same family and structure."
+}

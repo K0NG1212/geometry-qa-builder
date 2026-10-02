@@ -2840,8 +2840,8 @@
    "checker_function": "fret_efficiency",
    "bindings": {
     "L1": {
-     "registry_row": "861ae5c3459061cfe83da82a151bf914e1fd60919873dab80acd86227696dfba",
-     "task_families/scattering.py": "55497b1f028ad80883de72dbcdc854f6f4a3bd13a7e1853ceb0ed0724279effc"
+     "registry_row": "82495998b29c200d8c24eaa2112c0c0da100e7b7e7971c7e37339b1e8630ee8e",
+     "task_families/scattering.py": "5964568c0efa20cd2b6eed6f05e67ad68c0a7a6771660d658905f8c9d60dd302"
     },
     "L2": {
      "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
@@ -2866,13 +2866,15 @@
      "distractor_mechanisms": [
       "path_length_distance",
       "complement",
+      "closest_atom_pair",
+      "r_equals_R0_default",
       "wrong_acceptor_atom",
       "missing_one_third",
       "half_dmax_as_rg",
       "amplitude_not_intensity",
       "unit_mixups"
      ],
-     "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。",
+     "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。FRET 可由题设 R0 列表中选取使目标秩可达的值（某些秩只在 E < 0.5 或 E > 0.5 时可达；枚举探针发现只用固定 R0 时正确项总是最大）。",
      "principle": "Guinier：qRg ≲ 1.3；FRET：E = 1/(1+(r/R0)^6)。",
      "validation": "旧验证。",
      "limits": "证据段落需审核。",
@@ -2890,7 +2892,7 @@
        },
        {
         "label": "B",
-        "value": "0.408",
+        "value": "0.337",
         "unit": ""
        },
        {
@@ -2916,13 +2918,13 @@
        },
        {
         "label": "B",
-        "rule": "inverse_square_law",
-        "reason": "用 (r/R0)^2 代替六次方依赖。"
+        "rule": "closest_atom_pair",
+        "reason": "用两残基间最近的重原子对距离（6.718 nm）代替指定标记原子的间距。"
        },
        {
         "label": "C",
         "rule": "r_equals_R0_default",
-        "reason": "默认 r≈R0，直接取 E=0.5。"
+        "reason": "未计算距离，默认 r≈R0，直接取 E=0.5。"
        },
        {
         "label": "D",
@@ -2942,24 +2944,24 @@
        },
        {
         "label": "B",
-        "value": "0.200",
-        "unit": ""
-       },
-       {
-        "label": "C",
         "value": "0.800",
         "unit": ""
        },
        {
-        "label": "D",
+        "label": "C",
         "value": "0.929",
+        "unit": ""
+       },
+       {
+        "label": "D",
+        "value": "0.962",
         "unit": ""
        }
       ],
       "inputs": [
        "1UBQ-chainA.pdb"
       ],
-      "correct_label": "C",
+      "correct_label": "B",
       "audit": [
        {
         "label": "A",
@@ -2968,18 +2970,18 @@
        },
        {
         "label": "B",
-        "rule": "complement",
-        "reason": "报告了 1−E（供体保留的比例）。"
-       },
-       {
-        "label": "C",
         "rule": "correct",
         "reason": "r = 1.9847 nm（直线距离），E = 1/(1+(r/R0)^6)。"
        },
        {
-        "label": "D",
+        "label": "C",
         "rule": "wrong_acceptor_atom",
         "reason": "受体位置取成该残基的 CA 而非指定原子。"
+       },
+       {
+        "label": "D",
+        "rule": "closest_atom_pair",
+        "reason": "用两残基间最近的重原子对距离（1.456 nm）代替指定标记原子的间距。"
        }
       ]
      }
@@ -2996,8 +2998,8 @@
    "checker_function": "guinier_intensity",
    "bindings": {
     "L1": {
-     "registry_row": "861ae5c3459061cfe83da82a151bf914e1fd60919873dab80acd86227696dfba",
-     "task_families/scattering.py": "55497b1f028ad80883de72dbcdc854f6f4a3bd13a7e1853ceb0ed0724279effc"
+     "registry_row": "82495998b29c200d8c24eaa2112c0c0da100e7b7e7971c7e37339b1e8630ee8e",
+     "task_families/scattering.py": "5964568c0efa20cd2b6eed6f05e67ad68c0a7a6771660d658905f8c9d60dd302"
     },
     "L2": {
      "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
@@ -3022,13 +3024,15 @@
      "distractor_mechanisms": [
       "path_length_distance",
       "complement",
+      "closest_atom_pair",
+      "r_equals_R0_default",
       "wrong_acceptor_atom",
       "missing_one_third",
       "half_dmax_as_rg",
       "amplitude_not_intensity",
       "unit_mixups"
      ],
-     "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。",
+     "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。FRET 可由题设 R0 列表中选取使目标秩可达的值（某些秩只在 E < 0.5 或 E > 0.5 时可达；枚举探针发现只用固定 R0 时正确项总是最大）。",
      "principle": "Guinier：qRg ≲ 1.3；FRET：E = 1/(1+(r/R0)^6)。",
      "validation": "旧验证。",
      "limits": "证据段落需审核。",

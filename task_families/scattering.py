@@ -10,7 +10,7 @@ scatterer assumption) but not the formulas, so applying the right relation is th
 import math
 from . import kit
 
-VERSION = '0.1.0'
+VERSION = '0.2.0'
 
 
 def read_chain(text, chains):
@@ -46,8 +46,6 @@ def build_fret(spec, root, seed):
     atoms, lines = read_chain(raw.decode('utf-8'), spec['chain'])
     d, a = pick(atoms, *spec['donor']), pick(atoms, *spec['acceptor'])
     r = math.dist(d['xyz'], a['xyz']) / 10                     # nm
-    r0 = spec['R0_nm']
-    e = fret(r, r0)
     lo, hi = sorted((spec['donor'][0], spec['acceptor'][0]))
     markers = [a2 for a2 in atoms if a2['name'] == spec['path_atom'] and lo <= a2['residue'] <= hi]
     markers.sort(key=lambda m: m['residue'])
@@ -55,19 +53,51 @@ def build_fret(spec, root, seed):
     if [m['residue'] for m in markers] == list(range(lo, hi + 1)):
         path = math.fsum(math.dist(p['xyz'], q['xyz']) for p, q in zip(markers, markers[1:])) / 10
     ca = [x for x in atoms if x['residue'] == spec['acceptor'][0] and x['name'] == spec['path_atom']]
-    cands = [dict(rule='path_length_distance', value=fret(path, r0) if path else None, plausibility=3,
-                  reason='用沿链骨架标记原子（%s）的路径长度代替空间直线距离。' % spec['path_atom']),
-             dict(rule='complement', value=1 - e, plausibility=2, reason='报告了 1−E（供体保留的比例）。'),
-             dict(rule='inverse_square_law', value=fret(r, r0, 2), plausibility=1, reason='用 (r/R0)^2 代替六次方依赖。'),
-             dict(rule='r_equals_R0_default', value=0.5, plausibility=1, reason='默认 r≈R0，直接取 E=0.5。'),
-             dict(rule='angstrom_nanometre_mixup', value=fret(r * 10, r0), plausibility=1, reason='r 用 Å 而 R0 用 nm，单位不一致。')]
-    if ca and spec['acceptor'][1] != spec['path_atom']:
-        cands.append(dict(rule='wrong_acceptor_atom', value=fret(math.dist(d['xyz'], ca[0]['xyz']) / 10, r0), plausibility=2,
-                          reason='受体位置取成该残基的 %s 而非指定原子。' % spec['path_atom']))
+    near = min(math.dist(x['xyz'], y['xyz']) for x in atoms if x['residue'] == d['residue']
+               for y in atoms if y['residue'] == a['residue']) / 10
     decimals, tol, sep = 3, '0.0005', '0.030'
-    chosen, rejected, goal, rank = kit.choose_numeric(e, cands, decimals=decimals, tolerance=tol, min_separation=sep, seed=seed,
-                                                      context=spec['id'], lower=0, upper=1, target=spec.get('target_position'),
-                                                      distractor_separation='0.010')
+
+    def attempt(r0):
+        e = fret(r, r0)
+        cands = [dict(rule='path_length_distance', value=fret(path, r0) if path else None, plausibility=3,
+                      reason='用沿链骨架标记原子（%s）的路径长度代替空间直线距离。' % spec['path_atom']),
+                 dict(rule='complement', value=1 - e, plausibility=2, reason='报告了 1−E（供体保留的比例）。'),
+                 dict(rule='inverse_square_law', value=fret(r, r0, 2), plausibility=1, reason='用 (r/R0)^2 代替六次方依赖。'),
+                 dict(rule='r_equals_R0_default', value=0.5, plausibility=2, reason='未计算距离，默认 r≈R0，直接取 E=0.5。'),
+                 dict(rule='angstrom_nanometre_mixup', value=fret(r * 10, r0), plausibility=1, reason='r 用 Å 而 R0 用 nm，单位不一致。')]
+        if near < r:
+            # Larger-efficiency misconception: without it every mechanism falls below E when E > 0.5 and the correct
+            # option is always the largest (found by the enumeration capacity probe, runs/enum-v02).
+            cands.append(dict(rule='closest_atom_pair', value=fret(near, r0), plausibility=2,
+                              reason='用两残基间最近的重原子对距离（%.3f nm）代替指定标记原子的间距。' % near))
+        if ca and spec['acceptor'][1] != spec['path_atom']:
+            cands.append(dict(rule='wrong_acceptor_atom', value=fret(math.dist(d['xyz'], ca[0]['xyz']) / 10, r0), plausibility=2,
+                              reason='受体位置取成该残基的 %s 而非指定原子。' % spec['path_atom']))
+        chosen, rejected, goal, rank = kit.choose_numeric(e, cands, decimals=decimals, tolerance=tol, min_separation=sep, seed=seed,
+                                                          context=spec['id'], lower=0, upper=1, target=spec.get('target_position'),
+                                                          distractor_separation='0.010')
+        return r0, e, chosen, rejected, goal, rank
+
+    # R0 is a stated model parameter. A spec may fix it (R0_nm) or list admissible stated values (R0_choices); the
+    # family then takes the first value, in seeded order, whose options reach the batch's target answer rank, since
+    # some ranks are reachable only below or only above E = 0.5.
+    if 'R0_nm' in spec:
+        options_r0 = [spec['R0_nm']]
+    else:
+        options_r0 = sorted(spec['R0_choices'], key=lambda x: kit.digest(seed, spec['id'], 'R0', str(x)))
+    best = None
+    for value in options_r0:
+        try:
+            got = attempt(value)
+        except ValueError:
+            continue
+        if best is None or abs(got[5] - got[4]) < abs(best[5] - best[4]):
+            best = got
+        if got[5] == got[4]:
+            break
+    if best is None:
+        raise ValueError('Fewer than three separated misconception distractors')
+    r0, e, chosen, rejected, goal, rank = best
     options, audit = kit.label_numeric(e, chosen, decimals=decimals, unit='', seed=seed, context=spec['id'],
                                        correct_reason='r = %.4f nm（直线距离），E = 1/(1+(r/R0)^6)。' % r)
     key = kit.validate_numeric(options, e, decimals=decimals, tolerance=tol, min_separation=sep, unit='',

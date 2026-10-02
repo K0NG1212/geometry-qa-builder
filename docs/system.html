@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="GeoBench 出题系统：题型族代码出题、独立检查器复算、人工审代码。每一步的代码、保证与局限。"><title>出题系统 · GeoBench</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="builder.css">
+<style>
+.principles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0 6px}.principles div{background:#f4f6ef;border:1px solid var(--line);border-radius:4px;padding:14px 16px}.principles b{font-size:14px;font-weight:600;display:block;margin-bottom:4px}.principles p{font-size:13px;color:var(--muted);margin:0}
+.stages{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:18px 0}.stages div{padding:12px 14px;border-top:3px solid var(--green);background:#f4f6ef}.stages div+div{border-left:1px solid var(--line)}.stages b{font-size:15px;font-weight:600}.stages span{font:11px monospace;color:var(--muted);margin-left:6px}.stages p{font-size:12.5px;color:var(--muted);margin:4px 0 0}
+.guarantee{margin:0;padding-left:18px}.guarantee li{font-size:14px;margin:3px 0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}.filters button{padding:7px 12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:4px;cursor:pointer;font-size:13px}.filters button[aria-pressed=true]{background:var(--green);color:#fff}
+.fam-table{width:100%;border-collapse:collapse;font-size:13px}.fam-table th,.fam-table td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}.fam-table th{font-weight:600;font-size:12px;color:var(--muted)}.fam-table tr.sel{background:#eef2e9}.fam-table tbody tr{cursor:pointer}.fam-table tbody tr:hover{background:#f2f4ed}
+.pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:9px;background:#edf2e7;margin:1px 2px 1px 0;white-space:nowrap}.pill.paper{background:#f3ead8}.pill.evidence{background:#f1e2e2}.pill.assembly{background:#e3ecf3}
+.kv{display:grid;grid-template-columns:120px 1fr;gap:4px 14px;font-size:13.5px;margin:12px 0}.kv dt{color:var(--muted)}.kv dd{margin:0;overflow-wrap:anywhere}
+.cap-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}.cap-table th,.cap-table td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right}.cap-table th:first-child,.cap-table td:first-child,.cap-table td:nth-child(2),.cap-table th:nth-child(2){text-align:left}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}.facts div{border-left:3px solid #b39a64;padding:4px 14px}.facts b{display:block;font-size:14px}.facts p{font-size:13px;color:var(--muted);margin:3px 0 0}
+.repro li{margin:10px 0;font-size:14px}.repro code{display:block;margin-top:4px}
+.scroll{overflow-x:auto}
+@media(max-width:900px){.principles{grid-template-columns:1fr 1fr}.stages{grid-template-columns:1fr 1fr}.facts{grid-template-columns:1fr}}
+@media(max-width:560px){.principles,.stages{grid-template-columns:1fr}.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}}
+</style></head>
+<body>
+<header><a class="brand" href="index.html">g<span>·</span> <b>GeoBench</b></a><nav aria-label="主导航"><a href="index.html">研究地图</a><a href="index.html#questions">问题池</a><a href="system.html" aria-current="page">出题系统</a><a href="templates.html">题型</a><a href="review.html">审核</a><a href="https://github.com/K0NG1212/geometry-qa-builder" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
+<main>
+<section class="intro"><div><p class="eyebrow">TASK FAMILIES / INDEPENDENT CHECKERS / HUMAN REVIEW</p><h1>代码出题，独立复算，<br>人审代码。</h1><p class="lead">每个题型是一段确定性代码，批量生成题目；另一段不共享任何代码的检查器从题干重新计算每道题。<br class="desktop">代码经人审定后，同一题型的所有题都可复现、可核对。出题全程不调用任何模型。</p></div><aside class="summary"><span class="version" id="sys-version">TASK-FAMILY PIPELINE</span><div><strong id="sys-families">—</strong><span id="sys-families-note">题型族</span></div><p id="sys-summary">读取中…</p><span class="boundary" id="sys-boundary"></span></aside></section>
+
+<section class="flow-overview"><p class="eyebrow">QUALITY FIRST</p><h2>八条质量原则</h2><div class="principles" id="sys-principles"></div><p class="footnote">原则全文与命令见仓库 <a href="https://github.com/K0NG1212/geometry-qa-builder/blob/main/RUNBOOK.md" target="_blank" rel="noopener"><b>RUNBOOK.md ↗</b></a>。旧的逐题 AI 流程（<a href="builder.html">Builder M0–M6</a>）已归档，只用于追溯旧运行；M0–M6 仍作为阶段名称对照。</p></section>
+
+<section class="flow-overview"><p class="eyebrow">PIPELINE</p><h2>从来源到正式题：五个阶段，十二步</h2><div class="stages" id="sys-stages"></div></section>
+<div class="section-label"><h2>每一步做什么、保证什么</h2><p>选择一步，查看输入输出、保证、局限、命令与代码。</p></div>
+<div class="workspace"><nav id="module-list" aria-label="选择步骤"><p>读取中…</p></nav><article id="module-detail" aria-live="polite"></article></div>
+
+<section class="flow-overview" style="margin-top:44px" id="families"><p class="eyebrow">CATALOG</p><h2>题型族目录</h2><p id="fam-note"></p><div class="filters" id="fam-filters"></div><div class="scroll"><table class="fam-table"><thead><tr><th>题型族</th><th>能力</th><th>数据路线</th><th>实例</th><th>覆盖格</th><th>独立检查方法</th></tr></thead><tbody id="fam-rows"></tbody></table></div><div id="fam-detail"></div></section>
+
+<section class="flow-overview" id="independence"><p class="eyebrow">WHY THE CODE CAN BE TRUSTED</p><h2>独立性与可复现</h2><div class="facts" id="sys-facts"></div></section>
+
+<section class="flow-overview" id="capacity"><p class="eyebrow">SCALING</p><h2>扩展能力：枚举器探针</h2><p id="cap-note"></p><div class="scroll"><table class="cap-table"><thead><tr><th>题型族</th><th>结构</th><th>候选</th><th>抽样</th><th>题型接受</th><th>独立检查通过</th><th>估计可出</th></tr></thead><tbody id="cap-rows"></tbody></table></div><div class="flow-notice"><b>探针发现并修正的问题</b><p>第一次探针（runs/enum-v01、v02）显示 FRET 效率题在大量实例上“正确项总是最大”：当 E &gt; 0.5 时，登记的错误机制全部给出更小的值。只看原来 3 道题时这个问题看不出来。修正方法是给题型族加一种给出更大值的真实错误（用最近重原子对代替标记原子），并允许从题设 R0 列表中选取使目标秩可达的值。修正后答案位置均衡，已有 3 道题按新版本重新生成（v19）。</p></div></section>
+
+<section class="flow-overview" id="reproduce"><p class="eyebrow">FOR REVIEWERS</p><h2>如何复现</h2><p>以下命令在仓库根目录运行，不需要任何 API Key。生成与复核都是确定性的：同样的代码和规格得到逐字节相同的结果。</p><ol class="repro" id="sys-repro"></ol></section>
+<p id="sys-error" hidden role="alert">未能加载 data/system.json，请通过 HTTP 服务打开并刷新。</p>
+</main>
+<footer><span>GeoBench · 出题系统</span><span id="sys-run"></span></footer>
+<script src="system.js" defer></script>
+</body></html>
