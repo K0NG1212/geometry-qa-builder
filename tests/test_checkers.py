@@ -404,5 +404,16 @@ class DesignGapTests(unittest.TestCase):
         self.assertTrue(fails(p, k))
 
 
+class ModelConditionTests(unittest.TestCase):
+    def test_paper_parameter_questions_must_state_the_model_conditions(self):
+        for iid in ('FA-SL-QSTAR-X', 'FA-SL-DES-GOLD', 'FA-OP-PEAK-S3', 'FA-OP-DES-820', 'FA-MO-NFULL-M1', 'FA-MO-DES-FULL', 'FA-QD-EPS-E'):
+            p, k = pair(iid)
+            self.assertEqual(checkers.check(p, k)['status'], 'pass', iid)
+            start = p['question'].index('Model conditions:')
+            end = p['question'].index('.', p['question'].index('the only measured input' if 'FA-QD' not in iid else 'ideal spherical cut'))
+            p['question'] = p['question'][:start] + p['question'][end + 1:]
+            self.assertTrue(fails(p, k, 'conditions'), iid)
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -60,8 +60,13 @@ def analyse(pts):
     return dict(nn=float(nn), volume=float(vol), g=g, shells=shells, fcc=fcc)
 
 
+def stated_conditions(q):
+    need('Model conditions:' in q and 'the only measured input is' in q, 'Paper-parameter model conditions not stated')
+
+
 def superlattice_shell(packet, key):
     same_as_asset(packet, key)
+    stated_conditions(packet['question'])
     need('nearest the centroid' in packet['question'], 'Centre particle not defined')
     lat = analyse(points(packet['inputs'][0]))
     n, dist = lat['shells'][0]
@@ -78,6 +83,7 @@ def superlattice_shell(packet, key):
 def superlattice_quantity(packet, key):
     same_as_asset(packet, key)
     q = packet['question']
+    stated_conditions(q)
     lat = analyse(points(packet['inputs'][0]))
     if 'conventional cubic unit cell' in q:
         need(lat['fcc'], 'Lattice is not face-centred cubic; conventional cell undefined here')
@@ -101,6 +107,7 @@ def superlattice_quantity(packet, key):
 def superlattice_design(packet, key):
     same_as_asset(packet, key)
     q = packet['question']
+    stated_conditions(q)
     props = {}
     for inp in packet['inputs']:
         lat = analyse(points(inp))
@@ -159,6 +166,7 @@ def optics(q, lat):
 def opal_quantity(packet, key):
     same_as_asset(packet, key)
     q = packet['question']
+    stated_conditions(q)
     lat = analyse(spheres(packet['inputs'][0]))
     d111 = 2 * math.pi / lat['g'][0]
     if 'What is the sphere diameter' in q:
@@ -189,6 +197,7 @@ def opal_quantity(packet, key):
 def opal_design(packet, key):
     same_as_asset(packet, key)
     q = packet['question']
+    stated_conditions(q)
     lam = {}
     size = {}
     for inp in packet['inputs']:

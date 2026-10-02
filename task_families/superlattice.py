@@ -61,8 +61,12 @@ def q_200(a):
     return 4 * math.pi / a
 
 
+CONDITIONS = ('Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained '
+              'from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional '
+              '(thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each '
+              'crystallite is a finite cut of about 177 particles in an arbitrary orientation.')
 SUBJECT = ('The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle '
-           'superlattice (coordinates in nm; built from a published SAXS unit-cell size).')
+           'superlattice (coordinates in nm; built from a published SAXS unit-cell size). ' + CONDITIONS)
 
 
 def packet(spec, inputs, question, options, key, audit, rejected, rank, numeric, checks, input_nm, reasoning_nm, definition, hashes):
@@ -283,8 +287,8 @@ def build_design(spec, root, seed):
     audit = [dict(label=l, value=p[1], rule=p[0], reason=p[2], is_correct=p[0] == 'correct') for l, p in zip(kit.LABELS, order)]
     question = ('The four XYZ files list the gold-nanoparticle centres (nm) of model crystallites of DNA-linked gold-nanoparticle '
                 'superlattices assembled with four different duplex DNA linkers; each file is named after its linker and was built '
-                'from that linker\'s published SAXS unit-cell size. You must choose one linker for a new superlattice such that %s. '
-                'Which linker should you choose?' % target_text)
+                'from that linker\'s published SAXS unit-cell size. %s You must choose one linker for a new superlattice such that %s. '
+                'Which linker should you choose?' % (CONDITIONS, target_text))
     return packet(spec, inputs, question, options, key, audit, [], None, None,
                   dict(candidates=[{k: r[k] for k in ('linker', 'nn', 'a', 'q', 'gold')} for r in rows], goal=goal, target=t,
                        design_note='设计选择：四个候选均为论文中实际做出的连接子，性质由模型坐标计算。',

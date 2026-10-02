@@ -54,9 +54,19 @@ def optics_text(spec):
             'of this packing.' % (spec['n_sphere'], spec['n_medium']))
 
 
+PAPERS = {'polystyrene': 'Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM)', 'silica': 'Fookes et al. (Sensors 2023; SEM)'}
+
+
+def conditions(material):
+    return ('Model conditions: the only measured input is the sphere diameter reported by %s; the spheres are identical (no size '
+            'dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, '
+            'which is the idealization behind the paper\'s Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of '
+            '177 spheres in an arbitrary orientation.' % PAPERS[material])
+
+
 def subject(spec):
     return ('The file lists the sphere centres (nm) of a model %s opal crystallite built from a published sphere diameter; '
-            'neighbouring spheres touch.' % spec['material'])
+            'neighbouring spheres touch. %s' % (spec['material'], conditions(spec['material'])))
 
 
 PERCEPTION = {'diameter': 'What is the sphere diameter, in nm?',
@@ -217,8 +227,8 @@ def build_design(spec, root, seed):
     audit = [dict(label=l, value=p[1], rule=p[0], reason=p[2], is_correct=p[0] == 'correct') for l, p in zip(kit.LABELS, order)]
     question = ('The four files list the sphere centres (nm) of model opal crystallites made from four different polystyrene sphere '
                 'batches (files named by sample; each built from that sample\'s published sphere diameter; neighbouring spheres touch). '
-                '%s You must choose one sample for a new film such that %s. Which sample should you choose?'
-                % (optics_text(spec), goal_text))
+                '%s %s You must choose one sample for a new film such that %s. Which sample should you choose?'
+                % (conditions('polystyrene'), optics_text(spec), goal_text))
     return dict(question=question, scope=spec['scope'], inputs=inputs, numeric=None, options=options, correct_label=key,
                 option_audit=audit, excluded_candidates=[], rank=None,
                 checks=dict(candidates=[{k: r[k] for k in ('sample', 'D', 'a', 'lam')} for r in rows], goal=goal, target_nm=t,

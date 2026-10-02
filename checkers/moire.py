@@ -68,9 +68,14 @@ def electrons(q):
     return 2
 
 
+def stated_conditions(q):
+    need('Model conditions:' in q and 'the only measured input is the twist angle' in q, 'Paper-parameter model conditions not stated')
+
+
 def moire_quantity(packet, key):
     same_as_asset(packet, key)
     q = packet['question']
+    stated_conditions(q)
     inp = packet['inputs'][0]
     if inp['format'] == 'xyz':
         need('unstrained and rigidly twisted' in q, 'Rigid-twist assumption not stated')
@@ -100,6 +105,7 @@ def moire_quantity(packet, key):
 def moire_design(packet, key):
     same_as_asset(packet, key)
     q = packet['question']
+    stated_conditions(q)
     cells = {inp['name']: moire_cell(aa_sites(inp)) for inp in packet['inputs']}
     m = re.search(r'closest to ([\d.]+) × 10¹² cm⁻²', q)
     p = re.search(r'moiré period is closest to ([\d.]+) nm', q)

@@ -1,6 +1,6 @@
 {
  "kind": "review_queue",
- "date": "2026-09-30",
+ "date": "2026-10-03",
  "summary": {
   "units": 64,
   "families": 37,
@@ -2827,10 +2827,10 @@
    "bindings": {
     "L1": {
      "registry_row": "bf4eb04a9a01942e39fd7262395d17ed87fec089830e25fc3a9f80a4a7d294a9",
-     "task_families/moire.py": "492d5745b89e595ff54f2d66736a6b65d7d72cdfb8ed2b62585c659f6a77eae1"
+     "task_families/moire.py": "16a16b7b7816642de68f12c460964e86d96ba2ccb8b8b0e8f9d03ff2c8a0377c"
     },
     "L2": {
-     "checkers/moire.py": "7fa8172af8c1e5ebaea202af6e20f70607b22bede83ac34ff9be48fa171d26bf",
+     "checkers/moire.py": "ceee9cd8039687cea219647978e575bb01c97d8c964b596fafb8df7b5d750a50",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2867,7 +2867,7 @@
     "samples": [
      {
       "instance": "FA-MO-DES-FULL",
-      "question": "The four files list the centres of the AA-stacked regions (nm) of model twisted bilayer graphene samples (files named by sample; each built from that sample's published twist angle; rigid twist without relaxation or strain). You must choose one sample such that the superlattice density n_s (complete filling of one set of spin- and valley-degenerate moiré bands) is closest to 2.8 × 10¹² cm⁻². Which sample should you choose?",
+      "question": "The four files list the centres of the AA-stacked regions (nm) of model twisted bilayer graphene samples (files named by sample; each built from that sample's published twist angle; rigid twist without relaxation or strain). Model conditions: the only measured input is the twist angle reported by Cao et al. (Nature 2018; device twist angles from transport) or Kerelsky et al. (Nature 2019; STM); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. You must choose one sample such that the superlattice density n_s (complete filling of one set of spin- and valley-degenerate moiré bands) is closest to 2.8 × 10¹² cm⁻². Which sample should you choose?",
       "options": [
        {
         "label": "A",
@@ -2918,7 +2918,7 @@
      },
      {
       "instance": "FA-MO-DES-HALF",
-      "question": "The four files list the centres of the AA-stacked regions (nm) of model twisted bilayer graphene samples (files named by sample; each built from that sample's published twist angle; rigid twist without relaxation or strain). You must choose one sample such that half filling of one set of spin- and valley-degenerate moiré bands occurs at a carrier density closest to 1.3 × 10¹² cm⁻². Which sample should you choose?",
+      "question": "The four files list the centres of the AA-stacked regions (nm) of model twisted bilayer graphene samples (files named by sample; each built from that sample's published twist angle; rigid twist without relaxation or strain). Model conditions: the only measured input is the twist angle reported by Cao et al. (Nature 2018; device twist angles from transport) or Kerelsky et al. (Nature 2019; STM); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. You must choose one sample such that half filling of one set of spin- and valley-degenerate moiré bands occurs at a carrier density closest to 1.3 × 10¹² cm⁻². Which sample should you choose?",
       "options": [
        {
         "label": "A",
@@ -2981,10 +2981,10 @@
    "bindings": {
     "L1": {
      "registry_row": "627bb743e7d83954a98bc5c3fbc75a81d81b8cc55af1440dd75e737e3dc3d0bf",
-     "task_families/moire.py": "492d5745b89e595ff54f2d66736a6b65d7d72cdfb8ed2b62585c659f6a77eae1"
+     "task_families/moire.py": "16a16b7b7816642de68f12c460964e86d96ba2ccb8b8b0e8f9d03ff2c8a0377c"
     },
     "L2": {
-     "checkers/moire.py": "7fa8172af8c1e5ebaea202af6e20f70607b22bede83ac34ff9be48fa171d26bf",
+     "checkers/moire.py": "ceee9cd8039687cea219647978e575bb01c97d8c964b596fafb8df7b5d750a50",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3023,7 +3023,7 @@
     "samples": [
      {
       "instance": "FA-MO-AREA-M2",
-      "question": "The file lists the centres of the AA-stacked regions (the bright spots of an STM topograph) of a model twisted bilayer graphene sample, coordinates in nm (rigid twist without lattice relaxation or strain; built from a published twist angle). What is the area of one moiré unit cell, in nm²?",
+      "question": "The file lists the centres of the AA-stacked regions (the bright spots of an STM topograph) of a model twisted bilayer graphene sample, coordinates in nm (rigid twist without lattice relaxation or strain; built from a published twist angle). Model conditions: the only measured input is the twist angle reported by Cao et al. (Nature 2018; device twist angles from transport); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. What is the area of one moiré unit cell, in nm²?",
       "options": [
        {
         "label": "A",
@@ -3075,7 +3075,7 @@
      },
      {
       "instance": "FA-MO-PERIOD-D1",
-      "question": "The file lists the centres of the AA-stacked regions (the bright spots of an STM topograph) of a model twisted bilayer graphene sample, coordinates in nm (rigid twist without lattice relaxation or strain; built from a published twist angle). What is the moiré period (the moiré lattice constant), in nm?",
+      "question": "The file lists the centres of the AA-stacked regions (the bright spots of an STM topograph) of a model twisted bilayer graphene sample, coordinates in nm (rigid twist without lattice relaxation or strain; built from a published twist angle). Model conditions: the only measured input is the twist angle reported by Cao et al. (Nature 2018; device twist angles from transport); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. What is the moiré period (the moiré lattice constant), in nm?",
       "options": [
        {
         "label": "A",
@@ -3139,10 +3139,10 @@
    "bindings": {
     "L1": {
      "registry_row": "e79134aea6c16e01c5e00f13d97f028ec35b7e77af56d52bcbcb33024630190f",
-     "task_families/moire.py": "492d5745b89e595ff54f2d66736a6b65d7d72cdfb8ed2b62585c659f6a77eae1"
+     "task_families/moire.py": "16a16b7b7816642de68f12c460964e86d96ba2ccb8b8b0e8f9d03ff2c8a0377c"
     },
     "L2": {
-     "checkers/moire.py": "7fa8172af8c1e5ebaea202af6e20f70607b22bede83ac34ff9be48fa171d26bf",
+     "checkers/moire.py": "ceee9cd8039687cea219647978e575bb01c97d8c964b596fafb8df7b5d750a50",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3185,7 +3185,7 @@
     "samples": [
      {
       "instance": "FA-MO-ATOMS-K110",
-      "question": "The XYZ file lists all carbon atoms of both layers of a model twisted bilayer graphene near an AA-stacked site (angstrom; rigid twist, layer spacing 3.35 Å; built from a published twist angle). Assuming the two layers are unstrained and rigidly twisted, what is the moiré period (the moiré lattice constant) of this bilayer, in nm?",
+      "question": "The XYZ file lists all carbon atoms of both layers of a model twisted bilayer graphene near an AA-stacked site (angstrom; rigid twist, layer spacing 3.35 Å; built from a published twist angle). Model conditions: the only measured input is the twist angle reported by Kerelsky et al. (Nature 2019; STM); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. Assuming the two layers are unstrained and rigidly twisted, what is the moiré period (the moiré lattice constant) of this bilayer, in nm?",
       "options": [
        {
         "label": "A",
@@ -3237,7 +3237,7 @@
      },
      {
       "instance": "FA-MO-NFULL-M1",
-      "question": "The file lists the centres of the AA-stacked regions (the bright spots of an STM topograph) of a model twisted bilayer graphene sample, coordinates in nm (rigid twist without lattice relaxation or strain; built from a published twist angle). What is the superlattice density n_s, the carrier density that completely fills one set of spin- and valley-degenerate moiré bands, in units of 10¹² cm⁻²?",
+      "question": "The file lists the centres of the AA-stacked regions (the bright spots of an STM topograph) of a model twisted bilayer graphene sample, coordinates in nm (rigid twist without lattice relaxation or strain; built from a published twist angle). Model conditions: the only measured input is the twist angle reported by Cao et al. (Nature 2018; device twist angles from transport); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. What is the superlattice density n_s, the carrier density that completely fills one set of spin- and valley-degenerate moiré bands, in units of 10¹² cm⁻²?",
       "options": [
        {
         "label": "A",
@@ -3609,10 +3609,10 @@
    "bindings": {
     "L1": {
      "registry_row": "67895da642d4b945e41fcd8bd58fa13e06cb0d3354ba61982903cb0fe81598db",
-     "task_families/photonic.py": "d787c37cc961ec9c7f862e84588016a4ffe765ae5c3fdb8b2c4016ffe1d84f69"
+     "task_families/photonic.py": "3afa16d6c06b6f3367a963632644cd375dbc0caab3e8bcca42a2b6ede7d9585c"
     },
     "L2": {
-     "checkers/superlattice.py": "40f9e1203dd2b0d9dab6a5b10367d915391758efe6a578e678b83a7f4980281e",
+     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3655,7 +3655,7 @@
     "samples": [
      {
       "instance": "FA-OP-ANGLE-SIO2",
-      "question": "The file lists the sphere centres (nm) of a model silica opal crystallite built from a published sphere diameter; neighbouring spheres touch. Model the film as this lattice with its close-packed planes parallel to the film surface, and use an effective refractive index of 1.35 for the film. At what angle of incidence from the film normal, in degrees (light incident from air), does the first-order Bragg reflection from the close-packed planes occur at a vacuum wavelength of 500 nm?",
+      "question": "The file lists the sphere centres (nm) of a model silica opal crystallite built from a published sphere diameter; neighbouring spheres touch. Model conditions: the only measured input is the sphere diameter reported by Fookes et al. (Sensors 2023; SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. Model the film as this lattice with its close-packed planes parallel to the film surface, and use an effective refractive index of 1.35 for the film. At what angle of incidence from the film normal, in degrees (light incident from air), does the first-order Bragg reflection from the close-packed planes occur at a vacuum wavelength of 500 nm?",
       "options": [
        {
         "label": "A",
@@ -3707,7 +3707,7 @@
      },
      {
       "instance": "FA-OP-PEAK-S3",
-      "question": "The file lists the sphere centres (nm) of a model polystyrene opal crystallite built from a published sphere diameter; neighbouring spheres touch. Model the film as this lattice with its close-packed planes parallel to the film surface. The spheres have refractive index 1.59 and the voids are filled with a medium of refractive index 1.00; take the effective index from the volume-weighted average of the squared refractive indices (n_eff² = Σ f_i n_i²), using the sphere volume fraction of this packing. Light is incident along the film normal. What is the vacuum wavelength, in nm, of the first-order Bragg reflection from the close-packed planes?",
+      "question": "The file lists the sphere centres (nm) of a model polystyrene opal crystallite built from a published sphere diameter; neighbouring spheres touch. Model conditions: the only measured input is the sphere diameter reported by Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. Model the film as this lattice with its close-packed planes parallel to the film surface. The spheres have refractive index 1.59 and the voids are filled with a medium of refractive index 1.00; take the effective index from the volume-weighted average of the squared refractive indices (n_eff² = Σ f_i n_i²), using the sphere volume fraction of this packing. Light is incident along the film normal. What is the vacuum wavelength, in nm, of the first-order Bragg reflection from the close-packed planes?",
       "options": [
        {
         "label": "A",
@@ -3771,10 +3771,10 @@
    "bindings": {
     "L1": {
      "registry_row": "76acb69105479592755446f3c981cd15c4181ceaf32a196d38b729319d0b0838",
-     "task_families/photonic.py": "d787c37cc961ec9c7f862e84588016a4ffe765ae5c3fdb8b2c4016ffe1d84f69"
+     "task_families/photonic.py": "3afa16d6c06b6f3367a963632644cd375dbc0caab3e8bcca42a2b6ede7d9585c"
     },
     "L2": {
-     "checkers/superlattice.py": "40f9e1203dd2b0d9dab6a5b10367d915391758efe6a578e678b83a7f4980281e",
+     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3811,7 +3811,7 @@
     "samples": [
      {
       "instance": "FA-OP-DES-540",
-      "question": "The four files list the sphere centres (nm) of model opal crystallites made from four different polystyrene sphere batches (files named by sample; each built from that sample's published sphere diameter; neighbouring spheres touch). Model the film as this lattice with its close-packed planes parallel to the film surface. The spheres have refractive index 1.59 and the voids are filled with a medium of refractive index 1.00; take the effective index from the volume-weighted average of the squared refractive indices (n_eff² = Σ f_i n_i²), using the sphere volume fraction of this packing. You must choose one sample for a new film such that its first-order normal-incidence Bragg reflection from the close-packed planes is closest to 540 nm. Which sample should you choose?",
+      "question": "The four files list the sphere centres (nm) of model opal crystallites made from four different polystyrene sphere batches (files named by sample; each built from that sample's published sphere diameter; neighbouring spheres touch). Model conditions: the only measured input is the sphere diameter reported by Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. Model the film as this lattice with its close-packed planes parallel to the film surface. The spheres have refractive index 1.59 and the voids are filled with a medium of refractive index 1.00; take the effective index from the volume-weighted average of the squared refractive indices (n_eff² = Σ f_i n_i²), using the sphere volume fraction of this packing. You must choose one sample for a new film such that its first-order normal-incidence Bragg reflection from the close-packed planes is closest to 540 nm. Which sample should you choose?",
       "options": [
        {
         "label": "A",
@@ -3862,7 +3862,7 @@
      },
      {
       "instance": "FA-OP-DES-820",
-      "question": "The four files list the sphere centres (nm) of model opal crystallites made from four different polystyrene sphere batches (files named by sample; each built from that sample's published sphere diameter; neighbouring spheres touch). Model the film as this lattice with its close-packed planes parallel to the film surface. The spheres have refractive index 1.59 and the voids are filled with a medium of refractive index 1.00; take the effective index from the volume-weighted average of the squared refractive indices (n_eff² = Σ f_i n_i²), using the sphere volume fraction of this packing. You must choose one sample for a new film such that its first-order normal-incidence Bragg reflection from the close-packed planes is closest to 820 nm. Which sample should you choose?",
+      "question": "The four files list the sphere centres (nm) of model opal crystallites made from four different polystyrene sphere batches (files named by sample; each built from that sample's published sphere diameter; neighbouring spheres touch). Model conditions: the only measured input is the sphere diameter reported by Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. Model the film as this lattice with its close-packed planes parallel to the film surface. The spheres have refractive index 1.59 and the voids are filled with a medium of refractive index 1.00; take the effective index from the volume-weighted average of the squared refractive indices (n_eff² = Σ f_i n_i²), using the sphere volume fraction of this packing. You must choose one sample for a new film such that its first-order normal-incidence Bragg reflection from the close-packed planes is closest to 820 nm. Which sample should you choose?",
       "options": [
        {
         "label": "A",
@@ -3925,10 +3925,10 @@
    "bindings": {
     "L1": {
      "registry_row": "564da6e02f1a6fa4bb191105a3f7396e2911c755ecf4fb2b6a79909c0e5e0e2b",
-     "task_families/photonic.py": "d787c37cc961ec9c7f862e84588016a4ffe765ae5c3fdb8b2c4016ffe1d84f69"
+     "task_families/photonic.py": "3afa16d6c06b6f3367a963632644cd375dbc0caab3e8bcca42a2b6ede7d9585c"
     },
     "L2": {
-     "checkers/superlattice.py": "40f9e1203dd2b0d9dab6a5b10367d915391758efe6a578e678b83a7f4980281e",
+     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3967,7 +3967,7 @@
     "samples": [
      {
       "instance": "FA-OP-D111-S2",
-      "question": "The file lists the sphere centres (nm) of a model polystyrene opal crystallite built from a published sphere diameter; neighbouring spheres touch. What is the spacing between adjacent close-packed (most densely populated) planes of sphere centres, in nm?",
+      "question": "The file lists the sphere centres (nm) of a model polystyrene opal crystallite built from a published sphere diameter; neighbouring spheres touch. Model conditions: the only measured input is the sphere diameter reported by Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. What is the spacing between adjacent close-packed (most densely populated) planes of sphere centres, in nm?",
       "options": [
        {
         "label": "A",
@@ -4019,7 +4019,7 @@
      },
      {
       "instance": "FA-OP-DIAM-S8",
-      "question": "The file lists the sphere centres (nm) of a model polystyrene opal crystallite built from a published sphere diameter; neighbouring spheres touch. What is the sphere diameter, in nm?",
+      "question": "The file lists the sphere centres (nm) of a model polystyrene opal crystallite built from a published sphere diameter; neighbouring spheres touch. Model conditions: the only measured input is the sphere diameter reported by Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. What is the sphere diameter, in nm?",
       "options": [
        {
         "label": "A",
@@ -4083,10 +4083,10 @@
    "bindings": {
     "L1": {
      "registry_row": "1ba54831f7b569ae1d17d0596e1b3d7bdc14b694f7648d9fb743ba6a26fc8918",
-     "task_families/quantum_dot.py": "9c36b121ba99fd53027d059bcb16440aad1d41a5e97be778fdc0b9d3c52b9e4b"
+     "task_families/quantum_dot.py": "cce686e77411c9425c57ad6bb806f75765b1d1d82180914cca699e2aaae5e3db"
     },
     "L2": {
-     "checkers/quantum_dot.py": "0e4e3c45bb327761740c2e7012ede8e4342ee6de1df58474781606946b71e79f",
+     "checkers/quantum_dot.py": "d1cdad3a661f98dddac3c5d6bedfcd68e9bb6cb223a03624526e7d96cf3af63f",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -4122,7 +4122,7 @@
     "samples": [
      {
       "instance": "FA-QD-DES-565",
-      "question": "The four XYZ files list every atom of four model zinc-blende CdSe nanocrystals (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. You must choose one nanocrystal for a device such that it is the smallest particle whose first excitonic absorption peak lies at or beyond 565 nm. Which file should you choose?",
+      "question": "The four XYZ files list every atom of four model zinc-blende CdSe nanocrystals (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. Model conditions: each nanocrystal is an ideal spherical cut from bulk zinc-blende CdSe (assumed lattice constant 6.08 Å) without ligands, surface relaxation or shape anisotropy; the empirical curves above were calibrated by Yu et al. on real nanocrystals whose sizes were measured by TEM, and are applied here to these ideal particles. You must choose one nanocrystal for a device such that it is the smallest particle whose first excitonic absorption peak lies at or beyond 565 nm. Which file should you choose?",
       "options": [
        {
         "label": "A",
@@ -4173,7 +4173,7 @@
      },
      {
       "instance": "FA-QD-DES-590",
-      "question": "The four XYZ files list every atom of four model zinc-blende CdSe nanocrystals (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. You must choose one nanocrystal for a device such that its first excitonic absorption peak is closest to 590 nm. Which file should you choose?",
+      "question": "The four XYZ files list every atom of four model zinc-blende CdSe nanocrystals (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. Model conditions: each nanocrystal is an ideal spherical cut from bulk zinc-blende CdSe (assumed lattice constant 6.08 Å) without ligands, surface relaxation or shape anisotropy; the empirical curves above were calibrated by Yu et al. on real nanocrystals whose sizes were measured by TEM, and are applied here to these ideal particles. You must choose one nanocrystal for a device such that its first excitonic absorption peak is closest to 590 nm. Which file should you choose?",
       "options": [
        {
         "label": "A",
@@ -4236,10 +4236,10 @@
    "bindings": {
     "L1": {
      "registry_row": "eea0a3f2ee513f0537ad3bd1e551313bd15b497089955526efde906729afaee9",
-     "task_families/quantum_dot.py": "9c36b121ba99fd53027d059bcb16440aad1d41a5e97be778fdc0b9d3c52b9e4b"
+     "task_families/quantum_dot.py": "cce686e77411c9425c57ad6bb806f75765b1d1d82180914cca699e2aaae5e3db"
     },
     "L2": {
-     "checkers/quantum_dot.py": "0e4e3c45bb327761740c2e7012ede8e4342ee6de1df58474781606946b71e79f",
+     "checkers/quantum_dot.py": "d1cdad3a661f98dddac3c5d6bedfcd68e9bb6cb223a03624526e7d96cf3af63f",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -4276,7 +4276,7 @@
     "samples": [
      {
       "instance": "FA-QD-CONC-B",
-      "question": "The XYZ file lists every atom of a model zinc-blende CdSe nanocrystal (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. A dilute solution of these nanocrystals has an absorbance of 0.25 at the first excitonic peak in a 1.0 cm cuvette. What is the nanocrystal concentration, in µM (Beer–Lambert law)?",
+      "question": "The XYZ file lists every atom of a model zinc-blende CdSe nanocrystal (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. Model conditions: the nanocrystal is an ideal spherical cut from bulk zinc-blende CdSe (assumed lattice constant 6.08 Å) without ligands, surface relaxation or shape anisotropy; the empirical curves above were calibrated by Yu et al. on real nanocrystals whose sizes were measured by TEM, and are applied here to this ideal particle. A dilute solution of these nanocrystals has an absorbance of 0.25 at the first excitonic peak in a 1.0 cm cuvette. What is the nanocrystal concentration, in µM (Beer–Lambert law)?",
       "options": [
        {
         "label": "A",
@@ -4328,7 +4328,7 @@
      },
      {
       "instance": "FA-QD-EPS-E",
-      "question": "The XYZ file lists every atom of a model zinc-blende CdSe nanocrystal (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. What is its molar extinction coefficient at the first excitonic peak, in units of 10⁵ M⁻¹ cm⁻¹?",
+      "question": "The XYZ file lists every atom of a model zinc-blende CdSe nanocrystal (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. Model conditions: the nanocrystal is an ideal spherical cut from bulk zinc-blende CdSe (assumed lattice constant 6.08 Å) without ligands, surface relaxation or shape anisotropy; the empirical curves above were calibrated by Yu et al. on real nanocrystals whose sizes were measured by TEM, and are applied here to this ideal particle. What is its molar extinction coefficient at the first excitonic peak, in units of 10⁵ M⁻¹ cm⁻¹?",
       "options": [
        {
         "label": "A",
@@ -5139,10 +5139,10 @@
    "bindings": {
     "L1": {
      "registry_row": "90f206d223faebb58736d609e90511c2bc1cb9147f370b279ed26ea9a9b77033",
-     "task_families/superlattice.py": "53ff8109b3d5acd0c6a6a597f60636d80e513464a08389420cb012860fb34a17"
+     "task_families/superlattice.py": "7815e908c5d30f5f208fcae8f35b76afeb33003452a00e781b1973a0520a62e6"
     },
     "L2": {
-     "checkers/superlattice.py": "40f9e1203dd2b0d9dab6a5b10367d915391758efe6a578e678b83a7f4980281e",
+     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -5180,7 +5180,7 @@
     "samples": [
      {
       "instance": "FA-SL-DES-GOLD",
-      "question": "The four XYZ files list the gold-nanoparticle centres (nm) of model crystallites of DNA-linked gold-nanoparticle superlattices assembled with four different duplex DNA linkers; each file is named after its linker and was built from that linker's published SAXS unit-cell size. You must choose one linker for a new superlattice such that the nearest-neighbour spacing is as large as possible while at least 1.0 % of the volume is gold (solid gold cores of diameter 10.3 nm; perfect infinite lattice). Which linker should you choose?",
+      "question": "The four XYZ files list the gold-nanoparticle centres (nm) of model crystallites of DNA-linked gold-nanoparticle superlattices assembled with four different duplex DNA linkers; each file is named after its linker and was built from that linker's published SAXS unit-cell size. Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. You must choose one linker for a new superlattice such that the nearest-neighbour spacing is as large as possible while at least 1.0 % of the volume is gold (solid gold cores of diameter 10.3 nm; perfect infinite lattice). Which linker should you choose?",
       "options": [
        {
         "label": "A",
@@ -5231,7 +5231,7 @@
      },
      {
       "instance": "FA-SL-DES-NN",
-      "question": "The four XYZ files list the gold-nanoparticle centres (nm) of model crystallites of DNA-linked gold-nanoparticle superlattices assembled with four different duplex DNA linkers; each file is named after its linker and was built from that linker's published SAXS unit-cell size. You must choose one linker for a new superlattice such that the centre-to-centre nearest-neighbour spacing of the particles is closest to 45 nm. Which linker should you choose?",
+      "question": "The four XYZ files list the gold-nanoparticle centres (nm) of model crystallites of DNA-linked gold-nanoparticle superlattices assembled with four different duplex DNA linkers; each file is named after its linker and was built from that linker's published SAXS unit-cell size. Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. You must choose one linker for a new superlattice such that the centre-to-centre nearest-neighbour spacing of the particles is closest to 45 nm. Which linker should you choose?",
       "options": [
        {
         "label": "A",
@@ -5294,10 +5294,10 @@
    "bindings": {
     "L1": {
      "registry_row": "77c56178f8dd9b030014696dc0ce864fcb23f408873425297d114605ec58cefb",
-     "task_families/superlattice.py": "53ff8109b3d5acd0c6a6a597f60636d80e513464a08389420cb012860fb34a17"
+     "task_families/superlattice.py": "7815e908c5d30f5f208fcae8f35b76afeb33003452a00e781b1973a0520a62e6"
     },
     "L2": {
-     "checkers/superlattice.py": "40f9e1203dd2b0d9dab6a5b10367d915391758efe6a578e678b83a7f4980281e",
+     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -5336,7 +5336,7 @@
     "samples": [
      {
       "instance": "FA-SL-D111-39",
-      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). What is the spacing between adjacent close-packed (most densely populated) lattice planes of the particles, in nm?",
+      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. What is the spacing between adjacent close-packed (most densely populated) lattice planes of the particles, in nm?",
       "options": [
        {
         "label": "A",
@@ -5388,7 +5388,7 @@
      },
      {
       "instance": "FA-SL-EDGE-26",
-      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). What is the edge length of the conventional cubic unit cell of this particle lattice, in nm?",
+      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. What is the edge length of the conventional cubic unit cell of this particle lattice, in nm?",
       "options": [
        {
         "label": "A",
@@ -5452,10 +5452,10 @@
    "bindings": {
     "L1": {
      "registry_row": "185c7a2e71d5dca8b958a1eb4ca6abf98bf324c5ba568be1db9863e961badc2d",
-     "task_families/superlattice.py": "53ff8109b3d5acd0c6a6a597f60636d80e513464a08389420cb012860fb34a17"
+     "task_families/superlattice.py": "7815e908c5d30f5f208fcae8f35b76afeb33003452a00e781b1973a0520a62e6"
     },
     "L2": {
-     "checkers/superlattice.py": "40f9e1203dd2b0d9dab6a5b10367d915391758efe6a578e678b83a7f4980281e",
+     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -5496,7 +5496,7 @@
     "samples": [
      {
       "instance": "FA-SL-GOLD-52",
-      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). Each particle is a solid gold sphere with a core diameter of 10.3 nm and the DNA shell contains no gold. Treating the lattice as perfect and infinite, what percentage of the total volume is gold?",
+      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. Each particle is a solid gold sphere with a core diameter of 10.3 nm and the DNA shell contains no gold. Treating the lattice as perfect and infinite, what percentage of the total volume is gold?",
       "options": [
        {
         "label": "A",
@@ -5548,7 +5548,7 @@
      },
      {
       "instance": "FA-SL-Q200-13",
-      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). Treat the particles as identical point scatterers on a perfect, infinite lattice with this geometry. At what q (in nm⁻¹, q = 4π sinθ/λ) does the second distinct Bragg reflection with nonzero intensity appear?",
+      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. Treat the particles as identical point scatterers on a perfect, infinite lattice with this geometry. At what q (in nm⁻¹, q = 4π sinθ/λ) does the second distinct Bragg reflection with nonzero intensity appear?",
       "options": [
        {
         "label": "A",
@@ -5612,10 +5612,10 @@
    "bindings": {
     "L1": {
      "registry_row": "77c56178f8dd9b030014696dc0ce864fcb23f408873425297d114605ec58cefb",
-     "task_families/superlattice.py": "53ff8109b3d5acd0c6a6a597f60636d80e513464a08389420cb012860fb34a17"
+     "task_families/superlattice.py": "7815e908c5d30f5f208fcae8f35b76afeb33003452a00e781b1973a0520a62e6"
     },
     "L2": {
-     "checkers/superlattice.py": "40f9e1203dd2b0d9dab6a5b10367d915391758efe6a578e678b83a7f4980281e",
+     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -5654,7 +5654,7 @@
     "samples": [
      {
       "instance": "FA-SL-SHELL-X",
-      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). For the particle nearest the centroid of all particles, how many particles form its nearest-neighbour shell, and at what centre-to-centre distance? Distances are rounded to 0.01 nm.",
+      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. For the particle nearest the centroid of all particles, how many particles form its nearest-neighbour shell, and at what centre-to-centre distance? Distances are rounded to 0.01 nm.",
       "options": [
        {
         "label": "A",

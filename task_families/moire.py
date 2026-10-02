@@ -66,6 +66,20 @@ MAP_SUBJECT = ('The file lists the centres of the AA-stacked regions (the bright
                'twist angle).')
 ATOM_SUBJECT = ('The XYZ file lists all carbon atoms of both layers of a model twisted bilayer graphene near an AA-stacked site '
                 '(angstrom; rigid twist, layer spacing 3.35 Å; built from a published twist angle).')
+PAPERS = {'cao': 'Cao et al. (Nature 2018; device twist angles from transport)', 'kerelsky': 'Kerelsky et al. (Nature 2019; STM)'}
+
+
+def conditions(papers):
+    return ('Model conditions: the only measured input is the twist angle reported by %s; both layers are ideal, unstrained graphene '
+            'sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate '
+            'effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain.'
+            % ' or '.join(PAPERS[p] for p in papers))
+
+
+def paper_of(sample):
+    return 'kerelsky' if sample.startswith('K') else 'cao'
+
+
 ASK = {
     'period': ('What is the moiré period (the moiré lattice constant), in nm?', 2, '0.005', '0.30', 'nm', 'perception'),
     'area': ('What is the area of one moiré unit cell, in nm²?', 1, '0.05', '3.0', 'nm^2', 'perception'),
@@ -152,7 +166,7 @@ def build(spec, root, seed, ability):
                                        correct_reason='θ = %.2f°，λ = a/(2 sin(θ/2)) = %.4f nm，A = (√3/2)λ²，n_s = 4/A。' % (theta, lam))
     key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=sep, unit=unit,
                                distractor_separation=str(float(sep) / 2))
-    return dict(question='%s %s' % (subject, text_q), scope=spec['scope'],
+    return dict(question='%s %s %s' % (subject, conditions([paper_of(spec['sample'])]), text_q), scope=spec['scope'],
                 inputs=[dict(name=spec['asset'].rsplit('/', 1)[1], text=text, **fmt)],
                 numeric=dict(value=kit.display(value, decimals), unit=unit, decimals=decimals, tolerance=tol),
                 options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected, rank=dict(target=goal, achieved=rank),
@@ -216,8 +230,9 @@ def build_design(spec, root, seed):
     key = kit.validate_verdicts(options, [p[0] == 'correct' for p in order])
     audit = [dict(label=l, value=p[1], rule=p[0], reason=p[2], is_correct=p[0] == 'correct') for l, p in zip(kit.LABELS, order)]
     question = ('The four files list the centres of the AA-stacked regions (nm) of model twisted bilayer graphene samples (files named by '
-                'sample; each built from that sample\'s published twist angle; rigid twist without relaxation or strain). You must choose '
-                'one sample such that %s. Which sample should you choose?' % (text_goal % t))
+                'sample; each built from that sample\'s published twist angle; rigid twist without relaxation or strain). %s You must choose '
+                'one sample such that %s. Which sample should you choose?'
+                % (conditions(sorted({paper_of(r['sample']) for r in rows})), text_goal % t))
     return dict(question=question, scope=spec['scope'], inputs=inputs, numeric=None, options=options, correct_label=key,
                 option_audit=audit, excluded_candidates=[], rank=None,
                 checks=dict(candidates=[dict(sample=r['sample'], twist_deg=r['theta'], period_nm=r['lam'], value=prop(r['lam'])) for r in rows],

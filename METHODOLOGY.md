@@ -118,4 +118,5 @@ python verify_all.py --run runs/family-pilot-v01 --out runs/family-pilot-v01-ind
 - **L3**：按 单元 × 来源 × 尺度格 分层；新单元或新来源首批全检，稳定后每层 max(2, 10%)。轻量模型只回答固定四问（`templates/review-l3-questions.json`），任一标记转人工；另抽模型“通过”题中的 max(3, 10%) 给人工，用于校准模型审查员。
 - **状态**：L0 → L1+L2 → 正式计入；只有具名人工审核者的记录能推进状态，模型意见不能代替人工。
 - **命令**：`python tools/review.py queue`（一键待审清单 → docs/data/review-queue.json 与 review.html）；`record-l1`、`record-l2`、`l3-prompts`、`record-l3`。
+- **论文参数模型题的题干规范**（教授 2026-10-03 认可的前提）：题干必须有一句 “Model conditions”，写明唯一的实测输入及出处、逐条列出理想化（无缺陷、无无序、无应变、无配体等），并说明这是论文分析数据时用的同一理想化；感知题不写晶格类型。独立检查器缺此句即判失败。
 

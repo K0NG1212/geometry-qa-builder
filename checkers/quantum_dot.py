@@ -22,6 +22,7 @@ def curve(q):
     lo, hi = (float(x) for x in find(r'valid for (\d+)–(\d+) nm', q, 'Validity range not stated').groups())
     e = find(r'ε = (\d+)·D\^([\d.]+)', q, 'Extinction law not stated')
     need('largest distance between any two atoms' in q, 'Size definition not stated')
+    need('Model conditions:' in q and 'ideal spherical cut' in q, 'Model particle conditions not stated')
     return c, lo, hi, float(e.group(1)), float(e.group(2))
 
 

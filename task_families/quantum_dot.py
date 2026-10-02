@@ -18,6 +18,9 @@ CURVE = ('Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): 
          '(valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance '
          'between any two atoms of the supplied nanocrystal.')
 SUBJECT = 'The XYZ file lists every atom of a model zinc-blende CdSe nanocrystal (no ligands; angstrom).'
+CONDITIONS = ('Model conditions: the nanocrystal is an ideal spherical cut from bulk zinc-blende CdSe (assumed lattice constant 6.08 Å) '
+              'without ligands, surface relaxation or shape anisotropy; the empirical curves above were calibrated by Yu et al. on real '
+              'nanocrystals whose sizes were measured by TEM, and are applied here to this ideal particle.')
 
 
 def diameter_curve(lam):
@@ -97,7 +100,7 @@ def build(spec, root, seed):
     options, audit = kit.label_numeric(value, picked, decimals=decimals, unit=unit, seed=seed, context=spec['id'], correct_reason=reason)
     key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=sep, unit=unit,
                                distractor_separation=str(float(sep) / 2))
-    return dict(question='%s %s %s' % (SUBJECT, CURVE, text_q), scope=spec['scope'],
+    return dict(question='%s %s %s %s' % (SUBJECT, CURVE, CONDITIONS, text_q), scope=spec['scope'],
                 inputs=[dict(name=spec['asset'].rsplit('/', 1)[1], format='xyz', unit='angstrom', text=text)],
                 numeric=dict(value=kit.display(value, decimals), unit=unit, decimals=decimals, tolerance=tol),
                 options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected, rank=dict(target=goal, achieved=rank),
@@ -160,7 +163,7 @@ def build_design(spec, root, seed):
     key = kit.validate_verdicts(options, [p[0] == 'correct' for p in order])
     audit = [dict(label=l, value=p[1], rule=p[0], reason=p[2], is_correct=p[0] == 'correct') for l, p in zip(kit.LABELS, order)]
     question = ('The four XYZ files list every atom of four model zinc-blende CdSe nanocrystals (no ligands; angstrom). %s You must choose '
-                'one nanocrystal for a device such that %s. Which file should you choose?' % (CURVE, goal_text))
+                'one nanocrystal for a device such that %s. Which file should you choose?' % (CURVE + ' ' + CONDITIONS.replace('the nanocrystal is', 'each nanocrystal is', 1).replace('this ideal particle', 'these ideal particles'), goal_text))
     return dict(question=question, scope=spec['scope'], inputs=inputs, numeric=None, options=options, correct_label=key,
                 option_audit=audit, excluded_candidates=[], rank=None,
                 checks=dict(candidates=[dict(name=r['name'], D=r['D'], peak_nm=r['lam']) for r in rows], goal=goal, target_nm=t,
