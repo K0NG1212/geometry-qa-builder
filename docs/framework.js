@@ -6,7 +6,7 @@
  const section=$('#coverage').closest('.section-block');
  section.querySelector('h2').textContent='完整题目与真实缺口。';
  section.querySelector('.map-top p').textContent='4 个领域 × 4 个尺度';
- const captionBase='按解题推理尺度统计；每格目标 10 道，感知 / 推断 / 设计各约 3 道。所有题目都已通过自动核验、仍待人工审核（见审核体系）。按论文参数构建的模型题在题干中写明 Model conditions。';section.querySelector('.caption').textContent=captionBase;
+ const captionBase='按解题推理尺度统计；每格目标 10 道，感知 / 推断 / 设计各约 3 道。所有题目都已通过自动核验、仍待人工审核（见审核体系）。按论文参数构建的模型题在题干中写明 Model conditions。每格具体选哪 10 道（提议规则，待教授确认）见审核页“160 道原型挑选”。';section.querySelector('.caption').textContent=captionBase;
  const controls=document.createElement('div');controls.className='framework-controls';
  controls.innerHTML='<label>能力 <select id="framework-ability"><option value="">全部能力</option><option value="perception">感知</option><option value="inference">推断</option><option value="design">生成 / 设计</option></select></label><span id="framework-count"></span>';
  section.querySelector('.map-scroll').before(controls);$('#coverage').classList.add('framework-map','compact-map');

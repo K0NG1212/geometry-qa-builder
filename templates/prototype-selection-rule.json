@@ -1,0 +1,28 @@
+{
+  "version": "0.1.0",
+  "status": "proposal",
+  "status_note": "提议规则，待教授确认",
+  "maintenance": "改规则只改本文件并重跑 tools/select_prototype.py；待决事项见 HANDOFF_2026-09-30。",
+  "seed": "prototype-160-v1",
+  "per_cell": 10,
+  "abilities": ["perception", "inference", "design"],
+  "steps": [
+    "只从通过 L0 的 active 题中选：题型族实例要求独立检查通过；旧题若挂有独立检查通过的四选一版本（familyVersions），按该版本和所属题型族审核；否则按旧模板审核，要求原型初筛通过。",
+    "先用经独立检查的题（题型族实例与旧题的四选一版本）；不足 10 道才用旧模板题补足。",
+    "在同一层内逐题挑选：每次选当前已选最少的能力（感知、推断、设计；并列时按此顺序），使三类尽量接近 3/3/3，第 10 道给并列中的第一类。",
+    "同一能力内依次优先：不属于待教授决定的类别、题型族（审核单元）已选次数少、来源已选次数少；最后按 SHA-256(seed|id) 决定，结果可复现。",
+    "未选中的 active 题转为备用，不删除、不改状态。"
+  ],
+  "pending_decision": {
+    "measurement_condition_design": {
+      "label": "测量条件设计（选 q、选 X 射线谱线、定波长）是否计为设计题",
+      "families": ["scattering_q_design"],
+      "instance_prefixes": ["FA-XD-ANODE-", "FA-XD-WAVE-"]
+    },
+    "experimental_evidence": {
+      "label": "证据型题（SAMPL9 实测 ΔG、HELIX/SHEET 指认）是否符合要求",
+      "families": ["secondary_structure", "binding_evidence_choice", "binding_design_choice"],
+      "instance_prefixes": []
+    }
+  }
+}

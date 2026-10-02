@@ -51,18 +51,35 @@ def registry_row(registry, family):
     return None
 
 
-def units(registry, families, checkers, catalog):
-    """One review unit per task family in use (engine families) plus one per legacy template family still active."""
+def review_form(q):
+    """The form a catalog record is reviewed in: its own family instance; for a legacy record, the first independently
+    checked four-choice version linked under familyVersions (reviewed with that family); otherwise the legacy template."""
+    if q.get('familyInstance'):
+        return dict(form='family', unit=q['family'], instance=q['familyInstance'], l0=q.get('independentCheck') == 'pass')
+    for v in q.get('familyVersions', []):
+        if v.get('independentCheck') == 'pass':
+            return dict(form='family-version', unit=v['family'], instance=v['instance'], l0=True)
+    return dict(form='legacy', unit='legacy:' + (q.get('family') or q['id']), instance=None, l0=bool(q.get('prototypeScreeningPassed')))
+
+
+def units(registry, families, checkers, catalog, ids=None):
+    """One review unit per task family plus one per legacy template family whose records have no checked family
+    version. With ids (e.g. the 160 selection) only the units those records need are returned."""
     out = {}
+    needed = None
+    if ids is not None:
+        needed = {review_form(q)['unit'] for q in catalog['questions'] if q['id'] in ids}
     for f, info in families.items():
+        if needed is not None and f not in needed:
+            continue
         row = registry_row(registry, f)
         fn = checkers.get(f)
         checker_file = fn.__module__.replace('.', '/') + '.py' if fn else None
         out[f] = dict(unit=f, kind='family', ability=info['ability'], registry_id=row['id'] if row else None,
                       generator=info['module'], checker=checker_file, checker_function=fn.__name__ if fn else None)
     for q in catalog['questions']:
-        if q.get('lifecycle') == 'active' and not q.get('familyInstance'):
-            f = 'legacy:' + (q.get('family') or q['id'])
+        if q.get('lifecycle') == 'active' and (ids is None or q['id'] in ids) and review_form(q)['form'] == 'legacy':
+            f = review_form(q)['unit']
             if f not in out:
                 row = registry_row(registry, q.get('family') or '')
                 out[f] = dict(unit=f, kind='legacy', ability=q['ability'], registry_id=row['id'] if row else None,
@@ -119,7 +136,8 @@ def load_questions():
     return q
 
 
-def load_records(root=REVIEWS):
+def load_records(root=None):
+    root = root or REVIEWS
     recs = dict(L1=[], L2=[], L3=[])
     for level in ('L1', 'L2'):
         for p in sorted((root / level).glob('*.json')) if (root / level).exists() else []:
@@ -150,16 +168,15 @@ def cell(reasoning_nm):
     return 'out-of-range'
 
 
-def instances(catalog):
-    """Active catalog records with the unit, source and scale cell used for stratification."""
+def instances(catalog, ids=None):
+    """Active catalog records (optionally only ids) with the review form, unit, source and scale cell used for stratification."""
     out = []
     for q in catalog['questions']:
-        if q.get('lifecycle') != 'active':
+        if q.get('lifecycle') != 'active' or (ids is not None and q['id'] not in ids):
             continue
-        unit = q['family'] if q.get('familyInstance') else 'legacy:' + (q.get('family') or q['id'])
-        out.append(dict(id=q['id'], unit=unit, instance=q.get('familyInstance'), source=q.get('paper') or 'unknown',
-                        cell='%s %s' % (q['domain'], cell(q.get('reasoningSizeNm'))), ability=q['ability'],
-                        l0=(q.get('independentCheck') == 'pass') if q.get('familyInstance') else bool(q.get('prototypeScreeningPassed'))))
+        f = review_form(q)
+        out.append(dict(id=q['id'], unit=f['unit'], form=f['form'], instance=f['instance'], source=q.get('paper') or 'unknown',
+                        cell='%s %s' % (q['domain'], cell(q.get('reasoningSizeNm'))), ability=q['ability'], l0=f['l0']))
     return out
 
 

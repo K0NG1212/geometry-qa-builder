@@ -5,7 +5,7 @@
 .rv-card{margin:6px 0 12px;padding:10px 12px;background:var(--paper);border:1px solid var(--line)}.rv-card pre{white-space:pre-wrap;font-size:12px;max-height:260px;overflow:auto}
 .rv-filter button{margin-right:6px}.mono{font-family:ui-monospace,Consolas,monospace;font-size:12px;word-break:break-all}
 @media (max-width:760px){.rv-grid{grid-template-columns:repeat(2,1fr)}.rv-table{font-size:13px}}
-</style></head><body><header class="site-header"><a class="brand" href="index.html">GeoBench <small>REVIEW L1–L3</small></a><nav><a href="audit.html">审核队列</a><a href="templates.html#workbench">题型工作台</a><a href="data/review-queue.json" download>下载待审清单 ↓</a></nav></header>
+</style></head><body><header class="site-header"><a class="brand" href="index.html">GeoBench <small>REVIEW L1–L3</small></a><nav><a href="audit.html">审核队列</a><a href="templates.html#workbench">题型工作台</a><a href="data/review-sheet.xlsx" download>下载审核表（Excel）↓</a><a href="data/review-queue.json" download>待审清单 JSON ↓</a></nav></header>
 <main><div class="page-heading"><div class="eyebrow">REVIEW SYSTEM · BUILT, NOT YET RUN</div><h1>审核体系：题型审定、检查器审阅、分层抽查</h1>
 <p id="rv-note">加载中…</p></div>
 <div id="rv-stats" class="rv-grid"></div>
@@ -16,6 +16,9 @@
 <tr><td>L3 分层抽查</td><td>每批</td><td>按 题型 × 来源 × 尺度格 分层；新题型或新来源首批全检，稳定后每层 max(2, 10%)；轻量模型答固定四问，被标记的全部转人工，另抽模型判“通过”的题给人工校准</td><td>工具已建，未运行</td></tr>
 <tr><td>L4 难度测试</td><td>每批（不属于审核）</td><td>模型实际作答学生包，得到正确率</td><td>未建（用户决定暂缓）</td></tr>
 </tbody></table></div><p>实例状态：生成 → L0（可暂计配额）→ L1 + L2（题型已审定）→ L3 抽查通过 → 正式计入。抽查不合格：改题型模板，整个题型重新生成一批，不逐题手工修补。</p></section>
+<section class="section-block"><h2>审核表（Excel）</h2><p>L1 / L2 可以离线审：<a class="text-link" href="data/review-sheet.xlsx" download>下载审核表</a>，每个审核单元一行，含题型卡片、两个样例、代码链接，只填黄色四列（决定、审核人姓名、日期、意见）。交回后运行 <span class="mono">python tools/review_sheet.py import --file 文件名.xlsx --dry-run</span> 检查，再去掉 --dry-run 写入。导入会核对每行的绑定哈希：导出后代码或注册表改过的行会被拒收，需要重新导出；审核人必须是作出判断的本人，AI 助手不能代填。</p></section>
+<section class="section-block" id="selection"><h2>160 道原型挑选（提议，待教授确认）</h2><p id="sel-note">加载中…</p><ol id="sel-steps"></ol>
+<div class="table-scroll"><table class="rv-table"><thead><tr><th>格</th><th>感知 / 推断 / 设计</th><th>选中（* 待教授决定类别；† 旧模板题；‡ 旧题的四选一版本）</th><th>备用</th><th>说明</th></tr></thead><tbody id="sel-cells"></tbody></table></div></section>
 <section class="section-block"><h2>L3 固定四问</h2><ol id="rv-questions"></ol><p class="mono" id="rv-qsha"></p></section>
 <section class="section-block"><h2>L1 / L2 待审单元</h2><div class="rv-filter"><button type="button" data-kind="all" aria-pressed="true">全部</button><button type="button" data-kind="family" aria-pressed="false">题型族</button><button type="button" data-kind="legacy" aria-pressed="false">旧模板</button></div>
 <div class="table-scroll"><table class="rv-table"><thead><tr><th>单元</th><th>能力</th><th>实例</th><th>L1</th><th>L2</th><th>检查器</th></tr></thead><tbody id="rv-units"></tbody></table></div></section>

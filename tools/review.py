@@ -1,6 +1,7 @@
 """Review tooling L1-L3 (roadmap A6). Builds queues and records; never calls a model and never approves by itself.
 
-  python tools/review.py queue                                   # one-click queue -> docs/data/review-queue.json
+  python tools/review.py queue [--all]                           # one-click queue -> docs/data/review-queue.json
+                                                                 # (default: the 160 selection, tools/select_prototype.py)
   python tools/review.py record-l1 --unit named_bond_angle --reviewer "Name" --decision approved --notes "..."
   python tools/review.py record-l2 --unit named_bond_angle --reviewer "Name" --decision approved --notes "..." \
                                    [--model-review review.txt --model-id <model>]
@@ -29,14 +30,20 @@ def read(rel):
     return json.loads((ROOT / rel).read_text(encoding='utf-8'))
 
 
-def context():
+def context(ids=None):
     from task_families import FAMILIES
     import checkers
     registry = read('templates/registry.json')
     catalog = read('docs/data/catalog.json')
     workbench = read('docs/data/family-workbench.json')
-    units = rs.units(registry, FAMILIES, checkers.CHECKERS, catalog)
+    units = rs.units(registry, FAMILIES, checkers.CHECKERS, catalog, ids)
     return registry, catalog, workbench, units
+
+
+def selection():
+    """Ids of the 160 selection (docs/data/prototype-selection.json), or None when it has not been built."""
+    path = ROOT / 'docs/data/prototype-selection.json'
+    return set(json.loads(path.read_text(encoding='utf-8'))['selected_ids']) if path.exists() else None
 
 
 def student_text(packet=None, record=None):
@@ -52,7 +59,7 @@ def student_text(packet=None, record=None):
     return '\n'.join(parts)
 
 
-def card(unit, registry, catalog, workbench):
+def card(unit, registry, catalog, workbench, ids=None):
     """L1 family card: what the template claims plus two samples (student view and reviewer view)."""
     row = next((t for t in registry['templates'] if t['id'] == unit['registry_id']), {}) or {}
     keys = ('name', 'concept', 'inputs', 'physical_conditions', 'reasoning_scale', 'scale_limits', 'source_basis', 'answer_method',
@@ -62,24 +69,27 @@ def card(unit, registry, catalog, workbench):
     if unit['kind'] == 'family':
         teachers = {t['id']: t for t in workbench['teacher_answers'] if t['family'] == unit['unit']}
         students = {s['id']: s for s in workbench['student_packets'] if s['id'] in teachers}
-        for iid in sorted(teachers)[:2]:
+        chosen = {rs.review_form(q)['instance'] for q in catalog['questions'] if ids is None or q['id'] in ids}
+        for iid in sorted(teachers, key=lambda i: (i not in chosen, i))[:2]:
             s, t = students[iid], teachers[iid]
             samples.append(dict(instance=iid, question=s['question'], options=s['options'], inputs=[i['name'] for i in s['inputs']],
                                 correct_label=t['correct_label'],
                                 audit=[dict(label=o['label'], rule=o.get('rule') or o.get('source_id'), reason=o.get('reason')) for o in t['option_audit']]))
     else:
-        recs = [q for q in catalog['questions'] if q.get('lifecycle') == 'active' and not q.get('familyInstance')
-                and 'legacy:' + (q.get('family') or q['id']) == unit['unit']]
-        for q in sorted(recs, key=lambda q: q['id'])[:2]:
+        recs = [q for q in catalog['questions'] if q.get('lifecycle') == 'active' and rs.review_form(q)['unit'] == unit['unit']]
+        for q in sorted(recs, key=lambda q: (ids is not None and q['id'] not in ids, q['id']))[:2]:
             samples.append(dict(record=q['id'], question=q.get('question'), answer=q.get('answer'), validation=q.get('validation')))
     return dict(template=info, samples=samples)
 
 
-def queue(date):
-    registry, catalog, workbench, units = context()
+def queue(date, scope='selection'):
+    ids = selection() if scope == 'selection' else None
+    if scope == 'selection' and ids is None:
+        raise SystemExit('Run tools/select_prototype.py first, or use --all')
+    registry, catalog, workbench, units = context(ids)
     records = rs.load_records()
     questions = rs.load_questions()
-    items = rs.instances(catalog)
+    items = rs.instances(catalog, ids)
     counts = {}
     for it in items:
         counts[it['unit']] = counts.get(it['unit'], 0) + 1
@@ -92,22 +102,26 @@ def queue(date):
         unit_rows.append(dict(u, bindings=b, L1=l1, L2=l2, instances=counts.get(uid, 0),
                               L1_record=rec1 and dict(reviewer=rec1['reviewer']['name'], date=rec1['date'], decision=rec1['decision']),
                               L2_record=rec2 and dict(reviewer=rec2['reviewer']['name'], date=rec2['date'], decision=rec2['decision']),
-                              card=card(u, registry, catalog, workbench)))
+                              card=card(u, registry, catalog, workbench, ids)))
     l3_final = {r['id']: r.get('final') for b in records['L3'] for r in b.get('results', [])}
     stages = {it['id']: rs.instance_stage(it, states, l3_final) for it in items}
     seed = 'l3-batch-%03d' % (len(records['L3']) + 1)
     plan = rs.plan_l3(items, records['L3'], seed)
-    summary = dict(units=len(unit_rows), families=sum(u['kind'] == 'family' for u in unit_rows),
+    everything = context()[3]
+    summary = dict(scope=scope, units_all_active=len(everything), units=len(unit_rows), families=sum(u['kind'] == 'family' for u in unit_rows),
                    legacy_units=sum(u['kind'] == 'legacy' for u in unit_rows),
                    L1={s: sum(u['L1'] == s for u in unit_rows) for s in ('pending', 'approved', 'revise', 'stale')},
                    L2={s: sum(u['L2'] == s for u in unit_rows) for s in ('pending', 'approved', 'revise', 'stale')},
-                   instances=len(items), stages={s: sum(v == s for v in stages.values()) for s in ('not-verified',) + rs.STAGES},
+                   instances=len(items), forms={f: sum(it['form'] == f for it in items) for f in ('family', 'family-version', 'legacy')},
+                   stages={s: sum(v == s for v in stages.values()) for s in ('not-verified',) + rs.STAGES},
                    next_l3_batch=seed, l3_sample=sum(p['sample'] for p in plan), l3_strata=len(plan),
                    l3_steady_state_sample=sum(min(p['size'], max(2, -(-p['size'] // 10))) for p in plan),
                    model_calls=0, reviews_recorded=dict(L1=len(records['L1']), L2=len(records['L2']), L3=len(records['L3'])))
     payload = dict(kind='review_queue', date=date, summary=summary, questions={k: v for k, v in questions.items() if k != '_sha256'},
                    questions_sha256=questions['_sha256'], units=unit_rows, l3_plan=plan, stages=stages,
-                   note='Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer.')
+                   forms={it['id']: dict(form=it['form'], instance=it['instance']) for it in items},
+                   note='Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer.'
+                        + (' Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later.' if scope == 'selection' else ''))
     path = ROOT / 'docs/data/review-queue.json'
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
     return summary
@@ -140,11 +154,12 @@ def record(level, unit_id, reviewer, decision, notes, date, model_review=None, m
     return path
 
 
-def l3_prompts(batch, out):
-    registry, catalog, workbench, units = context()
+def l3_prompts(batch, out, scope='selection'):
+    ids = selection() if scope == 'selection' else None
+    registry, catalog, workbench, units = context(ids)
     records = rs.load_records()
     questions = rs.load_questions()
-    items = rs.instances(catalog)
+    items = rs.instances(catalog, ids)
     plan = rs.plan_l3(items, records['L3'], batch)
     by_id = {q['id']: q for q in catalog['questions']}
     students = {s['id']: s for s in workbench['student_packets']}
@@ -157,7 +172,7 @@ def l3_prompts(batch, out):
     for p in plan:
         for cid in p['ids']:
             rec = by_id[cid]
-            inst = rec.get('familyInstance')
+            inst = rs.review_form(rec)['instance']
             text = rs.l3_prompt(cid, student_text(students.get(inst), rec), rs.reviewer_packet(teachers.get(inst), rec), questions)
             (out / 'prompts' / ('%s.txt' % cid)).write_text(text, encoding='utf-8', newline='\n')
             manifest.append(dict(id=cid, unit=p['unit'], source=p['source'], stratum=p['stratum'], prompt_sha256=rs.sha(text)))
@@ -199,6 +214,7 @@ if __name__ == '__main__':
     sub = p.add_subparsers(dest='cmd', required=True)
     q = sub.add_parser('queue')
     q.add_argument('--date', default=datetime.date.today().isoformat())
+    q.add_argument('--all', action='store_true', help='every active question instead of the 160 selection')
     for level in ('l1', 'l2'):
         r = sub.add_parser('record-' + level)
         r.add_argument('--unit', required=True)
@@ -212,6 +228,7 @@ if __name__ == '__main__':
     lp = sub.add_parser('l3-prompts')
     lp.add_argument('--batch', required=True)
     lp.add_argument('--out')
+    lp.add_argument('--all', action='store_true')
     lr = sub.add_parser('record-l3')
     lr.add_argument('--batch', required=True)
     lr.add_argument('--model-results', required=True)
@@ -219,13 +236,13 @@ if __name__ == '__main__':
     lr.add_argument('--date', required=True)
     a = p.parse_args()
     if a.cmd == 'queue':
-        print(json.dumps(queue(a.date), ensure_ascii=False))
+        print(json.dumps(queue(a.date, 'all' if a.all else 'selection'), ensure_ascii=False))
     elif a.cmd in ('record-l1', 'record-l2'):
         level = a.cmd[-2:].upper()
         if level == 'L2' and bool(a.model_review) != bool(a.model_id):
             raise SystemExit('--model-review and --model-id go together')
         print(record(level, a.unit, a.reviewer, a.decision, a.notes, a.date, getattr(a, 'model_review', None), getattr(a, 'model_id', None)))
     elif a.cmd == 'l3-prompts':
-        print(l3_prompts(a.batch, a.out or ROOT / 'runs' / ('review-' + safe(a.batch))), 'prompts written')
+        print(l3_prompts(a.batch, a.out or ROOT / 'runs' / ('review-' + safe(a.batch)), 'all' if a.all else 'selection'), 'prompts written')
     else:
         print(record_l3(a.batch, a.model_results, a.human, a.date))
