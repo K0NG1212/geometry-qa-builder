@@ -298,6 +298,13 @@ def _distance_candidates(elements, points, edges, a, b, labels, typical):
                 continue
             out.append(dict(rule='other_bond:%s-%s' % (labels(end), labels(x)), value=math.dist(points[end], points[x]),
                             plausibility=3, reason='量成 %s 的另一根键（到 %s）。' % (labels(end), labels(x))))
+    for end, other in ((a, b), (b, a)):
+        # Larger-value misconception (counting one bond too far): without it bond-length answers sat mostly at B/C
+        # (enumeration probe runs/enum-v17).
+        for y in kit.neighbors(edges, other):
+            if y != end and elements[y] != 'H':
+                out.append(dict(rule='one_bond_too_far:%s-%s' % (labels(end), labels(y)), value=math.dist(points[end], points[y]),
+                                plausibility=2, reason='多数了一根键：量成 %s 到 %s 之外的 %s 的距离。' % (labels(end), labels(other), labels(y))))
     near = sorted((math.dist(points[a], points[j]), j) for j in range(len(points))
                   if j not in (a, b) and elements[j] == elements[b] and (min(a, j), max(a, j)) not in edges)
     if near:
@@ -351,6 +358,7 @@ def build_bond_distance(spec, root, seed):
     chosen, rejected, goal, rank = kit.choose_numeric(d, candidates, decimals=decimals, tolerance=tol, min_separation=sep,
                                                       seed=seed, context=spec['id'], lower=0, target=spec.get('target_position'),
                                                       distractor_separation='0.010')
+    kit.require_rank(spec, goal, rank)
     options, audit = kit.label_numeric(d, chosen, decimals=decimals, unit='angstrom', seed=seed, context=spec['id'],
                                        correct_reason='两指定原子的欧氏距离；另以 Decimal 实现复核。')
     key = kit.validate_numeric(options, d, decimals=decimals, tolerance=tol, min_separation=sep, unit='angstrom',

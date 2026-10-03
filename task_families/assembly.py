@@ -11,7 +11,7 @@ from decimal import Decimal, localcontext
 import numpy as np
 from . import kit
 
-VERSION = '0.2.0'
+VERSION = '0.3.0'
 ALLOWED_T = sorted({h * h + h * k + k * k for h in range(0, 16) for k in range(0, 16) if h + k > 0})
 
 
@@ -86,6 +86,13 @@ def size_candidates(points, others):
            dict(rule='radius_of_gyration', value=r, plausibility=1, reason='把回转半径当作所问的量。'),
            dict(rule='single_axis_rms', value=float(np.sqrt(((a - a.mean(axis=0)) ** 2).mean(axis=0).max())), plausibility=2,
                 reason='只算了一个坐标轴方向的均方根离散度，而不是三维距离。')]
+    # v0.3.0: solid-sphere conversions in both directions. For hollow shells most other size estimates coincide with
+    # Dmax (rejected as too close), so the answer could never be A for Dmax or C/D for Rg (enumeration probe runs/enum-v23).
+    dm = dmax_pair(points)[0]
+    out += [dict(rule='sphere_diameter_from_rg', value=2 * r * math.sqrt(5 / 3), plausibility=2,
+                 reason='按实心球关系由回转半径推直径 D = 2√(5/3)·Rg（空心外壳会高估）。'),
+            dict(rule='rg_from_dmax_solid_sphere', value=math.sqrt(3 / 5) * dm / 2, plausibility=2,
+                 reason='按实心球关系由最大尺寸估算回转半径 Rg = √(3/5)·Dmax/2（空心外壳会低估）。')]
     if others is not None:
         out.append(dict(rule='wrong_selection', value=dmax_pair(others)[0], plausibility=3,
                         reason='用了全部组分的点，而题目只问指定组分。'))
@@ -110,6 +117,7 @@ def build_size(spec, root, seed, measure):
     picked, rejected, goal, rank = kit.choose_numeric(value, cands, decimals=decimals, tolerance=tol, min_separation=sep, seed=seed,
                                                       context=spec['id'], lower=0, target=spec.get('target_position'),
                                                       distractor_separation='0.10')
+    kit.require_rank(spec, goal, rank)
     options, audit = kit.label_numeric(value, picked, decimals=decimals, unit='nm', seed=seed, context=spec['id'],
                                        correct_reason='按定义在所选点上计算（numpy 分块搜索 + Decimal 复核）。')
     key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=sep, unit='nm',
@@ -316,6 +324,8 @@ def scatter_packet(spec, text, fmt, question, value, decimals, tol, unit, option
 def build_debye(spec, root, seed):
     text, fmt, pts, which, radius, dm, digest, whole = scatter_setup(spec, root)
     q = spec['q_per_nm']
+    if round(q, 3) != q:     # the question prints q with 3 decimals; a finer q would make question and key disagree
+        raise ValueError('q must be stated exactly with 3 decimals')
     value = debye(pts, q)
     if abs(value - debye_check(pts, q)) > 1e-9:
         raise ValueError('Debye implementations disagree')
@@ -335,6 +345,14 @@ def build_debye(spec, root, seed):
              dict(rule='s_convention', value=debye(pts, 2 * math.pi * q), plausibility=1,
                   reason='把 q = 4π sinθ/λ 当作 s = 2 sinθ/λ，在 2πq 处计算。'),
              dict(rule='q_divided_by_ten', value=debye(pts, q / 10), plausibility=1, reason='q 换算单位时多除以 10。'),
+             # Smaller-intensity misconceptions (also registered for guinier_intensity): without them nearly every mistake
+             # lay above the exact value and the correct option was the smallest in 30/36 probe instances (runs/enum-v26).
+             dict(rule='guinier_missing_one_third', value=math.exp(-(q * radius) ** 2), plausibility=3,
+                  reason='用 Guinier 近似且指数中漏掉 1/3（e^{−q²Rg²}）。'),
+             dict(rule='guinier_half_dmax_as_rg', value=math.exp(-(q * dm / 2) ** 2 / 3), plausibility=2,
+                  reason='用 Guinier 近似并把最大尺寸的一半当作回转半径。'),
+             dict(rule='intensity_squared', value=value * value, plausibility=2,
+                  reason='把算出的强度当成振幅又平方了一次（与“振幅当强度”方向相反的混淆）。'),
              dict(rule='sphere_radius_equals_rg', value=sphere(q, radius), plausibility=2,
                   reason='把回转半径直接当作均匀球的半径（应为 √(5/3)·Rg），强度偏大。'),
              dict(rule='guinier_single_axis_spread', value=math.exp(-(q * axis_spread(pts)) ** 2 / 3), plausibility=2,
@@ -343,6 +361,7 @@ def build_debye(spec, root, seed):
     chosen, rejected, goal, rank = kit.choose_numeric(value, cands, decimals=decimals, tolerance=tol, min_separation=sep, seed=seed,
                                                       context=spec['id'], lower=0, upper=1, target=spec.get('target_position'),
                                                       distractor_separation='0.010')
+    kit.require_rank(spec, goal, rank)
     options, audit = kit.label_numeric(value, chosen, decimals=decimals, unit='', seed=seed, context=spec['id'],
                                        correct_reason='Debye 公式对全部点对取向平均：I/I0 = [N + 2Σ sin(qr)/(qr)]/N²，N = %d；qRg = %.2f。'
                                        % (n, q * radius))
@@ -383,6 +402,11 @@ def build_q_design(spec, root, seed):
              dict(rule='dmax_sphere_root', value=root_of(lambda q: sphere(q, dm / 2)), plausibility=2,
                   reason='把颗粒当作直径等于最大尺寸的实心球。'),
              dict(rule='reported_per_angstrom', value=value / 10, plausibility=1, reason='以 Å⁻¹ 为单位的数值当作 nm⁻¹ 报告。'),
+             # v0.3.0: the same two Guinier slips, solved for q (probe runs/enum-v26: answers sat mostly at B).
+             dict(rule='guinier_missing_one_third_root', value=math.sqrt(math.log(1 / t)) / radius, plausibility=3,
+                  reason='用 Guinier 近似求 q，且指数中漏掉 1/3。'),
+             dict(rule='guinier_half_dmax_root', value=math.sqrt(3 * math.log(1 / t)) / (dm / 2), plausibility=2,
+                  reason='用 Guinier 近似求 q，并把最大尺寸的一半当作回转半径。'),
              dict(rule='sphere_radius_equals_rg_root', value=root_of(lambda q: sphere(q, radius)), plausibility=2,
                   reason='把回转半径直接当作均匀球的半径求交点（球偏小，q 偏大）。'),
              dict(rule='guinier_single_axis_root', value=math.sqrt(3 * math.log(1 / t)) / axis_spread(pts), plausibility=2,

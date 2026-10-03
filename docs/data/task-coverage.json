@@ -69,7 +69,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v23",
+ "family_run": "family-pilot-v24",
  "rows": [
   {
    "id": "global_extent",
@@ -108,7 +108,7 @@
     "largest_axis_span",
     "radius_as_extent"
    ],
-   "four_choice_validation": "extent_choice_v2：正确值秩按批次平衡，数值按升序排列；与正确值间隔 > 0.05 Å。",
+   "four_choice_validation": "extent_choice_v2：正确值秩按批次平衡，数值按升序排列；与正确值间隔 > 0.05 Å。 v0.3.0：radius_as_extent 迷惑程度调为 2（混淆两种尺寸量），否则答案永远不能在 D（探针 runs/enum-v20）。",
    "legacy_families": [
     "global_extent",
     "periodic_global_extent",
@@ -201,7 +201,7 @@
     "maximum_radius",
     "diameter_for_radius"
    ],
-   "four_choice_validation": "extent_choice_v2：正确值秩按批次平衡，数值按升序排列；与正确值间隔 > 0.05 Å（与 global_extent 相同）。",
+   "four_choice_validation": "extent_choice_v2：正确值秩按批次平衡，数值按升序排列；与正确值间隔 > 0.05 Å（与 global_extent 相同）。 v0.3.0：点对公式漏 1/2（约 √2·Rg）与“最大中心距当半径”迷惑程度调为 2，否则答案不能在 A/B。",
    "legacy_families": [
     "radius_of_gyration",
     "protein_geometric_gyration"
@@ -419,9 +419,10 @@
     "typical_value",
     "covalent_radii_sum",
     "nearest_nonbonded_same_element",
-    "bohr_units"
+    "bohr_units",
+    "one_bond_too_far"
    ],
-   "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。",
+   "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。 2026-10-04 枚举探针：新增“多数了一根键”（1–3 距离）；枚举实例设 strict_rank，目标答案位置不可达时拒绝出题而不是退到最近位置。",
    "legacy_families": [
     "disulfide_bond_length",
     "carboxylate_bond_metric",
@@ -589,9 +590,11 @@
     "largest_axis_span",
     "sphere_radius_from_rg",
     "single_axis_rms",
-    "wrong_selection"
+    "wrong_selection",
+    "sphere_diameter_from_rg",
+    "rg_from_dmax_solid_sphere"
    ],
-   "four_choice_validation": "与正确值 > 0.3 nm；升序排列，秩按批次轮换（加入偏小的错误机制，避免正确项总是最小）。",
+   "four_choice_validation": "与正确值 > 0.3 nm；升序排列，秩按批次轮换（加入偏小的错误机制，避免正确项总是最小）。 v0.3.0：加入两个方向的实心球换算；空心外壳上其他尺寸估计常与 Dmax 重合而被拒（探针 runs/enum-v23）。枚举的回转半径题设 strict_rank。",
    "legacy_families": [],
    "legacy_qa": [],
    "code": [
@@ -761,9 +764,12 @@
     "s_convention",
     "q_divided_by_ten",
     "sphere_radius_equals_rg",
-    "guinier_single_axis_spread"
+    "guinier_single_axis_spread",
+    "guinier_missing_one_third",
+    "guinier_half_dmax_as_rg",
+    "intensity_squared"
    ],
-   "four_choice_validation": "与正确值 > 0.02；升序排列，秩按批次轮换。",
+   "four_choice_validation": "与正确值 > 0.02；升序排列，秩按批次轮换。 v0.3.0：加入两种给出更小强度的 Guinier 误用；之前探针中正确项在 30/36 道是最小值（runs/enum-v26）。q 必须恰为题干显示的三位小数，否则拒绝。",
    "legacy_families": [],
    "legacy_qa": [],
    "code": [
@@ -836,9 +842,11 @@
     "dmax_sphere_root",
     "reported_per_angstrom",
     "sphere_radius_equals_rg_root",
-    "guinier_single_axis_root"
+    "guinier_single_axis_root",
+    "guinier_missing_one_third_root",
+    "guinier_half_dmax_root"
    ],
-   "four_choice_validation": "与正确值相差 > 5%·q*；升序排列，秩按批次轮换。",
+   "four_choice_validation": "与正确值相差 > 5%·q*；升序排列，秩按批次轮换。 v0.3.0：同上两种 Guinier 误用（解出更小的 q）；之前探针答案多在 B。",
    "legacy_families": [],
    "legacy_qa": [],
    "code": [
@@ -2979,7 +2987,7 @@
     "amplitude_not_intensity",
     "unit_mixups"
    ],
-   "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。FRET 可由题设 R0 列表中选取使目标秩可达的值（某些秩只在 E < 0.5 或 E > 0.5 时可达；枚举探针发现只用固定 R0 时正确项总是最大）。",
+   "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。FRET 可由题设 R0 列表中选取使目标秩可达的值（某些秩只在 E < 0.5 或 E > 0.5 时可达；枚举探针发现只用固定 R0 时正确项总是最大）。 Guinier：q 必须恰为题干显示的两位小数（之前更精细的 q 会使题干与答案不一致）；枚举实例设 strict_rank。",
    "legacy_families": [
     "conditional_guinier_inference",
     "conditional_fret_inference",

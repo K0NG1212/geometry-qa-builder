@@ -5,7 +5,8 @@
 1. enumerators.propose lists every candidate spec per family and structure (templates/structures.json);
    candidates already in templates/family-manifest.json are left out.
 2. A deterministic sample (SHA-256 order, at most --sample per family and structure) goes into
-   <out>/manifest.json and is generated with family_engine.run (the family decides admissibility).
+   <out>/manifest.json and is generated with family_engine.run (the family decides admissibility). Slow families
+   (SLOW below) are sampled at most twice per structure.
 3. verify_all re-checks every generated instance with the independent checkers.
 4. A capacity summary (no answers) is written to <out>/capacity.json and docs/data/enumeration-capacity.json:
    proposals, sampled, accepted by the family, rejection reasons, checker agreement and an estimate
@@ -35,6 +36,10 @@ def existing_signatures():
     return {enumerators.signature(spec) for spec in manifest['items']}
 
 
+# Families whose instances take minutes each (exact Debye sums inside a root search) get a smaller fixed sample.
+SLOW = {'scattering_q_design': 2}
+
+
 def sample(proposals, per_structure, seed):
     chosen = []
     for family, specs in proposals.items():
@@ -43,7 +48,7 @@ def sample(proposals, per_structure, seed):
             by_structure.setdefault(enumerators.structure_of(spec), []).append(spec)
         for pdb, group in sorted(by_structure.items()):
             group.sort(key=lambda s: kit.digest(seed, s['id']))
-            chosen += group[:per_structure]
+            chosen += group[:min(per_structure, SLOW.get(family, per_structure))]
     return chosen
 
 

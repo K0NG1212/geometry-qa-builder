@@ -12,7 +12,7 @@ from pathlib import Path
 from . import kit
 import template_engine as numeric
 
-VERSION = '0.2.0'
+VERSION = '0.3.0'
 MASS = {'H': 1.008, 'C': 12.011, 'N': 14.007, 'O': 15.999, 'S': 32.06, 'Cl': 35.45, 'Zn': 65.38,
         'P': 30.974, 'F': 18.998, 'Si': 28.085, 'Na': 22.990, 'Mg': 24.305}
 
@@ -46,7 +46,9 @@ def candidates(elements, points, template):
                    reason='用点对距离的均方根替代题目定义。')]
     if template == 'global_extent':
         return common + [
-            dict(rule='radius_as_extent', value=rg, plausibility=1, reason='把等权回转半径误当最大点对间距。'),
+            # v0.3.0: plausibility 2 (was 1) -- confusing two size measures is common, and without a third plausible
+            # smaller-value mistake the answer could never be D (enumeration probe runs/enum-v20).
+            dict(rule='radius_as_extent', value=rg, plausibility=2, reason='把等权回转半径误当最大点对间距（混淆两种尺寸量）。'),
             dict(rule='centroid_diameter', value=2 * max(radii), plausibility=2,
                  reason='用两倍最大中心距代替最大点对间距（前者 ≥ 后者，一般不相等）。'),
             dict(rule='first_last_rows', value=math.dist(points[0], points[-1]), plausibility=1,
@@ -64,9 +66,13 @@ def candidates(elements, points, template):
         ]
     if template == 'equal_weight_rg':
         n = len(points)
+        # v0.3.0: the pair form Rg^2 = sum(d^2) / (2 N^2) without the factor 1/2 gives about sqrt(2) Rg; with it and
+        # maximum_radius at plausibility 2 the answer can also be A or B (probe runs/enum-v20).
+        common = [c if c['rule'] != 'rms_pair_distance' else
+                  dict(c, plausibility=2, reason='用点对公式但漏了因子 1/2（Rg² = Σd²/2N²），约得 √2·Rg。') for c in common]
         return common + [
             dict(rule='mean_radius', value=math.fsum(radii) / n, plausibility=2, reason='用中心距算术平均替代均方根。'),
-            dict(rule='maximum_radius', value=max(radii), plausibility=1, reason='用最大中心距替代均方根。'),
+            dict(rule='maximum_radius', value=max(radii), plausibility=2, reason='用最大中心距（“半径”）替代回转半径。'),
             dict(rule='diameter_for_radius', value=2 * rg, plausibility=1, reason='把回转半径乘二，输出直径式量。'),
             dict(rule='mass_weighted', value=_rg(points, [MASS[e] for e in elements]), plausibility=3,
                  reason='使用原子质量加权；题目明确要求所有点等权。'),

@@ -10,7 +10,8 @@ from decimal import Decimal, localcontext
 from .common import need, find, read_xyz, verify_hashes, judge_numeric, LABELS
 from . import cells
 
-RADII = {'H': 0.31, 'C': 0.76, 'N': 0.71, 'O': 0.66, 'S': 1.05, 'Cl': 1.02, 'P': 1.07, 'F': 0.57}
+RADII = {'H': 0.31, 'C': 0.76, 'N': 0.71, 'O': 0.66, 'S': 1.05, 'Cl': 1.02, 'P': 1.07, 'F': 0.57,
+         'Si': 1.11, 'Br': 1.20, 'I': 1.39}     # covalent radii, Cordero et al., Dalton Trans. 2008
 
 
 def dec_dist(p, q):
@@ -123,7 +124,9 @@ def coordination_shell(packet, key):
         return sum(1 for d in periodic_dists(a, f, [g for e, g in rows if e == 'Zn']) if d <= 2.4) == 4
 
     partners = [f for e, f in rows if e == element and (not mu4 or is_node(f))]
-    need(any(max(abs(x - c) for x, c in zip(f, centre)) < 1e-4 for e, f in rows), 'No atom at the stated centre position')
+    at = [f for e, f in rows if max(abs(x - c) for x, c in zip(f, centre)) < 1e-4]
+    need(len(at) == 1, 'No single atom at the stated centre position')
+    centre = at[0]          # the question prints 4 decimals; in a 26 A cell that alone shifts distances by ~1e-3 A
     dists = periodic_dists(a, centre, partners)
     d1 = dists[0]
     n1 = sum(1 for d in dists if d - d1 <= 1e-3)

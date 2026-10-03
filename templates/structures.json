@@ -1,7 +1,7 @@
 {
   "kind": "enumeration_structures",
   "version": "0.1.0",
-  "note": "实例枚举器可用的结构。只列已在 docs/assets 中、来源与许可已记录的文件；新增结构须先取得用户同意下载。 crystals：COD CIF（公共领域），按 CIF 全部对称操作展开（cif_general）。",
+  "note": "实例枚举器可用的结构。只列已在 docs/assets 中、来源与许可已记录的文件；新增结构须先取得用户同意下载。 crystals：COD CIF（公共领域），按 CIF 全部对称操作展开（cif_general）。 molecules：QM7-X（docs/assets/families/molecules，由仓库内 JSON 导出）与 SAMPL9 主客体 XYZ。 assemblies：docs/assets/families/assemblies 中的约简点集（说明取自已有实例规格）。",
   "structures": [
     {
       "pdb": "1UBQ",
@@ -169,6 +169,530 @@
       "cod": "1000028",
       "asset": "assets/materials/1000028.cif",
       "name": "sodalite (Na8Al6Si6O24Cl2, COD 1000028)"
+    },
+    {
+      "cod": "1516287",
+      "asset": "assets/qa/MNI009-MOF5-full.xyz",
+      "name": "MOF-5 (Zn4O(BDC)3, COD 1516287)",
+      "source_kind": "xyz_cell",
+      "a": 25.8247
+    },
+    {
+      "cod": "4118891",
+      "asset": "assets/qa/MNI008-ZIF8-full.xyz",
+      "name": "Zn(imidazolate)2 with ZIF-8 sodalite topology (SALEM-2, COD 4118891; major-occupancy linker sites)",
+      "source_kind": "xyz_cell",
+      "a": 16.8303
+    }
+  ],
+  "molecules": [
+    {
+      "molecule": "QM7X-7029",
+      "asset": "assets/families/molecules/QM7X-7029.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7029 (C4H8N2S, 15 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7030",
+      "asset": "assets/families/molecules/QM7X-7030.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7030 (C4H8N2S, 15 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7032",
+      "asset": "assets/families/molecules/QM7X-7032.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7032 (C4H10N2S, 17 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7033",
+      "asset": "assets/families/molecules/QM7X-7033.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7033 (C4H8O2S, 15 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7034",
+      "asset": "assets/families/molecules/QM7X-7034.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7034 (C4H8O2S, 15 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7038",
+      "asset": "assets/families/molecules/QM7X-7038.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7038 (C3H7NO2S, 14 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7043",
+      "asset": "assets/families/molecules/QM7X-7043.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7043 (C3H6O3S, 13 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7044",
+      "asset": "assets/families/molecules/QM7X-7044.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7044 (C3H6O3S, 13 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7050",
+      "asset": "assets/families/molecules/QM7X-7050.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7050 (C3H9NO2S, 16 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7052",
+      "asset": "assets/families/molecules/QM7X-7052.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7052 (C3H8O3S, 15 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7063",
+      "asset": "assets/families/molecules/QM7X-7063.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7063 (C3H8O3S, 15 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7082",
+      "asset": "assets/families/molecules/QM7X-7082.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7082 (C4H6N2S, 13 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7089",
+      "asset": "assets/families/molecules/QM7X-7089.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7089 (C4H6N2S, 13 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7095",
+      "asset": "assets/families/molecules/QM7X-7095.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7095 (C4H8N2S, 15 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7110",
+      "asset": "assets/families/molecules/QM7X-7110.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7110 (C3H7NO2S, 14 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7111",
+      "asset": "assets/families/molecules/QM7X-7111.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7111 (C3H6O3S, 13 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7114",
+      "asset": "assets/families/molecules/QM7X-7114.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7114 (C3H7NO2S, 14 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7165",
+      "asset": "assets/families/molecules/QM7X-7165.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7165 (C3H6O3S, 13 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7206",
+      "asset": "assets/families/molecules/QM7X-7206.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7206 (C3H6O3S, 13 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "QM7X-7208",
+      "asset": "assets/families/molecules/QM7X-7208.xyz",
+      "domain": "quantum",
+      "context": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7208 (C4H6N2S, 13 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+      "license": "CC BY 4.0"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G1",
+      "asset": "assets/families/hostguest/WP6-G1.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G1 (cyclododecylammonium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (39 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G2",
+      "asset": "assets/families/hostguest/WP6-G2.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G2 (4-(1,1-dimethylpiperidin-1-ium-4-yl)-1,1-dimethyl-piperidin-1-ium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (46 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G3",
+      "asset": "assets/families/hostguest/WP6-G3.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G3 (norbornan-2-ylammonium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (22 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G4",
+      "asset": "assets/families/hostguest/WP6-G4.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G4 (trimethylsilylmethylammonium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (20 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G5",
+      "asset": "assets/families/hostguest/WP6-G5.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G5 ([3,5-dimethyl-7-(trimethylammonio)-1-adamantyl]-trimethyl-ammonium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (56 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G6",
+      "asset": "assets/families/hostguest/WP6-G6.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G6 (cyclooctylammonium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (27 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G7",
+      "asset": "assets/families/hostguest/WP6-G7.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G7 (cyclohexylammonium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (21 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G8",
+      "asset": "assets/families/hostguest/WP6-G8.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G8 (3-[benzyl(dimethyl)ammonio]propane-1-sulfonate) of the SAMPL9 WP6 host–guest challenge, one 3D structure (36 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G9",
+      "asset": "assets/families/hostguest/WP6-G9.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G9 ((3-hydroxy-1-adamantyl)ammonium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (30 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G10",
+      "asset": "assets/families/hostguest/WP6-G10.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G10 (trimethyl-[[4-[(trimethylammonio)methyl]phenyl]methyl]ammonium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (42 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G11",
+      "asset": "assets/families/hostguest/WP6-G11.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G11 (2,2-dimethylpropylammonium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (20 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G12",
+      "asset": "assets/families/hostguest/WP6-G12.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G12 (trimethyl-[6-(trimethylammonio)-2-adamantyl]ammonium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (50 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6-G13",
+      "asset": "assets/families/hostguest/WP6-G13.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is guest G13 (1-methyl-4-(1-methylpyridin-1-ium-4-yl)pyridin-1-ium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (28 atoms, angstrom); rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-BCD",
+      "asset": "assets/qa/BCD.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is one beta-cyclodextrin host conformer (147 atoms, angstrom) from the SAMPL9 host–guest challenge; rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-WP6",
+      "asset": "assets/qa/WP6.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is one WP6 (carboxylated pillar[6]arene) host conformer (150 atoms, angstrom) from the SAMPL9 host–guest challenge; rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    },
+    {
+      "molecule": "SAMPL9-DMBCD",
+      "asset": "assets/qa/DMBCD.xyz",
+      "domain": "chemistry",
+      "context": "The supplied XYZ is one heptakis(2,6-di-O-methyl)-beta-cyclodextrin host conformer (189 atoms, angstrom) from the SAMPL9 host–guest challenge; rows are counted from 1 after the two header lines.",
+      "source": "https://github.com/samplchallenges/SAMPL9",
+      "license": "SAMPL9 repository (MIT)"
+    }
+  ],
+  "assemblies": [
+    {
+      "asset": "assets/families/assemblies/1A34-capsid-CA.xyz",
+      "pdb": "1A34",
+      "source": "https://www.rcsb.org/structure/1A34",
+      "license": "wwPDB (CC0)",
+      "context": "The XYZ file lists the capsid-protein Cα atoms of the complete satellite tobacco mosaic virus capsid: the deposited copy of PDB 1A34 expanded with its 60 icosahedral operators (angstrom).",
+      "scope": "约简表示：衣壳蛋白 Cα × 60 个沉积的二十面体操作；RNA 未包含。",
+      "noun": "the satellite tobacco mosaic virus capsid",
+      "representation": "the capsid-protein Cα atoms (60 copies)",
+      "kind": "xyz",
+      "domain": "biology",
+      "subunits_only": false,
+      "pentamer_only": false
+    },
+    {
+      "asset": "assets/families/assemblies/1A34-subunit-centroids.txt",
+      "pdb": "1A34",
+      "source": "https://www.rcsb.org/structure/1A34",
+      "license": "wwPDB (CC0)",
+      "context": "The table lists the Cα centroid of each capsid-protein copy of the satellite tobacco mosaic virus capsid (PDB 1A34), generated with the 60 deposited icosahedral operators; columns are component, copy, x, y, z (angstrom).",
+      "scope": "约简表示：衣壳蛋白 Cα × 60 个沉积的二十面体操作；RNA 未包含。",
+      "capsid": true,
+      "component": "CP",
+      "noun": "",
+      "kind": "table",
+      "domain": "biology",
+      "subunits_only": true,
+      "pentamer_only": false
+    },
+    {
+      "asset": "assets/families/assemblies/1AON-residue-points.xyz",
+      "pdb": "1AON",
+      "source": "https://www.rcsb.org/structure/1AON",
+      "license": "wwPDB (CC0)",
+      "context": "The XYZ file lists one point per residue (protein Cα written as C) of the GroEL–GroES–(ADP)7 chaperonin complex, all 21 chains of PDB 1AON (angstrom).",
+      "scope": "约简表示：每残基一个点（Cα）；晶体结构 3.0 Å；不代表溶液中的构象柔性。",
+      "noun": "the GroEL–GroES chaperonin complex",
+      "representation": "one point per residue",
+      "kind": "xyz",
+      "domain": "biology",
+      "subunits_only": false,
+      "pentamer_only": false
+    },
+    {
+      "asset": "assets/families/assemblies/1CWP-chain-centroids.txt",
+      "pdb": "1CWP",
+      "source": "https://www.rcsb.org/structure/1CWP",
+      "license": "wwPDB (CC0)",
+      "context": "The table lists the Cα centroid of every capsid-protein chain of the cowpea chlorotic mottle virus capsid (PDB 1CWP), expanded to the whole particle with the 60 operators of its biological assembly; columns are component (CP), copy, x, y, z (angstrom).",
+      "scope": "约简表示：每条衣壳蛋白链一个 Cα 质心 × 60 个操作；RNA 未包含；晶体结构 3.2 Å。",
+      "component": "CP",
+      "capsid": true,
+      "noun": "the cowpea chlorotic mottle virus capsid",
+      "kind": "table",
+      "domain": "biology",
+      "subunits_only": false,
+      "pentamer_only": false
+    },
+    {
+      "asset": "assets/families/assemblies/1KX5-residue-points.xyz",
+      "pdb": "1KX5",
+      "source": "https://www.rcsb.org/structure/1KX5",
+      "license": "wwPDB (CC0)",
+      "context": "The XYZ file lists one point per residue (protein Cα as C, DNA phosphorus as P) of the nucleosome core particle NCP147, PDB 1KX5 (angstrom).",
+      "scope": "约简表示：每残基一个点（蛋白 Cα、DNA P）；晶体结构 1.94 Å；组蛋白尾部位置取沉积模型。",
+      "noun": "the nucleosome core particle",
+      "representation": "one point per residue",
+      "kind": "xyz",
+      "domain": "biology",
+      "subunits_only": false,
+      "pentamer_only": false
+    },
+    {
+      "asset": "assets/families/assemblies/1RYP-residue-points.xyz",
+      "pdb": "1RYP",
+      "source": "https://www.rcsb.org/structure/1RYP",
+      "license": "wwPDB (CC0)",
+      "context": "The XYZ file lists one point per residue (protein Cα written as C) of the yeast 20S proteasome, all 28 chains of PDB 1RYP (angstrom).",
+      "scope": "约简表示：每残基一个点（Cα）；晶体结构 1.9 Å；不代表溶液中的构象柔性。",
+      "noun": "the yeast 20S proteasome",
+      "representation": "one point per residue",
+      "kind": "xyz",
+      "domain": "biology",
+      "subunits_only": false,
+      "pentamer_only": false
+    },
+    {
+      "asset": "assets/families/assemblies/1STM-capsid-CA.xyz",
+      "pdb": "1STM",
+      "source": "https://www.rcsb.org/structure/1STM",
+      "license": "wwPDB (CC0)",
+      "context": "The XYZ file lists the capsid-protein Cα atoms of the complete satellite panicum mosaic virus capsid: the five deposited chains of PDB 1STM expanded with the 12 operators of its biological assembly (angstrom).",
+      "scope": "约简表示：衣壳蛋白 Cα，按生物组装体的对称操作展开；RNA 未包含。",
+      "noun": "the satellite panicum mosaic virus capsid",
+      "representation": "the capsid-protein Cα atoms (60 copies)",
+      "kind": "xyz",
+      "domain": "biology",
+      "subunits_only": false,
+      "pentamer_only": false
+    },
+    {
+      "asset": "assets/families/assemblies/1STM-subunit-centroids.txt",
+      "pdb": "1STM",
+      "source": "https://www.rcsb.org/structure/1STM",
+      "license": "wwPDB (CC0)",
+      "context": "The table lists the Cα centroid of each capsid-protein copy of the satellite panicum mosaic virus capsid (PDB 1STM), generated with the operators of its biological assembly; columns are component, copy, x, y, z (angstrom).",
+      "scope": "约简表示：衣壳蛋白 Cα，按生物组装体的对称操作展开；RNA 未包含。",
+      "capsid": true,
+      "component": "CP",
+      "noun": "",
+      "kind": "table",
+      "domain": "biology",
+      "subunits_only": true,
+      "pentamer_only": false
+    },
+    {
+      "asset": "assets/families/assemblies/1SVA-chain-centroids.txt",
+      "pdb": "1SVA",
+      "source": "https://www.rcsb.org/structure/1SVA",
+      "license": "wwPDB (CC0)",
+      "context": "The table lists the Cα centroid of every VP1 chain of the simian virus 40 capsid (PDB 1SVA), expanded to the whole particle with the 60 operators of its biological assembly; columns are component (VP1), copy, x, y, z (angstrom).",
+      "scope": "约简表示：每条 VP1 链一个 Cα 质心 × 60 个操作；VP2/VP3 与 DNA 未包含；晶体结构 3.1 Å。",
+      "component": "VP1",
+      "noun": "the simian virus 40 capsid",
+      "kind": "table",
+      "domain": "biology",
+      "subunits_only": false,
+      "pentamer_only": true
+    },
+    {
+      "asset": "assets/families/assemblies/2BUK-capsid-CA.xyz",
+      "pdb": "2BUK",
+      "source": "https://www.rcsb.org/structure/2BUK",
+      "license": "wwPDB (CC0)",
+      "context": "The XYZ file lists the capsid-protein Cα atoms of the complete satellite tobacco necrosis virus capsid: the deposited chain of PDB 2BUK expanded with the 60 operators of its biological assembly (angstrom).",
+      "scope": "约简表示：衣壳蛋白 Cα × 60 个生物组装体操作；RNA 与钙离子未包含。",
+      "noun": "the satellite tobacco necrosis virus capsid",
+      "kind": "xyz",
+      "domain": "biology",
+      "subunits_only": false,
+      "pentamer_only": false
+    },
+    {
+      "asset": "assets/families/assemblies/2BUK-subunit-centroids.txt",
+      "pdb": "2BUK",
+      "source": "https://www.rcsb.org/structure/2BUK",
+      "license": "wwPDB (CC0)",
+      "context": "The table lists the Cα centroid of each capsid-protein copy of the satellite tobacco necrosis virus capsid (PDB 2BUK), generated with the 60 operators of its biological assembly; columns are component, copy, x, y, z (angstrom).",
+      "scope": "约简表示：衣壳蛋白 Cα × 60 个生物组装体操作；RNA 与钙离子未包含。",
+      "capsid": true,
+      "component": "CP",
+      "noun": "the satellite tobacco necrosis virus capsid",
+      "kind": "table",
+      "domain": "biology",
+      "subunits_only": true,
+      "pentamer_only": false
+    },
+    {
+      "asset": "assets/families/assemblies/2FT1-chain-centroids.txt",
+      "pdb": "2FT1",
+      "source": "https://www.rcsb.org/structure/2FT1",
+      "license": "wwPDB (CC0)",
+      "context": "The table lists the Cα centroid of every gp5 chain of the mature bacteriophage HK97 head (Head II, PDB 2FT1), expanded to the whole particle with the 60 operators of its biological assembly; columns are component (gp5), copy, x, y, z (angstrom).",
+      "scope": "约简表示：每条 gp5 链一个 Cα 质心 × 60 个操作；门户顶点的局部不对称未体现；晶体结构 3.9 Å。",
+      "component": "gp5",
+      "capsid": true,
+      "noun": "the bacteriophage HK97 head",
+      "kind": "table",
+      "domain": "biology",
+      "subunits_only": false,
+      "pentamer_only": false
+    },
+    {
+      "asset": "assets/families/assemblies/6CGR-chain-centroids.txt",
+      "pdb": "6CGR",
+      "source": "https://www.rcsb.org/structure/6CGR",
+      "license": "wwPDB (CC0)",
+      "context": "The table lists the Cα centroid of every protein chain of the herpes simplex virus 1 capsid with tegument complexes (PDB 6CGR), expanded to the whole particle with the 60 deposited icosahedral operators; columns are component (VP5, VP26, VP19C, VP23, pUL17, pUL25, pUL36), copy, x, y, z (angstrom).",
+      "scope": "约简表示：每条蛋白链一个 Cα 质心 × 60 个沉积的二十面体操作；冷冻电镜 4.2 Å。",
+      "component": "VP5",
+      "capsid": true,
+      "noun": "the herpes simplex virus 1 capsid",
+      "kind": "table",
+      "domain": "biology",
+      "subunits_only": false,
+      "pentamer_only": false
+    },
+    {
+      "asset": "assets/families/assemblies/6NCL-chain-centroids.txt",
+      "pdb": "6NCL",
+      "source": "https://www.rcsb.org/structure/6NCL",
+      "license": "wwPDB (CC0)",
+      "context": "The table lists the Cα centroid of every protein chain of the Paramecium bursaria chlorella virus 1 (PBCV-1) capsid (PDB 6NCL), expanded to the whole particle with the 60 deposited icosahedral operators; columns are component (Vp54 = major capsid protein; P1–P14 = penton and minor capsid proteins), copy, x, y, z (angstrom).",
+      "scope": "约简表示：每条蛋白链一个 Cα 质心 × 60 个沉积的二十面体操作；冷冻电镜 3.5 Å（二十面体平均）。",
+      "component": "Vp54",
+      "capsid": true,
+      "noun": "the PBCV-1 capsid",
+      "kind": "table",
+      "domain": "biology",
+      "subunits_only": false,
+      "pentamer_only": false,
+      "capsomer_form": "trimer"
+    },
+    {
+      "asset": "assets/families/assemblies/7ARQ-nucleotide-points.txt",
+      "pdb": "7ARQ",
+      "source": "https://www.rcsb.org/structure/7ARQ",
+      "license": "wwPDB (CC0)",
+      "context": "The table lists the C1' atom of every nucleotide of a DNA-origami 16-helix bundle (PDB 7ARQ, cryo-EM pseudo-atomic model), labelled by strand type (scaffold or staple); columns are component, chain.residue, x, y, z (angstrom).",
+      "scope": "约简表示：每个核苷酸一个点（C1′）；冷冻电镜 10 Å 赝原子模型，只在螺旋束整体尺度上可靠，不用于碱基对细节。",
+      "component": "scaffold",
+      "noun": "a DNA-origami 16-helix bundle",
+      "representation": "the C1' atom of every nucleotide",
+      "kind": "table",
+      "domain": "chemistry",
+      "subunits_only": false,
+      "pentamer_only": false
     }
   ]
 }

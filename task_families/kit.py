@@ -194,6 +194,14 @@ def choose_numeric(correct, candidates, *, decimals, tolerance, min_separation, 
     return chosen, rejected, goal, best[2]
 
 
+def require_rank(spec, goal, rank):
+    """Enumerated specs may set strict_rank: when plausible mistakes lie mostly on one side of the answer, the nearest
+    reachable rank piles answers onto a few positions (enumeration probes runs/enum-v18, v24). Strict specs are rejected
+    instead, so accepted instances keep the batch's position balance."""
+    if spec.get('strict_rank') and rank != goal:
+        raise ValueError('Target answer rank not reachable with plausible distractors')
+
+
 def label_numeric(correct, chosen, *, decimals, unit, seed, context, correct_reason):
     """Options in ascending numeric order, so label position equals numeric rank;
     the balanced target rank therefore also balances answer positions."""

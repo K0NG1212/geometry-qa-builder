@@ -140,6 +140,8 @@ def build_guinier(spec, root, seed):
         points = kit.parse_xyz(text)[1]
     radius = rg(points) / 10                                    # nm
     q = spec['q_per_nm']
+    if round(q, 2) != q:     # the question prints q with 2 decimals; a finer q would make question and key disagree
+        raise ValueError('q must be stated exactly with 2 decimals')
     if q * radius > 1.3:
         raise ValueError('q*Rg above the Guinier validity limit')
     value = math.exp(-(q * radius) ** 2 / 3)
@@ -162,6 +164,7 @@ def build_guinier(spec, root, seed):
     chosen, rejected, goal, rank = kit.choose_numeric(value, cands, decimals=decimals, tolerance=tol, min_separation=sep, seed=seed,
                                                       context=spec['id'], lower=0, upper=1, target=spec.get('target_position'),
                                                       distractor_separation='0.010')
+    kit.require_rank(spec, goal, rank)
     options, audit = kit.label_numeric(value, chosen, decimals=decimals, unit='', seed=seed, context=spec['id'],
                                        correct_reason='等权 Rg = %.4f nm，qRg = %.3f ≤ 1.3，I/I0 = exp(−q²Rg²/3)。' % (radius, q * radius))
     key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=sep, unit='',

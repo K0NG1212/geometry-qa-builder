@@ -11,7 +11,8 @@ import json
 import math
 from .common import need, find, read_xyz, verify_hashes, LABELS, vec, dot, cross
 
-RADII = {'H': 0.31, 'C': 0.76, 'N': 0.71, 'O': 0.66, 'S': 1.05, 'Cl': 1.02, 'P': 1.07, 'F': 0.57}
+RADII = {'H': 0.31, 'C': 0.76, 'N': 0.71, 'O': 0.66, 'S': 1.05, 'Cl': 1.02, 'P': 1.07, 'F': 0.57,
+         'Si': 1.11, 'Br': 1.20, 'I': 1.39}     # covalent radii, Cordero et al., Dalton Trans. 2008
 
 
 def floats(atoms):

@@ -87,5 +87,36 @@ class PublishedCapacityTests(unittest.TestCase):
             self.assertLessEqual(r['proposals'], counts[r['family']])
 
 
+class FamilyHardeningTests(unittest.TestCase):
+    """Problems the enumeration probes found (2026-10-04) stay fixed."""
+
+    def test_strict_rank_rejects_unreachable_targets(self):
+        with self.assertRaises(ValueError):
+            kit.require_rank(dict(strict_rank=True), 4, 2)
+        kit.require_rank(dict(strict_rank=True), 3, 3)
+        kit.require_rank({}, 4, 2)                                     # hand-written specs keep the nearest-rank fallback
+
+    def test_scattering_q_must_be_stated_exactly(self):
+        spec = [s for s in PROPOSALS['guinier_intensity']][0]
+        with self.assertRaises(ValueError):
+            FAMILIES['guinier_intensity']['build'](dict(spec, q_per_nm=spec['q_per_nm'] + 0.0012, strict_rank=False), ROOT, 'q-test')
+
+    def test_capsid_questions_use_the_major_shell_protein_only(self):
+        comps = {(s['assembly'], s['component']) for s in PROPOSALS['capsid_architecture']}
+        self.assertIn(('6CGR-T', 'VP5'), comps)
+        self.assertNotIn(('6CGR-T', 'VP26'), comps)                     # 900 hexon-only copies would give a false T = 15
+        self.assertFalse(any(s['assembly'].startswith('1SVA') for s in PROPOSALS['capsid_architecture']))   # SV40: pentamers only
+
+    def test_checkers_know_silicon(self):
+        from checkers import families as fam, migrated
+        self.assertIn('Si', fam.RADII)
+        self.assertIn('Si', migrated.RADII)
+
+    def test_molecule_bonds_skip_hydrogen_and_name_connectivity(self):
+        spec = PROPOSALS['named_bond_distance'][0]
+        self.assertNotIn('H', [a['element'] for a in spec['atoms']])
+        self.assertIn('is bonded to', spec['bond'])
+
+
 if __name__ == '__main__':
     unittest.main()

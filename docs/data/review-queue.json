@@ -1,6 +1,6 @@
 {
  "kind": "review_queue",
- "date": "2026-10-03",
+ "date": "2026-10-04",
  "summary": {
   "scope": "selection",
   "units_all_active": 64,
@@ -86,11 +86,11 @@
    "checker_function": "assembly_extent",
    "bindings": {
     "L1": {
-     "registry_row": "87bfd5144bc900372a509f192771c9b908ef59b9cb8d54cf4fb2b65f35c3ad33",
-     "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
+     "registry_row": "a4e31c877bb0f0feb54a9322111f109d3d74a62438fcfb4758df924c84207be5",
+     "task_families/assembly.py": "5cbb7b6b4a45f6797fe9d4f6cdd31e4b7df60da7812d4ce5a0aba6ce248c77e6"
     },
     "L2": {
-     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
+     "checkers/migrated.py": "f1cf6f20bca7ad81fd3b5ee5c6749084a090a32dd40b0a394768995a6e3a42eb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -115,9 +115,11 @@
       "largest_axis_span",
       "sphere_radius_from_rg",
       "single_axis_rms",
-      "wrong_selection"
+      "wrong_selection",
+      "sphere_diameter_from_rg",
+      "rg_from_dmax_solid_sphere"
      ],
-     "four_choice_validation": "与正确值 > 0.3 nm；升序排列，秩按批次轮换（加入偏小的错误机制，避免正确项总是最小）。",
+     "four_choice_validation": "与正确值 > 0.3 nm；升序排列，秩按批次轮换（加入偏小的错误机制，避免正确项总是最小）。 v0.3.0：加入两个方向的实心球换算；空心外壳上其他尺寸估计常与 Dmax 重合而被拒（探针 runs/enum-v23）。枚举的回转半径题设 strict_rank。",
      "principle": "Dmax = max‖ri−rj‖；Rg = √(Σ‖ri−c‖²/N)。",
      "validation": "两种实现一致；独立检查器用成对恒等式复核。",
      "limits": "邻近亚基间距（约 5 nm）属于 1–10 nm 格，不在本题型中使用。",
@@ -130,17 +132,17 @@
       "options": [
        {
         "label": "A",
-        "value": "27.52",
+        "value": "21.32",
         "unit": "nm"
        },
        {
         "label": "B",
-        "value": "42.45",
+        "value": "42.92",
         "unit": "nm"
        },
        {
         "label": "C",
-        "value": "42.92",
+        "value": "55.04",
         "unit": "nm"
        },
        {
@@ -152,22 +154,22 @@
       "inputs": [
        "1SVA-chain-centroids.txt"
       ],
-      "correct_label": "C",
+      "correct_label": "B",
       "audit": [
        {
         "label": "A",
-        "rule": "sphere_radius_from_rg",
-        "reason": "按实心球关系 R = √(5/3)·Rg 换成半径。"
+        "rule": "mean_radius",
+        "reason": "用中心距的算术平均。"
        },
        {
         "label": "B",
-        "rule": "largest_axis_span",
-        "reason": "只取单一坐标轴上的最大跨度。"
+        "rule": "correct",
+        "reason": "按定义在所选点上计算（numpy 分块搜索 + Decimal 复核）。"
        },
        {
         "label": "C",
-        "rule": "correct",
-        "reason": "按定义在所选点上计算（numpy 分块搜索 + Decimal 复核）。"
+        "rule": "sphere_diameter_from_rg",
+        "reason": "按实心球关系由回转半径推直径 D = 2√(5/3)·Rg（空心外壳会高估）。"
        },
        {
         "label": "D",
@@ -182,12 +184,12 @@
       "options": [
        {
         "label": "A",
-        "value": "36.24",
+        "value": "16.21",
         "unit": "nm"
        },
        {
         "label": "B",
-        "value": "57.06",
+        "value": "23.19",
         "unit": "nm"
        },
        {
@@ -208,13 +210,13 @@
       "audit": [
        {
         "label": "A",
-        "rule": "sphere_radius_from_rg",
-        "reason": "按实心球关系 R = √(5/3)·Rg 换成半径。"
+        "rule": "single_axis_rms",
+        "reason": "只算了一个坐标轴方向的均方根离散度，而不是三维距离。"
        },
        {
         "label": "B",
-        "rule": "largest_axis_span",
-        "reason": "只取单一坐标轴上的最大跨度。"
+        "rule": "rg_from_dmax_solid_sphere",
+        "reason": "按实心球关系由最大尺寸估算回转半径 Rg = √(3/5)·Dmax/2（空心外壳会低估）。"
        },
        {
         "label": "C",
@@ -241,11 +243,11 @@
    "checker_function": "assembly_rg",
    "bindings": {
     "L1": {
-     "registry_row": "87bfd5144bc900372a509f192771c9b908ef59b9cb8d54cf4fb2b65f35c3ad33",
-     "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
+     "registry_row": "a4e31c877bb0f0feb54a9322111f109d3d74a62438fcfb4758df924c84207be5",
+     "task_families/assembly.py": "5cbb7b6b4a45f6797fe9d4f6cdd31e4b7df60da7812d4ce5a0aba6ce248c77e6"
     },
     "L2": {
-     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
+     "checkers/migrated.py": "f1cf6f20bca7ad81fd3b5ee5c6749084a090a32dd40b0a394768995a6e3a42eb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -270,9 +272,11 @@
       "largest_axis_span",
       "sphere_radius_from_rg",
       "single_axis_rms",
-      "wrong_selection"
+      "wrong_selection",
+      "sphere_diameter_from_rg",
+      "rg_from_dmax_solid_sphere"
      ],
-     "four_choice_validation": "与正确值 > 0.3 nm；升序排列，秩按批次轮换（加入偏小的错误机制，避免正确项总是最小）。",
+     "four_choice_validation": "与正确值 > 0.3 nm；升序排列，秩按批次轮换（加入偏小的错误机制，避免正确项总是最小）。 v0.3.0：加入两个方向的实心球换算；空心外壳上其他尺寸估计常与 Dmax 重合而被拒（探针 runs/enum-v23）。枚举的回转半径题设 strict_rank。",
      "principle": "Dmax = max‖ri−rj‖；Rg = √(Σ‖ri−c‖²/N)。",
      "validation": "两种实现一致；独立检查器用成对恒等式复核。",
      "limits": "邻近亚基间距（约 5 nm）属于 1–10 nm 格，不在本题型中使用。",
@@ -342,12 +346,12 @@
        },
        {
         "label": "B",
-        "value": "7.85",
+        "value": "7.53",
         "unit": "nm"
        },
        {
         "label": "C",
-        "value": "19.44",
+        "value": "7.85",
         "unit": "nm"
        },
        {
@@ -359,7 +363,7 @@
       "inputs": [
        "2BUK-capsid-CA.xyz"
       ],
-      "correct_label": "B",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
@@ -368,13 +372,13 @@
        },
        {
         "label": "B",
-        "rule": "correct",
-        "reason": "按定义在所选点上计算（numpy 分块搜索 + Decimal 复核）。"
+        "rule": "rg_from_dmax_solid_sphere",
+        "reason": "按实心球关系由最大尺寸估算回转半径 Rg = √(3/5)·Dmax/2（空心外壳会低估）。"
        },
        {
         "label": "C",
-        "rule": "centroid_diameter",
-        "reason": "用两倍最大中心距代替最大点对间距。"
+        "rule": "correct",
+        "reason": "按定义在所选点上计算（numpy 分块搜索 + Decimal 复核）。"
        },
        {
         "label": "D",
@@ -397,10 +401,10 @@
    "bindings": {
     "L1": {
      "registry_row": "09d756ae0abb6a83595dcb8446ef793340b12db85652c1c14182f34b2b4e36d4",
-     "task_families/local_geometry.py": "5cf504a1a500d9c0dfabcf0d90f0d1d9b5d5de73770b52be7286af634a496635"
+     "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
+     "checkers/families.py": "f68d5692f67e431dd0faed1c2f02f47b443d1645ab9be93d31c24522ccf6e822",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -856,10 +860,10 @@
    "bindings": {
     "L1": {
      "registry_row": "9dffa0f771eabb6fd3ed55d7320337d63a62ec0a6949d920752398a3b3d1c3a1",
-     "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
+     "task_families/assembly.py": "5cbb7b6b4a45f6797fe9d4f6cdd31e4b7df60da7812d4ce5a0aba6ce248c77e6"
     },
     "L2": {
-     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
+     "checkers/migrated.py": "f1cf6f20bca7ad81fd3b5ee5c6749084a090a32dd40b0a394768995a6e3a42eb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1483,7 +1487,7 @@
      "task_families/conformer_design.py": "c1df20bcb3ca7c59938dcfc28012c37beca3d235e0181495fb2b6d9e9d54a211"
     },
     "L2": {
-     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
+     "checkers/families.py": "f68d5692f67e431dd0faed1c2f02f47b443d1645ab9be93d31c24522ccf6e822",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1635,7 +1639,7 @@
      "task_families/crystal.py": "7c8a49460aadc9cb692081d49c585fe0180b6adca63ab5ccb5db414df9771502"
     },
     "L2": {
-     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
+     "checkers/migrated.py": "f1cf6f20bca7ad81fd3b5ee5c6749084a090a32dd40b0a394768995a6e3a42eb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1778,11 +1782,11 @@
    "checker_function": "debye_intensity",
    "bindings": {
     "L1": {
-     "registry_row": "7304530e6eb26a7bd8f7b039c34fc76740aee58a3f7e0be72f3098c27b144f46",
-     "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
+     "registry_row": "daa3c3ac3dec267869e4c95f7ed1bfdc8fc6b4fc96edeea11c0fa94046b61ffc",
+     "task_families/assembly.py": "5cbb7b6b4a45f6797fe9d4f6cdd31e4b7df60da7812d4ce5a0aba6ce248c77e6"
     },
     "L2": {
-     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
+     "checkers/migrated.py": "f1cf6f20bca7ad81fd3b5ee5c6749084a090a32dd40b0a394768995a6e3a42eb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1810,9 +1814,12 @@
       "s_convention",
       "q_divided_by_ten",
       "sphere_radius_equals_rg",
-      "guinier_single_axis_spread"
+      "guinier_single_axis_spread",
+      "guinier_missing_one_third",
+      "guinier_half_dmax_as_rg",
+      "intensity_squared"
      ],
-     "four_choice_validation": "与正确值 > 0.02；升序排列，秩按批次轮换。",
+     "four_choice_validation": "与正确值 > 0.02；升序排列，秩按批次轮换。 v0.3.0：加入两种给出更小强度的 Guinier 误用；之前探针中正确项在 30/36 道是最小值（runs/enum-v26）。q 必须恰为题干显示的三位小数，否则拒绝。",
      "principle": "I(q) = Σ_ij sin(q r_ij)/(q r_ij)（Debye 1915），取向平均的精确结果。",
      "validation": "独立检查器不用 Debye 公式，而是对方向直接做高阶 Gauss–Legendre × 均匀 φ 求积平均 |Σ exp(iq·r)|²。",
      "limits": "等权点散射体只刻画形状；真实 SAXS 还需形状因子、溶剂对比与涨落。",
@@ -1825,17 +1832,17 @@
       "options": [
        {
         "label": "A",
-        "value": "0.248",
+        "value": "0.027",
         "unit": ""
        },
        {
         "label": "B",
-        "value": "0.300",
+        "value": "0.248",
         "unit": ""
        },
        {
         "label": "C",
-        "value": "0.498",
+        "value": "0.300",
         "unit": ""
        },
        {
@@ -1847,22 +1854,22 @@
       "inputs": [
        "1CWP-chain-centroids.txt"
       ],
-      "correct_label": "A",
+      "correct_label": "B",
       "audit": [
        {
         "label": "A",
+        "rule": "guinier_missing_one_third",
+        "reason": "用 Guinier 近似且指数中漏掉 1/3（e^{−q²Rg²}）。"
+       },
+       {
+        "label": "B",
         "rule": "correct",
         "reason": "Debye 公式对全部点对取向平均：I/I0 = [N + 2Σ sin(qr)/(qr)]/N²，N = 180；qRg = 1.90。"
        },
        {
-        "label": "B",
+        "label": "C",
         "rule": "guinier_outside_range",
         "reason": "在 qRg = 1.90 > 1.3 处仍用 Guinier 近似。"
-       },
-       {
-        "label": "C",
-        "rule": "amplitude_not_intensity",
-        "reason": "报告了平方根（振幅比）而非强度比。"
        },
        {
         "label": "D",
@@ -1877,49 +1884,49 @@
       "options": [
        {
         "label": "A",
-        "value": "0.257",
+        "value": "0.029",
         "unit": ""
        },
        {
         "label": "B",
-        "value": "0.308",
+        "value": "0.066",
         "unit": ""
        },
        {
         "label": "C",
-        "value": "0.507",
+        "value": "0.257",
         "unit": ""
        },
        {
         "label": "D",
-        "value": "0.675",
+        "value": "0.308",
         "unit": ""
        }
       ],
       "inputs": [
        "6CGR-chain-centroids.txt"
       ],
-      "correct_label": "A",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
+        "rule": "guinier_missing_one_third",
+        "reason": "用 Guinier 近似且指数中漏掉 1/3（e^{−q²Rg²}）。"
+       },
+       {
+        "label": "B",
+        "rule": "intensity_squared",
+        "reason": "把算出的强度当成振幅又平方了一次（与“振幅当强度”方向相反的混淆）。"
+       },
+       {
+        "label": "C",
         "rule": "correct",
         "reason": "Debye 公式对全部点对取向平均：I/I0 = [N + 2Σ sin(qr)/(qr)]/N²，N = 960；qRg = 1.88。"
        },
        {
-        "label": "B",
+        "label": "D",
         "rule": "guinier_outside_range",
         "reason": "在 qRg = 1.88 > 1.3 处仍用 Guinier 近似。"
-       },
-       {
-        "label": "C",
-        "rule": "amplitude_not_intensity",
-        "reason": "报告了平方根（振幅比）而非强度比。"
-       },
-       {
-        "label": "D",
-        "rule": "guinier_single_axis_spread",
-        "reason": "用 Guinier 近似，且把单一坐标轴的均方根离散度当作 Rg。"
        }
       ]
      }
@@ -2229,11 +2236,11 @@
    "checker_function": "extent",
    "bindings": {
     "L1": {
-     "registry_row": "fc6968d9c459500472d5c357c2ea60d3fb4bc5ef08868d92a0ab82d625e3a6f5",
-     "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f"
+     "registry_row": "1b682f60d135757ee9f8b56a3b34c672a379549d1831839b05deb2f93088754d",
+     "task_families/extent_choice.py": "a034947380088c9a78201cc67a5b67175e295ab201e543018add595a601a0973"
     },
     "L2": {
-     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
+     "checkers/families.py": "f68d5692f67e431dd0faed1c2f02f47b443d1645ab9be93d31c24522ccf6e822",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2261,7 +2268,7 @@
       "largest_axis_span",
       "radius_as_extent"
      ],
-     "four_choice_validation": "extent_choice_v2：正确值秩按批次平衡，数值按升序排列；与正确值间隔 > 0.05 Å。",
+     "four_choice_validation": "extent_choice_v2：正确值秩按批次平衡，数值按升序排列；与正确值间隔 > 0.05 Å。 v0.3.0：radius_as_extent 迷惑程度调为 2（混淆两种尺寸量），否则答案永远不能在 D（探针 runs/enum-v20）。",
      "principle": "Dmax = max(i<j) ||ri-rj||。使用实际给定点集，不增加周期映像。",
      "validation": "逐对欧氏距离最大值；另行读取原始十进制坐标复算。原题给出的数值另外比较，不用于生成新答案。",
      "limits": "仅有限点集范围，不等于晶粒尺寸或孔径；周期晶胞内点集的值依赖表示。并列极值不影响单数值评分。",
@@ -2274,49 +2281,49 @@
       "options": [
        {
         "label": "A",
-        "value": "14.1390",
+        "value": "6.4797",
         "unit": "angstrom"
        },
        {
         "label": "B",
-        "value": "18.7763",
+        "value": "14.1390",
         "unit": "angstrom"
        },
        {
         "label": "C",
-        "value": "19.5698",
+        "value": "18.7763",
         "unit": "angstrom"
        },
        {
         "label": "D",
-        "value": "23.7689",
+        "value": "19.5698",
         "unit": "angstrom"
        }
       ],
       "inputs": [
        "CNP007-1AA5-chainA.xyz"
       ],
-      "correct_label": "C",
+      "correct_label": "D",
       "audit": [
        {
         "label": "A",
+        "rule": "radius_as_extent",
+        "reason": "把等权回转半径误当最大点对间距（混淆两种尺寸量）。"
+       },
+       {
+        "label": "B",
         "rule": "largest_axis_span",
         "reason": "只取单一坐标轴上的最大跨度，忽略斜向点对。"
        },
        {
-        "label": "B",
+        "label": "C",
         "rule": "heavy_atoms_only",
         "reason": "忽略氢原子，只在重原子中找最大间距；题目要求全部点。"
        },
        {
-        "label": "C",
+        "label": "D",
         "rule": "correct",
         "reason": "template_engine 定义计算，并以十进制实现复核。"
-       },
-       {
-        "label": "D",
-        "rule": "bounding_box_diagonal",
-        "reason": "用坐标轴对齐包围盒对角线代替实际最大点对间距（前者 ≥ 后者）。"
        }
       ]
      },
@@ -2389,7 +2396,7 @@
      "task_families/crystal.py": "7c8a49460aadc9cb692081d49c585fe0180b6adca63ab5ccb5db414df9771502"
     },
     "L2": {
-     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
+     "checkers/migrated.py": "f1cf6f20bca7ad81fd3b5ee5c6749084a090a32dd40b0a394768995a6e3a42eb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2548,7 +2555,7 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af"
     },
     "L2": {
-     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
+     "checkers/families.py": "f68d5692f67e431dd0faed1c2f02f47b443d1645ab9be93d31c24522ccf6e822",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2846,11 +2853,11 @@
    "checker_function": "fret_efficiency",
    "bindings": {
     "L1": {
-     "registry_row": "01bc87ed04578ed2d8405aee91c3f574f731611395a223ef38f479db1b0b10ab",
-     "task_families/scattering.py": "5964568c0efa20cd2b6eed6f05e67ad68c0a7a6771660d658905f8c9d60dd302"
+     "registry_row": "5c6c1ff9d1de2befa305e12501661b48983e7ea8bc35702c229f86780a3001b2",
+     "task_families/scattering.py": "546ac707ebadea8dd322cba363f52b8160da770f71fe48ae0afb6d835ee489c6"
     },
     "L2": {
-     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
+     "checkers/migrated.py": "f1cf6f20bca7ad81fd3b5ee5c6749084a090a32dd40b0a394768995a6e3a42eb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2880,7 +2887,7 @@
       "amplitude_not_intensity",
       "unit_mixups"
      ],
-     "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。FRET 可由题设 R0 列表中选取使目标秩可达的值（某些秩只在 E < 0.5 或 E > 0.5 时可达；枚举探针发现只用固定 R0 时正确项总是最大）。",
+     "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。FRET 可由题设 R0 列表中选取使目标秩可达的值（某些秩只在 E < 0.5 或 E > 0.5 时可达；枚举探针发现只用固定 R0 时正确项总是最大）。 Guinier：q 必须恰为题干显示的两位小数（之前更精细的 q 会使题干与答案不一致）；枚举实例设 strict_rank。",
      "principle": "Guinier：qRg ≲ 1.3；FRET：E = 1/(1+(r/R0)^6)。",
      "validation": "独立检查器（checkers/migrated.py）：FRET 从题干点名的原子取坐标、从题干读 R0，按直线距离重算效率；Guinier 用成对距离恒等式求等权 Rg（出题端用质心公式），核对 qRg ≤ 1.3，并核对点集与已发布资产或源 PDB 一致。",
      "limits": "FRET 为点偶极模型，R0 为题设值，不含染料连接臂与取向分布；Guinier 只在小 q 区间成立，等权点散射体不等于电子密度。",
@@ -3004,11 +3011,11 @@
    "checker_function": "guinier_intensity",
    "bindings": {
     "L1": {
-     "registry_row": "01bc87ed04578ed2d8405aee91c3f574f731611395a223ef38f479db1b0b10ab",
-     "task_families/scattering.py": "5964568c0efa20cd2b6eed6f05e67ad68c0a7a6771660d658905f8c9d60dd302"
+     "registry_row": "5c6c1ff9d1de2befa305e12501661b48983e7ea8bc35702c229f86780a3001b2",
+     "task_families/scattering.py": "546ac707ebadea8dd322cba363f52b8160da770f71fe48ae0afb6d835ee489c6"
     },
     "L2": {
-     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
+     "checkers/migrated.py": "f1cf6f20bca7ad81fd3b5ee5c6749084a090a32dd40b0a394768995a6e3a42eb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3038,7 +3045,7 @@
       "amplitude_not_intensity",
       "unit_mixups"
      ],
-     "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。FRET 可由题设 R0 列表中选取使目标秩可达的值（某些秩只在 E < 0.5 或 E > 0.5 时可达；枚举探针发现只用固定 R0 时正确项总是最大）。",
+     "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。FRET 可由题设 R0 列表中选取使目标秩可达的值（某些秩只在 E < 0.5 或 E > 0.5 时可达；枚举探针发现只用固定 R0 时正确项总是最大）。 Guinier：q 必须恰为题干显示的两位小数（之前更精细的 q 会使题干与答案不一致）；枚举实例设 strict_rank。",
      "principle": "Guinier：qRg ≲ 1.3；FRET：E = 1/(1+(r/R0)^6)。",
      "validation": "独立检查器（checkers/migrated.py）：FRET 从题干点名的原子取坐标、从题干读 R0，按直线距离重算效率；Guinier 用成对距离恒等式求等权 Rg（出题端用质心公式），核对 qRg ≤ 1.3，并核对点集与已发布资产或源 PDB 一致。",
      "limits": "FRET 为点偶极模型，R0 为题设值，不含染料连接臂与取向分布；Guinier 只在小 q 区间成立，等权点散射体不等于电子密度。",
@@ -3166,7 +3173,7 @@
      "task_families/extinction.py": "f9721343ded2f4de07dfaf787d4b59f4322cbaf782248414430677ddfad71e1f"
     },
     "L2": {
-     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
+     "checkers/families.py": "f68d5692f67e431dd0faed1c2f02f47b443d1645ab9be93d31c24522ccf6e822",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3784,10 +3791,10 @@
    "bindings": {
     "L1": {
      "registry_row": "9190118035dde5c12f26ecbe4eec28a5d5b28892dd66ccbe80933407b97f1ac8",
-     "task_families/local_geometry.py": "5cf504a1a500d9c0dfabcf0d90f0d1d9b5d5de73770b52be7286af634a496635"
+     "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
+     "checkers/families.py": "f68d5692f67e431dd0faed1c2f02f47b443d1645ab9be93d31c24522ccf6e822",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3937,11 +3944,11 @@
    "checker_function": "named_bond_distance",
    "bindings": {
     "L1": {
-     "registry_row": "d40833fa5c27fc521890c33c0b9041332f04407d460c4034e534af60a39921ad",
-     "task_families/local_geometry.py": "5cf504a1a500d9c0dfabcf0d90f0d1d9b5d5de73770b52be7286af634a496635"
+     "registry_row": "45cad5b3bd4feae141f03f72d04e5cbce21453d3ffd2b390a625dfa50a16a74d",
+     "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
+     "checkers/migrated.py": "f1cf6f20bca7ad81fd3b5ee5c6749084a090a32dd40b0a394768995a6e3a42eb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3965,9 +3972,10 @@
       "typical_value",
       "covalent_radii_sum",
       "nearest_nonbonded_same_element",
-      "bohr_units"
+      "bohr_units",
+      "one_bond_too_far"
      ],
-     "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。",
+     "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。 2026-10-04 枚举探针：新增“多数了一根键”（1–3 距离）；枚举实例设 strict_rank，目标答案位置不可达时拒绝出题而不是退到最近位置。",
      "principle": "两原子笛卡尔坐标的欧氏距离；用共价半径规则确认所问两原子确实成键。",
      "validation": "独立检查器（checkers/migrated.py:named_bond_distance）按题干点名的原子（PDB 原子名或 XYZ 行号）从附件取坐标，用 Decimal 重算距离，并用自己的共价半径规则确认成键；PDB 片段须与源文件逐字一致，二硫键题核对 SSBOND 记录，XYZ 核对元素与源文件哈希。",
      "limits": "QNP002–006 需说明元素对选择的化学意义（待小修）。",
@@ -3980,7 +3988,7 @@
       "options": [
        {
         "label": "A",
-        "value": "1.820",
+        "value": "1.821",
         "unit": "angstrom"
        },
        {
@@ -3995,7 +4003,7 @@
        },
        {
         "label": "D",
-        "value": "3.837",
+        "value": "3.045",
         "unit": "angstrom"
        }
       ],
@@ -4006,8 +4014,8 @@
       "audit": [
        {
         "label": "A",
-        "rule": "other_bond:SG(Cys6)-CB(Cys6)",
-        "reason": "量成 SG(Cys6) 的另一根键（到 CB(Cys6)）。"
+        "rule": "other_bond:SG(Cys127)-CB(Cys127)",
+        "reason": "量成 SG(Cys127) 的另一根键（到 CB(Cys127)）。"
        },
        {
         "label": "B",
@@ -4021,8 +4029,8 @@
        },
        {
         "label": "D",
-        "rule": "bohr_units",
-        "reason": "把埃换算成玻尔半径后报告。"
+        "rule": "one_bond_too_far:SG(Cys127)-CB(Cys6)",
+        "reason": "多数了一根键：量成 SG(Cys127) 到 SG(Cys6) 之外的 CB(Cys6) 的距离。"
        }
       ]
      },
@@ -4047,7 +4055,7 @@
        },
        {
         "label": "D",
-        "value": "2.244",
+        "value": "2.289",
         "unit": "angstrom"
        }
       ],
@@ -4073,8 +4081,8 @@
        },
        {
         "label": "D",
-        "rule": "bohr_units",
-        "reason": "把埃换算成玻尔半径后报告。"
+        "rule": "one_bond_too_far:N6-C4",
+        "reason": "多数了一根键：量成 N6 到 N5 之外的 C4 的距离。"
        }
       ]
      }
@@ -4874,11 +4882,11 @@
    "checker_function": "scattering_q_design",
    "bindings": {
     "L1": {
-     "registry_row": "e7f61acdd9567ad18170ce6de9826add33ffabadf28c5708482e60061178f3d3",
-     "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
+     "registry_row": "b6cf80ee1c743e0e7f97a12419f33675d12a2aa3958dd7de32f61683320983d5",
+     "task_families/assembly.py": "5cbb7b6b4a45f6797fe9d4f6cdd31e4b7df60da7812d4ce5a0aba6ce248c77e6"
     },
     "L2": {
-     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
+     "checkers/migrated.py": "f1cf6f20bca7ad81fd3b5ee5c6749084a090a32dd40b0a394768995a6e3a42eb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -4906,9 +4914,11 @@
       "dmax_sphere_root",
       "reported_per_angstrom",
       "sphere_radius_equals_rg_root",
-      "guinier_single_axis_root"
+      "guinier_single_axis_root",
+      "guinier_missing_one_third_root",
+      "guinier_half_dmax_root"
      ],
-     "four_choice_validation": "与正确值相差 > 5%·q*；升序排列，秩按批次轮换。",
+     "four_choice_validation": "与正确值相差 > 5%·q*；升序排列，秩按批次轮换。 v0.3.0：同上两种 Guinier 误用（解出更小的 q）；之前探针答案多在 B。",
      "principle": "设计 = 推断的逆问题：选测量条件使可观测量达到目标。",
      "validation": "独立检查器用求积取向平均，自行以 0.013/Rg 步进并用 Illinois 试位法求根。",
      "limits": "这是测量条件设计（选 q），不是改变结构的分子设计；是否计为“设计题”需教授审定。",
@@ -4973,7 +4983,7 @@
       "options": [
        {
         "label": "A",
-        "value": "0.327",
+        "value": "0.213",
         "unit": "nm^-1"
        },
        {
@@ -4983,7 +4993,7 @@
        },
        {
         "label": "C",
-        "value": "0.465",
+        "value": "0.542",
         "unit": "nm^-1"
        },
        {
@@ -4999,8 +5009,8 @@
       "audit": [
        {
         "label": "A",
-        "rule": "single_orientation_root",
-        "reason": "只沿 x 轴一个方向计算强度，没有取向平均。"
+        "rule": "guinier_missing_one_third_root",
+        "reason": "用 Guinier 近似求 q，且指数中漏掉 1/3。"
        },
        {
         "label": "B",
@@ -5009,8 +5019,8 @@
        },
        {
         "label": "C",
-        "rule": "sphere_radius_equals_rg_root",
-        "reason": "把回转半径直接当作均匀球的半径求交点（球偏小，q 偏大）。"
+        "rule": "target_as_amplitude",
+        "reason": "把目标值当作振幅比（强度的平方根）求交点。"
        },
        {
         "label": "D",
@@ -5033,10 +5043,10 @@
    "bindings": {
     "L1": {
      "registry_row": "05d367ad84727c361f99c3d9984b26328d5d029d88ae39cb63071c0ee0ffceee",
-     "task_families/local_geometry.py": "5cf504a1a500d9c0dfabcf0d90f0d1d9b5d5de73770b52be7286af634a496635"
+     "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
+     "checkers/migrated.py": "f1cf6f20bca7ad81fd3b5ee5c6749084a090a32dd40b0a394768995a6e3a42eb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -5180,7 +5190,7 @@
      "task_families/stereo.py": "6b3b6af008d12b295cd89020110e1259d4941ec02424273e8f5f758e8401c370"
     },
     "L2": {
-     "checkers/stereo.py": "be53347ac6796f75bf8cf91803bb33cdc339c29fed553988bd54a0850bd5dc25",
+     "checkers/stereo.py": "70f02daf0cae0c92a6c79fc118cc08334330e93287e688931a653bd927489625",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -5332,7 +5342,7 @@
      "task_families/stereo.py": "6b3b6af008d12b295cd89020110e1259d4941ec02424273e8f5f758e8401c370"
     },
     "L2": {
-     "checkers/stereo.py": "be53347ac6796f75bf8cf91803bb33cdc339c29fed553988bd54a0850bd5dc25",
+     "checkers/stereo.py": "70f02daf0cae0c92a6c79fc118cc08334330e93287e688931a653bd927489625",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -5478,7 +5488,7 @@
      "task_families/stereo.py": "6b3b6af008d12b295cd89020110e1259d4941ec02424273e8f5f758e8401c370"
     },
     "L2": {
-     "checkers/stereo.py": "be53347ac6796f75bf8cf91803bb33cdc339c29fed553988bd54a0850bd5dc25",
+     "checkers/stereo.py": "70f02daf0cae0c92a6c79fc118cc08334330e93287e688931a653bd927489625",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -6672,11 +6682,11 @@
    ],
    "bindings": {
     "L1": {
-     "registry_row": "d40833fa5c27fc521890c33c0b9041332f04407d460c4034e534af60a39921ad"
+     "registry_row": "45cad5b3bd4feae141f03f72d04e5cbce21453d3ffd2b390a625dfa50a16a74d"
     },
     "L2": {
-     "task_families/local_geometry.py": "5cf504a1a500d9c0dfabcf0d90f0d1d9b5d5de73770b52be7286af634a496635",
-     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4"
+     "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2",
+     "checkers/migrated.py": "f1cf6f20bca7ad81fd3b5ee5c6749084a090a32dd40b0a394768995a6e3a42eb"
     }
    },
    "L1": "pending",
@@ -6699,9 +6709,10 @@
       "typical_value",
       "covalent_radii_sum",
       "nearest_nonbonded_same_element",
-      "bohr_units"
+      "bohr_units",
+      "one_bond_too_far"
      ],
-     "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。",
+     "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。 2026-10-04 枚举探针：新增“多数了一根键”（1–3 距离）；枚举实例设 strict_rank，目标答案位置不可达时拒绝出题而不是退到最近位置。",
      "principle": "两原子笛卡尔坐标的欧氏距离；用共价半径规则确认所问两原子确实成键。",
      "validation": "独立检查器（checkers/migrated.py:named_bond_distance）按题干点名的原子（PDB 原子名或 XYZ 行号）从附件取坐标，用 Decimal 重算距离，并用自己的共价半径规则确认成键；PDB 片段须与源文件逐字一致，二硫键题核对 SSBOND 记录，XYZ 核对元素与源文件哈希。",
      "limits": "QNP002–006 需说明元素对选择的化学意义（待小修）。",
@@ -6733,13 +6744,13 @@
    ],
    "bindings": {
     "L1": {
-     "registry_row": "ef56eb65e6145281b06cdb9524fa1de0ced587965a05a749b7034200844f2b6a"
+     "registry_row": "44656fe80ddbd9ae57486d7db33a47ce07f67d0e492986bdcea4af454978389c"
     },
     "L2": {
      "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
      "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
-     "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
-     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98"
+     "task_families/extent_choice.py": "a034947380088c9a78201cc67a5b67175e295ab201e543018add595a601a0973",
+     "checkers/families.py": "f68d5692f67e431dd0faed1c2f02f47b443d1645ab9be93d31c24522ccf6e822"
     }
    },
    "L1": "pending",
@@ -6765,7 +6776,7 @@
       "maximum_radius",
       "diameter_for_radius"
      ],
-     "four_choice_validation": "extent_choice_v2：正确值秩按批次平衡，数值按升序排列；与正确值间隔 > 0.05 Å（与 global_extent 相同）。",
+     "four_choice_validation": "extent_choice_v2：正确值秩按批次平衡，数值按升序排列；与正确值间隔 > 0.05 Å（与 global_extent 相同）。 v0.3.0：点对公式漏 1/2（约 √2·Rg）与“最大中心距当半径”迷惑程度调为 2，否则答案不能在 A/B。",
      "principle": "质心法生成答案；用 Rg² = sum(i<j)|ri-rj|² / N² 复核。",
      "validation": "质心公式与成对距离恒等式交叉检查；在多个结构上复用相同代码。",
      "limits": "不是质量加权或实测 SAXS Rg；不能据此断言折叠稳定性。",

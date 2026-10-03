@@ -32,6 +32,7 @@ SCOPE = {
     'fret_efficiency': '虚拟点探针（R0 为题设值）；不代表真实染料位置、连接臂或取向分布。',
     'disulfide_design': 'ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。',
     'fret_design': 'ATOM 片段逐行照抄；点偶极、R0 为题设模型参数（取向因子含于 R0）。',
+    'molecule': '单一构象（QM7-X 为 DFTB3+MBD 优化几何，SAMPL9 为挑战赛提供的 3D 结构）；坐标原样；成键按共价半径规则。',
     'crystal': '常规晶胞按 CIF 全部对称操作展开（task_families/cell.py）；周期晶体；衍射题为运动学模型与原子序数权重。',
 }
 # Atomic numbers (angle-independent scattering weights stated in the question) and the X-ray lines already used by
@@ -52,7 +53,7 @@ def load_crystals(root):
 
 def structure_of(spec):
     """Grouping key for sampling and capacity rows: PDB id or COD id."""
-    return spec.get('pdb') or spec.get('cod')
+    return spec.get('assembly') or spec.get('pdb') or spec.get('cod') or spec.get('molecule')
 
 
 def residues_of(root, s):
@@ -184,11 +185,17 @@ def fret_design(root, s):
 
 # ------------------------------------------------------------------ crystal families (COD CIFs)
 def crystal_base(c, family, key):
+    """CIF crystals use the general reader; the two MOF cells are committed as whole-cell XYZ files (source_kind xyz_cell)."""
     from task_families.cell import read_cif
-    elements = sorted({e for e, _ in read_cif(ROOT / 'docs' / c['asset'])[1]})
-    return elements, dict(id='EN-COD%s-%s' % (c['cod'], key), family=family, source_kind='cif_general', asset=c['asset'],
-                          cod=c['cod'], name=c['name'], source='https://www.crystallography.net/cod/%s.html' % c['cod'],
-                          license='COD（公共领域 / CC0）', scope=SCOPE['crystal'])
+    if c.get('source_kind') == 'xyz_cell':
+        elements = sorted(set(kit.parse_xyz((ROOT / 'docs' / c['asset']).read_text(encoding='utf-8-sig'))[0]))
+        extra = dict(source_kind='xyz_cell', a=c['a'])
+    else:
+        elements = sorted({e for e, _ in read_cif(ROOT / 'docs' / c['asset'])[1]})
+        extra = dict(source_kind='cif_general')
+    return elements, dict(id='EN-COD%s-%s' % (c['cod'], key), family=family, asset=c['asset'], cod=c['cod'], name=c['name'],
+                          source='https://www.crystallography.net/cod/%s.html' % c['cod'], license='COD（公共领域 / CC0）',
+                          scope=SCOPE['crystal'], **extra)
 
 
 def coordination_shell(root, c):
@@ -215,12 +222,219 @@ def kinematic_extinction(root, c):
         yield dict(spec, weights={e: Z[e] for e in elements})
 
 
+def diffraction_design(root, c):
+    """Inverse of the first peak, cubic cells only (the family's limit). The target angle sits near the answer for one
+    line / one crystal, offset by a seeded amount; the family itself rejects sets whose winning margin is too small."""
+    from task_families.diffraction_design import crystal_info, two_theta
+    elements, spec = crystal_base(c, 'diffraction_design', '')
+    if any(e not in Z for e in elements):
+        return
+    spec = dict(spec, weights={e: Z[e] for e in elements}, short=c['name'].split(' (')[0])
+    try:
+        info = crystal_info(spec, ROOT)
+    except ValueError:
+        return                                     # non-cubic or ambiguous first reflection
+    d = info['first']['d']
+    lines = [['%s Kα1' % n, lam] for n, lam in LINES]
+    for name, lam in lines:
+        angle = two_theta(d, lam)
+        if angle is None or angle > 150:
+            continue
+        shift = (int.from_bytes(kit.digest(c['cod'], name)[:2], 'big') % 21 - 10) / 10      # -1.0 .. +1.0 degree
+        yield dict(spec, id=spec['id'] + 'XD-ANODE-%s' % name.split()[0], mode='anode', lines=lines,
+                   target_2theta=round(angle + shift, 1))
+    for target in (20.0, 35.0):
+        yield dict(spec, id=spec['id'] + 'XD-WAVE-%d' % target, mode='wavelength', target_2theta=target)
+    others = [o for o in load_crystals(ROOT) if o['cod'] != c['cod']]
+    for name, lam in lines:
+        angle = two_theta(d, lam)
+        if angle is None or angle > 150:
+            continue
+        picks = sorted(others, key=lambda o: kit.digest(c['cod'], name, o['cod']))
+        cands = [dict(asset=c['asset'], source_kind=spec['source_kind'], name=c['name'], weights=spec['weights'], id='COD' + c['cod'],
+                      short=spec['short'], **({'a': c['a']} if c.get('a') else {}))]
+        for o in picks:
+            if len(cands) == 4:
+                break
+            oe, os_ = crystal_base(o, 'diffraction_design', '')
+            if any(e not in Z for e in oe):
+                continue
+            cand = dict(asset=o['asset'], source_kind=os_['source_kind'], name=o['name'], weights={e: Z[e] for e in oe}, id='COD' + o['cod'],
+                        short=o['name'].split(' (')[0], **({'a': o['a']} if o.get('a') else {}))
+            try:
+                crystal_info(cand, ROOT)
+            except ValueError:
+                continue
+            cands.append(cand)
+        shift = (int.from_bytes(kit.digest(c['cod'], name, 'crystal')[:2], 'big') % 11 - 5) / 10
+        yield dict(spec, id=spec['id'] + 'XD-CRYSTAL-%s' % name.split()[0], mode='crystal', wavelength_A=lam,
+                   target_2theta=round(angle + shift, 1), candidates=cands)
+
+
 CRYSTAL_ENUMERATORS = dict(coordination_shell=coordination_shell, first_diffraction_peak=first_diffraction_peak,
-                           kinematic_extinction=kinematic_extinction)
+                           kinematic_extinction=kinematic_extinction, diffraction_design=diffraction_design)
+
+
+# ------------------------------------------------------------------ small molecules (QM7-X, SAMPL9)
+def load_molecules(root):
+    return json.loads((root / STRUCTURES).read_text(encoding='utf-8')).get('molecules', [])
+
+
+def molecule_graph(m):
+    elements, points = kit.parse_xyz((ROOT / 'docs' / m['asset']).read_text(encoding='utf-8-sig'))
+    edges = kit.bond_graph(elements, points)
+    degree = lambda i: len(kit.neighbors(edges, i))
+    return elements, points, edges, degree
+
+
+def molecule_base(m, family, key):
+    return dict(id='EN-%s-%s' % (m['molecule'], key), family=family, asset=m['asset'], molecule=m['molecule'], context=m['context'],
+                source=m['source'], license=m['license'], scope=SCOPE['molecule'])
+
+
+def named_bond_distance(root, m):
+    """Every covalent bond between two non-hydrogen atoms (covalent-radius rule), described by elements and connectivity."""
+    elements, points, edges, degree = molecule_graph(m)
+    for i, j in sorted(edges):
+        if 'H' in (elements[i], elements[j]):
+            continue
+        a, b = '%s%d' % (elements[i], i + 1), '%s%d' % (elements[j], j + 1)
+        yield dict(molecule_base(m, 'named_bond_distance', 'BOND-%d-%d' % (i + 1, j + 1)),
+                   atoms=[dict(row=i + 1, name=a, element=elements[i]), dict(row=j + 1, name=b, element=elements[j])],
+                   bond='a covalent %s–%s bond (%s is bonded to %d atoms, %s to %d)' % (elements[i], elements[j], a, degree(i), b, degree(j)),
+                   strict_rank=True)
+
+
+def named_bond_angle(root, m):
+    """Every angle A–V–B with all three atoms non-hydrogen and both ends bonded to the vertex."""
+    elements, points, edges, degree = molecule_graph(m)
+    for v in range(len(elements)):
+        ends = [x for x in kit.neighbors(edges, v) if elements[x] != 'H']
+        if elements[v] == 'H':
+            continue
+        for p in range(len(ends)):
+            for q in range(p + 1, len(ends)):
+                a, b = sorted((ends[p], ends[q]))
+                names = ['%s%d' % (elements[k], k + 1) for k in (a, v, b)]
+                yield dict(molecule_base(m, 'named_bond_angle', 'ANG-%d-%d-%d' % (a + 1, v + 1, b + 1)),
+                           atoms=[dict(row=k + 1, name=n, element=elements[k]) for k, n in zip((a, v, b), names)],
+                           linkage='two covalent bonds meeting at %s, which is bonded to %d atoms' % (names[1], degree(v)))
+
+
+def extent_choice_v2(root, m):
+    """Whole-molecule size: maximum pairwise distance and equal-weight radius of gyration of all supplied atoms."""
+    for template, key in (('global_extent', 'DMAX'), ('equal_weight_rg', 'RG')):
+        yield dict(molecule_base(m, 'extent_choice_v2', key), template=template)
+
+
+MOLECULE_ENUMERATORS = dict(named_bond_distance=named_bond_distance, named_bond_angle=named_bond_angle, extent_choice_v2=extent_choice_v2)
+
+
+# ------------------------------------------------------------------ large assemblies and scattering
+QRG_DEBYE = (1.6, 2.1, 2.6)       # beyond the Guinier range (the family rejects qRg <= 1.3)
+QRG_GUINIER = (0.5, 0.9, 1.2)     # inside it
+Q_TARGETS = (0.3, 0.5, 0.7)
+
+
+def load_assemblies(root):
+    return json.loads((root / STRUCTURES).read_text(encoding='utf-8')).get('assemblies', [])
+
+
+def assembly_points(p, component=None):
+    from task_families import assembly
+    text, fmt, labels, points, digest = assembly.load(ROOT, dict(asset=p['asset']))
+    return labels, assembly.select(labels, points, component)
+
+
+def assembly_rg_nm(points):
+    from task_families import assembly
+    return assembly.rg(points) / 10
+
+
+def components(p):
+    if p['kind'] == 'xyz':
+        return [None]
+    labels, _ = assembly_points(p)
+    counts = {l: labels.count(l) for l in set(labels)}
+    return sorted(c for c, n in counts.items() if n >= 12)
+
+
+def assembly_base(p, family, key, component):
+    spec = dict(id='EN-%s-%s%s' % (p['pdb'], key, ('-' + component) if component else ''), family=family, asset=p['asset'],
+                assembly=p['pdb'] + ('-T' if p['kind'] == 'table' else ''), context=p['context'], scope=p['scope'],
+                source=p['source'], license=p['license'])
+    if component:
+        spec['component'] = component
+    return spec
+
+
+def assembly_extent(root, p):
+    if not p['subunits_only']:
+        for c in components(p):
+            yield assembly_base(p, 'assembly_extent', 'EXT', c)
+
+
+def assembly_rg(root, p):
+    if not p['subunits_only']:
+        for c in components(p):
+            yield dict(assembly_base(p, 'assembly_rg', 'RG', c), strict_rank=True)
+
+
+def debye_intensity(root, p):
+    if p['subunits_only']:
+        return
+    for c in components(p):
+        rg = assembly_rg_nm(assembly_points(p, c)[1])
+        for x in QRG_DEBYE:
+            yield dict(assembly_base(p, 'debye_intensity', 'DEB-%02d' % round(10 * x), c), q_per_nm=round(x / rg, 3), strict_rank=True)
+
+
+def scattering_q_design(root, p):
+    if p['subunits_only']:
+        return
+    for c in components(p):
+        for target in Q_TARGETS:
+            yield dict(assembly_base(p, 'scattering_q_design', 'QDES-%02d' % round(100 * target), c), target=target)
+
+
+def guinier_intensity(root, p):
+    """Whole point sets only (the family reads every supplied point), so xyz particles and the 7ARQ nucleotide table."""
+    if p['kind'] != 'xyz' and p['pdb'] != '7ARQ' or not p.get('representation'):
+        return
+    rg = assembly_rg_nm(assembly_points(p)[1])
+    for x in QRG_GUINIER:
+        yield dict(assembly_base(p, 'guinier_intensity', 'GUIN-%02d' % round(10 * x), None), pdb=p['pdb'], context=p['noun'],
+                   representation=p['representation'], q_per_nm=round(x / rg, 2), strict_rank=True)
+
+
+def capsid_architecture(root, p):
+    if not p.get('capsid') or p['pentamer_only']:
+        return
+    # Caspar-Klug counts apply to the major shell protein only (e.g. HSV-1 VP26 decorates hexons only: 900 copies
+    # would give a spurious T = 15 instead of T = 16).
+    for c in [p.get('component')]:
+        labels, pts = assembly_points(p, c)
+        t = len(pts) // 60
+        if len(pts) % 60 and p.get('capsomer_form') != 'trimer':
+            continue
+        if p.get('capsomer_form') == 'trimer':           # PBCV-1: trimeric capsomers, N = 30(T-1); the family asks T only
+            yield dict(assembly_base(p, 'capsid_architecture', 'CAPSID-T', c), ask='T', component=c, capsomer_form='trimer')
+            continue
+        for ask in (('T', 'capsomers') + (('hexons',) if t > 1 else ())):
+            yield dict(assembly_base(p, 'capsid_architecture', 'CAPSID-%s' % ask, c), ask=ask, component=c)
+
+
+# debye_intensity is not enabled for batches yet: on hollow shells three plausible smaller-intensity mistakes rarely
+# coexist, so even with strict_rank the accepted answers sat at A/B (runs/enum-v29: A23 B24 C6 D3; v30: A23 B24 C17 D4).
+# The family itself was improved (Guinier slips, I squared); the enumerator waits for the L1 review of the family.
+ASSEMBLY_ENUMERATORS = dict(assembly_extent=assembly_extent, assembly_rg=assembly_rg,
+                            scattering_q_design=scattering_q_design, guinier_intensity=guinier_intensity,
+                            capsid_architecture=capsid_architecture)
 
 
 ENUMERATORS = dict(backbone_torsion=backbone_torsion, secondary_structure=secondary_structure, fret_efficiency=fret_efficiency,
-                   disulfide_design=disulfide_design, fret_design=fret_design, **CRYSTAL_ENUMERATORS)
+                   disulfide_design=disulfide_design, fret_design=fret_design, **CRYSTAL_ENUMERATORS, **MOLECULE_ENUMERATORS,
+                   **ASSEMBLY_ENUMERATORS)
 
 
 def propose(root, families=None):
@@ -229,15 +443,21 @@ def propose(root, families=None):
     for family, fn in ENUMERATORS.items():
         if families and family not in families:
             continue
-        items = load_crystals(root) if family in CRYSTAL_ENUMERATORS else load_structures(root)
+        items = (load_crystals(root) if family in CRYSTAL_ENUMERATORS else
+                 load_molecules(root) if family in MOLECULE_ENUMERATORS else
+                 load_assemblies(root) if family in ASSEMBLY_ENUMERATORS else load_structures(root))
         out[family] = [spec for s in items for spec in fn(root, s)]
     return out
 
 
 def signature(spec):
     """What makes two instances the same question, independent of id and wording."""
-    keys = ('family', 'asset', 'chain', 'residue', 'torsion', 'donor', 'acceptor', 'target', 'r0_nm', 'atom', 'wavelength_A')
+    keys = ('family', 'asset', 'chain', 'residue', 'torsion', 'donor', 'acceptor', 'target', 'r0_nm', 'atom', 'wavelength_A', 'template',
+            'mode', 'target_2theta', 'component', 'ask', 'q_per_nm')
     sig = {k: spec.get(k) for k in keys}
+    if spec.get('atoms'):                      # bond / angle: same atoms in either direction are the same question
+        rows = [x['row'] for x in spec['atoms']]
+        sig['atoms'] = sorted(rows) if len(rows) == 2 else [min(rows[0], rows[2]), rows[1], max(rows[0], rows[2])]
     for k in ('centre', 'partner'):
         if spec.get(k):
             sig[k] = spec[k].get('element')
