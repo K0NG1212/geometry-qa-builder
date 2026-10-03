@@ -3,10 +3,10 @@
  "checker_version": "0.1.0",
  "origin": {
   "source": "family-workbench.json",
-  "run": "family-pilot-v19"
+  "run": "family-pilot-v21"
  },
- "checked": 173,
- "passed": 173,
+ "checked": 182,
+ "passed": 182,
  "failed": [],
  "by_family": {
   "named_bond_angle": {
@@ -19,7 +19,7 @@
    "pass": 3
   },
   "kinematic_extinction": {
-   "pass": 4
+   "pass": 7
   },
   "conformer_target_selection": {
    "pass": 4
@@ -40,10 +40,10 @@
    "pass": 5
   },
   "coordination_shell": {
-   "pass": 4
+   "pass": 7
   },
   "first_diffraction_peak": {
-   "pass": 5
+   "pass": 8
   },
   "fret_efficiency": {
    "pass": 3
@@ -141,12 +141,13 @@
  },
  "checker_sha256": {
   "checkers/__init__.py": "b424176da0e26fafcb424be028ec0e1df44a2abe887e8c37002ebe9d6db464d6",
+  "checkers/cells.py": "0f3d1c3fab442486b16887b96f88a0c9c972876000204a38f5995da93ddf4ee3",
   "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed",
   "checkers/design_extra.py": "0d42baeb6018399150e5e6f85a3b805b533388ba28d7198deb1cd22f4ba2a02d",
-  "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
+  "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
   "checkers/hostguest.py": "d6c8fb867e6d313c84cce0e6e3fa51e3497a11e4a0e9f826095a804dd5a46654",
   "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
-  "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
+  "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
   "checkers/moire.py": "ceee9cd8039687cea219647978e575bb01c97d8c964b596fafb8df7b5d750a50",
   "checkers/quantum_dot.py": "d1cdad3a661f98dddac3c5d6bedfcd68e9bb6cb223a03624526e7d96cf3af63f",
   "checkers/stereo.py": "be53347ac6796f75bf8cf91803bb33cdc339c29fed553988bd54a0850bd5dc25",
@@ -3230,6 +3231,258 @@
     }
    },
    "method": "projected angle fit per file; goal rule",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-RUTILE",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "recomputed": "4 at 1.9472 Å",
+   "parameters": {
+    "partner": "O",
+    "cell": {
+     "a": 4.593,
+     "b": 4.593,
+     "c": 2.959,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 90.0
+    },
+    "cif_atoms": 6
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-ZNO",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "recomputed": "3 at 1.9736 Å",
+   "parameters": {
+    "partner": "O",
+    "cell": {
+     "a": 3.2494,
+     "b": 3.2494,
+     "c": 5.2054,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 4
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-QUARTZ",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "recomputed": "2 at 1.6054 Å",
+   "parameters": {
+    "partner": "O",
+    "cell": {
+     "a": 4.91239,
+     "b": 4.91239,
+     "c": 5.40385,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 9
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-RUTILE",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "27.4403473029",
+   "rounded": "27.44",
+   "label": "C",
+   "nearest_distractor_gap": "8.1303473029",
+   "parameters": {
+    "weights": {
+     "O": 8,
+     "Ti": 22
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     -1,
+     -1,
+     0
+    ],
+    "cell": {
+     "a": 4.593,
+     "b": 4.593,
+     "c": 2.959,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 90.0
+    },
+    "cif_atoms": 6
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-ZNO",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "31.7729667934",
+   "rounded": "31.77",
+   "label": "C",
+   "nearest_distractor_gap": "2.6570332066",
+   "parameters": {
+    "weights": {
+     "O": 8,
+     "Zn": 30
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     -1,
+     0,
+     0
+    ],
+    "cell": {
+     "a": 3.2494,
+     "b": 3.2494,
+     "c": 5.2054,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 4
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-QUARTZ",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "20.8636915644",
+   "rounded": "20.86",
+   "label": "C",
+   "nearest_distractor_gap": "2.8236915644",
+   "parameters": {
+    "weights": {
+     "O": 8,
+     "Si": 14
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     -1,
+     0,
+     0
+    ],
+    "cell": {
+     "a": 4.91239,
+     "b": 4.91239,
+     "c": 5.40385,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 9
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-EXT-RUTILE",
+   "family": "kinematic_extinction",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "recomputed": "(0 1 0)",
+   "parameters": {
+    "weights": {
+     "O": 8,
+     "Ti": 22
+    },
+    "cell": {
+     "a": 4.593,
+     "b": 4.593,
+     "c": 2.959,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 90.0
+    },
+    "atoms": 6
+   },
+   "options": {
+    "A": 0.43607199,
+    "B": 0.17159748,
+    "C": 0.0,
+    "D": 0.25284822
+   },
+   "weakest_nonzero": 0.171597,
+   "method": "separate cos/sin sums over the student table",
+   "status": "pass"
+  },
+  {
+   "id": "FA-EXT-BROOKITE",
+   "family": "kinematic_extinction",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "recomputed": "(0 1 3)",
+   "parameters": {
+    "weights": {
+     "O": 8,
+     "Ti": 22
+    },
+    "cell": {
+     "a": 9.174,
+     "b": 5.449,
+     "c": 5.138,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 90.0
+    },
+    "atoms": 24
+   },
+   "options": {
+    "A": 0.354586,
+    "B": 0.24506763,
+    "C": 0.31224007,
+    "D": 0.0
+   },
+   "weakest_nonzero": 0.245068,
+   "method": "separate cos/sin sums over the student table",
+   "status": "pass"
+  },
+  {
+   "id": "FA-EXT-ZNO",
+   "family": "kinematic_extinction",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "recomputed": "(2 2 1)",
+   "parameters": {
+    "weights": {
+     "O": 8,
+     "Zn": 30
+    },
+    "cell": {
+     "a": 3.2494,
+     "b": 3.2494,
+     "c": 5.2054,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "atoms": 4
+   },
+   "options": {
+    "A": 0.0,
+    "B": 1.0,
+    "C": 1.0,
+    "D": 0.49999998
+   },
+   "weakest_nonzero": 0.5,
+   "method": "separate cos/sin sums over the student table",
    "status": "pass"
   }
  ]

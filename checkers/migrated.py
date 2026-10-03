@@ -8,6 +8,7 @@ import re
 import numpy as np
 from decimal import Decimal, localcontext
 from .common import need, find, read_xyz, verify_hashes, judge_numeric, LABELS
+from . import cells
 
 RADII = {'H': 0.31, 'C': 0.76, 'N': 0.71, 'O': 0.66, 'S': 1.05, 'Cl': 1.02, 'P': 1.07, 'F': 0.57}
 
@@ -63,6 +64,32 @@ def named_bond_distance(packet, key):
 
 
 # ------------------------------------------------------------------ crystal
+def coordination_shell_general(packet, key, q, text):
+    """Any crystal system: metric-tensor distances over 125 cells; the table must be the expanded CIF."""
+    params, rows = cells.parse_table(text)
+    G = cells.metric(params)
+    centre = [float(x) for x in find(r'at fractional \(([-\d.]+), ([-\d.]+), ([-\d.]+)\)', q, 'Centre position missing').groups()]
+    element = find(r'how many ([A-Z][a-z]?) atoms lie at the shortest', q, 'Partner species missing').group(1)
+    at = [f for e, f in rows if max(abs(x - c) for x, c in zip(f, centre)) < 1e-4]
+    need(len(at) == 1, 'No single atom at the stated centre position')
+    centre = at[0]          # the question prints 4 decimals (0.3333); use the tabulated atom itself
+    dists = sorted(d for e, f in rows if e == element for t in itertools.product(range(-2, 3), repeat=3)
+                   for d in [cells.distance(G, centre, [x + s for x, s in zip(f, t)])] if d > 1e-6)
+    d1 = dists[0]
+    n1 = sum(1 for d in dists if d - d1 <= 1e-3)
+    verdicts = []
+    for o in packet['options']:
+        n, d = find(r'^(\d+) at ([\d.]+) Å$', o['value'], 'Option must read "N at D Å"').groups()
+        verdicts.append(int(n) == n1 and abs(float(d) - d1) <= 0.0005 + 1e-9)
+    need(sum(verdicts) == 1, '%d options match the shortest distance (need exactly 1)' % sum(verdicts))
+    label = LABELS[verdicts.index(True)]
+    need(key['correct_label'] == label, 'Key label %s != recomputed %s' % (key['correct_label'], label))
+    [path] = verify_hashes(key).values()
+    atoms = cells.same_cell(params, rows, path)
+    return dict(label=label, recomputed='%d at %.4f Å' % (n1, d1), parameters=dict(partner=element, cell=params, cif_atoms=atoms),
+                method='metric-tensor neighbour search over 125 cells; own CIF expansion')
+
+
 def cell_table(packet):
     [inp] = [i for i in packet['inputs'] if i['format'] == 'fractional-cell-table']
     lines = inp['text'].splitlines()
@@ -84,6 +111,9 @@ def periodic_dists(a, centre, pts, images=True):
 def coordination_shell(packet, key):
     q = packet['question']
     need('infinite and periodic' in q, 'Periodicity not stated')
+    [text] = [i['text'] for i in packet['inputs'] if i['format'] == 'fractional-cell-table']
+    if cells.parse_table(text)[0]:
+        return coordination_shell_general(packet, key, q, text)
     a, rows = cell_table(packet)
     centre = [float(x) for x in find(r'at fractional \(([-\d.]+), ([-\d.]+), ([-\d.]+)\)', q, 'Centre position missing').groups()]
     part = find(r'how many (other )?(μ4-)?([A-Z][a-z]?) atoms', q, 'Partner species missing')
@@ -113,6 +143,28 @@ def first_diffraction_peak(packet, key):
     q = packet['question']
     weights = {k: int(v) for k, v in re.findall(r'([A-Z][a-z]?) = (\d+)', find(r'weights \(([^)]*)\)', q, 'Weights missing').group(1))}
     lam = float(find(r'wavelength ([\d.]+) Å', q, 'Wavelength missing').group(1))
+    [text] = [i['text'] for i in packet['inputs'] if i['format'] == 'fractional-cell-table']
+    params, general_rows = cells.parse_table(text)
+    if params:
+        # Any crystal system: every (h k l) with |h|, |k|, |l| <= 5 (one more than the generator searches).
+        need({e for e, _ in general_rows} == set(weights), 'Weights must cover the elements present')
+        Ginv = np.linalg.inv(cells.metric(params))
+        total = sum(weights[e] for e, _ in general_rows)
+        best = None
+        for hkl in itertools.product(range(-5, 6), repeat=3):
+            if hkl == (0, 0, 0):
+                continue
+            s = lam / (2 * cells.d_spacing(Ginv, hkl))
+            if s > 1:
+                continue
+            f = abs(sum(weights[e] * cmath.exp(2j * math.pi * (hkl[0] * x + hkl[1] * y + hkl[2] * z)) for e, (x, y, z) in general_rows)) / total
+            if f > 1e-6 and (best is None or s < best[0] - 1e-12):
+                best = (s, hkl)
+        [path] = verify_hashes(key).values()
+        atoms = cells.same_cell(params, general_rows, path)
+        return dict(judge_numeric(packet, key, 2 * math.degrees(math.asin(best[0]))),
+                    parameters=dict(weights=weights, wavelength_A=lam, reflection=best[1], cell=params, cif_atoms=atoms),
+                    method='metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion')
     a, rows = cell_table(packet)
     need({e for e, _ in rows} == set(weights), 'Weights must cover the elements present')
     total = sum(weights[e] for e, _ in rows)

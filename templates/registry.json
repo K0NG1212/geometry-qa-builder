@@ -148,7 +148,7 @@
         "maximum_radius",
         "diameter_for_radius"
       ],
-      "four_choice_validation": "extent_choice_v2：同上。",
+      "four_choice_validation": "extent_choice_v2：正确值秩按批次平衡，数值按升序排列；与正确值间隔 > 0.05 Å（与 global_extent 相同）。",
       "engine_families": [
         "extent_choice_v2"
       ],
@@ -174,7 +174,7 @@
         "tests/test_task_families.py",
         "tests/test_checkers.py"
       ],
-      "builder_modules": "同上。",
+      "builder_modules": "专用试跑覆盖 M0/M1/M4/M5/M6 的等价检查；未走旧 pipeline（与 global_extent 相同）。",
       "validation": "质心公式与成对距离恒等式交叉检查；在多个结构上复用相同代码。",
       "limits": "不是质量加权或实测 SAXS Rg；不能据此断言折叠稳定性。",
       "gap": "已足量；本轮不再扩量。",
@@ -321,7 +321,7 @@
         "choice"
       ],
       "inputs": "XYZ（按行号命名）或 PDB 片段（含 SSBOND 记录与两个残基的 ATOM 行）。",
-      "physical_conditions": "单一构象。",
+      "physical_conditions": "单一构象：QM7-X 的 DFTB3+MBD 优化几何，或晶体结构中的主构象；不考虑热振动与零点运动。",
       "input_scale": "整个结构",
       "reasoning_scale": "两原子距离（0.1–0.5 nm）",
       "scale_cells": [
@@ -371,8 +371,8 @@
         "tests/test_checkers.py"
       ],
       "builder_modules": "族引擎内等价实现；旧 QNP002–004/006、BNP007 由新版取代（supersede）。",
-      "principle": "欧氏距离。",
-      "validation": "旧验证器。",
+      "principle": "两原子笛卡尔坐标的欧氏距离；用共价半径规则确认所问两原子确实成键。",
+      "validation": "独立检查器（checkers/migrated.py:named_bond_distance）按题干点名的原子（PDB 原子名或 XYZ 行号）从附件取坐标，用 Decimal 重算距离，并用自己的共价半径规则确认成键；PDB 片段须与源文件逐字一致，二硫键题核对 SSBOND 记录，XYZ 核对元素与源文件哈希。",
       "limits": "QNP002–006 需说明元素对选择的化学意义（待小修）。",
       "gap": "氢键给体–受体、链间接触等非键距离尚未迁移。",
       "template_review": "本轮迁移新建，待人工审核。",
@@ -392,7 +392,7 @@
       "output_forms": [
         "choice"
       ],
-      "inputs": "常规立方晶胞全部原子分数坐标表 + a；中心原子的分数坐标与伙伴物种描述。",
+      "inputs": "常规晶胞全部原子分数坐标表 + 晶胞参数（立方只给 a，其他晶系给 a、b、c、α、β、γ）；中心原子的分数坐标与伙伴物种描述。",
       "physical_conditions": "周期边界；完全占位。",
       "input_scale": "晶胞边长",
       "reasoning_scale": "第一壳层半径",
@@ -400,15 +400,16 @@
         "0.1-1",
         "1-10"
       ],
-      "scale_limits": "只读立方、完全占位 CIF。",
+      "scale_limits": "只读完全占位的 CIF；非立方晶胞按 CIF 全部对称操作展开（task_families/cell.py）。",
       "source_basis": "COD",
-      "answer_method": "含 27 个相邻晶胞映像的近邻搜索，按 0.001 Å 归组壳层。",
+      "answer_method": "立方：27 个相邻晶胞映像的近邻搜索，按 0.001 Å 归组壳层。其他晶系：125 个映像，问最短距离及该距离上的原子数（低对称把配位多面体拆成几种距离，“整个多面体”是登记的错误机制）。",
       "distractor_mechanisms": [
         "no_periodic_images",
         "second_shell",
         "same_species_shell",
         "mixed_shells",
-        "merged_first_two_shells"
+        "merged_first_two_shells",
+        "whole_coordination_polyhedron"
       ],
       "four_choice_validation": "选项为“N at D Å”，恰好一项同时匹配个数与距离。",
       "engine_families": [
@@ -438,7 +439,7 @@
       "principle": "含周期映像的最近邻搜索。",
       "validation": "独立 Decimal 公式复核。",
       "limits": "MNP004/005 待小修。",
-      "gap": "非立方晶系尚未支持。",
+      "gap": "已支持任意晶系（2026-10-03：金红石、ZnO、α-石英）；部分占位与无序结构仍不支持。",
       "template_review": "本轮迁移新建，待人工审核。",
       "independent_checker": "checkers/migrated.py:coordination_shell"
     },
@@ -748,7 +749,7 @@
       "builder_modules": "族引擎内等价实现；资产由论文表 1 参数确定性生成，sources.json 记录参数与构建方式。",
       "principle": "FCC：12 个最近邻在 a/√2，6 个次近邻在 a；最密排面 {111}，d = a/√3。",
       "validation": "独立检查器从坐标选初基基矢（最小体积），验证所有粒子落在整数格点上，常规边长 = (4V)^(1/3)，面间距 = 2π/|G|min。",
-      "limits": "只含理想晶格。",
+      "limits": "理想无限 FCC 点阵：不含晶格缺陷、有限晶粒、粒径分布与 DNA 连接子的柔性；数值只对应论文 SAXS 晶胞边长所给的理想结构。",
       "gap": "目前 1 篇论文的 5 个晶格；可加入其他超晶格（BCC、二元）。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/superlattice.py:superlattice_shell, superlattice_quantity"
@@ -810,7 +811,7 @@
       "principle": "布拉维格子的 Bragg 反射在倒格矢 G 处；FCC 的最短 G 为 {111}。",
       "validation": "独立检查器由初基基矢求倒格子，枚举 |G| 并按容差归并；金含量用初基胞体积（每胞 1 个粒子）。",
       "limits": "点散射体、无限完美晶格；实测 SAXS 峰宽与形状因子不在题内。",
-      "gap": "同上。",
+      "gap": "与超晶格几何相同：目前 1 篇论文（Hill 2008）的 5 个晶格；可加入其他超晶格（BCC、二元）。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/superlattice.py:superlattice_quantity"
     },
@@ -867,7 +868,7 @@
       "principle": "设计 = 推断的逆问题；论文本身即以此线性关系设计连接子长度。",
       "validation": "独立检查器逐文件分析晶格并按题干目标重选。",
       "limits": "候选性质来自按 SAXS 参数构建的模型；没有新的实验证据。",
-      "gap": "同上。",
+      "gap": "与超晶格几何相同：目前 1 篇论文（Hill 2008）的 5 个晶格；可加入其他超晶格（BCC、二元）。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/superlattice.py:superlattice_design"
     },
@@ -925,7 +926,7 @@
       "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成，sources.json 记录参数、出处与实测值。",
       "principle": "接触球 FCC：最近邻 = 球径 D，a = √2·D，d111 = a/√3。",
       "validation": "独立检查器由初基基矢与倒格子求 d111 与常规边长。",
-      "limits": "只含理想晶格。",
+      "limits": "理想接触球 FCC：不含堆垛层错、球径分布、烧结或收缩；有效折射率用体积加权近似（或题给 n_eff）。",
       "gap": "两篇论文（聚苯乙烯 7 个样品、二氧化硅 1 个）。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/superlattice.py:opal_quantity"
@@ -989,7 +990,7 @@
       "principle": "Bragg 定律加表面折射（Bragg–Snell）；有效介质近似。",
       "validation": "独立检查器由倒格子求 d111，由初基胞体积求球体积分数，再按题干的有效介质规则计算。",
       "limits": "有效介质与理想晶格假设；模型值与实测峰相差约 1%（审核侧列出）。",
-      "gap": "同上。",
+      "gap": "与胶体晶体几何相同：两篇论文（聚苯乙烯 7 个样品、二氧化硅 1 个）。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/superlattice.py:opal_quantity"
     },
@@ -1045,7 +1046,7 @@
       "principle": "设计 = 推断的逆问题；论文将这些样品用作“反射标尺”。",
       "validation": "独立检查器逐文件分析晶格并按题干目标重选。",
       "limits": "候选性质来自模型；实测峰值列于审核侧。",
-      "gap": "同上。",
+      "gap": "与胶体晶体几何相同：两篇论文（聚苯乙烯 7 个样品、二氧化硅 1 个）。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/superlattice.py:opal_design"
     },
@@ -1103,7 +1104,7 @@
       "builder_modules": "族引擎内等价实现；资产由论文转角确定性生成，sources.json 记录出处与模型。",
       "principle": "刚性转角：λ = a/(2 sin(θ/2))；三角晶格晶胞面积 (√3/2)λ²。",
       "validation": "独立检查器由最近邻矢量选初基基矢，验证所有位点为整数组合，面积取叉积。",
-      "limits": "只含理想刚性转角。",
+      "limits": "理想刚性转角：不含晶格弛豫（AB/BA 畴重构）、异质应变与转角不均匀；小转角下实测周期可能偏离模型。",
       "gap": "两篇论文的 5 个转角（0.79–1.16°）。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/moire.py:moire_quantity"
@@ -1167,7 +1168,7 @@
       "principle": "莫尔几何与能带填充：每个莫尔晶胞 4 个态（自旋×谷）填满一组能带。",
       "validation": "原子块：独立检查器用每层晶格矢量的六重相位平均求取向，再求转角与晶格常数；AA 图：叉积面积。",
       "limits": "刚性转角模型；n_s 定义沿用 Cao et al.。",
-      "gap": "同上。",
+      "gap": "与莫尔几何相同：两篇论文的 5 个转角（0.79–1.16°）。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/moire.py:moire_quantity"
     },
@@ -1222,8 +1223,8 @@
       "builder_modules": "族引擎内等价实现；资产由论文转角确定性生成，sources.json 记录出处与模型。",
       "principle": "设计 = 推断的逆问题：按目标密度或周期选择转角。",
       "validation": "独立检查器逐文件重算并按题干目标重选。",
-      "limits": "候选性质来自刚性模型。",
-      "gap": "同上。",
+      "limits": "候选样品的周期与载流子密度由刚性转角模型从论文转角算出，不是逐样品实测值；不含弛豫与应变。",
+      "gap": "与莫尔几何相同：两篇论文的 5 个转角（0.79–1.16°）。",
       "template_review": "本轮新建（A4），待人工审核。",
       "independent_checker": "checkers/moire.py:moire_design"
     },
@@ -1345,13 +1346,13 @@
         "choice"
       ],
       "inputs": "WP6 主体与四个候选客体 XYZ。",
-      "physical_conditions": "同上。",
+      "physical_conditions": "与主客体结合证据题相同：ITC，1× PBS，pH 7.40，298.15 K，1:1。",
       "input_scale": "主体约 1.8 nm",
       "reasoning_scale": "主客体复合物",
       "scale_cells": [
         "1-10"
       ],
-      "scale_limits": "同上。",
+      "scale_limits": "结合强弱取决于电荷、尺寸匹配、溶剂化等，不能单凭几何算出；几何附件只用于识别候选客体。",
       "source_basis": "SAMPL9 WP6（MIT）",
       "answer_method": "实测 ΔG 与阈值比较。",
       "distractor_mechanisms": [
@@ -1377,7 +1378,7 @@
       "builder_modules": "族引擎内等价实现。",
       "principle": "有实验证据的设计题（A3）：S0 → S1，候选全部有测量值。",
       "validation": "独立检查器重算每个候选的改善幅度与阈值关系。",
-      "limits": "同上。",
+      "limits": "实验误差约 0.02–0.06 kcal/mol，阈值附近不放候选；只用 WP6（条件有文档）；“设计”指在实测候选中选择，不预测新分子。",
       "gap": "2 题。",
       "template_review": "本轮新建（A2/A3），待人工审核。",
       "independent_checker": "checkers/hostguest.py:binding_design_choice"
@@ -1454,13 +1455,13 @@
         "choice"
       ],
       "inputs": "四个 CdSe 纳米晶模型 XYZ。",
-      "physical_conditions": "同上。",
+      "physical_conditions": "题干给出 Yu 2003 的经验多项式、适用范围与 Model conditions（与 CdSe 量子点光学题相同）。",
       "input_scale": "纳米晶 2.8–5.0 nm",
       "reasoning_scale": "候选最大粒径",
       "scale_cells": [
         "1-10"
       ],
-      "scale_limits": "同上。",
+      "scale_limits": "经验曲线只在拟合尺寸范围内可靠；模型无配体。",
       "source_basis": "Yu et al. (2003) 经验曲线",
       "answer_method": "逐个候选反解吸收峰，按目标规则选择。",
       "distractor_mechanisms": [
@@ -1488,8 +1489,8 @@
       ],
       "builder_modules": "族引擎内等价实现。",
       "principle": "设计 = 推断的逆问题。",
-      "validation": "独立检查器逐文件重算。",
-      "limits": "候选为模型粒子。",
+      "validation": "独立检查器（checkers/quantum_dot.py:qdot_design）逐个文件用 Decimal 复核最大间距，用多项式求根（numpy.roots）反解吸收峰，再按题干目标规则重新选择。",
+      "limits": "候选为按论文曲线构建的理想球形 CdSe 模型粒子（晶格常数 6.08 Å 为假设），不是实测样品；答案只取决于所给坐标与题干曲线。",
       "gap": "2 题。",
       "template_review": "本轮新建（A2/A3），待人工审核。",
       "independent_checker": "checkers/quantum_dot.py:qdot_design"
@@ -1704,7 +1705,7 @@
       "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
       "principle": "三角涡旋晶格：a = (2Φ0/(√3B))^1/2，n = B/Φ0。",
       "validation": "独立检查器由初基晶胞面积计算。",
-      "limits": "理想晶格。",
+      "limits": "理想三角涡旋晶格：不含钉扎无序、晶界与有限尺寸效应；间距只对应论文实测磁场下的理想模型。",
       "gap": "MgB2 四个磁场 + BSCCO 一个样品。",
       "template_review": "本轮新建（补 100–1000 空格），待人工审核。",
       "independent_checker": "checkers/mesoscale.py:vortex_quantity"
@@ -1767,8 +1768,8 @@
       "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
       "principle": "磁通量子化：每个涡旋携带 Φ0 = h/2e。",
       "validation": "独立检查器由晶胞面积与题干 Φ0 或 B 计算。",
-      "limits": "理想晶格。",
-      "gap": "同上。",
+      "limits": "理想三角涡旋晶格：不含钉扎无序、晶界与有限尺寸效应；磁场、磁通与散射峰按每个涡旋一个磁通量子的理想关系计算。",
+      "gap": "与涡旋晶格几何相同：MgB2 四个磁场 + BSCCO 一个样品。",
       "template_review": "本轮新建（补 100–1000 空格），待人工审核。",
       "independent_checker": "checkers/mesoscale.py:vortex_quantity"
     },
@@ -1823,7 +1824,7 @@
       ],
       "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
       "principle": "设计 = 推断的逆问题（选磁场）。",
-      "validation": "独立检查器逐文件重算。",
+      "validation": "独立检查器（checkers/mesoscale.py:vortex_design）逐个文件由涡旋中心求初基晶胞，算出间距、密度或散射峰，再按题干目标规则重新选择。",
       "limits": "候选为论文实测磁场的理想模型。",
       "gap": "3 题。",
       "template_review": "本轮新建（补 100–1000 空格），待人工审核。",
@@ -1880,7 +1881,7 @@
       "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
       "principle": "胆甾相：指向矢绕螺旋轴均匀扭转，n 与 −n 等价。",
       "validation": "独立检查器投影解卷绕后线性拟合。",
-      "limits": "理想均匀扭曲。",
+      "limits": "理想均匀扭曲：不含缺陷线、表面锚定与螺距梯度；手性按题干给出的右手定则判断。",
       "gap": "Shaban 两种掺杂 + Dinc 两种涂层 + 模型浓度。",
       "template_review": "本轮新建（补 100–1000 空格），待人工审核。",
       "independent_checker": "checkers/mesoscale.py:cholesteric_quantity"
@@ -1942,7 +1943,7 @@
       "principle": "布拉格选择反射：λc = ⟨n⟩p，带宽 Δn·p；HTP 由掺杂剂分子手性决定。",
       "validation": "独立检查器由拟合螺距与题干参数计算。",
       "limits": "模型值与实测相差约 1–2%（审核侧列出实测值）。",
-      "gap": "同上。",
+      "gap": "与胆甾液晶几何相同：Shaban 两种掺杂 + Dinc 两种涂层 + 模型浓度。",
       "template_review": "本轮新建（补 100–1000 空格），待人工审核。",
       "independent_checker": "checkers/mesoscale.py:cholesteric_quantity"
     },
@@ -1996,7 +1997,7 @@
       ],
       "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
       "principle": "设计 = 推断的逆问题（选掺杂浓度或膜）。",
-      "validation": "独立检查器逐文件重算。",
+      "validation": "独立检查器（checkers/mesoscale.py:cholesteric_design）逐个文件把指向矢投影到垂直于螺旋轴的平面、解卷绕后线性拟合出螺距与手性，再按题干目标规则重新选择。",
       "limits": "非实测浓度的候选为按论文 HTP 计算的模型。",
       "gap": "3 题。",
       "template_review": "本轮新建（补 100–1000 空格），待人工审核。",
@@ -2026,13 +2027,13 @@
       ],
       "scale_limits": "公式题，坐标仅提供晶格参数。",
       "source_basis": "COD",
-      "answer_method": "解析公式。",
+      "answer_method": "立方晶系面间距解析公式 d = a/√(h²+k²+l²)。",
       "distractor_mechanisms": [
         "a/(h+k+l)",
         "a·√(h²+k²+l²)",
         "diagonal_confusion"
       ],
-      "four_choice_validation": "未实现。",
+      "four_choice_validation": "未实现（旧数值短答案，未改为四选一）。",
       "engine_families": [],
       "legacy_families": [
         "cubic_plane_geometry"
@@ -2050,10 +2051,10 @@
       ],
       "builder_modules": "旧 pipeline。",
       "principle": "d = a/√(h²+k²+l²)。",
-      "validation": "旧验证。",
+      "validation": "旧专用脚本复算，未接入独立检查器；对应旧题不在 160 道挑选中。",
       "limits": "几何必要性弱（只用 a）。",
       "gap": "优先级低：易退化为公式题。",
-      "template_review": "既有模块。",
+      "template_review": "既有旧模块，未迁入题型族。",
       "independent_checker": ""
     },
     {
@@ -2071,7 +2072,7 @@
         "numeric"
       ],
       "inputs": "PDB、链与残基选择。",
-      "physical_conditions": "单一模型。",
+      "physical_conditions": "单一实验结构模型（PDB 主构象）。",
       "input_scale": "整条链（1–10 nm）",
       "reasoning_scale": "路径或局部片段",
       "scale_cells": [
@@ -2086,7 +2087,7 @@
         "chord_vs_path",
         "neighbor_residue"
       ],
-      "four_choice_validation": "未实现。",
+      "four_choice_validation": "未实现（旧数值短答案，未改为四选一）。",
       "engine_families": [],
       "legacy_families": [
         "dna_marker_path",
@@ -2113,11 +2114,11 @@
         "tests/test_bio_geometry.py"
       ],
       "builder_modules": "旧 pipeline。",
-      "principle": "按题定义。",
-      "validation": "旧验证。",
-      "limits": "多为小修。",
+      "principle": "按每道旧题的定义（路径长度、弦长或局部间距）。",
+      "validation": "旧专用脚本复算，未接入独立检查器；对应旧题不在 160 道挑选中。",
+      "limits": "对应旧题在 2026-09-22 专项筛查中多数列为“小修后复查”；需先拆成可复用子族。",
       "gap": "需要先拆成若干可复用子族（路径长度、弦长、局部间距）。",
-      "template_review": "既有模块。",
+      "template_review": "既有旧模块，未迁入题型族。",
       "independent_checker": ""
     },
     {
@@ -2360,7 +2361,7 @@
       "output_forms": [
         "choice"
       ],
-      "inputs": "常规立方晶胞全部原子分数坐标表 + 晶格常数 + 原子序数权重。",
+      "inputs": "常规晶胞全部原子分数坐标表 + 晶胞参数 + 原子序数权重。",
       "physical_conditions": "运动学近似；零角度原子序数权重；忽略热振动。",
       "input_scale": "晶胞边长",
       "reasoning_scale": "晶胞边长（相位求和跨越整个晶胞）",
@@ -2368,15 +2369,16 @@
         "0.1-1",
         "1-10"
       ],
-      "scale_limits": "只用于立方常规晶胞；弱反射（|F|/F000 < 0.05）不作选项。",
-      "source_basis": "COD（NaCl、金刚石、SALEM-2、MOF-5）",
-      "answer_method": "对学生看到的同一坐标表求 F(hkl)；|F|/F000 ≤ 1e-6 判为消光。",
+      "scale_limits": "弱反射（|F|/F000 < 0.05）不作选项；非立方时 (h k l) 取 0–4，并排除彼此对称等价（同 d、同 |F|）的干扰项，避免一次排除两项。",
+      "source_basis": "COD（NaCl、金刚石、SALEM-2、MOF-5；金红石、板钛矿、ZnO、α-石英）",
+      "answer_method": "对学生看到的同一坐标表求 F(hkl)；|F|/F000 ≤ 1e-6 判为消光。非立方晶胞以“换轴误用消光条件”（指数换轴后的反射才消光）代替中心化规则作为错误机制。",
       "distractor_mechanisms": [
         "wrong_rule:I",
         "wrong_rule:F",
         "wrong_rule:F+d",
         "identical_atom_assumption",
-        "weak_not_absent"
+        "weak_not_absent",
+        "axis_confusion"
       ],
       "four_choice_validation": "恰好一项消光、三项 ≥ 0.05 F000；另记录 P/I/F/F+d 规则能否单独答对。",
       "engine_families": [
@@ -2408,7 +2410,7 @@
       ],
       "builder_modules": "M1 直接读取已发布 CIF/XYZ；M5 记录规则捷径。",
       "principle": "F(hkl) = Σ Z_j exp[2πi(hx+ky+lz)]。",
-      "validation": "四项逐一计算。",
+      "validation": "独立检查器（checkers/families.py:extinction）对学生看到的同一坐标表分别累加 cos 与 sin 项求 F(hkl)，逐项判定消光或非零（≥ 0.05 F000）。",
       "limits": "NaCl、SALEM-2、MOF-5 的正确项仅需中心化规则即可答对（已在 rule_shortcuts 中披露）。",
       "gap": "旧 MOF-5 题来源误记为 COD 4118891（应为 1516287），旧“ZIF-8”实为未取代咪唑的 SALEM-2；新族已更正，旧目录待修。",
       "template_review": "本轮新建，待人工审核。",
@@ -2429,7 +2431,7 @@
         "numeric",
         "choice"
       ],
-      "inputs": "常规立方晶胞全部原子分数坐标表 + a；原子序数权重；波长。",
+      "inputs": "常规晶胞全部原子分数坐标表 + 晶胞参数；原子序数权重；波长。",
       "physical_conditions": "运动学近似、零角度原子序数权重、一级衍射。",
       "input_scale": "晶胞",
       "reasoning_scale": "晶面间距",
@@ -2437,15 +2439,17 @@
         "0.1-1",
         "1-10"
       ],
-      "scale_limits": "几何必要性弱。",
+      "scale_limits": "只需晶胞与原子位置；若只用晶胞边长而不算结构因子，会误选被消光的反射（这正是一种错误机制）。",
       "source_basis": "COD",
-      "answer_method": "逐一计算低指数反射的结构因子，取 |F|≠0 的最小 2θ。",
+      "answer_method": "立方：h ≥ k ≥ l ≥ 0 的低指数反射；其他晶系：|h|、|k|、|l| ≤ 4 的全部反射（Friedel 对取一个），d 由倒格矢求，取 |F|≠0 的最小 2θ；等价反射同角度视为一个峰。非立方的登记错误包括套用立方公式 d = a/√(h²+k²+l²)。",
       "distractor_mechanisms": [
         "lowest_index_ignoring_extinction",
         "assumed_lattice_rule",
         "theta_not_two_theta",
         "second_allowed_peak",
-        "d_equals_a"
+        "d_equals_a",
+        "cubic_d_formula",
+        "d_equals_c"
       ],
       "four_choice_validation": "与正确值 > 0.3°；升序排列，秩按批次轮换。",
       "engine_families": [
@@ -2469,9 +2473,9 @@
         "tests/test_checkers.py"
       ],
       "builder_modules": "族引擎内等价实现；旧 MNI004/006/007 由新版取代（同时更正 MOF-5 来源为 COD 1516287）。",
-      "principle": "布拉格定律。",
-      "validation": "旧验证。",
-      "limits": "多为小修。",
+      "principle": "布拉格定律 λ = 2d sinθ，加运动学结构因子判定哪些低指数反射不消光。",
+      "validation": "独立检查器（checkers/migrated.py:first_diffraction_peak）对 h、k、l ≤ 5 的全部反射用自己的结构因子求和，取 |F| ≠ 0 的最小 2θ，并核对来源文件哈希。",
+      "limits": "运动学近似、零角度原子序数权重，不含原子散射因子的角度依赖、热振动与反常散射；只问一级衍射；不支持部分占位。",
       "gap": "未含原子散射因子角度依赖。",
       "template_review": "本轮迁移新建，待人工审核。",
       "independent_checker": "checkers/migrated.py:first_diffraction_peak"
@@ -2540,8 +2544,8 @@
       ],
       "builder_modules": "族引擎内等价实现；旧 BNI004 由新版取代。",
       "principle": "Guinier：qRg ≲ 1.3；FRET：E = 1/(1+(r/R0)^6)。",
-      "validation": "旧验证。",
-      "limits": "证据段落需审核。",
+      "validation": "独立检查器（checkers/migrated.py）：FRET 从题干点名的原子取坐标、从题干读 R0，按直线距离重算效率；Guinier 用成对距离恒等式求等权 Rg（出题端用质心公式），核对 qRg ≤ 1.3，并核对点集与已发布资产或源 PDB 一致。",
+      "limits": "FRET 为点偶极模型，R0 为题设值，不含染料连接臂与取向分布；Guinier 只在小 q 区间成立，等权点散射体不等于电子密度。",
       "gap": "R0 为题设虚拟值，不对应具体染料。",
       "template_review": "本轮迁移新建，待人工审核。",
       "independent_checker": "checkers/migrated.py:fret_efficiency, guinier_intensity",
@@ -2617,7 +2621,7 @@
         "choice"
       ],
       "inputs": "两个结构。",
-      "physical_conditions": "按题。",
+      "physical_conditions": "按每道旧题给出的两个结构与比较条件。",
       "input_scale": "按实例",
       "reasoning_scale": "按实例",
       "scale_cells": [
@@ -2626,12 +2630,12 @@
       ],
       "scale_limits": "多题只做算术比较，推断成分弱。",
       "source_basis": "PDB",
-      "answer_method": "旧脚本。",
+      "answer_method": "旧专用脚本（见对应旧题的计算记录）。",
       "distractor_mechanisms": [
         "reverse_comparison",
         "overgeneralization"
       ],
-      "four_choice_validation": "未实现。",
+      "four_choice_validation": "未实现（旧数值短答案，未改为四选一）。",
       "engine_families": [],
       "legacy_families": [
         "cross_chain_gyration_comparison",
@@ -2664,11 +2668,11 @@
         "tests/test_bio_geometry2.py"
       ],
       "builder_modules": "旧 pipeline。",
-      "principle": "按题。",
-      "validation": "旧验证。",
-      "limits": "多为小修。",
+      "principle": "按每道旧题的定义。",
+      "validation": "旧专用脚本复算，未接入独立检查器；对应旧题不在 160 道挑选中。",
+      "limits": "对应旧题在 2026-09-22 专项筛查中多数列为“小修后复查”；需先确认哪些比较真正需要推断。",
       "gap": "需要先确认哪些比较真正需要推断；否则并入感知族。",
-      "template_review": "既有模块。",
+      "template_review": "既有旧模块，未迁入题型族。",
       "independent_checker": ""
     },
     {
@@ -2692,7 +2696,7 @@
       "scale_cells": [],
       "scale_limits": "几何非必要。",
       "source_basis": "OE62、QM7-X",
-      "answer_method": "算术。",
+      "answer_method": "算术（旧题）。",
       "distractor_mechanisms": [],
       "four_choice_validation": "不适用。",
       "engine_families": [],
@@ -2713,9 +2717,9 @@
       "code": [],
       "tests": [],
       "builder_modules": "旧 pipeline。",
-      "principle": "—",
-      "validation": "—",
-      "limits": "不扩量。",
+      "principle": "算术（由给定能级相减等），不需要几何。",
+      "validation": "无独立验证：旧题直接给出能级或偶极向量。",
+      "limits": "删去几何仍可作答，因此不扩量；重建方向见 gap。",
       "gap": "重建方向：改为 conformer_target_selection 式的“由结构选性质”题，而不是给出能级。",
       "template_review": "筛查判定 rebuild。",
       "independent_checker": ""

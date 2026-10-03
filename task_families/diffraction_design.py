@@ -44,7 +44,10 @@ def two_theta(d, lam):
 
 
 def crystal_info(spec, root):
-    a, rows, text, digest = load_cell(spec, root)
+    cell, rows, text, digest = load_cell(spec, root)
+    if cell.kind != 'cubic':
+        raise ValueError('diffraction_design supports cubic cells only')
+    a = cell.a
     refl = reflections(a, rows, spec['weights'])
     first = first_allowed(refl)
     return dict(a=a, rows=rows, text=text, digest=digest, refl=refl, first=first, lowest=refl[0])

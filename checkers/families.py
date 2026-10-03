@@ -8,6 +8,7 @@ import json
 import math
 import re
 from decimal import Decimal, localcontext
+from . import cells
 from .common import (CheckError, need, find, read_xyz, dist, vec, dot, cross, verify_hashes,
                      judge_numeric, LABELS)
 
@@ -150,8 +151,8 @@ def extinction(packet, key):
     need('Exactly one of the four reflections' in q, 'Uniqueness premise not stated')
     [text] = [i['text'] for i in packet['inputs'] if i['format'] == 'fractional-cell-table']
     lines = text.splitlines()
-    a = float(find(r'cubic a = ([\d.]+) angstrom', lines[0], 'Cell parameter missing').group(1))
-    atoms = [(r[0], [float(x) for x in r[1:]]) for r in (line.split() for line in lines[1:] if line.strip())]
+    params, atoms = cells.parse_table(text)
+    a = None if params else float(find(r'cubic a = ([\d.]+) angstrom', lines[0], 'Cell parameter missing').group(1))
     need(all(len(p) == 3 and all(0 <= x < 1 for x in p) for _, p in atoms), 'Fractional coordinates outside [0,1)')
     need({e for e, _ in atoms} == set(weights), 'Weights do not cover exactly the elements present')
     total = sum(weights[e] for e, _ in atoms)
@@ -170,7 +171,10 @@ def extinction(packet, key):
     # Provenance: the table must reproduce the public source (cell edge from the CIF,
     # or every Cartesian row of the published XYZ cell).
     [path] = verify_hashes(key).values()
-    if path.suffix == '.cif':
+    if params:
+        need(path.suffix == '.cif', 'Non-cubic tables must come from a CIF')
+        cells.same_cell(params, atoms, path)              # own symmetry expansion of the source
+    elif path.suffix == '.cif':
         cif_a = find(r'_cell_length_a\s+([\d.]+)', path.read_text(encoding='utf-8'), 'CIF lacks cell edge').group(1)
         need(abs(float(cif_a) - a) < 1e-4, 'Cell edge differs from the CIF')
     else:
@@ -178,7 +182,7 @@ def extinction(packet, key):
         need(len(source) == len(atoms) and all(e == s_e and max(abs(x * a - float(c)) for x, c in zip(f, sp)) < 1e-5
                                                for (e, f), (s_e, sp) in zip(atoms, source)),
              'Fractional table does not reproduce the published cell')
-    return dict(label=zero[0][0], recomputed=zero[0][1], parameters=dict(weights=weights, a_A=a, atoms=len(atoms)),
+    return dict(label=zero[0][0], recomputed=zero[0][1], parameters=dict(weights=weights, **(dict(cell=params) if params else dict(a_A=a)), atoms=len(atoms)),
                 options={l: round(r, 8) for l, _, r in verdicts}, weakest_nonzero=round(weakest, 6),
                 method='separate cos/sin sums over the student table')
 

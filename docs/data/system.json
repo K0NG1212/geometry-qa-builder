@@ -4,10 +4,10 @@
   "families": 43,
   "checkers": 43,
   "family_modules": 18,
-  "manifest_instances": 174,
-  "run": "family-pilot-v19",
-  "attempted": 174,
-  "passed": 173,
+  "manifest_instances": 183,
+  "run": "family-pilot-v21",
+  "attempted": 183,
+  "passed": 182,
   "failures": [
    {
     "id": "FA-CONF-7063-max_dipole",
@@ -16,12 +16,12 @@
     "reason": "No four-candidate set with a unique best above the margin"
    }
   ],
-  "independent_checked": 173,
-  "independent_passed": 173,
-  "tests": 280,
-  "code_lines": 5950,
-  "generator_lines": 4111,
-  "checker_lines": 1839,
+  "independent_checked": 182,
+  "independent_passed": 182,
+  "tests": 289,
+  "code_lines": 6382,
+  "generator_lines": 4366,
+  "checker_lines": 2016,
   "abilities": {
    "perception": 14,
    "inference": 16,
@@ -135,7 +135,7 @@
      "path": "docs/data/coverage-plan.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/docs/data/coverage-plan.json",
      "lines": 1272,
-     "sha256": "4c70b201411015f4779307d7d024e51391188b6c86df0dd288319faba593dd24"
+     "sha256": "07c7c144e8186b140ea92527569d270871dc55a40f051b839684f4613df5f592"
     }
    ]
   },
@@ -235,9 +235,9 @@
     {
      "path": "checkers/families.py",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/families.py",
-     "lines": 280,
-     "sha256": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
-     "source": "\"\"\"One independent checker per task family. Each reads the student packet (what the\nmodel sees) and the answer key, re-derives the task parameters from the question text,\nrecomputes with a different formula than the generator, and verifies all four options.\nA parameter that cannot be read from the question text is a failure: the question is\nthen not answerable from its own text.\n\"\"\"\nimport json\nimport math\nimport re\nfrom decimal import Decimal, localcontext\nfrom .common import (CheckError, need, find, read_xyz, dist, vec, dot, cross, verify_hashes,\n                     judge_numeric, LABELS)\n\n# Covalent radii (Cordero et al. 2008) for the checker's own bonding rule.\nRADII = {'H': 0.31, 'C': 0.76, 'N': 0.71, 'O': 0.66, 'S': 1.05, 'Cl': 1.02, 'P': 1.07, 'F': 0.57}\n\n\ndef inputs_by_name(packet):\n    return {i['name']: i['text'] for i in packet['inputs']}\n\n\n# ---------------------------------------------------------------- perception\ndef named_bond_angle(packet, key):\n    \"\"\"Law of cosines on three interatomic distances (generator: vector dot product).\"\"\"\n    q = packet['question']\n    rows = re.findall(r'([\\w\\-]+) = row (\\d+)', q)\n    need(len(rows) == 3, 'Question must map exactly three named atoms to XYZ rows')\n    vertex = find(r'bond angle at ([\\w\\-]+)', q, 'Question does not name the angle vertex').group(1)\n    names = [n for n, _ in rows]\n    need(vertex == names[1], 'Named vertex is not the middle atom of the listed triple')\n    [text] = [i['text'] for i in packet['inputs'] if i['format'] == 'xyz']\n    atoms = read_xyz(text)\n    need(all(1 <= int(r) <= len(atoms) for _, r in rows), 'Row index outside the XYZ')\n    a, v, b = [atoms[int(r) - 1] for _, r in rows]\n    for end in (a, b):\n        limit = 1.25 * (RADII[end[0]] + RADII[v[0]])\n        need(float(dist(end[1], v[1])) <= limit, 'Named end atom is not bonded to the vertex')\n    va, vb, ab = dist(v[1], a[1]), dist(v[1], b[1]), dist(a[1], b[1])\n    with localcontext() as ctx:\n        ctx.prec = 40\n        cosine = (va * va + vb * vb - ab * ab) / (2 * va * vb)\n    angle = math.degrees(math.acos(max(-1.0, min(1.0, float(cosine)))))\n    verify_hashes(key)\n    return dict(judge_numeric(packet, key, angle), parameters=dict(atoms=rows, vertex=vertex),\n                method='law of cosines from three Decimal distances')\n\n\ndef _pdb_atoms(text):\n    atoms = {}\n    for line in text.splitlines():\n        if line.startswith('ATOM'):\n            need(line[16] == ' ', 'Alternate location in excerpt')\n            atoms[(line[12:16].strip(), int(line[22:26]))] = tuple(Decimal(line[c:c + 8]) for c in (30, 38, 46))\n    return atoms\n\n\ndef backbone_torsion(packet, key):\n    \"\"\"Normals' angle via acos, sign from (n1 x n2).b2 (generator: two atan2 forms).\"\"\"\n    q = packet['question']\n    spec = find(r'defined by atoms ((?:[A-Z0-9]+\\(\\d+\\)–){3}[A-Z0-9]+\\(\\d+\\))', q,\n                'Question does not define the four torsion atoms').group(1)\n    parts = [re.fullmatch(r'([A-Z0-9]+)\\((\\d+)\\)', p).groups() for p in spec.split('–')]\n    need('IUPAC' in q, 'Sign convention not stated')\n    [text] = [i['text'] for i in packet['inputs'] if i['format'] == 'pdb-excerpt']\n    atoms = _pdb_atoms(text)\n    pts = []\n    for name, residue in parts:\n        need((name, int(residue)) in atoms, 'Torsion atom %s(%s) missing from excerpt' % (name, residue))\n        pts.append(atoms[(name, int(residue))])\n    b1, b2, b3 = vec(pts[0], pts[1]), vec(pts[1], pts[2]), vec(pts[2], pts[3])\n    n1, n2 = cross(b1, b2), cross(b2, b3)\n    cosine = dot(n1, n2) / math.sqrt(dot(n1, n1) * dot(n2, n2))\n    angle = math.degrees(math.acos(max(-1.0, min(1.0, cosine))))\n    if dot(cross(n1, n2), b2) < 0:\n        angle = -angle\n    # Provenance: every excerpt line must occur verbatim in the public PDB file.\n    paths = verify_hashes(key)\n    if paths:     # check() requires a recorded source for every real instance\n        source = set(line.rstrip() for p in paths.values() for line in p.read_text(encoding='utf-8').splitlines())\n        need(all(line in source for line in text.splitlines() if line.startswith('ATOM')),\n             'Excerpt lines are not copied unchanged from the source PDB')\n    return dict(judge_numeric(packet, key, angle, period=Decimal(360)), parameters=dict(atoms=spec),\n                method='acos of plane normals with triple-product sign')\n\n\ndef extent(packet, key):\n    \"\"\"Decimal recomputation: Dmax by squared distances, Rg by centroid (explicit sums).\"\"\"\n    q = packet['question']\n    [text] = [i['text'] for i in packet['inputs'] if i['format'] == 'xyz']\n    atoms = read_xyz(text)\n    pts = [p for _, p in atoms]\n    need('mass weights' not in q or 'Do not use mass weights' in q, 'Weighting ambiguous')\n    with localcontext() as ctx:\n        ctx.prec = 40\n        if 'maximum Euclidean distance' in q:\n            best = max(sum((a - b) ** 2 for a, b in zip(p, r)) for i, p in enumerate(pts) for r in pts[i + 1:])\n            value, kind = best.sqrt(), 'max_pair_distance'\n        elif 'radius of gyration' in q:\n            n = len(pts)\n            c = [sum(p[k] for p in pts) / n for k in range(3)]\n            value, kind = (sum(sum((p[k] - c[k]) ** 2 for k in range(3)) for p in pts) / n).sqrt(), 'equal_weight_rg'\n        else:\n            raise CheckError('Question does not state which size measure is asked')\n    verify_hashes(key)\n    return dict(judge_numeric(packet, key, value), parameters=dict(measure=kind, atoms=len(pts)),\n                method='Decimal (40 digits) explicit sums')\n\n\n# ---------------------------------------------------------------- inference\ndef force_path(packet, key):\n    \"\"\"dE/dlambda at B = -(path direction) . F(B), summed atom by atom in Decimal.\"\"\"\n    q = packet['question']\n    need('F_i = −∂E/∂r_i' in q, 'Force–gradient relation not stated in the question')\n    if 'starts at B and moves toward A' in q and 'r_i(B) + λ[r_i(A) − r_i(B)]' in q:\n        sign, direction = -1, 'B_to_A'\n    elif 'r_i(A) + λ[r_i(B) − r_i(A)]' in q and 'at λ = 1' in q:\n        sign, direction = 1, 'A_to_B'\n    else:\n        raise CheckError('Path direction not stated unambiguously')\n    files = inputs_by_name(packet)\n    need({'A.xyz', 'B.xyz', 'forces_B.txt'} <= set(files), 'Missing A, B or force table')\n    a, b = read_xyz(files['A.xyz']), read_xyz(files['B.xyz'])\n    rows = [line.split() for line in files['forces_B.txt'].splitlines()[1:] if line.strip()]\n    need(len(a) == len(b) == len(rows), 'A, B and forces differ in atom count')\n    need([e for e, _ in a] == [e for e, _ in b] == [r[1] for r in rows], 'Atom order differs')\n    need([int(r[0]) for r in rows] == list(range(1, len(rows) + 1)), 'Force rows not numbered 1..N')\n    with localcontext() as ctx:\n        ctx.prec = 40\n        projection = sum(Decimal(f) * (pb - pa) for (_, ra), (_, rb), r in zip(a, b, rows)\n                         for pa, pb, f in zip(ra, rb, r[2:]))\n        value = -sign * projection\n    # Provenance: coordinates and forces agree with the public asset to printing precision.\n    [path] = verify_hashes(key).values()\n    data = json.loads(path.read_text())\n    for label, atoms, ref in (('A', a, data['reference_xyz']), ('B', b, data['displaced_xyz'])):\n        need(max(abs(float(c) - r) for (_, p), rr in zip(atoms, ref) for c, r in zip(p, rr)) < 1e-7,\n             label + ' coordinates differ from the source asset')\n    need(max(abs(float(f) - r) for row, rr in zip(rows, data['forces_at_displaced']) for f, r in zip(row[2:], rr)) < 1e-6,\n         'Forces differ from the source asset')\n    return dict(judge_numeric(packet, key, value), parameters=dict(direction=direction, atoms=len(a)),\n                method='Decimal atom-by-atom projection')\n\n\ndef extinction(packet, key):\n    \"\"\"Real/imaginary sums with math.fsum; one option must vanish, three clearly not.\"\"\"\n    q = packet['question']\n    weights_text = find(r'\\(((?:[A-Z][a-z]? = \\d+, )*[A-Z][a-z]? = \\d+)\\)', q,\n                        'Scattering weights not stated in the question').group(1)\n    weights = {k: int(v) for k, v in re.findall(r'([A-Z][a-z]?) = (\\d+)', weights_text)}\n    need('Exactly one of the four reflections' in q, 'Uniqueness premise not stated')\n    [text] = [i['text'] for i in packet['inputs'] if i['format'] == 'fractional-cell-table']\n    lines = text.splitlines()\n    a = float(find(r'cubic a = ([\\d.]+) angstrom', lines[0], 'Cell parameter missing').group(1))\n    atoms = [(r[0], [float(x) for x in r[1:]]) for r in (line.split() for line in lines[1:] if line.strip())]\n    need(all(len(p) == 3 and all(0 <= x < 1 for x in p) for _, p in atoms), 'Fractional coordinates outside [0,1)')\n    need({e for e, _ in atoms} == set(weights), 'Weights do not cover exactly the elements present')\n    total = sum(weights[e] for e, _ in atoms)\n    verdicts = []\n    for o in packet['options']:\n        hkl = [int(x) for x in find(r'^\\((-?\\d+) (-?\\d+) (-?\\d+)\\)$', o['value'], 'Option is not (h k l)').groups()]\n        phase = [2 * math.pi * sum(h * x for h, x in zip(hkl, p)) for _, p in atoms]\n        re_part = math.fsum(weights[e] * math.cos(t) for (e, _), t in zip(atoms, phase))\n        im_part = math.fsum(weights[e] * math.sin(t) for (e, _), t in zip(atoms, phase))\n        verdicts.append((o['label'], o['value'], math.hypot(re_part, im_part) / total))\n    zero = [v for v in verdicts if v[2] <= 1e-6]\n    need(len(zero) == 1, '%d options have |F| = 0 (need exactly 1)' % len(zero))\n    weakest = min(v[2] for v in verdicts if v[2] > 1e-6)\n    need(weakest >= 1e-3, 'A distractor is nearly extinct (|F|/F000 = %.2e)' % weakest)\n    need(key['correct_label'] == zero[0][0], 'Key label %s != recomputed %s' % (key['correct_label'], zero[0][0]))\n    # Provenance: the table must reproduce the public source (cell edge from the CIF,\n    # or every Cartesian row of the published XYZ cell).\n    [path] = verify_hashes(key).values()\n    if path.suffix == '.cif':\n        cif_a = find(r'_cell_length_a\\s+([\\d.]+)', path.read_text(encoding='utf-8'), 'CIF lacks cell edge').group(1)\n        need(abs(float(cif_a) - a) < 1e-4, 'Cell edge differs from the CIF')\n    else:\n        source = read_xyz(path.read_text(encoding='utf-8-sig'))\n        need(len(source) == len(atoms) and all(e == s_e and max(abs(x * a - float(c)) for x, c in zip(f, sp)) < 1e-5\n                                               for (e, f), (s_e, sp) in zip(atoms, source)),\n             'Fractional table does not reproduce the published cell')\n    return dict(label=zero[0][0], recomputed=zero[0][1], parameters=dict(weights=weights, a_A=a, atoms=len(atoms)),\n                options={l: round(r, 8) for l, _, r in verdicts}, weakest_nonzero=round(weakest, 6),\n                method='separate cos/sin sums over the student table')\n\n\n# ---------------------------------------------------------------- design\ndef _bonds(atoms):\n    pts = [p for _, p in atoms]\n    return {(i, j) for i in range(len(pts)) for j in range(i + 1, len(pts))\n            if float(dist(pts[i], pts[j])) <= 1.25 * (RADII[atoms[i][0]] + RADII[atoms[j][0]])}\n\n\ndef _handedness(atoms, bonds):\n    out = {}\n    for i in range(len(atoms)):\n        nb = sorted({b if a == i else a for a, b in bonds if i in (a, b)})\n        if len(nb) == 4:\n            u, v, w = (vec(atoms[i][1], atoms[j][1]) for j in nb[:3])\n            out[i] = dot(cross(u, v), w) > 0\n    return out\n\n\ndef _shape_gap(p, q):\n    pts = range(len(p))\n    diffs = [float(dist(p[i][1], p[j][1]) - dist(q[i][1], q[j][1])) for i in pts for j in pts if i < j]\n    return math.sqrt(math.fsum(d * d for d in diffs) / len(diffs))\n\n\nPOLICY = {'min_energy': ('e_pbe0_mbd_eV', -1, 0.0434), 'max_dipole': ('dipole_eA', 1, 0.10)}\n\n\ndef conformer_selection(packet, key):\n    \"\"\"Constraints from the candidate files themselves; property looked up by matching\n    coordinates in the hash-verified public dataset extract (never by label or id).\"\"\"\n    q = packet['question']\n    if 'lowest total PBE0+MBD energy' in q:\n        goal = 'min_energy'\n    elif 'largest total dipole-moment magnitude' in q:\n        goal = 'max_dipole'\n    else:\n        raise CheckError('Design goal not stated')\n    need('only by rotating about single bonds' in q, 'Allowed modification not stated')\n    files = inputs_by_name(packet)\n    need(set(files) == {'S0.xyz'} | {'candidate_%s.xyz' % l for l in LABELS}, 'Need S0 and four candidates')\n    need(all('Geom-' not in t for t in files.values()), 'Dataset identifiers visible to the model')\n    s0 = read_xyz(files['S0.xyz'])\n    bonds0, hand0 = _bonds(s0), _handedness(s0, _bonds(s0))\n    [path] = verify_hashes(key).values()\n    data = json.loads(path.read_text())\n    prop, sense, margin = POLICY[goal]\n    rows, candidates = [], []\n    for label in LABELS:\n        atoms = read_xyz(files['candidate_%s.xyz' % label])\n        need([e for e, _ in atoms] == [e for e, _ in s0], label + ': atoms or order differ from S0')\n        need(_bonds(atoms) == bonds0, label + ': bonding differs from S0')\n        need(_handedness(atoms, bonds0) == hand0, label + ': configuration at a 4-coordinate centre differs')\n        need(_shape_gap(atoms, s0) > 0.05, label + ': identical to S0 (or its mirror image)')\n        match = [c for c in data['conformers']\n                 if max(abs(float(x) - y) for (_, p), r in zip(atoms, c['xyz']) for x, y in zip(p, r)) < 1e-6]\n        need(len(match) == 1, label + ': no unique dataset structure with these coordinates')\n        candidates.append((label, atoms))\n        rows.append((label, match[0][prop]))\n    for (l1, a1), (l2, a2) in ((x, y) for i, x in enumerate(candidates) for y in candidates[i + 1:]):\n        need(_shape_gap(a1, a2) > 0.05, '%s and %s are the same or mirror conformers' % (l1, l2))\n    ranked = sorted(rows, key=lambda r: sense * r[1], reverse=True)\n    lead = sense * (ranked[0][1] - ranked[1][1])\n    need(lead >= margin, 'Best candidate leads by %.4f, below the %.4f policy margin' % (lead, margin))\n    need(key['correct_label'] == ranked[0][0], 'Key label %s != recomputed %s' % (key['correct_label'], ranked[0][0]))\n    return dict(label=ranked[0][0], recomputed=ranked[0][0], parameters=dict(goal=goal, atoms=len(s0)),\n                options={l: v for l, v in rows}, lead=round(lead, 6), policy_margin=margin,\n                method='own bond graph, handedness and distance-matrix checks; property matched by coordinates')\n\n\nfrom . import stereo as _stereo\nfrom . import migrated as _migrated\nfrom . import superlattice as _superlattice\nfrom . import moire as _moire\nfrom . import hostguest as _hostguest\nfrom . import quantum_dot as _quantum_dot\nfrom . import design_extra as _design_extra\nfrom . import mesoscale as _mesoscale\n\nCHECKERS = {\n    'stereo_relationship': _stereo.stereo_relationship,\n    'stereo_property_inference': _stereo.stereo_property_inference,\n    'stereo_design_selection': _stereo.stereo_design_selection,\n    'named_bond_angle': named_bond_angle,\n    'backbone_torsion': backbone_torsion,\n    'extent_choice_v2': extent,\n    'force_path_derivative': force_path,\n    'kinematic_extinction': extinction,\n    'conformer_target_selection': conformer_selection,\n    **_migrated.CHECKERS,\n    **_superlattice.CHECKERS,\n    **_moire.CHECKERS,\n    **_hostguest.CHECKERS,\n    **_quantum_dot.CHECKERS,\n    **_design_extra.CHECKERS,\n    **_mesoscale.CHECKERS,\n}\n"
+     "lines": 284,
+     "sha256": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
+     "source": "\"\"\"One independent checker per task family. Each reads the student packet (what the\nmodel sees) and the answer key, re-derives the task parameters from the question text,\nrecomputes with a different formula than the generator, and verifies all four options.\nA parameter that cannot be read from the question text is a failure: the question is\nthen not answerable from its own text.\n\"\"\"\nimport json\nimport math\nimport re\nfrom decimal import Decimal, localcontext\nfrom . import cells\nfrom .common import (CheckError, need, find, read_xyz, dist, vec, dot, cross, verify_hashes,\n                     judge_numeric, LABELS)\n\n# Covalent radii (Cordero et al. 2008) for the checker's own bonding rule.\nRADII = {'H': 0.31, 'C': 0.76, 'N': 0.71, 'O': 0.66, 'S': 1.05, 'Cl': 1.02, 'P': 1.07, 'F': 0.57}\n\n\ndef inputs_by_name(packet):\n    return {i['name']: i['text'] for i in packet['inputs']}\n\n\n# ---------------------------------------------------------------- perception\ndef named_bond_angle(packet, key):\n    \"\"\"Law of cosines on three interatomic distances (generator: vector dot product).\"\"\"\n    q = packet['question']\n    rows = re.findall(r'([\\w\\-]+) = row (\\d+)', q)\n    need(len(rows) == 3, 'Question must map exactly three named atoms to XYZ rows')\n    vertex = find(r'bond angle at ([\\w\\-]+)', q, 'Question does not name the angle vertex').group(1)\n    names = [n for n, _ in rows]\n    need(vertex == names[1], 'Named vertex is not the middle atom of the listed triple')\n    [text] = [i['text'] for i in packet['inputs'] if i['format'] == 'xyz']\n    atoms = read_xyz(text)\n    need(all(1 <= int(r) <= len(atoms) for _, r in rows), 'Row index outside the XYZ')\n    a, v, b = [atoms[int(r) - 1] for _, r in rows]\n    for end in (a, b):\n        limit = 1.25 * (RADII[end[0]] + RADII[v[0]])\n        need(float(dist(end[1], v[1])) <= limit, 'Named end atom is not bonded to the vertex')\n    va, vb, ab = dist(v[1], a[1]), dist(v[1], b[1]), dist(a[1], b[1])\n    with localcontext() as ctx:\n        ctx.prec = 40\n        cosine = (va * va + vb * vb - ab * ab) / (2 * va * vb)\n    angle = math.degrees(math.acos(max(-1.0, min(1.0, float(cosine)))))\n    verify_hashes(key)\n    return dict(judge_numeric(packet, key, angle), parameters=dict(atoms=rows, vertex=vertex),\n                method='law of cosines from three Decimal distances')\n\n\ndef _pdb_atoms(text):\n    atoms = {}\n    for line in text.splitlines():\n        if line.startswith('ATOM'):\n            need(line[16] == ' ', 'Alternate location in excerpt')\n            atoms[(line[12:16].strip(), int(line[22:26]))] = tuple(Decimal(line[c:c + 8]) for c in (30, 38, 46))\n    return atoms\n\n\ndef backbone_torsion(packet, key):\n    \"\"\"Normals' angle via acos, sign from (n1 x n2).b2 (generator: two atan2 forms).\"\"\"\n    q = packet['question']\n    spec = find(r'defined by atoms ((?:[A-Z0-9]+\\(\\d+\\)–){3}[A-Z0-9]+\\(\\d+\\))', q,\n                'Question does not define the four torsion atoms').group(1)\n    parts = [re.fullmatch(r'([A-Z0-9]+)\\((\\d+)\\)', p).groups() for p in spec.split('–')]\n    need('IUPAC' in q, 'Sign convention not stated')\n    [text] = [i['text'] for i in packet['inputs'] if i['format'] == 'pdb-excerpt']\n    atoms = _pdb_atoms(text)\n    pts = []\n    for name, residue in parts:\n        need((name, int(residue)) in atoms, 'Torsion atom %s(%s) missing from excerpt' % (name, residue))\n        pts.append(atoms[(name, int(residue))])\n    b1, b2, b3 = vec(pts[0], pts[1]), vec(pts[1], pts[2]), vec(pts[2], pts[3])\n    n1, n2 = cross(b1, b2), cross(b2, b3)\n    cosine = dot(n1, n2) / math.sqrt(dot(n1, n1) * dot(n2, n2))\n    angle = math.degrees(math.acos(max(-1.0, min(1.0, cosine))))\n    if dot(cross(n1, n2), b2) < 0:\n        angle = -angle\n    # Provenance: every excerpt line must occur verbatim in the public PDB file.\n    paths = verify_hashes(key)\n    if paths:     # check() requires a recorded source for every real instance\n        source = set(line.rstrip() for p in paths.values() for line in p.read_text(encoding='utf-8').splitlines())\n        need(all(line in source for line in text.splitlines() if line.startswith('ATOM')),\n             'Excerpt lines are not copied unchanged from the source PDB')\n    return dict(judge_numeric(packet, key, angle, period=Decimal(360)), parameters=dict(atoms=spec),\n                method='acos of plane normals with triple-product sign')\n\n\ndef extent(packet, key):\n    \"\"\"Decimal recomputation: Dmax by squared distances, Rg by centroid (explicit sums).\"\"\"\n    q = packet['question']\n    [text] = [i['text'] for i in packet['inputs'] if i['format'] == 'xyz']\n    atoms = read_xyz(text)\n    pts = [p for _, p in atoms]\n    need('mass weights' not in q or 'Do not use mass weights' in q, 'Weighting ambiguous')\n    with localcontext() as ctx:\n        ctx.prec = 40\n        if 'maximum Euclidean distance' in q:\n            best = max(sum((a - b) ** 2 for a, b in zip(p, r)) for i, p in enumerate(pts) for r in pts[i + 1:])\n            value, kind = best.sqrt(), 'max_pair_distance'\n        elif 'radius of gyration' in q:\n            n = len(pts)\n            c = [sum(p[k] for p in pts) / n for k in range(3)]\n            value, kind = (sum(sum((p[k] - c[k]) ** 2 for k in range(3)) for p in pts) / n).sqrt(), 'equal_weight_rg'\n        else:\n            raise CheckError('Question does not state which size measure is asked')\n    verify_hashes(key)\n    return dict(judge_numeric(packet, key, value), parameters=dict(measure=kind, atoms=len(pts)),\n                method='Decimal (40 digits) explicit sums')\n\n\n# ---------------------------------------------------------------- inference\ndef force_path(packet, key):\n    \"\"\"dE/dlambda at B = -(path direction) . F(B), summed atom by atom in Decimal.\"\"\"\n    q = packet['question']\n    need('F_i = −∂E/∂r_i' in q, 'Force–gradient relation not stated in the question')\n    if 'starts at B and moves toward A' in q and 'r_i(B) + λ[r_i(A) − r_i(B)]' in q:\n        sign, direction = -1, 'B_to_A'\n    elif 'r_i(A) + λ[r_i(B) − r_i(A)]' in q and 'at λ = 1' in q:\n        sign, direction = 1, 'A_to_B'\n    else:\n        raise CheckError('Path direction not stated unambiguously')\n    files = inputs_by_name(packet)\n    need({'A.xyz', 'B.xyz', 'forces_B.txt'} <= set(files), 'Missing A, B or force table')\n    a, b = read_xyz(files['A.xyz']), read_xyz(files['B.xyz'])\n    rows = [line.split() for line in files['forces_B.txt'].splitlines()[1:] if line.strip()]\n    need(len(a) == len(b) == len(rows), 'A, B and forces differ in atom count')\n    need([e for e, _ in a] == [e for e, _ in b] == [r[1] for r in rows], 'Atom order differs')\n    need([int(r[0]) for r in rows] == list(range(1, len(rows) + 1)), 'Force rows not numbered 1..N')\n    with localcontext() as ctx:\n        ctx.prec = 40\n        projection = sum(Decimal(f) * (pb - pa) for (_, ra), (_, rb), r in zip(a, b, rows)\n                         for pa, pb, f in zip(ra, rb, r[2:]))\n        value = -sign * projection\n    # Provenance: coordinates and forces agree with the public asset to printing precision.\n    [path] = verify_hashes(key).values()\n    data = json.loads(path.read_text())\n    for label, atoms, ref in (('A', a, data['reference_xyz']), ('B', b, data['displaced_xyz'])):\n        need(max(abs(float(c) - r) for (_, p), rr in zip(atoms, ref) for c, r in zip(p, rr)) < 1e-7,\n             label + ' coordinates differ from the source asset')\n    need(max(abs(float(f) - r) for row, rr in zip(rows, data['forces_at_displaced']) for f, r in zip(row[2:], rr)) < 1e-6,\n         'Forces differ from the source asset')\n    return dict(judge_numeric(packet, key, value), parameters=dict(direction=direction, atoms=len(a)),\n                method='Decimal atom-by-atom projection')\n\n\ndef extinction(packet, key):\n    \"\"\"Real/imaginary sums with math.fsum; one option must vanish, three clearly not.\"\"\"\n    q = packet['question']\n    weights_text = find(r'\\(((?:[A-Z][a-z]? = \\d+, )*[A-Z][a-z]? = \\d+)\\)', q,\n                        'Scattering weights not stated in the question').group(1)\n    weights = {k: int(v) for k, v in re.findall(r'([A-Z][a-z]?) = (\\d+)', weights_text)}\n    need('Exactly one of the four reflections' in q, 'Uniqueness premise not stated')\n    [text] = [i['text'] for i in packet['inputs'] if i['format'] == 'fractional-cell-table']\n    lines = text.splitlines()\n    params, atoms = cells.parse_table(text)\n    a = None if params else float(find(r'cubic a = ([\\d.]+) angstrom', lines[0], 'Cell parameter missing').group(1))\n    need(all(len(p) == 3 and all(0 <= x < 1 for x in p) for _, p in atoms), 'Fractional coordinates outside [0,1)')\n    need({e for e, _ in atoms} == set(weights), 'Weights do not cover exactly the elements present')\n    total = sum(weights[e] for e, _ in atoms)\n    verdicts = []\n    for o in packet['options']:\n        hkl = [int(x) for x in find(r'^\\((-?\\d+) (-?\\d+) (-?\\d+)\\)$', o['value'], 'Option is not (h k l)').groups()]\n        phase = [2 * math.pi * sum(h * x for h, x in zip(hkl, p)) for _, p in atoms]\n        re_part = math.fsum(weights[e] * math.cos(t) for (e, _), t in zip(atoms, phase))\n        im_part = math.fsum(weights[e] * math.sin(t) for (e, _), t in zip(atoms, phase))\n        verdicts.append((o['label'], o['value'], math.hypot(re_part, im_part) / total))\n    zero = [v for v in verdicts if v[2] <= 1e-6]\n    need(len(zero) == 1, '%d options have |F| = 0 (need exactly 1)' % len(zero))\n    weakest = min(v[2] for v in verdicts if v[2] > 1e-6)\n    need(weakest >= 1e-3, 'A distractor is nearly extinct (|F|/F000 = %.2e)' % weakest)\n    need(key['correct_label'] == zero[0][0], 'Key label %s != recomputed %s' % (key['correct_label'], zero[0][0]))\n    # Provenance: the table must reproduce the public source (cell edge from the CIF,\n    # or every Cartesian row of the published XYZ cell).\n    [path] = verify_hashes(key).values()\n    if params:\n        need(path.suffix == '.cif', 'Non-cubic tables must come from a CIF')\n        cells.same_cell(params, atoms, path)              # own symmetry expansion of the source\n    elif path.suffix == '.cif':\n        cif_a = find(r'_cell_length_a\\s+([\\d.]+)', path.read_text(encoding='utf-8'), 'CIF lacks cell edge').group(1)\n        need(abs(float(cif_a) - a) < 1e-4, 'Cell edge differs from the CIF')\n    else:\n        source = read_xyz(path.read_text(encoding='utf-8-sig'))\n        need(len(source) == len(atoms) and all(e == s_e and max(abs(x * a - float(c)) for x, c in zip(f, sp)) < 1e-5\n                                               for (e, f), (s_e, sp) in zip(atoms, source)),\n             'Fractional table does not reproduce the published cell')\n    return dict(label=zero[0][0], recomputed=zero[0][1], parameters=dict(weights=weights, **(dict(cell=params) if params else dict(a_A=a)), atoms=len(atoms)),\n                options={l: round(r, 8) for l, _, r in verdicts}, weakest_nonzero=round(weakest, 6),\n                method='separate cos/sin sums over the student table')\n\n\n# ---------------------------------------------------------------- design\ndef _bonds(atoms):\n    pts = [p for _, p in atoms]\n    return {(i, j) for i in range(len(pts)) for j in range(i + 1, len(pts))\n            if float(dist(pts[i], pts[j])) <= 1.25 * (RADII[atoms[i][0]] + RADII[atoms[j][0]])}\n\n\ndef _handedness(atoms, bonds):\n    out = {}\n    for i in range(len(atoms)):\n        nb = sorted({b if a == i else a for a, b in bonds if i in (a, b)})\n        if len(nb) == 4:\n            u, v, w = (vec(atoms[i][1], atoms[j][1]) for j in nb[:3])\n            out[i] = dot(cross(u, v), w) > 0\n    return out\n\n\ndef _shape_gap(p, q):\n    pts = range(len(p))\n    diffs = [float(dist(p[i][1], p[j][1]) - dist(q[i][1], q[j][1])) for i in pts for j in pts if i < j]\n    return math.sqrt(math.fsum(d * d for d in diffs) / len(diffs))\n\n\nPOLICY = {'min_energy': ('e_pbe0_mbd_eV', -1, 0.0434), 'max_dipole': ('dipole_eA', 1, 0.10)}\n\n\ndef conformer_selection(packet, key):\n    \"\"\"Constraints from the candidate files themselves; property looked up by matching\n    coordinates in the hash-verified public dataset extract (never by label or id).\"\"\"\n    q = packet['question']\n    if 'lowest total PBE0+MBD energy' in q:\n        goal = 'min_energy'\n    elif 'largest total dipole-moment magnitude' in q:\n        goal = 'max_dipole'\n    else:\n        raise CheckError('Design goal not stated')\n    need('only by rotating about single bonds' in q, 'Allowed modification not stated')\n    files = inputs_by_name(packet)\n    need(set(files) == {'S0.xyz'} | {'candidate_%s.xyz' % l for l in LABELS}, 'Need S0 and four candidates')\n    need(all('Geom-' not in t for t in files.values()), 'Dataset identifiers visible to the model')\n    s0 = read_xyz(files['S0.xyz'])\n    bonds0, hand0 = _bonds(s0), _handedness(s0, _bonds(s0))\n    [path] = verify_hashes(key).values()\n    data = json.loads(path.read_text())\n    prop, sense, margin = POLICY[goal]\n    rows, candidates = [], []\n    for label in LABELS:\n        atoms = read_xyz(files['candidate_%s.xyz' % label])\n        need([e for e, _ in atoms] == [e for e, _ in s0], label + ': atoms or order differ from S0')\n        need(_bonds(atoms) == bonds0, label + ': bonding differs from S0')\n        need(_handedness(atoms, bonds0) == hand0, label + ': configuration at a 4-coordinate centre differs')\n        need(_shape_gap(atoms, s0) > 0.05, label + ': identical to S0 (or its mirror image)')\n        match = [c for c in data['conformers']\n                 if max(abs(float(x) - y) for (_, p), r in zip(atoms, c['xyz']) for x, y in zip(p, r)) < 1e-6]\n        need(len(match) == 1, label + ': no unique dataset structure with these coordinates')\n        candidates.append((label, atoms))\n        rows.append((label, match[0][prop]))\n    for (l1, a1), (l2, a2) in ((x, y) for i, x in enumerate(candidates) for y in candidates[i + 1:]):\n        need(_shape_gap(a1, a2) > 0.05, '%s and %s are the same or mirror conformers' % (l1, l2))\n    ranked = sorted(rows, key=lambda r: sense * r[1], reverse=True)\n    lead = sense * (ranked[0][1] - ranked[1][1])\n    need(lead >= margin, 'Best candidate leads by %.4f, below the %.4f policy margin' % (lead, margin))\n    need(key['correct_label'] == ranked[0][0], 'Key label %s != recomputed %s' % (key['correct_label'], ranked[0][0]))\n    return dict(label=ranked[0][0], recomputed=ranked[0][0], parameters=dict(goal=goal, atoms=len(s0)),\n                options={l: v for l, v in rows}, lead=round(lead, 6), policy_margin=margin,\n                method='own bond graph, handedness and distance-matrix checks; property matched by coordinates')\n\n\nfrom . import stereo as _stereo\nfrom . import migrated as _migrated\nfrom . import superlattice as _superlattice\nfrom . import moire as _moire\nfrom . import hostguest as _hostguest\nfrom . import quantum_dot as _quantum_dot\nfrom . import design_extra as _design_extra\nfrom . import mesoscale as _mesoscale\n\nCHECKERS = {\n    'stereo_relationship': _stereo.stereo_relationship,\n    'stereo_property_inference': _stereo.stereo_property_inference,\n    'stereo_design_selection': _stereo.stereo_design_selection,\n    'named_bond_angle': named_bond_angle,\n    'backbone_torsion': backbone_torsion,\n    'extent_choice_v2': extent,\n    'force_path_derivative': force_path,\n    'kinematic_extinction': extinction,\n    'conformer_target_selection': conformer_selection,\n    **_migrated.CHECKERS,\n    **_superlattice.CHECKERS,\n    **_moire.CHECKERS,\n    **_hostguest.CHECKERS,\n    **_quantum_dot.CHECKERS,\n    **_design_extra.CHECKERS,\n    **_mesoscale.CHECKERS,\n}\n"
     }
    ]
   },
@@ -259,8 +259,8 @@
     {
      "path": "templates/registry.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/templates/registry.json",
-     "lines": 2860,
-     "sha256": "1cc239683d64cff12f1add2a4e632e0be95916021e1132c0c4387455eb26f556"
+     "lines": 2864,
+     "sha256": "9246225ee6e565704185d95583a8107595efbe783bc48d2dfd3a85a87f844a48"
     },
     {
      "path": "enumerators.py",
@@ -376,8 +376,8 @@
     {
      "path": "templates/admission-map.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/templates/admission-map.json",
-     "lines": 1543,
-     "sha256": "58b525e7dc3242f58eb7d62a6eb2088a700aa91f91877b3b208d80a0e2c674a2"
+     "lines": 1609,
+     "sha256": "875ca0a4ee6074fbdb78904cb9bf3cd5ff43b51ed45fb18fef106a7bf6f8e54a"
     }
    ]
   },
@@ -656,7 +656,7 @@
    "id": "kinematic_extinction",
    "ability": "inference",
    "output": "choice",
-   "version": "0.1.0",
+   "version": "0.2.0",
    "module": "task_families/extinction.py",
    "module_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/task_families/extinction.py",
    "route": "general",
@@ -665,21 +665,22 @@
     "name": "晶体衍射消光判别",
     "concept": "由晶胞内全部原子坐标与运动学结构因子推断哪一个反射强度为零；优先选择由基元/滑移而非仅中心化导致的消光。",
     "physical_conditions": "运动学近似；零角度原子序数权重；忽略热振动。",
-    "answer_method": "对学生看到的同一坐标表求 F(hkl)；|F|/F000 ≤ 1e-6 判为消光。",
+    "answer_method": "对学生看到的同一坐标表求 F(hkl)；|F|/F000 ≤ 1e-6 判为消光。非立方晶胞以“换轴误用消光条件”（指数换轴后的反射才消光）代替中心化规则作为错误机制。",
     "distractor_mechanisms": [
      "wrong_rule:I",
      "wrong_rule:F",
      "wrong_rule:F+d",
      "identical_atom_assumption",
-     "weak_not_absent"
+     "weak_not_absent",
+     "axis_confusion"
     ],
-    "validation": "四项逐一计算。",
+    "validation": "独立检查器（checkers/families.py:extinction）对学生看到的同一坐标表分别累加 cos 与 sin 项求 F(hkl)，逐项判定消光或非零（≥ 0.05 F000）。",
     "limits": "NaCl、SALEM-2、MOF-5 的正确项仅需中心化规则即可答对（已在 rule_shortcuts 中披露）。"
    },
    "checker": "checkers/families.py:extinction",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/families.py",
-   "instances": 4,
-   "active": 4,
+   "instances": 7,
+   "active": 7,
    "cells": [
     "materials 0.1-1",
     "materials 1-10"
@@ -833,7 +834,7 @@
    "registry": {
     "name": "命名局部距离",
     "concept": "指定化学实体之间的键长：磺酰 S=O、芳环 C–Cl、末端 N–N、C–NH2、二硫键 SG–SG；原子由行号或 PDB 原子名加化学描述指定，并由成键规则确认。",
-    "physical_conditions": "单一构象。",
+    "physical_conditions": "单一构象：QM7-X 的 DFTB3+MBD 优化几何，或晶体结构中的主构象；不考虑热振动与零点运动。",
     "answer_method": "欧氏距离（浮点与 Decimal 两种实现）；共价半径规则确认成键。",
     "distractor_mechanisms": [
      "other_bond_same_atom",
@@ -842,7 +843,7 @@
      "nearest_nonbonded_same_element",
      "bohr_units"
     ],
-    "validation": "旧验证器。",
+    "validation": "独立检查器（checkers/migrated.py:named_bond_distance）按题干点名的原子（PDB 原子名或 XYZ 行号）从附件取坐标，用 Decimal 重算距离，并用自己的共价半径规则确认成键；PDB 片段须与源文件逐字一致，二硫键题核对 SSBOND 记录，XYZ 核对元素与源文件哈希。",
     "limits": "QNP002–006 需说明元素对选择的化学意义（待小修）。"
    },
    "checker": "checkers/migrated.py:named_bond_distance",
@@ -861,7 +862,7 @@
    "id": "coordination_shell",
    "ability": "perception",
    "output": "choice",
-   "version": "0.1.0",
+   "version": "0.2.0",
    "module": "task_families/crystal.py",
    "module_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/task_families/crystal.py",
    "route": "general",
@@ -870,21 +871,22 @@
     "name": "配位壳层",
     "concept": "无限周期晶体中，指定中心周围某一物种的最近壳层（个数与距离）；包括网络节点层面的壳层（SALEM-2 的 Zn–Zn 四连接、MOF-5 μ4-O 节点的六连接）。",
     "physical_conditions": "周期边界；完全占位。",
-    "answer_method": "含 27 个相邻晶胞映像的近邻搜索，按 0.001 Å 归组壳层。",
+    "answer_method": "立方：27 个相邻晶胞映像的近邻搜索，按 0.001 Å 归组壳层。其他晶系：125 个映像，问最短距离及该距离上的原子数（低对称把配位多面体拆成几种距离，“整个多面体”是登记的错误机制）。",
     "distractor_mechanisms": [
      "no_periodic_images",
      "second_shell",
      "same_species_shell",
      "mixed_shells",
-     "merged_first_two_shells"
+     "merged_first_two_shells",
+     "whole_coordination_polyhedron"
     ],
     "validation": "独立 Decimal 公式复核。",
     "limits": "MNP004/005 待小修。"
    },
    "checker": "checkers/migrated.py:coordination_shell",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 4,
-   "active": 4,
+   "instances": 7,
+   "active": 7,
    "cells": [
     "materials 0.1-1",
     "materials 1-10"
@@ -897,7 +899,7 @@
    "id": "first_diffraction_peak",
    "ability": "inference",
    "output": "choice+numeric",
-   "version": "0.1.0",
+   "version": "0.2.0",
    "module": "task_families/crystal.py",
    "module_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/task_families/crystal.py",
    "route": "general",
@@ -906,21 +908,23 @@
     "name": "首个衍射峰（布拉格角）",
     "concept": "由晶胞全部原子坐标判断哪一个反射最先出现（跳过消光反射），再用布拉格定律求其 2θ；不同于只代入给定 d 的公式题。",
     "physical_conditions": "运动学近似、零角度原子序数权重、一级衍射。",
-    "answer_method": "逐一计算低指数反射的结构因子，取 |F|≠0 的最小 2θ。",
+    "answer_method": "立方：h ≥ k ≥ l ≥ 0 的低指数反射；其他晶系：|h|、|k|、|l| ≤ 4 的全部反射（Friedel 对取一个），d 由倒格矢求，取 |F|≠0 的最小 2θ；等价反射同角度视为一个峰。非立方的登记错误包括套用立方公式 d = a/√(h²+k²+l²)。",
     "distractor_mechanisms": [
      "lowest_index_ignoring_extinction",
      "assumed_lattice_rule",
      "theta_not_two_theta",
      "second_allowed_peak",
-     "d_equals_a"
+     "d_equals_a",
+     "cubic_d_formula",
+     "d_equals_c"
     ],
-    "validation": "旧验证。",
-    "limits": "多为小修。"
+    "validation": "独立检查器（checkers/migrated.py:first_diffraction_peak）对 h、k、l ≤ 5 的全部反射用自己的结构因子求和，取 |F| ≠ 0 的最小 2θ，并核对来源文件哈希。",
+    "limits": "运动学近似、零角度原子序数权重，不含原子散射因子的角度依赖、热振动与反常散射；只问一级衍射；不支持部分占位。"
    },
    "checker": "checkers/migrated.py:first_diffraction_peak",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 5,
-   "active": 5,
+   "instances": 8,
+   "active": 8,
    "cells": [
     "materials 0.1-1",
     "materials 1-10"
@@ -954,8 +958,8 @@
      "amplitude_not_intensity",
      "unit_mixups"
     ],
-    "validation": "旧验证。",
-    "limits": "证据段落需审核。"
+    "validation": "独立检查器（checkers/migrated.py）：FRET 从题干点名的原子取坐标、从题干读 R0，按直线距离重算效率；Guinier 用成对距离恒等式求等权 Rg（出题端用质心公式），核对 qRg ≤ 1.3，并核对点集与已发布资产或源 PDB 一致。",
+    "limits": "FRET 为点偶极模型，R0 为题设值，不含染料连接臂与取向分布；Guinier 只在小 q 区间成立，等权点散射体不等于电子密度。"
    },
    "checker": "checkers/migrated.py:fret_efficiency",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
@@ -993,8 +997,8 @@
      "amplitude_not_intensity",
      "unit_mixups"
     ],
-    "validation": "旧验证。",
-    "limits": "证据段落需审核。"
+    "validation": "独立检查器（checkers/migrated.py）：FRET 从题干点名的原子取坐标、从题干读 R0，按直线距离重算效率；Guinier 用成对距离恒等式求等权 Rg（出题端用质心公式），核对 qRg ≤ 1.3，并核对点集与已发布资产或源 PDB 一致。",
+    "limits": "FRET 为点偶极模型，R0 为题设值，不含染料连接臂与取向分布；Guinier 只在小 q 区间成立，等权点散射体不等于电子密度。"
    },
    "checker": "checkers/migrated.py:guinier_intensity",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
@@ -1233,7 +1237,7 @@
      "d220"
     ],
     "validation": "独立检查器从坐标选初基基矢（最小体积），验证所有粒子落在整数格点上，常规边长 = (4V)^(1/3)，面间距 = 2π/|G|min。",
-    "limits": "只含理想晶格。"
+    "limits": "理想无限 FCC 点阵：不含晶格缺陷、有限晶粒、粒径分布与 DNA 连接子的柔性；数值只对应论文 SAXS 晶胞边长所给的理想结构。"
    },
    "checker": "checkers/superlattice.py:superlattice_shell",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/superlattice.py",
@@ -1272,7 +1276,7 @@
      "d220"
     ],
     "validation": "独立检查器从坐标选初基基矢（最小体积），验证所有粒子落在整数格点上，常规边长 = (4V)^(1/3)，面间距 = 2π/|G|min。",
-    "limits": "只含理想晶格。"
+    "limits": "理想无限 FCC 点阵：不含晶格缺陷、有限晶粒、粒径分布与 DNA 连接子的柔性；数值只对应论文 SAXS 晶胞边长所给的理想结构。"
    },
    "checker": "checkers/superlattice.py:superlattice_quantity",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/superlattice.py",
@@ -1390,7 +1394,7 @@
      "face_diagonal"
     ],
     "validation": "独立检查器由初基基矢与倒格子求 d111 与常规边长。",
-    "limits": "只含理想晶格。"
+    "limits": "理想接触球 FCC：不含堆垛层错、球径分布、烧结或收缩；有效折射率用体积加权近似（或题给 n_eff）。"
    },
    "checker": "checkers/superlattice.py:opal_quantity",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/superlattice.py",
@@ -1509,7 +1513,7 @@
      "ab_spacing_cell"
     ],
     "validation": "独立检查器由最近邻矢量选初基基矢，验证所有位点为整数组合，面积取叉积。",
-    "limits": "只含理想刚性转角。"
+    "limits": "理想刚性转角：不含晶格弛豫（AB/BA 畴重构）、异质应变与转角不均匀；小转角下实测周期可能偏离模型。"
    },
    "checker": "checkers/moire.py:moire_quantity",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/moire.py",
@@ -1589,7 +1593,7 @@
      "farther_from_target"
     ],
     "validation": "独立检查器逐文件重算并按题干目标重选。",
-    "limits": "候选性质来自刚性模型。"
+    "limits": "候选样品的周期与载流子密度由刚性转角模型从论文转角算出，不是逐样品实测值；不含弛豫与应变。"
    },
    "checker": "checkers/moire.py:moire_design",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/moire.py",
@@ -1680,7 +1684,7 @@
    "registry": {
     "name": "客体设计选择（实测证据）",
     "concept": "从参考客体出发，在四个候选替换中选出唯一一个使实测结合增强至少给定幅度的；四个候选均有实测值，且都离阈值 ≥ 0.3 kcal/mol。",
-    "physical_conditions": "同上。",
+    "physical_conditions": "与主客体结合证据题相同：ITC，1× PBS，pH 7.40，298.15 K，1:1。",
     "answer_method": "实测 ΔG 与阈值比较。",
     "distractor_mechanisms": [
      "improves_but_below_target",
@@ -1688,7 +1692,7 @@
      "dication_not_sufficient"
     ],
     "validation": "独立检查器重算每个候选的改善幅度与阈值关系。",
-    "limits": "同上。"
+    "limits": "实验误差约 0.02–0.06 kcal/mol，阈值附近不放候选；只用 WP6（条件有文档）；“设计”指在实测候选中选择，不预测新分子。"
    },
    "checker": "checkers/hostguest.py:binding_design_choice",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/hostguest.py",
@@ -1750,7 +1754,7 @@
    "registry": {
     "name": "量子点粒径选择设计",
     "concept": "在四个纳米晶模型中选一个，使第一激子吸收峰最接近目标，或选吸收峰不短于阈值的最小粒子（推断的逆问题）。",
-    "physical_conditions": "同上。",
+    "physical_conditions": "题干给出 Yu 2003 的经验多项式、适用范围与 Model conditions（与 CdSe 量子点光学题相同）。",
     "answer_method": "逐个候选反解吸收峰，按目标规则选择。",
     "distractor_mechanisms": [
      "radius_as_diameter",
@@ -1760,8 +1764,8 @@
      "meets_but_larger",
      "farther_from_target"
     ],
-    "validation": "独立检查器逐文件重算。",
-    "limits": "候选为模型粒子。"
+    "validation": "独立检查器（checkers/quantum_dot.py:qdot_design）逐个文件用 Decimal 复核最大间距，用多项式求根（numpy.roots）反解吸收峰，再按题干目标规则重新选择。",
+    "limits": "候选为按论文曲线构建的理想球形 CdSe 模型粒子（晶格常数 6.08 Å 为假设），不是实测样品；答案只取决于所给坐标与题干曲线。"
    },
    "checker": "checkers/quantum_dot.py:qdot_design",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/quantum_dot.py",
@@ -1902,7 +1906,7 @@
      "circle_cell"
     ],
     "validation": "独立检查器由初基晶胞面积计算。",
-    "limits": "理想晶格。"
+    "limits": "理想三角涡旋晶格：不含钉扎无序、晶界与有限尺寸效应；间距只对应论文实测磁场下的理想模型。"
    },
    "checker": "checkers/mesoscale.py:vortex_quantity",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/mesoscale.py",
@@ -1945,7 +1949,7 @@
      "square_lattice_q"
     ],
     "validation": "独立检查器由晶胞面积与题干 Φ0 或 B 计算。",
-    "limits": "理想晶格。"
+    "limits": "理想三角涡旋晶格：不含钉扎无序、晶界与有限尺寸效应；磁场、磁通与散射峰按每个涡旋一个磁通量子的理想关系计算。"
    },
    "checker": "checkers/mesoscale.py:vortex_quantity",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/mesoscale.py",
@@ -1982,7 +1986,7 @@
      "too_sparse",
      "farther_from_target"
     ],
-    "validation": "独立检查器逐文件重算。",
+    "validation": "独立检查器（checkers/mesoscale.py:vortex_design）逐个文件由涡旋中心求初基晶胞，算出间距、密度或散射峰，再按题干目标规则重新选择。",
     "limits": "候选为论文实测磁场的理想模型。"
    },
    "checker": "checkers/mesoscale.py:vortex_design",
@@ -2019,7 +2023,7 @@
      "both_wrong"
     ],
     "validation": "独立检查器投影解卷绕后线性拟合。",
-    "limits": "理想均匀扭曲。"
+    "limits": "理想均匀扭曲：不含缺陷线、表面锚定与螺距梯度；手性按题干给出的右手定则判断。"
    },
    "checker": "checkers/mesoscale.py:cholesteric_quantity",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/mesoscale.py",
@@ -2096,7 +2100,7 @@
      "meets_but_more_dopant",
      "farther_from_target"
     ],
-    "validation": "独立检查器逐文件重算。",
+    "validation": "独立检查器（checkers/mesoscale.py:cholesteric_design）逐个文件把指向矢投影到垂直于螺旋轴的平面、解卷绕后线性拟合出螺距与手性，再按题干目标规则重新选择。",
     "limits": "非实测浓度的候选为按论文 HTP 计算的模型。"
    },
    "checker": "checkers/mesoscale.py:cholesteric_design",

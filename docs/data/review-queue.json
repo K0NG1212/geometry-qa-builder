@@ -35,7 +35,7 @@
   "next_l3_batch": "l3-batch-001",
   "l3_sample": 160,
   "l3_strata": 71,
-  "l3_steady_state_sample": 126,
+  "l3_steady_state_sample": 125,
   "model_calls": 0,
   "reviews_recorded": {
    "L1": 0,
@@ -90,7 +90,7 @@
      "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
     },
     "L2": {
-     "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
+     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -245,7 +245,7 @@
      "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
     },
     "L2": {
-     "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
+     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -400,7 +400,7 @@
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f"
     },
     "L2": {
-     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
+     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -551,7 +551,7 @@
    "checker_function": "binding_design_choice",
    "bindings": {
     "L1": {
-     "registry_row": "ad9da31265003a85db21889c9440c888f59aa4c096ad0c619f2e988efc082f92",
+     "registry_row": "4724f3745c0952bf8a5c9f2cc1fe095eb08a10992a7c22a5b19b7f89e722f7fb",
      "task_families/hostguest.py": "5bab67681ba00790a7253e631a4d5fff91cf9ef722bfe368b989c8b5448e50f1"
     },
     "L2": {
@@ -569,9 +569,9 @@
      "name": "客体设计选择（实测证据）",
      "concept": "从参考客体出发，在四个候选替换中选出唯一一个使实测结合增强至少给定幅度的；四个候选均有实测值，且都离阈值 ≥ 0.3 kcal/mol。",
      "inputs": "WP6 主体与四个候选客体 XYZ。",
-     "physical_conditions": "同上。",
+     "physical_conditions": "与主客体结合证据题相同：ITC，1× PBS，pH 7.40，298.15 K，1:1。",
      "reasoning_scale": "主客体复合物",
-     "scale_limits": "同上。",
+     "scale_limits": "结合强弱取决于电荷、尺寸匹配、溶剂化等，不能单凭几何算出；几何附件只用于识别候选客体。",
      "source_basis": "SAMPL9 WP6（MIT）",
      "answer_method": "实测 ΔG 与阈值比较。",
      "distractor_mechanisms": [
@@ -582,7 +582,7 @@
      "four_choice_validation": "恰好一个候选达到目标；阈值附近无候选。",
      "principle": "有实验证据的设计题（A3）：S0 → S1，候选全部有测量值。",
      "validation": "独立检查器重算每个候选的改善幅度与阈值关系。",
-     "limits": "同上。",
+     "limits": "实验误差约 0.02–0.06 kcal/mol，阈值附近不放候选；只用 WP6（条件有文档）；“设计”指在实测候选中选择，不预测新分子。",
      "template_review": "本轮新建（A2/A3），待人工审核。"
     },
     "samples": [
@@ -859,7 +859,7 @@
      "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
     },
     "L2": {
-     "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
+     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1014,7 +1014,7 @@
    "checker_function": "cholesteric_design",
    "bindings": {
     "L1": {
-     "registry_row": "b8d2931a3d1725bc756b4a24f6fbb29a96599751f82697082749bc10bd0d212a",
+     "registry_row": "b11976c6ac025c6229d5eac3631b920c6bf6727c223781dbaafe5db30dfd490d",
      "task_families/cholesteric.py": "a4072a8c071da8195827357707ad2b722ab99215104cbc90af1eac3456313dbe"
     },
     "L2": {
@@ -1048,7 +1048,7 @@
      ],
      "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明误选原因。",
      "principle": "设计 = 推断的逆问题（选掺杂浓度或膜）。",
-     "validation": "独立检查器逐文件重算。",
+     "validation": "独立检查器（checkers/mesoscale.py:cholesteric_design）逐个文件把指向矢投影到垂直于螺旋轴的平面、解卷绕后线性拟合出螺距与手性，再按题干目标规则重新选择。",
      "limits": "非实测浓度的候选为按论文 HTP 计算的模型。",
      "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
     },
@@ -1168,7 +1168,7 @@
    "checker_function": "cholesteric_quantity",
    "bindings": {
     "L1": {
-     "registry_row": "535c3b89a6188079817dd0b48b3888a33a84719217931d3e5e5a002358223d79",
+     "registry_row": "c0583543736c7f4a9fbb7b29fdb8d99df863b938d33b30861134008e391d76c8",
      "task_families/cholesteric.py": "a4072a8c071da8195827357707ad2b722ab99215104cbc90af1eac3456313dbe"
     },
     "L2": {
@@ -1202,7 +1202,7 @@
      "four_choice_validation": "数值与正确值 > 10 nm；手性题四项为手性 × {p, p/2}。",
      "principle": "胆甾相：指向矢绕螺旋轴均匀扭转，n 与 −n 等价。",
      "validation": "独立检查器投影解卷绕后线性拟合。",
-     "limits": "理想均匀扭曲。",
+     "limits": "理想均匀扭曲：不含缺陷线、表面锚定与螺距梯度；手性按题干给出的右手定则判断。",
      "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
     },
     "samples": [
@@ -1319,7 +1319,7 @@
    "checker_function": "cholesteric_quantity",
    "bindings": {
     "L1": {
-     "registry_row": "ee0da2cd8922c78d84855b4c1fe3c2343bc9eea528c3406bb2ad53df93e12285",
+     "registry_row": "55218cc2ac2ac021a7bd35a790055e91ca5eebb5a2f191cfe8ca0ba1ddf668e5",
      "task_families/cholesteric.py": "a4072a8c071da8195827357707ad2b722ab99215104cbc90af1eac3456313dbe"
     },
     "L2": {
@@ -1483,7 +1483,7 @@
      "task_families/conformer_design.py": "c1df20bcb3ca7c59938dcfc28012c37beca3d235e0181495fb2b6d9e9d54a211"
     },
     "L2": {
-     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
+     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1631,35 +1631,36 @@
    "checker_function": "coordination_shell",
    "bindings": {
     "L1": {
-     "registry_row": "414ab7619963d5fe3eda961a5e2e4a2e55b17f59077a3c3d2f899d28051c7365",
-     "task_families/crystal.py": "62faeca31741d9fcb50bfbcd46b34a081805d449201afea9181b6f533550abc4"
+     "registry_row": "9f37f97ee78fb355bb08f1f8deb3489576816770b6805832e1a43381ffe6a770",
+     "task_families/crystal.py": "48ad8f7dc72e797e423d041fa945576f3b776e9378483a7631917a5cf6f7d5b3"
     },
     "L2": {
-     "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
+     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 4,
+   "instances": 6,
    "L1_record": null,
    "L2_record": null,
    "card": {
     "template": {
      "name": "配位壳层",
      "concept": "无限周期晶体中，指定中心周围某一物种的最近壳层（个数与距离）；包括网络节点层面的壳层（SALEM-2 的 Zn–Zn 四连接、MOF-5 μ4-O 节点的六连接）。",
-     "inputs": "常规立方晶胞全部原子分数坐标表 + a；中心原子的分数坐标与伙伴物种描述。",
+     "inputs": "常规晶胞全部原子分数坐标表 + 晶胞参数（立方只给 a，其他晶系给 a、b、c、α、β、γ）；中心原子的分数坐标与伙伴物种描述。",
      "physical_conditions": "周期边界；完全占位。",
      "reasoning_scale": "第一壳层半径",
-     "scale_limits": "只读立方、完全占位 CIF。",
+     "scale_limits": "只读完全占位的 CIF；非立方晶胞按 CIF 全部对称操作展开（task_families/cell.py）。",
      "source_basis": "COD",
-     "answer_method": "含 27 个相邻晶胞映像的近邻搜索，按 0.001 Å 归组壳层。",
+     "answer_method": "立方：27 个相邻晶胞映像的近邻搜索，按 0.001 Å 归组壳层。其他晶系：125 个映像，问最短距离及该距离上的原子数（低对称把配位多面体拆成几种距离，“整个多面体”是登记的错误机制）。",
      "distractor_mechanisms": [
       "no_periodic_images",
       "second_shell",
       "same_species_shell",
       "mixed_shells",
-      "merged_first_two_shells"
+      "merged_first_two_shells",
+      "whole_coordination_polyhedron"
      ],
      "four_choice_validation": "选项为“N at D Å”，恰好一项同时匹配个数与距离。",
      "principle": "含周期映像的最近邻搜索。",
@@ -1781,7 +1782,7 @@
      "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
     },
     "L2": {
-     "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
+     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1936,7 +1937,7 @@
    "bindings": {
     "L1": {
      "registry_row": "9dc887771310868f148005cb1f05e8c260e8205dcbd7d618d456f2db2f1f2978",
-     "task_families/diffraction_design.py": "c5d0db622de2e07a776e620a4afa8bfdbae220816f24f730613a7ade6645870e"
+     "task_families/diffraction_design.py": "5230a90d08751a30196d7e8bd3df172295adb49f4cfa415e9e66356b387834c5"
     },
     "L2": {
      "checkers/design_extra.py": "0d42baeb6018399150e5e6f85a3b805b533388ba28d7198deb1cd22f4ba2a02d",
@@ -2232,7 +2233,7 @@
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f"
     },
     "L2": {
-     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
+     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2384,40 +2385,42 @@
    "checker_function": "first_diffraction_peak",
    "bindings": {
     "L1": {
-     "registry_row": "98db324968c3f6844bfb38a9b1475b145e84a6617f10280f761ee598a322cc12",
-     "task_families/crystal.py": "62faeca31741d9fcb50bfbcd46b34a081805d449201afea9181b6f533550abc4"
+     "registry_row": "8887957a4108bc80715827e8dd61276cdd6e6257a0f2e4a2e0d3e641e4916492",
+     "task_families/crystal.py": "48ad8f7dc72e797e423d041fa945576f3b776e9378483a7631917a5cf6f7d5b3"
     },
     "L2": {
-     "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
+     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 5,
+   "instances": 4,
    "L1_record": null,
    "L2_record": null,
    "card": {
     "template": {
      "name": "首个衍射峰（布拉格角）",
      "concept": "由晶胞全部原子坐标判断哪一个反射最先出现（跳过消光反射），再用布拉格定律求其 2θ；不同于只代入给定 d 的公式题。",
-     "inputs": "常规立方晶胞全部原子分数坐标表 + a；原子序数权重；波长。",
+     "inputs": "常规晶胞全部原子分数坐标表 + 晶胞参数；原子序数权重；波长。",
      "physical_conditions": "运动学近似、零角度原子序数权重、一级衍射。",
      "reasoning_scale": "晶面间距",
-     "scale_limits": "几何必要性弱。",
+     "scale_limits": "只需晶胞与原子位置；若只用晶胞边长而不算结构因子，会误选被消光的反射（这正是一种错误机制）。",
      "source_basis": "COD",
-     "answer_method": "逐一计算低指数反射的结构因子，取 |F|≠0 的最小 2θ。",
+     "answer_method": "立方：h ≥ k ≥ l ≥ 0 的低指数反射；其他晶系：|h|、|k|、|l| ≤ 4 的全部反射（Friedel 对取一个），d 由倒格矢求，取 |F|≠0 的最小 2θ；等价反射同角度视为一个峰。非立方的登记错误包括套用立方公式 d = a/√(h²+k²+l²)。",
      "distractor_mechanisms": [
       "lowest_index_ignoring_extinction",
       "assumed_lattice_rule",
       "theta_not_two_theta",
       "second_allowed_peak",
-      "d_equals_a"
+      "d_equals_a",
+      "cubic_d_formula",
+      "d_equals_c"
      ],
      "four_choice_validation": "与正确值 > 0.3°；升序排列，秩按批次轮换。",
-     "principle": "布拉格定律。",
-     "validation": "旧验证。",
-     "limits": "多为小修。",
+     "principle": "布拉格定律 λ = 2d sinθ，加运动学结构因子判定哪些低指数反射不消光。",
+     "validation": "独立检查器（checkers/migrated.py:first_diffraction_peak）对 h、k、l ≤ 5 的全部反射用自己的结构因子求和，取 |F| ≠ 0 的最小 2θ，并核对来源文件哈希。",
+     "limits": "运动学近似、零角度原子序数权重，不含原子散射因子的角度依赖、热振动与反常散射；只问一级衍射；不支持部分占位。",
      "template_review": "本轮迁移新建，待人工审核。"
     },
     "samples": [
@@ -2474,54 +2477,54 @@
       ]
      },
      {
-      "instance": "FA-PEAK-MGO",
-      "question": "The table lists every atom of one conventional cubic cell of periclase (MgO, COD 1000053). Use the kinematic structure factor with atomic numbers as angle-independent weights (Mg = 12, O = 8). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
+      "instance": "FA-PEAK-MOF5",
+      "question": "The table lists every atom of one conventional cubic cell of MOF-5 (Zn4O(BDC)3, COD 1516287). Use the kinematic structure factor with atomic numbers as angle-independent weights (C = 6, H = 1, O = 8, Zn = 30). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
       "options": [
        {
         "label": "A",
-        "value": "21.05",
+        "value": "2.96",
         "unit": "degree"
        },
        {
         "label": "B",
-        "value": "29.94",
+        "value": "3.42",
         "unit": "degree"
        },
        {
         "label": "C",
-        "value": "36.89",
+        "value": "4.84",
         "unit": "degree"
        },
        {
         "label": "D",
-        "value": "42.86",
+        "value": "5.92",
         "unit": "degree"
        }
       ],
       "inputs": [
-       "FA-PEAK-MGO-cell.txt"
+       "FA-PEAK-MOF5-cell.txt"
       ],
-      "correct_label": "C",
+      "correct_label": "D",
       "audit": [
        {
         "label": "A",
+        "rule": "theta_not_two_theta",
+        "reason": "报告了 θ 而非 2θ。"
+       },
+       {
+        "label": "B",
         "rule": "assumed_lattice_rule:P",
         "reason": "按简单立方晶格规则判断，得到 (1 0 0)；与实际坐标算出的结构因子不符。"
        },
        {
-        "label": "B",
+        "label": "C",
         "rule": "assumed_lattice_rule:I",
         "reason": "按体心晶格规则判断，得到 (1 1 0)；与实际坐标算出的结构因子不符。"
        },
        {
-        "label": "C",
-        "rule": "correct",
-        "reason": "第一个 |F|≠0 的反射 (1 1 1)，d = 2.43469 Å，2θ = 2 arcsin(λ/2d)。"
-       },
-       {
         "label": "D",
-        "rule": "second_allowed_peak",
-        "reason": "报告了第二个非零反射 (2 0 0)。"
+        "rule": "correct",
+        "reason": "第一个 |F|≠0 的反射 (1 1 1)，d = 14.90990 Å，2θ = 2 arcsin(λ/2d)。"
        }
       ]
      }
@@ -2542,7 +2545,7 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af"
     },
     "L2": {
-     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
+     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2840,11 +2843,11 @@
    "checker_function": "fret_efficiency",
    "bindings": {
     "L1": {
-     "registry_row": "82495998b29c200d8c24eaa2112c0c0da100e7b7e7971c7e37339b1e8630ee8e",
+     "registry_row": "01bc87ed04578ed2d8405aee91c3f574f731611395a223ef38f479db1b0b10ab",
      "task_families/scattering.py": "5964568c0efa20cd2b6eed6f05e67ad68c0a7a6771660d658905f8c9d60dd302"
     },
     "L2": {
-     "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
+     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2876,8 +2879,8 @@
      ],
      "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。FRET 可由题设 R0 列表中选取使目标秩可达的值（某些秩只在 E < 0.5 或 E > 0.5 时可达；枚举探针发现只用固定 R0 时正确项总是最大）。",
      "principle": "Guinier：qRg ≲ 1.3；FRET：E = 1/(1+(r/R0)^6)。",
-     "validation": "旧验证。",
-     "limits": "证据段落需审核。",
+     "validation": "独立检查器（checkers/migrated.py）：FRET 从题干点名的原子取坐标、从题干读 R0，按直线距离重算效率；Guinier 用成对距离恒等式求等权 Rg（出题端用质心公式），核对 qRg ≤ 1.3，并核对点集与已发布资产或源 PDB 一致。",
+     "limits": "FRET 为点偶极模型，R0 为题设值，不含染料连接臂与取向分布；Guinier 只在小 q 区间成立，等权点散射体不等于电子密度。",
      "template_review": "本轮迁移新建，待人工审核。"
     },
     "samples": [
@@ -2998,11 +3001,11 @@
    "checker_function": "guinier_intensity",
    "bindings": {
     "L1": {
-     "registry_row": "82495998b29c200d8c24eaa2112c0c0da100e7b7e7971c7e37339b1e8630ee8e",
+     "registry_row": "01bc87ed04578ed2d8405aee91c3f574f731611395a223ef38f479db1b0b10ab",
      "task_families/scattering.py": "5964568c0efa20cd2b6eed6f05e67ad68c0a7a6771660d658905f8c9d60dd302"
     },
     "L2": {
-     "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
+     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3034,8 +3037,8 @@
      ],
      "four_choice_validation": "与正确值 > 0.02–0.03；升序排列，秩按批次轮换。FRET 可由题设 R0 列表中选取使目标秩可达的值（某些秩只在 E < 0.5 或 E > 0.5 时可达；枚举探针发现只用固定 R0 时正确项总是最大）。",
      "principle": "Guinier：qRg ≲ 1.3；FRET：E = 1/(1+(r/R0)^6)。",
-     "validation": "旧验证。",
-     "limits": "证据段落需审核。",
+     "validation": "独立检查器（checkers/migrated.py）：FRET 从题干点名的原子取坐标、从题干读 R0，按直线距离重算效率；Guinier 用成对距离恒等式求等权 Rg（出题端用质心公式），核对 qRg ≤ 1.3，并核对点集与已发布资产或源 PDB 一致。",
+     "limits": "FRET 为点偶极模型，R0 为题设值，不含染料连接臂与取向分布；Guinier 只在小 q 区间成立，等权点散射体不等于电子密度。",
      "template_review": "本轮迁移新建，待人工审核。"
     },
     "samples": [
@@ -3156,39 +3159,40 @@
    "checker_function": "extinction",
    "bindings": {
     "L1": {
-     "registry_row": "473f7d31a9153b9278b1e79827ee138de3fdf43356940f02b892d3698b37d76b",
-     "task_families/extinction.py": "00d55fe1a92e6521076d61e3863d410d68f150b3803a181435c4db17a65164bc"
+     "registry_row": "055b19b46354eee2381ecb2f40bae5bac9e4599d0b73aaeadf0a3fa49cea989b",
+     "task_families/extinction.py": "63fd5498796b57be3845c37a2b68123e2cfa487da6df0f96a35240443e47adc9"
     },
     "L2": {
-     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
+     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 3,
+   "instances": 2,
    "L1_record": null,
    "L2_record": null,
    "card": {
     "template": {
      "name": "晶体衍射消光判别",
      "concept": "由晶胞内全部原子坐标与运动学结构因子推断哪一个反射强度为零；优先选择由基元/滑移而非仅中心化导致的消光。",
-     "inputs": "常规立方晶胞全部原子分数坐标表 + 晶格常数 + 原子序数权重。",
+     "inputs": "常规晶胞全部原子分数坐标表 + 晶胞参数 + 原子序数权重。",
      "physical_conditions": "运动学近似；零角度原子序数权重；忽略热振动。",
      "reasoning_scale": "晶胞边长（相位求和跨越整个晶胞）",
-     "scale_limits": "只用于立方常规晶胞；弱反射（|F|/F000 < 0.05）不作选项。",
-     "source_basis": "COD（NaCl、金刚石、SALEM-2、MOF-5）",
-     "answer_method": "对学生看到的同一坐标表求 F(hkl)；|F|/F000 ≤ 1e-6 判为消光。",
+     "scale_limits": "弱反射（|F|/F000 < 0.05）不作选项；非立方时 (h k l) 取 0–4，并排除彼此对称等价（同 d、同 |F|）的干扰项，避免一次排除两项。",
+     "source_basis": "COD（NaCl、金刚石、SALEM-2、MOF-5；金红石、板钛矿、ZnO、α-石英）",
+     "answer_method": "对学生看到的同一坐标表求 F(hkl)；|F|/F000 ≤ 1e-6 判为消光。非立方晶胞以“换轴误用消光条件”（指数换轴后的反射才消光）代替中心化规则作为错误机制。",
      "distractor_mechanisms": [
       "wrong_rule:I",
       "wrong_rule:F",
       "wrong_rule:F+d",
       "identical_atom_assumption",
-      "weak_not_absent"
+      "weak_not_absent",
+      "axis_confusion"
      ],
      "four_choice_validation": "恰好一项消光、三项 ≥ 0.05 F000；另记录 P/I/F/F+d 规则能否单独答对。",
      "principle": "F(hkl) = Σ Z_j exp[2πi(hx+ky+lz)]。",
-     "validation": "四项逐一计算。",
+     "validation": "独立检查器（checkers/families.py:extinction）对学生看到的同一坐标表分别累加 cos 与 sin 项求 F(hkl)，逐项判定消光或非零（≥ 0.05 F000）。",
      "limits": "NaCl、SALEM-2、MOF-5 的正确项仅需中心化规则即可答对（已在 rule_shortcuts 中披露）。",
      "template_review": "本轮新建，待人工审核。"
     },
@@ -3242,50 +3246,50 @@
       ]
      },
      {
-      "instance": "FA-EXT-NACL",
-      "question": "The table lists every atom of one conventional cubic cell of halite (NaCl, COD 9008678) as fractional coordinates. Use the kinematic structure factor F(hkl) = Σ_j Z_j exp[2πi(h x_j + k y_j + l z_j)] with atomic numbers as angle-independent weights (Cl = 17, Na = 11). Exactly one of the four reflections below has |F| = 0. Which one?",
+      "instance": "FA-EXT-SALEM2",
+      "question": "The table lists every atom of one conventional cubic cell of Zn(imidazolate)2 with ZIF-8 sodalite topology (SALEM-2, COD 4118891; major-occupancy linker sites) as fractional coordinates. Use the kinematic structure factor F(hkl) = Σ_j Z_j exp[2πi(h x_j + k y_j + l z_j)] with atomic numbers as angle-independent weights (C = 6, H = 1, N = 7, Zn = 30). Exactly one of the four reflections below has |F| = 0. Which one?",
       "options": [
        {
         "label": "A",
-        "value": "(2 0 0)"
-       },
-       {
-        "label": "B",
         "value": "(1 1 1)"
        },
        {
+        "label": "B",
+        "value": "(2 2 0)"
+       },
+       {
         "label": "C",
-        "value": "(3 1 0)"
+        "value": "(2 0 0)"
        },
        {
         "label": "D",
-        "value": "(2 2 0)"
+        "value": "(1 1 0)"
        }
       ],
       "inputs": [
-       "FA-EXT-NACL-cell.txt"
+       "FA-EXT-SALEM2-cell.txt"
       ],
-      "correct_label": "C",
+      "correct_label": "A",
       "audit": [
        {
         "label": "A",
-        "rule": "wrong_rule:F+d",
-        "reason": "按“面心 F 加金刚石滑移：另有全偶且 h+k+l=4n+2 消光”会判为消光，但本结构实际坐标给出非零 |F|。"
-       },
-       {
-        "label": "B",
-        "rule": "wrong_rule:I",
-        "reason": "按“体心 I：h+k+l 为奇数消光”会判为消光，但本结构实际坐标给出非零 |F|。"
-       },
-       {
-        "label": "C",
         "rule": "correct",
         "reason": "由表中全部原子坐标求和，|F|/F000 ≤ 1e-6。"
        },
        {
+        "label": "B",
+        "rule": "weak_not_absent",
+        "reason": "强度较弱（|F|/F000=0.146），但不为零，弱不等于消光。"
+       },
+       {
+        "label": "C",
+        "rule": "wrong_rule:F+d",
+        "reason": "按“面心 F 加金刚石滑移：另有全偶且 h+k+l=4n+2 消光”会判为消光，但本结构实际坐标给出非零 |F|。"
+       },
+       {
         "label": "D",
-        "rule": "allowed_generic",
-        "reason": "普通允许反射，非零。"
+        "rule": "wrong_rule:F+d",
+        "reason": "按“面心 F 加金刚石滑移：另有全偶且 h+k+l=4n+2 消光”会判为消光，但本结构实际坐标给出非零 |F|。"
        }
       ]
      }
@@ -3302,7 +3306,7 @@
    "checker_function": "moire_design",
    "bindings": {
     "L1": {
-     "registry_row": "bf4eb04a9a01942e39fd7262395d17ed87fec089830e25fc3a9f80a4a7d294a9",
+     "registry_row": "376b8a1e3fec67a922b5be6abb29bc4e1cb51c73ffcffd6590e853464792385a",
      "task_families/moire.py": "16a16b7b7816642de68f12c460964e86d96ba2ccb8b8b0e8f9d03ff2c8a0377c"
     },
     "L2": {
@@ -3337,7 +3341,7 @@
      "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明在哪种错误下会被选中。",
      "principle": "设计 = 推断的逆问题：按目标密度或周期选择转角。",
      "validation": "独立检查器逐文件重算并按题干目标重选。",
-     "limits": "候选性质来自刚性模型。",
+     "limits": "候选样品的周期与载流子密度由刚性转角模型从论文转角算出，不是逐样品实测值；不含弛豫与应变。",
      "template_review": "本轮新建（A4），待人工审核。"
     },
     "samples": [
@@ -3456,7 +3460,7 @@
    "checker_function": "moire_quantity",
    "bindings": {
     "L1": {
-     "registry_row": "627bb743e7d83954a98bc5c3fbc75a81d81b8cc55af1440dd75e737e3dc3d0bf",
+     "registry_row": "47e7195d3cb97de72f478620b07f349f9a2871c88ada9559f946c358e199dc45",
      "task_families/moire.py": "16a16b7b7816642de68f12c460964e86d96ba2ccb8b8b0e8f9d03ff2c8a0377c"
     },
     "L2": {
@@ -3493,7 +3497,7 @@
      "four_choice_validation": "与正确值 > 0.3 nm 或 3 nm²；升序排列，秩按批次轮换。",
      "principle": "刚性转角：λ = a/(2 sin(θ/2))；三角晶格晶胞面积 (√3/2)λ²。",
      "validation": "独立检查器由最近邻矢量选初基基矢，验证所有位点为整数组合，面积取叉积。",
-     "limits": "只含理想刚性转角。",
+     "limits": "理想刚性转角：不含晶格弛豫（AB/BA 畴重构）、异质应变与转角不均匀；小转角下实测周期可能偏离模型。",
      "template_review": "本轮新建（A4），待人工审核。"
     },
     "samples": [
@@ -3614,7 +3618,7 @@
    "checker_function": "moire_quantity",
    "bindings": {
     "L1": {
-     "registry_row": "e79134aea6c16e01c5e00f13d97f028ec35b7e77af56d52bcbcb33024630190f",
+     "registry_row": "a7970eb95097f6d375859f5764b7128b24a31cd28724fe8c69fed8bc1259f437",
      "task_families/moire.py": "16a16b7b7816642de68f12c460964e86d96ba2ccb8b8b0e8f9d03ff2c8a0377c"
     },
     "L2": {
@@ -3780,7 +3784,7 @@
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f"
     },
     "L2": {
-     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610",
+     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3930,11 +3934,11 @@
    "checker_function": "named_bond_distance",
    "bindings": {
     "L1": {
-     "registry_row": "98db4e3df13d50450a96bdd1429f44c0792d4a01084cb402ac0c2e421cc5d987",
+     "registry_row": "d40833fa5c27fc521890c33c0b9041332f04407d460c4034e534af60a39921ad",
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f"
     },
     "L2": {
-     "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
+     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3948,7 +3952,7 @@
      "name": "命名局部距离",
      "concept": "指定化学实体之间的键长：磺酰 S=O、芳环 C–Cl、末端 N–N、C–NH2、二硫键 SG–SG；原子由行号或 PDB 原子名加化学描述指定，并由成键规则确认。",
      "inputs": "XYZ（按行号命名）或 PDB 片段（含 SSBOND 记录与两个残基的 ATOM 行）。",
-     "physical_conditions": "单一构象。",
+     "physical_conditions": "单一构象：QM7-X 的 DFTB3+MBD 优化几何，或晶体结构中的主构象；不考虑热振动与零点运动。",
      "reasoning_scale": "两原子距离（0.1–0.5 nm）",
      "scale_limits": "单一距离不能独立判定成键状态。",
      "source_basis": "PDB、SAMPL9、QM7-X",
@@ -3961,8 +3965,8 @@
       "bohr_units"
      ],
      "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。",
-     "principle": "欧氏距离。",
-     "validation": "旧验证器。",
+     "principle": "两原子笛卡尔坐标的欧氏距离；用共价半径规则确认所问两原子确实成键。",
+     "validation": "独立检查器（checkers/migrated.py:named_bond_distance）按题干点名的原子（PDB 原子名或 XYZ 行号）从附件取坐标，用 Decimal 重算距离，并用自己的共价半径规则确认成键；PDB 片段须与源文件逐字一致，二硫键题核对 SSBOND 记录，XYZ 核对元素与源文件哈希。",
      "limits": "QNP002–006 需说明元素对选择的化学意义（待小修）。",
      "template_review": "本轮迁移新建，待人工审核。"
     },
@@ -4084,7 +4088,7 @@
    "checker_function": "opal_quantity",
    "bindings": {
     "L1": {
-     "registry_row": "67895da642d4b945e41fcd8bd58fa13e06cb0d3354ba61982903cb0fe81598db",
+     "registry_row": "ea940b6de5bae7708e45f58827b0da223da93741328ee8ecdc2177dc31548cdc",
      "task_families/photonic.py": "3afa16d6c06b6f3367a963632644cd375dbc0caab3e8bcca42a2b6ede7d9585c"
     },
     "L2": {
@@ -4246,7 +4250,7 @@
    "checker_function": "opal_design",
    "bindings": {
     "L1": {
-     "registry_row": "76acb69105479592755446f3c981cd15c4181ceaf32a196d38b729319d0b0838",
+     "registry_row": "ab42f18734c176ee9b383c7eed0bce524647e38098344d4feb10e266cd7236d5",
      "task_families/photonic.py": "3afa16d6c06b6f3367a963632644cd375dbc0caab3e8bcca42a2b6ede7d9585c"
     },
     "L2": {
@@ -4400,7 +4404,7 @@
    "checker_function": "opal_quantity",
    "bindings": {
     "L1": {
-     "registry_row": "564da6e02f1a6fa4bb191105a3f7396e2911c755ecf4fb2b6a79909c0e5e0e2b",
+     "registry_row": "f01beb20a4e98f0a57f44558b86be69fefae16161a8bb5052a092e0de31a3e54",
      "task_families/photonic.py": "3afa16d6c06b6f3367a963632644cd375dbc0caab3e8bcca42a2b6ede7d9585c"
     },
     "L2": {
@@ -4437,7 +4441,7 @@
      "four_choice_validation": "与正确值 > 3 nm；升序排列，秩按批次轮换。",
      "principle": "接触球 FCC：最近邻 = 球径 D，a = √2·D，d111 = a/√3。",
      "validation": "独立检查器由初基基矢与倒格子求 d111 与常规边长。",
-     "limits": "只含理想晶格。",
+     "limits": "理想接触球 FCC：不含堆垛层错、球径分布、烧结或收缩；有效折射率用体积加权近似（或题给 n_eff）。",
      "template_review": "本轮新建（A4），待人工审核。"
     },
     "samples": [
@@ -4558,7 +4562,7 @@
    "checker_function": "qdot_design",
    "bindings": {
     "L1": {
-     "registry_row": "1ba54831f7b569ae1d17d0596e1b3d7bdc14b694f7648d9fb743ba6a26fc8918",
+     "registry_row": "62c99392e4811dfc72a9aee4d940e5e76d159856b306de55953f8dd173651429",
      "task_families/quantum_dot.py": "cce686e77411c9425c57ad6bb806f75765b1d1d82180914cca699e2aaae5e3db"
     },
     "L2": {
@@ -4576,9 +4580,9 @@
      "name": "量子点粒径选择设计",
      "concept": "在四个纳米晶模型中选一个，使第一激子吸收峰最接近目标，或选吸收峰不短于阈值的最小粒子（推断的逆问题）。",
      "inputs": "四个 CdSe 纳米晶模型 XYZ。",
-     "physical_conditions": "同上。",
+     "physical_conditions": "题干给出 Yu 2003 的经验多项式、适用范围与 Model conditions（与 CdSe 量子点光学题相同）。",
      "reasoning_scale": "候选最大粒径",
-     "scale_limits": "同上。",
+     "scale_limits": "经验曲线只在拟合尺寸范围内可靠；模型无配体。",
      "source_basis": "Yu et al. (2003) 经验曲线",
      "answer_method": "逐个候选反解吸收峰，按目标规则选择。",
      "distractor_mechanisms": [
@@ -4591,8 +4595,8 @@
      ],
      "four_choice_validation": "恰好一个候选满足目标；领先幅度或阈值距离足够。",
      "principle": "设计 = 推断的逆问题。",
-     "validation": "独立检查器逐文件重算。",
-     "limits": "候选为模型粒子。",
+     "validation": "独立检查器（checkers/quantum_dot.py:qdot_design）逐个文件用 Decimal 复核最大间距，用多项式求根（numpy.roots）反解吸收峰，再按题干目标规则重新选择。",
+     "limits": "候选为按论文曲线构建的理想球形 CdSe 模型粒子（晶格常数 6.08 Å 为假设），不是实测样品；答案只取决于所给坐标与题干曲线。",
      "template_review": "本轮新建（A2/A3），待人工审核。"
     },
     "samples": [
@@ -4871,7 +4875,7 @@
      "task_families/assembly.py": "a3aa93cdf0358b2f4fff3bd087987997426a8e2f0d7d924e66a880c669ac1463"
     },
     "L2": {
-     "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
+     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -5029,7 +5033,7 @@
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f"
     },
     "L2": {
-     "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087",
+     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -5614,7 +5618,7 @@
    "checker_function": "superlattice_design",
    "bindings": {
     "L1": {
-     "registry_row": "90f206d223faebb58736d609e90511c2bc1cb9147f370b279ed26ea9a9b77033",
+     "registry_row": "cd057523b20a3ae564ac58349e2912ba1657952bb25d2fdf2c78d184ae666a0b",
      "task_families/superlattice.py": "7815e908c5d30f5f208fcae8f35b76afeb33003452a00e781b1973a0520a62e6"
     },
     "L2": {
@@ -5769,7 +5773,7 @@
    "checker_function": "superlattice_quantity",
    "bindings": {
     "L1": {
-     "registry_row": "77c56178f8dd9b030014696dc0ce864fcb23f408873425297d114605ec58cefb",
+     "registry_row": "ed528804599fe13763af3d1f0c278a50e076acd8d355004a2e7b04d856434985",
      "task_families/superlattice.py": "7815e908c5d30f5f208fcae8f35b76afeb33003452a00e781b1973a0520a62e6"
     },
     "L2": {
@@ -5806,7 +5810,7 @@
      "four_choice_validation": "壳层选项互不相同；数值与正确值 > 1 nm；升序排列，秩按批次轮换。",
      "principle": "FCC：12 个最近邻在 a/√2，6 个次近邻在 a；最密排面 {111}，d = a/√3。",
      "validation": "独立检查器从坐标选初基基矢（最小体积），验证所有粒子落在整数格点上，常规边长 = (4V)^(1/3)，面间距 = 2π/|G|min。",
-     "limits": "只含理想晶格。",
+     "limits": "理想无限 FCC 点阵：不含晶格缺陷、有限晶粒、粒径分布与 DNA 连接子的柔性；数值只对应论文 SAXS 晶胞边长所给的理想结构。",
      "template_review": "本轮新建（A4），待人工审核。"
     },
     "samples": [
@@ -5927,7 +5931,7 @@
    "checker_function": "superlattice_quantity",
    "bindings": {
     "L1": {
-     "registry_row": "185c7a2e71d5dca8b958a1eb4ca6abf98bf324c5ba568be1db9863e961badc2d",
+     "registry_row": "a13cb8da263aaf06948ad282164fd11dbf2647aa0c3b4b4996f3cae28be143dd",
      "task_families/superlattice.py": "7815e908c5d30f5f208fcae8f35b76afeb33003452a00e781b1973a0520a62e6"
     },
     "L2": {
@@ -6087,7 +6091,7 @@
    "checker_function": "superlattice_shell",
    "bindings": {
     "L1": {
-     "registry_row": "77c56178f8dd9b030014696dc0ce864fcb23f408873425297d114605ec58cefb",
+     "registry_row": "ed528804599fe13763af3d1f0c278a50e076acd8d355004a2e7b04d856434985",
      "task_families/superlattice.py": "7815e908c5d30f5f208fcae8f35b76afeb33003452a00e781b1973a0520a62e6"
     },
     "L2": {
@@ -6124,7 +6128,7 @@
      "four_choice_validation": "壳层选项互不相同；数值与正确值 > 1 nm；升序排列，秩按批次轮换。",
      "principle": "FCC：12 个最近邻在 a/√2，6 个次近邻在 a；最密排面 {111}，d = a/√3。",
      "validation": "独立检查器从坐标选初基基矢（最小体积），验证所有粒子落在整数格点上，常规边长 = (4V)^(1/3)，面间距 = 2π/|G|min。",
-     "limits": "只含理想晶格。",
+     "limits": "理想无限 FCC 点阵：不含晶格缺陷、有限晶粒、粒径分布与 DNA 连接子的柔性；数值只对应论文 SAXS 晶胞边长所给的理想结构。",
      "template_review": "本轮新建（A4），待人工审核。"
     },
     "samples": [
@@ -6189,7 +6193,7 @@
    "checker_function": "vortex_design",
    "bindings": {
     "L1": {
-     "registry_row": "bcd1d056fcc383923c80e3fb85e7959790f3e1d98ee39032c7b03718704f1202",
+     "registry_row": "5d6d04e7e623cd521fb7475a109dba5cedbb11d5b15ea0aa980bf9b090576d2e",
      "task_families/vortex.py": "205f5e61f90c2a6c94bcebe79138d724d0e1596242dfb6ad2a3eacb123971ed5"
     },
     "L2": {
@@ -6224,7 +6228,7 @@
      ],
      "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明误选原因。",
      "principle": "设计 = 推断的逆问题（选磁场）。",
-     "validation": "独立检查器逐文件重算。",
+     "validation": "独立检查器（checkers/mesoscale.py:vortex_design）逐个文件由涡旋中心求初基晶胞，算出间距、密度或散射峰，再按题干目标规则重新选择。",
      "limits": "候选为论文实测磁场的理想模型。",
      "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
     },
@@ -6344,7 +6348,7 @@
    "checker_function": "vortex_quantity",
    "bindings": {
     "L1": {
-     "registry_row": "8e43c92e04b2df86a789281bd913e4e35719ad4e147448e5cd407b025d9f6d28",
+     "registry_row": "f46a19e8fb78eba9474eaa9da0dcd92a04ea2f2aaca446a95cb6a949c6740624",
      "task_families/vortex.py": "205f5e61f90c2a6c94bcebe79138d724d0e1596242dfb6ad2a3eacb123971ed5"
     },
     "L2": {
@@ -6378,7 +6382,7 @@
      "four_choice_validation": "与正确值 > 10 nm 或 0.15 /μm²；升序排列，秩按批次轮换。",
      "principle": "三角涡旋晶格：a = (2Φ0/(√3B))^1/2，n = B/Φ0。",
      "validation": "独立检查器由初基晶胞面积计算。",
-     "limits": "理想晶格。",
+     "limits": "理想三角涡旋晶格：不含钉扎无序、晶界与有限尺寸效应；间距只对应论文实测磁场下的理想模型。",
      "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
     },
     "samples": [
@@ -6499,7 +6503,7 @@
    "checker_function": "vortex_quantity",
    "bindings": {
     "L1": {
-     "registry_row": "c1b0fc543226b3155d05df703cfd0cb2ac83f5bf86c083e39b3e6b365715d516",
+     "registry_row": "668af507fbf1b4f9b94c80e5f48026a05ed2e0e7e3c381e12b125abfd7dbb48b",
      "task_families/vortex.py": "205f5e61f90c2a6c94bcebe79138d724d0e1596242dfb6ad2a3eacb123971ed5"
     },
     "L2": {
@@ -6540,7 +6544,7 @@
      "four_choice_validation": "与正确值 > 0.15 mT、0.15×10⁻¹⁵ Wb 或 0.5 μm⁻¹；升序排列，秩按批次轮换。",
      "principle": "磁通量子化：每个涡旋携带 Φ0 = h/2e。",
      "validation": "独立检查器由晶胞面积与题干 Φ0 或 B 计算。",
-     "limits": "理想晶格。",
+     "limits": "理想三角涡旋晶格：不含钉扎无序、晶界与有限尺寸效应；磁场、磁通与散射峰按每个涡旋一个磁通量子的理想关系计算。",
      "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
     },
     "samples": [
@@ -6665,11 +6669,11 @@
    ],
    "bindings": {
     "L1": {
-     "registry_row": "98db4e3df13d50450a96bdd1429f44c0792d4a01084cb402ac0c2e421cc5d987"
+     "registry_row": "d40833fa5c27fc521890c33c0b9041332f04407d460c4034e534af60a39921ad"
     },
     "L2": {
      "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f",
-     "checkers/migrated.py": "89c21d390f6b047d001348a9ceeb13e9fbc379d9d0d6d4a9a3dc67734148b087"
+     "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4"
     }
    },
    "L1": "pending",
@@ -6682,7 +6686,7 @@
      "name": "命名局部距离",
      "concept": "指定化学实体之间的键长：磺酰 S=O、芳环 C–Cl、末端 N–N、C–NH2、二硫键 SG–SG；原子由行号或 PDB 原子名加化学描述指定，并由成键规则确认。",
      "inputs": "XYZ（按行号命名）或 PDB 片段（含 SSBOND 记录与两个残基的 ATOM 行）。",
-     "physical_conditions": "单一构象。",
+     "physical_conditions": "单一构象：QM7-X 的 DFTB3+MBD 优化几何，或晶体结构中的主构象；不考虑热振动与零点运动。",
      "reasoning_scale": "两原子距离（0.1–0.5 nm）",
      "scale_limits": "单一距离不能独立判定成键状态。",
      "source_basis": "PDB、SAMPL9、QM7-X",
@@ -6695,8 +6699,8 @@
       "bohr_units"
      ],
      "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。",
-     "principle": "欧氏距离。",
-     "validation": "旧验证器。",
+     "principle": "两原子笛卡尔坐标的欧氏距离；用共价半径规则确认所问两原子确实成键。",
+     "validation": "独立检查器（checkers/migrated.py:named_bond_distance）按题干点名的原子（PDB 原子名或 XYZ 行号）从附件取坐标，用 Decimal 重算距离，并用自己的共价半径规则确认成键；PDB 片段须与源文件逐字一致，二硫键题核对 SSBOND 记录，XYZ 核对元素与源文件哈希。",
      "limits": "QNP002–006 需说明元素对选择的化学意义（待小修）。",
      "template_review": "本轮迁移新建，待人工审核。"
     },
@@ -6726,13 +6730,13 @@
    ],
    "bindings": {
     "L1": {
-     "registry_row": "56514b80aff693451330d19f32d89e8f821f97ffa469e8472b4ed23810fa1688"
+     "registry_row": "ef56eb65e6145281b06cdb9524fa1de0ced587965a05a749b7034200844f2b6a"
     },
     "L2": {
      "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
      "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
      "task_families/extent_choice.py": "99ea8f494295b2d1bdd848924ab10f53979da7357d4efd7615c4cd89d803c44f",
-     "checkers/families.py": "b25ce7746d516924b4f23267c038f1200ffd02cdab0ce9b11ea20b259d9f3610"
+     "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98"
     }
    },
    "L1": "pending",
@@ -6758,7 +6762,7 @@
       "maximum_radius",
       "diameter_for_radius"
      ],
-     "four_choice_validation": "extent_choice_v2：同上。",
+     "four_choice_validation": "extent_choice_v2：正确值秩按批次平衡，数值按升序排列；与正确值间隔 > 0.05 Å（与 global_extent 相同）。",
      "principle": "质心法生成答案；用 Rg² = sum(i<j)|ri-rj|² / N² 复核。",
      "validation": "质心公式与成对距离恒等式交叉检查；在多个结构上复用相同代码。",
      "limits": "不是质量加权或实测 SAXS Rg；不能据此断言折叠稳定性。",
@@ -7005,12 +7009,14 @@
    "unit": "coordination_shell",
    "source": "cod-materials-cell",
    "cell": "materials 0.1-1",
-   "size": 2,
-   "sample": 2,
+   "size": 4,
+   "sample": 4,
    "rule": "first batch: all",
    "ids": [
     "MNP011",
-    "MNP012"
+    "MNP012",
+    "MNP022",
+    "MNP024"
    ]
   },
   {
@@ -7142,13 +7148,12 @@
    "unit": "first_diffraction_peak",
    "source": "cod-materials-cell",
    "cell": "materials 0.1-1",
-   "size": 3,
-   "sample": 3,
+   "size": 2,
+   "sample": 2,
    "rule": "first batch: all",
    "ids": [
     "MNI015",
-    "MNI016",
-    "MNI017"
+    "MNI016"
    ]
   },
   {
@@ -7250,11 +7255,10 @@
    "unit": "kinematic_extinction",
    "source": "cod-materials-cell",
    "cell": "materials 0.1-1",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "MNI011",
     "MNI012"
    ]
   },
@@ -7740,7 +7744,6 @@
   "BNP013": "L0",
   "BNP014": "L0",
   "BNP015": "L0",
-  "MNI011": "L0",
   "MNI012": "L0",
   "MNI013": "L0",
   "QND001": "L0",
@@ -7765,7 +7768,6 @@
   "MNP014": "L0",
   "MNI015": "L0",
   "MNI016": "L0",
-  "MNI017": "L0",
   "MNI018": "L0",
   "MNI019": "L0",
   "BNI009": "L0",
@@ -7878,7 +7880,9 @@
   "CNI020": "L0",
   "CND009": "L0",
   "CND010": "L0",
-  "CND011": "L0"
+  "CND011": "L0",
+  "MNP022": "L0",
+  "MNP024": "L0"
  },
  "forms": {
   "CNP002": {
@@ -7964,10 +7968,6 @@
   "BNP015": {
    "form": "family",
    "instance": "FA-TOR-6LYZ-T43"
-  },
-  "MNI011": {
-   "form": "family",
-   "instance": "FA-EXT-NACL"
   },
   "MNI012": {
    "form": "family",
@@ -8064,10 +8064,6 @@
   "MNI016": {
    "form": "family",
    "instance": "FA-PEAK-CSCL"
-  },
-  "MNI017": {
-   "form": "family",
-   "instance": "FA-PEAK-MGO"
   },
   "MNI018": {
    "form": "family",
@@ -8520,6 +8516,14 @@
   "CND011": {
    "form": "family",
    "instance": "FA-CH-DES-BELOW620"
+  },
+  "MNP022": {
+   "form": "family",
+   "instance": "FA-COORD-RUTILE"
+  },
+  "MNP024": {
+   "form": "family",
+   "instance": "FA-COORD-QUARTZ"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."

@@ -17,11 +17,11 @@
  },
  "summary": {
   "selected": 160,
-  "reserve": 37,
+  "reserve": 46,
   "out_of_range": [],
   "abilities": {
-   "perception": 56,
-   "inference": 59,
+   "perception": 58,
+   "inference": 57,
    "design": 45
   },
   "forms": {
@@ -1135,11 +1135,11 @@
    "cell": "materials 0.1-1",
    "domain": "materials",
    "bin": "0.1-1",
-   "available": 16,
-   "eligible": 16,
+   "available": 25,
+   "eligible": 25,
    "abilities": {
-    "perception": 2,
-    "inference": 5,
+    "perception": 4,
+    "inference": 3,
     "design": 3
    },
    "selected": [
@@ -1162,11 +1162,20 @@
      "pending": null
     },
     {
-     "id": "MNI011",
-     "ability": "inference",
+     "id": "MNP022",
+     "ability": "perception",
      "form": "family",
-     "unit": "kinematic_extinction",
-     "instance": "FA-EXT-NACL",
+     "unit": "coordination_shell",
+     "instance": "FA-COORD-RUTILE",
+     "source": "cod-materials-cell",
+     "pending": null
+    },
+    {
+     "id": "MNP024",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "FA-COORD-QUARTZ",
      "source": "cod-materials-cell",
      "pending": null
     },
@@ -1194,15 +1203,6 @@
      "form": "family",
      "unit": "first_diffraction_peak",
      "instance": "FA-PEAK-CSCL",
-     "source": "cod-materials-cell",
-     "pending": null
-    },
-    {
-     "id": "MNI017",
-     "ability": "inference",
-     "form": "family",
-     "unit": "first_diffraction_peak",
-     "instance": "FA-PEAK-MGO",
      "source": "cod-materials-cell",
      "pending": null
     },
@@ -1266,6 +1266,86 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "MNI011",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "FA-EXT-NACL",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI017",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "FA-PEAK-MGO",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI027",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "FA-PEAK-RUTILE",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI028",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "FA-PEAK-ZNO",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI029",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "FA-PEAK-QUARTZ",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI030",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "FA-EXT-RUTILE",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI031",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "FA-EXT-BROOKITE",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI032",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "FA-EXT-ZNO",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "MNP001",
      "ability": "perception",
      "form": "legacy",
@@ -1294,9 +1374,19 @@
      "source": "cod-materials-cell",
      "pending": null,
      "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP023",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "FA-COORD-ZNO",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 16 道，其中经独立检查 10 道"
+   "rationale": "可用 25 道，其中经独立检查 19 道"
   },
   {
    "cell": "materials 1-10",
@@ -2206,12 +2296,10 @@
   "MND010",
   "MND011",
   "MND012",
-  "MNI011",
   "MNI012",
   "MNI013",
   "MNI015",
   "MNI016",
-  "MNI017",
   "MNI018",
   "MNI019",
   "MNI020",
@@ -2234,6 +2322,8 @@
   "MNP019",
   "MNP020",
   "MNP021",
+  "MNP022",
+  "MNP024",
   "QND001",
   "QND003",
   "QND004",
