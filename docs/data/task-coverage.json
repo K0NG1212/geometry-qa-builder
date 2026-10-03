@@ -57,10 +57,10 @@
     "blocked": 1
    }
   },
-  "development_instances": 182,
+  "development_instances": 212,
   "instance_failures": 1,
-  "independent_pass": 182,
-  "independent_checked": 182,
+  "independent_pass": 212,
+  "independent_checked": 212,
   "legacy_candidates": 80,
   "legacy_decisions": {
    "retain": 42,
@@ -69,7 +69,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v22",
+ "family_run": "family-pilot-v23",
  "rows": [
   {
    "id": "global_extent",
@@ -356,7 +356,7 @@
     "unsigned_plane_angle",
     "backbone_bond_angle"
    ],
-   "four_choice_validation": "按 360° 周期计算间隔；与正确值 > 5°；升序排列。",
+   "four_choice_validation": "按 360° 周期计算间隔；与正确值 > 5°；升序排列。 v0.2.0：角度是周期量，选项按圆周递增排列，起点由批次目标位置决定（题干说明）；固定从 −180° 排序时，大多数主链二面角为负，正确项集中在 A/B（枚举探针 runs/enum-v12）。“法向量夹角丢失符号”迷惑程度调为 2。",
    "legacy_families": [],
    "legacy_qa": [],
    "code": [
@@ -618,15 +618,27 @@
     "FA-ASM-EXT-7ARQ",
     "FA-ASM-EXT-7ARQ-SCAF",
     "FA-ASM-EXT-6NCL",
+    "FA-ASM-EXT-1RYP",
+    "FA-ASM-EXT-1STM",
+    "FA-ASM-EXT-2BUK",
+    "FA-ASM-EXT-1CWP",
+    "FA-ASM-EXT-1SVA",
+    "FA-ASM-EXT-2FT1",
     "FA-ASM-RG-1AON",
     "FA-ASM-RG-1KX5",
     "FA-ASM-RG-1A34",
     "FA-ASM-RG-6CGR",
     "FA-ASM-RG-7ARQ",
-    "FA-ASM-RG-7ARQ-SCAF"
+    "FA-ASM-RG-7ARQ-SCAF",
+    "FA-ASM-RG-1RYP",
+    "FA-ASM-RG-1STM",
+    "FA-ASM-RG-2BUK",
+    "FA-ASM-RG-1CWP",
+    "FA-ASM-RG-1SVA",
+    "FA-ASM-RG-2FT1"
    ],
-   "instance_count": 13,
-   "independent_pass": 13,
+   "instance_count": 25,
+   "independent_pass": 25,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "10-100",
@@ -695,10 +707,17 @@
     "FA-ASM-T-6CGR",
     "FA-ASM-CAPS-6CGR",
     "FA-ASM-HEX-6CGR",
-    "FA-ASM-T-6NCL"
+    "FA-ASM-T-6NCL",
+    "FA-ASM-T-1STM",
+    "FA-ASM-CAPS-2BUK",
+    "FA-ASM-T-1CWP",
+    "FA-ASM-CAPS-1CWP",
+    "FA-ASM-HEX-1CWP",
+    "FA-ASM-T-2FT1",
+    "FA-ASM-HEX-2FT1"
    ],
-   "instance_count": 5,
-   "independent_pass": 5,
+   "instance_count": 12,
+   "independent_pass": 12,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "10-100",
@@ -765,10 +784,15 @@
    "instance_ids": [
     "FA-DEB-7ARQ-018",
     "FA-DEB-7ARQ-030",
-    "FA-DEB-6CGR"
+    "FA-DEB-6CGR",
+    "FA-DEB-1RYP",
+    "FA-DEB-2BUK",
+    "FA-DEB-1CWP",
+    "FA-DEB-1SVA",
+    "FA-DEB-2FT1"
    ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "instance_count": 8,
+   "independent_pass": 8,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "10-100",
@@ -840,10 +864,14 @@
     "FA-QDES-6NCL",
     "FA-QDES-1AON",
     "FA-QDES-1KX5",
-    "FA-QDES-1A34"
+    "FA-QDES-1A34",
+    "FA-QDES-1RYP",
+    "FA-QDES-1CWP",
+    "FA-QDES-1SVA",
+    "FA-QDES-2FT1"
    ],
-   "instance_count": 8,
-   "independent_pass": 8,
+   "instance_count": 12,
+   "independent_pass": 12,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "10-100",
@@ -2988,10 +3016,12 @@
     "FA-ASM-GUIN-1AON",
     "FA-ASM-GUIN-1KX5",
     "FA-ASM-GUIN-1A34",
-    "FA-ASM-GUIN-7ARQ"
+    "FA-ASM-GUIN-7ARQ",
+    "FA-ASM-GUIN-1RYP",
+    "FA-ASM-GUIN-1STM"
    ],
-   "instance_count": 10,
-   "independent_pass": 10,
+   "instance_count": 12,
+   "independent_pass": 12,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "1-10",

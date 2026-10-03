@@ -105,6 +105,63 @@ def cif_atoms(text):
             and r['label_alt_id'] in ('.', 'A')]
 
 
+def assembly_operators(text, assembly='1'):
+    """Operators and chains of a biological assembly as the file defines it (_pdbx_struct_assembly_gen), e.g. '(1-60)'
+    or '(1,6,11,...,56)' (1STM: 12 operators applied to a 5-chain asymmetric unit)."""
+    ops = {}
+    for r in cif_loop(text, '_pdbx_struct_oper_list'):
+        ops[r['id']] = ([[float(r['matrix[%d][%d]' % (i, j)]) for j in (1, 2, 3)] for i in (1, 2, 3)],
+                        [float(r['vector[%d]' % i]) for i in (1, 2, 3)])
+    [gen] = [g for g in cif_loop(text, '_pdbx_struct_assembly_gen') if g['assembly_id'] == assembly]
+    ids = []
+    for part in gen['oper_expression'].strip('()').split(','):
+        lo, _, hi = part.partition('-')
+        ids += [str(k) for k in range(int(lo), int(hi or lo) + 1)]
+    return [ops[i] for i in ids], set(gen['asym_id_list'].split(','))
+
+
+def chain_ca(text, chains=None):
+    """CA coordinates per protein chain (label_asym_id), deposited model, main alternate location."""
+    out = {}
+    for r in cif_atoms(text):
+        if r['label_atom_id'] == 'CA' and (chains is None or r['label_asym_id'] in chains):
+            out.setdefault(r['label_asym_id'], []).append((float(r['Cartn_x']), float(r['Cartn_y']), float(r['Cartn_z'])))
+    return out
+
+
+def extra_assets(files, sources):
+    """Particles added on 2026-10-03 (user-approved downloads)."""
+    text, digest, size = read('1RYP.cif')
+    pts = [('C', p) for ch, ps in sorted(chain_ca(text).items()) for p in ps]
+    files['1RYP-residue-points.xyz'] = xyz(pts, '1RYP yeast 20S proteasome: one point per residue (protein CA as C), all 28 chains of the deposited model, angstrom')
+    sources['1RYP-residue-points.xyz'] = dict(pdb='1RYP', source=URL % '1RYP.cif', sha256=digest, bytes=size, points=len(pts),
+                                              reduction='CA of every protein residue, main alternate location; the deposited model is the whole particle')
+    for pdb, what in (('1STM', 'satellite panicum mosaic virus'), ('2BUK', 'satellite tobacco necrosis virus')):
+        text, digest, size = read(pdb + '.cif')
+        ops, chains = assembly_operators(text)
+        ca = chain_ca(text, chains)
+        expanded = [('C', apply(op, p)) for op in ops for ch in sorted(ca) for p in ca[ch]]
+        cents = [('CP', '%s.%02d' % (ch, k + 1), apply(op, centroid(ca[ch]))) for k, op in enumerate(ops) for ch in sorted(ca)]
+        files['%s-capsid-CA.xyz' % pdb] = xyz(expanded, '%s %s capsid: capsid-protein CA atoms of assembly 1 (%d chains x %d deposited operators), angstrom'
+                                              % (pdb, what, len(ca), len(ops)))
+        files['%s-subunit-centroids.txt' % pdb] = table(cents, '%s %s capsid: CA centroid of each capsid-protein copy of assembly 1' % (pdb, what))
+        for name, n in (('%s-capsid-CA.xyz' % pdb, len(expanded)), ('%s-subunit-centroids.txt' % pdb, len(cents))):
+            sources[name] = dict(pdb=pdb, source=URL % (pdb + '.cif'), sha256=digest, bytes=size, points=n,
+                                 reduction='capsid-protein CA atoms of chains %s expanded by the %d operators of assembly 1 (_pdbx_struct_assembly_gen)'
+                                           % (','.join(sorted(ca)), len(ops)))
+    for pdb, what, comp in (('1CWP', 'cowpea chlorotic mottle virus', 'CP'), ('1SVA', 'simian virus 40', 'VP1'),
+                            ('2FT1', 'bacteriophage HK97 head II', 'gp5')):
+        text, digest, size = read(pdb + '.cif')
+        ops, chains = assembly_operators(text)
+        ca = chain_ca(text, chains)
+        rows = [(comp, '%s.%02d' % (ch, k + 1), apply(op, centroid(ca[ch]))) for k, op in enumerate(ops) for ch in sorted(ca)]
+        name = '%s-chain-centroids.txt' % pdb
+        files[name] = table(rows, '%s %s capsid: CA centroid of every protein chain of assembly 1 (%d chains x %d deposited operators)'
+                            % (pdb, what, len(ca), len(ops)))
+        sources[name] = dict(pdb=pdb, source=URL % (pdb + '.cif'), sha256=digest, bytes=size, points=len(rows), chains_per_unit=len(ca),
+                             reduction='CA centroid per protein chain, expanded by the operators of assembly 1 (_pdbx_struct_assembly_gen)')
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     sources, files = {}, {}
@@ -175,6 +232,7 @@ def main():
     sources['7ARQ-nucleotide-points.txt'] = dict(pdb='7ARQ', source=URL % '7ARQ.cif.gz', sha256=digest, bytes=size, points=len(rows),
                                                  components={c: sum(1 for x in rows if x[0] == c) for c in ('scaffold', 'staple')},
                                                  reduction="C1' atom of every nucleotide of the deposited model (single copy; no symmetry operators)")
+    extra_assets(files, sources)
     for name, text in files.items():
         (OUT / name).write_text(text, encoding='utf-8', newline='\n')
         sources[name]['asset_sha256'] = hashlib.sha256(text.encode('utf-8')).hexdigest()

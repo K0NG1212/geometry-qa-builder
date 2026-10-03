@@ -206,6 +206,19 @@ def label_numeric(correct, chosen, *, decimals, unit, seed, context, correct_rea
     return options, audit
 
 
+def label_circular(correct, chosen, *, decimals, unit, target, correct_reason):
+    """Periodic quantities (angles): options in ascending order around the circle, starting from a cut chosen so that
+    the correct option sits at the batch target position. A circle has no smallest value; a fixed cut at -180 deg tied
+    the answer position to the data (most backbone torsions are negative, so answers piled up at A/B; probe
+    runs/enum-v12). The cut carries no information: it is set by the target, which is independent of the answer."""
+    options, audit = label_numeric(correct, chosen, decimals=decimals, unit=unit, seed=None, context=None,
+                                   correct_reason=correct_reason)
+    shift = (next(i for i, a in enumerate(audit) if a['is_correct']) - (target - 1)) % 4
+    order = audit[shift:] + audit[:shift]
+    return ([{'label': l, 'value': a['value'], 'unit': unit} for l, a in zip(LABELS, order)],
+            [dict(a, label=l) for l, a in zip(LABELS, order)])
+
+
 def place(correct, others, target, seed, context, key):
     """Categorical options: others in seeded order, correct inserted at the target index."""
     rest = ordered(list(others), seed, context + '/labels', key=key)

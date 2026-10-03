@@ -4,10 +4,10 @@
   "families": 43,
   "checkers": 43,
   "family_modules": 18,
-  "manifest_instances": 183,
-  "run": "family-pilot-v22",
-  "attempted": 183,
-  "passed": 182,
+  "manifest_instances": 213,
+  "run": "family-pilot-v23",
+  "attempted": 213,
+  "passed": 212,
   "failures": [
    {
     "id": "FA-CONF-7063-max_dipole",
@@ -16,11 +16,11 @@
     "reason": "No four-candidate set with a unique best above the margin"
    }
   ],
-  "independent_checked": 182,
-  "independent_passed": 182,
-  "tests": 289,
-  "code_lines": 6407,
-  "generator_lines": 4391,
+  "independent_checked": 212,
+  "independent_passed": 212,
+  "tests": 294,
+  "code_lines": 6423,
+  "generator_lines": 4407,
   "checker_lines": 2016,
   "abilities": {
    "perception": 14,
@@ -138,7 +138,7 @@
      "path": "docs/data/coverage-plan.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/docs/data/coverage-plan.json",
      "lines": 1272,
-     "sha256": "07c7c144e8186b140ea92527569d270871dc55a40f051b839684f4613df5f592"
+     "sha256": "410c318aac37683f8f3dffea720bea824b84f2c18f0de104f904838f2f21562b"
     }
    ]
   },
@@ -160,9 +160,9 @@
     {
      "path": "tools/build_assembly_assets.py",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/tools/build_assembly_assets.py",
-     "lines": 187,
-     "sha256": "a5b99dad814815f427f8f8d69513d826435b719fed033fe2d7cba8bbf05f1a4a",
-     "source": "\"\"\"Reduce large PDB assemblies (downloaded to inputs/pdb, not in Git) into small public assets.\n\nDeterministic reductions, all disclosed in docs/assets/families/assemblies/sources.json:\n  * 1AON, 1KX5: one point per residue (protein CA, nucleic-acid P) of the deposited model.\n  * 1A34 (STMV): capsid-protein CA atoms expanded by the 60 deposited icosahedral operators,\n    plus a table of the 60 subunit centroids.\n  * 6CGR (HSV-1): CA centroid of every protein chain of the asymmetric unit, expanded by the\n    60 deposited operators (about 3,000 points, labelled by component).\n  * 6NCL (PBCV-1): CA centroid of every protein chain of the asymmetric unit, expanded by the 60\n    deposited operators (6,900 points; major capsid protein labelled Vp54, others by their entity names).\n  * 7ARQ (DNA-origami 16-helix bundle, cryo-EM pseudo-atomic model): the C1' atom of every\n    nucleotide, labelled scaffold or staple (one table row per nucleotide).\nOperators come from the files' own _pdbx_struct_oper_list; nothing is guessed.\n\npython tools/build_assembly_assets.py\n\"\"\"\nimport gzip\nimport hashlib\nimport json\nimport re\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nRAW = ROOT / 'inputs/pdb'\nOUT = ROOT / 'docs/assets/families/assemblies'\nURL = 'https://files.rcsb.org/download/%s'\nSHORT = {'Major capsid protein': 'VP5', 'Small capsomere-interacting protein': 'VP26', 'Triplex capsid protein 1': 'VP19C',\n         'Triplex capsid protein 2': 'VP23', 'Capsid vertex component 1': 'pUL25', 'Capsid vertex component 2': 'pUL17',\n         'Large tegument protein deneddylase': 'pUL36'}\n\n\ndef read(name):\n    raw = (RAW / name).read_bytes()\n    text = gzip.decompress(raw).decode() if name.endswith('.gz') else raw.decode()\n    return text, hashlib.sha256(raw).hexdigest(), len(raw)\n\n\n# CIF tokens: a quote only closes when followed by whitespace (so O5' and 'a b' both work).\nTOKEN = re.compile(r\"'(?:[^']|'(?=\\S))*'(?=\\s|$)|\\\"(?:[^\\\"]|\\\"(?=\\S))*\\\"(?=\\s|$)|\\S+\")\n\n\ndef tokens(line):\n    return [t[1:-1] if t[:1] in ('\"', \"'\") and t[-1:] == t[:1] and len(t) > 1 else t for t in TOKEN.findall(line)]\n\n\ndef cif_loop(text, prefix):\n    lines = text.splitlines()\n    for i, line in enumerate(lines):\n        if line.strip() == 'loop_' and lines[i + 1].startswith(prefix + '.'):\n            j, cols = i + 1, []\n            while lines[j].startswith(prefix + '.'):\n                cols.append(lines[j].split('.', 1)[1].strip())\n                j += 1\n            rows, buf = [], []\n            while j < len(lines) and not lines[j].startswith(('loop_', '_', '#')):\n                buf += tokens(lines[j])\n                j += 1\n                while len(buf) >= len(cols):\n                    rows.append(dict(zip(cols, buf[:len(cols)])))\n                    buf = buf[len(cols):]\n            return rows\n    return []\n\n\ndef operators(text):\n    ops = {}\n    for r in cif_loop(text, '_pdbx_struct_oper_list'):\n        m = [[float(r['matrix[%d][%d]' % (i, j)]) for j in (1, 2, 3)] for i in (1, 2, 3)]\n        v = [float(r['vector[%d]' % i]) for i in (1, 2, 3)]\n        ops[r['id']] = (m, v)\n    return [ops[str(k)] for k in range(1, 61)]\n\n\ndef apply(op, p):\n    m, v = op\n    return tuple(sum(m[i][k] * p[k] for k in range(3)) + v[i] for i in range(3))\n\n\ndef centroid(points):\n    return tuple(sum(p[k] for p in points) / len(points) for k in range(3))\n\n\ndef xyz(points, comment):\n    return '\\n'.join([str(len(points)), comment] + ['%s %.3f %.3f %.3f' % (e, *p) for e, p in points]) + '\\n'\n\n\ndef table(rows, comment):\n    return '\\n'.join([comment + '; columns: component copy x y z (angstrom)'] +\n                     ['%s %s %.3f %.3f %.3f' % (c, k, *p) for c, k, p in rows]) + '\\n'\n\n\ndef pdb_residue_points(text):\n    out = []\n    for line in text.splitlines():\n        if line.startswith('ENDMDL'):\n            break\n        if line.startswith('ATOM') and line[16] in ' A' and line[12:16].strip() in ('CA', 'P'):\n            out.append(('C' if line[12:16].strip() == 'CA' else 'P', tuple(float(line[c:c + 8]) for c in (30, 38, 46))))\n    return out\n\n\ndef cif_atoms(text):\n    rows = cif_loop(text, '_atom_site')\n    return [r for r in rows if r['group_PDB'] == 'ATOM' and r.get('pdbx_PDB_model_num', '1') == '1'\n            and r['label_alt_id'] in ('.', 'A')]\n\n\ndef main():\n    OUT.mkdir(parents=True, exist_ok=True)\n    sources, files = {}, {}\n    for pdb, what in (('1AON', 'GroEL–GroES–(ADP)7 chaperonin'), ('1KX5', 'nucleosome core particle NCP147')):\n        text, digest, size = read(pdb + '.pdb')\n        pts = pdb_residue_points(text)\n        name = '%s-residue-points.xyz' % pdb\n        files[name] = xyz(pts, '%s %s: one point per residue (protein CA as C, nucleic-acid P as P), deposited model, angstrom' % (pdb, what))\n        sources[name] = dict(pdb=pdb, source=URL % (pdb + '.pdb'), sha256=digest, bytes=size, points=len(pts),\n                             reduction='CA of every protein residue and P of every nucleotide, main alternate location')\n    text, digest, size = read('1A34.cif')\n    ops = operators(text)\n    atoms = cif_atoms(text)\n    entity = {r['id']: r.get('pdbx_description', '') for r in cif_loop(text, '_entity')}\n    protein = [r for r in atoms if r['label_atom_id'] == 'CA' and 'MOSAIC' in entity.get(r['label_entity_id'], '').upper()]\n    ca = [(float(r['Cartn_x']), float(r['Cartn_y']), float(r['Cartn_z'])) for r in protein]\n    expanded = [('C', apply(op, p)) for op in ops for p in ca]\n    files['1A34-capsid-CA.xyz'] = xyz(expanded, '1A34 satellite tobacco mosaic virus capsid: capsid-protein CA atoms x 60 deposited icosahedral operators, angstrom')\n    files['1A34-subunit-centroids.txt'] = table([('CP', '%02d' % (k + 1), apply(op, centroid(ca))) for k, op in enumerate(ops)],\n                                                '1A34 STMV capsid: CA centroid of each of the 60 capsid-protein copies')\n    for name, pts in (('1A34-capsid-CA.xyz', len(expanded)), ('1A34-subunit-centroids.txt', 60)):\n        sources[name] = dict(pdb='1A34', source=URL % '1A34.cif', sha256=digest, bytes=size, points=pts,\n                             reduction='capsid-protein CA atoms (%d per copy) expanded by operators 1-60 of assembly 1' % len(ca))\n    text, digest, size = read('6CGR.cif.gz')\n    ops = operators(text)\n    entity = {r['id']: SHORT.get(r.get('pdbx_description', '').strip(\"'\"), r.get('pdbx_description', '')) for r in cif_loop(text, '_entity')}\n    chains = {}\n    for r in cif_atoms(text):\n        if r['label_atom_id'] == 'CA':\n            chains.setdefault((r['label_entity_id'], r['label_asym_id']), []).append(\n                (float(r['Cartn_x']), float(r['Cartn_y']), float(r['Cartn_z'])))\n    rows = []\n    for k, op in enumerate(ops):\n        for (ent, asym), pts in sorted(chains.items()):\n            rows.append((entity[ent], '%s.%02d' % (asym, k + 1), apply(op, centroid(pts))))\n    files['6CGR-chain-centroids.txt'] = table(rows, '6CGR HSV-1 capsid with tegument complexes: CA centroid of every protein chain '\n                                                    'of the asymmetric unit x 60 deposited icosahedral operators')\n    sources['6CGR-chain-centroids.txt'] = dict(pdb='6CGR', source=URL % '6CGR.cif.gz', sha256=digest, bytes=size, points=len(rows),\n                                               chains_per_unit=len(chains),\n                                               components={c: sum(1 for x in rows if x[0] == c) for c in sorted({x[0] for x in rows})},\n                                               reduction='CA centroid per protein chain, expanded by operators 1-60 of assembly 1')\n    text, digest, size = read('6NCL.cif.gz')\n    ops = operators(text)\n    entity = {r['id']: r.get('pdbx_description', '').strip(\"'\") for r in cif_loop(text, '_entity')}\n    entity = {k: ('Vp54' if v == 'Major capsid protein' else v) for k, v in entity.items()}\n    chains = {}\n    for r in cif_atoms(text):\n        if r['label_atom_id'] == 'CA':\n            chains.setdefault((r['label_entity_id'], r['label_asym_id']), []).append(\n                (float(r['Cartn_x']), float(r['Cartn_y']), float(r['Cartn_z'])))\n    rows = []\n    for k, op in enumerate(ops):\n        for (ent, asym), pts in sorted(chains.items()):\n            rows.append((entity[ent], '%s.%02d' % (asym, k + 1), apply(op, centroid(pts))))\n    files['6NCL-chain-centroids.txt'] = table(rows, '6NCL PBCV-1 capsid (cryo-EM 3.5 A, icosahedrally averaged): CA centroid of every protein '\n                                                    'chain of the asymmetric unit x 60 deposited icosahedral operators')\n    sources['6NCL-chain-centroids.txt'] = dict(pdb='6NCL', source=URL % '6NCL.cif.gz', sha256=digest, bytes=size, points=len(rows),\n                                               chains_per_unit=len(chains),\n                                               components={c: sum(1 for x in rows if x[0] == c) for c in sorted({x[0] for x in rows})},\n                                               reduction='CA centroid per protein chain, expanded by operators 1-60 of assembly 1')\n    text, digest, size = read('7ARQ.cif.gz')\n    entity = {r['id']: r.get('pdbx_description', '').strip(\"'\") for r in cif_loop(text, '_entity')}\n    rows = [('scaffold' if entity[r['label_entity_id']] == 'SCAFFOLD STRAND' else 'staple', '%s.%04d' % (r['auth_asym_id'], int(r['auth_seq_id'])),\n             (float(r['Cartn_x']), float(r['Cartn_y']), float(r['Cartn_z'])))\n            for r in cif_atoms(text) if r['label_atom_id'] == \"C1'\"]\n    files['7ARQ-nucleotide-points.txt'] = table(rows, \"7ARQ DNA-origami 16-helix bundle (cryo-EM, 10 A pseudo-atomic model): C1' atom of every \"\n                                                      'nucleotide, component = scaffold or staple strand, copy = chain.residue')\n    sources['7ARQ-nucleotide-points.txt'] = dict(pdb='7ARQ', source=URL % '7ARQ.cif.gz', sha256=digest, bytes=size, points=len(rows),\n                                                 components={c: sum(1 for x in rows if x[0] == c) for c in ('scaffold', 'staple')},\n                                                 reduction=\"C1' atom of every nucleotide of the deposited model (single copy; no symmetry operators)\")\n    for name, text in files.items():\n        (OUT / name).write_text(text, encoding='utf-8', newline='\\n')\n        sources[name]['asset_sha256'] = hashlib.sha256(text.encode('utf-8')).hexdigest()\n    (OUT / 'sources.json').write_text(json.dumps(dict(license='wwPDB data: CC0 1.0', note='Raw downloads are kept locally in inputs/pdb (not in Git).',\n                                                      files=sources), ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    print(json.dumps({k: v['points'] for k, v in sources.items()}))\n\n\nif __name__ == '__main__':\n    main()\n"
+     "lines": 245,
+     "sha256": "96edc4e4c481f4a6324f0deee24eb2bb616c738da692c81cf047146cf4058820",
+     "source": "\"\"\"Reduce large PDB assemblies (downloaded to inputs/pdb, not in Git) into small public assets.\n\nDeterministic reductions, all disclosed in docs/assets/families/assemblies/sources.json:\n  * 1AON, 1KX5: one point per residue (protein CA, nucleic-acid P) of the deposited model.\n  * 1A34 (STMV): capsid-protein CA atoms expanded by the 60 deposited icosahedral operators,\n    plus a table of the 60 subunit centroids.\n  * 6CGR (HSV-1): CA centroid of every protein chain of the asymmetric unit, expanded by the\n    60 deposited operators (about 3,000 points, labelled by component).\n  * 6NCL (PBCV-1): CA centroid of every protein chain of the asymmetric unit, expanded by the 60\n    deposited operators (6,900 points; major capsid protein labelled Vp54, others by their entity names).\n  * 7ARQ (DNA-origami 16-helix bundle, cryo-EM pseudo-atomic model): the C1' atom of every\n    nucleotide, labelled scaffold or staple (one table row per nucleotide).\nOperators come from the files' own _pdbx_struct_oper_list; nothing is guessed.\n\npython tools/build_assembly_assets.py\n\"\"\"\nimport gzip\nimport hashlib\nimport json\nimport re\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nRAW = ROOT / 'inputs/pdb'\nOUT = ROOT / 'docs/assets/families/assemblies'\nURL = 'https://files.rcsb.org/download/%s'\nSHORT = {'Major capsid protein': 'VP5', 'Small capsomere-interacting protein': 'VP26', 'Triplex capsid protein 1': 'VP19C',\n         'Triplex capsid protein 2': 'VP23', 'Capsid vertex component 1': 'pUL25', 'Capsid vertex component 2': 'pUL17',\n         'Large tegument protein deneddylase': 'pUL36'}\n\n\ndef read(name):\n    raw = (RAW / name).read_bytes()\n    text = gzip.decompress(raw).decode() if name.endswith('.gz') else raw.decode()\n    return text, hashlib.sha256(raw).hexdigest(), len(raw)\n\n\n# CIF tokens: a quote only closes when followed by whitespace (so O5' and 'a b' both work).\nTOKEN = re.compile(r\"'(?:[^']|'(?=\\S))*'(?=\\s|$)|\\\"(?:[^\\\"]|\\\"(?=\\S))*\\\"(?=\\s|$)|\\S+\")\n\n\ndef tokens(line):\n    return [t[1:-1] if t[:1] in ('\"', \"'\") and t[-1:] == t[:1] and len(t) > 1 else t for t in TOKEN.findall(line)]\n\n\ndef cif_loop(text, prefix):\n    lines = text.splitlines()\n    for i, line in enumerate(lines):\n        if line.strip() == 'loop_' and lines[i + 1].startswith(prefix + '.'):\n            j, cols = i + 1, []\n            while lines[j].startswith(prefix + '.'):\n                cols.append(lines[j].split('.', 1)[1].strip())\n                j += 1\n            rows, buf = [], []\n            while j < len(lines) and not lines[j].startswith(('loop_', '_', '#')):\n                buf += tokens(lines[j])\n                j += 1\n                while len(buf) >= len(cols):\n                    rows.append(dict(zip(cols, buf[:len(cols)])))\n                    buf = buf[len(cols):]\n            return rows\n    return []\n\n\ndef operators(text):\n    ops = {}\n    for r in cif_loop(text, '_pdbx_struct_oper_list'):\n        m = [[float(r['matrix[%d][%d]' % (i, j)]) for j in (1, 2, 3)] for i in (1, 2, 3)]\n        v = [float(r['vector[%d]' % i]) for i in (1, 2, 3)]\n        ops[r['id']] = (m, v)\n    return [ops[str(k)] for k in range(1, 61)]\n\n\ndef apply(op, p):\n    m, v = op\n    return tuple(sum(m[i][k] * p[k] for k in range(3)) + v[i] for i in range(3))\n\n\ndef centroid(points):\n    return tuple(sum(p[k] for p in points) / len(points) for k in range(3))\n\n\ndef xyz(points, comment):\n    return '\\n'.join([str(len(points)), comment] + ['%s %.3f %.3f %.3f' % (e, *p) for e, p in points]) + '\\n'\n\n\ndef table(rows, comment):\n    return '\\n'.join([comment + '; columns: component copy x y z (angstrom)'] +\n                     ['%s %s %.3f %.3f %.3f' % (c, k, *p) for c, k, p in rows]) + '\\n'\n\n\ndef pdb_residue_points(text):\n    out = []\n    for line in text.splitlines():\n        if line.startswith('ENDMDL'):\n            break\n        if line.startswith('ATOM') and line[16] in ' A' and line[12:16].strip() in ('CA', 'P'):\n            out.append(('C' if line[12:16].strip() == 'CA' else 'P', tuple(float(line[c:c + 8]) for c in (30, 38, 46))))\n    return out\n\n\ndef cif_atoms(text):\n    rows = cif_loop(text, '_atom_site')\n    return [r for r in rows if r['group_PDB'] == 'ATOM' and r.get('pdbx_PDB_model_num', '1') == '1'\n            and r['label_alt_id'] in ('.', 'A')]\n\n\ndef assembly_operators(text, assembly='1'):\n    \"\"\"Operators and chains of a biological assembly as the file defines it (_pdbx_struct_assembly_gen), e.g. '(1-60)'\n    or '(1,6,11,...,56)' (1STM: 12 operators applied to a 5-chain asymmetric unit).\"\"\"\n    ops = {}\n    for r in cif_loop(text, '_pdbx_struct_oper_list'):\n        ops[r['id']] = ([[float(r['matrix[%d][%d]' % (i, j)]) for j in (1, 2, 3)] for i in (1, 2, 3)],\n                        [float(r['vector[%d]' % i]) for i in (1, 2, 3)])\n    [gen] = [g for g in cif_loop(text, '_pdbx_struct_assembly_gen') if g['assembly_id'] == assembly]\n    ids = []\n    for part in gen['oper_expression'].strip('()').split(','):\n        lo, _, hi = part.partition('-')\n        ids += [str(k) for k in range(int(lo), int(hi or lo) + 1)]\n    return [ops[i] for i in ids], set(gen['asym_id_list'].split(','))\n\n\ndef chain_ca(text, chains=None):\n    \"\"\"CA coordinates per protein chain (label_asym_id), deposited model, main alternate location.\"\"\"\n    out = {}\n    for r in cif_atoms(text):\n        if r['label_atom_id'] == 'CA' and (chains is None or r['label_asym_id'] in chains):\n            out.setdefault(r['label_asym_id'], []).append((float(r['Cartn_x']), float(r['Cartn_y']), float(r['Cartn_z'])))\n    return out\n\n\ndef extra_assets(files, sources):\n    \"\"\"Particles added on 2026-10-03 (user-approved downloads).\"\"\"\n    text, digest, size = read('1RYP.cif')\n    pts = [('C', p) for ch, ps in sorted(chain_ca(text).items()) for p in ps]\n    files['1RYP-residue-points.xyz'] = xyz(pts, '1RYP yeast 20S proteasome: one point per residue (protein CA as C), all 28 chains of the deposited model, angstrom')\n    sources['1RYP-residue-points.xyz'] = dict(pdb='1RYP', source=URL % '1RYP.cif', sha256=digest, bytes=size, points=len(pts),\n                                              reduction='CA of every protein residue, main alternate location; the deposited model is the whole particle')\n    for pdb, what in (('1STM', 'satellite panicum mosaic virus'), ('2BUK', 'satellite tobacco necrosis virus')):\n        text, digest, size = read(pdb + '.cif')\n        ops, chains = assembly_operators(text)\n        ca = chain_ca(text, chains)\n        expanded = [('C', apply(op, p)) for op in ops for ch in sorted(ca) for p in ca[ch]]\n        cents = [('CP', '%s.%02d' % (ch, k + 1), apply(op, centroid(ca[ch]))) for k, op in enumerate(ops) for ch in sorted(ca)]\n        files['%s-capsid-CA.xyz' % pdb] = xyz(expanded, '%s %s capsid: capsid-protein CA atoms of assembly 1 (%d chains x %d deposited operators), angstrom'\n                                              % (pdb, what, len(ca), len(ops)))\n        files['%s-subunit-centroids.txt' % pdb] = table(cents, '%s %s capsid: CA centroid of each capsid-protein copy of assembly 1' % (pdb, what))\n        for name, n in (('%s-capsid-CA.xyz' % pdb, len(expanded)), ('%s-subunit-centroids.txt' % pdb, len(cents))):\n            sources[name] = dict(pdb=pdb, source=URL % (pdb + '.cif'), sha256=digest, bytes=size, points=n,\n                                 reduction='capsid-protein CA atoms of chains %s expanded by the %d operators of assembly 1 (_pdbx_struct_assembly_gen)'\n                                           % (','.join(sorted(ca)), len(ops)))\n    for pdb, what, comp in (('1CWP', 'cowpea chlorotic mottle virus', 'CP'), ('1SVA', 'simian virus 40', 'VP1'),\n                            ('2FT1', 'bacteriophage HK97 head II', 'gp5')):\n        text, digest, size = read(pdb + '.cif')\n        ops, chains = assembly_operators(text)\n        ca = chain_ca(text, chains)\n        rows = [(comp, '%s.%02d' % (ch, k + 1), apply(op, centroid(ca[ch]))) for k, op in enumerate(ops) for ch in sorted(ca)]\n        name = '%s-chain-centroids.txt' % pdb\n        files[name] = table(rows, '%s %s capsid: CA centroid of every protein chain of assembly 1 (%d chains x %d deposited operators)'\n                            % (pdb, what, len(ca), len(ops)))\n        sources[name] = dict(pdb=pdb, source=URL % (pdb + '.cif'), sha256=digest, bytes=size, points=len(rows), chains_per_unit=len(ca),\n                             reduction='CA centroid per protein chain, expanded by the operators of assembly 1 (_pdbx_struct_assembly_gen)')\n\n\ndef main():\n    OUT.mkdir(parents=True, exist_ok=True)\n    sources, files = {}, {}\n    for pdb, what in (('1AON', 'GroEL–GroES–(ADP)7 chaperonin'), ('1KX5', 'nucleosome core particle NCP147')):\n        text, digest, size = read(pdb + '.pdb')\n        pts = pdb_residue_points(text)\n        name = '%s-residue-points.xyz' % pdb\n        files[name] = xyz(pts, '%s %s: one point per residue (protein CA as C, nucleic-acid P as P), deposited model, angstrom' % (pdb, what))\n        sources[name] = dict(pdb=pdb, source=URL % (pdb + '.pdb'), sha256=digest, bytes=size, points=len(pts),\n                             reduction='CA of every protein residue and P of every nucleotide, main alternate location')\n    text, digest, size = read('1A34.cif')\n    ops = operators(text)\n    atoms = cif_atoms(text)\n    entity = {r['id']: r.get('pdbx_description', '') for r in cif_loop(text, '_entity')}\n    protein = [r for r in atoms if r['label_atom_id'] == 'CA' and 'MOSAIC' in entity.get(r['label_entity_id'], '').upper()]\n    ca = [(float(r['Cartn_x']), float(r['Cartn_y']), float(r['Cartn_z'])) for r in protein]\n    expanded = [('C', apply(op, p)) for op in ops for p in ca]\n    files['1A34-capsid-CA.xyz'] = xyz(expanded, '1A34 satellite tobacco mosaic virus capsid: capsid-protein CA atoms x 60 deposited icosahedral operators, angstrom')\n    files['1A34-subunit-centroids.txt'] = table([('CP', '%02d' % (k + 1), apply(op, centroid(ca))) for k, op in enumerate(ops)],\n                                                '1A34 STMV capsid: CA centroid of each of the 60 capsid-protein copies')\n    for name, pts in (('1A34-capsid-CA.xyz', len(expanded)), ('1A34-subunit-centroids.txt', 60)):\n        sources[name] = dict(pdb='1A34', source=URL % '1A34.cif', sha256=digest, bytes=size, points=pts,\n                             reduction='capsid-protein CA atoms (%d per copy) expanded by operators 1-60 of assembly 1' % len(ca))\n    text, digest, size = read('6CGR.cif.gz')\n    ops = operators(text)\n    entity = {r['id']: SHORT.get(r.get('pdbx_description', '').strip(\"'\"), r.get('pdbx_description', '')) for r in cif_loop(text, '_entity')}\n    chains = {}\n    for r in cif_atoms(text):\n        if r['label_atom_id'] == 'CA':\n            chains.setdefault((r['label_entity_id'], r['label_asym_id']), []).append(\n                (float(r['Cartn_x']), float(r['Cartn_y']), float(r['Cartn_z'])))\n    rows = []\n    for k, op in enumerate(ops):\n        for (ent, asym), pts in sorted(chains.items()):\n            rows.append((entity[ent], '%s.%02d' % (asym, k + 1), apply(op, centroid(pts))))\n    files['6CGR-chain-centroids.txt'] = table(rows, '6CGR HSV-1 capsid with tegument complexes: CA centroid of every protein chain '\n                                                    'of the asymmetric unit x 60 deposited icosahedral operators')\n    sources['6CGR-chain-centroids.txt'] = dict(pdb='6CGR', source=URL % '6CGR.cif.gz', sha256=digest, bytes=size, points=len(rows),\n                                               chains_per_unit=len(chains),\n                                               components={c: sum(1 for x in rows if x[0] == c) for c in sorted({x[0] for x in rows})},\n                                               reduction='CA centroid per protein chain, expanded by operators 1-60 of assembly 1')\n    text, digest, size = read('6NCL.cif.gz')\n    ops = operators(text)\n    entity = {r['id']: r.get('pdbx_description', '').strip(\"'\") for r in cif_loop(text, '_entity')}\n    entity = {k: ('Vp54' if v == 'Major capsid protein' else v) for k, v in entity.items()}\n    chains = {}\n    for r in cif_atoms(text):\n        if r['label_atom_id'] == 'CA':\n            chains.setdefault((r['label_entity_id'], r['label_asym_id']), []).append(\n                (float(r['Cartn_x']), float(r['Cartn_y']), float(r['Cartn_z'])))\n    rows = []\n    for k, op in enumerate(ops):\n        for (ent, asym), pts in sorted(chains.items()):\n            rows.append((entity[ent], '%s.%02d' % (asym, k + 1), apply(op, centroid(pts))))\n    files['6NCL-chain-centroids.txt'] = table(rows, '6NCL PBCV-1 capsid (cryo-EM 3.5 A, icosahedrally averaged): CA centroid of every protein '\n                                                    'chain of the asymmetric unit x 60 deposited icosahedral operators')\n    sources['6NCL-chain-centroids.txt'] = dict(pdb='6NCL', source=URL % '6NCL.cif.gz', sha256=digest, bytes=size, points=len(rows),\n                                               chains_per_unit=len(chains),\n                                               components={c: sum(1 for x in rows if x[0] == c) for c in sorted({x[0] for x in rows})},\n                                               reduction='CA centroid per protein chain, expanded by operators 1-60 of assembly 1')\n    text, digest, size = read('7ARQ.cif.gz')\n    entity = {r['id']: r.get('pdbx_description', '').strip(\"'\") for r in cif_loop(text, '_entity')}\n    rows = [('scaffold' if entity[r['label_entity_id']] == 'SCAFFOLD STRAND' else 'staple', '%s.%04d' % (r['auth_asym_id'], int(r['auth_seq_id'])),\n             (float(r['Cartn_x']), float(r['Cartn_y']), float(r['Cartn_z'])))\n            for r in cif_atoms(text) if r['label_atom_id'] == \"C1'\"]\n    files['7ARQ-nucleotide-points.txt'] = table(rows, \"7ARQ DNA-origami 16-helix bundle (cryo-EM, 10 A pseudo-atomic model): C1' atom of every \"\n                                                      'nucleotide, component = scaffold or staple strand, copy = chain.residue')\n    sources['7ARQ-nucleotide-points.txt'] = dict(pdb='7ARQ', source=URL % '7ARQ.cif.gz', sha256=digest, bytes=size, points=len(rows),\n                                                 components={c: sum(1 for x in rows if x[0] == c) for c in ('scaffold', 'staple')},\n                                                 reduction=\"C1' atom of every nucleotide of the deposited model (single copy; no symmetry operators)\")\n    extra_assets(files, sources)\n    for name, text in files.items():\n        (OUT / name).write_text(text, encoding='utf-8', newline='\\n')\n        sources[name]['asset_sha256'] = hashlib.sha256(text.encode('utf-8')).hexdigest()\n    (OUT / 'sources.json').write_text(json.dumps(dict(license='wwPDB data: CC0 1.0', note='Raw downloads are kept locally in inputs/pdb (not in Git).',\n                                                      files=sources), ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    print(json.dumps({k: v['points'] for k, v in sources.items()}))\n\n\nif __name__ == '__main__':\n    main()\n"
     },
     {
      "path": "tools/build_vortex_assets.py",
@@ -192,9 +192,9 @@
     {
      "path": "task_families/kit.py",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/task_families/kit.py",
-     "lines": 276,
-     "sha256": "d060c9006667542779c54b2fc9b6e9554a0857d4a05d098bf9925647e41bcb79",
-     "source": "\"\"\"Shared mechanics for reusable task families: parsing, geometry kernels, rounding,\ndistractor selection, four-option validation and scoring. No model/API calls.\n\nFamilies supply the science (what is asked, how the answer is computed, which\nerror mechanisms produce distractors); this module supplies the common checks so\nthat every family is validated the same way.\n\"\"\"\nimport hashlib\nimport itertools\nimport math\nfrom decimal import Decimal, ROUND_HALF_UP\n\nLABELS = 'ABCD'\nELEMENTS = {'H', 'C', 'N', 'O', 'S', 'Cl', 'P', 'F', 'Zn', 'Si', 'Na', 'Mg', 'Cs', 'Br', 'I', 'Au', 'Cd', 'Se'}\nCOVALENT = {'H': 0.31, 'C': 0.76, 'N': 0.71, 'O': 0.66, 'S': 1.05, 'Cl': 1.02, 'P': 1.07,\n            'F': 0.57, 'Zn': 1.22, 'Si': 1.11, 'Br': 1.20, 'I': 1.39}\n\n\ndef sha256(data):\n    return hashlib.sha256(data if isinstance(data, bytes) else data.encode('utf-8')).hexdigest()\n\n\ndef parse_xyz(text, max_atoms=5000):\n    \"\"\"Strict XYZ: count line, comment line, exactly count rows of element x y z.\"\"\"\n    lines = text.splitlines()\n    if len(lines) < 3:\n        raise ValueError('XYZ requires count, comment and atom rows')\n    try:\n        n = int(lines[0].strip())\n    except ValueError:\n        raise ValueError('Invalid XYZ count')\n    rows = [line.split() for line in lines[2:] if line.strip()]\n    if n < 1 or n > max_atoms or len(rows) != n:\n        raise ValueError('Atom count does not match rows')\n    elements, points = [], []\n    for row in rows:\n        symbol = row[0].capitalize() if len(row) == 4 else ''   # e.g. PDB-style 'CL' -> 'Cl'\n        if symbol not in ELEMENTS:\n            raise ValueError('Expected known element and three coordinates')\n        point = tuple(float(v) for v in row[1:])\n        if not all(math.isfinite(v) for v in point):\n            raise ValueError('Nonfinite coordinate')\n        elements.append(symbol)\n        points.append(point)\n    return elements, points\n\n\ndef xyz_text(elements, points, comment):\n    rows = ['%s %.8f %.8f %.8f' % (e, *p) for e, p in zip(elements, points)]\n    return '\\n'.join([str(len(rows)), comment] + rows) + '\\n'\n\n\ndef sub(a, b):\n    return [x - y for x, y in zip(a, b)]\n\n\ndef dot(a, b):\n    return math.fsum(x * y for x, y in zip(a, b))\n\n\ndef cross(a, b):\n    return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]\n\n\ndef norm(a):\n    return math.sqrt(dot(a, a))\n\n\ndef angle_acos(a, vertex, b):\n    u, v = sub(a, vertex), sub(b, vertex)\n    return math.degrees(math.acos(max(-1.0, min(1.0, dot(u, v) / (norm(u) * norm(v))))))\n\n\ndef angle_atan2(a, vertex, b):\n    \"\"\"Second implementation (atan2 of |u x v| and u.v), used as a cross-check.\"\"\"\n    u, v = sub(a, vertex), sub(b, vertex)\n    return math.degrees(math.atan2(norm(cross(u, v)), dot(u, v)))\n\n\ndef dihedral_normals(p0, p1, p2, p3):\n    \"\"\"IUPAC signed torsion via plane normals, range (-180, 180].\"\"\"\n    b1, b2, b3 = sub(p1, p0), sub(p2, p1), sub(p3, p2)\n    n1, n2 = cross(b1, b2), cross(b2, b3)\n    return math.degrees(math.atan2(norm(b2) * dot(b1, n2), dot(n1, n2)))\n\n\ndef dihedral_projection(p0, p1, p2, p3):\n    \"\"\"Second implementation: project outer bonds onto the plane normal to the axis.\"\"\"\n    b0, b1, b2 = sub(p0, p1), sub(p2, p1), sub(p3, p2)\n    axis = [x / norm(b1) for x in b1]\n    v = [x - dot(b0, axis) * y for x, y in zip(b0, axis)]\n    w = [x - dot(b2, axis) * y for x, y in zip(b2, axis)]\n    return math.degrees(math.atan2(dot(cross(axis, v), w), dot(v, w)))\n\n\ndef bond_graph(elements, points, scale=1.2):\n    \"\"\"Covalent-radius connectivity; an operational rule, stated in audits.\"\"\"\n    edges = set()\n    for i, j in itertools.combinations(range(len(points)), 2):\n        limit = scale * (COVALENT[elements[i]] + COVALENT[elements[j]])\n        if math.dist(points[i], points[j]) <= limit:\n            edges.add((i, j))\n    return edges\n\n\ndef neighbors(edges, i):\n    return sorted({b if a == i else a for a, b in edges if i in (a, b)})\n\n\ndef dmax(points):\n    return max((math.dist(a, b) for a, b in itertools.combinations(points, 2)), default=0.0)\n\n\ndef display(value, decimals):\n    quantum = Decimal(1).scaleb(-decimals)\n    return str(Decimal(str(value)).quantize(quantum, rounding=ROUND_HALF_UP))\n\n\ndef digest(*parts):\n    return hashlib.sha256('|'.join(map(str, parts)).encode('utf-8')).digest()\n\n\ndef ordered(items, seed, context, key=lambda x: x[0]):\n    \"\"\"Version-independent deterministic permutation keyed by seed and context.\"\"\"\n    return sorted(items, key=lambda x: digest(seed, context, key(x)))\n\n\ndef target_rank(seed, context):\n    return 1 + digest(seed, context, 'rank')[0] % 4\n\n\ndef gap(a, b, period=None):\n    \"\"\"Absolute difference; for periodic quantities (torsions) the circular distance.\"\"\"\n    d = abs(a - b)\n    if period is not None:\n        period = Decimal(str(period))\n        d = min(d % period, period - d % period)\n    return d\n\n\ndef choose_numeric(correct, candidates, *, decimals, tolerance, min_separation, seed, context,\n                   lower=None, upper=None, period=None, target=None, distractor_separation=None):\n    \"\"\"Pick three misconception distractors.\n\n    candidates: dicts with rule, value, reason and plausibility (1 low .. 3 high).\n    Among all valid triples (pairwise separated by more than min_separation and\n    from the correct value) prefer the one whose correct-answer numeric rank equals\n    a target rank (assigned per batch by the engine, else seeded), so that \"always\n    pick largest/smallest\" does not work, then the most plausible mechanisms.\n    min_separation applies to the correct value; distractor_separation (default the\n    same) only keeps wrong options visibly distinct from each other.\n    Returns (chosen, rejected, target, achieved rank).\n    \"\"\"\n    tolerance, min_separation = Decimal(str(tolerance)), Decimal(str(min_separation))\n    between = Decimal(str(distractor_separation)) if distractor_separation is not None else min_separation\n    if between <= 2 * tolerance:\n        raise ValueError('Distractors must not share tolerance intervals')\n    if min_separation < 2 * tolerance:\n        raise ValueError('Separation must exceed both tolerance intervals')\n    right = Decimal(display(correct, decimals))\n    valid, rejected = [], []\n    for c in candidates:\n        value = c['value']\n        if value is None or not math.isfinite(float(value)):\n            rejected.append(dict(rule=c['rule'], value=None, reason='not defined for this input'))\n            continue\n        shown = Decimal(display(value, decimals))\n        if (lower is not None and shown < Decimal(str(lower))) or (upper is not None and shown > Decimal(str(upper))):\n            rejected.append(dict(rule=c['rule'], value=str(shown), reason='outside the defined value range'))\n        elif gap(shown, right, period) <= min_separation:\n            rejected.append(dict(rule=c['rule'], value=str(shown), reason='too close to the correct value'))\n        else:\n            valid.append(dict(c, shown=shown))\n    best = None\n    goal = target if target is not None else target_rank(seed, context)\n    for combo in itertools.combinations(valid, 3):\n        values = [x['shown'] for x in combo]\n        if any(gap(a, b, period) <= between for a, b in itertools.combinations(values, 2)):\n            continue\n        rank = 1 + sum(v < right for v in values)\n        weak = sum(x.get('plausibility', 1) <= 1 for x in combo)   # easily dismissed option: worse than any rank miss\n        mirror = right != 0 and any(x['shown'] == -right for x in combo)   # a '+/-' pair cue\n        score = (abs(rank - goal) + 4 * weak + int(mirror), -sum(x.get('plausibility', 1) for x in combo),\n                 digest(seed, context, *sorted(x['rule'] for x in combo)))\n        if best is None or score < best[0]:\n            best = (score, combo, rank)\n    if best is None:\n        raise ValueError('Fewer than three separated misconception distractors')\n    chosen = list(best[1])\n    names = {x['rule'] for x in chosen}\n    for x in valid:\n        if x['rule'] not in names:\n            rejected.append(dict(rule=x['rule'], value=str(x['shown']), reason='valid but not selected (rank balance / plausibility)'))\n    return chosen, rejected, goal, best[2]\n\n\ndef label_numeric(correct, chosen, *, decimals, unit, seed, context, correct_reason):\n    \"\"\"Options in ascending numeric order, so label position equals numeric rank;\n    the balanced target rank therefore also balances answer positions.\"\"\"\n    entries = [('correct', display(correct, decimals), correct_reason)] +               [(x['rule'], str(x['shown']), x['reason']) for x in chosen]\n    permutation = sorted(entries, key=lambda e: Decimal(e[1]))\n    options = [{'label': l, 'value': v, 'unit': unit} for l, (_, v, _) in zip(LABELS, permutation)]\n    audit = [{'label': l, 'rule': r, 'value': v, 'reason': why, 'is_correct': r == 'correct',\n              'absolute_error': str(abs(Decimal(v) - Decimal(str(correct))))}\n             for l, (r, v, why) in zip(LABELS, permutation)]\n    return options, audit\n\n\ndef place(correct, others, target, seed, context, key):\n    \"\"\"Categorical options: others in seeded order, correct inserted at the target index.\"\"\"\n    rest = ordered(list(others), seed, context + '/labels', key=key)\n    index = (target - 1) if target is not None else target_rank(seed, context) - 1\n    return rest[:index] + [correct] + rest[index:]\n\n\ndef validate_numeric(options, expected, *, decimals, tolerance, min_separation, unit, period=None,\n                     distractor_separation=None):\n    if len(options) != 4 or [o['label'] for o in options] != list(LABELS):\n        raise ValueError('Exactly A/B/C/D required')\n    values = [Decimal(o['value']) for o in options]\n    if any(o['unit'] != unit or not v.is_finite() or o['value'] != display(v, decimals) for o, v in zip(options, values)):\n        raise ValueError('Invalid unit, value or precision')\n    between = Decimal(str(distractor_separation if distractor_separation is not None else min_separation))\n    if any(gap(a, b, period) <= between for a, b in itertools.combinations(values, 2)):\n        raise ValueError('Options not separated')\n    hits = [o['label'] for o, v in zip(options, values) if gap(v, Decimal(str(expected)), period) <= Decimal(str(tolerance))]\n    if len(hits) != 1:\n        raise ValueError('Not exactly one correct option')\n    right = values[[o['label'] for o in options].index(hits[0])]\n    if any(gap(v, right, period) <= Decimal(str(min_separation)) for v in values if v is not right):\n        raise ValueError('A distractor is too close to the correct value')\n    return hits[0]\n\n\ndef validate_verdicts(options, verdicts, key=lambda o: o['value']):\n    \"\"\"Categorical options: all four verified by the family checker, exactly one true.\"\"\"\n    if len(options) != 4 or [o['label'] for o in options] != list(LABELS):\n        raise ValueError('Exactly A/B/C/D required')\n    if len({repr(key(o)) for o in options}) != 4:\n        raise ValueError('Duplicate options')\n    if len(verdicts) != 4 or any(v not in (True, False) for v in verdicts):\n        raise ValueError('Every option needs a verified verdict')\n    hits = [o['label'] for o, v in zip(options, verdicts) if v]\n    if len(hits) != 1:\n        raise ValueError('Not exactly one correct option')\n    return hits[0]\n\n\ndef score_choice(response, correct):\n    if correct not in LABELS or len(correct) != 1:\n        raise ValueError('Invalid answer key')\n    return isinstance(response, str) and response.strip().upper() == correct\n\n\ndef score_numeric(response, expected, tolerance, unit):\n    if not isinstance(response, dict) or set(response) != {'value', 'unit'}:\n        return False\n    value = response['value']\n    if type(value) not in (int, float) or response['unit'] != unit or not math.isfinite(value):\n        return False\n    return abs(Decimal(str(value)) - Decimal(str(expected))) <= Decimal(str(tolerance))\n\n\ndef mirror_pair_cue(option_values, correct_label):\n    \"\"\"True when the correct value's negation is also an option (a test-wise cue).\"\"\"\n    values = dict(option_values)\n    right = Decimal(values[correct_label])\n    return right != 0 and any(Decimal(v) == -right for l, v in option_values if l != correct_label)\n\n\ndef rank_shortcuts(option_values, correct_label):\n    \"\"\"Option-only baselines: which label would 'largest', 'smallest', 'second' pick.\"\"\"\n    order = sorted(option_values, key=lambda x: Decimal(x[1]))\n    picks = {'always_smallest': order[0][0], 'always_second': order[1][0],\n             'always_third': order[2][0], 'always_largest': order[3][0]}\n    return {k: v == correct_label for k, v in picks.items()}\n"
+     "lines": 289,
+     "sha256": "b01b2b5452c72e0846dc9f661381037f230fea83a5a2a7d9477ffe1a946f46f7",
+     "source": "\"\"\"Shared mechanics for reusable task families: parsing, geometry kernels, rounding,\ndistractor selection, four-option validation and scoring. No model/API calls.\n\nFamilies supply the science (what is asked, how the answer is computed, which\nerror mechanisms produce distractors); this module supplies the common checks so\nthat every family is validated the same way.\n\"\"\"\nimport hashlib\nimport itertools\nimport math\nfrom decimal import Decimal, ROUND_HALF_UP\n\nLABELS = 'ABCD'\nELEMENTS = {'H', 'C', 'N', 'O', 'S', 'Cl', 'P', 'F', 'Zn', 'Si', 'Na', 'Mg', 'Cs', 'Br', 'I', 'Au', 'Cd', 'Se'}\nCOVALENT = {'H': 0.31, 'C': 0.76, 'N': 0.71, 'O': 0.66, 'S': 1.05, 'Cl': 1.02, 'P': 1.07,\n            'F': 0.57, 'Zn': 1.22, 'Si': 1.11, 'Br': 1.20, 'I': 1.39}\n\n\ndef sha256(data):\n    return hashlib.sha256(data if isinstance(data, bytes) else data.encode('utf-8')).hexdigest()\n\n\ndef parse_xyz(text, max_atoms=5000):\n    \"\"\"Strict XYZ: count line, comment line, exactly count rows of element x y z.\"\"\"\n    lines = text.splitlines()\n    if len(lines) < 3:\n        raise ValueError('XYZ requires count, comment and atom rows')\n    try:\n        n = int(lines[0].strip())\n    except ValueError:\n        raise ValueError('Invalid XYZ count')\n    rows = [line.split() for line in lines[2:] if line.strip()]\n    if n < 1 or n > max_atoms or len(rows) != n:\n        raise ValueError('Atom count does not match rows')\n    elements, points = [], []\n    for row in rows:\n        symbol = row[0].capitalize() if len(row) == 4 else ''   # e.g. PDB-style 'CL' -> 'Cl'\n        if symbol not in ELEMENTS:\n            raise ValueError('Expected known element and three coordinates')\n        point = tuple(float(v) for v in row[1:])\n        if not all(math.isfinite(v) for v in point):\n            raise ValueError('Nonfinite coordinate')\n        elements.append(symbol)\n        points.append(point)\n    return elements, points\n\n\ndef xyz_text(elements, points, comment):\n    rows = ['%s %.8f %.8f %.8f' % (e, *p) for e, p in zip(elements, points)]\n    return '\\n'.join([str(len(rows)), comment] + rows) + '\\n'\n\n\ndef sub(a, b):\n    return [x - y for x, y in zip(a, b)]\n\n\ndef dot(a, b):\n    return math.fsum(x * y for x, y in zip(a, b))\n\n\ndef cross(a, b):\n    return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]\n\n\ndef norm(a):\n    return math.sqrt(dot(a, a))\n\n\ndef angle_acos(a, vertex, b):\n    u, v = sub(a, vertex), sub(b, vertex)\n    return math.degrees(math.acos(max(-1.0, min(1.0, dot(u, v) / (norm(u) * norm(v))))))\n\n\ndef angle_atan2(a, vertex, b):\n    \"\"\"Second implementation (atan2 of |u x v| and u.v), used as a cross-check.\"\"\"\n    u, v = sub(a, vertex), sub(b, vertex)\n    return math.degrees(math.atan2(norm(cross(u, v)), dot(u, v)))\n\n\ndef dihedral_normals(p0, p1, p2, p3):\n    \"\"\"IUPAC signed torsion via plane normals, range (-180, 180].\"\"\"\n    b1, b2, b3 = sub(p1, p0), sub(p2, p1), sub(p3, p2)\n    n1, n2 = cross(b1, b2), cross(b2, b3)\n    return math.degrees(math.atan2(norm(b2) * dot(b1, n2), dot(n1, n2)))\n\n\ndef dihedral_projection(p0, p1, p2, p3):\n    \"\"\"Second implementation: project outer bonds onto the plane normal to the axis.\"\"\"\n    b0, b1, b2 = sub(p0, p1), sub(p2, p1), sub(p3, p2)\n    axis = [x / norm(b1) for x in b1]\n    v = [x - dot(b0, axis) * y for x, y in zip(b0, axis)]\n    w = [x - dot(b2, axis) * y for x, y in zip(b2, axis)]\n    return math.degrees(math.atan2(dot(cross(axis, v), w), dot(v, w)))\n\n\ndef bond_graph(elements, points, scale=1.2):\n    \"\"\"Covalent-radius connectivity; an operational rule, stated in audits.\"\"\"\n    edges = set()\n    for i, j in itertools.combinations(range(len(points)), 2):\n        limit = scale * (COVALENT[elements[i]] + COVALENT[elements[j]])\n        if math.dist(points[i], points[j]) <= limit:\n            edges.add((i, j))\n    return edges\n\n\ndef neighbors(edges, i):\n    return sorted({b if a == i else a for a, b in edges if i in (a, b)})\n\n\ndef dmax(points):\n    return max((math.dist(a, b) for a, b in itertools.combinations(points, 2)), default=0.0)\n\n\ndef display(value, decimals):\n    quantum = Decimal(1).scaleb(-decimals)\n    return str(Decimal(str(value)).quantize(quantum, rounding=ROUND_HALF_UP))\n\n\ndef digest(*parts):\n    return hashlib.sha256('|'.join(map(str, parts)).encode('utf-8')).digest()\n\n\ndef ordered(items, seed, context, key=lambda x: x[0]):\n    \"\"\"Version-independent deterministic permutation keyed by seed and context.\"\"\"\n    return sorted(items, key=lambda x: digest(seed, context, key(x)))\n\n\ndef target_rank(seed, context):\n    return 1 + digest(seed, context, 'rank')[0] % 4\n\n\ndef gap(a, b, period=None):\n    \"\"\"Absolute difference; for periodic quantities (torsions) the circular distance.\"\"\"\n    d = abs(a - b)\n    if period is not None:\n        period = Decimal(str(period))\n        d = min(d % period, period - d % period)\n    return d\n\n\ndef choose_numeric(correct, candidates, *, decimals, tolerance, min_separation, seed, context,\n                   lower=None, upper=None, period=None, target=None, distractor_separation=None):\n    \"\"\"Pick three misconception distractors.\n\n    candidates: dicts with rule, value, reason and plausibility (1 low .. 3 high).\n    Among all valid triples (pairwise separated by more than min_separation and\n    from the correct value) prefer the one whose correct-answer numeric rank equals\n    a target rank (assigned per batch by the engine, else seeded), so that \"always\n    pick largest/smallest\" does not work, then the most plausible mechanisms.\n    min_separation applies to the correct value; distractor_separation (default the\n    same) only keeps wrong options visibly distinct from each other.\n    Returns (chosen, rejected, target, achieved rank).\n    \"\"\"\n    tolerance, min_separation = Decimal(str(tolerance)), Decimal(str(min_separation))\n    between = Decimal(str(distractor_separation)) if distractor_separation is not None else min_separation\n    if between <= 2 * tolerance:\n        raise ValueError('Distractors must not share tolerance intervals')\n    if min_separation < 2 * tolerance:\n        raise ValueError('Separation must exceed both tolerance intervals')\n    right = Decimal(display(correct, decimals))\n    valid, rejected = [], []\n    for c in candidates:\n        value = c['value']\n        if value is None or not math.isfinite(float(value)):\n            rejected.append(dict(rule=c['rule'], value=None, reason='not defined for this input'))\n            continue\n        shown = Decimal(display(value, decimals))\n        if (lower is not None and shown < Decimal(str(lower))) or (upper is not None and shown > Decimal(str(upper))):\n            rejected.append(dict(rule=c['rule'], value=str(shown), reason='outside the defined value range'))\n        elif gap(shown, right, period) <= min_separation:\n            rejected.append(dict(rule=c['rule'], value=str(shown), reason='too close to the correct value'))\n        else:\n            valid.append(dict(c, shown=shown))\n    best = None\n    goal = target if target is not None else target_rank(seed, context)\n    for combo in itertools.combinations(valid, 3):\n        values = [x['shown'] for x in combo]\n        if any(gap(a, b, period) <= between for a, b in itertools.combinations(values, 2)):\n            continue\n        rank = 1 + sum(v < right for v in values)\n        weak = sum(x.get('plausibility', 1) <= 1 for x in combo)   # easily dismissed option: worse than any rank miss\n        mirror = right != 0 and any(x['shown'] == -right for x in combo)   # a '+/-' pair cue\n        score = (abs(rank - goal) + 4 * weak + int(mirror), -sum(x.get('plausibility', 1) for x in combo),\n                 digest(seed, context, *sorted(x['rule'] for x in combo)))\n        if best is None or score < best[0]:\n            best = (score, combo, rank)\n    if best is None:\n        raise ValueError('Fewer than three separated misconception distractors')\n    chosen = list(best[1])\n    names = {x['rule'] for x in chosen}\n    for x in valid:\n        if x['rule'] not in names:\n            rejected.append(dict(rule=x['rule'], value=str(x['shown']), reason='valid but not selected (rank balance / plausibility)'))\n    return chosen, rejected, goal, best[2]\n\n\ndef label_numeric(correct, chosen, *, decimals, unit, seed, context, correct_reason):\n    \"\"\"Options in ascending numeric order, so label position equals numeric rank;\n    the balanced target rank therefore also balances answer positions.\"\"\"\n    entries = [('correct', display(correct, decimals), correct_reason)] +               [(x['rule'], str(x['shown']), x['reason']) for x in chosen]\n    permutation = sorted(entries, key=lambda e: Decimal(e[1]))\n    options = [{'label': l, 'value': v, 'unit': unit} for l, (_, v, _) in zip(LABELS, permutation)]\n    audit = [{'label': l, 'rule': r, 'value': v, 'reason': why, 'is_correct': r == 'correct',\n              'absolute_error': str(abs(Decimal(v) - Decimal(str(correct))))}\n             for l, (r, v, why) in zip(LABELS, permutation)]\n    return options, audit\n\n\ndef label_circular(correct, chosen, *, decimals, unit, target, correct_reason):\n    \"\"\"Periodic quantities (angles): options in ascending order around the circle, starting from a cut chosen so that\n    the correct option sits at the batch target position. A circle has no smallest value; a fixed cut at -180 deg tied\n    the answer position to the data (most backbone torsions are negative, so answers piled up at A/B; probe\n    runs/enum-v12). The cut carries no information: it is set by the target, which is independent of the answer.\"\"\"\n    options, audit = label_numeric(correct, chosen, decimals=decimals, unit=unit, seed=None, context=None,\n                                   correct_reason=correct_reason)\n    shift = (next(i for i, a in enumerate(audit) if a['is_correct']) - (target - 1)) % 4\n    order = audit[shift:] + audit[:shift]\n    return ([{'label': l, 'value': a['value'], 'unit': unit} for l, a in zip(LABELS, order)],\n            [dict(a, label=l) for l, a in zip(LABELS, order)])\n\n\ndef place(correct, others, target, seed, context, key):\n    \"\"\"Categorical options: others in seeded order, correct inserted at the target index.\"\"\"\n    rest = ordered(list(others), seed, context + '/labels', key=key)\n    index = (target - 1) if target is not None else target_rank(seed, context) - 1\n    return rest[:index] + [correct] + rest[index:]\n\n\ndef validate_numeric(options, expected, *, decimals, tolerance, min_separation, unit, period=None,\n                     distractor_separation=None):\n    if len(options) != 4 or [o['label'] for o in options] != list(LABELS):\n        raise ValueError('Exactly A/B/C/D required')\n    values = [Decimal(o['value']) for o in options]\n    if any(o['unit'] != unit or not v.is_finite() or o['value'] != display(v, decimals) for o, v in zip(options, values)):\n        raise ValueError('Invalid unit, value or precision')\n    between = Decimal(str(distractor_separation if distractor_separation is not None else min_separation))\n    if any(gap(a, b, period) <= between for a, b in itertools.combinations(values, 2)):\n        raise ValueError('Options not separated')\n    hits = [o['label'] for o, v in zip(options, values) if gap(v, Decimal(str(expected)), period) <= Decimal(str(tolerance))]\n    if len(hits) != 1:\n        raise ValueError('Not exactly one correct option')\n    right = values[[o['label'] for o in options].index(hits[0])]\n    if any(gap(v, right, period) <= Decimal(str(min_separation)) for v in values if v is not right):\n        raise ValueError('A distractor is too close to the correct value')\n    return hits[0]\n\n\ndef validate_verdicts(options, verdicts, key=lambda o: o['value']):\n    \"\"\"Categorical options: all four verified by the family checker, exactly one true.\"\"\"\n    if len(options) != 4 or [o['label'] for o in options] != list(LABELS):\n        raise ValueError('Exactly A/B/C/D required')\n    if len({repr(key(o)) for o in options}) != 4:\n        raise ValueError('Duplicate options')\n    if len(verdicts) != 4 or any(v not in (True, False) for v in verdicts):\n        raise ValueError('Every option needs a verified verdict')\n    hits = [o['label'] for o, v in zip(options, verdicts) if v]\n    if len(hits) != 1:\n        raise ValueError('Not exactly one correct option')\n    return hits[0]\n\n\ndef score_choice(response, correct):\n    if correct not in LABELS or len(correct) != 1:\n        raise ValueError('Invalid answer key')\n    return isinstance(response, str) and response.strip().upper() == correct\n\n\ndef score_numeric(response, expected, tolerance, unit):\n    if not isinstance(response, dict) or set(response) != {'value', 'unit'}:\n        return False\n    value = response['value']\n    if type(value) not in (int, float) or response['unit'] != unit or not math.isfinite(value):\n        return False\n    return abs(Decimal(str(value)) - Decimal(str(expected))) <= Decimal(str(tolerance))\n\n\ndef mirror_pair_cue(option_values, correct_label):\n    \"\"\"True when the correct value's negation is also an option (a test-wise cue).\"\"\"\n    values = dict(option_values)\n    right = Decimal(values[correct_label])\n    return right != 0 and any(Decimal(v) == -right for l, v in option_values if l != correct_label)\n\n\ndef rank_shortcuts(option_values, correct_label):\n    \"\"\"Option-only baselines: which label would 'largest', 'smallest', 'second' pick.\"\"\"\n    order = sorted(option_values, key=lambda x: Decimal(x[1]))\n    picks = {'always_smallest': order[0][0], 'always_second': order[1][0],\n             'always_third': order[2][0], 'always_largest': order[3][0]}\n    return {k: v == correct_label for k, v in picks.items()}\n"
     },
     {
      "path": "task_families/__init__.py",
@@ -263,7 +263,7 @@
      "path": "templates/registry.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/templates/registry.json",
      "lines": 2867,
-     "sha256": "5163a50bd35022c62b875b7e3551e3d25e1962b22072524283c31e3d322c8685"
+     "sha256": "47de5094fad303dee1ba94fa1b8a2e4ddb83e00a72b19496b2507b12c728ac82"
     },
     {
      "path": "enumerators.py",
@@ -301,8 +301,8 @@
      "path": "family_engine.py",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/family_engine.py",
      "lines": 142,
-     "sha256": "90e4342918408ebca553cdf91ee8fe93cb326731b99392a64cf61bc1f067f6e2",
-     "source": "\"\"\"Run reusable task families over a manifest of real inputs: define -> construct -> verify.\n\nNo model/API calls. Every instance is built by its family function, all four options\nare verified, and student packets (no answers, evidence or mechanisms) are written\nseparately from reviewer packets. Output directories are never overwritten.\nDevelopment pilots only: nothing here admits questions to the catalog.\n\npython family_engine.py --manifest templates/family-manifest.json --out runs/family-new --seed geobench-family-v1\n\"\"\"\nimport argparse\nimport hashlib\nimport json\nfrom collections import Counter\nfrom pathlib import Path\nfrom task_families import FAMILIES, kit\n\nROOT = Path(__file__).resolve().parent\nVERSION = '0.1.0'\nMODULES = {\n    'M0': '范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）',\n    'M1': '材料：docs/assets 输入、来源、许可与 SHA-256',\n    'M2': '证据：计算器复核或数据集性质记录（审核侧）',\n    'M3': '题型契约：registry.json 中的族定义与适用条件',\n    'M4': '构造：族函数生成题干、正确值与候选错误机制',\n    'M5': '质量：四项逐一核验、唯一性、分隔、捷径诊断',\n    'M6': '导出：学生包 / 审核包分离与运行快照',\n}\n\n\ndef code_files():\n    files = sorted((ROOT / 'task_families').glob('*.py')) + [ROOT / 'family_engine.py', ROOT / 'template_engine.py',\n                                                              ROOT / 'tools/recompute_materials_batch.py',\n                                                              ROOT / 'tools/recompute_materials_batch2.py']\n    return {str(p.relative_to(ROOT)).replace('\\\\', '/'): p for p in files}\n\n\ndef build_instance(spec, seed):\n    family = FAMILIES[spec['family']]\n    if not spec.get('scope', '').strip() or not spec.get('source', '').strip():\n        raise ValueError('Missing scope or source')\n    asset = (ROOT / 'docs' / spec['asset']).resolve()\n    if not asset.is_relative_to((ROOT / 'docs/assets').resolve()):\n        raise ValueError('Asset must stay inside docs/assets')\n    return family, family['build'](spec, ROOT, seed)\n\n\ndef run(manifest_path, out, seed='geobench-family-v1'):\n    manifest_path, out = Path(manifest_path), Path(out)\n    if out.exists():\n        raise ValueError('Output exists; use a new directory to preserve history')\n    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))\n    ids = [x['id'] for x in manifest['items']]\n    if not ids or len(set(ids)) != len(ids):\n        raise ValueError('Empty batch or duplicate ID')\n    students, numeric_students, teachers, stages, failures = [], [], [], [], []\n    counters = Counter()\n    for spec in manifest['items']:\n        # Batch-level balance: within each family, correct positions cycle A..D from a seeded offset.\n        offset = kit.digest(seed, spec['family'], 'offset')[0] % 4\n        spec = dict(spec, target_position=1 + (offset + counters[spec['family']]) % 4)\n        counters[spec['family']] += 1\n        try:\n            family, built = build_instance(spec, seed)\n        except (ValueError, KeyError) as error:\n            failures.append(dict(id=spec['id'], family=spec['family'], stage='construct/verify', reason=str(error)))\n            continue\n        students.append(dict(id=spec['id'], family=spec['family'], ability=family['ability'],\n                             question=built['question'], scope=built['scope'], inputs=built['inputs'],\n                             options=built['options'], response_format='one label: A/B/C/D'))\n        if built['numeric']:\n            n = built['numeric']\n            numeric_students.append(dict(id='N-' + spec['id'], family=spec['family'], ability=family['ability'],\n                                         question=built['question'], scope=built['scope'], inputs=built['inputs'],\n                                         response_format=dict(value='one number rounded to %d decimals' % n['decimals'],\n                                                              unit=n['unit'])))\n        shortcuts = None\n        if built['rank']:\n            pairs = [(o['label'], o['value']) for o in built['options']]\n            shortcuts = dict(kit.rank_shortcuts(pairs, built['correct_label']),\n                             mirror_pair_cue=kit.mirror_pair_cue(pairs, built['correct_label']))\n        teachers.append(dict(id=spec['id'], family=spec['family'], family_version=family['version'],\n                             ability=family['ability'], correct_label=built['correct_label'],\n                             numeric_answer=built['numeric'], option_audit=built['option_audit'],\n                             excluded_candidates=built['excluded_candidates'], rank=built['rank'],\n                             rank_shortcuts=shortcuts, checks=built['checks'], scales=built['scales'],\n                             source=spec['source'], license=spec.get('license', ''), legacy_qa=spec.get('legacy_qa'),\n                             input_hashes=built['input_hashes'], seed=seed, target_position=spec['target_position'],\n                             option_order='numeric ascending (label = rank)' if built['rank'] else 'correct at batch-balanced target; others sha256-sorted',\n                             human_review='pending', catalog_admitted=False))\n        stages.append(dict(id=spec['id'], family=spec['family'],\n                           define=dict(family=spec['family'], version=family['version'], ability=family['ability'],\n                                       output=family['output'], module=family['module']),\n                           construct=dict(inputs=[dict(name=i['name'], format=i['format'], chars=len(i['text']))\n                                                  for i in built['inputs']],\n                                          candidates_considered=len(built['option_audit']) + len(built['excluded_candidates'])),\n                           verify=dict(four_options_verified=True, unique_correct=True, correct_label=built['correct_label'],\n                                       checks=sorted(k for k, v in built['checks'].items() if v is True)),\n                           modules=MODULES))\n    positions = Counter(t['correct_label'] for t in teachers)\n    by_family = {}\n    for t in teachers:\n        f = by_family.setdefault(t['family'], dict(passed=0, shortcut_hits=Counter()))\n        f['passed'] += 1\n        for k, v in (t['rank_shortcuts'] or {}).items():\n            f['shortcut_hits'][k] += int(v)\n    for f in failures:\n        by_family.setdefault(f['family'], dict(passed=0, shortcut_hits=Counter()))\n    for name, f in by_family.items():\n        f['attempted'] = sum(1 for s in manifest['items'] if s['family'] == name)\n        f['shortcut_hits'] = dict(f['shortcut_hits'])\n    code = code_files()\n    report = dict(version=VERSION, kind='reusable_family_development_pilot', seed=seed,\n                  attempted=len(ids), passed=len(teachers), failures=failures, model_calls=0,\n                  catalog_admitted=0, human_review='pending', by_family=by_family,\n                  correct_position_counts={l: positions.get(l, 0) for l in kit.LABELS},\n                  manifest_sha256=kit.sha256(manifest_path.read_bytes()),\n                  registry_sha256=kit.sha256((ROOT / 'templates/registry.json').read_bytes()),\n                  code_sha256={k: kit.sha256(p.read_bytes()) for k, p in code.items()},\n                  difficulty_note='程序通过只说明四项已核验且唯一正确；难度、迷惑性与科学意义仍需人工审核与模型实验。',\n                  limits='开发试跑，不计入题库；模板与来源选择待人工审核。')\n    out.mkdir(parents=True)\n    for name, data in [('student-packets.json', students), ('numeric-student-packets.json', numeric_students),\n                       ('private-answers.json', teachers), ('stage-records.json', stages), ('verification.json', report)]:\n        (out / name).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\\n', encoding='utf-8', newline='\\n')\n    snap = out / 'snapshot'\n    for rel, p in code.items():\n        (snap / rel).parent.mkdir(parents=True, exist_ok=True)\n        (snap / rel).write_bytes(p.read_bytes())\n    (snap / 'manifest.json').write_bytes(manifest_path.read_bytes())\n    (snap / 'registry.json').write_bytes((ROOT / 'templates/registry.json').read_bytes())\n    return report\n\n\nif __name__ == '__main__':\n    p = argparse.ArgumentParser(description=__doc__)\n    p.add_argument('--manifest', type=Path, required=True)\n    p.add_argument('--out', type=Path, required=True)\n    p.add_argument('--seed', default='geobench-family-v1')\n    a = p.parse_args()\n    r = run(a.manifest, a.out, a.seed)\n    print(json.dumps(dict(attempted=r['attempted'], passed=r['passed'], failures=r['failures'],\n                          positions=r['correct_position_counts'], model_calls=0), ensure_ascii=False))\n"
+     "sha256": "22512abeee4725d3e831b40cde04903f0519bcdc852c9102bc5235524f9d5300",
+     "source": "\"\"\"Run reusable task families over a manifest of real inputs: define -> construct -> verify.\n\nNo model/API calls. Every instance is built by its family function, all four options\nare verified, and student packets (no answers, evidence or mechanisms) are written\nseparately from reviewer packets. Output directories are never overwritten.\nDevelopment pilots only: nothing here admits questions to the catalog.\n\npython family_engine.py --manifest templates/family-manifest.json --out runs/family-new --seed geobench-family-v1\n\"\"\"\nimport argparse\nimport hashlib\nimport json\nfrom collections import Counter\nfrom pathlib import Path\nfrom task_families import FAMILIES, kit\n\nROOT = Path(__file__).resolve().parent\nVERSION = '0.1.0'\nMODULES = {\n    'M0': '范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）',\n    'M1': '材料：docs/assets 输入、来源、许可与 SHA-256',\n    'M2': '证据：计算器复核或数据集性质记录（审核侧）',\n    'M3': '题型契约：registry.json 中的族定义与适用条件',\n    'M4': '构造：族函数生成题干、正确值与候选错误机制',\n    'M5': '质量：四项逐一核验、唯一性、分隔、捷径诊断',\n    'M6': '导出：学生包 / 审核包分离与运行快照',\n}\n\n\ndef code_files():\n    files = sorted((ROOT / 'task_families').glob('*.py')) + [ROOT / 'family_engine.py', ROOT / 'template_engine.py',\n                                                              ROOT / 'tools/recompute_materials_batch.py',\n                                                              ROOT / 'tools/recompute_materials_batch2.py']\n    return {str(p.relative_to(ROOT)).replace('\\\\', '/'): p for p in files}\n\n\ndef build_instance(spec, seed):\n    family = FAMILIES[spec['family']]\n    if not spec.get('scope', '').strip() or not spec.get('source', '').strip():\n        raise ValueError('Missing scope or source')\n    asset = (ROOT / 'docs' / spec['asset']).resolve()\n    if not asset.is_relative_to((ROOT / 'docs/assets').resolve()):\n        raise ValueError('Asset must stay inside docs/assets')\n    return family, family['build'](spec, ROOT, seed)\n\n\ndef run(manifest_path, out, seed='geobench-family-v1'):\n    manifest_path, out = Path(manifest_path), Path(out)\n    if out.exists():\n        raise ValueError('Output exists; use a new directory to preserve history')\n    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))\n    ids = [x['id'] for x in manifest['items']]\n    if not ids or len(set(ids)) != len(ids):\n        raise ValueError('Empty batch or duplicate ID')\n    students, numeric_students, teachers, stages, failures = [], [], [], [], []\n    counters = Counter()\n    for spec in manifest['items']:\n        # Batch-level balance: within each family, correct positions cycle A..D from a seeded offset.\n        offset = kit.digest(seed, spec['family'], 'offset')[0] % 4\n        spec = dict(spec, target_position=1 + (offset + counters[spec['family']]) % 4)\n        counters[spec['family']] += 1\n        try:\n            family, built = build_instance(spec, seed)\n        except (ValueError, KeyError) as error:\n            failures.append(dict(id=spec['id'], family=spec['family'], stage='construct/verify', reason=str(error)))\n            continue\n        students.append(dict(id=spec['id'], family=spec['family'], ability=family['ability'],\n                             question=built['question'], scope=built['scope'], inputs=built['inputs'],\n                             options=built['options'], response_format='one label: A/B/C/D'))\n        if built['numeric']:\n            n = built['numeric']\n            numeric_students.append(dict(id='N-' + spec['id'], family=spec['family'], ability=family['ability'],\n                                         question=built['question'], scope=built['scope'], inputs=built['inputs'],\n                                         response_format=dict(value='one number rounded to %d decimals' % n['decimals'],\n                                                              unit=n['unit'])))\n        shortcuts = None\n        if built['rank']:\n            pairs = [(o['label'], o['value']) for o in built['options']]\n            shortcuts = dict(kit.rank_shortcuts(pairs, built['correct_label']),\n                             mirror_pair_cue=kit.mirror_pair_cue(pairs, built['correct_label']))\n        teachers.append(dict(id=spec['id'], family=spec['family'], family_version=family['version'],\n                             ability=family['ability'], correct_label=built['correct_label'],\n                             numeric_answer=built['numeric'], option_audit=built['option_audit'],\n                             excluded_candidates=built['excluded_candidates'], rank=built['rank'],\n                             rank_shortcuts=shortcuts, checks=built['checks'], scales=built['scales'],\n                             source=spec['source'], license=spec.get('license', ''), legacy_qa=spec.get('legacy_qa'),\n                             input_hashes=built['input_hashes'], seed=seed, target_position=spec['target_position'],\n                             option_order=built.get('option_order') or ('numeric ascending (label = rank)' if built['rank'] else 'correct at batch-balanced target; others sha256-sorted'),\n                             human_review='pending', catalog_admitted=False))\n        stages.append(dict(id=spec['id'], family=spec['family'],\n                           define=dict(family=spec['family'], version=family['version'], ability=family['ability'],\n                                       output=family['output'], module=family['module']),\n                           construct=dict(inputs=[dict(name=i['name'], format=i['format'], chars=len(i['text']))\n                                                  for i in built['inputs']],\n                                          candidates_considered=len(built['option_audit']) + len(built['excluded_candidates'])),\n                           verify=dict(four_options_verified=True, unique_correct=True, correct_label=built['correct_label'],\n                                       checks=sorted(k for k, v in built['checks'].items() if v is True)),\n                           modules=MODULES))\n    positions = Counter(t['correct_label'] for t in teachers)\n    by_family = {}\n    for t in teachers:\n        f = by_family.setdefault(t['family'], dict(passed=0, shortcut_hits=Counter()))\n        f['passed'] += 1\n        for k, v in (t['rank_shortcuts'] or {}).items():\n            f['shortcut_hits'][k] += int(v)\n    for f in failures:\n        by_family.setdefault(f['family'], dict(passed=0, shortcut_hits=Counter()))\n    for name, f in by_family.items():\n        f['attempted'] = sum(1 for s in manifest['items'] if s['family'] == name)\n        f['shortcut_hits'] = dict(f['shortcut_hits'])\n    code = code_files()\n    report = dict(version=VERSION, kind='reusable_family_development_pilot', seed=seed,\n                  attempted=len(ids), passed=len(teachers), failures=failures, model_calls=0,\n                  catalog_admitted=0, human_review='pending', by_family=by_family,\n                  correct_position_counts={l: positions.get(l, 0) for l in kit.LABELS},\n                  manifest_sha256=kit.sha256(manifest_path.read_bytes()),\n                  registry_sha256=kit.sha256((ROOT / 'templates/registry.json').read_bytes()),\n                  code_sha256={k: kit.sha256(p.read_bytes()) for k, p in code.items()},\n                  difficulty_note='程序通过只说明四项已核验且唯一正确；难度、迷惑性与科学意义仍需人工审核与模型实验。',\n                  limits='开发试跑，不计入题库；模板与来源选择待人工审核。')\n    out.mkdir(parents=True)\n    for name, data in [('student-packets.json', students), ('numeric-student-packets.json', numeric_students),\n                       ('private-answers.json', teachers), ('stage-records.json', stages), ('verification.json', report)]:\n        (out / name).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\\n', encoding='utf-8', newline='\\n')\n    snap = out / 'snapshot'\n    for rel, p in code.items():\n        (snap / rel).parent.mkdir(parents=True, exist_ok=True)\n        (snap / rel).write_bytes(p.read_bytes())\n    (snap / 'manifest.json').write_bytes(manifest_path.read_bytes())\n    (snap / 'registry.json').write_bytes((ROOT / 'templates/registry.json').read_bytes())\n    return report\n\n\nif __name__ == '__main__':\n    p = argparse.ArgumentParser(description=__doc__)\n    p.add_argument('--manifest', type=Path, required=True)\n    p.add_argument('--out', type=Path, required=True)\n    p.add_argument('--seed', default='geobench-family-v1')\n    a = p.parse_args()\n    r = run(a.manifest, a.out, a.seed)\n    print(json.dumps(dict(attempted=r['attempted'], passed=r['passed'], failures=r['failures'],\n                          positions=r['correct_position_counts'], model_calls=0), ensure_ascii=False))\n"
     }
    ]
   },
@@ -379,8 +379,8 @@
     {
      "path": "templates/admission-map.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/templates/admission-map.json",
-     "lines": 1609,
-     "sha256": "875ca0a4ee6074fbdb78904cb9bf3cd5ff43b51ed45fb18fef106a7bf6f8e54a"
+     "lines": 1797,
+     "sha256": "474851b619882a008d37362187c346a60e00ec7ff160a0f12e78816153e80123"
     }
    ]
   },
@@ -513,7 +513,7 @@
    "id": "named_bond_angle",
    "ability": "perception",
    "output": "choice+numeric",
-   "version": "0.1.0",
+   "version": "0.2.0",
    "module": "task_families/local_geometry.py",
    "module_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/task_families/local_geometry.py",
    "route": "general",
@@ -549,7 +549,7 @@
    "id": "backbone_torsion",
    "ability": "perception",
    "output": "choice+numeric",
-   "version": "0.1.0",
+   "version": "0.2.0",
    "module": "task_families/local_geometry.py",
    "module_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/task_families/local_geometry.py",
    "route": "general",
@@ -829,7 +829,7 @@
    "id": "named_bond_distance",
    "ability": "perception",
    "output": "choice+numeric",
-   "version": "0.1.0",
+   "version": "0.2.0",
    "module": "task_families/local_geometry.py",
    "module_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/task_families/local_geometry.py",
    "route": "general",
@@ -1008,8 +1008,8 @@
    },
    "checker": "checkers/migrated.py:guinier_intensity",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 7,
-   "active": 7,
+   "instances": 9,
+   "active": 9,
    "cells": [
     "biology 1-10",
     "biology 10-100",
@@ -1046,8 +1046,8 @@
    },
    "checker": "checkers/migrated.py:assembly_extent",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 7,
-   "active": 7,
+   "instances": 13,
+   "active": 13,
    "cells": [
     "biology 10-100",
     "biology 100-1000",
@@ -1084,8 +1084,8 @@
    },
    "checker": "checkers/migrated.py:assembly_rg",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 6,
-   "active": 6,
+   "instances": 12,
+   "active": 12,
    "cells": [
     "biology 10-100",
     "biology 100-1000",
@@ -1126,8 +1126,8 @@
    },
    "checker": "checkers/migrated.py:capsid_architecture",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 5,
-   "active": 5,
+   "instances": 12,
+   "active": 12,
    "cells": [
     "biology 10-100",
     "biology 100-1000"
@@ -1166,9 +1166,10 @@
    },
    "checker": "checkers/migrated.py:debye_intensity",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 3,
-   "active": 3,
+   "instances": 8,
+   "active": 8,
    "cells": [
+    "biology 10-100",
     "biology 100-1000",
     "chemistry 10-100"
    ],
@@ -1206,8 +1207,8 @@
    },
    "checker": "checkers/migrated.py:scattering_q_design",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 8,
-   "active": 8,
+   "instances": 12,
+   "active": 12,
    "cells": [
     "biology 10-100",
     "biology 100-1000",
@@ -1616,7 +1617,7 @@
    "id": "secondary_structure",
    "ability": "inference",
    "output": "choice",
-   "version": "0.1.0",
+   "version": "0.2.0",
    "module": "task_families/local_geometry.py",
    "module_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/task_families/local_geometry.py",
    "route": "general",
@@ -2126,12 +2127,18 @@
   "date": "2026-10-03",
   "seed": "geobench-enum-v1",
   "sample_per_structure": 40,
-  "run": "enum-v11",
+  "run": "enum-v16",
   "structures": [
    "1UBQ",
    "1CRN",
    "6LYZ",
    "1EHZ",
+   "1A6M",
+   "5PTI",
+   "1PGA",
+   "2LZM",
+   "7RSA",
+   "355D",
    "COD 9008678",
    "COD 1000053",
    "COD 9008789",
@@ -2140,24 +2147,43 @@
    "COD 9004141",
    "COD 9004137",
    "COD 2300112",
-   "COD 5000035"
+   "COD 5000035",
+   "COD 9007496",
+   "COD 1547350",
+   "COD 9007060",
+   "COD 1574067",
+   "COD 1100043",
+   "COD 1000028"
   ],
   "totals": {
-   "proposals": 7273,
-   "sampled": 650,
-   "accepted": 583,
-   "checker_pass": 583,
-   "checker_checked": 583,
-   "estimated_admissible": 7127,
+   "proposals": 25966,
+   "sampled": 1618,
+   "accepted": 1429,
+   "checker_pass": 1429,
+   "checker_checked": 1429,
+   "estimated_admissible": 25455,
    "positions": {
-    "A": 145,
-    "B": 159,
-    "C": 153,
-    "D": 126
+    "A": 340,
+    "B": 365,
+    "C": 371,
+    "D": 353
    },
    "position_balance_ok": true
   },
   "rows": [
+   {
+    "family": "backbone_torsion",
+    "structure": "1A6M",
+    "proposals": 252,
+    "sampled": 40,
+    "accepted": 30,
+    "rejected": {
+     "Residue window missing, has alternate locations or unsupported torsion": 10
+    },
+    "checker_pass": 30,
+    "checker_fail": 0,
+    "estimated_admissible": 189
+   },
    {
     "family": "backbone_torsion",
     "structure": "1CRN",
@@ -2170,6 +2196,19 @@
     "checker_pass": 39,
     "checker_fail": 0,
     "estimated_admissible": 89
+   },
+   {
+    "family": "backbone_torsion",
+    "structure": "1PGA",
+    "proposals": 112,
+    "sampled": 40,
+    "accepted": 39,
+    "rejected": {
+     "Residue window missing, has alternate locations or unsupported torsion": 1
+    },
+    "checker_pass": 39,
+    "checker_fail": 0,
+    "estimated_admissible": 109
    },
    {
     "family": "backbone_torsion",
@@ -2186,6 +2225,30 @@
    },
    {
     "family": "backbone_torsion",
+    "structure": "2LZM",
+    "proposals": 328,
+    "sampled": 40,
+    "accepted": 40,
+    "rejected": {},
+    "checker_pass": 40,
+    "checker_fail": 0,
+    "estimated_admissible": 328
+   },
+   {
+    "family": "backbone_torsion",
+    "structure": "5PTI",
+    "proposals": 112,
+    "sampled": 40,
+    "accepted": 37,
+    "rejected": {
+     "Residue window missing, has alternate locations or unsupported torsion": 3
+    },
+    "checker_pass": 37,
+    "checker_fail": 0,
+    "estimated_admissible": 104
+   },
+   {
+    "family": "backbone_torsion",
     "structure": "6LYZ",
     "proposals": 257,
     "sampled": 40,
@@ -2194,6 +2257,34 @@
     "checker_pass": 40,
     "checker_fail": 0,
     "estimated_admissible": 257
+   },
+   {
+    "family": "backbone_torsion",
+    "structure": "7RSA",
+    "proposals": 222,
+    "sampled": 40,
+    "accepted": 29,
+    "rejected": {
+     "Residue window missing, has alternate locations or unsupported torsion": 11
+    },
+    "checker_pass": 29,
+    "checker_fail": 0,
+    "estimated_admissible": 161
+   },
+   {
+    "family": "secondary_structure",
+    "structure": "1A6M",
+    "proposals": 126,
+    "sampled": 40,
+    "accepted": 26,
+    "rejected": {
+     "Residue window missing or has alternate locations": 8,
+     "Dihedral class disagrees with": 4,
+     "Nearest reference conformation not clear enough": 2
+    },
+    "checker_pass": 26,
+    "checker_fail": 0,
+    "estimated_admissible": 82
    },
    {
     "family": "secondary_structure",
@@ -2212,6 +2303,21 @@
    },
    {
     "family": "secondary_structure",
+    "structure": "1PGA",
+    "proposals": 56,
+    "sampled": 40,
+    "accepted": 27,
+    "rejected": {
+     "Dihedral class disagrees with": 10,
+     "Residue window missing or has alternate locations": 2,
+     "Nearest reference conformation not clear enough": 1
+    },
+    "checker_pass": 27,
+    "checker_fail": 0,
+    "estimated_admissible": 38
+   },
+   {
+    "family": "secondary_structure",
     "structure": "1UBQ",
     "proposals": 75,
     "sampled": 40,
@@ -2227,6 +2333,35 @@
    },
    {
     "family": "secondary_structure",
+    "structure": "2LZM",
+    "proposals": 164,
+    "sampled": 40,
+    "accepted": 26,
+    "rejected": {
+     "Dihedral class disagrees with": 11,
+     "Nearest reference conformation not clear enough": 3
+    },
+    "checker_pass": 26,
+    "checker_fail": 0,
+    "estimated_admissible": 107
+   },
+   {
+    "family": "secondary_structure",
+    "structure": "5PTI",
+    "proposals": 56,
+    "sampled": 40,
+    "accepted": 9,
+    "rejected": {
+     "Dihedral class disagrees with": 17,
+     "Nearest reference conformation not clear enough": 8,
+     "Residue window missing or has alternate locations": 6
+    },
+    "checker_pass": 9,
+    "checker_fail": 0,
+    "estimated_admissible": 13
+   },
+   {
+    "family": "secondary_structure",
     "structure": "6LYZ",
     "proposals": 128,
     "sampled": 40,
@@ -2238,6 +2373,32 @@
     "checker_pass": 17,
     "checker_fail": 0,
     "estimated_admissible": 54
+   },
+   {
+    "family": "secondary_structure",
+    "structure": "7RSA",
+    "proposals": 111,
+    "sampled": 40,
+    "accepted": 16,
+    "rejected": {
+     "Dihedral class disagrees with": 11,
+     "Nearest reference conformation not clear enough": 5,
+     "Residue window missing or has alternate locations": 8
+    },
+    "checker_pass": 16,
+    "checker_fail": 0,
+    "estimated_admissible": 44
+   },
+   {
+    "family": "fret_efficiency",
+    "structure": "1A6M",
+    "proposals": 3748,
+    "sampled": 40,
+    "accepted": 40,
+    "rejected": {},
+    "checker_pass": 40,
+    "checker_fail": 0,
+    "estimated_admissible": 3748
    },
    {
     "family": "fret_efficiency",
@@ -2263,6 +2424,17 @@
    },
    {
     "family": "fret_efficiency",
+    "structure": "1PGA",
+    "proposals": 198,
+    "sampled": 40,
+    "accepted": 40,
+    "rejected": {},
+    "checker_pass": 40,
+    "checker_fail": 0,
+    "estimated_admissible": 198
+   },
+   {
+    "family": "fret_efficiency",
     "structure": "1UBQ",
     "proposals": 560,
     "sampled": 40,
@@ -2274,6 +2446,39 @@
    },
    {
     "family": "fret_efficiency",
+    "structure": "2LZM",
+    "proposals": 6933,
+    "sampled": 40,
+    "accepted": 40,
+    "rejected": {},
+    "checker_pass": 40,
+    "checker_fail": 0,
+    "estimated_admissible": 6933
+   },
+   {
+    "family": "fret_efficiency",
+    "structure": "355D",
+    "proposals": 24,
+    "sampled": 24,
+    "accepted": 24,
+    "rejected": {},
+    "checker_pass": 24,
+    "checker_fail": 0,
+    "estimated_admissible": 24
+   },
+   {
+    "family": "fret_efficiency",
+    "structure": "5PTI",
+    "proposals": 261,
+    "sampled": 40,
+    "accepted": 40,
+    "rejected": {},
+    "checker_pass": 40,
+    "checker_fail": 0,
+    "estimated_admissible": 261
+   },
+   {
+    "family": "fret_efficiency",
     "structure": "6LYZ",
     "proposals": 3160,
     "sampled": 40,
@@ -2282,6 +2487,28 @@
     "checker_pass": 40,
     "checker_fail": 0,
     "estimated_admissible": 3160
+   },
+   {
+    "family": "fret_efficiency",
+    "structure": "7RSA",
+    "proposals": 2590,
+    "sampled": 40,
+    "accepted": 40,
+    "rejected": {},
+    "checker_pass": 40,
+    "checker_fail": 0,
+    "estimated_admissible": 2590
+   },
+   {
+    "family": "disulfide_design",
+    "structure": "1A6M",
+    "proposals": 13,
+    "sampled": 13,
+    "accepted": 13,
+    "rejected": {},
+    "checker_pass": 13,
+    "checker_fail": 0,
+    "estimated_admissible": 13
    },
    {
     "family": "disulfide_design",
@@ -2296,6 +2523,17 @@
    },
    {
     "family": "disulfide_design",
+    "structure": "1PGA",
+    "proposals": 5,
+    "sampled": 5,
+    "accepted": 5,
+    "rejected": {},
+    "checker_pass": 5,
+    "checker_fail": 0,
+    "estimated_admissible": 5
+   },
+   {
+    "family": "disulfide_design",
     "structure": "1UBQ",
     "proposals": 9,
     "sampled": 9,
@@ -2307,6 +2545,28 @@
    },
    {
     "family": "disulfide_design",
+    "structure": "2LZM",
+    "proposals": 18,
+    "sampled": 18,
+    "accepted": 18,
+    "rejected": {},
+    "checker_pass": 18,
+    "checker_fail": 0,
+    "estimated_admissible": 18
+   },
+   {
+    "family": "disulfide_design",
+    "structure": "5PTI",
+    "proposals": 8,
+    "sampled": 8,
+    "accepted": 8,
+    "rejected": {},
+    "checker_pass": 8,
+    "checker_fail": 0,
+    "estimated_admissible": 8
+   },
+   {
+    "family": "disulfide_design",
     "structure": "6LYZ",
     "proposals": 15,
     "sampled": 15,
@@ -2315,6 +2575,28 @@
     "checker_pass": 15,
     "checker_fail": 0,
     "estimated_admissible": 15
+   },
+   {
+    "family": "disulfide_design",
+    "structure": "7RSA",
+    "proposals": 9,
+    "sampled": 9,
+    "accepted": 9,
+    "rejected": {},
+    "checker_pass": 9,
+    "checker_fail": 0,
+    "estimated_admissible": 9
+   },
+   {
+    "family": "fret_design",
+    "structure": "1A6M",
+    "proposals": 884,
+    "sampled": 40,
+    "accepted": 40,
+    "rejected": {},
+    "checker_pass": 40,
+    "checker_fail": 0,
+    "estimated_admissible": 884
    },
    {
     "family": "fret_design",
@@ -2340,6 +2622,17 @@
    },
    {
     "family": "fret_design",
+    "structure": "1PGA",
+    "proposals": 90,
+    "sampled": 40,
+    "accepted": 40,
+    "rejected": {},
+    "checker_pass": 40,
+    "checker_fail": 0,
+    "estimated_admissible": 90
+   },
+   {
+    "family": "fret_design",
     "structure": "1UBQ",
     "proposals": 229,
     "sampled": 40,
@@ -2348,6 +2641,39 @@
     "checker_pass": 40,
     "checker_fail": 0,
     "estimated_admissible": 229
+   },
+   {
+    "family": "fret_design",
+    "structure": "2LZM",
+    "proposals": 1527,
+    "sampled": 40,
+    "accepted": 40,
+    "rejected": {},
+    "checker_pass": 40,
+    "checker_fail": 0,
+    "estimated_admissible": 1527
+   },
+   {
+    "family": "fret_design",
+    "structure": "355D",
+    "proposals": 6,
+    "sampled": 6,
+    "accepted": 6,
+    "rejected": {},
+    "checker_pass": 6,
+    "checker_fail": 0,
+    "estimated_admissible": 6
+   },
+   {
+    "family": "fret_design",
+    "structure": "5PTI",
+    "proposals": 103,
+    "sampled": 40,
+    "accepted": 40,
+    "rejected": {},
+    "checker_pass": 40,
+    "checker_fail": 0,
+    "estimated_admissible": 103
    },
    {
     "family": "fret_design",
@@ -2361,6 +2687,28 @@
     "estimated_admissible": 831
    },
    {
+    "family": "fret_design",
+    "structure": "7RSA",
+    "proposals": 652,
+    "sampled": 40,
+    "accepted": 40,
+    "rejected": {},
+    "checker_pass": 40,
+    "checker_fail": 0,
+    "estimated_admissible": 652
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "1000028",
+    "proposals": 25,
+    "sampled": 25,
+    "accepted": 25,
+    "rejected": {},
+    "checker_pass": 25,
+    "checker_fail": 0,
+    "estimated_admissible": 25
+   },
+   {
     "family": "coordination_shell",
     "structure": "1000053",
     "proposals": 3,
@@ -2370,6 +2718,39 @@
     "checker_pass": 3,
     "checker_fail": 0,
     "estimated_admissible": 3
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "1100043",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "1547350",
+    "proposals": 9,
+    "sampled": 9,
+    "accepted": 9,
+    "rejected": {},
+    "checker_pass": 9,
+    "checker_fail": 0,
+    "estimated_admissible": 9
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "1574067",
+    "proposals": 9,
+    "sampled": 9,
+    "accepted": 9,
+    "rejected": {},
+    "checker_pass": 9,
+    "checker_fail": 0,
+    "estimated_admissible": 9
    },
    {
     "family": "coordination_shell",
@@ -2419,6 +2800,28 @@
    },
    {
     "family": "coordination_shell",
+    "structure": "9007060",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "9007496",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "coordination_shell",
     "structure": "9008564",
     "proposals": 1,
     "sampled": 1,
@@ -2463,7 +2866,51 @@
    },
    {
     "family": "first_diffraction_peak",
+    "structure": "1000028",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
     "structure": "1000053",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "1100043",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "1547350",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "1574067",
     "proposals": 4,
     "sampled": 4,
     "accepted": 4,
@@ -2518,6 +2965,28 @@
    },
    {
     "family": "first_diffraction_peak",
+    "structure": "9007060",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "9007496",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
     "structure": "9008564",
     "proposals": 4,
     "sampled": 4,
@@ -2562,6 +3031,17 @@
    },
    {
     "family": "kinematic_extinction",
+    "structure": "1000028",
+    "proposals": 1,
+    "sampled": 1,
+    "accepted": 1,
+    "rejected": {},
+    "checker_pass": 1,
+    "checker_fail": 0,
+    "estimated_admissible": 1
+   },
+   {
+    "family": "kinematic_extinction",
     "structure": "1000053",
     "proposals": 1,
     "sampled": 1,
@@ -2573,7 +3053,64 @@
    },
    {
     "family": "kinematic_extinction",
+    "structure": "1100043",
+    "proposals": 1,
+    "sampled": 1,
+    "accepted": 1,
+    "rejected": {},
+    "checker_pass": 1,
+    "checker_fail": 0,
+    "estimated_admissible": 1
+   },
+   {
+    "family": "kinematic_extinction",
+    "structure": "1547350",
+    "proposals": 1,
+    "sampled": 1,
+    "accepted": 1,
+    "rejected": {},
+    "checker_pass": 1,
+    "checker_fail": 0,
+    "estimated_admissible": 1
+   },
+   {
+    "family": "kinematic_extinction",
+    "structure": "1574067",
+    "proposals": 1,
+    "sampled": 1,
+    "accepted": 0,
+    "rejected": {
+     "Need at least one extinct and three clearly nonzero reflections": 1
+    },
+    "checker_pass": 0,
+    "checker_fail": 0,
+    "estimated_admissible": 0
+   },
+   {
+    "family": "kinematic_extinction",
     "structure": "5000035",
+    "proposals": 1,
+    "sampled": 1,
+    "accepted": 1,
+    "rejected": {},
+    "checker_pass": 1,
+    "checker_fail": 0,
+    "estimated_admissible": 1
+   },
+   {
+    "family": "kinematic_extinction",
+    "structure": "9007060",
+    "proposals": 1,
+    "sampled": 1,
+    "accepted": 1,
+    "rejected": {},
+    "checker_pass": 1,
+    "checker_fail": 0,
+    "estimated_admissible": 1
+   },
+   {
+    "family": "kinematic_extinction",
+    "structure": "9007496",
     "proposals": 1,
     "sampled": 1,
     "accepted": 1,
@@ -2610,89 +3147,89 @@
   "position_balance": {
    "backbone_torsion": {
     "counts": {
-     "A": 32,
-     "B": 43,
-     "C": 26,
-     "D": 16
+     "A": 70,
+     "B": 75,
+     "C": 72,
+     "D": 75
     },
-    "max_deviation": 13.8,
-    "tolerance": 17.6,
+    "max_deviation": 3.0,
+    "tolerance": 43.8,
     "ok": true
    },
    "secondary_structure": {
     "counts": {
-     "A": 11,
-     "B": 17,
-     "C": 10,
-     "D": 20
+     "A": 33,
+     "B": 45,
+     "C": 36,
+     "D": 48
     },
-    "max_deviation": 5.5,
-    "tolerance": 8.7,
+    "max_deviation": 7.5,
+    "tolerance": 24.3,
     "ok": true
    },
    "fret_efficiency": {
     "counts": {
-     "A": 40,
-     "B": 33,
-     "C": 56,
-     "D": 31
+     "A": 90,
+     "B": 91,
+     "C": 116,
+     "D": 87
     },
-    "max_deviation": 16.0,
-    "tolerance": 24.0,
+    "max_deviation": 20.0,
+    "tolerance": 57.6,
     "ok": true
    },
    "disulfide_design": {
     "counts": {
-     "A": 6,
-     "B": 7,
-     "C": 6,
-     "D": 6
+     "A": 19,
+     "B": 20,
+     "C": 20,
+     "D": 19
     },
-    "max_deviation": 0.8,
-    "tolerance": 4,
+    "max_deviation": 0.5,
+    "tolerance": 11.7,
     "ok": true
    },
    "fret_design": {
     "counts": {
-     "A": 40,
-     "B": 40,
-     "C": 40,
-     "D": 40
+     "A": 92,
+     "B": 91,
+     "C": 91,
+     "D": 92
     },
-    "max_deviation": 0.0,
-    "tolerance": 24.0,
+    "max_deviation": 0.5,
+    "tolerance": 54.9,
     "ok": true
    },
    "coordination_shell": {
     "counts": {
-     "A": 7,
-     "B": 5,
-     "C": 6,
-     "D": 6
+     "A": 19,
+     "B": 20,
+     "C": 20,
+     "D": 20
     },
-    "max_deviation": 1.0,
-    "tolerance": 4,
+    "max_deviation": 0.8,
+    "tolerance": 11.8,
     "ok": true
    },
    "first_diffraction_peak": {
     "counts": {
-     "A": 9,
-     "B": 13,
-     "C": 8,
-     "D": 6
+     "A": 15,
+     "B": 21,
+     "C": 14,
+     "D": 10
     },
-    "max_deviation": 4.0,
-    "tolerance": 5.4,
+    "max_deviation": 6.0,
+    "tolerance": 9.0,
     "ok": true
    },
    "kinematic_extinction": {
     "counts": {
-     "A": 0,
-     "B": 1,
-     "C": 1,
-     "D": 1
+     "A": 2,
+     "B": 2,
+     "C": 2,
+     "D": 2
     },
-    "max_deviation": 0.8,
+    "max_deviation": 0.0,
     "tolerance": 4,
     "ok": true
    }

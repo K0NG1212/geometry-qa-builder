@@ -17,7 +17,7 @@
  },
  "summary": {
   "selected": 160,
-  "reserve": 46,
+  "reserve": 76,
   "out_of_range": [],
   "abilities": {
    "perception": 58,
@@ -892,32 +892,14 @@
    "cell": "biology 10-100",
    "domain": "biology",
    "bin": "10-100",
-   "available": 13,
-   "eligible": 13,
+   "available": 43,
+   "eligible": 43,
    "abilities": {
     "perception": 4,
     "inference": 3,
     "design": 3
    },
    "selected": [
-    {
-     "id": "BNP017",
-     "ability": "perception",
-     "form": "family",
-     "unit": "assembly_extent",
-     "instance": "FA-ASM-EXT-1AON",
-     "source": "pdb-bio-nm",
-     "pending": null
-    },
-    {
-     "id": "BNP018",
-     "ability": "perception",
-     "form": "family",
-     "unit": "assembly_rg",
-     "instance": "FA-ASM-RG-1AON",
-     "source": "pdb-bio-nm",
-     "pending": null
-    },
     {
      "id": "BNP020",
      "ability": "perception",
@@ -928,20 +910,29 @@
      "pending": null
     },
     {
-     "id": "BNP021",
+     "id": "BNP031",
      "ability": "perception",
      "form": "family",
-     "unit": "assembly_extent",
-     "instance": "FA-ASM-EXT-1A34",
+     "unit": "assembly_rg",
+     "instance": "FA-ASM-RG-2BUK",
      "source": "pdb-bio-nm",
      "pending": null
     },
     {
-     "id": "BNI016",
-     "ability": "inference",
+     "id": "BNP034",
+     "ability": "perception",
      "form": "family",
-     "unit": "guinier_intensity",
-     "instance": "FA-ASM-GUIN-1KX5",
+     "unit": "assembly_extent",
+     "instance": "FA-ASM-EXT-1SVA",
+     "source": "pdb-bio-nm",
+     "pending": null
+    },
+    {
+     "id": "BNP036",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "FA-ASM-EXT-2FT1",
      "source": "pdb-bio-nm",
      "pending": null
     },
@@ -955,11 +946,20 @@
      "pending": null
     },
     {
-     "id": "BNI018",
+     "id": "BNI033",
+     "ability": "inference",
+     "form": "family",
+     "unit": "debye_intensity",
+     "instance": "FA-DEB-1CWP",
+     "source": "pdb-bio-nm",
+     "pending": null
+    },
+    {
+     "id": "BNI037",
      "ability": "inference",
      "form": "family",
      "unit": "capsid_architecture",
-     "instance": "FA-ASM-CAPS-1A34",
+     "instance": "FA-ASM-CAPS-1CWP",
      "source": "pdb-bio-nm",
      "pending": null
     },
@@ -982,22 +982,222 @@
      "pending": "measurement_condition_design"
     },
     {
-     "id": "BND011",
+     "id": "BND015",
      "ability": "design",
      "form": "family",
      "unit": "scattering_q_design",
-     "instance": "FA-QDES-1A34",
+     "instance": "FA-QDES-2FT1",
      "source": "pdb-bio-nm",
      "pending": "measurement_condition_design"
     }
    ],
    "reserve": [
     {
+     "id": "BND011",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "FA-QDES-1A34",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND012",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "FA-QDES-1RYP",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND013",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "FA-QDES-1CWP",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND014",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "FA-QDES-1SVA",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "BNI015",
      "ability": "inference",
      "form": "family",
      "unit": "guinier_intensity",
      "instance": "FA-ASM-GUIN-1AON",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI016",
+     "ability": "inference",
+     "form": "family",
+     "unit": "guinier_intensity",
+     "instance": "FA-ASM-GUIN-1KX5",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI018",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "FA-ASM-CAPS-1A34",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI027",
+     "ability": "inference",
+     "form": "family",
+     "unit": "guinier_intensity",
+     "instance": "FA-ASM-GUIN-1RYP",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI028",
+     "ability": "inference",
+     "form": "family",
+     "unit": "guinier_intensity",
+     "instance": "FA-ASM-GUIN-1STM",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI029",
+     "ability": "inference",
+     "form": "family",
+     "unit": "debye_intensity",
+     "instance": "FA-DEB-1RYP",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI030",
+     "ability": "inference",
+     "form": "family",
+     "unit": "debye_intensity",
+     "instance": "FA-DEB-2BUK",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI031",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "FA-ASM-T-1STM",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI032",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "FA-ASM-CAPS-2BUK",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI034",
+     "ability": "inference",
+     "form": "family",
+     "unit": "debye_intensity",
+     "instance": "FA-DEB-1SVA",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI035",
+     "ability": "inference",
+     "form": "family",
+     "unit": "debye_intensity",
+     "instance": "FA-DEB-2FT1",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI036",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "FA-ASM-T-1CWP",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI038",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "FA-ASM-HEX-1CWP",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI039",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "FA-ASM-T-2FT1",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI040",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "FA-ASM-HEX-2FT1",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP017",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "FA-ASM-EXT-1AON",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP018",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_rg",
+     "instance": "FA-ASM-RG-1AON",
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -1013,6 +1213,16 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "BNP021",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "FA-ASM-EXT-1A34",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "BNP022",
      "ability": "perception",
      "form": "family",
@@ -1021,9 +1231,99 @@
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP026",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "FA-ASM-EXT-1RYP",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP027",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_rg",
+     "instance": "FA-ASM-RG-1RYP",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP028",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "FA-ASM-EXT-1STM",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP029",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_rg",
+     "instance": "FA-ASM-RG-1STM",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP030",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "FA-ASM-EXT-2BUK",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP032",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "FA-ASM-EXT-1CWP",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP033",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_rg",
+     "instance": "FA-ASM-RG-1CWP",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP035",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_rg",
+     "instance": "FA-ASM-RG-1SVA",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP037",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_rg",
+     "instance": "FA-ASM-RG-2FT1",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 13 道，其中经独立检查 13 道"
+   "rationale": "可用 43 道，其中经独立检查 43 道"
   },
   {
    "cell": "biology 100-1000",
@@ -2214,16 +2514,14 @@
   "BND008",
   "BND009",
   "BND010",
-  "BND011",
+  "BND015",
   "BNI009",
   "BNI010",
   "BNI011",
   "BNI012",
   "BNI013",
   "BNI014",
-  "BNI016",
   "BNI017",
-  "BNI018",
   "BNI019",
   "BNI020",
   "BNI021",
@@ -2232,18 +2530,20 @@
   "BNI024",
   "BNI025",
   "BNI026",
+  "BNI033",
+  "BNI037",
   "BNP002",
   "BNP013",
   "BNP014",
   "BNP015",
   "BNP016",
-  "BNP017",
-  "BNP018",
   "BNP020",
-  "BNP021",
   "BNP023",
   "BNP024",
   "BNP025",
+  "BNP031",
+  "BNP034",
+  "BNP036",
   "CND001",
   "CND002",
   "CND003",

@@ -3,12 +3,18 @@
  "date": "2026-10-03",
  "seed": "geobench-enum-v1",
  "sample_per_structure": 40,
- "run": "enum-v11",
+ "run": "enum-v16",
  "structures": [
   "1UBQ",
   "1CRN",
   "6LYZ",
   "1EHZ",
+  "1A6M",
+  "5PTI",
+  "1PGA",
+  "2LZM",
+  "7RSA",
+  "355D",
   "COD 9008678",
   "COD 1000053",
   "COD 9008789",
@@ -17,24 +23,43 @@
   "COD 9004141",
   "COD 9004137",
   "COD 2300112",
-  "COD 5000035"
+  "COD 5000035",
+  "COD 9007496",
+  "COD 1547350",
+  "COD 9007060",
+  "COD 1574067",
+  "COD 1100043",
+  "COD 1000028"
  ],
  "totals": {
-  "proposals": 7273,
-  "sampled": 650,
-  "accepted": 583,
-  "checker_pass": 583,
-  "checker_checked": 583,
-  "estimated_admissible": 7127,
+  "proposals": 25966,
+  "sampled": 1618,
+  "accepted": 1429,
+  "checker_pass": 1429,
+  "checker_checked": 1429,
+  "estimated_admissible": 25455,
   "positions": {
-   "A": 145,
-   "B": 159,
-   "C": 153,
-   "D": 126
+   "A": 340,
+   "B": 365,
+   "C": 371,
+   "D": 353
   },
   "position_balance_ok": true
  },
  "rows": [
+  {
+   "family": "backbone_torsion",
+   "structure": "1A6M",
+   "proposals": 252,
+   "sampled": 40,
+   "accepted": 30,
+   "rejected": {
+    "Residue window missing, has alternate locations or unsupported torsion": 10
+   },
+   "checker_pass": 30,
+   "checker_fail": 0,
+   "estimated_admissible": 189
+  },
   {
    "family": "backbone_torsion",
    "structure": "1CRN",
@@ -47,6 +72,19 @@
    "checker_pass": 39,
    "checker_fail": 0,
    "estimated_admissible": 89
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "1PGA",
+   "proposals": 112,
+   "sampled": 40,
+   "accepted": 39,
+   "rejected": {
+    "Residue window missing, has alternate locations or unsupported torsion": 1
+   },
+   "checker_pass": 39,
+   "checker_fail": 0,
+   "estimated_admissible": 109
   },
   {
    "family": "backbone_torsion",
@@ -63,6 +101,30 @@
   },
   {
    "family": "backbone_torsion",
+   "structure": "2LZM",
+   "proposals": 328,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 328
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "5PTI",
+   "proposals": 112,
+   "sampled": 40,
+   "accepted": 37,
+   "rejected": {
+    "Residue window missing, has alternate locations or unsupported torsion": 3
+   },
+   "checker_pass": 37,
+   "checker_fail": 0,
+   "estimated_admissible": 104
+  },
+  {
+   "family": "backbone_torsion",
    "structure": "6LYZ",
    "proposals": 257,
    "sampled": 40,
@@ -71,6 +133,34 @@
    "checker_pass": 40,
    "checker_fail": 0,
    "estimated_admissible": 257
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "7RSA",
+   "proposals": 222,
+   "sampled": 40,
+   "accepted": 29,
+   "rejected": {
+    "Residue window missing, has alternate locations or unsupported torsion": 11
+   },
+   "checker_pass": 29,
+   "checker_fail": 0,
+   "estimated_admissible": 161
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "1A6M",
+   "proposals": 126,
+   "sampled": 40,
+   "accepted": 26,
+   "rejected": {
+    "Residue window missing or has alternate locations": 8,
+    "Dihedral class disagrees with": 4,
+    "Nearest reference conformation not clear enough": 2
+   },
+   "checker_pass": 26,
+   "checker_fail": 0,
+   "estimated_admissible": 82
   },
   {
    "family": "secondary_structure",
@@ -89,6 +179,21 @@
   },
   {
    "family": "secondary_structure",
+   "structure": "1PGA",
+   "proposals": 56,
+   "sampled": 40,
+   "accepted": 27,
+   "rejected": {
+    "Dihedral class disagrees with": 10,
+    "Residue window missing or has alternate locations": 2,
+    "Nearest reference conformation not clear enough": 1
+   },
+   "checker_pass": 27,
+   "checker_fail": 0,
+   "estimated_admissible": 38
+  },
+  {
+   "family": "secondary_structure",
    "structure": "1UBQ",
    "proposals": 75,
    "sampled": 40,
@@ -104,6 +209,35 @@
   },
   {
    "family": "secondary_structure",
+   "structure": "2LZM",
+   "proposals": 164,
+   "sampled": 40,
+   "accepted": 26,
+   "rejected": {
+    "Dihedral class disagrees with": 11,
+    "Nearest reference conformation not clear enough": 3
+   },
+   "checker_pass": 26,
+   "checker_fail": 0,
+   "estimated_admissible": 107
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "5PTI",
+   "proposals": 56,
+   "sampled": 40,
+   "accepted": 9,
+   "rejected": {
+    "Dihedral class disagrees with": 17,
+    "Nearest reference conformation not clear enough": 8,
+    "Residue window missing or has alternate locations": 6
+   },
+   "checker_pass": 9,
+   "checker_fail": 0,
+   "estimated_admissible": 13
+  },
+  {
+   "family": "secondary_structure",
    "structure": "6LYZ",
    "proposals": 128,
    "sampled": 40,
@@ -115,6 +249,32 @@
    "checker_pass": 17,
    "checker_fail": 0,
    "estimated_admissible": 54
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "7RSA",
+   "proposals": 111,
+   "sampled": 40,
+   "accepted": 16,
+   "rejected": {
+    "Dihedral class disagrees with": 11,
+    "Nearest reference conformation not clear enough": 5,
+    "Residue window missing or has alternate locations": 8
+   },
+   "checker_pass": 16,
+   "checker_fail": 0,
+   "estimated_admissible": 44
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1A6M",
+   "proposals": 3748,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 3748
   },
   {
    "family": "fret_efficiency",
@@ -140,6 +300,17 @@
   },
   {
    "family": "fret_efficiency",
+   "structure": "1PGA",
+   "proposals": 198,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 198
+  },
+  {
+   "family": "fret_efficiency",
    "structure": "1UBQ",
    "proposals": 560,
    "sampled": 40,
@@ -151,6 +322,39 @@
   },
   {
    "family": "fret_efficiency",
+   "structure": "2LZM",
+   "proposals": 6933,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 6933
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "355D",
+   "proposals": 24,
+   "sampled": 24,
+   "accepted": 24,
+   "rejected": {},
+   "checker_pass": 24,
+   "checker_fail": 0,
+   "estimated_admissible": 24
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "5PTI",
+   "proposals": 261,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 261
+  },
+  {
+   "family": "fret_efficiency",
    "structure": "6LYZ",
    "proposals": 3160,
    "sampled": 40,
@@ -159,6 +363,28 @@
    "checker_pass": 40,
    "checker_fail": 0,
    "estimated_admissible": 3160
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "7RSA",
+   "proposals": 2590,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 2590
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "1A6M",
+   "proposals": 13,
+   "sampled": 13,
+   "accepted": 13,
+   "rejected": {},
+   "checker_pass": 13,
+   "checker_fail": 0,
+   "estimated_admissible": 13
   },
   {
    "family": "disulfide_design",
@@ -173,6 +399,17 @@
   },
   {
    "family": "disulfide_design",
+   "structure": "1PGA",
+   "proposals": 5,
+   "sampled": 5,
+   "accepted": 5,
+   "rejected": {},
+   "checker_pass": 5,
+   "checker_fail": 0,
+   "estimated_admissible": 5
+  },
+  {
+   "family": "disulfide_design",
    "structure": "1UBQ",
    "proposals": 9,
    "sampled": 9,
@@ -184,6 +421,28 @@
   },
   {
    "family": "disulfide_design",
+   "structure": "2LZM",
+   "proposals": 18,
+   "sampled": 18,
+   "accepted": 18,
+   "rejected": {},
+   "checker_pass": 18,
+   "checker_fail": 0,
+   "estimated_admissible": 18
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "5PTI",
+   "proposals": 8,
+   "sampled": 8,
+   "accepted": 8,
+   "rejected": {},
+   "checker_pass": 8,
+   "checker_fail": 0,
+   "estimated_admissible": 8
+  },
+  {
+   "family": "disulfide_design",
    "structure": "6LYZ",
    "proposals": 15,
    "sampled": 15,
@@ -192,6 +451,28 @@
    "checker_pass": 15,
    "checker_fail": 0,
    "estimated_admissible": 15
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "7RSA",
+   "proposals": 9,
+   "sampled": 9,
+   "accepted": 9,
+   "rejected": {},
+   "checker_pass": 9,
+   "checker_fail": 0,
+   "estimated_admissible": 9
+  },
+  {
+   "family": "fret_design",
+   "structure": "1A6M",
+   "proposals": 884,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 884
   },
   {
    "family": "fret_design",
@@ -217,6 +498,17 @@
   },
   {
    "family": "fret_design",
+   "structure": "1PGA",
+   "proposals": 90,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 90
+  },
+  {
+   "family": "fret_design",
    "structure": "1UBQ",
    "proposals": 229,
    "sampled": 40,
@@ -225,6 +517,39 @@
    "checker_pass": 40,
    "checker_fail": 0,
    "estimated_admissible": 229
+  },
+  {
+   "family": "fret_design",
+   "structure": "2LZM",
+   "proposals": 1527,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 1527
+  },
+  {
+   "family": "fret_design",
+   "structure": "355D",
+   "proposals": 6,
+   "sampled": 6,
+   "accepted": 6,
+   "rejected": {},
+   "checker_pass": 6,
+   "checker_fail": 0,
+   "estimated_admissible": 6
+  },
+  {
+   "family": "fret_design",
+   "structure": "5PTI",
+   "proposals": 103,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 103
   },
   {
    "family": "fret_design",
@@ -238,6 +563,28 @@
    "estimated_admissible": 831
   },
   {
+   "family": "fret_design",
+   "structure": "7RSA",
+   "proposals": 652,
+   "sampled": 40,
+   "accepted": 40,
+   "rejected": {},
+   "checker_pass": 40,
+   "checker_fail": 0,
+   "estimated_admissible": 652
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1000028",
+   "proposals": 25,
+   "sampled": 25,
+   "accepted": 25,
+   "rejected": {},
+   "checker_pass": 25,
+   "checker_fail": 0,
+   "estimated_admissible": 25
+  },
+  {
    "family": "coordination_shell",
    "structure": "1000053",
    "proposals": 3,
@@ -247,6 +594,39 @@
    "checker_pass": 3,
    "checker_fail": 0,
    "estimated_admissible": 3
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1100043",
+   "proposals": 4,
+   "sampled": 4,
+   "accepted": 4,
+   "rejected": {},
+   "checker_pass": 4,
+   "checker_fail": 0,
+   "estimated_admissible": 4
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1547350",
+   "proposals": 9,
+   "sampled": 9,
+   "accepted": 9,
+   "rejected": {},
+   "checker_pass": 9,
+   "checker_fail": 0,
+   "estimated_admissible": 9
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1574067",
+   "proposals": 9,
+   "sampled": 9,
+   "accepted": 9,
+   "rejected": {},
+   "checker_pass": 9,
+   "checker_fail": 0,
+   "estimated_admissible": 9
   },
   {
    "family": "coordination_shell",
@@ -296,6 +676,28 @@
   },
   {
    "family": "coordination_shell",
+   "structure": "9007060",
+   "proposals": 4,
+   "sampled": 4,
+   "accepted": 4,
+   "rejected": {},
+   "checker_pass": 4,
+   "checker_fail": 0,
+   "estimated_admissible": 4
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "9007496",
+   "proposals": 4,
+   "sampled": 4,
+   "accepted": 4,
+   "rejected": {},
+   "checker_pass": 4,
+   "checker_fail": 0,
+   "estimated_admissible": 4
+  },
+  {
+   "family": "coordination_shell",
    "structure": "9008564",
    "proposals": 1,
    "sampled": 1,
@@ -340,7 +742,51 @@
   },
   {
    "family": "first_diffraction_peak",
+   "structure": "1000028",
+   "proposals": 4,
+   "sampled": 4,
+   "accepted": 4,
+   "rejected": {},
+   "checker_pass": 4,
+   "checker_fail": 0,
+   "estimated_admissible": 4
+  },
+  {
+   "family": "first_diffraction_peak",
    "structure": "1000053",
+   "proposals": 4,
+   "sampled": 4,
+   "accepted": 4,
+   "rejected": {},
+   "checker_pass": 4,
+   "checker_fail": 0,
+   "estimated_admissible": 4
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1100043",
+   "proposals": 4,
+   "sampled": 4,
+   "accepted": 4,
+   "rejected": {},
+   "checker_pass": 4,
+   "checker_fail": 0,
+   "estimated_admissible": 4
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1547350",
+   "proposals": 4,
+   "sampled": 4,
+   "accepted": 4,
+   "rejected": {},
+   "checker_pass": 4,
+   "checker_fail": 0,
+   "estimated_admissible": 4
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1574067",
    "proposals": 4,
    "sampled": 4,
    "accepted": 4,
@@ -395,6 +841,28 @@
   },
   {
    "family": "first_diffraction_peak",
+   "structure": "9007060",
+   "proposals": 4,
+   "sampled": 4,
+   "accepted": 4,
+   "rejected": {},
+   "checker_pass": 4,
+   "checker_fail": 0,
+   "estimated_admissible": 4
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "9007496",
+   "proposals": 4,
+   "sampled": 4,
+   "accepted": 4,
+   "rejected": {},
+   "checker_pass": 4,
+   "checker_fail": 0,
+   "estimated_admissible": 4
+  },
+  {
+   "family": "first_diffraction_peak",
    "structure": "9008564",
    "proposals": 4,
    "sampled": 4,
@@ -439,6 +907,17 @@
   },
   {
    "family": "kinematic_extinction",
+   "structure": "1000028",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1
+  },
+  {
+   "family": "kinematic_extinction",
    "structure": "1000053",
    "proposals": 1,
    "sampled": 1,
@@ -450,7 +929,64 @@
   },
   {
    "family": "kinematic_extinction",
+   "structure": "1100043",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1
+  },
+  {
+   "family": "kinematic_extinction",
+   "structure": "1547350",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1
+  },
+  {
+   "family": "kinematic_extinction",
+   "structure": "1574067",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 0,
+   "rejected": {
+    "Need at least one extinct and three clearly nonzero reflections": 1
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0
+  },
+  {
+   "family": "kinematic_extinction",
    "structure": "5000035",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1
+  },
+  {
+   "family": "kinematic_extinction",
+   "structure": "9007060",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1
+  },
+  {
+   "family": "kinematic_extinction",
+   "structure": "9007496",
    "proposals": 1,
    "sampled": 1,
    "accepted": 1,
@@ -487,89 +1023,89 @@
  "position_balance": {
   "backbone_torsion": {
    "counts": {
-    "A": 32,
-    "B": 43,
-    "C": 26,
-    "D": 16
+    "A": 70,
+    "B": 75,
+    "C": 72,
+    "D": 75
    },
-   "max_deviation": 13.8,
-   "tolerance": 17.6,
+   "max_deviation": 3.0,
+   "tolerance": 43.8,
    "ok": true
   },
   "secondary_structure": {
    "counts": {
-    "A": 11,
-    "B": 17,
-    "C": 10,
-    "D": 20
+    "A": 33,
+    "B": 45,
+    "C": 36,
+    "D": 48
    },
-   "max_deviation": 5.5,
-   "tolerance": 8.7,
+   "max_deviation": 7.5,
+   "tolerance": 24.3,
    "ok": true
   },
   "fret_efficiency": {
    "counts": {
-    "A": 40,
-    "B": 33,
-    "C": 56,
-    "D": 31
+    "A": 90,
+    "B": 91,
+    "C": 116,
+    "D": 87
    },
-   "max_deviation": 16.0,
-   "tolerance": 24.0,
+   "max_deviation": 20.0,
+   "tolerance": 57.6,
    "ok": true
   },
   "disulfide_design": {
    "counts": {
-    "A": 6,
-    "B": 7,
-    "C": 6,
-    "D": 6
+    "A": 19,
+    "B": 20,
+    "C": 20,
+    "D": 19
    },
-   "max_deviation": 0.8,
-   "tolerance": 4,
+   "max_deviation": 0.5,
+   "tolerance": 11.7,
    "ok": true
   },
   "fret_design": {
    "counts": {
-    "A": 40,
-    "B": 40,
-    "C": 40,
-    "D": 40
+    "A": 92,
+    "B": 91,
+    "C": 91,
+    "D": 92
    },
-   "max_deviation": 0.0,
-   "tolerance": 24.0,
+   "max_deviation": 0.5,
+   "tolerance": 54.9,
    "ok": true
   },
   "coordination_shell": {
    "counts": {
-    "A": 7,
-    "B": 5,
-    "C": 6,
-    "D": 6
+    "A": 19,
+    "B": 20,
+    "C": 20,
+    "D": 20
    },
-   "max_deviation": 1.0,
-   "tolerance": 4,
+   "max_deviation": 0.8,
+   "tolerance": 11.8,
    "ok": true
   },
   "first_diffraction_peak": {
    "counts": {
-    "A": 9,
-    "B": 13,
-    "C": 8,
-    "D": 6
+    "A": 15,
+    "B": 21,
+    "C": 14,
+    "D": 10
    },
-   "max_deviation": 4.0,
-   "tolerance": 5.4,
+   "max_deviation": 6.0,
+   "tolerance": 9.0,
    "ok": true
   },
   "kinematic_extinction": {
    "counts": {
-    "A": 0,
-    "B": 1,
-    "C": 1,
-    "D": 1
+    "A": 2,
+    "B": 2,
+    "C": 2,
+    "D": 2
    },
-   "max_deviation": 0.8,
+   "max_deviation": 0.0,
    "tolerance": 4,
    "ok": true
   }

@@ -7,7 +7,7 @@ import math
 from pathlib import Path
 from . import kit
 
-VERSION = '0.1.0'
+VERSION = '0.2.0'
 
 
 def _angle_candidates(elements, points, edges, a, v, b, names, ideal):
@@ -155,7 +155,8 @@ def build_backbone_torsion(spec, root, seed):
              reason='算成相邻残基 %d 的 %s。' % (neighbor, SYMBOL[kind])),
         dict(rule='peptide_omega', value=torsion(residues, omega_residue, 'omega'), plausibility=1,
              reason='算成肽键扭转角 ω（残基 %d–%d）。' % (omega_residue, omega_residue + 1)),
-        dict(rule='unsigned_plane_angle', value=180 - abs(value), plausibility=1,
+        # Plausibility 2 (was 1): the unsigned normal-vector angle is the classic dihedral bug.
+        dict(rule='unsigned_plane_angle', value=180 - abs(value), plausibility=2,
              reason='用两平面法向量夹角且方向取反，丢失符号（180°−|θ|）。'),
         dict(rule='backbone_bond_angle', value=tau, plausibility=1,
              reason='算成 N–CA–C 键角 τ，而非二面角。'),
@@ -164,8 +165,8 @@ def build_backbone_torsion(spec, root, seed):
     chosen, rejected, goal, rank = kit.choose_numeric(value, candidates, decimals=decimals, tolerance=tol,
                                                       min_separation=sep, seed=seed, context=spec['id'], target=spec.get('target_position'),
                                                       lower=-180, upper=180, period=360)
-    options, audit = kit.label_numeric(value, chosen, decimals=decimals, unit='degree', seed=seed,
-                                       context=spec['id'], correct_reason='IUPAC 符号约定的二面角；法向量与投影两种实现一致。')
+    options, audit = kit.label_circular(value, chosen, decimals=decimals, unit='degree', target=goal,
+                                        correct_reason='IUPAC 符号约定的二面角；法向量与投影两种实现一致。')
     key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=sep,
                                unit='degree', period=360)
     atoms = TORSIONS[kind]
@@ -174,7 +175,8 @@ def build_backbone_torsion(spec, root, seed):
     chain_label = spec['chain'] if spec['chain'].strip() else '(blank)'
     question = ('The excerpt contains residues %d–%d of chain %s from PDB entry %s (%s), ATOM records copied '
                 'unchanged (coordinates in angstrom). Compute the backbone torsion %s of %s, defined by atoms %s, '
-                'using the IUPAC sign convention (range −180° to +180°).') % (
+                'using the IUPAC sign convention (range −180° to +180°). The options are listed in increasing angle around '
+                'the circle, starting from an arbitrary point.') % (
         n - 1, n + 1, chain_label, spec['pdb'], spec['context'], SYMBOL[kind], name, definition)
     pts = [residues[n + o]['atoms'][a] for a, o in atoms]
     return dict(
@@ -184,7 +186,8 @@ def build_backbone_torsion(spec, root, seed):
                      format='pdb-excerpt', unit='angstrom', text=excerpt)],
         numeric=dict(value=kit.display(value, decimals), unit='degree', decimals=decimals, tolerance=tol),
         options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected,
-        rank=dict(target=goal, achieved=rank),
+        rank=dict(target=goal, achieved=goal, linear_rank=rank),
+        option_order='circular ascending from a target-set cut (angles are periodic)',
         checks=dict(normals_deg=value, projection_deg=second, implementations_agree=True,
                     chain_continuity_max_C_N_A=1.5, altloc_in_window=False,
                     periodic_separation=True, residue=name, torsion=kind),

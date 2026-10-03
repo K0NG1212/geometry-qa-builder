@@ -280,7 +280,7 @@
         "unsigned_plane_angle",
         "backbone_bond_angle"
       ],
-      "four_choice_validation": "按 360° 周期计算间隔；与正确值 > 5°；升序排列。",
+      "four_choice_validation": "按 360° 周期计算间隔；与正确值 > 5°；升序排列。 v0.2.0：角度是周期量，选项按圆周递增排列，起点由批次目标位置决定（题干说明）；固定从 −180° 排序时，大多数主链二面角为负，正确项集中在 A/B（枚举探针 runs/enum-v12）。“法向量夹角丢失符号”迷惑程度调为 2。",
       "engine_families": [
         "backbone_torsion"
       ],

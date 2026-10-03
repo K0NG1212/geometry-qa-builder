@@ -3,10 +3,10 @@
  "checker_version": "0.1.0",
  "origin": {
   "source": "family-workbench.json",
-  "run": "family-pilot-v22"
+  "run": "family-pilot-v23"
  },
- "checked": 182,
- "passed": 182,
+ "checked": 212,
+ "passed": 212,
  "failed": [],
  "by_family": {
   "named_bond_angle": {
@@ -49,22 +49,22 @@
    "pass": 3
   },
   "guinier_intensity": {
-   "pass": 7
+   "pass": 9
   },
   "assembly_extent": {
-   "pass": 7
+   "pass": 13
   },
   "assembly_rg": {
-   "pass": 6
+   "pass": 12
   },
   "capsid_architecture": {
-   "pass": 5
+   "pass": 12
   },
   "debye_intensity": {
-   "pass": 3
+   "pass": 8
   },
   "scattering_q_design": {
-   "pass": 8
+   "pass": 12
   },
   "superlattice_shell": {
    "pass": 1
@@ -247,8 +247,8 @@
    "checker_version": "0.1.0",
    "recomputed": "106.2572069382",
    "rounded": "106.3",
-   "label": "D",
-   "nearest_distractor_gap": "98.9572069382",
+   "label": "A",
+   "nearest_distractor_gap": "32.5572069382",
    "parameters": {
     "atoms": "C(19)–N(20)–CA(20)–C(20)"
    },
@@ -275,7 +275,7 @@
    "checker_version": "0.1.0",
    "recomputed": "-143.6458783156",
    "rounded": "-143.6",
-   "label": "B",
+   "label": "C",
    "nearest_distractor_gap": "12.9541216844",
    "parameters": {
     "atoms": "C(42)–N(43)–CA(43)–C(43)"
@@ -3483,6 +3483,457 @@
    },
    "weakest_nonzero": 0.5,
    "method": "separate cos/sin sums over the student table",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-EXT-1RYP",
+   "family": "assembly_extent",
+   "checker_version": "0.1.0",
+   "recomputed": "19.1380792247",
+   "rounded": "19.14",
+   "label": "B",
+   "nearest_distractor_gap": "0.9519207753",
+   "parameters": {
+    "points": 6386
+   },
+   "method": "chunked brute force + Decimal pair",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-RG-1RYP",
+   "family": "assembly_rg",
+   "checker_version": "0.1.0",
+   "recomputed": "5.9693736168",
+   "rounded": "5.97",
+   "label": "A",
+   "nearest_distractor_gap": "1.7406263832",
+   "parameters": {
+    "points": 6386
+   },
+   "method": "pair-distance identity",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-EXT-1STM",
+   "family": "assembly_extent",
+   "checker_version": "0.1.0",
+   "recomputed": "17.0682867564",
+   "rounded": "17.07",
+   "label": "C",
+   "nearest_distractor_gap": "0.7882867564",
+   "parameters": {
+    "points": 8460
+   },
+   "method": "chunked brute force + Decimal pair",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-RG-1STM",
+   "family": "assembly_rg",
+   "checker_version": "0.1.0",
+   "recomputed": "6.9976747649",
+   "rounded": "7.00",
+   "label": "B",
+   "nearest_distractor_gap": "1.5423252351",
+   "parameters": {
+    "points": 8460
+   },
+   "method": "pair-distance identity",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-EXT-2BUK",
+   "family": "assembly_extent",
+   "checker_version": "0.1.0",
+   "recomputed": "19.4377477710",
+   "rounded": "19.44",
+   "label": "D",
+   "nearest_distractor_gap": "9.3077477710",
+   "parameters": {
+    "points": 11040
+   },
+   "method": "chunked brute force + Decimal pair",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-RG-2BUK",
+   "family": "assembly_rg",
+   "checker_version": "0.1.0",
+   "recomputed": "7.8454029783",
+   "rounded": "7.85",
+   "label": "B",
+   "nearest_distractor_gap": "3.3154029783",
+   "parameters": {
+    "points": 11040
+   },
+   "method": "pair-distance identity",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-GUIN-1RYP",
+   "family": "guinier_intensity",
+   "checker_version": "0.1.0",
+   "recomputed": "0.7654811717",
+   "rounded": "0.765",
+   "label": "D",
+   "nearest_distractor_gap": "0.0324811717",
+   "parameters": {
+    "q_per_nm": 0.15,
+    "rg_nm": 5.969373616761955,
+    "atoms": 6386
+   },
+   "method": "pair-distance Rg; Guinier law",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-GUIN-1STM",
+   "family": "guinier_intensity",
+   "checker_version": "0.1.0",
+   "recomputed": "0.7905362470",
+   "rounded": "0.791",
+   "label": "B",
+   "nearest_distractor_gap": "0.0984637530",
+   "parameters": {
+    "q_per_nm": 0.12,
+    "rg_nm": 6.997674764921086,
+    "atoms": 8460
+   },
+   "method": "pair-distance Rg; Guinier law",
+   "status": "pass"
+  },
+  {
+   "id": "FA-DEB-1RYP",
+   "family": "debye_intensity",
+   "checker_version": "0.1.0",
+   "recomputed": "0.3303923076",
+   "rounded": "0.330",
+   "label": "A",
+   "nearest_distractor_gap": "0.1796076924",
+   "parameters": {
+    "q_per_nm": 0.3,
+    "points": 6386
+   },
+   "method": "direct orientation average (Gauss-Legendre x uniform phi quadrature)",
+   "status": "pass"
+  },
+  {
+   "id": "FA-DEB-2BUK",
+   "family": "debye_intensity",
+   "checker_version": "0.1.0",
+   "recomputed": "0.2270694737",
+   "rounded": "0.227",
+   "label": "A",
+   "nearest_distractor_gap": "0.0499305263",
+   "parameters": {
+    "q_per_nm": 0.25,
+    "points": 11040
+   },
+   "method": "direct orientation average (Gauss-Legendre x uniform phi quadrature)",
+   "status": "pass"
+  },
+  {
+   "id": "FA-QDES-1RYP",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "0.2388353074",
+   "rounded": "0.239",
+   "label": "C",
+   "nearest_distractor_gap": "0.0488353074",
+   "parameters": {
+    "target": 0.5,
+    "rg_nm": 5.969373616761955,
+    "points": 6386
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-T-1STM",
+   "family": "capsid_architecture",
+   "checker_version": "0.1.0",
+   "recomputed": "1.0000000000",
+   "rounded": "1",
+   "label": "A",
+   "nearest_distractor_gap": "2.0000000000",
+   "parameters": {
+    "component": "CP",
+    "copies": 60,
+    "T": 1
+   },
+   "method": "count copies; Caspar–Klug relations",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-CAPS-2BUK",
+   "family": "capsid_architecture",
+   "checker_version": "0.1.0",
+   "recomputed": "12.0000000000",
+   "rounded": "12",
+   "label": "C",
+   "nearest_distractor_gap": "2.0000000000",
+   "parameters": {
+    "component": "CP",
+    "copies": 60,
+    "T": 1
+   },
+   "method": "count copies; Caspar–Klug relations",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-EXT-1CWP",
+   "family": "assembly_extent",
+   "checker_version": "0.1.0",
+   "recomputed": "24.2149360530",
+   "rounded": "24.21",
+   "label": "C",
+   "nearest_distractor_gap": "12.0849360530",
+   "parameters": {
+    "points": 180
+   },
+   "method": "chunked brute force + Decimal pair",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-RG-1CWP",
+   "family": "assembly_rg",
+   "checker_version": "0.1.0",
+   "recomputed": "11.8772715248",
+   "rounded": "11.88",
+   "label": "B",
+   "nearest_distractor_gap": "5.0172715248",
+   "parameters": {
+    "points": 180
+   },
+   "method": "pair-distance identity",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-EXT-1SVA",
+   "family": "assembly_extent",
+   "checker_version": "0.1.0",
+   "recomputed": "42.9178161892",
+   "rounded": "42.92",
+   "label": "C",
+   "nearest_distractor_gap": "0.4678161892",
+   "parameters": {
+    "points": 360
+   },
+   "method": "chunked brute force + Decimal pair",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-RG-1SVA",
+   "family": "assembly_rg",
+   "checker_version": "0.1.0",
+   "recomputed": "21.3178041016",
+   "rounded": "21.32",
+   "label": "A",
+   "nearest_distractor_gap": "6.2021958984",
+   "parameters": {
+    "points": 360
+   },
+   "method": "pair-distance identity",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-EXT-2FT1",
+   "family": "assembly_extent",
+   "checker_version": "0.1.0",
+   "recomputed": "59.8816994138",
+   "rounded": "59.88",
+   "label": "C",
+   "nearest_distractor_gap": "2.8216994138",
+   "parameters": {
+    "points": 420
+   },
+   "method": "chunked brute force + Decimal pair",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-RG-2FT1",
+   "family": "assembly_rg",
+   "checker_version": "0.1.0",
+   "recomputed": "28.0682869916",
+   "rounded": "28.07",
+   "label": "B",
+   "nearest_distractor_gap": "11.8582869916",
+   "parameters": {
+    "points": 420
+   },
+   "method": "pair-distance identity",
+   "status": "pass"
+  },
+  {
+   "id": "FA-DEB-1CWP",
+   "family": "debye_intensity",
+   "checker_version": "0.1.0",
+   "recomputed": "0.2479737489",
+   "rounded": "0.248",
+   "label": "A",
+   "nearest_distractor_gap": "0.0520262511",
+   "parameters": {
+    "q_per_nm": 0.16,
+    "points": 180
+   },
+   "method": "direct orientation average (Gauss-Legendre x uniform phi quadrature)",
+   "status": "pass"
+  },
+  {
+   "id": "FA-QDES-1CWP",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "0.1171667207",
+   "rounded": "0.117",
+   "label": "A",
+   "nearest_distractor_gap": "0.0328332793",
+   "parameters": {
+    "target": 0.5,
+    "rg_nm": 11.877271524768261,
+    "points": 180
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "FA-DEB-1SVA",
+   "family": "debye_intensity",
+   "checker_version": "0.1.0",
+   "recomputed": "0.2401099902",
+   "rounded": "0.240",
+   "label": "A",
+   "nearest_distractor_gap": "0.0528900098",
+   "parameters": {
+    "q_per_nm": 0.09,
+    "points": 360
+   },
+   "method": "direct orientation average (Gauss-Legendre x uniform phi quadrature)",
+   "status": "pass"
+  },
+  {
+   "id": "FA-QDES-1SVA",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "0.0652770120",
+   "rounded": "0.0653",
+   "label": "B",
+   "nearest_distractor_gap": "0.0198229880",
+   "parameters": {
+    "target": 0.5,
+    "rg_nm": 21.31780410156418,
+    "points": 360
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "FA-DEB-2FT1",
+   "family": "debye_intensity",
+   "checker_version": "0.1.0",
+   "recomputed": "0.2818006381",
+   "rounded": "0.282",
+   "label": "A",
+   "nearest_distractor_gap": "0.0481993619",
+   "parameters": {
+    "q_per_nm": 0.065,
+    "points": 420
+   },
+   "method": "direct orientation average (Gauss-Legendre x uniform phi quadrature)",
+   "status": "pass"
+  },
+  {
+   "id": "FA-QDES-2FT1",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "0.0495871840",
+   "rounded": "0.0496",
+   "label": "B",
+   "nearest_distractor_gap": "0.0151128160",
+   "parameters": {
+    "target": 0.5,
+    "rg_nm": 28.068286991553844,
+    "points": 420
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-T-1CWP",
+   "family": "capsid_architecture",
+   "checker_version": "0.1.0",
+   "recomputed": "3.0000000000",
+   "rounded": "3",
+   "label": "B",
+   "nearest_distractor_gap": "1.0000000000",
+   "parameters": {
+    "component": "CP",
+    "copies": 180,
+    "T": 3
+   },
+   "method": "count copies; Caspar–Klug relations",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-CAPS-1CWP",
+   "family": "capsid_architecture",
+   "checker_version": "0.1.0",
+   "recomputed": "32.0000000000",
+   "rounded": "32",
+   "label": "C",
+   "nearest_distractor_gap": "2.0000000000",
+   "parameters": {
+    "component": "CP",
+    "copies": 180,
+    "T": 3
+   },
+   "method": "count copies; Caspar–Klug relations",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-HEX-1CWP",
+   "family": "capsid_architecture",
+   "checker_version": "0.1.0",
+   "recomputed": "20.0000000000",
+   "rounded": "20",
+   "label": "A",
+   "nearest_distractor_gap": "10.0000000000",
+   "parameters": {
+    "component": "CP",
+    "copies": 180,
+    "T": 3
+   },
+   "method": "count copies; Caspar–Klug relations",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-T-2FT1",
+   "family": "capsid_architecture",
+   "checker_version": "0.1.0",
+   "recomputed": "7.0000000000",
+   "rounded": "7",
+   "label": "C",
+   "nearest_distractor_gap": "2.0000000000",
+   "parameters": {
+    "component": "gp5",
+    "copies": 420,
+    "T": 7
+   },
+   "method": "count copies; Caspar–Klug relations",
+   "status": "pass"
+  },
+  {
+   "id": "FA-ASM-HEX-2FT1",
+   "family": "capsid_architecture",
+   "checker_version": "0.1.0",
+   "recomputed": "60.0000000000",
+   "rounded": "60",
+   "label": "A",
+   "nearest_distractor_gap": "10.0000000000",
+   "parameters": {
+    "component": "gp5",
+    "copies": 420,
+    "T": 7
+   },
+   "method": "count copies; Caspar–Klug relations",
    "status": "pass"
   }
  ]

@@ -85,7 +85,7 @@ def run(manifest_path, out, seed='geobench-family-v1'):
                              rank_shortcuts=shortcuts, checks=built['checks'], scales=built['scales'],
                              source=spec['source'], license=spec.get('license', ''), legacy_qa=spec.get('legacy_qa'),
                              input_hashes=built['input_hashes'], seed=seed, target_position=spec['target_position'],
-                             option_order='numeric ascending (label = rank)' if built['rank'] else 'correct at batch-balanced target; others sha256-sorted',
+                             option_order=built.get('option_order') or ('numeric ascending (label = rank)' if built['rank'] else 'correct at batch-balanced target; others sha256-sorted'),
                              human_review='pending', catalog_admitted=False))
         stages.append(dict(id=spec['id'], family=spec['family'],
                            define=dict(family=spec['family'], version=family['version'], ability=family['ability'],

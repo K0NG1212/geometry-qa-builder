@@ -34,7 +34,7 @@
   },
   "next_l3_batch": "l3-batch-001",
   "l3_sample": 160,
-  "l3_strata": 71,
+  "l3_strata": 72,
   "l3_steady_state_sample": 125,
   "model_calls": 0,
   "reviews_recorded": {
@@ -125,32 +125,32 @@
     },
     "samples": [
      {
-      "instance": "FA-ASM-EXT-1A34",
-      "question": "The XYZ file lists the capsid-protein Cα atoms of the complete satellite tobacco mosaic virus capsid: the deposited copy of PDB 1A34 expanded with its 60 icosahedral operators (angstrom). Select all supplied points. What is the largest distance between any two of the selected points, in nanometres?",
+      "instance": "FA-ASM-EXT-1SVA",
+      "question": "The table lists the Cα centroid of every VP1 chain of the simian virus 40 capsid (PDB 1SVA), expanded to the whole particle with the 60 operators of its biological assembly; columns are component (VP1), copy, x, y, z (angstrom). Select all points labelled VP1. What is the largest distance between any two of the selected points, in nanometres?",
       "options": [
        {
         "label": "A",
-        "value": "9.48",
+        "value": "27.52",
         "unit": "nm"
        },
        {
         "label": "B",
-        "value": "16.51",
+        "value": "42.45",
         "unit": "nm"
        },
        {
         "label": "C",
-        "value": "17.30",
+        "value": "42.92",
         "unit": "nm"
        },
        {
         "label": "D",
-        "value": "28.60",
+        "value": "73.53",
         "unit": "nm"
        }
       ],
       "inputs": [
-       "1A34-capsid-CA.xyz"
+       "1SVA-chain-centroids.txt"
       ],
       "correct_label": "C",
       "audit": [
@@ -177,32 +177,32 @@
       ]
      },
      {
-      "instance": "FA-ASM-EXT-1AON",
-      "question": "The XYZ file lists one point per residue (protein Cα written as C) of the GroEL–GroES–(ADP)7 chaperonin complex, all 21 chains of PDB 1AON (angstrom). Select all supplied points. What is the largest distance between any two of the selected points, in nanometres?",
+      "instance": "FA-ASM-EXT-2FT1",
+      "question": "The table lists the Cα centroid of every gp5 chain of the mature bacteriophage HK97 head (Head II, PDB 2FT1), expanded to the whole particle with the 60 operators of its biological assembly; columns are component (gp5), copy, x, y, z (angstrom). Select all points labelled gp5. What is the largest distance between any two of the selected points, in nanometres?",
       "options": [
        {
         "label": "A",
-        "value": "8.83",
+        "value": "36.24",
         "unit": "nm"
        },
        {
         "label": "B",
-        "value": "11.21",
+        "value": "57.06",
         "unit": "nm"
        },
        {
         "label": "C",
-        "value": "20.30",
+        "value": "59.88",
         "unit": "nm"
        },
        {
         "label": "D",
-        "value": "27.44",
+        "value": "98.36",
         "unit": "nm"
        }
       ],
       "inputs": [
-       "1AON-residue-points.xyz"
+       "2FT1-chain-centroids.txt"
       ],
       "correct_label": "C",
       "audit": [
@@ -213,8 +213,8 @@
        },
        {
         "label": "B",
-        "rule": "max_radius",
-        "reason": "用最大中心距（半径而非直径或均方根）。"
+        "rule": "largest_axis_span",
+        "reason": "只取单一坐标轴上的最大跨度。"
        },
        {
         "label": "C",
@@ -280,58 +280,6 @@
     },
     "samples": [
      {
-      "instance": "FA-ASM-RG-1AON",
-      "question": "The XYZ file lists one point per residue (protein Cα written as C) of the GroEL–GroES–(ADP)7 chaperonin complex, all 21 chains of PDB 1AON (angstrom). Select all supplied points. What is the equal-weight radius of gyration of the selected points (every point weighted equally), in nanometres?",
-      "options": [
-       {
-        "label": "A",
-        "value": "4.88",
-        "unit": "nm"
-       },
-       {
-        "label": "B",
-        "value": "6.84",
-        "unit": "nm"
-       },
-       {
-        "label": "C",
-        "value": "8.83",
-        "unit": "nm"
-       },
-       {
-        "label": "D",
-        "value": "27.44",
-        "unit": "nm"
-       }
-      ],
-      "inputs": [
-       "1AON-residue-points.xyz"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "single_axis_rms",
-        "reason": "只算了一个坐标轴方向的均方根离散度，而不是三维距离。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "按定义在所选点上计算（numpy 分块搜索 + Decimal 复核）。"
-       },
-       {
-        "label": "C",
-        "rule": "sphere_radius_from_rg",
-        "reason": "按实心球关系 R = √(5/3)·Rg 换成半径。"
-       },
-       {
-        "label": "D",
-        "rule": "bounding_box_diagonal",
-        "reason": "用坐标轴对齐包围盒对角线代替实际最大间距。"
-       }
-      ]
-     },
-     {
       "instance": "FA-ASM-RG-1KX5",
       "question": "The XYZ file lists one point per residue (protein Cα as C, DNA phosphorus as P) of the nucleosome core particle NCP147, PDB 1KX5 (angstrom). Select all supplied points. What is the equal-weight radius of gyration of the selected points (every point weighted equally), in nanometres?",
       "options": [
@@ -382,6 +330,58 @@
         "reason": "用坐标轴对齐包围盒对角线代替实际最大间距。"
        }
       ]
+     },
+     {
+      "instance": "FA-ASM-RG-2BUK",
+      "question": "The XYZ file lists the capsid-protein Cα atoms of the complete satellite tobacco necrosis virus capsid: the deposited chain of PDB 2BUK expanded with the 60 operators of its biological assembly (angstrom). Select all supplied points. What is the equal-weight radius of gyration of the selected points (every point weighted equally), in nanometres?",
+      "options": [
+       {
+        "label": "A",
+        "value": "4.53",
+        "unit": "nm"
+       },
+       {
+        "label": "B",
+        "value": "7.85",
+        "unit": "nm"
+       },
+       {
+        "label": "C",
+        "value": "19.44",
+        "unit": "nm"
+       },
+       {
+        "label": "D",
+        "value": "33.13",
+        "unit": "nm"
+       }
+      ],
+      "inputs": [
+       "2BUK-capsid-CA.xyz"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "single_axis_rms",
+        "reason": "只算了一个坐标轴方向的均方根离散度，而不是三维距离。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "按定义在所选点上计算（numpy 分块搜索 + Decimal 复核）。"
+       },
+       {
+        "label": "C",
+        "rule": "centroid_diameter",
+        "reason": "用两倍最大中心距代替最大点对间距。"
+       },
+       {
+        "label": "D",
+        "rule": "bounding_box_diagonal",
+        "reason": "用坐标轴对齐包围盒对角线代替实际最大间距。"
+       }
+      ]
      }
     ]
    }
@@ -396,8 +396,8 @@
    "checker_function": "backbone_torsion",
    "bindings": {
     "L1": {
-     "registry_row": "dfd2c4878c7be0109f04c82de04847da4533490d42e790b1aa7abbf7f6973e51",
-     "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f"
+     "registry_row": "09d756ae0abb6a83595dcb8446ef793340b12db85652c1c14182f34b2b4e36d4",
+     "task_families/local_geometry.py": "5cf504a1a500d9c0dfabcf0d90f0d1d9b5d5de73770b52be7286af634a496635"
     },
     "L2": {
      "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
@@ -427,7 +427,7 @@
       "unsigned_plane_angle",
       "backbone_bond_angle"
      ],
-     "four_choice_validation": "按 360° 周期计算间隔；与正确值 > 5°；升序排列。",
+     "four_choice_validation": "按 360° 周期计算间隔；与正确值 > 5°；升序排列。 v0.2.0：角度是周期量，选项按圆周递增排列，起点由批次目标位置决定（题干说明）；固定从 −180° 排序时，大多数主链二面角为负，正确项集中在 A/B（枚举探针 runs/enum-v12）。“法向量夹角丢失符号”迷惑程度调为 2。",
      "principle": "IUPAC 二面角：沿中心键从第二原子看向第三原子，前键顺时针转到后键为正。",
      "validation": "两种实现一致；周期间隔检查；四项逐一核验。",
      "limits": "反号干扰项形成 ± 配对线索（本批 3/3），需人工判断是否保留。",
@@ -436,11 +436,11 @@
     "samples": [
      {
       "instance": "FA-TOR-1CRN-G20",
-      "question": "The excerpt contains residues 19–21 of chain A from PDB entry 1CRN (crambin, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone torsion φ of Gly20, defined by atoms C(19)–N(20)–CA(20)–C(20), using the IUPAC sign convention (range −180° to +180°).",
+      "question": "The excerpt contains residues 19–21 of chain A from PDB entry 1CRN (crambin, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone torsion φ of Gly20, defined by atoms C(19)–N(20)–CA(20)–C(20), using the IUPAC sign convention (range −180° to +180°). The options are listed in increasing angle around the circle, starting from an arbitrary point.",
       "options": [
        {
         "label": "A",
-        "value": "-106.3",
+        "value": "106.3",
         "unit": "degree"
        },
        {
@@ -455,19 +455,19 @@
        },
        {
         "label": "D",
-        "value": "106.3",
+        "value": "73.7",
         "unit": "degree"
        }
       ],
       "inputs": [
        "1CRN-A20-excerpt.pdb"
       ],
-      "correct_label": "D",
+      "correct_label": "A",
       "audit": [
        {
         "label": "A",
-        "rule": "opposite_sign",
-        "reason": "符号约定取反：相当于把镜像手性当成原构象。"
+        "rule": "correct",
+        "reason": "IUPAC 符号约定的二面角；法向量与投影两种实现一致。"
        },
        {
         "label": "B",
@@ -481,14 +481,14 @@
        },
        {
         "label": "D",
-        "rule": "correct",
-        "reason": "IUPAC 符号约定的二面角；法向量与投影两种实现一致。"
+        "rule": "unsigned_plane_angle",
+        "reason": "用两平面法向量夹角且方向取反，丢失符号（180°−|θ|）。"
        }
       ]
      },
      {
       "instance": "FA-TOR-1UBQ-V26",
-      "question": "The excerpt contains residues 25–27 of chain A from PDB entry 1UBQ (ubiquitin, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone torsion ψ of Val26, defined by atoms N(26)–CA(26)–C(26)–N(27), using the IUPAC sign convention (range −180° to +180°).",
+      "question": "The excerpt contains residues 25–27 of chain A from PDB entry 1UBQ (ubiquitin, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone torsion ψ of Val26, defined by atoms N(26)–CA(26)–C(26)–N(27), using the IUPAC sign convention (range −180° to +180°). The options are listed in increasing angle around the circle, starting from an arbitrary point.",
       "options": [
        {
         "label": "A",
@@ -898,32 +898,32 @@
     },
     "samples": [
      {
-      "instance": "FA-ASM-CAPS-1A34",
-      "question": "The table lists the Cα centroid of each capsid-protein copy of the satellite tobacco mosaic virus capsid (PDB 1A34), generated with the 60 deposited icosahedral operators; columns are component, copy, x, y, z (angstrom). Each row is one copy of a protein, labelled by component. What is the total number of capsomers (pentamers plus hexamers) in the shell formed by CP?",
+      "instance": "FA-ASM-CAPS-1CWP",
+      "question": "The table lists the Cα centroid of every capsid-protein chain of the cowpea chlorotic mottle virus capsid (PDB 1CWP), expanded to the whole particle with the 60 operators of its biological assembly; columns are component (CP), copy, x, y, z (angstrom). Each row is one copy of a protein, labelled by component. What is the total number of capsomers (pentamers plus hexamers) in the shell formed by CP?",
       "options": [
        {
         "label": "A",
-        "value": "0",
+        "value": "20",
         "unit": ""
        },
        {
         "label": "B",
-        "value": "10",
+        "value": "30",
         "unit": ""
        },
        {
         "label": "C",
-        "value": "12",
+        "value": "32",
         "unit": ""
        },
        {
         "label": "D",
-        "value": "60",
+        "value": "36",
         "unit": ""
        }
       ],
       "inputs": [
-       "1A34-subunit-centroids.txt"
+       "1CWP-chain-centroids.txt"
       ],
       "correct_label": "C",
       "audit": [
@@ -940,12 +940,12 @@
        {
         "label": "C",
         "rule": "correct",
-        "reason": "N = 60 个 CP，T = N/60 = 1；五邻体 12 个，六邻体 10(T−1)。"
+        "reason": "N = 180 个 CP，T = N/60 = 3；五邻体 12 个，六邻体 10(T−1)。"
        },
        {
         "label": "D",
-        "rule": "copies_as_capsomers",
-        "reason": "把亚基数当作壳粒数。"
+        "rule": "all_pentamers",
+        "reason": "把所有亚基都当作五聚体。"
        }
       ]
      },
@@ -1788,7 +1788,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 3,
+   "instances": 4,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -1819,6 +1819,58 @@
      "template_review": "本轮新建（A4），待人工审核。"
     },
     "samples": [
+     {
+      "instance": "FA-DEB-1CWP",
+      "question": "The table lists the Cα centroid of every capsid-protein chain of the cowpea chlorotic mottle virus capsid (PDB 1CWP), expanded to the whole particle with the 60 operators of its biological assembly; columns are component (CP), copy, x, y, z (angstrom). Select all points labelled CP. Treat each selected point as an identical point scatterer (no form factor, no solvent). What is the orientation-averaged normalized scattering intensity I(q)/I(0) of the selected points at q = 0.160 nm⁻¹ (q = 4π sinθ/λ)? Compute it exactly from all point pairs; q·Rg is above the Guinier range here.",
+      "options": [
+       {
+        "label": "A",
+        "value": "0.248",
+        "unit": ""
+       },
+       {
+        "label": "B",
+        "value": "0.300",
+        "unit": ""
+       },
+       {
+        "label": "C",
+        "value": "0.498",
+        "unit": ""
+       },
+       {
+        "label": "D",
+        "value": "0.669",
+        "unit": ""
+       }
+      ],
+      "inputs": [
+       "1CWP-chain-centroids.txt"
+      ],
+      "correct_label": "A",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "correct",
+        "reason": "Debye 公式对全部点对取向平均：I/I0 = [N + 2Σ sin(qr)/(qr)]/N²，N = 180；qRg = 1.90。"
+       },
+       {
+        "label": "B",
+        "rule": "guinier_outside_range",
+        "reason": "在 qRg = 1.90 > 1.3 处仍用 Guinier 近似。"
+       },
+       {
+        "label": "C",
+        "rule": "amplitude_not_intensity",
+        "reason": "报告了平方根（振幅比）而非强度比。"
+       },
+       {
+        "label": "D",
+        "rule": "guinier_single_axis_spread",
+        "reason": "用 Guinier 近似，且把单一坐标轴的均方根离散度当作 Rg。"
+       }
+      ]
+     },
      {
       "instance": "FA-DEB-6CGR",
       "question": "The table lists the Cα centroid of every protein chain of the herpes simplex virus 1 capsid with tegument complexes (PDB 6CGR), expanded to the whole particle with the 60 deposited icosahedral operators; columns are component (VP5, VP26, VP19C, VP23, pUL17, pUL25, pUL36), copy, x, y, z (angstrom). Select all points labelled VP5. Treat each selected point as an identical point scatterer (no form factor, no solvent). What is the orientation-averaged normalized scattering intensity I(q)/I(0) of the selected points at q = 0.035 nm⁻¹ (q = 4π sinθ/λ)? Compute it exactly from all point pairs; q·Rg is above the Guinier range here.",
@@ -1868,58 +1920,6 @@
         "label": "D",
         "rule": "guinier_single_axis_spread",
         "reason": "用 Guinier 近似，且把单一坐标轴的均方根离散度当作 Rg。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-DEB-7ARQ-018",
-      "question": "The table lists the C1' atom of every nucleotide of a DNA-origami 16-helix bundle (PDB 7ARQ, cryo-EM pseudo-atomic model), labelled by strand type (scaffold or staple); columns are component, chain.residue, x, y, z (angstrom). Select all supplied points. Treat each selected point as an identical point scatterer (no form factor, no solvent). What is the orientation-averaged normalized scattering intensity I(q)/I(0) of the selected points at q = 0.180 nm⁻¹ (q = 4π sinθ/λ)? Compute it exactly from all point pairs; q·Rg is above the Guinier range here.",
-      "options": [
-       {
-        "label": "A",
-        "value": "0.418",
-        "unit": ""
-       },
-       {
-        "label": "B",
-        "value": "0.551",
-        "unit": ""
-       },
-       {
-        "label": "C",
-        "value": "0.626",
-        "unit": ""
-       },
-       {
-        "label": "D",
-        "value": "0.646",
-        "unit": ""
-       }
-      ],
-      "inputs": [
-       "7ARQ-nucleotide-points.txt"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "Debye 公式对全部点对取向平均：I/I0 = [N + 2Σ sin(qr)/(qr)]/N²，N = 2689；qRg = 1.69。"
-       },
-       {
-        "label": "B",
-        "rule": "sphere_radius_equals_rg",
-        "reason": "把回转半径直接当作均匀球的半径（应为 √(5/3)·Rg），强度偏大。"
-       },
-       {
-        "label": "C",
-        "rule": "guinier_single_axis_spread",
-        "reason": "用 Guinier 近似，且把单一坐标轴的均方根离散度当作 Rg。"
-       },
-       {
-        "label": "D",
-        "rule": "amplitude_not_intensity",
-        "reason": "报告了平方根（振幅比）而非强度比。"
        }
       ]
      }
@@ -3014,7 +3014,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 6,
+   "instances": 5,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -3098,49 +3098,49 @@
       ]
      },
      {
-      "instance": "FA-ASM-GUIN-1KX5",
-      "question": "The XYZ file lists one point per residue of the nucleosome core particle (PDB 1KX5). Treat each supplied point as an identical point scatterer. In the Guinier approximation (which applies at this q), what is the normalized small-angle scattering intensity I(q)/I(0) at q = 0.25 nm⁻¹?",
+      "instance": "FA-ASM-GUIN-7ARQ",
+      "question": "The table lists the C1' atom of every nucleotide of a DNA-origami 16-helix bundle (PDB 7ARQ). Treat each supplied point as an identical point scatterer. In the Guinier approximation (which applies at this q), what is the normalized small-angle scattering intensity I(q)/I(0) at q = 0.12 nm⁻¹?",
       "options": [
        {
         "label": "A",
-        "value": "0.387",
+        "value": "0.252",
         "unit": ""
        },
        {
         "label": "B",
-        "value": "0.728",
+        "value": "0.281",
         "unit": ""
        },
        {
         "label": "C",
-        "value": "0.854",
+        "value": "0.655",
         "unit": ""
        },
        {
         "label": "D",
-        "value": "0.868",
+        "value": "0.812",
         "unit": ""
        }
       ],
       "inputs": [
-       "1KX5-residue-points.xyz"
+       "7ARQ-nucleotide-points.txt"
       ],
-      "correct_label": "B",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
+        "rule": "half_dmax_as_rg",
+        "reason": "把最大尺寸的一半当作回转半径。"
+       },
+       {
+        "label": "B",
         "rule": "missing_one_third",
         "reason": "指数中漏掉 1/3。"
        },
        {
-        "label": "B",
-        "rule": "correct",
-        "reason": "等权 Rg = 3.8996 nm，qRg = 0.975 ≤ 1.3，I/I0 = exp(−q²Rg²/3)。"
-       },
-       {
         "label": "C",
-        "rule": "amplitude_not_intensity",
-        "reason": "报告了散射振幅比（强度的平方根）而非强度比。"
+        "rule": "correct",
+        "reason": "等权 Rg = 9.3858 nm，qRg = 1.126 ≤ 1.3，I/I0 = exp(−q²Rg²/3)。"
        },
        {
         "label": "D",
@@ -3784,7 +3784,7 @@
    "bindings": {
     "L1": {
      "registry_row": "9190118035dde5c12f26ecbe4eec28a5d5b28892dd66ccbe80933407b97f1ac8",
-     "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f"
+     "task_families/local_geometry.py": "5cf504a1a500d9c0dfabcf0d90f0d1d9b5d5de73770b52be7286af634a496635"
     },
     "L2": {
      "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
@@ -3938,7 +3938,7 @@
    "bindings": {
     "L1": {
      "registry_row": "d40833fa5c27fc521890c33c0b9041332f04407d460c4034e534af60a39921ad",
-     "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f"
+     "task_families/local_geometry.py": "5cf504a1a500d9c0dfabcf0d90f0d1d9b5d5de73770b52be7286af634a496635"
     },
     "L2": {
      "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
@@ -4916,58 +4916,6 @@
     },
     "samples": [
      {
-      "instance": "FA-QDES-1A34",
-      "question": "The XYZ file lists the capsid-protein Cα atoms of the complete satellite tobacco mosaic virus capsid: the deposited copy of PDB 1A34 expanded with its 60 icosahedral operators (angstrom). Select all supplied points. Treat each selected point as an identical point scatterer (no form factor, no solvent). A small-angle scattering measurement is to be set at the q where the orientation-averaged normalized intensity I(q)/I(0) of the selected points first falls to 0.50. Starting from q = 0, at which q (in nm⁻¹, q = 4π sinθ/λ) does I(q)/I(0) first reach 0.50? Compute the intensity exactly from all point pairs.",
-      "options": [
-       {
-        "label": "A",
-        "value": "0.030",
-        "unit": "nm^-1"
-       },
-       {
-        "label": "B",
-        "value": "0.190",
-        "unit": "nm^-1"
-       },
-       {
-        "label": "C",
-        "value": "0.210",
-        "unit": "nm^-1"
-       },
-       {
-        "label": "D",
-        "value": "0.340",
-        "unit": "nm^-1"
-       }
-      ],
-      "inputs": [
-       "1A34-capsid-CA.xyz"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "reported_as_s",
-        "reason": "求对了交点，却以 s = 2 sinθ/λ（= q/2π）报告。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "Debye 公式（全部点对、取向平均）从 q = 0 起步进并二分，得首次降到 0.50 的 q。"
-       },
-       {
-        "label": "C",
-        "rule": "dmax_sphere_root",
-        "reason": "把颗粒当作直径等于最大尺寸的实心球。"
-       },
-       {
-        "label": "D",
-        "rule": "guinier_single_axis_root",
-        "reason": "用 Guinier 反解，且把单一坐标轴的均方根离散度当作 Rg。"
-       }
-      ]
-     },
-     {
       "instance": "FA-QDES-1AON",
       "question": "The XYZ file lists one point per residue (protein Cα written as C) of the GroEL–GroES–(ADP)7 chaperonin complex, all 21 chains of PDB 1AON (angstrom). Select all supplied points. Treat each selected point as an identical point scatterer (no form factor, no solvent). A small-angle scattering measurement is to be set at the q where the orientation-averaged normalized intensity I(q)/I(0) of the selected points first falls to 0.50. Starting from q = 0, at which q (in nm⁻¹, q = 4π sinθ/λ) does I(q)/I(0) first reach 0.50? Compute the intensity exactly from all point pairs.",
       "options": [
@@ -5018,6 +4966,58 @@
         "reason": "用 Guinier 反解，且把单一坐标轴的均方根离散度当作 Rg。"
        }
       ]
+     },
+     {
+      "instance": "FA-QDES-1KX5",
+      "question": "The XYZ file lists one point per residue (protein Cα as C, DNA phosphorus as P) of the nucleosome core particle NCP147, PDB 1KX5 (angstrom). Select all supplied points. Treat each selected point as an identical point scatterer (no form factor, no solvent). A small-angle scattering measurement is to be set at the q where the orientation-averaged normalized intensity I(q)/I(0) of the selected points first falls to 0.50. Starting from q = 0, at which q (in nm⁻¹, q = 4π sinθ/λ) does I(q)/I(0) first reach 0.50? Compute the intensity exactly from all point pairs.",
+      "options": [
+       {
+        "label": "A",
+        "value": "0.327",
+        "unit": "nm^-1"
+       },
+       {
+        "label": "B",
+        "value": "0.376",
+        "unit": "nm^-1"
+       },
+       {
+        "label": "C",
+        "value": "0.465",
+        "unit": "nm^-1"
+       },
+       {
+        "label": "D",
+        "value": "0.553",
+        "unit": "nm^-1"
+       }
+      ],
+      "inputs": [
+       "1KX5-residue-points.xyz"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "single_orientation_root",
+        "reason": "只沿 x 轴一个方向计算强度，没有取向平均。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "Debye 公式（全部点对、取向平均）从 q = 0 起步进并二分，得首次降到 0.50 的 q。"
+       },
+       {
+        "label": "C",
+        "rule": "sphere_radius_equals_rg_root",
+        "reason": "把回转半径直接当作均匀球的半径求交点（球偏小，q 偏大）。"
+       },
+       {
+        "label": "D",
+        "rule": "guinier_single_axis_root",
+        "reason": "用 Guinier 反解，且把单一坐标轴的均方根离散度当作 Rg。"
+       }
+      ]
      }
     ]
    }
@@ -5033,7 +5033,7 @@
    "bindings": {
     "L1": {
      "registry_row": "05d367ad84727c361f99c3d9984b26328d5d029d88ae39cb63071c0ee0ffceee",
-     "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f"
+     "task_families/local_geometry.py": "5cf504a1a500d9c0dfabcf0d90f0d1d9b5d5de73770b52be7286af634a496635"
     },
     "L2": {
      "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
@@ -6675,7 +6675,7 @@
      "registry_row": "d40833fa5c27fc521890c33c0b9041332f04407d460c4034e534af60a39921ad"
     },
     "L2": {
-     "task_families/local_geometry.py": "336c80e8d005a2f080f22aae8dee03bd0de3c616b80f57cf0e043c1b89af4f8f",
+     "task_families/local_geometry.py": "5cf504a1a500d9c0dfabcf0d90f0d1d9b5d5de73770b52be7286af634a496635",
      "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4"
     }
    },
@@ -6792,8 +6792,8 @@
    "sample": 2,
    "rule": "first batch: all",
    "ids": [
-    "BNP017",
-    "BNP021"
+    "BNP034",
+    "BNP036"
    ]
   },
   {
@@ -6831,8 +6831,8 @@
    "sample": 2,
    "rule": "first batch: all",
    "ids": [
-    "BNP018",
-    "BNP020"
+    "BNP020",
+    "BNP031"
    ]
   },
   {
@@ -6910,7 +6910,7 @@
    "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "BNI018"
+    "BNI037"
    ]
   },
   {
@@ -7033,6 +7033,18 @@
    "ids": [
     "MNP013",
     "MNP014"
+   ]
+  },
+  {
+   "stratum": "debye_intensity | pdb-bio-nm | biology 10-100",
+   "unit": "debye_intensity",
+   "source": "pdb-bio-nm",
+   "cell": "biology 10-100",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "BNI033"
    ]
   },
   {
@@ -7233,11 +7245,10 @@
    "unit": "guinier_intensity",
    "source": "pdb-bio-nm",
    "cell": "biology 10-100",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "BNI016",
     "BNI017"
    ]
   },
@@ -7520,7 +7531,7 @@
    "ids": [
     "BND009",
     "BND010",
-    "BND011"
+    "BND015"
    ]
   },
   {
@@ -7779,13 +7790,8 @@
   "BNI012": "L0",
   "BNI013": "L0",
   "BNI014": "L0",
-  "BNP017": "L0",
-  "BNP018": "L0",
   "BNP020": "L0",
-  "BNI016": "L0",
-  "BNP021": "L0",
   "BNI017": "L0",
-  "BNI018": "L0",
   "BNP023": "L0",
   "BNP024": "L0",
   "BNI019": "L0",
@@ -7863,7 +7869,6 @@
   "BND008": "L0",
   "BND009": "L0",
   "BND010": "L0",
-  "BND011": "L0",
   "QNP020": "L0",
   "QNP021": "L0",
   "QNP022": "L0",
@@ -7885,7 +7890,13 @@
   "CND010": "L0",
   "CND011": "L0",
   "MNP022": "L0",
-  "MNP024": "L0"
+  "MNP024": "L0",
+  "BNP031": "L0",
+  "BNP034": "L0",
+  "BNP036": "L0",
+  "BNI033": "L0",
+  "BND015": "L0",
+  "BNI037": "L0"
  },
  "forms": {
   "CNP002": {
@@ -8100,33 +8111,13 @@
    "form": "family",
    "instance": "FA-GUIN-1BNA"
   },
-  "BNP017": {
-   "form": "family",
-   "instance": "FA-ASM-EXT-1AON"
-  },
-  "BNP018": {
-   "form": "family",
-   "instance": "FA-ASM-RG-1AON"
-  },
   "BNP020": {
    "form": "family",
    "instance": "FA-ASM-RG-1KX5"
   },
-  "BNI016": {
-   "form": "family",
-   "instance": "FA-ASM-GUIN-1KX5"
-  },
-  "BNP021": {
-   "form": "family",
-   "instance": "FA-ASM-EXT-1A34"
-  },
   "BNI017": {
    "form": "family",
    "instance": "FA-ASM-GUIN-1A34"
-  },
-  "BNI018": {
-   "form": "family",
-   "instance": "FA-ASM-CAPS-1A34"
   },
   "BNP023": {
    "form": "family",
@@ -8436,10 +8427,6 @@
    "form": "family",
    "instance": "FA-QDES-1KX5"
   },
-  "BND011": {
-   "form": "family",
-   "instance": "FA-QDES-1A34"
-  },
   "QNP020": {
    "form": "family",
    "instance": "FA-VX-SPACING-561"
@@ -8527,6 +8514,30 @@
   "MNP024": {
    "form": "family",
    "instance": "FA-COORD-QUARTZ"
+  },
+  "BNP031": {
+   "form": "family",
+   "instance": "FA-ASM-RG-2BUK"
+  },
+  "BNP034": {
+   "form": "family",
+   "instance": "FA-ASM-EXT-1SVA"
+  },
+  "BNP036": {
+   "form": "family",
+   "instance": "FA-ASM-EXT-2FT1"
+  },
+  "BNI033": {
+   "form": "family",
+   "instance": "FA-DEB-1CWP"
+  },
+  "BND015": {
+   "form": "family",
+   "instance": "FA-QDES-2FT1"
+  },
+  "BNI037": {
+   "form": "family",
+   "instance": "FA-ASM-CAPS-1CWP"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."
