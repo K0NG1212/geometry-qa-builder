@@ -15,12 +15,14 @@ and hashes) and does not change how any question is built.
 """
 import json
 import math
+from pathlib import Path
 
 from task_families import kit
 from task_families.local_geometry import read_pdb_residues
 from task_families.protein_design import CA_WINDOW, CB_WINDOW, MARGIN, efficiency
 
 STRUCTURES = 'templates/structures.json'
+ROOT = Path(__file__).resolve().parent
 R0_CHOICES = (2.0, 2.5, 3.0, 4.0, 5.0, 6.0)            # nm; stated in the question as a model parameter
 TARGETS = (0.25, 0.5, 0.75)                             # FRET design targets
 MIN_SPACING = 3                                         # residues apart for any pair
@@ -30,11 +32,27 @@ SCOPE = {
     'fret_efficiency': '虚拟点探针（R0 为题设值）；不代表真实染料位置、连接臂或取向分布。',
     'disulfide_design': 'ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。',
     'fret_design': 'ATOM 片段逐行照抄；点偶极、R0 为题设模型参数（取向因子含于 R0）。',
+    'crystal': '常规晶胞按 CIF 全部对称操作展开（task_families/cell.py）；周期晶体；衍射题为运动学模型与原子序数权重。',
 }
+# Atomic numbers (angle-independent scattering weights stated in the question) and the X-ray lines already used by
+# diffraction_design in templates/family-manifest.json.
+Z = {'H': 1, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Na': 11, 'Mg': 12, 'Al': 13, 'Si': 14, 'P': 15, 'S': 16, 'Cl': 17, 'K': 19, 'Ca': 20,
+     'Ti': 22, 'Fe': 26, 'Co': 27, 'Ni': 28, 'Cu': 29, 'Zn': 30, 'Ga': 31, 'Ge': 32, 'Se': 34, 'Br': 35, 'Sr': 38, 'Zr': 40,
+     'Mo': 42, 'Cd': 48, 'Sn': 50, 'I': 53, 'Cs': 55, 'Ba': 56, 'W': 74, 'Au': 79, 'Pb': 82}
+LINES = (('Cu', 1.54056), ('Mo', 0.7093), ('Co', 1.78897), ('Cr', 2.2897))
 
 
 def load_structures(root):
     return json.loads((root / STRUCTURES).read_text(encoding='utf-8'))['structures']
+
+
+def load_crystals(root):
+    return json.loads((root / STRUCTURES).read_text(encoding='utf-8')).get('crystals', [])
+
+
+def structure_of(spec):
+    """Grouping key for sampling and capacity rows: PDB id or COD id."""
+    return spec.get('pdb') or spec.get('cod')
 
 
 def residues_of(root, s):
@@ -164,8 +182,45 @@ def fret_design(root, s):
                 yield spec
 
 
+# ------------------------------------------------------------------ crystal families (COD CIFs)
+def crystal_base(c, family, key):
+    from task_families.cell import read_cif
+    elements = sorted({e for e, _ in read_cif(ROOT / 'docs' / c['asset'])[1]})
+    return elements, dict(id='EN-COD%s-%s' % (c['cod'], key), family=family, source_kind='cif_general', asset=c['asset'],
+                          cod=c['cod'], name=c['name'], source='https://www.crystallography.net/cod/%s.html' % c['cod'],
+                          license='COD（公共领域 / CC0）', scope=SCOPE['crystal'])
+
+
+def coordination_shell(root, c):
+    elements, _ = crystal_base(c, 'coordination_shell', '')
+    for centre in elements:
+        for partner in elements:
+            _, spec = crystal_base(c, 'coordination_shell', 'COORD-%s-%s' % (centre, partner))
+            yield dict(spec, centre={'element': centre}, partner={'element': partner}, centre_text='%s atom' % centre,
+                       partner_text='%s atoms' % partner)
+
+
+def first_diffraction_peak(root, c):
+    elements, _ = crystal_base(c, 'first_diffraction_peak', '')
+    if any(e not in Z for e in elements):
+        return
+    for line, lam in LINES:
+        _, spec = crystal_base(c, 'first_diffraction_peak', 'PEAK-%s' % line)
+        yield dict(spec, weights={e: Z[e] for e in elements}, wavelength_A=lam)
+
+
+def kinematic_extinction(root, c):
+    elements, spec = crystal_base(c, 'kinematic_extinction', 'EXT')
+    if all(e in Z for e in elements):
+        yield dict(spec, weights={e: Z[e] for e in elements})
+
+
+CRYSTAL_ENUMERATORS = dict(coordination_shell=coordination_shell, first_diffraction_peak=first_diffraction_peak,
+                           kinematic_extinction=kinematic_extinction)
+
+
 ENUMERATORS = dict(backbone_torsion=backbone_torsion, secondary_structure=secondary_structure, fret_efficiency=fret_efficiency,
-                   disulfide_design=disulfide_design, fret_design=fret_design)
+                   disulfide_design=disulfide_design, fret_design=fret_design, **CRYSTAL_ENUMERATORS)
 
 
 def propose(root, families=None):
@@ -174,14 +229,18 @@ def propose(root, families=None):
     for family, fn in ENUMERATORS.items():
         if families and family not in families:
             continue
-        out[family] = [spec for s in load_structures(root) for spec in fn(root, s)]
+        items = load_crystals(root) if family in CRYSTAL_ENUMERATORS else load_structures(root)
+        out[family] = [spec for s in items for spec in fn(root, s)]
     return out
 
 
 def signature(spec):
     """What makes two instances the same question, independent of id and wording."""
-    keys = ('family', 'asset', 'chain', 'residue', 'torsion', 'donor', 'acceptor', 'target', 'r0_nm', 'atom')
+    keys = ('family', 'asset', 'chain', 'residue', 'torsion', 'donor', 'acceptor', 'target', 'r0_nm', 'atom', 'wavelength_A')
     sig = {k: spec.get(k) for k in keys}
+    for k in ('centre', 'partner'):
+        if spec.get(k):
+            sig[k] = spec[k].get('element')
     if spec.get('pairs'):
         sig['pairs'] = sorted(sorted(p) for p in spec['pairs'])
     return json.dumps(sig, sort_keys=True)

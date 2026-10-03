@@ -68,13 +68,16 @@ RULES = {'P': '简单立方（无中心化消光）', 'I': '体心 I：h+k+l 为
 
 
 def build(spec, root, seed):
-    from .cell import GeneralCell, general_table, read_cif
+    from .cell import GeneralCell, general_table, is_cubic, read_cif
     raw = (root / 'docs' / spec['asset']).read_bytes()
     general = spec['source_kind'] == 'cif_general'
     if general:
         params, rows = read_cif(root / 'docs' / spec['asset'])
-        cell = GeneralCell(**params)
-        a = cell.longest
+        if is_cubic(params):                 # cubic cell from the general reader: cubic path and centring rules
+            general, a = False, params['a']
+        else:
+            cell = GeneralCell(**params)
+            a = cell.longest
     elif spec['source_kind'] == 'cif':
         a, rows = cell_from_cif(root, spec['asset'])
     else:

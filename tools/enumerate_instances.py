@@ -40,7 +40,7 @@ def sample(proposals, per_structure, seed):
     for family, specs in proposals.items():
         by_structure = {}
         for spec in specs:
-            by_structure.setdefault(spec['pdb'], []).append(spec)
+            by_structure.setdefault(enumerators.structure_of(spec), []).append(spec)
         for pdb, group in sorted(by_structure.items()):
             group.sort(key=lambda s: kit.digest(seed, s['id']))
             chosen += group[:per_structure]
@@ -81,10 +81,10 @@ def run(out, per_structure=40, seed='geobench-enum-v1', families=None, date=None
                                ok=worst <= limit)
     rows = []
     for family, specs in proposals.items():
-        for pdb in sorted({s['pdb'] for s in specs}):
-            ids = [s['id'] for s in picked if s['family'] == family and s['pdb'] == pdb]
+        for pdb in sorted({enumerators.structure_of(s) for s in specs}):
+            ids = [s['id'] for s in picked if s['family'] == family and enumerators.structure_of(s) == pdb]
             built = [i for i in ids if i not in failed]
-            n = sum(s['pdb'] == pdb for s in specs)
+            n = sum(enumerators.structure_of(s) == pdb for s in specs)
             rows.append(dict(family=family, structure=pdb, proposals=n, sampled=len(ids), accepted=len(built),
                              rejected=dict(Counter(reason_kind(failed[i]) for i in ids if i in failed)),
                              checker_pass=sum(checked.get(i) == 'pass' for i in built),
@@ -96,7 +96,7 @@ def run(out, per_structure=40, seed='geobench-enum-v1', families=None, date=None
                   positions=report['correct_position_counts'])
     totals['position_balance_ok'] = all(b['ok'] for b in balance.values())
     summary = dict(kind='enumeration_capacity', date=date or datetime.date.today().isoformat(), seed=seed, sample_per_structure=per_structure,
-                   run=out.name, structures=[s['pdb'] for s in enumerators.load_structures(ROOT)], totals=totals, rows=rows, position_balance=balance, model_calls=0,
+                   run=out.name, structures=[s['pdb'] for s in enumerators.load_structures(ROOT)] + ['COD ' + c['cod'] for c in enumerators.load_crystals(ROOT)], totals=totals, rows=rows, position_balance=balance, model_calls=0,
                    note='Capacity probe only: nothing is admitted to the catalog. Estimates scale the acceptance rate of the sample to all '
                         'proposals of the same family and structure.')
     for path in (out / 'capacity.json', ROOT / 'docs/data/enumeration-capacity.json'):

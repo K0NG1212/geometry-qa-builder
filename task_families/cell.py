@@ -164,6 +164,12 @@ class CubicCell:
         return 'one conventional cubic cell'
 
 
+def is_cubic(params):
+    """Metrically cubic cell: such CIFs use the cubic path (cubic table header and the centring-rule misconceptions)."""
+    return (abs(params['a'] - params['b']) < 1e-6 and abs(params['a'] - params['c']) < 1e-6
+            and all(abs(params[k] - 90) < 1e-6 for k in ('alpha', 'beta', 'gamma')))
+
+
 def general_table(cell, rows, name):
     lines = [cell.header(name, len(rows))] + ['%s %.8f %.8f %.8f' % (e, *f) for e, f in rows]
     return '\n'.join(lines) + '\n'

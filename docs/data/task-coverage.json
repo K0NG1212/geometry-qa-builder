@@ -69,7 +69,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v21",
+ "family_run": "family-pilot-v22",
  "rows": [
   {
    "id": "global_extent",
@@ -2862,9 +2862,12 @@
     "second_allowed_peak",
     "d_equals_a",
     "cubic_d_formula",
-    "d_equals_c"
+    "d_equals_c",
+    "bragg_missing_factor_two",
+    "strongest_not_first",
+    "index_sum_for_root"
    ],
-   "four_choice_validation": "与正确值 > 0.3°；升序排列，秩按批次轮换。",
+   "four_choice_validation": "与正确值 > 0.3°；升序排列，秩按批次轮换。 枚举探针发现正确项多为 C（错误机制几乎都给出更小的角），v0.3.0 加入三种给出更大角的错误（布拉格式漏 2、把最强反射当第一个峰、立方公式把根号写成指数和），并把 d = a 的迷惑程度调为 2；立方晶胞即使经通用读取器也走立方路径。",
    "legacy_families": [
     "bragg_geometry_inference"
    ],

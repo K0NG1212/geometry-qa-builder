@@ -12,10 +12,10 @@ import itertools
 import math
 from . import kit
 import sys
-from .cell import CubicCell, GeneralCell, general_table, read_cif
+from .cell import CubicCell, GeneralCell, general_table, is_cubic, read_cif
 from .extinction import cell_from_xyz, table, parse_table, factor, rule_absent
 
-VERSION = '0.2.0'
+VERSION = '0.3.0'
 SHELL_TOL = 1e-3       # angstrom: distances closer than this belong to one shell
 
 
@@ -24,6 +24,9 @@ def load_cell(spec, root):
     raw = (root / 'docs' / spec['asset']).read_bytes()
     if spec['source_kind'] == 'cif_general':
         params, rows = read_cif(root / 'docs' / spec['asset'])
+        if is_cubic(params):
+            text = table(params['a'], rows, spec['name'])
+            return CubicCell(params['a']), parse_table(text), text, kit.sha256(raw)
         cell = GeneralCell(**params)
         text = general_table(cell, rows, spec['name'])
         return cell, parse_table(text), text, kit.sha256(raw)
@@ -209,8 +212,21 @@ def build_first_peak(spec, root, seed):
         cands.append(dict(rule='d_equals_c', value=two_theta(cell.params['c'], lam), plausibility=1, reason='把晶面间距当作晶格常数 c。'))
     cands += [dict(rule='theta_not_two_theta', value=first['tt'] / 2, plausibility=2, reason='报告了 θ 而非 2θ。'),
               dict(rule='second_allowed_peak', value=second['tt'], plausibility=2, reason='报告了第二个非零反射 %s。' % show(second['hkl'])),
-              dict(rule='d_equals_a', value=two_theta(cell.longest if cell.kind == 'cubic' else cell.params['a'], lam), plausibility=1,
+              dict(rule='d_equals_a', value=two_theta(cell.longest if cell.kind == 'cubic' else cell.params['a'], lam), plausibility=2,
                    reason='把晶面间距当作晶格常数 a。')]
+    # Larger-angle misconceptions (v0.3.0): without them every mechanism but one lies below the answer and the correct
+    # option was almost always C (enumeration probe runs/enum-v06).
+    half = lam / first['d']
+    if half <= 1:
+        cands.append(dict(rule='bragg_missing_factor_two', value=math.degrees(2 * math.asin(half)), plausibility=2,
+                          reason='布拉格公式漏掉 2（用 λ = d sinθ，与把二级衍射当一级相同）。'))
+    strongest = max(allowed, key=lambda r: (round(r['rel'], 9), -r['tt']))
+    if strongest['tt'] - first['tt'] > 1e-6:
+        cands.append(dict(rule='strongest_not_first', value=strongest['tt'], plausibility=2,
+                          reason='把最强的反射 %s 当作第一个峰（混淆了强度与出现角度）。' % show(strongest['hkl'])))
+    if cell.kind == 'cubic' and sum(first['hkl']) ** 2 != sum(x * x for x in first['hkl']):
+        cands.append(dict(rule='index_sum_for_root', value=two_theta(cell.a / sum(first['hkl']), lam), plausibility=2,
+                          reason='立方面间距公式把 √(h²+k²+l²) 写成 h+k+l。'))
     decimals, tol, sep = 2, '0.005', '0.30'
     chosen, rejected, goal, rank = kit.choose_numeric(first['tt'], cands, decimals=decimals, tolerance=tol, min_separation=sep,
                                                       seed=seed, context=spec['id'], lower=0, upper=180,

@@ -5,7 +5,7 @@
   "checkers": 43,
   "family_modules": 18,
   "manifest_instances": 183,
-  "run": "family-pilot-v21",
+  "run": "family-pilot-v22",
   "attempted": 183,
   "passed": 182,
   "failures": [
@@ -19,8 +19,8 @@
   "independent_checked": 182,
   "independent_passed": 182,
   "tests": 289,
-  "code_lines": 6382,
-  "generator_lines": 4366,
+  "code_lines": 6407,
+  "generator_lines": 4391,
   "checker_lines": 2016,
   "abilities": {
    "perception": 14,
@@ -35,9 +35,12 @@
   },
   "enumerated_families": [
    "backbone_torsion",
+   "coordination_shell",
    "disulfide_design",
+   "first_diffraction_peak",
    "fret_design",
    "fret_efficiency",
+   "kinematic_extinction",
    "secondary_structure"
   ],
   "model_calls": 0
@@ -259,22 +262,22 @@
     {
      "path": "templates/registry.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/templates/registry.json",
-     "lines": 2864,
-     "sha256": "9246225ee6e565704185d95583a8107595efbe783bc48d2dfd3a85a87f844a48"
+     "lines": 2867,
+     "sha256": "5163a50bd35022c62b875b7e3551e3d25e1962b22072524283c31e3d322c8685"
     },
     {
      "path": "enumerators.py",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/enumerators.py",
-     "lines": 187,
-     "sha256": "716e83a45a0a4d028f11dd8560aae8e3fb283e7d36952718470a870d9f98ec5f",
-     "source": "\"\"\"Instance enumerators: propose every candidate instance a structure offers.\n\nA family's build function already decides whether one instance is admissible (unique answer,\nseparated options, chain continuity, windows and margins). An enumerator only proposes specs:\nevery residue, every residue pair, every candidate set built around an admissible answer.\ntools/enumerate_instances.py builds the proposals, keeps the ones the family accepts and runs\nthe independent checkers on them. Enumerators may compute geometry to pre-select promising\nproposals (e.g. a pair inside the disulfide windows), but the answer, the options and every\nadmissibility check are decided by the family's build function and re-verified by the\nindependent checker; a proposal the family rejects is simply dropped.\n\nStructures come from templates/structures.json (assets already committed with source and licence).\nThis module lives outside task_families/ on purpose: it writes manifests (which every run snapshots\nand hashes) and does not change how any question is built.\n\"\"\"\nimport json\nimport math\n\nfrom task_families import kit\nfrom task_families.local_geometry import read_pdb_residues\nfrom task_families.protein_design import CA_WINDOW, CB_WINDOW, MARGIN, efficiency\n\nSTRUCTURES = 'templates/structures.json'\nR0_CHOICES = (2.0, 2.5, 3.0, 4.0, 5.0, 6.0)            # nm; stated in the question as a model parameter\nTARGETS = (0.25, 0.5, 0.75)                             # FRET design targets\nMIN_SPACING = 3                                         # residues apart for any pair\nSCOPE = {\n    'backbone_torsion': '只含残基 %d–%d 的 ATOM 记录；无替代构象；按 IUPAC 符号约定。',\n    'secondary_structure': '只含残基 %d–%d 的 ATOM 记录；参考构象中心为教科书典型值；条目的 HELIX/SHEET 记录作为审核证据，不给考生。',\n    'fret_efficiency': '虚拟点探针（R0 为题设值）；不代表真实染料位置、连接臂或取向分布。',\n    'disulfide_design': 'ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。',\n    'fret_design': 'ATOM 片段逐行照抄；点偶极、R0 为题设模型参数（取向因子含于 R0）。',\n}\n\n\ndef load_structures(root):\n    return json.loads((root / STRUCTURES).read_text(encoding='utf-8'))['structures']\n\n\ndef residues_of(root, s):\n    text = (root / 'docs' / s['asset']).read_text(encoding='utf-8')\n    residues, order, altloc = read_pdb_residues(text, s['chain'])\n    return residues, [n for n in order if n not in altloc]\n\n\ndef base(s, family, key, scope):\n    return dict(id='EN-%s-%s' % (s['pdb'], key), family=family, asset=s['asset'], pdb=s['pdb'], chain=s['chain'],\n                context=s['context'], source=s['source'], license=s['license'], scope=scope)\n\n\ndef pick_r0(r, *context):\n    \"\"\"A stated Förster radius with 0.6 <= r/R0 <= 1.6 (efficiencies away from 0 and 1), chosen by hash so that\n    r falls on both sides of R0. Always taking the nearest R0 left r < R0 in most proposals, where nearly every\n    misconception gives a smaller efficiency and the correct option became the largest one (found by the\n    capacity probe, runs/enum-v01). None if no stated value fits.\"\"\"\n    fits = [x for x in R0_CHOICES if 0.6 <= r / x <= 1.6]\n    return min(fits, key=lambda x: kit.digest('r0', *context, str(x))) if fits else None\n\n\ndef pairs_by_atom(residues, numbers, atom):\n    pts = [(n, residues[n]['atoms'][atom]) for n in numbers if atom in residues[n]['atoms']]\n    for a in range(len(pts)):\n        for b in range(a + 1, len(pts)):\n            (i, p), (j, q) = pts[a], pts[b]\n            if j - i >= MIN_SPACING:\n                yield i, j, math.dist(p, q) / 10\n\n\n# ------------------------------------------------------------------ per-residue families\ndef backbone_torsion(root, s):\n    if s['kind'] != 'protein':\n        return\n    residues, numbers = residues_of(root, s)\n    for n in numbers:\n        for kind in ('phi', 'psi'):\n            yield dict(base(s, 'backbone_torsion', 'TOR-%d-%s' % (n, kind.upper()), SCOPE['backbone_torsion'] % (n - 1, n + 1)),\n                       residue=n, torsion=kind)\n\n\ndef secondary_structure(root, s):\n    if s['kind'] != 'protein':\n        return\n    residues, numbers = residues_of(root, s)\n    for n in numbers:\n        yield dict(base(s, 'secondary_structure', 'SS-%d' % n, SCOPE['secondary_structure'] % (n - 1, n + 1)), residue=n)\n\n\n# ------------------------------------------------------------------ pair families\ndef fret_efficiency(root, s):\n    residues, numbers = residues_of(root, s)\n    atom = 'CA' if s['kind'] == 'protein' else \"C1'\"\n    for i, j, r in pairs_by_atom(residues, numbers, atom):\n        fits = [x for x in R0_CHOICES if 0.6 <= r / x <= 1.6]\n        # Stated R0 values on both sides of r, so the family can reach every answer rank (see scattering.build_fret).\n        if r >= 1.0 and any(x < r for x in fits) and any(x > r for x in fits):   # reasoning scale = r: 1-10 nm cell\n            yield dict(base(s, 'fret_efficiency', 'FRET-%d-%d' % (i, j), SCOPE['fret_efficiency']),\n                       donor=[i, atom], acceptor=[j, atom], R0_choices=fits, path_atom=atom)\n\n\ndef disulfide_rows(residues, numbers):\n    rows = []\n    usable = [n for n in numbers if residues[n]['name'] not in ('CYS', 'GLY') and {'CA', 'CB'} <= set(residues[n]['atoms'])]\n    for a in range(len(usable)):\n        for b in range(a + 1, len(usable)):\n            i, j = usable[a], usable[b]\n            if j - i < MIN_SPACING:\n                continue\n            ra, rb = residues[i]['atoms'], residues[j]['atoms']\n            dca, dcb = math.dist(ra['CA'], rb['CA']), math.dist(ra['CB'], rb['CB'])\n            miss_ca = max(CA_WINDOW[0] - dca, dca - CA_WINDOW[1], 0)\n            miss_cb = max(CB_WINDOW[0] - dcb, dcb - CB_WINDOW[1], 0)\n            if miss_ca == 0 and miss_cb == 0:\n                kind = 'pass'\n            elif 0 < max(miss_ca, miss_cb) < MARGIN:\n                continue                                      # too close to a window: the family rejects such sets\n            elif miss_ca == 0:\n                kind = 'calpha_only'\n            elif miss_cb == 0:\n                kind = 'cbeta_only'\n            elif dca <= 9.0:\n                kind = 'both_out'                             # plausible neighbours only\n            else:\n                continue\n            rows.append(dict(pair=[i, j], kind=kind))\n    return rows\n\n\ndef disulfide_design(root, s):\n    \"\"\"One proposal per admissible pair: the pair plus one distractor of each failure kind where available.\"\"\"\n    if s['kind'] != 'protein':\n        return\n    residues, numbers = residues_of(root, s)\n    rows = disulfide_rows(residues, numbers)\n    failing = {k: [r['pair'] for r in rows if r['kind'] == k] for k in ('calpha_only', 'cbeta_only', 'both_out')}\n    for good in (r['pair'] for r in rows if r['kind'] == 'pass'):\n        picks = []\n        for kind in ('calpha_only', 'cbeta_only', 'both_out'):\n            pool = sorted(failing[kind], key=lambda p: kit.digest(s['pdb'], str(good), str(p)))\n            picks += pool[:1]\n        rest = sorted([p for k in failing for p in failing[k] if p not in picks], key=lambda p: kit.digest(s['pdb'], str(good), 'fill', str(p)))\n        picks += rest[:3 - len(picks)]\n        if len(picks) == 3:\n            yield dict(base(s, 'disulfide_design', 'DS-%d-%d' % tuple(good), SCOPE['disulfide_design']), pairs=[good] + picks)\n\n\ndef fret_design(root, s):\n    \"\"\"For each target, each pair whose efficiency is within 0.03 of the target, plus three pairs clearly farther away.\"\"\"\n    residues, numbers = residues_of(root, s)\n    atom = 'CA' if s['kind'] == 'protein' else 'P'\n    pairs = [(i, j, r) for i, j, r in pairs_by_atom(residues, numbers, atom) if 1.0 <= r < 10]\n    for t in TARGETS:\n        for i, j, r in pairs:\n            r0 = pick_r0(r, s['pdb'], str(t), str(i), str(j))\n            if not r0 or abs(efficiency(r, r0) - t) > 0.03:\n                continue\n            d = abs(efficiency(r, r0) - t)\n            far = [(a, b) for a, b, q in pairs if {a, b}.isdisjoint({i, j}) and abs(efficiency(q, r0) - t) >= max(1.5 * d, d + 0.05) + 0.02]\n            far.sort(key=lambda p: kit.digest(s['pdb'], str(t), str((i, j)), str(p)))\n            if len(far) >= 3:\n                spec = dict(base(s, 'fret_design', 'FD-%02d-%d-%d' % (round(t * 100), i, j), SCOPE['fret_design']),\n                            atom=atom, r0_nm=r0, target=t, pairs=[[i, j]] + [list(p) for p in far[:3]])\n                if s['kind'] == 'nucleic':\n                    spec['nucleic'] = True\n                yield spec\n\n\nENUMERATORS = dict(backbone_torsion=backbone_torsion, secondary_structure=secondary_structure, fret_efficiency=fret_efficiency,\n                   disulfide_design=disulfide_design, fret_design=fret_design)\n\n\ndef propose(root, families=None):\n    \"\"\"{family: [spec, ...]} over every structure; ids are unique and deterministic.\"\"\"\n    out = {}\n    for family, fn in ENUMERATORS.items():\n        if families and family not in families:\n            continue\n        out[family] = [spec for s in load_structures(root) for spec in fn(root, s)]\n    return out\n\n\ndef signature(spec):\n    \"\"\"What makes two instances the same question, independent of id and wording.\"\"\"\n    keys = ('family', 'asset', 'chain', 'residue', 'torsion', 'donor', 'acceptor', 'target', 'r0_nm', 'atom')\n    sig = {k: spec.get(k) for k in keys}\n    if spec.get('pairs'):\n        sig['pairs'] = sorted(sorted(p) for p in spec['pairs'])\n    return json.dumps(sig, sort_keys=True)\n"
+     "lines": 246,
+     "sha256": "c977d07f273ff6a67c7911099f121902d9c40e1a5b1ff36a7706ac86bc57c263",
+     "source": "\"\"\"Instance enumerators: propose every candidate instance a structure offers.\n\nA family's build function already decides whether one instance is admissible (unique answer,\nseparated options, chain continuity, windows and margins). An enumerator only proposes specs:\nevery residue, every residue pair, every candidate set built around an admissible answer.\ntools/enumerate_instances.py builds the proposals, keeps the ones the family accepts and runs\nthe independent checkers on them. Enumerators may compute geometry to pre-select promising\nproposals (e.g. a pair inside the disulfide windows), but the answer, the options and every\nadmissibility check are decided by the family's build function and re-verified by the\nindependent checker; a proposal the family rejects is simply dropped.\n\nStructures come from templates/structures.json (assets already committed with source and licence).\nThis module lives outside task_families/ on purpose: it writes manifests (which every run snapshots\nand hashes) and does not change how any question is built.\n\"\"\"\nimport json\nimport math\nfrom pathlib import Path\n\nfrom task_families import kit\nfrom task_families.local_geometry import read_pdb_residues\nfrom task_families.protein_design import CA_WINDOW, CB_WINDOW, MARGIN, efficiency\n\nSTRUCTURES = 'templates/structures.json'\nROOT = Path(__file__).resolve().parent\nR0_CHOICES = (2.0, 2.5, 3.0, 4.0, 5.0, 6.0)            # nm; stated in the question as a model parameter\nTARGETS = (0.25, 0.5, 0.75)                             # FRET design targets\nMIN_SPACING = 3                                         # residues apart for any pair\nSCOPE = {\n    'backbone_torsion': '只含残基 %d–%d 的 ATOM 记录；无替代构象；按 IUPAC 符号约定。',\n    'secondary_structure': '只含残基 %d–%d 的 ATOM 记录；参考构象中心为教科书典型值；条目的 HELIX/SHEET 记录作为审核证据，不给考生。',\n    'fret_efficiency': '虚拟点探针（R0 为题设值）；不代表真实染料位置、连接臂或取向分布。',\n    'disulfide_design': 'ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。',\n    'fret_design': 'ATOM 片段逐行照抄；点偶极、R0 为题设模型参数（取向因子含于 R0）。',\n    'crystal': '常规晶胞按 CIF 全部对称操作展开（task_families/cell.py）；周期晶体；衍射题为运动学模型与原子序数权重。',\n}\n# Atomic numbers (angle-independent scattering weights stated in the question) and the X-ray lines already used by\n# diffraction_design in templates/family-manifest.json.\nZ = {'H': 1, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Na': 11, 'Mg': 12, 'Al': 13, 'Si': 14, 'P': 15, 'S': 16, 'Cl': 17, 'K': 19, 'Ca': 20,\n     'Ti': 22, 'Fe': 26, 'Co': 27, 'Ni': 28, 'Cu': 29, 'Zn': 30, 'Ga': 31, 'Ge': 32, 'Se': 34, 'Br': 35, 'Sr': 38, 'Zr': 40,\n     'Mo': 42, 'Cd': 48, 'Sn': 50, 'I': 53, 'Cs': 55, 'Ba': 56, 'W': 74, 'Au': 79, 'Pb': 82}\nLINES = (('Cu', 1.54056), ('Mo', 0.7093), ('Co', 1.78897), ('Cr', 2.2897))\n\n\ndef load_structures(root):\n    return json.loads((root / STRUCTURES).read_text(encoding='utf-8'))['structures']\n\n\ndef load_crystals(root):\n    return json.loads((root / STRUCTURES).read_text(encoding='utf-8')).get('crystals', [])\n\n\ndef structure_of(spec):\n    \"\"\"Grouping key for sampling and capacity rows: PDB id or COD id.\"\"\"\n    return spec.get('pdb') or spec.get('cod')\n\n\ndef residues_of(root, s):\n    text = (root / 'docs' / s['asset']).read_text(encoding='utf-8')\n    residues, order, altloc = read_pdb_residues(text, s['chain'])\n    return residues, [n for n in order if n not in altloc]\n\n\ndef base(s, family, key, scope):\n    return dict(id='EN-%s-%s' % (s['pdb'], key), family=family, asset=s['asset'], pdb=s['pdb'], chain=s['chain'],\n                context=s['context'], source=s['source'], license=s['license'], scope=scope)\n\n\ndef pick_r0(r, *context):\n    \"\"\"A stated Förster radius with 0.6 <= r/R0 <= 1.6 (efficiencies away from 0 and 1), chosen by hash so that\n    r falls on both sides of R0. Always taking the nearest R0 left r < R0 in most proposals, where nearly every\n    misconception gives a smaller efficiency and the correct option became the largest one (found by the\n    capacity probe, runs/enum-v01). None if no stated value fits.\"\"\"\n    fits = [x for x in R0_CHOICES if 0.6 <= r / x <= 1.6]\n    return min(fits, key=lambda x: kit.digest('r0', *context, str(x))) if fits else None\n\n\ndef pairs_by_atom(residues, numbers, atom):\n    pts = [(n, residues[n]['atoms'][atom]) for n in numbers if atom in residues[n]['atoms']]\n    for a in range(len(pts)):\n        for b in range(a + 1, len(pts)):\n            (i, p), (j, q) = pts[a], pts[b]\n            if j - i >= MIN_SPACING:\n                yield i, j, math.dist(p, q) / 10\n\n\n# ------------------------------------------------------------------ per-residue families\ndef backbone_torsion(root, s):\n    if s['kind'] != 'protein':\n        return\n    residues, numbers = residues_of(root, s)\n    for n in numbers:\n        for kind in ('phi', 'psi'):\n            yield dict(base(s, 'backbone_torsion', 'TOR-%d-%s' % (n, kind.upper()), SCOPE['backbone_torsion'] % (n - 1, n + 1)),\n                       residue=n, torsion=kind)\n\n\ndef secondary_structure(root, s):\n    if s['kind'] != 'protein':\n        return\n    residues, numbers = residues_of(root, s)\n    for n in numbers:\n        yield dict(base(s, 'secondary_structure', 'SS-%d' % n, SCOPE['secondary_structure'] % (n - 1, n + 1)), residue=n)\n\n\n# ------------------------------------------------------------------ pair families\ndef fret_efficiency(root, s):\n    residues, numbers = residues_of(root, s)\n    atom = 'CA' if s['kind'] == 'protein' else \"C1'\"\n    for i, j, r in pairs_by_atom(residues, numbers, atom):\n        fits = [x for x in R0_CHOICES if 0.6 <= r / x <= 1.6]\n        # Stated R0 values on both sides of r, so the family can reach every answer rank (see scattering.build_fret).\n        if r >= 1.0 and any(x < r for x in fits) and any(x > r for x in fits):   # reasoning scale = r: 1-10 nm cell\n            yield dict(base(s, 'fret_efficiency', 'FRET-%d-%d' % (i, j), SCOPE['fret_efficiency']),\n                       donor=[i, atom], acceptor=[j, atom], R0_choices=fits, path_atom=atom)\n\n\ndef disulfide_rows(residues, numbers):\n    rows = []\n    usable = [n for n in numbers if residues[n]['name'] not in ('CYS', 'GLY') and {'CA', 'CB'} <= set(residues[n]['atoms'])]\n    for a in range(len(usable)):\n        for b in range(a + 1, len(usable)):\n            i, j = usable[a], usable[b]\n            if j - i < MIN_SPACING:\n                continue\n            ra, rb = residues[i]['atoms'], residues[j]['atoms']\n            dca, dcb = math.dist(ra['CA'], rb['CA']), math.dist(ra['CB'], rb['CB'])\n            miss_ca = max(CA_WINDOW[0] - dca, dca - CA_WINDOW[1], 0)\n            miss_cb = max(CB_WINDOW[0] - dcb, dcb - CB_WINDOW[1], 0)\n            if miss_ca == 0 and miss_cb == 0:\n                kind = 'pass'\n            elif 0 < max(miss_ca, miss_cb) < MARGIN:\n                continue                                      # too close to a window: the family rejects such sets\n            elif miss_ca == 0:\n                kind = 'calpha_only'\n            elif miss_cb == 0:\n                kind = 'cbeta_only'\n            elif dca <= 9.0:\n                kind = 'both_out'                             # plausible neighbours only\n            else:\n                continue\n            rows.append(dict(pair=[i, j], kind=kind))\n    return rows\n\n\ndef disulfide_design(root, s):\n    \"\"\"One proposal per admissible pair: the pair plus one distractor of each failure kind where available.\"\"\"\n    if s['kind'] != 'protein':\n        return\n    residues, numbers = residues_of(root, s)\n    rows = disulfide_rows(residues, numbers)\n    failing = {k: [r['pair'] for r in rows if r['kind'] == k] for k in ('calpha_only', 'cbeta_only', 'both_out')}\n    for good in (r['pair'] for r in rows if r['kind'] == 'pass'):\n        picks = []\n        for kind in ('calpha_only', 'cbeta_only', 'both_out'):\n            pool = sorted(failing[kind], key=lambda p: kit.digest(s['pdb'], str(good), str(p)))\n            picks += pool[:1]\n        rest = sorted([p for k in failing for p in failing[k] if p not in picks], key=lambda p: kit.digest(s['pdb'], str(good), 'fill', str(p)))\n        picks += rest[:3 - len(picks)]\n        if len(picks) == 3:\n            yield dict(base(s, 'disulfide_design', 'DS-%d-%d' % tuple(good), SCOPE['disulfide_design']), pairs=[good] + picks)\n\n\ndef fret_design(root, s):\n    \"\"\"For each target, each pair whose efficiency is within 0.03 of the target, plus three pairs clearly farther away.\"\"\"\n    residues, numbers = residues_of(root, s)\n    atom = 'CA' if s['kind'] == 'protein' else 'P'\n    pairs = [(i, j, r) for i, j, r in pairs_by_atom(residues, numbers, atom) if 1.0 <= r < 10]\n    for t in TARGETS:\n        for i, j, r in pairs:\n            r0 = pick_r0(r, s['pdb'], str(t), str(i), str(j))\n            if not r0 or abs(efficiency(r, r0) - t) > 0.03:\n                continue\n            d = abs(efficiency(r, r0) - t)\n            far = [(a, b) for a, b, q in pairs if {a, b}.isdisjoint({i, j}) and abs(efficiency(q, r0) - t) >= max(1.5 * d, d + 0.05) + 0.02]\n            far.sort(key=lambda p: kit.digest(s['pdb'], str(t), str((i, j)), str(p)))\n            if len(far) >= 3:\n                spec = dict(base(s, 'fret_design', 'FD-%02d-%d-%d' % (round(t * 100), i, j), SCOPE['fret_design']),\n                            atom=atom, r0_nm=r0, target=t, pairs=[[i, j]] + [list(p) for p in far[:3]])\n                if s['kind'] == 'nucleic':\n                    spec['nucleic'] = True\n                yield spec\n\n\n# ------------------------------------------------------------------ crystal families (COD CIFs)\ndef crystal_base(c, family, key):\n    from task_families.cell import read_cif\n    elements = sorted({e for e, _ in read_cif(ROOT / 'docs' / c['asset'])[1]})\n    return elements, dict(id='EN-COD%s-%s' % (c['cod'], key), family=family, source_kind='cif_general', asset=c['asset'],\n                          cod=c['cod'], name=c['name'], source='https://www.crystallography.net/cod/%s.html' % c['cod'],\n                          license='COD（公共领域 / CC0）', scope=SCOPE['crystal'])\n\n\ndef coordination_shell(root, c):\n    elements, _ = crystal_base(c, 'coordination_shell', '')\n    for centre in elements:\n        for partner in elements:\n            _, spec = crystal_base(c, 'coordination_shell', 'COORD-%s-%s' % (centre, partner))\n            yield dict(spec, centre={'element': centre}, partner={'element': partner}, centre_text='%s atom' % centre,\n                       partner_text='%s atoms' % partner)\n\n\ndef first_diffraction_peak(root, c):\n    elements, _ = crystal_base(c, 'first_diffraction_peak', '')\n    if any(e not in Z for e in elements):\n        return\n    for line, lam in LINES:\n        _, spec = crystal_base(c, 'first_diffraction_peak', 'PEAK-%s' % line)\n        yield dict(spec, weights={e: Z[e] for e in elements}, wavelength_A=lam)\n\n\ndef kinematic_extinction(root, c):\n    elements, spec = crystal_base(c, 'kinematic_extinction', 'EXT')\n    if all(e in Z for e in elements):\n        yield dict(spec, weights={e: Z[e] for e in elements})\n\n\nCRYSTAL_ENUMERATORS = dict(coordination_shell=coordination_shell, first_diffraction_peak=first_diffraction_peak,\n                           kinematic_extinction=kinematic_extinction)\n\n\nENUMERATORS = dict(backbone_torsion=backbone_torsion, secondary_structure=secondary_structure, fret_efficiency=fret_efficiency,\n                   disulfide_design=disulfide_design, fret_design=fret_design, **CRYSTAL_ENUMERATORS)\n\n\ndef propose(root, families=None):\n    \"\"\"{family: [spec, ...]} over every structure; ids are unique and deterministic.\"\"\"\n    out = {}\n    for family, fn in ENUMERATORS.items():\n        if families and family not in families:\n            continue\n        items = load_crystals(root) if family in CRYSTAL_ENUMERATORS else load_structures(root)\n        out[family] = [spec for s in items for spec in fn(root, s)]\n    return out\n\n\ndef signature(spec):\n    \"\"\"What makes two instances the same question, independent of id and wording.\"\"\"\n    keys = ('family', 'asset', 'chain', 'residue', 'torsion', 'donor', 'acceptor', 'target', 'r0_nm', 'atom', 'wavelength_A')\n    sig = {k: spec.get(k) for k in keys}\n    for k in ('centre', 'partner'):\n        if spec.get(k):\n            sig[k] = spec[k].get('element')\n    if spec.get('pairs'):\n        sig['pairs'] = sorted(sorted(p) for p in spec['pairs'])\n    return json.dumps(sig, sort_keys=True)\n"
     },
     {
      "path": "tools/enumerate_instances.py",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/tools/enumerate_instances.py",
      "lines": 123,
-     "sha256": "d0b53d86174a8333efb16ec98b14b4c039dfb7267b11bdbb42bfc2a73ddaef7a",
-     "source": "\"\"\"Enumerate candidate instances, build a deterministic sample and check it independently.\n\n  python tools/enumerate_instances.py --out runs/enum-v01 [--sample 40] [--families fret_design,...]\n\n1. enumerators.propose lists every candidate spec per family and structure (templates/structures.json);\n   candidates already in templates/family-manifest.json are left out.\n2. A deterministic sample (SHA-256 order, at most --sample per family and structure) goes into\n   <out>/manifest.json and is generated with family_engine.run (the family decides admissibility).\n3. verify_all re-checks every generated instance with the independent checkers.\n4. A capacity summary (no answers) is written to <out>/capacity.json and docs/data/enumeration-capacity.json:\n   proposals, sampled, accepted by the family, rejection reasons, checker agreement and an estimate\n   of admissible instances (proposals x acceptance rate in the sample).\n\nNothing is admitted to the catalog: batch production starts only after the family passes L1/L2 review.\nAnswer positions are counted per family with the production tolerance max(4, 15% of instances).\nExit status 1 if any independent check fails or any family's answer positions are out of balance.\n\"\"\"\nimport argparse\nimport datetime\nimport json\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nsys.path.insert(0, str(ROOT))\nimport enumerators  # noqa: E402\nimport family_engine  # noqa: E402\nimport verify_all  # noqa: E402\nfrom task_families import kit  # noqa: E402\n\n\ndef existing_signatures():\n    manifest = json.loads((ROOT / 'templates/family-manifest.json').read_text(encoding='utf-8'))\n    return {enumerators.signature(spec) for spec in manifest['items']}\n\n\ndef sample(proposals, per_structure, seed):\n    chosen = []\n    for family, specs in proposals.items():\n        by_structure = {}\n        for spec in specs:\n            by_structure.setdefault(spec['pdb'], []).append(spec)\n        for pdb, group in sorted(by_structure.items()):\n            group.sort(key=lambda s: kit.digest(seed, s['id']))\n            chosen += group[:per_structure]\n    return chosen\n\n\ndef reason_kind(text):\n    \"\"\"Short bucket for a rejection message (the full text stays in the run).\"\"\"\n    return text.split(':')[0].split(' (')[0][:80]\n\n\ndef run(out, per_structure=40, seed='geobench-enum-v1', families=None, date=None):\n    out = Path(out)\n    if out.exists():\n        raise SystemExit('Output exists; use a new directory under runs/')\n    seen = existing_signatures()\n    proposals = {f: [s for s in specs if enumerators.signature(s) not in seen]\n                 for f, specs in enumerators.propose(ROOT, families).items()}\n    picked = sample(proposals, per_structure, seed)\n    out.mkdir(parents=True)\n    manifest = dict(kind='enumerated_sample', version='0.1.0', seed=seed, items=picked)\n    (out / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    report = family_engine.run(out / 'manifest.json', out / 'run', seed)\n    check = verify_all.verify(*verify_all.load(run=out / 'run'))\n    (out / 'independent-check.json').write_text(json.dumps(check, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    failed = {f['id']: f['reason'] for f in report['failures']}\n    checked = {r['id']: r['status'] for r in check['results']}\n    keys = json.loads((out / 'run/private-answers.json').read_text(encoding='utf-8'))\n    positions = {}\n    for k in keys:\n        positions.setdefault(k['family'], Counter())[k['correct_label']] += 1\n    balance = {}\n    for family, c in positions.items():\n        n = sum(c.values())\n        limit = max(4, 0.15 * n)                               # same tolerance as the production batches\n        worst = max(abs(c.get(l, 0) - n / 4) for l in kit.LABELS)\n        balance[family] = dict(counts={l: c.get(l, 0) for l in kit.LABELS}, max_deviation=round(worst, 1), tolerance=round(limit, 1),\n                               ok=worst <= limit)\n    rows = []\n    for family, specs in proposals.items():\n        for pdb in sorted({s['pdb'] for s in specs}):\n            ids = [s['id'] for s in picked if s['family'] == family and s['pdb'] == pdb]\n            built = [i for i in ids if i not in failed]\n            n = sum(s['pdb'] == pdb for s in specs)\n            rows.append(dict(family=family, structure=pdb, proposals=n, sampled=len(ids), accepted=len(built),\n                             rejected=dict(Counter(reason_kind(failed[i]) for i in ids if i in failed)),\n                             checker_pass=sum(checked.get(i) == 'pass' for i in built),\n                             checker_fail=sum(checked.get(i) not in (None, 'pass') for i in built),\n                             estimated_admissible=round(n * len(built) / len(ids)) if ids else 0))\n    totals = dict(proposals=sum(r['proposals'] for r in rows), sampled=len(picked), accepted=report['passed'],\n                  checker_pass=check['passed'], checker_checked=check['checked'],\n                  estimated_admissible=sum(r['estimated_admissible'] for r in rows),\n                  positions=report['correct_position_counts'])\n    totals['position_balance_ok'] = all(b['ok'] for b in balance.values())\n    summary = dict(kind='enumeration_capacity', date=date or datetime.date.today().isoformat(), seed=seed, sample_per_structure=per_structure,\n                   run=out.name, structures=[s['pdb'] for s in enumerators.load_structures(ROOT)], totals=totals, rows=rows, position_balance=balance, model_calls=0,\n                   note='Capacity probe only: nothing is admitted to the catalog. Estimates scale the acceptance rate of the sample to all '\n                        'proposals of the same family and structure.')\n    for path in (out / 'capacity.json', ROOT / 'docs/data/enumeration-capacity.json'):\n        path.write_text(json.dumps(summary, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    return summary, check\n\n\nif __name__ == '__main__':\n    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)\n    p.add_argument('--out', required=True)\n    p.add_argument('--sample', type=int, default=40)\n    p.add_argument('--seed', default='geobench-enum-v1')\n    p.add_argument('--families')\n    p.add_argument('--date')\n    a = p.parse_args()\n    summary, check = run(a.out, a.sample, a.seed, a.families.split(',') if a.families else None, a.date)\n    print(json.dumps(summary['totals'], ensure_ascii=False))\n    for r in summary['rows']:\n        print(r['family'], r['structure'], r['proposals'], r['sampled'], r['accepted'], r['checker_pass'], r['rejected'])\n    for f, b in summary['position_balance'].items():\n        print('positions', f, b['counts'], 'ok' if b['ok'] else 'IMBALANCED')\n    if check['failed']:\n        print('INDEPENDENT CHECK FAILURES:', json.dumps(check['failed'][:20], ensure_ascii=False))\n    sys.exit(0 if check['passed'] == check['checked'] and summary['totals']['position_balance_ok'] else 1)\n"
+     "sha256": "ddceec4bc6503baf0878ee4ecb0a230a1fcdd8fd5a588b56724f0da2d7684923",
+     "source": "\"\"\"Enumerate candidate instances, build a deterministic sample and check it independently.\n\n  python tools/enumerate_instances.py --out runs/enum-v01 [--sample 40] [--families fret_design,...]\n\n1. enumerators.propose lists every candidate spec per family and structure (templates/structures.json);\n   candidates already in templates/family-manifest.json are left out.\n2. A deterministic sample (SHA-256 order, at most --sample per family and structure) goes into\n   <out>/manifest.json and is generated with family_engine.run (the family decides admissibility).\n3. verify_all re-checks every generated instance with the independent checkers.\n4. A capacity summary (no answers) is written to <out>/capacity.json and docs/data/enumeration-capacity.json:\n   proposals, sampled, accepted by the family, rejection reasons, checker agreement and an estimate\n   of admissible instances (proposals x acceptance rate in the sample).\n\nNothing is admitted to the catalog: batch production starts only after the family passes L1/L2 review.\nAnswer positions are counted per family with the production tolerance max(4, 15% of instances).\nExit status 1 if any independent check fails or any family's answer positions are out of balance.\n\"\"\"\nimport argparse\nimport datetime\nimport json\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nsys.path.insert(0, str(ROOT))\nimport enumerators  # noqa: E402\nimport family_engine  # noqa: E402\nimport verify_all  # noqa: E402\nfrom task_families import kit  # noqa: E402\n\n\ndef existing_signatures():\n    manifest = json.loads((ROOT / 'templates/family-manifest.json').read_text(encoding='utf-8'))\n    return {enumerators.signature(spec) for spec in manifest['items']}\n\n\ndef sample(proposals, per_structure, seed):\n    chosen = []\n    for family, specs in proposals.items():\n        by_structure = {}\n        for spec in specs:\n            by_structure.setdefault(enumerators.structure_of(spec), []).append(spec)\n        for pdb, group in sorted(by_structure.items()):\n            group.sort(key=lambda s: kit.digest(seed, s['id']))\n            chosen += group[:per_structure]\n    return chosen\n\n\ndef reason_kind(text):\n    \"\"\"Short bucket for a rejection message (the full text stays in the run).\"\"\"\n    return text.split(':')[0].split(' (')[0][:80]\n\n\ndef run(out, per_structure=40, seed='geobench-enum-v1', families=None, date=None):\n    out = Path(out)\n    if out.exists():\n        raise SystemExit('Output exists; use a new directory under runs/')\n    seen = existing_signatures()\n    proposals = {f: [s for s in specs if enumerators.signature(s) not in seen]\n                 for f, specs in enumerators.propose(ROOT, families).items()}\n    picked = sample(proposals, per_structure, seed)\n    out.mkdir(parents=True)\n    manifest = dict(kind='enumerated_sample', version='0.1.0', seed=seed, items=picked)\n    (out / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    report = family_engine.run(out / 'manifest.json', out / 'run', seed)\n    check = verify_all.verify(*verify_all.load(run=out / 'run'))\n    (out / 'independent-check.json').write_text(json.dumps(check, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    failed = {f['id']: f['reason'] for f in report['failures']}\n    checked = {r['id']: r['status'] for r in check['results']}\n    keys = json.loads((out / 'run/private-answers.json').read_text(encoding='utf-8'))\n    positions = {}\n    for k in keys:\n        positions.setdefault(k['family'], Counter())[k['correct_label']] += 1\n    balance = {}\n    for family, c in positions.items():\n        n = sum(c.values())\n        limit = max(4, 0.15 * n)                               # same tolerance as the production batches\n        worst = max(abs(c.get(l, 0) - n / 4) for l in kit.LABELS)\n        balance[family] = dict(counts={l: c.get(l, 0) for l in kit.LABELS}, max_deviation=round(worst, 1), tolerance=round(limit, 1),\n                               ok=worst <= limit)\n    rows = []\n    for family, specs in proposals.items():\n        for pdb in sorted({enumerators.structure_of(s) for s in specs}):\n            ids = [s['id'] for s in picked if s['family'] == family and enumerators.structure_of(s) == pdb]\n            built = [i for i in ids if i not in failed]\n            n = sum(enumerators.structure_of(s) == pdb for s in specs)\n            rows.append(dict(family=family, structure=pdb, proposals=n, sampled=len(ids), accepted=len(built),\n                             rejected=dict(Counter(reason_kind(failed[i]) for i in ids if i in failed)),\n                             checker_pass=sum(checked.get(i) == 'pass' for i in built),\n                             checker_fail=sum(checked.get(i) not in (None, 'pass') for i in built),\n                             estimated_admissible=round(n * len(built) / len(ids)) if ids else 0))\n    totals = dict(proposals=sum(r['proposals'] for r in rows), sampled=len(picked), accepted=report['passed'],\n                  checker_pass=check['passed'], checker_checked=check['checked'],\n                  estimated_admissible=sum(r['estimated_admissible'] for r in rows),\n                  positions=report['correct_position_counts'])\n    totals['position_balance_ok'] = all(b['ok'] for b in balance.values())\n    summary = dict(kind='enumeration_capacity', date=date or datetime.date.today().isoformat(), seed=seed, sample_per_structure=per_structure,\n                   run=out.name, structures=[s['pdb'] for s in enumerators.load_structures(ROOT)] + ['COD ' + c['cod'] for c in enumerators.load_crystals(ROOT)], totals=totals, rows=rows, position_balance=balance, model_calls=0,\n                   note='Capacity probe only: nothing is admitted to the catalog. Estimates scale the acceptance rate of the sample to all '\n                        'proposals of the same family and structure.')\n    for path in (out / 'capacity.json', ROOT / 'docs/data/enumeration-capacity.json'):\n        path.write_text(json.dumps(summary, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    return summary, check\n\n\nif __name__ == '__main__':\n    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)\n    p.add_argument('--out', required=True)\n    p.add_argument('--sample', type=int, default=40)\n    p.add_argument('--seed', default='geobench-enum-v1')\n    p.add_argument('--families')\n    p.add_argument('--date')\n    a = p.parse_args()\n    summary, check = run(a.out, a.sample, a.seed, a.families.split(',') if a.families else None, a.date)\n    print(json.dumps(summary['totals'], ensure_ascii=False))\n    for r in summary['rows']:\n        print(r['family'], r['structure'], r['proposals'], r['sampled'], r['accepted'], r['checker_pass'], r['rejected'])\n    for f, b in summary['position_balance'].items():\n        print('positions', f, b['counts'], 'ok' if b['ok'] else 'IMBALANCED')\n    if check['failed']:\n        print('INDEPENDENT CHECK FAILURES:', json.dumps(check['failed'][:20], ensure_ascii=False))\n    sys.exit(0 if check['passed'] == check['checked'] and summary['totals']['position_balance_ok'] else 1)\n"
     }
    ]
   },
@@ -685,7 +688,7 @@
     "materials 0.1-1",
     "materials 1-10"
    ],
-   "enumerator": false,
+   "enumerator": true,
    "example": "FA-EXT-NACL",
    "checker_method": "separate cos/sin sums over the student table"
   },
@@ -862,7 +865,7 @@
    "id": "coordination_shell",
    "ability": "perception",
    "output": "choice",
-   "version": "0.2.0",
+   "version": "0.3.0",
    "module": "task_families/crystal.py",
    "module_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/task_families/crystal.py",
    "route": "general",
@@ -891,7 +894,7 @@
     "materials 0.1-1",
     "materials 1-10"
    ],
-   "enumerator": false,
+   "enumerator": true,
    "example": "FA-COORD-MGO",
    "checker_method": "own periodic neighbour search over 27 cells"
   },
@@ -899,7 +902,7 @@
    "id": "first_diffraction_peak",
    "ability": "inference",
    "output": "choice+numeric",
-   "version": "0.2.0",
+   "version": "0.3.0",
    "module": "task_families/crystal.py",
    "module_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/task_families/crystal.py",
    "route": "general",
@@ -916,7 +919,10 @@
      "second_allowed_peak",
      "d_equals_a",
      "cubic_d_formula",
-     "d_equals_c"
+     "d_equals_c",
+     "bragg_missing_factor_two",
+     "strongest_not_first",
+     "index_sum_for_root"
     ],
     "validation": "独立检查器（checkers/migrated.py:first_diffraction_peak）对 h、k、l ≤ 5 的全部反射用自己的结构因子求和，取 |F| ≠ 0 的最小 2θ，并核对来源文件哈希。",
     "limits": "运动学近似、零角度原子序数权重，不含原子散射因子的角度依赖、热振动与反常散射；只问一级衍射；不支持部分占位。"
@@ -929,7 +935,7 @@
     "materials 0.1-1",
     "materials 1-10"
    ],
-   "enumerator": false,
+   "enumerator": true,
    "example": "FA-PEAK-NACL",
    "checker_method": "all (h k l) up to 5 with own structure-factor sum"
   },
@@ -2120,25 +2126,34 @@
   "date": "2026-10-03",
   "seed": "geobench-enum-v1",
   "sample_per_structure": 40,
-  "run": "enum-v05",
+  "run": "enum-v11",
   "structures": [
    "1UBQ",
    "1CRN",
    "6LYZ",
-   "1EHZ"
+   "1EHZ",
+   "COD 9008678",
+   "COD 1000053",
+   "COD 9008789",
+   "COD 9008564",
+   "COD 9008565",
+   "COD 9004141",
+   "COD 9004137",
+   "COD 2300112",
+   "COD 5000035"
   ],
   "totals": {
-   "proposals": 7208,
-   "sampled": 585,
-   "accepted": 520,
-   "checker_pass": 520,
-   "checker_checked": 520,
-   "estimated_admissible": 7064,
+   "proposals": 7273,
+   "sampled": 650,
+   "accepted": 583,
+   "checker_pass": 583,
+   "checker_checked": 583,
+   "estimated_admissible": 7127,
    "positions": {
-    "A": 129,
-    "B": 140,
-    "C": 138,
-    "D": 113
+    "A": 145,
+    "B": 159,
+    "C": 153,
+    "D": 126
    },
    "position_balance_ok": true
   },
@@ -2344,6 +2359,252 @@
     "checker_pass": 40,
     "checker_fail": 0,
     "estimated_admissible": 831
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "1000053",
+    "proposals": 3,
+    "sampled": 3,
+    "accepted": 3,
+    "rejected": {},
+    "checker_pass": 3,
+    "checker_fail": 0,
+    "estimated_admissible": 3
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "2300112",
+    "proposals": 3,
+    "sampled": 3,
+    "accepted": 3,
+    "rejected": {},
+    "checker_pass": 3,
+    "checker_fail": 0,
+    "estimated_admissible": 3
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "5000035",
+    "proposals": 3,
+    "sampled": 3,
+    "accepted": 3,
+    "rejected": {},
+    "checker_pass": 3,
+    "checker_fail": 0,
+    "estimated_admissible": 3
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "9004137",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 3,
+    "rejected": {
+     "Fewer than three distinct distractors": 1
+    },
+    "checker_pass": 3,
+    "checker_fail": 0,
+    "estimated_admissible": 3
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "9004141",
+    "proposals": 3,
+    "sampled": 3,
+    "accepted": 3,
+    "rejected": {},
+    "checker_pass": 3,
+    "checker_fail": 0,
+    "estimated_admissible": 3
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "9008564",
+    "proposals": 1,
+    "sampled": 1,
+    "accepted": 1,
+    "rejected": {},
+    "checker_pass": 1,
+    "checker_fail": 0,
+    "estimated_admissible": 1
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "9008565",
+    "proposals": 1,
+    "sampled": 1,
+    "accepted": 1,
+    "rejected": {},
+    "checker_pass": 1,
+    "checker_fail": 0,
+    "estimated_admissible": 1
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "9008678",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "coordination_shell",
+    "structure": "9008789",
+    "proposals": 3,
+    "sampled": 3,
+    "accepted": 3,
+    "rejected": {},
+    "checker_pass": 3,
+    "checker_fail": 0,
+    "estimated_admissible": 3
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "1000053",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "2300112",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "5000035",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "9004137",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "9004141",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "9008564",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "9008565",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "9008678",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "first_diffraction_peak",
+    "structure": "9008789",
+    "proposals": 4,
+    "sampled": 4,
+    "accepted": 4,
+    "rejected": {},
+    "checker_pass": 4,
+    "checker_fail": 0,
+    "estimated_admissible": 4
+   },
+   {
+    "family": "kinematic_extinction",
+    "structure": "1000053",
+    "proposals": 1,
+    "sampled": 1,
+    "accepted": 1,
+    "rejected": {},
+    "checker_pass": 1,
+    "checker_fail": 0,
+    "estimated_admissible": 1
+   },
+   {
+    "family": "kinematic_extinction",
+    "structure": "5000035",
+    "proposals": 1,
+    "sampled": 1,
+    "accepted": 1,
+    "rejected": {},
+    "checker_pass": 1,
+    "checker_fail": 0,
+    "estimated_admissible": 1
+   },
+   {
+    "family": "kinematic_extinction",
+    "structure": "9008565",
+    "proposals": 1,
+    "sampled": 1,
+    "accepted": 1,
+    "rejected": {},
+    "checker_pass": 1,
+    "checker_fail": 0,
+    "estimated_admissible": 1
+   },
+   {
+    "family": "kinematic_extinction",
+    "structure": "9008789",
+    "proposals": 1,
+    "sampled": 1,
+    "accepted": 0,
+    "rejected": {
+     "Need at least one extinct and three clearly nonzero reflections": 1
+    },
+    "checker_pass": 0,
+    "checker_fail": 0,
+    "estimated_admissible": 0
    }
   ],
   "position_balance": {
@@ -2400,6 +2661,39 @@
     },
     "max_deviation": 0.0,
     "tolerance": 24.0,
+    "ok": true
+   },
+   "coordination_shell": {
+    "counts": {
+     "A": 7,
+     "B": 5,
+     "C": 6,
+     "D": 6
+    },
+    "max_deviation": 1.0,
+    "tolerance": 4,
+    "ok": true
+   },
+   "first_diffraction_peak": {
+    "counts": {
+     "A": 9,
+     "B": 13,
+     "C": 8,
+     "D": 6
+    },
+    "max_deviation": 4.0,
+    "tolerance": 5.4,
+    "ok": true
+   },
+   "kinematic_extinction": {
+    "counts": {
+     "A": 0,
+     "B": 1,
+     "C": 1,
+     "D": 1
+    },
+    "max_deviation": 0.8,
+    "tolerance": 4,
     "ok": true
    }
   },

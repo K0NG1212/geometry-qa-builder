@@ -1632,7 +1632,7 @@
    "bindings": {
     "L1": {
      "registry_row": "9f37f97ee78fb355bb08f1f8deb3489576816770b6805832e1a43381ffe6a770",
-     "task_families/crystal.py": "48ad8f7dc72e797e423d041fa945576f3b776e9378483a7631917a5cf6f7d5b3"
+     "task_families/crystal.py": "7c8a49460aadc9cb692081d49c585fe0180b6adca63ab5ccb5db414df9771502"
     },
     "L2": {
      "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
@@ -2385,8 +2385,8 @@
    "checker_function": "first_diffraction_peak",
    "bindings": {
     "L1": {
-     "registry_row": "8887957a4108bc80715827e8dd61276cdd6e6257a0f2e4a2e0d3e641e4916492",
-     "task_families/crystal.py": "48ad8f7dc72e797e423d041fa945576f3b776e9378483a7631917a5cf6f7d5b3"
+     "registry_row": "7ba3e6eea3d5a6f5340e9723930ba3bff0b71e280eda66d01c0dae482670ba8c",
+     "task_families/crystal.py": "7c8a49460aadc9cb692081d49c585fe0180b6adca63ab5ccb5db414df9771502"
     },
     "L2": {
      "checkers/migrated.py": "7d9d7d7f1262bc82307c0879d3ff3708ecd47cac526e4418592f3125036c3bb4",
@@ -2415,9 +2415,12 @@
       "second_allowed_peak",
       "d_equals_a",
       "cubic_d_formula",
-      "d_equals_c"
+      "d_equals_c",
+      "bragg_missing_factor_two",
+      "strongest_not_first",
+      "index_sum_for_root"
      ],
-     "four_choice_validation": "与正确值 > 0.3°；升序排列，秩按批次轮换。",
+     "four_choice_validation": "与正确值 > 0.3°；升序排列，秩按批次轮换。 枚举探针发现正确项多为 C（错误机制几乎都给出更小的角），v0.3.0 加入三种给出更大角的错误（布拉格式漏 2、把最强反射当第一个峰、立方公式把根号写成指数和），并把 d = a 的迷惑程度调为 2；立方晶胞即使经通用读取器也走立方路径。",
      "principle": "布拉格定律 λ = 2d sinθ，加运动学结构因子判定哪些低指数反射不消光。",
      "validation": "独立检查器（checkers/migrated.py:first_diffraction_peak）对 h、k、l ≤ 5 的全部反射用自己的结构因子求和，取 |F| ≠ 0 的最小 2θ，并核对来源文件哈希。",
      "limits": "运动学近似、零角度原子序数权重，不含原子散射因子的角度依赖、热振动与反常散射；只问一级衍射；不支持部分占位。",
@@ -2430,49 +2433,49 @@
       "options": [
        {
         "label": "A",
-        "value": "10.77",
-        "unit": "degree"
-       },
-       {
-        "label": "B",
         "value": "21.54",
         "unit": "degree"
        },
        {
-        "label": "C",
+        "label": "B",
         "value": "30.64",
         "unit": "degree"
        },
        {
-        "label": "D",
+        "label": "C",
         "value": "37.76",
+        "unit": "degree"
+       },
+       {
+        "label": "D",
+        "value": "43.88",
         "unit": "degree"
        }
       ],
       "inputs": [
        "FA-PEAK-CSCL-cell.txt"
       ],
-      "correct_label": "B",
+      "correct_label": "A",
       "audit": [
        {
         "label": "A",
-        "rule": "theta_not_two_theta",
-        "reason": "报告了 θ 而非 2θ。"
-       },
-       {
-        "label": "B",
         "rule": "correct",
         "reason": "第一个 |F|≠0 的反射 (1 0 0)，d = 4.12300 Å，2θ = 2 arcsin(λ/2d)。"
        },
        {
-        "label": "C",
+        "label": "B",
         "rule": "assumed_lattice_rule:I",
         "reason": "按体心晶格规则判断，得到 (1 1 0)；与实际坐标算出的结构因子不符。"
        },
        {
-        "label": "D",
+        "label": "C",
         "rule": "assumed_lattice_rule:F",
         "reason": "按面心晶格规则判断，得到 (1 1 1)；与实际坐标算出的结构因子不符。"
+       },
+       {
+        "label": "D",
+        "rule": "bragg_missing_factor_two",
+        "reason": "布拉格公式漏掉 2（用 λ = d sinθ，与把二级衍射当一级相同）。"
        }
       ]
      },
@@ -3160,7 +3163,7 @@
    "bindings": {
     "L1": {
      "registry_row": "055b19b46354eee2381ecb2f40bae5bac9e4599d0b73aaeadf0a3fa49cea989b",
-     "task_families/extinction.py": "63fd5498796b57be3845c37a2b68123e2cfa487da6df0f96a35240443e47adc9"
+     "task_families/extinction.py": "f9721343ded2f4de07dfaf787d4b59f4322cbaf782248414430677ddfad71e1f"
     },
     "L2": {
      "checkers/families.py": "9eeb33d01be2c8fc8659a274058e8528e9da1ad67b8076475ec5f09f06207c98",
