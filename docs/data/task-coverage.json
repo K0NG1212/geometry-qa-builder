@@ -69,7 +69,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v26",
+ "family_run": "family-pilot-v27",
  "rows": [
   {
    "id": "global_extent",
@@ -277,7 +277,7 @@
     "supplement",
     "triangle_angle_at_first_atom"
    ],
-   "four_choice_validation": "与正确值 > 1.5°，干扰项之间 > 0.5°；升序排列，秩按批次平衡；易排除项每个计 4 个秩差惩罚。",
+   "four_choice_validation": "与正确值 > 1.5°，干扰项之间 > 0.5°；升序排列，秩按批次平衡；易排除项每个计 4 个秩差惩罚。 2026-10-06：枚举实例的题干改用化学命名（task_families/chem_names.py）——按价态与登记的总电荷求键级（单 / 双 / 芳香 / 离域），按键级、邻接与氢数给出原子的官能团角色（如“硫脲碳 (C=S)”“磺酰氧 (S=O)”“铵氮 (NH3+)”），认不出的原子不出题；36 个分子的全部重原子都能命名。",
    "legacy_families": [
     "specified_local_angle",
     "ring_internal_angle",
@@ -294,11 +294,14 @@
    "code": [
     "task_families/local_geometry.py",
     "task_families/kit.py",
-    "checkers/families.py"
+    "checkers/families.py",
+    "task_families/chem_names.py",
+    "enumerators.py"
    ],
    "tests": [
     "tests/test_task_families.py",
-    "tests/test_checkers.py"
+    "tests/test_checkers.py",
+    "tests/test_chem_names.py"
    ],
    "builder_modules": "M0 范围、M1 输入哈希、M3 族契约、M4 构造、M5 四项核验、M6 分包（族引擎内等价实现）。",
    "gap": "局部距离（二硫键、氢键给体–受体）尚未迁入同一接口；下一步复用同一 kit。",
@@ -422,7 +425,7 @@
     "bohr_units",
     "one_bond_too_far"
    ],
-   "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。 2026-10-04 枚举探针：新增“多数了一根键”（1–3 距离）；枚举实例设 strict_rank，目标答案位置不可达时拒绝出题而不是退到最近位置。",
+   "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。 2026-10-04 枚举探针：新增“多数了一根键”（1–3 距离）；枚举实例设 strict_rank，目标答案位置不可达时拒绝出题而不是退到最近位置。 2026-10-06：枚举实例的题干改用化学命名（task_families/chem_names.py）——按价态与登记的总电荷求键级（单 / 双 / 芳香 / 离域），按键级、邻接与氢数给出原子的官能团角色（如“硫脲碳 (C=S)”“磺酰氧 (S=O)”“铵氮 (NH3+)”），认不出的原子不出题；36 个分子的全部重原子都能命名。",
    "legacy_families": [
     "disulfide_bond_length",
     "carboxylate_bond_metric",
@@ -446,11 +449,14 @@
    ],
    "code": [
     "task_families/local_geometry.py",
-    "checkers/migrated.py"
+    "checkers/migrated.py",
+    "task_families/chem_names.py",
+    "enumerators.py"
    ],
    "tests": [
     "tests/test_task_families.py",
-    "tests/test_checkers.py"
+    "tests/test_checkers.py",
+    "tests/test_chem_names.py"
    ],
    "builder_modules": "族引擎内等价实现；旧 QNP002–004/006、BNP007 由新版取代（supersede）。",
    "gap": "氢键给体–受体、链间接触等非键距离尚未迁移。",
@@ -3450,7 +3456,7 @@
    "ability": "design",
    "status": "pilot",
    "priority": 1,
-   "concept": "为替代法（Kraitchman）结构测定选择单氘代位点：四个候选 H 中，换成 D 后使指定转动跃迁位移最大者。设计 = 转动谱线推断的逆问题；位移取决于到主轴的距离，而不只是到质心的距离。",
+   "concept": "为替代法（Kraitchman）结构测定选择单氘代位点：四个候选 H 中，换成 D 后使指定转动跃迁位移最大者。设计 = 转动谱线推断的逆问题；位移取决于到主轴的距离，而不只是到质心的距离。 题干写明每个候选 H 所连原子及其官能团角色（如“H10 连在甲基碳 C1 上”）。",
    "domains": [
     "quantum",
     "chemistry"
@@ -3480,11 +3486,13 @@
    "legacy_qa": [],
    "code": [
     "task_families/rotational.py",
+    "task_families/chem_names.py",
     "checkers/rotational.py",
     "enumerators.py"
    ],
    "tests": [
-    "tests/test_rotational.py"
+    "tests/test_rotational.py",
+    "tests/test_chem_names.py"
    ],
    "builder_modules": "族引擎内实现（M3–M5）；枚举器 enumerators.py。",
    "gap": "尚未包含双取代、13C 取代与 Kraitchman 坐标精度（位点靠近主轴时不确定度大）的定量设计。",

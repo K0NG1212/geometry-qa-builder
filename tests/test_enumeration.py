@@ -115,7 +115,8 @@ class FamilyHardeningTests(unittest.TestCase):
     def test_molecule_bonds_skip_hydrogen_and_name_connectivity(self):
         spec = PROPOSALS['named_bond_distance'][0]
         self.assertNotIn('H', [a['element'] for a in spec['atoms']])
-        self.assertIn('is bonded to', spec['bond'])
+        # Chemical naming (advisor requirement), not bare connectivity: bond order and both atoms' roles.
+        self.assertEqual(spec['bond'], 'the single C–C bond between C1, the methyl carbon (CH3), and C2, the alkene carbon (C=C)')
 
 
 if __name__ == '__main__':

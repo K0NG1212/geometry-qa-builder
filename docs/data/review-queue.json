@@ -3169,11 +3169,11 @@
    "checker_function": "isotopologue_design",
    "bindings": {
     "L1": {
-     "registry_row": "ae2f35d250322bcae8e9d6203053c04cb7d1f7b63792562797d25d37479e0964",
-     "task_families/rotational.py": "0805d06d11576888bdaaee81abdbb3e6e1aba338740ab81f75c60ef34305fbed"
+     "registry_row": "d85d3a24919c162078bc8ffc09a6fa6acb5cf5a266457c793378a7784f05c24b",
+     "task_families/rotational.py": "ef8570ff19cf492f975faac17305b9c59625de37a61ce1230769f63ba46616a5"
     },
     "L2": {
-     "checkers/rotational.py": "dec620646d99a39ba9ba592d513d28822817b9e2b1bc57ac238a0b055691e42b",
+     "checkers/rotational.py": "2ba544a31a644ef654de95c16143919963ca2afab72b5864101a1f54916f47d2",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3185,7 +3185,7 @@
    "card": {
     "template": {
      "name": "单氘代位点设计",
-     "concept": "为替代法（Kraitchman）结构测定选择单氘代位点：四个候选 H 中，换成 D 后使指定转动跃迁位移最大者。设计 = 转动谱线推断的逆问题；位移取决于到主轴的距离，而不只是到质心的距离。",
+     "concept": "为替代法（Kraitchman）结构测定选择单氘代位点：四个候选 H 中，换成 D 后使指定转动跃迁位移最大者。设计 = 转动谱线推断的逆问题；位移取决于到主轴的距离，而不只是到质心的距离。 题干写明每个候选 H 所连原子及其官能团角色（如“H10 连在甲基碳 C1 上”）。",
      "inputs": "XYZ（QM7-X 优化几何或 SAMPL9 客体结构，按行号计数）。",
      "physical_conditions": "刚性转子、给定平衡几何；题干写明最丰同位素质量、h 与原子质量单位；不含振动平均、离心畸变与超精细结构。",
      "reasoning_scale": "整分子转动惯量（分子最大原子间距 0.5–1.2 nm）",
@@ -3200,14 +3200,14 @@
      ],
      "four_choice_validation": "恰好一个候选位移最大且领先足够；正确项按批次目标位置放置。枚举器优先提出“离质心更远的 H 是干扰项”的集合，并按约 1:3 加入捷径能答对的集合；runs/enum-v32 中捷径命中 52/524，改进后的候选中为 90/610（约 15%，低于随机）。",
      "principle": "同位素取代改变质量分布与质心，ΔI 取决于取代原子到各主轴的距离；谱线位移为两个转动常数变化之和。",
-     "validation": "独立检查器（checkers/rotational.py:isotopologue_design）从题干读取质量（含 D）、h 与 u，核对候选均为 H、选项与候选列表一致，逐个替换质量后用 Decimal 张量与三次方程闭式解重算位移，要求唯一最大且领先足够，并核对答案键。",
+     "validation": "独立检查器（checkers/rotational.py:isotopologue_design）从题干读取质量（含 D）、h 与 u，核对候选均为 H、选项与候选列表一致，逐个替换质量后用 Decimal 张量与三次方程闭式解重算位移，要求唯一最大且领先足够，并核对答案键。 检查器还逐条核对题干中“Hn is bonded to Xm”的连接说法（自己的共价半径规则，取最近原子）。",
      "limits": "几何不随同位素改变（忽略零点振动差异）；不评估合成可行性、谱线强度与对称等价位点的统计权重。",
      "template_review": "2026-10-06 新建，待 L1/L2 人工审核。"
     },
     "samples": [
      {
       "instance": "FA-ISO-7095-111",
-      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7095 (C4H8N2S, 15 atoms, angstrom); rows are counted from 1 after the two header lines. Model conditions: a rigid rotor at exactly the supplied geometry (no vibrational averaging, no centrifugal distortion); masses of the most abundant isotopes: C 12.000000 u, H 1.007825 u, N 14.003074 u, S 31.972071 u; rotational constants A ≥ B ≥ C are h/(8π²I) with I_a ≤ I_b ≤ I_c the principal moments of inertia about the centre of mass; h = 6.62607015×10⁻³⁴ J s, 1 u = 1.66053906660×10⁻²⁷ kg. You will record the rotational spectrum of one singly deuterated isotopologue: exactly one of the hydrogen atoms H10, H12, H14, H15 (rows counted from 1 after the two XYZ header lines) is replaced by deuterium, D 2.014102 u, at the same position. You want the largest change in the frequency of the J_KaKc = 1_11 ← 0_00 transition relative to the parent molecule (largest absolute shift). Exactly one candidate gives the largest shift. Which hydrogen should be substituted?",
+      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7095 (C4H8N2S, 15 atoms, angstrom); rows are counted from 1 after the two header lines. Model conditions: a rigid rotor at exactly the supplied geometry (no vibrational averaging, no centrifugal distortion); masses of the most abundant isotopes: C 12.000000 u, H 1.007825 u, N 14.003074 u, S 31.972071 u; rotational constants A ≥ B ≥ C are h/(8π²I) with I_a ≤ I_b ≤ I_c the principal moments of inertia about the centre of mass; h = 6.62607015×10⁻³⁴ J s, 1 u = 1.66053906660×10⁻²⁷ kg. You will record the rotational spectrum of one singly deuterated isotopologue: exactly one of the hydrogen atoms H10, H12, H14, H15 (rows counted from 1 after the two XYZ header lines) is replaced by deuterium, D 2.014102 u, at the same position. Candidates: H10 is bonded to C1, the methyl carbon (CH3); H12 is bonded to N5, the thioamide N–H nitrogen; H14 is bonded to C7, the alkene carbon (C=C); H15 is bonded to C7, the alkene carbon (C=C). You want the largest change in the frequency of the J_KaKc = 1_11 ← 0_00 transition relative to the parent molecule (largest absolute shift). Exactly one candidate gives the largest shift. Which hydrogen should be substituted?",
       "options": [
        {
         "label": "A",
@@ -3255,7 +3255,7 @@
      },
      {
       "instance": "FA-ISO-G13-111",
-      "question": "The supplied XYZ is guest G13 (1-methyl-4-(1-methylpyridin-1-ium-4-yl)pyridin-1-ium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (28 atoms, angstrom); rows are counted from 1 after the two header lines. Model conditions: a rigid rotor at exactly the supplied geometry (no vibrational averaging, no centrifugal distortion); masses of the most abundant isotopes: C 12.000000 u, H 1.007825 u, N 14.003074 u; rotational constants A ≥ B ≥ C are h/(8π²I) with I_a ≤ I_b ≤ I_c the principal moments of inertia about the centre of mass; h = 6.62607015×10⁻³⁴ J s, 1 u = 1.66053906660×10⁻²⁷ kg. You will record the rotational spectrum of one singly deuterated isotopologue: exactly one of the hydrogen atoms H18, H23, H25, H27 (rows counted from 1 after the two XYZ header lines) is replaced by deuterium, D 2.014102 u, at the same position. You want the largest change in the frequency of the J_KaKc = 1_11 ← 0_00 transition relative to the parent molecule (largest absolute shift). Exactly one candidate gives the largest shift. Which hydrogen should be substituted?",
+      "question": "The supplied XYZ is guest G13 (1-methyl-4-(1-methylpyridin-1-ium-4-yl)pyridin-1-ium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (28 atoms, angstrom); rows are counted from 1 after the two header lines. Model conditions: a rigid rotor at exactly the supplied geometry (no vibrational averaging, no centrifugal distortion); masses of the most abundant isotopes: C 12.000000 u, H 1.007825 u, N 14.003074 u; rotational constants A ≥ B ≥ C are h/(8π²I) with I_a ≤ I_b ≤ I_c the principal moments of inertia about the centre of mass; h = 6.62607015×10⁻³⁴ J s, 1 u = 1.66053906660×10⁻²⁷ kg. You will record the rotational spectrum of one singly deuterated isotopologue: exactly one of the hydrogen atoms H18, H23, H25, H27 (rows counted from 1 after the two XYZ header lines) is replaced by deuterium, D 2.014102 u, at the same position. Candidates: H18 is bonded to C4, the aromatic carbon in the 6-membered ring; H23 is bonded to C11, the methyl carbon (CH3); H25 is bonded to C11, the methyl carbon (CH3); H27 is bonded to C12, the methyl carbon (CH3). You want the largest change in the frequency of the J_KaKc = 1_11 ← 0_00 transition relative to the parent molecule (largest absolute shift). Exactly one candidate gives the largest shift. Which hydrogen should be substituted?",
       "options": [
        {
         "label": "A",
@@ -3935,7 +3935,7 @@
    "checker_function": "named_bond_angle",
    "bindings": {
     "L1": {
-     "registry_row": "9190118035dde5c12f26ecbe4eec28a5d5b28892dd66ccbe80933407b97f1ac8",
+     "registry_row": "523a4573451e57b69dc1409e93a57c6c638fb633592f08809383e1610cd901e8",
      "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
@@ -3965,7 +3965,7 @@
       "supplement",
       "triangle_angle_at_first_atom"
      ],
-     "four_choice_validation": "与正确值 > 1.5°，干扰项之间 > 0.5°；升序排列，秩按批次平衡；易排除项每个计 4 个秩差惩罚。",
+     "four_choice_validation": "与正确值 > 1.5°，干扰项之间 > 0.5°；升序排列，秩按批次平衡；易排除项每个计 4 个秩差惩罚。 2026-10-06：枚举实例的题干改用化学命名（task_families/chem_names.py）——按价态与登记的总电荷求键级（单 / 双 / 芳香 / 离域），按键级、邻接与氢数给出原子的官能团角色（如“硫脲碳 (C=S)”“磺酰氧 (S=O)”“铵氮 (NH3+)”），认不出的原子不出题；36 个分子的全部重原子都能命名。",
      "principle": "θ = arccos(u·v/|u||v|)，u、v 为顶点指向两端原子的键矢量。",
      "validation": "两种实现一致；四个选项逐一核验。",
      "limits": "键角接近理想值时难以构造足够分散的高迷惑干扰项（DMBCD 实例仍含一个易排除项）。",
@@ -4089,7 +4089,7 @@
    "checker_function": "named_bond_distance",
    "bindings": {
     "L1": {
-     "registry_row": "45cad5b3bd4feae141f03f72d04e5cbce21453d3ffd2b390a625dfa50a16a74d",
+     "registry_row": "a0a30c558f4bc4dd752ab8816af160e02d4d3c81719cc1088a9624d70c1b9cc2",
      "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
@@ -4120,7 +4120,7 @@
       "bohr_units",
       "one_bond_too_far"
      ],
-     "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。 2026-10-04 枚举探针：新增“多数了一根键”（1–3 距离）；枚举实例设 strict_rank，目标答案位置不可达时拒绝出题而不是退到最近位置。",
+     "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。 2026-10-04 枚举探针：新增“多数了一根键”（1–3 距离）；枚举实例设 strict_rank，目标答案位置不可达时拒绝出题而不是退到最近位置。 2026-10-06：枚举实例的题干改用化学命名（task_families/chem_names.py）——按价态与登记的总电荷求键级（单 / 双 / 芳香 / 离域），按键级、邻接与氢数给出原子的官能团角色（如“硫脲碳 (C=S)”“磺酰氧 (S=O)”“铵氮 (NH3+)”），认不出的原子不出题；36 个分子的全部重原子都能命名。",
      "principle": "两原子笛卡尔坐标的欧氏距离；用共价半径规则确认所问两原子确实成键。",
      "validation": "独立检查器（checkers/migrated.py:named_bond_distance）按题干点名的原子（PDB 原子名或 XYZ 行号）从附件取坐标，用 Decimal 重算距离，并用自己的共价半径规则确认成键；PDB 片段须与源文件逐字一致，二硫键题核对 SSBOND 记录，XYZ 核对元素与源文件哈希。",
      "limits": "QNP002–006 需说明元素对选择的化学意义（待小修）。",
@@ -5028,10 +5028,10 @@
    "bindings": {
     "L1": {
      "registry_row": "93b11060270ab4962032fcc78d6a6ae4f61b0c5fe0e1fa07a58071e9fd567ef8",
-     "task_families/rotational.py": "0805d06d11576888bdaaee81abdbb3e6e1aba338740ab81f75c60ef34305fbed"
+     "task_families/rotational.py": "ef8570ff19cf492f975faac17305b9c59625de37a61ce1230769f63ba46616a5"
     },
     "L2": {
-     "checkers/rotational.py": "dec620646d99a39ba9ba592d513d28822817b9e2b1bc57ac238a0b055691e42b",
+     "checkers/rotational.py": "2ba544a31a644ef654de95c16143919963ca2afab72b5864101a1f54916f47d2",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },

@@ -213,7 +213,7 @@
         "supplement",
         "triangle_angle_at_first_atom"
       ],
-      "four_choice_validation": "与正确值 > 1.5°，干扰项之间 > 0.5°；升序排列，秩按批次平衡；易排除项每个计 4 个秩差惩罚。",
+      "four_choice_validation": "与正确值 > 1.5°，干扰项之间 > 0.5°；升序排列，秩按批次平衡；易排除项每个计 4 个秩差惩罚。 2026-10-06：枚举实例的题干改用化学命名（task_families/chem_names.py）——按价态与登记的总电荷求键级（单 / 双 / 芳香 / 离域），按键级、邻接与氢数给出原子的官能团角色（如“硫脲碳 (C=S)”“磺酰氧 (S=O)”“铵氮 (NH3+)”），认不出的原子不出题；36 个分子的全部重原子都能命名。",
       "engine_families": [
         "named_bond_angle"
       ],
@@ -233,11 +233,14 @@
       "code": [
         "task_families/local_geometry.py",
         "task_families/kit.py",
-        "checkers/families.py"
+        "checkers/families.py",
+        "task_families/chem_names.py",
+        "enumerators.py"
       ],
       "tests": [
         "tests/test_task_families.py",
-        "tests/test_checkers.py"
+        "tests/test_checkers.py",
+        "tests/test_chem_names.py"
       ],
       "builder_modules": "M0 范围、M1 输入哈希、M3 族契约、M4 构造、M5 四项核验、M6 分包（族引擎内等价实现）。",
       "principle": "θ = arccos(u·v/|u||v|)，u、v 为顶点指向两端原子的键矢量。",
@@ -338,7 +341,7 @@
         "bohr_units",
         "one_bond_too_far"
       ],
-      "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。 2026-10-04 枚举探针：新增“多数了一根键”（1–3 距离）；枚举实例设 strict_rank，目标答案位置不可达时拒绝出题而不是退到最近位置。",
+      "four_choice_validation": "与正确值 > 0.02 Å，干扰项之间 > 0.01 Å；升序排列，秩按批次轮换。 2026-10-04 枚举探针：新增“多数了一根键”（1–3 距离）；枚举实例设 strict_rank，目标答案位置不可达时拒绝出题而不是退到最近位置。 2026-10-06：枚举实例的题干改用化学命名（task_families/chem_names.py）——按价态与登记的总电荷求键级（单 / 双 / 芳香 / 离域），按键级、邻接与氢数给出原子的官能团角色（如“硫脲碳 (C=S)”“磺酰氧 (S=O)”“铵氮 (NH3+)”），认不出的原子不出题；36 个分子的全部重原子都能命名。",
       "engine_families": [
         "named_bond_distance"
       ],
@@ -365,11 +368,14 @@
       ],
       "code": [
         "task_families/local_geometry.py",
-        "checkers/migrated.py"
+        "checkers/migrated.py",
+        "task_families/chem_names.py",
+        "enumerators.py"
       ],
       "tests": [
         "tests/test_task_families.py",
-        "tests/test_checkers.py"
+        "tests/test_checkers.py",
+        "tests/test_chem_names.py"
       ],
       "builder_modules": "族引擎内等价实现；旧 QNP002–004/006、BNP007 由新版取代（supersede）。",
       "principle": "两原子笛卡尔坐标的欧氏距离；用共价半径规则确认所问两原子确实成键。",
@@ -2955,11 +2961,13 @@
       "legacy_qa": [],
       "code": [
         "task_families/rotational.py",
+        "task_families/chem_names.py",
         "checkers/rotational.py",
         "enumerators.py"
       ],
       "tests": [
-        "tests/test_rotational.py"
+        "tests/test_rotational.py",
+        "tests/test_chem_names.py"
       ],
       "builder_modules": "族引擎内实现（M3–M5）；枚举器 enumerators.py。",
       "template_review": "2026-10-06 新建，待 L1/L2 人工审核。",
@@ -2972,7 +2980,7 @@
       "output_forms": [
         "choice"
       ],
-      "concept": "为替代法（Kraitchman）结构测定选择单氘代位点：四个候选 H 中，换成 D 后使指定转动跃迁位移最大者。设计 = 转动谱线推断的逆问题；位移取决于到主轴的距离，而不只是到质心的距离。",
+      "concept": "为替代法（Kraitchman）结构测定选择单氘代位点：四个候选 H 中，换成 D 后使指定转动跃迁位移最大者。设计 = 转动谱线推断的逆问题；位移取决于到主轴的距离，而不只是到质心的距离。 题干写明每个候选 H 所连原子及其官能团角色（如“H10 连在甲基碳 C1 上”）。",
       "answer_method": "对每个候选 H 换成 D 质量，重新计算质心、惯量张量与跃迁频率，取绝对位移最大者；要求领先第二名 ≥ 15% 且 ≥ 0.5 MHz。",
       "distractor_mechanisms": [
         "farthest_from_centre_of_mass",
@@ -2982,7 +2990,7 @@
       ],
       "four_choice_validation": "恰好一个候选位移最大且领先足够；正确项按批次目标位置放置。枚举器优先提出“离质心更远的 H 是干扰项”的集合，并按约 1:3 加入捷径能答对的集合；runs/enum-v32 中捷径命中 52/524，改进后的候选中为 90/610（约 15%，低于随机）。",
       "principle": "同位素取代改变质量分布与质心，ΔI 取决于取代原子到各主轴的距离；谱线位移为两个转动常数变化之和。",
-      "validation": "独立检查器（checkers/rotational.py:isotopologue_design）从题干读取质量（含 D）、h 与 u，核对候选均为 H、选项与候选列表一致，逐个替换质量后用 Decimal 张量与三次方程闭式解重算位移，要求唯一最大且领先足够，并核对答案键。",
+      "validation": "独立检查器（checkers/rotational.py:isotopologue_design）从题干读取质量（含 D）、h 与 u，核对候选均为 H、选项与候选列表一致，逐个替换质量后用 Decimal 张量与三次方程闭式解重算位移，要求唯一最大且领先足够，并核对答案键。 检查器还逐条核对题干中“Hn is bonded to Xm”的连接说法（自己的共价半径规则，取最近原子）。",
       "limits": "几何不随同位素改变（忽略零点振动差异）；不评估合成可行性、谱线强度与对称等价位点的统计权重。",
       "gap": "尚未包含双取代、13C 取代与 Kraitchman 坐标精度（位点靠近主轴时不确定度大）的定量设计。",
       "independent_checker": "checkers/rotational.py:isotopologue_design"

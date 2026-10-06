@@ -7,7 +7,10 @@ characteristic cubic in closed (trigonometric) form; the generator diagonalises 
 import math
 import re
 from decimal import Decimal, localcontext
-from .common import need, find, read_xyz, verify_hashes, judge_numeric
+from .common import need, find, read_xyz, verify_hashes, judge_numeric, dist
+
+# Covalent radii (Cordero et al., Dalton Trans. 2008) for the checker's own attachment rule.
+RADII = {'H': 0.31, 'C': 0.76, 'N': 0.71, 'O': 0.66, 'S': 1.05, 'Si': 1.11, 'Cl': 1.02, 'Br': 1.20, 'I': 1.39, 'F': 0.57, 'P': 1.07}
 
 # Rigid asymmetric rotor, J = 1 levels above 0_00 (Ka, Kc labels): the sum of the two constants about the axes
 # perpendicular to the one the state rotates about.
@@ -122,6 +125,13 @@ def isotopologue_design(packet, key):
         rows[o['label']] = int(m.group(2))
     need(sorted(rows.values()) == sorted(listed), 'Options differ from the listed candidates')
     need(all(1 <= r <= len(atoms) and atoms[r - 1][0] == 'H' for r in rows.values()), 'A candidate is not a hydrogen atom')
+    # Each stated attachment 'Hn is bonded to Xm' must hold under the checker's own covalent-radius rule (nearest atom).
+    claims = dict((int(h), (e, int(x))) for h, e, x in re.findall(r'H(\d+) is bonded to ([A-Z][a-z]?)(\d+),', q))
+    need(sorted(claims) == sorted(listed), 'Every candidate needs a stated attachment')
+    for h, (element, x) in claims.items():
+        need(1 <= x <= len(atoms) and atoms[x - 1][0] == element, 'Stated parent atom %s%d does not match the XYZ' % (element, x))
+        d = {k: float(dist(atoms[h - 1][1], p)) for k, (_, p) in enumerate(atoms, 1) if k != h}
+        need(min(d, key=d.get) == x and d[x] <= 1.25 * (RADII['H'] + RADII[element]), 'H%d is not bonded to %s%d' % (h, element, x))
     parent = frequency(rotational_constants(atoms, masses, factor), label)
     shift = {}
     for l, r in rows.items():

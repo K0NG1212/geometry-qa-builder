@@ -14,9 +14,9 @@ Jacobi diagonalisation (the independent checker uses the closed-form cubic roots
 """
 import math
 import re
-from . import kit
+from . import kit, chem_names
 
-VERSION = '0.1.1'
+VERSION = '0.2.0'
 MASS = {'H': '1.007825', 'D': '2.014102', 'C': '12.000000', 'N': '14.003074', 'O': '15.994915', 'F': '18.998403',
         'Si': '27.976927', 'P': '30.973762', 'S': '31.972071', 'Cl': '34.968853', 'Br': '78.918338', 'I': '126.904472'}
 # Standard atomic weights (IUPAC abridged): the 'average masses' misconception.
@@ -276,11 +276,17 @@ def build_isotopologue(spec, root, seed):
     audit = [dict(label=l, value=q[1], rule=q[0], reason=q[2], is_correct=q[0] == 'correct', shift_MHz=round(delta[q[4]], 4),
                   distance_from_centre_of_mass_A=round(math.dist(points[q[4]], com), 4)) for l, q in zip(kit.LABELS, order)]
     listed = ', '.join('H%d' % (r + 1) for r in sorted(rows))
+    # Chemical identity of each candidate (advisor: name chemical entities, not rows); needs the stated total charge.
+    names = chem_names.Molecule(elements, points, spec['charge'])
+    where = [names.hydrogen(r) for r in sorted(rows)]
+    if None in where:
+        raise ValueError('A candidate hydrogen sits on an atom the naming rules do not recognise')
     question = ('%s %s You will record the rotational spectrum of one singly deuterated isotopologue: exactly one of the '
                 'hydrogen atoms %s (rows counted from 1 after the two XYZ header lines) is replaced by deuterium, D %s u, at '
-                'the same position. You want the largest change in the frequency of the J_KaKc = %s transition relative to the '
-                'parent molecule (largest absolute shift). Exactly one candidate gives the largest shift. Which hydrogen should be '
-                'substituted?') % (spec['context'], model_text(elements), listed, MASS['D'], LINES[key]['label'])
+                'the same position. Candidates: %s. You want the largest change in the frequency of the J_KaKc = %s transition '
+                'relative to the parent molecule (largest absolute shift). Exactly one candidate gives the largest shift. Which '
+                'hydrogen should be substituted?') % (spec['context'], model_text(elements), listed, MASS['D'], '; '.join(where),
+                                                      LINES[key]['label'])
     return dict(
         question=question, scope=spec['scope'],
         inputs=[dict(name=path.name, format='xyz', unit='angstrom', text=text)],

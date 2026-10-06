@@ -2,7 +2,27 @@
 
 > 交接入口：[HANDOFF_2026-10-06.md](HANDOFF_2026-10-06.md)（最新增量）；[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（目的与决定、现状、来源路线、代码地图、流程与经验、待决与下一步）；上一份 [HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史。
 
-## 最新：转动光谱推断族与单氘代设计族（2026-10-06，Claude Code 会话，模型 claude-opus-5-5）
+## 最新：小分子题的化学命名（导师要求）与单氘代设计题候选说明（2026-10-06，Claude Code 会话，模型 claude-opus-5-5）
+
+- **起因**：HANDOFF_2026-10-06 第 0.2 节列出导师要求“化学题要命名化学实体，不是任意原子对”。2026-10-04 加的小分子键长 / 键角枚举器只写连接关系（如“C2–N3 共价键”），不满足这条。上一节的单氘代设计题也只写行号。
+- **命名模块** `task_families/chem_names.py`（只用连接关系与登记的总电荷，不新下载）：
+  - 键级：枚举所有满足价态（C 4；N 3 或 N⁺ 4；O 2 或 O⁻ 1；S 2/4/6 等）与总电荷的单 / 双 / 三键分配，按不饱和子图分块回溯求解；同电荷下只保留形式电荷最少的结构。不同分配间变化的键在六元环内记为“芳香”，否则记为“离域”（如羧酸根、磺酸根）。
+  - 原子角色：由键级、邻接与氢数给出，如 thiourea carbon (C=S)、sulfonyl oxygen (S=O)、sulfonamide nitrogen (NH2)、ammonium nitrogen (NH3+)、pyridinium nitrogen (N+)、carboxylate carbon (COO⁻)，环内原子注明环大小。认不出的原子不出题。36 个分子的全部重原子都能命名。
+  - 总电荷登记在 `templates/structures.json`（新增 `charge` 字段），依据来源给出的化学名：QM7-X 全部为 0；SAMPL9 铵类客体 +1，双铵 / 双吡啶鎓 +2，G8 两性离子 0，WP6 主体 −12（12 个羧基无 H），β-CD 与 DM-β-CD 为 0。
+  - **一开始出过错**：初版不考虑电荷，把 G13（1,1′-二甲基-4,4′-联吡啶鎓）解成中性醌式，把磺酰胺的 S=O 当成 S–O⁻ 两性离子共振式。加入电荷约束与“形式电荷最少”后修正；两种情况都写进了测试。
+- **题干变化**：
+  - 键长示例：“the double C=S bond between C5, the thiourea carbon (C=S), and S6, the thiocarbonyl sulfur (C=S)”。
+  - 键角示例：“the angle at C2, the alkene carbon (C=C), between its single C–C bond to C1, the methyl carbon (CH3), and its double C=C bond to C3, …”。
+  - 单氘代设计题（rotational v0.2.0）：题干写明“H10 is bonded to C1, the methyl carbon (CH3); …”。检查器用自己的共价半径规则逐条核对这些连接说法。
+- **运行 runs/family-pilot-v27**：
+  - 尝试 219，通过 218（已知失败同前）；独立检查 218/218。
+  - 与 v26 相比只有 3 道单氘代设计题的题干变化，选项和答案不变；其余逐字不变。
+  - 键长 / 键角的手写实例（FA-DIST-*、FA-ANG-*）不受影响。
+- **全量探针 runs/enum-v34**：数字与 v33 相同（候选 28,464，接受 3,052，独立检查 3,052/3,052）；键长候选 586、键角 835，无一因命名被丢弃。批量差距不变（640 / 636 / 2 格）。
+- **测试**：新增 `tests/test_chem_names.py`（7 项）。内容：全部原子可命名；硫脲、砜 / 磺酰胺 / 磺酸 / 磺酸根；联吡啶鎓必须靠登记的电荷；环、铵、硅基、羧酸根；枚举题干使用命名；设计题连接说法被篡改时检查器拒绝。完整测试 322 项全部通过。前两次运行各有 1 项失败：一是旧测试 test_enumeration 固定了旧措辞“is bonded to”（这次有意替换，已改为检查新命名）；二是改测试后没重跑 tools/export_system.py，展示页数据与仓库不一致。
+- **待人工审核**：命名规则（L1）；命名后的键长 / 键角枚举实例仍需 L1/L2 通过才进入正式题库。
+
+## 转动光谱推断族与单氘代设计族（2026-10-06，Claude Code 会话，模型 claude-opus-5-5）
 
 - **目的**：交接“下一步”第 1 项，给量子 / 化学 0.1–1 补推断、设计类题型族。用仓库内已有的 33 个分子（20 个 QM7-X、13 个 SAMPL9 客体），不新下载。
 - **新族**（`task_families/rotational.py`，检查器 `checkers/rotational.py`）：

@@ -21,7 +21,7 @@ from pathlib import Path
 from task_families import kit
 from task_families.local_geometry import read_pdb_residues
 from task_families.protein_design import CA_WINDOW, CB_WINDOW, MARGIN, efficiency
-from task_families import rotational
+from task_families import rotational, chem_names
 
 STRUCTURES = 'templates/structures.json'
 ROOT = Path(__file__).resolve().parent
@@ -303,25 +303,33 @@ def molecule_graph(m):
 
 def molecule_base(m, family, key):
     return dict(id='EN-%s-%s' % (m['molecule'], key), family=family, asset=m['asset'], molecule=m['molecule'], context=m['context'],
-                source=m['source'], license=m['license'], scope=SCOPE['molecule'])
+                source=m['source'], license=m['license'], scope=SCOPE['molecule'], charge=m['charge'])
+
+
+def molecule_names(m):
+    elements, points, edges, degree = molecule_graph(m)
+    return chem_names.Molecule(elements, points, m['charge'])
 
 
 def named_bond_distance(root, m):
-    """Every covalent bond between two non-hydrogen atoms (covalent-radius rule), described by elements and connectivity."""
+    """Every covalent bond between two non-hydrogen atoms, described chemically (bond order and the functional-group role
+    of both atoms, task_families/chem_names.py). Bonds with an atom the naming rules do not recognise are skipped: the
+    advisor asked for named chemical entities, not row pairs (HANDOFF_2026-10-06 section 0.2)."""
     elements, points, edges, degree = molecule_graph(m)
+    names = molecule_names(m)
     for i, j in sorted(edges):
-        if 'H' in (elements[i], elements[j]):
+        if 'H' in (elements[i], elements[j]) or names.bond(i, j) is None:
             continue
         a, b = '%s%d' % (elements[i], i + 1), '%s%d' % (elements[j], j + 1)
         yield dict(molecule_base(m, 'named_bond_distance', 'BOND-%d-%d' % (i + 1, j + 1)),
                    atoms=[dict(row=i + 1, name=a, element=elements[i]), dict(row=j + 1, name=b, element=elements[j])],
-                   bond='a covalent %s–%s bond (%s is bonded to %d atoms, %s to %d)' % (elements[i], elements[j], a, degree(i), b, degree(j)),
-                   strict_rank=True)
+                   bond=names.bond(i, j), strict_rank=True)
 
 
 def named_bond_angle(root, m):
-    """Every angle A–V–B with all three atoms non-hydrogen and both ends bonded to the vertex."""
+    """Every angle A–V–B with all three atoms non-hydrogen and both ends bonded to the vertex, described chemically."""
     elements, points, edges, degree = molecule_graph(m)
+    names = molecule_names(m)
     for v in range(len(elements)):
         ends = [x for x in kit.neighbors(edges, v) if elements[x] != 'H']
         if elements[v] == 'H':
@@ -329,10 +337,12 @@ def named_bond_angle(root, m):
         for p in range(len(ends)):
             for q in range(p + 1, len(ends)):
                 a, b = sorted((ends[p], ends[q]))
-                names = ['%s%d' % (elements[k], k + 1) for k in (a, v, b)]
+                if names.angle(a, v, b) is None:
+                    continue
+                labels = ['%s%d' % (elements[k], k + 1) for k in (a, v, b)]
                 yield dict(molecule_base(m, 'named_bond_angle', 'ANG-%d-%d-%d' % (a + 1, v + 1, b + 1)),
-                           atoms=[dict(row=k + 1, name=n, element=elements[k]) for k, n in zip((a, v, b), names)],
-                           linkage='two covalent bonds meeting at %s, which is bonded to %d atoms' % (names[1], degree(v)))
+                           atoms=[dict(row=k + 1, name=n, element=elements[k]) for k, n in zip((a, v, b), labels)],
+                           linkage=names.angle(a, v, b))
 
 
 def extent_choice_v2(root, m):
