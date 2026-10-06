@@ -51,6 +51,17 @@ def load_crystals(root):
     return json.loads((root / STRUCTURES).read_text(encoding='utf-8')).get('crystals', [])
 
 
+def domain_of(spec):
+    """Benchmark domain of an enumerated spec, from the structure registries."""
+    if spec.get('molecule'):
+        return next(m['domain'] for m in load_molecules(ROOT) if m['molecule'] == spec['molecule'])
+    if spec.get('assembly'):
+        return next(p['domain'] for p in load_assemblies(ROOT) if p['asset'] == spec['asset'])
+    if spec.get('cod'):
+        return 'materials'
+    return 'biology'
+
+
 def structure_of(spec):
     """Grouping key for sampling and capacity rows: PDB id or COD id."""
     return spec.get('assembly') or spec.get('pdb') or spec.get('cod') or spec.get('molecule')

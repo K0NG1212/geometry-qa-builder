@@ -26,6 +26,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 import enumerators  # noqa: E402
+import review_system as rs  # noqa: E402
 import family_engine  # noqa: E402
 import verify_all  # noqa: E402
 from task_families import kit  # noqa: E402
@@ -71,9 +72,30 @@ def run(out, per_structure=40, seed='geobench-enum-v1', families=None, date=None
     report = family_engine.run(out / 'manifest.json', out / 'run', seed)
     check = verify_all.verify(*verify_all.load(run=out / 'run'))
     (out / 'independent-check.json').write_text(json.dumps(check, ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
+    return summarize(out, proposals, picked, report, check, per_structure, seed, date)
+
+
+def summarize_existing(out, date=None):
+    """Rebuild the capacity summary of an existing probe run (proposals are deterministic; nothing is regenerated)."""
+    out = Path(out)
+    manifest = json.loads((out / 'manifest.json').read_text(encoding='utf-8'))
+    picked = manifest['items']
+    families = sorted({s['family'] for s in picked})
+    seen = existing_signatures()
+    proposals = {f: [s for s in specs if enumerators.signature(s) not in seen]
+                 for f, specs in enumerators.propose(ROOT, families).items()}
+    report = json.loads((out / 'run/verification.json').read_text(encoding='utf-8'))
+    check = json.loads((out / 'independent-check.json').read_text(encoding='utf-8'))
+    per_structure = max(Counter((s['family'], enumerators.structure_of(s)) for s in picked).values())
+    return summarize(out, proposals, picked, report, check, per_structure, manifest['seed'], date)
+
+
+def summarize(out, proposals, picked, report, check, per_structure, seed, date):
     failed = {f['id']: f['reason'] for f in report['failures']}
     checked = {r['id']: r['status'] for r in check['results']}
     keys = json.loads((out / 'run/private-answers.json').read_text(encoding='utf-8'))
+    by_id = {s['id']: s for s in picked}
+    cell_of = {k['id']: '%s %s' % (enumerators.domain_of(by_id[k['id']]), rs.cell(k['scales']['reasoning_nm'])) for k in keys}
     positions = {}
     for k in keys:
         positions.setdefault(k['family'], Counter())[k['correct_label']] += 1
@@ -94,7 +116,8 @@ def run(out, per_structure=40, seed='geobench-enum-v1', families=None, date=None
                              rejected=dict(Counter(reason_kind(failed[i]) for i in ids if i in failed)),
                              checker_pass=sum(checked.get(i) == 'pass' for i in built),
                              checker_fail=sum(checked.get(i) not in (None, 'pass') for i in built),
-                             estimated_admissible=round(n * len(built) / len(ids)) if ids else 0))
+                             estimated_admissible=round(n * len(built) / len(ids)) if ids else 0,
+                             cells=dict(Counter(cell_of[i] for i in built if i in cell_of))))
     totals = dict(proposals=sum(r['proposals'] for r in rows), sampled=len(picked), accepted=report['passed'],
                   checker_pass=check['passed'], checker_checked=check['checked'],
                   estimated_admissible=sum(r['estimated_admissible'] for r in rows),
@@ -112,12 +135,16 @@ def run(out, per_structure=40, seed='geobench-enum-v1', families=None, date=None
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('--out', required=True)
+    p.add_argument('--summarize', action='store_true', help='rebuild the summary of an existing --out run without regenerating')
     p.add_argument('--sample', type=int, default=40)
     p.add_argument('--seed', default='geobench-enum-v1')
     p.add_argument('--families')
     p.add_argument('--date')
     a = p.parse_args()
-    summary, check = run(a.out, a.sample, a.seed, a.families.split(',') if a.families else None, a.date)
+    if a.summarize:
+        summary, check = summarize_existing(a.out, a.date)
+    else:
+        summary, check = run(a.out, a.sample, a.seed, a.families.split(',') if a.families else None, a.date)
     print(json.dumps(summary['totals'], ensure_ascii=False))
     for r in summary['rows']:
         print(r['family'], r['structure'], r['proposals'], r['sampled'], r['accepted'], r['checker_pass'], r['rejected'])

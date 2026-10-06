@@ -3,113 +3,374 @@
   "version": "0.1.0",
   "note": "出题系统展示页（docs/system.html）的人工维护内容；数字与代码由 tools/export_system.py 从仓库实时读取。步骤与 RUNBOOK.md 第二节一致。",
   "principles": [
-    {"title": "答案只由代码算出", "text": "AI 助手可以找来源、写代码，但不直接给出任何答案数值或正确选项。每个答案都能用仓库代码重新算出。"},
-    {"title": "独立检查器", "text": "每个题型族配一个检查器：不导入出题代码（测试用语法树强制），只从题干和附件读取参数，用不同方法重算。"},
-    {"title": "先审代码，再扩量", "text": "新题型族先出少量样例，人工审定题型（L1）和检查器（L2）后才批量生成；审核记录绑定代码哈希，代码一改就要重审。"},
-    {"title": "整族修改", "text": "发现问题就改题型族代码并重新生成，不逐题手改，也不改旧运行。"},
-    {"title": "干扰项有出处", "text": "每个错误选项都对应一种登记过的真实错误做法，并写明理由；答案位置按批次平衡，不能靠“选最大”“选中间”猜中。"},
-    {"title": "来源可核对", "text": "只用公开数据与论文中的数字；每个资产记录来源、许可、SHA-256 和构建方式。论文参数模型在题干写明 Model conditions。"},
-    {"title": "运行只追加", "text": "每次生成写入新目录并快照代码哈希；导出前完整重放，代码不一致就拒绝发布；回归要求旧实例逐字节不变。"},
-    {"title": "不调用模型", "text": "出题与检查全程 model_calls = 0。模型只在审核 L3 抽查和 L4 难度测试中使用，且结论由人确认。"}
+    {
+      "title": "答案只由代码算出",
+      "text": "AI 助手可以找来源、写代码，但不直接给出任何答案数值或正确选项。每个答案都能用仓库代码重新算出。"
+    },
+    {
+      "title": "独立检查器",
+      "text": "每个题型族配一个检查器：不导入出题代码（测试用语法树强制），只从题干和附件读取参数，用不同方法重算。"
+    },
+    {
+      "title": "先审代码，再扩量",
+      "text": "新题型族先出少量样例，人工审定题型（L1）和检查器（L2）后才批量生成；审核记录绑定代码哈希，代码一改就要重审。"
+    },
+    {
+      "title": "整族修改",
+      "text": "发现问题就改题型族代码并重新生成，不逐题手改，也不改旧运行。"
+    },
+    {
+      "title": "干扰项有出处",
+      "text": "每个错误选项都对应一种登记过的真实错误做法，并写明理由；答案位置按批次平衡，不能靠“选最大”“选中间”猜中。"
+    },
+    {
+      "title": "来源可核对",
+      "text": "只用公开数据与论文中的数字；每个资产记录来源、许可、SHA-256 和构建方式。论文参数模型在题干写明 Model conditions。"
+    },
+    {
+      "title": "运行只追加",
+      "text": "每次生成写入新目录并快照代码哈希；导出前完整重放，代码不一致就拒绝发布；回归要求旧实例逐字节不变。"
+    },
+    {
+      "title": "不调用模型",
+      "text": "出题与检查全程 model_calls = 0。模型只在审核 L3 抽查和 L4 难度测试中使用，且结论由人确认。"
+    }
   ],
   "stages": [
-    {"id": "define", "title": "定义", "m": "M0–M3", "text": "题型族：考点、输入、条件、错误机制与适用范围集中写在代码和注册表里，一次审定。"},
-    {"id": "construct", "title": "构造", "m": "M4", "text": "确定性代码对每个实例算出正确答案，从登记的错误机制中挑出三个干扰项。"},
-    {"id": "verify", "title": "验证", "m": "M5", "text": "生成时逐项核验；独立检查器换方法重算全部实例；任何一处不一致都不能导出。"},
-    {"id": "publish", "title": "导出入库", "m": "M6", "text": "学生包与答案包分开；重放确认代码一致后发布，再按规则入库与挑选。"},
-    {"id": "review", "title": "人工审核", "m": "L1–L3", "text": "人审题型和检查器代码，再分层抽查实例；全部通过才正式计入。"}
+    {
+      "id": "define",
+      "title": "定义",
+      "m": "M0–M3",
+      "text": "题型族：考点、输入、条件、错误机制与适用范围集中写在代码和注册表里，一次审定。"
+    },
+    {
+      "id": "construct",
+      "title": "构造",
+      "m": "M4",
+      "text": "确定性代码对每个实例算出正确答案，从登记的错误机制中挑出三个干扰项。"
+    },
+    {
+      "id": "verify",
+      "title": "验证",
+      "m": "M5",
+      "text": "生成时逐项核验；独立检查器换方法重算全部实例；任何一处不一致都不能导出。"
+    },
+    {
+      "id": "publish",
+      "title": "导出入库",
+      "m": "M6",
+      "text": "学生包与答案包分开；重放确认代码一致后发布，再按规则入库与挑选。"
+    },
+    {
+      "id": "review",
+      "title": "人工审核",
+      "m": "L1–L3",
+      "text": "人审题型和检查器代码，再分层抽查实例；全部通过才正式计入。"
+    }
   ],
   "steps": [
-    {"id": "sources", "stage": "define", "title": "选题与来源", "m": "M0–M2",
-     "purpose": "确定要补的尺度格和考点，找到公开、可核对的数据来源。",
-     "input": "覆盖缺口（docs/data/coverage-plan.json）、数据库与论文", "output": "来源记录与可行性调研（templates/scale-feasibility.json）",
-     "guarantees": ["只用公开数据或论文中的数字，逐项核对原文", "下载任何文件前先征得用户同意", "论文参数模型只取一个实测输入，理想化条件写进题干"],
-     "limits": "检索由人或助手完成，程序不自动联网找论文。",
-     "command": "", "files": ["templates/scale-feasibility.json", "docs/data/coverage-plan.json"]},
-    {"id": "assets", "stage": "define", "title": "资产", "m": "M1",
-     "purpose": "把结构或论文参数整理成题目附件（XYZ、PDB 片段、点表）。",
-     "input": "原始结构文件或论文参数", "output": "docs/assets/families/<类>/ 与 sources.json",
-     "guarantees": ["构建确定性：重跑后旧资产逐字节不变", "sources.json 记录来源、许可、原文件 SHA-256 与构建方式"],
-     "limits": "原始大文件（inputs/）不在仓库；重建资产时才需要。",
-     "command": "python tools/build_<类>_assets.py", "files": ["tools/build_assembly_assets.py", "tools/build_vortex_assets.py"]},
-    {"id": "family", "stage": "define", "title": "题型族", "m": "M3–M4",
-     "purpose": "一段确定性代码：读附件 → 算正确答案 → 列出各种错误做法的结果 → 选三个干扰项 → 写题干。",
-     "input": "实例规格 + 附件", "output": "题干、选项、答案、选项审计、尺度",
-     "guarantees": ["构造不出唯一答案就拒绝出题，不勉强凑", "数值选项升序，正确项的秩按批次目标轮换", "kit.py 统一做四项核验：互不相同、间距足够、只有一个在容差内"],
-     "limits": "考点与物理假设是否恰当，由 L1 人工审定。",
-     "command": "", "files": ["task_families/kit.py", "task_families/__init__.py"]},
-    {"id": "checker", "stage": "verify", "title": "独立检查器", "m": "M5",
-     "purpose": "只看学生能看到的题干、附件和选项，加上答案键，用另一种实现重算并核对。",
-     "input": "学生包 + 答案键", "output": "pass / fail 与重算记录",
-     "guarantees": ["不导入任何出题代码（tests 用语法树检查）", "参数从题干文字读取，题干改动会被发现", "核对来源文件哈希、选项分隔与答案键泄漏"],
-     "limits": "算法独立，但作者不独立：L2 由人审阅检查器代码。",
-     "command": "", "files": ["checkers/common.py", "checkers/__init__.py", "checkers/families.py"]},
-    {"id": "registry", "stage": "define", "title": "注册表与实例规格", "m": "M3",
-     "purpose": "注册表集中写每个题型的考点、条件、错误机制与局限；实例规格指定每道题问什么。",
-     "input": "题型族代码", "output": "templates/registry.json、templates/family-manifest.json",
-     "guarantees": ["每族至少 3 种错误机制（测试检查）", "实例规格可由枚举器自动生成（见“扩展能力”）"],
-     "limits": "目前多数族的实例规格是手写的；5 个族已有枚举器。",
-     "command": "python tools/enumerate_instances.py --out runs/enum-vNN", "files": ["templates/registry.json", "enumerators.py", "tools/enumerate_instances.py"]},
-    {"id": "generate", "stage": "construct", "title": "批量生成", "m": "M4",
-     "purpose": "按实例规格逐条调用题型族，写出学生包、答案包与阶段记录。",
-     "input": "实例规格", "output": "runs/<新目录>（只追加）",
-     "guarantees": ["学生包与答案包分开写", "快照全部出题代码、规格与注册表的哈希", "失败原因逐条记录"],
-     "limits": "生成通过只说明答案正确且唯一，不说明难度。",
-     "command": "python family_engine.py --manifest templates/family-manifest.json --out runs/family-pilot-vNN", "files": ["family_engine.py"]},
-    {"id": "verify", "stage": "verify", "title": "整批独立复核", "m": "M5",
-     "purpose": "用独立检查器复核整批每一道题。",
-     "input": "一次运行", "output": "independent-check.json",
-     "guarantees": ["任何一道不一致，退出码为 1，不能导出", "与上一版比较：未改动的题必须逐字节不变"],
-     "limits": "不判断科学意义，那属于人工审核。",
-     "command": "python verify_all.py --run runs/family-pilot-vNN --out runs/family-pilot-vNN-independent-check.json", "files": ["verify_all.py"]},
-    {"id": "export", "stage": "publish", "title": "导出", "m": "M6",
-     "purpose": "完整重放运行，确认当前代码与运行时一致，再发布到网站工作台。",
-     "input": "一次运行", "output": "docs/data/family-workbench.json",
-     "guarantees": ["代码哈希不一致就拒绝导出", "大附件以 {url, sha256} 引用并校验"],
-     "limits": "", "command": "python tools/export_family_workbench.py --run runs/family-pilot-vNN --public-development-examples",
-     "files": ["tools/export_family_workbench.py"]},
-    {"id": "admit", "stage": "publish", "title": "入库", "m": "M6",
-     "purpose": "给实例编目录号和标题，登记新增 / 取代旧题 / 旧题改版，状态为“暂计”。",
-     "input": "导出的工作台", "output": "docs/data/catalog.json",
-     "guarantees": ["去重动作显式登记", "入库不等于正式计入"], "limits": "",
-     "command": "python tools/admit_family_instances.py --date YYYY-MM-DD", "files": ["tools/admit_family_instances.py", "templates/admission-map.json"]},
-    {"id": "select", "stage": "publish", "title": "挑选与审核材料", "m": "—",
-     "purpose": "每格挑 10 道（提议规则）；生成审核队列与 Excel 审核表。",
-     "input": "目录", "output": "prototype-selection.json、review-queue.json、review-sheet.xlsx",
-     "guarantees": ["挑选可复现（固定种子）", "审核表导入时逐行校验，审核人必须具名"], "limits": "挑选规则待教授确认。",
-     "command": "python tools/select_prototype.py && python tools/review.py queue && python tools/review_sheet.py export",
-     "files": ["tools/select_prototype.py", "tools/review.py", "tools/review_sheet.py", "review_system/__init__.py"]},
-    {"id": "review", "stage": "review", "title": "人工审核 L1–L3", "m": "L1–L3",
-     "purpose": "L1 审题型、L2 审检查器（每族一次），L3 分层抽查实例。",
-     "input": "审核卡片与代码", "output": "reviews/ 下的记录（只追加）",
-     "guarantees": ["记录绑定代码与注册表哈希，代码改动即失效", "AI 不能代写审核结论"],
-     "limits": "尚未开始；L3 模型待选定。", "command": "", "files": ["templates/review-l3-questions.json"]},
-    {"id": "tests", "stage": "review", "title": "测试与发布", "m": "—",
-     "purpose": "全部自动测试；本地浏览器核对页面；更新进度记录后提交。",
-     "input": "", "output": "",
-     "guarantees": ["测试覆盖检查器独立性、篡改题干会被发现、答案位置平衡、导入校验等"], "limits": "",
-     "command": "python -m unittest discover -s tests", "files": ["tests/test_checkers.py", "tests/test_enumeration.py", "tests/test_review.py"]}
+    {
+      "id": "sources",
+      "stage": "define",
+      "title": "选题与来源",
+      "m": "M0–M2",
+      "purpose": "确定要补的尺度格和考点，找到公开、可核对的数据来源。",
+      "input": "覆盖缺口（docs/data/coverage-plan.json）、数据库与论文",
+      "output": "来源记录与可行性调研（templates/scale-feasibility.json）",
+      "guarantees": [
+        "只用公开数据或论文中的数字，逐项核对原文",
+        "下载任何文件前先征得用户同意",
+        "论文参数模型只取一个实测输入，理想化条件写进题干"
+      ],
+      "limits": "检索由人或助手完成，程序不自动联网找论文。",
+      "command": "",
+      "files": [
+        "templates/scale-feasibility.json",
+        "docs/data/coverage-plan.json"
+      ]
+    },
+    {
+      "id": "assets",
+      "stage": "define",
+      "title": "资产",
+      "m": "M1",
+      "purpose": "把结构或论文参数整理成题目附件（XYZ、PDB 片段、点表）。",
+      "input": "原始结构文件或论文参数",
+      "output": "docs/assets/families/<类>/ 与 sources.json",
+      "guarantees": [
+        "构建确定性：重跑后旧资产逐字节不变",
+        "sources.json 记录来源、许可、原文件 SHA-256 与构建方式"
+      ],
+      "limits": "原始大文件（inputs/）不在仓库；重建资产时才需要。",
+      "command": "python tools/build_<类>_assets.py",
+      "files": [
+        "tools/build_assembly_assets.py",
+        "tools/build_vortex_assets.py"
+      ]
+    },
+    {
+      "id": "family",
+      "stage": "define",
+      "title": "题型族",
+      "m": "M3–M4",
+      "purpose": "一段确定性代码：读附件 → 算正确答案 → 列出各种错误做法的结果 → 选三个干扰项 → 写题干。",
+      "input": "实例规格 + 附件",
+      "output": "题干、选项、答案、选项审计、尺度",
+      "guarantees": [
+        "构造不出唯一答案就拒绝出题，不勉强凑",
+        "数值选项升序，正确项的秩按批次目标轮换",
+        "kit.py 统一做四项核验：互不相同、间距足够、只有一个在容差内"
+      ],
+      "limits": "考点与物理假设是否恰当，由 L1 人工审定。",
+      "command": "",
+      "files": [
+        "task_families/kit.py",
+        "task_families/__init__.py"
+      ]
+    },
+    {
+      "id": "checker",
+      "stage": "verify",
+      "title": "独立检查器",
+      "m": "M5",
+      "purpose": "只看学生能看到的题干、附件和选项，加上答案键，用另一种实现重算并核对。",
+      "input": "学生包 + 答案键",
+      "output": "pass / fail 与重算记录",
+      "guarantees": [
+        "不导入任何出题代码（tests 用语法树检查）",
+        "参数从题干文字读取，题干改动会被发现",
+        "核对来源文件哈希、选项分隔与答案键泄漏"
+      ],
+      "limits": "算法独立，但作者不独立：L2 由人审阅检查器代码。",
+      "command": "",
+      "files": [
+        "checkers/common.py",
+        "checkers/__init__.py",
+        "checkers/families.py"
+      ]
+    },
+    {
+      "id": "registry",
+      "stage": "define",
+      "title": "注册表与实例规格",
+      "m": "M3",
+      "purpose": "注册表集中写每个题型的考点、条件、错误机制与局限；实例规格指定每道题问什么。",
+      "input": "题型族代码",
+      "output": "templates/registry.json、templates/family-manifest.json",
+      "guarantees": [
+        "每族至少 3 种错误机制（测试检查）",
+        "实例规格可由枚举器自动生成（见“扩展能力”）"
+      ],
+      "limits": "目前多数族的实例规格是手写的；5 个族已有枚举器。",
+      "command": "python tools/enumerate_instances.py --out runs/enum-vNN",
+      "files": [
+        "templates/registry.json",
+        "enumerators.py",
+        "tools/enumerate_instances.py"
+      ]
+    },
+    {
+      "id": "generate",
+      "stage": "construct",
+      "title": "批量生成",
+      "m": "M4",
+      "purpose": "按实例规格逐条调用题型族，写出学生包、答案包与阶段记录。",
+      "input": "实例规格",
+      "output": "runs/<新目录>（只追加）",
+      "guarantees": [
+        "学生包与答案包分开写",
+        "快照全部出题代码、规格与注册表的哈希",
+        "失败原因逐条记录"
+      ],
+      "limits": "生成通过只说明答案正确且唯一，不说明难度。",
+      "command": "python family_engine.py --manifest templates/family-manifest.json --out runs/family-pilot-vNN",
+      "files": [
+        "family_engine.py"
+      ]
+    },
+    {
+      "id": "verify",
+      "stage": "verify",
+      "title": "整批独立复核",
+      "m": "M5",
+      "purpose": "用独立检查器复核整批每一道题。",
+      "input": "一次运行",
+      "output": "independent-check.json",
+      "guarantees": [
+        "任何一道不一致，退出码为 1，不能导出",
+        "与上一版比较：未改动的题必须逐字节不变"
+      ],
+      "limits": "不判断科学意义，那属于人工审核。",
+      "command": "python verify_all.py --run runs/family-pilot-vNN --out runs/family-pilot-vNN-independent-check.json",
+      "files": [
+        "verify_all.py"
+      ]
+    },
+    {
+      "id": "export",
+      "stage": "publish",
+      "title": "导出",
+      "m": "M6",
+      "purpose": "完整重放运行，确认当前代码与运行时一致，再发布到网站工作台。",
+      "input": "一次运行",
+      "output": "docs/data/family-workbench.json",
+      "guarantees": [
+        "代码哈希不一致就拒绝导出",
+        "大附件以 {url, sha256} 引用并校验"
+      ],
+      "limits": "",
+      "command": "python tools/export_family_workbench.py --run runs/family-pilot-vNN --public-development-examples",
+      "files": [
+        "tools/export_family_workbench.py"
+      ]
+    },
+    {
+      "id": "admit",
+      "stage": "publish",
+      "title": "入库",
+      "m": "M6",
+      "purpose": "给实例编目录号和标题，登记新增 / 取代旧题 / 旧题改版，状态为“暂计”。",
+      "input": "导出的工作台",
+      "output": "docs/data/catalog.json",
+      "guarantees": [
+        "去重动作显式登记",
+        "入库不等于正式计入"
+      ],
+      "limits": "",
+      "command": "python tools/admit_family_instances.py --date YYYY-MM-DD",
+      "files": [
+        "tools/admit_family_instances.py",
+        "templates/admission-map.json"
+      ]
+    },
+    {
+      "id": "select",
+      "stage": "publish",
+      "title": "挑选与审核材料",
+      "m": "—",
+      "purpose": "原型每格挑 10 道（提议规则）；批量生产按暂定规则（templates/batch-selection-rule.json）分三档定目标，并逐格算出在多样性上限下最多能选多少、还差什么；生成审核队列与 Excel 审核表。",
+      "input": "目录",
+      "output": "prototype-selection.json、review-queue.json、review-sheet.xlsx",
+      "guarantees": [
+        "挑选可复现（固定种子）",
+        "审核表导入时逐行校验，审核人必须具名",
+        "多样性上限（来源 × 题型族、每族、每来源）同时生效，可选上限用最大流精确计算"
+      ],
+      "limits": "挑选规则待教授确认。",
+      "command": "python tools/select_prototype.py && python tools/review.py queue && python tools/review_sheet.py export && python tools/batch_plan.py",
+      "files": [
+        "tools/select_prototype.py",
+        "tools/review.py",
+        "tools/review_sheet.py",
+        "review_system/__init__.py",
+        "tools/batch_plan.py",
+        "templates/batch-selection-rule.json"
+      ]
+    },
+    {
+      "id": "review",
+      "stage": "review",
+      "title": "人工审核 L1–L3",
+      "m": "L1–L3",
+      "purpose": "L1 审题型、L2 审检查器（每族一次），L3 分层抽查实例。",
+      "input": "审核卡片与代码",
+      "output": "reviews/ 下的记录（只追加）",
+      "guarantees": [
+        "记录绑定代码与注册表哈希，代码改动即失效",
+        "AI 不能代写审核结论"
+      ],
+      "limits": "尚未开始；L3 模型待选定。",
+      "command": "",
+      "files": [
+        "templates/review-l3-questions.json"
+      ]
+    },
+    {
+      "id": "tests",
+      "stage": "review",
+      "title": "测试与发布",
+      "m": "—",
+      "purpose": "全部自动测试；本地浏览器核对页面；更新进度记录后提交。",
+      "input": "",
+      "output": "",
+      "guarantees": [
+        "测试覆盖检查器独立性、篡改题干会被发现、答案位置平衡、导入校验等"
+      ],
+      "limits": "",
+      "command": "python -m unittest discover -s tests",
+      "files": [
+        "tests/test_checkers.py",
+        "tests/test_enumeration.py",
+        "tests/test_review.py"
+      ]
+    }
   ],
   "routes": {
-    "general": {"label": "通用结构", "text": "输入是任意实测结构，题源近乎无限；瓶颈是实例规格（枚举器解决）和下载许可。"},
-    "assembly": {"label": "大组装体", "text": "代码通用，但每个新颗粒要单独下载、对称展开、约简。"},
-    "paper": {"label": "论文参数模型", "text": "代码通用，但每篇论文只有几到十几个实测数据点；扩量靠找新论文。"},
-    "evidence": {"label": "实验证据", "text": "答案来自实测数据集，受数据集大小限制。"}
+    "general": {
+      "label": "通用结构",
+      "text": "输入是任意实测结构，题源近乎无限；瓶颈是实例规格（枚举器解决）和下载许可。"
+    },
+    "assembly": {
+      "label": "大组装体",
+      "text": "代码通用，但每个新颗粒要单独下载、对称展开、约简。"
+    },
+    "paper": {
+      "label": "论文参数模型",
+      "text": "代码通用，但每篇论文只有几到十几个实测数据点；扩量靠找新论文。"
+    },
+    "evidence": {
+      "label": "实验证据",
+      "text": "答案来自实测数据集，受数据集大小限制。"
+    }
   },
   "module_routes": {
-    "local_geometry.py": "general", "extent_choice.py": "general", "stereo.py": "general", "force_path.py": "general",
-    "conformer_design.py": "general", "crystal.py": "general", "extinction.py": "general", "diffraction_design.py": "general",
-    "protein_design.py": "general", "scattering.py": "general", "assembly.py": "assembly",
-    "superlattice.py": "paper", "photonic.py": "paper", "moire.py": "paper", "quantum_dot.py": "paper", "vortex.py": "paper",
-    "cholesteric.py": "paper", "hostguest.py": "evidence"
+    "local_geometry.py": "general",
+    "extent_choice.py": "general",
+    "stereo.py": "general",
+    "force_path.py": "general",
+    "conformer_design.py": "general",
+    "crystal.py": "general",
+    "extinction.py": "general",
+    "diffraction_design.py": "general",
+    "protein_design.py": "general",
+    "scattering.py": "general",
+    "assembly.py": "assembly",
+    "superlattice.py": "paper",
+    "photonic.py": "paper",
+    "moire.py": "paper",
+    "quantum_dot.py": "paper",
+    "vortex.py": "paper",
+    "cholesteric.py": "paper",
+    "hostguest.py": "evidence"
   },
   "reproduce": [
-    {"title": "取得代码", "command": "git clone https://github.com/K0NG1212/geometry-qa-builder && cd geometry-qa-builder"},
-    {"title": "依赖", "command": "python -m pip install numpy openpyxl   # Python 3.10+；其余为标准库"},
-    {"title": "重新生成全部实例（约 5 分钟）", "command": "python family_engine.py --manifest templates/family-manifest.json --out runs/replay"},
-    {"title": "独立复核", "command": "python verify_all.py --run runs/replay --out runs/replay-check.json"},
-    {"title": "与发布版本逐题比较", "command": "python verify_all.py --workbench docs/data/family-workbench.json --out runs/published-check.json"},
-    {"title": "扩展能力探针", "command": "python tools/enumerate_instances.py --out runs/enum-replay"},
-    {"title": "全部测试（约 6–9 分钟）", "command": "python -m unittest discover -s tests"}
+    {
+      "title": "取得代码",
+      "command": "git clone https://github.com/K0NG1212/geometry-qa-builder && cd geometry-qa-builder"
+    },
+    {
+      "title": "依赖",
+      "command": "python -m pip install numpy openpyxl   # Python 3.10+；其余为标准库"
+    },
+    {
+      "title": "重新生成全部实例（约 5 分钟）",
+      "command": "python family_engine.py --manifest templates/family-manifest.json --out runs/replay"
+    },
+    {
+      "title": "独立复核",
+      "command": "python verify_all.py --run runs/replay --out runs/replay-check.json"
+    },
+    {
+      "title": "与发布版本逐题比较",
+      "command": "python verify_all.py --workbench docs/data/family-workbench.json --out runs/published-check.json"
+    },
+    {
+      "title": "扩展能力探针",
+      "command": "python tools/enumerate_instances.py --out runs/enum-replay"
+    },
+    {
+      "title": "全部测试（约 6–9 分钟）",
+      "command": "python -m unittest discover -s tests"
+    }
   ]
 }

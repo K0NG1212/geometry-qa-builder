@@ -1,0 +1,662 @@
+{
+ "kind": "batch_plan",
+ "rule_version": "0.1.0",
+ "status": "provisional",
+ "status_note": "暂定规则（2026-10-06 用户同意暂用），待导师确认；改动只改本文件并重跑 tools/batch_plan.py。",
+ "enumeration_run": "enum-v31",
+ "summary": {
+  "target": 1230,
+  "max_selectable": 582,
+  "max_balanced": 517,
+  "cells_meeting_rule": 0,
+  "paper_parameter_share_of_selectable": 0.095,
+  "max_paper_parameter_share": 0.25
+ },
+ "cells": [
+  {
+   "cell": "quantum 0.1-1",
+   "tier": "A",
+   "target": 100,
+   "max_selectable": 82,
+   "max_balanced": 50,
+   "families": 5,
+   "families_by_ability": {
+    "perception": 3,
+    "inference": 1,
+    "design": 1
+   },
+   "sources": 26,
+   "paper_systems": [],
+   "ability_max": {
+    "perception": 75,
+    "inference": 3,
+    "design": 4
+   },
+   "pool": {
+    "admitted": 12,
+    "enumerated": 288
+   },
+   "family_flow": {
+    "named_bond_distance": 25,
+    "named_bond_angle": 25,
+    "extent_choice_v2": 25,
+    "conformer_target_selection": 4,
+    "force_path_derivative": 3
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 82 / 100 道",
+    "题型族 5 个，需 ≥ 6",
+    "推断 族 1 个，需 ≥ 2",
+    "推断 最多 3 道，需 ≥ 23",
+    "设计 族 1 个，需 ≥ 2",
+    "设计 最多 4 道，需 ≥ 23"
+   ]
+  },
+  {
+   "cell": "chemistry 0.1-1",
+   "tier": "A",
+   "target": 100,
+   "max_selectable": 83,
+   "max_balanced": 50,
+   "families": 6,
+   "families_by_ability": {
+    "perception": 4,
+    "inference": 1,
+    "design": 1
+   },
+   "sources": 26,
+   "paper_systems": [],
+   "ability_max": {
+    "perception": 76,
+    "inference": 4,
+    "design": 3
+   },
+   "pool": {
+    "admitted": 18,
+    "enumerated": 923
+   },
+   "family_flow": {
+    "named_bond_angle": 25,
+    "named_bond_distance": 25,
+    "extent_choice_v2": 18,
+    "stereo_relationship": 8,
+    "stereo_property_inference": 4,
+    "stereo_design_selection": 3
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 83 / 100 道",
+    "推断 族 1 个，需 ≥ 2",
+    "推断 最多 4 道，需 ≥ 23",
+    "设计 族 1 个，需 ≥ 2",
+    "设计 最多 3 道，需 ≥ 23"
+   ]
+  },
+  {
+   "cell": "chemistry 1-10",
+   "tier": "A",
+   "target": 100,
+   "max_selectable": 23,
+   "max_balanced": 23,
+   "families": 3,
+   "families_by_ability": {
+    "perception": 1,
+    "inference": 1,
+    "design": 1
+   },
+   "sources": 12,
+   "paper_systems": [],
+   "ability_max": {
+    "perception": 18,
+    "inference": 3,
+    "design": 2
+   },
+   "pool": {
+    "admitted": 9,
+    "enumerated": 14
+   },
+   "family_flow": {
+    "extent_choice_v2": 18,
+    "binding_evidence_choice": 3,
+    "binding_design_choice": 2
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 23 / 100 道",
+    "题型族 3 个，需 ≥ 6",
+    "感知 族 1 个，需 ≥ 2",
+    "感知 最多 18 道，需 ≥ 23",
+    "推断 族 1 个，需 ≥ 2",
+    "推断 最多 3 道，需 ≥ 23",
+    "设计 族 1 个，需 ≥ 2",
+    "设计 最多 2 道，需 ≥ 23",
+    "来源 12 个，需 ≥ 15"
+   ]
+  },
+  {
+   "cell": "materials 0.1-1",
+   "tier": "A",
+   "target": 100,
+   "max_selectable": 86,
+   "max_balanced": 86,
+   "families": 4,
+   "families_by_ability": {
+    "perception": 1,
+    "inference": 2,
+    "design": 1
+   },
+   "sources": 17,
+   "paper_systems": [],
+   "ability_max": {
+    "perception": 25,
+    "inference": 36,
+    "design": 25
+   },
+   "pool": {
+    "admitted": 19,
+    "enumerated": 235
+   },
+   "family_flow": {
+    "coordination_shell": 25,
+    "first_diffraction_peak": 25,
+    "diffraction_design": 25,
+    "kinematic_extinction": 11
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 86 / 100 道",
+    "题型族 4 个，需 ≥ 6",
+    "感知 族 1 个，需 ≥ 2",
+    "设计 族 1 个，需 ≥ 2"
+   ]
+  },
+  {
+   "cell": "materials 1-10",
+   "tier": "A",
+   "target": 100,
+   "max_selectable": 39,
+   "max_balanced": 39,
+   "families": 5,
+   "families_by_ability": {
+    "perception": 2,
+    "inference": 2,
+    "design": 1
+   },
+   "sources": 15,
+   "paper_systems": [],
+   "ability_max": {
+    "perception": 7,
+    "inference": 12,
+    "design": 25
+   },
+   "pool": {
+    "admitted": 12,
+    "enumerated": 49
+   },
+   "family_flow": {
+    "diffraction_design": 20,
+    "first_diffraction_peak": 8,
+    "kinematic_extinction": 4,
+    "coordination_shell": 4,
+    "extent_choice_v2": 3
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 39 / 100 道",
+    "题型族 5 个，需 ≥ 6",
+    "感知 最多 7 道，需 ≥ 23",
+    "推断 最多 12 道，需 ≥ 23",
+    "设计 族 1 个，需 ≥ 2"
+   ]
+  },
+  {
+   "cell": "biology 0.1-1",
+   "tier": "A",
+   "target": 100,
+   "max_selectable": 64,
+   "max_balanced": 64,
+   "families": 4,
+   "families_by_ability": {
+    "perception": 2,
+    "inference": 1,
+    "design": 1
+   },
+   "sources": 8,
+   "paper_systems": [],
+   "ability_max": {
+    "perception": 26,
+    "inference": 25,
+    "design": 25
+   },
+   "pool": {
+    "admitted": 10,
+    "enumerated": 1856
+   },
+   "family_flow": {
+    "backbone_torsion": 25,
+    "secondary_structure": 25,
+    "disulfide_design": 13,
+    "named_bond_distance": 1
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 64 / 100 道",
+    "题型族 4 个，需 ≥ 6",
+    "推断 族 1 个，需 ≥ 2",
+    "设计 族 1 个，需 ≥ 2",
+    "来源 8 个，需 ≥ 15"
+   ]
+  },
+  {
+   "cell": "biology 1-10",
+   "tier": "A",
+   "target": 100,
+   "max_selectable": 53,
+   "max_balanced": 53,
+   "families": 3,
+   "families_by_ability": {
+    "perception": 0,
+    "inference": 2,
+    "design": 1
+   },
+   "sources": 11,
+   "paper_systems": [],
+   "ability_max": {
+    "perception": 0,
+    "inference": 28,
+    "design": 25
+   },
+   "pool": {
+    "admitted": 9,
+    "enumerated": 23452
+   },
+   "family_flow": {
+    "fret_efficiency": 25,
+    "fret_design": 25,
+    "guinier_intensity": 3
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 53 / 100 道",
+    "题型族 3 个，需 ≥ 6",
+    "感知 族 0 个，需 ≥ 2",
+    "感知 最多 0 道，需 ≥ 23",
+    "设计 族 1 个，需 ≥ 2",
+    "来源 11 个，需 ≥ 15"
+   ]
+  },
+  {
+   "cell": "biology 10-100",
+   "tier": "A",
+   "target": 100,
+   "max_selectable": 68,
+   "max_balanced": 68,
+   "families": 6,
+   "families_by_ability": {
+    "perception": 2,
+    "inference": 3,
+    "design": 1
+   },
+   "sources": 9,
+   "paper_systems": [],
+   "ability_max": {
+    "perception": 18,
+    "inference": 30,
+    "design": 25
+   },
+   "pool": {
+    "admitted": 43,
+    "enumerated": 32
+   },
+   "family_flow": {
+    "scattering_q_design": 23,
+    "guinier_intensity": 13,
+    "capsid_architecture": 12,
+    "assembly_extent": 9,
+    "assembly_rg": 9,
+    "debye_intensity": 2
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 68 / 100 道",
+    "感知 最多 18 道，需 ≥ 23",
+    "设计 族 1 个，需 ≥ 2",
+    "来源 9 个，需 ≥ 15"
+   ]
+  },
+  {
+   "cell": "quantum 1-10",
+   "tier": "B",
+   "target": 60,
+   "max_selectable": 10,
+   "max_balanced": 10,
+   "families": 3,
+   "families_by_ability": {
+    "perception": 1,
+    "inference": 1,
+    "design": 1
+   },
+   "sources": 6,
+   "paper_systems": [
+    "quantum_dot.py"
+   ],
+   "ability_max": {
+    "perception": 5,
+    "inference": 3,
+    "design": 2
+   },
+   "pool": {
+    "admitted": 10,
+    "enumerated": 0
+   },
+   "family_flow": {
+    "extent_choice_v2": 5,
+    "qdot_optics": 3,
+    "qdot_design": 2
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 10 / 60 道",
+    "题型族 3 个，需 ≥ 4",
+    "感知 最多 5 道，需 ≥ 13",
+    "推断 最多 3 道，需 ≥ 13",
+    "设计 最多 2 道，需 ≥ 13",
+    "来源 6 个，需 ≥ 8"
+   ]
+  },
+  {
+   "cell": "chemistry 10-100",
+   "tier": "B",
+   "target": 60,
+   "max_selectable": 8,
+   "max_balanced": 8,
+   "families": 5,
+   "families_by_ability": {
+    "perception": 2,
+    "inference": 2,
+    "design": 1
+   },
+   "sources": 1,
+   "paper_systems": [],
+   "ability_max": {
+    "perception": 5,
+    "inference": 5,
+    "design": 4
+   },
+   "pool": {
+    "admitted": 10,
+    "enumerated": 9
+   },
+   "family_flow": {
+    "assembly_extent": 3,
+    "guinier_intensity": 3,
+    "assembly_rg": 2
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 8 / 60 道",
+    "感知 最多 5 道，需 ≥ 13",
+    "推断 最多 5 道，需 ≥ 13",
+    "设计 最多 4 道，需 ≥ 13",
+    "来源 1 个，需 ≥ 8"
+   ]
+  },
+  {
+   "cell": "biology 100-1000",
+   "tier": "B",
+   "target": 60,
+   "max_selectable": 16,
+   "max_balanced": 16,
+   "families": 5,
+   "families_by_ability": {
+    "perception": 2,
+    "inference": 2,
+    "design": 1
+   },
+   "sources": 2,
+   "paper_systems": [],
+   "ability_max": {
+    "perception": 16,
+    "inference": 5,
+    "design": 8
+   },
+   "pool": {
+    "admitted": 10,
+    "enumerated": 100
+   },
+   "family_flow": {
+    "assembly_extent": 8,
+    "assembly_rg": 8
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 16 / 60 道",
+    "推断 最多 5 道，需 ≥ 13",
+    "设计 最多 8 道，需 ≥ 13",
+    "来源 2 个，需 ≥ 8"
+   ]
+  },
+  {
+   "cell": "quantum 10-100",
+   "tier": "C",
+   "target": 50,
+   "max_selectable": 10,
+   "max_balanced": 10,
+   "families": 3,
+   "families_by_ability": {
+    "perception": 1,
+    "inference": 1,
+    "design": 1
+   },
+   "sources": 2,
+   "paper_systems": [
+    "moire.py"
+   ],
+   "ability_max": {
+    "perception": 3,
+    "inference": 4,
+    "design": 3
+   },
+   "pool": {
+    "admitted": 10,
+    "enumerated": 0
+   },
+   "family_flow": {
+    "moire_inference": 4,
+    "moire_geometry": 3,
+    "moire_design": 3
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 10 / 50 道",
+    "题型族 3 个，需 ≥ 6",
+    "感知 族 1 个，需 ≥ 2",
+    "感知 最多 3 道，需 ≥ 11",
+    "推断 族 1 个，需 ≥ 2",
+    "推断 最多 4 道，需 ≥ 11",
+    "设计 族 1 个，需 ≥ 2",
+    "设计 最多 3 道，需 ≥ 11",
+    "来源 2 个，需 ≥ 5",
+    "论文参数体系 1 个，需 ≥ 2"
+   ]
+  },
+  {
+   "cell": "quantum 100-1000",
+   "tier": "C",
+   "target": 50,
+   "max_selectable": 10,
+   "max_balanced": 10,
+   "families": 3,
+   "families_by_ability": {
+    "perception": 1,
+    "inference": 1,
+    "design": 1
+   },
+   "sources": 2,
+   "paper_systems": [
+    "vortex.py"
+   ],
+   "ability_max": {
+    "perception": 3,
+    "inference": 4,
+    "design": 3
+   },
+   "pool": {
+    "admitted": 10,
+    "enumerated": 0
+   },
+   "family_flow": {
+    "vortex_inference": 4,
+    "vortex_geometry": 3,
+    "vortex_design": 3
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 10 / 50 道",
+    "题型族 3 个，需 ≥ 6",
+    "感知 族 1 个，需 ≥ 2",
+    "感知 最多 3 道，需 ≥ 11",
+    "推断 族 1 个，需 ≥ 2",
+    "推断 最多 4 道，需 ≥ 11",
+    "设计 族 1 个，需 ≥ 2",
+    "设计 最多 3 道，需 ≥ 11",
+    "来源 2 个，需 ≥ 5",
+    "论文参数体系 1 个，需 ≥ 2"
+   ]
+  },
+  {
+   "cell": "chemistry 100-1000",
+   "tier": "C",
+   "target": 50,
+   "max_selectable": 10,
+   "max_balanced": 10,
+   "families": 3,
+   "families_by_ability": {
+    "perception": 1,
+    "inference": 1,
+    "design": 1
+   },
+   "sources": 2,
+   "paper_systems": [
+    "cholesteric.py"
+   ],
+   "ability_max": {
+    "perception": 3,
+    "inference": 4,
+    "design": 3
+   },
+   "pool": {
+    "admitted": 10,
+    "enumerated": 0
+   },
+   "family_flow": {
+    "cholesteric_optics": 4,
+    "cholesteric_geometry": 3,
+    "cholesteric_design": 3
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 10 / 50 道",
+    "题型族 3 个，需 ≥ 6",
+    "感知 族 1 个，需 ≥ 2",
+    "感知 最多 3 道，需 ≥ 11",
+    "推断 族 1 个，需 ≥ 2",
+    "推断 最多 4 道，需 ≥ 11",
+    "设计 族 1 个，需 ≥ 2",
+    "设计 最多 3 道，需 ≥ 11",
+    "来源 2 个，需 ≥ 5",
+    "论文参数体系 1 个，需 ≥ 2"
+   ]
+  },
+  {
+   "cell": "materials 10-100",
+   "tier": "C",
+   "target": 50,
+   "max_selectable": 10,
+   "max_balanced": 10,
+   "families": 4,
+   "families_by_ability": {
+    "perception": 2,
+    "inference": 1,
+    "design": 1
+   },
+   "sources": 1,
+   "paper_systems": [
+    "superlattice.py"
+   ],
+   "ability_max": {
+    "perception": 4,
+    "inference": 3,
+    "design": 3
+   },
+   "pool": {
+    "admitted": 10,
+    "enumerated": 0
+   },
+   "family_flow": {
+    "superlattice_metric": 3,
+    "superlattice_saxs": 3,
+    "superlattice_design": 3,
+    "superlattice_shell": 1
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 10 / 50 道",
+    "题型族 4 个，需 ≥ 6",
+    "感知 最多 4 道，需 ≥ 11",
+    "推断 族 1 个，需 ≥ 2",
+    "推断 最多 3 道，需 ≥ 11",
+    "设计 族 1 个，需 ≥ 2",
+    "设计 最多 3 道，需 ≥ 11",
+    "来源 1 个，需 ≥ 5",
+    "论文参数体系 1 个，需 ≥ 2"
+   ]
+  },
+  {
+   "cell": "materials 100-1000",
+   "tier": "C",
+   "target": 50,
+   "max_selectable": 10,
+   "max_balanced": 10,
+   "families": 3,
+   "families_by_ability": {
+    "perception": 1,
+    "inference": 1,
+    "design": 1
+   },
+   "sources": 2,
+   "paper_systems": [
+    "photonic.py"
+   ],
+   "ability_max": {
+    "perception": 3,
+    "inference": 4,
+    "design": 3
+   },
+   "pool": {
+    "admitted": 10,
+    "enumerated": 0
+   },
+   "family_flow": {
+    "opal_bragg": 4,
+    "opal_geometry": 3,
+    "opal_design": 3
+   },
+   "meets_rule": false,
+   "gaps": [
+    "最多只能选 10 / 50 道",
+    "题型族 3 个，需 ≥ 6",
+    "感知 族 1 个，需 ≥ 2",
+    "感知 最多 3 道，需 ≥ 11",
+    "推断 族 1 个，需 ≥ 2",
+    "推断 最多 4 道，需 ≥ 11",
+    "设计 族 1 个，需 ≥ 2",
+    "设计 最多 3 道，需 ≥ 11",
+    "来源 2 个，需 ≥ 5",
+    "论文参数体系 1 个，需 ≥ 2"
+   ]
+  }
+ ],
+ "note": "Pools combine admitted family questions and enumeration estimates; the maximum is computed under the per-cell caps only (the global per-source and per-family caps are applied at actual selection)."
+}

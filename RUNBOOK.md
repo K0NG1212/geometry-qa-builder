@@ -31,7 +31,7 @@
 | 7 独立复核 | 全部一致才继续；与上一版比较旧实例是否不变 | `python verify_all.py --run runs/family-pilot-vNN --out runs/family-pilot-vNN-independent-check.json` | M5 |
 | 8 导出 | 完整重放，代码哈希须与运行一致 | `python tools/export_family_workbench.py --run runs/family-pilot-vNN --public-development-examples` | M6 |
 | 9 入库 | 登记 new / supersede / reformat，然后导出目录与统计 | `templates/admission-map.json` → `python tools/admit_family_instances.py --date YYYY-MM-DD` → `tools/export_prototype.py`、`tools/export_admission_audit.py`、`tools/plan_coverage.py`、`tools/export_coverage.py`、`tools/export_modules.py` | M6 |
-| 10 挑选与审核材料 | 更新 160 道挑选、审核队列、Excel 审核表和出题系统展示页 | `python tools/select_prototype.py`、`python tools/review.py queue --date YYYY-MM-DD`、`python tools/review_sheet.py export`、`python tools/export_system.py` | — |
+| 10 挑选与审核材料 | 更新 160 道挑选、批量生产差距分析（暂定规则 `templates/batch-selection-rule.json`）、审核队列、Excel 审核表和出题系统展示页 | `python tools/select_prototype.py`、`python tools/batch_plan.py`、`python tools/review.py queue --date YYYY-MM-DD`、`python tools/review_sheet.py export`、`python tools/export_system.py` | — |
 | 11 测试与网页 | 全部测试；本地浏览器核对页面 | `python -m unittest discover -s tests`（约 6–9 分钟） | — |
 | 12 记录与提交 | PROJECT_STATUS 顶部加一节；提交（写实际模型）；推送后确认 Pages 已更新 | `git -c safe.directory=...`，不强推，不提交 `runs/`、`inputs/` | — |
 

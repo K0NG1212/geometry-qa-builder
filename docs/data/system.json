@@ -18,7 +18,7 @@
   ],
   "independent_checked": 212,
   "independent_passed": 212,
-  "tests": 299,
+  "tests": 305,
   "code_lines": 6477,
   "generator_lines": 4456,
   "checker_lines": 2021,
@@ -277,16 +277,16 @@
     {
      "path": "enumerators.py",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/enumerators.py",
-     "lines": 466,
-     "sha256": "dcd4a269edb80e68115477c6103084f85ed2fe35624a278b6102f6a62b965ed4",
-     "source": "\"\"\"Instance enumerators: propose every candidate instance a structure offers.\n\nA family's build function already decides whether one instance is admissible (unique answer,\nseparated options, chain continuity, windows and margins). An enumerator only proposes specs:\nevery residue, every residue pair, every candidate set built around an admissible answer.\ntools/enumerate_instances.py builds the proposals, keeps the ones the family accepts and runs\nthe independent checkers on them. Enumerators may compute geometry to pre-select promising\nproposals (e.g. a pair inside the disulfide windows), but the answer, the options and every\nadmissibility check are decided by the family's build function and re-verified by the\nindependent checker; a proposal the family rejects is simply dropped.\n\nStructures come from templates/structures.json (assets already committed with source and licence).\nThis module lives outside task_families/ on purpose: it writes manifests (which every run snapshots\nand hashes) and does not change how any question is built.\n\"\"\"\nimport json\nimport math\nfrom pathlib import Path\n\nfrom task_families import kit\nfrom task_families.local_geometry import read_pdb_residues\nfrom task_families.protein_design import CA_WINDOW, CB_WINDOW, MARGIN, efficiency\n\nSTRUCTURES = 'templates/structures.json'\nROOT = Path(__file__).resolve().parent\nR0_CHOICES = (2.0, 2.5, 3.0, 4.0, 5.0, 6.0)            # nm; stated in the question as a model parameter\nTARGETS = (0.25, 0.5, 0.75)                             # FRET design targets\nMIN_SPACING = 3                                         # residues apart for any pair\nSCOPE = {\n    'backbone_torsion': '只含残基 %d–%d 的 ATOM 记录；无替代构象；按 IUPAC 符号约定。',\n    'secondary_structure': '只含残基 %d–%d 的 ATOM 记录；参考构象中心为教科书典型值；条目的 HELIX/SHEET 记录作为审核证据，不给考生。',\n    'fret_efficiency': '虚拟点探针（R0 为题设值）；不代表真实染料位置、连接臂或取向分布。',\n    'disulfide_design': 'ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。',\n    'fret_design': 'ATOM 片段逐行照抄；点偶极、R0 为题设模型参数（取向因子含于 R0）。',\n    'molecule': '单一构象（QM7-X 为 DFTB3+MBD 优化几何，SAMPL9 为挑战赛提供的 3D 结构）；坐标原样；成键按共价半径规则。',\n    'crystal': '常规晶胞按 CIF 全部对称操作展开（task_families/cell.py）；周期晶体；衍射题为运动学模型与原子序数权重。',\n}\n# Atomic numbers (angle-independent scattering weights stated in the question) and the X-ray lines already used by\n# diffraction_design in templates/family-manifest.json.\nZ = {'H': 1, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Na': 11, 'Mg': 12, 'Al': 13, 'Si': 14, 'P': 15, 'S': 16, 'Cl': 17, 'K': 19, 'Ca': 20,\n     'Ti': 22, 'Fe': 26, 'Co': 27, 'Ni': 28, 'Cu': 29, 'Zn': 30, 'Ga': 31, 'Ge': 32, 'Se': 34, 'Br': 35, 'Sr': 38, 'Zr': 40,\n     'Mo': 42, 'Cd': 48, 'Sn': 50, 'I': 53, 'Cs': 55, 'Ba': 56, 'W': 74, 'Au': 79, 'Pb': 82}\nLINES = (('Cu', 1.54056), ('Mo', 0.7093), ('Co', 1.78897), ('Cr', 2.2897))\n\n\ndef load_structures(root):\n    return json.loads((root / STRUCTURES).read_text(encoding='utf-8'))['structures']\n\n\ndef load_crystals(root):\n    return json.loads((root / STRUCTURES).read_text(encoding='utf-8')).get('crystals', [])\n\n\ndef structure_of(spec):\n    \"\"\"Grouping key for sampling and capacity rows: PDB id or COD id.\"\"\"\n    return spec.get('assembly') or spec.get('pdb') or spec.get('cod') or spec.get('molecule')\n\n\ndef residues_of(root, s):\n    text = (root / 'docs' / s['asset']).read_text(encoding='utf-8')\n    residues, order, altloc = read_pdb_residues(text, s['chain'])\n    return residues, [n for n in order if n not in altloc]\n\n\ndef base(s, family, key, scope):\n    return dict(id='EN-%s-%s' % (s['pdb'], key), family=family, asset=s['asset'], pdb=s['pdb'], chain=s['chain'],\n                context=s['context'], source=s['source'], license=s['license'], scope=scope)\n\n\ndef pick_r0(r, *context):\n    \"\"\"A stated Förster radius with 0.6 <= r/R0 <= 1.6 (efficiencies away from 0 and 1), chosen by hash so that\n    r falls on both sides of R0. Always taking the nearest R0 left r < R0 in most proposals, where nearly every\n    misconception gives a smaller efficiency and the correct option became the largest one (found by the\n    capacity probe, runs/enum-v01). None if no stated value fits.\"\"\"\n    fits = [x for x in R0_CHOICES if 0.6 <= r / x <= 1.6]\n    return min(fits, key=lambda x: kit.digest('r0', *context, str(x))) if fits else None\n\n\ndef pairs_by_atom(residues, numbers, atom):\n    pts = [(n, residues[n]['atoms'][atom]) for n in numbers if atom in residues[n]['atoms']]\n    for a in range(len(pts)):\n        for b in range(a + 1, len(pts)):\n            (i, p), (j, q) = pts[a], pts[b]\n            if j - i >= MIN_SPACING:\n                yield i, j, math.dist(p, q) / 10\n\n\n# ------------------------------------------------------------------ per-residue families\ndef backbone_torsion(root, s):\n    if s['kind'] != 'protein':\n        return\n    residues, numbers = residues_of(root, s)\n    for n in numbers:\n        for kind in ('phi', 'psi'):\n            yield dict(base(s, 'backbone_torsion', 'TOR-%d-%s' % (n, kind.upper()), SCOPE['backbone_torsion'] % (n - 1, n + 1)),\n                       residue=n, torsion=kind)\n\n\ndef secondary_structure(root, s):\n    if s['kind'] != 'protein':\n        return\n    residues, numbers = residues_of(root, s)\n    for n in numbers:\n        yield dict(base(s, 'secondary_structure', 'SS-%d' % n, SCOPE['secondary_structure'] % (n - 1, n + 1)), residue=n)\n\n\n# ------------------------------------------------------------------ pair families\ndef fret_efficiency(root, s):\n    residues, numbers = residues_of(root, s)\n    atom = 'CA' if s['kind'] == 'protein' else \"C1'\"\n    for i, j, r in pairs_by_atom(residues, numbers, atom):\n        fits = [x for x in R0_CHOICES if 0.6 <= r / x <= 1.6]\n        # Stated R0 values on both sides of r, so the family can reach every answer rank (see scattering.build_fret).\n        if r >= 1.0 and any(x < r for x in fits) and any(x > r for x in fits):   # reasoning scale = r: 1-10 nm cell\n            yield dict(base(s, 'fret_efficiency', 'FRET-%d-%d' % (i, j), SCOPE['fret_efficiency']),\n                       donor=[i, atom], acceptor=[j, atom], R0_choices=fits, path_atom=atom)\n\n\ndef disulfide_rows(residues, numbers):\n    rows = []\n    usable = [n for n in numbers if residues[n]['name'] not in ('CYS', 'GLY') and {'CA', 'CB'} <= set(residues[n]['atoms'])]\n    for a in range(len(usable)):\n        for b in range(a + 1, len(usable)):\n            i, j = usable[a], usable[b]\n            if j - i < MIN_SPACING:\n                continue\n            ra, rb = residues[i]['atoms'], residues[j]['atoms']\n            dca, dcb = math.dist(ra['CA'], rb['CA']), math.dist(ra['CB'], rb['CB'])\n            miss_ca = max(CA_WINDOW[0] - dca, dca - CA_WINDOW[1], 0)\n            miss_cb = max(CB_WINDOW[0] - dcb, dcb - CB_WINDOW[1], 0)\n            if miss_ca == 0 and miss_cb == 0:\n                kind = 'pass'\n            elif 0 < max(miss_ca, miss_cb) < MARGIN:\n                continue                                      # too close to a window: the family rejects such sets\n            elif miss_ca == 0:\n                kind = 'calpha_only'\n            elif miss_cb == 0:\n                kind = 'cbeta_only'\n            elif dca <= 9.0:\n                kind = 'both_out'                             # plausible neighbours only\n            else:\n                continue\n            rows.append(dict(pair=[i, j], kind=kind))\n    return rows\n\n\ndef disulfide_design(root, s):\n    \"\"\"One proposal per admissible pair: the pair plus one distractor of each failure kind where available.\"\"\"\n    if s['kind'] != 'protein':\n        return\n    residues, numbers = residues_of(root, s)\n    rows = disulfide_rows(residues, numbers)\n    failing = {k: [r['pair'] for r in rows if r['kind'] == k] for k in ('calpha_only', 'cbeta_only', 'both_out')}\n    for good in (r['pair'] for r in rows if r['kind'] == 'pass'):\n        picks = []\n        for kind in ('calpha_only', 'cbeta_only', 'both_out'):\n            pool = sorted(failing[kind], key=lambda p: kit.digest(s['pdb'], str(good), str(p)))\n            picks += pool[:1]\n        rest = sorted([p for k in failing for p in failing[k] if p not in picks], key=lambda p: kit.digest(s['pdb'], str(good), 'fill', str(p)))\n        picks += rest[:3 - len(picks)]\n        if len(picks) == 3:\n            yield dict(base(s, 'disulfide_design', 'DS-%d-%d' % tuple(good), SCOPE['disulfide_design']), pairs=[good] + picks)\n\n\ndef fret_design(root, s):\n    \"\"\"For each target, each pair whose efficiency is within 0.03 of the target, plus three pairs clearly farther away.\"\"\"\n    residues, numbers = residues_of(root, s)\n    atom = 'CA' if s['kind'] == 'protein' else 'P'\n    pairs = [(i, j, r) for i, j, r in pairs_by_atom(residues, numbers, atom) if 1.0 <= r < 10]\n    for t in TARGETS:\n        for i, j, r in pairs:\n            r0 = pick_r0(r, s['pdb'], str(t), str(i), str(j))\n            if not r0 or abs(efficiency(r, r0) - t) > 0.03:\n                continue\n            d = abs(efficiency(r, r0) - t)\n            far = [(a, b) for a, b, q in pairs if {a, b}.isdisjoint({i, j}) and abs(efficiency(q, r0) - t) >= max(1.5 * d, d + 0.05) + 0.02]\n            far.sort(key=lambda p: kit.digest(s['pdb'], str(t), str((i, j)), str(p)))\n            if len(far) >= 3:\n                spec = dict(base(s, 'fret_design', 'FD-%02d-%d-%d' % (round(t * 100), i, j), SCOPE['fret_design']),\n                            atom=atom, r0_nm=r0, target=t, pairs=[[i, j]] + [list(p) for p in far[:3]])\n                if s['kind'] == 'nucleic':\n                    spec['nucleic'] = True\n                yield spec\n\n\n# ------------------------------------------------------------------ crystal families (COD CIFs)\ndef crystal_base(c, family, key):\n    \"\"\"CIF crystals use the general reader; the two MOF cells are committed as whole-cell XYZ files (source_kind xyz_cell).\"\"\"\n    from task_families.cell import read_cif\n    if c.get('source_kind') == 'xyz_cell':\n        elements = sorted(set(kit.parse_xyz((ROOT / 'docs' / c['asset']).read_text(encoding='utf-8-sig'))[0]))\n        extra = dict(source_kind='xyz_cell', a=c['a'])\n    else:\n        elements = sorted({e for e, _ in read_cif(ROOT / 'docs' / c['asset'])[1]})\n        extra = dict(source_kind='cif_general')\n    return elements, dict(id='EN-COD%s-%s' % (c['cod'], key), family=family, asset=c['asset'], cod=c['cod'], name=c['name'],\n                          source='https://www.crystallography.net/cod/%s.html' % c['cod'], license='COD（公共领域 / CC0）',\n                          scope=SCOPE['crystal'], **extra)\n\n\ndef coordination_shell(root, c):\n    elements, _ = crystal_base(c, 'coordination_shell', '')\n    for centre in elements:\n        for partner in elements:\n            _, spec = crystal_base(c, 'coordination_shell', 'COORD-%s-%s' % (centre, partner))\n            yield dict(spec, centre={'element': centre}, partner={'element': partner}, centre_text='%s atom' % centre,\n                       partner_text='%s atoms' % partner)\n\n\ndef first_diffraction_peak(root, c):\n    elements, _ = crystal_base(c, 'first_diffraction_peak', '')\n    if any(e not in Z for e in elements):\n        return\n    for line, lam in LINES:\n        _, spec = crystal_base(c, 'first_diffraction_peak', 'PEAK-%s' % line)\n        yield dict(spec, weights={e: Z[e] for e in elements}, wavelength_A=lam)\n\n\ndef kinematic_extinction(root, c):\n    elements, spec = crystal_base(c, 'kinematic_extinction', 'EXT')\n    if all(e in Z for e in elements):\n        yield dict(spec, weights={e: Z[e] for e in elements})\n\n\ndef diffraction_design(root, c):\n    \"\"\"Inverse of the first peak, cubic cells only (the family's limit). The target angle sits near the answer for one\n    line / one crystal, offset by a seeded amount; the family itself rejects sets whose winning margin is too small.\"\"\"\n    from task_families.diffraction_design import crystal_info, two_theta\n    elements, spec = crystal_base(c, 'diffraction_design', '')\n    if any(e not in Z for e in elements):\n        return\n    spec = dict(spec, weights={e: Z[e] for e in elements}, short=c['name'].split(' (')[0])\n    try:\n        info = crystal_info(spec, ROOT)\n    except ValueError:\n        return                                     # non-cubic or ambiguous first reflection\n    d = info['first']['d']\n    lines = [['%s Kα1' % n, lam] for n, lam in LINES]\n    for name, lam in lines:\n        angle = two_theta(d, lam)\n        if angle is None or angle > 150:\n            continue\n        shift = (int.from_bytes(kit.digest(c['cod'], name)[:2], 'big') % 21 - 10) / 10      # -1.0 .. +1.0 degree\n        yield dict(spec, id=spec['id'] + 'XD-ANODE-%s' % name.split()[0], mode='anode', lines=lines,\n                   target_2theta=round(angle + shift, 1))\n    for target in (20.0, 35.0):\n        yield dict(spec, id=spec['id'] + 'XD-WAVE-%d' % target, mode='wavelength', target_2theta=target)\n    others = [o for o in load_crystals(ROOT) if o['cod'] != c['cod']]\n    for name, lam in lines:\n        angle = two_theta(d, lam)\n        if angle is None or angle > 150:\n            continue\n        picks = sorted(others, key=lambda o: kit.digest(c['cod'], name, o['cod']))\n        cands = [dict(asset=c['asset'], source_kind=spec['source_kind'], name=c['name'], weights=spec['weights'], id='COD' + c['cod'],\n                      short=spec['short'], **({'a': c['a']} if c.get('a') else {}))]\n        for o in picks:\n            if len(cands) == 4:\n                break\n            oe, os_ = crystal_base(o, 'diffraction_design', '')\n            if any(e not in Z for e in oe):\n                continue\n            cand = dict(asset=o['asset'], source_kind=os_['source_kind'], name=o['name'], weights={e: Z[e] for e in oe}, id='COD' + o['cod'],\n                        short=o['name'].split(' (')[0], **({'a': o['a']} if o.get('a') else {}))\n            try:\n                crystal_info(cand, ROOT)\n            except ValueError:\n                continue\n            cands.append(cand)\n        shift = (int.from_bytes(kit.digest(c['cod'], name, 'crystal')[:2], 'big') % 11 - 5) / 10\n        yield dict(spec, id=spec['id'] + 'XD-CRYSTAL-%s' % name.split()[0], mode='crystal', wavelength_A=lam,\n                   target_2theta=round(angle + shift, 1), candidates=cands)\n\n\nCRYSTAL_ENUMERATORS = dict(coordination_shell=coordination_shell, first_diffraction_peak=first_diffraction_peak,\n                           kinematic_extinction=kinematic_extinction, diffraction_design=diffraction_design)\n\n\n# ------------------------------------------------------------------ small molecules (QM7-X, SAMPL9)\ndef load_molecules(root):\n    return json.loads((root / STRUCTURES).read_text(encoding='utf-8')).get('molecules', [])\n\n\ndef molecule_graph(m):\n    elements, points = kit.parse_xyz((ROOT / 'docs' / m['asset']).read_text(encoding='utf-8-sig'))\n    edges = kit.bond_graph(elements, points)\n    degree = lambda i: len(kit.neighbors(edges, i))\n    return elements, points, edges, degree\n\n\ndef molecule_base(m, family, key):\n    return dict(id='EN-%s-%s' % (m['molecule'], key), family=family, asset=m['asset'], molecule=m['molecule'], context=m['context'],\n                source=m['source'], license=m['license'], scope=SCOPE['molecule'])\n\n\ndef named_bond_distance(root, m):\n    \"\"\"Every covalent bond between two non-hydrogen atoms (covalent-radius rule), described by elements and connectivity.\"\"\"\n    elements, points, edges, degree = molecule_graph(m)\n    for i, j in sorted(edges):\n        if 'H' in (elements[i], elements[j]):\n            continue\n        a, b = '%s%d' % (elements[i], i + 1), '%s%d' % (elements[j], j + 1)\n        yield dict(molecule_base(m, 'named_bond_distance', 'BOND-%d-%d' % (i + 1, j + 1)),\n                   atoms=[dict(row=i + 1, name=a, element=elements[i]), dict(row=j + 1, name=b, element=elements[j])],\n                   bond='a covalent %s–%s bond (%s is bonded to %d atoms, %s to %d)' % (elements[i], elements[j], a, degree(i), b, degree(j)),\n                   strict_rank=True)\n\n\ndef named_bond_angle(root, m):\n    \"\"\"Every angle A–V–B with all three atoms non-hydrogen and both ends bonded to the vertex.\"\"\"\n    elements, points, edges, degree = molecule_graph(m)\n    for v in range(len(elements)):\n        ends = [x for x in kit.neighbors(edges, v) if elements[x] != 'H']\n        if elements[v] == 'H':\n            continue\n        for p in range(len(ends)):\n            for q in range(p + 1, len(ends)):\n                a, b = sorted((ends[p], ends[q]))\n                names = ['%s%d' % (elements[k], k + 1) for k in (a, v, b)]\n                yield dict(molecule_base(m, 'named_bond_angle', 'ANG-%d-%d-%d' % (a + 1, v + 1, b + 1)),\n                           atoms=[dict(row=k + 1, name=n, element=elements[k]) for k, n in zip((a, v, b), names)],\n                           linkage='two covalent bonds meeting at %s, which is bonded to %d atoms' % (names[1], degree(v)))\n\n\ndef extent_choice_v2(root, m):\n    \"\"\"Whole-molecule size: maximum pairwise distance and equal-weight radius of gyration of all supplied atoms.\"\"\"\n    for template, key in (('global_extent', 'DMAX'), ('equal_weight_rg', 'RG')):\n        yield dict(molecule_base(m, 'extent_choice_v2', key), template=template)\n\n\nMOLECULE_ENUMERATORS = dict(named_bond_distance=named_bond_distance, named_bond_angle=named_bond_angle, extent_choice_v2=extent_choice_v2)\n\n\n# ------------------------------------------------------------------ large assemblies and scattering\nQRG_DEBYE = (1.6, 2.1, 2.6)       # beyond the Guinier range (the family rejects qRg <= 1.3)\nQRG_GUINIER = (0.5, 0.9, 1.2)     # inside it\nQ_TARGETS = (0.3, 0.5, 0.7)\n\n\ndef load_assemblies(root):\n    return json.loads((root / STRUCTURES).read_text(encoding='utf-8')).get('assemblies', [])\n\n\ndef assembly_points(p, component=None):\n    from task_families import assembly\n    text, fmt, labels, points, digest = assembly.load(ROOT, dict(asset=p['asset']))\n    return labels, assembly.select(labels, points, component)\n\n\ndef assembly_rg_nm(points):\n    from task_families import assembly\n    return assembly.rg(points) / 10\n\n\ndef components(p):\n    if p['kind'] == 'xyz':\n        return [None]\n    labels, _ = assembly_points(p)\n    counts = {l: labels.count(l) for l in set(labels)}\n    return sorted(c for c, n in counts.items() if n >= 12)\n\n\ndef assembly_base(p, family, key, component):\n    spec = dict(id='EN-%s-%s%s' % (p['pdb'], key, ('-' + component) if component else ''), family=family, asset=p['asset'],\n                assembly=p['pdb'] + ('-T' if p['kind'] == 'table' else ''), context=p['context'], scope=p['scope'],\n                source=p['source'], license=p['license'])\n    if component:\n        spec['component'] = component\n    return spec\n\n\ndef assembly_extent(root, p):\n    if not p['subunits_only']:\n        for c in components(p):\n            yield assembly_base(p, 'assembly_extent', 'EXT', c)\n\n\ndef assembly_rg(root, p):\n    if not p['subunits_only']:\n        for c in components(p):\n            yield dict(assembly_base(p, 'assembly_rg', 'RG', c), strict_rank=True)\n\n\ndef debye_intensity(root, p):\n    if p['subunits_only']:\n        return\n    for c in components(p):\n        rg = assembly_rg_nm(assembly_points(p, c)[1])\n        for x in QRG_DEBYE:\n            yield dict(assembly_base(p, 'debye_intensity', 'DEB-%02d' % round(10 * x), c), q_per_nm=round(x / rg, 3), strict_rank=True)\n\n\ndef scattering_q_design(root, p):\n    if p['subunits_only']:\n        return\n    for c in components(p):\n        for target in Q_TARGETS:\n            yield dict(assembly_base(p, 'scattering_q_design', 'QDES-%02d' % round(100 * target), c), target=target)\n\n\ndef guinier_intensity(root, p):\n    \"\"\"Whole point sets only (the family reads every supplied point), so xyz particles and the 7ARQ nucleotide table.\"\"\"\n    if p['kind'] != 'xyz' and p['pdb'] != '7ARQ' or not p.get('representation'):\n        return\n    rg = assembly_rg_nm(assembly_points(p)[1])\n    for x in QRG_GUINIER:\n        yield dict(assembly_base(p, 'guinier_intensity', 'GUIN-%02d' % round(10 * x), None), pdb=p['pdb'], context=p['noun'],\n                   representation=p['representation'], q_per_nm=round(x / rg, 2), strict_rank=True)\n\n\ndef capsid_architecture(root, p):\n    if not p.get('capsid') or p['pentamer_only']:\n        return\n    # Caspar-Klug counts apply to the major shell protein only (e.g. HSV-1 VP26 decorates hexons only: 900 copies\n    # would give a spurious T = 15 instead of T = 16).\n    for c in [p.get('component')]:\n        labels, pts = assembly_points(p, c)\n        t = len(pts) // 60\n        if len(pts) % 60 and p.get('capsomer_form') != 'trimer':\n            continue\n        if p.get('capsomer_form') == 'trimer':           # PBCV-1: trimeric capsomers, N = 30(T-1); the family asks T only\n            yield dict(assembly_base(p, 'capsid_architecture', 'CAPSID-T', c), ask='T', component=c, capsomer_form='trimer')\n            continue\n        for ask in (('T', 'capsomers') + (('hexons',) if t > 1 else ())):\n            yield dict(assembly_base(p, 'capsid_architecture', 'CAPSID-%s' % ask, c), ask=ask, component=c)\n\n\n# debye_intensity is not enabled for batches yet: on hollow shells three plausible smaller-intensity mistakes rarely\n# coexist, so even with strict_rank the accepted answers sat at A/B (runs/enum-v29: A23 B24 C6 D3; v30: A23 B24 C17 D4).\n# The family itself was improved (Guinier slips, I squared); the enumerator waits for the L1 review of the family.\nASSEMBLY_ENUMERATORS = dict(assembly_extent=assembly_extent, assembly_rg=assembly_rg,\n                            scattering_q_design=scattering_q_design, guinier_intensity=guinier_intensity,\n                            capsid_architecture=capsid_architecture)\n\n\nENUMERATORS = dict(backbone_torsion=backbone_torsion, secondary_structure=secondary_structure, fret_efficiency=fret_efficiency,\n                   disulfide_design=disulfide_design, fret_design=fret_design, **CRYSTAL_ENUMERATORS, **MOLECULE_ENUMERATORS,\n                   **ASSEMBLY_ENUMERATORS)\n\n\ndef propose(root, families=None):\n    \"\"\"{family: [spec, ...]} over every structure; ids are unique and deterministic.\"\"\"\n    out = {}\n    for family, fn in ENUMERATORS.items():\n        if families and family not in families:\n            continue\n        items = (load_crystals(root) if family in CRYSTAL_ENUMERATORS else\n                 load_molecules(root) if family in MOLECULE_ENUMERATORS else\n                 load_assemblies(root) if family in ASSEMBLY_ENUMERATORS else load_structures(root))\n        out[family] = [spec for s in items for spec in fn(root, s)]\n    return out\n\n\ndef signature(spec):\n    \"\"\"What makes two instances the same question, independent of id and wording.\"\"\"\n    keys = ('family', 'asset', 'chain', 'residue', 'torsion', 'donor', 'acceptor', 'target', 'r0_nm', 'atom', 'wavelength_A', 'template',\n            'mode', 'target_2theta', 'component', 'ask', 'q_per_nm')\n    sig = {k: spec.get(k) for k in keys}\n    if spec.get('atoms'):                      # bond / angle: same atoms in either direction are the same question\n        rows = [x['row'] for x in spec['atoms']]\n        sig['atoms'] = sorted(rows) if len(rows) == 2 else [min(rows[0], rows[2]), rows[1], max(rows[0], rows[2])]\n    for k in ('centre', 'partner'):\n        if spec.get(k):\n            sig[k] = spec[k].get('element')\n    if spec.get('pairs'):\n        sig['pairs'] = sorted(sorted(p) for p in spec['pairs'])\n    return json.dumps(sig, sort_keys=True)\n"
+     "lines": 477,
+     "sha256": "8e13156f3f4b7c5a2a2cfc51e40af3a1800bb738a61dd4fd1bb1b74399aaddec",
+     "source": "\"\"\"Instance enumerators: propose every candidate instance a structure offers.\n\nA family's build function already decides whether one instance is admissible (unique answer,\nseparated options, chain continuity, windows and margins). An enumerator only proposes specs:\nevery residue, every residue pair, every candidate set built around an admissible answer.\ntools/enumerate_instances.py builds the proposals, keeps the ones the family accepts and runs\nthe independent checkers on them. Enumerators may compute geometry to pre-select promising\nproposals (e.g. a pair inside the disulfide windows), but the answer, the options and every\nadmissibility check are decided by the family's build function and re-verified by the\nindependent checker; a proposal the family rejects is simply dropped.\n\nStructures come from templates/structures.json (assets already committed with source and licence).\nThis module lives outside task_families/ on purpose: it writes manifests (which every run snapshots\nand hashes) and does not change how any question is built.\n\"\"\"\nimport json\nimport math\nfrom pathlib import Path\n\nfrom task_families import kit\nfrom task_families.local_geometry import read_pdb_residues\nfrom task_families.protein_design import CA_WINDOW, CB_WINDOW, MARGIN, efficiency\n\nSTRUCTURES = 'templates/structures.json'\nROOT = Path(__file__).resolve().parent\nR0_CHOICES = (2.0, 2.5, 3.0, 4.0, 5.0, 6.0)            # nm; stated in the question as a model parameter\nTARGETS = (0.25, 0.5, 0.75)                             # FRET design targets\nMIN_SPACING = 3                                         # residues apart for any pair\nSCOPE = {\n    'backbone_torsion': '只含残基 %d–%d 的 ATOM 记录；无替代构象；按 IUPAC 符号约定。',\n    'secondary_structure': '只含残基 %d–%d 的 ATOM 记录；参考构象中心为教科书典型值；条目的 HELIX/SHEET 记录作为审核证据，不给考生。',\n    'fret_efficiency': '虚拟点探针（R0 为题设值）；不代表真实染料位置、连接臂或取向分布。',\n    'disulfide_design': 'ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。',\n    'fret_design': 'ATOM 片段逐行照抄；点偶极、R0 为题设模型参数（取向因子含于 R0）。',\n    'molecule': '单一构象（QM7-X 为 DFTB3+MBD 优化几何，SAMPL9 为挑战赛提供的 3D 结构）；坐标原样；成键按共价半径规则。',\n    'crystal': '常规晶胞按 CIF 全部对称操作展开（task_families/cell.py）；周期晶体；衍射题为运动学模型与原子序数权重。',\n}\n# Atomic numbers (angle-independent scattering weights stated in the question) and the X-ray lines already used by\n# diffraction_design in templates/family-manifest.json.\nZ = {'H': 1, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Na': 11, 'Mg': 12, 'Al': 13, 'Si': 14, 'P': 15, 'S': 16, 'Cl': 17, 'K': 19, 'Ca': 20,\n     'Ti': 22, 'Fe': 26, 'Co': 27, 'Ni': 28, 'Cu': 29, 'Zn': 30, 'Ga': 31, 'Ge': 32, 'Se': 34, 'Br': 35, 'Sr': 38, 'Zr': 40,\n     'Mo': 42, 'Cd': 48, 'Sn': 50, 'I': 53, 'Cs': 55, 'Ba': 56, 'W': 74, 'Au': 79, 'Pb': 82}\nLINES = (('Cu', 1.54056), ('Mo', 0.7093), ('Co', 1.78897), ('Cr', 2.2897))\n\n\ndef load_structures(root):\n    return json.loads((root / STRUCTURES).read_text(encoding='utf-8'))['structures']\n\n\ndef load_crystals(root):\n    return json.loads((root / STRUCTURES).read_text(encoding='utf-8')).get('crystals', [])\n\n\ndef domain_of(spec):\n    \"\"\"Benchmark domain of an enumerated spec, from the structure registries.\"\"\"\n    if spec.get('molecule'):\n        return next(m['domain'] for m in load_molecules(ROOT) if m['molecule'] == spec['molecule'])\n    if spec.get('assembly'):\n        return next(p['domain'] for p in load_assemblies(ROOT) if p['asset'] == spec['asset'])\n    if spec.get('cod'):\n        return 'materials'\n    return 'biology'\n\n\ndef structure_of(spec):\n    \"\"\"Grouping key for sampling and capacity rows: PDB id or COD id.\"\"\"\n    return spec.get('assembly') or spec.get('pdb') or spec.get('cod') or spec.get('molecule')\n\n\ndef residues_of(root, s):\n    text = (root / 'docs' / s['asset']).read_text(encoding='utf-8')\n    residues, order, altloc = read_pdb_residues(text, s['chain'])\n    return residues, [n for n in order if n not in altloc]\n\n\ndef base(s, family, key, scope):\n    return dict(id='EN-%s-%s' % (s['pdb'], key), family=family, asset=s['asset'], pdb=s['pdb'], chain=s['chain'],\n                context=s['context'], source=s['source'], license=s['license'], scope=scope)\n\n\ndef pick_r0(r, *context):\n    \"\"\"A stated Förster radius with 0.6 <= r/R0 <= 1.6 (efficiencies away from 0 and 1), chosen by hash so that\n    r falls on both sides of R0. Always taking the nearest R0 left r < R0 in most proposals, where nearly every\n    misconception gives a smaller efficiency and the correct option became the largest one (found by the\n    capacity probe, runs/enum-v01). None if no stated value fits.\"\"\"\n    fits = [x for x in R0_CHOICES if 0.6 <= r / x <= 1.6]\n    return min(fits, key=lambda x: kit.digest('r0', *context, str(x))) if fits else None\n\n\ndef pairs_by_atom(residues, numbers, atom):\n    pts = [(n, residues[n]['atoms'][atom]) for n in numbers if atom in residues[n]['atoms']]\n    for a in range(len(pts)):\n        for b in range(a + 1, len(pts)):\n            (i, p), (j, q) = pts[a], pts[b]\n            if j - i >= MIN_SPACING:\n                yield i, j, math.dist(p, q) / 10\n\n\n# ------------------------------------------------------------------ per-residue families\ndef backbone_torsion(root, s):\n    if s['kind'] != 'protein':\n        return\n    residues, numbers = residues_of(root, s)\n    for n in numbers:\n        for kind in ('phi', 'psi'):\n            yield dict(base(s, 'backbone_torsion', 'TOR-%d-%s' % (n, kind.upper()), SCOPE['backbone_torsion'] % (n - 1, n + 1)),\n                       residue=n, torsion=kind)\n\n\ndef secondary_structure(root, s):\n    if s['kind'] != 'protein':\n        return\n    residues, numbers = residues_of(root, s)\n    for n in numbers:\n        yield dict(base(s, 'secondary_structure', 'SS-%d' % n, SCOPE['secondary_structure'] % (n - 1, n + 1)), residue=n)\n\n\n# ------------------------------------------------------------------ pair families\ndef fret_efficiency(root, s):\n    residues, numbers = residues_of(root, s)\n    atom = 'CA' if s['kind'] == 'protein' else \"C1'\"\n    for i, j, r in pairs_by_atom(residues, numbers, atom):\n        fits = [x for x in R0_CHOICES if 0.6 <= r / x <= 1.6]\n        # Stated R0 values on both sides of r, so the family can reach every answer rank (see scattering.build_fret).\n        if r >= 1.0 and any(x < r for x in fits) and any(x > r for x in fits):   # reasoning scale = r: 1-10 nm cell\n            yield dict(base(s, 'fret_efficiency', 'FRET-%d-%d' % (i, j), SCOPE['fret_efficiency']),\n                       donor=[i, atom], acceptor=[j, atom], R0_choices=fits, path_atom=atom)\n\n\ndef disulfide_rows(residues, numbers):\n    rows = []\n    usable = [n for n in numbers if residues[n]['name'] not in ('CYS', 'GLY') and {'CA', 'CB'} <= set(residues[n]['atoms'])]\n    for a in range(len(usable)):\n        for b in range(a + 1, len(usable)):\n            i, j = usable[a], usable[b]\n            if j - i < MIN_SPACING:\n                continue\n            ra, rb = residues[i]['atoms'], residues[j]['atoms']\n            dca, dcb = math.dist(ra['CA'], rb['CA']), math.dist(ra['CB'], rb['CB'])\n            miss_ca = max(CA_WINDOW[0] - dca, dca - CA_WINDOW[1], 0)\n            miss_cb = max(CB_WINDOW[0] - dcb, dcb - CB_WINDOW[1], 0)\n            if miss_ca == 0 and miss_cb == 0:\n                kind = 'pass'\n            elif 0 < max(miss_ca, miss_cb) < MARGIN:\n                continue                                      # too close to a window: the family rejects such sets\n            elif miss_ca == 0:\n                kind = 'calpha_only'\n            elif miss_cb == 0:\n                kind = 'cbeta_only'\n            elif dca <= 9.0:\n                kind = 'both_out'                             # plausible neighbours only\n            else:\n                continue\n            rows.append(dict(pair=[i, j], kind=kind))\n    return rows\n\n\ndef disulfide_design(root, s):\n    \"\"\"One proposal per admissible pair: the pair plus one distractor of each failure kind where available.\"\"\"\n    if s['kind'] != 'protein':\n        return\n    residues, numbers = residues_of(root, s)\n    rows = disulfide_rows(residues, numbers)\n    failing = {k: [r['pair'] for r in rows if r['kind'] == k] for k in ('calpha_only', 'cbeta_only', 'both_out')}\n    for good in (r['pair'] for r in rows if r['kind'] == 'pass'):\n        picks = []\n        for kind in ('calpha_only', 'cbeta_only', 'both_out'):\n            pool = sorted(failing[kind], key=lambda p: kit.digest(s['pdb'], str(good), str(p)))\n            picks += pool[:1]\n        rest = sorted([p for k in failing for p in failing[k] if p not in picks], key=lambda p: kit.digest(s['pdb'], str(good), 'fill', str(p)))\n        picks += rest[:3 - len(picks)]\n        if len(picks) == 3:\n            yield dict(base(s, 'disulfide_design', 'DS-%d-%d' % tuple(good), SCOPE['disulfide_design']), pairs=[good] + picks)\n\n\ndef fret_design(root, s):\n    \"\"\"For each target, each pair whose efficiency is within 0.03 of the target, plus three pairs clearly farther away.\"\"\"\n    residues, numbers = residues_of(root, s)\n    atom = 'CA' if s['kind'] == 'protein' else 'P'\n    pairs = [(i, j, r) for i, j, r in pairs_by_atom(residues, numbers, atom) if 1.0 <= r < 10]\n    for t in TARGETS:\n        for i, j, r in pairs:\n            r0 = pick_r0(r, s['pdb'], str(t), str(i), str(j))\n            if not r0 or abs(efficiency(r, r0) - t) > 0.03:\n                continue\n            d = abs(efficiency(r, r0) - t)\n            far = [(a, b) for a, b, q in pairs if {a, b}.isdisjoint({i, j}) and abs(efficiency(q, r0) - t) >= max(1.5 * d, d + 0.05) + 0.02]\n            far.sort(key=lambda p: kit.digest(s['pdb'], str(t), str((i, j)), str(p)))\n            if len(far) >= 3:\n                spec = dict(base(s, 'fret_design', 'FD-%02d-%d-%d' % (round(t * 100), i, j), SCOPE['fret_design']),\n                            atom=atom, r0_nm=r0, target=t, pairs=[[i, j]] + [list(p) for p in far[:3]])\n                if s['kind'] == 'nucleic':\n                    spec['nucleic'] = True\n                yield spec\n\n\n# ------------------------------------------------------------------ crystal families (COD CIFs)\ndef crystal_base(c, family, key):\n    \"\"\"CIF crystals use the general reader; the two MOF cells are committed as whole-cell XYZ files (source_kind xyz_cell).\"\"\"\n    from task_families.cell import read_cif\n    if c.get('source_kind') == 'xyz_cell':\n        elements = sorted(set(kit.parse_xyz((ROOT / 'docs' / c['asset']).read_text(encoding='utf-8-sig'))[0]))\n        extra = dict(source_kind='xyz_cell', a=c['a'])\n    else:\n        elements = sorted({e for e, _ in read_cif(ROOT / 'docs' / c['asset'])[1]})\n        extra = dict(source_kind='cif_general')\n    return elements, dict(id='EN-COD%s-%s' % (c['cod'], key), family=family, asset=c['asset'], cod=c['cod'], name=c['name'],\n                          source='https://www.crystallography.net/cod/%s.html' % c['cod'], license='COD（公共领域 / CC0）',\n                          scope=SCOPE['crystal'], **extra)\n\n\ndef coordination_shell(root, c):\n    elements, _ = crystal_base(c, 'coordination_shell', '')\n    for centre in elements:\n        for partner in elements:\n            _, spec = crystal_base(c, 'coordination_shell', 'COORD-%s-%s' % (centre, partner))\n            yield dict(spec, centre={'element': centre}, partner={'element': partner}, centre_text='%s atom' % centre,\n                       partner_text='%s atoms' % partner)\n\n\ndef first_diffraction_peak(root, c):\n    elements, _ = crystal_base(c, 'first_diffraction_peak', '')\n    if any(e not in Z for e in elements):\n        return\n    for line, lam in LINES:\n        _, spec = crystal_base(c, 'first_diffraction_peak', 'PEAK-%s' % line)\n        yield dict(spec, weights={e: Z[e] for e in elements}, wavelength_A=lam)\n\n\ndef kinematic_extinction(root, c):\n    elements, spec = crystal_base(c, 'kinematic_extinction', 'EXT')\n    if all(e in Z for e in elements):\n        yield dict(spec, weights={e: Z[e] for e in elements})\n\n\ndef diffraction_design(root, c):\n    \"\"\"Inverse of the first peak, cubic cells only (the family's limit). The target angle sits near the answer for one\n    line / one crystal, offset by a seeded amount; the family itself rejects sets whose winning margin is too small.\"\"\"\n    from task_families.diffraction_design import crystal_info, two_theta\n    elements, spec = crystal_base(c, 'diffraction_design', '')\n    if any(e not in Z for e in elements):\n        return\n    spec = dict(spec, weights={e: Z[e] for e in elements}, short=c['name'].split(' (')[0])\n    try:\n        info = crystal_info(spec, ROOT)\n    except ValueError:\n        return                                     # non-cubic or ambiguous first reflection\n    d = info['first']['d']\n    lines = [['%s Kα1' % n, lam] for n, lam in LINES]\n    for name, lam in lines:\n        angle = two_theta(d, lam)\n        if angle is None or angle > 150:\n            continue\n        shift = (int.from_bytes(kit.digest(c['cod'], name)[:2], 'big') % 21 - 10) / 10      # -1.0 .. +1.0 degree\n        yield dict(spec, id=spec['id'] + 'XD-ANODE-%s' % name.split()[0], mode='anode', lines=lines,\n                   target_2theta=round(angle + shift, 1))\n    for target in (20.0, 35.0):\n        yield dict(spec, id=spec['id'] + 'XD-WAVE-%d' % target, mode='wavelength', target_2theta=target)\n    others = [o for o in load_crystals(ROOT) if o['cod'] != c['cod']]\n    for name, lam in lines:\n        angle = two_theta(d, lam)\n        if angle is None or angle > 150:\n            continue\n        picks = sorted(others, key=lambda o: kit.digest(c['cod'], name, o['cod']))\n        cands = [dict(asset=c['asset'], source_kind=spec['source_kind'], name=c['name'], weights=spec['weights'], id='COD' + c['cod'],\n                      short=spec['short'], **({'a': c['a']} if c.get('a') else {}))]\n        for o in picks:\n            if len(cands) == 4:\n                break\n            oe, os_ = crystal_base(o, 'diffraction_design', '')\n            if any(e not in Z for e in oe):\n                continue\n            cand = dict(asset=o['asset'], source_kind=os_['source_kind'], name=o['name'], weights={e: Z[e] for e in oe}, id='COD' + o['cod'],\n                        short=o['name'].split(' (')[0], **({'a': o['a']} if o.get('a') else {}))\n            try:\n                crystal_info(cand, ROOT)\n            except ValueError:\n                continue\n            cands.append(cand)\n        shift = (int.from_bytes(kit.digest(c['cod'], name, 'crystal')[:2], 'big') % 11 - 5) / 10\n        yield dict(spec, id=spec['id'] + 'XD-CRYSTAL-%s' % name.split()[0], mode='crystal', wavelength_A=lam,\n                   target_2theta=round(angle + shift, 1), candidates=cands)\n\n\nCRYSTAL_ENUMERATORS = dict(coordination_shell=coordination_shell, first_diffraction_peak=first_diffraction_peak,\n                           kinematic_extinction=kinematic_extinction, diffraction_design=diffraction_design)\n\n\n# ------------------------------------------------------------------ small molecules (QM7-X, SAMPL9)\ndef load_molecules(root):\n    return json.loads((root / STRUCTURES).read_text(encoding='utf-8')).get('molecules', [])\n\n\ndef molecule_graph(m):\n    elements, points = kit.parse_xyz((ROOT / 'docs' / m['asset']).read_text(encoding='utf-8-sig'))\n    edges = kit.bond_graph(elements, points)\n    degree = lambda i: len(kit.neighbors(edges, i))\n    return elements, points, edges, degree\n\n\ndef molecule_base(m, family, key):\n    return dict(id='EN-%s-%s' % (m['molecule'], key), family=family, asset=m['asset'], molecule=m['molecule'], context=m['context'],\n                source=m['source'], license=m['license'], scope=SCOPE['molecule'])\n\n\ndef named_bond_distance(root, m):\n    \"\"\"Every covalent bond between two non-hydrogen atoms (covalent-radius rule), described by elements and connectivity.\"\"\"\n    elements, points, edges, degree = molecule_graph(m)\n    for i, j in sorted(edges):\n        if 'H' in (elements[i], elements[j]):\n            continue\n        a, b = '%s%d' % (elements[i], i + 1), '%s%d' % (elements[j], j + 1)\n        yield dict(molecule_base(m, 'named_bond_distance', 'BOND-%d-%d' % (i + 1, j + 1)),\n                   atoms=[dict(row=i + 1, name=a, element=elements[i]), dict(row=j + 1, name=b, element=elements[j])],\n                   bond='a covalent %s–%s bond (%s is bonded to %d atoms, %s to %d)' % (elements[i], elements[j], a, degree(i), b, degree(j)),\n                   strict_rank=True)\n\n\ndef named_bond_angle(root, m):\n    \"\"\"Every angle A–V–B with all three atoms non-hydrogen and both ends bonded to the vertex.\"\"\"\n    elements, points, edges, degree = molecule_graph(m)\n    for v in range(len(elements)):\n        ends = [x for x in kit.neighbors(edges, v) if elements[x] != 'H']\n        if elements[v] == 'H':\n            continue\n        for p in range(len(ends)):\n            for q in range(p + 1, len(ends)):\n                a, b = sorted((ends[p], ends[q]))\n                names = ['%s%d' % (elements[k], k + 1) for k in (a, v, b)]\n                yield dict(molecule_base(m, 'named_bond_angle', 'ANG-%d-%d-%d' % (a + 1, v + 1, b + 1)),\n                           atoms=[dict(row=k + 1, name=n, element=elements[k]) for k, n in zip((a, v, b), names)],\n                           linkage='two covalent bonds meeting at %s, which is bonded to %d atoms' % (names[1], degree(v)))\n\n\ndef extent_choice_v2(root, m):\n    \"\"\"Whole-molecule size: maximum pairwise distance and equal-weight radius of gyration of all supplied atoms.\"\"\"\n    for template, key in (('global_extent', 'DMAX'), ('equal_weight_rg', 'RG')):\n        yield dict(molecule_base(m, 'extent_choice_v2', key), template=template)\n\n\nMOLECULE_ENUMERATORS = dict(named_bond_distance=named_bond_distance, named_bond_angle=named_bond_angle, extent_choice_v2=extent_choice_v2)\n\n\n# ------------------------------------------------------------------ large assemblies and scattering\nQRG_DEBYE = (1.6, 2.1, 2.6)       # beyond the Guinier range (the family rejects qRg <= 1.3)\nQRG_GUINIER = (0.5, 0.9, 1.2)     # inside it\nQ_TARGETS = (0.3, 0.5, 0.7)\n\n\ndef load_assemblies(root):\n    return json.loads((root / STRUCTURES).read_text(encoding='utf-8')).get('assemblies', [])\n\n\ndef assembly_points(p, component=None):\n    from task_families import assembly\n    text, fmt, labels, points, digest = assembly.load(ROOT, dict(asset=p['asset']))\n    return labels, assembly.select(labels, points, component)\n\n\ndef assembly_rg_nm(points):\n    from task_families import assembly\n    return assembly.rg(points) / 10\n\n\ndef components(p):\n    if p['kind'] == 'xyz':\n        return [None]\n    labels, _ = assembly_points(p)\n    counts = {l: labels.count(l) for l in set(labels)}\n    return sorted(c for c, n in counts.items() if n >= 12)\n\n\ndef assembly_base(p, family, key, component):\n    spec = dict(id='EN-%s-%s%s' % (p['pdb'], key, ('-' + component) if component else ''), family=family, asset=p['asset'],\n                assembly=p['pdb'] + ('-T' if p['kind'] == 'table' else ''), context=p['context'], scope=p['scope'],\n                source=p['source'], license=p['license'])\n    if component:\n        spec['component'] = component\n    return spec\n\n\ndef assembly_extent(root, p):\n    if not p['subunits_only']:\n        for c in components(p):\n            yield assembly_base(p, 'assembly_extent', 'EXT', c)\n\n\ndef assembly_rg(root, p):\n    if not p['subunits_only']:\n        for c in components(p):\n            yield dict(assembly_base(p, 'assembly_rg', 'RG', c), strict_rank=True)\n\n\ndef debye_intensity(root, p):\n    if p['subunits_only']:\n        return\n    for c in components(p):\n        rg = assembly_rg_nm(assembly_points(p, c)[1])\n        for x in QRG_DEBYE:\n            yield dict(assembly_base(p, 'debye_intensity', 'DEB-%02d' % round(10 * x), c), q_per_nm=round(x / rg, 3), strict_rank=True)\n\n\ndef scattering_q_design(root, p):\n    if p['subunits_only']:\n        return\n    for c in components(p):\n        for target in Q_TARGETS:\n            yield dict(assembly_base(p, 'scattering_q_design', 'QDES-%02d' % round(100 * target), c), target=target)\n\n\ndef guinier_intensity(root, p):\n    \"\"\"Whole point sets only (the family reads every supplied point), so xyz particles and the 7ARQ nucleotide table.\"\"\"\n    if p['kind'] != 'xyz' and p['pdb'] != '7ARQ' or not p.get('representation'):\n        return\n    rg = assembly_rg_nm(assembly_points(p)[1])\n    for x in QRG_GUINIER:\n        yield dict(assembly_base(p, 'guinier_intensity', 'GUIN-%02d' % round(10 * x), None), pdb=p['pdb'], context=p['noun'],\n                   representation=p['representation'], q_per_nm=round(x / rg, 2), strict_rank=True)\n\n\ndef capsid_architecture(root, p):\n    if not p.get('capsid') or p['pentamer_only']:\n        return\n    # Caspar-Klug counts apply to the major shell protein only (e.g. HSV-1 VP26 decorates hexons only: 900 copies\n    # would give a spurious T = 15 instead of T = 16).\n    for c in [p.get('component')]:\n        labels, pts = assembly_points(p, c)\n        t = len(pts) // 60\n        if len(pts) % 60 and p.get('capsomer_form') != 'trimer':\n            continue\n        if p.get('capsomer_form') == 'trimer':           # PBCV-1: trimeric capsomers, N = 30(T-1); the family asks T only\n            yield dict(assembly_base(p, 'capsid_architecture', 'CAPSID-T', c), ask='T', component=c, capsomer_form='trimer')\n            continue\n        for ask in (('T', 'capsomers') + (('hexons',) if t > 1 else ())):\n            yield dict(assembly_base(p, 'capsid_architecture', 'CAPSID-%s' % ask, c), ask=ask, component=c)\n\n\n# debye_intensity is not enabled for batches yet: on hollow shells three plausible smaller-intensity mistakes rarely\n# coexist, so even with strict_rank the accepted answers sat at A/B (runs/enum-v29: A23 B24 C6 D3; v30: A23 B24 C17 D4).\n# The family itself was improved (Guinier slips, I squared); the enumerator waits for the L1 review of the family.\nASSEMBLY_ENUMERATORS = dict(assembly_extent=assembly_extent, assembly_rg=assembly_rg,\n                            scattering_q_design=scattering_q_design, guinier_intensity=guinier_intensity,\n                            capsid_architecture=capsid_architecture)\n\n\nENUMERATORS = dict(backbone_torsion=backbone_torsion, secondary_structure=secondary_structure, fret_efficiency=fret_efficiency,\n                   disulfide_design=disulfide_design, fret_design=fret_design, **CRYSTAL_ENUMERATORS, **MOLECULE_ENUMERATORS,\n                   **ASSEMBLY_ENUMERATORS)\n\n\ndef propose(root, families=None):\n    \"\"\"{family: [spec, ...]} over every structure; ids are unique and deterministic.\"\"\"\n    out = {}\n    for family, fn in ENUMERATORS.items():\n        if families and family not in families:\n            continue\n        items = (load_crystals(root) if family in CRYSTAL_ENUMERATORS else\n                 load_molecules(root) if family in MOLECULE_ENUMERATORS else\n                 load_assemblies(root) if family in ASSEMBLY_ENUMERATORS else load_structures(root))\n        out[family] = [spec for s in items for spec in fn(root, s)]\n    return out\n\n\ndef signature(spec):\n    \"\"\"What makes two instances the same question, independent of id and wording.\"\"\"\n    keys = ('family', 'asset', 'chain', 'residue', 'torsion', 'donor', 'acceptor', 'target', 'r0_nm', 'atom', 'wavelength_A', 'template',\n            'mode', 'target_2theta', 'component', 'ask', 'q_per_nm')\n    sig = {k: spec.get(k) for k in keys}\n    if spec.get('atoms'):                      # bond / angle: same atoms in either direction are the same question\n        rows = [x['row'] for x in spec['atoms']]\n        sig['atoms'] = sorted(rows) if len(rows) == 2 else [min(rows[0], rows[2]), rows[1], max(rows[0], rows[2])]\n    for k in ('centre', 'partner'):\n        if spec.get(k):\n            sig[k] = spec[k].get('element')\n    if spec.get('pairs'):\n        sig['pairs'] = sorted(sorted(p) for p in spec['pairs'])\n    return json.dumps(sig, sort_keys=True)\n"
     },
     {
      "path": "tools/enumerate_instances.py",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/tools/enumerate_instances.py",
-     "lines": 128,
-     "sha256": "3f2620bb6a48fe9c5c0866a8dd77ff1d15932604e717c1dbbdc6167fb7839fc4",
-     "source": "\"\"\"Enumerate candidate instances, build a deterministic sample and check it independently.\n\n  python tools/enumerate_instances.py --out runs/enum-v01 [--sample 40] [--families fret_design,...]\n\n1. enumerators.propose lists every candidate spec per family and structure (templates/structures.json);\n   candidates already in templates/family-manifest.json are left out.\n2. A deterministic sample (SHA-256 order, at most --sample per family and structure) goes into\n   <out>/manifest.json and is generated with family_engine.run (the family decides admissibility). Slow families\n   (SLOW below) are sampled at most twice per structure.\n3. verify_all re-checks every generated instance with the independent checkers.\n4. A capacity summary (no answers) is written to <out>/capacity.json and docs/data/enumeration-capacity.json:\n   proposals, sampled, accepted by the family, rejection reasons, checker agreement and an estimate\n   of admissible instances (proposals x acceptance rate in the sample).\n\nNothing is admitted to the catalog: batch production starts only after the family passes L1/L2 review.\nAnswer positions are counted per family with the production tolerance max(4, 15% of instances).\nExit status 1 if any independent check fails or any family's answer positions are out of balance.\n\"\"\"\nimport argparse\nimport datetime\nimport json\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nsys.path.insert(0, str(ROOT))\nimport enumerators  # noqa: E402\nimport family_engine  # noqa: E402\nimport verify_all  # noqa: E402\nfrom task_families import kit  # noqa: E402\n\n\ndef existing_signatures():\n    manifest = json.loads((ROOT / 'templates/family-manifest.json').read_text(encoding='utf-8'))\n    return {enumerators.signature(spec) for spec in manifest['items']}\n\n\n# Families whose instances take minutes each (exact Debye sums inside a root search) get a smaller fixed sample.\nSLOW = {'scattering_q_design': 2}\n\n\ndef sample(proposals, per_structure, seed):\n    chosen = []\n    for family, specs in proposals.items():\n        by_structure = {}\n        for spec in specs:\n            by_structure.setdefault(enumerators.structure_of(spec), []).append(spec)\n        for pdb, group in sorted(by_structure.items()):\n            group.sort(key=lambda s: kit.digest(seed, s['id']))\n            chosen += group[:min(per_structure, SLOW.get(family, per_structure))]\n    return chosen\n\n\ndef reason_kind(text):\n    \"\"\"Short bucket for a rejection message (the full text stays in the run).\"\"\"\n    return text.split(':')[0].split(' (')[0][:80]\n\n\ndef run(out, per_structure=40, seed='geobench-enum-v1', families=None, date=None):\n    out = Path(out)\n    if out.exists():\n        raise SystemExit('Output exists; use a new directory under runs/')\n    seen = existing_signatures()\n    proposals = {f: [s for s in specs if enumerators.signature(s) not in seen]\n                 for f, specs in enumerators.propose(ROOT, families).items()}\n    picked = sample(proposals, per_structure, seed)\n    out.mkdir(parents=True)\n    manifest = dict(kind='enumerated_sample', version='0.1.0', seed=seed, items=picked)\n    (out / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    report = family_engine.run(out / 'manifest.json', out / 'run', seed)\n    check = verify_all.verify(*verify_all.load(run=out / 'run'))\n    (out / 'independent-check.json').write_text(json.dumps(check, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    failed = {f['id']: f['reason'] for f in report['failures']}\n    checked = {r['id']: r['status'] for r in check['results']}\n    keys = json.loads((out / 'run/private-answers.json').read_text(encoding='utf-8'))\n    positions = {}\n    for k in keys:\n        positions.setdefault(k['family'], Counter())[k['correct_label']] += 1\n    balance = {}\n    for family, c in positions.items():\n        n = sum(c.values())\n        limit = max(4, 0.15 * n)                               # same tolerance as the production batches\n        worst = max(abs(c.get(l, 0) - n / 4) for l in kit.LABELS)\n        balance[family] = dict(counts={l: c.get(l, 0) for l in kit.LABELS}, max_deviation=round(worst, 1), tolerance=round(limit, 1),\n                               ok=worst <= limit)\n    rows = []\n    for family, specs in proposals.items():\n        for pdb in sorted({enumerators.structure_of(s) for s in specs}):\n            ids = [s['id'] for s in picked if s['family'] == family and enumerators.structure_of(s) == pdb]\n            built = [i for i in ids if i not in failed]\n            n = sum(enumerators.structure_of(s) == pdb for s in specs)\n            rows.append(dict(family=family, structure=pdb, proposals=n, sampled=len(ids), accepted=len(built),\n                             rejected=dict(Counter(reason_kind(failed[i]) for i in ids if i in failed)),\n                             checker_pass=sum(checked.get(i) == 'pass' for i in built),\n                             checker_fail=sum(checked.get(i) not in (None, 'pass') for i in built),\n                             estimated_admissible=round(n * len(built) / len(ids)) if ids else 0))\n    totals = dict(proposals=sum(r['proposals'] for r in rows), sampled=len(picked), accepted=report['passed'],\n                  checker_pass=check['passed'], checker_checked=check['checked'],\n                  estimated_admissible=sum(r['estimated_admissible'] for r in rows),\n                  positions=report['correct_position_counts'])\n    totals['position_balance_ok'] = all(b['ok'] for b in balance.values())\n    summary = dict(kind='enumeration_capacity', date=date or datetime.date.today().isoformat(), seed=seed, sample_per_structure=per_structure,\n                   run=out.name, structures=[s['pdb'] for s in enumerators.load_structures(ROOT)] + ['COD ' + c['cod'] for c in enumerators.load_crystals(ROOT)], totals=totals, rows=rows, position_balance=balance, model_calls=0,\n                   note='Capacity probe only: nothing is admitted to the catalog. Estimates scale the acceptance rate of the sample to all '\n                        'proposals of the same family and structure.')\n    for path in (out / 'capacity.json', ROOT / 'docs/data/enumeration-capacity.json'):\n        path.write_text(json.dumps(summary, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    return summary, check\n\n\nif __name__ == '__main__':\n    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)\n    p.add_argument('--out', required=True)\n    p.add_argument('--sample', type=int, default=40)\n    p.add_argument('--seed', default='geobench-enum-v1')\n    p.add_argument('--families')\n    p.add_argument('--date')\n    a = p.parse_args()\n    summary, check = run(a.out, a.sample, a.seed, a.families.split(',') if a.families else None, a.date)\n    print(json.dumps(summary['totals'], ensure_ascii=False))\n    for r in summary['rows']:\n        print(r['family'], r['structure'], r['proposals'], r['sampled'], r['accepted'], r['checker_pass'], r['rejected'])\n    for f, b in summary['position_balance'].items():\n        print('positions', f, b['counts'], 'ok' if b['ok'] else 'IMBALANCED')\n    if check['failed']:\n        print('INDEPENDENT CHECK FAILURES:', json.dumps(check['failed'][:20], ensure_ascii=False))\n    sys.exit(0 if check['passed'] == check['checked'] and summary['totals']['position_balance_ok'] else 1)\n"
+     "lines": 155,
+     "sha256": "ea89c98fe75ea6e9ed30a80807749b70ab2f1a82893e8ff6ccb9c02d4854c01c",
+     "source": "\"\"\"Enumerate candidate instances, build a deterministic sample and check it independently.\n\n  python tools/enumerate_instances.py --out runs/enum-v01 [--sample 40] [--families fret_design,...]\n\n1. enumerators.propose lists every candidate spec per family and structure (templates/structures.json);\n   candidates already in templates/family-manifest.json are left out.\n2. A deterministic sample (SHA-256 order, at most --sample per family and structure) goes into\n   <out>/manifest.json and is generated with family_engine.run (the family decides admissibility). Slow families\n   (SLOW below) are sampled at most twice per structure.\n3. verify_all re-checks every generated instance with the independent checkers.\n4. A capacity summary (no answers) is written to <out>/capacity.json and docs/data/enumeration-capacity.json:\n   proposals, sampled, accepted by the family, rejection reasons, checker agreement and an estimate\n   of admissible instances (proposals x acceptance rate in the sample).\n\nNothing is admitted to the catalog: batch production starts only after the family passes L1/L2 review.\nAnswer positions are counted per family with the production tolerance max(4, 15% of instances).\nExit status 1 if any independent check fails or any family's answer positions are out of balance.\n\"\"\"\nimport argparse\nimport datetime\nimport json\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nsys.path.insert(0, str(ROOT))\nimport enumerators  # noqa: E402\nimport review_system as rs  # noqa: E402\nimport family_engine  # noqa: E402\nimport verify_all  # noqa: E402\nfrom task_families import kit  # noqa: E402\n\n\ndef existing_signatures():\n    manifest = json.loads((ROOT / 'templates/family-manifest.json').read_text(encoding='utf-8'))\n    return {enumerators.signature(spec) for spec in manifest['items']}\n\n\n# Families whose instances take minutes each (exact Debye sums inside a root search) get a smaller fixed sample.\nSLOW = {'scattering_q_design': 2}\n\n\ndef sample(proposals, per_structure, seed):\n    chosen = []\n    for family, specs in proposals.items():\n        by_structure = {}\n        for spec in specs:\n            by_structure.setdefault(enumerators.structure_of(spec), []).append(spec)\n        for pdb, group in sorted(by_structure.items()):\n            group.sort(key=lambda s: kit.digest(seed, s['id']))\n            chosen += group[:min(per_structure, SLOW.get(family, per_structure))]\n    return chosen\n\n\ndef reason_kind(text):\n    \"\"\"Short bucket for a rejection message (the full text stays in the run).\"\"\"\n    return text.split(':')[0].split(' (')[0][:80]\n\n\ndef run(out, per_structure=40, seed='geobench-enum-v1', families=None, date=None):\n    out = Path(out)\n    if out.exists():\n        raise SystemExit('Output exists; use a new directory under runs/')\n    seen = existing_signatures()\n    proposals = {f: [s for s in specs if enumerators.signature(s) not in seen]\n                 for f, specs in enumerators.propose(ROOT, families).items()}\n    picked = sample(proposals, per_structure, seed)\n    out.mkdir(parents=True)\n    manifest = dict(kind='enumerated_sample', version='0.1.0', seed=seed, items=picked)\n    (out / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    report = family_engine.run(out / 'manifest.json', out / 'run', seed)\n    check = verify_all.verify(*verify_all.load(run=out / 'run'))\n    (out / 'independent-check.json').write_text(json.dumps(check, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    return summarize(out, proposals, picked, report, check, per_structure, seed, date)\n\n\ndef summarize_existing(out, date=None):\n    \"\"\"Rebuild the capacity summary of an existing probe run (proposals are deterministic; nothing is regenerated).\"\"\"\n    out = Path(out)\n    manifest = json.loads((out / 'manifest.json').read_text(encoding='utf-8'))\n    picked = manifest['items']\n    families = sorted({s['family'] for s in picked})\n    seen = existing_signatures()\n    proposals = {f: [s for s in specs if enumerators.signature(s) not in seen]\n                 for f, specs in enumerators.propose(ROOT, families).items()}\n    report = json.loads((out / 'run/verification.json').read_text(encoding='utf-8'))\n    check = json.loads((out / 'independent-check.json').read_text(encoding='utf-8'))\n    per_structure = max(Counter((s['family'], enumerators.structure_of(s)) for s in picked).values())\n    return summarize(out, proposals, picked, report, check, per_structure, manifest['seed'], date)\n\n\ndef summarize(out, proposals, picked, report, check, per_structure, seed, date):\n    failed = {f['id']: f['reason'] for f in report['failures']}\n    checked = {r['id']: r['status'] for r in check['results']}\n    keys = json.loads((out / 'run/private-answers.json').read_text(encoding='utf-8'))\n    by_id = {s['id']: s for s in picked}\n    cell_of = {k['id']: '%s %s' % (enumerators.domain_of(by_id[k['id']]), rs.cell(k['scales']['reasoning_nm'])) for k in keys}\n    positions = {}\n    for k in keys:\n        positions.setdefault(k['family'], Counter())[k['correct_label']] += 1\n    balance = {}\n    for family, c in positions.items():\n        n = sum(c.values())\n        limit = max(4, 0.15 * n)                               # same tolerance as the production batches\n        worst = max(abs(c.get(l, 0) - n / 4) for l in kit.LABELS)\n        balance[family] = dict(counts={l: c.get(l, 0) for l in kit.LABELS}, max_deviation=round(worst, 1), tolerance=round(limit, 1),\n                               ok=worst <= limit)\n    rows = []\n    for family, specs in proposals.items():\n        for pdb in sorted({enumerators.structure_of(s) for s in specs}):\n            ids = [s['id'] for s in picked if s['family'] == family and enumerators.structure_of(s) == pdb]\n            built = [i for i in ids if i not in failed]\n            n = sum(enumerators.structure_of(s) == pdb for s in specs)\n            rows.append(dict(family=family, structure=pdb, proposals=n, sampled=len(ids), accepted=len(built),\n                             rejected=dict(Counter(reason_kind(failed[i]) for i in ids if i in failed)),\n                             checker_pass=sum(checked.get(i) == 'pass' for i in built),\n                             checker_fail=sum(checked.get(i) not in (None, 'pass') for i in built),\n                             estimated_admissible=round(n * len(built) / len(ids)) if ids else 0,\n                             cells=dict(Counter(cell_of[i] for i in built if i in cell_of))))\n    totals = dict(proposals=sum(r['proposals'] for r in rows), sampled=len(picked), accepted=report['passed'],\n                  checker_pass=check['passed'], checker_checked=check['checked'],\n                  estimated_admissible=sum(r['estimated_admissible'] for r in rows),\n                  positions=report['correct_position_counts'])\n    totals['position_balance_ok'] = all(b['ok'] for b in balance.values())\n    summary = dict(kind='enumeration_capacity', date=date or datetime.date.today().isoformat(), seed=seed, sample_per_structure=per_structure,\n                   run=out.name, structures=[s['pdb'] for s in enumerators.load_structures(ROOT)] + ['COD ' + c['cod'] for c in enumerators.load_crystals(ROOT)], totals=totals, rows=rows, position_balance=balance, model_calls=0,\n                   note='Capacity probe only: nothing is admitted to the catalog. Estimates scale the acceptance rate of the sample to all '\n                        'proposals of the same family and structure.')\n    for path in (out / 'capacity.json', ROOT / 'docs/data/enumeration-capacity.json'):\n        path.write_text(json.dumps(summary, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    return summary, check\n\n\nif __name__ == '__main__':\n    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)\n    p.add_argument('--out', required=True)\n    p.add_argument('--summarize', action='store_true', help='rebuild the summary of an existing --out run without regenerating')\n    p.add_argument('--sample', type=int, default=40)\n    p.add_argument('--seed', default='geobench-enum-v1')\n    p.add_argument('--families')\n    p.add_argument('--date')\n    a = p.parse_args()\n    if a.summarize:\n        summary, check = summarize_existing(a.out, a.date)\n    else:\n        summary, check = run(a.out, a.sample, a.seed, a.families.split(',') if a.families else None, a.date)\n    print(json.dumps(summary['totals'], ensure_ascii=False))\n    for r in summary['rows']:\n        print(r['family'], r['structure'], r['proposals'], r['sampled'], r['accepted'], r['checker_pass'], r['rejected'])\n    for f, b in summary['position_balance'].items():\n        print('positions', f, b['counts'], 'ok' if b['ok'] else 'IMBALANCED')\n    if check['failed']:\n        print('INDEPENDENT CHECK FAILURES:', json.dumps(check['failed'][:20], ensure_ascii=False))\n    sys.exit(0 if check['passed'] == check['checked'] and summary['totals']['position_balance_ok'] else 1)\n"
     }
    ]
   },
@@ -398,15 +398,16 @@
    "stage": "publish",
    "title": "挑选与审核材料",
    "m": "—",
-   "purpose": "每格挑 10 道（提议规则）；生成审核队列与 Excel 审核表。",
+   "purpose": "原型每格挑 10 道（提议规则）；批量生产按暂定规则（templates/batch-selection-rule.json）分三档定目标，并逐格算出在多样性上限下最多能选多少、还差什么；生成审核队列与 Excel 审核表。",
    "input": "目录",
    "output": "prototype-selection.json、review-queue.json、review-sheet.xlsx",
    "guarantees": [
     "挑选可复现（固定种子）",
-    "审核表导入时逐行校验，审核人必须具名"
+    "审核表导入时逐行校验，审核人必须具名",
+    "多样性上限（来源 × 题型族、每族、每来源）同时生效，可选上限用最大流精确计算"
    ],
    "limits": "挑选规则待教授确认。",
-   "command": "python tools/select_prototype.py && python tools/review.py queue && python tools/review_sheet.py export",
+   "command": "python tools/select_prototype.py && python tools/review.py queue && python tools/review_sheet.py export && python tools/batch_plan.py",
    "files": [
     {
      "path": "tools/select_prototype.py",
@@ -435,6 +436,19 @@
      "lines": 255,
      "sha256": "b73c8030d0a3650411bd21e1e70fef200db3d773e071f742538f097ad5ff3f15",
      "source": "\"\"\"Review system L1-L3 (roadmap A6): records, hash bindings, instance status and stratified sampling.\n\nDesign (HANDOFF section 7b):\n  L0  automatic verification of every instance (independent checkers; already in place)\n  L1  task-family review, once per family: a human reads the family card and two samples\n  L2  checker review, once per family: a human reads the independent checker (optionally with one model code review)\n  L3  stratified spot check per batch: a lightweight model answers four fixed questions; every flag goes to a human,\n      and a calibration sample of model passes also goes to a human\nRecords live in reviews/ (append-only JSON). Each L1/L2 record is bound to SHA-256 hashes of the code and\nregistry row it approved; when those change the record becomes stale and the family must be reviewed again.\nNothing here calls a model or approves anything by itself: records are written only by tools/review.py with a\nnamed reviewer.\n\"\"\"\nimport hashlib\nimport json\nimport math\nimport re\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nREVIEWS = ROOT / 'reviews'\nQUESTIONS = ROOT / 'templates/review-l3-questions.json'\nDECISIONS = {'L1': ('approved', 'revise'), 'L2': ('approved', 'revise')}\nVERDICTS = ('pass', 'flag')\nSTAGES = ('L0', 'L1+L2', 'L3', 'formal')\n\n\ndef need(condition, message):\n    if not condition:\n        raise ValueError(message)\n\n\ndef sha(data):\n    return hashlib.sha256(data if isinstance(data, bytes) else data.encode('utf-8')).hexdigest()\n\n\ndef file_sha(rel):\n    path = ROOT / rel\n    return sha(path.read_bytes()) if path.exists() else None\n\n\ndef canonical(obj):\n    return json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(',', ':'))\n\n\n# ------------------------------------------------------------------ review units and bindings\ndef registry_row(registry, family):\n    for t in registry['templates']:\n        if family in t.get('engine_families', []) or family == t['id'] or family in t.get('legacy_families', []):\n            return t\n    return None\n\n\ndef review_form(q):\n    \"\"\"The form a catalog record is reviewed in: its own family instance; for a legacy record, the first independently\n    checked four-choice version linked under familyVersions (reviewed with that family); otherwise the legacy template.\"\"\"\n    if q.get('familyInstance'):\n        return dict(form='family', unit=q['family'], instance=q['familyInstance'], l0=q.get('independentCheck') == 'pass')\n    for v in q.get('familyVersions', []):\n        if v.get('independentCheck') == 'pass':\n            return dict(form='family-version', unit=v['family'], instance=v['instance'], l0=True)\n    return dict(form='legacy', unit='legacy:' + (q.get('family') or q['id']), instance=None, l0=bool(q.get('prototypeScreeningPassed')))\n\n\ndef units(registry, families, checkers, catalog, ids=None):\n    \"\"\"One review unit per task family plus one per legacy template family whose records have no checked family\n    version. With ids (e.g. the 160 selection) only the units those records need are returned.\"\"\"\n    out = {}\n    needed = None\n    if ids is not None:\n        needed = {review_form(q)['unit'] for q in catalog['questions'] if q['id'] in ids}\n    for f, info in families.items():\n        if needed is not None and f not in needed:\n            continue\n        row = registry_row(registry, f)\n        fn = checkers.get(f)\n        checker_file = fn.__module__.replace('.', '/') + '.py' if fn else None\n        out[f] = dict(unit=f, kind='family', ability=info['ability'], registry_id=row['id'] if row else None,\n                      generator=info['module'], checker=checker_file, checker_function=fn.__name__ if fn else None)\n    for q in catalog['questions']:\n        if q.get('lifecycle') == 'active' and (ids is None or q['id'] in ids) and review_form(q)['form'] == 'legacy':\n            f = review_form(q)['unit']\n            if f not in out:\n                row = registry_row(registry, q.get('family') or '')\n                out[f] = dict(unit=f, kind='legacy', ability=q['ability'], registry_id=row['id'] if row else None,\n                              generator=None, checker=None, checker_function=None,\n                              code=[c for c in (row or {}).get('code', []) if (ROOT / c).exists()])\n    return out\n\n\ndef bindings(unit, registry):\n    \"\"\"Hashes an L1 / L2 record is bound to. Any change makes the record stale.\"\"\"\n    row = next((t for t in registry['templates'] if t['id'] == unit['registry_id']), None)\n    row_sha = sha(canonical(row)) if row else None\n    if unit['kind'] == 'family':\n        l1 = {'registry_row': row_sha, unit['generator']: file_sha(unit['generator'])}\n        l2 = {unit['checker']: file_sha(unit['checker']), 'checkers/common.py': file_sha('checkers/common.py')} if unit['checker'] else {}\n    else:\n        l1 = {'registry_row': row_sha}\n        l2 = {c: file_sha(c) for c in unit.get('code', [])}\n    return dict(L1=l1, L2=l2)\n\n\n# ------------------------------------------------------------------ records\ndef validate_record(rec):\n    \"\"\"Schema check for an L1 / L2 record; returns the record or raises ValueError.\"\"\"\n    need(rec.get('level') in DECISIONS, 'level must be L1 or L2')\n    need(isinstance(rec.get('unit'), str) and rec['unit'], 'unit missing')\n    need(rec.get('decision') in DECISIONS[rec['level']], 'decision must be approved or revise')\n    reviewer = rec.get('reviewer') or {}\n    need(reviewer.get('kind') == 'human' and reviewer.get('name', '').strip(), 'L1/L2 decisions need a named human reviewer')\n    need(isinstance(rec.get('bindings'), dict) and rec['bindings'], 'bindings missing')\n    need(isinstance(rec.get('date'), str) and re.fullmatch(r'\\d{4}-\\d{2}-\\d{2}', rec['date']), 'date must be YYYY-MM-DD')\n    for m in rec.get('model_reviews', []):\n        need(m.get('model') and m.get('output_sha256'), 'model review needs model id and output hash')\n    return rec\n\n\ndef validate_l3(result, questions):\n    ids = [q['id'] for q in questions['questions']]\n    need(isinstance(result.get('instance'), str), 'instance missing')\n    need((result.get('reviewer') or {}).get('kind') in ('model', 'human'), 'reviewer kind must be model or human')\n    need((result.get('reviewer') or {}).get('name', '').strip(), 'reviewer name/model id missing')\n    answers = result.get('answers') or {}\n    need(sorted(answers) == sorted(ids), 'answers must cover exactly the four fixed questions')\n    for k, v in answers.items():\n        need(v.get('verdict') in VERDICTS and isinstance(v.get('reason', ''), str), 'bad verdict for ' + k)\n    need(result.get('questions_sha256') == questions['_sha256'], 'result was produced with a different question set')\n    return result\n\n\ndef load_questions():\n    raw = QUESTIONS.read_bytes()\n    q = json.loads(raw.decode('utf-8'))\n    q['_sha256'] = sha(raw)\n    return q\n\n\ndef load_records(root=None):\n    root = root or REVIEWS\n    recs = dict(L1=[], L2=[], L3=[])\n    for level in ('L1', 'L2'):\n        for p in sorted((root / level).glob('*.json')) if (root / level).exists() else []:\n            recs[level].append(validate_record(json.loads(p.read_text(encoding='utf-8'))))\n    if (root / 'L3').exists():\n        for p in sorted((root / 'L3').glob('*/results.json')):\n            batch = json.loads(p.read_text(encoding='utf-8'))\n            recs['L3'].append(batch)\n    return recs\n\n\ndef unit_state(unit_id, level, current, records):\n    \"\"\"approved (current) | revise (current) | stale | pending: the latest record for the unit decides.\"\"\"\n    mine = [r for r in records[level] if r['unit'] == unit_id]\n    if not mine:\n        return 'pending', None\n    last = sorted(mine, key=lambda r: (r['date'], r.get('seq', 0)))[-1]\n    if last['bindings'] != current:\n        return 'stale', last\n    return last['decision'], last\n\n\n# ------------------------------------------------------------------ instances, strata, sampling\ndef cell(reasoning_nm):\n    for lo, hi in ((0.1, 1), (1, 10), (10, 100), (100, 1000)):\n        if reasoning_nm is not None and lo <= reasoning_nm < hi:\n            return '%g-%g' % (lo, hi)\n    return 'out-of-range'\n\n\ndef instances(catalog, ids=None):\n    \"\"\"Active catalog records (optionally only ids) with the review form, unit, source and scale cell used for stratification.\"\"\"\n    out = []\n    for q in catalog['questions']:\n        if q.get('lifecycle') != 'active' or (ids is not None and q['id'] not in ids):\n            continue\n        f = review_form(q)\n        out.append(dict(id=q['id'], unit=f['unit'], form=f['form'], instance=f['instance'], source=q.get('paper') or 'unknown',\n                        cell='%s %s' % (q['domain'], cell(q.get('reasoningSizeNm'))), ability=q['ability'], l0=f['l0']))\n    return out\n\n\ndef stratum(item):\n    return '%s | %s | %s' % (item['unit'], item['source'], item['cell'])\n\n\ndef rank_key(seed, item_id):\n    return sha('%s|%s' % (seed, item_id))\n\n\ndef plan_l3(items, history, seed, fraction=0.10, minimum=2):\n    \"\"\"Stratified sample. A stratum whose unit or source has never passed an L3 batch is checked in full\n    (first batch of a new family or source); stable strata get max(minimum, ceil(fraction * n)).\"\"\"\n    passed_units, passed_sources = set(), set()\n    for batch in history:\n        for r in batch.get('results', []):\n            if r.get('final') == 'pass':\n                passed_units.add(r['unit'])\n                passed_sources.add(r['source'])\n    groups = {}\n    for it in items:\n        groups.setdefault(stratum(it), []).append(it)\n    plan = []\n    for key, members in sorted(groups.items()):\n        first = members[0]['unit'] not in passed_units or members[0]['source'] not in passed_sources\n        n = len(members) if first else min(len(members), max(minimum, math.ceil(fraction * len(members))))\n        chosen = sorted(members, key=lambda it: rank_key(seed, it['id']))[:n]\n        plan.append(dict(stratum=key, unit=members[0]['unit'], source=members[0]['source'], cell=members[0]['cell'],\n                         size=len(members), sample=n, rule='first batch: all' if first else 'stable: max(%d, %d%%)' % (minimum, fraction * 100),\n                         ids=sorted(it['id'] for it in chosen)))\n    return plan\n\n\ndef calibration_sample(model_results, seed, fraction=0.10, minimum=3):\n    \"\"\"Model passes that also go to a human, to calibrate the model reviewer.\"\"\"\n    passes = [r['instance'] for r in model_results if all(a['verdict'] == 'pass' for a in r['answers'].values())]\n    n = min(len(passes), max(minimum, math.ceil(fraction * len(passes))))\n    return sorted(sorted(passes, key=lambda i: rank_key(seed + '/calibration', i))[:n])\n\n\ndef triage(model_results, seed):\n    \"\"\"Human queue after the model pass: every flagged instance plus the calibration sample.\"\"\"\n    flagged = sorted(r['instance'] for r in model_results if any(a['verdict'] == 'flag' for a in r['answers'].values()))\n    return dict(flagged=flagged, calibration=calibration_sample(model_results, seed))\n\n\ndef instance_stage(item, unit_states, l3_final):\n    if not item['l0']:\n        return 'not-verified'\n    l1, l2 = unit_states.get(item['unit'], ('pending', 'pending'))\n    if l1 != 'approved' or l2 != 'approved':\n        return 'L0'\n    if l3_final.get(item['id']) != 'pass':\n        return 'L1+L2'\n    return 'formal'\n\n\n# ------------------------------------------------------------------ L3 prompt\ndef reviewer_packet(teacher, record):\n    \"\"\"What the model reviewer sees besides the student packet: answer, option audit, source and limits.\"\"\"\n    if teacher:\n        return dict(correct_label=teacher['correct_label'], numeric_answer=teacher.get('numeric_answer'),\n                    option_audit=[{k: o.get(k) for k in ('label', 'value', 'rule', 'source_id', 'reason', 'is_correct') if k in o} for o in teacher['option_audit']],\n                    source=teacher['source'], license=teacher.get('license'), limits=(teacher.get('checks') or {}).get('limits'),\n                    scales=teacher.get('scales'))\n    return dict(answer=record.get('answer'), source=record.get('source'), attribution=record.get('attribution'),\n                validation=record.get('validation'), rubric=record.get('rubric'))\n\n\ndef l3_prompt(item_id, student_text, reviewer, questions):\n    lines = [questions['instructions'], '', 'Instance: %s' % item_id, '', '=== STUDENT PACKET ===', student_text, '',\n             '=== REVIEWER PACKET ===', json.dumps(reviewer, ensure_ascii=False, indent=1), '', '=== QUESTIONS ===']\n    lines += ['%s: %s' % (q['id'], q['prompt']) for q in questions['questions']]\n    lines += ['', 'Output schema: ' + json.dumps(questions['output_schema'], ensure_ascii=False)]\n    return '\\n'.join(lines) + '\\n'\n"
+    },
+    {
+     "path": "tools/batch_plan.py",
+     "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/tools/batch_plan.py",
+     "lines": 204,
+     "sha256": "1bf4f7364f052ba312cc6d24cb78221fd9ddcaff15404c5542f9ff314cda87ba",
+     "source": "\"\"\"Gap analysis for batch production under templates/batch-selection-rule.json (provisional rule).\n\n  python tools/batch_plan.py            # -> docs/data/batch-plan.json\n\nFor every cell it pools (a) admitted family questions (catalog, family form) and (b) the enumeration capacity\nestimate (docs/data/enumeration-capacity.json, per family x structure x cell), keyed by family and source\n(structure or paper). The diversity caps act together and are summed, not multiplied: each family x source pair,\neach family and each source has its own ceiling. The largest selectable number of questions under all caps is a\nmaximum flow  target -> family (<= max_per_family) -> source (<= max_per_family_source per pair) -> sink\n(<= max_per_source per source). The report lists, per cell, how far the current data are from the rule.\nEnumeration figures are estimates (sample acceptance scaled to all proposals); nothing here admits questions.\n\"\"\"\nimport json\nimport re\nimport sys\nfrom collections import defaultdict, deque\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nsys.path.insert(0, str(ROOT))\nimport review_system as rs  # noqa: E402\nfrom task_families import FAMILIES  # noqa: E402\n\nABILITIES = ('perception', 'inference', 'design')\n\n\ndef read(rel):\n    return json.loads((ROOT / rel).read_text(encoding='utf-8'))\n\n\ndef route_of(family, routes):\n    return routes.get(FAMILIES[family]['module'].split('/')[-1], 'general')\n\n\ndef source_of(spec, paper, route):\n    \"\"\"One key per independent source: the paper for paper-parameter and evidence routes, otherwise the structure.\"\"\"\n    if route in ('paper', 'evidence'):\n        return paper or 'unknown-paper'\n    if spec.get('pdb'):\n        return spec['pdb']\n    m = re.search(r'COD (\\d+)', spec.get('name', ''))\n    if m:\n        return 'COD' + m.group(1)\n    stem = spec['asset'].rsplit('/', 1)[-1].split('.')[0]\n    if spec['asset'].startswith('assets/materials/'):\n        return 'COD' + stem\n    if spec['asset'].startswith('assets/families/assemblies/'):\n        return stem.split('-')[0]\n    m = re.search(r'QM7X?-?(\\d{4})|-(7\\d{3})-', spec['asset'])\n    if m:\n        return 'QM7X-' + (m.group(1) or m.group(2))\n    if 'hostguest' in spec['asset'] or stem in ('BCD', 'WP6', 'DMBCD'):\n        return 'SAMPL9-' + stem.replace('WP6-', 'WP6-')\n    return stem\n\n\ndef normalise_structure(name):\n    \"\"\"Enumeration rows use PDB / COD / molecule / assembly ids; align them with source_of.\"\"\"\n    name = name[:-2] if name.endswith('-T') else name\n    if name.isdigit():\n        return 'COD' + name\n    if name.startswith('SAMPL9-WP6-'):\n        return 'SAMPL9-' + name[len('SAMPL9-'):]\n    return name\n\n\ndef pools(rule):\n    \"\"\"{cell: {(family, source): available}} plus ability and route per family.\"\"\"\n    routes = read('templates/system-pipeline.json')['module_routes']\n    manifest = {s['id']: s for s in read('templates/family-manifest.json')['items']}\n    catalog = read('docs/data/catalog.json')\n    out = defaultdict(lambda: defaultdict(float))\n    origin = defaultdict(lambda: defaultdict(float))\n    for q in catalog['questions']:\n        if q.get('lifecycle') != 'active':\n            continue\n        f = rs.review_form(q)\n        if f['form'] == 'legacy' or f['instance'] not in manifest:\n            continue\n        family = f['unit']\n        cell = '%s %s' % (q['domain'], rs.cell(q.get('reasoningSizeNm')))\n        src = source_of(manifest[f['instance']], q.get('paper'), route_of(family, routes))\n        out[cell][(family, src)] += 1\n        origin[cell]['admitted'] += 1\n    cap = read('docs/data/enumeration-capacity.json')\n    for r in cap['rows']:\n        accepted = sum(r.get('cells', {}).values())\n        if not accepted:\n            continue\n        for cell, n in r['cells'].items():\n            share = r['estimated_admissible'] * n / accepted\n            out[cell][(r['family'], normalise_structure(r['structure']))] += share\n            origin[cell]['enumerated'] += share\n    return out, origin, routes\n\n\ndef max_flow(pairs, caps, target, families=None):\n    \"\"\"Largest selection under the pair / family / source caps. Returns (total, flow per family, flow per source).\"\"\"\n    graph = defaultdict(dict)\n\n    def edge(u, v, c):\n        graph[u][v] = graph[u].get(v, 0) + c\n        graph[v].setdefault(u, 0)\n\n    edge('S0', 'S', target)\n    for (fam, src), avail in pairs.items():\n        if families is not None and fam not in families:\n            continue\n        n = int(min(avail, caps['max_per_family_source']))\n        if n <= 0:\n            continue\n        if ('f', fam) not in graph['S']:           # family and source ceilings are set once, not once per pair\n            edge('S', ('f', fam), caps['max_per_family'])\n        if 'T' not in graph[('s', src)]:\n            edge(('s', src), 'T', caps['max_per_source'])\n        edge(('f', fam), ('s', src), n)\n    total = 0\n    while True:                                   # Edmonds-Karp on a graph of a few hundred nodes\n        parent = {'S0': None}\n        queue = deque(['S0'])\n        while queue and 'T' not in parent:\n            u = queue.popleft()\n            for v, c in graph[u].items():\n                if c > 0 and v not in parent:\n                    parent[v] = u\n                    queue.append(v)\n        if 'T' not in parent:\n            break\n        path, v = [], 'T'\n        while parent[v] is not None:\n            path.append((parent[v], v))\n            v = parent[v]\n        push = min(graph[u][v] for u, v in path)\n        for u, v in path:\n            graph[u][v] -= push\n            graph[v][u] += push\n        total += push\n    fam_flow = {k[1]: graph[k]['S'] for k in graph if isinstance(k, tuple) and k[0] == 'f' and graph[k].get('S')}\n    src_flow = {k[1]: graph['T'][k] for k in graph['T'] if isinstance(k, tuple) and graph['T'].get(k)}\n    return total, fam_flow, src_flow\n\n\ndef plan(rule=None):\n    rule = rule or read('templates/batch-selection-rule.json')\n    pool, origin, routes = pools(rule)\n    share = rule['ability_share']\n    cells, paper_total, grand, grand_balanced = [], 0, 0, 0\n    for cell, tier in rule['cells'].items():\n        caps = rule['tiers'][tier]\n        pairs = {k: v for k, v in pool.get(cell, {}).items() if v >= 1}\n        fams = sorted({f for f, _ in pairs})\n        srcs = sorted({s for _, s in pairs})\n        by_ability = {a: sorted(f for f in fams if FAMILIES[f]['ability'] == a) for a in ABILITIES}\n        systems = sorted({FAMILIES[f]['module'].split('/')[-1] for f in fams if route_of(f, routes) == 'paper'})\n        total, fam_flow, src_flow = max_flow(pairs, caps, caps['target'])\n        need_ability = int(caps['target'] * (share['target'] - share['tolerance']))\n        ability_max = {a: max_flow(pairs, caps, caps['target'], set(by_ability[a]))[0] for a in ABILITIES}\n        paper = sum(v for f, v in fam_flow.items() if route_of(f, routes) == 'paper')\n        paper_total += paper\n        grand += total\n        # With the ability rule: no ability may exceed (1/3 + tolerance) of the target, so a cell short in one ability\n        # cannot be filled up with another.\n        ceiling = int(caps['target'] * (share['target'] + share['tolerance']))\n        balanced = min(total, sum(min(ability_max[a], ceiling) for a in ABILITIES))\n        grand_balanced += balanced\n        gaps = []\n        if total < caps['target']:\n            gaps.append('最多只能选 %d / %d 道' % (total, caps['target']))\n        if len(fams) < caps['min_families']:\n            gaps.append('题型族 %d 个，需 ≥ %d' % (len(fams), caps['min_families']))\n        for a in ABILITIES:\n            if len(by_ability[a]) < caps['min_families_per_ability']:\n                gaps.append('%s 族 %d 个，需 ≥ %d' % ({'perception': '感知', 'inference': '推断', 'design': '设计'}[a],\n                                                    len(by_ability[a]), caps['min_families_per_ability']))\n            if ability_max[a] < need_ability:\n                gaps.append('%s 最多 %d 道，需 ≥ %d' % ({'perception': '感知', 'inference': '推断', 'design': '设计'}[a],\n                                                     ability_max[a], need_ability))\n        if len(srcs) < caps['min_sources']:\n            gaps.append('来源 %d 个，需 ≥ %d' % (len(srcs), caps['min_sources']))\n        if caps.get('min_systems') and len(systems) < caps['min_systems']:\n            gaps.append('论文参数体系 %d 个，需 ≥ %d' % (len(systems), caps['min_systems']))\n        cells.append(dict(cell=cell, tier=tier, target=caps['target'], max_selectable=total, max_balanced=balanced, families=len(fams),\n                          families_by_ability={a: len(v) for a, v in by_ability.items()}, sources=len(srcs), paper_systems=systems,\n                          ability_max=ability_max, pool=dict(admitted=round(origin[cell]['admitted']), enumerated=round(origin[cell]['enumerated'])),\n                          family_flow={k: v for k, v in sorted(fam_flow.items(), key=lambda kv: -kv[1])},\n                          meets_rule=not gaps, gaps=gaps))\n    target = sum(c['target'] for c in cells)\n    summary = dict(target=target, max_selectable=grand, max_balanced=grand_balanced, cells_meeting_rule=sum(c['meets_rule'] for c in cells),\n                   paper_parameter_share_of_selectable=round(paper_total / grand, 3) if grand else None,\n                   max_paper_parameter_share=rule['global']['max_paper_parameter_share'])\n    return dict(kind='batch_plan', rule_version=rule['version'], status=rule['status'], status_note=rule['status_note'],\n                enumeration_run=read('docs/data/enumeration-capacity.json')['run'], summary=summary, cells=cells,\n                note='Pools combine admitted family questions and enumeration estimates; the maximum is computed under the '\n                     'per-cell caps only (the global per-source and per-family caps are applied at actual selection).')\n\n\nif __name__ == '__main__':\n    out = plan()\n    (ROOT / 'docs/data/batch-plan.json').write_text(json.dumps(out, ensure_ascii=False, indent=1) + '\\n', encoding='utf-8', newline='\\n')\n    print(json.dumps(out['summary'], ensure_ascii=False))\n    for c in out['cells']:\n        print('%-20s %s %3d/%3d (balanced %3d) fam %2d src %3d %s' % (c['cell'], c['tier'], c['max_selectable'], c['target'], c['max_balanced'],\n                                                                    c['families'], c['sources'],\n                                                     '; '.join(c['gaps']) or 'OK'))\n"
+    },
+    {
+     "path": "templates/batch-selection-rule.json",
+     "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/templates/batch-selection-rule.json",
+     "lines": 41,
+     "sha256": "997b180f2bca5f8dcdfb15f1912847e7609de253d45937c761135d4b4b10e5cc"
     }
    ]
   },
@@ -2203,7 +2217,10 @@
     },
     "checker_pass": 30,
     "checker_fail": 0,
-    "estimated_admissible": 189
+    "estimated_admissible": 189,
+    "cells": {
+     "biology 0.1-1": 30
+    }
    },
    {
     "family": "backbone_torsion",
@@ -2216,7 +2233,10 @@
     },
     "checker_pass": 39,
     "checker_fail": 0,
-    "estimated_admissible": 89
+    "estimated_admissible": 89,
+    "cells": {
+     "biology 0.1-1": 39
+    }
    },
    {
     "family": "backbone_torsion",
@@ -2229,7 +2249,10 @@
     },
     "checker_pass": 39,
     "checker_fail": 0,
-    "estimated_admissible": 109
+    "estimated_admissible": 109,
+    "cells": {
+     "biology 0.1-1": 39
+    }
    },
    {
     "family": "backbone_torsion",
@@ -2242,7 +2265,10 @@
     },
     "checker_pass": 38,
     "checker_fail": 0,
-    "estimated_admissible": 143
+    "estimated_admissible": 143,
+    "cells": {
+     "biology 0.1-1": 38
+    }
    },
    {
     "family": "backbone_torsion",
@@ -2253,7 +2279,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 328
+    "estimated_admissible": 328,
+    "cells": {
+     "biology 0.1-1": 40
+    }
    },
    {
     "family": "backbone_torsion",
@@ -2266,7 +2295,10 @@
     },
     "checker_pass": 37,
     "checker_fail": 0,
-    "estimated_admissible": 104
+    "estimated_admissible": 104,
+    "cells": {
+     "biology 0.1-1": 37
+    }
    },
    {
     "family": "backbone_torsion",
@@ -2277,7 +2309,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 257
+    "estimated_admissible": 257,
+    "cells": {
+     "biology 0.1-1": 40
+    }
    },
    {
     "family": "backbone_torsion",
@@ -2290,7 +2325,10 @@
     },
     "checker_pass": 29,
     "checker_fail": 0,
-    "estimated_admissible": 161
+    "estimated_admissible": 161,
+    "cells": {
+     "biology 0.1-1": 29
+    }
    },
    {
     "family": "secondary_structure",
@@ -2305,7 +2343,10 @@
     },
     "checker_pass": 26,
     "checker_fail": 0,
-    "estimated_admissible": 82
+    "estimated_admissible": 82,
+    "cells": {
+     "biology 0.1-1": 26
+    }
    },
    {
     "family": "secondary_structure",
@@ -2320,7 +2361,10 @@
     },
     "checker_pass": 23,
     "checker_fail": 0,
-    "estimated_admissible": 26
+    "estimated_admissible": 26,
+    "cells": {
+     "biology 0.1-1": 23
+    }
    },
    {
     "family": "secondary_structure",
@@ -2335,7 +2379,10 @@
     },
     "checker_pass": 27,
     "checker_fail": 0,
-    "estimated_admissible": 38
+    "estimated_admissible": 38,
+    "cells": {
+     "biology 0.1-1": 27
+    }
    },
    {
     "family": "secondary_structure",
@@ -2350,7 +2397,10 @@
     },
     "checker_pass": 18,
     "checker_fail": 0,
-    "estimated_admissible": 34
+    "estimated_admissible": 34,
+    "cells": {
+     "biology 0.1-1": 18
+    }
    },
    {
     "family": "secondary_structure",
@@ -2364,7 +2414,10 @@
     },
     "checker_pass": 26,
     "checker_fail": 0,
-    "estimated_admissible": 107
+    "estimated_admissible": 107,
+    "cells": {
+     "biology 0.1-1": 26
+    }
    },
    {
     "family": "secondary_structure",
@@ -2379,7 +2432,10 @@
     },
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 13
+    "estimated_admissible": 13,
+    "cells": {
+     "biology 0.1-1": 9
+    }
    },
    {
     "family": "secondary_structure",
@@ -2393,7 +2449,10 @@
     },
     "checker_pass": 17,
     "checker_fail": 0,
-    "estimated_admissible": 54
+    "estimated_admissible": 54,
+    "cells": {
+     "biology 0.1-1": 17
+    }
    },
    {
     "family": "secondary_structure",
@@ -2408,7 +2467,10 @@
     },
     "checker_pass": 16,
     "checker_fail": 0,
-    "estimated_admissible": 44
+    "estimated_admissible": 44,
+    "cells": {
+     "biology 0.1-1": 16
+    }
    },
    {
     "family": "fret_efficiency",
@@ -2419,7 +2481,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 3748
+    "estimated_admissible": 3748,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_efficiency",
@@ -2430,7 +2495,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 99
+    "estimated_admissible": 99,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_efficiency",
@@ -2441,7 +2509,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 1244
+    "estimated_admissible": 1244,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_efficiency",
@@ -2452,7 +2523,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 198
+    "estimated_admissible": 198,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_efficiency",
@@ -2463,7 +2537,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 560
+    "estimated_admissible": 560,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_efficiency",
@@ -2474,7 +2551,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 6933
+    "estimated_admissible": 6933,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_efficiency",
@@ -2485,7 +2565,10 @@
     "rejected": {},
     "checker_pass": 24,
     "checker_fail": 0,
-    "estimated_admissible": 24
+    "estimated_admissible": 24,
+    "cells": {
+     "biology 1-10": 24
+    }
    },
    {
     "family": "fret_efficiency",
@@ -2496,7 +2579,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 261
+    "estimated_admissible": 261,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_efficiency",
@@ -2507,7 +2593,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 3160
+    "estimated_admissible": 3160,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_efficiency",
@@ -2518,7 +2607,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 2590
+    "estimated_admissible": 2590,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "disulfide_design",
@@ -2529,7 +2621,10 @@
     "rejected": {},
     "checker_pass": 13,
     "checker_fail": 0,
-    "estimated_admissible": 13
+    "estimated_admissible": 13,
+    "cells": {
+     "biology 0.1-1": 13
+    }
    },
    {
     "family": "disulfide_design",
@@ -2540,7 +2635,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "biology 0.1-1": 1
+    }
    },
    {
     "family": "disulfide_design",
@@ -2551,7 +2649,10 @@
     "rejected": {},
     "checker_pass": 5,
     "checker_fail": 0,
-    "estimated_admissible": 5
+    "estimated_admissible": 5,
+    "cells": {
+     "biology 0.1-1": 5
+    }
    },
    {
     "family": "disulfide_design",
@@ -2562,7 +2663,10 @@
     "rejected": {},
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 9
+    "estimated_admissible": 9,
+    "cells": {
+     "biology 0.1-1": 9
+    }
    },
    {
     "family": "disulfide_design",
@@ -2573,7 +2677,10 @@
     "rejected": {},
     "checker_pass": 18,
     "checker_fail": 0,
-    "estimated_admissible": 18
+    "estimated_admissible": 18,
+    "cells": {
+     "biology 0.1-1": 18
+    }
    },
    {
     "family": "disulfide_design",
@@ -2584,7 +2691,10 @@
     "rejected": {},
     "checker_pass": 8,
     "checker_fail": 0,
-    "estimated_admissible": 8
+    "estimated_admissible": 8,
+    "cells": {
+     "biology 0.1-1": 8
+    }
    },
    {
     "family": "disulfide_design",
@@ -2595,7 +2705,10 @@
     "rejected": {},
     "checker_pass": 15,
     "checker_fail": 0,
-    "estimated_admissible": 15
+    "estimated_admissible": 15,
+    "cells": {
+     "biology 0.1-1": 15
+    }
    },
    {
     "family": "disulfide_design",
@@ -2606,7 +2719,10 @@
     "rejected": {},
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 9
+    "estimated_admissible": 9,
+    "cells": {
+     "biology 0.1-1": 9
+    }
    },
    {
     "family": "fret_design",
@@ -2617,7 +2733,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 884
+    "estimated_admissible": 884,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_design",
@@ -2628,7 +2747,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 50
+    "estimated_admissible": 50,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_design",
@@ -2639,7 +2761,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 263
+    "estimated_admissible": 263,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_design",
@@ -2650,7 +2775,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 90
+    "estimated_admissible": 90,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_design",
@@ -2661,7 +2789,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 229
+    "estimated_admissible": 229,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_design",
@@ -2672,7 +2803,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 1527
+    "estimated_admissible": 1527,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_design",
@@ -2683,7 +2817,10 @@
     "rejected": {},
     "checker_pass": 6,
     "checker_fail": 0,
-    "estimated_admissible": 6
+    "estimated_admissible": 6,
+    "cells": {
+     "biology 1-10": 6
+    }
    },
    {
     "family": "fret_design",
@@ -2694,7 +2831,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 103
+    "estimated_admissible": 103,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_design",
@@ -2705,7 +2845,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 831
+    "estimated_admissible": 831,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "fret_design",
@@ -2716,7 +2859,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 652
+    "estimated_admissible": 652,
+    "cells": {
+     "biology 1-10": 40
+    }
    },
    {
     "family": "coordination_shell",
@@ -2727,7 +2873,11 @@
     "rejected": {},
     "checker_pass": 25,
     "checker_fail": 0,
-    "estimated_admissible": 25
+    "estimated_admissible": 25,
+    "cells": {
+     "materials 0.1-1": 24,
+     "materials 1-10": 1
+    }
    },
    {
     "family": "coordination_shell",
@@ -2738,7 +2888,10 @@
     "rejected": {},
     "checker_pass": 3,
     "checker_fail": 0,
-    "estimated_admissible": 3
+    "estimated_admissible": 3,
+    "cells": {
+     "materials 0.1-1": 3
+    }
    },
    {
     "family": "coordination_shell",
@@ -2749,7 +2902,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "coordination_shell",
@@ -2762,7 +2918,12 @@
     },
     "checker_pass": 13,
     "checker_fail": 0,
-    "estimated_admissible": 13
+    "estimated_admissible": 13,
+    "cells": {
+     "materials 0.1-1": 11,
+     "materials 1-10": 1,
+     "materials out-of-range": 1
+    }
    },
    {
     "family": "coordination_shell",
@@ -2773,7 +2934,10 @@
     "rejected": {},
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 9
+    "estimated_admissible": 9,
+    "cells": {
+     "materials 0.1-1": 9
+    }
    },
    {
     "family": "coordination_shell",
@@ -2784,7 +2948,10 @@
     "rejected": {},
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 9
+    "estimated_admissible": 9,
+    "cells": {
+     "materials 0.1-1": 9
+    }
    },
    {
     "family": "coordination_shell",
@@ -2795,7 +2962,10 @@
     "rejected": {},
     "checker_pass": 3,
     "checker_fail": 0,
-    "estimated_admissible": 3
+    "estimated_admissible": 3,
+    "cells": {
+     "materials 0.1-1": 3
+    }
    },
    {
     "family": "coordination_shell",
@@ -2808,7 +2978,11 @@
     },
     "checker_pass": 13,
     "checker_fail": 0,
-    "estimated_admissible": 13
+    "estimated_admissible": 13,
+    "cells": {
+     "materials 0.1-1": 11,
+     "materials out-of-range": 2
+    }
    },
    {
     "family": "coordination_shell",
@@ -2819,7 +2993,10 @@
     "rejected": {},
     "checker_pass": 3,
     "checker_fail": 0,
-    "estimated_admissible": 3
+    "estimated_admissible": 3,
+    "cells": {
+     "materials 0.1-1": 3
+    }
    },
    {
     "family": "coordination_shell",
@@ -2832,7 +3009,10 @@
     },
     "checker_pass": 3,
     "checker_fail": 0,
-    "estimated_admissible": 3
+    "estimated_admissible": 3,
+    "cells": {
+     "materials 0.1-1": 3
+    }
    },
    {
     "family": "coordination_shell",
@@ -2843,7 +3023,10 @@
     "rejected": {},
     "checker_pass": 3,
     "checker_fail": 0,
-    "estimated_admissible": 3
+    "estimated_admissible": 3,
+    "cells": {
+     "materials 0.1-1": 3
+    }
    },
    {
     "family": "coordination_shell",
@@ -2854,7 +3037,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "coordination_shell",
@@ -2865,7 +3051,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "coordination_shell",
@@ -2876,7 +3065,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "materials 0.1-1": 1
+    }
    },
    {
     "family": "coordination_shell",
@@ -2887,7 +3079,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "materials 0.1-1": 1
+    }
    },
    {
     "family": "coordination_shell",
@@ -2898,7 +3093,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "coordination_shell",
@@ -2909,7 +3107,10 @@
     "rejected": {},
     "checker_pass": 3,
     "checker_fail": 0,
-    "estimated_admissible": 3
+    "estimated_admissible": 3,
+    "cells": {
+     "materials 0.1-1": 3
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -2920,7 +3121,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -2931,7 +3135,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -2942,7 +3149,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -2953,7 +3163,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 1-10": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -2964,7 +3177,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -2975,7 +3191,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -2986,7 +3205,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -2997,7 +3219,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 1-10": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -3008,7 +3233,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -3019,7 +3247,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -3030,7 +3261,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -3041,7 +3275,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -3052,7 +3289,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -3063,7 +3303,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -3074,7 +3317,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -3085,7 +3331,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "first_diffraction_peak",
@@ -3096,7 +3345,10 @@
     "rejected": {},
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "materials 0.1-1": 4
+    }
    },
    {
     "family": "kinematic_extinction",
@@ -3107,7 +3359,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "materials 0.1-1": 1
+    }
    },
    {
     "family": "kinematic_extinction",
@@ -3118,7 +3373,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "materials 0.1-1": 1
+    }
    },
    {
     "family": "kinematic_extinction",
@@ -3129,7 +3387,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "materials 0.1-1": 1
+    }
    },
    {
     "family": "kinematic_extinction",
@@ -3140,7 +3401,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "materials 1-10": 1
+    }
    },
    {
     "family": "kinematic_extinction",
@@ -3153,7 +3417,8 @@
     },
     "checker_pass": 0,
     "checker_fail": 0,
-    "estimated_admissible": 0
+    "estimated_admissible": 0,
+    "cells": {}
    },
    {
     "family": "kinematic_extinction",
@@ -3164,7 +3429,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "materials 0.1-1": 1
+    }
    },
    {
     "family": "kinematic_extinction",
@@ -3175,7 +3443,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "materials 0.1-1": 1
+    }
    },
    {
     "family": "kinematic_extinction",
@@ -3186,7 +3457,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "materials 1-10": 1
+    }
    },
    {
     "family": "kinematic_extinction",
@@ -3197,7 +3471,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "materials 0.1-1": 1
+    }
    },
    {
     "family": "kinematic_extinction",
@@ -3210,7 +3487,8 @@
     },
     "checker_pass": 0,
     "checker_fail": 0,
-    "estimated_admissible": 0
+    "estimated_admissible": 0,
+    "cells": {}
    },
    {
     "family": "diffraction_design",
@@ -3221,7 +3499,11 @@
     "rejected": {},
     "checker_pass": 10,
     "checker_fail": 0,
-    "estimated_admissible": 10
+    "estimated_admissible": 10,
+    "cells": {
+     "materials 0.1-1": 8,
+     "materials 1-10": 2
+    }
    },
    {
     "family": "diffraction_design",
@@ -3232,7 +3514,10 @@
     "rejected": {},
     "checker_pass": 10,
     "checker_fail": 0,
-    "estimated_admissible": 10
+    "estimated_admissible": 10,
+    "cells": {
+     "materials 0.1-1": 10
+    }
    },
    {
     "family": "diffraction_design",
@@ -3245,7 +3530,11 @@
     },
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 9
+    "estimated_admissible": 9,
+    "cells": {
+     "materials 0.1-1": 7,
+     "materials 1-10": 2
+    }
    },
    {
     "family": "diffraction_design",
@@ -3256,7 +3545,10 @@
     "rejected": {},
     "checker_pass": 10,
     "checker_fail": 0,
-    "estimated_admissible": 10
+    "estimated_admissible": 10,
+    "cells": {
+     "materials 1-10": 10
+    }
    },
    {
     "family": "diffraction_design",
@@ -3267,7 +3559,11 @@
     "rejected": {},
     "checker_pass": 10,
     "checker_fail": 0,
-    "estimated_admissible": 10
+    "estimated_admissible": 10,
+    "cells": {
+     "materials 0.1-1": 8,
+     "materials 1-10": 2
+    }
    },
    {
     "family": "diffraction_design",
@@ -3278,7 +3574,10 @@
     "rejected": {},
     "checker_pass": 10,
     "checker_fail": 0,
-    "estimated_admissible": 10
+    "estimated_admissible": 10,
+    "cells": {
+     "materials 1-10": 10
+    }
    },
    {
     "family": "diffraction_design",
@@ -3291,7 +3590,11 @@
     },
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 9
+    "estimated_admissible": 9,
+    "cells": {
+     "materials 0.1-1": 7,
+     "materials 1-10": 2
+    }
    },
    {
     "family": "diffraction_design",
@@ -3302,7 +3605,11 @@
     "rejected": {},
     "checker_pass": 10,
     "checker_fail": 0,
-    "estimated_admissible": 10
+    "estimated_admissible": 10,
+    "cells": {
+     "materials 0.1-1": 7,
+     "materials 1-10": 3
+    }
    },
    {
     "family": "diffraction_design",
@@ -3315,7 +3622,11 @@
     },
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 9
+    "estimated_admissible": 9,
+    "cells": {
+     "materials 0.1-1": 7,
+     "materials 1-10": 2
+    }
    },
    {
     "family": "diffraction_design",
@@ -3328,7 +3639,11 @@
     },
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 9
+    "estimated_admissible": 9,
+    "cells": {
+     "materials 0.1-1": 7,
+     "materials 1-10": 2
+    }
    },
    {
     "family": "diffraction_design",
@@ -3339,7 +3654,11 @@
     "rejected": {},
     "checker_pass": 10,
     "checker_fail": 0,
-    "estimated_admissible": 10
+    "estimated_admissible": 10,
+    "cells": {
+     "materials 0.1-1": 8,
+     "materials 1-10": 2
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3352,7 +3671,10 @@
     },
     "checker_pass": 5,
     "checker_fail": 0,
-    "estimated_admissible": 5
+    "estimated_admissible": 5,
+    "cells": {
+     "quantum 0.1-1": 5
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3365,7 +3687,10 @@
     },
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "quantum 0.1-1": 4
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3378,7 +3703,10 @@
     },
     "checker_pass": 5,
     "checker_fail": 0,
-    "estimated_admissible": 5
+    "estimated_admissible": 5,
+    "cells": {
+     "quantum 0.1-1": 5
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3391,7 +3719,10 @@
     },
     "checker_pass": 3,
     "checker_fail": 0,
-    "estimated_admissible": 3
+    "estimated_admissible": 3,
+    "cells": {
+     "quantum 0.1-1": 3
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3404,7 +3735,10 @@
     },
     "checker_pass": 5,
     "checker_fail": 0,
-    "estimated_admissible": 5
+    "estimated_admissible": 5,
+    "cells": {
+     "quantum 0.1-1": 5
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3417,7 +3751,10 @@
     },
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3430,7 +3767,10 @@
     },
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3443,7 +3783,10 @@
     },
     "checker_pass": 3,
     "checker_fail": 0,
-    "estimated_admissible": 3
+    "estimated_admissible": 3,
+    "cells": {
+     "quantum 0.1-1": 3
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3456,7 +3799,10 @@
     },
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "quantum 0.1-1": 4
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3469,7 +3815,10 @@
     },
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "quantum 0.1-1": 4
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3482,7 +3831,10 @@
     },
     "checker_pass": 3,
     "checker_fail": 0,
-    "estimated_admissible": 3
+    "estimated_admissible": 3,
+    "cells": {
+     "quantum 0.1-1": 3
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3495,7 +3847,10 @@
     },
     "checker_pass": 6,
     "checker_fail": 0,
-    "estimated_admissible": 6
+    "estimated_admissible": 6,
+    "cells": {
+     "quantum 0.1-1": 6
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3508,7 +3863,10 @@
     },
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "quantum 0.1-1": 4
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3521,7 +3879,10 @@
     },
     "checker_pass": 5,
     "checker_fail": 0,
-    "estimated_admissible": 5
+    "estimated_admissible": 5,
+    "cells": {
+     "quantum 0.1-1": 5
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3534,7 +3895,10 @@
     },
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "quantum 0.1-1": 4
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3547,7 +3911,10 @@
     },
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "quantum 0.1-1": 4
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3560,7 +3927,10 @@
     },
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3573,7 +3943,10 @@
     },
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "quantum 0.1-1": 4
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3586,7 +3959,10 @@
     },
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "quantum 0.1-1": 4
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3599,7 +3975,10 @@
     },
     "checker_pass": 6,
     "checker_fail": 0,
-    "estimated_admissible": 6
+    "estimated_admissible": 6,
+    "cells": {
+     "quantum 0.1-1": 6
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3612,7 +3991,10 @@
     },
     "checker_pass": 31,
     "checker_fail": 0,
-    "estimated_admissible": 65
+    "estimated_admissible": 65,
+    "cells": {
+     "chemistry 0.1-1": 31
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3625,7 +4007,10 @@
     },
     "checker_pass": 28,
     "checker_fail": 0,
-    "estimated_admissible": 69
+    "estimated_admissible": 69,
+    "cells": {
+     "chemistry 0.1-1": 28
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3638,7 +4023,10 @@
     },
     "checker_pass": 24,
     "checker_fail": 0,
-    "estimated_admissible": 65
+    "estimated_admissible": 65,
+    "cells": {
+     "chemistry 0.1-1": 24
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3651,7 +4039,10 @@
     },
     "checker_pass": 5,
     "checker_fail": 0,
-    "estimated_admissible": 5
+    "estimated_admissible": 5,
+    "cells": {
+     "chemistry 0.1-1": 5
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3664,7 +4055,10 @@
     },
     "checker_pass": 10,
     "checker_fail": 0,
-    "estimated_admissible": 10
+    "estimated_admissible": 10,
+    "cells": {
+     "chemistry 0.1-1": 10
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3677,7 +4071,10 @@
     },
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "chemistry 0.1-1": 1
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3690,7 +4087,10 @@
     },
     "checker_pass": 12,
     "checker_fail": 0,
-    "estimated_admissible": 12
+    "estimated_admissible": 12,
+    "cells": {
+     "chemistry 0.1-1": 12
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3703,7 +4103,10 @@
     },
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 9
+    "estimated_admissible": 9,
+    "cells": {
+     "chemistry 0.1-1": 9
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3716,7 +4119,10 @@
     },
     "checker_pass": 7,
     "checker_fail": 0,
-    "estimated_admissible": 7
+    "estimated_admissible": 7,
+    "cells": {
+     "chemistry 0.1-1": 7
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3729,7 +4135,10 @@
     },
     "checker_pass": 6,
     "checker_fail": 0,
-    "estimated_admissible": 6
+    "estimated_admissible": 6,
+    "cells": {
+     "chemistry 0.1-1": 6
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3742,7 +4151,10 @@
     },
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 0.1-1": 2
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3755,7 +4167,10 @@
     },
     "checker_pass": 13,
     "checker_fail": 0,
-    "estimated_admissible": 13
+    "estimated_admissible": 13,
+    "cells": {
+     "chemistry 0.1-1": 13
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3768,7 +4183,10 @@
     },
     "checker_pass": 5,
     "checker_fail": 0,
-    "estimated_admissible": 5
+    "estimated_admissible": 5,
+    "cells": {
+     "chemistry 0.1-1": 5
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3781,7 +4199,10 @@
     },
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 0.1-1": 2
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3794,7 +4215,10 @@
     },
     "checker_pass": 10,
     "checker_fail": 0,
-    "estimated_admissible": 10
+    "estimated_admissible": 10,
+    "cells": {
+     "chemistry 0.1-1": 10
+    }
    },
    {
     "family": "named_bond_distance",
@@ -3807,7 +4231,10 @@
     },
     "checker_pass": 5,
     "checker_fail": 0,
-    "estimated_admissible": 5
+    "estimated_admissible": 5,
+    "cells": {
+     "chemistry 0.1-1": 5
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3818,7 +4245,10 @@
     "rejected": {},
     "checker_pass": 6,
     "checker_fail": 0,
-    "estimated_admissible": 6
+    "estimated_admissible": 6,
+    "cells": {
+     "quantum 0.1-1": 6
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3829,7 +4259,10 @@
     "rejected": {},
     "checker_pass": 7,
     "checker_fail": 0,
-    "estimated_admissible": 7
+    "estimated_admissible": 7,
+    "cells": {
+     "quantum 0.1-1": 7
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3840,7 +4273,10 @@
     "rejected": {},
     "checker_pass": 6,
     "checker_fail": 0,
-    "estimated_admissible": 6
+    "estimated_admissible": 6,
+    "cells": {
+     "quantum 0.1-1": 6
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3851,7 +4287,10 @@
     "rejected": {},
     "checker_pass": 8,
     "checker_fail": 0,
-    "estimated_admissible": 8
+    "estimated_admissible": 8,
+    "cells": {
+     "quantum 0.1-1": 8
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3862,7 +4301,10 @@
     "rejected": {},
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 9
+    "estimated_admissible": 9,
+    "cells": {
+     "quantum 0.1-1": 9
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3873,7 +4315,10 @@
     "rejected": {},
     "checker_pass": 8,
     "checker_fail": 0,
-    "estimated_admissible": 8
+    "estimated_admissible": 8,
+    "cells": {
+     "quantum 0.1-1": 8
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3884,7 +4329,10 @@
     "rejected": {},
     "checker_pass": 8,
     "checker_fail": 0,
-    "estimated_admissible": 8
+    "estimated_admissible": 8,
+    "cells": {
+     "quantum 0.1-1": 8
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3895,7 +4343,10 @@
     "rejected": {},
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 9
+    "estimated_admissible": 9,
+    "cells": {
+     "quantum 0.1-1": 9
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3906,7 +4357,10 @@
     "rejected": {},
     "checker_pass": 8,
     "checker_fail": 0,
-    "estimated_admissible": 8
+    "estimated_admissible": 8,
+    "cells": {
+     "quantum 0.1-1": 8
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3917,7 +4371,10 @@
     "rejected": {},
     "checker_pass": 9,
     "checker_fail": 0,
-    "estimated_admissible": 9
+    "estimated_admissible": 9,
+    "cells": {
+     "quantum 0.1-1": 9
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3928,7 +4385,10 @@
     "rejected": {},
     "checker_pass": 8,
     "checker_fail": 0,
-    "estimated_admissible": 8
+    "estimated_admissible": 8,
+    "cells": {
+     "quantum 0.1-1": 8
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3939,7 +4399,10 @@
     "rejected": {},
     "checker_pass": 8,
     "checker_fail": 0,
-    "estimated_admissible": 8
+    "estimated_admissible": 8,
+    "cells": {
+     "quantum 0.1-1": 8
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3950,7 +4413,10 @@
     "rejected": {},
     "checker_pass": 8,
     "checker_fail": 0,
-    "estimated_admissible": 8
+    "estimated_admissible": 8,
+    "cells": {
+     "quantum 0.1-1": 8
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3961,7 +4427,10 @@
     "rejected": {},
     "checker_pass": 6,
     "checker_fail": 0,
-    "estimated_admissible": 6
+    "estimated_admissible": 6,
+    "cells": {
+     "quantum 0.1-1": 6
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3972,7 +4441,10 @@
     "rejected": {},
     "checker_pass": 11,
     "checker_fail": 0,
-    "estimated_admissible": 11
+    "estimated_admissible": 11,
+    "cells": {
+     "quantum 0.1-1": 11
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3983,7 +4455,10 @@
     "rejected": {},
     "checker_pass": 11,
     "checker_fail": 0,
-    "estimated_admissible": 11
+    "estimated_admissible": 11,
+    "cells": {
+     "quantum 0.1-1": 11
+    }
    },
    {
     "family": "named_bond_angle",
@@ -3994,7 +4469,10 @@
     "rejected": {},
     "checker_pass": 8,
     "checker_fail": 0,
-    "estimated_admissible": 8
+    "estimated_admissible": 8,
+    "cells": {
+     "quantum 0.1-1": 8
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4005,7 +4483,10 @@
     "rejected": {},
     "checker_pass": 11,
     "checker_fail": 0,
-    "estimated_admissible": 11
+    "estimated_admissible": 11,
+    "cells": {
+     "quantum 0.1-1": 11
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4016,7 +4497,10 @@
     "rejected": {},
     "checker_pass": 8,
     "checker_fail": 0,
-    "estimated_admissible": 8
+    "estimated_admissible": 8,
+    "cells": {
+     "quantum 0.1-1": 8
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4027,7 +4511,10 @@
     "rejected": {},
     "checker_pass": 12,
     "checker_fail": 0,
-    "estimated_admissible": 12
+    "estimated_admissible": 12,
+    "cells": {
+     "quantum 0.1-1": 12
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4038,7 +4525,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 125
+    "estimated_admissible": 125,
+    "cells": {
+     "chemistry 0.1-1": 40
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4049,7 +4539,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 139
+    "estimated_admissible": 139,
+    "cells": {
+     "chemistry 0.1-1": 40
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4060,7 +4553,10 @@
     "rejected": {},
     "checker_pass": 40,
     "checker_fail": 0,
-    "estimated_admissible": 149
+    "estimated_admissible": 149,
+    "cells": {
+     "chemistry 0.1-1": 40
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4071,7 +4567,10 @@
     "rejected": {},
     "checker_pass": 14,
     "checker_fail": 0,
-    "estimated_admissible": 14
+    "estimated_admissible": 14,
+    "cells": {
+     "chemistry 0.1-1": 14
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4084,7 +4583,10 @@
     },
     "checker_pass": 18,
     "checker_fail": 0,
-    "estimated_admissible": 18
+    "estimated_admissible": 18,
+    "cells": {
+     "chemistry 0.1-1": 18
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4095,7 +4597,10 @@
     "rejected": {},
     "checker_pass": 7,
     "checker_fail": 0,
-    "estimated_admissible": 7
+    "estimated_admissible": 7,
+    "cells": {
+     "chemistry 0.1-1": 7
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4106,7 +4611,10 @@
     "rejected": {},
     "checker_pass": 34,
     "checker_fail": 0,
-    "estimated_admissible": 34
+    "estimated_admissible": 34,
+    "cells": {
+     "chemistry 0.1-1": 34
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4119,7 +4627,10 @@
     },
     "checker_pass": 16,
     "checker_fail": 0,
-    "estimated_admissible": 16
+    "estimated_admissible": 16,
+    "cells": {
+     "chemistry 0.1-1": 16
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4130,7 +4641,10 @@
     "rejected": {},
     "checker_pass": 26,
     "checker_fail": 0,
-    "estimated_admissible": 26
+    "estimated_admissible": 26,
+    "cells": {
+     "chemistry 0.1-1": 26
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4141,7 +4655,10 @@
     "rejected": {},
     "checker_pass": 13,
     "checker_fail": 0,
-    "estimated_admissible": 13
+    "estimated_admissible": 13,
+    "cells": {
+     "chemistry 0.1-1": 13
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4152,7 +4669,10 @@
     "rejected": {},
     "checker_pass": 7,
     "checker_fail": 0,
-    "estimated_admissible": 7
+    "estimated_admissible": 7,
+    "cells": {
+     "chemistry 0.1-1": 7
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4165,7 +4685,10 @@
     },
     "checker_pass": 27,
     "checker_fail": 0,
-    "estimated_admissible": 28
+    "estimated_admissible": 28,
+    "cells": {
+     "chemistry 0.1-1": 27
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4176,7 +4699,10 @@
     "rejected": {},
     "checker_pass": 10,
     "checker_fail": 0,
-    "estimated_admissible": 10
+    "estimated_admissible": 10,
+    "cells": {
+     "chemistry 0.1-1": 10
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4187,7 +4713,10 @@
     "rejected": {},
     "checker_pass": 8,
     "checker_fail": 0,
-    "estimated_admissible": 8
+    "estimated_admissible": 8,
+    "cells": {
+     "chemistry 0.1-1": 8
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4200,7 +4729,10 @@
     },
     "checker_pass": 18,
     "checker_fail": 0,
-    "estimated_admissible": 18
+    "estimated_admissible": 18,
+    "cells": {
+     "chemistry 0.1-1": 18
+    }
    },
    {
     "family": "named_bond_angle",
@@ -4213,7 +4745,10 @@
     },
     "checker_pass": 7,
     "checker_fail": 0,
-    "estimated_admissible": 7
+    "estimated_admissible": 7,
+    "cells": {
+     "chemistry 0.1-1": 7
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4224,7 +4759,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4235,7 +4773,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4246,7 +4787,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4257,7 +4801,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4268,7 +4815,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4279,7 +4829,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4290,7 +4843,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4301,7 +4857,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4312,7 +4871,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4323,7 +4885,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4334,7 +4899,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4345,7 +4913,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4356,7 +4927,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4367,7 +4941,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4378,7 +4955,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4389,7 +4969,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4400,7 +4983,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4411,7 +4997,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4422,7 +5011,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4433,7 +5025,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "quantum 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4444,7 +5039,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 1-10": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4455,7 +5053,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 1-10": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4466,7 +5067,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 1-10": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4477,7 +5081,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4488,7 +5095,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 1-10": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4499,7 +5109,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4510,7 +5123,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4521,7 +5137,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 1-10": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4532,7 +5151,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 1-10": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4543,7 +5165,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4554,7 +5179,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4565,7 +5193,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4576,7 +5207,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4587,7 +5221,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 0.1-1": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4598,7 +5235,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 1-10": 2
+    }
    },
    {
     "family": "extent_choice_v2",
@@ -4609,7 +5249,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 0.1-1": 2
+    }
    },
    {
     "family": "assembly_extent",
@@ -4620,7 +5263,10 @@
     "rejected": {},
     "checker_pass": 6,
     "checker_fail": 0,
-    "estimated_admissible": 6
+    "estimated_admissible": 6,
+    "cells": {
+     "biology 100-1000": 6
+    }
    },
    {
     "family": "assembly_extent",
@@ -4631,7 +5277,10 @@
     "rejected": {},
     "checker_pass": 14,
     "checker_fail": 0,
-    "estimated_admissible": 14
+    "estimated_admissible": 14,
+    "cells": {
+     "biology 100-1000": 14
+    }
    },
    {
     "family": "assembly_extent",
@@ -4642,7 +5291,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "chemistry 10-100": 1
+    }
    },
    {
     "family": "assembly_rg",
@@ -4655,7 +5307,10 @@
     },
     "checker_pass": 4,
     "checker_fail": 0,
-    "estimated_admissible": 4
+    "estimated_admissible": 4,
+    "cells": {
+     "biology 100-1000": 4
+    }
    },
    {
     "family": "assembly_rg",
@@ -4668,7 +5323,10 @@
     },
     "checker_pass": 12,
     "checker_fail": 0,
-    "estimated_admissible": 12
+    "estimated_admissible": 12,
+    "cells": {
+     "biology 100-1000": 12
+    }
    },
    {
     "family": "assembly_rg",
@@ -4681,7 +5339,8 @@
     },
     "checker_pass": 0,
     "checker_fail": 0,
-    "estimated_admissible": 0
+    "estimated_admissible": 0,
+    "cells": {}
    },
    {
     "family": "scattering_q_design",
@@ -4692,7 +5351,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "biology 10-100": 2
+    }
    },
    {
     "family": "scattering_q_design",
@@ -4703,7 +5365,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "biology 10-100": 2
+    }
    },
    {
     "family": "scattering_q_design",
@@ -4714,7 +5379,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "biology 10-100": 2
+    }
    },
    {
     "family": "scattering_q_design",
@@ -4725,7 +5393,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "biology 10-100": 2
+    }
    },
    {
     "family": "scattering_q_design",
@@ -4736,7 +5407,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "biology 10-100": 2
+    }
    },
    {
     "family": "scattering_q_design",
@@ -4747,7 +5421,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 3
+    "estimated_admissible": 3,
+    "cells": {
+     "biology 10-100": 2
+    }
    },
    {
     "family": "scattering_q_design",
@@ -4758,7 +5435,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "biology 10-100": 2
+    }
    },
    {
     "family": "scattering_q_design",
@@ -4769,7 +5449,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 3
+    "estimated_admissible": 3,
+    "cells": {
+     "biology 10-100": 2
+    }
    },
    {
     "family": "scattering_q_design",
@@ -4780,7 +5463,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "biology 10-100": 2
+    }
    },
    {
     "family": "scattering_q_design",
@@ -4791,7 +5477,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 20
+    "estimated_admissible": 20,
+    "cells": {
+     "biology 100-1000": 2
+    }
    },
    {
     "family": "scattering_q_design",
@@ -4802,7 +5491,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 44
+    "estimated_admissible": 44,
+    "cells": {
+     "biology 100-1000": 2
+    }
    },
    {
     "family": "scattering_q_design",
@@ -4813,7 +5505,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 6
+    "estimated_admissible": 6,
+    "cells": {
+     "chemistry 10-100": 2
+    }
    },
    {
     "family": "guinier_intensity",
@@ -4826,7 +5521,10 @@
     },
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "biology 10-100": 2
+    }
    },
    {
     "family": "guinier_intensity",
@@ -4839,7 +5537,10 @@
     },
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "biology 10-100": 1
+    }
    },
    {
     "family": "guinier_intensity",
@@ -4852,7 +5553,10 @@
     },
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "biology 10-100": 1
+    }
    },
    {
     "family": "guinier_intensity",
@@ -4863,7 +5567,10 @@
     "rejected": {},
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "biology 10-100": 2
+    }
    },
    {
     "family": "guinier_intensity",
@@ -4876,7 +5583,10 @@
     },
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "biology 10-100": 2
+    }
    },
    {
     "family": "guinier_intensity",
@@ -4889,7 +5599,10 @@
     },
     "checker_pass": 2,
     "checker_fail": 0,
-    "estimated_admissible": 2
+    "estimated_admissible": 2,
+    "cells": {
+     "chemistry 10-100": 2
+    }
    },
    {
     "family": "capsid_architecture",
@@ -4900,7 +5613,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "biology 10-100": 1
+    }
    },
    {
     "family": "capsid_architecture",
@@ -4911,7 +5627,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "biology 10-100": 1
+    }
    },
    {
     "family": "capsid_architecture",
@@ -4922,7 +5641,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "biology 10-100": 1
+    }
    },
    {
     "family": "capsid_architecture",
@@ -4933,7 +5655,10 @@
     "rejected": {},
     "checker_pass": 1,
     "checker_fail": 0,
-    "estimated_admissible": 1
+    "estimated_admissible": 1,
+    "cells": {
+     "biology 10-100": 1
+    }
    }
   ],
   "position_balance": {

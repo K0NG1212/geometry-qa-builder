@@ -1,0 +1,41 @@
+{
+  "kind": "batch_selection_rule",
+  "version": "0.1.0",
+  "status": "provisional",
+  "status_note": "暂定规则（2026-10-06 用户同意暂用），待导师确认；改动只改本文件并重跑 tools/batch_plan.py。",
+  "rationale": [
+    "按格子的数据来源分三档：实测结构充足的格子每格 100 道；结构有限的 60 道；依赖论文参数的 50 道。总量约 1,230 道，用多样性换数量。",
+    "多样性上限同时生效、最后相加，不是相乘：每个“来源 × 题型族”组合、每个题型族、每个来源各有上限。",
+    "每格 100 道时正确率 95% 置信区间约 ±10%；每类能力约 33 道，约 ±17%，只作趋势参考。"
+  ],
+  "tiers": {
+    "A": {"label": "实测结构充足", "target": 100, "min_families": 6, "min_families_per_ability": 2, "min_sources": 15,
+          "max_per_family": 25, "max_per_source": 8, "max_per_family_source": 4},
+    "B": {"label": "实测结构有限", "target": 60, "min_families": 4, "min_families_per_ability": 1, "min_sources": 8,
+          "max_per_family": 20, "max_per_source": 8, "max_per_family_source": 4},
+    "C": {"label": "依赖论文参数", "target": 50, "min_families": 6, "min_families_per_ability": 2, "min_sources": 5,
+          "min_systems": 2, "max_per_family": 15, "max_per_source": 10, "max_per_family_source": 4}
+  },
+  "cells": {
+    "quantum 0.1-1": "A", "chemistry 0.1-1": "A", "chemistry 1-10": "A", "materials 0.1-1": "A", "materials 1-10": "A",
+    "biology 0.1-1": "A", "biology 1-10": "A", "biology 10-100": "A",
+    "quantum 1-10": "B", "chemistry 10-100": "B", "biology 100-1000": "B",
+    "quantum 10-100": "C", "quantum 100-1000": "C", "chemistry 100-1000": "C", "materials 10-100": "C", "materials 100-1000": "C"
+  },
+  "ability_share": {"target": 0.3333, "tolerance": 0.10},
+  "global": {
+    "max_paper_parameter_share": 0.25,
+    "max_experimental_evidence_share": 0.05,
+    "max_per_source": 15,
+    "max_per_family": 60,
+    "answer_positions": "A/B/C/D 各约 25%，正式选题时按位置等量挑选",
+    "near_duplicates": "同一来源 × 同一族内，问的对象必须不同、答案数值要拉开"
+  },
+  "pending_advisor": [
+    "总量约 1,230 道还是坚持 1,600 道",
+    "A / B / C 三档 100 / 60 / 50 是否合适",
+    "论文参数题占比上限 25%",
+    "同一来源最多 8 道、同一题型族最多 25 道的严格程度",
+    "测量条件设计（12 道）与证据型题（8 道）是否计入"
+  ]
+}
