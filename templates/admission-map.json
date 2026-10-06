@@ -375,6 +375,24 @@
       "attribution": "参数取自 Shaban et al., Materials 17, 5080 (2024)（事实数据，未转载文字或图）；指向矢场由本项目生成（见 docs/assets/families/cholesteric/sources.json）。",
       "sizeDefinition": "输入：1.5 μm 指向矢场；推理：螺距 p（274–423 nm）。",
       "learningObjective": "按目标颜色、手性或掺杂量选择胆甾液晶膜（设计 = 推断的逆问题）。"
+    },
+    "rotational_line": {
+      "scale": "small_molecule",
+      "reasoning": "molecular",
+      "paper": "qm7x",
+      "domain": "quantum",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021，CC BY 4.0）几何坐标原样。",
+      "learningObjective": "由分子几何预测刚性转子转动跃迁频率（几何 → 主转动惯量 → 转动常数 → J = 1 能级）。",
+      "sizeDefinition": "输入与推理：分子最大原子间距（整分子转动惯量）。"
+    },
+    "isotopologue_design": {
+      "scale": "small_molecule",
+      "reasoning": "molecular",
+      "paper": "qm7x",
+      "domain": "quantum",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021，CC BY 4.0）几何坐标原样。",
+      "learningObjective": "为替代法结构测定选择单氘代位点，使指定转动谱线位移最大（设计 = 推断的逆问题）。",
+      "sizeDefinition": "输入与推理：分子最大原子间距（整分子转动惯量）。"
     }
   },
   "instances": [
@@ -1792,6 +1810,54 @@
       "action": "new",
       "catalog_id": "BNI040",
       "title": "HK97 噬菌体头部 2FT1 · 六邻体数（四选一）"
+    },
+    {
+      "instance": "FA-ROT-7029-111",
+      "action": "new",
+      "catalog_id": "QNI021",
+      "title": "QM7-X 7029 · 1_11 ← 0_00 转动跃迁频率（四选一）"
+    },
+    {
+      "instance": "FA-ROT-G9-101",
+      "action": "new",
+      "catalog_id": "CNI021",
+      "title": "SAMPL9 客体 G9 · 1_01 ← 0_00 转动跃迁频率（四选一）",
+      "domain": "chemistry",
+      "paper": "sampl9",
+      "attribution": "SAMPL9 WP6 主客体挑战赛客体结构（samplchallenges/SAMPL9），坐标原样。"
+    },
+    {
+      "instance": "FA-ROT-G2-110",
+      "action": "new",
+      "catalog_id": "CNI022",
+      "title": "SAMPL9 客体 G2 · 1_10 ← 0_00 转动跃迁频率（四选一）",
+      "domain": "chemistry",
+      "paper": "sampl9",
+      "attribution": "SAMPL9 WP6 主客体挑战赛客体结构（samplchallenges/SAMPL9），坐标原样。"
+    },
+    {
+      "instance": "FA-ISO-7095-111",
+      "action": "new",
+      "catalog_id": "QND013",
+      "title": "QM7-X 7095 · 单氘代位点设计：1_11 谱线位移最大（四选一）"
+    },
+    {
+      "instance": "FA-ISO-G9-110",
+      "action": "new",
+      "catalog_id": "CND012",
+      "title": "SAMPL9 客体 G9 · 单氘代位点设计：1_10 谱线位移最大（四选一）",
+      "domain": "chemistry",
+      "paper": "sampl9",
+      "attribution": "SAMPL9 WP6 主客体挑战赛客体结构（samplchallenges/SAMPL9），坐标原样。"
+    },
+    {
+      "instance": "FA-ISO-G13-111",
+      "action": "new",
+      "catalog_id": "CND013",
+      "title": "SAMPL9 客体 G13 · 单氘代位点设计：1_11 谱线位移最大（四选一）",
+      "domain": "chemistry",
+      "paper": "sampl9",
+      "attribution": "SAMPL9 WP6 主客体挑战赛客体结构（samplchallenges/SAMPL9），坐标原样。"
     }
   ]
 }

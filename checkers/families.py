@@ -264,6 +264,7 @@ from . import hostguest as _hostguest
 from . import quantum_dot as _quantum_dot
 from . import design_extra as _design_extra
 from . import mesoscale as _mesoscale
+from . import rotational as _rotational
 
 CHECKERS = {
     'stereo_relationship': _stereo.stereo_relationship,
@@ -282,4 +283,5 @@ CHECKERS = {
     **_quantum_dot.CHECKERS,
     **_design_extra.CHECKERS,
     **_mesoscale.CHECKERS,
+    **_rotational.CHECKERS,
 }

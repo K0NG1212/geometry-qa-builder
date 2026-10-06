@@ -1,6 +1,6 @@
 """Reusable task families. Each family id maps to one build function and one
 ability; the engine never dispatches by question ID."""
-from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire, hostguest, quantum_dot, diffraction_design, protein_design, vortex, cholesteric
+from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire, hostguest, quantum_dot, diffraction_design, protein_design, vortex, cholesteric, rotational
 
 FAMILIES = {
     'named_bond_angle': dict(build=local_geometry.build_bond_angle, ability='perception',
@@ -89,4 +89,8 @@ FAMILIES = {
         output='choice+numeric', version=cholesteric.VERSION, module='task_families/cholesteric.py'),
     'cholesteric_design': dict(build=cholesteric.build_design, ability='design',
         output='choice', version=cholesteric.VERSION, module='task_families/cholesteric.py'),
+    'rotational_line': dict(build=rotational.build_line, ability='inference',
+        output='choice+numeric', version=rotational.VERSION, module='task_families/rotational.py'),
+    'isotopologue_design': dict(build=rotational.build_isotopologue, ability='design',
+        output='choice', version=rotational.VERSION, module='task_families/rotational.py'),
 }

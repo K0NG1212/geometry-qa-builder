@@ -29,11 +29,11 @@
   }
  },
  "summary": {
-  "types_defined": 48,
-  "types_with_running_code": 41,
+  "types_defined": 50,
+  "types_with_running_code": 43,
   "status": {
    "implemented": 2,
-   "pilot": 39,
+   "pilot": 41,
    "existing_legacy": 3,
    "planned": 2,
    "rebuild_needed": 1,
@@ -46,21 +46,21 @@
     "existing_legacy": 2
    },
    "inference": {
-    "pilot": 15,
+    "pilot": 16,
     "planned": 1,
     "existing_legacy": 1,
     "rebuild_needed": 1
    },
    "design": {
-    "pilot": 13,
+    "pilot": 14,
     "planned": 1,
     "blocked": 1
    }
   },
-  "development_instances": 212,
+  "development_instances": 218,
   "instance_failures": 1,
-  "independent_pass": 212,
-  "independent_checked": 212,
+  "independent_pass": 218,
+  "independent_checked": 218,
   "legacy_candidates": 80,
   "legacy_decisions": {
    "retain": 42,
@@ -69,7 +69,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v24",
+ "family_run": "family-pilot-v26",
  "rows": [
   {
    "id": "global_extent",
@@ -3370,6 +3370,140 @@
    "independent_pass": 0,
    "instance_failures": 0,
    "instance_reasoning_cells": [],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "rotational_line",
+   "name": "转动跃迁频率",
+   "ability": "inference",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "由分子几何预测转动光谱：质心 → 惯量张量 → 主转动惯量 → 转动常数 A ≥ B ≥ C → J = 1 能级 → 1_01、1_11 或 1_10 ← 0_00 跃迁频率。几何决定可观测谱线（量子力学刚性转子）。",
+   "domains": [
+    "quantum",
+    "chemistry"
+   ],
+   "input_scale": "整个分子（13–56 个原子）",
+   "reasoning_scale": "整分子转动惯量（分子最大原子间距 0.5–1.2 nm）",
+   "scale_cells": [
+    "0.1-1",
+    "1-10"
+   ],
+   "scale_limits": "推理需要整个分子的质量分布；大于 60 个原子的主体分子不出题（超出常见转动光谱范围）。",
+   "inputs": "XYZ（QM7-X 优化几何或 SAMPL9 客体结构，按行号计数）。",
+   "physical_conditions": "刚性转子、给定平衡几何；题干写明最丰同位素质量、h 与原子质量单位；不含振动平均、离心畸变与超精细结构。",
+   "output_forms": [
+    "numeric",
+    "choice"
+   ],
+   "source_basis": "QM7-X（CC BY 4.0）、SAMPL9 客体（仓库内已有资产，不新下载）",
+   "answer_method": "质量加权、平移到质心的惯量张量，循环 Jacobi 对角化；跃迁频率按非对称陀螺 J = 1 能级（B+C、A+C、A+B）；以张量迹不变量自检。",
+   "distractor_mechanisms": [
+    "other_J1_level",
+    "linear_rotor_2B",
+    "unrotated_tensor_diagonal",
+    "origin_not_centre_of_mass",
+    "heavy_atoms_only",
+    "four_pi_squared",
+    "polar_moment_as_I",
+    "average_atomic_weights",
+    "equal_masses",
+    "single_constant",
+    "hbar_instead_of_h"
+   ],
+   "four_choice_validation": "与正确值相差 > 2%（且 ≥ 20 个末位），干扰项之间 > 1%；升序排列，秩按批次轮换；枚举实例设 strict_rank。2026-10-06 探针 runs/enum-v32：99 个候选接受 81，独立检查全部一致；1_10 线答案几乎不在 A、1_01 线几乎不在 D（其余能级在物理上位于一侧），三条线合起来位置均衡。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/rotational.py",
+    "checkers/rotational.py",
+    "enumerators.py"
+   ],
+   "tests": [
+    "tests/test_rotational.py"
+   ],
+   "builder_modules": "族引擎内实现（M3–M5）；枚举器 enumerators.py。",
+   "gap": "尚无 J = 2 ← 1 等更高跃迁与离心畸变；题干不给能级公式（考查是否知道非对称陀螺能级标号）。",
+   "engine_families": [
+    "rotational_line"
+   ],
+   "independent_checker": "checkers/rotational.py:rotational_line",
+   "instance_ids": [
+    "FA-ROT-7029-111",
+    "FA-ROT-G9-101",
+    "FA-ROT-G2-110"
+   ],
+   "instance_count": 3,
+   "independent_pass": 3,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "0.1-1",
+    "1-10"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "isotopologue_design",
+   "name": "单氘代位点设计",
+   "ability": "design",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "为替代法（Kraitchman）结构测定选择单氘代位点：四个候选 H 中，换成 D 后使指定转动跃迁位移最大者。设计 = 转动谱线推断的逆问题；位移取决于到主轴的距离，而不只是到质心的距离。",
+   "domains": [
+    "quantum",
+    "chemistry"
+   ],
+   "input_scale": "整个分子（13–56 个原子）",
+   "reasoning_scale": "整分子转动惯量（分子最大原子间距 0.5–1.2 nm）",
+   "scale_cells": [
+    "0.1-1",
+    "1-10"
+   ],
+   "scale_limits": "推理需要整个分子的质量分布；大于 60 个原子的主体分子不出题（超出常见转动光谱范围）。",
+   "inputs": "XYZ（QM7-X 优化几何或 SAMPL9 客体结构，按行号计数）。",
+   "physical_conditions": "刚性转子、给定平衡几何；题干写明最丰同位素质量、h 与原子质量单位；不含振动平均、离心畸变与超精细结构。",
+   "output_forms": [
+    "choice"
+   ],
+   "source_basis": "QM7-X（CC BY 4.0）、SAMPL9 客体（仓库内已有资产，不新下载）",
+   "answer_method": "对每个候选 H 换成 D 质量，重新计算质心、惯量张量与跃迁频率，取绝对位移最大者；要求领先第二名 ≥ 15% 且 ≥ 0.5 MHz。",
+   "distractor_mechanisms": [
+    "farthest_from_centre_of_mass",
+    "best_for_other_line",
+    "best_for_single_constant",
+    "smaller_shift"
+   ],
+   "four_choice_validation": "恰好一个候选位移最大且领先足够；正确项按批次目标位置放置。枚举器优先提出“离质心更远的 H 是干扰项”的集合，并按约 1:3 加入捷径能答对的集合；runs/enum-v32 中捷径命中 52/524，改进后的候选中为 90/610（约 15%，低于随机）。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/rotational.py",
+    "checkers/rotational.py",
+    "enumerators.py"
+   ],
+   "tests": [
+    "tests/test_rotational.py"
+   ],
+   "builder_modules": "族引擎内实现（M3–M5）；枚举器 enumerators.py。",
+   "gap": "尚未包含双取代、13C 取代与 Kraitchman 坐标精度（位点靠近主轴时不确定度大）的定量设计。",
+   "engine_families": [
+    "isotopologue_design"
+   ],
+   "independent_checker": "checkers/rotational.py:isotopologue_design",
+   "instance_ids": [
+    "FA-ISO-7095-111",
+    "FA-ISO-G9-110",
+    "FA-ISO-G13-111"
+   ],
+   "instance_count": 3,
+   "independent_pass": 3,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "0.1-1",
+    "1-10"
+   ],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   }

@@ -3,13 +3,13 @@
  "rule_version": "0.1.0",
  "status": "provisional",
  "status_note": "暂定规则（2026-10-06 用户同意暂用），待导师确认；改动只改本文件并重跑 tools/batch_plan.py。",
- "enumeration_run": "enum-v31",
+ "enumeration_run": "enum-v33",
  "summary": {
   "target": 1230,
-  "max_selectable": 582,
-  "max_balanced": 517,
-  "cells_meeting_rule": 0,
-  "paper_parameter_share_of_selectable": 0.095,
+  "max_selectable": 640,
+  "max_balanced": 636,
+  "cells_meeting_rule": 2,
+  "paper_parameter_share_of_selectable": 0.086,
   "max_paper_parameter_share": 0.25
  },
  "cells": [
@@ -17,120 +17,109 @@
    "cell": "quantum 0.1-1",
    "tier": "A",
    "target": 100,
-   "max_selectable": 82,
-   "max_balanced": 50,
-   "families": 5,
+   "max_selectable": 100,
+   "max_balanced": 100,
+   "families": 7,
    "families_by_ability": {
     "perception": 3,
-    "inference": 1,
-    "design": 1
+    "inference": 2,
+    "design": 2
    },
    "sources": 26,
    "paper_systems": [],
    "ability_max": {
     "perception": 75,
-    "inference": 3,
-    "design": 4
+    "inference": 28,
+    "design": 29
    },
    "pool": {
-    "admitted": 12,
-    "enumerated": 288
+    "admitted": 14,
+    "enumerated": 471
    },
    "family_flow": {
     "named_bond_distance": 25,
     "named_bond_angle": 25,
-    "extent_choice_v2": 25,
+    "rotational_line": 25,
+    "isotopologue_design": 18,
     "conformer_target_selection": 4,
     "force_path_derivative": 3
    },
-   "meets_rule": false,
-   "gaps": [
-    "最多只能选 82 / 100 道",
-    "题型族 5 个，需 ≥ 6",
-    "推断 族 1 个，需 ≥ 2",
-    "推断 最多 3 道，需 ≥ 23",
-    "设计 族 1 个，需 ≥ 2",
-    "设计 最多 4 道，需 ≥ 23"
-   ]
+   "meets_rule": true,
+   "gaps": []
   },
   {
    "cell": "chemistry 0.1-1",
    "tier": "A",
    "target": 100,
-   "max_selectable": 83,
-   "max_balanced": 50,
-   "families": 6,
+   "max_selectable": 100,
+   "max_balanced": 96,
+   "families": 8,
    "families_by_ability": {
     "perception": 4,
-    "inference": 1,
-    "design": 1
+    "inference": 2,
+    "design": 2
    },
    "sources": 26,
    "paper_systems": [],
    "ability_max": {
     "perception": 76,
-    "inference": 4,
-    "design": 3
+    "inference": 25,
+    "design": 28
    },
    "pool": {
-    "admitted": 18,
-    "enumerated": 923
+    "admitted": 20,
+    "enumerated": 1251
    },
    "family_flow": {
     "named_bond_angle": 25,
-    "named_bond_distance": 25,
-    "extent_choice_v2": 18,
+    "isotopologue_design": 25,
+    "rotational_line": 21,
+    "named_bond_distance": 14,
     "stereo_relationship": 8,
     "stereo_property_inference": 4,
     "stereo_design_selection": 3
    },
-   "meets_rule": false,
-   "gaps": [
-    "最多只能选 83 / 100 道",
-    "推断 族 1 个，需 ≥ 2",
-    "推断 最多 4 道，需 ≥ 23",
-    "设计 族 1 个，需 ≥ 2",
-    "设计 最多 3 道，需 ≥ 23"
-   ]
+   "meets_rule": true,
+   "gaps": []
   },
   {
    "cell": "chemistry 1-10",
    "tier": "A",
    "target": 100,
-   "max_selectable": 23,
-   "max_balanced": 23,
-   "families": 3,
+   "max_selectable": 46,
+   "max_balanced": 46,
+   "families": 5,
    "families_by_ability": {
     "perception": 1,
-    "inference": 1,
-    "design": 1
+    "inference": 2,
+    "design": 2
    },
    "sources": 12,
    "paper_systems": [],
    "ability_max": {
     "perception": 18,
-    "inference": 3,
-    "design": 2
+    "inference": 11,
+    "design": 18
    },
    "pool": {
-    "admitted": 9,
-    "enumerated": 14
+    "admitted": 11,
+    "enumerated": 176
    },
    "family_flow": {
     "extent_choice_v2": 18,
+    "isotopologue_design": 15,
+    "rotational_line": 8,
     "binding_evidence_choice": 3,
     "binding_design_choice": 2
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 23 / 100 道",
-    "题型族 3 个，需 ≥ 6",
+    "最多只能选 46 / 100 道",
+    "题型族 5 个，需 ≥ 6",
     "感知 族 1 个，需 ≥ 2",
     "感知 最多 18 道，需 ≥ 23",
-    "推断 族 1 个，需 ≥ 2",
-    "推断 最多 3 道，需 ≥ 23",
-    "设计 族 1 个，需 ≥ 2",
-    "设计 最多 2 道，需 ≥ 23",
+    "推断 最多 11 道，需 ≥ 23",
+    "设计 最多 18 道，需 ≥ 23",
     "来源 12 个，需 ≥ 15"
    ]
   },

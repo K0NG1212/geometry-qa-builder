@@ -3,22 +3,23 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 236,
+  "current_total": 242,
   "capped_total": 160,
   "over_target_cells": [
    "quantum 0.1-1",
    "chemistry 0.1-1",
+   "chemistry 1-10",
    "materials 0.1-1",
    "materials 1-10",
    "biology 0.1-1",
    "biology 1-10",
    "biology 10-100"
   ],
-  "provisional_total": 194,
-  "ability_gaps": 3,
-  "gap_slots": 3,
+  "provisional_total": 200,
+  "ability_gaps": 2,
+  "gap_slots": 2,
   "gaps_by_best_route": {
-   "ready": 3,
+   "ready": 2,
    "migrate": 0,
    "build": 0,
    "none": 0
@@ -30,8 +31,8 @@
    "domain": "quantum",
    "cell": "0.1-1",
    "target": 10,
-   "current": 13,
-   "provisional": 9,
+   "current": 15,
+   "provisional": 11,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -62,13 +63,19 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 4,
+     "current": 5,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
       {
        "family": "force_path_derivative",
        "name": "受力沿路径的一阶能量变化",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "rotational_line",
+       "name": "转动跃迁频率",
        "kind": "ready",
        "status": "pilot"
       }
@@ -79,13 +86,19 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 4,
+     "current": 5,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
       {
        "family": "conformer_target_selection",
        "name": "构象设计选择",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "isotopologue_design",
+       "name": "单氘代位点设计",
        "kind": "ready",
        "status": "pilot"
       }
@@ -135,6 +148,12 @@
        "name": "CdSe 量子点尺寸与光学（经验曲线）",
        "kind": "ready",
        "status": "pilot"
+      },
+      {
+       "family": "rotational_line",
+       "name": "转动跃迁频率",
+       "kind": "ready",
+       "status": "pilot"
       }
      ],
      "rework_in_cell": [
@@ -151,6 +170,12 @@
      "soft_target": 3,
      "shortfall": 1,
      "routes": [
+      {
+       "family": "isotopologue_design",
+       "name": "单氘代位点设计",
+       "kind": "ready",
+       "status": "pilot"
+      },
       {
        "family": "qdot_design",
        "name": "量子点粒径选择设计",
@@ -304,8 +329,8 @@
    "domain": "chemistry",
    "cell": "0.1-1",
    "target": 10,
-   "current": 24,
-   "provisional": 15,
+   "current": 26,
+   "provisional": 17,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -348,10 +373,16 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 6,
+     "current": 7,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
+      {
+       "family": "rotational_line",
+       "name": "转动跃迁频率",
+       "kind": "ready",
+       "status": "pilot"
+      },
       {
        "family": "stereo_property_inference",
        "name": "立体异构体性质推断",
@@ -378,13 +409,19 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 3,
+     "current": 4,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
       {
        "family": "conformer_target_selection",
        "name": "构象设计选择",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "isotopologue_design",
+       "name": "单氘代位点设计",
        "kind": "ready",
        "status": "pilot"
       },
@@ -411,8 +448,8 @@
    "domain": "chemistry",
    "cell": "1-10",
    "target": 10,
-   "current": 10,
-   "provisional": 5,
+   "current": 12,
+   "provisional": 7,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -437,13 +474,19 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 3,
+     "current": 4,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
       {
        "family": "binding_evidence_choice",
        "name": "主客体结合强弱（实测证据）",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "rotational_line",
+       "name": "转动跃迁频率",
        "kind": "ready",
        "status": "pilot"
       },
@@ -464,13 +507,19 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 2,
+     "current": 3,
      "soft_target": 3,
-     "shortfall": 1,
+     "shortfall": 0,
      "routes": [
       {
        "family": "binding_design_choice",
        "name": "客体设计选择（实测证据）",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "isotopologue_design",
+       "name": "单氘代位点设计",
        "kind": "ready",
        "status": "pilot"
       },

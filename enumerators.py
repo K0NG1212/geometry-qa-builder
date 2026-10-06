@@ -13,6 +13,7 @@ Structures come from templates/structures.json (assets already committed with so
 This module lives outside task_families/ on purpose: it writes manifests (which every run snapshots
 and hashes) and does not change how any question is built.
 """
+import itertools
 import json
 import math
 from pathlib import Path
@@ -20,6 +21,7 @@ from pathlib import Path
 from task_families import kit
 from task_families.local_geometry import read_pdb_residues
 from task_families.protein_design import CA_WINDOW, CB_WINDOW, MARGIN, efficiency
+from task_families import rotational
 
 STRUCTURES = 'templates/structures.json'
 ROOT = Path(__file__).resolve().parent
@@ -33,6 +35,7 @@ SCOPE = {
     'disulfide_design': 'ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。',
     'fret_design': 'ATOM 片段逐行照抄；点偶极、R0 为题设模型参数（取向因子含于 R0）。',
     'molecule': '单一构象（QM7-X 为 DFTB3+MBD 优化几何，SAMPL9 为挑战赛提供的 3D 结构）；坐标原样；成键按共价半径规则。',
+    'rotational': '单一构象的刚性转子（QM7-X 为 DFTB3+MBD 优化几何，SAMPL9 为挑战赛提供的 3D 结构）；坐标原样；同位素质量与常数见题干；不含振动平均与离心畸变。',
     'crystal': '常规晶胞按 CIF 全部对称操作展开（task_families/cell.py）；周期晶体；衍射题为运动学模型与原子序数权重。',
 }
 # Atomic numbers (angle-independent scattering weights stated in the question) and the X-ray lines already used by
@@ -338,7 +341,72 @@ def extent_choice_v2(root, m):
         yield dict(molecule_base(m, 'extent_choice_v2', key), template=template)
 
 
-MOLECULE_ENUMERATORS = dict(named_bond_distance=named_bond_distance, named_bond_angle=named_bond_angle, extent_choice_v2=extent_choice_v2)
+def rotational_line(root, m):
+    """The three J = 1 <- 0 lines of every molecule small enough for the rotational-spectroscopy scope."""
+    elements, points, edges, degree = molecule_graph(m)
+    if len(elements) > rotational.MAX_ATOMS:
+        return
+    for key in rotational.LINES:
+        yield dict(molecule_base(m, 'rotational_line', 'ROT-%s' % key), line=key, strict_rank=True,
+                   scope=SCOPE['rotational'])
+
+
+def isotopologue_design(root, m):
+    """Candidate sets of four hydrogens around each admissible winner. The farthest-from-centre-of-mass hydrogen usually
+    gives the largest shift (it does for nearly every 1_01 set), so sets where a farther hydrogen is a distractor are
+    proposed for every winner, plus sets where that shortcut would succeed (several fills of the same winner when
+    needed), one for every three of the others: the shortcut then works at about chance level, and "never the
+    farthest" is no cue either (one such set per molecule and line gave 52 of 524 in the probe runs/enum-v32). Distractors that a real slip would pick (best for another line or for
+    one constant) are preferred; the rest are filled in hash order."""
+    elements, points, edges, degree = molecule_graph(m)
+    if len(elements) > rotational.MAX_ATOMS:
+        return
+    hydrogens = [i for i, e in enumerate(elements) if e == 'H']
+    com = rotational.centre(rotational.masses_of(elements), points)
+    far = lambda i: math.dist(points[i], com)
+    shifts = {k: rotational.shifts(elements, points, k, hydrogens)[1] for k in rotational.LINES}
+    for key in rotational.LINES:
+        d = shifts[key]
+        winners = []
+        for best in sorted(hydrogens, key=lambda i: -abs(d[i])):
+            ok = [i for i in hydrogens if i != best and abs(d[best]) >= rotational.DESIGN_RATIO * abs(d[i])
+                  and abs(d[best]) - abs(d[i]) >= rotational.DESIGN_MIN_MHZ]
+            if len(ok) >= 3:
+                winners.append((best, ok, [i for i in ok if far(i) > far(best)]))
+        sets = []
+        for best, ok, farther in winners:
+            if farther:
+                sets.append((best, [max(farther, key=far)], ok))
+        quota = max(1, len(sets) // 3)
+        lucky = [(best, ok) for best, ok, farther in winners if not farther]
+        fills = {best: itertools.combinations(sorted(ok, key=lambda i: kit.digest('iso', m['molecule'], key, best, i)), 3)
+                 for best, ok in lucky}
+        while quota and fills:
+            for best, ok in lucky:
+                trio = next(fills.get(best, iter(())), None)
+                if trio is None:
+                    fills.pop(best, None)
+                elif quota:
+                    sets.append((best, list(trio), ok))
+                    quota -= 1
+        for best, pick, ok in sets:
+            pick = list(pick)
+            for k in rotational.LINES[key]['others']:
+                rival = max(ok, key=lambda i: abs(shifts[k][i]))
+                if rival not in pick and len(pick) < 3:
+                    pick.append(rival)
+            for i in sorted(ok, key=lambda i: kit.digest('iso', m['molecule'], key, best, i)):
+                if len(pick) == 3:
+                    break
+                if i not in pick:
+                    pick.append(i)
+            rows = sorted(r + 1 for r in pick + [best])
+            yield dict(molecule_base(m, 'isotopologue_design', 'ISO-%s-%s' % (key, '-'.join(map(str, rows)))), line=key,
+                       candidates=rows, scope=SCOPE['rotational'])
+
+
+MOLECULE_ENUMERATORS = dict(named_bond_distance=named_bond_distance, named_bond_angle=named_bond_angle, extent_choice_v2=extent_choice_v2,
+                            rotational_line=rotational_line, isotopologue_design=isotopologue_design)
 
 
 # ------------------------------------------------------------------ large assemblies and scattering
@@ -464,7 +532,7 @@ def propose(root, families=None):
 def signature(spec):
     """What makes two instances the same question, independent of id and wording."""
     keys = ('family', 'asset', 'chain', 'residue', 'torsion', 'donor', 'acceptor', 'target', 'r0_nm', 'atom', 'wavelength_A', 'template',
-            'mode', 'target_2theta', 'component', 'ask', 'q_per_nm')
+            'mode', 'target_2theta', 'component', 'ask', 'q_per_nm', 'line', 'candidates')
     sig = {k: spec.get(k) for k in keys}
     if spec.get('atoms'):                      # bond / angle: same atoms in either direction are the same question
         rows = [x['row'] for x in spec['atoms']]
