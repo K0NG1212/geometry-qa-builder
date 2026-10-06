@@ -69,6 +69,6 @@ python tools/export_choice_workbench.py --run runs/choice-new --public-developme
 新增题型时优先写一个 `task_families/<族>.py` 并在 `task_families/__init__.py` 登记，复用 `kit.py` 的解析、几何核、干扰项选择、四项校验与评分；在 `templates/registry.json` 补全覆盖总表字段（测试会检查字段、代码/测试路径与旧题映射）。改注册表后运行 `python tools/export_coverage.py`；新族试跑写入新的 `runs/family-*`，经 `tools/export_family_workbench.py --public-development-examples`（完整重放通过才发布）更新网页。族引擎不按题号分派，不自动改变题库准入；设计选择族不解除旧 M3 对 design 的拒绝。
 新题型必须同时在 `checkers/families.py` 写独立检查器（不得导入出题代码，参数从题干读取），并在注册表 `independent_checker` 字段登记；`verify_all.py` 全部通过后才能导出。
 
-最新交接文件：[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（上一份 [HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史）。
+最新交接文件：[HANDOFF_2026-10-06.md](HANDOFF_2026-10-06.md)（增量）；之前的 [HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)、[HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留。
 
 题库入库与覆盖：新题型实例经 `verify_all.py` 通过并导出后，在 `templates/admission-map.json` 登记去重动作（new / supersede / reformat），运行 `python tools/admit_family_instances.py --date YYYY-MM-DD`，再运行 `tools/export_prototype.py`、`tools/export_admission_audit.py`、`tools/plan_coverage.py`、`tools/export_coverage.py`。catalog.json 保持 CRLF 行尾（工具会自动保持）。
