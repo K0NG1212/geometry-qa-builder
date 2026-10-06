@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="GeoBench 出题系统：题型族代码出题、独立检查器复算、人工审代码。每一步的代码、保证与局限。"><title>出题系统 · GeoBench</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="builder.css">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="GeoBench 出题系统：题型族代码出题、独立检查器复算、人工审代码。每一步的代码、保证与局限。"><title>出题系统 · GeoBench</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="builder.css?v=20261006">
 <style>
 .principles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0 6px}.principles div{background:#f4f6ef;border:1px solid var(--line);border-radius:4px;padding:14px 16px}.principles b{font-size:14px;font-weight:600;display:block;margin-bottom:4px}.principles p{font-size:13px;color:var(--muted);margin:0}
 .stages{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:18px 0}.stages div{padding:12px 14px;border-top:3px solid var(--green);background:#f4f6ef}.stages div+div{border-left:1px solid var(--line)}.stages b{font-size:15px;font-weight:600}.stages span{font:11px monospace;color:var(--muted);margin-left:6px}.stages p{font-size:12.5px;color:var(--muted);margin:4px 0 0}
@@ -21,7 +21,7 @@
 @media(max-width:560px){.principles,.stages{grid-template-columns:1fr}.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}}
 </style></head>
 <body>
-<header><a class="brand" href="index.html">g<span>·</span> <b>GeoBench</b></a><nav aria-label="主导航"><a href="index.html">研究地图</a><a href="index.html#questions">问题池</a><a href="system.html" aria-current="page">出题系统</a><a href="templates.html">题型</a><a href="review.html">审核</a><a href="https://github.com/K0NG1212/geometry-qa-builder" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
+<header><a class="brand" href="index.html">g<span>·</span> <b>GeoBench</b></a><nav aria-label="主导航"><a href="index.html">研究地图</a><a href="index.html#questions">问题池</a><a href="system.html" aria-current="page">出题系统</a><a href="#batch">批量选题</a><a href="templates.html">题型</a><a href="review.html">审核</a><a href="https://github.com/K0NG1212/geometry-qa-builder" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
 <main>
 <section class="intro"><div><p class="eyebrow">TASK FAMILIES / INDEPENDENT CHECKERS / HUMAN REVIEW</p><h1>代码出题，独立复算，<br>人审代码。</h1><p class="lead">每个题型是一段确定性代码，批量生成题目；另一段不共享任何代码的检查器从题干重新计算每道题。<br class="desktop">代码经人审定后，同一题型的所有题都可复现、可核对。出题全程不调用任何模型。</p></div><aside class="summary"><span class="version" id="sys-version">TASK-FAMILY PIPELINE</span><div><strong id="sys-families">—</strong><span id="sys-families-note">题型族</span></div><p id="sys-summary">读取中…</p><span class="boundary" id="sys-boundary"></span></aside></section>
 
@@ -48,5 +48,5 @@
 <p id="sys-error" hidden role="alert">未能加载 data/system.json，请通过 HTTP 服务打开并刷新。</p>
 </main>
 <footer><span>GeoBench · 出题系统</span><span id="sys-run"></span></footer>
-<script src="system.js" defer></script>
+<script src="system.js?v=20261006" defer></script>
 </body></html>
