@@ -190,6 +190,7 @@ def plan(rule=None):
                    max_paper_parameter_share=rule['global']['max_paper_parameter_share'])
     return dict(kind='batch_plan', rule_version=rule['version'], status=rule['status'], status_note=rule['status_note'],
                 enumeration_run=read('docs/data/enumeration-capacity.json')['run'], summary=summary, cells=cells,
+                rule={k: rule[k] for k in ('tiers', 'ability_share', 'global', 'rationale', 'pending_advisor')},
                 note='Pools combine admitted family questions and enumeration estimates; the maximum is computed under the '
                      'per-cell caps only (the global per-source and per-family caps are applied at actual selection).')
 

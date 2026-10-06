@@ -13,6 +13,10 @@
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}.facts div{border-left:3px solid #b39a64;padding:4px 14px}.facts b{display:block;font-size:14px}.facts p{font-size:13px;color:var(--muted);margin:3px 0 0}
 .repro li{margin:10px 0;font-size:14px}.repro code{display:block;margin-top:4px}
 .scroll{overflow-x:auto}
+.bp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}.bp-stats div{background:#f4f6ef;border:1px solid var(--line);border-radius:4px;padding:12px 14px}.bp-stats strong{display:block;font-size:26px;font-weight:500}.bp-stats span{font-size:12px;color:var(--muted)}
+.bp-grid{display:grid;grid-template-columns:90px repeat(4,1fr);gap:6px;margin:14px 0}.bp-grid .h{font-size:12px;color:var(--muted);align-self:end}.bp-cell{border:1px solid var(--line);border-radius:4px;padding:8px 10px;background:#fff;font-size:12px;cursor:pointer;text-align:left;color:var(--ink);font-family:inherit}.bp-cell[aria-pressed=true]{outline:2px solid var(--green)}.bp-cell b{font-size:16px;font-weight:600}.bp-tier{display:inline-block;font:11px monospace;padding:0 6px;border-radius:8px;background:#edf2e7;margin-left:4px}.bp-tier.B{background:#f3ead8}.bp-tier.C{background:#f1e2e2}.bp-bar{height:5px;background:#e8ece2;border-radius:3px;margin:5px 0 3px;overflow:hidden}.bp-bar i{display:block;height:100%;background:var(--green)}.bp-bar i.bal{background:#b39a64}
+.bp-rule{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}.bp-rule th,.bp-rule td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}.bp-rule th{font-size:12px;color:var(--muted);font-weight:600}
+@media(max-width:900px){.bp-stats{grid-template-columns:1fr 1fr}.bp-grid{grid-template-columns:60px repeat(4,minmax(0,1fr));font-size:11px}.bp-cell{padding:6px}}
 @media(max-width:900px){.principles{grid-template-columns:1fr 1fr}.stages{grid-template-columns:1fr 1fr}.facts{grid-template-columns:1fr}}
 @media(max-width:560px){.principles,.stages{grid-template-columns:1fr}.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}}
 </style></head>
@@ -32,6 +36,13 @@
 <section class="flow-overview" id="independence"><p class="eyebrow">WHY THE CODE CAN BE TRUSTED</p><h2>独立性与可复现</h2><div class="facts" id="sys-facts"></div></section>
 
 <section class="flow-overview" id="capacity"><p class="eyebrow">SCALING</p><h2>扩展能力：枚举器探针</h2><p id="cap-note"></p><div class="scroll"><table class="cap-table"><thead><tr><th>题型族</th><th>结构</th><th>候选</th><th>抽样</th><th>题型接受</th><th>独立检查通过</th><th>估计可出</th></tr></thead><tbody id="cap-rows"></tbody></table></div><div class="flow-notice"><b>探针发现并修正的问题</b><p>第一次探针（runs/enum-v01、v02）显示 FRET 效率题在大量实例上“正确项总是最大”：当 E &gt; 0.5 时，登记的错误机制全部给出更小的值。只看原来 3 道题时这个问题看不出来。修正方法是给题型族加一种给出更大值的真实错误（用最近重原子对代替标记原子），并允许从题设 R0 列表中选取使目标秩可达的值。修正后答案位置均衡，已有 3 道题按新版本重新生成（v19）。</p></div></section>
+
+<section class="flow-overview" id="batch"><p class="eyebrow">BATCH PRODUCTION · PROVISIONAL RULE</p><h2>批量选题规则与差距（暂定）</h2><p id="bp-note">读取中…</p>
+<div class="bp-stats" id="bp-stats"></div>
+<h3 style="font-size:15px;margin:18px 0 0">每格：能选多少、还差什么</h3><p class="footnote">每格显示“在全部上限下最多能选 / 目标”；绿色条为最多可选，金色条为同时满足能力比例时的可选。点击格子查看缺口。</p>
+<div class="bp-grid" id="bp-grid"></div><div id="bp-detail"></div>
+<h3 style="font-size:15px;margin:22px 0 0">规则</h3><div class="scroll"><table class="bp-rule" id="bp-tiers"></table></div><ul id="bp-global" style="font-size:13.5px"></ul>
+<div class="flow-notice"><b>待导师确认</b><ul id="bp-pending" style="margin:6px 0 0;padding-left:18px"></ul></div></section>
 
 <section class="flow-overview" id="reproduce"><p class="eyebrow">FOR REVIEWERS</p><h2>如何复现</h2><p>以下命令在仓库根目录运行，不需要任何 API Key。生成与复核都是确定性的：同样的代码和规格得到逐字节相同的结果。</p><ol class="repro" id="sys-repro"></ol></section>
 <p id="sys-error" hidden role="alert">未能加载 data/system.json，请通过 HTTP 服务打开并刷新。</p>

@@ -47,7 +47,45 @@
   $('cap-rows').innerHTML=c.rows.map(r=>`<tr><td>${esc((fam[r.family]||{}).registry?.name||r.family)}</td><td>${esc(r.structure)}</td><td>${r.proposals}</td><td>${r.sampled}</td><td>${r.accepted}</td><td>${r.checker_pass}</td><td>${r.estimated_admissible}</td></tr>`).join('');
  }
 
- fetch('data/system.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{
+ function batchView(p){
+  const s=p.summary,t=p.rule.tiers,DN={quantum:'量子',chemistry:'化学',materials:'材料',biology:'生物'};
+  $('bp-note').textContent=`${p.status_note}三档目标、多样性下限与上限写在 templates/batch-selection-rule.json；差距由 tools/batch_plan.py 计算：已入库的题加上枚举器估计容量（${p.enumeration_run}），按“题型族 × 来源”配对，在全部上限下用最大流求最多可选的题数。上限同时生效、最后相加，不是相乘。`;
+  $('bp-stats').innerHTML=[[s.target,'目标题量（16 格合计）'],[s.max_selectable,'现有数据在上限下最多可选'],[s.max_balanced,'同时满足三类能力比例'],[s.cells_meeting_rule+' / 16','完全满足规则的格子']].map(([n,l])=>`<div><strong>${esc(n)}</strong><span>${esc(l)}</span></div>`).join('');
+  const cells=Object.fromEntries(p.cells.map(c=>[c.cell,c])),bins=['0.1-1','1-10','10-100','100-1000'];
+  let html='<span></span>'+bins.map(b=>`<span class="h">${esc(b.replace('-','–'))} nm</span>`).join('');
+  for(const d of ['quantum','chemistry','materials','biology']){
+   html+=`<span class="h" style="align-self:center">${DN[d]}</span>`;
+   for(const b of bins){const c=cells[d+' '+b];
+    html+=`<button class="bp-cell" data-bp="${esc(c.cell)}" aria-pressed="false"><b>${c.max_selectable}</b> / ${c.target}<span class="bp-tier ${c.tier}">${c.tier}</span>
+     <div class="bp-bar"><i style="width:${Math.round(100*c.max_selectable/c.target)}%"></i></div><div class="bp-bar"><i class="bal" style="width:${Math.round(100*c.max_balanced/c.target)}%"></i></div>
+     <span style="color:var(--muted)">族 ${c.families} · 来源 ${c.sources} · 缺口 ${c.gaps.length}</span></button>`}
+  }
+  $('bp-grid').innerHTML=html;
+  const show=name=>{const c=cells[name];document.querySelectorAll('[data-bp]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.bp===name)));
+   const fam=Object.entries(c.family_flow).map(([f,n])=>`${esc(f)} ${n}`).join('、');
+   $('bp-detail').innerHTML=`<div class="limit" style="background:#fff;border-left-color:var(--green)"><h3>${esc(DN[c.cell.split(' ')[0]])} ${esc(c.cell.split(' ')[1].replace('-','–'))} nm <span class="tag">${esc(c.tier)} 档 · ${esc(t[c.tier].label)} · 目标 ${c.target}</span></h3>
+    <dl class="kv"><dt>最多可选</dt><dd>${c.max_selectable}（满足能力比例 ${c.max_balanced}）</dd>
+    <dt>题型族</dt><dd>${c.families} 个（感知 ${c.families_by_ability.perception}、推断 ${c.families_by_ability.inference}、设计 ${c.families_by_ability.design}）</dd>
+    <dt>各能力最多</dt><dd>感知 ${c.ability_max.perception}、推断 ${c.ability_max.inference}、设计 ${c.ability_max.design}</dd>
+    <dt>来源</dt><dd>${c.sources} 个${c.paper_systems.length?'；论文参数体系 '+c.paper_systems.length+' 个':''}</dd>
+    <dt>候选池</dt><dd>已入库 ${c.pool.admitted} 道 + 枚举估计 ${c.pool.enumerated} 道</dd>
+    <dt>最大选择中各族</dt><dd style="font-size:12.5px">${fam||'—'}</dd>
+    <dt>缺口</dt><dd>${c.gaps.length?'<ul style="margin:0;padding-left:18px">'+c.gaps.map(g=>`<li>${esc(g)}</li>`).join('')+'</ul>':'满足规则'}</dd></dl></div>`};
+  document.querySelectorAll('[data-bp]').forEach(x=>x.addEventListener('click',()=>show(x.dataset.bp)));
+  show('biology 1-10');
+  const row=(label,f)=>`<tr><th>${esc(label)}</th>${['A','B','C'].map(k=>`<td>${esc(f(t[k]))}</td>`).join('')}</tr>`;
+  $('bp-tiers').innerHTML=`<thead><tr><th></th>${['A','B','C'].map(k=>`<th>${k} 档：${esc(t[k].label)}</th>`).join('')}</tr></thead><tbody>`+
+   row('每格目标',x=>x.target+' 道')+row('题型族',x=>`≥ ${x.min_families}，每类能力 ≥ ${x.min_families_per_ability}`+(x.min_systems?`；≥ ${x.min_systems} 个论文参数体系`:''))+
+   row('来源（结构或论文）',x=>'≥ '+x.min_sources)+row('一个题型族最多',x=>x.max_per_family+' 道')+row('一个来源最多',x=>x.max_per_source+' 道')+
+   row('同一来源 × 同一族最多',x=>x.max_per_family_source+' 道')+'</tbody>';
+  const g=p.rule.global;
+  $('bp-global').innerHTML=[`三类能力各约 1/3（±${Math.round(p.rule.ability_share.tolerance*100)}%）`,`论文参数模型题 ≤ ${Math.round(g.max_paper_parameter_share*100)}%（现可选题中占 ${(s.paper_parameter_share_of_selectable*100).toFixed(1)}%）`,
+   `实验证据型题 ≤ ${Math.round(g.max_experimental_evidence_share*100)}%`,`全库：一个来源 ≤ ${g.max_per_source} 道，一个题型族 ≤ ${g.max_per_family} 道`,'答案位置：'+g.answer_positions,'近重复：'+g.near_duplicates]
+   .map(x=>`<li>${esc(x)}</li>`).join('');
+  $('bp-pending').innerHTML=p.rule.pending_advisor.map(x=>`<li>${esc(x)}</li>`).join('');
+ }
+ const batchLoaded=fetch('data/batch-plan.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(batchView).catch(e=>{$('bp-note').textContent='未能加载 data/batch-plan.json';console.error(e)});
+ const systemLoaded=fetch('data/system.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{
   data=d;const s=d.summary;
   $('sys-families').textContent=s.families;
   $('sys-families-note').textContent=`题型族 · ${s.checkers} 个独立检查器`;
@@ -68,4 +106,7 @@
   $('sys-repro').innerHTML=d.reproduce.map(x=>`<li>${esc(x.title)}<code class="command">${esc(x.command)}</code></li>`).join('');
   stepView();famView();capView();
  }).catch(e=>{$('sys-error').hidden=false;console.error(e)});
+ Promise.all([batchLoaded, systemLoaded]).then(()=>{   // sections render after load: re-apply #anchor links
+  if(location.hash){const el=document.getElementById(location.hash.slice(1));if(el)el.scrollIntoView()}
+ });
 })();
