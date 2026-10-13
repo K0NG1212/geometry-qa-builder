@@ -90,6 +90,15 @@ def summarize_existing(out, date=None):
     return summarize(out, proposals, picked, report, check, per_structure, manifest['seed'], date)
 
 
+def structure_groups():
+    """Every structure the enumerators read, by kind. Molecules and assemblies count too (the first summaries listed only
+    PDB entries and COD crystals, which made the system page say 27 structures instead of 75)."""
+    return dict(pdb=[s['pdb'] for s in enumerators.load_structures(ROOT)],
+                cod=['COD ' + c['cod'] for c in enumerators.load_crystals(ROOT)],
+                molecules=[m['molecule'] for m in enumerators.load_molecules(ROOT)],
+                assemblies=sorted({a['pdb'] for a in enumerators.load_assemblies(ROOT)}))
+
+
 def summarize(out, proposals, picked, report, check, per_structure, seed, date):
     failed = {f['id']: f['reason'] for f in report['failures']}
     checked = {r['id']: r['status'] for r in check['results']}
@@ -124,7 +133,7 @@ def summarize(out, proposals, picked, report, check, per_structure, seed, date):
                   positions=report['correct_position_counts'])
     totals['position_balance_ok'] = all(b['ok'] for b in balance.values())
     summary = dict(kind='enumeration_capacity', date=date or datetime.date.today().isoformat(), seed=seed, sample_per_structure=per_structure,
-                   run=out.name, structures=[s['pdb'] for s in enumerators.load_structures(ROOT)] + ['COD ' + c['cod'] for c in enumerators.load_crystals(ROOT)], totals=totals, rows=rows, position_balance=balance, model_calls=0,
+                   run=out.name, structures=structure_groups(), totals=totals, rows=rows, position_balance=balance, model_calls=0,
                    note='Capacity probe only: nothing is admitted to the catalog. Estimates scale the acceptance rate of the sample to all '
                         'proposals of the same family and structure.')
     for path in (out / 'capacity.json', ROOT / 'docs/data/enumeration-capacity.json'):

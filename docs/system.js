@@ -42,7 +42,9 @@
 
  function capView(){
   const c=data.capacity,t=c.totals;
-  $('cap-note').textContent=`枚举器从 ${c.structures.length} 个已提交的结构（${c.structures.join('、')}）中列出所有可出的候选，按固定种子每个结构抽 ${c.sample_per_structure} 个，交给题型族生成（不合格的由题型族拒绝），再用独立检查器复核。共 ${t.proposals} 个候选，抽样 ${t.sampled} 个，题型接受 ${t.accepted} 个，独立检查 ${t.checker_pass} / ${t.checker_checked} 通过；答案位置 A ${t.positions.A} / B ${t.positions.B} / C ${t.positions.C} / D ${t.positions.D}（${t.position_balance_ok?'各族均在容差内':'有族超出容差'}）。按接受率估计，仅这 ${c.structures.length} 个结构就可出约 ${t.estimated_admissible} 道。这只是容量探针，不入库：批量生产要等题型通过 L1/L2 人工审定。`;
+  const g=c.structures,nAll=g.pdb.length+g.cod.length+g.molecules.length+g.assemblies.length,
+   qm=g.molecules.filter(m=>m.startsWith('QM7X')).length,sp=g.molecules.length-qm;
+  $('cap-note').textContent=`枚举器从 ${nAll} 个已提交的结构（PDB 蛋白与核酸 ${g.pdb.length} 个：${g.pdb.join('、')}；COD 晶体 ${g.cod.length} 个；小分子 ${g.molecules.length} 个：QM7-X ${qm} 个、SAMPL9 主客体 ${sp} 个；大组装体 ${g.assemblies.length} 个：${g.assemblies.join('、')}）中列出所有可出的候选，按固定种子每个结构抽 ${c.sample_per_structure} 个，交给题型族生成（不合格的由题型族拒绝），再用独立检查器复核。共 ${t.proposals} 个候选，抽样 ${t.sampled} 个，题型接受 ${t.accepted} 个，独立检查 ${t.checker_pass} / ${t.checker_checked} 通过；答案位置 A ${t.positions.A} / B ${t.positions.B} / C ${t.positions.C} / D ${t.positions.D}（${t.position_balance_ok?'各族均在容差内':'有族超出容差'}）。按接受率估计，仅这 ${nAll} 个结构就可出约 ${t.estimated_admissible} 道。这只是容量探针，不入库：批量生产要等题型通过 L1/L2 人工审定。`;
   const fam=Object.fromEntries(data.families.map(f=>[f.id,f]));
   $('cap-rows').innerHTML=c.rows.map(r=>`<tr><td>${esc((fam[r.family]||{}).registry?.name||r.family)}</td><td>${esc(r.structure)}</td><td>${r.proposals}</td><td>${r.sampled}</td><td>${r.accepted}</td><td>${r.checker_pass}</td><td>${r.estimated_admissible}</td></tr>`).join('');
  }

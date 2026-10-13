@@ -2,7 +2,7 @@
 const escapeHTML=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const names={quantum:'量子 / 电子结构',chemistry:'化学',biology:'生物',materials:'材料'};
 fetch('data/admission-audit.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(a=>{
- document.querySelector('#audit-stats').innerHTML=[[a.target,'原型目标'],[a.screened,'初筛候选'],[a.remaining_screened,'还缺初筛候选'],[a.human_review_count,'待独立人工审核'],[a.formal_ready,'正式审核通过'],[a.remaining_formal,'距正式完成的缺口']].map(([n,t])=>`<article><strong>${n}</strong>${t}</article>`).join('');
+ document.querySelector('#audit-stats').innerHTML=[[a.target,'原型目标'],[a.screened,'初筛候选'],a.screened_over_target?[a.screened_over_target,'初筛候选超出目标（多出的作备用）']:[a.remaining_screened,'还缺初筛候选'],[a.human_review_count,'待独立人工审核'],[a.formal_ready,'正式审核通过'],[a.remaining_formal,'距正式完成的缺口']].map(([n,t])=>`<article><strong>${n}</strong>${t}</article>`).join('');
  document.querySelector('#audit-scope').textContent='统计仅包含当前完整候选。初筛不等于人工审核通过；旧草案和测试题已移至历史存档。';
  const link=id=>`<a class="text-link" href="index.html?qa=${encodeURIComponent(id)}#questions">${escapeHTML(id)} · 完整记录 ↗</a>`;
  document.querySelector('#audit-queue').innerHTML=a.human_review_ids.map(link).join('');
