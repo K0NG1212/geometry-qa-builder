@@ -4,7 +4,9 @@ QM7-X (Hoja et al., Sci. Data 8, 43 (2021); Zenodo 10.5281/zenodo.4288677) is CC
 The hdf5 file is not in Git; this script records what was taken so the committed
 JSON assets can be traced. Existing assets are never overwritten.
 
-python tools/build_family_assets.py --hdf5 PATH/8000.hdf5 --force 7001 7002 7035 --conformers 7050 7206 7049
+python tools/build_family_assets.py --hdf5 PATH/8000.hdf5 --force 7001 7002 7035 7040:d2 --conformers 7050 7206 7049
+
+--force takes MOL (displacement d1) or MOL:dN for another QM7-X displaced structure of conformer c1.
 """
 import argparse
 import hashlib
@@ -26,9 +28,9 @@ def write(path, data):
     path.write_text(json.dumps(data, indent=1) + '\n', encoding='utf-8', newline='\n')
 
 
-def check_published(qa_prefix, data):
+def check_published(qa_prefix, data, displaced_suffix='B'):
     """Where an existing QA used the same pair, confirm identical coordinates."""
-    for key, suffix in (('reference_xyz', 'A'), ('displaced_xyz', 'B')):
+    for key, suffix in (('reference_xyz', 'A'), ('displaced_xyz', displaced_suffix)):
         hits = sorted((ROOT / 'docs/assets/qa').glob('%s*-%s.xyz' % (qa_prefix, suffix)))
         if not hits:
             return None
@@ -42,18 +44,21 @@ def main(args):
     import h5py
     digest = hashlib.sha256(Path(args.hdf5).read_bytes()).hexdigest()
     f = h5py.File(args.hdf5, 'r')
-    published = {'7001': 'QNP001', '7002': 'QNI001', '7035': 'QNI002'}
-    for mol in args.force or []:
-        ref, disp = f[mol]['Geom-m%s-i1-c1-opt' % mol], f[mol]['Geom-m%s-i1-c1-d1' % mol]
+    published = {'7001': 'QNP001', '7002': 'QNI001', '7035': 'QNI002', '7040': 'QNI003'}
+    for token in args.force or []:
+        mol, _, dn = token.partition(':')
+        dn = dn or 'd1'
+        ref, disp = f[mol]['Geom-m%s-i1-c1-opt' % mol], f[mol]['Geom-m%s-i1-c1-%s' % (mol, dn)]
         data = dict(source=dict(SOURCE, hdf5_sha256=digest), molecule=mol,
-                    reference_id='Geom-m%s-i1-c1-opt' % mol, displaced_id='Geom-m%s-i1-c1-d1' % mol,
+                    reference_id='Geom-m%s-i1-c1-opt' % mol, displaced_id='Geom-m%s-i1-c1-%s' % (mol, dn),
                     coordinate_unit='angstrom', force_unit='eV/angstrom', force_key='totFOR',
                     elements=[SYMBOL[int(z)] for z in ref['atNUM'][:]],
                     reference_xyz=[[float(x) for x in r] for r in ref['atXYZ'][:]],
                     displaced_xyz=[[float(x) for x in r] for r in disp['atXYZ'][:]],
                     forces_at_displaced=[[float(x) for x in r] for r in disp['totFOR'][:]])
-        data['matches_published_qa'] = check_published(published.get(mol, 'none'), data)
-        write(OUT / 'force-path' / ('QM7X-%s-c1-d1.json' % mol), data)
+        # QNI003 (7040) published d1 and d2 under their own suffixes; the older pairs used A / B.
+        data['matches_published_qa'] = check_published(published.get(mol, 'none'), data, dn if mol == '7040' else 'B')
+        write(OUT / 'force-path' / ('QM7X-%s-c1-%s.json' % (mol, dn)), data)
     for mol in args.conformers or []:
         opts = sorted(k for k in f[mol].keys() if k.endswith('-opt') and '-i1-' in k)
         first = f[mol][opts[0]]

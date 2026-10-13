@@ -1,20 +1,20 @@
 {
  "kind": "format_check",
  "date": "2026-10-13",
- "checked": 243,
- "with_issues": 34,
+ "checked": 240,
+ "with_issues": 24,
  "by_severity": {
-  "high": 10,
+  "high": 0,
   "medium": 0,
   "low": 24
  },
  "by_rule": {
-  "not_four_choice": 10,
+  "not_four_choice": 0,
   "formula_given": 0,
   "duplicate": 0,
-  "multi_part": 8,
-  "needs_explanation": 6,
-  "binary_inside": 4,
+  "multi_part": 0,
+  "needs_explanation": 0,
+  "binary_inside": 0,
   "main_record_old_format": 18,
   "two_binaries_combined": 5,
   "mirror_pair": 2,
@@ -73,271 +73,13 @@
   }
  },
  "answer_positions": {
-  "A": 50,
-  "B": 68,
-  "C": 66,
+  "A": 52,
+  "B": 71,
+  "C": 68,
   "D": 49
  },
  "note": "Automatic rules plus findings checked by hand (REVIEWED). Read-only; fixes follow the RUNBOOK (whole-family regeneration, supersede or archive), not edits of single questions.",
  "items": [
-  {
-   "id": "BNP003",
-   "title": "DNA 标记路径与空间端距",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 5 个得分项。"
-    },
-    {
-     "rule": "needs_explanation",
-     "severity": "medium",
-     "label": "要求文字解释",
-     "detail": "题干：“Is this marker path”"
-    }
-   ],
-   "suggestion": "路径长度与端距之比没有现成族；若保留需新族，否则归档。"
-  },
-  {
-   "id": "BNP011",
-   "title": "Crambin α螺旋隔四残基 Cα 间距",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    }
-   ],
-   "suggestion": "用命名距离族（Cα i→i+4）出四选一。"
-  },
-  {
-   "id": "CNP010",
-   "title": "万古霉素 1AA5 · 链间最近接触距离",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 3 个得分项。"
-    }
-   ],
-   "suggestion": "链间最近接触没有现成族；可新增“非键接触”族或归档。"
-  },
-  {
-   "id": "HBI001",
-   "title": "几何变化与 O–H 红移趋势",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 4 个得分项。"
-    },
-    {
-     "rule": "needs_explanation",
-     "severity": "medium",
-     "label": "要求文字解释",
-     "detail": "题干：“Can these coordinates”"
-    },
-    {
-     "rule": "binary_inside",
-     "severity": "medium",
-     "label": "内含二选一",
-     "detail": "题干：“which structure”"
-    }
-   ],
-   "suggestion": "依赖论文中的光谱趋势，属于论文证据题；按会议意见改为“证据 → 结论”形式重做。"
-  },
-  {
-   "id": "HBI002",
-   "title": "识别氢键方向并比较局部刚度",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 4 个得分项。"
-    },
-    {
-     "rule": "needs_explanation",
-     "severity": "medium",
-     "label": "要求文字解释",
-     "detail": "题干：“Does this establish”"
-    },
-    {
-     "rule": "binary_inside",
-     "severity": "medium",
-     "label": "内含二选一",
-     "detail": "题干：“stiffer”"
-    }
-   ],
-   "suggestion": "依赖论文中的局部力常数查表，属于论文证据题；按“证据 → 结论”形式重做。"
-  },
-  {
-   "id": "HBP001",
-   "title": "氢键供体—受体距离：以坐标核查接触",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：numeric"
-    }
-   ],
-   "suggestion": "需要新的“氢键几何”题型族（给体–受体距离、H···O 距离与角度判据），再出四选一。"
-  },
-  {
-   "id": "HBP002",
-   "title": "羟基朝向：距离与方向联合判断",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 3 个得分项。"
-    },
-    {
-     "rule": "needs_explanation",
-     "severity": "medium",
-     "label": "要求文字解释",
-     "detail": "题干：“Explain”"
-    },
-    {
-     "rule": "binary_inside",
-     "severity": "medium",
-     "label": "内含二选一",
-     "detail": "题干：“Which conformer”"
-    }
-   ],
-   "suggestion": "拆分：H···O 距离与角度用新的氢键几何族出四选一；“是否满足判据”可做分类四选一。"
-  },
-  {
-   "id": "MNI003",
-   "title": "相同几何下，散射对比如何改变强度",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 6 个得分项。"
-    },
-    {
-     "rule": "needs_explanation",
-     "severity": "medium",
-     "label": "要求文字解释",
-     "detail": "题干：“Explain”"
-    }
-   ],
-   "suggestion": "散射衬度比较没有现成族；可新增或归档。"
-  },
-  {
-   "id": "MNP003",
-   "title": "硅与金刚石的晶面间距和取向",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 4 个得分项。"
-    },
-    {
-     "rule": "needs_explanation",
-     "severity": "medium",
-     "label": "要求文字解释",
-     "detail": "题干：“Are identical”"
-    }
-   ],
-   "suggestion": "晶面间距与面法线夹角：可并入首个衍射峰族或新增“晶面几何”族；拆成单值四选一。"
-  },
-  {
-   "id": "QNI003",
-   "title": "QM7-X 分子7040 · 两种独立位移下的力响应比较",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 6 个得分项。"
-    },
-    {
-     "rule": "binary_inside",
-     "severity": "medium",
-     "label": "内含二选一",
-     "detail": "题干：“which of the two”"
-    }
-   ],
-   "suggestion": "拆成两道受力路径四选一（已有 force_path 族），比较部分可做分类四选一。"
-  },
   {
    "id": "BNP014",
    "title": "1UBQ · Val26 主链 ψ 二面角（四选一）",

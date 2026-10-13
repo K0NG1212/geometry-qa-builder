@@ -29,14 +29,16 @@ class FormatCheckTests(unittest.TestCase):
 
     def test_rules_on_known_cases(self):
         rules = lambda qid: {i['rule'] for i in self.items[qid]['issues']}
-        self.assertIn('multi_part', rules('HBP002'))
-        self.assertNotIn('multi_part', rules('BNP011'))          # one distance, rubric "3 points" for one item
+        # Rubric item counting on the texts of two former legacy questions (HBP002 several items; BNP011 one item).
+        self.assertEqual(format_check.scored_items('1 point per distance (4); 1 for both classifications; 1 for distinguishing'), 3)
+        self.assertEqual(format_check.scored_items('3 points: distance (3; 0.01 angstrom tolerance).'), 1)
         self.assertIn('two_binaries_combined', rules('CNI007'))
         self.assertIn('mirror_pair', rules('QNP001'))
         catalog = json.loads((ROOT / 'docs/data/catalog.json').read_text(encoding='utf-8'))['questions']
         active = {q['id'] for q in catalog if q['lifecycle'] == 'active'}
         self.assertTrue((set(format_check.REVIEWED) & active) <= set(self.items))
-        retired = {q['id']: q for q in catalog if q['id'] in ('CNP005', 'MNP008', 'MNP009')}
+        retired = {q['id']: q for q in catalog if q['id'] in ('CNP005', 'MNP008', 'MNP009', 'HBI001', 'BNP011')}
+        self.assertEqual(len(retired), 5)
         self.assertTrue(all(q['lifecycle'] == 'archived' and '格式检查' in q['lifecycleReason'] for q in retired.values()))
 
     def test_no_control_characters_in_the_tool(self):

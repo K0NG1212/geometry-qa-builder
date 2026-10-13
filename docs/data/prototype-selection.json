@@ -17,7 +17,7 @@
  },
  "summary": {
   "selected": 160,
-  "reserve": 83,
+  "reserve": 80,
   "out_of_range": [],
   "abilities": {
    "perception": 59,
@@ -25,12 +25,12 @@
    "design": 46
   },
   "forms": {
-   "family": 145,
-   "family-version": 15,
+   "family": 147,
+   "family-version": 13,
    "legacy": 0
   },
-  "review_units": 45,
-  "family_units": 45,
+  "review_units": 47,
+  "family_units": 47,
   "legacy_units": 0,
   "pending_decision": {
    "measurement_condition_design": 12,
@@ -43,8 +43,8 @@
    "cell": "chemistry 0.1-1",
    "domain": "chemistry",
    "bin": "0.1-1",
-   "available": 25,
-   "eligible": 25,
+   "available": 26,
+   "eligible": 26,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -57,15 +57,6 @@
      "form": "family-version",
      "unit": "named_bond_angle",
      "instance": "FA-ANG-WP6",
-     "source": "sampl9",
-     "pending": null
-    },
-    {
-     "id": "CNP006",
-     "ability": "perception",
-     "form": "family-version",
-     "unit": "named_bond_angle",
-     "instance": "FA-ANG-DMBCD",
      "source": "sampl9",
      "pending": null
     },
@@ -88,20 +79,20 @@
      "pending": null
     },
     {
+     "id": "CNP029",
+     "ability": "perception",
+     "form": "family",
+     "unit": "hbond_geometry",
+     "instance": "FA-HBG-FIVE-HN",
+     "source": "hbond2021",
+     "pending": null
+    },
+    {
      "id": "CNI008",
      "ability": "inference",
      "form": "family",
      "unit": "stereo_property_inference",
      "instance": "FA-SPROP-7089",
-     "source": "qm7x",
-     "pending": null
-    },
-    {
-     "id": "CNI010",
-     "ability": "inference",
-     "form": "family",
-     "unit": "stereo_property_inference",
-     "instance": "FA-SPROP-7114",
      "source": "qm7x",
      "pending": null
     },
@@ -112,6 +103,15 @@
      "unit": "rotational_line",
      "instance": "FA-ROT-G9-101",
      "source": "sampl9",
+     "pending": null
+    },
+    {
+     "id": "CNI024",
+     "ability": "inference",
+     "form": "family",
+     "unit": "hbond_criteria",
+     "instance": "FA-HBC-SET2",
+     "source": "hbond2021",
      "pending": null
     },
     {
@@ -174,11 +174,41 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "CNI010",
+     "ability": "inference",
+     "form": "family",
+     "unit": "stereo_property_inference",
+     "instance": "FA-SPROP-7114",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNI023",
+     "ability": "inference",
+     "form": "family",
+     "unit": "hbond_criteria",
+     "instance": "FA-HBC-SET1",
+     "source": "hbond2021",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "CNP001",
      "ability": "perception",
      "form": "family-version",
      "unit": "named_bond_angle",
      "instance": "FA-ANG-BCD",
+     "source": "sampl9",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP006",
+     "ability": "perception",
+     "form": "family-version",
+     "unit": "named_bond_angle",
+     "instance": "FA-ANG-DMBCD",
      "source": "sampl9",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -254,54 +284,34 @@
      "reason": "本格已满 10 道"
     },
     {
-     "id": "HBI001",
-     "ability": "inference",
-     "form": "legacy",
-     "unit": "legacy:geometry_redshift_inference",
-     "instance": null,
-     "source": "hbond2021",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "HBI002",
-     "ability": "inference",
-     "form": "legacy",
-     "unit": "legacy:geometry_conditioned_stiffness_lookup",
-     "instance": null,
-     "source": "hbond2021",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "HBP001",
+     "id": "CNP028",
      "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:donor_acceptor_distance",
-     "instance": null,
+     "form": "family",
+     "unit": "hbond_geometry",
+     "instance": "FA-HBG-TWO-OO",
      "source": "hbond2021",
      "pending": null,
      "reason": "本格已满 10 道"
     },
     {
-     "id": "HBP002",
+     "id": "CNP030",
      "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:donor_orientation_screen",
-     "instance": null,
+     "form": "family",
+     "unit": "hbond_geometry",
+     "instance": "FA-HBG-FOUR-ANG",
      "source": "hbond2021",
      "pending": null,
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 25 道，其中经独立检查 21 道"
+   "rationale": "可用 26 道，其中经独立检查 26 道"
   },
   {
    "cell": "chemistry 1-10",
    "domain": "chemistry",
    "bin": "1-10",
-   "available": 12,
-   "eligible": 12,
+   "available": 11,
+   "eligible": 11,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -409,19 +419,9 @@
      "source": "sampl9",
      "pending": "experimental_evidence",
      "reason": "本格已满 10 道"
-    },
-    {
-     "id": "CNP010",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:closest_interchain_contact",
-     "instance": null,
-     "source": "pdb-1aa5-vancomycin",
-     "pending": null,
-     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 12 道，其中经独立检查 11 道"
+   "rationale": "可用 11 道，其中经独立检查 11 道"
   },
   {
    "cell": "chemistry 10-100",
@@ -639,8 +639,8 @@
    "cell": "biology 0.1-1",
    "domain": "biology",
    "bin": "0.1-1",
-   "available": 13,
-   "eligible": 13,
+   "available": 12,
+   "eligible": 12,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -740,16 +740,6 @@
    ],
    "reserve": [
     {
-     "id": "BNP011",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:helix_local_spacing",
-     "instance": null,
-     "source": "pdb-bio-nm",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
      "id": "BNP013",
      "ability": "perception",
      "form": "family",
@@ -770,14 +760,14 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 13 道，其中经独立检查 12 道"
+   "rationale": "可用 12 道，其中经独立检查 12 道"
   },
   {
    "cell": "biology 1-10",
    "domain": "biology",
    "bin": "1-10",
-   "available": 16,
-   "eligible": 16,
+   "available": 15,
+   "eligible": 15,
    "abilities": {
     "perception": 3,
     "inference": 4,
@@ -925,19 +915,9 @@
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
-    },
-    {
-     "id": "BNP003",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:dna_marker_path",
-     "instance": null,
-     "source": "pdb-bio-nm",
-     "pending": null,
-     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 16 道，其中经独立检查 15 道"
+   "rationale": "可用 15 道，其中经独立检查 15 道"
   },
   {
    "cell": "biology 10-100",
@@ -1486,8 +1466,8 @@
    "cell": "materials 0.1-1",
    "domain": "materials",
    "bin": "0.1-1",
-   "available": 27,
-   "eligible": 27,
+   "available": 25,
+   "eligible": 25,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -1586,16 +1566,6 @@
     }
    ],
    "reserve": [
-    {
-     "id": "MNI003",
-     "ability": "inference",
-     "form": "legacy",
-     "unit": "legacy:sublattice_scattering_contrast",
-     "instance": null,
-     "source": "cod-materials-cell",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
     {
      "id": "MNI011",
      "ability": "inference",
@@ -1707,16 +1677,6 @@
      "reason": "本格已满 10 道"
     },
     {
-     "id": "MNP003",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:cubic_plane_geometry",
-     "instance": null,
-     "source": "cod-materials-cell",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
      "id": "MNP023",
      "ability": "perception",
      "form": "family",
@@ -1757,7 +1717,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 27 道，其中经独立检查 25 道"
+   "rationale": "可用 25 道，其中经独立检查 25 道"
   },
   {
    "cell": "materials 1-10",
@@ -2102,8 +2062,8 @@
    "cell": "quantum 0.1-1",
    "domain": "quantum",
    "bin": "0.1-1",
-   "available": 15,
-   "eligible": 15,
+   "available": 16,
+   "eligible": 16,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -2147,20 +2107,20 @@
      "pending": null
     },
     {
-     "id": "QNI002",
-     "ability": "inference",
-     "form": "family-version",
-     "unit": "force_path_derivative",
-     "instance": "FA-FP-QM7X-7035",
-     "source": "qm7x",
-     "pending": null
-    },
-    {
      "id": "QNI021",
      "ability": "inference",
      "form": "family",
      "unit": "rotational_line",
      "instance": "FA-ROT-7029-111",
+     "source": "qm7x",
+     "pending": null
+    },
+    {
+     "id": "QNI023",
+     "ability": "inference",
+     "form": "family",
+     "unit": "force_path_derivative",
+     "instance": "FA-FP-QM7X-7040-D2",
      "source": "qm7x",
      "pending": null
     },
@@ -2233,11 +2193,21 @@
      "reason": "本格已满 10 道"
     },
     {
-     "id": "QNI003",
+     "id": "QNI002",
      "ability": "inference",
-     "form": "legacy",
-     "unit": "legacy:force_displacement_projection_comparison",
-     "instance": null,
+     "form": "family-version",
+     "unit": "force_path_derivative",
+     "instance": "FA-FP-QM7X-7035",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI022",
+     "ability": "inference",
+     "form": "family",
+     "unit": "force_path_derivative",
+     "instance": "FA-FP-QM7X-7040-D1",
      "source": "qm7x",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -2253,7 +2223,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 15 道，其中经独立检查 14 道"
+   "rationale": "可用 16 道，其中经独立检查 16 道"
   },
   {
    "cell": "quantum 1-10",
@@ -2628,7 +2598,6 @@
   "CND012",
   "CND013",
   "CNI008",
-  "CNI010",
   "CNI011",
   "CNI012",
   "CNI013",
@@ -2640,8 +2609,8 @@
   "CNI020",
   "CNI021",
   "CNI022",
+  "CNI024",
   "CNP002",
-  "CNP006",
   "CNP007",
   "CNP008",
   "CNP009",
@@ -2655,6 +2624,7 @@
   "CNP025",
   "CNP026",
   "CNP027",
+  "CNP029",
   "MND001",
   "MND002",
   "MND003",
@@ -2706,7 +2676,6 @@
   "QND011",
   "QND012",
   "QND013",
-  "QNI002",
   "QNI010",
   "QNI011",
   "QNI012",
@@ -2719,6 +2688,7 @@
   "QNI019",
   "QNI020",
   "QNI021",
+  "QNI023",
   "QNP001",
   "QNP007",
   "QNP008",

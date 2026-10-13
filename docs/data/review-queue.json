@@ -3,26 +3,26 @@
  "date": "2026-10-13",
  "summary": {
   "scope": "selection",
-  "units_all_active": 55,
-  "units": 45,
-  "families": 45,
+  "units_all_active": 47,
+  "units": 47,
+  "families": 47,
   "legacy_units": 0,
   "L1": {
-   "pending": 45,
+   "pending": 47,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
   "L2": {
-   "pending": 45,
+   "pending": 47,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
   "instances": 160,
   "forms": {
-   "family": 145,
-   "family-version": 15,
+   "family": 147,
+   "family-version": 13,
    "legacy": 0
   },
   "stages": {
@@ -34,7 +34,7 @@
   },
   "next_l3_batch": "l3-batch-001",
   "l3_sample": 160,
-  "l3_strata": 78,
+  "l3_strata": 80,
   "l3_steady_state_sample": 132,
   "model_calls": 0,
   "reviews_recorded": {
@@ -404,7 +404,7 @@
      "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/families.py": "8378a0b8c82dd4ccb49061e63a81e3845ccce9dfe5ae1d5498e7aa5ad432684c",
+     "checkers/families.py": "8b99c5574ca2e81d59cf6ca7cfed7af55dd965e90972556130553fca11cc91cf",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1487,7 +1487,7 @@
      "task_families/conformer_design.py": "c1df20bcb3ca7c59938dcfc28012c37beca3d235e0181495fb2b6d9e9d54a211"
     },
     "L2": {
-     "checkers/families.py": "8378a0b8c82dd4ccb49061e63a81e3845ccce9dfe5ae1d5498e7aa5ad432684c",
+     "checkers/families.py": "8b99c5574ca2e81d59cf6ca7cfed7af55dd965e90972556130553fca11cc91cf",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2240,7 +2240,7 @@
      "task_families/extent_choice.py": "e1ddb871279c3ae81c1e5e74590674b8f3fd71efdcd2c1c281a722ea123f4bf4"
     },
     "L2": {
-     "checkers/families.py": "8378a0b8c82dd4ccb49061e63a81e3845ccce9dfe5ae1d5498e7aa5ad432684c",
+     "checkers/families.py": "8b99c5574ca2e81d59cf6ca7cfed7af55dd965e90972556130553fca11cc91cf",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2555,7 +2555,7 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af"
     },
     "L2": {
-     "checkers/families.py": "8378a0b8c82dd4ccb49061e63a81e3845ccce9dfe5ae1d5498e7aa5ad432684c",
+     "checkers/families.py": "8b99c5574ca2e81d59cf6ca7cfed7af55dd965e90972556130553fca11cc91cf",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2643,27 +2643,27 @@
       ]
      },
      {
-      "instance": "FA-FP-QM7X-7035",
-      "question": "Structures A and B of the same molecule share atom order and one Cartesian frame (angstrom). The table gives the total PBE0+MBD force on every atom at B (eV/angstrom), with F_i = −∂E/∂r_i. Along the straight path r_i(λ) = r_i(A) + λ[r_i(B) − r_i(A)], what is dE/dλ at λ = 1 (that is, at B), in eV? Do not realign, mass-weight or normalize the displacement.",
+      "instance": "FA-FP-QM7X-7040-D2",
+      "question": "Structures A and B of the same molecule share atom order and one Cartesian frame (angstrom). The table gives the total PBE0+MBD force on every atom at B (eV/angstrom), with F_i = −∂E/∂r_i. Along the straight path r_i(λ) = r_i(B) + λ[r_i(A) − r_i(B)], which starts at B and moves toward A, what is dE/dλ at λ = 0 (that is, at B), in eV? Do not realign, mass-weight or normalize the displacement.",
       "options": [
        {
         "label": "A",
-        "value": "2.7660",
+        "value": "-5.0423",
         "unit": "eV"
        },
        {
         "label": "B",
-        "value": "5.5319",
+        "value": "-0.6163",
         "unit": "eV"
        },
        {
         "label": "C",
-        "value": "6.0387",
+        "value": "5.4891",
         "unit": "eV"
        },
        {
         "label": "D",
-        "value": "11.4318",
+        "value": "9.5279",
         "unit": "eV"
        }
       ],
@@ -2672,17 +2672,17 @@
        "B.xyz",
        "forces_B.txt"
       ],
-      "correct_label": "B",
+      "correct_label": "A",
       "audit": [
        {
         "label": "A",
-        "rule": "trapezoid_energy_estimate",
-        "reason": "按 A 处受力为零的梯形估计给出能量差，而题目问的是 B 处的导数。"
+        "rule": "correct",
+        "reason": "B 处沿给定路径方向的导数 = −Σ F_i(B)·(路径方向位移)；十进制与浮点实现一致。"
        },
        {
         "label": "B",
-        "rule": "correct",
-        "reason": "B 处沿给定路径方向的导数 = −Σ F_i(B)·(路径方向位移)；十进制与浮点实现一致。"
+        "rule": "heavy_atoms_only",
+        "reason": "只累加重原子，忽略氢原子的受力与位移。"
        },
        {
         "label": "C",
@@ -3160,6 +3160,316 @@
    }
   },
   {
+   "unit": "hbond_criteria",
+   "kind": "family",
+   "ability": "inference",
+   "registry_id": "hbond_criteria",
+   "generator": "task_families/hbond.py",
+   "checker": "checkers/hbonds.py",
+   "checker_function": "hbond_criteria",
+   "bindings": {
+    "L1": {
+     "registry_row": "b4b75026d3dbecc4029a42b3783c9847af783b1f441b8a26e8782a38a355c9fa",
+     "task_families/hbond.py": "1d4f4c97414f1ea9f179951b827fa412051fa5d429a918e00286dc1a59549c09"
+    },
+    "L2": {
+     "checkers/hbonds.py": "31403a45307cefac4c850430d1e6db93eaadf15c898a0d15822e7941a386ed0f",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 1,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "按几何判据识别氢键",
+     "concept": "给定操作判据（H···A ≤ d、D–H···A ≥ θ），在四个候选接触中判断哪一个构成分子内氢键；考查“只看给体–受体距离不够，氢要指向受体”。",
+     "inputs": "XYZ（论文 SI 的计算构象，按行号计数）。",
+     "physical_conditions": "单一计算构象，坐标原样；不含振动平均与溶剂。",
+     "reasoning_scale": "给体–受体或氢–受体距离（0.15–0.5 nm）",
+     "scale_limits": "分子内单个接触的局部几何。",
+     "source_basis": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021)（CC BY 4.0）SI 第 3–6 页坐标（仓库内已有资产）",
+     "answer_method": "逐个候选计算 H···A 与 D–H···A 角，恰好一个同时满足两项判据；每个候选与阈值至少相差 0.10 Å / 5°。",
+     "distractor_mechanisms": [
+      "donor_acceptor_close",
+      "distance_only",
+      "angle_only",
+      "neither"
+     ],
+     "four_choice_validation": "恰好一个候选满足两项判据；其余各记录不满足的原因；正确项按批次目标位置放置。",
+     "principle": "氢键的几何判据同时要求距离与方向；给体与受体靠近而氢背向受体时不构成氢键。",
+     "validation": "独立检查器（checkers/hbonds.py:hbond_criteria）从题干读出判据与各候选的构象和原子，逐个重算并要求恰好一个满足。",
+     "limits": "判据是题设操作定义，不是氢键的普适定义；不判断能量。",
+     "template_review": "2026-10-13 新建，待 L1/L2 人工审核。"
+    },
+    "samples": [
+     {
+      "instance": "FA-HBC-SET2",
+      "question": "Four computed conformers of 3-hydroxy-2-butenamide (enol tautomers and rotamers) from Altun, Bleda & Trindle (2021) are supplied. Attached: conformer TWO = conformer_TWO.xyz, conformer THREE = conformer_THREE.xyz, conformer FOUR = conformer_FOUR.xyz, conformer FIVE = conformer_FIVE.xyz (atoms are numbered by XYZ row, counted from 1 after the two header lines; numbering differs between conformers). Use these geometric criteria for an intramolecular hydrogen bond D–H···A: H···A distance ≤ 2.2 Å and D–H···A angle ≥ 130° (vertex at H). These are task criteria, not a universal definition. Which of the four candidate contacts meets both criteria?",
+      "options": [
+       {
+        "label": "A",
+        "value": "O13–H14···N3 in conformer FOUR"
+       },
+       {
+        "label": "B",
+        "value": "O5–H4···N11 in conformer FIVE"
+       },
+       {
+        "label": "C",
+        "value": "N3–H4···O13 in conformer FOUR"
+       },
+       {
+        "label": "D",
+        "value": "N7–H8···O6 in conformer THREE"
+       }
+      ],
+      "inputs": [
+       "conformer_TWO.xyz",
+       "conformer_THREE.xyz",
+       "conformer_FOUR.xyz",
+       "conformer_FIVE.xyz"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "donor_acceptor_close",
+        "reason": "给体与受体只相距 2.75 Å，但 H···A 3.69 Å、角度 10.2°：氢没有指向受体（只看重原子距离会误选）。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "H···A 1.93 Å ≤ 2.2 Å，角度 138.3° ≥ 130°，两项都满足。"
+       },
+       {
+        "label": "C",
+        "rule": "donor_acceptor_close",
+        "reason": "给体与受体只相距 2.75 Å，但 H···A 3.68 Å、角度 18.2°：氢没有指向受体（只看重原子距离会误选）。"
+       },
+       {
+        "label": "D",
+        "rule": "donor_acceptor_close",
+        "reason": "给体与受体只相距 2.27 Å，但 H···A 2.46 Å、角度 67.7°：氢没有指向受体（只看重原子距离会误选）。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-HBC-SET1",
+      "question": "Four computed conformers of 3-hydroxy-2-butenamide (enol tautomers and rotamers) from Altun, Bleda & Trindle (2021) are supplied. Attached: conformer TWO = conformer_TWO.xyz, conformer THREE = conformer_THREE.xyz, conformer FOUR = conformer_FOUR.xyz, conformer FIVE = conformer_FIVE.xyz (atoms are numbered by XYZ row, counted from 1 after the two header lines; numbering differs between conformers). Use these geometric criteria for an intramolecular hydrogen bond D–H···A: H···A distance ≤ 2.2 Å and D–H···A angle ≥ 130° (vertex at H). These are task criteria, not a universal definition. Which of the four candidate contacts meets both criteria?",
+      "options": [
+       {
+        "label": "A",
+        "value": "O6–H5···O14 in conformer TWO"
+       },
+       {
+        "label": "B",
+        "value": "N11–H13···O14 in conformer TWO"
+       },
+       {
+        "label": "C",
+        "value": "N11–H13···O5 in conformer FIVE"
+       },
+       {
+        "label": "D",
+        "value": "O5–H14···O6 in conformer THREE"
+       }
+      ],
+      "inputs": [
+       "conformer_TWO.xyz",
+       "conformer_THREE.xyz",
+       "conformer_FOUR.xyz",
+       "conformer_FIVE.xyz"
+      ],
+      "correct_label": "A",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "correct",
+        "reason": "H···A 1.61 Å ≤ 2.2 Å，角度 151.5° ≥ 130°，两项都满足。"
+       },
+       {
+        "label": "B",
+        "rule": "donor_acceptor_close",
+        "reason": "给体与受体只相距 2.26 Å，但 H···A 2.46 Å、角度 66.8°：氢没有指向受体（只看重原子距离会误选）。"
+       },
+       {
+        "label": "C",
+        "rule": "donor_acceptor_close",
+        "reason": "给体与受体只相距 2.73 Å，但 H···A 2.66 Å、角度 83.3°：氢没有指向受体（只看重原子距离会误选）。"
+       },
+       {
+        "label": "D",
+        "rule": "donor_acceptor_close",
+        "reason": "给体与受体只相距 2.79 Å，但 H···A 3.73 Å、角度 9.0°：氢没有指向受体（只看重原子距离会误选）。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "unit": "hbond_geometry",
+   "kind": "family",
+   "ability": "perception",
+   "registry_id": "hbond_geometry",
+   "generator": "task_families/hbond.py",
+   "checker": "checkers/hbonds.py",
+   "checker_function": "hbond_geometry",
+   "bindings": {
+    "L1": {
+     "registry_row": "da0d527f33a59bab08fdc18af55daa7d1be4e1c33584a3a5b2f1d71a0fabe539",
+     "task_families/hbond.py": "1d4f4c97414f1ea9f179951b827fa412051fa5d429a918e00286dc1a59549c09"
+    },
+    "L2": {
+     "checkers/hbonds.py": "31403a45307cefac4c850430d1e6db93eaadf15c898a0d15822e7941a386ed0f",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 1,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "氢键几何量",
+     "concept": "分子内氢键 D–H···A 的几何量：给体–受体距离、氢–受体距离或 D–H···A 角；原子按化学角色命名（如羟基氧、羰基氧、酰胺氮）。",
+     "inputs": "XYZ（论文 SI 的计算构象，按行号计数）。",
+     "physical_conditions": "单一计算构象，坐标原样；不含振动平均与溶剂。",
+     "reasoning_scale": "给体–受体或氢–受体距离（0.15–0.5 nm）",
+     "scale_limits": "分子内单个接触的局部几何。",
+     "source_basis": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021)（CC BY 4.0）SI 第 3–6 页坐标（仓库内已有资产）",
+     "answer_method": "指定原子的欧氏距离或以 H 为顶点的向量夹角；共价半径规则确认 D–H 成键、H–A 不成键。",
+     "distractor_mechanisms": [
+      "h_acceptor_instead",
+      "donor_acceptor_instead",
+      "path_through_h",
+      "linear_assumption",
+      "covalent_d_h",
+      "other_acceptor",
+      "angle_at_donor",
+      "angle_at_acceptor",
+      "supplement",
+      "acceptor_side"
+     ],
+     "four_choice_validation": "距离与正确值相差 > 0.03 Å、角度 > 3°；升序排列，秩按批次轮换。",
+     "principle": "氢键几何由给体、氢、受体三个原子的相对位置决定；常见混淆是把 D···A 与 H···A 互换、把角度顶点放错。",
+     "validation": "独立检查器（checkers/hbonds.py:hbond_geometry）从题干读出三个原子行号与所问量，用 Decimal 距离和余弦定理重算，并用自己的共价半径确认成键关系。",
+     "limits": "只测几何量，不据此判定氢键强弱、能量或光谱位移。",
+     "template_review": "2026-10-13 新建，待 L1/L2 人工审核。"
+    },
+    "samples": [
+     {
+      "instance": "FA-HBG-FIVE-HN",
+      "question": "The supplied XYZ is conformer FIVE of 3-hydroxy-2-butenamide, a computed structure from Altun, Bleda & Trindle (2021) (14 atoms, angstrom). In this conformer, O5, the hydroxyl oxygen (OH), is covalently bonded to H4, and N11, the amide NH2 nitrogen, is the candidate hydrogen-bond acceptor (rows 5, 4 and 11, counted from 1 after the two XYZ header lines). What is the hydrogen–acceptor distance H4···N11?",
+      "options": [
+       {
+        "label": "A",
+        "value": "1.757",
+        "unit": "angstrom"
+       },
+       {
+        "label": "B",
+        "value": "1.926",
+        "unit": "angstrom"
+       },
+       {
+        "label": "C",
+        "value": "2.734",
+        "unit": "angstrom"
+       },
+       {
+        "label": "D",
+        "value": "3.582",
+        "unit": "angstrom"
+       }
+      ],
+      "inputs": [
+       "HBI002-S0008.xyz"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "linear_assumption",
+        "reason": "假设氢键是直线：用 D···A 减去 D–H 键长。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "按指定原子直接计算；成键关系由共价半径规则确认。"
+       },
+       {
+        "label": "C",
+        "rule": "donor_acceptor_instead",
+        "reason": "量成给体与受体重原子之间的距离，而不是 H···A。"
+       },
+       {
+        "label": "D",
+        "rule": "other_acceptor:O10",
+        "reason": "量到了另一个杂原子 O10（不是题目指定的受体）。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-HBG-FOUR-ANG",
+      "question": "The supplied XYZ is conformer FOUR of 3-hydroxy-2-butenamide, a computed structure from Altun, Bleda & Trindle (2021) (14 atoms, angstrom). In this conformer, N3, the amide NH2 nitrogen, is covalently bonded to H5, and O13, the hydroxyl oxygen (OH), is the candidate hydrogen-bond acceptor (rows 3, 5 and 13, counted from 1 after the two XYZ header lines). What is the N3–H5···O13 angle at the hydrogen H5?",
+      "options": [
+       {
+        "label": "A",
+        "value": "16.6",
+        "unit": "degree"
+       },
+       {
+        "label": "B",
+        "value": "34.9",
+        "unit": "degree"
+       },
+       {
+        "label": "C",
+        "value": "128.6",
+        "unit": "degree"
+       },
+       {
+        "label": "D",
+        "value": "149.8",
+        "unit": "degree"
+       }
+      ],
+      "inputs": [
+       "HBI002-S0007.xyz"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "angle_at_acceptor",
+        "reason": "把顶点放在受体 O13 上。"
+       },
+       {
+        "label": "B",
+        "rule": "angle_at_donor",
+        "reason": "把顶点放在给体 N3 上（H–D···A 角），而不是氢上。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "按指定原子直接计算；成键关系由共价半径规则确认。"
+       },
+       {
+        "label": "D",
+        "rule": "acceptor_side:H14",
+        "reason": "量成受体一侧的 H···O13–H14 角。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
    "unit": "isotopologue_design",
    "kind": "family",
    "ability": "design",
@@ -3318,7 +3628,7 @@
      "task_families/extinction.py": "f9721343ded2f4de07dfaf787d4b59f4322cbaf782248414430677ddfad71e1f"
     },
     "L2": {
-     "checkers/families.py": "8378a0b8c82dd4ccb49061e63a81e3845ccce9dfe5ae1d5498e7aa5ad432684c",
+     "checkers/families.py": "8b99c5574ca2e81d59cf6ca7cfed7af55dd965e90972556130553fca11cc91cf",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3939,13 +4249,13 @@
      "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/families.py": "8378a0b8c82dd4ccb49061e63a81e3845ccce9dfe5ae1d5498e7aa5ad432684c",
+     "checkers/families.py": "8b99c5574ca2e81d59cf6ca7cfed7af55dd965e90972556130553fca11cc91cf",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 3,
+   "instances": 2,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -4025,54 +4335,54 @@
       ]
      },
      {
-      "instance": "FA-ANG-DMBCD",
-      "question": "The supplied XYZ is one heptakis(2,6-di-O-methyl)-beta-cyclodextrin host conformer (189 atoms, angstrom). Atoms C3–O2–CH3-C45 form an exocyclic methyl-ether linkage: ring carbon C3, ether oxygen O2 and its methyl carbon (row 45) (C3 = row 3, O2 = row 44, CH3-C45 = row 45; rows counted from 1 after the two XYZ header lines). What is the C3–O2–CH3-C45 bond angle at O2 in this supplied conformer?",
+      "instance": "FA-ANG-WP6",
+      "question": "The supplied XYZ is one WP6 (carboxylated pillar[6]arene) host conformer (150 atoms, angstrom); labels are element plus XYZ row. Atoms C3–C1–C4 form an internal angle of the phenylene ring C1-C4-C5-C2-C6-C3 (C3 = row 3, C1 = row 1, C4 = row 4; rows counted from 1 after the two XYZ header lines). What is the C3–C1–C4 bond angle at C1 in this supplied conformer?",
       "options": [
        {
         "label": "A",
-        "value": "36.14",
+        "value": "116.70",
         "unit": "degree"
        },
        {
         "label": "B",
-        "value": "107.62",
+        "value": "117.63",
         "unit": "degree"
        },
        {
         "label": "C",
-        "value": "109.47",
+        "value": "119.94",
         "unit": "degree"
        },
        {
         "label": "D",
-        "value": "110.93",
+        "value": "122.32",
         "unit": "degree"
        }
       ],
       "inputs": [
-       "DMBCD.xyz"
+       "WP6.xyz"
       ],
-      "correct_label": "B",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
-        "rule": "triangle_angle_at_first_atom",
-        "reason": "把三角形 C3–O2–CH3-C45 的顶点错放在 C3 上。"
+        "rule": "angle_at_adjacent_atom:C1-C3-C(row 6)",
+        "reason": "测成相邻原子 C3 处的键角，而非题目指定的顶点 C1。"
        },
        {
         "label": "B",
+        "rule": "other_neighbor:C3-C1-O(row 12)",
+        "reason": "顶点正确，但另一端选成与 C1 相连的 O(row 12)。"
+       },
+       {
+        "label": "C",
         "rule": "correct",
         "reason": "按向量夹角公式在指定顶点计算；另以 atan2 实现复核。"
        },
        {
-        "label": "C",
-        "rule": "idealized_value",
-        "reason": "直接套用理想杂化角 109.47（sp3 tetrahedral），没有测量这一构象。"
-       },
-       {
         "label": "D",
-        "rule": "angle_at_adjacent_atom:O2-C3-H(row 145)",
-        "reason": "测成相邻原子 C3 处的键角，而非题目指定的顶点 O2。"
+        "rule": "other_neighbor:O(row 12)-C1-C4",
+        "reason": "顶点正确，但一端选成与 C1 相连的 O(row 12)。"
        }
       ]
      }
@@ -5653,7 +5963,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 2,
+   "instances": 1,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -5728,51 +6038,51 @@
       ]
      },
      {
-      "instance": "FA-SPROP-7114",
-      "question": "S0 and X are two stereoisomers of the same neutral C3H7N1O2S1 molecule; atom order is shared and X has been rigidly rotated and translated. Each structure is the lowest-energy QM7-X conformer of its configuration. Compare X with S0 by PBE0+MBD total energy and dipole-moment magnitude at the supplied geometries; each difference is at least 0.0434 eV (1 kcal/mol) in energy and 0.10 e·Å in dipole. Which statement is correct?",
+      "instance": "FA-SPROP-7082",
+      "question": "S0 and X are two stereoisomers of the same neutral C4H6N2S1 molecule; atom order is shared and X has been rigidly rotated and translated. Each structure is the lowest-energy QM7-X conformer of its configuration. Compare X with S0 by PBE0+MBD total energy and dipole-moment magnitude at the supplied geometries; each difference is at least 0.0434 eV (1 kcal/mol) in energy and 0.10 e·Å in dipole. Which statement is correct?",
       "options": [
        {
         "label": "A",
-        "value": "X is higher in energy than S0 and has a larger dipole moment"
-       },
-       {
-        "label": "B",
-        "value": "X is lower in energy than S0 and has a smaller dipole moment"
-       },
-       {
-        "label": "C",
         "value": "X is higher in energy than S0 and has a smaller dipole moment"
        },
        {
-        "label": "D",
+        "label": "B",
         "value": "X is lower in energy than S0 and has a larger dipole moment"
+       },
+       {
+        "label": "C",
+        "value": "X is higher in energy than S0 and has a larger dipole moment"
+       },
+       {
+        "label": "D",
+        "value": "X is lower in energy than S0 and has a smaller dipole moment"
        }
       ],
       "inputs": [
        "S0.xyz",
        "X.xyz"
       ],
-      "correct_label": "B",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
         "rule": null,
-        "reason": "与数据集计算值不符：能量方向、偶极方向相反。"
+        "reason": "与数据集计算值不符：偶极方向相反。"
        },
        {
         "label": "B",
         "rule": null,
-        "reason": "ΔE = -0.0932 eV，Δμ = -0.2199 e·Å（X − S0，数据集计算值）。"
+        "reason": "与数据集计算值不符：能量方向相反。"
        },
        {
         "label": "C",
         "rule": null,
-        "reason": "与数据集计算值不符：能量方向相反。"
+        "reason": "ΔE = +0.1100 eV，Δμ = +0.2468 e·Å（X − S0，数据集计算值）。"
        },
        {
         "label": "D",
         "rule": null,
-        "reason": "与数据集计算值不符：偶极方向相反。"
+        "reason": "与数据集计算值不符：能量方向、偶极方向相反。"
        }
       ]
      }
@@ -7396,7 +7706,7 @@
    "sample": 2,
    "rule": "first batch: all",
    "ids": [
-    "QNI002",
+    "QNI023",
     "QNP001"
    ]
   },
@@ -7462,6 +7772,30 @@
    "rule": "first batch: all",
    "ids": [
     "CNI011"
+   ]
+  },
+  {
+   "stratum": "hbond_criteria | hbond2021 | chemistry 0.1-1",
+   "unit": "hbond_criteria",
+   "source": "hbond2021",
+   "cell": "chemistry 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNI024"
+   ]
+  },
+  {
+   "stratum": "hbond_geometry | hbond2021 | chemistry 0.1-1",
+   "unit": "hbond_geometry",
+   "source": "hbond2021",
+   "cell": "chemistry 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNP029"
    ]
   },
   {
@@ -7606,12 +7940,11 @@
    "unit": "named_bond_angle",
    "source": "sampl9",
    "cell": "chemistry 0.1-1",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "CNP002",
-    "CNP006"
+    "CNP002"
    ]
   },
   {
@@ -7854,12 +8187,11 @@
    "unit": "stereo_property_inference",
    "source": "qm7x",
    "cell": "chemistry 0.1-1",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "CNI008",
-    "CNI010"
+    "CNI008"
    ]
   },
   {
@@ -7997,8 +8329,6 @@
  "stages": {
   "CNP002": "L0",
   "QNP001": "L0",
-  "CNP006": "L0",
-  "QNI002": "L0",
   "QNP007": "L0",
   "QNP008": "L0",
   "QNP009": "L0",
@@ -8018,7 +8348,6 @@
   "QND004": "L0",
   "CNP016": "L0",
   "CNI008": "L0",
-  "CNI010": "L0",
   "CND001": "L0",
   "CND003": "L0",
   "QNP013": "L0",
@@ -8154,7 +8483,10 @@
   "BNI043": "L0",
   "BNP040": "L0",
   "BNP041": "L0",
-  "BNP042": "L0"
+  "BNP042": "L0",
+  "CNP029": "L0",
+  "CNI024": "L0",
+  "QNI023": "L0"
  },
  "forms": {
   "CNP002": {
@@ -8164,14 +8496,6 @@
   "QNP001": {
    "form": "family-version",
    "instance": "FA-FP-QM7X-7001"
-  },
-  "CNP006": {
-   "form": "family-version",
-   "instance": "FA-ANG-DMBCD"
-  },
-  "QNI002": {
-   "form": "family-version",
-   "instance": "FA-FP-QM7X-7035"
   },
   "QNP007": {
    "form": "family-version",
@@ -8248,10 +8572,6 @@
   "CNI008": {
    "form": "family",
    "instance": "FA-SPROP-7089"
-  },
-  "CNI010": {
-   "form": "family",
-   "instance": "FA-SPROP-7114"
   },
   "CND001": {
    "form": "family",
@@ -8796,6 +9116,18 @@
   "BNP042": {
    "form": "family",
    "instance": "FC-BNP001-1CRN"
+  },
+  "CNP029": {
+   "form": "family",
+   "instance": "FA-HBG-FIVE-HN"
+  },
+  "CNI024": {
+   "form": "family",
+   "instance": "FA-HBC-SET2"
+  },
+  "QNI023": {
+   "form": "family",
+   "instance": "FA-FP-QM7X-7040-D2"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."

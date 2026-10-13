@@ -2,28 +2,19 @@
   "date": "2026-10-13",
   "scope": "对全部目录记录采用相同准入清单；2026-09-22 专项审读处置见 screening.html；本统计不代表完整 M0–M6 重跑。",
   "target": 160,
-  "screened": 243,
+  "screened": 240,
   "remaining_screened": 0,
-  "screened_over_target": 83,
+  "screened_over_target": 80,
   "formal_ready": 0,
   "remaining_formal": 160,
-  "human_review_count": 243,
+  "human_review_count": 240,
   "human_review_ids": [
     "CNP001",
     "CNP002",
     "QNP001",
-    "HBP001",
-    "HBP002",
-    "HBI001",
-    "HBI002",
-    "BNP003",
-    "MNP003",
-    "MNI003",
     "CNP006",
-    "BNP011",
     "QNI001",
     "QNI002",
-    "QNI003",
     "QNP007",
     "QNP008",
     "QNP009",
@@ -35,7 +26,6 @@
     "CNP007",
     "CNP008",
     "CNP009",
-    "CNP010",
     "CNP011",
     "BNP013",
     "BNP014",
@@ -251,13 +241,20 @@
     "BNI043",
     "BNP040",
     "BNP041",
-    "BNP042"
+    "BNP042",
+    "CNP028",
+    "CNP029",
+    "CNP030",
+    "CNI023",
+    "CNI024",
+    "QNI022",
+    "QNI023"
   ],
   "lifecycle_counts": {
     "rework": 33,
     "backlog": 18,
-    "archived": 34,
-    "active": 243
+    "archived": 44,
+    "active": 240
   },
   "records": [
     {
@@ -929,7 +926,7 @@
     {
       "id": "HBP001",
       "title": "氢键供体—受体距离：以坐标核查接触",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -937,17 +934,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "论文依据、完整结构、答案与评分已保存，辅助初筛通过，待人工审核。",
-      "next": "M5：独立审核、几何必要性与难度试测；按论文/构象家族整组划分。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一。 已有新版改写 CNP028（题型族 hbond_geometry，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 CNP028",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "HBP002",
       "title": "羟基朝向：距离与方向联合判断",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -955,17 +952,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "论文依据、完整结构、答案与评分已保存，辅助初筛通过，待人工审核。",
-      "next": "M5：独立审核、几何必要性与难度试测；按论文/构象家族整组划分。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释、内含二选一。 已有新版改写 CNI023（题型族 hbond_criteria，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 CNI023",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "HBI001",
       "title": "几何变化与 O–H 红移趋势",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -973,17 +970,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "论文依据、完整结构、答案与评分已保存，辅助初筛通过，待人工审核。",
-      "next": "M5：独立审核、几何必要性与难度试测；按论文/构象家族整组划分。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：非四选一、要求文字解释、内含二选一；答案依赖论文中的 OH 伸缩红移趋势（仓库无频率数据）。按第六次会议意见，待改为“证据 → 结论”论文题重做；保留原始记录以追溯，不再计数。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "HBI002",
       "title": "识别氢键方向并比较局部刚度",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -991,11 +988,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "论文依据、完整结构、答案与评分已保存，辅助初筛通过，待人工审核。",
-      "next": "M5：独立审核、几何必要性与难度试测；按论文/构象家族整组划分。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：非四选一、要求文字解释、内含二选一；答案依赖论文表 5 的局部力常数查表。按第六次会议意见，待改为“证据 → 结论”论文题重做；保留原始记录以追溯，不再计数。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1037,7 +1034,7 @@
     {
       "id": "BNP003",
       "title": "DNA 标记路径与空间端距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1045,11 +1042,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
-      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：DNA 标记路径的长度与端距之比，一题多问并要求文字解释；现有题型族无法改写成合格的四选一，所在子领域已有同类题；保留原始记录以追溯，不再计数。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1127,7 +1124,7 @@
     {
       "id": "MNP003",
       "title": "硅与金刚石的晶面间距和取向",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1135,11 +1132,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
-      "next": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：硅与金刚石的晶面间距与面法线夹角，一题多问并要求文字解释；现有题型族无法改写成合格的四选一，所在子领域已有同类题；保留原始记录以追溯，不再计数。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1181,7 +1178,7 @@
     {
       "id": "MNI003",
       "title": "相同几何下，散射对比如何改变强度",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1189,11 +1186,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
-      "next": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：NaCl 子晶格散射衬度比较，一题多问并要求文字解释；NaCl 消光已由 MNI011 覆盖；现有题型族无法改写成合格的四选一，所在子领域已有同类题；保留原始记录以追溯，不再计数。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1541,7 +1538,7 @@
     {
       "id": "BNP011",
       "title": "Crambin α螺旋隔四残基 Cα 间距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1549,11 +1546,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
-      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：crambin 螺旋 Cα(i)–Cα(i+4) 距离（非键距离，命名键长族不适用）；现有题型族无法改写成合格的四选一，所在子领域已有同类题；保留原始记录以追溯，不再计数。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1685,7 +1682,7 @@
     {
       "id": "QNI003",
       "title": "QM7-X 分子7040 · 两种独立位移下的力响应比较",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1693,11 +1690,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、内含二选一。 已有新版改写 QNI022（题型族 force_path_derivative，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 QNI022",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -2171,7 +2168,7 @@
     {
       "id": "CNP010",
       "title": "万古霉素 1AA5 · 链间最近接触距离",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -2179,11 +2176,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：万古霉素二聚体链间最近接触（同时问距离、行号与元素），一题多问；现有题型族无法改写成合格的四选一，所在子领域已有同类题；保留原始记录以追溯，不再计数。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -6163,6 +6160,132 @@
       "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
       "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNP028",
+      "title": "3-羟基-2-丁烯酰胺构象 TWO · O–H···O 给体–受体距离（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNP029",
+      "title": "3-羟基-2-丁烯酰胺构象 FIVE · O–H···N 的 H···N 距离（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNP030",
+      "title": "3-羟基-2-丁烯酰胺构象 FOUR · N–H···O 角（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNI023",
+      "title": "3-羟基-2-丁烯酰胺 · 按几何判据识别分子内氢键（一）（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNI024",
+      "title": "3-羟基-2-丁烯酰胺 · 按几何判据识别分子内氢键（二）（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNI022",
+      "title": "QM7-X 7040 · 位移 d1 处沿 A→B 路径的能量导数（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNI023",
+      "title": "QM7-X 7040 · 位移 d2 处沿 B→A 路径的能量导数（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     }
   ],
   "directions": [
@@ -6368,12 +6491,12 @@
         1
       ],
       "target": 10,
-      "located_candidates": 21,
-      "screened_count": 15,
+      "located_candidates": 23,
+      "screened_count": 16,
       "remaining": 0,
       "abilities": {
         "perception": 5,
-        "inference": 5,
+        "inference": 6,
         "design": 5
       },
       "ability_shortfalls": {
@@ -6385,7 +6508,6 @@
         "QNP001",
         "QNI001",
         "QNI002",
-        "QNI003",
         "QND001",
         "QND002",
         "QND003",
@@ -6396,7 +6518,9 @@
         "QNP015",
         "QNP016",
         "QNI021",
-        "QND013"
+        "QND013",
+        "QNI022",
+        "QNI023"
       ],
       "provisional_ids": [
         "QND001",
@@ -6409,7 +6533,9 @@
         "QNP015",
         "QNP016",
         "QNI021",
-        "QND013"
+        "QND013",
+        "QNI022",
+        "QNI023"
       ],
       "blocker": ""
     },
@@ -6553,11 +6679,11 @@
         1
       ],
       "target": 10,
-      "located_candidates": 32,
-      "screened_count": 25,
+      "located_candidates": 37,
+      "screened_count": 26,
       "remaining": 0,
       "abilities": {
-        "perception": 14,
+        "perception": 15,
         "inference": 7,
         "design": 4
       },
@@ -6569,10 +6695,6 @@
       "qa_ids": [
         "CNP001",
         "CNP002",
-        "HBP001",
-        "HBP002",
-        "HBI001",
-        "HBI002",
         "CNP006",
         "CNP012",
         "CNP013",
@@ -6591,7 +6713,12 @@
         "CND003",
         "CNI021",
         "CND012",
-        "CNP027"
+        "CNP027",
+        "CNP028",
+        "CNP029",
+        "CNP030",
+        "CNI023",
+        "CNI024"
       ],
       "provisional_ids": [
         "CNP012",
@@ -6611,7 +6738,12 @@
         "CND003",
         "CNI021",
         "CND012",
-        "CNP027"
+        "CNP027",
+        "CNP028",
+        "CNP029",
+        "CNP030",
+        "CNI023",
+        "CNI024"
       ],
       "blocker": ""
     },
@@ -6623,10 +6755,10 @@
       ],
       "target": 10,
       "located_candidates": 20,
-      "screened_count": 12,
+      "screened_count": 11,
       "remaining": 0,
       "abilities": {
-        "perception": 5,
+        "perception": 4,
         "inference": 4,
         "design": 3
       },
@@ -6639,7 +6771,6 @@
         "CNP007",
         "CNP008",
         "CNP009",
-        "CNP010",
         "CNP011",
         "CNI014",
         "CNI015",
@@ -6760,11 +6891,11 @@
       ],
       "target": 10,
       "located_candidates": 35,
-      "screened_count": 27,
+      "screened_count": 25,
       "remaining": 0,
       "abilities": {
-        "perception": 9,
-        "inference": 15,
+        "perception": 8,
+        "inference": 14,
         "design": 3
       },
       "ability_shortfalls": {
@@ -6773,8 +6904,6 @@
         "design": 0
       },
       "qa_ids": [
-        "MNP003",
-        "MNI003",
         "MNI011",
         "MNI012",
         "MNP011",
@@ -6977,10 +7106,10 @@
       ],
       "target": 10,
       "located_candidates": 22,
-      "screened_count": 13,
+      "screened_count": 12,
       "remaining": 0,
       "abilities": {
-        "perception": 7,
+        "perception": 6,
         "inference": 3,
         "design": 3
       },
@@ -6990,7 +7119,6 @@
         "design": 0
       },
       "qa_ids": [
-        "BNP011",
         "BNP013",
         "BNP014",
         "BNP015",
@@ -7028,10 +7156,10 @@
       ],
       "target": 10,
       "located_candidates": 25,
-      "screened_count": 16,
+      "screened_count": 15,
       "remaining": 0,
       "abilities": {
-        "perception": 4,
+        "perception": 3,
         "inference": 9,
         "design": 3
       },
@@ -7041,7 +7169,6 @@
         "design": 0
       },
       "qa_ids": [
-        "BNP003",
         "BNI009",
         "BNI010",
         "BNI011",

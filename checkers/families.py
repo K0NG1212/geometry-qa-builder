@@ -265,6 +265,7 @@ from . import quantum_dot as _quantum_dot
 from . import design_extra as _design_extra
 from . import mesoscale as _mesoscale
 from . import rotational as _rotational
+from . import hbonds as _hbonds
 
 CHECKERS = {
     'stereo_relationship': _stereo.stereo_relationship,
@@ -284,4 +285,5 @@ CHECKERS = {
     **_design_extra.CHECKERS,
     **_mesoscale.CHECKERS,
     **_rotational.CHECKERS,
+    **_hbonds.CHECKERS,
 }

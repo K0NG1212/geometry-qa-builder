@@ -402,6 +402,33 @@
       "learningObjective": "由全部给定点求整体尺寸（最大间距或等权回转半径）。",
       "sizeDefinition": "输入与推理：点集最大间距。",
       "attribution": "见各题来源。"
+    },
+    "force_path_derivative": {
+      "domain": "quantum",
+      "scale": "small_molecule",
+      "reasoning": "molecular",
+      "paper": "qm7x",
+      "learningObjective": "由位移结构处的原子力求沿指定路径的能量方向导数（局部斜率，不是有限能量差或稳定性判断）。",
+      "sizeDefinition": "输入与推理：分子最大原子间距。",
+      "attribution": "QM7-X（Hoja et al., Sci. Data 2021），CC BY 4.0；原始 hdf5 中的坐标与 PBE0+MBD 总力。"
+    },
+    "hbond_geometry": {
+      "domain": "chemistry",
+      "scale": "small_molecule",
+      "reasoning": "local_geometry",
+      "paper": "hbond2021",
+      "attribution": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021)，CC BY 4.0；SI 坐标表原样。",
+      "learningObjective": "测定分子内氢键 D–H···A 的距离或角度，区分 D···A 与 H···A、区分角度顶点。",
+      "sizeDefinition": "输入：分子最大原子间距；推理：给体–受体或氢–受体距离。"
+    },
+    "hbond_criteria": {
+      "domain": "chemistry",
+      "scale": "small_molecule",
+      "reasoning": "local_geometry",
+      "paper": "hbond2021",
+      "attribution": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021)，CC BY 4.0；SI 坐标表原样。",
+      "learningObjective": "按给定几何判据识别分子内氢键；理解给体–受体靠近不等于成氢键。",
+      "sizeDefinition": "推理：候选接触中最大的给体–受体或氢–受体距离。"
     }
   },
   "instances": [
@@ -2021,6 +2048,54 @@
       "reasoning": "molecular",
       "learningObjective": "在全部 Cα 位点中找最大间距（整个分子尺寸），区别于端到端距离。",
       "sizeDefinition": "输入与推理：Cα 点集最大间距。"
+    },
+    {
+      "instance": "FA-HBG-TWO-OO",
+      "action": "supersede",
+      "catalog_id": "CNP028",
+      "title": "3-羟基-2-丁烯酰胺构象 TWO · O–H···O 给体–受体距离（四选一）",
+      "supersedes": "HBP001",
+      "reason": "格式检查（2026-10-13）：原题不是四选一。"
+    },
+    {
+      "instance": "FA-HBG-FIVE-HN",
+      "action": "new",
+      "catalog_id": "CNP029",
+      "title": "3-羟基-2-丁烯酰胺构象 FIVE · O–H···N 的 H···N 距离（四选一）"
+    },
+    {
+      "instance": "FA-HBG-FOUR-ANG",
+      "action": "new",
+      "catalog_id": "CNP030",
+      "title": "3-羟基-2-丁烯酰胺构象 FOUR · N–H···O 角（四选一）"
+    },
+    {
+      "instance": "FA-HBC-SET1",
+      "action": "supersede",
+      "catalog_id": "CNI023",
+      "title": "3-羟基-2-丁烯酰胺 · 按几何判据识别分子内氢键（一）（四选一）",
+      "supersedes": "HBP002",
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释、内含二选一。"
+    },
+    {
+      "instance": "FA-HBC-SET2",
+      "action": "new",
+      "catalog_id": "CNI024",
+      "title": "3-羟基-2-丁烯酰胺 · 按几何判据识别分子内氢键（二）（四选一）"
+    },
+    {
+      "instance": "FA-FP-QM7X-7040-D1",
+      "action": "supersede",
+      "catalog_id": "QNI022",
+      "title": "QM7-X 7040 · 位移 d1 处沿 A→B 路径的能量导数（四选一）",
+      "supersedes": "QNI003",
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、内含二选一。"
+    },
+    {
+      "instance": "FA-FP-QM7X-7040-D2",
+      "action": "new",
+      "catalog_id": "QNI023",
+      "title": "QM7-X 7040 · 位移 d2 处沿 B→A 路径的能量导数（四选一）"
     }
   ],
   "retire": [
@@ -2038,6 +2113,41 @@
       "id": "MNP009",
       "date": "2026-10-13",
       "reason": "格式检查（2026-10-13）：题干直接给出晶胞参数 a 与 d = a/√(h²+k²+l²)，只需代入，不需要附件几何；不再计数。MOF-5 的衍射几何已由 MNI019 覆盖。"
+    },
+    {
+      "id": "HBI001",
+      "date": "2026-10-13",
+      "reason": "格式检查（2026-10-13）：非四选一、要求文字解释、内含二选一；答案依赖论文中的 OH 伸缩红移趋势（仓库无频率数据）。按第六次会议意见，待改为“证据 → 结论”论文题重做；保留原始记录以追溯，不再计数。"
+    },
+    {
+      "id": "HBI002",
+      "date": "2026-10-13",
+      "reason": "格式检查（2026-10-13）：非四选一、要求文字解释、内含二选一；答案依赖论文表 5 的局部力常数查表。按第六次会议意见，待改为“证据 → 结论”论文题重做；保留原始记录以追溯，不再计数。"
+    },
+    {
+      "id": "BNP003",
+      "date": "2026-10-13",
+      "reason": "格式检查（2026-10-13）：DNA 标记路径的长度与端距之比，一题多问并要求文字解释；现有题型族无法改写成合格的四选一，所在子领域已有同类题；保留原始记录以追溯，不再计数。"
+    },
+    {
+      "id": "BNP011",
+      "date": "2026-10-13",
+      "reason": "格式检查（2026-10-13）：crambin 螺旋 Cα(i)–Cα(i+4) 距离（非键距离，命名键长族不适用）；现有题型族无法改写成合格的四选一，所在子领域已有同类题；保留原始记录以追溯，不再计数。"
+    },
+    {
+      "id": "MNP003",
+      "date": "2026-10-13",
+      "reason": "格式检查（2026-10-13）：硅与金刚石的晶面间距与面法线夹角，一题多问并要求文字解释；现有题型族无法改写成合格的四选一，所在子领域已有同类题；保留原始记录以追溯，不再计数。"
+    },
+    {
+      "id": "CNP010",
+      "date": "2026-10-13",
+      "reason": "格式检查（2026-10-13）：万古霉素二聚体链间最近接触（同时问距离、行号与元素），一题多问；现有题型族无法改写成合格的四选一，所在子领域已有同类题；保留原始记录以追溯，不再计数。"
+    },
+    {
+      "id": "MNI003",
+      "date": "2026-10-13",
+      "reason": "格式检查（2026-10-13）：NaCl 子晶格散射衬度比较，一题多问并要求文字解释；NaCl 消光已由 MNI011 覆盖；现有题型族无法改写成合格的四选一，所在子领域已有同类题；保留原始记录以追溯，不再计数。"
     }
   ]
 }

@@ -198,6 +198,8 @@ class Molecule:
                 return 'imine nitrogen (C=N)' + where
             if any(self.elements[j] == 'S' and len(self.double_to(j, 'O')) == 2 for j in heavy):
                 return 'sulfonamide nitrogen (N%s)' % {2: 'H2', 1: 'H', 0: ''}[h]
+            if any(self.elements[j] == 'C' and self.double_to(j, 'O') for j in heavy):
+                return {2: 'amide NH2 nitrogen', 1: 'amide N–H nitrogen', 0: 'amide nitrogen'}[h] + where
             if any(self.elements[j] == 'C' and self.double_to(j, 'S') for j in heavy):
                 return {2: 'thioamide NH2 nitrogen', 1: 'thioamide N–H nitrogen', 0: 'thioamide nitrogen'}[h] + where
             if any(self.unsaturated(j) for j in heavy):

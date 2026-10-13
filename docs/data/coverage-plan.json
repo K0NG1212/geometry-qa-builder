@@ -3,7 +3,7 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 243,
+  "current_total": 240,
   "capped_total": 160,
   "over_target_cells": [
    "quantum 0.1-1",
@@ -15,7 +15,7 @@
    "biology 1-10",
    "biology 10-100"
   ],
-  "provisional_total": 215,
+  "provisional_total": 222,
   "ability_gaps": 2,
   "gap_slots": 2,
   "gaps_by_best_route": {
@@ -31,8 +31,8 @@
    "domain": "quantum",
    "cell": "0.1-1",
    "target": 10,
-   "current": 15,
-   "provisional": 11,
+   "current": 16,
+   "provisional": 13,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -63,7 +63,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 5,
+     "current": 6,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -329,12 +329,12 @@
    "domain": "chemistry",
    "cell": "0.1-1",
    "target": 10,
-   "current": 25,
-   "provisional": 18,
+   "current": 26,
+   "provisional": 23,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 14,
+     "current": 15,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -349,6 +349,12 @@
        "name": "全局最大间距",
        "kind": "ready",
        "status": "implemented"
+      },
+      {
+       "family": "hbond_geometry",
+       "name": "氢键几何量",
+       "kind": "ready",
+       "status": "pilot"
       },
       {
        "family": "named_bond_angle",
@@ -377,6 +383,12 @@
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
+      {
+       "family": "hbond_criteria",
+       "name": "按几何判据识别氢键",
+       "kind": "ready",
+       "status": "pilot"
+      },
       {
        "family": "rotational_line",
        "name": "转动跃迁频率",
@@ -448,12 +460,12 @@
    "domain": "chemistry",
    "cell": "1-10",
    "target": 10,
-   "current": 12,
+   "current": 11,
    "provisional": 7,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 5,
+     "current": 4,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -686,12 +698,12 @@
    "domain": "materials",
    "cell": "0.1-1",
    "target": 10,
-   "current": 27,
+   "current": 25,
    "provisional": 25,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 9,
+     "current": 8,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -718,7 +730,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 15,
+     "current": 14,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -967,12 +979,12 @@
    "domain": "biology",
    "cell": "0.1-1",
    "target": 10,
-   "current": 13,
+   "current": 12,
    "provisional": 12,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 7,
+     "current": 6,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -1081,12 +1093,12 @@
    "domain": "biology",
    "cell": "1-10",
    "target": 10,
-   "current": 16,
+   "current": 15,
    "provisional": 15,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 4,
+     "current": 3,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [

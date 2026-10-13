@@ -3797,6 +3797,198 @@
    "scope": "PDB 1CRN 链 A 的全部 Cα 位点（46 个，等权点）；坐标单位 Å；只计算该文件的点集，不做全原子或溶液构象推断。",
    "context": "The supplied XYZ lists the 46 Cα atoms of crambin (PDB 1CRN, chain A), one point per residue (angstrom).",
    "legacy_numeric_reference": 29.0219
+  },
+  {
+   "source": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021), DOI 10.3390/molecules26092623 (SI coordinate tables, pages 3–6)",
+   "license": "CC BY 4.0",
+   "id": "FA-HBG-TWO-OO",
+   "family": "hbond_geometry",
+   "asset": "assets/qa/HBP002-S0005.xyz",
+   "legacy_qa": "HBP001",
+   "contact": [
+    6,
+    5,
+    14
+   ],
+   "quantity": "da",
+   "context": "The supplied XYZ is conformer TWO of 3-hydroxy-2-butenamide (enol form, hydroxyl toward the amide carbonyl), a computed structure from Altun, Bleda & Trindle (2021) (14 atoms, angstrom).",
+   "scope": "论文 SI 中的单一计算构象（坐标原样）；只测几何量，不据此判断氢键强弱或能量。"
+  },
+  {
+   "source": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021), DOI 10.3390/molecules26092623 (SI coordinate tables, pages 3–6)",
+   "license": "CC BY 4.0",
+   "id": "FA-HBG-FIVE-HN",
+   "family": "hbond_geometry",
+   "asset": "assets/qa/HBI002-S0008.xyz",
+   "contact": [
+    5,
+    4,
+    11
+   ],
+   "quantity": "ha",
+   "context": "The supplied XYZ is conformer FIVE of 3-hydroxy-2-butenamide, a computed structure from Altun, Bleda & Trindle (2021) (14 atoms, angstrom).",
+   "scope": "论文 SI 中的单一计算构象（坐标原样）；只测几何量，不据此判断氢键强弱或能量。"
+  },
+  {
+   "source": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021), DOI 10.3390/molecules26092623 (SI coordinate tables, pages 3–6)",
+   "license": "CC BY 4.0",
+   "id": "FA-HBG-FOUR-ANG",
+   "family": "hbond_geometry",
+   "asset": "assets/qa/HBI002-S0007.xyz",
+   "contact": [
+    3,
+    5,
+    13
+   ],
+   "quantity": "angle",
+   "context": "The supplied XYZ is conformer FOUR of 3-hydroxy-2-butenamide, a computed structure from Altun, Bleda & Trindle (2021) (14 atoms, angstrom).",
+   "scope": "论文 SI 中的单一计算构象（坐标原样）；只测几何量，不据此判断氢键强弱或能量。"
+  },
+  {
+   "source": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021), DOI 10.3390/molecules26092623 (SI coordinate tables, pages 3–6)",
+   "license": "CC BY 4.0",
+   "id": "FA-HBC-SET1",
+   "family": "hbond_criteria",
+   "asset": "assets/qa/HBP002-S0005.xyz",
+   "legacy_qa": "HBP002",
+   "ha_max": 2.2,
+   "angle_min": 130,
+   "context": "Four computed conformers of 3-hydroxy-2-butenamide (enol tautomers and rotamers) from Altun, Bleda & Trindle (2021) are supplied.",
+   "scope": "论文 SI 中的计算构象（坐标原样）；几何判据为题设操作定义，不据此判断氢键能量或光谱位移。",
+   "conformers": [
+    {
+     "label": "TWO",
+     "asset": "assets/qa/HBP002-S0005.xyz"
+    },
+    {
+     "label": "THREE",
+     "asset": "assets/qa/HBP002-S0006.xyz"
+    },
+    {
+     "label": "FOUR",
+     "asset": "assets/qa/HBI002-S0007.xyz"
+    },
+    {
+     "label": "FIVE",
+     "asset": "assets/qa/HBI002-S0008.xyz"
+    }
+   ],
+   "candidates": [
+    {
+     "conformer": "TWO",
+     "contact": [
+      6,
+      5,
+      14
+     ]
+    },
+    {
+     "conformer": "THREE",
+     "contact": [
+      5,
+      14,
+      6
+     ]
+    },
+    {
+     "conformer": "TWO",
+     "contact": [
+      11,
+      13,
+      14
+     ]
+    },
+    {
+     "conformer": "FIVE",
+     "contact": [
+      11,
+      13,
+      5
+     ]
+    }
+   ]
+  },
+  {
+   "source": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021), DOI 10.3390/molecules26092623 (SI coordinate tables, pages 3–6)",
+   "license": "CC BY 4.0",
+   "id": "FA-HBC-SET2",
+   "family": "hbond_criteria",
+   "asset": "assets/qa/HBI002-S0008.xyz",
+   "ha_max": 2.2,
+   "angle_min": 130,
+   "context": "Four computed conformers of 3-hydroxy-2-butenamide (enol tautomers and rotamers) from Altun, Bleda & Trindle (2021) are supplied.",
+   "scope": "论文 SI 中的计算构象（坐标原样）；几何判据为题设操作定义，不据此判断氢键能量或光谱位移。",
+   "conformers": [
+    {
+     "label": "TWO",
+     "asset": "assets/qa/HBP002-S0005.xyz"
+    },
+    {
+     "label": "THREE",
+     "asset": "assets/qa/HBP002-S0006.xyz"
+    },
+    {
+     "label": "FOUR",
+     "asset": "assets/qa/HBI002-S0007.xyz"
+    },
+    {
+     "label": "FIVE",
+     "asset": "assets/qa/HBI002-S0008.xyz"
+    }
+   ],
+   "candidates": [
+    {
+     "conformer": "FIVE",
+     "contact": [
+      5,
+      4,
+      11
+     ]
+    },
+    {
+     "conformer": "FOUR",
+     "contact": [
+      13,
+      14,
+      3
+     ]
+    },
+    {
+     "conformer": "FOUR",
+     "contact": [
+      3,
+      4,
+      13
+     ]
+    },
+    {
+     "conformer": "THREE",
+     "contact": [
+      7,
+      8,
+      6
+     ]
+    }
+   ]
+  },
+  {
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "id": "FA-FP-QM7X-7040-D1",
+   "family": "force_path_derivative",
+   "asset": "assets/families/force-path/QM7X-7040-c1-d1.json",
+   "legacy_qa": "QNI003",
+   "direction": "A_to_B",
+   "scope": "QM7-X 分子 7040：A 为 DFTB3+MBD 优化结构，B 为配对位移结构 c1-d1；B 处 PBE0+MBD 总力；只问 λ=1 处方向导数。"
+  },
+  {
+   "source": "QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; data https://zenodo.org/records/4288677",
+   "license": "CC BY 4.0",
+   "id": "FA-FP-QM7X-7040-D2",
+   "family": "force_path_derivative",
+   "asset": "assets/families/force-path/QM7X-7040-c1-d2.json",
+   "direction": "B_to_A",
+   "scope": "QM7-X 分子 7040：A 为 DFTB3+MBD 优化结构，B 为配对位移结构 c1-d2；B 处 PBE0+MBD 总力；路径从 B 指向 A，只问 λ=0（即 B 处）方向导数。"
   }
  ]
 }

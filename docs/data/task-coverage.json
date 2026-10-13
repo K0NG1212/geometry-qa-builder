@@ -29,11 +29,11 @@
   }
  },
  "summary": {
-  "types_defined": 50,
-  "types_with_running_code": 43,
+  "types_defined": 52,
+  "types_with_running_code": 45,
   "status": {
    "implemented": 2,
-   "pilot": 41,
+   "pilot": 43,
    "existing_legacy": 3,
    "planned": 2,
    "rebuild_needed": 1,
@@ -42,11 +42,11 @@
   "by_ability": {
    "perception": {
     "implemented": 2,
-    "pilot": 11,
+    "pilot": 12,
     "existing_legacy": 2
    },
    "inference": {
-    "pilot": 16,
+    "pilot": 17,
     "planned": 1,
     "existing_legacy": 1,
     "rebuild_needed": 1
@@ -57,10 +57,10 @@
     "blocked": 1
    }
   },
-  "development_instances": 233,
+  "development_instances": 240,
   "instance_failures": 1,
-  "independent_pass": 233,
-  "independent_checked": 233,
+  "independent_pass": 240,
+  "independent_checked": 240,
   "legacy_candidates": 80,
   "legacy_decisions": {
    "retain": 42,
@@ -69,7 +69,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v29",
+ "family_run": "family-pilot-v30",
  "rows": [
   {
    "id": "global_extent",
@@ -2782,10 +2782,12 @@
    "instance_ids": [
     "FA-FP-QM7X-7001",
     "FA-FP-QM7X-7002",
-    "FA-FP-QM7X-7035"
+    "FA-FP-QM7X-7035",
+    "FA-FP-QM7X-7040-D1",
+    "FA-FP-QM7X-7040-D2"
    ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "instance_count": 5,
+   "independent_pass": 5,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "0.1-1"
@@ -3525,6 +3527,132 @@
    "instance_reasoning_cells": [
     "0.1-1",
     "1-10"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "hbond_geometry",
+   "name": "氢键几何量",
+   "ability": "perception",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "分子内氢键 D–H···A 的几何量：给体–受体距离、氢–受体距离或 D–H···A 角；原子按化学角色命名（如羟基氧、羰基氧、酰胺氮）。",
+   "domains": [
+    "chemistry"
+   ],
+   "input_scale": "整个分子（14 个原子）",
+   "reasoning_scale": "给体–受体或氢–受体距离（0.15–0.5 nm）",
+   "scale_cells": [
+    "0.1-1"
+   ],
+   "scale_limits": "分子内单个接触的局部几何。",
+   "inputs": "XYZ（论文 SI 的计算构象，按行号计数）。",
+   "physical_conditions": "单一计算构象，坐标原样；不含振动平均与溶剂。",
+   "output_forms": [
+    "numeric",
+    "choice"
+   ],
+   "source_basis": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021)（CC BY 4.0）SI 第 3–6 页坐标（仓库内已有资产）",
+   "answer_method": "指定原子的欧氏距离或以 H 为顶点的向量夹角；共价半径规则确认 D–H 成键、H–A 不成键。",
+   "distractor_mechanisms": [
+    "h_acceptor_instead",
+    "donor_acceptor_instead",
+    "path_through_h",
+    "linear_assumption",
+    "covalent_d_h",
+    "other_acceptor",
+    "angle_at_donor",
+    "angle_at_acceptor",
+    "supplement",
+    "acceptor_side"
+   ],
+   "four_choice_validation": "距离与正确值相差 > 0.03 Å、角度 > 3°；升序排列，秩按批次轮换。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/hbond.py",
+    "checkers/hbonds.py",
+    "task_families/chem_names.py"
+   ],
+   "tests": [
+    "tests/test_hbond.py"
+   ],
+   "builder_modules": "族引擎内实现（M3–M5）；数据只有 4 个构象，未写枚举器。",
+   "gap": "只有一篇论文的 4 个构象；扩量需要更多含分子内氢键的结构（如 GEOM、QM7-X 中的羟基 / 酰胺分子）。",
+   "engine_families": [
+    "hbond_geometry"
+   ],
+   "independent_checker": "checkers/hbonds.py:hbond_geometry",
+   "instance_ids": [
+    "FA-HBG-TWO-OO",
+    "FA-HBG-FIVE-HN",
+    "FA-HBG-FOUR-ANG"
+   ],
+   "instance_count": 3,
+   "independent_pass": 3,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "0.1-1"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "hbond_criteria",
+   "name": "按几何判据识别氢键",
+   "ability": "inference",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "给定操作判据（H···A ≤ d、D–H···A ≥ θ），在四个候选接触中判断哪一个构成分子内氢键；考查“只看给体–受体距离不够，氢要指向受体”。",
+   "domains": [
+    "chemistry"
+   ],
+   "input_scale": "整个分子（14 个原子）",
+   "reasoning_scale": "给体–受体或氢–受体距离（0.15–0.5 nm）",
+   "scale_cells": [
+    "0.1-1"
+   ],
+   "scale_limits": "分子内单个接触的局部几何。",
+   "inputs": "XYZ（论文 SI 的计算构象，按行号计数）。",
+   "physical_conditions": "单一计算构象，坐标原样；不含振动平均与溶剂。",
+   "output_forms": [
+    "choice"
+   ],
+   "source_basis": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021)（CC BY 4.0）SI 第 3–6 页坐标（仓库内已有资产）",
+   "answer_method": "逐个候选计算 H···A 与 D–H···A 角，恰好一个同时满足两项判据；每个候选与阈值至少相差 0.10 Å / 5°。",
+   "distractor_mechanisms": [
+    "donor_acceptor_close",
+    "distance_only",
+    "angle_only",
+    "neither"
+   ],
+   "four_choice_validation": "恰好一个候选满足两项判据；其余各记录不满足的原因；正确项按批次目标位置放置。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/hbond.py",
+    "checkers/hbonds.py",
+    "task_families/chem_names.py"
+   ],
+   "tests": [
+    "tests/test_hbond.py"
+   ],
+   "builder_modules": "族引擎内实现（M3–M5）；数据只有 4 个构象，未写枚举器。",
+   "gap": "同上：构象来源有限。",
+   "engine_families": [
+    "hbond_criteria"
+   ],
+   "independent_checker": "checkers/hbonds.py:hbond_criteria",
+   "instance_ids": [
+    "FA-HBC-SET1",
+    "FA-HBC-SET2"
+   ],
+   "instance_count": 2,
+   "independent_pass": 2,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "0.1-1"
    ],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
