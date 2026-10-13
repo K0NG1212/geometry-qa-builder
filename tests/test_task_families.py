@@ -316,8 +316,9 @@ class ExtentAndEngineTests(unittest.TestCase):
             # mechanisms cannot always hit their target; keep the spread within ~15% of the batch.
             self.assertLessEqual(max(positions.values()) - min(positions.values()), max(4, report['passed'] * 15 // 100))
             extent = report['by_family']['extent_choice_v2']['shortcut_hits']
-            self.assertLessEqual(extent['always_largest'], 3)                # v0.1 pilot: 7/12 by largest/smallest
-            self.assertLessEqual(extent['always_smallest'], 3)
+            chance = -(-report['by_family']['extent_choice_v2']['passed'] // 4)   # chance level: one position in four
+            self.assertLessEqual(extent['always_largest'], chance)           # v0.1 pilot: 7/12 by largest/smallest
+            self.assertLessEqual(extent['always_smallest'], chance)
             with self.assertRaises(ValueError):
                 family_engine.run(ROOT / 'templates/family-manifest.json', out, SEED)
 

@@ -2,10 +2,10 @@
  "kind": "independent_check",
  "checker_version": "0.1.0",
  "origin": {
-  "source": "family-pilot-v27"
+  "source": "family-pilot-v29"
  },
- "checked": 218,
- "passed": 218,
+ "checked": 233,
+ "passed": 233,
  "failed": [],
  "by_family": {
   "named_bond_angle": {
@@ -18,13 +18,13 @@
    "pass": 3
   },
   "kinematic_extinction": {
-   "pass": 7
+   "pass": 8
   },
   "conformer_target_selection": {
    "pass": 4
   },
   "extent_choice_v2": {
-   "pass": 12
+   "pass": 15
   },
   "stereo_relationship": {
    "pass": 8
@@ -36,19 +36,19 @@
    "pass": 3
   },
   "named_bond_distance": {
-   "pass": 5
-  },
-  "coordination_shell": {
-   "pass": 7
-  },
-  "first_diffraction_peak": {
    "pass": 8
   },
+  "coordination_shell": {
+   "pass": 10
+  },
+  "first_diffraction_peak": {
+   "pass": 10
+  },
   "fret_efficiency": {
-   "pass": 3
+   "pass": 4
   },
   "guinier_intensity": {
-   "pass": 9
+   "pass": 11
   },
   "assembly_extent": {
    "pass": 13
@@ -4051,6 +4051,289 @@
     }
    },
    "method": "Decimal inertia tensor with the substituted mass; closed-form cubic eigenvalues",
+   "status": "pass"
+  },
+  {
+   "id": "FA-DIST-6LYZ-SS30",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "2.0423116804",
+   "rounded": "2.042",
+   "label": "B",
+   "nearest_distractor_gap": "0.0576883196",
+   "parameters": {
+    "atoms": [
+     [
+      "SG",
+      "Cys",
+      "30"
+     ],
+     [
+      "SG",
+      "Cys",
+      "115"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "FA-DIST-1CRN-SS16",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "2.0507630287",
+   "rounded": "2.051",
+   "label": "B",
+   "nearest_distractor_gap": "0.2377630287",
+   "parameters": {
+    "atoms": [
+     [
+      "SG",
+      "Cys",
+      "16"
+     ],
+     [
+      "SG",
+      "Cys",
+      "26"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "FA-DIST-WP6-C20O22",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.2724323165",
+   "rounded": "1.272",
+   "label": "A",
+   "nearest_distractor_gap": "0.2815676835",
+   "parameters": {
+    "atoms": [
+     [
+      "C20",
+      "20"
+     ],
+     [
+      "O22",
+      "22"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-SI",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "recomputed": "4 at 2.3516 Å",
+   "parameters": {
+    "partner": "Si",
+    "mu4_node": false
+   },
+   "method": "own periodic neighbour search over 27 cells",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-NACL-CL",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "recomputed": "6 at 2.8203 Å",
+   "parameters": {
+    "partner": "Cl",
+    "mu4_node": false
+   },
+   "method": "own periodic neighbour search over 27 cells",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-NACL-NA",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "recomputed": "12 at 3.9885 Å",
+   "parameters": {
+    "partner": "Na",
+    "mu4_node": false
+   },
+   "method": "own periodic neighbour search over 27 cells",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-SI",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "28.4437059050",
+   "rounded": "28.44",
+   "label": "D",
+   "nearest_distractor_gap": "5.3037059050",
+   "parameters": {
+    "weights": {
+     "Si": 14
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     1,
+     1,
+     1
+    ]
+   },
+   "method": "all (h k l) up to 5 with own structure-factor sum",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-DIAMOND",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "43.9326365778",
+   "rounded": "43.93",
+   "label": "A",
+   "nearest_distractor_gap": "31.3673634222",
+   "parameters": {
+    "weights": {
+     "C": 6
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     1,
+     1,
+     1
+    ]
+   },
+   "method": "all (h k l) up to 5 with own structure-factor sum",
+   "status": "pass"
+  },
+  {
+   "id": "FA-EXT-SI",
+   "family": "kinematic_extinction",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "recomputed": "(2 0 0)",
+   "parameters": {
+    "weights": {
+     "Si": 14
+    },
+    "a_A": 5.4307,
+    "atoms": 8
+   },
+   "options": {
+    "A": 0.70710678,
+    "B": 0.0,
+    "C": 0.70710678,
+    "D": 1.0
+   },
+   "weakest_nonzero": 0.707107,
+   "method": "separate cos/sin sums over the student table",
+   "status": "pass"
+  },
+  {
+   "id": "FA-GUIN-1UBQ",
+   "family": "guinier_intensity",
+   "checker_version": "0.1.0",
+   "recomputed": "0.8917428108",
+   "rounded": "0.892",
+   "label": "B",
+   "nearest_distractor_gap": "0.0522571892",
+   "parameters": {
+    "q_per_nm": 0.5,
+    "rg_nm": 1.1725741768612346,
+    "atoms": 602
+   },
+   "method": "pair-distance Rg; Guinier law",
+   "status": "pass"
+  },
+  {
+   "id": "FA-GUIN-1CRN",
+   "family": "guinier_intensity",
+   "checker_version": "0.1.0",
+   "recomputed": "0.9250900212",
+   "rounded": "0.925",
+   "label": "C",
+   "nearest_distractor_gap": "0.0439099788",
+   "parameters": {
+    "q_per_nm": 0.5,
+    "rg_nm": 0.9666285286168808,
+    "atoms": 327
+   },
+   "method": "pair-distance Rg; Guinier law",
+   "status": "pass"
+  },
+  {
+   "id": "FA-FRET-1BNA",
+   "family": "fret_efficiency",
+   "checker_version": "0.1.0",
+   "recomputed": "0.4799026258",
+   "rounded": "0.480",
+   "label": "B",
+   "nearest_distractor_gap": "0.0400973742",
+   "parameters": {
+    "sites": [
+     [
+      "C1'",
+      "Dc",
+      "1"
+     ],
+     [
+      "C1'",
+      "Dg",
+      "12"
+     ]
+    ],
+    "R0_nm": 3.5,
+    "r_nm": 3.5472350485977104
+   },
+   "method": "straight-line distance; Foerster law",
+   "status": "pass"
+  },
+  {
+   "id": "FC-BNP002-1UBQ",
+   "family": "extent_choice_v2",
+   "checker_version": "0.1.0",
+   "recomputed": "11.4928948762",
+   "rounded": "11.4929",
+   "label": "B",
+   "nearest_distractor_gap": "0.0764051238",
+   "parameters": {
+    "measure": "equal_weight_rg",
+    "atoms": 76
+   },
+   "method": "Decimal (40 digits) explicit sums",
+   "status": "pass"
+  },
+  {
+   "id": "FC-BNP002-1CRN",
+   "family": "extent_choice_v2",
+   "checker_version": "0.1.0",
+   "recomputed": "9.6755012693",
+   "rounded": "9.6755",
+   "label": "A",
+   "nearest_distractor_gap": "0.1068987307",
+   "parameters": {
+    "measure": "equal_weight_rg",
+    "atoms": 46
+   },
+   "method": "Decimal (40 digits) explicit sums",
+   "status": "pass"
+  },
+  {
+   "id": "FC-BNP001-1CRN",
+   "family": "extent_choice_v2",
+   "checker_version": "0.1.0",
+   "recomputed": "29.0218591410",
+   "rounded": "29.0219",
+   "label": "B",
+   "nearest_distractor_gap": "3.4000408590",
+   "parameters": {
+    "measure": "max_pair_distance",
+    "atoms": 46
+   },
+   "method": "Decimal (40 digits) explicit sums",
    "status": "pass"
   }
  ],

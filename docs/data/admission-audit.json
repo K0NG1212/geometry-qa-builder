@@ -1,37 +1,25 @@
 {
-  "date": "2026-10-06",
+  "date": "2026-10-13",
   "scope": "对全部目录记录采用相同准入清单；2026-09-22 专项审读处置见 screening.html；本统计不代表完整 M0–M6 重跑。",
   "target": 160,
-  "screened": 242,
+  "screened": 243,
   "remaining_screened": 0,
-  "screened_over_target": 82,
+  "screened_over_target": 83,
   "formal_ready": 0,
   "remaining_formal": 160,
-  "human_review_count": 242,
+  "human_review_count": 243,
   "human_review_ids": [
     "CNP001",
     "CNP002",
-    "CNP003",
     "QNP001",
     "HBP001",
     "HBP002",
     "HBI001",
     "HBI002",
-    "BNP001",
-    "BNP002",
     "BNP003",
-    "BNI001",
-    "BNI002",
-    "MNP001",
-    "MNP002",
     "MNP003",
-    "MNI001",
-    "MNI002",
     "MNI003",
-    "CNP005",
     "CNP006",
-    "BNP008",
-    "BNP010",
     "BNP011",
     "QNI001",
     "QNI002",
@@ -43,8 +31,6 @@
     "QNP011",
     "MNP006",
     "MNP007",
-    "MNP008",
-    "MNP009",
     "MNP010",
     "CNP007",
     "CNP008",
@@ -250,13 +236,28 @@
     "CNI022",
     "QND013",
     "CND012",
-    "CND013"
+    "CND013",
+    "BNP038",
+    "BNP039",
+    "CNP027",
+    "MNP025",
+    "MNP026",
+    "MNP027",
+    "MNI033",
+    "MNI034",
+    "MNI035",
+    "BNI041",
+    "BNI042",
+    "BNI043",
+    "BNP040",
+    "BNP041",
+    "BNP042"
   ],
   "lifecycle_counts": {
     "rework": 33,
     "backlog": 18,
-    "archived": 20,
-    "active": 242
+    "archived": 34,
+    "active": 243
   },
   "records": [
     {
@@ -874,7 +875,7 @@
     {
       "id": "CNP003",
       "title": "WP6 · 羧酸根局部 C–O 键长",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -882,11 +883,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：独立审核与模型试测，不重复生成已核验数值。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一。 已有新版改写 CNP027（题型族 named_bond_distance，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 CNP027",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1000,7 +1001,7 @@
     {
       "id": "BNP001",
       "title": "蛋白质末端距离与整体最大尺寸",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1008,17 +1009,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
-      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释。 已有新版改写 BNP042（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 BNP042",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "BNP002",
       "title": "两种蛋白质的几何回转半径",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1026,11 +1027,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
-      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释、内含二选一。 已有新版改写 BNP040（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 BNP040",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1054,7 +1055,7 @@
     {
       "id": "BNI001",
       "title": "几何尺寸、散射衰减与近似适用范围",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1062,17 +1063,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
-      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、内含二选一。 已有新版改写 BNI041（题型族 guinier_intensity，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 BNI041",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "BNI002",
       "title": "DNA 虚拟探针：FRET 应使用哪种距离",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1080,17 +1081,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整坐标与行号映射、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
-      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释。 已有新版改写 BNI043（题型族 fret_efficiency，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 BNI043",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNP001",
       "title": "硅的周期近邻与四面体几何",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1098,17 +1099,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
-      "next": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问。 已有新版改写 MNP025（题型族 coordination_shell，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 MNP025",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNP002",
       "title": "氯化钠：异种与同种近邻壳层",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1116,11 +1117,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
-      "next": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释。 已有新版改写 MNP026（题型族 coordination_shell，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 MNP026",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1144,7 +1145,7 @@
     {
       "id": "MNI001",
       "title": "晶面间距如何决定衍射角",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1152,17 +1153,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
-      "next": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释、内含二选一。 已有新版改写 MNI033（题型族 first_diffraction_peak，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 MNI033",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNI002",
       "title": "硅晶胞中的相位相消与禁反射",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1170,11 +1171,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整周期晶胞材料、答案和评分齐全；补充数值核验与同会话初筛通过。",
-      "next": "M5：独立内容审核及模型难度试测；检查周期基元尺度定义。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释。 已有新版改写 MNI035（题型族 kinematic_extinction，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 MNI035",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1360,7 +1361,7 @@
     {
       "id": "CNP005",
       "title": "H26DM-B-CD · 桥连氧处的 C-O-C 键角",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1368,11 +1369,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：独立审核与模型试测，不重复生成已核验数值。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：与 CNP001 重复——DM-β-CD 附件与 β-CD 附件有 133 个原子坐标逐位相同，所问 C4–O3–C37 键角两题都是 116.0251189°；保留原始记录以追溯，不再计数。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1432,7 +1433,7 @@
     {
       "id": "BNP008",
       "title": "溶菌酶二硫键 Cys30-Cys115 键长",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1440,11 +1441,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
-      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一。 已有新版改写 BNP038（题型族 named_bond_distance，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 BNP038",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1504,7 +1505,7 @@
     {
       "id": "BNP010",
       "title": "Crambin 二硫键 Cys16-Cys26 键长",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1512,11 +1513,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整坐标、条件、答案和评分已保存；补充数值复核与同会话初筛通过，待人工审核。",
-      "next": "M5：独立审核与难度试测；来源关联组划分。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：原题不是四选一。 已有新版改写 BNP039（题型族 named_bond_distance，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 BNP039",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1972,7 +1973,7 @@
     {
       "id": "MNP008",
       "title": "ZIF-8 · (110) 晶面间距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1980,17 +1981,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：题干直接给出晶胞参数 a 与 d = a/√(h²+k²+l²)，只需代入，不需要附件几何；不再计数。ZIF-8 的衍射几何已由 MNI018 覆盖。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNP009",
       "title": "MOF-5 · (111) 晶面间距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1998,11 +1999,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：题干直接给出晶胞参数 a 与 d = a/√(h²+k²+l²)，只需代入，不需要附件几何；不再计数。MOF-5 的衍射几何已由 MNI019 覆盖。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -5892,6 +5893,276 @@
       "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
       "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP038",
+      "title": "6LYZ · Cys30–Cys115 二硫键 SG–SG 距离（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP039",
+      "title": "crambin 1CRN · Cys16–Cys26 二硫键 SG–SG 距离（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNP027",
+      "title": "WP6 · 羧酸根 C20–O22 键长（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNP025",
+      "title": "硅 · Si 周围 Si 最近壳层（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNP026",
+      "title": "NaCl · Na 周围 Cl 最近壳层（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNP027",
+      "title": "NaCl · Na 周围其他 Na 最近壳层（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNI033",
+      "title": "硅 · 首个衍射峰 2θ（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNI034",
+      "title": "金刚石 · 首个衍射峰 2θ（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNI035",
+      "title": "硅 · 哪一反射消光（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI041",
+      "title": "泛素 1UBQ · Guinier 强度（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI042",
+      "title": "crambin 1CRN · Guinier 强度（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI043",
+      "title": "B-DNA 1BNA · 链两端 C1′ FRET 效率（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP040",
+      "title": "泛素 1UBQ · Cα 等权回转半径（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP041",
+      "title": "crambin 1CRN · Cα 等权回转半径（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNP042",
+      "title": "crambin 1CRN · Cα 点集最大间距（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     }
   ],
   "directions": [
@@ -6282,11 +6553,11 @@
         1
       ],
       "target": 10,
-      "located_candidates": 31,
-      "screened_count": 26,
+      "located_candidates": 32,
+      "screened_count": 25,
       "remaining": 0,
       "abilities": {
-        "perception": 15,
+        "perception": 14,
         "inference": 7,
         "design": 4
       },
@@ -6298,12 +6569,10 @@
       "qa_ids": [
         "CNP001",
         "CNP002",
-        "CNP003",
         "HBP001",
         "HBP002",
         "HBI001",
         "HBI002",
-        "CNP005",
         "CNP006",
         "CNP012",
         "CNP013",
@@ -6321,7 +6590,8 @@
         "CND002",
         "CND003",
         "CNI021",
-        "CND012"
+        "CND012",
+        "CNP027"
       ],
       "provisional_ids": [
         "CNP012",
@@ -6340,7 +6610,8 @@
         "CND002",
         "CND003",
         "CNI021",
-        "CND012"
+        "CND012",
+        "CNP027"
       ],
       "blocker": ""
     },
@@ -6488,12 +6759,12 @@
         1
       ],
       "target": 10,
-      "located_candidates": 29,
-      "screened_count": 25,
+      "located_candidates": 35,
+      "screened_count": 27,
       "remaining": 0,
       "abilities": {
-        "perception": 8,
-        "inference": 14,
+        "perception": 9,
+        "inference": 15,
         "design": 3
       },
       "ability_shortfalls": {
@@ -6502,11 +6773,7 @@
         "design": 0
       },
       "qa_ids": [
-        "MNP001",
-        "MNP002",
         "MNP003",
-        "MNI001",
-        "MNI002",
         "MNI003",
         "MNI011",
         "MNI012",
@@ -6526,7 +6793,13 @@
         "MNI029",
         "MNI030",
         "MNI031",
-        "MNI032"
+        "MNI032",
+        "MNP025",
+        "MNP026",
+        "MNP027",
+        "MNI033",
+        "MNI034",
+        "MNI035"
       ],
       "provisional_ids": [
         "MNI011",
@@ -6547,7 +6820,13 @@
         "MNI029",
         "MNI030",
         "MNI031",
-        "MNI032"
+        "MNI032",
+        "MNP025",
+        "MNP026",
+        "MNP027",
+        "MNI033",
+        "MNI034",
+        "MNI035"
       ],
       "blocker": ""
     },
@@ -6559,10 +6838,10 @@
       ],
       "target": 10,
       "located_candidates": 19,
-      "screened_count": 14,
+      "screened_count": 12,
       "remaining": 0,
       "abilities": {
-        "perception": 7,
+        "perception": 5,
         "inference": 4,
         "design": 3
       },
@@ -6574,8 +6853,6 @@
       "qa_ids": [
         "MNP006",
         "MNP007",
-        "MNP008",
-        "MNP009",
         "MNP010",
         "MNI013",
         "MNI014",
@@ -6699,7 +6976,7 @@
         1
       ],
       "target": 10,
-      "located_candidates": 20,
+      "located_candidates": 22,
       "screened_count": 13,
       "remaining": 0,
       "abilities": {
@@ -6713,8 +6990,6 @@
         "design": 0
       },
       "qa_ids": [
-        "BNP008",
-        "BNP010",
         "BNP011",
         "BNP013",
         "BNP014",
@@ -6725,7 +7000,9 @@
         "BNI026",
         "BND003",
         "BND004",
-        "BND005"
+        "BND005",
+        "BNP038",
+        "BNP039"
       ],
       "provisional_ids": [
         "BNP013",
@@ -6737,7 +7014,9 @@
         "BNI026",
         "BND003",
         "BND004",
-        "BND005"
+        "BND005",
+        "BNP038",
+        "BNP039"
       ],
       "blocker": ""
     },
@@ -6748,12 +7027,12 @@
         10
       ],
       "target": 10,
-      "located_candidates": 19,
-      "screened_count": 14,
+      "located_candidates": 25,
+      "screened_count": 16,
       "remaining": 0,
       "abilities": {
-        "perception": 3,
-        "inference": 8,
+        "perception": 4,
+        "inference": 9,
         "design": 3
       },
       "ability_shortfalls": {
@@ -6762,11 +7041,7 @@
         "design": 0
       },
       "qa_ids": [
-        "BNP001",
-        "BNP002",
         "BNP003",
-        "BNI001",
-        "BNI002",
         "BNI009",
         "BNI010",
         "BNI011",
@@ -6775,7 +7050,13 @@
         "BNI014",
         "BND006",
         "BND007",
-        "BND008"
+        "BND008",
+        "BNI041",
+        "BNI042",
+        "BNI043",
+        "BNP040",
+        "BNP041",
+        "BNP042"
       ],
       "provisional_ids": [
         "BNI009",
@@ -6786,7 +7067,13 @@
         "BNI014",
         "BND006",
         "BND007",
-        "BND008"
+        "BND008",
+        "BNI041",
+        "BNI042",
+        "BNI043",
+        "BNP040",
+        "BNP041",
+        "BNP042"
       ],
       "blocker": ""
     },

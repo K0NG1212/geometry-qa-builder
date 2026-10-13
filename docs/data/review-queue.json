@@ -1,29 +1,29 @@
 {
  "kind": "review_queue",
- "date": "2026-10-06",
+ "date": "2026-10-13",
  "summary": {
   "scope": "selection",
-  "units_all_active": 66,
-  "units": 46,
+  "units_all_active": 55,
+  "units": 45,
   "families": 45,
-  "legacy_units": 1,
+  "legacy_units": 0,
   "L1": {
-   "pending": 46,
+   "pending": 45,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
   "L2": {
-   "pending": 46,
+   "pending": 45,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
   "instances": 160,
   "forms": {
-   "family": 144,
+   "family": 145,
    "family-version": 15,
-   "legacy": 1
+   "legacy": 0
   },
   "stages": {
    "not-verified": 0,
@@ -34,8 +34,8 @@
   },
   "next_l3_batch": "l3-batch-001",
   "l3_sample": 160,
-  "l3_strata": 77,
-  "l3_steady_state_sample": 130,
+  "l3_strata": 78,
+  "l3_steady_state_sample": 132,
   "model_calls": 0,
   "reviews_recorded": {
    "L1": 0,
@@ -410,7 +410,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 3,
+   "instances": 2,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -438,58 +438,6 @@
      "template_review": "本轮新建，待人工审核。"
     },
     "samples": [
-     {
-      "instance": "FA-TOR-1CRN-G20",
-      "question": "The excerpt contains residues 19–21 of chain A from PDB entry 1CRN (crambin, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone torsion φ of Gly20, defined by atoms C(19)–N(20)–CA(20)–C(20), using the IUPAC sign convention (range −180° to +180°). The options are listed in increasing angle around the circle, starting from an arbitrary point.",
-      "options": [
-       {
-        "label": "A",
-        "value": "106.3",
-        "unit": "degree"
-       },
-       {
-        "label": "B",
-        "value": "-52.7",
-        "unit": "degree"
-       },
-       {
-        "label": "C",
-        "value": "7.3",
-        "unit": "degree"
-       },
-       {
-        "label": "D",
-        "value": "73.7",
-        "unit": "degree"
-       }
-      ],
-      "inputs": [
-       "1CRN-A20-excerpt.pdb"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "IUPAC 符号约定的二面角；法向量与投影两种实现一致。"
-       },
-       {
-        "label": "B",
-        "rule": "neighbor_residue_same_torsion",
-        "reason": "算成相邻残基 21 的 φ。"
-       },
-       {
-        "label": "C",
-        "rule": "other_backbone_torsion",
-        "reason": "算成同一残基的 ψ 而非 φ。"
-       },
-       {
-        "label": "D",
-        "rule": "unsigned_plane_angle",
-        "reason": "用两平面法向量夹角且方向取反，丢失符号（180°−|θ|）。"
-       }
-      ]
-     },
      {
       "instance": "FA-TOR-1UBQ-V26",
       "question": "The excerpt contains residues 25–27 of chain A from PDB entry 1UBQ (ubiquitin, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone torsion ψ of Val26, defined by atoms N(26)–CA(26)–C(26)–N(27), using the IUPAC sign convention (range −180° to +180°). The options are listed in increasing angle around the circle, starting from an arbitrary point.",
@@ -534,6 +482,58 @@
         "label": "C",
         "rule": "opposite_sign",
         "reason": "符号约定取反：相当于把镜像手性当成原构象。"
+       },
+       {
+        "label": "D",
+        "rule": "unsigned_plane_angle",
+        "reason": "用两平面法向量夹角且方向取反，丢失符号（180°−|θ|）。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-TOR-6LYZ-T43",
+      "question": "The excerpt contains residues 42–44 of chain A from PDB entry 6LYZ (hen egg-white lysozyme, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone torsion φ of Thr43, defined by atoms C(42)–N(43)–CA(43)–C(43), using the IUPAC sign convention (range −180° to +180°). The options are listed in increasing angle around the circle, starting from an arbitrary point.",
+      "options": [
+       {
+        "label": "A",
+        "value": "154.7",
+        "unit": "degree"
+       },
+       {
+        "label": "B",
+        "value": "-156.6",
+        "unit": "degree"
+       },
+       {
+        "label": "C",
+        "value": "-143.6",
+        "unit": "degree"
+       },
+       {
+        "label": "D",
+        "value": "36.4",
+        "unit": "degree"
+       }
+      ],
+      "inputs": [
+       "6LYZ-A43-excerpt.pdb"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "other_backbone_torsion",
+        "reason": "算成同一残基的 ψ 而非 φ。"
+       },
+       {
+        "label": "B",
+        "rule": "neighbor_residue_same_torsion",
+        "reason": "算成相邻残基 44 的 φ。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "IUPAC 符号约定的二面角；法向量与投影两种实现一致。"
        },
        {
         "label": "D",
@@ -2237,7 +2237,7 @@
    "bindings": {
     "L1": {
      "registry_row": "1b682f60d135757ee9f8b56a3b34c672a379549d1831839b05deb2f93088754d",
-     "task_families/extent_choice.py": "a034947380088c9a78201cc67a5b67175e295ab201e543018add595a601a0973"
+     "task_families/extent_choice.py": "e1ddb871279c3ae81c1e5e74590674b8f3fd71efdcd2c1c281a722ea123f4bf4"
     },
     "L2": {
      "checkers/families.py": "8378a0b8c82dd4ccb49061e63a81e3845ccce9dfe5ae1d5498e7aa5ad432684c",
@@ -2246,7 +2246,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 11,
+   "instances": 14,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -2276,34 +2276,34 @@
     },
     "samples": [
      {
-      "instance": "FC-CNP007",
-      "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Choose the correct value (angstrom, four decimals).",
+      "instance": "FC-BNP001-1CRN",
+      "question": "The supplied XYZ lists the 46 Cα atoms of crambin (PDB 1CRN, chain A), one point per residue (angstrom). For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Choose the correct value (angstrom, four decimals).",
       "options": [
        {
         "label": "A",
-        "value": "6.4797",
+        "value": "9.6755",
         "unit": "angstrom"
        },
        {
         "label": "B",
-        "value": "14.1390",
+        "value": "29.0219",
         "unit": "angstrom"
        },
        {
         "label": "C",
-        "value": "18.7763",
+        "value": "32.4219",
         "unit": "angstrom"
        },
        {
         "label": "D",
-        "value": "19.5698",
+        "value": "37.0145",
         "unit": "angstrom"
        }
       ],
       "inputs": [
-       "CNP007-1AA5-chainA.xyz"
+       "BNP001-S0007.xyz"
       ],
-      "correct_label": "D",
+      "correct_label": "B",
       "audit": [
        {
         "label": "A",
@@ -2312,60 +2312,8 @@
        },
        {
         "label": "B",
-        "rule": "largest_axis_span",
-        "reason": "只取单一坐标轴上的最大跨度，忽略斜向点对。"
-       },
-       {
-        "label": "C",
-        "rule": "heavy_atoms_only",
-        "reason": "忽略氢原子，只在重原子中找最大间距；题目要求全部点。"
-       },
-       {
-        "label": "D",
         "rule": "correct",
         "reason": "template_engine 定义计算，并以十进制实现复核。"
-       }
-      ]
-     },
-     {
-      "instance": "FC-CNP008",
-      "question": "For the supplied finite point set, compute the maximum Euclidean distance over all unordered pairs. Choose the correct value (angstrom, four decimals).",
-      "options": [
-       {
-        "label": "A",
-        "value": "19.2646",
-        "unit": "angstrom"
-       },
-       {
-        "label": "B",
-        "value": "20.8503",
-        "unit": "angstrom"
-       },
-       {
-        "label": "C",
-        "value": "21.6646",
-        "unit": "angstrom"
-       },
-       {
-        "label": "D",
-        "value": "24.7607",
-        "unit": "angstrom"
-       }
-      ],
-      "inputs": [
-       "CNP008-1AA5-chainB.xyz"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "template_engine 定义计算，并以十进制实现复核。"
-       },
-       {
-        "label": "B",
-        "rule": "centroid_diameter",
-        "reason": "用两倍最大中心距代替最大点对间距（前者 ≥ 后者，一般不相等）。"
        },
        {
         "label": "C",
@@ -2376,6 +2324,58 @@
         "label": "D",
         "rule": "bounding_box_diagonal",
         "reason": "用坐标轴对齐包围盒对角线代替实际最大点对间距（前者 ≥ 后者）。"
+       }
+      ]
+     },
+     {
+      "instance": "FC-BNP002-1CRN",
+      "question": "The supplied XYZ lists the 46 Cα atoms of crambin (PDB 1CRN, chain A), one point per residue (angstrom). Compute the equal-weight radius of gyration of all supplied sites: Rg = sqrt(sum_i ||ri-centroid||^2 / N).  Do not use mass weights. Choose the correct value (angstrom, four decimals).",
+      "options": [
+       {
+        "label": "A",
+        "value": "9.6755",
+        "unit": "angstrom"
+       },
+       {
+        "label": "B",
+        "value": "9.7824",
+        "unit": "angstrom"
+       },
+       {
+        "label": "C",
+        "value": "13.8344",
+        "unit": "angstrom"
+       },
+       {
+        "label": "D",
+        "value": "15.2732",
+        "unit": "angstrom"
+       }
+      ],
+      "inputs": [
+       "BNP002-S0007.xyz"
+      ],
+      "correct_label": "A",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "correct",
+        "reason": "template_engine 定义计算，并以十进制实现复核。"
+       },
+       {
+        "label": "B",
+        "rule": "n_minus_one",
+        "reason": "用 N−1 作分母（样本方差习惯），不是题目定义。"
+       },
+       {
+        "label": "C",
+        "rule": "rms_pair_distance",
+        "reason": "用点对公式但漏了因子 1/2（Rg² = Σd²/2N²），约得 √2·Rg。"
+       },
+       {
+        "label": "D",
+        "rule": "maximum_radius",
+        "reason": "用最大中心距（“半径”）替代回转半径。"
        }
       ]
      }
@@ -2863,7 +2863,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 3,
+   "instances": 2,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -2895,86 +2895,86 @@
     },
     "samples": [
      {
-      "instance": "FA-FRET-1EHZ",
-      "question": "The excerpt contains the ATOM records of chain A of PDB entry 1EHZ (yeast tRNA-Phe), copied unchanged. Model a FRET donor as a point at atom C1' of nucleotide A76 and an acceptor as a point at atom C1' of nucleotide A35. Assume a Förster radius R0 = 6.00 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?",
+      "instance": "FA-FRET-1BNA",
+      "question": "The excerpt contains the ATOM records of chain A of PDB entry 1BNA (B-DNA dodecamer (Drew–Dickerson)), copied unchanged. Model a FRET donor as a point at atom C1' of nucleotide Dc1 and an acceptor as a point at atom C1' of nucleotide Dg12. Assume a Förster radius R0 = 3.50 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?",
       "options": [
        {
         "label": "A",
-        "value": "0.246",
+        "value": "0.063",
         "unit": ""
        },
        {
         "label": "B",
-        "value": "0.337",
+        "value": "0.480",
         "unit": ""
        },
        {
         "label": "C",
-        "value": "0.500",
+        "value": "0.520",
         "unit": ""
        },
        {
         "label": "D",
-        "value": "0.754",
+        "value": "0.693",
         "unit": ""
        }
       ],
       "inputs": [
-       "1EHZ-chainA.pdb"
+       "1BNA-chainA.pdb"
       ],
-      "correct_label": "A",
+      "correct_label": "B",
       "audit": [
        {
         "label": "A",
-        "rule": "correct",
-        "reason": "r = 7.2342 nm（直线距离），E = 1/(1+(r/R0)^6)。"
+        "rule": "path_length_distance",
+        "reason": "用沿链骨架标记原子（C1'）的路径长度代替空间直线距离。"
        },
        {
         "label": "B",
-        "rule": "closest_atom_pair",
-        "reason": "用两残基间最近的重原子对距离（6.718 nm）代替指定标记原子的间距。"
+        "rule": "correct",
+        "reason": "r = 3.5472 nm（直线距离），E = 1/(1+(r/R0)^6)。"
        },
        {
         "label": "C",
-        "rule": "r_equals_R0_default",
-        "reason": "未计算距离，默认 r≈R0，直接取 E=0.5。"
+        "rule": "complement",
+        "reason": "报告了 1−E（供体保留的比例）。"
        },
        {
         "label": "D",
-        "rule": "complement",
-        "reason": "报告了 1−E（供体保留的比例）。"
+        "rule": "closest_atom_pair",
+        "reason": "用两残基间最近的重原子对距离（3.056 nm）代替指定标记原子的间距。"
        }
       ]
      },
      {
-      "instance": "FA-FRET-1UBQ",
-      "question": "The excerpt contains the ATOM records of chain A of PDB entry 1UBQ (ubiquitin; Lys48 and Lys63 are the two most studied chain-linkage sites), copied unchanged. Model a FRET donor as a point at atom NZ of Lys48 and an acceptor as a point at atom NZ of Lys63. Assume a Förster radius R0 = 2.50 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?",
+      "instance": "FA-FRET-6LYZ",
+      "question": "The excerpt contains the ATOM records of chain A of PDB entry 6LYZ (hen egg-white lysozyme; probes at the two chain termini), copied unchanged. Model a FRET donor as a point at atom CA of Lys1 and an acceptor as a point at atom CA of Leu129. Assume a Förster radius R0 = 2.20 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?",
       "options": [
        {
         "label": "A",
-        "value": "0.007",
+        "value": "0.000",
         "unit": ""
        },
        {
         "label": "B",
-        "value": "0.800",
+        "value": "0.500",
         "unit": ""
        },
        {
         "label": "C",
-        "value": "0.929",
+        "value": "0.575",
         "unit": ""
        },
        {
         "label": "D",
-        "value": "0.962",
+        "value": "0.930",
         "unit": ""
        }
       ],
       "inputs": [
-       "1UBQ-chainA.pdb"
+       "6LYZ-chainA.pdb"
       ],
-      "correct_label": "B",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
@@ -2983,18 +2983,18 @@
        },
        {
         "label": "B",
-        "rule": "correct",
-        "reason": "r = 1.9847 nm（直线距离），E = 1/(1+(r/R0)^6)。"
+        "rule": "r_equals_R0_default",
+        "reason": "未计算距离，默认 r≈R0，直接取 E=0.5。"
        },
        {
         "label": "C",
-        "rule": "wrong_acceptor_atom",
-        "reason": "受体位置取成该残基的 CA 而非指定原子。"
+        "rule": "correct",
+        "reason": "r = 2.0917 nm（直线距离），E = 1/(1+(r/R0)^6)。"
        },
        {
         "label": "D",
         "rule": "closest_atom_pair",
-        "reason": "用两残基间最近的重原子对距离（1.456 nm）代替指定标记原子的间距。"
+        "reason": "用两残基间最近的重原子对距离（1.430 nm）代替指定标记原子的间距。"
        }
       ]
      }
@@ -3021,7 +3021,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 5,
+   "instances": 4,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -4099,7 +4099,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 4,
+   "instances": 6,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -4128,8 +4128,60 @@
     },
     "samples": [
      {
-      "instance": "FA-DIST-6LYZ-SS",
-      "question": "The excerpt gives the SSBOND record and the ATOM records of Cys6 and Cys127 of hen egg-white lysozyme (PDB 6LYZ, chain A), copied unchanged (angstrom). In this supplied structure, atoms SG(Cys6) and SG(Cys127) form the disulfide bridge listed in the SSBOND record. What is this bond length?",
+      "instance": "FA-DIST-1CRN-SS16",
+      "question": "The excerpt gives the SSBOND record and the ATOM records of Cys16 and Cys26 of crambin (PDB 1CRN, chain A), copied unchanged (angstrom). In this supplied structure, atoms SG(Cys16) and SG(Cys26) form the disulfide bridge listed in the SSBOND record. What is this bond length?",
+      "options": [
+       {
+        "label": "A",
+        "value": "1.813",
+        "unit": "angstrom"
+       },
+       {
+        "label": "B",
+        "value": "2.051",
+        "unit": "angstrom"
+       },
+       {
+        "label": "C",
+        "value": "3.013",
+        "unit": "angstrom"
+       },
+       {
+        "label": "D",
+        "value": "3.033",
+        "unit": "angstrom"
+       }
+      ],
+      "inputs": [
+       "1CRN-excerpt.pdb"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "other_bond:SG(Cys16)-CB(Cys16)",
+        "reason": "量成 SG(Cys16) 的另一根键（到 CB(Cys16)）。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "两指定原子的欧氏距离；另以 Decimal 实现复核。"
+       },
+       {
+        "label": "C",
+        "rule": "one_bond_too_far:SG(Cys26)-CB(Cys16)",
+        "reason": "多数了一根键：量成 SG(Cys26) 到 SG(Cys16) 之外的 CB(Cys16) 的距离。"
+       },
+       {
+        "label": "D",
+        "rule": "one_bond_too_far:SG(Cys16)-CB(Cys26)",
+        "reason": "多数了一根键：量成 SG(Cys16) 到 SG(Cys26) 之外的 CB(Cys26) 的距离。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-DIST-6LYZ-SS30",
+      "question": "The excerpt gives the SSBOND record and the ATOM records of Cys30 and Cys115 of hen egg-white lysozyme (PDB 6LYZ, chain A), copied unchanged (angstrom). In this supplied structure, atoms SG(Cys30) and SG(Cys115) form the disulfide bridge listed in the SSBOND record. What is this bond length?",
       "options": [
        {
         "label": "A",
@@ -4138,7 +4190,7 @@
        },
        {
         "label": "B",
-        "value": "2.031",
+        "value": "2.042",
         "unit": "angstrom"
        },
        {
@@ -4148,7 +4200,7 @@
        },
        {
         "label": "D",
-        "value": "3.045",
+        "value": "3.112",
         "unit": "angstrom"
        }
       ],
@@ -4159,8 +4211,8 @@
       "audit": [
        {
         "label": "A",
-        "rule": "other_bond:SG(Cys127)-CB(Cys127)",
-        "reason": "量成 SG(Cys127) 的另一根键（到 CB(Cys127)）。"
+        "rule": "other_bond:SG(Cys115)-CB(Cys115)",
+        "reason": "量成 SG(Cys115) 的另一根键（到 CB(Cys115)）。"
        },
        {
         "label": "B",
@@ -4174,60 +4226,8 @@
        },
        {
         "label": "D",
-        "rule": "one_bond_too_far:SG(Cys127)-CB(Cys6)",
-        "reason": "多数了一根键：量成 SG(Cys127) 到 SG(Cys6) 之外的 CB(Cys6) 的距离。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-DIST-7002-NN",
-      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7002 (11 atoms, angstrom); rows are counted from 1 after the two header lines. N6 is terminal and bonded only to N5. In this supplied structure, atoms N5 (row 5) and N6 (row 6) form the nitrogen–nitrogen bond at the end of the N–N=N-type chain (N5 bonded to C4 and N6). What is this bond length?",
-      "options": [
-       {
-        "label": "A",
-        "value": "1.187",
-        "unit": "angstrom"
-       },
-       {
-        "label": "B",
-        "value": "1.376",
-        "unit": "angstrom"
-       },
-       {
-        "label": "C",
-        "value": "1.420",
-        "unit": "angstrom"
-       },
-       {
-        "label": "D",
-        "value": "2.289",
-        "unit": "angstrom"
-       }
-      ],
-      "inputs": [
-       "QNP004-7002-opt.xyz"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "两指定原子的欧氏距离；另以 Decimal 实现复核。"
-       },
-       {
-        "label": "B",
-        "rule": "other_bond:N5-C4",
-        "reason": "量成 N5 的另一根键（到 C4）。"
-       },
-       {
-        "label": "C",
-        "rule": "covalent_radii_sum",
-        "reason": "用共价半径之和估计，没有测量这一结构。"
-       },
-       {
-        "label": "D",
-        "rule": "one_bond_too_far:N6-C4",
-        "reason": "多数了一根键：量成 N6 到 N5 之外的 C4 的距离。"
+        "rule": "one_bond_too_far:SG(Cys30)-CB(Cys115)",
+        "reason": "多数了一根键：量成 SG(Cys30) 到 SG(Cys115) 之外的 CB(Cys115) 的距离。"
        }
       ]
      }
@@ -5799,7 +5799,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 2,
+   "instances": 1,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -5825,55 +5825,6 @@
      "template_review": "本轮新建，待人工审核。"
     },
     "samples": [
-     {
-      "instance": "FA-SREL-7082-CONS",
-      "question": "S0.xyz and X.xyz each contain one structure of formula C4H6N2S1 (angstrom). X has been rigidly rotated and translated, and its atom order may differ from S0. Treat structures that interconvert only by rotation about single bonds as the same compound. Which describes X relative to S0?",
-      "options": [
-       {
-        "label": "A",
-        "value": "the same compound as S0 (only conformation and/or orientation differ)"
-       },
-       {
-        "label": "B",
-        "value": "an enantiomer of S0 (its non-superimposable mirror image)"
-       },
-       {
-        "label": "C",
-        "value": "a diastereomer of S0 (a stereoisomer that is not its mirror image)"
-       },
-       {
-        "label": "D",
-        "value": "a constitutional isomer of S0 (same formula, different bonding)"
-       }
-      ],
-      "inputs": [
-       "S0.xyz",
-       "X.xyz"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": null,
-        "reason": "存在构型差异或键连不同，不是同一化合物。"
-       },
-       {
-        "label": "B",
-        "rule": null,
-        "reason": "不满足“全部立体中心反转、双键不变”的镜像关系。"
-       },
-       {
-        "label": "C",
-        "rule": null,
-        "reason": "不是“键连相同而构型部分不同”的情形。"
-       },
-       {
-        "label": "D",
-        "rule": null,
-        "reason": "键连图不同（图不变量不同）。"
-       }
-      ]
-     },
      {
       "instance": "FA-SREL-7110-DIAS",
       "question": "S0.xyz and X.xyz each contain one structure of formula C3H7N1O2S1 (angstrom). X has been rigidly rotated and translated, and its atom order may differ from S0. Treat structures that interconvert only by rotation about single bonds as the same compound. Which describes X relative to S0?",
@@ -5915,6 +5866,55 @@
         "label": "C",
         "rule": null,
         "reason": "键连相同，构型部分改变（或双键顺反改变），但不是镜像。"
+       },
+       {
+        "label": "D",
+        "rule": null,
+        "reason": "键连图相同，不是构造异构体。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-SREL-7029-SAME",
+      "question": "S0.xyz and X.xyz each contain one structure of formula C4H8N2S1 (angstrom). X has been rigidly rotated and translated, and its atom order may differ from S0. Treat structures that interconvert only by rotation about single bonds as the same compound. Which describes X relative to S0?",
+      "options": [
+       {
+        "label": "A",
+        "value": "the same compound as S0 (only conformation and/or orientation differ)"
+       },
+       {
+        "label": "B",
+        "value": "an enantiomer of S0 (its non-superimposable mirror image)"
+       },
+       {
+        "label": "C",
+        "value": "a diastereomer of S0 (a stereoisomer that is not its mirror image)"
+       },
+       {
+        "label": "D",
+        "value": "a constitutional isomer of S0 (same formula, different bonding)"
+       }
+      ],
+      "inputs": [
+       "S0.xyz",
+       "X.xyz"
+      ],
+      "correct_label": "A",
+      "audit": [
+       {
+        "label": "A",
+        "rule": null,
+        "reason": "键连相同且所有立体描述符一致：仅构象/取向不同。"
+       },
+       {
+        "label": "B",
+        "rule": null,
+        "reason": "不满足“全部立体中心反转、双键不变”的镜像关系。"
+       },
+       {
+        "label": "C",
+        "rule": null,
+        "reason": "不是“键连相同而构型部分不同”的情形。"
        },
        {
         "label": "D",
@@ -6972,70 +6972,6 @@
      }
     ]
    }
-  },
-  {
-   "unit": "legacy:protein_geometric_gyration",
-   "kind": "legacy",
-   "ability": "perception",
-   "registry_id": "equal_weight_rg",
-   "generator": null,
-   "checker": null,
-   "checker_function": null,
-   "code": [
-    "template_engine.py",
-    "choice_engine.py",
-    "task_families/extent_choice.py",
-    "checkers/families.py"
-   ],
-   "bindings": {
-    "L1": {
-     "registry_row": "44656fe80ddbd9ae57486d7db33a47ce07f67d0e492986bdcea4af454978389c"
-    },
-    "L2": {
-     "template_engine.py": "0f8c4dc2e7055aac289b347dd2f8a5f725061f8ac3f889161261a937f0d0a974",
-     "choice_engine.py": "737af06a8c4a369de67f4475c9928c12f452670608edf1ef0b077b6b17e67f82",
-     "task_families/extent_choice.py": "a034947380088c9a78201cc67a5b67175e295ab201e543018add595a601a0973",
-     "checkers/families.py": "8378a0b8c82dd4ccb49061e63a81e3845ccce9dfe5ae1d5498e7aa5ad432684c"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 1,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "等权回转半径",
-     "concept": "点集相对质心的均方根距离，衡量整体紧凑度。",
-     "inputs": "一个已确认 Å 单位的 XYZ；明确所有点等权。",
-     "physical_conditions": "等权；不是质量加权或 SAXS Rg。",
-     "reasoning_scale": "全局点集",
-     "scale_limits": "不是质量加权或实测 SAXS Rg。",
-     "source_basis": "真实结构文件",
-     "answer_method": "质心公式；成对距离恒等式 Decimal 复核。",
-     "distractor_mechanisms": [
-      "mass_weighted",
-      "heavy_atoms_only",
-      "mean_radius",
-      "n_minus_one",
-      "maximum_radius",
-      "diameter_for_radius"
-     ],
-     "four_choice_validation": "extent_choice_v2：正确值秩按批次平衡，数值按升序排列；与正确值间隔 > 0.05 Å（与 global_extent 相同）。 v0.3.0：点对公式漏 1/2（约 √2·Rg）与“最大中心距当半径”迷惑程度调为 2，否则答案不能在 A/B。",
-     "principle": "质心法生成答案；用 Rg² = sum(i<j)|ri-rj|² / N² 复核。",
-     "validation": "质心公式与成对距离恒等式交叉检查；在多个结构上复用相同代码。",
-     "limits": "不是质量加权或实测 SAXS Rg；不能据此断言折叠稳定性。",
-     "template_review": "题型已做本轮 AI 方法审读，尚待人工确认；程序检查不能证明科学意义与数据来源正确。"
-    },
-    "samples": [
-     {
-      "record": "BNP002",
-      "question": "Calculate the equal-weight CA radius of gyration of each supplied protein. Which has the larger spatial spread, and what is Rg(1UBQ)/Rg(1CRN)? Does that ranking alone establish which protein is less stably folded?",
-      "answer": "Rg(1UBQ)=1.149289 nm and Rg(1CRN)=0.967550 nm; ratio=1.187835. 1UBQ has larger equal-CA spatial spread. Different chain lengths/compositions and lack of free-energy or ensemble information prevent inferring folding stability from this ranking. These are unweighted geometric values, not measured SAXS radii.",
-      "validation": "Supplemental published calculator: centroid / Decimal pairwise Rg, distances, marker path, FRET and Guinier numeric checks; evidence_review does not grade semantics."
-     }
-    ]
-   }
   }
  ],
  "l3_plan": [
@@ -7121,11 +7057,10 @@
    "unit": "backbone_torsion",
    "source": "pdb-bio-nm",
    "cell": "biology 0.1-1",
-   "size": 3,
-   "sample": 3,
+   "size": 2,
+   "sample": 2,
    "rule": "first batch: all",
    "ids": [
-    "BNP013",
     "BNP014",
     "BNP015"
    ]
@@ -7413,6 +7348,20 @@
    ]
   },
   {
+   "stratum": "extent_choice_v2 | pdb-bio-nm | biology 1-10",
+   "unit": "extent_choice_v2",
+   "source": "pdb-bio-nm",
+   "cell": "biology 1-10",
+   "size": 3,
+   "sample": 3,
+   "rule": "first batch: all",
+   "ids": [
+    "BNP040",
+    "BNP041",
+    "BNP042"
+   ]
+  },
+  {
    "stratum": "first_diffraction_peak | cod-materials-cell | materials 0.1-1",
    "unit": "first_diffraction_peak",
    "source": "cod-materials-cell",
@@ -7470,13 +7419,12 @@
    "unit": "fret_efficiency",
    "source": "pdb-bio-nm",
    "cell": "biology 1-10",
-   "size": 3,
-   "sample": 3,
+   "size": 2,
+   "sample": 2,
    "rule": "first batch: all",
    "ids": [
-    "BNI009",
-    "BNI010",
-    "BNI011"
+    "BNI011",
+    "BNI043"
    ]
   },
   {
@@ -7484,13 +7432,12 @@
    "unit": "guinier_intensity",
    "source": "pdb-bio-nm",
    "cell": "biology 1-10",
-   "size": 3,
-   "sample": 3,
+   "size": 2,
+   "sample": 2,
    "rule": "first batch: all",
    "ids": [
     "BNI012",
-    "BNI013",
-    "BNI014"
+    "BNI013"
    ]
   },
   {
@@ -7575,18 +7522,6 @@
    "rule": "first batch: all",
    "ids": [
     "MNI013"
-   ]
-  },
-  {
-   "stratum": "legacy:protein_geometric_gyration | pdb-bio-nm | biology 1-10",
-   "unit": "legacy:protein_geometric_gyration",
-   "source": "pdb-bio-nm",
-   "cell": "biology 1-10",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "BNP002"
    ]
   },
   {
@@ -7684,11 +7619,12 @@
    "unit": "named_bond_distance",
    "source": "pdb-bio-nm",
    "cell": "biology 0.1-1",
-   "size": 1,
-   "sample": 1,
+   "size": 2,
+   "sample": 2,
    "rule": "first batch: all",
    "ids": [
-    "BNP016"
+    "BNP038",
+    "BNP039"
    ]
   },
   {
@@ -7703,6 +7639,18 @@
     "QNP013",
     "QNP014",
     "QNP015"
+   ]
+  },
+  {
+   "stratum": "named_bond_distance | sampl9 | chemistry 0.1-1",
+   "unit": "named_bond_distance",
+   "source": "sampl9",
+   "cell": "chemistry 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNP027"
    ]
   },
   {
@@ -7919,12 +7867,11 @@
    "unit": "stereo_relationship",
    "source": "qm7x",
    "cell": "chemistry 0.1-1",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "CNP016",
-    "CNP018"
+    "CNP016"
    ]
   },
   {
@@ -8050,7 +7997,6 @@
  "stages": {
   "CNP002": "L0",
   "QNP001": "L0",
-  "BNP002": "L0",
   "CNP006": "L0",
   "QNI002": "L0",
   "QNP007": "L0",
@@ -8064,7 +8010,6 @@
   "CNP008": "L0",
   "CNP009": "L0",
   "CNP011": "L0",
-  "BNP013": "L0",
   "BNP014": "L0",
   "BNP015": "L0",
   "MNI012": "L0",
@@ -8072,7 +8017,6 @@
   "QND003": "L0",
   "QND004": "L0",
   "CNP016": "L0",
-  "CNP018": "L0",
   "CNI008": "L0",
   "CNI010": "L0",
   "CND001": "L0",
@@ -8080,7 +8024,6 @@
   "QNP013": "L0",
   "QNP014": "L0",
   "QNP015": "L0",
-  "BNP016": "L0",
   "QNP016": "L0",
   "MNP011": "L0",
   "MNP012": "L0",
@@ -8090,12 +8033,9 @@
   "MNI016": "L0",
   "MNI018": "L0",
   "MNI019": "L0",
-  "BNI009": "L0",
-  "BNI010": "L0",
   "BNI011": "L0",
   "BNI012": "L0",
   "BNI013": "L0",
-  "BNI014": "L0",
   "BNP020": "L0",
   "BNI017": "L0",
   "BNP023": "L0",
@@ -8207,7 +8147,14 @@
   "CNI022": "L0",
   "QND013": "L0",
   "CND012": "L0",
-  "CND013": "L0"
+  "CND013": "L0",
+  "BNP038": "L0",
+  "BNP039": "L0",
+  "CNP027": "L0",
+  "BNI043": "L0",
+  "BNP040": "L0",
+  "BNP041": "L0",
+  "BNP042": "L0"
  },
  "forms": {
   "CNP002": {
@@ -8217,10 +8164,6 @@
   "QNP001": {
    "form": "family-version",
    "instance": "FA-FP-QM7X-7001"
-  },
-  "BNP002": {
-   "form": "legacy",
-   "instance": null
   },
   "CNP006": {
    "form": "family-version",
@@ -8274,10 +8217,6 @@
    "form": "family-version",
    "instance": "FC-CNP011"
   },
-  "BNP013": {
-   "form": "family",
-   "instance": "FA-TOR-1CRN-G20"
-  },
   "BNP014": {
    "form": "family",
    "instance": "FA-TOR-1UBQ-V26"
@@ -8306,10 +8245,6 @@
    "form": "family",
    "instance": "FA-SREL-7110-DIAS"
   },
-  "CNP018": {
-   "form": "family",
-   "instance": "FA-SREL-7082-CONS"
-  },
   "CNI008": {
    "form": "family",
    "instance": "FA-SPROP-7089"
@@ -8337,10 +8272,6 @@
   "QNP015": {
    "form": "family",
    "instance": "FA-DIST-7122-CN"
-  },
-  "BNP016": {
-   "form": "family",
-   "instance": "FA-DIST-6LYZ-SS"
   },
   "QNP016": {
    "form": "family",
@@ -8378,14 +8309,6 @@
    "form": "family",
    "instance": "FA-PEAK-MOF5"
   },
-  "BNI009": {
-   "form": "family",
-   "instance": "FA-FRET-1EHZ"
-  },
-  "BNI010": {
-   "form": "family",
-   "instance": "FA-FRET-1UBQ"
-  },
   "BNI011": {
    "form": "family",
    "instance": "FA-FRET-6LYZ"
@@ -8397,10 +8320,6 @@
   "BNI013": {
    "form": "family",
    "instance": "FA-GUIN-1EHZ"
-  },
-  "BNI014": {
-   "form": "family",
-   "instance": "FA-GUIN-1BNA"
   },
   "BNP020": {
    "form": "family",
@@ -8849,6 +8768,34 @@
   "CND013": {
    "form": "family",
    "instance": "FA-ISO-G13-111"
+  },
+  "BNP038": {
+   "form": "family",
+   "instance": "FA-DIST-6LYZ-SS30"
+  },
+  "BNP039": {
+   "form": "family",
+   "instance": "FA-DIST-1CRN-SS16"
+  },
+  "CNP027": {
+   "form": "family",
+   "instance": "FA-DIST-WP6-C20O22"
+  },
+  "BNI043": {
+   "form": "family",
+   "instance": "FA-FRET-1BNA"
+  },
+  "BNP040": {
+   "form": "family",
+   "instance": "FC-BNP002-1UBQ"
+  },
+  "BNP041": {
+   "form": "family",
+   "instance": "FC-BNP002-1CRN"
+  },
+  "BNP042": {
+   "form": "family",
+   "instance": "FC-BNP001-1CRN"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."

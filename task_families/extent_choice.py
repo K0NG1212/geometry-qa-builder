@@ -12,7 +12,7 @@ from pathlib import Path
 from . import kit
 import template_engine as numeric
 
-VERSION = '0.3.0'
+VERSION = '0.3.1'
 MASS = {'H': 1.008, 'C': 12.011, 'N': 14.007, 'O': 15.999, 'S': 32.06, 'Cl': 35.45, 'Zn': 65.38,
         'P': 30.974, 'F': 18.998, 'Si': 28.085, 'Na': 22.990, 'Mg': 24.305}
 
@@ -104,6 +104,8 @@ def build(spec, root, seed):
     registry = {t['id']: t for t in __import__('json').loads((root / 'templates/registry.json').read_text(encoding='utf-8'))['templates']}
     question = registry[template]['question'].replace(
         'Return only one value rounded to four decimal places and unit angstrom.', '').strip()
+    if spec.get('context'):          # names the object (advisor: chemical entities, not bare point sets); optional
+        question = spec['context'].strip() + ' ' + question
     return dict(
         question=question + ' Choose the correct value (angstrom, four decimals).',
         scope=spec['scope'],

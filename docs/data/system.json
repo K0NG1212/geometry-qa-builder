@@ -4,10 +4,10 @@
   "families": 45,
   "checkers": 45,
   "family_modules": 19,
-  "manifest_instances": 219,
-  "run": "family-pilot-v27",
-  "attempted": 219,
-  "passed": 218,
+  "manifest_instances": 234,
+  "run": "family-pilot-v29",
+  "attempted": 234,
+  "passed": 233,
   "failures": [
    {
     "id": "FA-CONF-7063-max_dipole",
@@ -16,11 +16,11 @@
     "reason": "No four-candidate set with a unique best above the margin"
    }
   ],
-  "independent_checked": 218,
-  "independent_passed": 218,
+  "independent_checked": 233,
+  "independent_passed": 233,
   "tests": 336,
-  "code_lines": 7200,
-  "generator_lines": 5027,
+  "code_lines": 7202,
+  "generator_lines": 5029,
   "checker_lines": 2173,
   "abilities": {
    "perception": 14,
@@ -149,7 +149,7 @@
      "path": "docs/data/coverage-plan.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/docs/data/coverage-plan.json",
      "lines": 1321,
-     "sha256": "208286edb4ba2e0d54aafc75572464ed1d0adc70e324a6a574558f95586d4d01"
+     "sha256": "1133224e3a412a0a062bbbbc01c72df94c9db56213024cbce45e91379a9cf70a"
     }
    ]
   },
@@ -383,15 +383,15 @@
     {
      "path": "tools/admit_family_instances.py",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/tools/admit_family_instances.py",
-     "lines": 162,
-     "sha256": "d38d835312f4654802f3251008b7685db382374ddadc43ff1ca844ff44fd7860",
-     "source": "\"\"\"Admit published family instances into the catalog under the explicit de-dup map.\n\nReads docs/data/family-workbench.json, docs/data/independent-check.json and\ntemplates/admission-map.json. Only instances that passed the independent checker are\nadmitted, and only as PROVISIONAL (L0 auto-verified; L1–L3 review pending):\n  new        -> new catalog record\n  supersede  -> new record; the legacy rework record is archived with supersededBy\n  reformat   -> no new record; linked under the active legacy record's familyVersions\nIdempotent: re-running with the same inputs yields the same catalog and files.\n\npython tools/admit_family_instances.py --date 2026-09-29\n\"\"\"\nimport argparse\nimport copy\nimport json\nfrom collections import Counter\nfrom pathlib import Path\nimport sys\n\nROOT = Path(__file__).resolve().parents[1]\nsys.path.insert(0, str(ROOT))\nfrom verify_all import rehydrate  # noqa: E402\nDOCS = ROOT / 'docs'\nASSET_DIR = 'assets/families/instances'\nUNITS = {'angstrom': ' Å', 'degree': '°', 'eV': ' eV', 'nm': ' nm', 'nm^-1': ' nm⁻¹', '%': ' %', 'nm^2': ' nm²',\n         '10^12 cm^-2': ' ×10¹² cm⁻²', 'uM': ' µM', '1e5 M^-1 cm^-1': ' ×10⁵ M⁻¹ cm⁻¹',\n         'um^-2': ' μm⁻²', 'um^-1': ' μm⁻¹', '1e-15 Wb': ' ×10⁻¹⁵ Wb', 'mT': ' mT'}\n\n\ndef read(path):\n    return json.loads(Path(path).read_text(encoding='utf-8'))\n\n\ndef option_text(options):\n    return '\\n'.join('%s. %s%s' % (o['label'], o['value'], UNITS.get(o.get('unit'), '')) for o in options)\n\n\ndef build_record(entry, family, student, teacher, numeric, check, run, date):\n    cid, inst = entry['catalog_id'], entry['instance']\n    files, attachments = {}, []\n    for item in student['inputs']:\n        lines = len(item['text'].rstrip('\\n').splitlines())\n        if item.get('url'):          # large input published once as a shared asset: link it, do not copy\n            rel = item['url']\n        else:\n            rel = '%s/%s/%s' % (ASSET_DIR, cid, item['name'])\n            files[rel] = item['text']\n        attachments.append(dict(name=item['name'], url=rel,\n                                description='%s；%s；%d 行' % (item['format'], item['unit'], lines)))\n    names = '、'.join(a['name'] for a in attachments)\n    instructions = ('附件：%s（均为本题完整输入）。范围：%s 只回答一个字母 A、B、C 或 D。' % (names, student['scope']))\n    complete = '\\n\\n'.join([student['question'], '选项：\\n' + option_text(student['options']), instructions])\n    files['%s/%s/input.txt' % (ASSET_DIR, cid)] = complete + ''.join(\n        '\\n\\n===== %s =====\\n%s' % (i['name'], '（大文件，见附件 %s）\\n' % i['url'] if i.get('url') else i['text'])\n        for i in student['inputs'])\n    right = next(o for o in teacher['option_audit'] if o['is_correct'])\n    answer = '%s · %s' % (teacher['correct_label'], right['value'])\n    rubric = '四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。'\n    if teacher['numeric_answer']:\n        n = teacher['numeric_answer']\n        unit = UNITS.get(n['unit'], ' ' + n['unit']) if n['unit'] else ''       # counts (capsid T, capsomers) have no unit\n        answer += '（数值作答：%s%s）' % (n['value'], unit)\n        rubric += ' 数值作答形式：%d 位小数，绝对容差 %s%s。' % (n['decimals'], n['tolerance'], unit)\n    record = dict(\n        id=cid, title=entry['title'], paper=entry.get('paper', family['paper']), ability=teacher['ability'],\n        domain=family['domain'], scale=family['scale'], reasoning=family['reasoning'], status='pending_human_audit',\n        family=teacher['family'],\n        missing=['L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行', '尚无独立领域审核与难度测试'],\n        validation='独立检查器（%s）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。' % check['method'],\n        publicDemo=True, question=student['question'], modelInput=instructions, answer=answer,\n        source=teacher['source'], inputSizeNm=teacher['scales']['input_nm'], reasoningSizeNm=teacher['scales']['reasoning_nm'],\n        sizeDefinition=family['sizeDefinition'], batchId=run, benchmarkReady=False,\n        releaseRole='public_development_example', rubric=rubric, attribution=family['attribution'],\n        batchReport='templates.html#workbench', traceUrl='templates.html?instance=%s#workbench' % inst,\n        inputInstructions=instructions, sourceRoute='raw_structure_or_simulation', prototypeScreeningPassed=True,\n        policyReview='暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。',\n        attachments=attachments, completeInput=complete, inputDownload='%s/%s/input.txt' % (ASSET_DIR, cid),\n        learningObjective=family['learningObjective'], lifecycle='active', lifecycleLabel='当前原型',\n        lifecycleReason='暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。',\n        lifecycleReviewedAt=date, restartFrom='L1 题型审定 → L2 检查器审阅 → L3 分层抽查',\n        admission='provisional_auto_verified', familyInstance=inst, familyRun=run, independentCheck=check['status'])\n    if entry.get('supersedes'):\n        record['derivedFrom'] = entry['supersedes']\n    if numeric:\n        record['numericVariant'] = numeric['response_format']\n    return record, files\n\n\ndef admit(catalog, workbench, independent, amap, date):\n    \"\"\"Pure function: returns (new catalog, {relative asset path: text}).\"\"\"\n    catalog = copy.deepcopy(catalog)\n    workbench = copy.deepcopy(workbench)\n    rehydrate(workbench['student_packets'])     # restores 'text'; 'url' stays for shared large inputs\n    teachers = {t['id']: t for t in workbench['teacher_answers']}\n    students = {s['id']: s for s in workbench['student_packets']}\n    numerics = {n['inputs_same_as']: n for n in workbench['numeric_student_packets']}\n    checks = {r['id']: r for r in independent['results']}\n    mapped = Counter(e['instance'] for e in amap['instances'])\n    if set(mapped) != set(teachers) or any(v != 1 for v in mapped.values()):\n        raise ValueError('Every published instance must be mapped exactly once')\n    if len({e['catalog_id'] for e in amap['instances'] if e['action'] != 'reformat'}) != \\\n            sum(e['action'] != 'reformat' for e in amap['instances']):\n        raise ValueError('Duplicate catalog id in admission map')\n    records = {q['id']: q for q in catalog['questions']}\n    files = {}\n    for entry in amap['instances']:\n        inst, cid, action = entry['instance'], entry['catalog_id'], entry['action']\n        check = checks.get(inst)\n        if not check or check['status'] != 'pass':\n            raise ValueError('Instance did not pass the independent checker: ' + inst)\n        teacher = teachers[inst]\n        if action == 'reformat':\n            legacy = records.get(cid)\n            if not legacy or legacy['lifecycle'] != 'active' or teacher.get('legacy_qa') != cid:\n                raise ValueError('Reformat target must be the active legacy record it derives from: ' + cid)\n            link = dict(instance=inst, family=teacher['family'], run=workbench['run'], independentCheck=check['status'],\n                        url='templates.html?instance=%s#workbench' % inst, counted=False)\n            legacy['familyVersions'] = [v for v in legacy.get('familyVersions', []) if v['instance'] != inst] + [link]\n            continue\n        if action not in ('new', 'supersede'):\n            raise ValueError('Unknown action ' + action)\n        if cid in records and records[cid].get('familyInstance') != inst:\n            raise ValueError('Catalog id already used by another record: ' + cid)\n        # Per-instance overrides (e.g. one PDB instance in a mostly-QM7-X family) on top of family defaults.\n        family = dict(amap['families'][teacher['family']],\n                      **{k: entry[k] for k in ('domain', 'scale', 'reasoning', 'learningObjective', 'sizeDefinition', 'attribution') if k in entry})\n        record, extra = build_record(entry, family, students[inst], teacher,\n                                     numerics.get(inst), check, workbench['run'], date)\n        files.update(extra)\n        if action == 'supersede':\n            old = records.get(entry['supersedes'])\n            if not old or old['lifecycle'] not in ('rework', 'archived') or old.get('supersededBy') not in (None, cid):\n                raise ValueError('Superseded record must be a rework record: ' + entry['supersedes'])\n            if teacher.get('legacy_qa') != entry['supersedes']:\n                raise ValueError('Instance does not derive from the superseded record')\n            old.update(lifecycle='archived', lifecycleLabel='历史归档', supersededBy=cid,\n                       lifecycleReason='已有新版改写 %s（题型族 %s，暂计），保留原始版本以追溯，不重复计数。' % (cid, teacher['family']),\n                       restartFrom='见新版 ' + cid)\n        if cid in records:\n            catalog['questions'][[q['id'] for q in catalog['questions']].index(cid)] = record\n        else:\n            catalog['questions'].append(record)\n        records[cid] = record\n    catalog['lifecycleCounts'] = dict(Counter(q['lifecycle'] for q in catalog['questions']))\n    catalog['counts']['candidates'] = len(catalog['questions'])\n    catalog['updated'] = date\n    return catalog, files\n\n\nif __name__ == '__main__':\n    p = argparse.ArgumentParser(description=__doc__)\n    p.add_argument('--date', required=True)\n    a = p.parse_args()\n    new, files = admit(read(DOCS / 'data/catalog.json'), read(DOCS / 'data/family-workbench.json'),\n                       read(DOCS / 'data/independent-check.json'), read(ROOT / 'templates/admission-map.json'), a.date)\n    for rel, text in files.items():\n        (DOCS / rel).parent.mkdir(parents=True, exist_ok=True)\n        (DOCS / rel).write_text(text, encoding='utf-8', newline='\\n')\n    path = DOCS / 'data/catalog.json'\n    eol = '\\r\\n' if b'\\r\\n' in path.read_bytes()[:200] else '\\n'    # keep the committed line endings\n    path.write_text(json.dumps(new, ensure_ascii=False, indent=2) + '\\n', encoding='utf-8', newline=eol)\n    print(json.dumps(dict(lifecycleCounts=new['lifecycleCounts'], files=len(files)), ensure_ascii=False))\n"
+     "lines": 172,
+     "sha256": "c08b683dddc37a19ede95fa71cfefc80ccbcecad1eff4570bd9fb01e928c3f10",
+     "source": "\"\"\"Admit published family instances into the catalog under the explicit de-dup map.\n\nReads docs/data/family-workbench.json, docs/data/independent-check.json and\ntemplates/admission-map.json. Only instances that passed the independent checker are\nadmitted, and only as PROVISIONAL (L0 auto-verified; L1–L3 review pending):\n  new        -> new catalog record\n  supersede  -> new record; the legacy rework record is archived with supersededBy\n  reformat   -> no new record; linked under the active legacy record's familyVersions\nIdempotent: re-running with the same inputs yields the same catalog and files.\n\npython tools/admit_family_instances.py --date 2026-09-29\n\"\"\"\nimport argparse\nimport copy\nimport json\nfrom collections import Counter\nfrom pathlib import Path\nimport sys\n\nROOT = Path(__file__).resolve().parents[1]\nsys.path.insert(0, str(ROOT))\nfrom verify_all import rehydrate  # noqa: E402\nDOCS = ROOT / 'docs'\nASSET_DIR = 'assets/families/instances'\nUNITS = {'angstrom': ' Å', 'degree': '°', 'eV': ' eV', 'nm': ' nm', 'nm^-1': ' nm⁻¹', '%': ' %', 'nm^2': ' nm²',\n         '10^12 cm^-2': ' ×10¹² cm⁻²', 'uM': ' µM', '1e5 M^-1 cm^-1': ' ×10⁵ M⁻¹ cm⁻¹',\n         'um^-2': ' μm⁻²', 'um^-1': ' μm⁻¹', '1e-15 Wb': ' ×10⁻¹⁵ Wb', 'mT': ' mT'}\n\n\ndef read(path):\n    return json.loads(Path(path).read_text(encoding='utf-8'))\n\n\ndef option_text(options):\n    return '\\n'.join('%s. %s%s' % (o['label'], o['value'], UNITS.get(o.get('unit'), '')) for o in options)\n\n\ndef build_record(entry, family, student, teacher, numeric, check, run, date):\n    cid, inst = entry['catalog_id'], entry['instance']\n    files, attachments = {}, []\n    for item in student['inputs']:\n        lines = len(item['text'].rstrip('\\n').splitlines())\n        if item.get('url'):          # large input published once as a shared asset: link it, do not copy\n            rel = item['url']\n        else:\n            rel = '%s/%s/%s' % (ASSET_DIR, cid, item['name'])\n            files[rel] = item['text']\n        attachments.append(dict(name=item['name'], url=rel,\n                                description='%s；%s；%d 行' % (item['format'], item['unit'], lines)))\n    names = '、'.join(a['name'] for a in attachments)\n    instructions = ('附件：%s（均为本题完整输入）。范围：%s 只回答一个字母 A、B、C 或 D。' % (names, student['scope']))\n    complete = '\\n\\n'.join([student['question'], '选项：\\n' + option_text(student['options']), instructions])\n    files['%s/%s/input.txt' % (ASSET_DIR, cid)] = complete + ''.join(\n        '\\n\\n===== %s =====\\n%s' % (i['name'], '（大文件，见附件 %s）\\n' % i['url'] if i.get('url') else i['text'])\n        for i in student['inputs'])\n    right = next(o for o in teacher['option_audit'] if o['is_correct'])\n    answer = '%s · %s' % (teacher['correct_label'], right['value'])\n    rubric = '四选一：只接受单个字母 A/B/C/D（忽略大小写与首尾空白），与答案键一致即得分；不从长解释中猜选项。'\n    if teacher['numeric_answer']:\n        n = teacher['numeric_answer']\n        unit = UNITS.get(n['unit'], ' ' + n['unit']) if n['unit'] else ''       # counts (capsid T, capsomers) have no unit\n        answer += '（数值作答：%s%s）' % (n['value'], unit)\n        rubric += ' 数值作答形式：%d 位小数，绝对容差 %s%s。' % (n['decimals'], n['tolerance'], unit)\n    record = dict(\n        id=cid, title=entry['title'], paper=entry.get('paper', family['paper']), ability=teacher['ability'],\n        domain=family['domain'], scale=family['scale'], reasoning=family['reasoning'], status='pending_human_audit',\n        family=teacher['family'],\n        missing=['L1 题型审定、L2 检查器审阅、L3 分层抽查待审核系统建成后统一进行', '尚无独立领域审核与难度测试'],\n        validation='独立检查器（%s）重算并核验四个选项、答案键、学生包泄漏与来源哈希；出题端两种实现交叉复算。L0 自动核验，非专家认证。' % check['method'],\n        publicDemo=True, question=student['question'], modelInput=instructions, answer=answer,\n        source=teacher['source'], inputSizeNm=teacher['scales']['input_nm'], reasoningSizeNm=teacher['scales']['reasoning_nm'],\n        sizeDefinition=family['sizeDefinition'], batchId=run, benchmarkReady=False,\n        releaseRole='public_development_example', rubric=rubric, attribution=family['attribution'],\n        batchReport='templates.html#workbench', traceUrl='templates.html?instance=%s#workbench' % inst,\n        inputInstructions=instructions, sourceRoute='raw_structure_or_simulation', prototypeScreeningPassed=True,\n        policyReview='暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。',\n        attachments=attachments, completeInput=complete, inputDownload='%s/%s/input.txt' % (ASSET_DIR, cid),\n        learningObjective=family['learningObjective'], lifecycle='active', lifecycleLabel='当前原型',\n        lifecycleReason='暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。',\n        lifecycleReviewedAt=date, restartFrom='L1 题型审定 → L2 检查器审阅 → L3 分层抽查',\n        admission='provisional_auto_verified', familyInstance=inst, familyRun=run, independentCheck=check['status'])\n    if entry.get('supersedes'):\n        record['derivedFrom'] = entry['supersedes']\n    if numeric:\n        record['numericVariant'] = numeric['response_format']\n    return record, files\n\n\ndef admit(catalog, workbench, independent, amap, date):\n    \"\"\"Pure function: returns (new catalog, {relative asset path: text}).\"\"\"\n    catalog = copy.deepcopy(catalog)\n    workbench = copy.deepcopy(workbench)\n    rehydrate(workbench['student_packets'])     # restores 'text'; 'url' stays for shared large inputs\n    teachers = {t['id']: t for t in workbench['teacher_answers']}\n    students = {s['id']: s for s in workbench['student_packets']}\n    numerics = {n['inputs_same_as']: n for n in workbench['numeric_student_packets']}\n    checks = {r['id']: r for r in independent['results']}\n    mapped = Counter(e['instance'] for e in amap['instances'])\n    if set(mapped) != set(teachers) or any(v != 1 for v in mapped.values()):\n        raise ValueError('Every published instance must be mapped exactly once')\n    if len({e['catalog_id'] for e in amap['instances'] if e['action'] != 'reformat'}) != \\\n            sum(e['action'] != 'reformat' for e in amap['instances']):\n        raise ValueError('Duplicate catalog id in admission map')\n    records = {q['id']: q for q in catalog['questions']}\n    files = {}\n    for entry in amap['instances']:\n        inst, cid, action = entry['instance'], entry['catalog_id'], entry['action']\n        check = checks.get(inst)\n        if not check or check['status'] != 'pass':\n            raise ValueError('Instance did not pass the independent checker: ' + inst)\n        teacher = teachers[inst]\n        if action == 'reformat':\n            legacy = records.get(cid)\n            if not legacy or legacy['lifecycle'] != 'active' or teacher.get('legacy_qa') != cid:\n                raise ValueError('Reformat target must be the active legacy record it derives from: ' + cid)\n            link = dict(instance=inst, family=teacher['family'], run=workbench['run'], independentCheck=check['status'],\n                        url='templates.html?instance=%s#workbench' % inst, counted=False)\n            legacy['familyVersions'] = [v for v in legacy.get('familyVersions', []) if v['instance'] != inst] + [link]\n            continue\n        if action not in ('new', 'supersede'):\n            raise ValueError('Unknown action ' + action)\n        if cid in records and records[cid].get('familyInstance') != inst:\n            raise ValueError('Catalog id already used by another record: ' + cid)\n        # Per-instance overrides (e.g. one PDB instance in a mostly-QM7-X family) on top of family defaults.\n        family = dict(amap['families'][teacher['family']],\n                      **{k: entry[k] for k in ('domain', 'scale', 'reasoning', 'learningObjective', 'sizeDefinition', 'attribution') if k in entry})\n        record, extra = build_record(entry, family, students[inst], teacher,\n                                     numerics.get(inst), check, workbench['run'], date)\n        files.update(extra)\n        if action == 'supersede':\n            old = records.get(entry['supersedes'])\n            # An active legacy record may be superseded only with a stated reason (format check, 2026-10-13).\n            allowed = ('rework', 'archived') + (('active',) if entry.get('reason') else ())\n            if not old or old['lifecycle'] not in allowed or old.get('supersededBy') not in (None, cid):\n                raise ValueError('Superseded record must be a rework record (or active with a stated reason): ' + entry['supersedes'])\n            if teacher.get('legacy_qa') != entry['supersedes']:\n                raise ValueError('Instance does not derive from the superseded record')\n            reason = ('%s ' % entry['reason']) if entry.get('reason') else ''\n            old.update(lifecycle='archived', lifecycleLabel='历史归档', supersededBy=cid,\n                       lifecycleReason=reason + '已有新版改写 %s（题型族 %s，暂计），保留原始版本以追溯，不重复计数。' % (cid, teacher['family']),\n                       restartFrom='见新版 ' + cid)\n        if cid in records:\n            catalog['questions'][[q['id'] for q in catalog['questions']].index(cid)] = record\n        else:\n            catalog['questions'].append(record)\n        records[cid] = record\n    # Legacy records retired without a replacement (format check 2026-10-13: duplicate, or no geometry needed).\n    for entry in amap.get('retire', []):\n        old = records.get(entry['id'])\n        if not old or old.get('familyInstance') or old['lifecycle'] not in ('active', 'archived') or not entry.get('reason'):\n            raise ValueError('Retire needs an existing legacy record and a stated reason: ' + entry['id'])\n        old.update(lifecycle='archived', lifecycleLabel='历史归档', lifecycleReason=entry['reason'],\n                   lifecycleReviewedAt=entry['date'], restartFrom='不再计入（见原因）')\n    catalog['lifecycleCounts'] = dict(Counter(q['lifecycle'] for q in catalog['questions']))\n    catalog['counts']['candidates'] = len(catalog['questions'])\n    catalog['updated'] = date\n    return catalog, files\n\n\nif __name__ == '__main__':\n    p = argparse.ArgumentParser(description=__doc__)\n    p.add_argument('--date', required=True)\n    a = p.parse_args()\n    new, files = admit(read(DOCS / 'data/catalog.json'), read(DOCS / 'data/family-workbench.json'),\n                       read(DOCS / 'data/independent-check.json'), read(ROOT / 'templates/admission-map.json'), a.date)\n    for rel, text in files.items():\n        (DOCS / rel).parent.mkdir(parents=True, exist_ok=True)\n        (DOCS / rel).write_text(text, encoding='utf-8', newline='\\n')\n    path = DOCS / 'data/catalog.json'\n    eol = '\\r\\n' if b'\\r\\n' in path.read_bytes()[:200] else '\\n'    # keep the committed line endings\n    path.write_text(json.dumps(new, ensure_ascii=False, indent=2) + '\\n', encoding='utf-8', newline=eol)\n    print(json.dumps(dict(lifecycleCounts=new['lifecycleCounts'], files=len(files)), ensure_ascii=False))\n"
     },
     {
      "path": "templates/admission-map.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/templates/admission-map.json",
-     "lines": 1863,
-     "sha256": "cd67b76f8309e39d54edee8eaea4c647783e9df746dc6c79f47bcf54259f4877"
+     "lines": 2043,
+     "sha256": "81aeb64496d7b3cd616f2e6f5f8f7f34f33289583480a537a01d7c9b5a0fdd9a"
     }
    ]
   },
@@ -610,7 +610,7 @@
    "id": "extent_choice_v2",
    "ability": "perception",
    "output": "choice+numeric",
-   "version": "0.3.0",
+   "version": "0.3.1",
    "module": "task_families/extent_choice.py",
    "module_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/task_families/extent_choice.py",
    "route": "general",
@@ -634,9 +634,10 @@
    },
    "checker": "checkers/families.py:extent",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/families.py",
-   "instances": 12,
-   "active": 12,
+   "instances": 15,
+   "active": 15,
    "cells": [
+    "biology 1-10",
     "chemistry 1-10",
     "materials 1-10",
     "quantum 1-10"
@@ -707,8 +708,8 @@
    },
    "checker": "checkers/families.py:extinction",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/families.py",
-   "instances": 7,
-   "active": 7,
+   "instances": 8,
+   "active": 8,
    "cells": [
     "materials 0.1-1",
     "materials 1-10"
@@ -877,10 +878,11 @@
    },
    "checker": "checkers/migrated.py:named_bond_distance",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 5,
-   "active": 5,
+   "instances": 8,
+   "active": 8,
    "cells": [
     "biology 0.1-1",
+    "chemistry 0.1-1",
     "quantum 0.1-1"
    ],
    "enumerator": true,
@@ -914,8 +916,8 @@
    },
    "checker": "checkers/migrated.py:coordination_shell",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 7,
-   "active": 7,
+   "instances": 10,
+   "active": 10,
    "cells": [
     "materials 0.1-1",
     "materials 1-10"
@@ -955,8 +957,8 @@
    },
    "checker": "checkers/migrated.py:first_diffraction_peak",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 8,
-   "active": 8,
+   "instances": 10,
+   "active": 10,
    "cells": [
     "materials 0.1-1",
     "materials 1-10"
@@ -995,8 +997,8 @@
    },
    "checker": "checkers/migrated.py:fret_efficiency",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 3,
-   "active": 3,
+   "instances": 4,
+   "active": 4,
    "cells": [
     "biology 1-10"
    ],
@@ -1034,8 +1036,8 @@
    },
    "checker": "checkers/migrated.py:guinier_intensity",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 9,
-   "active": 9,
+   "instances": 11,
+   "active": 11,
    "cells": [
     "biology 1-10",
     "biology 10-100",

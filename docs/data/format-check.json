@@ -1,20 +1,20 @@
 {
  "kind": "format_check",
  "date": "2026-10-13",
- "checked": 242,
- "with_issues": 48,
+ "checked": 243,
+ "with_issues": 34,
  "by_severity": {
-  "high": 24,
+  "high": 10,
   "medium": 0,
   "low": 24
  },
  "by_rule": {
-  "not_four_choice": 24,
-  "formula_given": 2,
-  "duplicate": 1,
-  "multi_part": 16,
-  "needs_explanation": 12,
-  "binary_inside": 7,
+  "not_four_choice": 10,
+  "formula_given": 0,
+  "duplicate": 0,
+  "multi_part": 8,
+  "needs_explanation": 6,
+  "binary_inside": 4,
   "main_record_old_format": 18,
   "two_binaries_combined": 5,
   "mirror_pair": 2,
@@ -73,127 +73,13 @@
   }
  },
  "answer_positions": {
-  "A": 46,
-  "B": 61,
-  "C": 64,
-  "D": 47
+  "A": 50,
+  "B": 68,
+  "C": 66,
+  "D": 49
  },
  "note": "Automatic rules plus findings checked by hand (REVIEWED). Read-only; fixes follow the RUNBOOK (whole-family regeneration, supersede or archive), not edits of single questions.",
  "items": [
-  {
-   "id": "BNI001",
-   "title": "几何尺寸、散射衰减与近似适用范围",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 7 个得分项。"
-    },
-    {
-     "rule": "binary_inside",
-     "severity": "medium",
-     "label": "内含二选一",
-     "detail": "题干：“which protein”"
-    }
-   ],
-   "suggestion": "拆分：Guinier 强度用已有 guinier_intensity 族出四选一；“规则是否允许”可做分类四选一。"
-  },
-  {
-   "id": "BNI002",
-   "title": "DNA 虚拟探针：FRET 应使用哪种距离",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 5 个得分项。"
-    },
-    {
-     "rule": "needs_explanation",
-     "severity": "medium",
-     "label": "要求文字解释",
-     "detail": "题干：“Explain”"
-    }
-   ],
-   "suggestion": "用已有 fret_efficiency 族出四选一（直线距离 vs 路径长度已是该族登记的错误机制）。"
-  },
-  {
-   "id": "BNP001",
-   "title": "蛋白质末端距离与整体最大尺寸",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 6 个得分项。"
-    },
-    {
-     "rule": "needs_explanation",
-     "severity": "medium",
-     "label": "要求文字解释",
-     "detail": "题干：“Would a terminal”"
-    }
-   ],
-   "suggestion": "拆分：端距可用命名距离、最大间距用整体尺寸族（extent_choice_v2）出四选一。"
-  },
-  {
-   "id": "BNP002",
-   "title": "两种蛋白质的几何回转半径",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 5 个得分项。"
-    },
-    {
-     "rule": "needs_explanation",
-     "severity": "medium",
-     "label": "要求文字解释",
-     "detail": "题干：“Does that ranking alone establish”"
-    },
-    {
-     "rule": "binary_inside",
-     "severity": "medium",
-     "label": "内含二选一",
-     "detail": "题干：“Which has the larger”"
-    }
-   ],
-   "suggestion": "拆分：每个蛋白的回转半径用整体尺寸族出四选一；去掉“哪个更大”的二选一。"
-  },
   {
    "id": "BNP003",
    "title": "DNA 标记路径与空间端距",
@@ -222,36 +108,6 @@
    "suggestion": "路径长度与端距之比没有现成族；若保留需新族，否则归档。"
   },
   {
-   "id": "BNP008",
-   "title": "溶菌酶二硫键 Cys30-Cys115 键长",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    }
-   ],
-   "suggestion": "用命名键长族（PDB 二硫键，已有 BNP016 先例）出四选一，取代旧题。"
-  },
-  {
-   "id": "BNP010",
-   "title": "Crambin 二硫键 Cys16-Cys26 键长",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    }
-   ],
-   "suggestion": "同 BNP008。"
-  },
-  {
    "id": "BNP011",
    "title": "Crambin α螺旋隔四残基 Cα 间距",
    "legacy": true,
@@ -265,42 +121,6 @@
     }
    ],
    "suggestion": "用命名距离族（Cα i→i+4）出四选一。"
-  },
-  {
-   "id": "CNP003",
-   "title": "WP6 · 羧酸根局部 C–O 键长",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：numeric"
-    }
-   ],
-   "suggestion": "改用命名键长族（named_bond_distance）出四选一，取代旧题。"
-  },
-  {
-   "id": "CNP005",
-   "title": "H26DM-B-CD · 桥连氧处的 C-O-C 键角",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "duplicate",
-     "severity": "high",
-     "label": "与另一道题重复",
-     "detail": "与 CNP001 重复：DM-β-CD 附件与 β-CD 附件有 133 个原子坐标逐位相同，所问 C4–O3–C37 键角两题都是 116.0251189°。"
-    }
-   ],
-   "suggestion": "与 CNP001 重复，建议归档；DM-β-CD 另选甲基醚处的几何出题（已有 CNP006 的四选一版本）。"
   },
   {
    "id": "CNP010",
@@ -438,66 +258,6 @@
    "suggestion": "拆分：H···O 距离与角度用新的氢键几何族出四选一；“是否满足判据”可做分类四选一。"
   },
   {
-   "id": "MNI001",
-   "title": "晶面间距如何决定衍射角",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 6 个得分项。"
-    },
-    {
-     "rule": "needs_explanation",
-     "severity": "medium",
-     "label": "要求文字解释",
-     "detail": "题干：“Explain”"
-    },
-    {
-     "rule": "binary_inside",
-     "severity": "medium",
-     "label": "内含二选一",
-     "detail": "题干：“Which has the higher”"
-    }
-   ],
-   "suggestion": "用首个衍射峰族（first_diffraction_peak）出四选一；去掉“哪个更高”的二选一。"
-  },
-  {
-   "id": "MNI002",
-   "title": "硅晶胞中的相位相消与禁反射",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 6 个得分项。"
-    },
-    {
-     "rule": "needs_explanation",
-     "severity": "medium",
-     "label": "要求文字解释",
-     "detail": "题干：“Does cancellation mean”"
-    }
-   ],
-   "suggestion": "用消光判别族（kinematic_extinction）出四选一，硅已有同类实例。"
-  },
-  {
    "id": "MNI003",
    "title": "相同几何下，散射对比如何改变强度",
    "legacy": true,
@@ -525,54 +285,6 @@
    "suggestion": "散射衬度比较没有现成族；可新增或归档。"
   },
   {
-   "id": "MNP001",
-   "title": "硅的周期近邻与四面体几何",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 6 个得分项。"
-    }
-   ],
-   "suggestion": "用已有配位壳层族（coordination_shell）出四选一，已有硅的同类实例可参考。"
-  },
-  {
-   "id": "MNP002",
-   "title": "氯化钠：异种与同种近邻壳层",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "multi_part",
-     "severity": "medium",
-     "label": "一题多问",
-     "detail": "评分列出 5 个得分项。"
-    },
-    {
-     "rule": "needs_explanation",
-     "severity": "medium",
-     "label": "要求文字解释",
-     "detail": "题干：“explain”"
-    }
-   ],
-   "suggestion": "用配位壳层族分别出 Na–Cl、Na–Na 两道四选一。"
-  },
-  {
    "id": "MNP003",
    "title": "硅与金刚石的晶面间距和取向",
    "legacy": true,
@@ -598,48 +310,6 @@
     }
    ],
    "suggestion": "晶面间距与面法线夹角：可并入首个衍射峰族或新增“晶面几何”族；拆成单值四选一。"
-  },
-  {
-   "id": "MNP008",
-   "title": "ZIF-8 · (110) 晶面间距",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "formula_given",
-     "severity": "high",
-     "label": "题干直接给出公式和参数，不需要几何",
-     "detail": "题干给出 a = 16.8303 Å 与 d = a/√(h²+k²+l²)，答案只需代入；不读附件即可作答。"
-    }
-   ],
-   "suggestion": "归档或改写：去掉题干中的公式与晶胞参数，改由附件晶胞计算（可并入衍射 / 晶面几何族）。"
-  },
-  {
-   "id": "MNP009",
-   "title": "MOF-5 · (111) 晶面间距",
-   "legacy": true,
-   "worst": "high",
-   "issues": [
-    {
-     "rule": "not_four_choice",
-     "severity": "high",
-     "label": "不是四选一",
-     "detail": "作答形式：text"
-    },
-    {
-     "rule": "formula_given",
-     "severity": "high",
-     "label": "题干直接给出公式和参数，不需要几何",
-     "detail": "题干给出 a = 25.8247 Å 与 d = a/√(h²+k²+l²)，答案只需代入；不读附件即可作答。"
-    }
-   ],
-   "suggestion": "同 MNP008。"
   },
   {
    "id": "QNI003",

@@ -129,18 +129,28 @@ def admit(catalog, workbench, independent, amap, date):
         files.update(extra)
         if action == 'supersede':
             old = records.get(entry['supersedes'])
-            if not old or old['lifecycle'] not in ('rework', 'archived') or old.get('supersededBy') not in (None, cid):
-                raise ValueError('Superseded record must be a rework record: ' + entry['supersedes'])
+            # An active legacy record may be superseded only with a stated reason (format check, 2026-10-13).
+            allowed = ('rework', 'archived') + (('active',) if entry.get('reason') else ())
+            if not old or old['lifecycle'] not in allowed or old.get('supersededBy') not in (None, cid):
+                raise ValueError('Superseded record must be a rework record (or active with a stated reason): ' + entry['supersedes'])
             if teacher.get('legacy_qa') != entry['supersedes']:
                 raise ValueError('Instance does not derive from the superseded record')
+            reason = ('%s ' % entry['reason']) if entry.get('reason') else ''
             old.update(lifecycle='archived', lifecycleLabel='历史归档', supersededBy=cid,
-                       lifecycleReason='已有新版改写 %s（题型族 %s，暂计），保留原始版本以追溯，不重复计数。' % (cid, teacher['family']),
+                       lifecycleReason=reason + '已有新版改写 %s（题型族 %s，暂计），保留原始版本以追溯，不重复计数。' % (cid, teacher['family']),
                        restartFrom='见新版 ' + cid)
         if cid in records:
             catalog['questions'][[q['id'] for q in catalog['questions']].index(cid)] = record
         else:
             catalog['questions'].append(record)
         records[cid] = record
+    # Legacy records retired without a replacement (format check 2026-10-13: duplicate, or no geometry needed).
+    for entry in amap.get('retire', []):
+        old = records.get(entry['id'])
+        if not old or old.get('familyInstance') or old['lifecycle'] not in ('active', 'archived') or not entry.get('reason'):
+            raise ValueError('Retire needs an existing legacy record and a stated reason: ' + entry['id'])
+        old.update(lifecycle='archived', lifecycleLabel='历史归档', lifecycleReason=entry['reason'],
+                   lifecycleReviewedAt=entry['date'], restartFrom='不再计入（见原因）')
     catalog['lifecycleCounts'] = dict(Counter(q['lifecycle'] for q in catalog['questions']))
     catalog['counts']['candidates'] = len(catalog['questions'])
     catalog['updated'] = date

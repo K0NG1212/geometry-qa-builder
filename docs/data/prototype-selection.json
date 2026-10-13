@@ -17,21 +17,21 @@
  },
  "summary": {
   "selected": 160,
-  "reserve": 82,
+  "reserve": 83,
   "out_of_range": [],
   "abilities": {
-   "perception": 57,
-   "inference": 57,
+   "perception": 59,
+   "inference": 55,
    "design": 46
   },
   "forms": {
-   "family": 144,
+   "family": 145,
    "family-version": 15,
-   "legacy": 1
+   "legacy": 0
   },
-  "review_units": 46,
+  "review_units": 45,
   "family_units": 45,
-  "legacy_units": 1,
+  "legacy_units": 0,
   "pending_decision": {
    "measurement_condition_design": 12,
    "experimental_evidence": 7
@@ -43,8 +43,8 @@
    "cell": "chemistry 0.1-1",
    "domain": "chemistry",
    "bin": "0.1-1",
-   "available": 26,
-   "eligible": 26,
+   "available": 25,
+   "eligible": 25,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -79,12 +79,12 @@
      "pending": null
     },
     {
-     "id": "CNP018",
+     "id": "CNP027",
      "ability": "perception",
      "form": "family",
-     "unit": "stereo_relationship",
-     "instance": "FA-SREL-7082-CONS",
-     "source": "qm7x",
+     "unit": "named_bond_distance",
+     "instance": "FA-DIST-WP6-C20O22",
+     "source": "sampl9",
      "pending": null
     },
     {
@@ -184,26 +184,6 @@
      "reason": "本格已满 10 道"
     },
     {
-     "id": "CNP003",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:carboxylate_bond_metric",
-     "instance": null,
-     "source": "sampl9",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "CNP005",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:specified_local_angle",
-     "instance": null,
-     "source": "sampl9",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
      "id": "CNP012",
      "ability": "perception",
      "form": "family",
@@ -249,6 +229,16 @@
      "form": "family",
      "unit": "stereo_relationship",
      "instance": "FA-SREL-7043-DIAS",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP018",
+     "ability": "perception",
+     "form": "family",
+     "unit": "stereo_relationship",
+     "instance": "FA-SREL-7082-CONS",
      "source": "qm7x",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -304,7 +294,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 26 道，其中经独立检查 20 道"
+   "rationale": "可用 25 道，其中经独立检查 21 道"
   },
   {
    "cell": "chemistry 1-10",
@@ -658,15 +648,6 @@
    },
    "selected": [
     {
-     "id": "BNP013",
-     "ability": "perception",
-     "form": "family",
-     "unit": "backbone_torsion",
-     "instance": "FA-TOR-1CRN-G20",
-     "source": "pdb-bio-nm",
-     "pending": null
-    },
-    {
      "id": "BNP014",
      "ability": "perception",
      "form": "family",
@@ -685,11 +666,20 @@
      "pending": null
     },
     {
-     "id": "BNP016",
+     "id": "BNP038",
      "ability": "perception",
      "form": "family",
      "unit": "named_bond_distance",
-     "instance": "FA-DIST-6LYZ-SS",
+     "instance": "FA-DIST-6LYZ-SS30",
+     "source": "pdb-bio-nm",
+     "pending": null
+    },
+    {
+     "id": "BNP039",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "FA-DIST-1CRN-SS16",
      "source": "pdb-bio-nm",
      "pending": null
     },
@@ -750,26 +740,6 @@
    ],
    "reserve": [
     {
-     "id": "BNP008",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:disulfide_bond_length",
-     "instance": null,
-     "source": "pdb-bio-nm",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "BNP010",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:disulfide_bond_length",
-     "instance": null,
-     "source": "pdb-bio-nm",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
      "id": "BNP011",
      "ability": "perception",
      "form": "legacy",
@@ -778,46 +748,66 @@
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP013",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "FA-TOR-1CRN-G20",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP016",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "FA-DIST-6LYZ-SS",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 13 道，其中经独立检查 10 道"
+   "rationale": "可用 13 道，其中经独立检查 12 道"
   },
   {
    "cell": "biology 1-10",
    "domain": "biology",
    "bin": "1-10",
-   "available": 14,
-   "eligible": 14,
+   "available": 16,
+   "eligible": 16,
    "abilities": {
-    "perception": 1,
-    "inference": 6,
+    "perception": 3,
+    "inference": 4,
     "design": 3
    },
    "selected": [
     {
-     "id": "BNP002",
+     "id": "BNP040",
      "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:protein_geometric_gyration",
-     "instance": null,
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "FC-BNP002-1UBQ",
      "source": "pdb-bio-nm",
      "pending": null
     },
     {
-     "id": "BNI009",
-     "ability": "inference",
+     "id": "BNP041",
+     "ability": "perception",
      "form": "family",
-     "unit": "fret_efficiency",
-     "instance": "FA-FRET-1EHZ",
+     "unit": "extent_choice_v2",
+     "instance": "FC-BNP002-1CRN",
      "source": "pdb-bio-nm",
      "pending": null
     },
     {
-     "id": "BNI010",
-     "ability": "inference",
+     "id": "BNP042",
+     "ability": "perception",
      "form": "family",
-     "unit": "fret_efficiency",
-     "instance": "FA-FRET-1UBQ",
+     "unit": "extent_choice_v2",
+     "instance": "FC-BNP001-1CRN",
      "source": "pdb-bio-nm",
      "pending": null
     },
@@ -849,11 +839,11 @@
      "pending": null
     },
     {
-     "id": "BNI014",
+     "id": "BNI043",
      "ability": "inference",
      "form": "family",
-     "unit": "guinier_intensity",
-     "instance": "FA-GUIN-1BNA",
+     "unit": "fret_efficiency",
+     "instance": "FA-FRET-1BNA",
      "source": "pdb-bio-nm",
      "pending": null
     },
@@ -887,31 +877,51 @@
    ],
    "reserve": [
     {
-     "id": "BNI001",
+     "id": "BNI009",
      "ability": "inference",
-     "form": "legacy",
-     "unit": "legacy:conditional_guinier_inference",
-     "instance": null,
+     "form": "family",
+     "unit": "fret_efficiency",
+     "instance": "FA-FRET-1EHZ",
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
     },
     {
-     "id": "BNI002",
+     "id": "BNI010",
      "ability": "inference",
-     "form": "legacy",
-     "unit": "legacy:conditional_fret_inference",
-     "instance": null,
+     "form": "family",
+     "unit": "fret_efficiency",
+     "instance": "FA-FRET-1UBQ",
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
     },
     {
-     "id": "BNP001",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:protein_global_extent",
-     "instance": null,
+     "id": "BNI014",
+     "ability": "inference",
+     "form": "family",
+     "unit": "guinier_intensity",
+     "instance": "FA-GUIN-1BNA",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI041",
+     "ability": "inference",
+     "form": "family",
+     "unit": "guinier_intensity",
+     "instance": "FA-GUIN-1UBQ",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI042",
+     "ability": "inference",
+     "form": "family",
+     "unit": "guinier_intensity",
+     "instance": "FA-GUIN-1CRN",
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -927,7 +937,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 14 道，其中经独立检查 9 道；经独立检查的题不足 10 道，用旧模板题补 1 道：BNP002"
+   "rationale": "可用 16 道，其中经独立检查 15 道"
   },
   {
    "cell": "biology 10-100",
@@ -1476,8 +1486,8 @@
    "cell": "materials 0.1-1",
    "domain": "materials",
    "bin": "0.1-1",
-   "available": 25,
-   "eligible": 25,
+   "available": 27,
+   "eligible": 27,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -1577,26 +1587,6 @@
    ],
    "reserve": [
     {
-     "id": "MNI001",
-     "ability": "inference",
-     "form": "legacy",
-     "unit": "legacy:bragg_geometry_inference",
-     "instance": null,
-     "source": "cod-materials-cell",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "MNI002",
-     "ability": "inference",
-     "form": "legacy",
-     "unit": "legacy:basis_phase_extinction",
-     "instance": null,
-     "source": "cod-materials-cell",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
      "id": "MNI003",
      "ability": "inference",
      "form": "legacy",
@@ -1687,21 +1677,31 @@
      "reason": "本格已满 10 道"
     },
     {
-     "id": "MNP001",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:periodic_tetrahedral_coordination",
-     "instance": null,
+     "id": "MNI033",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "FA-PEAK-SI",
      "source": "cod-materials-cell",
      "pending": null,
      "reason": "本格已满 10 道"
     },
     {
-     "id": "MNP002",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:species_resolved_coordination_shell",
-     "instance": null,
+     "id": "MNI034",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "FA-PEAK-DIAMOND",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI035",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "FA-EXT-SI",
      "source": "cod-materials-cell",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -1725,16 +1725,46 @@
      "source": "cod-materials-cell",
      "pending": null,
      "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP025",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "FA-COORD-SI",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP026",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "FA-COORD-NACL-CL",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP027",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "FA-COORD-NACL-NA",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 25 道，其中经独立检查 19 道"
+   "rationale": "可用 27 道，其中经独立检查 25 道"
   },
   {
    "cell": "materials 1-10",
    "domain": "materials",
    "bin": "1-10",
-   "available": 14,
-   "eligible": 14,
+   "available": 12,
+   "eligible": 12,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -1852,29 +1882,9 @@
      "source": "cod-mof",
      "pending": null,
      "reason": "本格已满 10 道"
-    },
-    {
-     "id": "MNP008",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:cubic_plane_geometry",
-     "instance": null,
-     "source": "cod-mof",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "MNP009",
-     "ability": "perception",
-     "form": "legacy",
-     "unit": "legacy:cubic_plane_geometry",
-     "instance": null,
-     "source": "cod-mof",
-     "pending": null,
-     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 14 道，其中经独立检查 12 道"
+   "rationale": "可用 12 道，其中经独立检查 12 道"
   },
   {
    "cell": "materials 10-100",
@@ -2576,12 +2586,9 @@
   "BND009",
   "BND010",
   "BND015",
-  "BNI009",
-  "BNI010",
   "BNI011",
   "BNI012",
   "BNI013",
-  "BNI014",
   "BNI017",
   "BNI019",
   "BNI020",
@@ -2593,11 +2600,9 @@
   "BNI026",
   "BNI033",
   "BNI037",
-  "BNP002",
-  "BNP013",
+  "BNI043",
   "BNP014",
   "BNP015",
-  "BNP016",
   "BNP020",
   "BNP023",
   "BNP024",
@@ -2605,6 +2610,11 @@
   "BNP031",
   "BNP034",
   "BNP036",
+  "BNP038",
+  "BNP039",
+  "BNP040",
+  "BNP041",
+  "BNP042",
   "CND001",
   "CND003",
   "CND004",
@@ -2637,7 +2647,6 @@
   "CNP009",
   "CNP011",
   "CNP016",
-  "CNP018",
   "CNP020",
   "CNP021",
   "CNP022",
@@ -2645,6 +2654,7 @@
   "CNP024",
   "CNP025",
   "CNP026",
+  "CNP027",
   "MND001",
   "MND002",
   "MND003",

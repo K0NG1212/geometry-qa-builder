@@ -26,10 +26,16 @@ class AdmissionMapTests(unittest.TestCase):
         self.assertEqual(Counter(instances), Counter(t['id'] for t in WORKBENCH['teacher_answers']))
         actions = Counter(e['action'] for e in AMAP['instances'])
         self.assertEqual(actions['reformat'], 18)
-        # Only new and supersede entries create counted records; the 42 screened legacy items stay.
+        # Only new and supersede entries create counted records. Of the 42 screened legacy items, those superseded with a
+        # stated reason or retired by the format check (2026-10-13) leave the active set; each keeps its reason.
         counted = [q for q in CATALOG['questions'] if q.get('familyInstance') and q['lifecycle'] == 'active']
         self.assertEqual(len(counted), actions['new'] + actions['supersede'])
-        self.assertEqual(CATALOG['lifecycleCounts']['active'], 42 + actions['new'] + actions['supersede'])
+        left = [e['supersedes'] for e in AMAP['instances'] if e.get('reason')] + [e['id'] for e in AMAP.get('retire', [])]
+        self.assertEqual(len(left), len(set(left)))
+        for qid in left:
+            self.assertEqual(BY_ID[qid]['lifecycle'], 'archived', qid)
+            self.assertIn('格式检查', BY_ID[qid]['lifecycleReason'], qid)
+        self.assertEqual(CATALOG['lifecycleCounts']['active'], 42 - len(left) + actions['new'] + actions['supersede'])
 
     def test_new_records_are_complete_and_provisional(self):
         for e in AMAP['instances']:

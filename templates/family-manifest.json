@@ -3539,6 +3539,264 @@
     27
    ],
    "charge": 2
+  },
+  {
+   "source": "https://www.rcsb.org/structure/6LYZ",
+   "license": "wwPDB (CC0)",
+   "id": "FA-DIST-6LYZ-SS30",
+   "family": "named_bond_distance",
+   "asset": "assets/bio/6LYZ.pdb",
+   "pdb": "6LYZ",
+   "chain": "A",
+   "legacy_qa": "BNP008",
+   "pdb_atoms": [
+    [
+     30,
+     "SG"
+    ],
+    [
+     115,
+     "SG"
+    ]
+   ],
+   "context": "The excerpt gives the SSBOND record and the ATOM records of Cys30 and Cys115 of hen egg-white lysozyme (PDB 6LYZ, chain A), copied unchanged (angstrom).",
+   "bond": "the disulfide bridge listed in the SSBOND record",
+   "typical": {
+    "value": 2.05,
+    "basis": "disulfide S–S"
+   },
+   "scope": "6LYZ 晶体结构两个半胱氨酸；只测 SG–SG 距离，不据此单独判定成键状态。"
+  },
+  {
+   "source": "https://www.rcsb.org/structure/1CRN",
+   "license": "wwPDB (CC0)",
+   "id": "FA-DIST-1CRN-SS16",
+   "family": "named_bond_distance",
+   "asset": "assets/bio/1CRN.pdb",
+   "pdb": "1CRN",
+   "chain": "A",
+   "legacy_qa": "BNP010",
+   "pdb_atoms": [
+    [
+     16,
+     "SG"
+    ],
+    [
+     26,
+     "SG"
+    ]
+   ],
+   "context": "The excerpt gives the SSBOND record and the ATOM records of Cys16 and Cys26 of crambin (PDB 1CRN, chain A), copied unchanged (angstrom).",
+   "bond": "the disulfide bridge listed in the SSBOND record",
+   "typical": {
+    "value": 2.05,
+    "basis": "disulfide S–S"
+   },
+   "scope": "1CRN 晶体结构两个半胱氨酸；只测 SG–SG 距离，不据此单独判定成键状态。"
+  },
+  {
+   "source": "https://github.com/samplchallenges/SAMPL9/blob/22aa2df3a086f5f0ca49dab8f8d75e5e0305445b/host_guest/WP6/host_files/WP6.pdb",
+   "license": "SAMPL9 repository (MIT)",
+   "id": "FA-DIST-WP6-C20O22",
+   "family": "named_bond_distance",
+   "asset": "assets/qa/WP6.xyz",
+   "legacy_qa": "CNP003",
+   "atoms": [
+    {
+     "row": 20,
+     "name": "C20",
+     "element": "C"
+    },
+    {
+     "row": 22,
+     "name": "O22",
+     "element": "O"
+    }
+   ],
+   "context": "The supplied XYZ is one WP6 (carboxylated pillar[6]arene, all twelve carboxyl groups deprotonated) host conformer from the SAMPL9 host–guest challenge (150 atoms, angstrom); rows are counted from 1 after the two header lines.",
+   "bond": "the delocalized C–O bond of a carboxylate group (C20 is the carboxylate carbon COO⁻, O22 one of its two terminal oxygens)",
+   "scope": "SAMPL9 WP6 主体单一构象；只测该结构中的键长，不据此判断键级。"
+  },
+  {
+   "source": "https://www.crystallography.net/cod/9008565.html",
+   "license": "COD (public domain)",
+   "source_kind": "cif",
+   "asset": "assets/materials/9008565.cif",
+   "name": "silicon (Si, COD 9008565)",
+   "id": "FA-COORD-SI",
+   "family": "coordination_shell",
+   "legacy_qa": "MNP001",
+   "centre": {
+    "element": "Si"
+   },
+   "partner": {
+    "element": "Si"
+   },
+   "centre_text": "Si atom",
+   "partner_text": "Si atoms",
+   "scope": "常规立方晶胞对称展开；周期晶体。"
+  },
+  {
+   "source": "https://www.crystallography.net/cod/9008678.html",
+   "license": "COD (public domain)",
+   "source_kind": "cif",
+   "asset": "assets/materials/9008678.cif",
+   "name": "halite (NaCl, COD 9008678)",
+   "id": "FA-COORD-NACL-CL",
+   "family": "coordination_shell",
+   "legacy_qa": "MNP002",
+   "centre": {
+    "element": "Na"
+   },
+   "partner": {
+    "element": "Cl"
+   },
+   "centre_text": "Na atom",
+   "partner_text": "Cl atoms",
+   "scope": "常规立方晶胞对称展开；周期晶体。"
+  },
+  {
+   "source": "https://www.crystallography.net/cod/9008678.html",
+   "license": "COD (public domain)",
+   "source_kind": "cif",
+   "asset": "assets/materials/9008678.cif",
+   "name": "halite (NaCl, COD 9008678)",
+   "id": "FA-COORD-NACL-NA",
+   "family": "coordination_shell",
+   "centre": {
+    "element": "Na"
+   },
+   "partner": {
+    "element": "Na"
+   },
+   "centre_text": "Na atom",
+   "partner_text": "other Na atoms",
+   "scope": "常规立方晶胞对称展开；周期晶体。"
+  },
+  {
+   "source": "https://www.crystallography.net/cod/9008565.html",
+   "license": "COD (public domain)",
+   "source_kind": "cif",
+   "asset": "assets/materials/9008565.cif",
+   "name": "silicon (Si, COD 9008565)",
+   "id": "FA-PEAK-SI",
+   "family": "first_diffraction_peak",
+   "legacy_qa": "MNI001",
+   "weights": {
+    "Si": 14
+   },
+   "wavelength_A": 1.5406,
+   "scope": "运动学模型、原子序数权重；Cu Kα。"
+  },
+  {
+   "source": "https://www.crystallography.net/cod/9008564.html",
+   "license": "COD (public domain)",
+   "source_kind": "cif",
+   "asset": "assets/materials/9008564.cif",
+   "name": "diamond (C, COD 9008564)",
+   "id": "FA-PEAK-DIAMOND",
+   "family": "first_diffraction_peak",
+   "weights": {
+    "C": 6
+   },
+   "wavelength_A": 1.5406,
+   "scope": "运动学模型、原子序数权重；Cu Kα。"
+  },
+  {
+   "source": "https://www.crystallography.net/cod/9008565.html",
+   "license": "COD (public domain)",
+   "source_kind": "cif",
+   "asset": "assets/materials/9008565.cif",
+   "name": "silicon (Si, COD 9008565)",
+   "id": "FA-EXT-SI",
+   "family": "kinematic_extinction",
+   "legacy_qa": "MNI002",
+   "weights": {
+    "Si": 14
+   },
+   "scope": "常规立方晶胞 8 个原子（对称展开）；零角度原子序数权重。"
+  },
+  {
+   "source": "https://www.rcsb.org/structure/1UBQ",
+   "license": "wwPDB (CC0)",
+   "id": "FA-GUIN-1UBQ",
+   "family": "guinier_intensity",
+   "asset": "assets/bio/1UBQ.pdb",
+   "pdb": "1UBQ",
+   "chains": "A",
+   "legacy_qa": "BNI001",
+   "context": "ubiquitin",
+   "q_per_nm": 0.5,
+   "scope": "等权点散射体；非实测 SAXS。"
+  },
+  {
+   "source": "https://www.rcsb.org/structure/1CRN",
+   "license": "wwPDB (CC0)",
+   "id": "FA-GUIN-1CRN",
+   "family": "guinier_intensity",
+   "asset": "assets/bio/1CRN.pdb",
+   "pdb": "1CRN",
+   "chains": "A",
+   "context": "crambin",
+   "q_per_nm": 0.5,
+   "scope": "等权点散射体；非实测 SAXS。"
+  },
+  {
+   "source": "https://www.rcsb.org/structure/1BNA",
+   "license": "wwPDB (CC0)",
+   "id": "FA-FRET-1BNA",
+   "family": "fret_efficiency",
+   "asset": "assets/bio/1BNA.pdb",
+   "pdb": "1BNA",
+   "chain": "A",
+   "legacy_qa": "BNI002",
+   "context": "B-DNA dodecamer (Drew–Dickerson)",
+   "donor": [
+    1,
+    "C1'"
+   ],
+   "acceptor": [
+    12,
+    "C1'"
+   ],
+   "R0_nm": 3.5,
+   "path_atom": "C1'",
+   "scope": "虚拟点探针；R0 为题设值；不代表真实染料位置。"
+  },
+  {
+   "source": "https://www.rcsb.org/structure/1UBQ",
+   "license": "wwPDB (CC0)",
+   "id": "FC-BNP002-1UBQ",
+   "family": "extent_choice_v2",
+   "template": "equal_weight_rg",
+   "asset": "assets/qa/BNP002-S0006.xyz",
+   "legacy_qa": "BNP002",
+   "scope": "PDB 1UBQ 链 A 的全部 Cα 位点（76 个，等权点）；坐标单位 Å；只计算该文件的点集，不做全原子或溶液构象推断。",
+   "context": "The supplied XYZ lists the 76 Cα atoms of ubiquitin (PDB 1UBQ, chain A), one point per residue (angstrom).",
+   "legacy_numeric_reference": 11.4929
+  },
+  {
+   "source": "https://www.rcsb.org/structure/1CRN",
+   "license": "wwPDB (CC0)",
+   "id": "FC-BNP002-1CRN",
+   "family": "extent_choice_v2",
+   "template": "equal_weight_rg",
+   "asset": "assets/qa/BNP002-S0007.xyz",
+   "scope": "PDB 1CRN 链 A 的全部 Cα 位点（46 个，等权点）；坐标单位 Å；只计算该文件的点集，不做全原子或溶液构象推断。",
+   "context": "The supplied XYZ lists the 46 Cα atoms of crambin (PDB 1CRN, chain A), one point per residue (angstrom).",
+   "legacy_numeric_reference": 9.6755
+  },
+  {
+   "source": "https://www.rcsb.org/structure/1CRN",
+   "license": "wwPDB (CC0)",
+   "id": "FC-BNP001-1CRN",
+   "family": "extent_choice_v2",
+   "template": "global_extent",
+   "asset": "assets/qa/BNP001-S0007.xyz",
+   "legacy_qa": "BNP001",
+   "scope": "PDB 1CRN 链 A 的全部 Cα 位点（46 个，等权点）；坐标单位 Å；只计算该文件的点集，不做全原子或溶液构象推断。",
+   "context": "The supplied XYZ lists the 46 Cα atoms of crambin (PDB 1CRN, chain A), one point per residue (angstrom).",
+   "legacy_numeric_reference": 29.0219
   }
  ]
 }

@@ -393,6 +393,15 @@
       "attribution": "QM7-X（Hoja et al., Sci. Data 2021，CC BY 4.0）几何坐标原样。",
       "learningObjective": "为替代法结构测定选择单氘代位点，使指定转动谱线位移最大（设计 = 推断的逆问题）。",
       "sizeDefinition": "输入与推理：分子最大原子间距（整分子转动惯量）。"
+    },
+    "extent_choice_v2": {
+      "domain": "quantum",
+      "scale": "small_molecule",
+      "reasoning": "molecular",
+      "paper": "qm7x",
+      "learningObjective": "由全部给定点求整体尺寸（最大间距或等权回转半径）。",
+      "sizeDefinition": "输入与推理：点集最大间距。",
+      "attribution": "见各题来源。"
     }
   },
   "instances": [
@@ -1858,6 +1867,177 @@
       "domain": "chemistry",
       "paper": "sampl9",
       "attribution": "SAMPL9 WP6 主客体挑战赛客体结构（samplchallenges/SAMPL9），坐标原样。"
+    },
+    {
+      "instance": "FA-DIST-6LYZ-SS30",
+      "action": "supersede",
+      "catalog_id": "BNP038",
+      "title": "6LYZ · Cys30–Cys115 二硫键 SG–SG 距离（四选一）",
+      "supersedes": "BNP008",
+      "reason": "格式检查（2026-10-13）：原题不是四选一。",
+      "paper": "pdb-bio-nm",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "attribution": "RCSB PDB（wwPDB，CC0）；SSBOND 与 ATOM 记录原样摘录。",
+      "reasoning": "local_geometry",
+      "learningObjective": "测定晶体结构中 SSBOND 记录所列二硫键的 SG–SG 距离；只作几何测量，不据此单独判定成键状态。",
+      "sizeDefinition": "输入：两残基片段最大原子间距；推理：SG–SG 距离。"
+    },
+    {
+      "instance": "FA-DIST-1CRN-SS16",
+      "action": "supersede",
+      "catalog_id": "BNP039",
+      "title": "crambin 1CRN · Cys16–Cys26 二硫键 SG–SG 距离（四选一）",
+      "supersedes": "BNP010",
+      "reason": "格式检查（2026-10-13）：原题不是四选一。",
+      "paper": "pdb-bio-nm",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "attribution": "RCSB PDB（wwPDB，CC0）；SSBOND 与 ATOM 记录原样摘录。",
+      "reasoning": "local_geometry",
+      "learningObjective": "测定晶体结构中 SSBOND 记录所列二硫键的 SG–SG 距离；只作几何测量，不据此单独判定成键状态。",
+      "sizeDefinition": "输入：两残基片段最大原子间距；推理：SG–SG 距离。"
+    },
+    {
+      "instance": "FA-DIST-WP6-C20O22",
+      "action": "supersede",
+      "catalog_id": "CNP027",
+      "title": "WP6 · 羧酸根 C20–O22 键长（四选一）",
+      "supersedes": "CNP003",
+      "reason": "格式检查（2026-10-13）：原题不是四选一。",
+      "paper": "sampl9",
+      "domain": "chemistry",
+      "scale": "host_molecule",
+      "reasoning": "atom_pair",
+      "attribution": "SAMPL9 挑战赛 WP6 主体结构（MIT），坐标原样。",
+      "learningObjective": "测定主体分子中按化学含义指定的键长（羧酸根 C–O，离域键），原子由成键关系与官能团确认。",
+      "sizeDefinition": "输入：主体分子最大原子间距；推理：两成键原子间距。"
+    },
+    {
+      "instance": "FA-COORD-SI",
+      "action": "supersede",
+      "catalog_id": "MNP025",
+      "title": "硅 · Si 周围 Si 最近壳层（四选一）",
+      "supersedes": "MNP001",
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问。"
+    },
+    {
+      "instance": "FA-COORD-NACL-CL",
+      "action": "supersede",
+      "catalog_id": "MNP026",
+      "title": "NaCl · Na 周围 Cl 最近壳层（四选一）",
+      "supersedes": "MNP002",
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释。"
+    },
+    {
+      "instance": "FA-COORD-NACL-NA",
+      "action": "new",
+      "catalog_id": "MNP027",
+      "title": "NaCl · Na 周围其他 Na 最近壳层（四选一）"
+    },
+    {
+      "instance": "FA-PEAK-SI",
+      "action": "supersede",
+      "catalog_id": "MNI033",
+      "title": "硅 · 首个衍射峰 2θ（四选一）",
+      "supersedes": "MNI001",
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释、内含二选一。"
+    },
+    {
+      "instance": "FA-PEAK-DIAMOND",
+      "action": "new",
+      "catalog_id": "MNI034",
+      "title": "金刚石 · 首个衍射峰 2θ（四选一）"
+    },
+    {
+      "instance": "FA-EXT-SI",
+      "action": "supersede",
+      "catalog_id": "MNI035",
+      "title": "硅 · 哪一反射消光（四选一）",
+      "supersedes": "MNI002",
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释。"
+    },
+    {
+      "instance": "FA-GUIN-1UBQ",
+      "action": "supersede",
+      "catalog_id": "BNI041",
+      "title": "泛素 1UBQ · Guinier 强度（四选一）",
+      "supersedes": "BNI001",
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、内含二选一。"
+    },
+    {
+      "instance": "FA-GUIN-1CRN",
+      "action": "new",
+      "catalog_id": "BNI042",
+      "title": "crambin 1CRN · Guinier 强度（四选一）"
+    },
+    {
+      "instance": "FA-FRET-1BNA",
+      "action": "supersede",
+      "catalog_id": "BNI043",
+      "title": "B-DNA 1BNA · 链两端 C1′ FRET 效率（四选一）",
+      "supersedes": "BNI002",
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释。"
+    },
+    {
+      "instance": "FC-BNP002-1UBQ",
+      "action": "supersede",
+      "catalog_id": "BNP040",
+      "title": "泛素 1UBQ · Cα 等权回转半径（四选一）",
+      "supersedes": "BNP002",
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释、内含二选一。",
+      "paper": "pdb-bio-nm",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "attribution": "RCSB PDB（wwPDB，CC0）；链 A 的 Cα 坐标。",
+      "reasoning": "molecular",
+      "learningObjective": "由全部 Cα 位点求等权回转半径（不加质量权重）。",
+      "sizeDefinition": "输入与推理：Cα 点集最大间距。"
+    },
+    {
+      "instance": "FC-BNP002-1CRN",
+      "action": "new",
+      "catalog_id": "BNP041",
+      "title": "crambin 1CRN · Cα 等权回转半径（四选一）",
+      "paper": "pdb-bio-nm",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "attribution": "RCSB PDB（wwPDB，CC0）；链 A 的 Cα 坐标。",
+      "reasoning": "molecular",
+      "learningObjective": "由全部 Cα 位点求等权回转半径（不加质量权重）。",
+      "sizeDefinition": "输入与推理：Cα 点集最大间距。"
+    },
+    {
+      "instance": "FC-BNP001-1CRN",
+      "action": "supersede",
+      "catalog_id": "BNP042",
+      "title": "crambin 1CRN · Cα 点集最大间距（四选一）",
+      "supersedes": "BNP001",
+      "reason": "格式检查（2026-10-13）：原题不是四选一、一题多问、要求文字解释。",
+      "paper": "pdb-bio-nm",
+      "domain": "biology",
+      "scale": "macromolecule",
+      "attribution": "RCSB PDB（wwPDB，CC0）；链 A 的 Cα 坐标。",
+      "reasoning": "molecular",
+      "learningObjective": "在全部 Cα 位点中找最大间距（整个分子尺寸），区别于端到端距离。",
+      "sizeDefinition": "输入与推理：Cα 点集最大间距。"
+    }
+  ],
+  "retire": [
+    {
+      "id": "CNP005",
+      "date": "2026-10-13",
+      "reason": "格式检查（2026-10-13）：与 CNP001 重复——DM-β-CD 附件与 β-CD 附件有 133 个原子坐标逐位相同，所问 C4–O3–C37 键角两题都是 116.0251189°；保留原始记录以追溯，不再计数。"
+    },
+    {
+      "id": "MNP008",
+      "date": "2026-10-13",
+      "reason": "格式检查（2026-10-13）：题干直接给出晶胞参数 a 与 d = a/√(h²+k²+l²)，只需代入，不需要附件几何；不再计数。ZIF-8 的衍射几何已由 MNI018 覆盖。"
+    },
+    {
+      "id": "MNP009",
+      "date": "2026-10-13",
+      "reason": "格式检查（2026-10-13）：题干直接给出晶胞参数 a 与 d = a/√(h²+k²+l²)，只需代入，不需要附件几何；不再计数。MOF-5 的衍射几何已由 MNI019 覆盖。"
     }
   ]
 }

@@ -115,8 +115,10 @@ def build():
                 found[c['id']].append(('two_binaries_combined', '选项：' + ' / '.join(o['value'] for o in c['options'])))
             if mirror(c['options'], c['correct']):
                 found[c['id']].append(('mirror_pair', '选项：' + ' / '.join(o['value'] for o in c['options'])))
+    active = {c['id'] for c in cards}
     for qid, items in REVIEWED.items():
-        found[qid] += items
+        if qid in active:            # retired questions (e.g. CNP005, MNP008/9 on 2026-10-13) leave the list
+            found[qid] += items
     rows = []
     order = {'high': 0, 'medium': 1, 'low': 2}
     for qid, items in found.items():
