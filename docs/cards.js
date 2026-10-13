@@ -29,7 +29,7 @@
     const q = $('f-search').value.trim().toLowerCase(), sub = $('f-sub').value, onlyFlag = $('f-flagged').checked;
     const order = shown.length && $('shuffle').dataset.on === '1' ? new Map(shown.map((c, i) => [c.id, i])) : null;
     shown = all.filter(c => ab.has(c.ability) && dm.has(c.domain) && sc.has(c.scale) && fm.has(c.format) &&
-      (!sub || c.subdomain === sub) && (!onlyFlag || flags[c.id] !== undefined) &&
+      (!sub || c.subdomain === sub || c.l1 === sub) && (!onlyFlag || flags[c.id] !== undefined) &&
       (!q || c.id.toLowerCase().includes(q) || c.title.toLowerCase().includes(q)));
     if (order) shown.sort((a, b) => (order.get(a.id) ?? 1e9) - (order.get(b.id) ?? 1e9));
     for (const field of ['ability', 'domain', 'scale', 'format']) {
@@ -195,8 +195,8 @@
     boxes('scale', Object.keys(SCALE), SCALE);
     boxes('format', ['choice', 'open'], FORMAT);
     $('f-sub').insertAdjacentHTML('beforeend', Object.entries(subNames).map(([k, v]) => {
-      const n = all.filter(c => c.subdomain === k).length;
-      return `<option value="${esc(k)}">${esc(k)} ${esc(v)}（${n}）</option>`;
+      const top = !/[a-z]$/.test(k), n = all.filter(c => (top ? c.l1 : c.subdomain) === k).length;
+      return `<option value="${esc(k)}">${top ? '' : '　'}${esc(k)} ${esc(top ? v + '（全部）' : v.split(' · ')[1])}（${n}）</option>`;
     }).join(''));
     apply(location.hash.slice(1) || null);
   }).catch(() => { $('card').innerHTML = '<div class="empty-state">题目数据读取失败，请刷新页面。</div>'; });

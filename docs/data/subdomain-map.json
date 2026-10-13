@@ -1,359 +1,88 @@
 {
  "kind": "subdomain_pixel_map",
- "taxonomy_version": "0.1.0",
+ "taxonomy_version": "0.2.0",
  "taxonomy_status": "draft",
- "note": "Draft taxonomy pending the advisor; assignment is automatic (by source, structure and family) and individual questions may need manual reassignment.",
+ "note": "Draft taxonomy pending the advisor; assignment is automatic (by structure, source and family) and individual questions may need manual reassignment.",
  "summary": {
-  "subdomains": 24,
-  "meaningful_pixels": 52,
-  "pixels_with_questions": 25,
-  "empty_meaningful_pixels": 27,
-  "pixels_with_enumerator": 19,
-  "empty_subdomains": [
-   "Q6",
-   "C4",
+  "level1": 32,
+  "leaves": 89,
+  "meaningful_pixels": 74,
+  "pixels_with_questions": 27,
+  "empty_meaningful_pixels": 47,
+  "pixels_with_enumerator": 25,
+  "leaves_with_questions": 28,
+  "empty_level1": [
+   "P2",
+   "P7",
+   "C3",
    "C5",
-   "M3",
-   "M4",
-   "B6"
+   "C6",
+   "M1",
+   "M5",
+   "M7",
+   "M8",
+   "B3",
+   "B4",
+   "B5",
+   "B9"
   ],
+  "domain_changes": {
+   "quantum -> chemistry": 18,
+   "materials -> physics": 10,
+   "chemistry -> physics": 4
+  },
   "active_questions": 242,
   "questions_outside_meaningful_pixels": [],
   "planning_total": 2500,
-  "mean_target_per_pixel": 48
+  "mean_target_per_pixel": 34
  },
  "pixels": [
   {
-   "subdomain": "Q1",
-   "domain": "quantum",
-   "name": "分子电子结构与势能面",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P1",
+   "domain": "physics",
+   "name": "超导",
    "scale": "0.1-1",
-   "meaningful": true,
-   "questions": 13,
-   "abilities": {
-    "perception": 5,
-    "inference": 4,
-    "design": 4
-   },
-   "ids": [
-    "QNP001",
-    "QNI001",
-    "QNI002",
-    "QNI003",
-    "QND001",
-    "QND002",
-    "QND003",
-    "QND004",
-    "QNP012",
-    "QNP013",
-    "QNP014",
-    "QNP015",
-    "QNP016"
-   ],
-   "enumerated_estimate": 288
+   "meaningful": false
   },
   {
-   "subdomain": "Q1",
-   "domain": "quantum",
-   "name": "分子电子结构与势能面",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P1",
+   "domain": "physics",
+   "name": "超导",
    "scale": "1-10",
-   "meaningful": true,
-   "questions": 5,
+   "meaningful": true
+  },
+  {
+   "questions": 0,
    "abilities": {
-    "perception": 5,
+    "perception": 0,
     "inference": 0,
     "design": 0
    },
-   "ids": [
-    "QNP007",
-    "QNP008",
-    "QNP009",
-    "QNP010",
-    "QNP011"
-   ],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q1",
-   "domain": "quantum",
-   "name": "分子电子结构与势能面",
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P1",
+   "domain": "physics",
+   "name": "超导",
    "scale": "10-100",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
+   "meaningful": true
   },
   {
-   "subdomain": "Q1",
-   "domain": "quantum",
-   "name": "分子电子结构与势能面",
-   "scale": "100-1000",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q2",
-   "domain": "quantum",
-   "name": "分子光谱",
-   "scale": "0.1-1",
-   "meaningful": true,
-   "questions": 2,
-   "abilities": {
-    "perception": 0,
-    "inference": 1,
-    "design": 1
-   },
-   "ids": [
-    "QNI021",
-    "QND013"
-   ],
-   "enumerated_estimate": 183
-  },
-  {
-   "subdomain": "Q2",
-   "domain": "quantum",
-   "name": "分子光谱",
-   "scale": "1-10",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q2",
-   "domain": "quantum",
-   "name": "分子光谱",
-   "scale": "10-100",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q2",
-   "domain": "quantum",
-   "name": "分子光谱",
-   "scale": "100-1000",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q3",
-   "domain": "quantum",
-   "name": "二维与莫尔量子材料",
-   "scale": "0.1-1",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q3",
-   "domain": "quantum",
-   "name": "二维与莫尔量子材料",
-   "scale": "1-10",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q3",
-   "domain": "quantum",
-   "name": "二维与莫尔量子材料",
-   "scale": "10-100",
-   "meaningful": true,
-   "questions": 10,
-   "abilities": {
-    "perception": 3,
-    "inference": 4,
-    "design": 3
-   },
-   "ids": [
-    "QNP017",
-    "QNP018",
-    "QNP019",
-    "QNI010",
-    "QNI011",
-    "QNI012",
-    "QNI013",
-    "QND005",
-    "QND006",
-    "QND007"
-   ],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q3",
-   "domain": "quantum",
-   "name": "二维与莫尔量子材料",
-   "scale": "100-1000",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q4",
-   "domain": "quantum",
-   "name": "量子限域纳米结构",
-   "scale": "0.1-1",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q4",
-   "domain": "quantum",
-   "name": "量子限域纳米结构",
-   "scale": "1-10",
-   "meaningful": true,
-   "questions": 5,
-   "abilities": {
-    "perception": 0,
-    "inference": 3,
-    "design": 2
-   },
-   "ids": [
-    "QNI014",
-    "QNI015",
-    "QNI016",
-    "QND008",
-    "QND009"
-   ],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q4",
-   "domain": "quantum",
-   "name": "量子限域纳米结构",
-   "scale": "10-100",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q4",
-   "domain": "quantum",
-   "name": "量子限域纳米结构",
-   "scale": "100-1000",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q5",
-   "domain": "quantum",
-   "name": "超导与磁有序",
-   "scale": "0.1-1",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q5",
-   "domain": "quantum",
-   "name": "超导与磁有序",
-   "scale": "1-10",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q5",
-   "domain": "quantum",
-   "name": "超导与磁有序",
-   "scale": "10-100",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q5",
-   "domain": "quantum",
-   "name": "超导与磁有序",
-   "scale": "100-1000",
-   "meaningful": true,
    "questions": 10,
    "abilities": {
     "perception": 3,
@@ -372,59 +101,14 @@
     "QND011",
     "QND012"
    ],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q6",
-   "domain": "quantum",
-   "name": "原子团簇",
-   "scale": "0.1-1",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q6",
-   "domain": "quantum",
-   "name": "原子团簇",
-   "scale": "1-10",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q6",
-   "domain": "quantum",
-   "name": "原子团簇",
-   "scale": "10-100",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "Q6",
-   "domain": "quantum",
-   "name": "原子团簇",
+   "enumerated_estimate": 0,
+   "l1": "P1",
+   "domain": "physics",
+   "name": "超导",
    "scale": "100-1000",
-   "meaningful": false,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -432,19 +116,400 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
+   "enumerated_estimate": 0,
+   "l1": "P2",
+   "domain": "physics",
+   "name": "磁性",
+   "scale": "0.1-1",
+   "meaningful": true
   },
   {
-   "subdomain": "C1",
-   "domain": "chemistry",
-   "name": "有机小分子结构与立体化学",
-   "scale": "0.1-1",
-   "meaningful": true,
-   "questions": 17,
+   "questions": 0,
    "abilities": {
-    "perception": 8,
-    "inference": 5,
-    "design": 4
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P2",
+   "domain": "physics",
+   "name": "磁性",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P2",
+   "domain": "physics",
+   "name": "磁性",
+   "scale": "10-100",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P2",
+   "domain": "physics",
+   "name": "磁性",
+   "scale": "100-1000",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P3",
+   "domain": "physics",
+   "name": "二维材料与莫尔物理",
+   "scale": "0.1-1",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P3",
+   "domain": "physics",
+   "name": "二维材料与莫尔物理",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 10,
+   "abilities": {
+    "perception": 3,
+    "inference": 4,
+    "design": 3
+   },
+   "ids": [
+    "QNP017",
+    "QNP018",
+    "QNP019",
+    "QNI010",
+    "QNI011",
+    "QNI012",
+    "QNI013",
+    "QND005",
+    "QND006",
+    "QND007"
+   ],
+   "enumerated_estimate": 0,
+   "l1": "P3",
+   "domain": "physics",
+   "name": "二维材料与莫尔物理",
+   "scale": "10-100",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P3",
+   "domain": "physics",
+   "name": "二维材料与莫尔物理",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P4",
+   "domain": "physics",
+   "name": "纳米与介观物理",
+   "scale": "0.1-1",
+   "meaningful": false
+  },
+  {
+   "questions": 5,
+   "abilities": {
+    "perception": 0,
+    "inference": 3,
+    "design": 2
+   },
+   "ids": [
+    "QNI014",
+    "QNI015",
+    "QNI016",
+    "QND008",
+    "QND009"
+   ],
+   "enumerated_estimate": 0,
+   "l1": "P4",
+   "domain": "physics",
+   "name": "纳米与介观物理",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P4",
+   "domain": "physics",
+   "name": "纳米与介观物理",
+   "scale": "10-100",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P4",
+   "domain": "physics",
+   "name": "纳米与介观物理",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
+   "questions": 4,
+   "abilities": {
+    "perception": 0,
+    "inference": 2,
+    "design": 2
+   },
+   "ids": [
+    "QNI021",
+    "CNI021",
+    "QND013",
+    "CND012"
+   ],
+   "enumerated_estimate": 511,
+   "l1": "P5",
+   "domain": "physics",
+   "name": "原子与分子物理",
+   "scale": "0.1-1",
+   "meaningful": true
+  },
+  {
+   "questions": 2,
+   "abilities": {
+    "perception": 0,
+    "inference": 1,
+    "design": 1
+   },
+   "ids": [
+    "CNI022",
+    "CND013"
+   ],
+   "enumerated_estimate": 162,
+   "l1": "P5",
+   "domain": "physics",
+   "name": "原子与分子物理",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P5",
+   "domain": "physics",
+   "name": "原子与分子物理",
+   "scale": "10-100",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P5",
+   "domain": "physics",
+   "name": "原子与分子物理",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P6",
+   "domain": "physics",
+   "name": "光子学",
+   "scale": "0.1-1",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P6",
+   "domain": "physics",
+   "name": "光子学",
+   "scale": "1-10",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P6",
+   "domain": "physics",
+   "name": "光子学",
+   "scale": "10-100",
+   "meaningful": false
+  },
+  {
+   "questions": 10,
+   "abilities": {
+    "perception": 3,
+    "inference": 4,
+    "design": 3
+   },
+   "ids": [
+    "MNP019",
+    "MNP020",
+    "MNP021",
+    "MNI023",
+    "MNI024",
+    "MNI025",
+    "MNI026",
+    "MND004",
+    "MND005",
+    "MND006"
+   ],
+   "enumerated_estimate": 0,
+   "l1": "P6",
+   "domain": "physics",
+   "name": "光子学",
+   "scale": "100-1000",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P7",
+   "domain": "physics",
+   "name": "软物质与生物物理",
+   "scale": "0.1-1",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P7",
+   "domain": "physics",
+   "name": "软物质与生物物理",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P7",
+   "domain": "physics",
+   "name": "软物质与生物物理",
+   "scale": "10-100",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "P7",
+   "domain": "physics",
+   "name": "软物质与生物物理",
+   "scale": "100-1000",
+   "meaningful": true
+  },
+  {
+   "questions": 20,
+   "abilities": {
+    "perception": 13,
+    "inference": 4,
+    "design": 3
    },
    "ids": [
     "CNP012",
@@ -462,35 +527,56 @@
     "CND001",
     "CND002",
     "CND003",
-    "CNI021",
-    "CND012"
+    "QNP012",
+    "QNP013",
+    "QNP014",
+    "QNP015",
+    "QNP016"
    ],
-   "enumerated_estimate": 639
+   "enumerated_estimate": 541,
+   "l1": "C1",
+   "domain": "chemistry",
+   "name": "有机化学",
+   "scale": "0.1-1",
+   "meaningful": true
   },
   {
-   "subdomain": "C1",
-   "domain": "chemistry",
-   "name": "有机小分子结构与立体化学",
-   "scale": "1-10",
-   "meaningful": true,
-   "questions": 2,
+   "questions": 5,
    "abilities": {
-    "perception": 0,
-    "inference": 1,
-    "design": 1
+    "perception": 5,
+    "inference": 0,
+    "design": 0
    },
    "ids": [
-    "CNI022",
-    "CND013"
+    "CNP007",
+    "CNP008",
+    "CNP009",
+    "CNP010",
+    "CNP011"
    ],
-   "enumerated_estimate": 170
+   "enumerated_estimate": 0,
+   "l1": "C1",
+   "domain": "chemistry",
+   "name": "有机化学",
+   "scale": "1-10",
+   "meaningful": true
   },
   {
-   "subdomain": "C1",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C1",
    "domain": "chemistry",
-   "name": "有机小分子结构与立体化学",
+   "name": "有机化学",
    "scale": "10-100",
-   "meaningful": false,
+   "meaningful": false
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -498,94 +584,153 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C1",
+   "enumerated_estimate": 0,
+   "l1": "C1",
    "domain": "chemistry",
-   "name": "有机小分子结构与立体化学",
+   "name": "有机化学",
    "scale": "100-1000",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
+   "meaningful": false
   },
   {
-   "subdomain": "C2",
-   "domain": "chemistry",
-   "name": "构象与分子内相互作用",
-   "scale": "0.1-1",
-   "meaningful": true,
-   "questions": 4,
+   "questions": 12,
    "abilities": {
     "perception": 2,
-    "inference": 2,
-    "design": 0
+    "inference": 6,
+    "design": 4
    },
    "ids": [
+    "QNP001",
     "HBP001",
     "HBP002",
     "HBI001",
-    "HBI002"
+    "HBI002",
+    "QNI001",
+    "QNI002",
+    "QNI003",
+    "QND001",
+    "QND002",
+    "QND003",
+    "QND004"
    ],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C2",
+   "enumerated_estimate": 58,
+   "l1": "C2",
    "domain": "chemistry",
-   "name": "构象与分子内相互作用",
-   "scale": "1-10",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C2",
-   "domain": "chemistry",
-   "name": "构象与分子内相互作用",
-   "scale": "10-100",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C2",
-   "domain": "chemistry",
-   "name": "构象与分子内相互作用",
-   "scale": "100-1000",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C3",
-   "domain": "chemistry",
-   "name": "超分子与主客体",
+   "name": "物理与量子化学",
    "scale": "0.1-1",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
+   "questions": 5,
+   "abilities": {
+    "perception": 5,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [
+    "QNP007",
+    "QNP008",
+    "QNP009",
+    "QNP010",
+    "QNP011"
+   ],
+   "enumerated_estimate": 8,
+   "l1": "C2",
+   "domain": "chemistry",
+   "name": "物理与量子化学",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C2",
+   "domain": "chemistry",
+   "name": "物理与量子化学",
+   "scale": "10-100",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C2",
+   "domain": "chemistry",
+   "name": "物理与量子化学",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C3",
+   "domain": "chemistry",
+   "name": "无机与配位化学",
+   "scale": "0.1-1",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C3",
+   "domain": "chemistry",
+   "name": "无机与配位化学",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C3",
+   "domain": "chemistry",
+   "name": "无机与配位化学",
+   "scale": "10-100",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C3",
+   "domain": "chemistry",
+   "name": "无机与配位化学",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
    "questions": 5,
    "abilities": {
     "perception": 5,
@@ -599,85 +744,35 @@
     "CNP005",
     "CNP006"
    ],
-   "enumerated_estimate": 612
+   "enumerated_estimate": 612,
+   "l1": "C4",
+   "domain": "chemistry",
+   "name": "超分子化学",
+   "scale": "0.1-1",
+   "meaningful": true
   },
   {
-   "subdomain": "C3",
-   "domain": "chemistry",
-   "name": "超分子与主客体",
-   "scale": "1-10",
-   "meaningful": true,
-   "questions": 10,
+   "questions": 5,
    "abilities": {
-    "perception": 5,
+    "perception": 0,
     "inference": 3,
     "design": 2
    },
    "ids": [
-    "CNP007",
-    "CNP008",
-    "CNP009",
-    "CNP010",
-    "CNP011",
     "CNI014",
     "CNI015",
     "CNI016",
     "CND007",
     "CND008"
    ],
-   "enumerated_estimate": 6
-  },
-  {
-   "subdomain": "C3",
+   "enumerated_estimate": 6,
+   "l1": "C4",
    "domain": "chemistry",
-   "name": "超分子与主客体",
-   "scale": "10-100",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C3",
-   "domain": "chemistry",
-   "name": "超分子与主客体",
-   "scale": "100-1000",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C4",
-   "domain": "chemistry",
-   "name": "反应与过渡态",
-   "scale": "0.1-1",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C4",
-   "domain": "chemistry",
-   "name": "反应与过渡态",
+   "name": "超分子化学",
    "scale": "1-10",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -685,14 +780,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C4",
+   "enumerated_estimate": 0,
+   "l1": "C4",
    "domain": "chemistry",
-   "name": "反应与过渡态",
+   "name": "超分子化学",
    "scale": "10-100",
-   "meaningful": false,
+   "meaningful": false
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -700,14 +795,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C4",
+   "enumerated_estimate": 0,
+   "l1": "C4",
    "domain": "chemistry",
-   "name": "反应与过渡态",
+   "name": "超分子化学",
    "scale": "100-1000",
-   "meaningful": false,
+   "meaningful": false
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -715,14 +810,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C5",
+   "enumerated_estimate": 0,
+   "l1": "C5",
    "domain": "chemistry",
-   "name": "配位与金属有机化学",
+   "name": "反应与催化",
    "scale": "0.1-1",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -730,14 +825,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C5",
+   "enumerated_estimate": 0,
+   "l1": "C5",
    "domain": "chemistry",
-   "name": "配位与金属有机化学",
+   "name": "反应与催化",
    "scale": "1-10",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -745,14 +840,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C5",
+   "enumerated_estimate": 0,
+   "l1": "C5",
    "domain": "chemistry",
-   "name": "配位与金属有机化学",
+   "name": "反应与催化",
    "scale": "10-100",
-   "meaningful": false,
+   "meaningful": false
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -760,14 +855,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C5",
+   "enumerated_estimate": 0,
+   "l1": "C5",
    "domain": "chemistry",
-   "name": "配位与金属有机化学",
+   "name": "反应与催化",
    "scale": "100-1000",
-   "meaningful": false,
+   "meaningful": false
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -775,14 +870,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C6",
+   "enumerated_estimate": 0,
+   "l1": "C6",
    "domain": "chemistry",
-   "name": "软物质与自组装",
+   "name": "高分子化学",
    "scale": "0.1-1",
-   "meaningful": false,
+   "meaningful": false
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -790,14 +885,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "C6",
+   "enumerated_estimate": 0,
+   "l1": "C6",
    "domain": "chemistry",
-   "name": "软物质与自组装",
+   "name": "高分子化学",
    "scale": "1-10",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -805,14 +900,59 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
+   "enumerated_estimate": 0,
+   "l1": "C6",
+   "domain": "chemistry",
+   "name": "高分子化学",
+   "scale": "10-100",
+   "meaningful": true
   },
   {
-   "subdomain": "C6",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C6",
    "domain": "chemistry",
-   "name": "软物质与自组装",
-   "scale": "10-100",
-   "meaningful": true,
+   "name": "高分子化学",
+   "scale": "100-1000",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C7",
+   "domain": "chemistry",
+   "name": "化学生物学与 DNA 纳米技术",
+   "scale": "0.1-1",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C7",
+   "domain": "chemistry",
+   "name": "化学生物学与 DNA 纳米技术",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
    "questions": 10,
    "abilities": {
     "perception": 4,
@@ -831,14 +971,74 @@
     "CND005",
     "CND006"
    ],
-   "enumerated_estimate": 9
+   "enumerated_estimate": 9,
+   "l1": "C7",
+   "domain": "chemistry",
+   "name": "化学生物学与 DNA 纳米技术",
+   "scale": "10-100",
+   "meaningful": true
   },
   {
-   "subdomain": "C6",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C7",
    "domain": "chemistry",
-   "name": "软物质与自组装",
+   "name": "化学生物学与 DNA 纳米技术",
    "scale": "100-1000",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C8",
+   "domain": "chemistry",
+   "name": "液晶与胶体化学",
+   "scale": "0.1-1",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C8",
+   "domain": "chemistry",
+   "name": "液晶与胶体化学",
+   "scale": "1-10",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "C8",
+   "domain": "chemistry",
+   "name": "液晶与胶体化学",
+   "scale": "10-100",
+   "meaningful": true
+  },
+  {
    "questions": 10,
    "abilities": {
     "perception": 3,
@@ -857,100 +1057,176 @@
     "CND010",
     "CND011"
    ],
-   "enumerated_estimate": 0
+   "enumerated_estimate": 0,
+   "l1": "C8",
+   "domain": "chemistry",
+   "name": "液晶与胶体化学",
+   "scale": "100-1000",
+   "meaningful": true
   },
   {
-   "subdomain": "M1",
-   "domain": "materials",
-   "name": "无机晶体",
-   "scale": "0.1-1",
-   "meaningful": true,
-   "questions": 25,
+   "questions": 0,
    "abilities": {
-    "perception": 8,
-    "inference": 14,
-    "design": 3
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M1",
+   "domain": "materials",
+   "name": "金属与合金",
+   "scale": "0.1-1",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M1",
+   "domain": "materials",
+   "name": "金属与合金",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M1",
+   "domain": "materials",
+   "name": "金属与合金",
+   "scale": "10-100",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M1",
+   "domain": "materials",
+   "name": "金属与合金",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
+   "questions": 15,
+   "abilities": {
+    "perception": 5,
+    "inference": 9,
+    "design": 1
    },
    "ids": [
-    "MNP001",
     "MNP002",
-    "MNP003",
-    "MNI001",
-    "MNI002",
     "MNI003",
     "MNI011",
-    "MNI012",
     "MNP011",
     "MNP012",
     "MNI015",
     "MNI016",
     "MNI017",
-    "MND007",
-    "MND008",
     "MND009",
     "MNP022",
-    "MNP023",
     "MNP024",
     "MNI027",
-    "MNI028",
     "MNI029",
     "MNI030",
-    "MNI031",
+    "MNI031"
+   ],
+   "enumerated_estimate": 165,
+   "l1": "M2",
+   "domain": "materials",
+   "name": "陶瓷与氧化物",
+   "scale": "0.1-1",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 13,
+   "l1": "M2",
+   "domain": "materials",
+   "name": "陶瓷与氧化物",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M2",
+   "domain": "materials",
+   "name": "陶瓷与氧化物",
+   "scale": "10-100",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M2",
+   "domain": "materials",
+   "name": "陶瓷与氧化物",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
+   "questions": 10,
+   "abilities": {
+    "perception": 3,
+    "inference": 5,
+    "design": 2
+   },
+   "ids": [
+    "MNP001",
+    "MNP003",
+    "MNI001",
+    "MNI002",
+    "MNI012",
+    "MND007",
+    "MND008",
+    "MNP023",
+    "MNI028",
     "MNI032"
    ],
-   "enumerated_estimate": 213
-  },
-  {
-   "subdomain": "M1",
+   "enumerated_estimate": 48,
+   "l1": "M3",
    "domain": "materials",
-   "name": "无机晶体",
-   "scale": "1-10",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 20
-  },
-  {
-   "subdomain": "M1",
-   "domain": "materials",
-   "name": "无机晶体",
-   "scale": "10-100",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M1",
-   "domain": "materials",
-   "name": "无机晶体",
-   "scale": "100-1000",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M2",
-   "domain": "materials",
-   "name": "多孔框架材料",
+   "name": "半导体",
    "scale": "0.1-1",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -958,14 +1234,59 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 22
+   "enumerated_estimate": 7,
+   "l1": "M3",
+   "domain": "materials",
+   "name": "半导体",
+   "scale": "1-10",
+   "meaningful": true
   },
   {
-   "subdomain": "M2",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M3",
    "domain": "materials",
-   "name": "多孔框架材料",
-   "scale": "1-10",
-   "meaningful": true,
+   "name": "半导体",
+   "scale": "10-100",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M3",
+   "domain": "materials",
+   "name": "半导体",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 22,
+   "l1": "M4",
+   "domain": "materials",
+   "name": "多孔与框架材料",
+   "scale": "0.1-1",
+   "meaningful": true
+  },
+  {
    "questions": 14,
    "abilities": {
     "perception": 7,
@@ -988,14 +1309,29 @@
     "MND011",
     "MND012"
    ],
-   "enumerated_estimate": 29
+   "enumerated_estimate": 29,
+   "l1": "M4",
+   "domain": "materials",
+   "name": "多孔与框架材料",
+   "scale": "1-10",
+   "meaningful": true
   },
   {
-   "subdomain": "M2",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M4",
    "domain": "materials",
-   "name": "多孔框架材料",
+   "name": "多孔与框架材料",
    "scale": "10-100",
-   "meaningful": false,
+   "meaningful": false
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1003,14 +1339,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M2",
+   "enumerated_estimate": 0,
+   "l1": "M4",
    "domain": "materials",
-   "name": "多孔框架材料",
+   "name": "多孔与框架材料",
    "scale": "100-1000",
-   "meaningful": false,
+   "meaningful": false
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1018,14 +1354,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M3",
+   "enumerated_estimate": 0,
+   "l1": "M5",
    "domain": "materials",
    "name": "有机与高分子材料",
    "scale": "0.1-1",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1033,14 +1369,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M3",
+   "enumerated_estimate": 0,
+   "l1": "M5",
    "domain": "materials",
    "name": "有机与高分子材料",
    "scale": "1-10",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1048,14 +1384,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M3",
+   "enumerated_estimate": 0,
+   "l1": "M5",
    "domain": "materials",
    "name": "有机与高分子材料",
    "scale": "10-100",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1063,14 +1399,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M3",
+   "enumerated_estimate": 0,
+   "l1": "M5",
    "domain": "materials",
    "name": "有机与高分子材料",
    "scale": "100-1000",
-   "meaningful": false,
+   "meaningful": false
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1078,14 +1414,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M4",
+   "enumerated_estimate": 0,
+   "l1": "M6",
    "domain": "materials",
-   "name": "缺陷、表面与界面",
+   "name": "纳米材料与组装",
    "scale": "0.1-1",
-   "meaningful": true,
+   "meaningful": false
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1093,89 +1429,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M4",
+   "enumerated_estimate": 0,
+   "l1": "M6",
    "domain": "materials",
-   "name": "缺陷、表面与界面",
+   "name": "纳米材料与组装",
    "scale": "1-10",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
+   "meaningful": true
   },
   {
-   "subdomain": "M4",
-   "domain": "materials",
-   "name": "缺陷、表面与界面",
-   "scale": "10-100",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M4",
-   "domain": "materials",
-   "name": "缺陷、表面与界面",
-   "scale": "100-1000",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M5",
-   "domain": "materials",
-   "name": "纳米粒子组装与超晶格",
-   "scale": "0.1-1",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M5",
-   "domain": "materials",
-   "name": "纳米粒子组装与超晶格",
-   "scale": "1-10",
-   "meaningful": true,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M5",
-   "domain": "materials",
-   "name": "纳米粒子组装与超晶格",
-   "scale": "10-100",
-   "meaningful": true,
    "questions": 10,
    "abilities": {
     "perception": 4,
@@ -1194,59 +1455,14 @@
     "MND002",
     "MND003"
    ],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M5",
+   "enumerated_estimate": 0,
+   "l1": "M6",
    "domain": "materials",
-   "name": "纳米粒子组装与超晶格",
-   "scale": "100-1000",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M6",
-   "domain": "materials",
-   "name": "光子与胶体结构",
-   "scale": "0.1-1",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M6",
-   "domain": "materials",
-   "name": "光子与胶体结构",
-   "scale": "1-10",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "M6",
-   "domain": "materials",
-   "name": "光子与胶体结构",
+   "name": "纳米材料与组装",
    "scale": "10-100",
-   "meaningful": false,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1254,155 +1470,249 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
+   "enumerated_estimate": 0,
+   "l1": "M6",
+   "domain": "materials",
+   "name": "纳米材料与组装",
+   "scale": "100-1000",
+   "meaningful": true
   },
   {
-   "subdomain": "M6",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M7",
    "domain": "materials",
-   "name": "光子与胶体结构",
+   "name": "表面与界面",
+   "scale": "0.1-1",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M7",
+   "domain": "materials",
+   "name": "表面与界面",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M7",
+   "domain": "materials",
+   "name": "表面与界面",
+   "scale": "10-100",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M7",
+   "domain": "materials",
+   "name": "表面与界面",
    "scale": "100-1000",
-   "meaningful": true,
-   "questions": 10,
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M8",
+   "domain": "materials",
+   "name": "生物与仿生材料",
+   "scale": "0.1-1",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M8",
+   "domain": "materials",
+   "name": "生物与仿生材料",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M8",
+   "domain": "materials",
+   "name": "生物与仿生材料",
+   "scale": "10-100",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "M8",
+   "domain": "materials",
+   "name": "生物与仿生材料",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
+   "questions": 5,
    "abilities": {
     "perception": 3,
-    "inference": 4,
-    "design": 3
-   },
-   "ids": [
-    "MNP019",
-    "MNP020",
-    "MNP021",
-    "MNI023",
-    "MNI024",
-    "MNI025",
-    "MNI026",
-    "MND004",
-    "MND005",
-    "MND006"
-   ],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "B1",
-   "domain": "biology",
-   "name": "蛋白质结构",
-   "scale": "0.1-1",
-   "meaningful": true,
-   "questions": 10,
-   "abilities": {
-    "perception": 7,
-    "inference": 3,
-    "design": 0
+    "inference": 1,
+    "design": 1
    },
    "ids": [
     "BNP008",
+    "BNP015",
+    "BNP016",
+    "BNI025",
+    "BND005"
+   ],
+   "enumerated_estimate": 993,
+   "l1": "B1",
+   "domain": "biology",
+   "name": "酶",
+   "scale": "0.1-1",
+   "meaningful": true
+  },
+  {
+   "questions": 3,
+   "abilities": {
+    "perception": 0,
+    "inference": 2,
+    "design": 1
+   },
+   "ids": [
+    "BNI011",
+    "BNI012",
+    "BND008"
+   ],
+   "enumerated_estimate": 15693,
+   "l1": "B1",
+   "domain": "biology",
+   "name": "酶",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B1",
+   "domain": "biology",
+   "name": "酶",
+   "scale": "10-100",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B1",
+   "domain": "biology",
+   "name": "酶",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
+   "questions": 8,
+   "abilities": {
+    "perception": 4,
+    "inference": 2,
+    "design": 2
+   },
+   "ids": [
     "BNP010",
     "BNP011",
     "BNP013",
     "BNP014",
-    "BNP015",
-    "BNP016",
     "BNI024",
-    "BNI025",
-    "BNI026"
+    "BNI026",
+    "BND003",
+    "BND004"
    ],
-   "enumerated_estimate": 1778
+   "enumerated_estimate": 579,
+   "l1": "B2",
+   "domain": "biology",
+   "name": "小型与调控蛋白",
+   "scale": "0.1-1",
+   "meaningful": true
   },
   {
-   "subdomain": "B1",
-   "domain": "biology",
-   "name": "蛋白质结构",
-   "scale": "1-10",
-   "meaningful": true,
-   "questions": 6,
+   "questions": 5,
    "abilities": {
     "perception": 2,
-    "inference": 4,
-    "design": 0
+    "inference": 2,
+    "design": 1
    },
    "ids": [
     "BNP001",
     "BNP002",
     "BNI001",
     "BNI010",
-    "BNI011",
-    "BNI012"
+    "BND007"
    ],
-   "enumerated_estimate": 17549
-  },
-  {
-   "subdomain": "B1",
+   "enumerated_estimate": 1590,
+   "l1": "B2",
    "domain": "biology",
-   "name": "蛋白质结构",
-   "scale": "10-100",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "B1",
-   "domain": "biology",
-   "name": "蛋白质结构",
-   "scale": "100-1000",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "B2",
-   "domain": "biology",
-   "name": "蛋白质工程、标记与相互作用",
-   "scale": "0.1-1",
-   "meaningful": true,
-   "questions": 3,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 3
-   },
-   "ids": [
-    "BND003",
-    "BND004",
-    "BND005"
-   ],
-   "enumerated_estimate": 78
-  },
-  {
-   "subdomain": "B2",
-   "domain": "biology",
-   "name": "蛋白质工程、标记与相互作用",
+   "name": "小型与调控蛋白",
    "scale": "1-10",
-   "meaningful": true,
-   "questions": 2,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 2
-   },
-   "ids": [
-    "BND007",
-    "BND008"
-   ],
-   "enumerated_estimate": 4366
+   "meaningful": true
   },
   {
-   "subdomain": "B2",
-   "domain": "biology",
-   "name": "蛋白质工程、标记与相互作用",
-   "scale": "10-100",
-   "meaningful": false,
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1410,14 +1720,29 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
+   "enumerated_estimate": 0,
+   "l1": "B2",
+   "domain": "biology",
+   "name": "小型与调控蛋白",
+   "scale": "10-100",
+   "meaningful": false
   },
   {
-   "subdomain": "B2",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B2",
    "domain": "biology",
-   "name": "蛋白质工程、标记与相互作用",
+   "name": "小型与调控蛋白",
    "scale": "100-1000",
-   "meaningful": false,
+   "meaningful": false
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1425,14 +1750,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "B3",
+   "enumerated_estimate": 284,
+   "l1": "B3",
    "domain": "biology",
-   "name": "核酸结构",
+   "name": "转运与储存蛋白",
    "scale": "0.1-1",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1440,36 +1765,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "B3",
+   "enumerated_estimate": 4632,
+   "l1": "B3",
    "domain": "biology",
-   "name": "核酸结构",
+   "name": "转运与储存蛋白",
    "scale": "1-10",
-   "meaningful": true,
-   "questions": 6,
-   "abilities": {
-    "perception": 1,
-    "inference": 4,
-    "design": 1
-   },
-   "ids": [
-    "BNP003",
-    "BNI002",
-    "BNI009",
-    "BNI013",
-    "BNI014",
-    "BND006"
-   ],
-   "enumerated_estimate": 1537
+   "meaningful": true
   },
   {
-   "subdomain": "B3",
-   "domain": "biology",
-   "name": "核酸结构",
-   "scale": "10-100",
-   "meaningful": true,
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1477,14 +1780,29 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
+   "enumerated_estimate": 0,
+   "l1": "B3",
+   "domain": "biology",
+   "name": "转运与储存蛋白",
+   "scale": "10-100",
+   "meaningful": false
   },
   {
-   "subdomain": "B3",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B3",
    "domain": "biology",
-   "name": "核酸结构",
+   "name": "转运与储存蛋白",
    "scale": "100-1000",
-   "meaningful": false,
+   "meaningful": false
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1492,14 +1810,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "B4",
+   "enumerated_estimate": 0,
+   "l1": "B4",
    "domain": "biology",
-   "name": "病毒与衣壳",
+   "name": "膜蛋白",
    "scale": "0.1-1",
-   "meaningful": false,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1507,14 +1825,14 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "B4",
+   "enumerated_estimate": 0,
+   "l1": "B4",
    "domain": "biology",
-   "name": "病毒与衣壳",
+   "name": "膜蛋白",
    "scale": "1-10",
-   "meaningful": false,
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1522,14 +1840,119 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
+   "enumerated_estimate": 0,
+   "l1": "B4",
+   "domain": "biology",
+   "name": "膜蛋白",
+   "scale": "10-100",
+   "meaningful": false
   },
   {
-   "subdomain": "B4",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B4",
    "domain": "biology",
-   "name": "病毒与衣壳",
+   "name": "膜蛋白",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B5",
+   "domain": "biology",
+   "name": "毒素",
+   "scale": "0.1-1",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B5",
+   "domain": "biology",
+   "name": "毒素",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B5",
+   "domain": "biology",
+   "name": "毒素",
    "scale": "10-100",
-   "meaningful": true,
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B5",
+   "domain": "biology",
+   "name": "毒素",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B6",
+   "domain": "biology",
+   "name": "病毒蛋白与衣壳",
+   "scale": "0.1-1",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B6",
+   "domain": "biology",
+   "name": "病毒蛋白与衣壳",
+   "scale": "1-10",
+   "meaningful": false
+  },
+  {
    "questions": 30,
    "abilities": {
     "perception": 12,
@@ -1568,14 +1991,14 @@
     "BNI039",
     "BNI040"
    ],
-   "enumerated_estimate": 22
+   "enumerated_estimate": 22,
+   "l1": "B6",
+   "domain": "biology",
+   "name": "病毒蛋白与衣壳",
+   "scale": "10-100",
+   "meaningful": true
   },
   {
-   "subdomain": "B4",
-   "domain": "biology",
-   "name": "病毒与衣壳",
-   "scale": "100-1000",
-   "meaningful": true,
    "questions": 10,
    "abilities": {
     "perception": 3,
@@ -1594,29 +2017,71 @@
     "BNI023",
     "BND002"
    ],
-   "enumerated_estimate": 100
+   "enumerated_estimate": 100,
+   "l1": "B6",
+   "domain": "biology",
+   "name": "病毒蛋白与衣壳",
+   "scale": "100-1000",
+   "meaningful": true
   },
   {
-   "subdomain": "B5",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B7",
    "domain": "biology",
-   "name": "大分子机器与复合物",
+   "name": "核酸与核蛋白",
    "scale": "0.1-1",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
+   "meaningful": true
   },
   {
-   "subdomain": "B5",
+   "questions": 6,
+   "abilities": {
+    "perception": 1,
+    "inference": 4,
+    "design": 1
+   },
+   "ids": [
+    "BNP003",
+    "BNI002",
+    "BNI009",
+    "BNI013",
+    "BNI014",
+    "BND006"
+   ],
+   "enumerated_estimate": 1537,
+   "l1": "B7",
    "domain": "biology",
-   "name": "大分子机器与复合物",
+   "name": "核酸与核蛋白",
    "scale": "1-10",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
+   "questions": 4,
+   "abilities": {
+    "perception": 2,
+    "inference": 1,
+    "design": 1
+   },
+   "ids": [
+    "BNP019",
+    "BNP020",
+    "BNI016",
+    "BND010"
+   ],
+   "enumerated_estimate": 3,
+   "l1": "B7",
+   "domain": "biology",
+   "name": "核酸与核蛋白",
+   "scale": "10-100",
+   "meaningful": true
+  },
+  {
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1624,14 +2089,1289 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
+   "enumerated_estimate": 0,
+   "l1": "B7",
+   "domain": "biology",
+   "name": "核酸与核蛋白",
+   "scale": "100-1000",
+   "meaningful": false
   },
   {
-   "subdomain": "B5",
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B8",
    "domain": "biology",
-   "name": "大分子机器与复合物",
+   "name": "大分子机器",
+   "scale": "0.1-1",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B8",
+   "domain": "biology",
+   "name": "大分子机器",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 9,
+   "abilities": {
+    "perception": 4,
+    "inference": 3,
+    "design": 2
+   },
+   "ids": [
+    "BNP017",
+    "BNP018",
+    "BNI015",
+    "BND009",
+    "BNP026",
+    "BNP027",
+    "BNI027",
+    "BNI029",
+    "BND012"
+   ],
+   "enumerated_estimate": 7,
+   "l1": "B8",
+   "domain": "biology",
+   "name": "大分子机器",
    "scale": "10-100",
-   "meaningful": true,
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B8",
+   "domain": "biology",
+   "name": "大分子机器",
+   "scale": "100-1000",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B9",
+   "domain": "biology",
+   "name": "免疫与识别",
+   "scale": "0.1-1",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B9",
+   "domain": "biology",
+   "name": "免疫与识别",
+   "scale": "1-10",
+   "meaningful": true
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B9",
+   "domain": "biology",
+   "name": "免疫与识别",
+   "scale": "10-100",
+   "meaningful": false
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "l1": "B9",
+   "domain": "biology",
+   "name": "免疫与识别",
+   "scale": "100-1000",
+   "meaningful": false
+  }
+ ],
+ "leaves": [
+  {
+   "questions": 10,
+   "abilities": {
+    "perception": 3,
+    "inference": 4,
+    "design": 3
+   },
+   "ids": [
+    "QNP020",
+    "QNP021",
+    "QNP022",
+    "QNI017",
+    "QNI018",
+    "QNI019",
+    "QNI020",
+    "QND010",
+    "QND011",
+    "QND012"
+   ],
+   "enumerated_estimate": 0,
+   "leaf": "P1a",
+   "l1": "P1",
+   "domain": "physics",
+   "name": "涡旋晶格与磁通"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P1b",
+   "l1": "P1",
+   "domain": "physics",
+   "name": "超导体晶体结构"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P2a",
+   "l1": "P2",
+   "domain": "physics",
+   "name": "磁结构（铁磁、反铁磁）"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P2b",
+   "l1": "P2",
+   "domain": "physics",
+   "name": "拓扑磁结构"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P2c",
+   "l1": "P2",
+   "domain": "physics",
+   "name": "阻挫晶格"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P3a",
+   "l1": "P3",
+   "domain": "physics",
+   "name": "单层晶格"
+  },
+  {
+   "questions": 10,
+   "abilities": {
+    "perception": 3,
+    "inference": 4,
+    "design": 3
+   },
+   "ids": [
+    "QNP017",
+    "QNP018",
+    "QNP019",
+    "QNI010",
+    "QNI011",
+    "QNI012",
+    "QNI013",
+    "QND005",
+    "QND006",
+    "QND007"
+   ],
+   "enumerated_estimate": 0,
+   "leaf": "P3b",
+   "l1": "P3",
+   "domain": "physics",
+   "name": "转角双层与莫尔超晶格"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P3c",
+   "l1": "P3",
+   "domain": "physics",
+   "name": "范德华异质结与堆垛"
+  },
+  {
+   "questions": 5,
+   "abilities": {
+    "perception": 0,
+    "inference": 3,
+    "design": 2
+   },
+   "ids": [
+    "QNI014",
+    "QNI015",
+    "QNI016",
+    "QND008",
+    "QND009"
+   ],
+   "enumerated_estimate": 0,
+   "leaf": "P4a",
+   "l1": "P4",
+   "domain": "physics",
+   "name": "量子点与量子限域"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P4b",
+   "l1": "P4",
+   "domain": "physics",
+   "name": "纳米管与纳米线"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P4c",
+   "l1": "P4",
+   "domain": "physics",
+   "name": "等离激元纳米结构"
+  },
+  {
+   "questions": 6,
+   "abilities": {
+    "perception": 0,
+    "inference": 3,
+    "design": 3
+   },
+   "ids": [
+    "QNI021",
+    "CNI021",
+    "CNI022",
+    "QND013",
+    "CND012",
+    "CND013"
+   ],
+   "enumerated_estimate": 673,
+   "leaf": "P5a",
+   "l1": "P5",
+   "domain": "physics",
+   "name": "转动光谱"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P5b",
+   "l1": "P5",
+   "domain": "physics",
+   "name": "振动光谱与力常数"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P5c",
+   "l1": "P5",
+   "domain": "physics",
+   "name": "原子团簇"
+  },
+  {
+   "questions": 10,
+   "abilities": {
+    "perception": 3,
+    "inference": 4,
+    "design": 3
+   },
+   "ids": [
+    "MNP019",
+    "MNP020",
+    "MNP021",
+    "MNI023",
+    "MNI024",
+    "MNI025",
+    "MNI026",
+    "MND004",
+    "MND005",
+    "MND006"
+   ],
+   "enumerated_estimate": 0,
+   "leaf": "P6a",
+   "l1": "P6",
+   "domain": "physics",
+   "name": "光子晶体与结构色"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P6b",
+   "l1": "P6",
+   "domain": "physics",
+   "name": "超材料与超表面"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P7a",
+   "l1": "P7",
+   "domain": "physics",
+   "name": "胶体堆积与玻璃"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P7b",
+   "l1": "P7",
+   "domain": "physics",
+   "name": "聚合物链统计"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "P7c",
+   "l1": "P7",
+   "domain": "physics",
+   "name": "膜与囊泡"
+  },
+  {
+   "questions": 5,
+   "abilities": {
+    "perception": 5,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [
+    "QNP012",
+    "QNP013",
+    "QNP014",
+    "QNP015",
+    "QNP016"
+   ],
+   "enumerated_estimate": 541,
+   "leaf": "C1a",
+   "l1": "C1",
+   "domain": "chemistry",
+   "name": "官能团与键参数"
+  },
+  {
+   "questions": 15,
+   "abilities": {
+    "perception": 8,
+    "inference": 4,
+    "design": 3
+   },
+   "ids": [
+    "CNP012",
+    "CNP013",
+    "CNP014",
+    "CNP015",
+    "CNP016",
+    "CNP017",
+    "CNP018",
+    "CNP019",
+    "CNI007",
+    "CNI008",
+    "CNI009",
+    "CNI010",
+    "CND001",
+    "CND002",
+    "CND003"
+   ],
+   "enumerated_estimate": 0,
+   "leaf": "C1b",
+   "l1": "C1",
+   "domain": "chemistry",
+   "name": "立体化学与手性"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C1c",
+   "l1": "C1",
+   "domain": "chemistry",
+   "name": "芳香与杂环化合物"
+  },
+  {
+   "questions": 5,
+   "abilities": {
+    "perception": 5,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [
+    "CNP007",
+    "CNP008",
+    "CNP009",
+    "CNP010",
+    "CNP011"
+   ],
+   "enumerated_estimate": 0,
+   "leaf": "C1d",
+   "l1": "C1",
+   "domain": "chemistry",
+   "name": "天然产物"
+  },
+  {
+   "questions": 4,
+   "abilities": {
+    "perception": 0,
+    "inference": 4,
+    "design": 0
+   },
+   "ids": [
+    "QNP001",
+    "QNI001",
+    "QNI002",
+    "QNI003"
+   ],
+   "enumerated_estimate": 0,
+   "leaf": "C2a",
+   "l1": "C2",
+   "domain": "chemistry",
+   "name": "电子结构与原子力"
+  },
+  {
+   "questions": 9,
+   "abilities": {
+    "perception": 5,
+    "inference": 0,
+    "design": 4
+   },
+   "ids": [
+    "QNP007",
+    "QNP008",
+    "QNP009",
+    "QNP010",
+    "QNP011",
+    "QND001",
+    "QND002",
+    "QND003",
+    "QND004"
+   ],
+   "enumerated_estimate": 66,
+   "leaf": "C2b",
+   "l1": "C2",
+   "domain": "chemistry",
+   "name": "构象与能量景观"
+  },
+  {
+   "questions": 4,
+   "abilities": {
+    "perception": 2,
+    "inference": 2,
+    "design": 0
+   },
+   "ids": [
+    "HBP001",
+    "HBP002",
+    "HBI001",
+    "HBI002"
+   ],
+   "enumerated_estimate": 0,
+   "leaf": "C2c",
+   "l1": "C2",
+   "domain": "chemistry",
+   "name": "分子内相互作用"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C2d",
+   "l1": "C2",
+   "domain": "chemistry",
+   "name": "分子电性质"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C3a",
+   "l1": "C3",
+   "domain": "chemistry",
+   "name": "主族化合物"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C3b",
+   "l1": "C3",
+   "domain": "chemistry",
+   "name": "过渡金属配合物"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C3c",
+   "l1": "C3",
+   "domain": "chemistry",
+   "name": "金属簇与有机金属"
+  },
+  {
+   "questions": 5,
+   "abilities": {
+    "perception": 5,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [
+    "CNP001",
+    "CNP002",
+    "CNP003",
+    "CNP005",
+    "CNP006"
+   ],
+   "enumerated_estimate": 618,
+   "leaf": "C4a",
+   "l1": "C4",
+   "domain": "chemistry",
+   "name": "大环主体"
+  },
+  {
+   "questions": 5,
+   "abilities": {
+    "perception": 0,
+    "inference": 3,
+    "design": 2
+   },
+   "ids": [
+    "CNI014",
+    "CNI015",
+    "CNI016",
+    "CND007",
+    "CND008"
+   ],
+   "enumerated_estimate": 0,
+   "leaf": "C4b",
+   "l1": "C4",
+   "domain": "chemistry",
+   "name": "主客体识别与结合"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C4c",
+   "l1": "C4",
+   "domain": "chemistry",
+   "name": "分子笼与自组装"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C5a",
+   "l1": "C5",
+   "domain": "chemistry",
+   "name": "反应路径与过渡态"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C5b",
+   "l1": "C5",
+   "domain": "chemistry",
+   "name": "均相催化"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C5c",
+   "l1": "C5",
+   "domain": "chemistry",
+   "name": "表面催化"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C6a",
+   "l1": "C6",
+   "domain": "chemistry",
+   "name": "链构象与晶体"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C6b",
+   "l1": "C6",
+   "domain": "chemistry",
+   "name": "嵌段共聚物"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C6c",
+   "l1": "C6",
+   "domain": "chemistry",
+   "name": "树枝状与超支化高分子"
+  },
+  {
+   "questions": 10,
+   "abilities": {
+    "perception": 4,
+    "inference": 3,
+    "design": 3
+   },
+   "ids": [
+    "CNP020",
+    "CNP021",
+    "CNP022",
+    "CNP023",
+    "CNI011",
+    "CNI012",
+    "CNI013",
+    "CND004",
+    "CND005",
+    "CND006"
+   ],
+   "enumerated_estimate": 9,
+   "leaf": "C7a",
+   "l1": "C7",
+   "domain": "chemistry",
+   "name": "DNA 纳米结构"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C7b",
+   "l1": "C7",
+   "domain": "chemistry",
+   "name": "药物–靶标复合物"
+  },
+  {
+   "questions": 10,
+   "abilities": {
+    "perception": 3,
+    "inference": 4,
+    "design": 3
+   },
+   "ids": [
+    "CNP024",
+    "CNP025",
+    "CNP026",
+    "CNI017",
+    "CNI018",
+    "CNI019",
+    "CNI020",
+    "CND009",
+    "CND010",
+    "CND011"
+   ],
+   "enumerated_estimate": 0,
+   "leaf": "C8a",
+   "l1": "C8",
+   "domain": "chemistry",
+   "name": "液晶相与螺旋结构"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "C8b",
+   "l1": "C8",
+   "domain": "chemistry",
+   "name": "两亲分子与胶束"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M1a",
+   "l1": "M1",
+   "domain": "materials",
+   "name": "纯金属晶格"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M1b",
+   "l1": "M1",
+   "domain": "materials",
+   "name": "合金与金属间化合物"
+  },
+  {
+   "questions": 13,
+   "abilities": {
+    "perception": 4,
+    "inference": 8,
+    "design": 1
+   },
+   "ids": [
+    "MNP002",
+    "MNI003",
+    "MNI011",
+    "MNP011",
+    "MNP012",
+    "MNI015",
+    "MNI016",
+    "MNI017",
+    "MND009",
+    "MNP022",
+    "MNI027",
+    "MNI030",
+    "MNI031"
+   ],
+   "enumerated_estimate": 93,
+   "leaf": "M2a",
+   "l1": "M2",
+   "domain": "materials",
+   "name": "简单氧化物与卤化物"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 23,
+   "leaf": "M2b",
+   "l1": "M2",
+   "domain": "materials",
+   "name": "复杂氧化物"
+  },
+  {
+   "questions": 2,
+   "abilities": {
+    "perception": 1,
+    "inference": 1,
+    "design": 0
+   },
+   "ids": [
+    "MNP024",
+    "MNI029"
+   ],
+   "enumerated_estimate": 62,
+   "leaf": "M2c",
+   "l1": "M2",
+   "domain": "materials",
+   "name": "硅酸盐与矿物"
+  },
+  {
+   "questions": 10,
+   "abilities": {
+    "perception": 3,
+    "inference": 5,
+    "design": 2
+   },
+   "ids": [
+    "MNP001",
+    "MNP003",
+    "MNI001",
+    "MNI002",
+    "MNI012",
+    "MND007",
+    "MND008",
+    "MNP023",
+    "MNI028",
+    "MNI032"
+   ],
+   "enumerated_estimate": 55,
+   "leaf": "M3a",
+   "l1": "M3",
+   "domain": "materials",
+   "name": "元素与化合物半导体"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M3b",
+   "l1": "M3",
+   "domain": "materials",
+   "name": "卤化物钙钛矿"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M3c",
+   "l1": "M3",
+   "domain": "materials",
+   "name": "缺陷与掺杂"
+  },
+  {
+   "questions": 14,
+   "abilities": {
+    "perception": 7,
+    "inference": 4,
+    "design": 3
+   },
+   "ids": [
+    "MNP006",
+    "MNP007",
+    "MNP008",
+    "MNP009",
+    "MNP010",
+    "MNI013",
+    "MNI014",
+    "MNP013",
+    "MNP014",
+    "MNI018",
+    "MNI019",
+    "MND010",
+    "MND011",
+    "MND012"
+   ],
+   "enumerated_estimate": 51,
+   "leaf": "M4a",
+   "l1": "M4",
+   "domain": "materials",
+   "name": "金属有机框架（MOF）"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M4b",
+   "l1": "M4",
+   "domain": "materials",
+   "name": "共价有机框架（COF）"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M4c",
+   "l1": "M4",
+   "domain": "materials",
+   "name": "沸石"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M5a",
+   "l1": "M5",
+   "domain": "materials",
+   "name": "分子晶体与多晶型"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M5b",
+   "l1": "M5",
+   "domain": "materials",
+   "name": "有机半导体"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M5c",
+   "l1": "M5",
+   "domain": "materials",
+   "name": "聚合物晶体与纤维"
+  },
+  {
+   "questions": 10,
+   "abilities": {
+    "perception": 4,
+    "inference": 3,
+    "design": 3
+   },
+   "ids": [
+    "MNP015",
+    "MNP016",
+    "MNP017",
+    "MNP018",
+    "MNI020",
+    "MNI021",
+    "MNI022",
+    "MND001",
+    "MND002",
+    "MND003"
+   ],
+   "enumerated_estimate": 0,
+   "leaf": "M6a",
+   "l1": "M6",
+   "domain": "materials",
+   "name": "纳米粒子超晶格"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M6b",
+   "l1": "M6",
+   "domain": "materials",
+   "name": "纳米晶形貌"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M6c",
+   "l1": "M6",
+   "domain": "materials",
+   "name": "核壳结构"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M7a",
+   "l1": "M7",
+   "domain": "materials",
+   "name": "晶面与表面结构"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M7b",
+   "l1": "M7",
+   "domain": "materials",
+   "name": "吸附"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M7c",
+   "l1": "M7",
+   "domain": "materials",
+   "name": "晶界与异质界面"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M8a",
+   "l1": "M8",
+   "domain": "materials",
+   "name": "生物矿物"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "M8b",
+   "l1": "M8",
+   "domain": "materials",
+   "name": "蛋白基材料"
+  },
+  {
+   "questions": 8,
+   "abilities": {
+    "perception": 3,
+    "inference": 3,
+    "design": 2
+   },
+   "ids": [
+    "BNP008",
+    "BNP015",
+    "BNP016",
+    "BNI011",
+    "BNI012",
+    "BNI025",
+    "BND005",
+    "BND008"
+   ],
+   "enumerated_estimate": 16686,
+   "leaf": "B1a",
+   "l1": "B1",
+   "domain": "biology",
+   "name": "水解酶"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B1b",
+   "l1": "B1",
+   "domain": "biology",
+   "name": "氧化还原酶"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B1c",
+   "l1": "B1",
+   "domain": "biology",
+   "name": "转移酶与激酶"
+  },
+  {
    "questions": 13,
    "abilities": {
     "perception": 6,
@@ -1639,28 +3379,316 @@
     "design": 3
    },
    "ids": [
-    "BNP017",
-    "BNP018",
-    "BNI015",
+    "BNP001",
+    "BNP002",
+    "BNI001",
+    "BNP010",
+    "BNP011",
+    "BNP013",
+    "BNP014",
+    "BNI010",
+    "BNI024",
+    "BNI026",
+    "BND003",
+    "BND004",
+    "BND007"
+   ],
+   "enumerated_estimate": 2169,
+   "leaf": "B2a",
+   "l1": "B2",
+   "domain": "biology",
+   "name": "小型结构域"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B2b",
+   "l1": "B2",
+   "domain": "biology",
+   "name": "信号与调控蛋白"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 4916,
+   "leaf": "B3a",
+   "l1": "B3",
+   "domain": "biology",
+   "name": "氧结合蛋白"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B3b",
+   "l1": "B3",
+   "domain": "biology",
+   "name": "金属与小分子载体"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B4a",
+   "l1": "B4",
+   "domain": "biology",
+   "name": "离子通道"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B4b",
+   "l1": "B4",
+   "domain": "biology",
+   "name": "转运体"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B4c",
+   "l1": "B4",
+   "domain": "biology",
+   "name": "受体"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B5a",
+   "l1": "B5",
+   "domain": "biology",
+   "name": "成孔毒素"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B5b",
+   "l1": "B5",
+   "domain": "biology",
+   "name": "神经毒素"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B5c",
+   "l1": "B5",
+   "domain": "biology",
+   "name": "酶类毒素"
+  },
+  {
+   "questions": 34,
+   "abilities": {
+    "perception": 13,
+    "inference": 16,
+    "design": 5
+   },
+   "ids": [
+    "BNP021",
+    "BNP022",
+    "BNI017",
+    "BNI018",
+    "BNP023",
+    "BNP024",
+    "BNI019",
+    "BNI020",
+    "BNI021",
+    "BNI022",
+    "BND001",
+    "BNP025",
+    "BNI023",
+    "BND002",
+    "BND011",
+    "BNP028",
+    "BNP029",
+    "BNP030",
+    "BNP031",
+    "BNI028",
+    "BNI030",
+    "BNI031",
+    "BNI032",
+    "BNP032",
+    "BNP033",
+    "BNP034",
+    "BNP035",
+    "BNI033",
+    "BND013",
+    "BNI034",
+    "BND014",
+    "BNI036",
+    "BNI037",
+    "BNI038"
+   ],
+   "enumerated_estimate": 119,
+   "leaf": "B6a",
+   "l1": "B6",
+   "domain": "biology",
+   "name": "二十面体衣壳"
+  },
+  {
+   "questions": 6,
+   "abilities": {
+    "perception": 2,
+    "inference": 3,
+    "design": 1
+   },
+   "ids": [
+    "BNP036",
+    "BNP037",
+    "BNI035",
+    "BND015",
+    "BNI039",
+    "BNI040"
+   ],
+   "enumerated_estimate": 3,
+   "leaf": "B6b",
+   "l1": "B6",
+   "domain": "biology",
+   "name": "噬菌体"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B6c",
+   "l1": "B6",
+   "domain": "biology",
+   "name": "病毒膜融合与刺突蛋白"
+  },
+  {
+   "questions": 3,
+   "abilities": {
+    "perception": 1,
+    "inference": 2,
+    "design": 0
+   },
+   "ids": [
+    "BNP003",
+    "BNI002",
+    "BNI014"
+   ],
+   "enumerated_estimate": 30,
+   "leaf": "B7a",
+   "l1": "B7",
+   "domain": "biology",
+   "name": "DNA 结构"
+  },
+  {
+   "questions": 3,
+   "abilities": {
+    "perception": 0,
+    "inference": 2,
+    "design": 1
+   },
+   "ids": [
+    "BNI009",
+    "BNI013",
+    "BND006"
+   ],
+   "enumerated_estimate": 1507,
+   "leaf": "B7b",
+   "l1": "B7",
+   "domain": "biology",
+   "name": "RNA 结构"
+  },
+  {
+   "questions": 4,
+   "abilities": {
+    "perception": 2,
+    "inference": 1,
+    "design": 1
+   },
+   "ids": [
     "BNP019",
     "BNP020",
     "BNI016",
+    "BND010"
+   ],
+   "enumerated_estimate": 3,
+   "leaf": "B7c",
+   "l1": "B7",
+   "domain": "biology",
+   "name": "染色质"
+  },
+  {
+   "questions": 9,
+   "abilities": {
+    "perception": 4,
+    "inference": 3,
+    "design": 2
+   },
+   "ids": [
+    "BNP017",
+    "BNP018",
+    "BNI015",
     "BND009",
-    "BND010",
     "BNP026",
     "BNP027",
     "BNI027",
     "BNI029",
     "BND012"
    ],
-   "enumerated_estimate": 10
+   "enumerated_estimate": 7,
+   "leaf": "B8a",
+   "l1": "B8",
+   "domain": "biology",
+   "name": "折叠与降解"
   },
   {
-   "subdomain": "B5",
-   "domain": "biology",
-   "name": "大分子机器与复合物",
-   "scale": "100-1000",
-   "meaningful": false,
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1668,14 +3696,13 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
+   "enumerated_estimate": 0,
+   "leaf": "B8b",
+   "l1": "B8",
+   "domain": "biology",
+   "name": "翻译与转录"
   },
   {
-   "subdomain": "B6",
-   "domain": "biology",
-   "name": "膜蛋白与孔道毒素",
-   "scale": "0.1-1",
-   "meaningful": true,
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1683,14 +3710,13 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
+   "enumerated_estimate": 0,
+   "leaf": "B8c",
+   "l1": "B8",
+   "domain": "biology",
+   "name": "能量转换"
   },
   {
-   "subdomain": "B6",
-   "domain": "biology",
-   "name": "膜蛋白与孔道毒素",
-   "scale": "1-10",
-   "meaningful": true,
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1698,14 +3724,13 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
+   "enumerated_estimate": 0,
+   "leaf": "B9a",
+   "l1": "B9",
+   "domain": "biology",
+   "name": "抗体与抗原"
   },
   {
-   "subdomain": "B6",
-   "domain": "biology",
-   "name": "膜蛋白与孔道毒素",
-   "scale": "10-100",
-   "meaningful": false,
    "questions": 0,
    "abilities": {
     "perception": 0,
@@ -1713,22 +3738,11 @@
     "design": 0
    },
    "ids": [],
-   "enumerated_estimate": 0
-  },
-  {
-   "subdomain": "B6",
+   "enumerated_estimate": 0,
+   "leaf": "B9b",
+   "l1": "B9",
    "domain": "biology",
-   "name": "膜蛋白与孔道毒素",
-   "scale": "100-1000",
-   "meaningful": false,
-   "questions": 0,
-   "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
-   },
-   "ids": [],
-   "enumerated_estimate": 0
+   "name": "MHC 与 T 细胞受体"
   }
  ]
 }

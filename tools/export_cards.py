@@ -49,13 +49,17 @@ def build():
     packets = {p['id']: p for p in wb['student_packets']}
     keys = {t['id']: t for t in wb['teacher_answers']}
     tax = read(subdomain_map.TAXONOMY)
-    assign = subdomain_map.Assigner(tax)
-    names = {s['id']: s['name'] for s in tax['subdomains']}
+    tree = subdomain_map.Tree(tax)
+    names = {}                                     # level-1 ids, then their leaves, in tree order
+    for d in tax['domains']:
+        for one in d['l1']:
+            names[one['id']] = one['name']
+            names.update({leaf['id']: '%s · %s' % (one['name'], leaf['name']) for leaf in one['leaves']})
     cards = []
     for q in catalog:
         inst = q.get('familyInstance') or next((v['instance'] for v in q.get('familyVersions', []) if v['instance'] in packets), None)
         base = dict(id=q['id'], title=q['title'], ability=q['ability'], domain=q['domain'],
-                    scale=subdomain_map.scale_of(q['reasoningSizeNm']), subdomain=assign.question(q),
+                    scale=subdomain_map.scale_of(q['reasoningSizeNm']), subdomain=tree.question(q),
                     family=q.get('family', ''), source=q.get('source', ''), attribution=q.get('attribution', ''),
                     objective=q.get('learningObjective', ''), size=q.get('sizeDefinition', ''),
                     trace=q.get('traceUrl', ''), legacy=not q.get('familyInstance'))
@@ -67,6 +71,7 @@ def build():
                         answer=q.get('answer', ''), rubric=q.get('rubric', ''),
                         files=[dict(name=a['name'], url=a['url'], note=a.get('description', '')) for a in q.get('attachments', [])],
                         version='旧模板题（尚无四选一版本）')
+        base['l1'] = tree.leaf[base['subdomain']]['l1']
         cards.append(dict(base, **card))
     order = {'quantum': 0, 'chemistry': 1, 'materials': 2, 'biology': 3}
     cards.sort(key=lambda c: (order[c['domain']], subdomain_map.SCALES.index(c['scale']), c['id']))
