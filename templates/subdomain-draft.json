@@ -1,0 +1,398 @@
+{
+  "kind": "subdomain_taxonomy",
+  "version": "0.1.0",
+  "status": "draft",
+  "status_note": "Draft for the advisor (2026-10-13), following the sixth meeting: split the 4 domains x 4 scales into finer sub-domains and pick structures by stated criteria. Not yet confirmed; nothing else in the repository uses it yet.",
+  "draft_page": "https://claude.ai/artifact/2MWJ3SJXfx4hxQS6LUeDCe (private; shared by the user)",
+  "planning_total": 2500,
+  "assignment_rules": [
+    "按题目问的对象归子领域，而不是按测量技术（FRET 标记在蛋白上归 B1/B2，在 tRNA 上归 B3）。",
+    "改造蛋白的设计题（二硫键工程、FRET 标记位点）归 B2。",
+    "一题一个子领域；跨子领域的题按主对象归一处。",
+    "不适用的像素（scales 之外的尺度）不设目标。",
+    "领域边界沿用现有四个领域。"
+  ],
+  "subdomains": [
+    {
+      "id": "Q1",
+      "domain": "quantum",
+      "name": "分子电子结构与势能面",
+      "scope": "原子力、构象能量、偶极；分子整体尺寸",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "已有：受力路径、构象设计、命名键长 / 键角、整体尺寸。可补：振动模式与力常数、势能面极小点判别",
+      "data_sources": "QM7-X、QM9、OE62、ANI-1x（均开放）",
+      "selection_criterion": "按元素组成（CHNO / 含 S、Cl / 含卤素重原子）× 分子大小 × 柔性分层抽取"
+    },
+    {
+      "id": "Q2",
+      "domain": "quantum",
+      "name": "分子光谱",
+      "scope": "转动、振动光谱与同位素效应",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "已有：转动跃迁频率、单氘代位点设计。可补：用 NIST CCCBDB 实测转动常数出证据型题；振动频率随同位素位移",
+      "data_sources": "QM7-X 几何；NIST CCCBDB 实测转动常数",
+      "selection_criterion": "按转子类型（近长 / 近扁 / 非对称陀螺）与有无实测谱数据选分子"
+    },
+    {
+      "id": "Q3",
+      "domain": "quantum",
+      "name": "二维与莫尔量子材料",
+      "scope": "石墨烯与过渡金属硫族化物的晶格、莫尔超晶格",
+      "scales": [
+        "0.1-1",
+        "1-10",
+        "10-100"
+      ],
+      "question_types": "已有：莫尔几何、莫尔推断、选样设计（论文参数模型）。可补：单层晶格、层间堆垛",
+      "data_sources": "论文（魔角石墨烯、TMD 莫尔）；C2DB 等二维材料库（许可待查）",
+      "selection_criterion": "按材料体系（石墨烯 / hBN / TMD）与转角范围各取代表"
+    },
+    {
+      "id": "Q4",
+      "domain": "quantum",
+      "name": "量子限域纳米结构",
+      "scope": "量子点、纳米线的尺寸与光学",
+      "scales": [
+        "1-10",
+        "10-100"
+      ],
+      "question_types": "已有：CdSe 量子点光学与粒径设计。可补：PbS、InP、钙钛矿量子点经验曲线",
+      "data_sources": "论文中的尺寸–吸收经验曲线",
+      "selection_criterion": "按材料（II–VI / IV–VI / III–V / 钙钛矿）各至少一个体系"
+    },
+    {
+      "id": "Q5",
+      "domain": "quantum",
+      "name": "超导与磁有序",
+      "scope": "涡旋晶格、磁斯格明子晶格",
+      "scales": [
+        "1-10",
+        "10-100",
+        "100-1000"
+      ],
+      "question_types": "已有：涡旋晶格几何、推断、磁场设计。可补：斯格明子晶格（MnSi 等）",
+      "data_sources": "论文（STM、中子散射、洛伦兹电镜）",
+      "selection_criterion": "按体系（常规 / 高温超导、手性磁体）与观测手段各取代表"
+    },
+    {
+      "id": "Q6",
+      "domain": "quantum",
+      "name": "原子团簇",
+      "scope": "金属与半导体团簇、团簇能量景观",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "尚无。可出：配位数分布、对称性判别、团簇尺寸",
+      "data_sources": "Cambridge Cluster Database（许可待查）",
+      "selection_criterion": "按团簇类型（LJ / 金属 / 半导体）与原子数分档"
+    },
+    {
+      "id": "C1",
+      "domain": "chemistry",
+      "name": "有机小分子结构与立体化学",
+      "scope": "键长、键角、官能团、立体关系",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "已有：命名键长 / 键角、立体关系 / 性质 / 构型设计、转动光谱（客体离子）",
+      "data_sources": "QM7-X、QM9、PubChem3D",
+      "selection_criterion": "按官能团类别（含 N / O / S 杂原子、芳香、手性中心）覆盖"
+    },
+    {
+      "id": "C2",
+      "domain": "chemistry",
+      "name": "构象与分子内相互作用",
+      "scope": "构象集合、分子内氢键、柔性",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "已有：分子内氢键（旧题）。可补：构象能量排序、氢键几何判据、环构象（椅式 / 船式）",
+      "data_sources": "GEOM、QM7-X 构象、论文",
+      "selection_criterion": "按可旋转键数与氢键给受体类型分层"
+    },
+    {
+      "id": "C3",
+      "domain": "chemistry",
+      "name": "超分子与主客体",
+      "scope": "大环主体、主客体结合、非共价二聚",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "已有：主体局部几何、结合强弱（实测 ITC）、客体设计、万古霉素二聚体",
+      "data_sources": "SAMPL 系列挑战、PDB 小分子复合物",
+      "selection_criterion": "按主体家族（环糊精 / 葫芦脲 / 柱芳烃 / 杯芳烃）各取代表"
+    },
+    {
+      "id": "C4",
+      "domain": "chemistry",
+      "name": "反应与过渡态",
+      "scope": "反应物、过渡态、产物的几何变化",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "尚无。可出：成键 / 断键距离变化、过渡态判别、反应坐标方向",
+      "data_sources": "Transition1x、Landscape17（许可待查）",
+      "selection_criterion": "按反应类型（加成 / 消除 / 重排 / 质子转移）分层"
+    },
+    {
+      "id": "C5",
+      "domain": "chemistry",
+      "name": "配位与金属有机化学",
+      "scope": "金属配合物的配位几何",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "尚无。可出：配位数与几何（四面体 / 平面四方 / 八面体）、Jahn–Teller 畸变、配体咬合角",
+      "data_sources": "COD 中的分子配合物",
+      "selection_criterion": "按金属（主族 / 3d / 4d–5d）与配位数分层"
+    },
+    {
+      "id": "C6",
+      "domain": "chemistry",
+      "name": "软物质与自组装",
+      "scope": "液晶、DNA 纳米结构、胶束、嵌段共聚物",
+      "scales": [
+        "1-10",
+        "10-100",
+        "100-1000"
+      ],
+      "question_types": "已有：胆甾液晶三件套、DNA 折纸尺寸 / 散射 / 测 q 设计",
+      "data_sources": "论文；PDB / EMDB 中的 DNA 纳米结构",
+      "selection_criterion": "按组装类型（液晶 / DNA 纳米结构 / 两亲分子）各取代表"
+    },
+    {
+      "id": "M1",
+      "domain": "materials",
+      "name": "无机晶体",
+      "scope": "离子、共价、金属晶体的配位与衍射",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "已有：配位壳层、首个衍射峰、消光、衍射设计",
+      "data_sources": "COD（公有领域）",
+      "selection_criterion": "按晶系 × 键型（离子 / 共价 / 金属）× 结构原型（岩盐、钙钛矿、尖晶石、纤锌矿……）"
+    },
+    {
+      "id": "M2",
+      "domain": "materials",
+      "name": "多孔框架材料",
+      "scope": "MOF、COF、沸石的孔道与骨架",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "已有：MOF-5、ZIF-8 的配位、衍射、消光、尺寸。可补：孔径、比表面积、拓扑",
+      "data_sources": "CoRE MOF、IZA 沸石结构库、COD",
+      "selection_criterion": "按拓扑（sod / pcu / fau ……）与金属节点各取代表"
+    },
+    {
+      "id": "M3",
+      "domain": "materials",
+      "name": "有机与高分子材料",
+      "scope": "分子晶体、药物多晶型、聚合物晶体",
+      "scales": [
+        "0.1-1",
+        "1-10",
+        "10-100"
+      ],
+      "question_types": "尚无。可出：堆积与氢键网络、多晶型差异、链构象与层间距",
+      "data_sources": "COD 有机晶体、论文",
+      "selection_criterion": "按材料类别（药物多晶型 / 有机半导体 / 聚合物）分层"
+    },
+    {
+      "id": "M4",
+      "domain": "materials",
+      "name": "缺陷、表面与界面",
+      "scope": "空位、位错、晶面与界面结构",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "尚无。可出：表面原子配位数、晶面原子密度、空位周围弛豫",
+      "data_sources": "由 COD 体相按明确规则切面或建缺陷（模型题，题干写明条件）",
+      "selection_criterion": "按体相原型 × 晶面指数选取"
+    },
+    {
+      "id": "M5",
+      "domain": "materials",
+      "name": "纳米粒子组装与超晶格",
+      "scope": "DNA 连接或二元纳米粒子超晶格",
+      "scales": [
+        "1-10",
+        "10-100"
+      ],
+      "question_types": "已有：超晶格几何、SAXS 与金含量、连接子设计",
+      "data_sources": "论文",
+      "selection_criterion": "按组装方式（DNA 连接 / 配体 / 二元）与晶格类型各取代表"
+    },
+    {
+      "id": "M6",
+      "domain": "materials",
+      "name": "光子与胶体结构",
+      "scope": "胶体光子晶体、反蛋白石",
+      "scales": [
+        "100-1000"
+      ],
+      "question_types": "已有：光子晶体几何、Bragg 反射、结构色设计",
+      "data_sources": "论文",
+      "selection_criterion": "按材料（聚苯乙烯 / 二氧化硅 / 反蛋白石）与球径范围"
+    },
+    {
+      "id": "B1",
+      "domain": "biology",
+      "name": "蛋白质结构",
+      "scope": "主链构象、二级结构、蛋白整体尺寸",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "已有：主链二面角、二级结构、FRET 效率、尺寸与回转半径",
+      "data_sources": "PDB",
+      "selection_criterion": "按 CATH 一级类（全 α / 全 β / α/β / 少二级结构）× 大小分档，分辨率 ≤ 2 Å、无替代构象"
+    },
+    {
+      "id": "B2",
+      "domain": "biology",
+      "name": "蛋白质工程、标记与相互作用",
+      "scope": "二硫键工程、标记位点、结合位点与界面",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "已有：二硫键工程、FRET 标记设计。可补：蛋白–配体口袋、蛋白–蛋白界面",
+      "data_sources": "PDB（复合物）",
+      "selection_criterion": "按相互作用类型（酶活性位点 / 抗体–抗原 / 蛋白–蛋白）分层"
+    },
+    {
+      "id": "B3",
+      "domain": "biology",
+      "name": "核酸结构",
+      "scope": "DNA / RNA 双链与三级结构",
+      "scales": [
+        "0.1-1",
+        "1-10",
+        "10-100"
+      ],
+      "question_types": "已有：tRNA、B-DNA 的 FRET 与尺寸。可补：沟宽、螺旋参数、A / B / Z 构象判别、G-四链体",
+      "data_sources": "PDB / NDB",
+      "selection_criterion": "按结构类型（A / B / Z-DNA、tRNA、核酶、G-四链体）各取代表"
+    },
+    {
+      "id": "B4",
+      "domain": "biology",
+      "name": "病毒与衣壳",
+      "scope": "二十面体衣壳的尺寸与 Caspar–Klug 结构",
+      "scales": [
+        "10-100",
+        "100-1000"
+      ],
+      "question_types": "已有：衣壳尺寸、T 数、壳粒数、散射与测 q 设计",
+      "data_sources": "PDB、VIPERdb",
+      "selection_criterion": "按 T 数（1 / 3 / 4 / 7 / 13 / 伪 T）与宿主类型各取代表"
+    },
+    {
+      "id": "B5",
+      "domain": "biology",
+      "name": "大分子机器与复合物",
+      "scope": "伴侣蛋白、蛋白酶体、核小体、核糖体",
+      "scales": [
+        "1-10",
+        "10-100"
+      ],
+      "question_types": "已有：GroEL–GroES、蛋白酶体、核小体的尺寸与散射",
+      "data_sources": "PDB、EMDB",
+      "selection_criterion": "按功能类别（折叠 / 降解 / 染色质 / 翻译 / 能量转换）各取代表"
+    },
+    {
+      "id": "B6",
+      "domain": "biology",
+      "name": "膜蛋白与孔道毒素",
+      "scope": "离子通道、转运体、成孔毒素",
+      "scales": [
+        "0.1-1",
+        "1-10"
+      ],
+      "question_types": "尚无。可出：孔道最窄半径、跨膜区厚度、寡聚对称性",
+      "data_sources": "PDB、OPM / PDBTM（膜定位）",
+      "selection_criterion": "按类别（通道 / 转运体 / 受体 / 成孔毒素，如 α-溶血素）各取代表"
+    }
+  ],
+  "structure_groups": {
+    "capsids": [
+      "1A34",
+      "1CWP",
+      "1STM",
+      "1SVA",
+      "2BUK",
+      "2FT1",
+      "6CGR",
+      "6NCL"
+    ],
+    "machines": [
+      "1AON",
+      "1KX5",
+      "1RYP"
+    ],
+    "nucleic_acids": [
+      "1BNA",
+      "1EHZ",
+      "355D"
+    ],
+    "mof_cod": [
+      "1516287",
+      "4118891"
+    ],
+    "sampl9_hosts": [
+      "SAMPL9-BCD",
+      "SAMPL9-DMBCD",
+      "SAMPL9-WP6"
+    ]
+  },
+  "family_groups": {
+    "protein_engineering": [
+      "disulfide_design",
+      "fret_design"
+    ],
+    "spectroscopy": [
+      "isotopologue_design",
+      "rotational_line"
+    ]
+  },
+  "paper_routes": {
+    "chemistry": {
+      "pdb-dna-origami": "C6",
+      "paper-shaban-cholesteric": "C6",
+      "paper-dinc-isosorbide": "C6",
+      "hbond2021": "C2",
+      "sampl9": "C3",
+      "pdb-1aa5-vancomycin": "C3"
+    },
+    "materials": {
+      "cod-materials-cell": "M1",
+      "cod-mof": "M2",
+      "paper-dna-au-superlattice": "M5",
+      "paper-ps-opal-rulers": "M6",
+      "paper-silica-opal": "M6"
+    },
+    "quantum": {
+      "paper-cao-magic-angle": "Q3",
+      "paper-kerelsky-tbg-stm": "Q3",
+      "paper-yu-cdse-2003": "Q4",
+      "paper-cottet-mgb2-vortex": "Q5",
+      "paper-schaefermeier-bscco-vortex": "Q5"
+    }
+  }
+}
