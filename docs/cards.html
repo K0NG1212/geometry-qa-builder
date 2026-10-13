@@ -1,0 +1,106 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>题目卡片 · GeoBench</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.cards-wrap{max-width:1320px;margin:auto;padding:28px 48px 60px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:36px}
+@media(max-width:900px){.cards-wrap{grid-template-columns:minmax(0,1fr);padding:20px 16px 48px;gap:18px}}
+.filters{position:sticky;top:16px;align-self:start;font-size:13px}
+@media(max-width:900px){.filters{position:static}}
+.filters fieldset{border:0;margin:0 0 16px;padding:0}
+.filters legend{font-size:10px;letter-spacing:2px;font-weight:600;color:var(--muted);margin-bottom:6px;text-transform:uppercase}
+.filters label{display:flex;gap:8px;align-items:center;padding:3px 0;cursor:pointer}
+.filters label small{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums}
+.filters input[type=search],.filters select{width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:5px;background:var(--paper)}
+.filters .note{color:var(--muted);font-size:12px;line-height:1.55}
+.filter-toggle{display:none}
+@media(max-width:900px){.filter-toggle{display:inline-flex}.filters[data-collapsed=true] .filter-body{display:none}}
+.card-toolbar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:13px;color:var(--muted);margin-bottom:14px}
+.card-toolbar .count{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.card-toolbar button{border:1px solid var(--line);background:var(--paper);border-radius:5px;padding:5px 11px;color:var(--ink)}
+.card-toolbar label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.stage{display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:12px;align-items:start}
+@media(max-width:700px){.stage{grid-template-columns:minmax(0,1fr)}.nav-arrow{display:none!important}}
+.nav-arrow{position:sticky;top:45vh;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--paper);font-size:20px;display:flex;align-items:center;justify-content:center}
+.nav-arrow:disabled{opacity:.35;cursor:default}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(32,59,48,.07);padding:28px 32px;min-width:0}
+@media(max-width:700px){.card{padding:20px 18px}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip{font-size:11.5px;border:1px solid var(--line);border-radius:99px;padding:1px 9px;color:var(--muted);white-space:nowrap}
+.chip.ab-perception{color:#527b99;border-color:#527b99}.chip.ab-inference{color:#a07a2c;border-color:#a07a2c}.chip.ab-design{color:#906aa8;border-color:#906aa8}
+.chip.warn{background:#fbefd9;border-color:#e3c48a;color:#7a5410}
+.card h2{font-size:22px;margin:4px 0 14px}
+.qtext{white-space:pre-wrap;font-size:14.5px;line-height:1.8;overflow-wrap:anywhere}
+.files{margin:16px 0 4px;display:grid;gap:8px}
+.file{border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:13px}
+.file .row{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.file b{font-family:Consolas,ui-monospace,monospace;font-weight:600}
+.file small{color:var(--muted)}
+.file button,.file a.dl{border:1px solid var(--line);border-radius:4px;padding:2px 9px;background:var(--bg);font-size:12px;color:var(--ink)}
+.file pre{max-height:320px;overflow:auto;background:var(--bg);padding:10px;border-radius:6px;font-size:12px;line-height:1.5;margin:8px 0 0}
+.options{display:grid;gap:10px;margin-top:18px}
+.opt{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:center;text-align:left;border:1.5px solid var(--line);border-radius:10px;background:var(--paper);padding:12px 14px;font-size:15px;color:var(--ink)}
+.opt:hover:not(:disabled){border-color:var(--green)}
+.opt .lab{width:30px;height:30px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:650}
+.opt .val{font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.opt:disabled{cursor:default}
+.opt.correct{border-color:#3f8a5c;background:#ecf6ef}.opt.correct .lab{background:#3f8a5c;color:#fff}
+.opt.wrong{border-color:#b5574b;background:#fbecea}.opt.wrong .lab{background:#b5574b;color:#fff}
+.reveal{margin-top:18px;border-top:1px dashed var(--line);padding-top:16px}
+.verdict{font-size:16px;font-weight:600;margin-bottom:10px}
+.verdict.ok{color:#2f7a4c}.verdict.no{color:#a5463b}
+.why{display:grid;gap:6px;font-size:13.5px}
+.why div{display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px}
+.why .is-right{color:#2f7a4c;font-weight:600}
+.meta{margin-top:14px;font-size:13px;color:var(--muted);display:grid;gap:4px}
+.meta a{color:var(--green);text-decoration:underline}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}
+.actions button{border:1px solid var(--line);background:var(--paper);border-radius:6px;padding:7px 14px;color:var(--ink)}
+.actions .primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+.flag-box{margin-top:12px;display:grid;gap:8px}
+.flag-box textarea{width:100%;min-height:72px;padding:8px;border:1px solid var(--line);border-radius:6px;font:inherit}
+.flagged-tag{color:#a5463b;font-size:12.5px}
+.empty-state{padding:60px 20px;text-align:center;color:var(--muted)}
+.keys{font-size:12px;color:var(--muted);margin-top:14px}
+.keys kbd{border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;font-family:inherit;background:var(--paper)}
+.progress{height:4px;background:var(--line);border-radius:2px;overflow:hidden;margin-bottom:14px}
+.progress i{display:block;height:100%;background:var(--green);transition:width .2s}
+@media(prefers-reduced-motion:reduce){.progress i{transition:none}}
+</style></head><body>
+<header class="site-header"><a class="brand" href="index.html" aria-label="GeoBench 首页"><span class="brand-mark">g<span>·</span></span><span>GeoBench<small>QUESTION CARDS</small></span></a><nav aria-label="主导航"><a href="index.html">研究地图</a><a href="index.html#questions">问题池</a><a href="cards.html" aria-current="page">题目卡片</a><a href="system.html">出题系统</a><a href="templates.html">题型</a><a href="review.html">审核</a></nav></header>
+<div class="cards-wrap">
+<aside class="filters" id="filters" data-collapsed="true" aria-label="筛选">
+  <button class="button filter-toggle" id="filter-toggle" type="button" aria-expanded="false">筛选 ▾</button>
+  <div class="filter-body">
+  <fieldset><legend>搜索</legend><input type="search" id="f-search" placeholder="编号或标题"></fieldset>
+  <fieldset id="f-ability"><legend>能力</legend></fieldset>
+  <fieldset id="f-domain"><legend>学科</legend></fieldset>
+  <fieldset id="f-scale"><legend>推理尺度</legend></fieldset>
+  <fieldset id="f-format"><legend>作答形式</legend></fieldset>
+  <fieldset><legend>子领域（草案）</legend><select id="f-sub"><option value="">全部子领域</option></select>
+    <p class="note">子领域细分为待导师确认的草案（templates/subdomain-draft.json）。</p></fieldset>
+  <fieldset><legend>我的标记</legend><label><input type="checkbox" id="f-flagged">只看我标记有问题的</label>
+    <div class="actions" style="margin-top:6px"><button type="button" id="export-flags">导出标记（JSON）</button></div>
+    <p class="note" id="flag-note">标记只存在这台电脑的浏览器里。</p></fieldset>
+  <button class="button" type="button" id="reset">清除筛选</button>
+  </div>
+</aside>
+<main style="min-height:auto;max-width:none;margin:0">
+  <p class="eyebrow">QUESTION CARDS · 全部待人工审核</p>
+  <div class="card-toolbar">
+    <span class="count" id="count">读取中…</span>
+    <button type="button" id="shuffle">打乱顺序</button>
+    <label><input type="checkbox" id="auto">答完自动下一张</label>
+    <span id="score"></span>
+    <button type="button" id="clear-score">清零作答</button>
+  </div>
+  <div class="progress" aria-hidden="true"><i id="bar" style="width:0"></i></div>
+  <div class="stage">
+    <button class="nav-arrow" id="prev" type="button" aria-label="上一张">←</button>
+    <article class="card" id="card" aria-live="polite"><div class="empty-state">读取题目…</div></article>
+    <button class="nav-arrow" id="next" type="button" aria-label="下一张">→</button>
+  </div>
+  <p class="keys">键盘：<kbd>←</kbd> <kbd>→</kbd> 切换 · <kbd>1</kbd>–<kbd>4</kbd> 或 <kbd>A</kbd>–<kbd>D</kbd> 作答 · <kbd>空格</kbd> 显示答案 · <kbd>F</kbd> 标记问题</p>
+</main>
+</div>
+<script src="cards.js?v=20261013" defer></script>
+</body></html>
