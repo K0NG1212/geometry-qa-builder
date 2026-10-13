@@ -11,7 +11,7 @@
     get(k, d) { try { const v = localStorage.getItem('geobench-cards-' + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
     set(k, v) { try { localStorage.setItem('geobench-cards-' + k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
   };
-  let all = [], shown = [], pos = 0, subNames = {};
+  let all = [], shown = [], pos = 0, subNames = {}, issues = {};
   let answers = store.get('answers', {});        // id -> chosen label
   let flags = store.get('flags', {});            // id -> note
   let revealed = new Set();
@@ -27,9 +27,11 @@
   function apply(keepId) {
     const ab = checked('ability'), dm = checked('domain'), sc = checked('scale'), fm = checked('format');
     const q = $('f-search').value.trim().toLowerCase(), sub = $('f-sub').value, onlyFlag = $('f-flagged').checked;
+    const onlyIssue = $('f-issues').checked, onlyHigh = $('f-high').checked;
     const order = shown.length && $('shuffle').dataset.on === '1' ? new Map(shown.map((c, i) => [c.id, i])) : null;
     shown = all.filter(c => ab.has(c.ability) && dm.has(c.domain) && sc.has(c.scale) && fm.has(c.format) &&
       (!sub || c.subdomain === sub || c.l1 === sub) && (!onlyFlag || flags[c.id] !== undefined) &&
+      (!onlyIssue || issues[c.id]) && (!onlyHigh || (issues[c.id] && issues[c.id].worst === 'high')) &&
       (!q || c.id.toLowerCase().includes(q) || c.title.toLowerCase().includes(q)));
     if (order) shown.sort((a, b) => (order.get(a.id) ?? 1e9) - (order.get(b.id) ?? 1e9));
     for (const field of ['ability', 'domain', 'scale', 'format']) {
@@ -70,7 +72,8 @@
       `<span class="chip">${DOMAIN[c.domain]}</span>`, `<span class="chip">${SCALE[c.scale]}</span>`,
       `<span class="chip">${esc(c.subdomain)} ${esc(subNames[c.subdomain] || '')}</span>`,
       c.format === 'open' ? '<span class="chip warn">非四选一的旧题</span>' : '',
-      flags[c.id] !== undefined ? '<span class="chip warn">已标记问题</span>' : ''].join('');
+      flags[c.id] !== undefined ? '<span class="chip warn">已标记问题</span>' : '',
+      issues[c.id] ? `<span class="chip warn">格式问题 ${issues[c.id].issues.length}</span>` : ''].join('');
     let opts = '';
     if (c.format === 'choice') {
       opts = '<div class="options" role="group" aria-label="选项">' + c.options.map(o => {
@@ -96,11 +99,14 @@
         rev = `<div class="reveal"><div class="verdict">参考答案</div><div class="qtext">${esc(c.answer)}</div><div class="meta"><div>评分：${esc(c.rubric)}</div>${meta(c)}</div></div>`;
       }
     }
-    const flagged = flags[c.id] !== undefined;
+    const flagged = flags[c.id] !== undefined, iss = issues[c.id];
+    const SEV = {high: '高', medium: '中', low: '低'};
+    const issueBox = iss ? `<div class="issues ${iss.worst === 'low' ? 'low' : ''}"><b>格式检查发现 ${iss.issues.length} 项</b><ul>${iss.issues.map(i =>
+      `<li><span class="sev">[${SEV[i.severity]}] ${esc(i.label)}</span>：${esc(i.detail)}</li>`).join('')}</ul>${iss.suggestion ? `<div class="sug">建议处理：${esc(iss.suggestion)}</div>` : ''}</div>` : '';
     $('card').innerHTML = `<div class="chips">${chips}</div><h2>${esc(c.title)}</h2>
       <div class="qtext">${esc(c.question)}</div>
       ${c.files.length ? `<div class="files">${c.files.map(fileHtml).join('')}</div>` : ''}
-      ${opts}${rev}
+      ${issueBox}${opts}${rev}
       <div class="actions">
         ${open ? '' : '<button type="button" class="primary" id="show">显示答案</button>'}
         <button type="button" id="flag">${flagged ? '编辑问题标记' : '标记有问题'}</button>
@@ -167,7 +173,7 @@
   });
   $('reset').addEventListener('click', () => {
     document.querySelectorAll('input[data-f]').forEach(i => { i.checked = true; });
-    $('f-search').value = ''; $('f-sub').value = ''; $('f-flagged').checked = false; apply();
+    $('f-search').value = ''; $('f-sub').value = ''; $('f-flagged').checked = false; $('f-issues').checked = false; $('f-high').checked = false; apply();
   });
   $('filter-toggle').addEventListener('click', () => {
     const f = $('filters'), open = f.dataset.collapsed === 'true';
@@ -188,8 +194,10 @@
     else if (k === 'F') $('flag')?.click();
   });
 
-  fetch('data/cards.json').then(r => r.json()).then(d => {
+  Promise.all([fetch('data/cards.json').then(r => r.json()), fetch('data/format-check.json').then(r => r.json()).catch(() => ({items: []}))]).then(([d, fc]) => {
     all = d.cards; subNames = d.subdomains;
+    issues = Object.fromEntries(fc.items.map(x => [x.id, x]));
+    $('n-issues').textContent = fc.items.length; $('n-high').textContent = fc.items.filter(x => x.worst === 'high').length;
     boxes('ability', ['perception', 'inference', 'design'], ABILITY);
     boxes('domain', ['quantum', 'chemistry', 'materials', 'biology'], DOMAIN);
     boxes('scale', Object.keys(SCALE), SCALE);
