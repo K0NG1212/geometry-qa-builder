@@ -33,7 +33,7 @@ class FormatCheckTests(unittest.TestCase):
         self.assertEqual(format_check.scored_items('1 point per distance (4); 1 for both classifications; 1 for distinguishing'), 3)
         self.assertEqual(format_check.scored_items('3 points: distance (3; 0.01 angstrom tolerance).'), 1)
         self.assertIn('two_binaries_combined', rules('CNI007'))
-        self.assertIn('mirror_pair', rules('QNP001'))
+        self.assertIn('mirror_pair', rules('QNI024'))          # four-choice successor of QNP001 (2026-10-14)
         catalog = json.loads((ROOT / 'docs/data/catalog.json').read_text(encoding='utf-8'))['questions']
         active = {q['id'] for q in catalog if q['lifecycle'] == 'active'}
         self.assertTrue((set(format_check.REVIEWED) & active) <= set(self.items))

@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-13",
+  "date": "2026-10-14",
   "scope": "对全部目录记录采用相同准入清单；2026-09-22 专项审读处置见 screening.html；本统计不代表完整 M0–M6 重跑。",
   "target": 160,
   "screened": 240,
@@ -9,24 +9,6 @@
   "remaining_formal": 160,
   "human_review_count": 240,
   "human_review_ids": [
-    "CNP001",
-    "CNP002",
-    "QNP001",
-    "CNP006",
-    "QNI001",
-    "QNI002",
-    "QNP007",
-    "QNP008",
-    "QNP009",
-    "QNP010",
-    "QNP011",
-    "MNP006",
-    "MNP007",
-    "MNP010",
-    "CNP007",
-    "CNP008",
-    "CNP009",
-    "CNP011",
     "BNP013",
     "BNP014",
     "BNP015",
@@ -248,12 +230,30 @@
     "CNI023",
     "CNI024",
     "QNI022",
-    "QNI023"
+    "QNI023",
+    "CNP031",
+    "CNP032",
+    "CNP033",
+    "QNI024",
+    "QNI025",
+    "QNI026",
+    "QNP023",
+    "QNP024",
+    "QNP025",
+    "QNP026",
+    "QNP027",
+    "MNP028",
+    "MNP029",
+    "MNP030",
+    "CNP034",
+    "CNP035",
+    "CNP036",
+    "CNP037"
   ],
   "lifecycle_counts": {
     "rework": 33,
     "backlog": 18,
-    "archived": 44,
+    "archived": 62,
     "active": 240
   },
   "records": [
@@ -836,7 +836,7 @@
     {
       "id": "CNP001",
       "title": "BCD · 桥连氧处的 C–O–C 键角",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -844,17 +844,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：独立审核与模型试测，不重复生成已核验数值。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 CNP031（题型族 named_bond_angle，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 CNP031",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CNP002",
       "title": "WP6 · 苯撑环内部键角",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -862,11 +862,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：独立审核与模型试测，不重复生成已核验数值。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 CNP032（题型族 named_bond_angle，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 CNP032",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -908,7 +908,7 @@
     {
       "id": "QNP001",
       "title": "QM7-X · 力是否反对指定分子形变？",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -916,11 +916,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "完整真实数据实例通过同会话初筛，待独立审核。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 QNI024（题型族 force_path_derivative，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 QNI024",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1376,7 +1376,7 @@
     {
       "id": "CNP006",
       "title": "H26DM-B-CD · 甲基醚局部键角与键长",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1384,11 +1384,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：独立审核与模型试测，不重复生成已核验数值。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 CNP033（题型族 named_bond_angle，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 CNP033",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1610,7 +1610,7 @@
     {
       "id": "QNI001",
       "title": "QM7-X 分子7002 · 力是否反对指定分子形变？",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1618,11 +1618,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 QNI025（题型族 force_path_derivative，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 QNI025",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1646,7 +1646,7 @@
     {
       "id": "QNI002",
       "title": "QM7-X 分子7035 · 力是否反对指定分子形变？",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1654,11 +1654,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 QNI026（题型族 force_path_derivative，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 QNI026",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1754,7 +1754,7 @@
     {
       "id": "QNP007",
       "title": "OE62 分子MAJHUB · 全分子最大原子间距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1762,11 +1762,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 QNP023（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 QNP023",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1790,7 +1790,7 @@
     {
       "id": "QNP008",
       "title": "OE62 分子JIMHOC · 全分子最大原子间距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1798,17 +1798,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 QNP024（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 QNP024",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNP009",
       "title": "OE62 分子KEGPOC · 全分子最大原子间距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1816,17 +1816,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 QNP025（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 QNP025",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNP010",
       "title": "OE62 分子KEWGID · 回转半径",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1834,17 +1834,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 QNP026（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 QNP026",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNP011",
       "title": "OE62 分子PEKZAG · 回转半径",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1852,11 +1852,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 QNP027（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 QNP027",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -1934,7 +1934,7 @@
     {
       "id": "MNP006",
       "title": "ZIF-8 · Zn 亚晶格全局最大原子间距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1942,17 +1942,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 MNP028（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 MNP028",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNP007",
       "title": "MOF-5 · Zn 亚晶格全局最大原子间距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -1960,11 +1960,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 MNP029（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 MNP029",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -2006,7 +2006,7 @@
     {
       "id": "MNP010",
       "title": "MOF-5 · 全框架全局最大原子间距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -2014,11 +2014,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 MNP030（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 MNP030",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -2114,7 +2114,7 @@
     {
       "id": "CNP007",
       "title": "万古霉素 1AA5 · 单体A全局最大原子间距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -2122,17 +2122,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 CNP034（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 CNP034",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CNP008",
       "title": "万古霉素 1AA5 · 单体B全局最大原子间距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -2140,17 +2140,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 CNP035（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 CNP035",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CNP009",
       "title": "万古霉素 1AA5 · 不对称二聚体全局最大原子间距",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -2158,11 +2158,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 CNP036（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 CNP036",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -2186,7 +2186,7 @@
     {
       "id": "CNP011",
       "title": "万古霉素 1AA5 · 二聚体回转半径",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -2194,11 +2194,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "新版规则同会话初筛通过；保留为公开原型候选，尚待独立审核和难度测试。",
-      "next": "M5：领域审核、几何消融与模型难度试测。",
+      "human_review_queue": false,
+      "reason": "格式检查（2026-10-13）：主记录仍是旧题干（数值或文字作答），四选一版本只作附属；用户 2026-10-14 决定改由已核验的四选一版本正式取代。 已有新版改写 CNP037（题型族 extent_choice_v2，暂计），保留原始版本以追溯，不重复计数。",
+      "next": "见新版 CNP037",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -6286,6 +6286,330 @@
       "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
       "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNP031",
+      "title": "BCD · 桥连氧处的 C–O–C 键角（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNP032",
+      "title": "WP6 · 苯撑环内部键角（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNP033",
+      "title": "H26DM-B-CD · 甲基醚局部键角与键长（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNI024",
+      "title": "QM7-X · 力是否反对指定分子形变？（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNI025",
+      "title": "QM7-X 分子7002 · 力是否反对指定分子形变？（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNI026",
+      "title": "QM7-X 分子7035 · 力是否反对指定分子形变？（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNP023",
+      "title": "OE62 分子MAJHUB · 全分子最大原子间距（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNP024",
+      "title": "OE62 分子JIMHOC · 全分子最大原子间距（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNP025",
+      "title": "OE62 分子KEGPOC · 全分子最大原子间距（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNP026",
+      "title": "OE62 分子KEWGID · 回转半径（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNP027",
+      "title": "OE62 分子PEKZAG · 回转半径（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNP028",
+      "title": "ZIF-8 · Zn 亚晶格全局最大原子间距（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNP029",
+      "title": "MOF-5 · Zn 亚晶格全局最大原子间距（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNP030",
+      "title": "MOF-5 · 全框架全局最大原子间距（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNP034",
+      "title": "万古霉素 1AA5 · 单体A全局最大原子间距（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNP035",
+      "title": "万古霉素 1AA5 · 单体B全局最大原子间距（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNP036",
+      "title": "万古霉素 1AA5 · 不对称二聚体全局最大原子间距（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "CNP037",
+      "title": "万古霉素 1AA5 · 二聚体回转半径（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     }
   ],
   "directions": [
@@ -6491,7 +6815,7 @@
         1
       ],
       "target": 10,
-      "located_candidates": 23,
+      "located_candidates": 26,
       "screened_count": 16,
       "remaining": 0,
       "abilities": {
@@ -6505,9 +6829,6 @@
         "design": 0
       },
       "qa_ids": [
-        "QNP001",
-        "QNI001",
-        "QNI002",
         "QND001",
         "QND002",
         "QND003",
@@ -6520,7 +6841,10 @@
         "QNI021",
         "QND013",
         "QNI022",
-        "QNI023"
+        "QNI023",
+        "QNI024",
+        "QNI025",
+        "QNI026"
       ],
       "provisional_ids": [
         "QND001",
@@ -6535,7 +6859,10 @@
         "QNI021",
         "QND013",
         "QNI022",
-        "QNI023"
+        "QNI023",
+        "QNI024",
+        "QNI025",
+        "QNI026"
       ],
       "blocker": ""
     },
@@ -6546,7 +6873,7 @@
         10
       ],
       "target": 10,
-      "located_candidates": 15,
+      "located_candidates": 20,
       "screened_count": 10,
       "remaining": 0,
       "abilities": {
@@ -6560,23 +6887,28 @@
         "design": 1
       },
       "qa_ids": [
-        "QNP007",
-        "QNP008",
-        "QNP009",
-        "QNP010",
-        "QNP011",
         "QNI014",
         "QNI015",
         "QNI016",
         "QND008",
-        "QND009"
+        "QND009",
+        "QNP023",
+        "QNP024",
+        "QNP025",
+        "QNP026",
+        "QNP027"
       ],
       "provisional_ids": [
         "QNI014",
         "QNI015",
         "QNI016",
         "QND008",
-        "QND009"
+        "QND009",
+        "QNP023",
+        "QNP024",
+        "QNP025",
+        "QNP026",
+        "QNP027"
       ],
       "blocker": ""
     },
@@ -6679,7 +7011,7 @@
         1
       ],
       "target": 10,
-      "located_candidates": 37,
+      "located_candidates": 40,
       "screened_count": 26,
       "remaining": 0,
       "abilities": {
@@ -6693,9 +7025,6 @@
         "design": 0
       },
       "qa_ids": [
-        "CNP001",
-        "CNP002",
-        "CNP006",
         "CNP012",
         "CNP013",
         "CNP014",
@@ -6718,7 +7047,10 @@
         "CNP029",
         "CNP030",
         "CNI023",
-        "CNI024"
+        "CNI024",
+        "CNP031",
+        "CNP032",
+        "CNP033"
       ],
       "provisional_ids": [
         "CNP012",
@@ -6743,7 +7075,10 @@
         "CNP029",
         "CNP030",
         "CNI023",
-        "CNI024"
+        "CNI024",
+        "CNP031",
+        "CNP032",
+        "CNP033"
       ],
       "blocker": ""
     },
@@ -6754,7 +7089,7 @@
         10
       ],
       "target": 10,
-      "located_candidates": 20,
+      "located_candidates": 24,
       "screened_count": 11,
       "remaining": 0,
       "abilities": {
@@ -6768,17 +7103,17 @@
         "design": 0
       },
       "qa_ids": [
-        "CNP007",
-        "CNP008",
-        "CNP009",
-        "CNP011",
         "CNI014",
         "CNI015",
         "CNI016",
         "CND007",
         "CND008",
         "CNI022",
-        "CND013"
+        "CND013",
+        "CNP034",
+        "CNP035",
+        "CNP036",
+        "CNP037"
       ],
       "provisional_ids": [
         "CNI014",
@@ -6787,7 +7122,11 @@
         "CND007",
         "CND008",
         "CNI022",
-        "CND013"
+        "CND013",
+        "CNP034",
+        "CNP035",
+        "CNP036",
+        "CNP037"
       ],
       "blocker": ""
     },
@@ -6966,7 +7305,7 @@
         10
       ],
       "target": 10,
-      "located_candidates": 19,
+      "located_candidates": 22,
       "screened_count": 12,
       "remaining": 0,
       "abilities": {
@@ -6980,9 +7319,6 @@
         "design": 0
       },
       "qa_ids": [
-        "MNP006",
-        "MNP007",
-        "MNP010",
         "MNI013",
         "MNI014",
         "MNP013",
@@ -6991,7 +7327,10 @@
         "MNI019",
         "MND010",
         "MND011",
-        "MND012"
+        "MND012",
+        "MNP028",
+        "MNP029",
+        "MNP030"
       ],
       "provisional_ids": [
         "MNI013",
@@ -7002,7 +7341,10 @@
         "MNI019",
         "MND010",
         "MND011",
-        "MND012"
+        "MND012",
+        "MNP028",
+        "MNP029",
+        "MNP030"
       ],
       "blocker": ""
     },

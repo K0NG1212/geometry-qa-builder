@@ -25,7 +25,7 @@ class AdmissionMapTests(unittest.TestCase):
         instances = [e['instance'] for e in AMAP['instances']]
         self.assertEqual(Counter(instances), Counter(t['id'] for t in WORKBENCH['teacher_answers']))
         actions = Counter(e['action'] for e in AMAP['instances'])
-        self.assertEqual(actions['reformat'], 18)
+        self.assertEqual(actions['reformat'], 0)       # the 18 reformat links became supersede entries (user, 2026-10-14)
         # Only new and supersede entries create counted records. Of the 42 screened legacy items, those superseded with a
         # stated reason or retired by the format check (2026-10-13) leave the active set; each keeps its reason.
         counted = [q for q in CATALOG['questions'] if q.get('familyInstance') and q['lifecycle'] == 'active']
@@ -80,7 +80,8 @@ class AdmissionMapTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'exactly once'):
             admit(CATALOG, WORKBENCH, INDEPENDENT, dup, '2026-09-29')
         bad = copy.deepcopy(AMAP)
-        next(e for e in bad['instances'] if e['action'] == 'reformat')['catalog_id'] = 'QNP002'   # rework, not active
+        fake = next(e for e in bad['instances'] if e['action'] == 'supersede')
+        fake.update(action='reformat', catalog_id='QNP002')     # a reformat link must target an active legacy record
         with self.assertRaisesRegex(ValueError, 'Reformat target'):
             admit(CATALOG, WORKBENCH, INDEPENDENT, bad, '2026-09-29')
 

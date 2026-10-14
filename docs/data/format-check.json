@@ -2,11 +2,11 @@
  "kind": "format_check",
  "date": "2026-10-13",
  "checked": 240,
- "with_issues": 24,
+ "with_issues": 7,
  "by_severity": {
   "high": 0,
   "medium": 0,
-  "low": 24
+  "low": 7
  },
  "by_rule": {
   "not_four_choice": 0,
@@ -15,10 +15,10 @@
   "multi_part": 0,
   "needs_explanation": 0,
   "binary_inside": 0,
-  "main_record_old_format": 18,
+  "main_record_old_format": 0,
   "two_binaries_combined": 5,
   "mirror_pair": 2,
-  "precision_collapse": 1
+  "precision_collapse": 0
  },
  "rules": {
   "not_four_choice": {
@@ -156,117 +156,6 @@
    "suggestion": ""
   },
   {
-   "id": "CNP001",
-   "title": "BCD · 桥连氧处的 C–O–C 键角",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FA-ANG-BCD"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "CNP002",
-   "title": "WP6 · 苯撑环内部键角",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FA-ANG-WP6"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "CNP006",
-   "title": "H26DM-B-CD · 甲基醚局部键角与键长",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FA-ANG-DMBCD"
-    },
-    {
-     "rule": "precision_collapse",
-     "severity": "low",
-     "label": "报告精度下数值相同",
-     "detail": "两个 C–O 键长 1.4275 Å 与 1.4309 Å 在要求的两位小数下都是 1.43 Å。"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "CNP007",
-   "title": "万古霉素 1AA5 · 单体A全局最大原子间距",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FC-CNP007"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "CNP008",
-   "title": "万古霉素 1AA5 · 单体B全局最大原子间距",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FC-CNP008"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "CNP009",
-   "title": "万古霉素 1AA5 · 不对称二聚体全局最大原子间距",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FC-CNP009"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "CNP011",
-   "title": "万古霉素 1AA5 · 二聚体回转半径",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FC-CNP011"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
    "id": "CNP025",
    "title": "胆甾液晶（E44 + S5011）· 手性与螺距（四选一）",
    "legacy": false,
@@ -282,172 +171,16 @@
    "suggestion": ""
   },
   {
-   "id": "MNP006",
-   "title": "ZIF-8 · Zn 亚晶格全局最大原子间距",
-   "legacy": true,
+   "id": "QNI024",
+   "title": "QM7-X · 力是否反对指定分子形变？（四选一）",
+   "legacy": false,
    "worst": "low",
    "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FC-MNP006"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "MNP007",
-   "title": "MOF-5 · Zn 亚晶格全局最大原子间距",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FC-MNP007"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "MNP010",
-   "title": "MOF-5 · 全框架全局最大原子间距",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FC-MNP010"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "QNI001",
-   "title": "QM7-X 分子7002 · 力是否反对指定分子形变？",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FA-FP-QM7X-7002"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "QNI002",
-   "title": "QM7-X 分子7035 · 力是否反对指定分子形变？",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FA-FP-QM7X-7035"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "QNP001",
-   "title": "QM7-X · 力是否反对指定分子形变？",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FA-FP-QM7X-7001"
-    },
     {
      "rule": "mirror_pair",
      "severity": "low",
      "label": "选项中正负成对",
      "detail": "选项：-1.8479 / 0.7856 / 0.9240 / 1.8479"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "QNP007",
-   "title": "OE62 分子MAJHUB · 全分子最大原子间距",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FC-QNP007"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "QNP008",
-   "title": "OE62 分子JIMHOC · 全分子最大原子间距",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FC-QNP008"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "QNP009",
-   "title": "OE62 分子KEGPOC · 全分子最大原子间距",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FC-QNP009"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "QNP010",
-   "title": "OE62 分子KEWGID · 回转半径",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FC-QNP010"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "QNP011",
-   "title": "OE62 分子PEKZAG · 回转半径",
-   "legacy": true,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "main_record_old_format",
-     "severity": "low",
-     "label": "主记录仍是旧题干",
-     "detail": "四选一版本：旧题的四选一版本 FC-QNP011"
     }
    ],
    "suggestion": ""

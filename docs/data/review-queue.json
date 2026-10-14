@@ -1,6 +1,6 @@
 {
  "kind": "review_queue",
- "date": "2026-10-13",
+ "date": "2026-10-14",
  "summary": {
   "scope": "selection",
   "units_all_active": 47,
@@ -21,8 +21,8 @@
   },
   "instances": 160,
   "forms": {
-   "family": 147,
-   "family-version": 13,
+   "family": 160,
+   "family-version": 0,
    "legacy": 0
   },
   "stages": {
@@ -2589,27 +2589,27 @@
     },
     "samples": [
      {
-      "instance": "FA-FP-QM7X-7001",
-      "question": "Structures A and B of the same molecule share atom order and one Cartesian frame (angstrom). The table gives the total PBE0+MBD force on every atom at B (eV/angstrom), with F_i = −∂E/∂r_i. Along the straight path r_i(λ) = r_i(A) + λ[r_i(B) − r_i(A)], what is dE/dλ at λ = 1 (that is, at B), in eV? Do not realign, mass-weight or normalize the displacement.",
+      "instance": "FA-FP-QM7X-7002",
+      "question": "Structures A and B of the same molecule share atom order and one Cartesian frame (angstrom). The table gives the total PBE0+MBD force on every atom at B (eV/angstrom), with F_i = −∂E/∂r_i. Along the straight path r_i(λ) = r_i(B) + λ[r_i(A) − r_i(B)], which starts at B and moves toward A, what is dE/dλ at λ = 0 (that is, at B), in eV? Do not realign, mass-weight or normalize the displacement.",
       "options": [
        {
         "label": "A",
-        "value": "-1.8479",
+        "value": "-0.4353",
         "unit": "eV"
        },
        {
         "label": "B",
-        "value": "0.7856",
+        "value": "-0.3371",
         "unit": "eV"
        },
        {
         "label": "C",
-        "value": "0.9240",
+        "value": "0.7672",
         "unit": "eV"
        },
        {
         "label": "D",
-        "value": "1.8479",
+        "value": "2.1519",
         "unit": "eV"
        }
       ],
@@ -2618,12 +2618,12 @@
        "B.xyz",
        "forces_B.txt"
       ],
-      "correct_label": "D",
+      "correct_label": "A",
       "audit": [
        {
         "label": "A",
-        "rule": "sign_convention",
-        "reason": "把力当作能量梯度（漏掉 F = −∂E/∂r 的负号），或忽略题目给定的路径方向。"
+        "rule": "correct",
+        "reason": "B 处沿给定路径方向的导数 = −Σ F_i(B)·(路径方向位移)；十进制与浮点实现一致。"
        },
        {
         "label": "B",
@@ -2632,13 +2632,13 @@
        },
        {
         "label": "C",
-        "rule": "trapezoid_energy_estimate",
-        "reason": "按 A 处受力为零的梯形估计给出能量差，而题目问的是 B 处的导数。"
+        "rule": "abs_projection_sum",
+        "reason": "逐原子取投影绝对值后相加，丢失相互抵消。"
        },
        {
         "label": "D",
-        "rule": "correct",
-        "reason": "B 处沿给定路径方向的导数 = −Σ F_i(B)·(路径方向位移)；十进制与浮点实现一致。"
+        "rule": "magnitude_product",
+        "reason": "只乘力与位移的模长，忽略夹角。"
        }
       ]
      },
@@ -7622,8 +7622,8 @@
    "sample": 2,
    "rule": "first batch: all",
    "ids": [
-    "MNP006",
-    "MNP010"
+    "MNP028",
+    "MNP030"
    ]
   },
   {
@@ -7635,11 +7635,11 @@
    "sample": 5,
    "rule": "first batch: all",
    "ids": [
-    "QNP007",
-    "QNP008",
-    "QNP009",
-    "QNP010",
-    "QNP011"
+    "QNP023",
+    "QNP024",
+    "QNP025",
+    "QNP026",
+    "QNP027"
    ]
   },
   {
@@ -7651,10 +7651,10 @@
    "sample": 4,
    "rule": "first batch: all",
    "ids": [
-    "CNP007",
-    "CNP008",
-    "CNP009",
-    "CNP011"
+    "CNP034",
+    "CNP035",
+    "CNP036",
+    "CNP037"
    ]
   },
   {
@@ -7707,7 +7707,7 @@
    "rule": "first batch: all",
    "ids": [
     "QNI023",
-    "QNP001"
+    "QNI025"
    ]
   },
   {
@@ -7944,7 +7944,7 @@
    "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "CNP002"
+    "CNP032"
    ]
   },
   {
@@ -8327,19 +8327,6 @@
   }
  ],
  "stages": {
-  "CNP002": "L0",
-  "QNP001": "L0",
-  "QNP007": "L0",
-  "QNP008": "L0",
-  "QNP009": "L0",
-  "QNP010": "L0",
-  "QNP011": "L0",
-  "MNP006": "L0",
-  "MNP010": "L0",
-  "CNP007": "L0",
-  "CNP008": "L0",
-  "CNP009": "L0",
-  "CNP011": "L0",
   "BNP014": "L0",
   "BNP015": "L0",
   "MNI012": "L0",
@@ -8486,61 +8473,22 @@
   "BNP042": "L0",
   "CNP029": "L0",
   "CNI024": "L0",
-  "QNI023": "L0"
+  "QNI023": "L0",
+  "CNP032": "L0",
+  "QNI025": "L0",
+  "QNP023": "L0",
+  "QNP024": "L0",
+  "QNP025": "L0",
+  "QNP026": "L0",
+  "QNP027": "L0",
+  "MNP028": "L0",
+  "MNP030": "L0",
+  "CNP034": "L0",
+  "CNP035": "L0",
+  "CNP036": "L0",
+  "CNP037": "L0"
  },
  "forms": {
-  "CNP002": {
-   "form": "family-version",
-   "instance": "FA-ANG-WP6"
-  },
-  "QNP001": {
-   "form": "family-version",
-   "instance": "FA-FP-QM7X-7001"
-  },
-  "QNP007": {
-   "form": "family-version",
-   "instance": "FC-QNP007"
-  },
-  "QNP008": {
-   "form": "family-version",
-   "instance": "FC-QNP008"
-  },
-  "QNP009": {
-   "form": "family-version",
-   "instance": "FC-QNP009"
-  },
-  "QNP010": {
-   "form": "family-version",
-   "instance": "FC-QNP010"
-  },
-  "QNP011": {
-   "form": "family-version",
-   "instance": "FC-QNP011"
-  },
-  "MNP006": {
-   "form": "family-version",
-   "instance": "FC-MNP006"
-  },
-  "MNP010": {
-   "form": "family-version",
-   "instance": "FC-MNP010"
-  },
-  "CNP007": {
-   "form": "family-version",
-   "instance": "FC-CNP007"
-  },
-  "CNP008": {
-   "form": "family-version",
-   "instance": "FC-CNP008"
-  },
-  "CNP009": {
-   "form": "family-version",
-   "instance": "FC-CNP009"
-  },
-  "CNP011": {
-   "form": "family-version",
-   "instance": "FC-CNP011"
-  },
   "BNP014": {
    "form": "family",
    "instance": "FA-TOR-1UBQ-V26"
@@ -9128,6 +9076,58 @@
   "QNI023": {
    "form": "family",
    "instance": "FA-FP-QM7X-7040-D2"
+  },
+  "CNP032": {
+   "form": "family",
+   "instance": "FA-ANG-WP6"
+  },
+  "QNI025": {
+   "form": "family",
+   "instance": "FA-FP-QM7X-7002"
+  },
+  "QNP023": {
+   "form": "family",
+   "instance": "FC-QNP007"
+  },
+  "QNP024": {
+   "form": "family",
+   "instance": "FC-QNP008"
+  },
+  "QNP025": {
+   "form": "family",
+   "instance": "FC-QNP009"
+  },
+  "QNP026": {
+   "form": "family",
+   "instance": "FC-QNP010"
+  },
+  "QNP027": {
+   "form": "family",
+   "instance": "FC-QNP011"
+  },
+  "MNP028": {
+   "form": "family",
+   "instance": "FC-MNP006"
+  },
+  "MNP030": {
+   "form": "family",
+   "instance": "FC-MNP010"
+  },
+  "CNP034": {
+   "form": "family",
+   "instance": "FC-CNP007"
+  },
+  "CNP035": {
+   "form": "family",
+   "instance": "FC-CNP008"
+  },
+  "CNP036": {
+   "form": "family",
+   "instance": "FC-CNP009"
+  },
+  "CNP037": {
+   "form": "family",
+   "instance": "FC-CNP011"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."
