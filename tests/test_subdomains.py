@@ -54,6 +54,21 @@ class PixelMapTests(unittest.TestCase):
         self.assertEqual(TREE.question(dict(id='T', title='QM7-X 7029 转动', question='', answer='', source='', paper='qm7x',
                                             family='rotational_line', domain='quantum')), 'P5a')
 
+    def test_map_carries_the_tree_and_every_question_title(self):
+        self.assertEqual([d['id'] for d in self.map['tree']], [d['id'] for d in TAX['domains']])
+        leaves = [lf['id'] for d in self.map['tree'] for one in d['l1'] for lf in one['leaves']]
+        self.assertEqual(leaves, list(TREE.leaf))
+        ids = {i for p in self.map['leaves'] for i in p['ids']}
+        self.assertEqual(set(self.map['titles']), ids)
+        self.assertTrue(all(t and a in ('perception', 'inference', 'design') for t, a in self.map['titles'].values()))
+
+    def test_sunburst_page_is_linked_and_reads_the_map(self):
+        page = (ROOT / 'docs/subdomains.html').read_text(encoding='utf-8')
+        self.assertIn('subdomains.js', page)
+        self.assertIn('data/subdomain-map.json', (ROOT / 'docs/subdomains.js').read_text(encoding='utf-8'))
+        for nav in ('index.html', 'cards.html', 'system.html'):
+            self.assertIn('href="subdomains.html"', (ROOT / 'docs' / nav).read_text(encoding='utf-8'), nav)
+
     def test_published_map_matches_the_repository(self):
         published = json.loads((ROOT / subdomain_map.OUT).read_text(encoding='utf-8'))
         self.assertEqual(published, json.loads(json.dumps(self.map)))

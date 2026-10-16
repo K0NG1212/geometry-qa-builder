@@ -2,7 +2,25 @@
 
 > 交接入口：[HANDOFF_2026-10-06.md](HANDOFF_2026-10-06.md)（最新增量）；[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（目的与决定、现状、来源路线、代码地图、流程与经验、待决与下一步）；上一份 [HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史。
 
-## 最新：18 道旧题改由四选一版本正式取代（2026-10-14，Claude Code 会话，模型 claude-opus-5-5）
+## 最新：子领域旭日图上线网站；论文全文第 1 步下载（2026-10-16，Claude Code 会话，模型 claude-opus-5-5）
+
+- **导师对子领域草案的回复**（2026-10-15 微信，用户转述截图）：“挺好的，可以按照 link 里面的图整理一下”。链接是 Observable 的 d3 可缩放旭日图（zoomable sunburst）。导师对卡片页的回复是两个赞。
+  - 这不等于确认了草案的每个细节，HANDOFF 第 6 节的待决项仍然保留。
+- **草案页**（https://claude.ai/artifact/2MWJ3SJXfx4hxQS6LUeDCe ，第 4 版，经用户同意更新到原链接）：加了可缩放旭日图。
+  - 四环：领域 → 第一层 → 叶子 → 题目。
+  - 原来的逐行学科树改为“表格视图”保留。
+- **网站新页面 `docs/subdomains.html`**（导航“子领域”，在“题目卡片”和“分类与方法”之间）：内容同上，加两种扇区大小，表格视图可点编号在图中定位。
+  - 数据：`tools/subdomain_map.py` 的输出 `docs/data/subdomain-map.json` 新增 `tree`（整棵树与定义）和 `titles`（active 题标题与能力），页面只读这一个文件。
+  - 页面不依赖外部图表库，旭日图用原生 SVG 实现。
+  - 首页、卡片页、出题系统页的导航都加了链接；“分类与方法”的学科一节加了入口。
+  - `styles.css`：导航链接不再在字中间折行，窄屏下导航换行左对齐。
+- **测试**：`test_subdomains` 加 2 项（地图带树与全部标题；页面已链接且读取地图），重新导出出题系统页；完整测试 345 项全部通过。
+- **论文全文第 1 步**（用户 2026-10-16 确认）：8 个文件下载到 `inputs/papers/`，只在本地，不入库。
+  - 内容：arXiv 4 篇（Cao、Kerelsky、Cottet、Schaefermeier），Gazmeh Sci. Rep. PDF，Europe PMC 全文 XML 3 篇（Shaban、Fookes、Dinc）。
+  - 来源、许可、校验和见 `inputs/papers/SOURCES.md` 与 `SHA256SUMS.txt`。
+  - 未下载：Hill 2008、Yu 2003（需用户用浏览器或学校账号），Gazmeh 的 XML（可选），两份补充材料（Dinc 的 PDF、Fookes 的 zip，下载前另行确认）。
+
+## 18 道旧题改由四选一版本正式取代（2026-10-14，Claude Code 会话，模型 claude-opus-5-5）
 
 - **用户决定**：原先以“附属版本”（reformat）挂在旧题下的 18 个四选一版本，改为正式取代（supersede）。
   - 旧题归档并写明原因；新编号：CNP031–037、QNI024–026、QNP023–027、MNP028–030。

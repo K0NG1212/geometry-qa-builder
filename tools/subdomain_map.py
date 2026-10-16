@@ -1,12 +1,13 @@
 """Sub-domain "pixel map" for the draft taxonomy (templates/subdomain-draft.json; status draft, pending the advisor).
 
-  python tools/subdomain_map.py      # -> docs/data/subdomain-map.json
+  python tools/subdomain_map.py      # -> docs/data/subdomain-map.json (read by docs/subdomains.html)
 
 The draft (v0.2.0) is a two-level discipline tree: domain -> level-1 sub-domain -> leaf. Every active catalog question
 is assigned to one leaf by the object it asks about (structure, substance), not the measurement technique; the leaf
 fixes its level-1 sub-domain and its domain (so with "quantum" renamed "physics", molecular electronic-structure
 questions move to chemistry). The enumeration capacity is assigned the same way. Two granularities are reported:
 pixels = level-1 x reasoning scale (only the scales listed for the level-1 sub-domain are meaningful), and leaves.
+The output also carries the tree itself and the active question titles, so the sunburst page needs no other file.
 Read-only with respect to questions and rules: it changes no catalog entry and no batch rule.
 """
 import collections
@@ -136,7 +137,11 @@ def build():
                    mean_target_per_pixel=round(tax['planning_total'] / len(good)))
     return dict(kind='subdomain_pixel_map', taxonomy_version=tax['version'], taxonomy_status=tax['status'],
                 note='Draft taxonomy pending the advisor; assignment is automatic (by structure, source and family) and '
-                     'individual questions may need manual reassignment.', summary=summary, pixels=pix, leaves=lv)
+                     'individual questions may need manual reassignment.', summary=summary, pixels=pix, leaves=lv,
+                tree=[dict(id=d['id'], name=d['name'], scheme=d['scheme'],
+                           l1=[{k: one[k] for k in ('id', 'name', 'scales', 'data_sources', 'selection_criterion', 'leaves')}
+                               for one in d['l1']]) for d in tax['domains']],
+                titles={q['id']: [q['title'], q['ability']] for q in active})
 
 
 if __name__ == '__main__':

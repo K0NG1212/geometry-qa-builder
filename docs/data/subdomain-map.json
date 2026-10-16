@@ -3740,5 +3740,1836 @@
    "domain": "biology",
    "name": "MHC 与 T 细胞受体"
   }
- ]
+ ],
+ "tree": [
+  {
+   "id": "physics",
+   "name": "物理（原“量子”）",
+   "scheme": "参照 arXiv cond-mat 与 physics 子类；按物理现象分，不按测量技术分",
+   "l1": [
+    {
+     "id": "P1",
+     "name": "超导",
+     "scales": [
+      "1-10",
+      "10-100",
+      "100-1000"
+     ],
+     "data_sources": "论文（STM、中子散射、磁光成像）；COD / ICSD 晶体",
+     "selection_criterion": "常规 / 铜氧化物 / 铁基 / MgB₂ 各取代表",
+     "leaves": [
+      {
+       "id": "P1a",
+       "name": "涡旋晶格与磁通",
+       "examples": "MgB₂、BSCCO 涡旋晶格（已有）"
+      },
+      {
+       "id": "P1b",
+       "name": "超导体晶体结构",
+       "examples": "YBCO 层状结构、Cu–O 面间距"
+      }
+     ]
+    },
+    {
+     "id": "P2",
+     "name": "磁性",
+     "scales": [
+      "0.1-1",
+      "1-10",
+      "10-100",
+      "100-1000"
+     ],
+     "data_sources": "论文；MAGNDATA 磁结构库（许可待查）",
+     "selection_criterion": "按磁有序类型与晶格几何",
+     "leaves": [
+      {
+       "id": "P2a",
+       "name": "磁结构（铁磁、反铁磁）",
+       "examples": "磁矩排列与磁晶胞"
+      },
+      {
+       "id": "P2b",
+       "name": "拓扑磁结构",
+       "examples": "MnSi 斯格明子晶格"
+      },
+      {
+       "id": "P2c",
+       "name": "阻挫晶格",
+       "examples": "kagome、烧绿石"
+      }
+     ]
+    },
+    {
+     "id": "P3",
+     "name": "二维材料与莫尔物理",
+     "scales": [
+      "0.1-1",
+      "1-10",
+      "10-100"
+     ],
+     "data_sources": "论文；C2DB（许可待查）",
+     "selection_criterion": "按材料体系（石墨烯 / hBN / TMD）与转角",
+     "leaves": [
+      {
+       "id": "P3a",
+       "name": "单层晶格",
+       "examples": "石墨烯、hBN、MoS₂ 的晶格常数与键长"
+      },
+      {
+       "id": "P3b",
+       "name": "转角双层与莫尔超晶格",
+       "examples": "魔角石墨烯（已有）"
+      },
+      {
+       "id": "P3c",
+       "name": "范德华异质结与堆垛",
+       "examples": "AB / ABC 堆垛、层间距"
+      }
+     ]
+    },
+    {
+     "id": "P4",
+     "name": "纳米与介观物理",
+     "scales": [
+      "1-10",
+      "10-100"
+     ],
+     "data_sources": "论文；PDB（碳纳米管不在 PDB，用论文参数）",
+     "selection_criterion": "按维度（零维 / 一维）与材料",
+     "leaves": [
+      {
+       "id": "P4a",
+       "name": "量子点与量子限域",
+       "examples": "CdSe 量子点（已有）、PbS、InP"
+      },
+      {
+       "id": "P4b",
+       "name": "纳米管与纳米线",
+       "examples": "碳纳米管手性 (n, m) 与直径"
+      },
+      {
+       "id": "P4c",
+       "name": "等离激元纳米结构",
+       "examples": "金纳米棒、二聚体间隙"
+      }
+     ]
+    },
+    {
+     "id": "P5",
+     "name": "原子与分子物理",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "QM7-X 几何；NIST CCCBDB 实测光谱常数；Cambridge Cluster Database（许可待查）",
+     "selection_criterion": "按转子类型、有无实测数据、团簇类型",
+     "leaves": [
+      {
+       "id": "P5a",
+       "name": "转动光谱",
+       "examples": "转动跃迁频率、单氘代设计（已有）"
+      },
+      {
+       "id": "P5b",
+       "name": "振动光谱与力常数",
+       "examples": "同位素位移、简正模式"
+      },
+      {
+       "id": "P5c",
+       "name": "原子团簇",
+       "examples": "LJ 团簇、金团簇的对称性"
+      }
+     ]
+    },
+    {
+     "id": "P6",
+     "name": "光子学",
+     "scales": [
+      "100-1000"
+     ],
+     "data_sources": "论文",
+     "selection_criterion": "按结构类型（胶体晶体 / 反蛋白石 / 超表面）",
+     "leaves": [
+      {
+       "id": "P6a",
+       "name": "光子晶体与结构色",
+       "examples": "聚苯乙烯、二氧化硅蛋白石（已有）"
+      },
+      {
+       "id": "P6b",
+       "name": "超材料与超表面",
+       "examples": "单元几何与共振"
+      }
+     ]
+    },
+    {
+     "id": "P7",
+     "name": "软物质与生物物理",
+     "scales": [
+      "1-10",
+      "10-100",
+      "100-1000"
+     ],
+     "data_sources": "论文；PDB",
+     "selection_criterion": "按体系（胶体 / 聚合物 / 膜）",
+     "leaves": [
+      {
+       "id": "P7a",
+       "name": "胶体堆积与玻璃",
+       "examples": "随机密堆积、配位数"
+      },
+      {
+       "id": "P7b",
+       "name": "聚合物链统计",
+       "examples": "回转半径与端距的标度"
+      },
+      {
+       "id": "P7c",
+       "name": "膜与囊泡",
+       "examples": "脂双层厚度、曲率"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chemistry",
+   "name": "化学",
+   "scheme": "参照化学学科分支（有机、物理、无机、超分子、高分子、化学生物学等）",
+   "l1": [
+    {
+     "id": "C1",
+     "name": "有机化学",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "QM7-X、QM9、PubChem3D；COD 有机晶体",
+     "selection_criterion": "按官能团、杂原子、芳香性、手性中心覆盖",
+     "leaves": [
+      {
+       "id": "C1a",
+       "name": "官能团与键参数",
+       "examples": "命名键长 / 键角（已有）"
+      },
+      {
+       "id": "C1b",
+       "name": "立体化学与手性",
+       "examples": "立体关系、构型设计（已有）"
+      },
+      {
+       "id": "C1c",
+       "name": "芳香与杂环化合物",
+       "examples": "环内键长交替、芳香性"
+      },
+      {
+       "id": "C1d",
+       "name": "天然产物",
+       "examples": "万古霉素（已有）、大环内酯"
+      }
+     ]
+    },
+    {
+     "id": "C2",
+     "name": "物理与量子化学",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "QM7-X、OE62、GEOM、ANI-1x",
+     "selection_criterion": "按元素组成、柔性、分子大小分层",
+     "leaves": [
+      {
+       "id": "C2a",
+       "name": "电子结构与原子力",
+       "examples": "受力路径（已有）"
+      },
+      {
+       "id": "C2b",
+       "name": "构象与能量景观",
+       "examples": "构象设计、分子整体尺寸（已有）"
+      },
+      {
+       "id": "C2c",
+       "name": "分子内相互作用",
+       "examples": "分子内氢键（已有）"
+      },
+      {
+       "id": "C2d",
+       "name": "分子电性质",
+       "examples": "偶极、极化率与几何的关系"
+      }
+     ]
+    },
+    {
+     "id": "C3",
+     "name": "无机与配位化学",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "COD 分子配合物",
+     "selection_criterion": "按金属（主族 / 3d / 4d–5d）与配位数",
+     "leaves": [
+      {
+       "id": "C3a",
+       "name": "主族化合物",
+       "examples": "硼烷、硅氧烷几何"
+      },
+      {
+       "id": "C3b",
+       "name": "过渡金属配合物",
+       "examples": "配位几何、Jahn–Teller 畸变"
+      },
+      {
+       "id": "C3c",
+       "name": "金属簇与有机金属",
+       "examples": "金属–金属键、茂金属"
+      }
+     ]
+    },
+    {
+     "id": "C4",
+     "name": "超分子化学",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "SAMPL 挑战、PDB 小分子复合物",
+     "selection_criterion": "按主体家族（环糊精 / 柱芳烃 / 葫芦脲 / 杯芳烃）",
+     "leaves": [
+      {
+       "id": "C4a",
+       "name": "大环主体",
+       "examples": "环糊精、柱芳烃几何（已有）"
+      },
+      {
+       "id": "C4b",
+       "name": "主客体识别与结合",
+       "examples": "ITC 结合强弱、客体设计（已有）"
+      },
+      {
+       "id": "C4c",
+       "name": "分子笼与自组装",
+       "examples": "金属有机笼、氢键组装"
+      }
+     ]
+    },
+    {
+     "id": "C5",
+     "name": "反应与催化",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "Transition1x、Landscape17（许可待查）；论文",
+     "selection_criterion": "按反应类型（加成 / 消除 / 重排 / 质子转移）",
+     "leaves": [
+      {
+       "id": "C5a",
+       "name": "反应路径与过渡态",
+       "examples": "成键 / 断键距离变化"
+      },
+      {
+       "id": "C5b",
+       "name": "均相催化",
+       "examples": "催化剂配位环境"
+      },
+      {
+       "id": "C5c",
+       "name": "表面催化",
+       "examples": "吸附构型"
+      }
+     ]
+    },
+    {
+     "id": "C6",
+     "name": "高分子化学",
+     "scales": [
+      "1-10",
+      "10-100",
+      "100-1000"
+     ],
+     "data_sources": "论文；COD 聚合物晶体",
+     "selection_criterion": "按链结构（线形 / 嵌段 / 支化）",
+     "leaves": [
+      {
+       "id": "C6a",
+       "name": "链构象与晶体",
+       "examples": "螺旋链、链间距"
+      },
+      {
+       "id": "C6b",
+       "name": "嵌段共聚物",
+       "examples": "微相分离周期"
+      },
+      {
+       "id": "C6c",
+       "name": "树枝状与超支化高分子",
+       "examples": "代数与尺寸"
+      }
+     ]
+    },
+    {
+     "id": "C7",
+     "name": "化学生物学与 DNA 纳米技术",
+     "scales": [
+      "1-10",
+      "10-100",
+      "100-1000"
+     ],
+     "data_sources": "PDB / EMDB",
+     "selection_criterion": "按体系（DNA 纳米结构 / 药物–靶标）",
+     "leaves": [
+      {
+       "id": "C7a",
+       "name": "DNA 纳米结构",
+       "examples": "DNA 折纸 16 螺旋束（已有）"
+      },
+      {
+       "id": "C7b",
+       "name": "药物–靶标复合物",
+       "examples": "结合口袋几何"
+      }
+     ]
+    },
+    {
+     "id": "C8",
+     "name": "液晶与胶体化学",
+     "scales": [
+      "10-100",
+      "100-1000"
+     ],
+     "data_sources": "论文",
+     "selection_criterion": "按相类型与掺杂体系",
+     "leaves": [
+      {
+       "id": "C8a",
+       "name": "液晶相与螺旋结构",
+       "examples": "胆甾液晶（已有）"
+      },
+      {
+       "id": "C8b",
+       "name": "两亲分子与胶束",
+       "examples": "胶束半径、聚集数"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "materials",
+   "name": "材料",
+   "scheme": "参照材料类别（金属、陶瓷、半导体、多孔、有机、纳米、表界面、生物材料）",
+   "l1": [
+    {
+     "id": "M1",
+     "name": "金属与合金",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "COD",
+     "selection_criterion": "按晶格（fcc / bcc / hcp）与合金类型",
+     "leaves": [
+      {
+       "id": "M1a",
+       "name": "纯金属晶格",
+       "examples": "Cu、Fe、Mg 的配位与衍射"
+      },
+      {
+       "id": "M1b",
+       "name": "合金与金属间化合物",
+       "examples": "有序合金、Laves 相"
+      }
+     ]
+    },
+    {
+     "id": "M2",
+     "name": "陶瓷与氧化物",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "COD（公有领域）",
+     "selection_criterion": "按结构原型（岩盐、萤石、刚玉、钙钛矿、尖晶石……）",
+     "leaves": [
+      {
+       "id": "M2a",
+       "name": "简单氧化物与卤化物",
+       "examples": "NaCl、MgO、CsCl、CaF₂、Al₂O₃、TiO₂（已有）"
+      },
+      {
+       "id": "M2b",
+       "name": "复杂氧化物",
+       "examples": "SrTiO₃（已有）、尖晶石"
+      },
+      {
+       "id": "M2c",
+       "name": "硅酸盐与矿物",
+       "examples": "石英、方钠石、方解石（已有）"
+      }
+     ]
+    },
+    {
+     "id": "M3",
+     "name": "半导体",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "COD",
+     "selection_criterion": "按族（IV / III–V / II–VI / 卤化物钙钛矿）",
+     "leaves": [
+      {
+       "id": "M3a",
+       "name": "元素与化合物半导体",
+       "examples": "Si、金刚石、闪锌矿、纤锌矿（已有）"
+      },
+      {
+       "id": "M3b",
+       "name": "卤化物钙钛矿",
+       "examples": "MAPbI₃ 八面体倾转"
+      },
+      {
+       "id": "M3c",
+       "name": "缺陷与掺杂",
+       "examples": "空位、替位"
+      }
+     ]
+    },
+    {
+     "id": "M4",
+     "name": "多孔与框架材料",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "CoRE MOF、IZA 沸石库、COD",
+     "selection_criterion": "按拓扑与金属节点",
+     "leaves": [
+      {
+       "id": "M4a",
+       "name": "金属有机框架（MOF）",
+       "examples": "MOF-5、ZIF-8（已有）"
+      },
+      {
+       "id": "M4b",
+       "name": "共价有机框架（COF）",
+       "examples": "二维 COF 孔径"
+      },
+      {
+       "id": "M4c",
+       "name": "沸石",
+       "examples": "FAU、MFI 孔道"
+      }
+     ]
+    },
+    {
+     "id": "M5",
+     "name": "有机与高分子材料",
+     "scales": [
+      "0.1-1",
+      "1-10",
+      "10-100"
+     ],
+     "data_sources": "COD 有机晶体、论文",
+     "selection_criterion": "按类别（药物多晶型 / 有机半导体 / 聚合物）",
+     "leaves": [
+      {
+       "id": "M5a",
+       "name": "分子晶体与多晶型",
+       "examples": "药物多晶型的堆积差异"
+      },
+      {
+       "id": "M5b",
+       "name": "有机半导体",
+       "examples": "π 堆积距离"
+      },
+      {
+       "id": "M5c",
+       "name": "聚合物晶体与纤维",
+       "examples": "聚乙烯晶胞"
+      }
+     ]
+    },
+    {
+     "id": "M6",
+     "name": "纳米材料与组装",
+     "scales": [
+      "1-10",
+      "10-100",
+      "100-1000"
+     ],
+     "data_sources": "论文",
+     "selection_criterion": "按组装方式与晶格类型",
+     "leaves": [
+      {
+       "id": "M6a",
+       "name": "纳米粒子超晶格",
+       "examples": "DNA 连接金纳米粒子（已有）"
+      },
+      {
+       "id": "M6b",
+       "name": "纳米晶形貌",
+       "examples": "晶面暴露比例"
+      },
+      {
+       "id": "M6c",
+       "name": "核壳结构",
+       "examples": "壳层厚度"
+      }
+     ]
+    },
+    {
+     "id": "M7",
+     "name": "表面与界面",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "由 COD 体相按明确规则切面（模型题，题干写明条件）",
+     "selection_criterion": "按体相原型 × 晶面指数",
+     "leaves": [
+      {
+       "id": "M7a",
+       "name": "晶面与表面结构",
+       "examples": "表面原子配位数、面密度"
+      },
+      {
+       "id": "M7b",
+       "name": "吸附",
+       "examples": "吸附位点几何"
+      },
+      {
+       "id": "M7c",
+       "name": "晶界与异质界面",
+       "examples": "失配与重合位置点阵"
+      }
+     ]
+    },
+    {
+     "id": "M8",
+     "name": "生物与仿生材料",
+     "scales": [
+      "0.1-1",
+      "1-10",
+      "10-100"
+     ],
+     "data_sources": "COD、PDB",
+     "selection_criterion": "按来源（矿化 / 蛋白基）",
+     "leaves": [
+      {
+       "id": "M8a",
+       "name": "生物矿物",
+       "examples": "羟基磷灰石、文石"
+      },
+      {
+       "id": "M8b",
+       "name": "蛋白基材料",
+       "examples": "蚕丝、胶原纤维"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "biology",
+   "name": "生物",
+   "scheme": "按蛋白与核酸的功能和类别分（参照 EC 酶分类、CATH / SCOP、PDB 功能注释），回应会上“细胞毒性蛋白、病毒蛋白是完全不同的子域”",
+   "l1": [
+    {
+     "id": "B1",
+     "name": "酶",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "PDB",
+     "selection_criterion": "按 EC 大类各取代表，分辨率 ≤ 2 Å、无替代构象",
+     "leaves": [
+      {
+       "id": "B1a",
+       "name": "水解酶",
+       "examples": "溶菌酶、RNase A（已有）、蛋白酶"
+      },
+      {
+       "id": "B1b",
+       "name": "氧化还原酶",
+       "examples": "细胞色素 P450、乙醇脱氢酶"
+      },
+      {
+       "id": "B1c",
+       "name": "转移酶与激酶",
+       "examples": "蛋白激酶活性位点"
+      }
+     ]
+    },
+    {
+     "id": "B2",
+     "name": "小型与调控蛋白",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "PDB",
+     "selection_criterion": "按 CATH 类别（全 α / 全 β / α/β）",
+     "leaves": [
+      {
+       "id": "B2a",
+       "name": "小型结构域",
+       "examples": "泛素、crambin、BPTI、protein G（已有）"
+      },
+      {
+       "id": "B2b",
+       "name": "信号与调控蛋白",
+       "examples": "钙调蛋白、GTP 酶开关"
+      }
+     ]
+    },
+    {
+     "id": "B3",
+     "name": "转运与储存蛋白",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "PDB",
+     "selection_criterion": "按配体类型",
+     "leaves": [
+      {
+       "id": "B3a",
+       "name": "氧结合蛋白",
+       "examples": "肌红蛋白（已有）、血红蛋白"
+      },
+      {
+       "id": "B3b",
+       "name": "金属与小分子载体",
+       "examples": "铁蛋白、转铁蛋白"
+      }
+     ]
+    },
+    {
+     "id": "B4",
+     "name": "膜蛋白",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "PDB、OPM / PDBTM",
+     "selection_criterion": "按类别（通道 / 转运体 / 受体）",
+     "leaves": [
+      {
+       "id": "B4a",
+       "name": "离子通道",
+       "examples": "KcsA 选择性滤器"
+      },
+      {
+       "id": "B4b",
+       "name": "转运体",
+       "examples": "ABC 转运体"
+      },
+      {
+       "id": "B4c",
+       "name": "受体",
+       "examples": "GPCR 跨膜螺旋"
+      }
+     ]
+    },
+    {
+     "id": "B5",
+     "name": "毒素",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "PDB",
+     "selection_criterion": "按作用方式（成孔 / 神经 / 酶类）",
+     "leaves": [
+      {
+       "id": "B5a",
+       "name": "成孔毒素",
+       "examples": "α-溶血素、炭疽 PA 孔道"
+      },
+      {
+       "id": "B5b",
+       "name": "神经毒素",
+       "examples": "蛇毒三指毒素"
+      },
+      {
+       "id": "B5c",
+       "name": "酶类毒素",
+       "examples": "霍乱毒素、蓖麻毒素"
+      }
+     ]
+    },
+    {
+     "id": "B6",
+     "name": "病毒蛋白与衣壳",
+     "scales": [
+      "10-100",
+      "100-1000"
+     ],
+     "data_sources": "PDB、VIPERdb",
+     "selection_criterion": "按 T 数与宿主类型",
+     "leaves": [
+      {
+       "id": "B6a",
+       "name": "二十面体衣壳",
+       "examples": "STMV、CCMV、SV40、HSV-1、PBCV-1（已有）"
+      },
+      {
+       "id": "B6b",
+       "name": "噬菌体",
+       "examples": "HK97（已有）"
+      },
+      {
+       "id": "B6c",
+       "name": "病毒膜融合与刺突蛋白",
+       "examples": "冠状病毒刺突蛋白"
+      }
+     ]
+    },
+    {
+     "id": "B7",
+     "name": "核酸与核蛋白",
+     "scales": [
+      "0.1-1",
+      "1-10",
+      "10-100"
+     ],
+     "data_sources": "PDB / NDB",
+     "selection_criterion": "按结构类型（A / B / Z-DNA、tRNA、核酶、核小体）",
+     "leaves": [
+      {
+       "id": "B7a",
+       "name": "DNA 结构",
+       "examples": "B-DNA（已有）、Z-DNA、G-四链体"
+      },
+      {
+       "id": "B7b",
+       "name": "RNA 结构",
+       "examples": "tRNA（已有）、核酶"
+      },
+      {
+       "id": "B7c",
+       "name": "染色质",
+       "examples": "核小体（已有）"
+      }
+     ]
+    },
+    {
+     "id": "B8",
+     "name": "大分子机器",
+     "scales": [
+      "1-10",
+      "10-100"
+     ],
+     "data_sources": "PDB、EMDB",
+     "selection_criterion": "按功能（折叠 / 降解 / 翻译 / 能量转换）",
+     "leaves": [
+      {
+       "id": "B8a",
+       "name": "折叠与降解",
+       "examples": "GroEL–GroES、蛋白酶体（已有）"
+      },
+      {
+       "id": "B8b",
+       "name": "翻译与转录",
+       "examples": "核糖体、RNA 聚合酶"
+      },
+      {
+       "id": "B8c",
+       "name": "能量转换",
+       "examples": "ATP 合酶"
+      }
+     ]
+    },
+    {
+     "id": "B9",
+     "name": "免疫与识别",
+     "scales": [
+      "0.1-1",
+      "1-10"
+     ],
+     "data_sources": "PDB、SAbDab（许可待查）",
+     "selection_criterion": "按复合物类型",
+     "leaves": [
+      {
+       "id": "B9a",
+       "name": "抗体与抗原",
+       "examples": "CDR 环与表位"
+      },
+      {
+       "id": "B9b",
+       "name": "MHC 与 T 细胞受体",
+       "examples": "肽结合槽"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "titles": {
+  "BNP013": [
+   "1CRN · Gly20 主链 φ 二面角（四选一）",
+   "perception"
+  ],
+  "BNP014": [
+   "1UBQ · Val26 主链 ψ 二面角（四选一）",
+   "perception"
+  ],
+  "BNP015": [
+   "6LYZ · Thr43 主链 φ 二面角（四选一）",
+   "perception"
+  ],
+  "MNI011": [
+   "NaCl · 哪一反射消光（四选一）",
+   "inference"
+  ],
+  "MNI012": [
+   "金刚石 · 哪一反射消光（四选一）",
+   "inference"
+  ],
+  "MNI013": [
+   "SALEM-2（ZIF-8 拓扑）· 哪一反射消光（四选一）",
+   "inference"
+  ],
+  "MNI014": [
+   "MOF-5 · 哪一反射消光（四选一）",
+   "inference"
+  ],
+  "QND001": [
+   "QM7-X 7050 · 选偶极最大的构象（设计选择）",
+   "design"
+  ],
+  "QND002": [
+   "QM7-X 7206 · 选能量最低的构象（设计选择）",
+   "design"
+  ],
+  "QND003": [
+   "QM7-X 7095 · 选能量最低的构象（设计选择）",
+   "design"
+  ],
+  "QND004": [
+   "QM7-X 7032 · 选偶极最大的构象（设计选择）",
+   "design"
+  ],
+  "CNP012": [
+   "QM7-X 7029 · 两结构的立体关系（四选一）",
+   "perception"
+  ],
+  "CNP013": [
+   "QM7-X 7052 · 两结构的立体关系（四选一）",
+   "perception"
+  ],
+  "CNP014": [
+   "QM7-X 7208 · 两结构的立体关系（四选一）",
+   "perception"
+  ],
+  "CNP015": [
+   "QM7-X 7111 · 两结构的立体关系（四选一）",
+   "perception"
+  ],
+  "CNP016": [
+   "QM7-X 7110 · 两结构的立体关系（四选一）",
+   "perception"
+  ],
+  "CNP017": [
+   "QM7-X 7043 · 两结构的立体关系（四选一）",
+   "perception"
+  ],
+  "CNP018": [
+   "QM7-X 7082 · 两结构的立体关系（四选一）",
+   "perception"
+  ],
+  "CNP019": [
+   "QM7-X 7033 · 两结构的立体关系（四选一）",
+   "perception"
+  ],
+  "CNI007": [
+   "QM7-X 7082 · 非对映体的能量与偶极比较（四选一）",
+   "inference"
+  ],
+  "CNI008": [
+   "QM7-X 7089 · 非对映体的能量与偶极比较（四选一）",
+   "inference"
+  ],
+  "CNI009": [
+   "QM7-X 7110 · 非对映体的能量与偶极比较（四选一）",
+   "inference"
+  ],
+  "CNI010": [
+   "QM7-X 7114 · 非对映体的能量与偶极比较（四选一）",
+   "inference"
+  ],
+  "CND001": [
+   "QM7-X 7029 · 只改构型降低能量（设计选择）",
+   "design"
+  ],
+  "CND002": [
+   "QM7-X 7033 · 只改构型降低能量（设计选择）",
+   "design"
+  ],
+  "CND003": [
+   "QM7-X 7110 · 只改构型降低能量（设计选择）",
+   "design"
+  ],
+  "QNP012": [
+   "QM7-X 7035 · 磺酰 S=O 键长（四选一）",
+   "perception"
+  ],
+  "QNP013": [
+   "QM7-X 7070 · 芳环 C–Cl 键长（四选一）",
+   "perception"
+  ],
+  "QNP014": [
+   "QM7-X 7002 · 末端 N–N 键长（四选一）",
+   "perception"
+  ],
+  "QNP015": [
+   "QM7-X 7122 · C–NH2 键长（四选一）",
+   "perception"
+  ],
+  "BNP016": [
+   "6LYZ · Cys6–Cys127 二硫键 SG–SG 距离（四选一）",
+   "perception"
+  ],
+  "QNP016": [
+   "QM7-X 7040 · 磺酰 O=S=O 键角（四选一）",
+   "perception"
+  ],
+  "MNP011": [
+   "MgO · Mg 周围 O 最近壳层（四选一）",
+   "perception"
+  ],
+  "MNP012": [
+   "CsCl · Cs 周围 Cl 最近壳层（四选一）",
+   "perception"
+  ],
+  "MNP013": [
+   "SALEM-2 · Zn–Zn 最近壳层（方钠石四连接）",
+   "perception"
+  ],
+  "MNP014": [
+   "MOF-5 · Zn4O 节点最近壳层（六连接）",
+   "perception"
+  ],
+  "MNI015": [
+   "NaCl · 首个衍射峰 2θ（四选一）",
+   "inference"
+  ],
+  "MNI016": [
+   "CsCl · 首个衍射峰 2θ（四选一）",
+   "inference"
+  ],
+  "MNI017": [
+   "MgO · 首个衍射峰 2θ（四选一）",
+   "inference"
+  ],
+  "MNI018": [
+   "SALEM-2 · 首个衍射峰 2θ（四选一）",
+   "inference"
+  ],
+  "MNI019": [
+   "MOF-5 · 首个衍射峰 2θ（四选一）",
+   "inference"
+  ],
+  "BNI009": [
+   "tRNA 1EHZ · A76–A35 FRET 效率（四选一）",
+   "inference"
+  ],
+  "BNI010": [
+   "泛素 1UBQ · K48–K63 FRET 效率（四选一）",
+   "inference"
+  ],
+  "BNI011": [
+   "溶菌酶 6LYZ · 两端 FRET 效率（四选一）",
+   "inference"
+  ],
+  "BNI012": [
+   "溶菌酶 6LYZ · Guinier 强度（四选一）",
+   "inference"
+  ],
+  "BNI013": [
+   "tRNA 1EHZ · Guinier 强度（四选一）",
+   "inference"
+  ],
+  "BNI014": [
+   "B-DNA 1BNA · Guinier 强度（四选一）",
+   "inference"
+  ],
+  "BNP017": [
+   "GroEL–GroES 1AON · 整体最大尺寸（四选一）",
+   "perception"
+  ],
+  "BNP018": [
+   "GroEL–GroES 1AON · 回转半径（四选一）",
+   "perception"
+  ],
+  "BNI015": [
+   "GroEL–GroES 1AON · Guinier 强度（四选一）",
+   "inference"
+  ],
+  "BNP019": [
+   "核小体 1KX5 · 整体最大尺寸（四选一）",
+   "perception"
+  ],
+  "BNP020": [
+   "核小体 1KX5 · 回转半径（四选一）",
+   "perception"
+  ],
+  "BNI016": [
+   "核小体 1KX5 · Guinier 强度（四选一）",
+   "inference"
+  ],
+  "BNP021": [
+   "STMV 衣壳 1A34 · 整体最大尺寸（四选一）",
+   "perception"
+  ],
+  "BNP022": [
+   "STMV 衣壳 1A34 · 回转半径（四选一）",
+   "perception"
+  ],
+  "BNI017": [
+   "STMV 衣壳 1A34 · Guinier 强度（四选一）",
+   "inference"
+  ],
+  "BNI018": [
+   "STMV 衣壳 1A34 · 壳粒数（T=1）（四选一）",
+   "inference"
+  ],
+  "BNP023": [
+   "HSV-1 衣壳 6CGR · VP5 外壳最大尺寸（四选一）",
+   "perception"
+  ],
+  "BNP024": [
+   "HSV-1 衣壳 6CGR · VP5 外壳回转半径（四选一）",
+   "perception"
+  ],
+  "BNI019": [
+   "HSV-1 衣壳 6CGR · 三角剖分数 T（四选一）",
+   "inference"
+  ],
+  "BNI020": [
+   "HSV-1 衣壳 6CGR · 壳粒总数（四选一）",
+   "inference"
+  ],
+  "BNI021": [
+   "HSV-1 衣壳 6CGR · 六邻体数（四选一）",
+   "inference"
+  ],
+  "CNP020": [
+   "DNA 折纸 16 螺旋束 7ARQ · 整体最大尺寸（四选一）",
+   "perception"
+  ],
+  "CNP021": [
+   "DNA 折纸 16 螺旋束 7ARQ · 回转半径（四选一）",
+   "perception"
+  ],
+  "CNP022": [
+   "DNA 折纸 7ARQ · 脚手架链最大尺寸（四选一）",
+   "perception"
+  ],
+  "CNP023": [
+   "DNA 折纸 7ARQ · 脚手架链回转半径（四选一）",
+   "perception"
+  ],
+  "CNI011": [
+   "DNA 折纸 7ARQ · Guinier 强度（四选一）",
+   "inference"
+  ],
+  "CNI012": [
+   "DNA 折纸 7ARQ · q = 0.18 nm⁻¹ 的 Debye 强度（四选一）",
+   "inference"
+  ],
+  "CNI013": [
+   "DNA 折纸 7ARQ · q = 0.30 nm⁻¹ 的 Debye 强度（四选一）",
+   "inference"
+  ],
+  "CND004": [
+   "DNA 折纸 7ARQ · 使强度降到 0.50 的测量 q（四选一）",
+   "design"
+  ],
+  "CND005": [
+   "DNA 折纸 7ARQ · 使强度降到 0.30 的测量 q（四选一）",
+   "design"
+  ],
+  "CND006": [
+   "DNA 折纸 7ARQ 脚手架链 · 使强度降到 0.20 的测量 q（四选一）",
+   "design"
+  ],
+  "BNI022": [
+   "HSV-1 衣壳 6CGR · VP5 外壳 Debye 强度（四选一）",
+   "inference"
+  ],
+  "BND001": [
+   "HSV-1 衣壳 6CGR · 使 VP5 外壳强度降到 0.50 的测量 q（四选一）",
+   "design"
+  ],
+  "MNP015": [
+   "金纳米粒子超晶格（X 连接子）· 最近邻壳层（四选一）",
+   "perception"
+  ],
+  "MNP016": [
+   "金纳米粒子超晶格（26 连接子）· 常规晶胞边长（四选一）",
+   "perception"
+  ],
+  "MNP017": [
+   "金纳米粒子超晶格（52 连接子）· 常规晶胞边长（四选一）",
+   "perception"
+  ],
+  "MNP018": [
+   "金纳米粒子超晶格（39 连接子）· 密排面间距（四选一）",
+   "perception"
+  ],
+  "MNI020": [
+   "金纳米粒子超晶格（X 连接子）· 首个 Bragg 反射 q*（四选一）",
+   "inference"
+  ],
+  "MNI021": [
+   "金纳米粒子超晶格（13 连接子）· 第二个 Bragg 反射（四选一）",
+   "inference"
+  ],
+  "MNI022": [
+   "金纳米粒子超晶格（52 连接子）· 金体积百分数（四选一）",
+   "inference"
+  ],
+  "MND001": [
+   "超晶格连接子选择 · 目标 q* = 0.19 nm⁻¹（四选一）",
+   "design"
+  ],
+  "MND002": [
+   "超晶格连接子选择 · 目标间距 45 nm（四选一）",
+   "design"
+  ],
+  "MND003": [
+   "超晶格连接子选择 · 金含量 ≥ 1% 下间距最大（四选一）",
+   "design"
+  ],
+  "MNP019": [
+   "聚苯乙烯胶体晶体（S8）· 球径（四选一）",
+   "perception"
+  ],
+  "MNP020": [
+   "聚苯乙烯胶体晶体（S2）· 密排面间距（四选一）",
+   "perception"
+  ],
+  "MNP021": [
+   "二氧化硅胶体晶体（266 nm）· 常规晶胞边长（四选一）",
+   "perception"
+  ],
+  "MNI023": [
+   "聚苯乙烯胶体晶体（S3）· 正入射反射波长（四选一）",
+   "inference"
+  ],
+  "MNI024": [
+   "聚苯乙烯胶体晶体（S7）· 空隙充水后的反射波长（四选一）",
+   "inference"
+  ],
+  "MNI025": [
+   "二氧化硅胶体晶体 · 30° 入射的反射波长（四选一）",
+   "inference"
+  ],
+  "MNI026": [
+   "二氧化硅胶体晶体 · 反射落在 500 nm 的入射角（四选一）",
+   "inference"
+  ],
+  "MND004": [
+   "结构色设计 · 选样使反射最接近 540 nm（四选一）",
+   "design"
+  ],
+  "MND005": [
+   "结构色设计 · 选样使反射最接近 820 nm（四选一）",
+   "design"
+  ],
+  "MND006": [
+   "结构色设计 · 反射低于 700 nm 时球径最大（四选一）",
+   "design"
+  ],
+  "QNP017": [
+   "转角石墨烯（0.79°，STM 区域）· 莫尔周期（四选一）",
+   "perception"
+  ],
+  "QNP018": [
+   "转角石墨烯（器件 M2）· 莫尔晶胞面积（四选一）",
+   "perception"
+  ],
+  "QNP019": [
+   "转角石墨烯（器件 D1）· 莫尔周期（四选一）",
+   "perception"
+  ],
+  "QNI010": [
+   "转角石墨烯（1.10°）· 由两层原子求莫尔周期（四选一）",
+   "inference"
+  ],
+  "QNI011": [
+   "转角石墨烯（器件 M1）· 超晶格密度 n_s（四选一）",
+   "inference"
+  ],
+  "QNI012": [
+   "转角石墨烯（0.79°）· 半满载流子密度（四选一）",
+   "inference"
+  ],
+  "QNI013": [
+   "转角石墨烯（器件 D1）· 由莫尔图反推转角（四选一）",
+   "inference"
+  ],
+  "QND005": [
+   "转角石墨烯选样 · 半满密度最接近 1.3×10¹² cm⁻²（四选一）",
+   "design"
+  ],
+  "QND006": [
+   "转角石墨烯选样 · 莫尔周期最接近 13.5 nm（四选一）",
+   "design"
+  ],
+  "QND007": [
+   "转角石墨烯选样 · n_s 最接近 2.8×10¹² cm⁻²（四选一）",
+   "design"
+  ],
+  "BNP025": [
+   "PBCV-1 衣壳 6NCL · Vp54 外壳最大尺寸（四选一）",
+   "perception"
+  ],
+  "BNI023": [
+   "PBCV-1 衣壳 6NCL · 三聚体壳粒的三角剖分数 T（四选一）",
+   "inference"
+  ],
+  "BND002": [
+   "PBCV-1 衣壳 6NCL · 使 Vp54 外壳强度降到 0.50 的测量 q（四选一）",
+   "design"
+  ],
+  "BNI024": [
+   "泛素 1UBQ Glu43 · 由 φ/ψ 判断构象（四选一）",
+   "inference"
+  ],
+  "BNI025": [
+   "溶菌酶 6LYZ Ile90 · 由 φ/ψ 判断构象（四选一）",
+   "inference"
+  ],
+  "BNI026": [
+   "crambin 1CRN Ile34 · 由 φ/ψ 判断构象（四选一）",
+   "inference"
+  ],
+  "CNI014": [
+   "WP6 主客体 · 四个客体中结合最强者（一）（四选一）",
+   "inference"
+  ],
+  "CNI015": [
+   "WP6 主客体 · 四个客体中结合最强者（二）（四选一）",
+   "inference"
+  ],
+  "CNI016": [
+   "WP6 主客体 · 四个客体中结合最强者（三）（四选一）",
+   "inference"
+  ],
+  "CND007": [
+   "WP6 客体设计 · 从环己基铵出发增强 ≥ 2.0 kcal/mol（四选一）",
+   "design"
+  ],
+  "CND008": [
+   "WP6 客体设计 · 从甲基紫精出发增强 ≥ 1.8 kcal/mol（四选一）",
+   "design"
+  ],
+  "QNI014": [
+   "CdSe 量子点 · 第一激子吸收峰（四选一）",
+   "inference"
+  ],
+  "QNI015": [
+   "CdSe 量子点 · 摩尔消光系数（四选一）",
+   "inference"
+  ],
+  "QNI016": [
+   "CdSe 量子点 · 由吸光度求浓度（四选一）",
+   "inference"
+  ],
+  "QND008": [
+   "CdSe 量子点设计 · 吸收峰最接近 590 nm（四选一）",
+   "design"
+  ],
+  "QND009": [
+   "CdSe 量子点设计 · 吸收峰 ≥ 565 nm 的最小粒子（四选一）",
+   "design"
+  ],
+  "MND007": [
+   "衍射设计 · Cu Kα 下首峰最接近 37° 的晶体（四选一）",
+   "design"
+  ],
+  "MND008": [
+   "衍射设计 · Mo Kα 下首峰最接近 12.5° 的晶体（四选一）",
+   "design"
+  ],
+  "MND009": [
+   "衍射设计 · NaCl 首峰落在 32° 的谱线（四选一）",
+   "design"
+  ],
+  "MND010": [
+   "衍射设计 · MOF-5 首峰落在 7° 的谱线（四选一）",
+   "design"
+  ],
+  "MND011": [
+   "衍射设计 · SALEM-2 首峰落在 11° 的谱线（四选一）",
+   "design"
+  ],
+  "MND012": [
+   "衍射设计 · 使 MOF-5 首峰位于 5° 的波长（四选一）",
+   "design"
+  ],
+  "BND003": [
+   "二硫键工程 · 泛素候选位点（一）（四选一）",
+   "design"
+  ],
+  "BND004": [
+   "二硫键工程 · 泛素候选位点（二）（四选一）",
+   "design"
+  ],
+  "BND005": [
+   "二硫键工程 · 溶菌酶候选位点（四选一）",
+   "design"
+  ],
+  "BND006": [
+   "FRET 标记设计 · tRNA 效率最接近 0.50（四选一）",
+   "design"
+  ],
+  "BND007": [
+   "FRET 标记设计 · 泛素效率最接近 0.75（四选一）",
+   "design"
+  ],
+  "BND008": [
+   "FRET 标记设计 · 溶菌酶效率最接近 0.25（四选一）",
+   "design"
+  ],
+  "BND009": [
+   "GroEL–GroES 1AON · 使强度降到 0.50 的测量 q（四选一）",
+   "design"
+  ],
+  "BND010": [
+   "核小体 1KX5 · 使强度降到 0.50 的测量 q（四选一）",
+   "design"
+  ],
+  "BND011": [
+   "STMV 衣壳 1A34 · 使强度降到 0.50 的测量 q（四选一）",
+   "design"
+  ],
+  "QNP020": [
+   "MgB2 涡旋晶格（56.1 G）· 涡旋间距（四选一）",
+   "perception"
+  ],
+  "QNP021": [
+   "MgB2 涡旋晶格（117.3 G）· 涡旋面密度（四选一）",
+   "perception"
+  ],
+  "QNP022": [
+   "BSCCO 涡旋晶格 · 涡旋间距（四选一）",
+   "perception"
+  ],
+  "QNI017": [
+   "BSCCO 涡旋晶格 · 由晶格反推磁场（四选一）",
+   "inference"
+  ],
+  "QNI018": [
+   "MgB2 涡旋晶格（50.8 G 样品）· 由晶格反推磁场（四选一）",
+   "inference"
+  ],
+  "QNI019": [
+   "MgB2 涡旋晶格（188.7 G）· 每个涡旋的磁通（四选一）",
+   "inference"
+  ],
+  "QNI020": [
+   "MgB2 涡旋晶格（117.3 G）· 中子散射首峰（四选一）",
+   "inference"
+  ],
+  "QND010": [
+   "涡旋晶格设计 · 间距最接近 450 nm 的磁场（四选一）",
+   "design"
+  ],
+  "QND011": [
+   "涡旋晶格设计 · 散射首峰最接近 20 μm⁻¹ 的磁场（四选一）",
+   "design"
+  ],
+  "QND012": [
+   "涡旋晶格设计 · 密度 ≥ 4 /μm² 的最低磁场（四选一）",
+   "design"
+  ],
+  "CNP024": [
+   "胆甾液晶（E44 + R5011）· 螺距（四选一）",
+   "perception"
+  ],
+  "CNP025": [
+   "胆甾液晶（E44 + S5011）· 手性与螺距（四选一）",
+   "perception"
+  ],
+  "CNP026": [
+   "胆甾液晶涂层（LRCD）· 螺距（四选一）",
+   "perception"
+  ],
+  "CNI017": [
+   "胆甾液晶（E44 + R5011）· 反射中心波长（四选一）",
+   "inference"
+  ],
+  "CNI018": [
+   "胆甾液晶（E44 + R5011）· 反射带宽（四选一）",
+   "inference"
+  ],
+  "CNI019": [
+   "胆甾液晶（E44 + S5011）· 螺旋扭曲力 HTP（四选一）",
+   "inference"
+  ],
+  "CNI020": [
+   "胆甾液晶涂层（RRCD）· 反射中心波长（四选一）",
+   "inference"
+  ],
+  "CND009": [
+   "结构色设计 · 反射最接近 550 nm 的掺杂浓度（四选一）",
+   "design"
+  ],
+  "CND010": [
+   "结构色设计 · 左手且反射最接近 600 nm 的膜（四选一）",
+   "design"
+  ],
+  "CND011": [
+   "结构色设计 · 反射 ≤ 620 nm 时掺杂最少（四选一）",
+   "design"
+  ],
+  "MNP022": [
+   "金红石 TiO2 · Ti 周围最短 Ti–O 距离（四选一）",
+   "perception"
+  ],
+  "MNP023": [
+   "纤锌矿 ZnO · Zn 周围最短 Zn–O 距离（四选一）",
+   "perception"
+  ],
+  "MNP024": [
+   "α-石英 SiO2 · Si 周围最短 Si–O 距离（四选一）",
+   "perception"
+  ],
+  "MNI027": [
+   "金红石 TiO2 · 首个衍射峰 2θ（四选一）",
+   "inference"
+  ],
+  "MNI028": [
+   "纤锌矿 ZnO · 首个衍射峰 2θ（四选一）",
+   "inference"
+  ],
+  "MNI029": [
+   "α-石英 SiO2 · 首个衍射峰 2θ（四选一）",
+   "inference"
+  ],
+  "MNI030": [
+   "金红石 TiO2 · 哪一反射消光（四选一）",
+   "inference"
+  ],
+  "MNI031": [
+   "板钛矿 TiO2 · 哪一反射消光（四选一）",
+   "inference"
+  ],
+  "MNI032": [
+   "纤锌矿 ZnO · 哪一反射消光（四选一）",
+   "inference"
+  ],
+  "BNP026": [
+   "酵母 20S 蛋白酶体 1RYP · 整体最大尺寸（四选一）",
+   "perception"
+  ],
+  "BNP027": [
+   "酵母 20S 蛋白酶体 1RYP · 回转半径（四选一）",
+   "perception"
+  ],
+  "BNP028": [
+   "SPMV 衣壳 1STM · 整体最大尺寸（四选一）",
+   "perception"
+  ],
+  "BNP029": [
+   "SPMV 衣壳 1STM · 回转半径（四选一）",
+   "perception"
+  ],
+  "BNP030": [
+   "STNV 衣壳 2BUK · 整体最大尺寸（四选一）",
+   "perception"
+  ],
+  "BNP031": [
+   "STNV 衣壳 2BUK · 回转半径（四选一）",
+   "perception"
+  ],
+  "BNI027": [
+   "酵母 20S 蛋白酶体 1RYP · Guinier 强度（四选一）",
+   "inference"
+  ],
+  "BNI028": [
+   "SPMV 衣壳 1STM · Guinier 强度（四选一）",
+   "inference"
+  ],
+  "BNI029": [
+   "酵母 20S 蛋白酶体 1RYP · Debye 强度（四选一）",
+   "inference"
+  ],
+  "BNI030": [
+   "STNV 衣壳 2BUK · Debye 强度（四选一）",
+   "inference"
+  ],
+  "BND012": [
+   "酵母 20S 蛋白酶体 1RYP · 使强度降到 0.50 的测量 q（四选一）",
+   "design"
+  ],
+  "BNI031": [
+   "SPMV 衣壳 1STM · 三角剖分数 T（四选一）",
+   "inference"
+  ],
+  "BNI032": [
+   "STNV 衣壳 2BUK · 壳粒数（四选一）",
+   "inference"
+  ],
+  "BNP032": [
+   "CCMV 衣壳 1CWP · CP 外壳最大尺寸（四选一）",
+   "perception"
+  ],
+  "BNP033": [
+   "CCMV 衣壳 1CWP · CP 外壳回转半径（四选一）",
+   "perception"
+  ],
+  "BNP034": [
+   "SV40 衣壳 1SVA · VP1 外壳最大尺寸（四选一）",
+   "perception"
+  ],
+  "BNP035": [
+   "SV40 衣壳 1SVA · VP1 外壳回转半径（四选一）",
+   "perception"
+  ],
+  "BNP036": [
+   "HK97 噬菌体头部 2FT1 · gp5 外壳最大尺寸（四选一）",
+   "perception"
+  ],
+  "BNP037": [
+   "HK97 噬菌体头部 2FT1 · gp5 外壳回转半径（四选一）",
+   "perception"
+  ],
+  "BNI033": [
+   "CCMV 衣壳 1CWP · CP 外壳 Debye 强度（四选一）",
+   "inference"
+  ],
+  "BND013": [
+   "CCMV 衣壳 1CWP · 使强度降到 0.50 的测量 q（四选一）",
+   "design"
+  ],
+  "BNI034": [
+   "SV40 衣壳 1SVA · VP1 外壳 Debye 强度（四选一）",
+   "inference"
+  ],
+  "BND014": [
+   "SV40 衣壳 1SVA · 使强度降到 0.50 的测量 q（四选一）",
+   "design"
+  ],
+  "BNI035": [
+   "HK97 噬菌体头部 2FT1 · gp5 外壳 Debye 强度（四选一）",
+   "inference"
+  ],
+  "BND015": [
+   "HK97 噬菌体头部 2FT1 · 使强度降到 0.50 的测量 q（四选一）",
+   "design"
+  ],
+  "BNI036": [
+   "CCMV 衣壳 1CWP · 三角剖分数 T（四选一）",
+   "inference"
+  ],
+  "BNI037": [
+   "CCMV 衣壳 1CWP · 壳粒数（四选一）",
+   "inference"
+  ],
+  "BNI038": [
+   "CCMV 衣壳 1CWP · 六邻体数（四选一）",
+   "inference"
+  ],
+  "BNI039": [
+   "HK97 噬菌体头部 2FT1 · 三角剖分数 T（四选一）",
+   "inference"
+  ],
+  "BNI040": [
+   "HK97 噬菌体头部 2FT1 · 六邻体数（四选一）",
+   "inference"
+  ],
+  "QNI021": [
+   "QM7-X 7029 · 1_11 ← 0_00 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI021": [
+   "SAMPL9 客体 G9 · 1_01 ← 0_00 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI022": [
+   "SAMPL9 客体 G2 · 1_10 ← 0_00 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "QND013": [
+   "QM7-X 7095 · 单氘代位点设计：1_11 谱线位移最大（四选一）",
+   "design"
+  ],
+  "CND012": [
+   "SAMPL9 客体 G9 · 单氘代位点设计：1_10 谱线位移最大（四选一）",
+   "design"
+  ],
+  "CND013": [
+   "SAMPL9 客体 G13 · 单氘代位点设计：1_11 谱线位移最大（四选一）",
+   "design"
+  ],
+  "BNP038": [
+   "6LYZ · Cys30–Cys115 二硫键 SG–SG 距离（四选一）",
+   "perception"
+  ],
+  "BNP039": [
+   "crambin 1CRN · Cys16–Cys26 二硫键 SG–SG 距离（四选一）",
+   "perception"
+  ],
+  "CNP027": [
+   "WP6 · 羧酸根 C20–O22 键长（四选一）",
+   "perception"
+  ],
+  "MNP025": [
+   "硅 · Si 周围 Si 最近壳层（四选一）",
+   "perception"
+  ],
+  "MNP026": [
+   "NaCl · Na 周围 Cl 最近壳层（四选一）",
+   "perception"
+  ],
+  "MNP027": [
+   "NaCl · Na 周围其他 Na 最近壳层（四选一）",
+   "perception"
+  ],
+  "MNI033": [
+   "硅 · 首个衍射峰 2θ（四选一）",
+   "inference"
+  ],
+  "MNI034": [
+   "金刚石 · 首个衍射峰 2θ（四选一）",
+   "inference"
+  ],
+  "MNI035": [
+   "硅 · 哪一反射消光（四选一）",
+   "inference"
+  ],
+  "BNI041": [
+   "泛素 1UBQ · Guinier 强度（四选一）",
+   "inference"
+  ],
+  "BNI042": [
+   "crambin 1CRN · Guinier 强度（四选一）",
+   "inference"
+  ],
+  "BNI043": [
+   "B-DNA 1BNA · 链两端 C1′ FRET 效率（四选一）",
+   "inference"
+  ],
+  "BNP040": [
+   "泛素 1UBQ · Cα 等权回转半径（四选一）",
+   "perception"
+  ],
+  "BNP041": [
+   "crambin 1CRN · Cα 等权回转半径（四选一）",
+   "perception"
+  ],
+  "BNP042": [
+   "crambin 1CRN · Cα 点集最大间距（四选一）",
+   "perception"
+  ],
+  "CNP028": [
+   "3-羟基-2-丁烯酰胺构象 TWO · O–H···O 给体–受体距离（四选一）",
+   "perception"
+  ],
+  "CNP029": [
+   "3-羟基-2-丁烯酰胺构象 FIVE · O–H···N 的 H···N 距离（四选一）",
+   "perception"
+  ],
+  "CNP030": [
+   "3-羟基-2-丁烯酰胺构象 FOUR · N–H···O 角（四选一）",
+   "perception"
+  ],
+  "CNI023": [
+   "3-羟基-2-丁烯酰胺 · 按几何判据识别分子内氢键（一）（四选一）",
+   "inference"
+  ],
+  "CNI024": [
+   "3-羟基-2-丁烯酰胺 · 按几何判据识别分子内氢键（二）（四选一）",
+   "inference"
+  ],
+  "QNI022": [
+   "QM7-X 7040 · 位移 d1 处沿 A→B 路径的能量导数（四选一）",
+   "inference"
+  ],
+  "QNI023": [
+   "QM7-X 7040 · 位移 d2 处沿 B→A 路径的能量导数（四选一）",
+   "inference"
+  ],
+  "CNP031": [
+   "BCD · 桥连氧处的 C–O–C 键角（四选一）",
+   "perception"
+  ],
+  "CNP032": [
+   "WP6 · 苯撑环内部键角（四选一）",
+   "perception"
+  ],
+  "CNP033": [
+   "H26DM-B-CD · 甲基醚局部键角与键长（四选一）",
+   "perception"
+  ],
+  "QNI024": [
+   "QM7-X · 力是否反对指定分子形变？（四选一）",
+   "inference"
+  ],
+  "QNI025": [
+   "QM7-X 分子7002 · 力是否反对指定分子形变？（四选一）",
+   "inference"
+  ],
+  "QNI026": [
+   "QM7-X 分子7035 · 力是否反对指定分子形变？（四选一）",
+   "inference"
+  ],
+  "QNP023": [
+   "OE62 分子MAJHUB · 全分子最大原子间距（四选一）",
+   "perception"
+  ],
+  "QNP024": [
+   "OE62 分子JIMHOC · 全分子最大原子间距（四选一）",
+   "perception"
+  ],
+  "QNP025": [
+   "OE62 分子KEGPOC · 全分子最大原子间距（四选一）",
+   "perception"
+  ],
+  "QNP026": [
+   "OE62 分子KEWGID · 回转半径（四选一）",
+   "perception"
+  ],
+  "QNP027": [
+   "OE62 分子PEKZAG · 回转半径（四选一）",
+   "perception"
+  ],
+  "MNP028": [
+   "ZIF-8 · Zn 亚晶格全局最大原子间距（四选一）",
+   "perception"
+  ],
+  "MNP029": [
+   "MOF-5 · Zn 亚晶格全局最大原子间距（四选一）",
+   "perception"
+  ],
+  "MNP030": [
+   "MOF-5 · 全框架全局最大原子间距（四选一）",
+   "perception"
+  ],
+  "CNP034": [
+   "万古霉素 1AA5 · 单体A全局最大原子间距（四选一）",
+   "perception"
+  ],
+  "CNP035": [
+   "万古霉素 1AA5 · 单体B全局最大原子间距（四选一）",
+   "perception"
+  ],
+  "CNP036": [
+   "万古霉素 1AA5 · 不对称二聚体全局最大原子间距（四选一）",
+   "perception"
+  ],
+  "CNP037": [
+   "万古霉素 1AA5 · 二聚体回转半径（四选一）",
+   "perception"
+  ]
+ }
 }
