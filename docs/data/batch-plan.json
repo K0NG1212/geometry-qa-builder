@@ -6,10 +6,10 @@
  "enumeration_run": "enum-v34",
  "summary": {
   "target": 1230,
-  "max_selectable": 655,
-  "max_balanced": 655,
+  "max_selectable": 660,
+  "max_balanced": 660,
   "cells_meeting_rule": 2,
-  "paper_parameter_share_of_selectable": 0.084,
+  "paper_parameter_share_of_selectable": 0.083,
   "max_paper_parameter_share": 0.25
  },
  "cells": [
@@ -58,15 +58,15 @@
     "inference": 5,
     "design": 2
    },
-   "sources": 32,
+   "sources": 33,
    "paper_systems": [],
    "ability_max": {
     "perception": 79,
-    "inference": 30,
+    "inference": 31,
     "design": 28
    },
    "pool": {
-    "admitted": 29,
+    "admitted": 30,
     "enumerated": 1251
    },
    "family_flow": {
@@ -432,41 +432,41 @@
    "cell": "quantum 10-100",
    "tier": "C",
    "target": 50,
-   "max_selectable": 13,
-   "max_balanced": 13,
+   "max_selectable": 16,
+   "max_balanced": 16,
    "families": 5,
    "families_by_ability": {
     "perception": 1,
     "inference": 3,
     "design": 1
    },
-   "sources": 5,
+   "sources": 8,
    "paper_systems": [
     "moire.py"
    ],
    "ability_max": {
     "perception": 3,
-    "inference": 7,
+    "inference": 10,
     "design": 3
    },
    "pool": {
-    "admitted": 13,
+    "admitted": 16,
     "enumerated": 0
    },
    "family_flow": {
     "moire_inference": 4,
+    "evidence_elimination": 4,
     "moire_geometry": 3,
     "moire_design": 3,
-    "evidence_quantity": 2,
-    "evidence_elimination": 1
+    "evidence_quantity": 2
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 13 / 50 道",
+    "最多只能选 16 / 50 道",
     "题型族 5 个，需 ≥ 6",
     "感知 族 1 个，需 ≥ 2",
     "感知 最多 3 道，需 ≥ 11",
-    "推断 最多 7 道，需 ≥ 11",
+    "推断 最多 10 道，需 ≥ 11",
     "设计 族 1 个，需 ≥ 2",
     "设计 最多 3 道，需 ≥ 11",
     "论文参数体系 1 个，需 ≥ 2"
@@ -476,25 +476,25 @@
    "cell": "quantum 100-1000",
    "tier": "C",
    "target": 50,
-   "max_selectable": 13,
-   "max_balanced": 13,
+   "max_selectable": 14,
+   "max_balanced": 14,
    "families": 5,
    "families_by_ability": {
     "perception": 1,
     "inference": 3,
     "design": 1
    },
-   "sources": 5,
+   "sources": 6,
    "paper_systems": [
     "vortex.py"
    ],
    "ability_max": {
     "perception": 3,
-    "inference": 7,
+    "inference": 8,
     "design": 3
    },
    "pool": {
-    "admitted": 13,
+    "admitted": 14,
     "enumerated": 0
    },
    "family_flow": {
@@ -502,15 +502,15 @@
     "vortex_geometry": 3,
     "vortex_design": 3,
     "evidence_quantity": 2,
-    "evidence_elimination": 1
+    "evidence_elimination": 2
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 13 / 50 道",
+    "最多只能选 14 / 50 道",
     "题型族 5 个，需 ≥ 6",
     "感知 族 1 个，需 ≥ 2",
     "感知 最多 3 道，需 ≥ 11",
-    "推断 最多 7 道，需 ≥ 11",
+    "推断 最多 8 道，需 ≥ 11",
     "设计 族 1 个，需 ≥ 2",
     "设计 最多 3 道，需 ≥ 11",
     "论文参数体系 1 个，需 ≥ 2"
@@ -608,43 +608,43 @@
    "cell": "materials 100-1000",
    "tier": "C",
    "target": 50,
-   "max_selectable": 10,
-   "max_balanced": 10,
-   "families": 3,
+   "max_selectable": 11,
+   "max_balanced": 11,
+   "families": 4,
    "families_by_ability": {
     "perception": 1,
-    "inference": 1,
+    "inference": 2,
     "design": 1
    },
-   "sources": 2,
+   "sources": 3,
    "paper_systems": [
     "photonic.py"
    ],
    "ability_max": {
     "perception": 3,
-    "inference": 4,
+    "inference": 5,
     "design": 3
    },
    "pool": {
-    "admitted": 10,
+    "admitted": 11,
     "enumerated": 0
    },
    "family_flow": {
     "opal_bragg": 4,
     "opal_geometry": 3,
-    "opal_design": 3
+    "opal_design": 3,
+    "evidence_quantity": 1
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 10 / 50 道",
-    "题型族 3 个，需 ≥ 6",
+    "最多只能选 11 / 50 道",
+    "题型族 4 个，需 ≥ 6",
     "感知 族 1 个，需 ≥ 2",
     "感知 最多 3 道，需 ≥ 11",
-    "推断 族 1 个，需 ≥ 2",
-    "推断 最多 4 道，需 ≥ 11",
+    "推断 最多 5 道，需 ≥ 11",
     "设计 族 1 个，需 ≥ 2",
     "设计 最多 3 道，需 ≥ 11",
-    "来源 2 个，需 ≥ 5",
+    "来源 3 个，需 ≥ 5",
     "论文参数体系 1 个，需 ≥ 2"
    ]
   }

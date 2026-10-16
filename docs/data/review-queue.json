@@ -34,7 +34,7 @@
   },
   "next_l3_batch": "l3-batch-001",
   "l3_sample": 160,
-  "l3_strata": 87,
+  "l3_strata": 88,
   "l3_steady_state_sample": 134,
   "model_calls": 0,
   "reviews_recorded": {
@@ -2237,16 +2237,16 @@
    "bindings": {
     "L1": {
      "registry_row": "5572d3ebf3b6312cc7b8f54d34c27634464c9bce131da8051912b1c6af944813",
-     "task_families/evidence.py": "799ef7d3ea8f665073d5d54ef2dd6aeb821b0e14bbf920c4ad933c01d2e2172d"
+     "task_families/evidence.py": "43b25a7fb218ce1a4dc4b81b9ac11775c82497f987c3ce9fba915f75a378fa31"
     },
     "L2": {
-     "checkers/evidence.py": "e53bcc4f19e1a87bcd40e5bfc812dfc6b7b9444788167cd703a67bb49aed4180",
+     "checkers/evidence.py": "26fbeed90e9169d0a66085c01d1fb875733bdf00390bd592f541aebbe36a52e8",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 4,
+   "instances": 5,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -2272,98 +2272,98 @@
     },
     "samples": [
      {
-      "instance": "FA-EVE-ALT-THREE",
-      "question": "Conformer THREE of 3-hydroxy-2-butenamide is the enol in which the hydroxyl H has been rotated away, so that the hydroxyl O and the amide carbonyl O face each other without a hydrogen between them. The attached evidence.txt gives the evidence (facts E1–E4 from Altun, Bleda & Trindle, Molecules 26, 2623 (2021); numbers as reported in the paper). Which interpretation of the O···O contact in THREE is consistent with all of these observations?",
+      "instance": "FA-EVE-ALT-STABILITY",
+      "question": "Eleven computed isomers and conformers of acetoacetamide and its enol tautomer (labelled ONE to ELEVEN) differ in their intramolecular hydrogen bonds. The attached evidence.txt gives the evidence (facts E1–E2 from Altun, Bleda & Trindle, Molecules 26, 2623 (2021); numbers as reported in the paper). Which statement about hydrogen bonding and the relative stability of these species is consistent with both facts?",
       "options": [
        {
         "label": "A",
-        "value": "No hydrogen bond: the O···O contact is repulsive, and a bond path with a critical point is not enough on its own to establish a hydrogen bond."
+        "value": "Species without any hydrogen bond are always the least stable ones."
        },
        {
         "label": "B",
-        "value": "A strong hydrogen bond, since the density at the critical point is appreciable."
+        "value": "Relative stability is a property of the whole molecule and is not explained by the strength of the local hydrogen bond alone."
        },
        {
         "label": "C",
-        "value": "A partly covalent O-O interaction."
+        "value": "The stronger the local hydrogen bond, the lower the energy, so the energy order follows the hydrogen-bond ranking."
        },
        {
         "label": "D",
-        "value": "A weak O-H···O hydrogen bond, proved by the bond path and its critical point."
+        "value": "CH···O and CH···N contacts contribute nothing, so species having only them are as unstable as species with no hydrogen bond."
        }
       ],
       "inputs": [
        "evidence.txt"
       ],
-      "correct_label": "A",
+      "correct_label": "B",
       "audit": [
        {
         "label": "A",
-        "rule": "correct",
-        "reason": "与全部事实一致，即原文结论（AIM and NCI sections: THREE has a repulsive O···O interaction despite the density at the BCP）。"
+        "rule": "no_hbond_least_stable",
+        "reason": "与 E1 矛盾：有 CH···OH 接触的 NINE（+91）比完全没有氢键的 THREE（+62）还高。（Table 1）"
        },
        {
         "label": "B",
-        "rule": "strong_hbond_from_density",
-        "reason": "与 E2、E3、E4 矛盾：没有红移、成环振动最软，与强氢键的预期全部相反。（NCI section; OH mode; CCC bend）"
+        "rule": "correct",
+        "reason": "与全部事实一致，即原文结论（Results after Table 1: stability not simply explained by local H bonding）。"
        },
        {
         "label": "C",
-        "rule": "covalent_oo",
-        "reason": "与 E1、E2 矛盾：拉普拉斯量为正，表明是闭壳层相互作用，不是共价作用。（AIM section: positive Laplacian = closed-shell interaction）"
+        "rule": "stronger_bond_lower_energy",
+        "reason": "与 E2 矛盾：ELEVEN 的氢键排第二强，能量却是 +48，高于只有 CH···N 的 SEVEN（+38）。（Table 1 vs Figure 9）"
        },
        {
         "label": "D",
-        "rule": "weak_hbond_from_bcp",
-        "reason": "与 E2、E3 矛盾：NCI 为排斥，且 O–H 伸缩没有红移，键径本身不能证明氢键。（NCI section; OH mode）"
+        "rule": "ch_contacts_irrelevant",
+        "reason": "与 E1 矛盾：SEVEN（+38）、SIX（+43）明显低于无氢键的 THREE（+62），与含 XH···Y 的 FIVE（+38）相当。（Table 1）"
        }
       ]
      },
      {
-      "instance": "FA-EVE-COT-BEND",
-      "question": "Cryo-Lorentz TEM images of flux vortices in a 300 nm thick MgB2 lamella (pre-tilted by 45°) at 5 K, for fields between 50.8 and 188.7 G. The attached evidence.txt gives the evidence (facts E1–E4 from Cottet et al., arXiv:1401.4062; numbers as reported in the paper). Which explanation of the dark bands is consistent with all of these observations?",
+      "instance": "FA-EVE-CAO-POCKETS",
+      "question": "Shubnikov-de Haas oscillations of a magic-angle twisted bilayer graphene (MA-TBG) device are mapped against carrier density n and magnetic field on the hole side; ns is the density that fills one superlattice band (4 electrons per moiré cell). The attached evidence.txt gives the evidence (facts E1–E5 from Cao et al., Nature 556, 43 (2018); numbers as reported in the paper). Which explanation of the extra Landau fan is consistent with all of these observations?",
       "options": [
        {
         "label": "A",
-        "value": "Ferromagnetic domains of a magnetic impurity phase in the crystal."
+        "value": "A doubled unit cell from strain or a charge density wave, which halves the filling factors of the ordinary single-particle bands."
        },
        {
         "label": "B",
-        "value": "Vortex-free Meissner domains of an intermediate (type-1.5) superconducting state."
+        "value": "Small Fermi pockets of quasiparticles counted from the half-filling correlated insulator, with half the usual degeneracy; the carriers above the superconducting dome are only |n| - ns/2."
        },
        {
         "label": "C",
-        "value": "Bend contours: diffraction contrast where local bending of the thin crystal meets the Bragg condition; they hide vortices but do not change the vortex lattice."
+        "value": "Fractional Landau fans of the Hofstadter butterfly of the moiré superlattice."
        },
        {
         "label": "D",
-        "value": "Lines of strong pinning centres that hold the vortices in place."
+        "value": "The ordinary single-particle Fermi surface of all |n| carriers, with the usual four-fold degeneracy."
        }
       ],
       "inputs": [
        "evidence.txt"
       ],
-      "correct_label": "C",
+      "correct_label": "B",
       "audit": [
        {
         "label": "A",
-        "rule": "magnetic_domains",
-        "reason": "与 E2 矛盾：磁畴是样品的固有磁结构，不会因轻微倾转改变位置。（Results (bend-contour test)）"
+        "rule": "cell_doubling",
+        "reason": "与 E1 矛盾：晶胞加倍要求事先破缺自旋或谷简并，但从电中性点和 −ns 出发的扇仍是四重简并。（Quantum oscillations (p. 7): would require spin or valley degeneracy to be broken a priori）"
        },
        {
         "label": "B",
-        "rule": "meissner_domains",
-        "reason": "与 E2、E3 矛盾：磁性的无涡旋畴不会随样品轻微倾转而移动，也不会被涡旋穿越。（Introduction and Results: no stripes or gossamer patterns; conventional type-II behaviour）"
+        "rule": "correct",
+        "reason": "与全部事实一致，即原文结论（Quantum oscillations (p. 8): small Fermi surfaces from the correlated insulating state; halved degeneracy）。"
        },
        {
         "label": "C",
-        "rule": "correct",
-        "reason": "与全部事实一致，即原文结论（Results: bend contours due to diffraction contrast; crossing curves confirm they do not affect the lattice）。"
+        "rule": "hofstadter_butterfly",
+        "reason": "与 E3 矛盾：Hofstadter 分形通常要 10 T 以上才明显，而这个扇在约 1 T 就出现。（Quantum oscillations (p. 7): Hofstadter features need fields > 10 T）"
        },
        {
         "label": "D",
-        "rule": "pinning_lines",
-        "reason": "与 E2、E3 矛盾：钉扎线是固定缺陷，不随倾转移动，且会阻止涡旋在区域间移动。（Results: no vortex pinning except at the edge）"
+        "rule": "large_fermi_surface",
+        "reason": "与 E4 矛盾：半填充附近测得 M = 2，面积随 |n| − ns/2 变化，不是全部载流子的大费米面。（Quantum oscillations (p. 8): M = 2 near the correlated state）"
        }
       ]
      }
@@ -2381,10 +2381,10 @@
    "bindings": {
     "L1": {
      "registry_row": "24357721608e582ef78e22b358bd57e6bbe6109a76da8654cf7269f7c058ac9c",
-     "task_families/evidence.py": "799ef7d3ea8f665073d5d54ef2dd6aeb821b0e14bbf920c4ad933c01d2e2172d"
+     "task_families/evidence.py": "43b25a7fb218ce1a4dc4b81b9ac11775c82497f987c3ce9fba915f75a378fa31"
     },
     "L2": {
-     "checkers/evidence.py": "e53bcc4f19e1a87bcd40e5bfc812dfc6b7b9444788167cd703a67bb49aed4180",
+     "checkers/evidence.py": "26fbeed90e9169d0a66085c01d1fb875733bdf00390bd592f541aebbe36a52e8",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2417,54 +2417,6 @@
      "template_review": "2026-10-16 新建（导师第六次会议“证据 → 结论”），待 L1/L2 人工审核；L1 须逐条对照原文位置。"
     },
     "samples": [
-     {
-      "instance": "FA-EVQ-CAO-COHERENCE",
-      "question": "Twisted bilayer graphene near the magic angle (MA-TBG) becomes superconducting when doped slightly away from half filling of its flat band. The attached evidence.txt gives the evidence (facts E1–E3 from Cao et al., Nature 556, 43 (2018); numbers as reported in the paper). Estimate the mean spacing between the carriers that form the condensate (one over the square root of their areal density) and compare it with the coherence length. Choose the option in which both the value and the conclusion are correct.",
-      "options": [
-       {
-        "label": "A",
-        "value": "Mean carrier spacing ≈ 8.2 nm. The coherence length is many times this spacing, as in a conventional weak-coupling BCS superconductor in which each pair overlaps many others."
-       },
-       {
-        "label": "B",
-        "value": "Mean carrier spacing ≈ 25.8 nm. The coherence length is many times this spacing, as in a conventional weak-coupling BCS superconductor in which each pair overlaps many others."
-       },
-       {
-        "label": "C",
-        "value": "Mean carrier spacing ≈ 8.2 nm. The coherence length is only about twice this spacing, so a pair is hardly larger than the distance between carriers: MA-TBG is a strong-coupling superconductor close to the BCS-BEC crossover."
-       },
-       {
-        "label": "D",
-        "value": "Mean carrier spacing ≈ 25.8 nm. The coherence length is only about twice this spacing, so a pair is hardly larger than the distance between carriers: MA-TBG is a strong-coupling superconductor close to the BCS-BEC crossover."
-       }
-      ],
-      "inputs": [
-       "evidence.txt"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "total_gate_density+weak_coupling_bcs",
-        "reason": "数值来自错误做法（用栅极诱导的总密度 |n|（从电中性点算起）求间距，忽略了量子振荡显示真正参与的只是从半填充算起的 n′。），结论也是原文排除的解释。"
-       },
-       {
-        "label": "B",
-        "rule": "weak_coupling_bcs",
-        "reason": "数值正确，但结论是原文排除的解释：原文据 ξ 与粒子间距同量级判断为强耦合、接近 BCS-BEC 交叉；弱耦合 BCS 的结论与之相反。（Discussion (p. 8-9): Tc/TF and ξ vs spacing place MA-TBG far from weak-coupling BCS）"
-       },
-       {
-        "label": "C",
-        "rule": "total_gate_density",
-        "reason": "结论措辞取自原文，但数值来自错误做法：用栅极诱导的总密度 |n|（从电中性点算起）求间距，忽略了量子振荡显示真正参与的只是从半填充算起的 n′。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "数值按原文数据计算正确，结论即原文结论（Discussion, last paragraph before Summary (p. 9): coherence length of the same order as the inter-particle distance (~26 nm)）。"
-       }
-      ]
-     },
      {
       "instance": "FA-EVQ-CAO-PAULI",
       "question": "The superconducting state of an atomically thin MA-TBG device (Tc about 0.5 K) was suppressed with magnetic fields perpendicular and parallel to the layers. The attached evidence.txt gives the evidence (facts E1–E4 from Cao et al., Nature 556, 43 (2018); numbers as reported in the paper). Estimate the in-plane critical field that orbital (Ginzburg-Landau thin-film) pair breaking would give for this thickness and coherence length, and compare it with the measurement. Choose the option in which both the value and the conclusion are correct.",
@@ -2510,6 +2462,54 @@
         "label": "D",
         "rule": "perpendicular_formula",
         "reason": "结论措辞取自原文，但数值来自错误做法：套用垂直场的 GL 公式 Φ0/(2πξ²)，忽略了平行场下轨道效应受膜厚 d 限制。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-EVQ-CAO-SQUID",
+      "question": "In an MA-TBG device (twist angle 1.16°), transport near the boundary between the superconducting dome and the half-filling insulator shows oscillations in a perpendicular magnetic field B. The attached evidence.txt gives the evidence (facts E1–E3 from Cao et al., Nature 556, 43 (2018); numbers as reported in the paper). Treat the oscillation as flux quantization through a superconducting loop and find the effective loop area. Choose the option in which both the value and the conclusion are correct.",
+      "options": [
+       {
+        "label": "A",
+        "value": "Effective loop area ≈ 0.092 µm². The loop is roughly a tenth of the device area, so the oscillation comes from SQUID-like superconducting loops around insulating islands: the superconducting state is spatially inhomogeneous on this scale."
+       },
+       {
+        "label": "B",
+        "value": "Effective loop area ≈ 0.092 µm². The loop is essentially the whole device, so the oscillation shows a single uniform superconducting ring spanning the Hall bar."
+       },
+       {
+        "label": "C",
+        "value": "Effective loop area ≈ 0.184 µm². The loop is essentially the whole device, so the oscillation shows a single uniform superconducting ring spanning the Hall bar."
+       },
+       {
+        "label": "D",
+        "value": "Effective loop area ≈ 0.184 µm². The loop is roughly a tenth of the device area, so the oscillation comes from SQUID-like superconducting loops around insulating islands: the superconducting state is spatially inhomogeneous on this scale."
+       }
+      ],
+      "inputs": [
+       "evidence.txt"
+      ],
+      "correct_label": "A",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "correct",
+        "reason": "数值按原文数据计算正确，结论即原文结论（Methods, Phase-coherent transport (p. 15): S ≈ 0.09 µm² vs ~1 µm² device; Josephson junction arrays around insulating islands）。"
+       },
+       {
+        "label": "B",
+        "rule": "uniform_whole_device",
+        "reason": "数值正确，但结论是原文排除的解释：算出的面积远小于器件面积，原文据此推断存在绝缘“岛”与不均匀性，不是整个器件一个均匀环。（Methods (p. 15): the area is compared with ~1 µm² and attributed to inhomogeneity）"
+       },
+       {
+        "label": "C",
+        "rule": "normal_flux_quantum+uniform_whole_device",
+        "reason": "数值来自错误做法（用正常态磁通量子 h/e（量子霍尔用）而不是超导磁通量子 h/2e，面积大了一倍。），结论也是原文排除的解释。"
+       },
+       {
+        "label": "D",
+        "rule": "normal_flux_quantum",
+        "reason": "结论措辞取自原文，但数值来自错误做法：用正常态磁通量子 h/e（量子霍尔用）而不是超导磁通量子 h/2e，面积大了一倍。"
        }
       ]
      }
@@ -4854,7 +4854,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 4,
+   "instances": 3,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -4942,54 +4942,54 @@
       ]
      },
      {
-      "instance": "FA-OP-PEAK-S3",
-      "question": "The file lists the sphere centres (nm) of a model polystyrene opal crystallite built from a published sphere diameter; neighbouring spheres touch. Model conditions: the only measured input is the sphere diameter reported by Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. Model the film as this lattice with its close-packed planes parallel to the film surface. The spheres have refractive index 1.59 and the voids are filled with a medium of refractive index 1.00; take the effective index from the volume-weighted average of the squared refractive indices (n_eff² = Σ f_i n_i²), using the sphere volume fraction of this packing. Light is incident along the film normal. What is the vacuum wavelength, in nm, of the first-order Bragg reflection from the close-packed planes?",
+      "instance": "FA-OP-PEAK-S7-WATER",
+      "question": "The file lists the sphere centres (nm) of a model polystyrene opal crystallite built from a published sphere diameter; neighbouring spheres touch. Model conditions: the only measured input is the sphere diameter reported by Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. Model the film as this lattice with its close-packed planes parallel to the film surface. The spheres have refractive index 1.59 and the voids are filled with a medium of refractive index 1.33; take the effective index from the volume-weighted average of the squared refractive indices (n_eff² = Σ f_i n_i²), using the sphere volume fraction of this packing. Light is incident along the film normal. What is the vacuum wavelength, in nm, of the first-order Bragg reflection from the close-packed planes?",
       "options": [
        {
         "label": "A",
-        "value": "407.5",
+        "value": "560.4",
         "unit": "nm"
        },
        {
         "label": "B",
-        "value": "705.8",
+        "value": "583.6",
         "unit": "nm"
        },
        {
         "label": "C",
-        "value": "802.1",
+        "value": "686.3",
         "unit": "nm"
        },
        {
         "label": "D",
-        "value": "815.0",
+        "value": "970.6",
         "unit": "nm"
        }
       ],
       "inputs": [
-       "opal-PS-S3.xyz"
+       "opal-PS-S7.xyz"
       ],
-      "correct_label": "D",
+      "correct_label": "A",
       "audit": [
        {
         "label": "A",
-        "rule": "no_factor_two",
-        "reason": "Bragg 条件漏掉因子 2。"
+        "rule": "correct",
+        "reason": "λ = 2 d111 √(n_eff² − sin²θ)，d111 = 183.5158 nm，n_eff = 1.52679。"
        },
        {
         "label": "B",
-        "rule": "d200_planes",
-        "reason": "用 (200) 面间距 a/2。"
+        "rule": "sphere_index",
+        "reason": "用球的折射率代替有效折射率。"
        },
        {
         "label": "C",
-        "rule": "linear_index_average",
-        "reason": "对折射率本身而非其平方做体积平均。"
+        "rule": "diameter_as_spacing",
+        "reason": "把球径当作密排面间距。"
        },
        {
         "label": "D",
-        "rule": "correct",
-        "reason": "λ = 2 d111 √(n_eff² − sin²θ)，d111 = 279.1030 nm，n_eff = 1.45998。"
+        "rule": "cell_edge_as_spacing",
+        "reason": "把常规晶胞边长当作面间距。"
        }
       ]
      }
@@ -7910,7 +7910,19 @@
    "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "CNI030"
+    "CNI031"
+   ]
+  },
+  {
+   "stratum": "evidence_elimination | paper-cao-magic-angle | quantum 10-100",
+   "unit": "evidence_elimination",
+   "source": "paper-cao-magic-angle",
+   "cell": "quantum 10-100",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI034"
    ]
   },
   {
@@ -7962,18 +7974,6 @@
    ]
   },
   {
-   "stratum": "evidence_quantity | paper-cao-magic-angle | quantum 10-100",
-   "unit": "evidence_quantity",
-   "source": "paper-cao-magic-angle",
-   "cell": "quantum 10-100",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "QNI027"
-   ]
-  },
-  {
    "stratum": "evidence_quantity | paper-cao-magic-angle | quantum 100-1000",
    "unit": "evidence_quantity",
    "source": "paper-cao-magic-angle",
@@ -8019,6 +8019,18 @@
    "rule": "first batch: all",
    "ids": [
     "QNI031"
+   ]
+  },
+  {
+   "stratum": "evidence_quantity | paper-silica-opal | materials 100-1000",
+   "unit": "evidence_quantity",
+   "source": "paper-silica-opal",
+   "cell": "materials 100-1000",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "MNI036"
    ]
   },
   {
@@ -8384,11 +8396,10 @@
    "unit": "opal_bragg",
    "source": "paper-ps-opal-rulers",
    "cell": "materials 100-1000",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "MNI023",
     "MNI024"
    ]
   },
@@ -8751,7 +8762,6 @@
   "MNP019": "L0",
   "MNP020": "L0",
   "MNP021": "L0",
-  "MNI023": "L0",
   "MNI024": "L0",
   "MNI025": "L0",
   "MNI026": "L0",
@@ -8844,7 +8854,6 @@
   "CNP035": "L0",
   "CNP036": "L0",
   "CNP037": "L0",
-  "QNI027": "L0",
   "QNI028": "L0",
   "QNI029": "L0",
   "QNI030": "L0",
@@ -8853,7 +8862,9 @@
   "QNI033": "L0",
   "CNI026": "L0",
   "CNI029": "L0",
-  "CNI030": "L0"
+  "QNI034": "L0",
+  "CNI031": "L0",
+  "MNI036": "L0"
  },
  "forms": {
   "BNP014": {
@@ -9083,10 +9094,6 @@
   "MNP021": {
    "form": "family",
    "instance": "FA-OP-EDGE-SIO2"
-  },
-  "MNI023": {
-   "form": "family",
-   "instance": "FA-OP-PEAK-S3"
   },
   "MNI024": {
    "form": "family",
@@ -9456,10 +9463,6 @@
    "form": "family",
    "instance": "FC-CNP011"
   },
-  "QNI027": {
-   "form": "family",
-   "instance": "FA-EVQ-CAO-COHERENCE"
-  },
   "QNI028": {
    "form": "family",
    "instance": "FA-EVQ-CAO-SQUID"
@@ -9492,9 +9495,17 @@
    "form": "family",
    "instance": "FA-EVE-SHA-IONS"
   },
-  "CNI030": {
+  "QNI034": {
    "form": "family",
-   "instance": "FA-EVE-ALT-THREE"
+   "instance": "FA-EVE-CAO-POCKETS"
+  },
+  "CNI031": {
+   "form": "family",
+   "instance": "FA-EVE-ALT-STABILITY"
+  },
+  "MNI036": {
+   "form": "family",
+   "instance": "FA-EVQ-FOO-LAYERS"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."

@@ -30,8 +30,8 @@ def check(spec, built, **packet_change):
 
 
 class QuantityTests(unittest.TestCase):
-    def test_thirteen_cards_and_every_position_passes(self):
-        self.assertEqual(len(SPECS), 13)
+    def test_nineteen_cards_and_every_position_passes(self):
+        self.assertEqual(len(SPECS), 19)                 # batch 1 (13) + batch 2 (6)
         for spec in SPECS:
             for target in (1, 2, 3, 4):
                 s, built = build(spec['id'], target)
@@ -40,7 +40,8 @@ class QuantityTests(unittest.TestCase):
 
     def test_values_match_the_papers(self):
         expect = {'FA-EVQ-CAO-COHERENCE': '25.8', 'FA-EVQ-CAO-SQUID': '0.092', 'FA-EVQ-CAO-PAULI': '36.54',
-                  'FA-EVQ-KER-STRAIN': '1.18', 'FA-EVQ-SCH-FLUX': '28.6', 'FA-EVQ-SHA-BAND': '85.9', 'FA-EVQ-DIN-HTP': '0.76'}
+                  'FA-EVQ-KER-STRAIN': '1.18', 'FA-EVQ-SCH-FLUX': '28.6', 'FA-EVQ-SHA-BAND': '85.9', 'FA-EVQ-DIN-HTP': '0.76',
+                  'FA-EVQ-FOO-LAYERS': '5.93'}
         for instance, shown in expect.items():     # paper: ~26 nm, 0.09 µm², ~36 T, 1.18°, 28.6, 85.6 nm measured, 76 %
             self.assertEqual(build(instance)[1]['checks']['shown'], shown, instance)
 
@@ -81,7 +82,7 @@ class QuantityTests(unittest.TestCase):
 
 class EliminationTests(unittest.TestCase):
     def test_only_the_paper_conclusion_survives(self):
-        for instance in ('FA-EVE-KER-NEMATIC', 'FA-EVE-COT-BEND', 'FA-EVE-SHA-IONS', 'FA-EVE-ALT-THREE'):
+        for instance in [s['id'] for s in SPECS if s['family'] == 'evidence_elimination']:
             spec, built = build(instance)
             contradicted = built['checks']['contradicted_by']
             self.assertEqual(contradicted['paper_conclusion'], [])

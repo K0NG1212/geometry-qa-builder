@@ -1,0 +1,74 @@
+{
+ "kind": "evidence_card",
+ "id": "altun2021-stability",
+ "paper": "hbond2021",
+ "citation": "Altun, Bleda & Trindle, \"Hydrogen Bonding in 3-hydroxy-2-butenamide and related isomers\", Molecules 26, 2623 (2021), doi:10.3390/molecules26092623",
+ "license": "CC BY 4.0; facts and numbers only; SI coordinates copied unchanged",
+ "short_citation": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021)",
+ "family": "evidence_elimination",
+ "topic": "Eleven computed isomers and conformers of acetoacetamide and its enol tautomer (labelled ONE to ELEVEN) differ in their intramolecular hydrogen bonds.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "Relative electronic energies (kJ/mol, extrapolated to the complete-basis limit from HF, MP2 and CCSD): with OH···O, OH···N or NH···O bonds, TWO 0, ONE 4.0, FIVE +38, FOUR +42, ELEVEN +48; with only CH···O or CH···N contacts, SEVEN +38, SIX +43, TEN +61, NINE +91; with no hydrogen bond, THREE +62, EIGHT +101.",
+   "locator": "Table 1",
+   "observed": {
+    "no_hbond_always_least_stable": false,
+    "ch_species_as_unstable_as_no_hbond": false
+   }
+  },
+  {
+   "id": "E2",
+   "text": "Ranked by local stretching force constant, the hydrogen bonds are TWO > ELEVEN > FIVE (all above 0.2 mdyn/Å), then ONE, FOUR and SIX, with the CH···N and CH···OH contacts weakest.",
+   "locator": "Local mode analysis (Table 5 discussion; Figure 9)",
+   "observed": {
+    "energy_follows_hbond_rank": false
+   }
+  }
+ ],
+ "ask": "Which statement about hydrogen bonding and the relative stability of these species is consistent with both facts?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "paper_conclusion": true,
+   "text": "Relative stability is a property of the whole molecule and is not explained by the strength of the local hydrogen bond alone.",
+   "predicts": {
+    "energy_follows_hbond_rank": false
+   },
+   "locator": "Results after Table 1: stability not simply explained by local H bonding",
+   "reason": "与全部事实一致，即原文结论。"
+  },
+  {
+   "rule": "stronger_bond_lower_energy",
+   "text": "The stronger the local hydrogen bond, the lower the energy, so the energy order follows the hydrogen-bond ranking.",
+   "predicts": {
+    "energy_follows_hbond_rank": true
+   },
+   "locator": "Table 1 vs Figure 9",
+   "reason": "ELEVEN 的氢键排第二强，能量却是 +48，高于只有 CH···N 的 SEVEN（+38）。"
+  },
+  {
+   "rule": "no_hbond_least_stable",
+   "text": "Species without any hydrogen bond are always the least stable ones.",
+   "predicts": {
+    "no_hbond_always_least_stable": true
+   },
+   "locator": "Table 1",
+   "reason": "有 CH···OH 接触的 NINE（+91）比完全没有氢键的 THREE（+62）还高。"
+  },
+  {
+   "rule": "ch_contacts_irrelevant",
+   "text": "CH···O and CH···N contacts contribute nothing, so species having only them are as unstable as species with no hydrogen bond.",
+   "predicts": {
+    "ch_species_as_unstable_as_no_hbond": true
+   },
+   "locator": "Table 1",
+   "reason": "SEVEN（+38）、SIX（+43）明显低于无氢键的 THREE（+62），与含 XH···Y 的 FIVE（+38）相当。"
+  }
+ ],
+ "scale": {
+  "input_nm": 0.5,
+  "reasoning_nm": 0.5,
+  "definition": "整个分子（约 0.5 nm）"
+ }
+}

@@ -1,0 +1,99 @@
+{
+ "kind": "evidence_card",
+ "id": "cao2018-fermi-pockets",
+ "paper": "paper-cao-magic-angle",
+ "citation": "Cao, Fatemi, Fang, Watanabe, Taniguchi, Kaxiras & Jarillo-Herrero, \"Magic-angle graphene superlattices: a new platform for unconventional superconductivity\", Nature 556, 43 (2018); arXiv:1803.02342v2",
+ "license": "arXiv.org perpetual non-exclusive license; facts and numbers only, no text or figures reproduced",
+ "short_citation": "Cao et al., Nature 556, 43 (2018)",
+ "family": "evidence_elimination",
+ "topic": "Shubnikov-de Haas oscillations of a magic-angle twisted bilayer graphene (MA-TBG) device are mapped against carrier density n and magnetic field on the hole side; ns is the density that fills one superlattice band (4 electrons per moiré cell).",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "The Landau fans that start at charge neutrality and at -ns have filling factors -4, -8, -12, ..., as expected from the four-fold spin and valley degeneracy of the single-particle bands.",
+   "locator": "Quantum oscillations (p. 6); Fig. 5a",
+   "observed": {
+    "parent_fans_fourfold": true
+   }
+  },
+  {
+   "id": "E2",
+   "text": "An extra fan starts at the half-filling insulating state -ns/2, with filling factors -2, -4, -6, ...; it sits directly above the superconducting dome.",
+   "locator": "Quantum oscillations (pp. 6-7); Fig. 5a",
+   "observed": {
+    "half_filling_fan": true
+   }
+  },
+  {
+   "id": "E3",
+   "text": "This extra fan is already visible at about 1 T.",
+   "locator": "Quantum oscillations (p. 7)",
+   "observed": {
+    "fan_from_low_field": true
+   }
+  },
+  {
+   "id": "E4",
+   "text": "From the oscillation frequency, the number of degenerate Fermi pockets is M = 4 near charge neutrality and beyond the superlattice gap, but M = 2 for the oscillations that start near the half-filling state; their area follows |n| - ns/2 rather than |n|.",
+   "locator": "Quantum oscillations (p. 8); Fig. 5d",
+   "observed": {
+    "degeneracy_near_half_filling": 2
+   }
+  },
+  {
+   "id": "E5",
+   "text": "The same Landau-level sequence is seen in two other MA-TBG devices.",
+   "locator": "Quantum oscillations (p. 7); Extended Data Fig. 2",
+   "observed": {
+    "reproducible": true
+   }
+  }
+ ],
+ "ask": "Which explanation of the extra Landau fan is consistent with all of these observations?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "paper_conclusion": true,
+   "text": "Small Fermi pockets of quasiparticles counted from the half-filling correlated insulator, with half the usual degeneracy; the carriers above the superconducting dome are only |n| - ns/2.",
+   "predicts": {
+    "half_filling_fan": true,
+    "degeneracy_near_half_filling": 2,
+    "parent_fans_fourfold": true
+   },
+   "locator": "Quantum oscillations (p. 8): small Fermi surfaces from the correlated insulating state; halved degeneracy",
+   "reason": "与全部观测一致，即原文结论。"
+  },
+  {
+   "rule": "hofstadter_butterfly",
+   "text": "Fractional Landau fans of the Hofstadter butterfly of the moiré superlattice.",
+   "predicts": {
+    "fan_from_low_field": false
+   },
+   "locator": "Quantum oscillations (p. 7): Hofstadter features need fields > 10 T",
+   "reason": "Hofstadter 分形通常要 10 T 以上才明显，而这个扇在约 1 T 就出现。"
+  },
+  {
+   "rule": "cell_doubling",
+   "text": "A doubled unit cell from strain or a charge density wave, which halves the filling factors of the ordinary single-particle bands.",
+   "predicts": {
+    "parent_fans_fourfold": false
+   },
+   "locator": "Quantum oscillations (p. 7): would require spin or valley degeneracy to be broken a priori",
+   "reason": "晶胞加倍要求事先破缺自旋或谷简并，但从电中性点和 −ns 出发的扇仍是四重简并。"
+  },
+  {
+   "rule": "large_fermi_surface",
+   "text": "The ordinary single-particle Fermi surface of all |n| carriers, with the usual four-fold degeneracy.",
+   "predicts": {
+    "degeneracy_near_half_filling": 4
+   },
+   "locator": "Quantum oscillations (p. 8): M = 2 near the correlated state",
+   "reason": "半填充附近测得 M = 2，面积随 |n| − ns/2 变化，不是全部载流子的大费米面。"
+  }
+ ],
+ "scale": {
+  "input_nm": 13.4,
+  "reasoning_nm": 13.4,
+  "definition": "莫尔晶胞（1.05° 时约 13 nm）"
+ }
+}

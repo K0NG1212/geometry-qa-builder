@@ -1,0 +1,92 @@
+{
+ "kind": "evidence_card",
+ "id": "cottet2014-lattice",
+ "paper": "paper-cottet-mgb2-vortex",
+ "citation": "Cottet, Cantoni, Mansart, Alexander, Hébert, Zhigadlo, Karpinski & Carbone, \"Quantitative imaging of flux vortices in type-II superconductor MgB2 using Cryo-Lorentz Transmission Electron Microscopy\", arXiv:1401.4062v1 (2014)",
+ "license": "arXiv.org perpetual non-exclusive license; facts and numbers only",
+ "short_citation": "Cottet et al., arXiv:1401.4062",
+ "family": "evidence_elimination",
+ "topic": "Cryo-Lorentz TEM images flux vortices in a focused-ion-beam lamella of single-crystal MgB2 at 5 K for fields from 50.8 to 188.7 G; earlier surface-sensitive studies (Bitter decoration) had reported stripe and gossamer-like vortex patterns and proposed an unconventional \"type-1.5\" state.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "No stripe or gossamer-like vortex patterns are seen at any field.",
+   "locator": "Abstract; Conclusion",
+   "observed": {
+    "stripes_seen": false
+   }
+  },
+  {
+   "id": "E2",
+   "text": "The six-fold bond-orientational order parameter grows with field; at 117.3 G it averages 0.73 and reaches 0.91 locally (1 = perfect triangular lattice).",
+   "locator": "Results; Fig. 5A",
+   "observed": {
+    "order_grows_with_field": true
+   }
+  },
+  {
+   "id": "E3",
+   "text": "The nearest-neighbour interaction energy computed from the measured spacings is lower for a triangular than for a square arrangement over the whole field range.",
+   "locator": "Results; Fig. 5C",
+   "observed": {
+    "triangular_lower_energy": true
+   }
+  },
+  {
+   "id": "E4",
+   "text": "Distorted arrangements and pinned vortices appear only close to the sample edge; elsewhere vortices move freely between regions.",
+   "locator": "Results; Fig. 4 bottom right",
+   "observed": {
+    "disorder_only_at_edge": true
+   }
+  }
+ ],
+ "ask": "Which conclusion about vortex matter in MgB2 is consistent with all of these observations?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "paper_conclusion": true,
+   "text": "MgB2 behaves as a conventional type-II superconductor that tends to a triangular Abrikosov lattice; the earlier stripe patterns more likely came from imperfect surfaces.",
+   "predicts": {
+    "stripes_seen": false,
+    "order_grows_with_field": true,
+    "triangular_lower_energy": true
+   },
+   "locator": "Conclusion: prototypical type-II; patterns linked to sample preparation",
+   "reason": "与全部观测一致，即原文结论。"
+  },
+  {
+   "rule": "type_one_point_five",
+   "text": "MgB2 is a \"type-1.5\" superconductor whose vortices cluster into stripes and gossamer patterns at low field.",
+   "predicts": {
+    "stripes_seen": true
+   },
+   "locator": "Abstract; Introduction",
+   "reason": "全部磁场下都没有看到条纹或蛛丝状图样。"
+  },
+  {
+   "rule": "square_ground_state",
+   "text": "The vortices prefer a square lattice, which is the low-energy arrangement in MgB2.",
+   "predicts": {
+    "triangular_lower_energy": false
+   },
+   "locator": "Results; Fig. 5C",
+   "reason": "由实测间距算出的相互作用能，三角排列始终低于正方排列。"
+  },
+  {
+   "rule": "bulk_pinning",
+   "text": "Strong pinning throughout the crystal freezes a disordered vortex glass everywhere.",
+   "predicts": {
+    "disorder_only_at_edge": false,
+    "order_grows_with_field": false
+   },
+   "locator": "Results: no pinning except at the edge",
+   "reason": "畸变和钉扎只在样品边缘，其余区域涡旋可移动且有序度随场增加。"
+  }
+ ],
+ "scale": {
+  "input_nm": 5000,
+  "reasoning_nm": 451,
+  "definition": "涡旋间距（117.3 G 时约 0.45 μm）"
+ }
+}

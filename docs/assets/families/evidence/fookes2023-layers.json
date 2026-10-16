@@ -1,0 +1,82 @@
+{
+ "kind": "evidence_card",
+ "id": "fookes2023-layers",
+ "paper": "paper-silica-opal",
+ "short_citation": "Fookes et al., Sensors 23, 1433 (2023)",
+ "citation": "Fookes, Polo Parada & Fidalgo, \"A Robust Method for the Elaboration of SiO2-Based Colloidal Crystals as a Template for Inverse Opal Structures\", Sensors 23, 1433 (2023), doi:10.3390/s23031433 (Europe PMC PMC9920682)",
+ "license": "CC BY 4.0; facts and numbers only",
+ "family": "evidence_quantity",
+ "topic": "Colloidal crystals of 266 nm SiO2 spheres are grown on glass by vertical lifting deposition (convective assembly at the meniscus) from an ethanol suspension, and their reflectance is measured at 30°.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "With the same 3 % suspension, slides were lifted at 0.28 µm/s and at 1.66 µm/s; all other conditions (meniscus, evaporation, particles) are the same.",
+   "locator": "Methods 2.2.1; Results 3.1",
+   "values": {
+    "v_slow": [
+     0.28,
+     "0.28 µm/s"
+    ],
+    "v_fast": [
+     1.66,
+     "1.66 µm/s"
+    ]
+   }
+  },
+  {
+   "id": "E2",
+   "text": "Both deposits show their reflectance peak near 540 nm, close to the 547 nm expected for a close-packed FCC crystal of these spheres.",
+   "locator": "Results 3.1; Fig. 3b-c"
+  },
+  {
+   "id": "E3",
+   "text": "At 1.66 µm/s the peak is broad (FWHM 167 nm) and weak (12 %); at 0.28 µm/s it is sharper (FWHM 66 nm) and stronger (66 %).",
+   "locator": "Results 3.1; Fig. 5; Table S2"
+  },
+  {
+   "id": "E4",
+   "text": "Electron micrographs show a non-uniform monolayer at intermediate speed and low concentration, but a close-packed multilayer crystal at 0.28 µm/s.",
+   "locator": "Results 3.1; Fig. 7"
+  }
+ ],
+ "ask": "Using the material-balance (Dimitrov-Nagayama) model of convective assembly, estimate the ratio of the numbers of deposited particle layers, k(0.28 µm/s) / k(1.66 µm/s), for the same suspension, and explain the change in the reflectance peak. Choose the option in which both the value and the conclusion are correct.",
+ "quantity": {
+  "kind": "layer_ratio",
+  "args": {
+   "v_slow": "v_slow",
+   "v_fast": "v_fast"
+  },
+  "label": "k(0.28 µm/s) / k(1.66 µm/s) ≈",
+  "unit": "",
+  "decimals": 2,
+  "tolerance": "0.005",
+  "min_separation": "1.00"
+ },
+ "error": {
+  "rule": "speed_proportional",
+  "kind": "layer_ratio_inverted",
+  "args": {
+   "v_slow": "v_slow",
+   "v_fast": "v_fast"
+  },
+  "plausibility": 2,
+  "reason": "把层数当成随提拉速度增大（k ∝ v），比值颠倒。"
+ },
+ "conclusions": {
+  "paper": {
+   "text": "Slower lifting deposits about six times more particle layers from the same suspension; with the lattice unchanged, the thicker crystal gives the taller, narrower reflection peak.",
+   "locator": "Results 3.1: higher peaks from more particle layers at higher φ and lower v (Dimitrov-Nagayama)"
+  },
+  "rejected": {
+   "rule": "lattice_changes",
+   "text": "Slower lifting packs the spheres more tightly and changes the lattice spacing, which sharpens the peak; the number of layers stays the same.",
+   "locator": "Results 3.1 (peak position unchanged near 540 nm)",
+   "reason": "两种速度下峰位都在约 540 nm，晶格间距没有变；变化来自层数。"
+  }
+ },
+ "scale": {
+  "input_nm": 266,
+  "reasoning_nm": 266,
+  "definition": "SiO₂ 球直径（266 nm）"
+ }
+}

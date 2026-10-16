@@ -1,6 +1,20 @@
 # 论文“证据 → 结论”题候选清单
 
 > 2026-10-16 用户确认形式，先做 13 道 ★ 题：已实现为 `evidence_quantity`（9 道）与 `evidence_elimination`（4 道）两个题型族，见 PROJECT_STATUS。下文保留为候选记录。
+>
+> **第二批（2026-10-16，6 道）**：C1、K2、K3、Co1、H4、F2 已入库（QNI034–037、CNI031、MNI036）。
+>
+> 其余 9 个不做或暂缓，原因记在 `docs/assets/families/evidence/sources.json` 的 `not_used`：
+>
+> | 候选 | 原因 |
+> |---|---|
+> | S2 | 推理尺度（YBCO 涡旋间距约 1.4 μm）超出题库 0.1–1000 nm 范围 |
+> | G1 | 原文说法与其表格数据不符：DLS 与 FESEM 的差距并不随 SDS 增加而变大 |
+> | G2 | 按原文参数复算比原文 Bragg 计算值系统性高约 1.2%，无法复现 |
+> | F1 | 定量对不上 |
+> | C5 | TF 的简并度约定原文未写，答案不唯一 |
+> | C6、Co3 | 与现有论文参数族重复 |
+> | Sh3、D2 | 过于简单，导师认为容易的题意义不大 |
 
 2026-10-16，Claude Code 会话（模型 claude-opus-5-5）。来源是 `inputs/papers/` 中第 1 步下载的 8 篇全文（本地，不入库），以及已在仓库外 `../paper-batch-v04-001/materials/` 的 Altun, Bleda & Trindle (2021)。这里只是候选，还没有生成任何题，也没有改题库。
 

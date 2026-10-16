@@ -107,6 +107,10 @@ def quantity(kind, a, v, inputs, card):
             return (get(v, a['lam_R']) * get(v, a['c_R'])) / (get(v, a['lam_L']) * get(v, a['c_L']))
         if kind == 'wavelength_ratio':
             return get(v, a['lam_R']) / get(v, a['lam_L'])
+        if kind == 'layer_ratio':                       # k proportional to 1/v at fixed suspension
+            return get(v, a['v_fast']) / get(v, a['v_slow'])
+        if kind == 'layer_ratio_inverted':
+            return get(v, a['v_slow']) / get(v, a['v_fast'])
         if kind == 'xyz_distance_difference':
             names = {f['key']: f['name'] for f in card['files']}
             facts = ' '.join(f['text'] for f in card['facts'])

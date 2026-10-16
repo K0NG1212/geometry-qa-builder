@@ -1,0 +1,91 @@
+{
+ "kind": "evidence_card",
+ "id": "kerelsky2019-bandwidth",
+ "paper": "paper-kerelsky-tbg-stm",
+ "citation": "Kerelsky et al., \"Maximized electron interactions at the magic angle in twisted bilayer graphene\", Nature 572, 95 (2019); arXiv:1812.08776v2 (\"Magic Angle Spectroscopy\")",
+ "license": "arXiv.org perpetual non-exclusive license; facts and numbers only",
+ "short_citation": "Kerelsky et al., Nature 572, 95 (2019)",
+ "family": "evidence_elimination",
+ "topic": "Scanning tunnelling spectroscopy on the AA sites of twisted bilayer graphene measures the two van Hove singularity (vHs) peaks of the flat bands at twist angles from 3.48° down to 0.79°.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "The separation between the two vHs peaks falls steadily as the twist angle decreases: it is still about 55 meV at 1.10°, and the peaks have nearly merged (13 meV) at 0.79°.",
+   "locator": "p. 3-4; Fig. 2a, 2d",
+   "observed": {
+    "peaks_separate_at_sc_angle": true
+   }
+  },
+  {
+   "id": "E2",
+   "text": "The half-width of each vHs peak is smallest near 1.10°; at 0.79° the peaks are closer together but wider.",
+   "locator": "p. 4; Fig. 2c, 2e",
+   "observed": {
+    "width_min_near_1p1": true
+   }
+  },
+  {
+   "id": "E3",
+   "text": "Superconductivity and correlated insulators are seen in transport at about 1.1°.",
+   "locator": "Introduction; p. 4 (the angle where superconductivity is observed)",
+   "observed": {
+    "sc_near_1p1": true
+   }
+  },
+  {
+   "id": "E4",
+   "text": "A second near-magic-angle sample with a different heterostrain (0.6 %) shows a similar vHs splitting, and a tight-binding model with the experimental Fermi velocity reproduces the measured splittings.",
+   "locator": "Supplement S3-S4",
+   "observed": {
+    "splitting_strain_independent": true
+   }
+  }
+ ],
+ "ask": "Which explanation of why correlated states appear near 1.1° is consistent with all of these observations?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "paper_conclusion": true,
+   "text": "The bandwidth of each individual vHs is smallest near 1.1°, so the ratio of Coulomb repulsion to bandwidth (U/t) is largest there, favouring electronic rather than phonon-driven pairing.",
+   "predicts": {
+    "width_min_near_1p1": true,
+    "peaks_separate_at_sc_angle": true,
+    "sc_near_1p1": true
+   },
+   "locator": "p. 4 and Discussion (p. 7): width minimized near 1.10°; superconductivity where U/t is largest",
+   "reason": "与全部观测一致，即原文结论。"
+  },
+  {
+   "rule": "vhs_merger",
+   "text": "The two vHs peaks merge into a single density-of-states maximum at the superconducting angle.",
+   "predicts": {
+    "peaks_separate_at_sc_angle": false
+   },
+   "locator": "p. 3: two distinct peaks 55 meV apart at 1.10°",
+   "reason": "1.10° 时两峰仍相距约 55 meV，并未合并。"
+  },
+  {
+   "rule": "phonon_dos_maximum",
+   "text": "Phonon-mediated pairing, so correlated states follow the largest density of states, which occurs where the peaks merge (about 0.8°).",
+   "predicts": {
+    "sc_near_1p1": false
+   },
+   "locator": "Discussion (p. 7): phonon scenarios favour maximal DOS; observed at ~1.1°",
+   "reason": "态密度最大处在两峰几乎合并的 0.79°，而超导出现在约 1.1°。"
+  },
+  {
+   "rule": "strain_artefact",
+   "text": "The 55 meV vHs splitting at 1.1° is an artefact of heterostrain and does not reflect the band structure.",
+   "predicts": {
+    "splitting_strain_independent": false
+   },
+   "locator": "Supplement S4: similar splitting at different strain; reproduced by tight binding",
+   "reason": "不同应变的样品劈裂相近，紧束缚模型也能重现，排除应变假象。"
+  }
+ ],
+ "scale": {
+  "input_nm": 12.8,
+  "reasoning_nm": 12.8,
+  "definition": "莫尔晶胞（1.10° 时约 13 nm）"
+ }
+}

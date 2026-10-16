@@ -18,6 +18,11 @@
      "family": "evidence_quantity"
     },
     {
+     "file": "altun2021-stability.json",
+     "sha256": "565568f10672106213ae6e2cd4de955a450980d1aea972ec0d1c671944b65caa",
+     "family": "evidence_elimination"
+    },
+    {
      "file": "altun2021-three.json",
      "sha256": "78b3d0c24b58362bb1162dc47185b1a8f40d6a9151203c89821232ee1036296f",
      "family": "evidence_elimination"
@@ -28,7 +33,8 @@
     "local_file": "../paper-batch-v04-001/materials/hbond-article.xml 与 SI-geometryandAIM.pdf（仓库外）",
     "sha256": {
      "SI-geometryandAIM.pdf": "d8b5ab31e24f4118244455741452e557c4c8eb5a0ff14cb144ec5b321517a20e",
-     "hbond-si.txt": "de4bf68b4fe19cb6a691537ead6ad0dc41be7303b19bb2ff56e492e9295e02ff"
+     "hbond-si.txt": "de4bf68b4fe19cb6a691537ead6ad0dc41be7303b19bb2ff56e492e9295e02ff",
+     "hbond-article.xml": "b6aefb29dba08aa55b0ad03d916d7b6096d725c8539951d07cf0f24da423eebf"
     }
    }
   },
@@ -40,6 +46,11 @@
      "file": "cao2018-coherence.json",
      "sha256": "b817b5a45d705c278c5789ee75fe0d79feb4f169a604dfdcd9e95df84ae67dc9",
      "family": "evidence_quantity"
+    },
+    {
+     "file": "cao2018-fermi-pockets.json",
+     "sha256": "66a890fa2629c567314c107dadf95204f14313686e1b749c27a1b22009307ede",
+     "family": "evidence_elimination"
     },
     {
      "file": "cao2018-pauli.json",
@@ -66,6 +77,11 @@
     {
      "file": "cottet2014-bend.json",
      "sha256": "b3a029a40a8c7cf759dd341b5ca902518447a93fe770bb7a160f6ee212a4fdc8",
+     "family": "evidence_elimination"
+    },
+    {
+     "file": "cottet2014-lattice.json",
+     "sha256": "811309794a3c0f20f86e74c651baeae2a8a7a137104ac97612521dca4e9aac40",
      "family": "evidence_elimination"
     }
    ],
@@ -97,6 +113,16 @@
    "citation": "Kerelsky et al., \"Maximized electron interactions at the magic angle in twisted bilayer graphene\", Nature 572, 95 (2019); arXiv:1812.08776v2 (\"Magic Angle Spectroscopy\")",
    "license": "arXiv.org perpetual non-exclusive license; facts and numbers only",
    "cards": [
+    {
+     "file": "kerelsky2019-bandwidth.json",
+     "sha256": "d9acdb5c47ca0b04486d28a3e4aff05ff37b2a27e3d758375977fe6b32aa4d05",
+     "family": "evidence_elimination"
+    },
+    {
+     "file": "kerelsky2019-gap.json",
+     "sha256": "2c78e17acef1fdab232ef22f96d21f2a4a5e749152802033e02f84eedf2ffae2",
+     "family": "evidence_elimination"
+    },
     {
      "file": "kerelsky2019-nematic.json",
      "sha256": "75b75982b068d5c6508e6bbf59b12097dcb786949d8bc0625fca02e535b4c0b2",
@@ -153,6 +179,23 @@
     "sha256": "221d5c74d191071399f7140592e5f8f66035eb30ff8c5c26eabd465674349ee7",
     "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
    }
+  },
+  "paper-silica-opal": {
+   "citation": "Fookes, Polo Parada & Fidalgo, \"A Robust Method for the Elaboration of SiO2-Based Colloidal Crystals as a Template for Inverse Opal Structures\", Sensors 23, 1433 (2023), doi:10.3390/s23031433 (Europe PMC PMC9920682)",
+   "license": "CC BY 4.0; facts and numbers only",
+   "cards": [
+    {
+     "file": "fookes2023-layers.json",
+     "sha256": "9bd43e07938766f5bd20e8c17a536ca25dcb3ee222e8187c6787851abbd6cc4b",
+     "family": "evidence_quantity"
+    }
+   ],
+   "full_text": {
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9920682/fullTextXML",
+    "local_file": "inputs/papers/fookes2023/fookes2023-PMC9920682.xml",
+    "sha256": "0a742038a3ef41d99ac84518b129462245964a2f5926c269880b69d5333b00a8",
+    "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
+   }
   }
  },
  "structures": [
@@ -167,6 +210,28 @@
    "sha256": "1ef4e30d8ba378dc27e922186f51ee669c23e246172768d34bbf158409091b84",
    "built_by": "python tools/build_evidence_assets.py --si ../paper-batch-v04-001/materials/hbond-si.txt",
    "note": "Altun 2021 SI 坐标原样复制（CC BY 4.0）。"
+  }
+ ],
+ "not_used": [
+  {
+   "candidate": "G1 (Gazmeh 2025, DLS vs FESEM)",
+   "reason": "原文称 SDS 越多 DLS 与 FESEM 差距越大，但其表 1、表 2 数据不支持：差距最大在 S5（70 mg，81 nm），SDS 最高的 S7、S8 只有约 30 nm。"
+  },
+  {
+   "candidate": "G2 (Gazmeh 2025, Bragg sizes)",
+   "reason": "按原文公式与参数（n = 1.59、填充率 0.74、法向入射）复算的峰位比原文表 2 的“Bragg 计算值”系统性高约 1.2%，原文计算无法复现。"
+  },
+  {
+   "candidate": "F1 (Fookes 2023, inverse opal at 409 nm)",
+   "reason": "按 270 nm 孔与常见聚合物折射率估算应在约 450–460 nm，与 409 nm 差约 10%，原文未计算。"
+  },
+  {
+   "candidate": "C5 (Cao 2018, Tc/TF)",
+   "reason": "原文只给出图中位置，未写 TF 的数值与简并度约定；按不同约定 Tc/TF 相差 2 倍，不能唯一定答案。"
+  },
+  {
+   "candidate": "S2 (Schäfermeier 2026, YBCO vortex disorder)",
+   "reason": "推理尺度是 1.18 mT 下的涡旋间距约 1.4 μm，超出题库 0.1–1000 nm 的范围；为免改用别的尺寸定义凑入范围，暂不出题。"
   }
  ]
 }

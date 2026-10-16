@@ -107,6 +107,10 @@ def compute(kind, a, v, files):
         return arg(v, a['lam_R']) * arg(v, a['c_R']) / (arg(v, a['lam_L']) * arg(v, a['c_L']))
     if kind == 'wavelength_ratio':
         return arg(v, a['lam_R']) / arg(v, a['lam_L'])
+    if kind in ('layer_ratio', 'layer_ratio_inverted'):         # Dimitrov-Nagayama: k = beta h Je phi / (0.605 d v (1 - phi))
+        layers = lambda speed: 1.0 / (0.605 * speed)               # same suspension and meniscus: all other factors cancel
+        ratio = layers(arg(v, a['v_slow'])) / layers(arg(v, a['v_fast']))
+        return ratio if kind == 'layer_ratio' else 1.0 / ratio      # mistake: layers taken to grow with speed
     if kind == 'xyz_distance_difference':                        # rows counted from 1, in angstrom
         def d(key, rows):
             elements, points = files[key]
