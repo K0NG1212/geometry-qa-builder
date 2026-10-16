@@ -1,0 +1,83 @@
+{
+ "kind": "evidence_card",
+ "id": "kerelsky2019-strain",
+ "paper": "paper-kerelsky-tbg-stm",
+ "citation": "Kerelsky et al., \"Maximized electron interactions at the magic angle in twisted bilayer graphene\", Nature 572, 95 (2019); arXiv:1812.08776v2 (\"Magic Angle Spectroscopy\")",
+ "license": "arXiv.org perpetual non-exclusive license; facts and numbers only",
+ "family": "evidence_quantity",
+ "topic": "STM topographs of twisted bilayer graphene near the magic angle give the moiré wavelength along the three principal directions of the moiré lattice. The graphene lattice constant is a = 0.246 nm; an unstrained twist θ gives a single moiré period λ = a / (2 sin(θ/2)).",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "In one sample the three moiré wavelengths are 13.72 nm, 12.70 nm and 10.18 nm.",
+   "locator": "Supplement S1 (strain model), first example",
+   "values": {
+    "l1_nm": [
+     13.72,
+     "13.72 nm"
+    ],
+    "l2_nm": [
+     12.7,
+     "12.70 nm"
+    ],
+    "l3_nm": [
+     10.18,
+     "10.18 nm"
+    ]
+   }
+  },
+  {
+   "id": "E2",
+   "text": "The hBN substrate was deliberately misaligned by a large angle, and no second moiré pattern from it is seen.",
+   "locator": "Main text p. 2 (Fig. 1d-f discussion)"
+  },
+  {
+   "id": "E3",
+   "text": "Transport measurements infer the twist angle from the area of the moiré unit cell, without access to local strain.",
+   "locator": "Supplement S1, last paragraph"
+  }
+ ],
+ "ask": "A strain-unaware analysis treats the triangle formed by the three wavelengths as an equilateral triangle of the same area. Find the twist angle this gives and decide what the unequal wavelengths mean. (a = 0.246 nm.) Choose the option in which both the value and the conclusion are correct.",
+ "quantity": {
+  "kind": "equal_area_twist",
+  "args": {
+   "l1": "l1_nm",
+   "l2": "l2_nm",
+   "l3": "l3_nm",
+   "a_nm": 0.246
+  },
+  "label": "Equal-area twist angle ≈",
+  "unit": "degree",
+  "decimals": 2,
+  "tolerance": "0.005",
+  "min_separation": "0.05"
+ },
+ "error": {
+  "rule": "single_longest_wavelength",
+  "kind": "single_wavelength_twist",
+  "args": {
+   "l": "l1_nm",
+   "a_nm": 0.246
+  },
+  "plausibility": 3,
+  "reason": "只用最长的一个方向（13.72 nm）代入 λ = a/(2 sin θ/2)，忽略三个方向不等。"
+ },
+ "conclusions": {
+  "paper": {
+   "text": "The wavelengths differ because one layer carries a small uniaxial heterostrain (about 0.7 %; a full fit gives θ ≈ 1.15°); the equal-area estimate stays close to the true twist, whereas any single direction would misjudge it.",
+   "locator": "Supplement S1: fit θT = 1.152°, strain 0.68 %; equal-area estimate 1.18°"
+  },
+  "rejected": {
+   "rule": "three_twist_domains",
+   "text": "The three directions belong to regions with three different twist angles; each wavelength gives its own local twist directly.",
+   "locator": "Supplement S1; main text p. 2 (single moiré lattice with strain)",
+   "reason": "三个波长来自同一莫尔晶格的三个方向；原文用一层的单轴异质应变解释，而不是三个转角不同的畴。"
+  }
+ },
+ "scale": {
+  "input_nm": 13.72,
+  "reasoning_nm": 12.2,
+  "definition": "莫尔周期（10–14 nm）"
+ },
+ "short_citation": "Kerelsky et al., Nature 572, 95 (2019)"
+}

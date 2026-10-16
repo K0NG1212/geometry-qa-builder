@@ -429,6 +429,24 @@
       "attribution": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021)，CC BY 4.0；SI 坐标表原样。",
       "learningObjective": "按给定几何判据识别分子内氢键；理解给体–受体靠近不等于成氢键。",
       "sizeDefinition": "推理：候选接触中最大的给体–受体或氢–受体距离。"
+    },
+    "evidence_quantity": {
+      "domain": "quantum",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "paper": "paper-cao-magic-angle",
+      "attribution": "事实数据取自论文（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：证据所涉几何量（见各题）。",
+      "learningObjective": "由论文证据推出关键结论，并排除论文讨论过的其他解释。"
+    },
+    "evidence_elimination": {
+      "domain": "quantum",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "paper": "paper-cao-magic-angle",
+      "attribution": "事实数据取自论文（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：证据所涉几何量（见各题）。",
+      "learningObjective": "由论文证据推出关键结论，并排除论文讨论过的其他解释。"
     }
   },
   "instances": [
@@ -2276,6 +2294,179 @@
       "action": "new",
       "catalog_id": "QNI023",
       "title": "QM7-X 7040 · 位移 d2 处沿 B→A 路径的能量导数（四选一）"
+    },
+    {
+      "instance": "FA-EVQ-CAO-COHERENCE",
+      "action": "new",
+      "catalog_id": "QNI027",
+      "title": "魔角石墨烯 · 载流子间距与相干长度 → 耦合强度（证据题）",
+      "domain": "quantum",
+      "paper": "paper-cao-magic-angle",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Cao et al., Nature 556, 43 (2018)；arXiv:1803.02342（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：相干长度 ξ 与载流子间距（约 26–52 nm）。",
+      "learningObjective": "由量子振荡给出的有效密度求载流子间距，与相干长度比较，判断超导的耦合强度。"
+    },
+    {
+      "instance": "FA-EVQ-CAO-SQUID",
+      "action": "new",
+      "catalog_id": "QNI028",
+      "title": "魔角石墨烯 · 临界电流振荡周期 → 超导环路面积 → 不均匀性（证据题）",
+      "domain": "quantum",
+      "paper": "paper-cao-magic-angle",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Cao et al., Nature 556, 43 (2018)；arXiv:1803.02342（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：超导环路等效尺寸 √S（约 0.3 μm）。",
+      "learningObjective": "由磁通量子化周期求超导环路面积，与器件面积比较，判断超导态是否均匀。"
+    },
+    {
+      "instance": "FA-EVQ-CAO-PAULI",
+      "action": "new",
+      "catalog_id": "QNI029",
+      "title": "魔角石墨烯 · 厚度与相干长度 → 平行场轨道极限 → 拆对机制（证据题）",
+      "domain": "quantum",
+      "paper": "paper-cao-magic-angle",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Cao et al., Nature 556, 43 (2018)；arXiv:1803.02342（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：双层厚度 d（约 0.6 nm）。",
+      "learningObjective": "由厚度与相干长度估计平行场轨道极限，与实测和 Pauli 极限比较，判断拆对机制。"
+    },
+    {
+      "instance": "FA-EVQ-KER-STRAIN",
+      "action": "new",
+      "catalog_id": "QNI030",
+      "title": "转角石墨烯 STM · 三个莫尔波长 → 等面积转角与异质应变（证据题）",
+      "domain": "quantum",
+      "paper": "paper-kerelsky-tbg-stm",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Kerelsky et al., Nature 572, 95 (2019)；arXiv:1812.08776（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：莫尔周期（10–14 nm）。",
+      "learningObjective": "由三个方向的莫尔波长求等面积三角形与转角，解释波长不等的原因。"
+    },
+    {
+      "instance": "FA-EVQ-SCH-FLUX",
+      "action": "new",
+      "catalog_id": "QNI031",
+      "title": "BSCCO 涡旋 · 场冷磁场与视场 → 预期涡旋数 → 磁通量子（证据题）",
+      "domain": "quantum",
+      "paper": "paper-schaefermeier-bscco-vortex",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Schäfermeier et al., arXiv:2602.13060（CC BY-NC-ND）（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：涡旋晶格常数 a（约 0.86 μm）。",
+      "learningObjective": "由场冷磁场与视场面积求预期涡旋数，与计数比较，判断每个涡旋携带的磁通。"
+    },
+    {
+      "instance": "FA-EVE-KER-NEMATIC",
+      "action": "new",
+      "catalog_id": "QNI032",
+      "title": "转角石墨烯 STS · C3 对称破缺的来源（证据排除题）",
+      "domain": "quantum",
+      "paper": "paper-kerelsky-tbg-stm",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Kerelsky et al., Nature 572, 95 (2019)；arXiv:1812.08776（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：莫尔晶胞（约 13 nm）。",
+      "learningObjective": "比较 C3 对称破缺随能量与掺杂的变化，排除应变、针尖与过度结论，判断电子向列性。"
+    },
+    {
+      "instance": "FA-EVE-COT-BEND",
+      "action": "new",
+      "catalog_id": "QNI033",
+      "title": "MgB₂ 洛伦兹 TEM · 图中暗带的来源（证据排除题）",
+      "domain": "quantum",
+      "paper": "paper-cottet-mgb2-vortex",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Cottet et al., arXiv:1401.4062（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：涡旋间距（约 0.45 μm）。",
+      "learningObjective": "依据暗带随倾转移动、涡旋跨区移动等观测，判断暗带是弯曲衬度而非无涡旋畴。"
+    },
+    {
+      "instance": "FA-EVQ-SHA-BAND",
+      "action": "new",
+      "catalog_id": "CNI025",
+      "title": "胆甾液晶 · 螺距与双折射 → 反射带宽 → 温度变化的解释（证据题）",
+      "domain": "chemistry",
+      "paper": "paper-shaban-cholesteric",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Shaban et al., Materials 17, 5080 (2024)（CC BY）（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：螺距 p（约 0.36 μm）。",
+      "learningObjective": "由螺旋扭曲力、浓度与折射率求反射带宽，并解释带宽与中心随温度的变化。"
+    },
+    {
+      "instance": "FA-EVQ-DIN-HTP",
+      "action": "new",
+      "catalog_id": "CNI026",
+      "title": "手性剂对映体 · 反射波长与浓度 → 表观 HTP 比值 → 对映体过量（证据题）",
+      "domain": "chemistry",
+      "paper": "paper-dinc-isosorbide",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Dinc et al., Org. Chem. Front. (2024)（CC BY 3.0）（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：螺距 p = λ/⟨n⟩（约 0.38–0.42 μm）。",
+      "learningObjective": "由两种涂层的反射波长与浓度求表观螺旋扭曲力之比，解释对映体之间的差异。"
+    },
+    {
+      "instance": "FA-EVQ-ALT-OHSHIFT",
+      "action": "supersede",
+      "catalog_id": "CNI027",
+      "title": "氢键构象 TWO 与 FIVE · 给体–受体距离与 O–H 红移 → 氢键强弱（证据题）",
+      "domain": "chemistry",
+      "paper": "hbond2021",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Altun, Bleda & Trindle, Molecules 26, 2623 (2021)（CC BY 4.0；SI 坐标原样）（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：给体–受体距离（约 0.25–0.27 nm）。",
+      "learningObjective": "由坐标算给体–受体距离之差，结合 O–H 伸缩红移判断哪一个氢键更强。",
+      "supersedes": "HBI001",
+      "reason": "格式检查（2026-10-13）：非四选一、要求文字解释、内含二选一；答案依赖论文中的 OH 伸缩红移趋势（仓库无频率数据）。按第六次会议意见，待改为“证据 → 结论”论文题重做； 2026-10-16 按“证据 → 结论”重做。"
+    },
+    {
+      "instance": "FA-EVQ-ALT-NHO",
+      "action": "supersede",
+      "catalog_id": "CNI028",
+      "title": "氢键构象 ONE 与 ELEVEN · N···O 距离与 NH 伸缩分裂 → 同型氢键强弱（证据题）",
+      "domain": "chemistry",
+      "paper": "hbond2021",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Altun, Bleda & Trindle, Molecules 26, 2623 (2021)（CC BY 4.0；SI 坐标原样）（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：N···O 给体–受体距离（约 0.27–0.28 nm）。",
+      "learningObjective": "由坐标算 N···O 距离之差，结合光谱与 AIM 证据判断同为 NH···O= 的两个氢键哪一个更强。",
+      "supersedes": "HBI002",
+      "reason": "格式检查（2026-10-13）：非四选一、要求文字解释、内含二选一；答案依赖论文表 5 的局部力常数查表。按第六次会议意见，待改为“证据 → 结论”论文题重做； 2026-10-16 按“证据 → 结论”重做。"
+    },
+    {
+      "instance": "FA-EVE-SHA-IONS",
+      "action": "new",
+      "catalog_id": "CNI029",
+      "title": "胆甾液晶 · 额外离子的来源（证据排除题）",
+      "domain": "chemistry",
+      "paper": "paper-shaban-cholesteric",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Shaban et al., Materials 17, 5080 (2024)（CC BY）（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：螺距 p（约 0.36 μm）。",
+      "learningObjective": "依据对映体与外消旋对照、液晶盒对照，判断额外离子来自手性剂批次杂质而非手性本身。"
+    },
+    {
+      "instance": "FA-EVE-ALT-THREE",
+      "action": "new",
+      "catalog_id": "CNI030",
+      "title": "构象 THREE · 有键径的 O···O 接触是不是氢键（证据排除题）",
+      "domain": "chemistry",
+      "paper": "hbond2021",
+      "scale": "paper_evidence",
+      "reasoning": "evidence",
+      "attribution": "事实数据取自 Altun, Bleda & Trindle, Molecules 26, 2623 (2021)（CC BY 4.0；SI 坐标原样）（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
+      "sizeDefinition": "推理：O···O 距离（约 0.26 nm）。",
+      "learningObjective": "综合 AIM、NCI 与振动证据，判断有键径与临界点的 O···O 接触是否为氢键。"
     }
   ],
   "retire": [
@@ -2293,16 +2484,6 @@
       "id": "MNP009",
       "date": "2026-10-13",
       "reason": "格式检查（2026-10-13）：题干直接给出晶胞参数 a 与 d = a/√(h²+k²+l²)，只需代入，不需要附件几何；不再计数。MOF-5 的衍射几何已由 MNI019 覆盖。"
-    },
-    {
-      "id": "HBI001",
-      "date": "2026-10-13",
-      "reason": "格式检查（2026-10-13）：非四选一、要求文字解释、内含二选一；答案依赖论文中的 OH 伸缩红移趋势（仓库无频率数据）。按第六次会议意见，待改为“证据 → 结论”论文题重做；保留原始记录以追溯，不再计数。"
-    },
-    {
-      "id": "HBI002",
-      "date": "2026-10-13",
-      "reason": "格式检查（2026-10-13）：非四选一、要求文字解释、内含二选一；答案依赖论文表 5 的局部力常数查表。按第六次会议意见，待改为“证据 → 结论”论文题重做；保留原始记录以追溯，不再计数。"
     },
     {
       "id": "BNP003",

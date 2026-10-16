@@ -1,0 +1,85 @@
+{
+ "kind": "evidence_card",
+ "id": "schaefermeier2026-flux",
+ "paper": "paper-schaefermeier-bscco-vortex",
+ "citation": "Schäfermeier, Sharma et al., \"Quantitative imaging of Abrikosov vortices by scanning quantum magnetometry\", arXiv:2602.13060v2 (2026)",
+ "license": "CC BY-NC-ND 4.0; facts and numbers only, no text or figures reproduced",
+ "family": "evidence_quantity",
+ "topic": "Scanning nitrogen-vacancy magnetometry images Abrikosov vortices in a BSCCO-2212 single crystal at 71 K after field cooling in a perpendicular field.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "The sample was field-cooled at Bz = 3.7 mT.",
+   "locator": "Results, BSCCO paragraph; Fig. 2 caption",
+   "values": {
+    "B_mT": [
+     3.7,
+     "3.7 mT"
+    ]
+   }
+  },
+  {
+   "id": "E2",
+   "text": "The scanned field of view is 4 µm × 4 µm, and 26 vortices are counted in it.",
+   "locator": "Results, BSCCO paragraph (the expected 28.6 implies a 4 µm × 4 µm field of view; the text says \"4 µm²\")",
+   "values": {
+    "side_um": [
+     4,
+     "4 µm × 4 µm"
+    ],
+    "counted": [
+     26,
+     "26 vortices"
+    ]
+   }
+  },
+  {
+   "id": "E3",
+   "text": "The 2D Fourier transform of the map shows six sharp first-order peaks (a triangular lattice) on a ring of radius 1.35 µm^-1.",
+   "locator": "Results, BSCCO paragraph; Fig. 2b"
+  }
+ ],
+ "ask": "How many vortices should the field of view contain if each vortex carries one flux quantum, and what does the count show? Choose the option in which both the value and the conclusion are correct.",
+ "quantity": {
+  "kind": "flux_quanta_count",
+  "args": {
+   "B_mT": "B_mT",
+   "side_um": "side_um",
+   "flux": "h/2e"
+  },
+  "label": "Expected number of vortices ≈",
+  "unit": "",
+  "decimals": 1,
+  "tolerance": "0.05",
+  "min_separation": "2.0"
+ },
+ "error": {
+  "rule": "normal_flux_quantum",
+  "kind": "flux_quanta_count",
+  "args": {
+   "B_mT": "B_mT",
+   "side_um": "side_um",
+   "flux": "h/e"
+  },
+  "plausibility": 3,
+  "reason": "用 h/e 当作每个涡旋的磁通，预期数目少了一半。"
+ },
+ "conclusions": {
+  "paper": {
+   "text": "The 26 counted vortices agree with this expectation to about 10 %: each vortex carries a single superconducting flux quantum and they form a triangular Abrikosov lattice.",
+   "locator": "Results, BSCCO paragraph: 26 observed vs 28.6 expected from N = BA/Φ0; FFT lattice constant 0.855 µm ≈ 3.26 mT"
+  },
+  "rejected": {
+   "rule": "fractional_vortices",
+   "text": "The 26 counted vortices are about twice this expectation, so each vortex must carry only half a flux quantum.",
+   "locator": "Results: agreement with N = BA/Φ0 for Φ0 = h/2e",
+   "reason": "原文以 h/2e 计算预期 28.6 个，与 26 个吻合，没有“半磁通涡旋”。"
+  }
+ },
+ "scale": {
+  "input_nm": 4000,
+  "reasoning_nm": 855,
+  "definition": "涡旋晶格常数 a（约 0.86 μm）"
+ },
+ "short_citation": "Schäfermeier et al., arXiv:2602.13060"
+}

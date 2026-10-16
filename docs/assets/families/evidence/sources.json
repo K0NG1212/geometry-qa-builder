@@ -1,0 +1,172 @@
+{
+ "kind": "evidence_sources",
+ "updated": "2026-10-16",
+ "method": "证据卡由 Claude Code（模型 claude-opus-5-5）阅读全文后人工转录：只记录事实与数值（转述，不转载原文段落或图），每条带原文位置；结论与被排除的解释同样带位置。程序检查数值与逻辑，忠实性由 L1 人工对照原文。",
+ "papers": {
+  "hbond2021": {
+   "citation": "Altun, Bleda & Trindle, \"Hydrogen Bonding in 3-hydroxy-2-butenamide and related isomers\", Molecules 26, 2623 (2021), doi:10.3390/molecules26092623",
+   "license": "CC BY 4.0; facts and numbers only; SI coordinates copied unchanged",
+   "cards": [
+    {
+     "file": "altun2021-nho.json",
+     "sha256": "3bc8a8d3eec13bc25c9014911cb65493e0c05ba94db8c052baf8f392d45b8524",
+     "family": "evidence_quantity"
+    },
+    {
+     "file": "altun2021-ohshift.json",
+     "sha256": "addbf162979f4a00c7fc582aa196f8710dddf0fc2161bc6ead4b021f4edb08cb",
+     "family": "evidence_quantity"
+    },
+    {
+     "file": "altun2021-three.json",
+     "sha256": "78b3d0c24b58362bb1162dc47185b1a8f40d6a9151203c89821232ee1036296f",
+     "family": "evidence_elimination"
+    }
+   ],
+   "full_text": {
+    "url": "https://doi.org/10.3390/molecules26092623",
+    "local_file": "../paper-batch-v04-001/materials/hbond-article.xml 与 SI-geometryandAIM.pdf（仓库外）",
+    "sha256": {
+     "SI-geometryandAIM.pdf": "d8b5ab31e24f4118244455741452e557c4c8eb5a0ff14cb144ec5b321517a20e",
+     "hbond-si.txt": "de4bf68b4fe19cb6a691537ead6ad0dc41be7303b19bb2ff56e492e9295e02ff"
+    }
+   }
+  },
+  "paper-cao-magic-angle": {
+   "citation": "Cao, Fatemi, Fang, Watanabe, Taniguchi, Kaxiras & Jarillo-Herrero, \"Magic-angle graphene superlattices: a new platform for unconventional superconductivity\", Nature 556, 43 (2018); arXiv:1803.02342v2",
+   "license": "arXiv.org perpetual non-exclusive license; facts and numbers only, no text or figures reproduced",
+   "cards": [
+    {
+     "file": "cao2018-coherence.json",
+     "sha256": "b817b5a45d705c278c5789ee75fe0d79feb4f169a604dfdcd9e95df84ae67dc9",
+     "family": "evidence_quantity"
+    },
+    {
+     "file": "cao2018-pauli.json",
+     "sha256": "fa9f085763932f45608db318e5c4f63b180519788ed4d1f57c4d18a967e1e81e",
+     "family": "evidence_quantity"
+    },
+    {
+     "file": "cao2018-squid.json",
+     "sha256": "eb6f18c907945b5f577d9ab2f0e828db3198ee6d74fa62ecc2c41de610b68a32",
+     "family": "evidence_quantity"
+    }
+   ],
+   "full_text": {
+    "url": "https://arxiv.org/pdf/1803.02342",
+    "local_file": "inputs/papers/cao2018/cao2018-arxiv-1803.02342.pdf",
+    "sha256": "da2dcac4e18f41fa4ee3599a653f57c1e1b63c1d881bd3d0fe05dd3152cabea5",
+    "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
+   }
+  },
+  "paper-cottet-mgb2-vortex": {
+   "citation": "Cottet, Cantoni, Mansart, Alexander, Hébert, Zhigadlo, Karpinski & Carbone, \"Quantitative imaging of flux vortices in type-II superconductor MgB2 using Cryo-Lorentz Transmission Electron Microscopy\", arXiv:1401.4062v1 (2014)",
+   "license": "arXiv.org perpetual non-exclusive license; facts and numbers only",
+   "cards": [
+    {
+     "file": "cottet2014-bend.json",
+     "sha256": "b3a029a40a8c7cf759dd341b5ca902518447a93fe770bb7a160f6ee212a4fdc8",
+     "family": "evidence_elimination"
+    }
+   ],
+   "full_text": {
+    "url": "https://arxiv.org/pdf/1401.4062",
+    "local_file": "inputs/papers/cottet2014/cottet2014-arxiv-1401.4062.pdf",
+    "sha256": "874e6ec52fbed67bc893695c522cc0d45e5db013386d0baa01262209113e8c90",
+    "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
+   }
+  },
+  "paper-dinc-isosorbide": {
+   "citation": "Dinc, Kragt, Schenning & Lub, \"An L-isosorbide-based reactive chiral dopant with high helical twisting power for cholesteric liquid crystal polymers reflecting left-handed circularly polarized light\", Org. Chem. Front. (2024), doi:10.1039/d4qo01672f (Europe PMC PMC11492181)",
+   "license": "CC BY 3.0; facts and numbers only",
+   "cards": [
+    {
+     "file": "dinc2024-htp.json",
+     "sha256": "b9e62536bdf8c4a34b88ebb91bec03ccc5c228d7026e96da6d69f6ce5910d30d",
+     "family": "evidence_quantity"
+    }
+   ],
+   "full_text": {
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11492181/fullTextXML",
+    "local_file": "inputs/papers/dinc2024/dinc2024-PMC11492181.xml",
+    "sha256": "0d5e717d7de7e11502f712f07ad36086a847be90f84e61457e3a05c0fc135d3b",
+    "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
+   }
+  },
+  "paper-kerelsky-tbg-stm": {
+   "citation": "Kerelsky et al., \"Maximized electron interactions at the magic angle in twisted bilayer graphene\", Nature 572, 95 (2019); arXiv:1812.08776v2 (\"Magic Angle Spectroscopy\")",
+   "license": "arXiv.org perpetual non-exclusive license; facts and numbers only",
+   "cards": [
+    {
+     "file": "kerelsky2019-nematic.json",
+     "sha256": "75b75982b068d5c6508e6bbf59b12097dcb786949d8bc0625fca02e535b4c0b2",
+     "family": "evidence_elimination"
+    },
+    {
+     "file": "kerelsky2019-strain.json",
+     "sha256": "e6b5fd628b81842e5e0fcedb45b0bbb40666ab5fe284e299f47ac53ee4c96188",
+     "family": "evidence_quantity"
+    }
+   ],
+   "full_text": {
+    "url": "https://arxiv.org/pdf/1812.08776",
+    "local_file": "inputs/papers/kerelsky2019/kerelsky2019-arxiv-1812.08776.pdf",
+    "sha256": "ef069115e3c393344bb2e87775961fabe43004054f0a501c589f6e549a9f20ef",
+    "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
+   }
+  },
+  "paper-schaefermeier-bscco-vortex": {
+   "citation": "Schäfermeier, Sharma et al., \"Quantitative imaging of Abrikosov vortices by scanning quantum magnetometry\", arXiv:2602.13060v2 (2026)",
+   "license": "CC BY-NC-ND 4.0; facts and numbers only, no text or figures reproduced",
+   "cards": [
+    {
+     "file": "schaefermeier2026-flux.json",
+     "sha256": "88b8e7bd24c19f366112fbde5add261bd2369da51a85da2b7298abb06edd3be6",
+     "family": "evidence_quantity"
+    }
+   ],
+   "full_text": {
+    "url": "https://arxiv.org/pdf/2602.13060",
+    "local_file": "inputs/papers/schaefermeier2026/schaefermeier2026-arxiv-2602.13060.pdf",
+    "sha256": "0b6a7a9c5ceb9c3250d2b67b1ec8c95aa2d81ac6884b12e291e03660389409a5",
+    "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
+   }
+  },
+  "paper-shaban-cholesteric": {
+   "citation": "Shaban et al., \"Overlooked Ionic Contribution of a Chiral Dopant in Cholesteric Liquid Crystals\", Materials 17, 5080 (2024), doi:10.3390/ma17205080 (Europe PMC PMC11509098)",
+   "license": "CC BY 4.0; facts and numbers only",
+   "cards": [
+    {
+     "file": "shaban2024-band.json",
+     "sha256": "9dc14ca6eb21eec10b0254530d74ce67873ab7d45d340f3ff9b2caff2bb10638",
+     "family": "evidence_quantity"
+    },
+    {
+     "file": "shaban2024-ions.json",
+     "sha256": "874a2a72b48d742c6806399d7099e8802568ff3b4234c5b503f4fe79fe8ee712",
+     "family": "evidence_elimination"
+    }
+   ],
+   "full_text": {
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11509098/fullTextXML",
+    "local_file": "inputs/papers/shaban2024/shaban2024-PMC11509098.xml",
+    "sha256": "221d5c74d191071399f7140592e5f8f66035eb30ff8c5c26eabd465674349ee7",
+    "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
+   }
+  }
+ },
+ "structures": [
+  {
+   "file": "altun2021-ONE.xyz",
+   "sha256": "dc4ca549a8a6160f52f28879a51a3011e5e5dcfbf75f7eec2a4514b8ad776656",
+   "built_by": "python tools/build_evidence_assets.py --si ../paper-batch-v04-001/materials/hbond-si.txt",
+   "note": "Altun 2021 SI 坐标原样复制（CC BY 4.0）。"
+  },
+  {
+   "file": "altun2021-ELEVEN.xyz",
+   "sha256": "1ef4e30d8ba378dc27e922186f51ee669c23e246172768d34bbf158409091b84",
+   "built_by": "python tools/build_evidence_assets.py --si ../paper-batch-v04-001/materials/hbond-si.txt",
+   "note": "Altun 2021 SI 坐标原样复制（CC BY 4.0）。"
+  }
+ ]
+}

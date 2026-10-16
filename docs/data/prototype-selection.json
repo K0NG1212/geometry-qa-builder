@@ -17,7 +17,7 @@
  },
  "summary": {
   "selected": 160,
-  "reserve": 80,
+  "reserve": 93,
   "out_of_range": [],
   "abilities": {
    "perception": 59,
@@ -29,8 +29,8 @@
    "family-version": 0,
    "legacy": 0
   },
-  "review_units": 47,
-  "family_units": 47,
+  "review_units": 49,
+  "family_units": 49,
   "legacy_units": 0,
   "pending_decision": {
    "measurement_condition_design": 12,
@@ -43,8 +43,8 @@
    "cell": "chemistry 0.1-1",
    "domain": "chemistry",
    "bin": "0.1-1",
-   "available": 26,
-   "eligible": 26,
+   "available": 29,
+   "eligible": 29,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -97,20 +97,20 @@
      "pending": null
     },
     {
-     "id": "CNI021",
-     "ability": "inference",
-     "form": "family",
-     "unit": "rotational_line",
-     "instance": "FA-ROT-G9-101",
-     "source": "sampl9",
-     "pending": null
-    },
-    {
      "id": "CNI024",
      "ability": "inference",
      "form": "family",
      "unit": "hbond_criteria",
      "instance": "FA-HBC-SET2",
+     "source": "hbond2021",
+     "pending": null
+    },
+    {
+     "id": "CNI030",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_elimination",
+     "instance": "FA-EVE-ALT-THREE",
      "source": "hbond2021",
      "pending": null
     },
@@ -184,11 +184,41 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "CNI021",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "FA-ROT-G9-101",
+     "source": "sampl9",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "CNI023",
      "ability": "inference",
      "form": "family",
      "unit": "hbond_criteria",
      "instance": "FA-HBC-SET1",
+     "source": "hbond2021",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNI027",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-ALT-OHSHIFT",
+     "source": "hbond2021",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNI028",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-ALT-NHO",
      "source": "hbond2021",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -304,7 +334,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 26 道，其中经独立检查 26 道"
+   "rationale": "可用 29 道，其中经独立检查 29 道"
   },
   {
    "cell": "chemistry 1-10",
@@ -533,8 +563,8 @@
    "cell": "chemistry 100-1000",
    "domain": "chemistry",
    "bin": "100-1000",
-   "available": 10,
-   "eligible": 10,
+   "available": 13,
+   "eligible": 13,
    "abilities": {
     "perception": 3,
     "inference": 4,
@@ -569,29 +599,11 @@
      "pending": null
     },
     {
-     "id": "CNI017",
-     "ability": "inference",
-     "form": "family",
-     "unit": "cholesteric_optics",
-     "instance": "FA-CH-LAMBDA-R5011",
-     "source": "paper-shaban-cholesteric",
-     "pending": null
-    },
-    {
      "id": "CNI018",
      "ability": "inference",
      "form": "family",
      "unit": "cholesteric_optics",
      "instance": "FA-CH-BAND-R5011",
-     "source": "paper-shaban-cholesteric",
-     "pending": null
-    },
-    {
-     "id": "CNI019",
-     "ability": "inference",
-     "form": "family",
-     "unit": "cholesteric_optics",
-     "instance": "FA-CH-HTP-S5011",
      "source": "paper-shaban-cholesteric",
      "pending": null
     },
@@ -602,6 +614,24 @@
      "unit": "cholesteric_optics",
      "instance": "FA-CH-LAMBDA-RRCD",
      "source": "paper-dinc-isosorbide",
+     "pending": null
+    },
+    {
+     "id": "CNI026",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-DIN-HTP",
+     "source": "paper-dinc-isosorbide",
+     "pending": null
+    },
+    {
+     "id": "CNI029",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_elimination",
+     "instance": "FA-EVE-SHA-IONS",
+     "source": "paper-shaban-cholesteric",
      "pending": null
     },
     {
@@ -632,8 +662,39 @@
      "pending": null
     }
    ],
-   "reserve": [],
-   "rationale": "可用 10 道，其中经独立检查 10 道"
+   "reserve": [
+    {
+     "id": "CNI017",
+     "ability": "inference",
+     "form": "family",
+     "unit": "cholesteric_optics",
+     "instance": "FA-CH-LAMBDA-R5011",
+     "source": "paper-shaban-cholesteric",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNI019",
+     "ability": "inference",
+     "form": "family",
+     "unit": "cholesteric_optics",
+     "instance": "FA-CH-HTP-S5011",
+     "source": "paper-shaban-cholesteric",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNI025",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-SHA-BAND",
+     "source": "paper-shaban-cholesteric",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    }
+   ],
+   "rationale": "可用 13 道，其中经独立检查 13 道"
   },
   {
    "cell": "biology 0.1-1",
@@ -2062,8 +2123,8 @@
    "cell": "quantum 0.1-1",
    "domain": "quantum",
    "bin": "0.1-1",
-   "available": 16,
-   "eligible": 16,
+   "available": 17,
+   "eligible": 17,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -2125,12 +2186,12 @@
      "pending": null
     },
     {
-     "id": "QNI025",
+     "id": "QNI029",
      "ability": "inference",
      "form": "family",
-     "unit": "force_path_derivative",
-     "instance": "FA-FP-QM7X-7002",
-     "source": "qm7x",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-CAO-PAULI",
+     "source": "paper-cao-magic-angle",
      "pending": null
     },
     {
@@ -2203,6 +2264,16 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "QNI025",
+     "ability": "inference",
+     "form": "family",
+     "unit": "force_path_derivative",
+     "instance": "FA-FP-QM7X-7002",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "QNI026",
      "ability": "inference",
      "form": "family",
@@ -2223,7 +2294,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 16 道，其中经独立检查 16 道"
+   "rationale": "可用 17 道，其中经独立检查 17 道"
   },
   {
    "cell": "quantum 1-10",
@@ -2335,8 +2406,8 @@
    "cell": "quantum 10-100",
    "domain": "quantum",
    "bin": "10-100",
-   "available": 10,
-   "eligible": 10,
+   "available": 13,
+   "eligible": 13,
    "abilities": {
     "perception": 3,
     "inference": 4,
@@ -2371,24 +2442,6 @@
      "pending": null
     },
     {
-     "id": "QNI010",
-     "ability": "inference",
-     "form": "family",
-     "unit": "moire_inference",
-     "instance": "FA-MO-ATOMS-K110",
-     "source": "paper-kerelsky-tbg-stm",
-     "pending": null
-    },
-    {
-     "id": "QNI011",
-     "ability": "inference",
-     "form": "family",
-     "unit": "moire_inference",
-     "instance": "FA-MO-NFULL-M1",
-     "source": "paper-cao-magic-angle",
-     "pending": null
-    },
-    {
      "id": "QNI012",
      "ability": "inference",
      "form": "family",
@@ -2398,12 +2451,30 @@
      "pending": null
     },
     {
-     "id": "QNI013",
+     "id": "QNI027",
      "ability": "inference",
      "form": "family",
-     "unit": "moire_inference",
-     "instance": "FA-MO-TWIST-D1",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-CAO-COHERENCE",
      "source": "paper-cao-magic-angle",
+     "pending": null
+    },
+    {
+     "id": "QNI030",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-KER-STRAIN",
+     "source": "paper-kerelsky-tbg-stm",
+     "pending": null
+    },
+    {
+     "id": "QNI032",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_elimination",
+     "instance": "FA-EVE-KER-NEMATIC",
+     "source": "paper-kerelsky-tbg-stm",
      "pending": null
     },
     {
@@ -2434,15 +2505,46 @@
      "pending": null
     }
    ],
-   "reserve": [],
-   "rationale": "可用 10 道，其中经独立检查 10 道"
+   "reserve": [
+    {
+     "id": "QNI010",
+     "ability": "inference",
+     "form": "family",
+     "unit": "moire_inference",
+     "instance": "FA-MO-ATOMS-K110",
+     "source": "paper-kerelsky-tbg-stm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI011",
+     "ability": "inference",
+     "form": "family",
+     "unit": "moire_inference",
+     "instance": "FA-MO-NFULL-M1",
+     "source": "paper-cao-magic-angle",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI013",
+     "ability": "inference",
+     "form": "family",
+     "unit": "moire_inference",
+     "instance": "FA-MO-TWIST-D1",
+     "source": "paper-cao-magic-angle",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    }
+   ],
+   "rationale": "可用 13 道，其中经独立检查 13 道"
   },
   {
    "cell": "quantum 100-1000",
    "domain": "quantum",
    "bin": "100-1000",
-   "available": 10,
-   "eligible": 10,
+   "available": 13,
+   "eligible": 13,
    "abilities": {
     "perception": 3,
     "inference": 4,
@@ -2486,29 +2588,29 @@
      "pending": null
     },
     {
-     "id": "QNI018",
+     "id": "QNI028",
      "ability": "inference",
      "form": "family",
-     "unit": "vortex_inference",
-     "instance": "FA-VX-FIELD-508",
-     "source": "paper-cottet-mgb2-vortex",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-CAO-SQUID",
+     "source": "paper-cao-magic-angle",
      "pending": null
     },
     {
-     "id": "QNI019",
+     "id": "QNI031",
      "ability": "inference",
      "form": "family",
-     "unit": "vortex_inference",
-     "instance": "FA-VX-FLUX-1887",
-     "source": "paper-cottet-mgb2-vortex",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-SCH-FLUX",
+     "source": "paper-schaefermeier-bscco-vortex",
      "pending": null
     },
     {
-     "id": "QNI020",
+     "id": "QNI033",
      "ability": "inference",
      "form": "family",
-     "unit": "vortex_inference",
-     "instance": "FA-VX-SANS-1173",
+     "unit": "evidence_elimination",
+     "instance": "FA-EVE-COT-BEND",
      "source": "paper-cottet-mgb2-vortex",
      "pending": null
     },
@@ -2540,8 +2642,39 @@
      "pending": null
     }
    ],
-   "reserve": [],
-   "rationale": "可用 10 道，其中经独立检查 10 道"
+   "reserve": [
+    {
+     "id": "QNI018",
+     "ability": "inference",
+     "form": "family",
+     "unit": "vortex_inference",
+     "instance": "FA-VX-FIELD-508",
+     "source": "paper-cottet-mgb2-vortex",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI019",
+     "ability": "inference",
+     "form": "family",
+     "unit": "vortex_inference",
+     "instance": "FA-VX-FLUX-1887",
+     "source": "paper-cottet-mgb2-vortex",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI020",
+     "ability": "inference",
+     "form": "family",
+     "unit": "vortex_inference",
+     "instance": "FA-VX-SANS-1173",
+     "source": "paper-cottet-mgb2-vortex",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    }
+   ],
+   "rationale": "可用 13 道，其中经独立检查 13 道"
   }
  ],
  "selected_ids": [
@@ -2603,13 +2736,13 @@
   "CNI013",
   "CNI014",
   "CNI016",
-  "CNI017",
   "CNI018",
-  "CNI019",
   "CNI020",
-  "CNI021",
   "CNI022",
   "CNI024",
+  "CNI026",
+  "CNI029",
+  "CNI030",
   "CNP016",
   "CNP020",
   "CNP021",
@@ -2676,20 +2809,20 @@
   "QND011",
   "QND012",
   "QND013",
-  "QNI010",
-  "QNI011",
   "QNI012",
-  "QNI013",
   "QNI014",
   "QNI015",
   "QNI016",
   "QNI017",
-  "QNI018",
-  "QNI019",
-  "QNI020",
   "QNI021",
   "QNI023",
-  "QNI025",
+  "QNI027",
+  "QNI028",
+  "QNI029",
+  "QNI030",
+  "QNI031",
+  "QNI032",
+  "QNI033",
   "QNP013",
   "QNP014",
   "QNP015",

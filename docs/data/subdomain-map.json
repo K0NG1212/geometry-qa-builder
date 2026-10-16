@@ -7,8 +7,8 @@
   "level1": 32,
   "leaves": 89,
   "meaningful_pixels": 74,
-  "pixels_with_questions": 27,
-  "empty_meaningful_pixels": 47,
+  "pixels_with_questions": 28,
+  "empty_meaningful_pixels": 46,
   "pixels_with_enumerator": 25,
   "leaves_with_questions": 28,
   "empty_level1": [
@@ -31,7 +31,7 @@
    "materials -> physics": 10,
    "chemistry -> physics": 4
   },
-  "active_questions": 240,
+  "active_questions": 253,
   "questions_outside_meaningful_pixels": [],
   "planning_total": 2500,
   "mean_target_per_pixel": 34
@@ -83,10 +83,10 @@
    "meaningful": true
   },
   {
-   "questions": 10,
+   "questions": 13,
    "abilities": {
     "perception": 3,
-    "inference": 4,
+    "inference": 7,
     "design": 3
    },
    "ids": [
@@ -99,7 +99,10 @@
     "QNI020",
     "QND010",
     "QND011",
-    "QND012"
+    "QND012",
+    "QNI028",
+    "QNI031",
+    "QNI033"
    ],
    "enumerated_estimate": 0,
    "l1": "P1",
@@ -169,13 +172,15 @@
    "meaningful": true
   },
   {
-   "questions": 0,
+   "questions": 1,
    "abilities": {
     "perception": 0,
-    "inference": 0,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "QNI029"
+   ],
    "enumerated_estimate": 0,
    "l1": "P3",
    "domain": "physics",
@@ -199,10 +204,10 @@
    "meaningful": true
   },
   {
-   "questions": 10,
+   "questions": 13,
    "abilities": {
     "perception": 3,
-    "inference": 4,
+    "inference": 7,
     "design": 3
    },
    "ids": [
@@ -215,7 +220,10 @@
     "QNI013",
     "QND005",
     "QND006",
-    "QND007"
+    "QND007",
+    "QNI027",
+    "QNI030",
+    "QNI032"
    ],
    "enumerated_estimate": 0,
    "l1": "P3",
@@ -591,10 +599,10 @@
    "meaningful": false
   },
   {
-   "questions": 14,
+   "questions": 17,
    "abilities": {
     "perception": 3,
-    "inference": 7,
+    "inference": 10,
     "design": 4
    },
    "ids": [
@@ -611,7 +619,10 @@
     "QNI023",
     "QNI024",
     "QNI025",
-    "QNI026"
+    "QNI026",
+    "CNI027",
+    "CNI028",
+    "CNI030"
    ],
    "enumerated_estimate": 58,
    "l1": "C2",
@@ -1039,10 +1050,10 @@
    "meaningful": true
   },
   {
-   "questions": 10,
+   "questions": 13,
    "abilities": {
     "perception": 3,
-    "inference": 4,
+    "inference": 7,
     "design": 3
    },
    "ids": [
@@ -1055,7 +1066,10 @@
     "CNI020",
     "CND009",
     "CND010",
-    "CND011"
+    "CND011",
+    "CNI025",
+    "CNI026",
+    "CNI029"
    ],
    "enumerated_estimate": 0,
    "l1": "C8",
@@ -2227,10 +2241,10 @@
  ],
  "leaves": [
   {
-   "questions": 10,
+   "questions": 13,
    "abilities": {
     "perception": 3,
-    "inference": 4,
+    "inference": 7,
     "design": 3
    },
    "ids": [
@@ -2243,7 +2257,10 @@
     "QNI020",
     "QND010",
     "QND011",
-    "QND012"
+    "QND012",
+    "QNI028",
+    "QNI031",
+    "QNI033"
    ],
    "enumerated_estimate": 0,
    "leaf": "P1a",
@@ -2322,10 +2339,10 @@
    "name": "单层晶格"
   },
   {
-   "questions": 10,
+   "questions": 14,
    "abilities": {
     "perception": 3,
-    "inference": 4,
+    "inference": 8,
     "design": 3
    },
    "ids": [
@@ -2338,7 +2355,11 @@
     "QNI013",
     "QND005",
     "QND006",
-    "QND007"
+    "QND007",
+    "QNI027",
+    "QNI029",
+    "QNI030",
+    "QNI032"
    ],
    "enumerated_estimate": 0,
    "leaf": "P3b",
@@ -2666,10 +2687,10 @@
    "name": "构象与能量景观"
   },
   {
-   "questions": 5,
+   "questions": 8,
    "abilities": {
     "perception": 3,
-    "inference": 2,
+    "inference": 5,
     "design": 0
    },
    "ids": [
@@ -2677,7 +2698,10 @@
     "CNP029",
     "CNP030",
     "CNI023",
-    "CNI024"
+    "CNI024",
+    "CNI027",
+    "CNI028",
+    "CNI030"
    ],
    "enumerated_estimate": 0,
    "leaf": "C2c",
@@ -2918,10 +2942,10 @@
    "name": "药物–靶标复合物"
   },
   {
-   "questions": 10,
+   "questions": 13,
    "abilities": {
     "perception": 3,
-    "inference": 4,
+    "inference": 7,
     "design": 3
    },
    "ids": [
@@ -2934,7 +2958,10 @@
     "CNI020",
     "CND009",
     "CND010",
-    "CND011"
+    "CND011",
+    "CNI025",
+    "CNI026",
+    "CNI029"
    ],
    "enumerated_estimate": 0,
    "leaf": "C8a",
@@ -5570,6 +5597,58 @@
   "CNP037": [
    "万古霉素 1AA5 · 二聚体回转半径（四选一）",
    "perception"
+  ],
+  "QNI027": [
+   "魔角石墨烯 · 载流子间距与相干长度 → 耦合强度（证据题）",
+   "inference"
+  ],
+  "QNI028": [
+   "魔角石墨烯 · 临界电流振荡周期 → 超导环路面积 → 不均匀性（证据题）",
+   "inference"
+  ],
+  "QNI029": [
+   "魔角石墨烯 · 厚度与相干长度 → 平行场轨道极限 → 拆对机制（证据题）",
+   "inference"
+  ],
+  "QNI030": [
+   "转角石墨烯 STM · 三个莫尔波长 → 等面积转角与异质应变（证据题）",
+   "inference"
+  ],
+  "QNI031": [
+   "BSCCO 涡旋 · 场冷磁场与视场 → 预期涡旋数 → 磁通量子（证据题）",
+   "inference"
+  ],
+  "QNI032": [
+   "转角石墨烯 STS · C3 对称破缺的来源（证据排除题）",
+   "inference"
+  ],
+  "QNI033": [
+   "MgB₂ 洛伦兹 TEM · 图中暗带的来源（证据排除题）",
+   "inference"
+  ],
+  "CNI025": [
+   "胆甾液晶 · 螺距与双折射 → 反射带宽 → 温度变化的解释（证据题）",
+   "inference"
+  ],
+  "CNI026": [
+   "手性剂对映体 · 反射波长与浓度 → 表观 HTP 比值 → 对映体过量（证据题）",
+   "inference"
+  ],
+  "CNI027": [
+   "氢键构象 TWO 与 FIVE · 给体–受体距离与 O–H 红移 → 氢键强弱（证据题）",
+   "inference"
+  ],
+  "CNI028": [
+   "氢键构象 ONE 与 ELEVEN · N···O 距离与 NH 伸缩分裂 → 同型氢键强弱（证据题）",
+   "inference"
+  ],
+  "CNI029": [
+   "胆甾液晶 · 额外离子的来源（证据排除题）",
+   "inference"
+  ],
+  "CNI030": [
+   "构象 THREE · 有键径的 O···O 接触是不是氢键（证据排除题）",
+   "inference"
   ]
  }
 }

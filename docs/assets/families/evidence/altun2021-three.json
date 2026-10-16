@@ -1,0 +1,97 @@
+{
+ "kind": "evidence_card",
+ "id": "altun2021-three",
+ "paper": "hbond2021",
+ "citation": "Altun, Bleda & Trindle, \"Hydrogen Bonding in 3-hydroxy-2-butenamide and related isomers\", Molecules 26, 2623 (2021), doi:10.3390/molecules26092623",
+ "license": "CC BY 4.0; facts and numbers only; SI coordinates copied unchanged",
+ "family": "evidence_elimination",
+ "topic": "Conformer THREE of 3-hydroxy-2-butenamide is the enol in which the hydroxyl H has been rotated away, so that the hydroxyl O and the amide carbonyl O face each other without a hydrogen between them.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "QTAIM finds a bond path between the two oxygen atoms, with a bond critical point of appreciable density and a positive Laplacian.",
+   "locator": "AIM results (Table 2 discussion; Fig. 6c)",
+   "observed": {
+    "bond_path": true,
+    "laplacian_positive": true
+   }
+  },
+  {
+   "id": "E2",
+   "text": "The non-covalent-interaction (reduced density gradient) isosurface between the two oxygens is green, i.e. repulsive.",
+   "locator": "NCI results (Fig. 7)",
+   "observed": {
+    "nci": "repulsive"
+   }
+  },
+  {
+   "id": "E3",
+   "text": "Its O-H stretching frequency is 3836 cm^-1, like O-H groups that take part in no hydrogen bond (3842 and 3850 cm^-1); the strongly hydrogen-bonded conformer TWO has 3087 cm^-1.",
+   "locator": "Vibrational spectra, OH mode",
+   "observed": {
+    "oh_red_shift": false
+   }
+  },
+  {
+   "id": "E4",
+   "text": "Its C-C=C bend, used as a surrogate for the ring-closing stretch, is the lowest of all conformers (178 cm^-1, against 242-247 cm^-1 in hydrogen-bonded ones).",
+   "locator": "Vibrational spectra, CCC bend",
+   "observed": {
+    "ring_closure_stiff": false
+   }
+  }
+ ],
+ "ask": "Which interpretation of the O···O contact in THREE is consistent with all of these observations?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "paper_conclusion": true,
+   "text": "No hydrogen bond: the O···O contact is repulsive, and a bond path with a critical point is not enough on its own to establish a hydrogen bond.",
+   "predicts": {
+    "bond_path": true,
+    "nci": "repulsive",
+    "oh_red_shift": false,
+    "ring_closure_stiff": false
+   },
+   "locator": "AIM and NCI sections: THREE has a repulsive O···O interaction despite the density at the BCP",
+   "reason": "与全部观测一致，即原文结论。"
+  },
+  {
+   "rule": "weak_hbond_from_bcp",
+   "text": "A weak O-H···O hydrogen bond, proved by the bond path and its critical point.",
+   "predicts": {
+    "nci": "attractive",
+    "oh_red_shift": true
+   },
+   "locator": "NCI section; OH mode",
+   "reason": "NCI 为排斥，且 O–H 伸缩没有红移，键径本身不能证明氢键。"
+  },
+  {
+   "rule": "strong_hbond_from_density",
+   "text": "A strong hydrogen bond, since the density at the critical point is appreciable.",
+   "predicts": {
+    "nci": "attractive",
+    "oh_red_shift": true,
+    "ring_closure_stiff": true
+   },
+   "locator": "NCI section; OH mode; CCC bend",
+   "reason": "没有红移、成环振动最软，与强氢键的预期全部相反。"
+  },
+  {
+   "rule": "covalent_oo",
+   "text": "A partly covalent O-O interaction.",
+   "predicts": {
+    "laplacian_positive": false,
+    "nci": "attractive"
+   },
+   "locator": "AIM section: positive Laplacian = closed-shell interaction",
+   "reason": "拉普拉斯量为正，表明是闭壳层相互作用，不是共价作用。"
+  }
+ ],
+ "scale": {
+  "input_nm": 0.45,
+  "reasoning_nm": 0.26,
+  "definition": "两个 O 之间的距离（约 0.26 nm）"
+ },
+ "short_citation": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021)"
+}

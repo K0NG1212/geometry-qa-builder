@@ -1,0 +1,101 @@
+{
+ "kind": "evidence_card",
+ "id": "kerelsky2019-nematic",
+ "paper": "paper-kerelsky-tbg-stm",
+ "citation": "Kerelsky et al., \"Maximized electron interactions at the magic angle in twisted bilayer graphene\", Nature 572, 95 (2019); arXiv:1812.08776v2 (\"Magic Angle Spectroscopy\")",
+ "license": "arXiv.org perpetual non-exclusive license; facts and numbers only",
+ "family": "evidence_elimination",
+ "topic": "Scanning tunnelling spectroscopy maps the local density of states (LDOS) over one moiré cell of twisted bilayer graphene at 1.10°, at several gate dopings.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "The samples carry a small uniaxial heterostrain (0.1-0.7 % across samples).",
+   "locator": "Main text p. 3",
+   "observed": {
+    "strain_present": true
+   }
+  },
+  {
+   "id": "E2",
+   "text": "LDOS maps at all energies between the two van Hove peaks break three-fold (C3) rotational symmetry to some extent.",
+   "locator": "Fig. 5d discussion",
+   "observed": {
+    "c3_broken": true
+   }
+  },
+  {
+   "id": "E3",
+   "text": "At each doping (about -1.2 × 10^12, 0 and +1.2 × 10^12 cm^-2) the strongest C3 breaking appears in the map taken at the Fermi level, so the most anisotropic energy moves with the gate.",
+   "locator": "Fig. 5d and its discussion",
+   "observed": {
+    "strongest_breaking": "at_fermi_level"
+   }
+  },
+  {
+   "id": "E4",
+   "text": "When the Fermi level sits on the conduction van Hove peak, where a 7.5 meV correlation gap opens, the maps around the gap break C3 more strongly than the same peak does at neutrality.",
+   "locator": "Fig. 5e and its discussion",
+   "observed": {
+    "enhanced_in_gapped_state": true
+   }
+  },
+  {
+   "id": "E5",
+   "text": "The samples are not uniform over tens of moiré cells, so Fourier analysis of translational order was not possible.",
+   "locator": "Fig. 5 discussion; Supplement S6-S7",
+   "observed": {
+    "translational_order_tested": false
+   }
+  }
+ ],
+ "ask": "Which explanation of the C3 symmetry breaking is consistent with all of these observations?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "paper_conclusion": true,
+   "text": "Electronic nematicity driven by the states at the Fermi level: strain only selects a direction, while the size of the C3 breaking follows the Fermi level and grows in the correlated state.",
+   "predicts": {
+    "c3_broken": true,
+    "strongest_breaking": "at_fermi_level",
+    "enhanced_in_gapped_state": true
+   },
+   "locator": "Fig. 5 discussion: Fermi-surface driven breaking of C3, possible nematic order",
+   "reason": "与全部观测一致，即原文结论。"
+  },
+  {
+   "rule": "strain_only",
+   "text": "Heterostrain alone: a fixed lattice distortion breaks C3 by the same amount at every energy and doping.",
+   "predicts": {
+    "strongest_breaking": "equal_at_all_energies",
+    "enhanced_in_gapped_state": false
+   },
+   "locator": "Fig. 5 discussion: some breaking expected from strain, but maximum at the Fermi level",
+   "reason": "应变是固定的晶格畸变，不会让最强破缺随费米能移动。"
+  },
+  {
+   "rule": "tip_artefact",
+   "text": "An asymmetric STM tip: the anisotropy is an imaging artefact that does not depend on the electronic states.",
+   "predicts": {
+    "strongest_breaking": "equal_at_all_energies",
+    "enhanced_in_gapped_state": false
+   },
+   "locator": "Fig. 5 discussion",
+   "reason": "针尖假象与能量、掺杂无关，解释不了破缺集中在费米能并在关联态增强。"
+  },
+  {
+   "rule": "overreach_density_wave",
+   "text": "A charge density wave that breaks translational symmetry has been established in these maps, and it causes the C3 breaking.",
+   "predicts": {
+    "translational_order_tested": true
+   },
+   "locator": "Fig. 5 discussion: translational symmetry breaking remains an open question",
+   "reason": "原文明确说平移对称破缺仍未确定，因样品不均匀无法做傅里叶分析。"
+  }
+ ],
+ "scale": {
+  "input_nm": 12.8,
+  "reasoning_nm": 12.8,
+  "definition": "莫尔晶胞（1.10° 时约 13 nm）"
+ },
+ "short_citation": "Kerelsky et al., Nature 572, 95 (2019)"
+}

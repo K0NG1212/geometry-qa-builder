@@ -1,0 +1,100 @@
+{
+ "kind": "evidence_card",
+ "id": "shaban2024-ions",
+ "paper": "paper-shaban-cholesteric",
+ "citation": "Shaban et al., \"Overlooked Ionic Contribution of a Chiral Dopant in Cholesteric Liquid Crystals\", Materials 17, 5080 (2024), doi:10.3390/ma17205080 (Europe PMC PMC11509098)",
+ "license": "CC BY 4.0; facts and numbers only",
+ "family": "evidence_elimination",
+ "topic": "The nematic E44 was doped with the chiral dopant R5011 (right-handed) or with its enantiomer S5011 (left-handed), and the mobile ions were measured by low-frequency dielectric spectroscopy.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "Adding R5011 (0 to 4 wt%) raises the mobile-ion density from 1.7 to 2.9 × 10^13 cm^-3, and the dielectric loss at 1 kHz grows linearly with R5011 content.",
+   "locator": "Section 3.2; Fig. 4c, 5a",
+   "observed": {
+    "r_adds_ions": true
+   }
+  },
+  {
+   "id": "E2",
+   "text": "Adding S5011 (0 to 4 wt%) leaves the ion density at 1.6-1.9 × 10^13 cm^-3; the spectra overlap those of pure E44.",
+   "locator": "Section 3.2; Fig. 4d, 5d",
+   "observed": {
+    "s_adds_ions": false
+   }
+  },
+  {
+   "id": "E3",
+   "text": "1:1 mixtures of R5011 and S5011 (no net chirality) at 1, 2 and 4 wt% in total give ion densities and diffusivities close to those of R5011-only samples at 0.5, 1 and 2 wt%.",
+   "locator": "Section 3.3; Fig. 7",
+   "observed": {
+    "racemic_tracks_r_content": true
+   }
+  },
+  {
+   "id": "E4",
+   "text": "Antiparallel (6 µm) and 90°-twisted (5 µm) cells with the same alignment layers and electrodes give the same ionic behaviour.",
+   "locator": "Section 3.4; Fig. 8",
+   "observed": {
+    "cell_mode_matters": false
+   }
+  },
+  {
+   "id": "E5",
+   "text": "The R- and S-doped mixtures (2.62 and 2.57 wt%) have nearly the same helical pitch (0.355 and 0.362 µm) and nearly identical reflection bands.",
+   "locator": "Section 3.5; Fig. 9",
+   "observed": {
+    "optics_differ": false
+   }
+  }
+ ],
+ "ask": "Which explanation of the extra ions is consistent with all of these observations?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "paper_conclusion": true,
+   "text": "Impurity ions carried by this batch of R5011 (from manufacture or later contamination or degradation), unrelated to its handedness.",
+   "predicts": {
+    "r_adds_ions": true,
+    "s_adds_ions": false,
+    "racemic_tracks_r_content": true
+   },
+   "locator": "Section 3.3 and Conclusions: R5011 as received contained more impurity ions; handedness not associated with the ionic response",
+   "reason": "与全部观测一致，即原文结论。"
+  },
+  {
+   "rule": "right_handed_helix",
+   "text": "The right-handed helical order itself generates or traps the ions.",
+   "predicts": {
+    "racemic_tracks_r_content": false
+   },
+   "locator": "Section 3.3: racemic blends behave like R5011-only samples",
+   "reason": "外消旋混合物没有净螺旋，却与同剂量 R5011 相同，说明不是手性结构所致。"
+  },
+  {
+   "rule": "any_chiral_dopant",
+   "text": "Any chiral dopant dissociates into ions in E44, whichever its handedness.",
+   "predicts": {
+    "s_adds_ions": true
+   },
+   "locator": "Section 3.2: S5011 adds no appreciable ions",
+   "reason": "S5011 同为手性剂，却几乎不增加离子。"
+  },
+  {
+   "rule": "cell_origin",
+   "text": "The ions come from the cell (alignment layers and electrodes), and the cell geometry controls them.",
+   "predicts": {
+    "cell_mode_matters": true,
+    "r_adds_ions": false
+   },
+   "locator": "Section 3.4: cell mode inoperative",
+   "reason": "两种盒子结果相同，且离子随 R5011 浓度线性增加，来源不是盒子。"
+  }
+ ],
+ "scale": {
+  "input_nm": 355,
+  "reasoning_nm": 355,
+  "definition": "螺距 p（约 0.36 μm；离子问题的结构背景）"
+ },
+ "short_citation": "Shaban et al., Materials 17, 5080 (2024)"
+}

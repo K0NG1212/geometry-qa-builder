@@ -2617,7 +2617,7 @@
       "principle": "模板审查因果与适用条件；实例检查引用和唯一正确选项。",
       "validation": "需建立具体题型的证据映射和干扰项验证；尚未实施通用语义验证。",
       "limits": "论文中的答案证据不默认给被测模型，必要物理条件必须写在题目里。",
-      "gap": "待建立首个经证据支持的通用模板。 已由 secondary_structure（生物 0.1–1）与 binding_evidence_choice（化学 1–10）部分实现。",
+      "gap": "待建立首个经证据支持的通用模板。 已由 secondary_structure（生物 0.1–1）与 binding_evidence_choice（化学 1–10）部分实现。 2026-10-16：论文“证据 → 结论”已由 evidence_quantity 与 evidence_elimination 实现（HBI001/HBI002 由 CNI027/CNI028 取代）。",
       "template_review": "待建立首个经证据支持的模板。",
       "independent_checker": ""
     },
@@ -3105,6 +3105,116 @@
       "limits": "判据是题设操作定义，不是氢键的普适定义；不判断能量。",
       "gap": "同上：构象来源有限。",
       "independent_checker": "checkers/hbonds.py:hbond_criteria"
+    },
+    {
+      "status": "pilot",
+      "priority": 1,
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "inputs": "evidence.txt（论文事实逐条转述，E1–En）；氢键题另附论文 SI 构象 XYZ。",
+      "physical_conditions": "按论文的实验或计算条件写入证据条目。",
+      "source_basis": "第 1 步下载的论文全文（本地 inputs/papers/，不入库）与 Altun 2021 SI；证据卡 docs/assets/families/evidence/*.json 逐条记录原文位置。",
+      "code": [
+        "task_families/evidence.py",
+        "checkers/evidence.py",
+        "tools/build_evidence_assets.py"
+      ],
+      "tests": [
+        "tests/test_evidence.py"
+      ],
+      "builder_modules": "族引擎内实现（M3–M5）；证据卡人工转录，每条带原文位置供 L1 对照。",
+      "template_review": "2026-10-16 新建（导师第六次会议“证据 → 结论”），待 L1/L2 人工审核；L1 须逐条对照原文位置。",
+      "id": "evidence_quantity",
+      "name": "论文证据 → 计算 → 结论",
+      "ability": "inference",
+      "domains": [
+        "quantum",
+        "chemistry"
+      ],
+      "input_scale": "证据卡（论文事实）",
+      "reasoning_scale": "由证据算出的几何量（0.26 nm–0.86 μm）",
+      "scale_cells": [
+        "0.1-1",
+        "10-100",
+        "100-1000"
+      ],
+      "scale_limits": "尺度取所算几何量（间距、厚度、莫尔周期、螺距、给体–受体距离等）。",
+      "concept": "给出论文中的若干事实（数值与观测），先算一个几何量（载流子间距、环路面积、轨道临界场、等面积转角、涡旋数、反射带宽、HTP 比值、给体–受体距离差），再判断论文的关键结论。",
+      "answer_method": "数值由代码从证据卡计算；四个选项 = 数值（正确 / 登记的错误做法）× 结论（原文结论 / 原文排除的解释），恰好一个两者都对。",
+      "distractor_mechanisms": [
+        "rejected_conclusion（原文排除的解释）",
+        "wrong_constant（如 h/e 代替 h/2e）",
+        "wrong_input_fact（如用总密度代替有效密度）",
+        "wrong_formula（如垂直场公式、只取单一方向）",
+        "confused_quantity（如 H···A 代替 D···A、中心代替带宽）"
+      ],
+      "four_choice_validation": "两个数值相差 ≥ 规定间隔且显示不同；四个组合齐全；独立检查器以 Decimal 复算并逐项解析选项。",
+      "principle": "把论文结论放回它依赖的几何量上：先算对量，再选对解释。",
+      "validation": "独立检查器（checkers/evidence.py:evidence_quantity）读取哈希核对的证据卡，核对 evidence.txt 与卡片逐条一致、数字逐个印在条目中，用不同算法复算两个数值，并要求选项正好是四个组合、只有一个正确。",
+      "limits": "程序保证数值与组合结构；证据转录、结论措辞是否忠于原文须人工对照原文位置（L1）。选项是两个二元判断的组合（格式检查记为低严重度）。",
+      "gap": "第一批 9 道（7 篇论文）；尚未覆盖材料、生物。",
+      "independent_checker": "checkers/evidence.py:evidence_quantity",
+      "engine_families": [
+        "evidence_quantity"
+      ]
+    },
+    {
+      "status": "pilot",
+      "priority": 1,
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "inputs": "evidence.txt（论文事实逐条转述，E1–En）；氢键题另附论文 SI 构象 XYZ。",
+      "physical_conditions": "按论文的实验或计算条件写入证据条目。",
+      "source_basis": "第 1 步下载的论文全文（本地 inputs/papers/，不入库）与 Altun 2021 SI；证据卡 docs/assets/families/evidence/*.json 逐条记录原文位置。",
+      "code": [
+        "task_families/evidence.py",
+        "checkers/evidence.py",
+        "tools/build_evidence_assets.py"
+      ],
+      "tests": [
+        "tests/test_evidence.py"
+      ],
+      "builder_modules": "族引擎内实现（M3–M5）；证据卡人工转录，每条带原文位置供 L1 对照。",
+      "template_review": "2026-10-16 新建（导师第六次会议“证据 → 结论”），待 L1/L2 人工审核；L1 须逐条对照原文位置。",
+      "id": "evidence_elimination",
+      "name": "论文证据 → 排除 → 结论",
+      "ability": "inference",
+      "domains": [
+        "quantum",
+        "chemistry"
+      ],
+      "input_scale": "证据卡（论文观测）",
+      "reasoning_scale": "证据所描述结构的特征尺度（0.26 nm–0.45 μm）",
+      "scale_cells": [
+        "0.1-1",
+        "10-100",
+        "100-1000"
+      ],
+      "scale_limits": "尺度取证据所描述结构的特征长度（莫尔晶胞、涡旋间距、螺距、O···O 距离）。",
+      "concept": "给出论文中的若干观测，四个候选解释中只有一个与全部观测一致；其余三个是论文讨论并排除的解释（或超出证据的说法）。",
+      "answer_method": "证据卡为每个解释写明对相关观测的预期；代码逐条比对观测，恰好一个解释无矛盾且为原文结论，其余每个至少与一条给学生的事实矛盾。",
+      "distractor_mechanisms": [
+        "rejected_alternative（原文排除的解释）",
+        "overreach（超出证据的结论）",
+        "surface_cue（只看表面线索，如有键径即判氢键）"
+      ],
+      "four_choice_validation": "每个预期都对应某条观测；恰好一个解释存活且为原文结论；独立检查器重新比对。",
+      "principle": "结论要经得起每一条证据；其他解释必须被具体证据排除。",
+      "validation": "独立检查器（checkers/evidence.py:evidence_elimination）读取哈希核对的证据卡，核对事实与选项，重新比对预期与观测，要求唯一存活者为原文结论。",
+      "limits": "排除逻辑由程序执行；各解释的“预期”由人从原文整理，其科学正确性须 L1 对照原文核对。",
+      "gap": "第一批 4 道（4 篇论文）。",
+      "independent_checker": "checkers/evidence.py:evidence_elimination",
+      "engine_families": [
+        "evidence_elimination"
+      ]
     }
   ]
 }

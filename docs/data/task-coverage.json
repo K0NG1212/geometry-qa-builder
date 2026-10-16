@@ -29,11 +29,11 @@
   }
  },
  "summary": {
-  "types_defined": 52,
-  "types_with_running_code": 45,
+  "types_defined": 54,
+  "types_with_running_code": 47,
   "status": {
    "implemented": 2,
-   "pilot": 43,
+   "pilot": 45,
    "existing_legacy": 3,
    "planned": 2,
    "rebuild_needed": 1,
@@ -46,7 +46,7 @@
     "existing_legacy": 2
    },
    "inference": {
-    "pilot": 17,
+    "pilot": 19,
     "planned": 1,
     "existing_legacy": 1,
     "rebuild_needed": 1
@@ -57,10 +57,10 @@
     "blocked": 1
    }
   },
-  "development_instances": 240,
+  "development_instances": 253,
   "instance_failures": 1,
-  "independent_pass": 240,
-  "independent_checked": 240,
+  "independent_pass": 253,
+  "independent_checked": 253,
   "legacy_candidates": 80,
   "legacy_decisions": {
    "retain": 42,
@@ -69,7 +69,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v31",
+ "family_run": "family-pilot-v32",
  "rows": [
   {
    "id": "global_extent",
@@ -3105,7 +3105,7 @@
    "code": [],
    "tests": [],
    "builder_modules": "旧 pipeline M2 证据模块。",
-   "gap": "待建立首个经证据支持的通用模板。 已由 secondary_structure（生物 0.1–1）与 binding_evidence_choice（化学 1–10）部分实现。",
+   "gap": "待建立首个经证据支持的通用模板。 已由 secondary_structure（生物 0.1–1）与 binding_evidence_choice（化学 1–10）部分实现。 2026-10-16：论文“证据 → 结论”已由 evidence_quantity 与 evidence_elimination 实现（HBI001/HBI002 由 CNI027/CNI028 取代）。",
    "engine_families": [],
    "independent_checker": "",
    "instance_ids": [],
@@ -3653,6 +3653,143 @@
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "0.1-1"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "evidence_quantity",
+   "name": "论文证据 → 计算 → 结论",
+   "ability": "inference",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "给出论文中的若干事实（数值与观测），先算一个几何量（载流子间距、环路面积、轨道临界场、等面积转角、涡旋数、反射带宽、HTP 比值、给体–受体距离差），再判断论文的关键结论。",
+   "domains": [
+    "quantum",
+    "chemistry"
+   ],
+   "input_scale": "证据卡（论文事实）",
+   "reasoning_scale": "由证据算出的几何量（0.26 nm–0.86 μm）",
+   "scale_cells": [
+    "0.1-1",
+    "10-100",
+    "100-1000"
+   ],
+   "scale_limits": "尺度取所算几何量（间距、厚度、莫尔周期、螺距、给体–受体距离等）。",
+   "inputs": "evidence.txt（论文事实逐条转述，E1–En）；氢键题另附论文 SI 构象 XYZ。",
+   "physical_conditions": "按论文的实验或计算条件写入证据条目。",
+   "output_forms": [
+    "choice"
+   ],
+   "source_basis": "第 1 步下载的论文全文（本地 inputs/papers/，不入库）与 Altun 2021 SI；证据卡 docs/assets/families/evidence/*.json 逐条记录原文位置。",
+   "answer_method": "数值由代码从证据卡计算；四个选项 = 数值（正确 / 登记的错误做法）× 结论（原文结论 / 原文排除的解释），恰好一个两者都对。",
+   "distractor_mechanisms": [
+    "rejected_conclusion（原文排除的解释）",
+    "wrong_constant（如 h/e 代替 h/2e）",
+    "wrong_input_fact（如用总密度代替有效密度）",
+    "wrong_formula（如垂直场公式、只取单一方向）",
+    "confused_quantity（如 H···A 代替 D···A、中心代替带宽）"
+   ],
+   "four_choice_validation": "两个数值相差 ≥ 规定间隔且显示不同；四个组合齐全；独立检查器以 Decimal 复算并逐项解析选项。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/evidence.py",
+    "checkers/evidence.py",
+    "tools/build_evidence_assets.py"
+   ],
+   "tests": [
+    "tests/test_evidence.py"
+   ],
+   "builder_modules": "族引擎内实现（M3–M5）；证据卡人工转录，每条带原文位置供 L1 对照。",
+   "gap": "第一批 9 道（7 篇论文）；尚未覆盖材料、生物。",
+   "engine_families": [
+    "evidence_quantity"
+   ],
+   "independent_checker": "checkers/evidence.py:evidence_quantity",
+   "instance_ids": [
+    "FA-EVQ-CAO-COHERENCE",
+    "FA-EVQ-CAO-SQUID",
+    "FA-EVQ-CAO-PAULI",
+    "FA-EVQ-KER-STRAIN",
+    "FA-EVQ-SCH-FLUX",
+    "FA-EVQ-SHA-BAND",
+    "FA-EVQ-DIN-HTP",
+    "FA-EVQ-ALT-OHSHIFT",
+    "FA-EVQ-ALT-NHO"
+   ],
+   "instance_count": 9,
+   "independent_pass": 9,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "0.1-1",
+    "10-100",
+    "100-1000"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "evidence_elimination",
+   "name": "论文证据 → 排除 → 结论",
+   "ability": "inference",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "给出论文中的若干观测，四个候选解释中只有一个与全部观测一致；其余三个是论文讨论并排除的解释（或超出证据的说法）。",
+   "domains": [
+    "quantum",
+    "chemistry"
+   ],
+   "input_scale": "证据卡（论文观测）",
+   "reasoning_scale": "证据所描述结构的特征尺度（0.26 nm–0.45 μm）",
+   "scale_cells": [
+    "0.1-1",
+    "10-100",
+    "100-1000"
+   ],
+   "scale_limits": "尺度取证据所描述结构的特征长度（莫尔晶胞、涡旋间距、螺距、O···O 距离）。",
+   "inputs": "evidence.txt（论文事实逐条转述，E1–En）；氢键题另附论文 SI 构象 XYZ。",
+   "physical_conditions": "按论文的实验或计算条件写入证据条目。",
+   "output_forms": [
+    "choice"
+   ],
+   "source_basis": "第 1 步下载的论文全文（本地 inputs/papers/，不入库）与 Altun 2021 SI；证据卡 docs/assets/families/evidence/*.json 逐条记录原文位置。",
+   "answer_method": "证据卡为每个解释写明对相关观测的预期；代码逐条比对观测，恰好一个解释无矛盾且为原文结论，其余每个至少与一条给学生的事实矛盾。",
+   "distractor_mechanisms": [
+    "rejected_alternative（原文排除的解释）",
+    "overreach（超出证据的结论）",
+    "surface_cue（只看表面线索，如有键径即判氢键）"
+   ],
+   "four_choice_validation": "每个预期都对应某条观测；恰好一个解释存活且为原文结论；独立检查器重新比对。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/evidence.py",
+    "checkers/evidence.py",
+    "tools/build_evidence_assets.py"
+   ],
+   "tests": [
+    "tests/test_evidence.py"
+   ],
+   "builder_modules": "族引擎内实现（M3–M5）；证据卡人工转录，每条带原文位置供 L1 对照。",
+   "gap": "第一批 4 道（4 篇论文）。",
+   "engine_families": [
+    "evidence_elimination"
+   ],
+   "independent_checker": "checkers/evidence.py:evidence_elimination",
+   "instance_ids": [
+    "FA-EVE-KER-NEMATIC",
+    "FA-EVE-COT-BEND",
+    "FA-EVE-SHA-IONS",
+    "FA-EVE-ALT-THREE"
+   ],
+   "instance_count": 4,
+   "independent_pass": 4,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "0.1-1",
+    "10-100",
+    "100-1000"
    ],
    "legacy_decisions": {},
    "legacy_choice_v01": 0

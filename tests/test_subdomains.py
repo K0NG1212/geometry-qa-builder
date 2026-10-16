@@ -29,7 +29,7 @@ class TreeTests(unittest.TestCase):
 
     def test_assignment_targets_are_leaves(self):
         a = TAX['assignment']
-        for table in ('pdb', 'cod', 'cod_names', 'family', 'paper'):
+        for table in ('pdb', 'cod', 'cod_names', 'family', 'paper', 'instance'):
             self.assertTrue(set(a[table].values()) <= set(TREE.leaf), table)
 
 

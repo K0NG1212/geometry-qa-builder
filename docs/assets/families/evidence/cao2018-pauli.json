@@ -1,0 +1,95 @@
+{
+ "kind": "evidence_card",
+ "id": "cao2018-pauli",
+ "paper": "paper-cao-magic-angle",
+ "citation": "Cao, Fatemi, Fang, Watanabe, Taniguchi, Kaxiras & Jarillo-Herrero, \"Magic-angle graphene superlattices: a new platform for unconventional superconductivity\", Nature 556, 43 (2018); arXiv:1803.02342v2",
+ "license": "arXiv.org perpetual non-exclusive license; facts and numbers only, no text or figures reproduced",
+ "family": "evidence_quantity",
+ "topic": "The superconducting state of an atomically thin MA-TBG device (Tc about 0.5 K) was suppressed with magnetic fields perpendicular and parallel to the layers.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "The twisted bilayer is about 0.6 nm thick.",
+   "locator": "Magnetic field response (p. 5)",
+   "values": {
+    "d_nm": [
+     0.6,
+     "0.6 nm"
+    ]
+   }
+  },
+  {
+   "id": "E2",
+   "text": "The perpendicular critical field gives a Ginzburg-Landau coherence length of about 52 nm.",
+   "locator": "Magnetic field response (p. 5); Fig. 3e",
+   "values": {
+    "xi_nm": [
+     52,
+     "52 nm"
+    ]
+   }
+  },
+  {
+   "id": "E3",
+   "text": "The in-plane critical field extrapolates to about 1.1 T at T = 0.",
+   "locator": "Magnetic field response (p. 5); Fig. 3e",
+   "values": {
+    "bpar_T": [
+     1.1,
+     "1.1 T"
+    ]
+   }
+  },
+  {
+   "id": "E4",
+   "text": "For this Tc the BCS Pauli (paramagnetic) limit, 1.85 T/K × Tc, is about 0.93 T.",
+   "locator": "Magnetic field response (p. 5)",
+   "values": {
+    "pauli_T": [
+     0.93,
+     "0.93 T"
+    ]
+   }
+  }
+ ],
+ "ask": "Estimate the in-plane critical field that orbital (Ginzburg-Landau thin-film) pair breaking would give for this thickness and coherence length, and compare it with the measurement. Choose the option in which both the value and the conclusion are correct.",
+ "quantity": {
+  "kind": "thin_film_parallel_field",
+  "args": {
+   "d_nm": "d_nm",
+   "xi_nm": "xi_nm"
+  },
+  "label": "Orbital in-plane critical field ≈",
+  "unit": "T",
+  "decimals": 2,
+  "tolerance": "0.005",
+  "min_separation": "1.00"
+ },
+ "error": {
+  "rule": "perpendicular_formula",
+  "kind": "perpendicular_gl_field",
+  "args": {
+   "xi_nm": "xi_nm"
+  },
+  "plausibility": 3,
+  "reason": "套用垂直场的 GL 公式 Φ0/(2πξ²)，忽略了平行场下轨道效应受膜厚 d 限制。"
+ },
+ "conclusions": {
+  "paper": {
+   "text": "The orbital limit is far above the measured 1.1 T, which lies close to the Pauli limit: in-plane superconductivity is destroyed by Zeeman (paramagnetic) pair breaking, not by orbital currents.",
+   "locator": "Magnetic field response (p. 5): d ≈ 0.6 nm would imply ~36 T; dependence interpreted as paramagnetic pair breaking"
+  },
+  "rejected": {
+   "rule": "orbital_limited",
+   "text": "The measured 1.1 T is set by orbital pair breaking: the in-plane field destroys superconductivity through screening currents in the bilayer.",
+   "locator": "Magnetic field response (p. 5)",
+   "reason": "原文指出原子级厚度使轨道极限约 36 T，远高于实测，因而排除轨道机制。"
+  }
+ },
+ "scale": {
+  "input_nm": 52,
+  "reasoning_nm": 0.6,
+  "definition": "双层厚度 d（与 ξ 比较决定平行场轨道极限）"
+ },
+ "short_citation": "Cao et al., Nature 556, 43 (2018)"
+}

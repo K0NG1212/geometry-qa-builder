@@ -1,0 +1,98 @@
+{
+ "kind": "evidence_card",
+ "id": "altun2021-ohshift",
+ "paper": "hbond2021",
+ "citation": "Altun, Bleda & Trindle, \"Hydrogen Bonding in 3-hydroxy-2-butenamide and related isomers\", Molecules 26, 2623 (2021), doi:10.3390/molecules26092623",
+ "license": "CC BY 4.0; facts and numbers only; SI coordinates copied unchanged",
+ "family": "evidence_quantity",
+ "files": [
+  {
+   "key": "TWO",
+   "asset": "assets/qa/HBP002-S0005.xyz",
+   "name": "conformer_TWO.xyz"
+  },
+  {
+   "key": "FIVE",
+   "asset": "assets/qa/HBI002-S0008.xyz",
+   "name": "conformer_FIVE.xyz"
+  }
+ ],
+ "topic": "Two computed conformers of 3-hydroxy-2-butenamide are attached: conformer_TWO.xyz and conformer_FIVE.xyz (rows counted from 1 after the two XYZ header lines).",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "In TWO the hydroxyl O (row 6) donates its H (row 5) to the amide carbonyl O (row 14).",
+   "locator": "SI coordinates, system TWO; main text Fig. 2"
+  },
+  {
+   "id": "E2",
+   "text": "In FIVE the hydroxyl O (row 5) donates its H (row 4) to the amide N (row 11).",
+   "locator": "SI coordinates, system FIVE; main text Fig. 2"
+  },
+  {
+   "id": "E3",
+   "text": "Computed harmonic O-H stretching frequencies (MP2/cc-pVTZ): TWO 3087 cm^-1 and FIVE 3571 cm^-1; O-H groups that take part in no hydrogen bond in related conformers lie at 3836-3850 cm^-1.",
+   "locator": "Vibrational spectra, OH mode (Table 3 discussion)"
+  }
+ ],
+ "ask": "Compute the donor-acceptor distance in TWO minus that in FIVE (in Å), and choose the conclusion about the two hydrogen bonds. Choose the option in which both the value and the conclusion are correct.",
+ "quantity": {
+  "kind": "xyz_distance_difference",
+  "args": {
+   "a_file": "TWO",
+   "a_rows": [
+    6,
+    14
+   ],
+   "b_file": "FIVE",
+   "b_rows": [
+    5,
+    11
+   ]
+  },
+  "label": "d(TWO) - d(FIVE) ≈",
+  "unit": "angstrom",
+  "decimals": 3,
+  "tolerance": "0.0005",
+  "min_separation": "0.030"
+ },
+ "error": {
+  "rule": "hydrogen_acceptor_instead",
+  "kind": "xyz_distance_difference",
+  "args": {
+   "a_file": "TWO",
+   "a_rows": [
+    5,
+    14
+   ],
+   "b_file": "FIVE",
+   "b_rows": [
+    4,
+    11
+   ]
+  },
+  "plausibility": 3,
+  "reason": "量成 H···受体距离之差，而不是给体–受体（重原子）距离之差。"
+ },
+ "conclusions": {
+  "paper": {
+   "text": "TWO has the shorter donor-acceptor contact and an O-H red shift of about 750 cm^-1 against about 265 cm^-1 for FIVE: the OH···O= bond in TWO is the stronger hydrogen bond.",
+   "locator": "OH mode discussion (TWO 3087, FIVE 3571); local force constants TWO > ELEVEN > FIVE; X···Y distances 2.538 vs 2.631 Å"
+  },
+  "rejected": {
+   "rule": "nitrogen_better_acceptor",
+   "text": "FIVE has the stronger hydrogen bond, because nitrogen is a better hydrogen-bond acceptor than a carbonyl oxygen; the frequency shifts do not compare bond strengths.",
+   "locator": "OH mode discussion; Figure 9 ranking",
+   "reason": "原文以 O–H 红移和局部力常数判定 TWO 的 OH···O= 更强，FIVE 的 OH···N 较弱。"
+  }
+ },
+ "scale": {
+  "input_nm": 0.45,
+  "reasoning_nm": 0.26,
+  "definition": "给体–受体距离（约 0.25–0.26 nm）"
+ },
+ "short_citation": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021)",
+ "notes": [
+  "正文列出 TWO、FIVE、ELEVEN 的 X···Y 距离为 2.538、2.631、2.617 Å；SI 坐标与 SI 图注给出 FIVE 的 O···N 为 2.735 Å（坐标算得 2.734 Å），TWO 为 2.538 Å 一致。本题以 SI 坐标为准，结论（TWO 更短、更强）不受影响。"
+ ]
+}

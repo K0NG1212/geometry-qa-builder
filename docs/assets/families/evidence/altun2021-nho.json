@@ -1,0 +1,103 @@
+{
+ "kind": "evidence_card",
+ "id": "altun2021-nho",
+ "paper": "hbond2021",
+ "citation": "Altun, Bleda & Trindle, \"Hydrogen Bonding in 3-hydroxy-2-butenamide and related isomers\", Molecules 26, 2623 (2021), doi:10.3390/molecules26092623",
+ "license": "CC BY 4.0; facts and numbers only; SI coordinates copied unchanged",
+ "family": "evidence_quantity",
+ "files": [
+  {
+   "key": "ONE",
+   "asset": "assets/families/evidence/altun2021-ONE.xyz",
+   "name": "conformer_ONE.xyz"
+  },
+  {
+   "key": "ELEVEN",
+   "asset": "assets/families/evidence/altun2021-ELEVEN.xyz",
+   "name": "conformer_ELEVEN.xyz"
+  }
+ ],
+ "topic": "Two computed conformers of acetoacetamide and its enol tautomer are attached: conformer_ONE.xyz and conformer_ELEVEN.xyz (rows counted from 1 after the two XYZ header lines). Both contain an NH···O= hydrogen bond.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "In ONE the amide N (row 9) donates its H (row 11) to the ketone carbonyl O (row 8).",
+   "locator": "SI coordinates, system ONE; main text Fig. 1"
+  },
+  {
+   "id": "E2",
+   "text": "In ELEVEN the amino N (row 3) donates its H (row 5) to the carbonyl O (row 13).",
+   "locator": "SI coordinates, system ELEVEN; main text Fig. 5"
+  },
+  {
+   "id": "E3",
+   "text": "Splitting between the antisymmetric and symmetric NH2 stretching frequencies (MP2/cc-pVTZ): ONE 159 cm^-1, ELEVEN 308 cm^-1; NH2 groups that take part in no hydrogen bond show about 120 cm^-1.",
+   "locator": "Vibrational spectra, NH2 modes"
+  },
+  {
+   "id": "E4",
+   "text": "At the H···O bond critical point the energy density H = G + V is positive (mainly electrostatic) for ONE and negative (partly covalent) for ELEVEN.",
+   "locator": "AIM results (Table 2 discussion)"
+  }
+ ],
+ "ask": "Compute the N···O distance in ONE minus that in ELEVEN (in Å), and choose the conclusion about the two NH···O= bonds. Choose the option in which both the value and the conclusion are correct.",
+ "quantity": {
+  "kind": "xyz_distance_difference",
+  "args": {
+   "a_file": "ONE",
+   "a_rows": [
+    9,
+    8
+   ],
+   "b_file": "ELEVEN",
+   "b_rows": [
+    3,
+    13
+   ]
+  },
+  "label": "d(ONE) - d(ELEVEN) ≈",
+  "unit": "angstrom",
+  "decimals": 3,
+  "tolerance": "0.0005",
+  "min_separation": "0.030"
+ },
+ "error": {
+  "rule": "hydrogen_acceptor_instead",
+  "kind": "xyz_distance_difference",
+  "args": {
+   "a_file": "ONE",
+   "a_rows": [
+    11,
+    8
+   ],
+   "b_file": "ELEVEN",
+   "b_rows": [
+    5,
+    13
+   ]
+  },
+  "plausibility": 3,
+  "reason": "量成 H···O 距离之差，而不是给体–受体（N···O）距离之差。"
+ },
+ "conclusions": {
+  "paper": {
+   "text": "ELEVEN has the stronger NH···O= bond: its N···O contact is shorter, its NH2 stretches split about twice as much, and its critical point shows partial covalent character; the same bond type differs in strength with geometry.",
+   "locator": "NH2 modes: larger shift in ELEVEN attributed to the shorter N···O distance; AIM: H < 0 only for TWO, FIVE, ELEVEN"
+  },
+  "rejected": {
+   "rule": "same_type_same_strength",
+   "text": "The two bonds are equally strong because they are the same type (NH···O=); the differences in distance and spectra are incidental.",
+   "locator": "NH2 modes; Figure 9 ranking",
+   "reason": "原文明确把 ELEVEN 更大的 NH 伸缩分裂归因于更短的 N···O 距离，强度排序 ELEVEN > ONE。"
+  }
+ },
+ "scale": {
+  "input_nm": 0.5,
+  "reasoning_nm": 0.27,
+  "definition": "N···O 给体–受体距离（约 0.27–0.28 nm）"
+ },
+ "notes": [
+  "SI 中 ELEVEN 表下标注 N···O = 2.617 Å（正文同），但 SI 坐标算得 2.664 Å；ONE 的 2.789 Å 与坐标一致。本题以坐标为准，结论（ELEVEN 更短）不受影响。"
+ ],
+ "short_citation": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021)"
+}

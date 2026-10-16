@@ -1,0 +1,93 @@
+{
+ "kind": "evidence_card",
+ "id": "cottet2014-bend",
+ "paper": "paper-cottet-mgb2-vortex",
+ "citation": "Cottet, Cantoni, Mansart, Alexander, Hébert, Zhigadlo, Karpinski & Carbone, \"Quantitative imaging of flux vortices in type-II superconductor MgB2 using Cryo-Lorentz Transmission Electron Microscopy\", arXiv:1401.4062v1 (2014)",
+ "license": "arXiv.org perpetual non-exclusive license; facts and numbers only",
+ "family": "evidence_elimination",
+ "topic": "Cryo-Lorentz TEM images of flux vortices in a 300 nm thick MgB2 lamella (pre-tilted by 45°) at 5 K, for fields between 50.8 and 188.7 G.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "Dark bands cross the images; inside them the vortex contrast is too weak to locate vortices.",
+   "locator": "Results (Fig. 3)",
+   "observed": {
+    "dark_bands": true
+   }
+  },
+  {
+   "id": "E2",
+   "text": "Tilting the specimen slightly, or changing the field (which changes the imaging condition), changes the size and position of the dark bands.",
+   "locator": "Results (Fig. 3, dashed rectangles)",
+   "observed": {
+    "bands_shift_with_tilt": true
+   }
+  },
+  {
+   "id": "E3",
+   "text": "The average vortex spacings measured in regions separated by the bands cross as the field rises, showing that vortices move from one region to another.",
+   "locator": "Results (Fig. 5B discussion)",
+   "observed": {
+    "vortices_cross_bands": true
+   }
+  },
+  {
+   "id": "E4",
+   "text": "Between the bands the vortex arrangement becomes more triangular as the field rises (average six-fold order parameter 0.73 at 117.3 G).",
+   "locator": "Results (Fig. 5A)",
+   "observed": {
+    "ordered_between_bands": true
+   }
+  }
+ ],
+ "ask": "Which explanation of the dark bands is consistent with all of these observations?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "paper_conclusion": true,
+   "text": "Bend contours: diffraction contrast where local bending of the thin crystal meets the Bragg condition; they hide vortices but do not change the vortex lattice.",
+   "predicts": {
+    "dark_bands": true,
+    "bands_shift_with_tilt": true,
+    "vortices_cross_bands": true
+   },
+   "locator": "Results: bend contours due to diffraction contrast; crossing curves confirm they do not affect the lattice",
+   "reason": "与全部观测一致，即原文结论。"
+  },
+  {
+   "rule": "meissner_domains",
+   "text": "Vortex-free Meissner domains of an intermediate (type-1.5) superconducting state.",
+   "predicts": {
+    "bands_shift_with_tilt": false,
+    "vortices_cross_bands": false
+   },
+   "locator": "Introduction and Results: no stripes or gossamer patterns; conventional type-II behaviour",
+   "reason": "磁性的无涡旋畴不会随样品轻微倾转而移动，也不会被涡旋穿越。"
+  },
+  {
+   "rule": "pinning_lines",
+   "text": "Lines of strong pinning centres that hold the vortices in place.",
+   "predicts": {
+    "bands_shift_with_tilt": false,
+    "vortices_cross_bands": false
+   },
+   "locator": "Results: no vortex pinning except at the edge",
+   "reason": "钉扎线是固定缺陷，不随倾转移动，且会阻止涡旋在区域间移动。"
+  },
+  {
+   "rule": "magnetic_domains",
+   "text": "Ferromagnetic domains of a magnetic impurity phase in the crystal.",
+   "predicts": {
+    "bands_shift_with_tilt": false
+   },
+   "locator": "Results (bend-contour test)",
+   "reason": "磁畴是样品的固有磁结构，不会因轻微倾转改变位置。"
+  }
+ ],
+ "scale": {
+  "input_nm": 5000,
+  "reasoning_nm": 451,
+  "definition": "涡旋间距（117.3 G 时约 0.45 μm）"
+ },
+ "short_citation": "Cottet et al., arXiv:1401.4062"
+}

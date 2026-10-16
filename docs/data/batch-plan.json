@@ -6,10 +6,10 @@
  "enumeration_run": "enum-v34",
  "summary": {
   "target": 1230,
-  "max_selectable": 646,
-  "max_balanced": 644,
+  "max_selectable": 655,
+  "max_balanced": 655,
   "cells_meeting_rule": 2,
-  "paper_parameter_share_of_selectable": 0.085,
+  "paper_parameter_share_of_selectable": 0.084,
   "max_paper_parameter_share": 0.25
  },
  "cells": [
@@ -19,21 +19,21 @@
    "target": 100,
    "max_selectable": 100,
    "max_balanced": 100,
-   "families": 7,
+   "families": 8,
    "families_by_ability": {
     "perception": 3,
-    "inference": 2,
+    "inference": 3,
     "design": 2
    },
-   "sources": 26,
+   "sources": 27,
    "paper_systems": [],
    "ability_max": {
     "perception": 75,
-    "inference": 30,
+    "inference": 31,
     "design": 29
    },
    "pool": {
-    "admitted": 16,
+    "admitted": 17,
     "enumerated": 471
    },
    "family_flow": {
@@ -51,22 +51,22 @@
    "tier": "A",
    "target": 100,
    "max_selectable": 100,
-   "max_balanced": 98,
-   "families": 10,
+   "max_balanced": 100,
+   "families": 12,
    "families_by_ability": {
     "perception": 5,
-    "inference": 3,
+    "inference": 5,
     "design": 2
    },
-   "sources": 29,
+   "sources": 32,
    "paper_systems": [],
    "ability_max": {
     "perception": 79,
-    "inference": 27,
+    "inference": 30,
     "design": 28
    },
    "pool": {
-    "admitted": 26,
+    "admitted": 29,
     "enumerated": 1251
    },
    "family_flow": {
@@ -432,43 +432,43 @@
    "cell": "quantum 10-100",
    "tier": "C",
    "target": 50,
-   "max_selectable": 10,
-   "max_balanced": 10,
-   "families": 3,
+   "max_selectable": 13,
+   "max_balanced": 13,
+   "families": 5,
    "families_by_ability": {
     "perception": 1,
-    "inference": 1,
+    "inference": 3,
     "design": 1
    },
-   "sources": 2,
+   "sources": 5,
    "paper_systems": [
     "moire.py"
    ],
    "ability_max": {
     "perception": 3,
-    "inference": 4,
+    "inference": 7,
     "design": 3
    },
    "pool": {
-    "admitted": 10,
+    "admitted": 13,
     "enumerated": 0
    },
    "family_flow": {
     "moire_inference": 4,
     "moire_geometry": 3,
-    "moire_design": 3
+    "moire_design": 3,
+    "evidence_quantity": 2,
+    "evidence_elimination": 1
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 10 / 50 道",
-    "题型族 3 个，需 ≥ 6",
+    "最多只能选 13 / 50 道",
+    "题型族 5 个，需 ≥ 6",
     "感知 族 1 个，需 ≥ 2",
     "感知 最多 3 道，需 ≥ 11",
-    "推断 族 1 个，需 ≥ 2",
-    "推断 最多 4 道，需 ≥ 11",
+    "推断 最多 7 道，需 ≥ 11",
     "设计 族 1 个，需 ≥ 2",
     "设计 最多 3 道，需 ≥ 11",
-    "来源 2 个，需 ≥ 5",
     "论文参数体系 1 个，需 ≥ 2"
    ]
   },
@@ -476,43 +476,43 @@
    "cell": "quantum 100-1000",
    "tier": "C",
    "target": 50,
-   "max_selectable": 10,
-   "max_balanced": 10,
-   "families": 3,
+   "max_selectable": 13,
+   "max_balanced": 13,
+   "families": 5,
    "families_by_ability": {
     "perception": 1,
-    "inference": 1,
+    "inference": 3,
     "design": 1
    },
-   "sources": 2,
+   "sources": 5,
    "paper_systems": [
     "vortex.py"
    ],
    "ability_max": {
     "perception": 3,
-    "inference": 4,
+    "inference": 7,
     "design": 3
    },
    "pool": {
-    "admitted": 10,
+    "admitted": 13,
     "enumerated": 0
    },
    "family_flow": {
     "vortex_inference": 4,
     "vortex_geometry": 3,
-    "vortex_design": 3
+    "vortex_design": 3,
+    "evidence_quantity": 2,
+    "evidence_elimination": 1
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 10 / 50 道",
-    "题型族 3 个，需 ≥ 6",
+    "最多只能选 13 / 50 道",
+    "题型族 5 个，需 ≥ 6",
     "感知 族 1 个，需 ≥ 2",
     "感知 最多 3 道，需 ≥ 11",
-    "推断 族 1 个，需 ≥ 2",
-    "推断 最多 4 道，需 ≥ 11",
+    "推断 最多 7 道，需 ≥ 11",
     "设计 族 1 个，需 ≥ 2",
     "设计 最多 3 道，需 ≥ 11",
-    "来源 2 个，需 ≥ 5",
     "论文参数体系 1 个，需 ≥ 2"
    ]
   },
@@ -520,43 +520,43 @@
    "cell": "chemistry 100-1000",
    "tier": "C",
    "target": 50,
-   "max_selectable": 10,
-   "max_balanced": 10,
-   "families": 3,
+   "max_selectable": 13,
+   "max_balanced": 13,
+   "families": 5,
    "families_by_ability": {
     "perception": 1,
-    "inference": 1,
+    "inference": 3,
     "design": 1
    },
-   "sources": 2,
+   "sources": 5,
    "paper_systems": [
     "cholesteric.py"
    ],
    "ability_max": {
     "perception": 3,
-    "inference": 4,
+    "inference": 7,
     "design": 3
    },
    "pool": {
-    "admitted": 10,
+    "admitted": 13,
     "enumerated": 0
    },
    "family_flow": {
     "cholesteric_optics": 4,
     "cholesteric_geometry": 3,
-    "cholesteric_design": 3
+    "cholesteric_design": 3,
+    "evidence_quantity": 2,
+    "evidence_elimination": 1
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 10 / 50 道",
-    "题型族 3 个，需 ≥ 6",
+    "最多只能选 13 / 50 道",
+    "题型族 5 个，需 ≥ 6",
     "感知 族 1 个，需 ≥ 2",
     "感知 最多 3 道，需 ≥ 11",
-    "推断 族 1 个，需 ≥ 2",
-    "推断 最多 4 道，需 ≥ 11",
+    "推断 最多 7 道，需 ≥ 11",
     "设计 族 1 个，需 ≥ 2",
     "设计 最多 3 道，需 ≥ 11",
-    "来源 2 个，需 ≥ 5",
     "论文参数体系 1 个，需 ≥ 2"
    ]
   },

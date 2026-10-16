@@ -1,0 +1,97 @@
+{
+ "kind": "evidence_card",
+ "id": "dinc2024-htp",
+ "paper": "paper-dinc-isosorbide",
+ "citation": "Dinc, Kragt, Schenning & Lub, \"An L-isosorbide-based reactive chiral dopant with high helical twisting power for cholesteric liquid crystal polymers reflecting left-handed circularly polarized light\", Org. Chem. Front. (2024), doi:10.1039/d4qo01672f (Europe PMC PMC11492181)",
+ "license": "CC BY 3.0; facts and numbers only",
+ "family": "evidence_quantity",
+ "topic": "Two reactive chiral dopants built on isosorbide, LRCD (from L-isosorbide) and RRCD (from D-isosorbide), were each mixed into the same reactive nematic host and photopolymerised as planar cholesteric coatings. Take the average refractive index of the host as 1.6.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "The LRCD coating (5.6 wt% dopant) reflects left-handed circularly polarised light in a band at 670 nm.",
+   "locator": "Results (Fig. 3)",
+   "values": {
+    "lam_L": [
+     670,
+     "670 nm"
+    ],
+    "c_L": [
+     5.6,
+     "5.6 wt%"
+    ]
+   }
+  },
+  {
+   "id": "E2",
+   "text": "The RRCD coating (4.7 wt% dopant) reflects right-handed circularly polarised light in a band at 603 nm.",
+   "locator": "Results (Fig. 3)",
+   "values": {
+    "lam_R": [
+     603,
+     "603 nm"
+    ],
+    "c_R": [
+     4.7,
+     "4.7 wt%"
+    ]
+   }
+  },
+  {
+   "id": "E3",
+   "text": "LRCD and RRCD give identical 1H and 13C NMR spectra and the same mass ([M+Na]+ at m/z 957.2).",
+   "locator": "Results; Fig. 1; ESI Fig. S6-S8"
+  },
+  {
+   "id": "E4",
+   "text": "Optical rotation gives LRCD an enantiomeric excess of about 81 % relative to RRCD; the L-sorbitol starting material had an enantiomeric excess of about 76 ± 16 % relative to D-sorbitol.",
+   "locator": "Results (optical rotation)"
+  }
+ ],
+ "ask": "From the two coatings, compute the ratio of the apparent helical twisting powers, |HTP(LRCD)| / HTP(RRCD), and choose the explanation. Choose the option in which both the value and the conclusion are correct.",
+ "quantity": {
+  "kind": "htp_ratio",
+  "args": {
+   "lam_L": "lam_L",
+   "c_L": "c_L",
+   "lam_R": "lam_R",
+   "c_R": "c_R"
+  },
+  "label": "|HTP(LRCD)| / HTP(RRCD) ≈",
+  "unit": "",
+  "decimals": 2,
+  "tolerance": "0.005",
+  "min_separation": "0.05"
+ },
+ "error": {
+  "rule": "concentration_ignored",
+  "kind": "wavelength_ratio",
+  "args": {
+   "lam_L": "lam_L",
+   "lam_R": "lam_R"
+  },
+  "plausibility": 3,
+  "reason": "只比较两个反射波长（λR/λL），忽略两种涂层的掺杂浓度不同。"
+ },
+ "conclusions": {
+  "paper": {
+   "text": "LRCD twists the host only about three quarters as strongly; as enantiomers the two have the same intrinsic |HTP|, so the deficit reflects the lower enantiomeric excess of LRCD, inherited from L-sorbitol that contains some D-sorbitol.",
+   "locator": "Results, last paragraph: ratio of apparent HTPs 76 %, in agreement with the ee from optical rotation"
+  },
+  "rejected": {
+   "rule": "not_enantiomers",
+   "text": "LRCD and RRCD are not true mirror images but diastereomers, so their intrinsic twisting powers differ; enantiomeric purity plays no role.",
+   "locator": "Results (identical NMR, same mass; enantiomeric relationship)",
+   "reason": "两者 NMR 与质量完全相同，原文确认为对映体；差异来自对映体过量。"
+  }
+ },
+ "scale": {
+  "input_nm": 419,
+  "reasoning_nm": 419,
+  "definition": "螺距 p = λ/⟨n⟩（约 0.38–0.42 μm）"
+ },
+ "notes": [
+  "用原文给出的浓度直接算出的 HTP 绝对值为 42.6 与 56.5 μm⁻¹，比原文的 −48 与 +63 μm⁻¹ 都低约 11%（原文未说明换算）；本题只用两者的比值（0.755，原文 76%）。"
+ ],
+ "short_citation": "Dinc et al., Org. Chem. Front. (2024)"
+}

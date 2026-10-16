@@ -46,6 +46,7 @@ class Tree:
         a = tax['assignment']
         self.pdb, self.cod, self.family, self.paper = a['pdb'], a['cod'], a['family'], a['paper']
         self.cod_names, self.hosts = a['cod_names'], set(a['sampl9_hosts'])
+        self.instance = a.get('instance', {})      # per family instance, where one paper spans two leaves
 
     def _named_crystal(self, text):
         low = text.lower()
@@ -58,6 +59,8 @@ class Tree:
         """Leaf id for a catalog question; raises KeyError if no rule applies."""
         text = ' '.join(str(q.get(k, '')) for k in ('title', 'source', 'question', 'answer'))
         family, paper = q.get('family', ''), q.get('paper')
+        if q.get('familyInstance') in self.instance:
+            return self.instance[q['familyInstance']]
         if q['domain'] in ('biology', 'chemistry'):
             hit = next((self.pdb[i] for i in PDB_ID.findall(q['title'] + ' ' + str(q.get('source', ''))) if i in self.pdb), None)
             if hit:

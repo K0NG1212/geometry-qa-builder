@@ -1,20 +1,20 @@
 {
  "kind": "review_queue",
- "date": "2026-10-14",
+ "date": "2026-10-16",
  "summary": {
   "scope": "selection",
-  "units_all_active": 47,
-  "units": 47,
-  "families": 47,
+  "units_all_active": 49,
+  "units": 49,
+  "families": 49,
   "legacy_units": 0,
   "L1": {
-   "pending": 47,
+   "pending": 49,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
   "L2": {
-   "pending": 47,
+   "pending": 49,
    "approved": 0,
    "revise": 0,
    "stale": 0
@@ -34,8 +34,8 @@
   },
   "next_l3_batch": "l3-batch-001",
   "l3_sample": 160,
-  "l3_strata": 80,
-  "l3_steady_state_sample": 132,
+  "l3_strata": 87,
+  "l3_steady_state_sample": 134,
   "model_calls": 0,
   "reviews_recorded": {
    "L1": 0,
@@ -404,7 +404,7 @@
      "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/families.py": "8b99c5574ca2e81d59cf6ca7cfed7af55dd965e90972556130553fca11cc91cf",
+     "checkers/families.py": "68cf2fbf757a4d10a27067ae08b62976e3ecdecefe5c6912c27be0b04f06b25e",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1333,7 +1333,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 4,
+   "instances": 2,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -1419,54 +1419,54 @@
       ]
      },
      {
-      "instance": "FA-CH-HTP-S5011",
-      "question": "The file lists the director (unit vector of average molecular orientation, n equivalent to −n) at sites along the helix axis of a model cholesteric liquid-crystal film; columns are site x y z (nm) nx ny nz. Model conditions: the only measured inputs are those reported by Shaban et al. (Materials 2024) for the nematic host E44 doped with the chiral dopant R5011 or S5011: the helical twisting power (107.5 μm⁻¹), the dopant concentration and the host refractive indices (ne = 1.7904, no = 1.5484 at 589 nm, 20 °C); the director twists uniformly about a straight helix axis (ideal planar Grandjean texture) with no defects, surface-anchoring distortion or temperature gradient, which is the idealization behind the paper's relations p = 1/(HTP·c) and λc = p·(ne + no)/2. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. The film contains 2.57 wt% of the chiral dopant. What is the helical twisting power HTP = 1/(p·c) of the dopant in this host (c as a weight fraction), in μm⁻¹?",
+      "instance": "FA-CH-LAMBDA-RRCD",
+      "question": "The file lists the director (unit vector of average molecular orientation, n equivalent to −n) at sites along the helix axis of a model cholesteric liquid-crystal film; columns are site x y z (nm) nx ny nz. Model conditions: the only measured input is the reflection wavelength reported by Dinc et al. (Org. Chem. Front. 2024) for this cholesteric polymer coating, converted to a pitch with the paper's average refractive index of 1.6; the director twists uniformly about a straight helix axis with no defects, which is the idealization behind the paper's relation λ = n·p. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. At normal incidence, what is the central wavelength λc of the selective (Bragg) reflection band, in nm? Use the average refractive index 1.6.",
       "options": [
        {
         "label": "A",
-        "value": "1.1",
-        "unit": "um^-1"
+        "value": "376.9",
+        "unit": "nm"
        },
        {
         "label": "B",
-        "value": "53.8",
-        "unit": "um^-1"
+        "value": "565.3",
+        "unit": "nm"
        },
        {
         "label": "C",
-        "value": "107.5",
-        "unit": "um^-1"
+        "value": "603.0",
+        "unit": "nm"
        },
        {
         "label": "D",
-        "value": "215.0",
-        "unit": "um^-1"
+        "value": "659.5",
+        "unit": "nm"
        }
       ],
       "inputs": [
-       "clc-E44-S5011-2.57wt.txt"
+       "clc-RRCD-coating.txt"
       ],
       "correct_label": "C",
       "audit": [
        {
         "label": "A",
-        "rule": "percent_not_fraction",
-        "reason": "浓度直接代入百分数而非质量分数。"
+        "rule": "no_index",
+        "reason": "忽略折射率，直接取螺距。"
        },
        {
         "label": "B",
-        "rule": "double_pitch",
-        "reason": "用 2p 代替螺距。"
+        "rule": "ordinary_index",
+        "reason": "用 no 代替平均折射率。"
        },
        {
         "label": "C",
         "rule": "correct",
-        "reason": "由指向矢每步转角得螺距 p = 361.958 nm；λc = ⟨n⟩p，Δλ = Δn·p，HTP = 1/(p c)。"
+        "reason": "由指向矢每步转角得螺距 p = 376.875 nm；λc = ⟨n⟩p，Δλ = Δn·p，HTP = 1/(p c)。"
        },
        {
         "label": "D",
-        "rule": "half_pitch",
-        "reason": "用 p/2 代替螺距。"
+        "rule": "extraordinary_index",
+        "reason": "用 ne 代替平均折射率。"
        }
       ]
      }
@@ -1487,7 +1487,7 @@
      "task_families/conformer_design.py": "c1df20bcb3ca7c59938dcfc28012c37beca3d235e0181495fb2b6d9e9d54a211"
     },
     "L2": {
-     "checkers/families.py": "8b99c5574ca2e81d59cf6ca7cfed7af55dd965e90972556130553fca11cc91cf",
+     "checkers/families.py": "68cf2fbf757a4d10a27067ae08b62976e3ecdecefe5c6912c27be0b04f06b25e",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2227,6 +2227,296 @@
    }
   },
   {
+   "unit": "evidence_elimination",
+   "kind": "family",
+   "ability": "inference",
+   "registry_id": "evidence_elimination",
+   "generator": "task_families/evidence.py",
+   "checker": "checkers/evidence.py",
+   "checker_function": "evidence_elimination",
+   "bindings": {
+    "L1": {
+     "registry_row": "5572d3ebf3b6312cc7b8f54d34c27634464c9bce131da8051912b1c6af944813",
+     "task_families/evidence.py": "799ef7d3ea8f665073d5d54ef2dd6aeb821b0e14bbf920c4ad933c01d2e2172d"
+    },
+    "L2": {
+     "checkers/evidence.py": "e53bcc4f19e1a87bcd40e5bfc812dfc6b7b9444788167cd703a67bb49aed4180",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 4,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "论文证据 → 排除 → 结论",
+     "concept": "给出论文中的若干观测，四个候选解释中只有一个与全部观测一致；其余三个是论文讨论并排除的解释（或超出证据的说法）。",
+     "inputs": "evidence.txt（论文事实逐条转述，E1–En）；氢键题另附论文 SI 构象 XYZ。",
+     "physical_conditions": "按论文的实验或计算条件写入证据条目。",
+     "reasoning_scale": "证据所描述结构的特征尺度（0.26 nm–0.45 μm）",
+     "scale_limits": "尺度取证据所描述结构的特征长度（莫尔晶胞、涡旋间距、螺距、O···O 距离）。",
+     "source_basis": "第 1 步下载的论文全文（本地 inputs/papers/，不入库）与 Altun 2021 SI；证据卡 docs/assets/families/evidence/*.json 逐条记录原文位置。",
+     "answer_method": "证据卡为每个解释写明对相关观测的预期；代码逐条比对观测，恰好一个解释无矛盾且为原文结论，其余每个至少与一条给学生的事实矛盾。",
+     "distractor_mechanisms": [
+      "rejected_alternative（原文排除的解释）",
+      "overreach（超出证据的结论）",
+      "surface_cue（只看表面线索，如有键径即判氢键）"
+     ],
+     "four_choice_validation": "每个预期都对应某条观测；恰好一个解释存活且为原文结论；独立检查器重新比对。",
+     "principle": "结论要经得起每一条证据；其他解释必须被具体证据排除。",
+     "validation": "独立检查器（checkers/evidence.py:evidence_elimination）读取哈希核对的证据卡，核对事实与选项，重新比对预期与观测，要求唯一存活者为原文结论。",
+     "limits": "排除逻辑由程序执行；各解释的“预期”由人从原文整理，其科学正确性须 L1 对照原文核对。",
+     "template_review": "2026-10-16 新建（导师第六次会议“证据 → 结论”），待 L1/L2 人工审核；L1 须逐条对照原文位置。"
+    },
+    "samples": [
+     {
+      "instance": "FA-EVE-ALT-THREE",
+      "question": "Conformer THREE of 3-hydroxy-2-butenamide is the enol in which the hydroxyl H has been rotated away, so that the hydroxyl O and the amide carbonyl O face each other without a hydrogen between them. The attached evidence.txt gives the evidence (facts E1–E4 from Altun, Bleda & Trindle, Molecules 26, 2623 (2021); numbers as reported in the paper). Which interpretation of the O···O contact in THREE is consistent with all of these observations?",
+      "options": [
+       {
+        "label": "A",
+        "value": "No hydrogen bond: the O···O contact is repulsive, and a bond path with a critical point is not enough on its own to establish a hydrogen bond."
+       },
+       {
+        "label": "B",
+        "value": "A strong hydrogen bond, since the density at the critical point is appreciable."
+       },
+       {
+        "label": "C",
+        "value": "A partly covalent O-O interaction."
+       },
+       {
+        "label": "D",
+        "value": "A weak O-H···O hydrogen bond, proved by the bond path and its critical point."
+       }
+      ],
+      "inputs": [
+       "evidence.txt"
+      ],
+      "correct_label": "A",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "correct",
+        "reason": "与全部事实一致，即原文结论（AIM and NCI sections: THREE has a repulsive O···O interaction despite the density at the BCP）。"
+       },
+       {
+        "label": "B",
+        "rule": "strong_hbond_from_density",
+        "reason": "与 E2、E3、E4 矛盾：没有红移、成环振动最软，与强氢键的预期全部相反。（NCI section; OH mode; CCC bend）"
+       },
+       {
+        "label": "C",
+        "rule": "covalent_oo",
+        "reason": "与 E1、E2 矛盾：拉普拉斯量为正，表明是闭壳层相互作用，不是共价作用。（AIM section: positive Laplacian = closed-shell interaction）"
+       },
+       {
+        "label": "D",
+        "rule": "weak_hbond_from_bcp",
+        "reason": "与 E2、E3 矛盾：NCI 为排斥，且 O–H 伸缩没有红移，键径本身不能证明氢键。（NCI section; OH mode）"
+       }
+      ]
+     },
+     {
+      "instance": "FA-EVE-COT-BEND",
+      "question": "Cryo-Lorentz TEM images of flux vortices in a 300 nm thick MgB2 lamella (pre-tilted by 45°) at 5 K, for fields between 50.8 and 188.7 G. The attached evidence.txt gives the evidence (facts E1–E4 from Cottet et al., arXiv:1401.4062; numbers as reported in the paper). Which explanation of the dark bands is consistent with all of these observations?",
+      "options": [
+       {
+        "label": "A",
+        "value": "Ferromagnetic domains of a magnetic impurity phase in the crystal."
+       },
+       {
+        "label": "B",
+        "value": "Vortex-free Meissner domains of an intermediate (type-1.5) superconducting state."
+       },
+       {
+        "label": "C",
+        "value": "Bend contours: diffraction contrast where local bending of the thin crystal meets the Bragg condition; they hide vortices but do not change the vortex lattice."
+       },
+       {
+        "label": "D",
+        "value": "Lines of strong pinning centres that hold the vortices in place."
+       }
+      ],
+      "inputs": [
+       "evidence.txt"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "magnetic_domains",
+        "reason": "与 E2 矛盾：磁畴是样品的固有磁结构，不会因轻微倾转改变位置。（Results (bend-contour test)）"
+       },
+       {
+        "label": "B",
+        "rule": "meissner_domains",
+        "reason": "与 E2、E3 矛盾：磁性的无涡旋畴不会随样品轻微倾转而移动，也不会被涡旋穿越。（Introduction and Results: no stripes or gossamer patterns; conventional type-II behaviour）"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "与全部事实一致，即原文结论（Results: bend contours due to diffraction contrast; crossing curves confirm they do not affect the lattice）。"
+       },
+       {
+        "label": "D",
+        "rule": "pinning_lines",
+        "reason": "与 E2、E3 矛盾：钉扎线是固定缺陷，不随倾转移动，且会阻止涡旋在区域间移动。（Results: no vortex pinning except at the edge）"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "unit": "evidence_quantity",
+   "kind": "family",
+   "ability": "inference",
+   "registry_id": "evidence_quantity",
+   "generator": "task_families/evidence.py",
+   "checker": "checkers/evidence.py",
+   "checker_function": "evidence_quantity",
+   "bindings": {
+    "L1": {
+     "registry_row": "24357721608e582ef78e22b358bd57e6bbe6109a76da8654cf7269f7c058ac9c",
+     "task_families/evidence.py": "799ef7d3ea8f665073d5d54ef2dd6aeb821b0e14bbf920c4ad933c01d2e2172d"
+    },
+    "L2": {
+     "checkers/evidence.py": "e53bcc4f19e1a87bcd40e5bfc812dfc6b7b9444788167cd703a67bb49aed4180",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 6,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "论文证据 → 计算 → 结论",
+     "concept": "给出论文中的若干事实（数值与观测），先算一个几何量（载流子间距、环路面积、轨道临界场、等面积转角、涡旋数、反射带宽、HTP 比值、给体–受体距离差），再判断论文的关键结论。",
+     "inputs": "evidence.txt（论文事实逐条转述，E1–En）；氢键题另附论文 SI 构象 XYZ。",
+     "physical_conditions": "按论文的实验或计算条件写入证据条目。",
+     "reasoning_scale": "由证据算出的几何量（0.26 nm–0.86 μm）",
+     "scale_limits": "尺度取所算几何量（间距、厚度、莫尔周期、螺距、给体–受体距离等）。",
+     "source_basis": "第 1 步下载的论文全文（本地 inputs/papers/，不入库）与 Altun 2021 SI；证据卡 docs/assets/families/evidence/*.json 逐条记录原文位置。",
+     "answer_method": "数值由代码从证据卡计算；四个选项 = 数值（正确 / 登记的错误做法）× 结论（原文结论 / 原文排除的解释），恰好一个两者都对。",
+     "distractor_mechanisms": [
+      "rejected_conclusion（原文排除的解释）",
+      "wrong_constant（如 h/e 代替 h/2e）",
+      "wrong_input_fact（如用总密度代替有效密度）",
+      "wrong_formula（如垂直场公式、只取单一方向）",
+      "confused_quantity（如 H···A 代替 D···A、中心代替带宽）"
+     ],
+     "four_choice_validation": "两个数值相差 ≥ 规定间隔且显示不同；四个组合齐全；独立检查器以 Decimal 复算并逐项解析选项。",
+     "principle": "把论文结论放回它依赖的几何量上：先算对量，再选对解释。",
+     "validation": "独立检查器（checkers/evidence.py:evidence_quantity）读取哈希核对的证据卡，核对 evidence.txt 与卡片逐条一致、数字逐个印在条目中，用不同算法复算两个数值，并要求选项正好是四个组合、只有一个正确。",
+     "limits": "程序保证数值与组合结构；证据转录、结论措辞是否忠于原文须人工对照原文位置（L1）。选项是两个二元判断的组合（格式检查记为低严重度）。",
+     "template_review": "2026-10-16 新建（导师第六次会议“证据 → 结论”），待 L1/L2 人工审核；L1 须逐条对照原文位置。"
+    },
+    "samples": [
+     {
+      "instance": "FA-EVQ-CAO-COHERENCE",
+      "question": "Twisted bilayer graphene near the magic angle (MA-TBG) becomes superconducting when doped slightly away from half filling of its flat band. The attached evidence.txt gives the evidence (facts E1–E3 from Cao et al., Nature 556, 43 (2018); numbers as reported in the paper). Estimate the mean spacing between the carriers that form the condensate (one over the square root of their areal density) and compare it with the coherence length. Choose the option in which both the value and the conclusion are correct.",
+      "options": [
+       {
+        "label": "A",
+        "value": "Mean carrier spacing ≈ 8.2 nm. The coherence length is many times this spacing, as in a conventional weak-coupling BCS superconductor in which each pair overlaps many others."
+       },
+       {
+        "label": "B",
+        "value": "Mean carrier spacing ≈ 25.8 nm. The coherence length is many times this spacing, as in a conventional weak-coupling BCS superconductor in which each pair overlaps many others."
+       },
+       {
+        "label": "C",
+        "value": "Mean carrier spacing ≈ 8.2 nm. The coherence length is only about twice this spacing, so a pair is hardly larger than the distance between carriers: MA-TBG is a strong-coupling superconductor close to the BCS-BEC crossover."
+       },
+       {
+        "label": "D",
+        "value": "Mean carrier spacing ≈ 25.8 nm. The coherence length is only about twice this spacing, so a pair is hardly larger than the distance between carriers: MA-TBG is a strong-coupling superconductor close to the BCS-BEC crossover."
+       }
+      ],
+      "inputs": [
+       "evidence.txt"
+      ],
+      "correct_label": "D",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "total_gate_density+weak_coupling_bcs",
+        "reason": "数值来自错误做法（用栅极诱导的总密度 |n|（从电中性点算起）求间距，忽略了量子振荡显示真正参与的只是从半填充算起的 n′。），结论也是原文排除的解释。"
+       },
+       {
+        "label": "B",
+        "rule": "weak_coupling_bcs",
+        "reason": "数值正确，但结论是原文排除的解释：原文据 ξ 与粒子间距同量级判断为强耦合、接近 BCS-BEC 交叉；弱耦合 BCS 的结论与之相反。（Discussion (p. 8-9): Tc/TF and ξ vs spacing place MA-TBG far from weak-coupling BCS）"
+       },
+       {
+        "label": "C",
+        "rule": "total_gate_density",
+        "reason": "结论措辞取自原文，但数值来自错误做法：用栅极诱导的总密度 |n|（从电中性点算起）求间距，忽略了量子振荡显示真正参与的只是从半填充算起的 n′。"
+       },
+       {
+        "label": "D",
+        "rule": "correct",
+        "reason": "数值按原文数据计算正确，结论即原文结论（Discussion, last paragraph before Summary (p. 9): coherence length of the same order as the inter-particle distance (~26 nm)）。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-EVQ-CAO-PAULI",
+      "question": "The superconducting state of an atomically thin MA-TBG device (Tc about 0.5 K) was suppressed with magnetic fields perpendicular and parallel to the layers. The attached evidence.txt gives the evidence (facts E1–E4 from Cao et al., Nature 556, 43 (2018); numbers as reported in the paper). Estimate the in-plane critical field that orbital (Ginzburg-Landau thin-film) pair breaking would give for this thickness and coherence length, and compare it with the measurement. Choose the option in which both the value and the conclusion are correct.",
+      "options": [
+       {
+        "label": "A",
+        "value": "Orbital in-plane critical field ≈ 0.12 T. The measured 1.1 T is set by orbital pair breaking: the in-plane field destroys superconductivity through screening currents in the bilayer."
+       },
+       {
+        "label": "B",
+        "value": "Orbital in-plane critical field ≈ 36.54 T. The orbital limit is far above the measured 1.1 T, which lies close to the Pauli limit: in-plane superconductivity is destroyed by Zeeman (paramagnetic) pair breaking, not by orbital currents."
+       },
+       {
+        "label": "C",
+        "value": "Orbital in-plane critical field ≈ 36.54 T. The measured 1.1 T is set by orbital pair breaking: the in-plane field destroys superconductivity through screening currents in the bilayer."
+       },
+       {
+        "label": "D",
+        "value": "Orbital in-plane critical field ≈ 0.12 T. The orbital limit is far above the measured 1.1 T, which lies close to the Pauli limit: in-plane superconductivity is destroyed by Zeeman (paramagnetic) pair breaking, not by orbital currents."
+       }
+      ],
+      "inputs": [
+       "evidence.txt"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "perpendicular_formula+orbital_limited",
+        "reason": "数值来自错误做法（套用垂直场的 GL 公式 Φ0/(2πξ²)，忽略了平行场下轨道效应受膜厚 d 限制。），结论也是原文排除的解释。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "数值按原文数据计算正确，结论即原文结论（Magnetic field response (p. 5): d ≈ 0.6 nm would imply ~36 T; dependence interpreted as paramagnetic pair breaking）。"
+       },
+       {
+        "label": "C",
+        "rule": "orbital_limited",
+        "reason": "数值正确，但结论是原文排除的解释：原文指出原子级厚度使轨道极限约 36 T，远高于实测，因而排除轨道机制。（Magnetic field response (p. 5)）"
+       },
+       {
+        "label": "D",
+        "rule": "perpendicular_formula",
+        "reason": "结论措辞取自原文，但数值来自错误做法：套用垂直场的 GL 公式 Φ0/(2πξ²)，忽略了平行场下轨道效应受膜厚 d 限制。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
    "unit": "extent_choice_v2",
    "kind": "family",
    "ability": "perception",
@@ -2240,7 +2530,7 @@
      "task_families/extent_choice.py": "e1ddb871279c3ae81c1e5e74590674b8f3fd71efdcd2c1c281a722ea123f4bf4"
     },
     "L2": {
-     "checkers/families.py": "8b99c5574ca2e81d59cf6ca7cfed7af55dd965e90972556130553fca11cc91cf",
+     "checkers/families.py": "68cf2fbf757a4d10a27067ae08b62976e3ecdecefe5c6912c27be0b04f06b25e",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2555,13 +2845,13 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af"
     },
     "L2": {
-     "checkers/families.py": "8b99c5574ca2e81d59cf6ca7cfed7af55dd965e90972556130553fca11cc91cf",
+     "checkers/families.py": "68cf2fbf757a4d10a27067ae08b62976e3ecdecefe5c6912c27be0b04f06b25e",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 2,
+   "instances": 1,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -2588,60 +2878,6 @@
      "template_review": "本轮新建，待人工审核。"
     },
     "samples": [
-     {
-      "instance": "FA-FP-QM7X-7002",
-      "question": "Structures A and B of the same molecule share atom order and one Cartesian frame (angstrom). The table gives the total PBE0+MBD force on every atom at B (eV/angstrom), with F_i = −∂E/∂r_i. Along the straight path r_i(λ) = r_i(B) + λ[r_i(A) − r_i(B)], which starts at B and moves toward A, what is dE/dλ at λ = 0 (that is, at B), in eV? Do not realign, mass-weight or normalize the displacement.",
-      "options": [
-       {
-        "label": "A",
-        "value": "-0.4353",
-        "unit": "eV"
-       },
-       {
-        "label": "B",
-        "value": "-0.3371",
-        "unit": "eV"
-       },
-       {
-        "label": "C",
-        "value": "0.7672",
-        "unit": "eV"
-       },
-       {
-        "label": "D",
-        "value": "2.1519",
-        "unit": "eV"
-       }
-      ],
-      "inputs": [
-       "A.xyz",
-       "B.xyz",
-       "forces_B.txt"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "B 处沿给定路径方向的导数 = −Σ F_i(B)·(路径方向位移)；十进制与浮点实现一致。"
-       },
-       {
-        "label": "B",
-        "rule": "heavy_atoms_only",
-        "reason": "只累加重原子，忽略氢原子的受力与位移。"
-       },
-       {
-        "label": "C",
-        "rule": "abs_projection_sum",
-        "reason": "逐原子取投影绝对值后相加，丢失相互抵消。"
-       },
-       {
-        "label": "D",
-        "rule": "magnitude_product",
-        "reason": "只乘力与位移的模长，忽略夹角。"
-       }
-      ]
-     },
      {
       "instance": "FA-FP-QM7X-7040-D2",
       "question": "Structures A and B of the same molecule share atom order and one Cartesian frame (angstrom). The table gives the total PBE0+MBD force on every atom at B (eV/angstrom), with F_i = −∂E/∂r_i. Along the straight path r_i(λ) = r_i(B) + λ[r_i(A) − r_i(B)], which starts at B and moves toward A, what is dE/dλ at λ = 0 (that is, at B), in eV? Do not realign, mass-weight or normalize the displacement.",
@@ -2693,6 +2929,60 @@
         "label": "D",
         "rule": "magnitude_product",
         "reason": "只乘力与位移的模长，忽略夹角。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-FP-QM7X-7001",
+      "question": "Structures A and B of the same molecule share atom order and one Cartesian frame (angstrom). The table gives the total PBE0+MBD force on every atom at B (eV/angstrom), with F_i = −∂E/∂r_i. Along the straight path r_i(λ) = r_i(A) + λ[r_i(B) − r_i(A)], what is dE/dλ at λ = 1 (that is, at B), in eV? Do not realign, mass-weight or normalize the displacement.",
+      "options": [
+       {
+        "label": "A",
+        "value": "-1.8479",
+        "unit": "eV"
+       },
+       {
+        "label": "B",
+        "value": "0.7856",
+        "unit": "eV"
+       },
+       {
+        "label": "C",
+        "value": "0.9240",
+        "unit": "eV"
+       },
+       {
+        "label": "D",
+        "value": "1.8479",
+        "unit": "eV"
+       }
+      ],
+      "inputs": [
+       "A.xyz",
+       "B.xyz",
+       "forces_B.txt"
+      ],
+      "correct_label": "D",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "sign_convention",
+        "reason": "把力当作能量梯度（漏掉 F = −∂E/∂r 的负号），或忽略题目给定的路径方向。"
+       },
+       {
+        "label": "B",
+        "rule": "heavy_atoms_only",
+        "reason": "只累加重原子，忽略氢原子的受力与位移。"
+       },
+       {
+        "label": "C",
+        "rule": "trapezoid_energy_estimate",
+        "reason": "按 A 处受力为零的梯形估计给出能量差，而题目问的是 B 处的导数。"
+       },
+       {
+        "label": "D",
+        "rule": "correct",
+        "reason": "B 处沿给定路径方向的导数 = −Σ F_i(B)·(路径方向位移)；十进制与浮点实现一致。"
        }
       ]
      }
@@ -3628,7 +3918,7 @@
      "task_families/extinction.py": "f9721343ded2f4de07dfaf787d4b59f4322cbaf782248414430677ddfad71e1f"
     },
     "L2": {
-     "checkers/families.py": "8b99c5574ca2e81d59cf6ca7cfed7af55dd965e90972556130553fca11cc91cf",
+     "checkers/families.py": "68cf2fbf757a4d10a27067ae08b62976e3ecdecefe5c6912c27be0b04f06b25e",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -4093,7 +4383,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 4,
+   "instances": 1,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -4128,6 +4418,58 @@
      "template_review": "本轮新建（A4），待人工审核。"
     },
     "samples": [
+     {
+      "instance": "FA-MO-NHALF-K079",
+      "question": "The file lists the centres of the AA-stacked regions (the bright spots of an STM topograph) of a model twisted bilayer graphene sample, coordinates in nm (rigid twist without lattice relaxation or strain; built from a published twist angle). Model conditions: the only measured input is the twist angle reported by Kerelsky et al. (Nature 2019; STM); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. What carrier density corresponds to half filling of one set of spin- and valley-degenerate moiré bands (where correlated insulators appear), in units of 10¹² cm⁻²?",
+      "options": [
+       {
+        "label": "A",
+        "value": "0.363",
+        "unit": "10^12 cm^-2"
+       },
+       {
+        "label": "B",
+        "value": "0.628",
+        "unit": "10^12 cm^-2"
+       },
+       {
+        "label": "C",
+        "value": "0.725",
+        "unit": "10^12 cm^-2"
+       },
+       {
+        "label": "D",
+        "value": "1.451",
+        "unit": "10^12 cm^-2"
+       }
+      ],
+      "inputs": [
+       "TBG-K079-AA-map.txt"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "no_degeneracy",
+        "reason": "每个晶胞只算 1 个电子，漏掉自旋×谷四重简并。"
+       },
+       {
+        "label": "B",
+        "rule": "square_cell",
+        "reason": "晶胞面积按 λ² 计算。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "θ = 0.79°，λ = a/(2 sin(θ/2)) = 17.8416 nm，A = (√3/2)λ²，n_s = 4/A。"
+       },
+       {
+        "label": "D",
+        "rule": "full_filling",
+        "reason": "报告了完全填满（n_s）而非半满。"
+       }
+      ]
+     },
      {
       "instance": "FA-MO-ATOMS-K110",
       "question": "The XYZ file lists all carbon atoms of both layers of a model twisted bilayer graphene near an AA-stacked site (angstrom; rigid twist, layer spacing 3.35 Å; built from a published twist angle). Model conditions: the only measured input is the twist angle reported by Kerelsky et al. (Nature 2019; STM); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. Assuming the two layers are unstrained and rigidly twisted, what is the moiré period (the moiré lattice constant) of this bilayer, in nm?",
@@ -4179,58 +4521,6 @@
         "reason": "用单层相对参考方向的转角 θ/2 代替两层之间的转角。"
        }
       ]
-     },
-     {
-      "instance": "FA-MO-NFULL-M1",
-      "question": "The file lists the centres of the AA-stacked regions (the bright spots of an STM topograph) of a model twisted bilayer graphene sample, coordinates in nm (rigid twist without lattice relaxation or strain; built from a published twist angle). Model conditions: the only measured input is the twist angle reported by Cao et al. (Nature 2018; device twist angles from transport); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. What is the superlattice density n_s, the carrier density that completely fills one set of spin- and valley-degenerate moiré bands, in units of 10¹² cm⁻²?",
-      "options": [
-       {
-        "label": "A",
-        "value": "0.782",
-        "unit": "10^12 cm^-2"
-       },
-       {
-        "label": "B",
-        "value": "3.128",
-        "unit": "10^12 cm^-2"
-       },
-       {
-        "label": "C",
-        "value": "6.257",
-        "unit": "10^12 cm^-2"
-       },
-       {
-        "label": "D",
-        "value": "9.385",
-        "unit": "10^12 cm^-2"
-       }
-      ],
-      "inputs": [
-       "TBG-M1-AA-map.txt"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "no_degeneracy",
-        "reason": "每个晶胞只算 1 个电子，漏掉自旋×谷四重简并。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "θ = 1.16°，λ = a/(2 sin(θ/2)) = 12.1509 nm，A = (√3/2)λ²，n_s = 4/A。"
-       },
-       {
-        "label": "C",
-        "rule": "eight_per_cell",
-        "reason": "多计了一倍（把两层各算一次）。"
-       },
-       {
-        "label": "D",
-        "rule": "ab_distance_as_period",
-        "reason": "把 AA–AB 距离 λ/√3 当作莫尔周期，晶胞面积小 3 倍。"
-       }
-      ]
      }
     ]
    }
@@ -4249,7 +4539,7 @@
      "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/families.py": "8b99c5574ca2e81d59cf6ca7cfed7af55dd965e90972556130553fca11cc91cf",
+     "checkers/families.py": "68cf2fbf757a4d10a27067ae08b62976e3ecdecefe5c6912c27be0b04f06b25e",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -5347,7 +5637,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 3,
+   "instances": 2,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -7141,7 +7431,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 4,
+   "instances": 1,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -7176,58 +7466,6 @@
      "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
     },
     "samples": [
-     {
-      "instance": "FA-VX-FIELD-508",
-      "question": "The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor in a perpendicular magnetic field. Model conditions: the only measured input is the applied magnetic field (50.8 G = 5.08 mT) reported by Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. Each vortex carries one superconducting flux quantum Φ0 = h/(2e) = 2.0678 × 10⁻¹⁵ Wb. What is the magnetic induction B inside the superconductor that produces this lattice, in mT?",
-      "options": [
-       {
-        "label": "A",
-        "value": "1.693",
-        "unit": "mT"
-       },
-       {
-        "label": "B",
-        "value": "2.540",
-        "unit": "mT"
-       },
-       {
-        "label": "C",
-        "value": "4.399",
-        "unit": "mT"
-       },
-       {
-        "label": "D",
-        "value": "5.080",
-        "unit": "mT"
-       }
-      ],
-      "inputs": [
-       "vortex-MgB2-508G.txt"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "second_neighbour_as_spacing",
-        "reason": "把次近邻距离 √3a 当作晶格间距。"
-       },
-       {
-        "label": "B",
-        "rule": "flux_h_over_4e",
-        "reason": "磁通量子多除了 2。"
-       },
-       {
-        "label": "C",
-        "rule": "square_lattice",
-        "reason": "按正方格子 B = Φ0/a²。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "三角涡旋晶格：a = 685.584 nm，B = 2Φ0/(√3 a²) = 5.0800 mT，n = B/Φ0。"
-       }
-      ]
-     },
      {
       "instance": "FA-VX-FIELD-BSCCO",
       "question": "The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor in a perpendicular magnetic field. Model conditions: the only measured input is the measured vortex lattice constant (0.855 μm) reported by Schaefermeier et al. (arXiv:2602.13060; BSCCO-2212, scanning NV magnetometry at 71 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. Each vortex carries one superconducting flux quantum Φ0 = h/(2e) = 2.0678 × 10⁻¹⁵ Wb. What is the magnetic induction B inside the superconductor that produces this lattice, in mT?",
@@ -7277,6 +7515,58 @@
         "label": "D",
         "rule": "flux_h_over_e",
         "reason": "用 h/e（单电子磁通量子）代替 h/2e。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-VX-FIELD-508",
+      "question": "The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor in a perpendicular magnetic field. Model conditions: the only measured input is the applied magnetic field (50.8 G = 5.08 mT) reported by Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. Each vortex carries one superconducting flux quantum Φ0 = h/(2e) = 2.0678 × 10⁻¹⁵ Wb. What is the magnetic induction B inside the superconductor that produces this lattice, in mT?",
+      "options": [
+       {
+        "label": "A",
+        "value": "1.693",
+        "unit": "mT"
+       },
+       {
+        "label": "B",
+        "value": "2.540",
+        "unit": "mT"
+       },
+       {
+        "label": "C",
+        "value": "4.399",
+        "unit": "mT"
+       },
+       {
+        "label": "D",
+        "value": "5.080",
+        "unit": "mT"
+       }
+      ],
+      "inputs": [
+       "vortex-MgB2-508G.txt"
+      ],
+      "correct_label": "D",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "second_neighbour_as_spacing",
+        "reason": "把次近邻距离 √3a 当作晶格间距。"
+       },
+       {
+        "label": "B",
+        "rule": "flux_h_over_4e",
+        "reason": "磁通量子多除了 2。"
+       },
+       {
+        "label": "C",
+        "rule": "square_lattice",
+        "reason": "按正方格子 B = Φ0/a²。"
+       },
+       {
+        "label": "D",
+        "rule": "correct",
+        "reason": "三角涡旋晶格：a = 685.584 nm，B = 2Φ0/(√3 a²) = 5.0800 mT，n = B/Φ0。"
        }
       ]
      }
@@ -7484,13 +7774,11 @@
    "unit": "cholesteric_optics",
    "source": "paper-shaban-cholesteric",
    "cell": "chemistry 100-1000",
-   "size": 3,
-   "sample": 3,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "CNI017",
-    "CNI018",
-    "CNI019"
+    "CNI018"
    ]
   },
   {
@@ -7614,6 +7902,126 @@
    ]
   },
   {
+   "stratum": "evidence_elimination | hbond2021 | chemistry 0.1-1",
+   "unit": "evidence_elimination",
+   "source": "hbond2021",
+   "cell": "chemistry 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNI030"
+   ]
+  },
+  {
+   "stratum": "evidence_elimination | paper-cottet-mgb2-vortex | quantum 100-1000",
+   "unit": "evidence_elimination",
+   "source": "paper-cottet-mgb2-vortex",
+   "cell": "quantum 100-1000",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI033"
+   ]
+  },
+  {
+   "stratum": "evidence_elimination | paper-kerelsky-tbg-stm | quantum 10-100",
+   "unit": "evidence_elimination",
+   "source": "paper-kerelsky-tbg-stm",
+   "cell": "quantum 10-100",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI032"
+   ]
+  },
+  {
+   "stratum": "evidence_elimination | paper-shaban-cholesteric | chemistry 100-1000",
+   "unit": "evidence_elimination",
+   "source": "paper-shaban-cholesteric",
+   "cell": "chemistry 100-1000",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNI029"
+   ]
+  },
+  {
+   "stratum": "evidence_quantity | paper-cao-magic-angle | quantum 0.1-1",
+   "unit": "evidence_quantity",
+   "source": "paper-cao-magic-angle",
+   "cell": "quantum 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI029"
+   ]
+  },
+  {
+   "stratum": "evidence_quantity | paper-cao-magic-angle | quantum 10-100",
+   "unit": "evidence_quantity",
+   "source": "paper-cao-magic-angle",
+   "cell": "quantum 10-100",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI027"
+   ]
+  },
+  {
+   "stratum": "evidence_quantity | paper-cao-magic-angle | quantum 100-1000",
+   "unit": "evidence_quantity",
+   "source": "paper-cao-magic-angle",
+   "cell": "quantum 100-1000",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI028"
+   ]
+  },
+  {
+   "stratum": "evidence_quantity | paper-dinc-isosorbide | chemistry 100-1000",
+   "unit": "evidence_quantity",
+   "source": "paper-dinc-isosorbide",
+   "cell": "chemistry 100-1000",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNI026"
+   ]
+  },
+  {
+   "stratum": "evidence_quantity | paper-kerelsky-tbg-stm | quantum 10-100",
+   "unit": "evidence_quantity",
+   "source": "paper-kerelsky-tbg-stm",
+   "cell": "quantum 10-100",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI030"
+   ]
+  },
+  {
+   "stratum": "evidence_quantity | paper-schaefermeier-bscco-vortex | quantum 100-1000",
+   "unit": "evidence_quantity",
+   "source": "paper-schaefermeier-bscco-vortex",
+   "cell": "quantum 100-1000",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI031"
+   ]
+  },
+  {
    "stratum": "extent_choice_v2 | cod-mof | materials 1-10",
    "unit": "extent_choice_v2",
    "source": "cod-mof",
@@ -7702,12 +8110,11 @@
    "unit": "force_path_derivative",
    "source": "qm7x",
    "cell": "quantum 0.1-1",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "QNI023",
-    "QNI025"
+    "QNI023"
    ]
   },
   {
@@ -7898,28 +8305,14 @@
    ]
   },
   {
-   "stratum": "moire_inference | paper-cao-magic-angle | quantum 10-100",
-   "unit": "moire_inference",
-   "source": "paper-cao-magic-angle",
-   "cell": "quantum 10-100",
-   "size": 2,
-   "sample": 2,
-   "rule": "first batch: all",
-   "ids": [
-    "QNI011",
-    "QNI013"
-   ]
-  },
-  {
    "stratum": "moire_inference | paper-kerelsky-tbg-stm | quantum 10-100",
    "unit": "moire_inference",
    "source": "paper-kerelsky-tbg-stm",
    "cell": "quantum 10-100",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "QNI010",
     "QNI012"
    ]
   },
@@ -8088,18 +8481,6 @@
    "rule": "first batch: all",
    "ids": [
     "QNI021"
-   ]
-  },
-  {
-   "stratum": "rotational_line | sampl9 | chemistry 0.1-1",
-   "unit": "rotational_line",
-   "source": "sampl9",
-   "cell": "chemistry 0.1-1",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "CNI021"
    ]
   },
   {
@@ -8300,20 +8681,6 @@
    ]
   },
   {
-   "stratum": "vortex_inference | paper-cottet-mgb2-vortex | quantum 100-1000",
-   "unit": "vortex_inference",
-   "source": "paper-cottet-mgb2-vortex",
-   "cell": "quantum 100-1000",
-   "size": 3,
-   "sample": 3,
-   "rule": "first batch: all",
-   "ids": [
-    "QNI018",
-    "QNI019",
-    "QNI020"
-   ]
-  },
-  {
    "stratum": "vortex_inference | paper-schaefermeier-bscco-vortex | quantum 100-1000",
    "unit": "vortex_inference",
    "source": "paper-schaefermeier-bscco-vortex",
@@ -8394,10 +8761,7 @@
   "QNP017": "L0",
   "QNP018": "L0",
   "QNP019": "L0",
-  "QNI010": "L0",
-  "QNI011": "L0",
   "QNI012": "L0",
-  "QNI013": "L0",
   "QND005": "L0",
   "QND006": "L0",
   "QND007": "L0",
@@ -8434,18 +8798,13 @@
   "QNP021": "L0",
   "QNP022": "L0",
   "QNI017": "L0",
-  "QNI018": "L0",
-  "QNI019": "L0",
-  "QNI020": "L0",
   "QND010": "L0",
   "QND011": "L0",
   "QND012": "L0",
   "CNP024": "L0",
   "CNP025": "L0",
   "CNP026": "L0",
-  "CNI017": "L0",
   "CNI018": "L0",
-  "CNI019": "L0",
   "CNI020": "L0",
   "CND009": "L0",
   "CND010": "L0",
@@ -8459,7 +8818,6 @@
   "BND015": "L0",
   "BNI037": "L0",
   "QNI021": "L0",
-  "CNI021": "L0",
   "CNI022": "L0",
   "QND013": "L0",
   "CND012": "L0",
@@ -8475,7 +8833,6 @@
   "CNI024": "L0",
   "QNI023": "L0",
   "CNP032": "L0",
-  "QNI025": "L0",
   "QNP023": "L0",
   "QNP024": "L0",
   "QNP025": "L0",
@@ -8486,7 +8843,17 @@
   "CNP034": "L0",
   "CNP035": "L0",
   "CNP036": "L0",
-  "CNP037": "L0"
+  "CNP037": "L0",
+  "QNI027": "L0",
+  "QNI028": "L0",
+  "QNI029": "L0",
+  "QNI030": "L0",
+  "QNI031": "L0",
+  "QNI032": "L0",
+  "QNI033": "L0",
+  "CNI026": "L0",
+  "CNI029": "L0",
+  "CNI030": "L0"
  },
  "forms": {
   "BNP014": {
@@ -8757,21 +9124,9 @@
    "form": "family",
    "instance": "FA-MO-PERIOD-D1"
   },
-  "QNI010": {
-   "form": "family",
-   "instance": "FA-MO-ATOMS-K110"
-  },
-  "QNI011": {
-   "form": "family",
-   "instance": "FA-MO-NFULL-M1"
-  },
   "QNI012": {
    "form": "family",
    "instance": "FA-MO-NHALF-K079"
-  },
-  "QNI013": {
-   "form": "family",
-   "instance": "FA-MO-TWIST-D1"
   },
   "QND005": {
    "form": "family",
@@ -8917,18 +9272,6 @@
    "form": "family",
    "instance": "FA-VX-FIELD-BSCCO"
   },
-  "QNI018": {
-   "form": "family",
-   "instance": "FA-VX-FIELD-508"
-  },
-  "QNI019": {
-   "form": "family",
-   "instance": "FA-VX-FLUX-1887"
-  },
-  "QNI020": {
-   "form": "family",
-   "instance": "FA-VX-SANS-1173"
-  },
   "QND010": {
    "form": "family",
    "instance": "FA-VX-DES-SPACING"
@@ -8953,17 +9296,9 @@
    "form": "family",
    "instance": "FA-CH-PITCH-LRCD"
   },
-  "CNI017": {
-   "form": "family",
-   "instance": "FA-CH-LAMBDA-R5011"
-  },
   "CNI018": {
    "form": "family",
    "instance": "FA-CH-BAND-R5011"
-  },
-  "CNI019": {
-   "form": "family",
-   "instance": "FA-CH-HTP-S5011"
   },
   "CNI020": {
    "form": "family",
@@ -9016,10 +9351,6 @@
   "QNI021": {
    "form": "family",
    "instance": "FA-ROT-7029-111"
-  },
-  "CNI021": {
-   "form": "family",
-   "instance": "FA-ROT-G9-101"
   },
   "CNI022": {
    "form": "family",
@@ -9081,10 +9412,6 @@
    "form": "family",
    "instance": "FA-ANG-WP6"
   },
-  "QNI025": {
-   "form": "family",
-   "instance": "FA-FP-QM7X-7002"
-  },
   "QNP023": {
    "form": "family",
    "instance": "FC-QNP007"
@@ -9128,6 +9455,46 @@
   "CNP037": {
    "form": "family",
    "instance": "FC-CNP011"
+  },
+  "QNI027": {
+   "form": "family",
+   "instance": "FA-EVQ-CAO-COHERENCE"
+  },
+  "QNI028": {
+   "form": "family",
+   "instance": "FA-EVQ-CAO-SQUID"
+  },
+  "QNI029": {
+   "form": "family",
+   "instance": "FA-EVQ-CAO-PAULI"
+  },
+  "QNI030": {
+   "form": "family",
+   "instance": "FA-EVQ-KER-STRAIN"
+  },
+  "QNI031": {
+   "form": "family",
+   "instance": "FA-EVQ-SCH-FLUX"
+  },
+  "QNI032": {
+   "form": "family",
+   "instance": "FA-EVE-KER-NEMATIC"
+  },
+  "QNI033": {
+   "form": "family",
+   "instance": "FA-EVE-COT-BEND"
+  },
+  "CNI026": {
+   "form": "family",
+   "instance": "FA-EVQ-DIN-HTP"
+  },
+  "CNI029": {
+   "form": "family",
+   "instance": "FA-EVE-SHA-IONS"
+  },
+  "CNI030": {
+   "form": "family",
+   "instance": "FA-EVE-ALT-THREE"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."

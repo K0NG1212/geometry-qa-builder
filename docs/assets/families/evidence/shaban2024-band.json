@@ -1,0 +1,102 @@
+{
+ "kind": "evidence_card",
+ "id": "shaban2024-band",
+ "paper": "paper-shaban-cholesteric",
+ "citation": "Shaban et al., \"Overlooked Ionic Contribution of a Chiral Dopant in Cholesteric Liquid Crystals\", Materials 17, 5080 (2024), doi:10.3390/ma17205080 (Europe PMC PMC11509098)",
+ "license": "CC BY 4.0; facts and numbers only",
+ "family": "evidence_quantity",
+ "topic": "A right-handed cholesteric liquid crystal is made by doping the nematic E44 with 2.62 wt% of the chiral dopant R5011 and is studied in a planar cell between 20 and 90 °C.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "The helical twisting power of R5011 in E44 is 107.5 µm^-1, and the dopant concentration is 2.62 wt%.",
+   "locator": "Materials 2.1; Section 3.5",
+   "values": {
+    "htp_um": [
+     107.5,
+     "107.5 µm^-1"
+    ],
+    "c_wt": [
+     2.62,
+     "2.62 wt%"
+    ]
+   }
+  },
+  {
+   "id": "E2",
+   "text": "The refractive indices of E44 at 589 nm are ne = 1.7904 and no = 1.5484.",
+   "locator": "Section 2.2",
+   "values": {
+    "ne": [
+     1.7904,
+     "1.7904"
+    ],
+    "no": [
+     1.5484,
+     "1.5484"
+    ]
+   }
+  },
+  {
+   "id": "E3",
+   "text": "At 20 °C the measured reflection band is centred at 585 nm and is 85.6 nm wide.",
+   "locator": "Section 3.5; Fig. 9",
+   "values": {
+    "width_nm": [
+     85.6,
+     "85.6 nm"
+    ]
+   }
+  },
+  {
+   "id": "E4",
+   "text": "On heating to 90 °C the band width falls to 54.7 nm; the band centre moves only from 586.2 nm to 582.6 nm between 20 and 60 °C, then rises to about 603 nm by 90 °C.",
+   "locator": "Section 3.5; Fig. 9c"
+  }
+ ],
+ "ask": "Compute the expected width of the reflection band at 20 °C from the pitch and the indices, and choose the interpretation of the temperature dependence. Choose the option in which both the value and the conclusion are correct.",
+ "quantity": {
+  "kind": "cholesteric_bandwidth",
+  "args": {
+   "htp_um": "htp_um",
+   "c_wt": "c_wt",
+   "ne": "ne",
+   "no": "no"
+  },
+  "label": "Expected band width ≈",
+  "unit": "nm",
+  "decimals": 1,
+  "tolerance": "0.05",
+  "min_separation": "5.0"
+ },
+ "error": {
+  "rule": "band_centre_instead",
+  "kind": "cholesteric_centre",
+  "args": {
+   "htp_um": "htp_um",
+   "c_wt": "c_wt",
+   "ne": "ne",
+   "no": "no"
+  },
+  "plausibility": 1,
+  "reason": "用平均折射率 ⟨n⟩ 代替双折射 Δn，算出的是反射带中心而不是带宽。"
+ },
+ "conclusions": {
+  "paper": {
+   "text": "Up to about 60 °C the pitch stays essentially constant and the band narrows because the birefringence falls as orientational order decreases; above about 60 °C the red shift of the centre shows the pitch lengthening (weaker twisting).",
+   "locator": "Section 3.5: Δλ decrease attributed to diminishing Δn; red shift above ~60 °C = pitch elongation"
+  },
+  "rejected": {
+   "rule": "pitch_shortens",
+   "text": "The band narrows because the helical pitch shortens on heating, and the late red shift comes from a rise of the average refractive index.",
+   "locator": "Section 3.5",
+   "reason": "中心在 20–60 °C 几乎不动，说明螺距基本不变；带宽变窄来自 Δn 下降，而非螺距变短。"
+  }
+ },
+ "scale": {
+  "input_nm": 355,
+  "reasoning_nm": 355,
+  "definition": "螺距 p（约 0.36 μm）"
+ },
+ "short_citation": "Shaban et al., Materials 17, 5080 (2024)"
+}

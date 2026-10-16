@@ -1,0 +1,79 @@
+{
+ "kind": "evidence_card",
+ "id": "cao2018-squid",
+ "paper": "paper-cao-magic-angle",
+ "citation": "Cao, Fatemi, Fang, Watanabe, Taniguchi, Kaxiras & Jarillo-Herrero, \"Magic-angle graphene superlattices: a new platform for unconventional superconductivity\", Nature 556, 43 (2018); arXiv:1803.02342v2",
+ "license": "arXiv.org perpetual non-exclusive license; facts and numbers only, no text or figures reproduced",
+ "family": "evidence_quantity",
+ "topic": "In an MA-TBG device (twist angle 1.16°), transport near the boundary between the superconducting dome and the half-filling insulator shows oscillations in a perpendicular magnetic field B.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "At a density of -1.48 × 10^12 cm^-2 the critical current is largest at B = 0 and oscillates periodically in B with a period of 22.5 mT.",
+   "locator": "Methods, Phase-coherent transport (pp. 14-15); Extended Data Fig. 1a",
+   "values": {
+    "period_mT": [
+     22.5,
+     "22.5 mT"
+    ]
+   }
+  },
+  {
+   "id": "E2",
+   "text": "The device area between the voltage probes is approximately 1 µm^2.",
+   "locator": "Methods, Phase-coherent transport (p. 15)",
+   "values": {
+    "device_um2": [
+     1,
+     "1 µm^2"
+    ]
+   }
+  },
+  {
+   "id": "E3",
+   "text": "The electrical contacts are non-superconducting Cr/Au, so no superconductivity is induced by proximity to the leads.",
+   "locator": "Superconductivity in MA-TBG (p. 3)"
+  }
+ ],
+ "ask": "Treat the oscillation as flux quantization through a superconducting loop and find the effective loop area. Choose the option in which both the value and the conclusion are correct.",
+ "quantity": {
+  "kind": "flux_loop_area",
+  "args": {
+   "period_mT": "period_mT",
+   "flux": "h/2e"
+  },
+  "label": "Effective loop area ≈",
+  "unit": "um^2",
+  "decimals": 3,
+  "tolerance": "0.0005",
+  "min_separation": "0.030"
+ },
+ "error": {
+  "rule": "normal_flux_quantum",
+  "kind": "flux_loop_area",
+  "args": {
+   "period_mT": "period_mT",
+   "flux": "h/e"
+  },
+  "plausibility": 3,
+  "reason": "用正常态磁通量子 h/e（量子霍尔用）而不是超导磁通量子 h/2e，面积大了一倍。"
+ },
+ "conclusions": {
+  "paper": {
+   "text": "The loop is roughly a tenth of the device area, so the oscillation comes from SQUID-like superconducting loops around insulating islands: the superconducting state is spatially inhomogeneous on this scale.",
+   "locator": "Methods, Phase-coherent transport (p. 15): S ≈ 0.09 µm² vs ~1 µm² device; Josephson junction arrays around insulating islands"
+  },
+  "rejected": {
+   "rule": "uniform_whole_device",
+   "text": "The loop is essentially the whole device, so the oscillation shows a single uniform superconducting ring spanning the Hall bar.",
+   "locator": "Methods (p. 15): the area is compared with ~1 µm² and attributed to inhomogeneity",
+   "reason": "算出的面积远小于器件面积，原文据此推断存在绝缘“岛”与不均匀性，不是整个器件一个均匀环。"
+  }
+ },
+ "scale": {
+  "input_nm": 1000,
+  "reasoning_nm": 303,
+  "definition": "超导环路的等效尺寸 √S（约 0.3 μm）"
+ },
+ "short_citation": "Cao et al., Nature 556, 43 (2018)"
+}

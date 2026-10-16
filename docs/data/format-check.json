@@ -1,12 +1,12 @@
 {
  "kind": "format_check",
  "date": "2026-10-13",
- "checked": 240,
- "with_issues": 7,
+ "checked": 253,
+ "with_issues": 16,
  "by_severity": {
   "high": 0,
   "medium": 0,
-  "low": 7
+  "low": 16
  },
  "by_rule": {
   "not_four_choice": 0,
@@ -16,7 +16,7 @@
   "needs_explanation": 0,
   "binary_inside": 0,
   "main_record_old_format": 0,
-  "two_binaries_combined": 5,
+  "two_binaries_combined": 14,
   "mirror_pair": 2,
   "precision_collapse": 0
  },
@@ -73,10 +73,10 @@
   }
  },
  "answer_positions": {
-  "A": 52,
-  "B": 71,
-  "C": 68,
-  "D": 49
+  "A": 55,
+  "B": 74,
+  "C": 71,
+  "D": 53
  },
  "note": "Automatic rules plus findings checked by hand (REVIEWED). Read-only; fixes follow the RUNBOOK (whole-family regeneration, supersede or archive), not edits of single questions.",
  "items": [
@@ -156,6 +156,66 @@
    "suggestion": ""
   },
   {
+   "id": "CNI025",
+   "title": "胆甾液晶 · 螺距与双折射 → 反射带宽 → 温度变化的解释（证据题）",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "two_binaries_combined",
+     "severity": "low",
+     "label": "两个二选一拼成四选一",
+     "detail": "证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
+   "id": "CNI026",
+   "title": "手性剂对映体 · 反射波长与浓度 → 表观 HTP 比值 → 对映体过量（证据题）",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "two_binaries_combined",
+     "severity": "low",
+     "label": "两个二选一拼成四选一",
+     "detail": "证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
+   "id": "CNI027",
+   "title": "氢键构象 TWO 与 FIVE · 给体–受体距离与 O–H 红移 → 氢键强弱（证据题）",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "two_binaries_combined",
+     "severity": "low",
+     "label": "两个二选一拼成四选一",
+     "detail": "证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
+   "id": "CNI028",
+   "title": "氢键构象 ONE 与 ELEVEN · N···O 距离与 NH 伸缩分裂 → 同型氢键强弱（证据题）",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "two_binaries_combined",
+     "severity": "low",
+     "label": "两个二选一拼成四选一",
+     "detail": "证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
    "id": "CNP025",
    "title": "胆甾液晶（E44 + S5011）· 手性与螺距（四选一）",
    "legacy": false,
@@ -181,6 +241,81 @@
      "severity": "low",
      "label": "选项中正负成对",
      "detail": "选项：-1.8479 / 0.7856 / 0.9240 / 1.8479"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
+   "id": "QNI027",
+   "title": "魔角石墨烯 · 载流子间距与相干长度 → 耦合强度（证据题）",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "two_binaries_combined",
+     "severity": "low",
+     "label": "两个二选一拼成四选一",
+     "detail": "证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
+   "id": "QNI028",
+   "title": "魔角石墨烯 · 临界电流振荡周期 → 超导环路面积 → 不均匀性（证据题）",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "two_binaries_combined",
+     "severity": "low",
+     "label": "两个二选一拼成四选一",
+     "detail": "证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
+   "id": "QNI029",
+   "title": "魔角石墨烯 · 厚度与相干长度 → 平行场轨道极限 → 拆对机制（证据题）",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "two_binaries_combined",
+     "severity": "low",
+     "label": "两个二选一拼成四选一",
+     "detail": "证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
+   "id": "QNI030",
+   "title": "转角石墨烯 STM · 三个莫尔波长 → 等面积转角与异质应变（证据题）",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "two_binaries_combined",
+     "severity": "low",
+     "label": "两个二选一拼成四选一",
+     "detail": "证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
+   "id": "QNI031",
+   "title": "BSCCO 涡旋 · 场冷磁场与视场 → 预期涡旋数 → 磁通量子（证据题）",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "two_binaries_combined",
+     "severity": "low",
+     "label": "两个二选一拼成四选一",
+     "detail": "证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。"
     }
    ],
    "suggestion": ""

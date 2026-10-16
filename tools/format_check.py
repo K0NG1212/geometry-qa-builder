@@ -111,7 +111,9 @@ def build():
         else:
             if c['legacy']:
                 found[c['id']].append(('main_record_old_format', '四选一版本：%s' % c['version']))
-            if two_binaries(c['options']):
+            if q.get('family') == 'evidence_quantity':       # by design: value (right / mistake) x conclusion (paper / ruled out)
+                found[c['id']].append(('two_binaries_combined', '证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。'))
+            elif two_binaries(c['options']):
                 found[c['id']].append(('two_binaries_combined', '选项：' + ' / '.join(o['value'] for o in c['options'])))
             if mirror(c['options'], c['correct']):
                 found[c['id']].append(('mirror_pair', '选项：' + ' / '.join(o['value'] for o in c['options'])))

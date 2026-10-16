@@ -1,0 +1,83 @@
+{
+ "kind": "evidence_card",
+ "id": "cao2018-coherence",
+ "paper": "paper-cao-magic-angle",
+ "citation": "Cao, Fatemi, Fang, Watanabe, Taniguchi, Kaxiras & Jarillo-Herrero, \"Magic-angle graphene superlattices: a new platform for unconventional superconductivity\", Nature 556, 43 (2018); arXiv:1803.02342v2",
+ "license": "arXiv.org perpetual non-exclusive license; facts and numbers only, no text or figures reproduced",
+ "family": "evidence_quantity",
+ "topic": "Twisted bilayer graphene near the magic angle (MA-TBG) becomes superconducting when doped slightly away from half filling of its flat band.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "The perpendicular critical field follows the two-dimensional Ginzburg-Landau form and gives a coherence length of about 52 nm at T = 0.",
+   "locator": "Magnetic field response (p. 5) and Fig. 3e",
+   "values": {
+    "xi_nm": [
+     52,
+     "52 nm"
+    ]
+   }
+  },
+  {
+   "id": "E2",
+   "text": "The current-voltage curves of the device with the highest Tc (1.7 K) were taken at a gate-induced density of -1.47 × 10^12 cm^-2, measured from charge neutrality.",
+   "locator": "Fig. 1e caption",
+   "values": {
+    "n_gate_cm2": [
+     1470000000000.0,
+     "1.47 × 10^12 cm^-2"
+    ]
+   }
+  },
+  {
+   "id": "E3",
+   "text": "Quantum oscillations above the superconducting dome show small Fermi pockets: the carriers that matter are counted from the half-filling insulating state, n' = |n| - ns/2, which is only about 1.5 × 10^11 cm^-2 at optimal doping.",
+   "locator": "Quantum oscillations (pp. 7-8) and Discussion (p. 8)",
+   "values": {
+    "n_prime_cm2": [
+     150000000000.0,
+     "1.5 × 10^11 cm^-2"
+    ]
+   }
+  }
+ ],
+ "ask": "Estimate the mean spacing between the carriers that form the condensate (one over the square root of their areal density) and compare it with the coherence length. Choose the option in which both the value and the conclusion are correct.",
+ "quantity": {
+  "kind": "inverse_sqrt_density",
+  "args": {
+   "n_cm2": "n_prime_cm2"
+  },
+  "label": "Mean carrier spacing ≈",
+  "unit": "nm",
+  "decimals": 1,
+  "tolerance": "0.05",
+  "min_separation": "1.0"
+ },
+ "error": {
+  "rule": "total_gate_density",
+  "kind": "inverse_sqrt_density",
+  "args": {
+   "n_cm2": "n_gate_cm2"
+  },
+  "plausibility": 3,
+  "reason": "用栅极诱导的总密度 |n|（从电中性点算起）求间距，忽略了量子振荡显示真正参与的只是从半填充算起的 n′。"
+ },
+ "conclusions": {
+  "paper": {
+   "text": "The coherence length is only about twice this spacing, so a pair is hardly larger than the distance between carriers: MA-TBG is a strong-coupling superconductor close to the BCS-BEC crossover.",
+   "locator": "Discussion, last paragraph before Summary (p. 9): coherence length of the same order as the inter-particle distance (~26 nm)"
+  },
+  "rejected": {
+   "rule": "weak_coupling_bcs",
+   "text": "The coherence length is many times this spacing, as in a conventional weak-coupling BCS superconductor in which each pair overlaps many others.",
+   "locator": "Discussion (p. 8-9): Tc/TF and ξ vs spacing place MA-TBG far from weak-coupling BCS",
+   "reason": "原文据 ξ 与粒子间距同量级判断为强耦合、接近 BCS-BEC 交叉；弱耦合 BCS 的结论与之相反。"
+  }
+ },
+ "scale": {
+  "input_nm": 52,
+  "reasoning_nm": 52,
+  "definition": "相干长度 ξGL 与载流子间距（约 26–52 nm）"
+ },
+ "short_citation": "Cao et al., Nature 556, 43 (2018)"
+}
