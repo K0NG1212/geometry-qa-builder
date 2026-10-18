@@ -1,0 +1,100 @@
+{
+ "kind": "evidence_card",
+ "id": "cuello2017-collapse",
+ "paper": "paper-cuello-kcsa-gating",
+ "short_citation": "Cuello et al., eLife 6, e28032 (2017)",
+ "citation": "Cuello, Cortes, Perozo et al., \"The gating cycle of a K+ channel at atomic resolution\", eLife 6, e28032 (2017), doi:10.7554/eLife.28032 (PMC5711375; PDB 5VK6, 5VKE, 5VKH)",
+ "license": "CC BY 4.0; facts and numbers only",
+ "family": "evidence_elimination",
+ "topic": "The potassium channel KcsA was trapped with its intracellular activation gate held open by an engineered disulfide bond, and crystallized carrying either of two mutations that change C-type inactivation: E71A, which removes it, and Y82A, which speeds it up.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "Both mutants are trapped with the same activation gate opening of 22 A (measured between Thr112 alpha-carbons on diagonal subunits).",
+   "locator": "Results (locked-open KcsA; open and conductive); Fig. 3h",
+   "observed": {
+    "gate_open_in_both": true
+   }
+  },
+  {
+   "id": "E2",
+   "text": "In single-channel recordings the E71A construct has a high open probability (0.8 to 0.9) and the Y82A construct a low one (0.015 to 0.04), both independent of pH.",
+   "locator": "Results (mutations that modulate inactivation); Fig. 3d-e",
+   "observed": {
+    "e71a_conducts": true
+   }
+  },
+  {
+   "id": "E3",
+   "text": "In the E71A structure (2.25 A) the selectivity filter holds four potassium ions in the usual 1,3 and 2,4 arrangement, and its backbone differs from the closed conductive state by only 0.19 to 0.26 A r.m.s.d.",
+   "locator": "Results (open and conductive); Fig. 4a, 4d",
+   "observed": {
+    "e71a_filter_collapsed": false
+   }
+  },
+  {
+   "id": "E4",
+   "text": "In the Y82A structure (2.4 A) the filter has lost the ions at sites 2 and 3, the Val76 carbonyl has flipped out of the axis, and the inter-subunit distance at Gly77 is reduced from 8 to 6 A.",
+   "locator": "Results (open and deep C-type inactivated); Fig. 6a",
+   "observed": {
+    "y82a_filter_collapsed": true
+   }
+  },
+  {
+   "id": "E5",
+   "text": "In the inactivated structure three ordered water molecules sit in a cavity behind the filter and hydrogen bond to the flipped Val76 carbonyl; they are absent from the conductive filter.",
+   "locator": "Results (inactivating waters); Fig. 6a-b",
+   "observed": {
+    "waters_behind_filter": true
+   }
+  }
+ ],
+ "ask": "Which account of deep C-type inactivation in KcsA is consistent with all of these observations?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "text": "Deep C-type inactivation is a collapse of the selectivity filter that happens while the activation gate stays open; a network of water molecules behind the filter stabilizes the collapsed conformation.",
+   "predicts": {
+    "gate_open_in_both": true,
+    "y82a_filter_collapsed": true,
+    "e71a_filter_collapsed": false,
+    "waters_behind_filter": true
+   },
+   "locator": "Discussion: the non-inactivating E71A mutant prevented the collapse, so the deep inactivated state has a collapsed filter",
+   "reason": "与全部观测一致，即原文结论。",
+   "paper_conclusion": true
+  },
+  {
+   "rule": "gate_closure",
+   "text": "Inactivation is the closing of the intracellular activation gate.",
+   "predicts": {
+    "gate_open_in_both": false
+   },
+   "locator": "Results: both constructs are cross-linked open, at 22 A",
+   "reason": "两种突变体的激活门都被交联固定在 22 A 的开放状态，失活发生在门开着的时候。"
+  },
+  {
+   "rule": "collapse_unrelated",
+   "text": "The collapsed filter is a crystallization artefact unrelated to inactivation.",
+   "predicts": {
+    "e71a_filter_collapsed": true
+   },
+   "locator": "Discussion: the well-established non-inactivating E71A mutant prevented the collapse",
+   "reason": "在同样的交联与结晶条件下，不失活的 E71A 过滤器并未塌缩，说明塌缩与失活相关而非结晶假象。"
+  },
+  {
+   "rule": "cavity_ion_loss",
+   "text": "Inactivation comes from losing the potassium ion in the central cavity below the filter.",
+   "predicts": {
+    "y82a_filter_collapsed": false
+   },
+   "locator": "Results: the inactivated structure still holds a density modelled as a cavity ion, while the filter itself has collapsed",
+   "reason": "失活态的中心空腔仍有离子，变化发生在过滤器本身（位点 2、3 失去离子并塌缩）。"
+  }
+ ],
+ "scale": {
+  "input_nm": 2.2,
+  "reasoning_nm": 0.8,
+  "definition": "过滤器在 Gly77 处的亚基间距（0.6–0.8 nm）"
+ }
+}

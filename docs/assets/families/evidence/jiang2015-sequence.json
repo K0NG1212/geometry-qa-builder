@@ -1,0 +1,100 @@
+{
+ "kind": "evidence_card",
+ "id": "jiang2015-sequence",
+ "paper": "paper-jiang-anthrax-pa-pore",
+ "short_citation": "Jiang et al., Nature 521, 545 (2015)",
+ "citation": "Jiang, Pentelute, Collier & Zhou, \"Atomic structure of anthrax protective antigen pore elucidates toxin translocation\", Nature 521, 545 (2015), doi:10.1038/nature14247 (author manuscript PMC4519040; PDB 3J9C)",
+ "license": "PMC author manuscript (not CC); facts and numbers only, no text or figures reproduced",
+ "family": "evidence_elimination",
+ "topic": "Anthrax protective antigen (PA) heptamers convert at endosomal low pH from a soluble prepore into a membrane-spanning pore. Cryo-EM maps of the pore are compared with crystal structures of prepores.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "A subset of 21,632 particles gives a 3.6 A map that is in the pore state, with the domains 2c converged and the phi clamp correctly assembled, but without the 14-stranded beta barrel.",
+   "locator": "Main text (third layer); Extended Data Fig. 8",
+   "observed": {
+    "clamp_without_barrel": true
+   }
+  },
+  {
+   "id": "E2",
+   "text": "The 2beta10-2beta11 loop is in the pore conformation in one octameric prepore crystal structure and in the prepore conformation in another, while the rest of the two structures is largely unchanged.",
+   "locator": "Main text (pH sensing); Extended Data Fig. 6",
+   "observed": {
+    "loop_switches_alone": true
+   }
+  },
+  {
+   "id": "E3",
+   "text": "Mutating the conserved Asn422 or Asp425 in that loop abolishes the low-pH conversion from prepore to pore.",
+   "locator": "Main text (pH sensing)",
+   "observed": {
+    "loop_mutation_abolishes": true
+   }
+  },
+  {
+   "id": "E4",
+   "text": "The loop contains no histidine, the residue whose pKa of about 6 falls in the pH range where the conversion happens.",
+   "locator": "Main text (pH sensing)",
+   "observed": {
+    "loop_has_histidine": false
+   }
+  },
+  {
+   "id": "E5",
+   "text": "Mutations near the domain 2 / domain 4 interface, or deletion of the 2beta2-2beta3 loop, shift the pH threshold of the conversion but do not abolish its pH sensitivity.",
+   "locator": "Main text (pH sensing)",
+   "observed": {
+    "interface_mutation_abolishes": false
+   }
+  }
+ ],
+ "ask": "Which account of the low-pH conversion is consistent with all of these observations?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "text": "The 2beta10-2beta11 loop acts as the pH sensor and flips first; the domains then converge and assemble the phi clamp, and the beta barrel forms afterwards as a consequence, not as the cause.",
+   "predicts": {
+    "clamp_without_barrel": true,
+    "loop_switches_alone": true,
+    "loop_mutation_abolishes": true,
+    "interface_mutation_abolishes": false
+   },
+   "locator": "Main text (pH sensing and the three layers of conformational change); Extended Data Fig. 8",
+   "reason": "与全部观测一致，即原文结论。",
+   "paper_conclusion": true
+  },
+  {
+   "rule": "barrel_first",
+   "text": "The beta barrel forms first and pulls the domains together, which then closes the phi clamp.",
+   "predicts": {
+    "clamp_without_barrel": false
+   },
+   "locator": "Main text (third layer); Extended Data Fig. 8",
+   "reason": "有一类颗粒已经收拢并装好 phi 夹，却还没有 beta 桶，说明桶不是先形成的。"
+  },
+  {
+   "rule": "histidine_sensor",
+   "text": "Protonation of histidine residues in the sensing loop triggers the conversion.",
+   "predicts": {
+    "loop_has_histidine": true
+   },
+   "locator": "Main text (pH sensing): the loop possesses no His",
+   "reason": "该环不含组氨酸，原文据此排除组氨酸质子化这一常见机制。"
+  },
+  {
+   "rule": "interface_is_sensor",
+   "text": "The domain 2 / domain 4 interface is the pH sensor: breaking it is what makes the structure respond to acid.",
+   "predicts": {
+    "interface_mutation_abolishes": true
+   },
+   "locator": "Main text (pH sensing): such mutations change the threshold but keep pH sensitivity",
+   "reason": "界面处的突变只移动 pH 阈值，并不取消 pH 敏感性；取消敏感性的是该环上的 Asn422/Asp425。"
+  }
+ ],
+ "scale": {
+  "input_nm": 10.5,
+  "reasoning_nm": 1.2,
+  "definition": "感受 pH 的环与其邻近相互作用（约 1 nm）"
+ }
+}

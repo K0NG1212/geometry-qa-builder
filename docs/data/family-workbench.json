@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "kind": "reusable_family_development_pilot",
   "seed": "geobench-family-v1",
-  "attempted": 260,
-  "passed": 259,
+  "attempted": 268,
+  "passed": 267,
   "failures": [
    {
     "id": "FA-CONF-7063-max_dipole",
@@ -415,23 +415,23 @@
     "attempted": 2
    },
    "evidence_quantity": {
-    "passed": 10,
+    "passed": 12,
     "shortcut_hits": {},
-    "attempted": 10
+    "attempted": 12
    },
    "evidence_elimination": {
-    "passed": 9,
+    "passed": 15,
     "shortcut_hits": {},
-    "attempted": 9
+    "attempted": 15
    }
   },
   "correct_position_counts": {
-   "A": 57,
-   "B": 76,
-   "C": 72,
-   "D": 54
+   "A": 58,
+   "B": 78,
+   "C": 75,
+   "D": 56
   },
-  "manifest_sha256": "66fd2e7c5fa9e45c7378d81b434b900bcdf14414a9704c4fac28ebf2f3133194",
+  "manifest_sha256": "a75be1dce9b1c53e0bead738cb62bd38d38160472759a03029c1feca116ad8f9",
   "registry_sha256": "7abc6d1ca163accbe48c3a0aa63a36676f2cb48e5e0de719fa6df69ebac041ec",
   "code_sha256": {
    "task_families/__init__.py": "59fd2c0edf6f22a40dbc3a1d101d5d7d01287d79758687b02e9831fa26c9cbe9",
@@ -442,7 +442,7 @@
    "task_families/conformer_design.py": "c1df20bcb3ca7c59938dcfc28012c37beca3d235e0181495fb2b6d9e9d54a211",
    "task_families/crystal.py": "7c8a49460aadc9cb692081d49c585fe0180b6adca63ab5ccb5db414df9771502",
    "task_families/diffraction_design.py": "5230a90d08751a30196d7e8bd3df172295adb49f4cfa415e9e66356b387834c5",
-   "task_families/evidence.py": "43b25a7fb218ce1a4dc4b81b9ac11775c82497f987c3ce9fba915f75a378fa31",
+   "task_families/evidence.py": "212ee0b90156c8149ae25f0014c175a2d9be5f293a49d162bd7c7750a1731f27",
    "task_families/extent_choice.py": "e1ddb871279c3ae81c1e5e74590674b8f3fd71efdcd2c1c281a722ea123f4bf4",
    "task_families/extinction.py": "f9721343ded2f4de07dfaf787d4b59f4322cbaf782248414430677ddfad71e1f",
    "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af",
@@ -14034,6 +14034,278 @@
     {
      "label": "D",
      "value": "k(0.28 µm/s) / k(1.66 µm/s) ≈ 0.17. Slower lifting deposits about six times more particle layers from the same suspension; with the lattice unchanged, the thicker crystal gives the taller, narrower reflection peak."
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-EVE-MUH-SKYRMION",
+   "family": "evidence_elimination",
+   "ability": "inference",
+   "question": "Small-angle neutron scattering is measured on single crystals of the cubic chiral magnet MnSi (Tc = 29.5 K), with the neutron beam parallel to the applied magnetic field. The attached evidence.txt gives the evidence (facts E1–E5 from Mühlbauer et al., Science 323, 915 (2009); numbers as reported in the paper). Which interpretation of the A phase is consistent with all of these observations?",
+   "scope": "证据取自论文，数值与观测按原文转述（不含原文段落）；只依据所给证据与通用科学知识作答，不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "evidence.txt",
+     "format": "text",
+     "unit": "单位见各条",
+     "text": "E1. In zero field MnSi orders as a helix of period about 190 A along the cubic <111> directions; the atomic lattice constant is 4.56 A.\nE2. In the \"A phase\", just below Tc and in a field of about half the field Bc2 that fully polarizes the spins, six Bragg spots appear on a regular hexagon.\nE3. With the sample rotated into many different orientations (the field always along the beam), the six spots always form a regular hexagon in the plane perpendicular to the field, whatever the orientation of the crystal axes.\nE4. At lower temperature in the same field range (the conical phase), the spots lie along the field direction instead.\nE5. Rocking scans give a magnetic mosaicity of about 1.75 degrees in the A phase, half the 3.5 degrees of the helical state, corresponding to a correlation length of at least 5500 A.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "The conical phase, with the helix wave vector along the field."
+    },
+    {
+     "label": "B",
+     "value": "A single helix with its wave vector perpendicular to the field (the earlier interpretation), giving one pair of spots per domain."
+    },
+    {
+     "label": "C",
+     "value": "A lattice of skyrmion lines: three helices at 120 degrees to each other in the plane perpendicular to the field, a long-range-ordered spin crystal oriented by the field and decoupled from the atomic lattice."
+    },
+    {
+     "label": "D",
+     "value": "A multi-Q magnetic structure locked to the atomic lattice, as in the rare-earth magnets."
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-EVQ-FIL-RBCS",
+   "family": "evidence_quantity",
+   "ability": "inference",
+   "question": "Thin films of the all-inorganic perovskites RbxCs1-xPbI3 are made by mixing the small cation Rb+ into CsPbI3, and their optical absorption is measured. The attached evidence.txt gives the evidence (facts E1–E4 from Filip et al., Nat. Commun. 5, 5757 (2014); numbers as reported in the paper). Using E = hc/lambda with hc = 1239.84 eV nm, compute the change of the optical gap from x = 0 to x = 0.2 (in eV) and choose the interpretation. Choose the option in which both the value and the conclusion are correct.",
+   "scope": "证据取自论文，数值与观测按原文转述（不含原文段落）；只依据所给证据与通用科学知识作答，不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "evidence.txt",
+     "format": "text",
+     "unit": "单位见各条",
+     "text": "E1. On annealing, CsPbI3 films turn into a dark phase with a band gap of 1.73 eV, identified as the three-dimensional perovskite.\nE2. The absorption edge moves continuously from 720 nm at x = 0 to 690 nm at x = 0.2.\nE3. In the structures optimized by density functional theory, the Pb-I-Pb bond angles approach 180 degrees as the steric radius of the A-site cation grows (about 18 degrees per angstrom), and Rb+ is smaller than Cs+.\nE4. The electronic states of the A-site cation lie several eV away from the band edges.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "Change of the optical gap ~ 0.075 eV. The shift comes from the electronic states of Rb+ itself, which form a new band edge; the tilt of the octahedra plays no part."
+    },
+    {
+     "label": "B",
+     "value": "Change of the optical gap ~ 0.075 eV. The gap widens: the smaller Rb+ lets the PbI6 octahedra tilt further from the straight Pb-I-Pb geometry, and a larger tilt raises the gap (the calculations had predicted a 40 nm blue shift)."
+    },
+    {
+     "label": "C",
+     "value": "Change of the optical gap ~ -0.075 eV. The gap widens: the smaller Rb+ lets the PbI6 octahedra tilt further from the straight Pb-I-Pb geometry, and a larger tilt raises the gap (the calculations had predicted a 40 nm blue shift)."
+    },
+    {
+     "label": "D",
+     "value": "Change of the optical gap ~ -0.075 eV. The shift comes from the electronic states of Rb+ itself, which form a new band edge; the tilt of the octahedra plays no part."
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-EVE-FIL-ANGLE",
+   "family": "evidence_elimination",
+   "ability": "inference",
+   "question": "First-principles calculations map the band gap of lead-iodide perovskites APbI3 (corner-sharing PbI6 octahedra with a cation A in the cavities) across many real and hypothetical cations. The attached evidence.txt gives the evidence (facts E1–E4 from Filip et al., Nat. Commun. 5, 5757 (2014); numbers as reported in the paper). Which explanation of how the cation tunes the band gap is consistent with all of these facts?",
+   "scope": "证据取自论文，数值与观测按原文转述（不含原文段落）；只依据所给证据与通用科学知识作答，不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "evidence.txt",
+     "format": "text",
+     "unit": "单位见各条",
+     "text": "E1. Band structures computed with and without the cation agree near the gap; the cation states lie several eV away from the band edges.\nE2. In the measured structures of methylammonium lead iodide the Pb-I bond lengths deviate by at most 0.1 per cent from their average of 3.18 A, and the diagonals of each octahedron are within 4 degrees of perpendicular.\nE3. A model built from perfectly regular corner-sharing octahedra with no cation at all reproduces a gap that varies by up to about 1 eV with the Pb-I-Pb bond angles, following the largest of those angles.\nE4. At fixed bond angles, the spread of Pb-I bond lengths among the realistic structures changes the gap by about 0.2 eV (roughly 3 eV per angstrom).\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "Distortion of the PbI6 octahedra themselves dominates the gap."
+    },
+    {
+     "label": "B",
+     "value": "Changes of the Pb-I bond length dominate the gap."
+    },
+    {
+     "label": "C",
+     "value": "The orbitals of the cation form the band edges and set the gap directly."
+    },
+    {
+     "label": "D",
+     "value": "The gap is set by the largest Pb-I-Pb bond angle, that is by the octahedral tilt; the cation acts only through its steric size, by controlling that tilt."
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-EVE-JIA-CHANNEL",
+   "family": "evidence_elimination",
+   "ability": "inference",
+   "question": "The cryo-EM structure of the anthrax protective antigen (PA) pore at 2.9 A resolution shows the channel through which the enzymes lethal factor and edema factor cross the endosomal membrane. The attached evidence.txt gives the evidence (facts E1–E4 from Jiang et al., Nature 521, 545 (2015); numbers as reported in the paper). Which description of how a substrate protein passes through this channel is consistent with all of these facts?",
+   "scope": "证据取自论文，数值与观测按原文转述（不含原文段落）；只依据所给证据与通用科学知识作答，不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "evidence.txt",
+     "format": "text",
+     "unit": "单位见各条",
+     "text": "E1. The mouth of the channel is 30 A wide at its opening and narrows to about 20 A inside; it can take secondary-structure elements but not folded domains such as the N-terminal domain of lethal factor.\nE2. Below the mouth, a ring of seven Phe427 side chains (the phi clamp) leaves a solvent-excluded hole of only 6 A, the narrowest point of the whole channel.\nE3. Below the clamp, the throat (about 18 A) and the tube formed by the 14-stranded beta barrel (inner diameter 12 to 18 A) are wide enough to hold an alpha helix.\nE4. Apart from the mouth and the lower end of the tube the channel wall has no openings, and mutating even one of the seven Phe427 residues severely reduces translocation.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "The substrate has to be fully unfolded to pass the phi clamp, and may form an alpha helix again in the wider throat and tube below it."
+    },
+    {
+     "label": "B",
+     "value": "Lethal factor passes through as an intact folded domain."
+    },
+    {
+     "label": "C",
+     "value": "The substrate passes the phi clamp as preformed alpha helices."
+    },
+    {
+     "label": "D",
+     "value": "The substrate has to stay fully extended along the whole channel, because no part of it is wide enough for a helix."
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-EVE-JIA-SEQUENCE",
+   "family": "evidence_elimination",
+   "ability": "inference",
+   "question": "Anthrax protective antigen (PA) heptamers convert at endosomal low pH from a soluble prepore into a membrane-spanning pore. Cryo-EM maps of the pore are compared with crystal structures of prepores. The attached evidence.txt gives the evidence (facts E1–E5 from Jiang et al., Nature 521, 545 (2015); numbers as reported in the paper). Which account of the low-pH conversion is consistent with all of these observations?",
+   "scope": "证据取自论文，数值与观测按原文转述（不含原文段落）；只依据所给证据与通用科学知识作答，不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "evidence.txt",
+     "format": "text",
+     "unit": "单位见各条",
+     "text": "E1. A subset of 21,632 particles gives a 3.6 A map that is in the pore state, with the domains 2c converged and the phi clamp correctly assembled, but without the 14-stranded beta barrel.\nE2. The 2beta10-2beta11 loop is in the pore conformation in one octameric prepore crystal structure and in the prepore conformation in another, while the rest of the two structures is largely unchanged.\nE3. Mutating the conserved Asn422 or Asp425 in that loop abolishes the low-pH conversion from prepore to pore.\nE4. The loop contains no histidine, the residue whose pKa of about 6 falls in the pH range where the conversion happens.\nE5. Mutations near the domain 2 / domain 4 interface, or deletion of the 2beta2-2beta3 loop, shift the pH threshold of the conversion but do not abolish its pH sensitivity.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "The beta barrel forms first and pulls the domains together, which then closes the phi clamp."
+    },
+    {
+     "label": "B",
+     "value": "The 2beta10-2beta11 loop acts as the pH sensor and flips first; the domains then converge and assemble the phi clamp, and the beta barrel forms afterwards as a consequence, not as the cause."
+    },
+    {
+     "label": "C",
+     "value": "Protonation of histidine residues in the sensing loop triggers the conversion."
+    },
+    {
+     "label": "D",
+     "value": "The domain 2 / domain 4 interface is the pH sensor: breaking it is what makes the structure respond to acid."
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-EVQ-JIA-CLAMP",
+   "family": "evidence_quantity",
+   "ability": "inference",
+   "question": "In the anthrax protective antigen (PA) prepore the seven 2beta10-2beta11 loops of the heptamer do not touch one another; in the pore they close into an iris that forms the phi clamp. The attached evidence.txt gives the evidence (facts E1–E4 from Jiang et al., Nature 521, 545 (2015); numbers as reported in the paper). Treat the seven Phe427 residues of the prepore as the vertices of a regular polygon with the stated nearest-neighbour spacing, and compute the radius of the circle through them (in angstrom). Then choose the account of how the phi clamp forms. Choose the option in which both the value and the conclusion are correct.",
+   "scope": "证据取自论文，数值与观测按原文转述（不含原文段落）；只依据所给证据与通用科学知识作答，不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "evidence.txt",
+     "format": "text",
+     "unit": "单位见各条",
+     "text": "E1. In the prepore the 7 loops of the heptamer circumscribe a 30 A central hole, with neighbouring Phe427 side chains spaced about 14 A apart.\nE2. In the pore the same seven loops converge into an iris with a hole of only 6 A, bounded by a symmetric arrangement of the seven Phe427 residues.\nE3. The convergence comes from a 15 degree rotation of each domain 2c about its hinge, whose distal edge moves about 12 A towards the central axis of the pore.\nE4. Domains 1 and 3 are essentially unchanged between prepore and pore (C-alpha r.m.s.d. 0.54 and 0.58 A), while domain 2c changes by 6.87 A.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "Radius of the Phe427 ring in the prepore ~ 16.13 Å. The phi clamp is already present in the prepore and only needs the Phe427 side chains to rotate into place; the protein backbone does not move."
+    },
+    {
+     "label": "B",
+     "value": "Radius of the Phe427 ring in the prepore ~ 14.00 Å. The ring is about 32 A across in the prepore, matching its 30 A hole, so the 6 A clamp cannot be made by side-chain rotation alone: whole domains must swing inwards, as the 15 degree rotation and 12 A displacement show."
+    },
+    {
+     "label": "C",
+     "value": "Radius of the Phe427 ring in the prepore ~ 16.13 Å. The ring is about 32 A across in the prepore, matching its 30 A hole, so the 6 A clamp cannot be made by side-chain rotation alone: whole domains must swing inwards, as the 15 degree rotation and 12 A displacement show."
+    },
+    {
+     "label": "D",
+     "value": "Radius of the Phe427 ring in the prepore ~ 14.00 Å. The phi clamp is already present in the prepore and only needs the Phe427 side chains to rotate into place; the protein backbone does not move."
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-EVE-KCS-COLLAPSE",
+   "family": "evidence_elimination",
+   "ability": "inference",
+   "question": "The potassium channel KcsA was trapped with its intracellular activation gate held open by an engineered disulfide bond, and crystallized carrying either of two mutations that change C-type inactivation: E71A, which removes it, and Y82A, which speeds it up. The attached evidence.txt gives the evidence (facts E1–E5 from Cuello et al., eLife 6, e28032 (2017); numbers as reported in the paper). Which account of deep C-type inactivation in KcsA is consistent with all of these observations?",
+   "scope": "证据取自论文，数值与观测按原文转述（不含原文段落）；只依据所给证据与通用科学知识作答，不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "evidence.txt",
+     "format": "text",
+     "unit": "单位见各条",
+     "text": "E1. Both mutants are trapped with the same activation gate opening of 22 A (measured between Thr112 alpha-carbons on diagonal subunits).\nE2. In single-channel recordings the E71A construct has a high open probability (0.8 to 0.9) and the Y82A construct a low one (0.015 to 0.04), both independent of pH.\nE3. In the E71A structure (2.25 A) the selectivity filter holds four potassium ions in the usual 1,3 and 2,4 arrangement, and its backbone differs from the closed conductive state by only 0.19 to 0.26 A r.m.s.d.\nE4. In the Y82A structure (2.4 A) the filter has lost the ions at sites 2 and 3, the Val76 carbonyl has flipped out of the axis, and the inter-subunit distance at Gly77 is reduced from 8 to 6 A.\nE5. In the inactivated structure three ordered water molecules sit in a cavity behind the filter and hydrogen bond to the flipped Val76 carbonyl; they are absent from the conductive filter.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "Inactivation is the closing of the intracellular activation gate."
+    },
+    {
+     "label": "B",
+     "value": "The collapsed filter is a crystallization artefact unrelated to inactivation."
+    },
+    {
+     "label": "C",
+     "value": "Deep C-type inactivation is a collapse of the selectivity filter that happens while the activation gate stays open; a network of water molecules behind the filter stabilizes the collapsed conformation."
+    },
+    {
+     "label": "D",
+     "value": "Inactivation comes from losing the potassium ion in the central cavity below the filter."
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-EVE-RAS-DOMAIN",
+   "family": "evidence_elimination",
+   "ability": "inference",
+   "question": "The crystal structure of the beta2 adrenergic receptor bound to an agonist and to the nucleotide-free Gs heterotrimer (3.2 A) shows the alpha-helical domain of Gs-alpha swung away from its Ras-like GTPase domain, by about 127 degrees. A nanobody, Nb35, had been added to make the complex crystallize. The attached evidence.txt gives the evidence (facts E1–E5 from Rasmussen et al., Nature 477, 549 (2011); numbers as reported in the paper). Which account of the displaced alpha-helical domain is consistent with all of these observations?",
+   "scope": "证据取自论文，数值与观测按原文转述（不含原文段落）；只依据所给证据与通用科学知识作答，不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "evidence.txt",
+     "format": "text",
+     "unit": "单位见各条",
+     "text": "E1. Nb35 binds at the interface between the Gs-beta subunit and the Ras-like domain of Gs-alpha; none of its contacts on the Ras domain are residues that touch the alpha-helical domain in the nucleotide-bound structure.\nE2. Superimposing the Ras domains of the nucleotide-bound Gs-alpha structure and of the complex leaves no overlap between Nb35 and the alpha-helical domain.\nE3. Single-particle electron microscopy of the complex in detergent, without any nanobody, shows the alpha-helical domain in variable positions.\nE4. Double electron-electron resonance on a related G protein bound to light-activated rhodopsin measures distance changes of up to 20 A between the two domains.\nE5. Apyrase was used to destroy the GDP released on complex formation, since GDP or GTP analogues disrupt the high-affinity complex; deuterium exchange at the interface between the two domains increases on complex formation.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "GDP is still bound in a closed nucleotide pocket, and the apparent displacement is a modelling error."
+    },
+    {
+     "label": "B",
+     "value": "Nb35 pushed the alpha-helical domain aside, so the displacement is an artefact of the crystallization aid."
+    },
+    {
+     "label": "C",
+     "value": "The two domains stay together in solution; only the crystal lattice pulls them apart."
+    },
+    {
+     "label": "D",
+     "value": "Removing the nucleotide unlocks the two domains, so the alpha-helical domain becomes mobile; the position seen in the crystal is only one of the conformations it can adopt, selected by crystal packing."
     }
    ],
    "response_format": "one label: A/B/C/D"
@@ -42512,6 +42784,655 @@
    "option_order": "2×2: value (correct / registered mistake) × conclusion (paper / ruled out); correct at batch target",
    "human_review": "pending",
    "catalog_admitted": false
+  },
+  {
+   "id": "FA-EVE-MUH-SKYRMION",
+   "family": "evidence_elimination",
+   "family_version": "0.1.0",
+   "ability": "inference",
+   "correct_label": "C",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "The conical phase, with the helix wave vector along the field.",
+     "rule": "conical_phase",
+     "reason": "与 E3 矛盾：锥形相的斑点沿磁场方向，而 A 相的斑点在严格垂直于磁场的平面内。（Main text p. 3-4; Fig. 1A）",
+     "is_correct": false
+    },
+    {
+     "label": "B",
+     "value": "A single helix with its wave vector perpendicular to the field (the earlier interpretation), giving one pair of spots per domain.",
+     "rule": "single_q_helix",
+     "reason": "与 E2 矛盾：单一螺旋每个畴只给一对斑点，而实测是规则六边形上的六个斑点。（Main text p. 2-3: the A phase had been believed to be a single-Q helix）",
+     "is_correct": false
+    },
+    {
+     "label": "C",
+     "value": "A lattice of skyrmion lines: three helices at 120 degrees to each other in the plane perpendicular to the field, a long-range-ordered spin crystal oriented by the field and decoupled from the atomic lattice.",
+     "rule": "correct",
+     "reason": "与全部事实一致，即原文结论（Main text pp. 3-5: multi-Q structure of three helices perpendicular to B, independent of lattice orientation）。",
+     "is_correct": true
+    },
+    {
+     "label": "D",
+     "value": "A multi-Q magnetic structure locked to the atomic lattice, as in the rare-earth magnets.",
+     "rule": "lattice_pinned_multi_q",
+     "reason": "与 E3 矛盾：被原子晶格钉住的结构会随晶轴取向改变图样，而这里的六重图样只跟随磁场。（Main text p. 6: rare-earth multi-Q structures are strongly pinned to the lattice）",
+     "is_correct": false
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "muhlbauer2009-skyrmion",
+    "contradicted_by": {
+     "paper_conclusion": [],
+     "single_q_helix": [
+      "E2"
+     ],
+     "conical_phase": [
+      "E3"
+     ],
+     "lattice_pinned_multi_q": [
+      "E3"
+     ]
+    },
+    "facts": {
+     "E1": "Main text p. 2 (hierarchy of energy scales)",
+     "E2": "Main text p. 3; Fig. 2B",
+     "E3": "Main text p. 3; Fig. 2C",
+     "E4": "Main text p. 3-4; Fig. 1A, 2F",
+     "E5": "Main text p. 3"
+    },
+    "paper_conclusion_locator": "Main text pp. 3-5: multi-Q structure of three helices perpendicular to B, independent of lattice orientation",
+    "unique_survivor": true,
+    "limits": "排除逻辑由代码执行；各解释的“预期”与事实转录须对照原文位置人工核对（L1），程序不能保证其科学正确。"
+   },
+   "scales": {
+    "input_nm": 19,
+    "reasoning_nm": 19,
+    "reasoning_definition": "磁螺旋周期（约 19 nm）"
+   },
+   "source": "Mühlbauer, Binz, Jonietz, Pfleiderer, Rosch, Neubauer, Georgii & Böni, \"Skyrmion Lattice in a Chiral Magnet\", Science 323, 915 (2009); arXiv:0902.1968v1；证据卡逐条记录原文位置（docs/assets/families/evidence/muhlbauer2009-skyrmion.json）",
+   "license": "arXiv.org perpetual non-exclusive license; facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/evidence/muhlbauer2009-skyrmion.json": "6a8e1706d4a1f3a215514787e7eefe673d66dbd387da533aef85b64dab301a19"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 3,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-EVQ-FIL-RBCS",
+   "family": "evidence_quantity",
+   "family_version": "0.1.0",
+   "ability": "inference",
+   "correct_label": "B",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "Change of the optical gap ~ 0.075 eV. The shift comes from the electronic states of Rb+ itself, which form a new band edge; the tilt of the octahedra plays no part.",
+     "rule": "cation_states",
+     "reason": "数值正确，但结论是原文排除的解释：阳离子的电子态离带边几个 eV，去掉阳离子后能带几乎不变；原文把带隙变化归于八面体倾转。（Main text p. 2; Fig. 1b (cation states several eV from the band edges)）",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "B",
+     "value": "Change of the optical gap ~ 0.075 eV. The gap widens: the smaller Rb+ lets the PbI6 octahedra tilt further from the straight Pb-I-Pb geometry, and a larger tilt raises the gap (the calculations had predicted a 40 nm blue shift).",
+     "rule": "correct",
+     "reason": "数值按原文数据计算正确，结论即原文结论（Main text, Rb/Cs experiment: blue shift assigned to the more pronounced octahedral tilt; predicted shift 40 nm）。",
+     "is_correct": true,
+     "plausibility": 3
+    },
+    {
+     "label": "C",
+     "value": "Change of the optical gap ~ -0.075 eV. The gap widens: the smaller Rb+ lets the PbI6 octahedra tilt further from the straight Pb-I-Pb geometry, and a larger tilt raises the gap (the calculations had predicted a 40 nm blue shift).",
+     "rule": "blue_shift_read_as_narrowing",
+     "reason": "结论措辞取自原文，但数值来自错误做法：把波长变短（蓝移）当成带隙变小，符号取反。",
+     "is_correct": false,
+     "plausibility": 2
+    },
+    {
+     "label": "D",
+     "value": "Change of the optical gap ~ -0.075 eV. The shift comes from the electronic states of Rb+ itself, which form a new band edge; the tilt of the octahedra plays no part.",
+     "rule": "blue_shift_read_as_narrowing+cation_states",
+     "reason": "数值来自错误做法（把波长变短（蓝移）当成带隙变小，符号取反。），结论也是原文排除的解释。",
+     "is_correct": false,
+     "plausibility": 2
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "filip2014-rbcs",
+    "value": 0.07486956521739119,
+    "shown": "0.075",
+    "mistake_value": -0.07486956521739119,
+    "mistake_rule": "blue_shift_read_as_narrowing",
+    "decimals": 3,
+    "unit": "eV",
+    "facts": {
+     "E1": "Main text (synthesis paragraph); Fig. 4b",
+     "E2": "Main text (proof-of-concept paragraph); Fig. 4b",
+     "E3": "Fig. 3a; Supplementary Table 1",
+     "E4": "Main text p. 2; Fig. 1b"
+    },
+    "paper_conclusion_locator": "Main text, Rb/Cs experiment: blue shift assigned to the more pronounced octahedral tilt; predicted shift 40 nm",
+    "notes": [],
+    "limits": "数值由代码计算并经独立检查器复算；结论措辞与证据转录须对照原文位置人工核对（L1）。四个选项是“数值 × 结论”两个二元判断的组合。"
+   },
+   "scales": {
+    "input_nm": 0.64,
+    "reasoning_nm": 0.64,
+    "reasoning_definition": "Pb–I–Pb 连接（两段 Pb–I 键约 0.64 nm）"
+   },
+   "source": "Filip, Eperon, Snaith & Giustino, \"Steric engineering of metal-halide perovskites with tunable optical band gaps\", Nat. Commun. 5, 5757 (2014), doi:10.1038/ncomms6757；证据卡逐条记录原文位置（docs/assets/families/evidence/filip2014-rbcs.json）",
+   "license": "© 2014 Macmillan Publishers Limited, all rights reserved (not CC); facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/evidence/filip2014-rbcs.json": "2c13587fdda85643bbd472208d90edff056ec485d688d93c48ba91b367a1e9a8"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 2,
+   "option_order": "2×2: value (correct / registered mistake) × conclusion (paper / ruled out); correct at batch target",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-EVE-FIL-ANGLE",
+   "family": "evidence_elimination",
+   "family_version": "0.1.0",
+   "ability": "inference",
+   "correct_label": "D",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "Distortion of the PbI6 octahedra themselves dominates the gap.",
+     "rule": "octahedral_distortion",
+     "reason": "与 E2 矛盾：实测八面体几乎正则，而且完全正则的八面体模型已能重现带隙随键角的变化。（Main text p. 2: the measured octahedra are regular to within 0.1 per cent and 4 degrees）",
+     "is_correct": false
+    },
+    {
+     "label": "B",
+     "value": "Changes of the Pb-I bond length dominate the gap.",
+     "rule": "bond_length",
+     "reason": "与 E4 矛盾：键长差异只带来约 0.2 eV，而键角变化可达约 1 eV。（Fig. 2 caption: bond-length spread accounts for about 0.2 eV）",
+     "is_correct": false
+    },
+    {
+     "label": "C",
+     "value": "The orbitals of the cation form the band edges and set the gap directly.",
+     "rule": "cation_orbitals",
+     "reason": "与 E1 矛盾：去掉阳离子后带隙附近的能带几乎不变，说明带边不是阳离子轨道。（Fig. 1b: the cation states are far from the gap）",
+     "is_correct": false
+    },
+    {
+     "label": "D",
+     "value": "The gap is set by the largest Pb-I-Pb bond angle, that is by the octahedral tilt; the cation acts only through its steric size, by controlling that tilt.",
+     "rule": "correct",
+     "reason": "与全部事实一致，即原文结论（Abstract and Fig. 3b: the gap correlates with the largest metal-halide-metal bond angle, tuned through the steric size of the cation）。",
+     "is_correct": true
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "filip2014-angle",
+    "contradicted_by": {
+     "paper_conclusion": [],
+     "cation_orbitals": [
+      "E1"
+     ],
+     "bond_length": [
+      "E4"
+     ],
+     "octahedral_distortion": [
+      "E2"
+     ]
+    },
+    "facts": {
+     "E1": "Main text p. 2; Fig. 1b",
+     "E2": "Main text p. 2 (X-ray data)",
+     "E3": "Fig. 2; Fig. 3b",
+     "E4": "Fig. 2 caption"
+    },
+    "paper_conclusion_locator": "Abstract and Fig. 3b: the gap correlates with the largest metal-halide-metal bond angle, tuned through the steric size of the cation",
+    "unique_survivor": true,
+    "limits": "排除逻辑由代码执行；各解释的“预期”与事实转录须对照原文位置人工核对（L1），程序不能保证其科学正确。"
+   },
+   "scales": {
+    "input_nm": 0.64,
+    "reasoning_nm": 0.64,
+    "reasoning_definition": "Pb–I–Pb 连接（约 0.64 nm）"
+   },
+   "source": "Filip, Eperon, Snaith & Giustino, \"Steric engineering of metal-halide perovskites with tunable optical band gaps\", Nat. Commun. 5, 5757 (2014), doi:10.1038/ncomms6757；证据卡逐条记录原文位置（docs/assets/families/evidence/filip2014-angle.json）",
+   "license": "© 2014 Macmillan Publishers Limited, all rights reserved (not CC); facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/evidence/filip2014-angle.json": "a0c6000ff773f37487d221d2f7f5228fd9430c6f58c2718f16f63a132f0fcb6f"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 4,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-EVE-JIA-CHANNEL",
+   "family": "evidence_elimination",
+   "family_version": "0.1.0",
+   "ability": "inference",
+   "correct_label": "A",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "The substrate has to be fully unfolded to pass the phi clamp, and may form an alpha helix again in the wider throat and tube below it.",
+     "rule": "correct",
+     "reason": "与全部事实一致，即原文结论（Main text: the clamp may only allow passage of fully unfolded polypeptides; throat and tube can accommodate an alpha helix）。",
+     "is_correct": true
+    },
+    {
+     "label": "B",
+     "value": "Lethal factor passes through as an intact folded domain.",
+     "rule": "folded_domain",
+     "reason": "与 E1 矛盾：孔口内径约 20 A，容不下折叠结构域，更过不了 6 A 的夹子。（Main text: the mouth cannot accommodate folded domains）",
+     "is_correct": false
+    },
+    {
+     "label": "C",
+     "value": "The substrate passes the phi clamp as preformed alpha helices.",
+     "rule": "helix_through_clamp",
+     "reason": "与 E2 矛盾：phi 夹只有 6 A，比 alpha 螺旋还窄。（Main text: the 6 A clamp is smaller than secondary-structure elements）",
+     "is_correct": false
+    },
+    {
+     "label": "D",
+     "value": "The substrate has to stay fully extended along the whole channel, because no part of it is wide enough for a helix.",
+     "rule": "extended_throughout",
+     "reason": "与 E3 矛盾：夹子下方的喉部与管道有 12–18 A，足以容纳 alpha 螺旋。（Main text: the throat and tube (over 12 A) can hold an alpha helix）",
+     "is_correct": false
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "jiang2015-channel",
+    "contradicted_by": {
+     "paper_conclusion": [],
+     "folded_domain": [
+      "E1"
+     ],
+     "helix_through_clamp": [
+      "E2"
+     ],
+     "extended_throughout": [
+      "E3"
+     ]
+    },
+    "facts": {
+     "E1": "Main text (translocation channel); Fig. 3a",
+     "E2": "Main text (translocation channel); Fig. 3a-b, Fig. 4",
+     "E3": "Main text (translocation channel); Fig. 3a",
+     "E4": "Main text (translocation channel and phi-clamp paragraphs)"
+    },
+    "paper_conclusion_locator": "Main text: the clamp may only allow passage of fully unfolded polypeptides; throat and tube can accommodate an alpha helix",
+    "unique_survivor": true,
+    "limits": "排除逻辑由代码执行；各解释的“预期”与事实转录须对照原文位置人工核对（L1），程序不能保证其科学正确。"
+   },
+   "scales": {
+    "input_nm": 10.5,
+    "reasoning_nm": 3.0,
+    "reasoning_definition": "通道各段的内径（0.6–3 nm）"
+   },
+   "source": "Jiang, Pentelute, Collier & Zhou, \"Atomic structure of anthrax protective antigen pore elucidates toxin translocation\", Nature 521, 545 (2015), doi:10.1038/nature14247 (author manuscript PMC4519040; PDB 3J9C)；证据卡逐条记录原文位置（docs/assets/families/evidence/jiang2015-channel.json）",
+   "license": "PMC author manuscript (not CC); facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/evidence/jiang2015-channel.json": "60005bd18664f2b96cedaf735baf62a1f7ee7838d3a073c7d481d77de8558824"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 1,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-EVE-JIA-SEQUENCE",
+   "family": "evidence_elimination",
+   "family_version": "0.1.0",
+   "ability": "inference",
+   "correct_label": "B",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "The beta barrel forms first and pulls the domains together, which then closes the phi clamp.",
+     "rule": "barrel_first",
+     "reason": "与 E1 矛盾：有一类颗粒已经收拢并装好 phi 夹，却还没有 beta 桶，说明桶不是先形成的。（Main text (third layer); Extended Data Fig. 8）",
+     "is_correct": false
+    },
+    {
+     "label": "B",
+     "value": "The 2beta10-2beta11 loop acts as the pH sensor and flips first; the domains then converge and assemble the phi clamp, and the beta barrel forms afterwards as a consequence, not as the cause.",
+     "rule": "correct",
+     "reason": "与全部事实一致，即原文结论（Main text (pH sensing and the three layers of conformational change); Extended Data Fig. 8）。",
+     "is_correct": true
+    },
+    {
+     "label": "C",
+     "value": "Protonation of histidine residues in the sensing loop triggers the conversion.",
+     "rule": "histidine_sensor",
+     "reason": "与 E4 矛盾：该环不含组氨酸，原文据此排除组氨酸质子化这一常见机制。（Main text (pH sensing): the loop possesses no His）",
+     "is_correct": false
+    },
+    {
+     "label": "D",
+     "value": "The domain 2 / domain 4 interface is the pH sensor: breaking it is what makes the structure respond to acid.",
+     "rule": "interface_is_sensor",
+     "reason": "与 E5 矛盾：界面处的突变只移动 pH 阈值，并不取消 pH 敏感性；取消敏感性的是该环上的 Asn422/Asp425。（Main text (pH sensing): such mutations change the threshold but keep pH sensitivity）",
+     "is_correct": false
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "jiang2015-sequence",
+    "contradicted_by": {
+     "paper_conclusion": [],
+     "barrel_first": [
+      "E1"
+     ],
+     "histidine_sensor": [
+      "E4"
+     ],
+     "interface_is_sensor": [
+      "E5"
+     ]
+    },
+    "facts": {
+     "E1": "Main text (third layer); Extended Data Fig. 8",
+     "E2": "Main text (pH sensing); Extended Data Fig. 6",
+     "E3": "Main text (pH sensing)",
+     "E4": "Main text (pH sensing)",
+     "E5": "Main text (pH sensing)"
+    },
+    "paper_conclusion_locator": "Main text (pH sensing and the three layers of conformational change); Extended Data Fig. 8",
+    "unique_survivor": true,
+    "limits": "排除逻辑由代码执行；各解释的“预期”与事实转录须对照原文位置人工核对（L1），程序不能保证其科学正确。"
+   },
+   "scales": {
+    "input_nm": 10.5,
+    "reasoning_nm": 1.2,
+    "reasoning_definition": "感受 pH 的环与其邻近相互作用（约 1 nm）"
+   },
+   "source": "Jiang, Pentelute, Collier & Zhou, \"Atomic structure of anthrax protective antigen pore elucidates toxin translocation\", Nature 521, 545 (2015), doi:10.1038/nature14247 (author manuscript PMC4519040; PDB 3J9C)；证据卡逐条记录原文位置（docs/assets/families/evidence/jiang2015-sequence.json）",
+   "license": "PMC author manuscript (not CC); facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/evidence/jiang2015-sequence.json": "ce7c9ab2219d28a5038407cfcdfd3e1aeaf2ab958727328d11c2d41f407ea6de"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 2,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-EVQ-JIA-CLAMP",
+   "family": "evidence_quantity",
+   "family_version": "0.1.0",
+   "ability": "inference",
+   "correct_label": "C",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "Radius of the Phe427 ring in the prepore ~ 16.13 Å. The phi clamp is already present in the prepore and only needs the Phe427 side chains to rotate into place; the protein backbone does not move.",
+     "rule": "side_chain_rotation",
+     "reason": "数值正确，但结论是原文排除的解释：前孔中七个残基相距约 14 A、围出 30 A 的孔，仅靠侧链转动无法形成 6 A 的夹子；原文给出结构域整体旋转 15 度、远端内移 12 A。（Main text (phi-clamp paragraph): in the prepore the loops do not engage each other）",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "B",
+     "value": "Radius of the Phe427 ring in the prepore ~ 14.00 Å. The ring is about 32 A across in the prepore, matching its 30 A hole, so the 6 A clamp cannot be made by side-chain rotation alone: whole domains must swing inwards, as the 15 degree rotation and 12 A displacement show.",
+     "rule": "hexagon_instead_of_heptagon",
+     "reason": "结论措辞取自原文，但数值来自错误做法：把七个残基当作正六边形的顶点（六边形的边长等于半径），忽略 PA 是七聚体。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "C",
+     "value": "Radius of the Phe427 ring in the prepore ~ 16.13 Å. The ring is about 32 A across in the prepore, matching its 30 A hole, so the 6 A clamp cannot be made by side-chain rotation alone: whole domains must swing inwards, as the 15 degree rotation and 12 A displacement show.",
+     "rule": "correct",
+     "reason": "数值按原文数据计算正确，结论即原文结论（Main text (phi clamp and second layer); Extended Data Fig. 5a; Fig. 5c）。",
+     "is_correct": true,
+     "plausibility": 3
+    },
+    {
+     "label": "D",
+     "value": "Radius of the Phe427 ring in the prepore ~ 14.00 Å. The phi clamp is already present in the prepore and only needs the Phe427 side chains to rotate into place; the protein backbone does not move.",
+     "rule": "hexagon_instead_of_heptagon+side_chain_rotation",
+     "reason": "数值来自错误做法（把七个残基当作正六边形的顶点（六边形的边长等于半径），忽略 PA 是七聚体。），结论也是原文排除的解释。",
+     "is_correct": false,
+     "plausibility": 2
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "jiang2015-clamp",
+    "value": 16.133354096737406,
+    "shown": "16.13",
+    "mistake_value": 14.000000000000002,
+    "mistake_rule": "hexagon_instead_of_heptagon",
+    "decimals": 2,
+    "unit": "angstrom",
+    "facts": {
+     "E1": "Main text (phi-clamp paragraph); Extended Data Fig. 5a",
+     "E2": "Main text (phi-clamp paragraph); Fig. 4",
+     "E3": "Main text (second layer); Fig. 5c",
+     "E4": "Fig. 5c caption"
+    },
+    "paper_conclusion_locator": "Main text (phi clamp and second layer); Extended Data Fig. 5a; Fig. 5c",
+    "notes": [],
+    "limits": "数值由代码计算并经独立检查器复算；结论措辞与证据转录须对照原文位置人工核对（L1）。四个选项是“数值 × 结论”两个二元判断的组合。"
+   },
+   "scales": {
+    "input_nm": 10.5,
+    "reasoning_nm": 3.2,
+    "reasoning_definition": "前孔中 Phe427 环的直径（约 3.2 nm）"
+   },
+   "source": "Jiang, Pentelute, Collier & Zhou, \"Atomic structure of anthrax protective antigen pore elucidates toxin translocation\", Nature 521, 545 (2015), doi:10.1038/nature14247 (author manuscript PMC4519040; PDB 3J9C)；证据卡逐条记录原文位置（docs/assets/families/evidence/jiang2015-clamp.json）",
+   "license": "PMC author manuscript (not CC); facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/evidence/jiang2015-clamp.json": "ea8069d9472fc22bcb6de6b4f349e2fc1012a7507bddb1d01424587c37643f22"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 3,
+   "option_order": "2×2: value (correct / registered mistake) × conclusion (paper / ruled out); correct at batch target",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-EVE-KCS-COLLAPSE",
+   "family": "evidence_elimination",
+   "family_version": "0.1.0",
+   "ability": "inference",
+   "correct_label": "C",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "Inactivation is the closing of the intracellular activation gate.",
+     "rule": "gate_closure",
+     "reason": "与 E1 矛盾：两种突变体的激活门都被交联固定在 22 A 的开放状态，失活发生在门开着的时候。（Results: both constructs are cross-linked open, at 22 A）",
+     "is_correct": false
+    },
+    {
+     "label": "B",
+     "value": "The collapsed filter is a crystallization artefact unrelated to inactivation.",
+     "rule": "collapse_unrelated",
+     "reason": "与 E3 矛盾：在同样的交联与结晶条件下，不失活的 E71A 过滤器并未塌缩，说明塌缩与失活相关而非结晶假象。（Discussion: the well-established non-inactivating E71A mutant prevented the collapse）",
+     "is_correct": false
+    },
+    {
+     "label": "C",
+     "value": "Deep C-type inactivation is a collapse of the selectivity filter that happens while the activation gate stays open; a network of water molecules behind the filter stabilizes the collapsed conformation.",
+     "rule": "correct",
+     "reason": "与全部事实一致，即原文结论（Discussion: the non-inactivating E71A mutant prevented the collapse, so the deep inactivated state has a collapsed filter）。",
+     "is_correct": true
+    },
+    {
+     "label": "D",
+     "value": "Inactivation comes from losing the potassium ion in the central cavity below the filter.",
+     "rule": "cavity_ion_loss",
+     "reason": "与 E4 矛盾：失活态的中心空腔仍有离子，变化发生在过滤器本身（位点 2、3 失去离子并塌缩）。（Results: the inactivated structure still holds a density modelled as a cavity ion, while the filter itself has collapsed）",
+     "is_correct": false
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "cuello2017-collapse",
+    "contradicted_by": {
+     "paper_conclusion": [],
+     "gate_closure": [
+      "E1"
+     ],
+     "collapse_unrelated": [
+      "E3"
+     ],
+     "cavity_ion_loss": [
+      "E4"
+     ]
+    },
+    "facts": {
+     "E1": "Results (locked-open KcsA; open and conductive); Fig. 3h",
+     "E2": "Results (mutations that modulate inactivation); Fig. 3d-e",
+     "E3": "Results (open and conductive); Fig. 4a, 4d",
+     "E4": "Results (open and deep C-type inactivated); Fig. 6a",
+     "E5": "Results (inactivating waters); Fig. 6a-b"
+    },
+    "paper_conclusion_locator": "Discussion: the non-inactivating E71A mutant prevented the collapse, so the deep inactivated state has a collapsed filter",
+    "unique_survivor": true,
+    "limits": "排除逻辑由代码执行；各解释的“预期”与事实转录须对照原文位置人工核对（L1），程序不能保证其科学正确。"
+   },
+   "scales": {
+    "input_nm": 2.2,
+    "reasoning_nm": 0.8,
+    "reasoning_definition": "过滤器在 Gly77 处的亚基间距（0.6–0.8 nm）"
+   },
+   "source": "Cuello, Cortes, Perozo et al., \"The gating cycle of a K+ channel at atomic resolution\", eLife 6, e28032 (2017), doi:10.7554/eLife.28032 (PMC5711375; PDB 5VK6, 5VKE, 5VKH)；证据卡逐条记录原文位置（docs/assets/families/evidence/cuello2017-collapse.json）",
+   "license": "CC BY 4.0; facts and numbers only",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/evidence/cuello2017-collapse.json": "11e2b525906135668634cd23e7ae1a34252e16c98b97d591d7588104378101df"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 3,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-EVE-RAS-DOMAIN",
+   "family": "evidence_elimination",
+   "family_version": "0.1.0",
+   "ability": "inference",
+   "correct_label": "D",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "GDP is still bound in a closed nucleotide pocket, and the apparent displacement is a modelling error.",
+     "rule": "nucleotide_bound",
+     "reason": "与 E5 矛盾：制备时用 apyrase 除去了 GDP，而且 GDP 或 GTP 类似物会破坏该复合物，复合物本身就是无核苷酸状态。（Crystallization of the complex: apyrase removed the GDP, which otherwise disrupts the complex）",
+     "is_correct": false
+    },
+    {
+     "label": "B",
+     "value": "Nb35 pushed the alpha-helical domain aside, so the displacement is an artefact of the crystallization aid.",
+     "rule": "nanobody_artefact",
+     "reason": "与 E1、E2 矛盾：Nb35 结合在 Gbeta 与 Ras 结构域的界面，既不接触也不与螺旋结构域重叠；无纳米抗体的电镜同样看到该结构域位置可变。（Fig. S6: Nb35 neither contacts the helical domain nor overlaps it after superposition）",
+     "is_correct": false
+    },
+    {
+     "label": "C",
+     "value": "The two domains stay together in solution; only the crystal lattice pulls them apart.",
+     "rule": "crystal_packing_only",
+     "reason": "与 E3 矛盾：溶液中的单颗粒电镜已经看到该结构域位置可变，并非晶体中才分开。（Fig. 1b: EM in detergent solution already shows variable positions）",
+     "is_correct": false
+    },
+    {
+     "label": "D",
+     "value": "Removing the nucleotide unlocks the two domains, so the alpha-helical domain becomes mobile; the position seen in the crystal is only one of the conformations it can adopt, selected by crystal packing.",
+     "rule": "correct",
+     "reason": "与全部事实一致，即原文结论（Structure of activated Gs: the position most likely reflects one of an ensemble of conformations, stabilized by crystal packing）。",
+     "is_correct": true
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "rasmussen2011-domain",
+    "contradicted_by": {
+     "paper_conclusion": [],
+     "nanobody_artefact": [
+      "E1",
+      "E2"
+     ],
+     "crystal_packing_only": [
+      "E3"
+     ],
+     "nucleotide_bound": [
+      "E5"
+     ]
+    },
+    "facts": {
+     "E1": "Structure of activated Gs; Fig. 2b, Fig. S6",
+     "E2": "Structure of activated Gs; Fig. S6",
+     "E3": "Crystallization of the complex (EM analysis); Fig. 1b",
+     "E4": "Structure of activated Gs (DEER reference)",
+     "E5": "Crystallization of the complex; Structure of activated Gs"
+    },
+    "paper_conclusion_locator": "Structure of activated Gs: the position most likely reflects one of an ensemble of conformations, stabilized by crystal packing",
+    "unique_survivor": true,
+    "limits": "排除逻辑由代码执行；各解释的“预期”与事实转录须对照原文位置人工核对（L1），程序不能保证其科学正确。"
+   },
+   "scales": {
+    "input_nm": 11,
+    "reasoning_nm": 2.0,
+    "reasoning_definition": "Gs-alpha 两个结构域之间的位移（约 2 nm）"
+   },
+   "source": "Rasmussen et al., \"Crystal structure of the beta2 adrenergic receptor-Gs protein complex\", Nature 477, 549 (2011), doi:10.1038/nature10361 (author manuscript PMC3184188; PDB 3SN6)；证据卡逐条记录原文位置（docs/assets/families/evidence/rasmussen2011-domain.json）",
+   "license": "PMC author manuscript (not CC); facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/evidence/rasmussen2011-domain.json": "360216011ba992e64d70da1d2e4d27c770c3a2b83b1c4b2ff05f2a04294f03d1"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 4,
+   "option_order": "correct at batch-balanced target; others sha256-sorted",
+   "human_review": "pending",
+   "catalog_admitted": false
   }
  ],
  "stage_records": [
@@ -52656,6 +53577,306 @@
     "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
     "M6": "导出：学生包 / 审核包分离与运行快照"
    }
+  },
+  {
+   "id": "FA-EVE-MUH-SKYRMION",
+   "family": "evidence_elimination",
+   "define": {
+    "family": "evidence_elimination",
+    "version": "0.1.0",
+    "ability": "inference",
+    "output": "choice",
+    "module": "task_families/evidence.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "evidence.txt",
+      "format": "text",
+      "chars": 821
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "C",
+    "checks": [
+     "unique_survivor"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-EVQ-FIL-RBCS",
+   "family": "evidence_quantity",
+   "define": {
+    "family": "evidence_quantity",
+    "version": "0.1.0",
+    "ability": "inference",
+    "output": "choice",
+    "module": "task_families/evidence.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "evidence.txt",
+      "format": "text",
+      "chars": 521
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "B",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-EVE-FIL-ANGLE",
+   "family": "evidence_elimination",
+   "define": {
+    "family": "evidence_elimination",
+    "version": "0.1.0",
+    "ability": "inference",
+    "output": "choice",
+    "module": "task_families/evidence.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "evidence.txt",
+      "format": "text",
+      "chars": 713
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "D",
+    "checks": [
+     "unique_survivor"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-EVE-JIA-CHANNEL",
+   "family": "evidence_elimination",
+   "define": {
+    "family": "evidence_elimination",
+    "version": "0.1.0",
+    "ability": "inference",
+    "output": "choice",
+    "module": "task_families/evidence.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "evidence.txt",
+      "format": "text",
+      "chars": 697
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "A",
+    "checks": [
+     "unique_survivor"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-EVE-JIA-SEQUENCE",
+   "family": "evidence_elimination",
+   "define": {
+    "family": "evidence_elimination",
+    "version": "0.1.0",
+    "ability": "inference",
+    "output": "choice",
+    "module": "task_families/evidence.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "evidence.txt",
+      "format": "text",
+      "chars": 796
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "B",
+    "checks": [
+     "unique_survivor"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-EVQ-JIA-CLAMP",
+   "family": "evidence_quantity",
+   "define": {
+    "family": "evidence_quantity",
+    "version": "0.1.0",
+    "ability": "inference",
+    "output": "choice",
+    "module": "task_families/evidence.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "evidence.txt",
+      "format": "text",
+      "chars": 594
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "C",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-EVE-KCS-COLLAPSE",
+   "family": "evidence_elimination",
+   "define": {
+    "family": "evidence_elimination",
+    "version": "0.1.0",
+    "ability": "inference",
+    "output": "choice",
+    "module": "task_families/evidence.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "evidence.txt",
+      "format": "text",
+      "chars": 901
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "C",
+    "checks": [
+     "unique_survivor"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-EVE-RAS-DOMAIN",
+   "family": "evidence_elimination",
+   "define": {
+    "family": "evidence_elimination",
+    "version": "0.1.0",
+    "ability": "inference",
+    "output": "choice",
+    "module": "task_families/evidence.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "evidence.txt",
+      "format": "text",
+      "chars": 909
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "D",
+    "checks": [
+     "unique_survivor"
+    ]
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
   }
  ],
  "code": {
@@ -52667,7 +53888,7 @@
   "task_families/conformer_design.py": "\"\"\"Design-selection family: choose one of four candidate conformers for a stated target.\n\nS0, the allowed modification (single-bond rotation only: same atoms, same bonding,\nsame configuration at stereocentres) and the target property are given. The four\ncandidates are real dataset structures; the property evidence is the dataset's\ncomputed value at a stated level of theory. The checker verifies every candidate\nagainst the constraints and requires a unique best candidate by a stated margin.\nThis is candidate selection, not open structure generation, and the answer holds\nonly for the stated computational criterion, not for experiment.\n\"\"\"\nimport itertools\nimport json\nimport math\nfrom . import kit\n\nVERSION = '0.1.0'\nCONSTRAINTS = ('same_atoms', 'same_bonding', 'same_configuration', 'distinct_from_S0', 'dipole_consistent')\nOBJECTIVES = {\n    'min_energy': dict(key='e_pbe0_mbd_eV', sense=-1, margin=0.0434, unit='eV',\n                       text='the lowest total PBE0+MBD energy (single-point energies at the supplied geometries)',\n                       margin_basis='1 kcal/mol ≈ 0.0434 eV，高于常见构象能相对误差量级'),\n    'max_dipole': dict(key='dipole_eA', sense=1, margin=0.10, unit='e·Å',\n                       text='the largest total dipole-moment magnitude (PBE0+MBD, at the supplied geometries)',\n                       margin_basis='0.10 e·Å，约为该类小分子偶极的 10%'),\n}\n\n\ndef distance_rmsd(p, q):\n    \"\"\"Rotation/translation/reflection-invariant comparison via interatomic distances.\"\"\"\n    pairs = list(itertools.combinations(range(len(p)), 2))\n    return math.sqrt(math.fsum((math.dist(p[i], p[j]) - math.dist(q[i], q[j])) ** 2 for i, j in pairs) / len(pairs))\n\n\ndef stereocentres(elements, points, edges):\n    centres = {}\n    for i in range(len(points)):\n        nb = kit.neighbors(edges, i)\n        if len(nb) != 4:\n            continue\n        shells = [(elements[j], tuple(sorted(elements[k] for k in kit.neighbors(edges, j) if k != i))) for j in nb]\n        if len(set(shells)) != 4:\n            continue           # not a stereocentre under this first-shell rule\n        v = [kit.sub(points[j], points[i]) for j in nb[:3]]\n        centres[i] = 1 if kit.dot(kit.cross(v[0], v[1]), v[2]) > 0 else -1\n    return centres\n\n\ndef rg(points):\n    c = [math.fsum(p[k] for p in points) / len(points) for k in range(3)]\n    return math.sqrt(math.fsum(math.dist(p, c) ** 2 for p in points) / len(points))\n\n\ndef build(spec, root, seed):\n    path = root / 'docs' / spec['asset']\n    raw = path.read_bytes()\n    data = json.loads(raw)\n    objective = OBJECTIVES[spec['objective']]\n    elements = data['elements']\n    confs = {c['id']: c for c in data['conformers']}\n    s0 = confs[spec['s0']]\n    graph0 = kit.bond_graph(elements, s0['xyz'])\n    chiral0 = stereocentres(elements, s0['xyz'], graph0)\n    checks, pool = {}, []\n    for cid, c in confs.items():\n        if cid == spec['s0']:\n            continue\n        graph = kit.bond_graph(elements, c['xyz'])\n        chiral = stereocentres(elements, c['xyz'], graph)\n        vdip = math.sqrt(sum(x * x for x in c['vdip_eA']))\n        record = dict(same_atoms=len(c['xyz']) == len(elements), same_bonding=graph == graph0,\n                      same_configuration=chiral == chiral0,\n                      distinct_from_S0=distance_rmsd(s0['xyz'], c['xyz']) > 0.05,\n                      dipole_consistent=abs(vdip - c['dipole_eA']) < 1e-4)\n        checks[cid] = record\n        if all(record[k] for k in CONSTRAINTS):\n            pool.append(c)\n    unique = []\n    for c in sorted(pool, key=lambda c: c['id']):\n        if any(distance_rmsd(c['xyz'], u['xyz']) <= 0.05 or\n               (abs(c['e_pbe0_mbd_eV'] - u['e_pbe0_mbd_eV']) < 0.002 and abs(c['dipole_eA'] - u['dipole_eA']) < 0.005)\n               for u in unique):\n            checks[c['id']]['excluded'] = 'equivalent to another candidate (same or mirror conformer)'\n            continue\n        unique.append(c)\n    value = lambda c: objective['sense'] * c[objective['key']]\n    combos = []\n    for combo in itertools.combinations(unique, 4):\n        ranked = sorted(combo, key=value, reverse=True)\n        if value(ranked[0]) - value(ranked[1]) < objective['margin']:\n            continue\n        radii = sorted(combo, key=lambda c: rg(c['xyz']))\n        extreme = ranked[0] in (radii[0], radii[-1])\n        thin = value(ranked[0]) - value(ranked[1]) < 1.5 * objective['margin']   # prefer a clear margin when available\n        combos.append(((extreme, thin, kit.digest(seed, spec['id'], *sorted(c['id'] for c in combo))), combo, ranked))\n    if not combos:\n        raise ValueError('No four-candidate set with a unique best above the margin')\n    _, combo, ranked = min(combos, key=lambda x: x[0])\n    best = ranked[0]\n    permutation = kit.place(best, [c for c in combo if c is not best], spec.get('target_position'), seed, spec['id'],\n                            key=lambda c: c['id'])\n    options = [dict(label=l, value='candidate_%s.xyz' % l) for l in kit.LABELS]   # dataset ids stay reviewer-side\n    verdicts = [c is best and all(checks[c['id']][k] for k in CONSTRAINTS) for c in permutation]\n    key = kit.validate_verdicts([dict(o, source=c['id']) for o, c in zip(options, permutation)], verdicts,\n                               key=lambda o: o['source'])\n    margin = value(ranked[0]) - value(ranked[1])\n    ref = best[objective['key']]\n    audit = []\n    for l, c in zip(kit.LABELS, permutation):\n        diff = c[objective['key']] - ref\n        audit.append(dict(label=l, value='candidate_%s.xyz' % l, source_id=c['id'], is_correct=c is best, property=c[objective['key']],\n                          difference_from_best=round(diff, 6), unit=objective['unit'],\n                          rg_A=round(rg(c['xyz']), 4), change_from_S0_A=round(distance_rmsd(s0['xyz'], c['xyz']), 4),\n                          constraints=checks[c['id']],\n                          reason='满足约束且目标值唯一最优（领先第二名 %.4f %s）。' % (margin, objective['unit']) if c is best else\n                          '满足约束，但目标值比正确项差 %.4f %s（计算证据，非实验）。' % (abs(diff), objective['unit'])))\n    radii = sorted(permutation, key=lambda c: rg(c['xyz']))\n    change = sorted(permutation, key=lambda c: distance_rmsd(s0['xyz'], c['xyz']))\n    shortcuts = dict(most_compact_rg=radii[0] is best, most_extended_rg=radii[-1] is best,\n                     closest_to_S0=change[0] is best, farthest_from_S0=change[-1] is best)\n    inputs = [dict(name='S0.xyz', format='xyz', unit='angstrom',\n                   text=kit.xyz_text(elements, s0['xyz'], 'S0 starting conformer, angstrom'))]\n    for l, c in zip(kit.LABELS, permutation):\n        inputs.append(dict(name='candidate_%s.xyz' % l, format='xyz', unit='angstrom',\n                           text=kit.xyz_text(elements, c['xyz'], 'candidate %s, angstrom' % l)))\n    for item in inputs:\n        kit.parse_xyz(item['text'])\n    formula = ''.join('%s%s' % (e, elements.count(e) if elements.count(e) > 1 else '')\n                      for e in sorted(set(elements), key=lambda e: (e != 'C', e != 'H', e)))\n    question = ('S0 is a conformer of a neutral %s molecule. You may change it only by rotating about single bonds: '\n                'the same atoms in the same order, the same bonds and the same configuration at every stereocentre. '\n                'Goal: obtain %s. All four candidates A–D satisfy the allowed modification. Which candidate best meets the goal?') % (\n        formula, objective['text'])\n    return dict(\n        question=question,\n        scope=spec['scope'],\n        inputs=inputs,\n        numeric=None,\n        options=options, correct_label=key, option_audit=audit,\n        excluded_candidates=[dict(id=k, **v) for k, v in checks.items() if 'excluded' in v or not all(v[x] for x in CONSTRAINTS)],\n        rank=None,\n        checks=dict(objective=spec['objective'], margin=round(margin, 6), required_margin=objective['margin'],\n                    margin_basis=objective['margin_basis'], level=data['level'], s0=spec['s0'],\n                    candidate_pool=len(unique), valid_sets=len(combos), stereocentres=len(chiral0),\n                    shortcut_diagnostics=shortcuts,\n                    selection_rule='在满足约束且唯一最优的四元组中，优先让正确项不是回转半径最小或最大者，其次优先领先幅度 ≥1.5 倍阈值，再按种子选择。',\n                    limits='计算证据仅对所述理论水平与给定几何成立；不是实验构象分布、自由能或开放式分子设计。'),\n        scales=dict(input_nm=kit.dmax(s0['xyz']) / 10, reasoning_nm=kit.dmax(s0['xyz']) / 10,\n                    reasoning_definition='整分子构象比较：S0 最大原子间距'),\n        input_hashes={spec['asset']: kit.sha256(raw)})\n",
   "task_families/crystal.py": "\"\"\"Periodic-crystal families migrated from the legacy materials calculators.\n\ncoordination_shell (perception): nearest shell of a named partner species around a named\n    centre in the infinite crystal (periodic images included).\nfirst_diffraction_peak (inference): lowest-angle reflection with non-zero kinematic\n    intensity and its Bragg angle; needs the atomic positions (extinctions), not only a.\nBoth read the same fractional-coordinate table the student receives (see extinction.py).\nCubic cells (source_kind 'cif' / 'xyz') keep the original arithmetic; any other crystal system uses\nsource_kind 'cif_general' and task_families/cell.py (all symmetry operations, lattice matrix, reciprocal vectors).\n\"\"\"\nimport itertools\nimport math\nfrom . import kit\nimport sys\nfrom .cell import CubicCell, GeneralCell, general_table, is_cubic, read_cif\nfrom .extinction import cell_from_xyz, table, parse_table, factor, rule_absent\n\nVERSION = '0.3.0'\nSHELL_TOL = 1e-3       # angstrom: distances closer than this belong to one shell\n\n\ndef load_cell(spec, root):\n    \"\"\"(cell, rows as the student reads them, table text, source hash).\"\"\"\n    raw = (root / 'docs' / spec['asset']).read_bytes()\n    if spec['source_kind'] == 'cif_general':\n        params, rows = read_cif(root / 'docs' / spec['asset'])\n        if is_cubic(params):\n            text = table(params['a'], rows, spec['name'])\n            return CubicCell(params['a']), parse_table(text), text, kit.sha256(raw)\n        cell = GeneralCell(**params)\n        text = general_table(cell, rows, spec['name'])\n        return cell, parse_table(text), text, kit.sha256(raw)\n    if spec['source_kind'] == 'cif':\n        sys.path.insert(0, str(root / 'tools'))\n        import recompute_materials_batch2 as legacy      # general cubic reader (e.g. 2-atom CsCl), reused unchanged\n        crystal = legacy.read_cubic_cif(root / 'docs' / spec['asset'])\n        a, rows = crystal['a_A'], [(r['element'], r['fractional']) for r in crystal['rows']]\n    else:\n        a, rows = cell_from_xyz(root, spec['asset'], spec['a'])\n    text = table(a, rows, spec['name'])\n    return CubicCell(a), parse_table(text), text, kit.sha256(raw)\n\n\ndef matches(rule, rows, cell, index):\n    \"\"\"rule: {element} or {element, bonded_to, count, cutoff} (e.g. the mu4-O of a Zn4O node).\"\"\"\n    element, frac = rows[index]\n    if element != rule['element']:\n        return False\n    if 'bonded_to' not in rule:\n        return True\n    near = sum(1 for e, f in rows for t in itertools.product(cell.images, repeat=3)\n               if e == rule['bonded_to'] and 0 < math.dist(cell.cart(frac), cell.cart([x + s for x, s in zip(f, t)])) <= rule['cutoff'])\n    return near == rule['count']\n\n\ndef shells(cell, rows, centre, partners, images=True):\n    c = cell.cart(rows[centre][1])\n    found = []\n    for j in partners:\n        for t in (itertools.product(cell.images, repeat=3) if images else [(0, 0, 0)]):\n            p = cell.cart([x + s for x, s in zip(rows[j][1], t)])\n            d = math.dist(c, p)\n            if d > 1e-6:\n                found.append((d, p))\n    found.sort()\n    groups = []\n    for d, p in found:\n        if groups and d - groups[-1][0] <= SHELL_TOL:\n            groups[-1][1].append(p)\n        else:\n            groups.append((d, [p]))\n    return c, groups\n\n\ndef shell_option(n, d):\n    return '%d at %s Å' % (n, kit.display(d, 3))\n\n\ndef cell_checks(cell):\n    return dict(a_A=cell.a) if cell.kind == 'cubic' else dict(cell=cell.params)\n\n\ndef build_coordination(spec, root, seed):\n    cell, rows, text, digest = load_cell(spec, root)\n    centres = [i for i in range(len(rows)) if matches(spec['centre'], rows, cell, i)]\n    partners = [i for i in range(len(rows)) if matches(spec['partner'], rows, cell, i)]\n    if not centres or not partners:\n        raise ValueError('Centre or partner rule matches nothing')\n    centre = centres[0]\n    c, groups = shells(cell, rows, centre, partners)\n    (d1, first), (d2, second) = groups[0], groups[1]\n    inside = [g for g in shells(cell, rows, centre, partners, images=False)[1] if abs(g[0] - d1) <= SHELL_TOL]\n    n_in = len(inside[0][1]) if inside else 0\n    candidates = [('second_shell', len(second), d2, 2, '报告了第二壳层（更远的一组）而非最近壳层。'),\n                  ('no_periodic_images', n_in, d1, 3, '只数表中这一个晶胞内的原子，漏掉周期映像。'),\n                  ('mixed_shells', len(second), d1, 1, '距离取最近壳层，个数却取第二壳层。'),\n                  ('merged_first_two_shells', len(first) + len(second), d1, 1, '把前两个壳层合并计数。')]\n    if spec['partner']['element'] != spec['centre']['element'] or 'bonded_to' in spec['partner']:\n        same = [i for i in range(len(rows)) if rows[i][0] == rows[centre][0]]\n        g = shells(cell, rows, centre, same)[1]\n        if g:\n            candidates.append(('same_species_shell', len(g[0][1]), g[0][0], 2, '数成与中心同种元素的最近壳层。'))\n    if cell.kind != 'cubic':\n        # Low symmetry splits a coordination polyhedron into several distances; the question asks for the shortest one,\n        # and counting the whole polyhedron (e.g. 6 for distorted TiO6) is the natural misreading.\n        poly = [d for d, pts in groups for _ in pts if d <= 1.2 * d1]\n        beyond = [d for d, _ in groups if d > 1.2 * d1]\n        if len(poly) > len(first) and (not beyond or beyond[0] > 1.3 * d1):\n            candidates.insert(0, ('whole_coordination_polyhedron', len(poly), d1, 3,\n                               '把整个配位多面体（%d 个，含 %.3f–%.3f Å 的较长键）都算作最短距离的一组。' % (len(poly), d1, max(poly))))\n    right = shell_option(len(first), d1)\n    pool, rejected = [], []\n    for rule, n, d, plaus, reason in candidates:\n        text_opt = shell_option(n, d)\n        if n <= 0 or text_opt == right or text_opt in [p[1] for p in pool]:\n            rejected.append(dict(rule=rule, value=text_opt, reason='无效或与其他选项重复'))\n        else:\n            pool.append((rule, text_opt, reason, plaus))\n    if len(pool) < 3:\n        raise ValueError('Fewer than three distinct distractors')\n    pool.sort(key=lambda p: (-p[3], kit.digest(seed, spec['id'], p[0])))\n    chosen = pool[:3]\n    rejected += [dict(rule=p[0], value=p[1], reason='有效但未选（可信度排序）') for p in pool[3:]]\n    order = kit.place(('correct', right, '含周期映像的最近壳层：%d 个，距离 %.4f Å。' % (len(first), d1), 3),\n                      chosen, spec.get('target_position'), seed, spec['id'], key=lambda p: p[0])\n    options = [dict(label=l, value=p[1]) for l, p in zip(kit.LABELS, order)]\n    key = kit.validate_verdicts(options, [p[0] == 'correct' for p in order])\n    audit = [dict(label=l, value=p[1], rule=p[0], reason=p[2], is_correct=p[0] == 'correct') for l, p in zip(kit.LABELS, order)]\n    shell_pts = [c] + first\n    fx = rows[centre][1]\n    if cell.kind == 'cubic':\n        question = ('The table lists every atom of %s of %s. Treat the crystal as infinite and periodic. '\n                    'Around the %s at fractional (%.4f, %.4f, %.4f), how many %s form the nearest shell, and at what distance? '\n                    'Distances are rounded to 0.001 Å.') % (cell.describe(), spec['name'], spec['centre_text'], fx[0], fx[1], fx[2], spec['partner_text'])\n    else:\n        question = ('The table lists every atom of %s of %s. Treat the crystal as infinite and periodic. '\n                    'Around the %s at fractional (%.4f, %.4f, %.4f), how many %s lie at the shortest %s–%s distance '\n                    '(atoms within 0.001 Å of it count as the same distance), and what is that distance? '\n                    'Distances are rounded to 0.001 Å.') % (cell.describe(), spec['name'], spec['centre_text'], fx[0], fx[1], fx[2],\n                                                           spec['partner_text'], rows[centre][0], spec['partner']['element'])\n    return dict(\n        question=question, scope=spec['scope'],\n        inputs=[dict(name=spec['id'] + '-cell.txt', format='fractional-cell-table', unit='fractional; a in angstrom', text=text)],\n        numeric=None, options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected, rank=None,\n        checks=dict(centre_row=centre + 1, shells=[dict(distance_A=round(d, 6), count=len(p)) for d, p in groups[:3]],\n                    in_cell_count=n_in, shell_tolerance_A=SHELL_TOL, **cell_checks(cell),\n                    limits='理想晶胞坐标；壳层按 0.001 Å 容差归组；不涉及热振动或无序。'),\n        scales=dict(input_nm=cell.longest / 10, reasoning_nm=kit.dmax(shell_pts) / 10,\n                    reasoning_definition='中心原子与最近壳层全部原子的最大间距'),\n        input_hashes={spec['asset']: digest})\n\n\ndef two_theta(d, wavelength):\n    s = wavelength / (2 * d)\n    return math.degrees(2 * math.asin(s)) if s <= 1 else None\n\n\ndef reflections(cell):\n    \"\"\"Candidate reflections. Cubic: the original h >= k >= l >= 0 set. Other systems: every (h k l) with\n    |h|, |k|, |l| <= 4, one of each Friedel pair (first non-zero index positive).\"\"\"\n    if cell.kind == 'cubic':\n        return [hkl for hkl in itertools.product(range(5), repeat=3) if hkl != (0, 0, 0) and hkl[0] >= hkl[1] >= hkl[2]]\n    out = []\n    for hkl in itertools.product(range(-4, 5), repeat=3):\n        lead = next((x for x in hkl if x), 0)\n        if lead > 0:\n            out.append(hkl)\n    return out\n\n\ndef build_first_peak(spec, root, seed):\n    cell, rows, text, digest = load_cell(spec, root)\n    weights, lam = spec['weights'], spec['wavelength_A']\n    f000 = sum(weights[e] for e, _ in rows)\n    refl = []\n    for hkl in reflections(cell):\n        d = cell.d(hkl)\n        tt = two_theta(d, lam)\n        if tt is not None:\n            refl.append(dict(hkl=hkl, d=d, tt=tt, rel=abs(factor(rows, hkl, weights)) / f000))\n    refl.sort(key=lambda r: (r['tt'], r['hkl']))\n    allowed = [r for r in refl if r['rel'] > 1e-6]\n    first = allowed[0]\n    if cell.kind == 'cubic':\n        second = allowed[1]\n        if any(abs(r['tt'] - first['tt']) < 1e-9 and r is not first for r in allowed):\n            raise ValueError('Two different reflections share the first angle')\n    else:\n        # Symmetry-equivalent reflections share d; the answer is the angle, so equal angles are one peak.\n        same = [r for r in allowed if abs(r['tt'] - first['tt']) < 1e-9]\n        if max(r['rel'] for r in same) - min(r['rel'] for r in same) > 1e-6:\n            raise ValueError('Reflections at the first angle differ in intensity (accidental overlap)')\n        first = max(same, key=lambda r: tuple(x >= 0 for x in r['hkl']) + tuple(-abs(x) for x in r['hkl']))\n        second = next(r for r in allowed if r['tt'] - first['tt'] > 1e-6)\n    if 1e-6 < first['rel'] < 1e-3:\n        raise ValueError('First reflection too weak to be unambiguous')\n    show = lambda hkl: '(%d %d %d)' % hkl\n    lowest = refl[0]\n    cands = [dict(rule='lowest_index_ignoring_extinction', value=lowest['tt'], plausibility=3,\n                  reason=('取最低指数反射 %s，未检查它是否消光。' if cell.kind == 'cubic' else '取最低角反射 %s，未检查它是否消光。')\n                  % show(lowest['hkl']))] if lowest['rel'] <= 1e-6 else []\n    if cell.kind == 'cubic':\n        for rule in ('P', 'I', 'F'):\n            guess = next(r for r in refl if not rule_absent(rule, r['hkl']))\n            if guess is not first:\n                cands.append(dict(rule='assumed_lattice_rule:' + rule, value=guess['tt'], plausibility=3,\n                                  reason='按%s晶格规则判断，得到 %s；与实际坐标算出的结构因子不符。' % ({'P': '简单立方', 'I': '体心', 'F': '面心'}[rule], show(guess['hkl']))))\n    else:\n        a = cell.params['a']\n        cands.append(dict(rule='cubic_d_formula', value=two_theta(a / math.sqrt(sum(x * x for x in first['hkl'])), lam), plausibility=3,\n                          reason='对非立方晶胞套用立方公式 d = a/√(h²+k²+l²)（忽略 b、c 与晶胞角）。'))\n        cands.append(dict(rule='d_equals_c', value=two_theta(cell.params['c'], lam), plausibility=1, reason='把晶面间距当作晶格常数 c。'))\n    cands += [dict(rule='theta_not_two_theta', value=first['tt'] / 2, plausibility=2, reason='报告了 θ 而非 2θ。'),\n              dict(rule='second_allowed_peak', value=second['tt'], plausibility=2, reason='报告了第二个非零反射 %s。' % show(second['hkl'])),\n              dict(rule='d_equals_a', value=two_theta(cell.longest if cell.kind == 'cubic' else cell.params['a'], lam), plausibility=2,\n                   reason='把晶面间距当作晶格常数 a。')]\n    # Larger-angle misconceptions (v0.3.0): without them every mechanism but one lies below the answer and the correct\n    # option was almost always C (enumeration probe runs/enum-v06).\n    half = lam / first['d']\n    if half <= 1:\n        cands.append(dict(rule='bragg_missing_factor_two', value=math.degrees(2 * math.asin(half)), plausibility=2,\n                          reason='布拉格公式漏掉 2（用 λ = d sinθ，与把二级衍射当一级相同）。'))\n    strongest = max(allowed, key=lambda r: (round(r['rel'], 9), -r['tt']))\n    if strongest['tt'] - first['tt'] > 1e-6:\n        cands.append(dict(rule='strongest_not_first', value=strongest['tt'], plausibility=2,\n                          reason='把最强的反射 %s 当作第一个峰（混淆了强度与出现角度）。' % show(strongest['hkl'])))\n    if cell.kind == 'cubic' and sum(first['hkl']) ** 2 != sum(x * x for x in first['hkl']):\n        cands.append(dict(rule='index_sum_for_root', value=two_theta(cell.a / sum(first['hkl']), lam), plausibility=2,\n                          reason='立方面间距公式把 √(h²+k²+l²) 写成 h+k+l。'))\n    decimals, tol, sep = 2, '0.005', '0.30'\n    chosen, rejected, goal, rank = kit.choose_numeric(first['tt'], cands, decimals=decimals, tolerance=tol, min_separation=sep,\n                                                      seed=seed, context=spec['id'], lower=0, upper=180,\n                                                      target=spec.get('target_position'), distractor_separation='0.10')\n    options, audit = kit.label_numeric(first['tt'], chosen, decimals=decimals, unit='degree', seed=seed, context=spec['id'],\n                                       correct_reason='第一个 |F|≠0 的反射 %s，d = %.5f Å，2θ = 2 arcsin(λ/2d)。' % (show(first['hkl']), first['d']))\n    key = kit.validate_numeric(options, first['tt'], decimals=decimals, tolerance=tol, min_separation=sep, unit='degree',\n                               distractor_separation='0.10')\n    wlist = ', '.join('%s = %s' % kv for kv in sorted(weights.items()))\n    question = ('The table lists every atom of %s of %s. Use the kinematic structure factor with atomic '\n                'numbers as angle-independent weights (%s). For radiation of wavelength %.5f Å and first-order Bragg '\n                'diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?') % (cell.describe(), spec['name'], wlist, lam)\n    return dict(\n        question=question, scope=spec['scope'],\n        inputs=[dict(name=spec['id'] + '-cell.txt', format='fractional-cell-table', unit='fractional; a in angstrom', text=text)],\n        numeric=dict(value=kit.display(first['tt'], decimals), unit='degree', decimals=decimals, tolerance=tol),\n        options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected, rank=dict(target=goal, achieved=rank),\n        checks=dict(first_reflection=show(first['hkl']), d_A=first['d'], relative_amplitude=round(first['rel'], 6),\n                    skipped_extinct=[show(r['hkl']) for r in refl if r['tt'] < first['tt']], wavelength_A=lam, **cell_checks(cell),\n                    limits='运动学近似、零角度原子序数权重；不含原子散射因子角度依赖与仪器因素。'),\n        scales=dict(input_nm=cell.longest / 10, reasoning_nm=first['d'] / 10, reasoning_definition='答案反射的晶面间距 d'),\n        input_hashes={spec['asset']: digest})\n",
   "task_families/diffraction_design.py": "\"\"\"Diffraction design (materials 0.1-1 and 1-10 nm): the inverse of first_diffraction_peak.\n\nThree modes, all decided by the first reflection with non-zero kinematic intensity computed from the full\ncell contents (so extinctions matter):\n  crystal     choose one of four crystals whose first reflection (given wavelength) is closest to a target 2θ\n  anode       for one crystal, choose one of four stated X-ray lines that puts its first reflection closest to a target 2θ\n  wavelength  numeric: the wavelength that puts the first reflection exactly at a target 2θ\nInputs are the same fractional-cell tables as coordination_shell / first_diffraction_peak (COD structures).\n\"\"\"\nimport itertools\nimport math\nfrom . import kit\nfrom .crystal import load_cell\nfrom .extinction import factor, rule_absent\n\nVERSION = '0.1.0'\nSHOW = lambda hkl: '(%d %d %d)' % hkl\n\n\ndef reflections(a, rows, weights):\n    \"\"\"All (hkl, d, relative |F|) with h >= k >= l, index <= 4, sorted by decreasing d.\"\"\"\n    f000 = sum(weights[e] for e, _ in rows)\n    out = []\n    for hkl in itertools.product(range(5), repeat=3):\n        if hkl == (0, 0, 0) or not hkl[0] >= hkl[1] >= hkl[2]:\n            continue\n        out.append(dict(hkl=hkl, d=a / math.sqrt(sum(x * x for x in hkl)), rel=abs(factor(rows, hkl, weights)) / f000))\n    out.sort(key=lambda r: (-r['d'], r['hkl']))\n    return out\n\n\ndef first_allowed(refl):\n    allowed = [r for r in refl if r['rel'] > 1e-6]\n    if len(allowed) > 1 and abs(allowed[0]['d'] - allowed[1]['d']) < 1e-9:\n        raise ValueError('Two reflections share the first spacing')\n    if allowed[0]['rel'] < 1e-3:\n        raise ValueError('First reflection too weak to be unambiguous')\n    return allowed[0]\n\n\ndef two_theta(d, lam):\n    s = lam / (2 * d)\n    return math.degrees(2 * math.asin(s)) if s <= 1 else None\n\n\ndef crystal_info(spec, root):\n    cell, rows, text, digest = load_cell(spec, root)\n    if cell.kind != 'cubic':\n        raise ValueError('diffraction_design supports cubic cells only')\n    a = cell.a\n    refl = reflections(a, rows, spec['weights'])\n    first = first_allowed(refl)\n    return dict(a=a, rows=rows, text=text, digest=digest, refl=refl, first=first, lowest=refl[0])\n\n\ndef weights_text(w):\n    return ', '.join('%s = %s' % kv for kv in sorted(w.items()))\n\n\nRULE_TEXT = ('Use the kinematic structure factor with atomic numbers as angle-independent weights and first-order Bragg '\n             'diffraction; the relevant peak is the lowest-angle reflection with non-zero intensity.')\n\n\ndef choose(spec, seed, rows, prop, target, wrong, label, reason_ok):\n    \"\"\"rows: candidate dicts; prop(row) -> 2θ; wrong: [(rule, f, note)]. Closest-to-target selection with margins.\"\"\"\n    ranked = sorted(rows, key=lambda r: abs(prop(r) - target))\n    best, runner = ranked[0], ranked[1]\n    d1, d2 = abs(prop(best) - target), abs(prop(runner) - target)\n    if d2 < 1.5 * d1 or d2 - d1 < 0.5:\n        raise ValueError('Winning margin too small')\n    why = {}\n    for rule, f, note in wrong:\n        vals = [(abs(f(r) - target), r) for r in rows if f(r) is not None]\n        if not vals:\n            continue\n        pick = min(vals, key=lambda v: v[0])[1]\n        if pick is not best and label(pick) not in why:\n            why[label(pick)] = (rule, '%s时它最接近目标（%.2f°）。' % (note, f(pick)), 3)\n    for r in rows:\n        if r is not best and label(r) not in why:\n            why[label(r)] = ('farther_from_target', '首个非零反射在 2θ = %.2f°，离目标更远。' % prop(r), 2)\n    others = [(why[label(r)][0], label(r), why[label(r)][1], why[label(r)][2]) for r in rows if r is not best]\n    order = kit.place(('correct', label(best), reason_ok(best), 3), others, spec.get('target_position'), seed, spec['id'], key=lambda p: p[0])\n    options = [dict(label=l, value=p[1]) for l, p in zip(kit.LABELS, order)]\n    key = kit.validate_verdicts(options, [p[0] == 'correct' for p in order])\n    audit = [dict(label=l, value=p[1], rule=p[0], reason=p[2], is_correct=p[0] == 'correct') for l, p in zip(kit.LABELS, order)]\n    return options, key, audit, dict(margin_deg=d2 - d1)\n\n\ndef build(spec, root, seed):\n    mode = spec['mode']\n    if mode == 'crystal':\n        lam, target = spec['wavelength_A'], spec['target_2theta']\n        rows, inputs, hashes = [], [], {}\n        for c in spec['candidates']:\n            info = crystal_info(c, root)\n            rows.append(dict(c, **info))\n            inputs.append(dict(name=c['id'] + '-cell.txt', format='fractional-cell-table', unit='fractional; a in angstrom', text=info['text']))\n            hashes[c['asset']] = info['digest']\n        prop = lambda r: two_theta(r['first']['d'], lam)\n        wrong = [('lowest_index_ignoring_extinction', lambda r: two_theta(r['lowest']['d'], lam), '取最低指数反射、未检查消光'),\n                 ('theta_not_two_theta', lambda r: prop(r) / 2, '把 θ 当作 2θ 比较'),\n                 ('assumed_simple_cubic', lambda r: two_theta(next(x for x in r['refl'] if not rule_absent('P', x['hkl']))['d'], lam), '一律按简单立方规则')]\n        label = lambda r: '%s (%s-cell.txt)' % (r['short'], r['id'])\n        options, key, audit, extra = choose(spec, seed, rows, prop, target, wrong, label,\n                                            lambda r: '首个非零反射 %s，2θ = %.2f°，最接近目标。' % (SHOW(r['first']['hkl']), prop(r)))\n        wl = '; '.join('%s: %s' % (r['short'], weights_text(r['weights'])) for r in rows)\n        question = ('The four tables list every atom of one conventional cubic cell of four crystals (files named by crystal). %s '\n                    'Weights: %s. For X-rays of wavelength %.5f Å, you must choose the crystal whose lowest-angle reflection with '\n                    'non-zero intensity lies closest to 2θ = %.2f° (for example, to calibrate a detector at that angle). Which crystal '\n                    'should you choose?' % (RULE_TEXT, wl, lam, target))\n        checks = dict(candidates=[dict(crystal=r['short'], first=SHOW(r['first']['hkl']), d_A=r['first']['d'], two_theta=prop(r)) for r in rows],\n                      wavelength_A=lam, target_2theta=target, **extra)\n        reasoning = max(r['first']['d'] for r in rows) / 10\n        input_nm = max(r['a'] for r in rows) / 10\n        return dict(question=question, scope=spec['scope'], inputs=inputs, numeric=None, options=options, correct_label=key,\n                    option_audit=audit, excluded_candidates=[], rank=None, checks=dict(checks, limits=LIMITS),\n                    scales=dict(input_nm=input_nm, reasoning_nm=reasoning, reasoning_definition='候选中最大的首个非零反射晶面间距 d'),\n                    input_hashes=hashes)\n    info = crystal_info(spec, root)\n    d, target = info['first']['d'], spec['target_2theta']\n    inputs = [dict(name=spec['id'] + '-cell.txt', format='fractional-cell-table', unit='fractional; a in angstrom', text=info['text'])]\n    common = ('The table lists every atom of one conventional cubic cell of %s. %s Weights: %s.' % (spec['name'], RULE_TEXT, weights_text(spec['weights'])))\n    scales = dict(input_nm=info['a'] / 10, reasoning_nm=d / 10, reasoning_definition='首个非零反射的晶面间距 d')\n    base_checks = dict(first=SHOW(info['first']['hkl']), d_A=d, lowest_index=SHOW(info['lowest']['hkl']), a_A=info['a'], target_2theta=target,\n                       limits=LIMITS)\n    if mode == 'anode':\n        lines = [dict(name=n, lam=l) for n, l in spec['lines']]\n        prop = lambda r: two_theta(d, r['lam'])\n        wrong = [('lowest_index_ignoring_extinction', lambda r: two_theta(info['lowest']['d'], r['lam']), '取最低指数反射、未检查消光'),\n                 ('theta_not_two_theta', lambda r: prop(r) / 2 if prop(r) else None, '把 θ 当作 2θ 比较'),\n                 ('d_equals_a', lambda r: two_theta(info['a'], r['lam']), '把晶格常数 a 当作晶面间距')]\n        label = lambda r: '%s (λ = %.5f Å)' % (r['name'], r['lam'])\n        options, key, audit, extra = choose(spec, seed, [r for r in lines if prop(r)], prop, target, wrong, label,\n                                            lambda r: '首个非零反射 %s，d = %.4f Å，2θ = %.2f°。' % (SHOW(info['first']['hkl']), d, prop(r)))\n        question = ('%s You must choose the X-ray source line that places this lowest-angle reflection with non-zero intensity closest '\n                    'to 2θ = %.2f° (for example, to keep it clear of the beam stop while resolving it well). Which line should you '\n                    'choose?' % (common, target))\n        return dict(question=question, scope=spec['scope'], inputs=inputs, numeric=None, options=options, correct_label=key,\n                    option_audit=audit, excluded_candidates=[], rank=None,\n                    checks=dict(base_checks, lines={r['name']: prop(r) for r in lines}, **extra), scales=scales,\n                    input_hashes={spec['asset']: info['digest']})\n    # wavelength (numeric)\n    value = 2 * d * math.sin(math.radians(target / 2))\n    cands = [dict(rule='lowest_index_ignoring_extinction', value=2 * info['lowest']['d'] * math.sin(math.radians(target / 2)), plausibility=3,\n                  reason='用最低指数反射 %s 的 d（该反射消光）。' % SHOW(info['lowest']['hkl'])),\n             dict(rule='two_theta_as_theta', value=2 * d * math.sin(math.radians(target)), plausibility=3, reason='把 2θ 当作 θ 代入。'),\n             dict(rule='d_equals_a', value=2 * info['a'] * math.sin(math.radians(target / 2)), plausibility=2, reason='把晶格常数 a 当作 d。'),\n             dict(rule='missing_factor_two', value=d * math.sin(math.radians(target / 2)), plausibility=2, reason='λ = d sinθ，漏掉因子 2。'),\n             dict(rule='second_allowed', value=2 * next(r for r in info['refl'] if r['rel'] > 1e-6 and r['d'] < d - 1e-9)['d'] *\n                  math.sin(math.radians(target / 2)), plausibility=2, reason='用了第二个非零反射。')]\n    picked, rejected, goal, rank = kit.choose_numeric(value, cands, decimals=4, tolerance='0.00005', min_separation='0.0500', seed=seed,\n                                                      context=spec['id'], lower=0, target=spec.get('target_position'), distractor_separation='0.0250')\n    options, audit = kit.label_numeric(value, picked, decimals=4, unit='angstrom', seed=seed, context=spec['id'],\n                                       correct_reason='首个非零反射 %s，d = %.4f Å，λ = 2d sin(θ)。' % (SHOW(info['first']['hkl']), d))\n    key = kit.validate_numeric(options, value, decimals=4, tolerance='0.00005', min_separation='0.0500', unit='angstrom', distractor_separation='0.0250')\n    question = ('%s You must choose the X-ray wavelength that places this lowest-angle reflection with non-zero intensity exactly at '\n                '2θ = %.2f°. What wavelength, in Å, should you use?' % (common, target))\n    return dict(question=question, scope=spec['scope'], inputs=inputs,\n                numeric=dict(value=kit.display(value, 4), unit='angstrom', decimals=4, tolerance='0.00005'),\n                options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected, rank=dict(target=goal, achieved=rank),\n                checks=dict(base_checks, wavelength_A=value), scales=scales, input_hashes={spec['asset']: info['digest']})\n\n\nLIMITS = '运动学近似、零角度原子序数权重；不含原子散射因子角度依赖、吸收与仪器因素。设计选择基于计算证据。'\n",
-  "task_families/evidence.py": "\"\"\"Evidence-to-conclusion questions from papers (meeting 6: give the evidence, ask for the key conclusion).\n\nEach question reads one hand-transcribed evidence card, docs/assets/families/evidence/<id>.json, checked against the\nfull text kept locally (inputs/papers/, not in the repository). The card lists the facts (numbers and observations,\nparaphrased, each with its place in the paper), the paper's conclusion and the alternatives the paper rules out. The\nstudent receives the facts as an attachment (evidence.txt), plus any structure files; never the conclusions' sources.\n\nevidence_quantity (inference): compute one quantity from the facts (a spacing, an area, a field, a twist angle, a\n    count, a band width, a ratio, a distance difference), then judge. The four options cross two values (correct, or\n    the value of a registered mistake) with two conclusions (the paper's, or one the paper rules out), so neither half\n    alone gives the answer and no option is a majority cue. The value is computed here and recomputed by the checker.\nevidence_elimination (inference): four explanations; each states what it predicts for the observed facts. The code\n    keeps the explanations whose predictions all match the observations: exactly one may survive, and it must be the\n    paper's conclusion; every other one must contradict at least one fact shown to the student.\n\nWhat code guarantees: the numbers, the 2x2 structure, and the logical elimination over the card. What it cannot: that\nthe card renders the paper faithfully. That is the L1 check (each fact and conclusion has a locator for side-by-side\ncomparison with the original).\n\"\"\"\nimport json\nimport math\nimport re\nfrom . import kit\n\nVERSION = '0.1.0'\nH = 6.62607015e-34          # J s, exact (SI 2019)\nE = 1.602176634e-19         # C, exact (SI 2019)\nFLUX = {'h/2e': H / (2 * E), 'h/e': H / E}\nUNITS = {'nm': ' nm', 'um^2': ' µm²', 'T': ' T', 'degree': '°', 'angstrom': ' Å', '': ''}\nNUMBER = re.compile(r'^(-?\\d+(?:\\.\\d+)?)(?: × 10\\^(-?\\d+))?')\n\n\ndef shown_value(display):\n    \"\"\"Number at the start of a display string such as '1.5 × 10^11 cm^-2' or '4 µm × 4 µm'.\"\"\"\n    m = NUMBER.match(display)\n    if not m:\n        raise ValueError('Display string does not start with a number: ' + display)\n    return float(m.group(1)) * (10 ** int(m.group(2)) if m.group(2) else 1)\n\n\ndef load(root, rel):\n    raw = (root / 'docs' / rel).read_bytes()\n    card = json.loads(raw.decode('utf-8'))\n    if card.get('kind') != 'evidence_card':\n        raise ValueError('Not an evidence card: ' + rel)\n    return card, raw\n\n\ndef facts_text(card):\n    return ''.join('%s. %s\\n' % (f['id'], f['text']) for f in card['facts'])\n\n\ndef values(card):\n    \"\"\"Named numbers of the card; each must be displayed verbatim in its fact and parse back to the stored value.\"\"\"\n    out = {}\n    for f in card['facts']:\n        for name, (value, display) in f.get('values', {}).items():\n            if display not in f['text'] or not math.isclose(shown_value(display), value, rel_tol=1e-12):\n                raise ValueError('Value %s is not shown as stored in %s' % (name, f['id']))\n            if name in out:\n                raise ValueError('Duplicate value name ' + name)\n            out[name] = float(value)\n    return out\n\n\ndef arg(v, x):\n    return v[x] if isinstance(x, str) else float(x)\n\n\ndef structures(root, card):\n    files, inputs, hashes = {}, [], {}\n    for f in card.get('files', []):\n        raw = (root / 'docs' / f['asset']).read_bytes()\n        text = raw.decode('utf-8')\n        files[f['key']] = kit.parse_xyz(text)\n        inputs.append(dict(name=f['name'], format='xyz', unit='angstrom', text=text))\n        hashes[f['asset']] = kit.sha256(raw)\n    return files, inputs, hashes\n\n\ndef compute(kind, a, v, files):\n    \"\"\"Quantity in the card's unit. Distances in the cards are in nm unless the unit says otherwise.\"\"\"\n    if kind == 'inverse_sqrt_density':                           # cm^-2 -> nm\n        return 1e7 / math.sqrt(arg(v, a['n_cm2']))\n    if kind == 'flux_loop_area':                                 # S = Phi / dB, in um^2\n        return FLUX[a['flux']] / (arg(v, a['period_mT']) * 1e-3) * 1e12\n    if kind == 'thin_film_parallel_field':                       # Bc|| = sqrt(3) Phi0 / (pi d xi), in T\n        return math.sqrt(3) * FLUX['h/2e'] / (math.pi * arg(v, a['d_nm']) * 1e-9 * arg(v, a['xi_nm']) * 1e-9)\n    if kind == 'perpendicular_gl_field':                         # Bc2 = Phi0 / (2 pi xi^2), in T\n        return FLUX['h/2e'] / (2 * math.pi * (arg(v, a['xi_nm']) * 1e-9) ** 2)\n    if kind == 'equal_area_twist':                               # Heron area -> equilateral side -> twist (degrees)\n        x, y, z = (arg(v, a[k]) for k in ('l1', 'l2', 'l3'))\n        s = (x + y + z) / 2\n        area = math.sqrt(s * (s - x) * (s - y) * (s - z))\n        side = math.sqrt(4 * area / math.sqrt(3))\n        return math.degrees(2 * math.asin(arg(v, a['a_nm']) / (2 * side)))\n    if kind == 'single_wavelength_twist':\n        return math.degrees(2 * math.asin(arg(v, a['a_nm']) / (2 * arg(v, a['l']))))\n    if kind == 'flux_quanta_count':                              # N = B A / Phi\n        side = arg(v, a['side_um']) * 1e-6\n        return arg(v, a['B_mT']) * 1e-3 * side * side / FLUX[a['flux']]\n    if kind in ('cholesteric_bandwidth', 'cholesteric_centre'):  # p = 1/(HTP c); width p*dn, centre p*<n>, in nm\n        pitch_nm = 1e3 / (arg(v, a['htp_um']) * arg(v, a['c_wt']) / 100)\n        ne, no = arg(v, a['ne']), arg(v, a['no'])\n        return pitch_nm * ((ne - no) if kind == 'cholesteric_bandwidth' else (ne + no) / 2)\n    if kind == 'htp_ratio':                                      # HTP = n / (lambda c): ratio = lam_R c_R / (lam_L c_L)\n        return arg(v, a['lam_R']) * arg(v, a['c_R']) / (arg(v, a['lam_L']) * arg(v, a['c_L']))\n    if kind == 'wavelength_ratio':\n        return arg(v, a['lam_R']) / arg(v, a['lam_L'])\n    if kind in ('layer_ratio', 'layer_ratio_inverted'):         # Dimitrov-Nagayama: k = beta h Je phi / (0.605 d v (1 - phi))\n        layers = lambda speed: 1.0 / (0.605 * speed)               # same suspension and meniscus: all other factors cancel\n        ratio = layers(arg(v, a['v_slow'])) / layers(arg(v, a['v_fast']))\n        return ratio if kind == 'layer_ratio' else 1.0 / ratio      # mistake: layers taken to grow with speed\n    if kind == 'xyz_distance_difference':                        # rows counted from 1, in angstrom\n        def d(key, rows):\n            elements, points = files[key]\n            i, j = (r - 1 for r in rows)\n            return math.dist(points[i], points[j])\n        return d(a['a_file'], a['a_rows']) - d(a['b_file'], a['b_rows'])\n    raise ValueError('Unknown quantity kind ' + kind)\n\n\ndef question(card, extra_files):\n    files = ' and '.join(['evidence.txt'] + [f['name'] for f in card.get('files', [])]) if extra_files else 'evidence.txt'\n    return ('%s The attached %s give%s the evidence (facts E1–E%d from %s; numbers as reported in the paper). %s'\n            % (card['topic'], files, '' if extra_files else 's', len(card['facts']), card['short_citation'], card['ask']))\n\n\ndef evidence_input(card):\n    return dict(name='evidence.txt', format='text', unit='单位见各条', text=facts_text(card))\n\n\ndef build_quantity(spec, root, seed):\n    card, raw = load(root, spec['asset'])\n    if card['family'] != 'evidence_quantity':\n        raise ValueError('Card is not a quantity card')\n    v = values(card)\n    files, xyz_inputs, hashes = structures(root, card)\n    hashes[spec['asset']] = kit.sha256(raw)\n    q, err, concl = card['quantity'], card['error'], card['conclusions']\n    right, wrong = compute(q['kind'], q['args'], v, files), compute(err['kind'], err['args'], v, files)\n    dec = q['decimals']\n    shown_right, shown_wrong = kit.display(right, dec), kit.display(wrong, dec)\n    if abs(right - wrong) < float(q['min_separation']) or shown_right == shown_wrong:\n        raise ValueError('Mistake value too close to the correct value')\n    unit = UNITS[q['unit']]\n    text = lambda shown, c: '%s %s%s. %s' % (q['label'], shown, unit, c['text'])\n    paper, rejected = concl['paper'], concl['rejected']\n    correct = ('correct', text(shown_right, paper), '数值按原文数据计算正确，结论即原文结论（%s）。' % paper['locator'], 3)\n    others = [\n        (rejected['rule'], text(shown_right, rejected), '数值正确，但结论是原文排除的解释：%s（%s）' % (rejected['reason'], rejected['locator']), 3),\n        (err['rule'], text(shown_wrong, paper), '结论措辞取自原文，但数值来自错误做法：%s' % err['reason'], err.get('plausibility', 2)),\n        (err['rule'] + '+' + rejected['rule'], text(shown_wrong, rejected), '数值来自错误做法（%s），结论也是原文排除的解释。' % err['reason'], 2)]\n    order = kit.place(correct, others, spec.get('target_position'), seed, spec['id'], key=lambda x: x[1])\n    options = [dict(label=l, value=x[1]) for l, x in zip(kit.LABELS, order)]\n    key = kit.validate_verdicts(options, [x[0] == 'correct' for x in order])\n    audit = [dict(label=l, value=x[1], rule=x[0], reason=x[2], is_correct=x[0] == 'correct', plausibility=x[3])\n             for l, x in zip(kit.LABELS, order)]\n    s = card['scale']\n    return dict(\n        question=question(card, bool(xyz_inputs)), scope=spec['scope'], inputs=[evidence_input(card)] + xyz_inputs, numeric=None,\n        options=options, correct_label=key, option_audit=audit, excluded_candidates=[], rank=None,\n        option_order='2×2: value (correct / registered mistake) × conclusion (paper / ruled out); correct at batch target',\n        checks=dict(card=card['id'], value=right, shown=shown_right, mistake_value=wrong, mistake_rule=err['rule'],\n                    decimals=dec, unit=q['unit'], facts={f['id']: f['locator'] for f in card['facts']},\n                    paper_conclusion_locator=paper['locator'], notes=card.get('notes', []),\n                    limits='数值由代码计算并经独立检查器复算；结论措辞与证据转录须对照原文位置人工核对（L1）。四个选项是“数值 × 结论”两个二元判断的组合。'),\n        scales=dict(input_nm=s['input_nm'], reasoning_nm=s['reasoning_nm'], reasoning_definition=s['definition']),\n        input_hashes=hashes)\n\n\ndef eliminate(card):\n    \"\"\"Explanations whose predictions all agree with the observations; with the contradicting facts of the others.\"\"\"\n    observed, where = {}, {}\n    for f in card['facts']:\n        for k, val in f.get('observed', {}).items():\n            if k in observed:\n                raise ValueError('Observation stated twice: ' + k)\n            observed[k], where[k] = val, f['id']\n    survivors, conflicts = [], {}\n    for h in card['hypotheses']:\n        unknown = set(h['predicts']) - set(observed)\n        if unknown:\n            raise ValueError('Prediction not covered by any fact: ' + ', '.join(sorted(unknown)))\n        bad = sorted({where[k] for k, val in h['predicts'].items() if observed[k] != val})\n        conflicts[h['rule']] = bad\n        if not bad:\n            survivors.append(h)\n    return survivors, conflicts\n\n\ndef build_elimination(spec, root, seed):\n    card, raw = load(root, spec['asset'])\n    if card['family'] != 'evidence_elimination' or len(card['hypotheses']) != 4:\n        raise ValueError('Elimination cards need exactly four explanations')\n    survivors, conflicts = eliminate(card)\n    if len(survivors) != 1 or not survivors[0].get('paper_conclusion'):\n        raise ValueError('Exactly one explanation, the paper conclusion, must survive the evidence')\n    paper = survivors[0]\n    correct = ('correct', paper['text'], '与全部事实一致，即原文结论（%s）。' % paper['locator'], 3)\n    others = [(h['rule'], h['text'], '与 %s 矛盾：%s（%s）' % ('、'.join(conflicts[h['rule']]), h['reason'], h['locator']), 3)\n              for h in card['hypotheses'] if h is not paper]\n    order = kit.place(correct, others, spec.get('target_position'), seed, spec['id'], key=lambda x: x[1])\n    options = [dict(label=l, value=x[1]) for l, x in zip(kit.LABELS, order)]\n    key = kit.validate_verdicts(options, [x[0] == 'correct' for x in order])\n    audit = [dict(label=l, value=x[1], rule=x[0], reason=x[2], is_correct=x[0] == 'correct') for l, x in zip(kit.LABELS, order)]\n    s = card['scale']\n    return dict(\n        question=question(card, False), scope=spec['scope'], inputs=[evidence_input(card)], numeric=None,\n        options=options, correct_label=key, option_audit=audit, excluded_candidates=[], rank=None,\n        checks=dict(card=card['id'], contradicted_by=conflicts, facts={f['id']: f['locator'] for f in card['facts']},\n                    paper_conclusion_locator=paper['locator'], unique_survivor=True,\n                    limits='排除逻辑由代码执行；各解释的“预期”与事实转录须对照原文位置人工核对（L1），程序不能保证其科学正确。'),\n        scales=dict(input_nm=s['input_nm'], reasoning_nm=s['reasoning_nm'], reasoning_definition=s['definition']),\n        input_hashes={spec['asset']: kit.sha256(raw)})\n",
+  "task_families/evidence.py": "\"\"\"Evidence-to-conclusion questions from papers (meeting 6: give the evidence, ask for the key conclusion).\n\nEach question reads one hand-transcribed evidence card, docs/assets/families/evidence/<id>.json, checked against the\nfull text kept locally (inputs/papers/, not in the repository). The card lists the facts (numbers and observations,\nparaphrased, each with its place in the paper), the paper's conclusion and the alternatives the paper rules out. The\nstudent receives the facts as an attachment (evidence.txt), plus any structure files; never the conclusions' sources.\n\nevidence_quantity (inference): compute one quantity from the facts (a spacing, an area, a field, a twist angle, a\n    count, a band width, a ratio, a distance difference), then judge. The four options cross two values (correct, or\n    the value of a registered mistake) with two conclusions (the paper's, or one the paper rules out), so neither half\n    alone gives the answer and no option is a majority cue. The value is computed here and recomputed by the checker.\nevidence_elimination (inference): four explanations; each states what it predicts for the observed facts. The code\n    keeps the explanations whose predictions all match the observations: exactly one may survive, and it must be the\n    paper's conclusion; every other one must contradict at least one fact shown to the student.\n\nWhat code guarantees: the numbers, the 2x2 structure, and the logical elimination over the card. What it cannot: that\nthe card renders the paper faithfully. That is the L1 check (each fact and conclusion has a locator for side-by-side\ncomparison with the original).\n\"\"\"\nimport json\nimport math\nimport re\nfrom . import kit\n\nVERSION = '0.1.0'\nH = 6.62607015e-34          # J s, exact (SI 2019)\nE = 1.602176634e-19         # C, exact (SI 2019)\nFLUX = {'h/2e': H / (2 * E), 'h/e': H / E}\nUNITS = {'nm': ' nm', 'um^2': ' µm²', 'T': ' T', 'degree': '°', 'angstrom': ' Å', 'eV': ' eV', '': ''}\nNUMBER = re.compile(r'^(-?\\d+(?:\\.\\d+)?)(?: × 10\\^(-?\\d+))?')\n\n\ndef shown_value(display):\n    \"\"\"Number at the start of a display string such as '1.5 × 10^11 cm^-2' or '4 µm × 4 µm'.\"\"\"\n    m = NUMBER.match(display)\n    if not m:\n        raise ValueError('Display string does not start with a number: ' + display)\n    return float(m.group(1)) * (10 ** int(m.group(2)) if m.group(2) else 1)\n\n\ndef load(root, rel):\n    raw = (root / 'docs' / rel).read_bytes()\n    card = json.loads(raw.decode('utf-8'))\n    if card.get('kind') != 'evidence_card':\n        raise ValueError('Not an evidence card: ' + rel)\n    return card, raw\n\n\ndef facts_text(card):\n    return ''.join('%s. %s\\n' % (f['id'], f['text']) for f in card['facts'])\n\n\ndef values(card):\n    \"\"\"Named numbers of the card; each must be displayed verbatim in its fact and parse back to the stored value.\"\"\"\n    out = {}\n    for f in card['facts']:\n        for name, (value, display) in f.get('values', {}).items():\n            if display not in f['text'] or not math.isclose(shown_value(display), value, rel_tol=1e-12):\n                raise ValueError('Value %s is not shown as stored in %s' % (name, f['id']))\n            if name in out:\n                raise ValueError('Duplicate value name ' + name)\n            out[name] = float(value)\n    return out\n\n\ndef arg(v, x):\n    return v[x] if isinstance(x, str) else float(x)\n\n\ndef structures(root, card):\n    files, inputs, hashes = {}, [], {}\n    for f in card.get('files', []):\n        raw = (root / 'docs' / f['asset']).read_bytes()\n        text = raw.decode('utf-8')\n        files[f['key']] = kit.parse_xyz(text)\n        inputs.append(dict(name=f['name'], format='xyz', unit='angstrom', text=text))\n        hashes[f['asset']] = kit.sha256(raw)\n    return files, inputs, hashes\n\n\ndef compute(kind, a, v, files):\n    \"\"\"Quantity in the card's unit. Distances in the cards are in nm unless the unit says otherwise.\"\"\"\n    if kind == 'inverse_sqrt_density':                           # cm^-2 -> nm\n        return 1e7 / math.sqrt(arg(v, a['n_cm2']))\n    if kind == 'flux_loop_area':                                 # S = Phi / dB, in um^2\n        return FLUX[a['flux']] / (arg(v, a['period_mT']) * 1e-3) * 1e12\n    if kind == 'thin_film_parallel_field':                       # Bc|| = sqrt(3) Phi0 / (pi d xi), in T\n        return math.sqrt(3) * FLUX['h/2e'] / (math.pi * arg(v, a['d_nm']) * 1e-9 * arg(v, a['xi_nm']) * 1e-9)\n    if kind == 'perpendicular_gl_field':                         # Bc2 = Phi0 / (2 pi xi^2), in T\n        return FLUX['h/2e'] / (2 * math.pi * (arg(v, a['xi_nm']) * 1e-9) ** 2)\n    if kind == 'equal_area_twist':                               # Heron area -> equilateral side -> twist (degrees)\n        x, y, z = (arg(v, a[k]) for k in ('l1', 'l2', 'l3'))\n        s = (x + y + z) / 2\n        area = math.sqrt(s * (s - x) * (s - y) * (s - z))\n        side = math.sqrt(4 * area / math.sqrt(3))\n        return math.degrees(2 * math.asin(arg(v, a['a_nm']) / (2 * side)))\n    if kind == 'single_wavelength_twist':\n        return math.degrees(2 * math.asin(arg(v, a['a_nm']) / (2 * arg(v, a['l']))))\n    if kind == 'flux_quanta_count':                              # N = B A / Phi\n        side = arg(v, a['side_um']) * 1e-6\n        return arg(v, a['B_mT']) * 1e-3 * side * side / FLUX[a['flux']]\n    if kind in ('cholesteric_bandwidth', 'cholesteric_centre'):  # p = 1/(HTP c); width p*dn, centre p*<n>, in nm\n        pitch_nm = 1e3 / (arg(v, a['htp_um']) * arg(v, a['c_wt']) / 100)\n        ne, no = arg(v, a['ne']), arg(v, a['no'])\n        return pitch_nm * ((ne - no) if kind == 'cholesteric_bandwidth' else (ne + no) / 2)\n    if kind == 'htp_ratio':                                      # HTP = n / (lambda c): ratio = lam_R c_R / (lam_L c_L)\n        return arg(v, a['lam_R']) * arg(v, a['c_R']) / (arg(v, a['lam_L']) * arg(v, a['c_L']))\n    if kind == 'wavelength_ratio':\n        return arg(v, a['lam_R']) / arg(v, a['lam_L'])\n    if kind == 'photon_energy_shift':                            # E = hc/lambda; shift = E(to) - E(from), in eV\n        hc = arg(v, a['hc'])\n        return hc / arg(v, a['lam_to']) - hc / arg(v, a['lam_from'])\n    if kind == 'regular_polygon_radius':                         # circumradius of a regular n-gon of given side\n        n = arg(v, a['n'])\n        return arg(v, a['side']) / (2.0 * math.sin(math.pi / n))\n    if kind in ('layer_ratio', 'layer_ratio_inverted'):         # Dimitrov-Nagayama: k = beta h Je phi / (0.605 d v (1 - phi))\n        layers = lambda speed: 1.0 / (0.605 * speed)               # same suspension and meniscus: all other factors cancel\n        ratio = layers(arg(v, a['v_slow'])) / layers(arg(v, a['v_fast']))\n        return ratio if kind == 'layer_ratio' else 1.0 / ratio      # mistake: layers taken to grow with speed\n    if kind == 'xyz_distance_difference':                        # rows counted from 1, in angstrom\n        def d(key, rows):\n            elements, points = files[key]\n            i, j = (r - 1 for r in rows)\n            return math.dist(points[i], points[j])\n        return d(a['a_file'], a['a_rows']) - d(a['b_file'], a['b_rows'])\n    raise ValueError('Unknown quantity kind ' + kind)\n\n\ndef question(card, extra_files):\n    files = ' and '.join(['evidence.txt'] + [f['name'] for f in card.get('files', [])]) if extra_files else 'evidence.txt'\n    return ('%s The attached %s give%s the evidence (facts E1–E%d from %s; numbers as reported in the paper). %s'\n            % (card['topic'], files, '' if extra_files else 's', len(card['facts']), card['short_citation'], card['ask']))\n\n\ndef evidence_input(card):\n    return dict(name='evidence.txt', format='text', unit='单位见各条', text=facts_text(card))\n\n\ndef build_quantity(spec, root, seed):\n    card, raw = load(root, spec['asset'])\n    if card['family'] != 'evidence_quantity':\n        raise ValueError('Card is not a quantity card')\n    v = values(card)\n    files, xyz_inputs, hashes = structures(root, card)\n    hashes[spec['asset']] = kit.sha256(raw)\n    q, err, concl = card['quantity'], card['error'], card['conclusions']\n    right, wrong = compute(q['kind'], q['args'], v, files), compute(err['kind'], err['args'], v, files)\n    dec = q['decimals']\n    shown_right, shown_wrong = kit.display(right, dec), kit.display(wrong, dec)\n    if abs(right - wrong) < float(q['min_separation']) or shown_right == shown_wrong:\n        raise ValueError('Mistake value too close to the correct value')\n    unit = UNITS[q['unit']]\n    text = lambda shown, c: '%s %s%s. %s' % (q['label'], shown, unit, c['text'])\n    paper, rejected = concl['paper'], concl['rejected']\n    correct = ('correct', text(shown_right, paper), '数值按原文数据计算正确，结论即原文结论（%s）。' % paper['locator'], 3)\n    others = [\n        (rejected['rule'], text(shown_right, rejected), '数值正确，但结论是原文排除的解释：%s（%s）' % (rejected['reason'], rejected['locator']), 3),\n        (err['rule'], text(shown_wrong, paper), '结论措辞取自原文，但数值来自错误做法：%s' % err['reason'], err.get('plausibility', 2)),\n        (err['rule'] + '+' + rejected['rule'], text(shown_wrong, rejected), '数值来自错误做法（%s），结论也是原文排除的解释。' % err['reason'], 2)]\n    order = kit.place(correct, others, spec.get('target_position'), seed, spec['id'], key=lambda x: x[1])\n    options = [dict(label=l, value=x[1]) for l, x in zip(kit.LABELS, order)]\n    key = kit.validate_verdicts(options, [x[0] == 'correct' for x in order])\n    audit = [dict(label=l, value=x[1], rule=x[0], reason=x[2], is_correct=x[0] == 'correct', plausibility=x[3])\n             for l, x in zip(kit.LABELS, order)]\n    s = card['scale']\n    return dict(\n        question=question(card, bool(xyz_inputs)), scope=spec['scope'], inputs=[evidence_input(card)] + xyz_inputs, numeric=None,\n        options=options, correct_label=key, option_audit=audit, excluded_candidates=[], rank=None,\n        option_order='2×2: value (correct / registered mistake) × conclusion (paper / ruled out); correct at batch target',\n        checks=dict(card=card['id'], value=right, shown=shown_right, mistake_value=wrong, mistake_rule=err['rule'],\n                    decimals=dec, unit=q['unit'], facts={f['id']: f['locator'] for f in card['facts']},\n                    paper_conclusion_locator=paper['locator'], notes=card.get('notes', []),\n                    limits='数值由代码计算并经独立检查器复算；结论措辞与证据转录须对照原文位置人工核对（L1）。四个选项是“数值 × 结论”两个二元判断的组合。'),\n        scales=dict(input_nm=s['input_nm'], reasoning_nm=s['reasoning_nm'], reasoning_definition=s['definition']),\n        input_hashes=hashes)\n\n\ndef eliminate(card):\n    \"\"\"Explanations whose predictions all agree with the observations; with the contradicting facts of the others.\"\"\"\n    observed, where = {}, {}\n    for f in card['facts']:\n        for k, val in f.get('observed', {}).items():\n            if k in observed:\n                raise ValueError('Observation stated twice: ' + k)\n            observed[k], where[k] = val, f['id']\n    survivors, conflicts = [], {}\n    for h in card['hypotheses']:\n        unknown = set(h['predicts']) - set(observed)\n        if unknown:\n            raise ValueError('Prediction not covered by any fact: ' + ', '.join(sorted(unknown)))\n        bad = sorted({where[k] for k, val in h['predicts'].items() if observed[k] != val})\n        conflicts[h['rule']] = bad\n        if not bad:\n            survivors.append(h)\n    return survivors, conflicts\n\n\ndef build_elimination(spec, root, seed):\n    card, raw = load(root, spec['asset'])\n    if card['family'] != 'evidence_elimination' or len(card['hypotheses']) != 4:\n        raise ValueError('Elimination cards need exactly four explanations')\n    survivors, conflicts = eliminate(card)\n    if len(survivors) != 1 or not survivors[0].get('paper_conclusion'):\n        raise ValueError('Exactly one explanation, the paper conclusion, must survive the evidence')\n    paper = survivors[0]\n    correct = ('correct', paper['text'], '与全部事实一致，即原文结论（%s）。' % paper['locator'], 3)\n    others = [(h['rule'], h['text'], '与 %s 矛盾：%s（%s）' % ('、'.join(conflicts[h['rule']]), h['reason'], h['locator']), 3)\n              for h in card['hypotheses'] if h is not paper]\n    order = kit.place(correct, others, spec.get('target_position'), seed, spec['id'], key=lambda x: x[1])\n    options = [dict(label=l, value=x[1]) for l, x in zip(kit.LABELS, order)]\n    key = kit.validate_verdicts(options, [x[0] == 'correct' for x in order])\n    audit = [dict(label=l, value=x[1], rule=x[0], reason=x[2], is_correct=x[0] == 'correct') for l, x in zip(kit.LABELS, order)]\n    s = card['scale']\n    return dict(\n        question=question(card, False), scope=spec['scope'], inputs=[evidence_input(card)], numeric=None,\n        options=options, correct_label=key, option_audit=audit, excluded_candidates=[], rank=None,\n        checks=dict(card=card['id'], contradicted_by=conflicts, facts={f['id']: f['locator'] for f in card['facts']},\n                    paper_conclusion_locator=paper['locator'], unique_survivor=True,\n                    limits='排除逻辑由代码执行；各解释的“预期”与事实转录须对照原文位置人工核对（L1），程序不能保证其科学正确。'),\n        scales=dict(input_nm=s['input_nm'], reasoning_nm=s['reasoning_nm'], reasoning_definition=s['definition']),\n        input_hashes={spec['asset']: kit.sha256(raw)})\n",
   "task_families/extent_choice.py": "\"\"\"Version 0.2 four-choice construction for the two existing size templates.\n\nSame numeric answers as template_engine (reused, not re-derived). Distractors now\ncome from error mechanisms on both sides of the correct value (e.g. heavy-atom only\nand axis span below Dmax; bounding-box diagonal and 2x max radius above), and the\ncorrect value's numeric rank is balanced by seed so that \"always pick the largest\n(or smallest)\" no longer answers the batch. Legacy choice_engine v0.1 runs are kept.\n\"\"\"\nimport itertools\nimport math\nfrom pathlib import Path\nfrom . import kit\nimport template_engine as numeric\n\nVERSION = '0.3.1'\nMASS = {'H': 1.008, 'C': 12.011, 'N': 14.007, 'O': 15.999, 'S': 32.06, 'Cl': 35.45, 'Zn': 65.38,\n        'P': 30.974, 'F': 18.998, 'Si': 28.085, 'Na': 22.990, 'Mg': 24.305}\n\n\ndef _rg(points, weights=None):\n    w = weights or [1.0] * len(points)\n    total = math.fsum(w)\n    c = [math.fsum(wi * p[k] for wi, p in zip(w, points)) / total for k in range(3)]\n    return math.sqrt(math.fsum(wi * math.dist(p, c) ** 2 for wi, p in zip(w, points)) / total)\n\n\nVDW = {'H': 1.20, 'C': 1.70, 'N': 1.55, 'O': 1.52, 'S': 1.80, 'Cl': 1.75, 'Zn': 1.39, 'P': 1.80, 'F': 1.47,\n       'Si': 2.10, 'Na': 2.27, 'Mg': 1.73}   # Bondi radii, Zn/Si/Na/Mg from the same compilation\n\n\ndef _extent_with_vdw(elements, points):\n    best = max(((math.dist(points[i], points[j]), i, j) for i, j in itertools.combinations(range(len(points)), 2)))\n    return best[0] + VDW[elements[best[1]]] + VDW[elements[best[2]]]\n\n\ndef candidates(elements, points, template):\n    heavy = [p for e, p in zip(elements, points) if e != 'H']\n    center = [math.fsum(p[k] for p in points) / len(points) for k in range(3)]\n    radii = [math.dist(p, center) for p in points]\n    pairs = [math.dist(a, b) for a, b in itertools.combinations(points, 2)]\n    spans = [max(p[k] for p in points) - min(p[k] for p in points) for k in range(3)]\n    rg = _rg(points)\n    common = [dict(rule='mean_pair_distance', value=math.fsum(pairs) / len(pairs), plausibility=1,\n                   reason='把全部点对距离的算术平均当作目标量。'),\n              dict(rule='rms_pair_distance', value=math.sqrt(math.fsum(d * d for d in pairs) / len(pairs)), plausibility=1,\n                   reason='用点对距离的均方根替代题目定义。')]\n    if template == 'global_extent':\n        return common + [\n            # v0.3.0: plausibility 2 (was 1) -- confusing two size measures is common, and without a third plausible\n            # smaller-value mistake the answer could never be D (enumeration probe runs/enum-v20).\n            dict(rule='radius_as_extent', value=rg, plausibility=2, reason='把等权回转半径误当最大点对间距（混淆两种尺寸量）。'),\n            dict(rule='centroid_diameter', value=2 * max(radii), plausibility=2,\n                 reason='用两倍最大中心距代替最大点对间距（前者 ≥ 后者，一般不相等）。'),\n            dict(rule='first_last_rows', value=math.dist(points[0], points[-1]), plausibility=1,\n                 reason='只算 XYZ 首末两行；行序不表示链端。'),\n            dict(rule='heavy_atoms_only', value=numeric.calculate(heavy, 'global_extent') if len(heavy) > 1 else None,\n                 plausibility=3, reason='忽略氢原子，只在重原子中找最大间距；题目要求全部点。'),\n            dict(rule='bounding_box_diagonal', value=math.sqrt(math.fsum(s * s for s in spans)), plausibility=3,\n                 reason='用坐标轴对齐包围盒对角线代替实际最大点对间距（前者 ≥ 后者）。'),\n            dict(rule='largest_axis_span', value=max(spans), plausibility=2,\n                 reason='只取单一坐标轴上的最大跨度，忽略斜向点对。'),\n            dict(rule='two_largest_radii', value=sum(sorted(radii)[-2:]), plausibility=2,\n                 reason='把两个最大中心距相加，默认最远两点位于质心两侧（该和 ≥ 实际最大间距）。'),\n            dict(rule='with_vdw_radii', value=_extent_with_vdw(elements, points), plausibility=2,\n                 reason='给最远点对两端再加范德华半径，报告“分子外形尺寸”而非点集最大间距。'),\n        ]\n    if template == 'equal_weight_rg':\n        n = len(points)\n        # v0.3.0: the pair form Rg^2 = sum(d^2) / (2 N^2) without the factor 1/2 gives about sqrt(2) Rg; with it and\n        # maximum_radius at plausibility 2 the answer can also be A or B (probe runs/enum-v20).\n        common = [c if c['rule'] != 'rms_pair_distance' else\n                  dict(c, plausibility=2, reason='用点对公式但漏了因子 1/2（Rg² = Σd²/2N²），约得 √2·Rg。') for c in common]\n        return common + [\n            dict(rule='mean_radius', value=math.fsum(radii) / n, plausibility=2, reason='用中心距算术平均替代均方根。'),\n            dict(rule='maximum_radius', value=max(radii), plausibility=2, reason='用最大中心距（“半径”）替代回转半径。'),\n            dict(rule='diameter_for_radius', value=2 * rg, plausibility=1, reason='把回转半径乘二，输出直径式量。'),\n            dict(rule='mass_weighted', value=_rg(points, [MASS[e] for e in elements]), plausibility=3,\n                 reason='使用原子质量加权；题目明确要求所有点等权。'),\n            dict(rule='heavy_atoms_only', value=_rg(heavy) if len(heavy) > 1 else None, plausibility=3,\n                 reason='只统计重原子，忽略氢。'),\n            dict(rule='n_minus_one', value=math.sqrt(math.fsum(r * r for r in radii) / (n - 1)), plausibility=2,\n                 reason='用 N−1 作分母（样本方差习惯），不是题目定义。'),\n        ]\n    raise ValueError('Unsupported template')\n\n\ndef build(spec, root, seed):\n    path = root / 'docs' / spec['asset']\n    raw = path.read_bytes()\n    text = raw.decode('utf-8-sig')\n    elements, points = kit.parse_xyz(text)\n    template = spec['template']\n    exact = numeric.verify_decimal(text, template)\n    computed = numeric.calculate(points, template)\n    if not math.isclose(computed, float(exact), abs_tol=1e-9, rel_tol=1e-12):\n        raise ValueError('Numeric crosscheck failed')\n    decimals, tol, sep = 4, '0.00005', '0.0500'\n    chosen, rejected, goal, rank = kit.choose_numeric(exact, candidates(elements, points, template), decimals=decimals,\n                                                      tolerance=tol, min_separation=sep, seed=seed,\n                                                      context=spec['id'], lower=0, target=spec.get('target_position'))\n    options, audit = kit.label_numeric(exact, chosen, decimals=decimals, unit='angstrom', seed=seed, context=spec['id'],\n                                       correct_reason='template_engine 定义计算，并以十进制实现复核。')\n    key = kit.validate_numeric(options, exact, decimals=decimals, tolerance=tol, min_separation=sep, unit='angstrom')\n    registry = {t['id']: t for t in __import__('json').loads((root / 'templates/registry.json').read_text(encoding='utf-8'))['templates']}\n    question = registry[template]['question'].replace(\n        'Return only one value rounded to four decimal places and unit angstrom.', '').strip()\n    if spec.get('context'):          # names the object (advisor: chemical entities, not bare point sets); optional\n        question = spec['context'].strip() + ' ' + question\n    return dict(\n        question=question + ' Choose the correct value (angstrom, four decimals).',\n        scope=spec['scope'],\n        inputs=[dict(name=path.name, format='xyz', unit='angstrom', text=text)],\n        numeric=dict(value=kit.display(exact, decimals), unit='angstrom', decimals=decimals, tolerance=tol),\n        options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected,\n        rank=dict(target=goal, achieved=rank),\n        checks=dict(float_value=computed, decimal_crosscheck=str(exact), legacy_reference=spec.get('legacy_numeric_reference'),\n                    legacy_agreement=abs(float(kit.display(exact, 4)) - spec['legacy_numeric_reference']) <= 0.0001\n                    if spec.get('legacy_numeric_reference') is not None else None),\n        scales=dict(input_nm=kit.dmax(points) / 10,\n                    reasoning_nm=(computed if template == 'global_extent' else kit.dmax(points)) / 10,\n                    reasoning_definition='全局点集：最大点对间距'),\n        input_hashes={spec['asset']: kit.sha256(raw)})\n",
   "task_families/extinction.py": "\"\"\"Inference family: which reflection is extinct for this real cell (kinematic model).\n\nPhysical model stated in the question: F(hkl) = sum_j Z_j exp[2 pi i (h x_j + k y_j + l z_j)],\natomic numbers as angle-independent weights. The checker evaluates all four options\nfrom the same coordinate table the student receives; exactly one must vanish and the\nother three must be clearly nonzero. Centering rules are necessary conditions only;\nthe answer comes from the actual coordinates, not from a rule lookup.\nNon-cubic cells (source_kind 'cif_general', task_families/cell.py) use every (h k l) with 0 <= h, k, l <= 4;\nthere the centering rules are replaced by the axis-confusion misconception (an index-permuted twin is extinct).\n\"\"\"\nimport cmath\nimport itertools\nimport math\nimport sys\nfrom fractions import Fraction\nfrom . import kit\n\nVERSION = '0.2.0'\nZERO = 1e-6      # |F| / F(000) at or below: extinct\nCLEAR = 0.05     # |F| / F(000) at or above: clearly nonzero; between: ambiguous, never used\n\n\ndef cell_from_cif(root, asset):\n    sys.path.insert(0, str(root / 'tools'))\n    import recompute_materials_batch as legacy  # limited cubic reader, reused unchanged\n    crystal = legacy.read_cubic(root / 'docs' / asset)\n    rows = [(r['element'], [Fraction(x) for x in r['fractional_exact']]) for r in crystal['rows']]\n    return crystal['a_A'], [(e, [float(x) for x in f]) for e, f in rows]\n\n\ndef cell_from_xyz(root, asset, a):\n    elements, points = kit.parse_xyz((root / 'docs' / asset).read_text(encoding='utf-8-sig'))\n    frac = [[x / a for x in p] for p in points]\n    if any(not -1e-9 <= x < 1 + 1e-9 for p in frac for x in p):\n        raise ValueError('Coordinates are not inside one conventional cell')\n    return a, list(zip(elements, frac))\n\n\ndef table(a, rows, name):\n    lines = ['%s; cubic a = %.5f angstrom; %d atoms; element x y z (fractional)' % (name, a, len(rows))]\n    lines += ['%s %.8f %.8f %.8f' % (e, *f) for e, f in rows]\n    return '\\n'.join(lines) + '\\n'\n\n\ndef parse_table(text):\n    lines = text.splitlines()\n    rows = [line.split() for line in lines[1:] if line.strip()]\n    return [(r[0], [float(x) for x in r[1:]]) for r in rows]\n\n\ndef factor(rows, hkl, weights):\n    return sum(weights[e] * cmath.exp(2j * math.pi * sum(h * x for h, x in zip(hkl, f))) for e, f in rows)\n\n\ndef rule_absent(rule, hkl):\n    h, k, l = hkl\n    if rule == 'I':\n        return (h + k + l) % 2 == 1\n    if rule == 'F':\n        return len({h % 2, k % 2, l % 2}) > 1\n    if rule == 'F+d':\n        return rule_absent('F', hkl) or (h % 2 == k % 2 == l % 2 == 0 and (h + k + l) % 4 == 2)\n    return False\n\n\nRULES = {'P': '简单立方（无中心化消光）', 'I': '体心 I：h+k+l 为奇数消光',\n         'F': '面心 F：奇偶混合消光', 'F+d': '面心 F 加金刚石滑移：另有全偶且 h+k+l=4n+2 消光'}\n\n\ndef build(spec, root, seed):\n    from .cell import GeneralCell, general_table, is_cubic, read_cif\n    raw = (root / 'docs' / spec['asset']).read_bytes()\n    general = spec['source_kind'] == 'cif_general'\n    if general:\n        params, rows = read_cif(root / 'docs' / spec['asset'])\n        if is_cubic(params):                 # cubic cell from the general reader: cubic path and centring rules\n            general, a = False, params['a']\n        else:\n            cell = GeneralCell(**params)\n            a = cell.longest\n    elif spec['source_kind'] == 'cif':\n        a, rows = cell_from_cif(root, spec['asset'])\n    else:\n        a, rows = cell_from_xyz(root, spec['asset'], spec['a'])\n    weights = spec['weights']\n    if set(e for e, _ in rows) != set(weights):\n        raise ValueError('Weights must cover exactly the elements present')\n    text = general_table(cell, rows, spec['name']) if general else table(a, rows, spec['name'])\n    rows = parse_table(text)            # evaluate exactly what the student receives\n    f000 = sum(weights[e] for e, _ in rows)\n    equal = {e: 1 for e in weights}\n    pool = []\n    for hkl in itertools.product(range(5), repeat=3):\n        if hkl == (0, 0, 0) or (not general and not (hkl[0] >= hkl[1] >= hkl[2])) or sum(x * x for x in hkl) > 20:\n            continue\n        amp = abs(factor(rows, hkl, weights)) / f000\n        amp_equal = abs(factor(rows, hkl, equal)) / len(rows)\n        pool.append(dict(hkl=hkl, rel=amp, rel_equal=amp_equal))\n    zeros = [p for p in pool if p['rel'] <= ZERO]\n    clear = [p for p in pool if p['rel'] >= CLEAR]\n    if not zeros or len(clear) < 3:\n        raise ValueError('Need at least one extinct and three clearly nonzero reflections')\n    low = [p for p in zeros if sum(x * x for x in p['hkl']) <= 12] or zeros\n    # Prefer extinctions caused by the basis (not predicted by I or F centering alone),\n    # so the answer depends on the coordinates rather than on recalling a lattice rule.\n    basis = [p for p in low if not rule_absent('I', p['hkl']) and not rule_absent('F', p['hkl'])]\n    correct = kit.ordered(basis or low, seed, spec['id'] + '/correct', key=lambda p: p['hkl'])[0]\n    correct_origin = 'basis_or_glide' if basis else 'lattice_centering'\n    zero_set = {p['hkl'] for p in zeros}\n    for p in clear:\n        mechanisms = []\n        for rule in (() if general else ('I', 'F', 'F+d')):\n            if rule_absent(rule, p['hkl']):\n                mechanisms.append((3, 'wrong_rule:' + rule, '按“%s”会判为消光，但本结构实际坐标给出非零 |F|。' % RULES[rule]))\n        if general:\n            twins = sorted({t for t in itertools.permutations(p['hkl']) if t != p['hkl'] and t in zero_set})\n            if twins:\n                mechanisms.append((3, 'axis_confusion', '指数换轴后的 (%d %d %d) 是消光的；把那条消光条件套到了另一根晶轴上，但本反射 |F| 不为零。' % twins[0]))\n        if p['rel_equal'] <= ZERO:\n            mechanisms.append((3, 'identical_atom_assumption', '若把所有原子当作同种原子会相消；实际不同原子序数使其不为零。'))\n        if p['rel'] < 0.25:\n            mechanisms.append((2, 'weak_not_absent', '强度较弱（|F|/F000=%.3f），但不为零，弱不等于消光。' % p['rel']))\n        if not mechanisms:\n            mechanisms.append((1, 'allowed_generic', '普通允许反射，非零。'))\n        p['plausibility'], p['rule'], p['reason'] = max(mechanisms)\n        p['all_mechanisms'] = [m[1] for m in mechanisms]\n    ranked = sorted(clear, key=lambda p: (-p['plausibility'], sum(x * x for x in p['hkl']),\n                                          kit.digest(seed, spec['id'], p['hkl'])))\n    if general:\n        # Symmetry-equivalent reflections (same d and |F|) would let a student drop two options at once.\n        for p in pool:\n            p['d'] = cell.d(p['hkl'])\n        twin = lambda p, q: abs(p['d'] - q['d']) < 1e-6 and abs(p['rel'] - q['rel']) < 1e-6\n        ranked = [p for i, p in enumerate(ranked) if not any(twin(p, q) for q in ranked[:i])]\n    chosen, used = [], set()\n    for p in ranked:                  # prefer distinct mechanisms, then fill\n        if p['rule'] not in used and len(chosen) < 3:\n            chosen.append(p)\n            used.add(p['rule'])\n    for p in ranked:\n        if len(chosen) < 3 and p not in chosen:\n            chosen.append(p)\n    permutation = kit.place(dict(correct, rule='correct', reason='由表中全部原子坐标求和，|F|/F000 ≤ 1e-6。'),\n                            chosen, spec.get('target_position'), seed, spec['id'], key=lambda p: p['hkl'])\n    show = lambda hkl: '(%d %d %d)' % hkl\n    options = [dict(label=l, value=show(p['hkl'])) for l, p in zip(kit.LABELS, permutation)]\n    verdicts = [abs(factor(rows, p['hkl'], weights)) / f000 <= ZERO for p in permutation]\n    key = kit.validate_verdicts(options, verdicts)\n    if any(ZERO < abs(factor(rows, p['hkl'], weights)) / f000 < CLEAR for p in permutation):\n        raise ValueError('Ambiguous weak reflection among options')\n    audit = [dict(label=l, value=show(p['hkl']), rule=p['rule'], reason=p['reason'], is_correct=v,\n                  relative_amplitude=round(p['rel'], 8), mechanisms=p.get('all_mechanisms', []))\n             for l, p, v in zip(kit.LABELS, permutation, verdicts)]\n    shortcuts = {}\n    for rule in RULES:\n        predicted = [o['label'] for o, p in zip(options, permutation) if rule_absent(rule, p['hkl'])]\n        shortcuts[rule] = dict(predicted_absent=predicted, uniquely_correct=predicted == [key])\n    wlist = ', '.join('%s = %s' % kv for kv in sorted(weights.items()))\n    where = cell.describe() if general else 'one conventional cubic cell'\n    question = ('The table lists every atom of %s of %s as fractional coordinates. '\n                'Use the kinematic structure factor F(hkl) = Σ_j Z_j exp[2πi(h x_j + k y_j + l z_j)] with atomic numbers '\n                'as angle-independent weights (%s). Exactly one of the four reflections below has |F| = 0. Which one?') % (where, spec['name'], wlist)\n    return dict(\n        question=question,\n        scope=spec['scope'],\n        inputs=[dict(name=spec['id'] + '-cell.txt', format='fractional-cell-table', unit='fractional; a in angstrom', text=text)],\n        numeric=None,\n        options=options, correct_label=key, option_audit=audit,\n        excluded_candidates=[dict(hkl=show(p['hkl']), relative_amplitude=round(p['rel'], 6))\n                             for p in pool if ZERO < p['rel'] < CLEAR],\n        rank=None,\n        checks=dict(f000=f000, extinction_origin=correct_origin, zero_threshold=ZERO, clear_threshold=CLEAR, atoms=len(rows),\n                    **(dict(cell=cell.params) if general else dict(a_A=a)),\n                    extinct_pool=[show(p['hkl']) for p in zeros], rule_shortcuts=shortcuts,\n                    limits='零角度原子序数权重的运动学模型；不含原子散射因子角度依赖、热振动或多重散射。'),\n        scales=dict(input_nm=a / 10, reasoning_nm=a / 10,\n                    reasoning_definition='最长晶胞边长：相位求和跨越整个晶胞' if general else '晶胞边长 a：相位求和跨越整个晶胞'),\n        input_hashes={spec['asset']: kit.sha256(raw)})\n",
   "task_families/force_path.py": "\"\"\"Inference family: first-order energy change along a specified deformation path.\n\nPhysical relation supplied in the question: F_i = -dE/dr_i. Along the straight path\nr(lambda) = r_A + lambda (r_B - r_A), dE/dlambda at B = -sum_i F_i(B) . (r_B - r_A).\nGeometry is necessary: removing either structure removes the displacement.\nThis is a local directional derivative, never E(B) - E(A) or a stability claim.\n\"\"\"\nimport json\nimport math\nfrom decimal import Decimal, localcontext\nfrom . import kit\n\nVERSION = '0.1.0'\n\n\ndef force_table(elements, forces):\n    rows = ['%d %s %.6f %.6f %.6f' % (i + 1, e, *f) for i, (e, f) in enumerate(zip(elements, forces))]\n    return 'row element Fx Fy Fz (eV/angstrom), total PBE0+MBD force at B\\n' + '\\n'.join(rows) + '\\n'\n\n\ndef parse_forces(text, n):\n    rows = [line.split() for line in text.splitlines()[1:] if line.strip()]\n    if len(rows) != n or any(len(r) != 5 or int(r[0]) != i + 1 for i, r in enumerate(rows)):\n        raise ValueError('Force table rows do not match atoms')\n    return [r[1] for r in rows], [tuple(Decimal(x) for x in r[2:]) for r in rows]\n\n\ndef build(spec, root, seed):\n    path = root / 'docs' / spec['asset']\n    raw = path.read_bytes()\n    data = json.loads(raw)\n    if data['coordinate_unit'] != 'angstrom' or data['force_unit'] != 'eV/angstrom':\n        raise ValueError('Unsupported units')\n    a_text = kit.xyz_text(data['elements'], data['reference_xyz'], 'A: %s (DFTB3+MBD optimized reference), angstrom' % data['reference_id'])\n    b_text = kit.xyz_text(data['elements'], data['displaced_xyz'], 'B: %s (paired displaced structure), angstrom' % data['displaced_id'])\n    f_text = force_table(data['elements'], data['forces_at_displaced'])\n    ea, pa = kit.parse_xyz(a_text)\n    eb, pb = kit.parse_xyz(b_text)\n    ef, fd = parse_forces(f_text, len(pa))\n    if not ea == eb == ef:\n        raise ValueError('Atom order differs between A, B and forces')\n    with localcontext() as ctx:\n        ctx.prec = 40\n        da = [[Decimal(x) for x in line.split()[1:]] for line in a_text.splitlines()[2:]]\n        db = [[Decimal(x) for x in line.split()[1:]] for line in b_text.splitlines()[2:]]\n        delta = [[y - x for x, y in zip(r, s)] for r, s in zip(da, db)]\n        if not any(x for r in delta for x in r):\n            raise ValueError('Zero displacement')\n        s_exact = sum(f * d for fs, ds in zip(fd, delta) for f, d in zip(fs, ds))\n        heavy = sum(f * d for e, fs, ds in zip(ea, fd, delta) if e != 'H' for f, d in zip(fs, ds))\n        per_atom = [sum(f * d for f, d in zip(fs, ds)) for fs, ds in zip(fd, delta)]\n    fl = [[float(x) for x in r] for r in fd]\n    dl = [[float(x) for x in r] for r in delta]\n    s_float = math.fsum(f * d for fs, ds in zip(fl, dl) for f, d in zip(fs, ds))\n    if abs(s_float - float(s_exact)) > 1e-9:\n        raise ValueError('Float and decimal projections disagree')\n    # A_to_B: path from A, derivative at lambda = 1 (at B).  B_to_A: path from B toward A,\n    # derivative at lambda = 0 (also at B); reversing the direction flips the sign.\n    direction = spec.get('direction', 'A_to_B')\n    if direction not in ('A_to_B', 'B_to_A'):\n        raise ValueError('Unsupported path direction')\n    sign = 1 if direction == 'A_to_B' else -1\n    derivative = -s_exact * sign\n    candidates = [\n        dict(rule='sign_convention', value=-derivative, plausibility=3,\n             reason='把力当作能量梯度（漏掉 F = −∂E/∂r 的负号），或忽略题目给定的路径方向。'),\n        dict(rule='heavy_atoms_only', value=-heavy * sign, plausibility=2,\n             reason='只累加重原子，忽略氢原子的受力与位移。'),\n        dict(rule='trapezoid_energy_estimate', value=-s_exact * sign / 2, plausibility=2,\n             reason='按 A 处受力为零的梯形估计给出能量差，而题目问的是 B 处的导数。'),\n        dict(rule='abs_projection_sum', value=sum(abs(x) for x in per_atom), plausibility=2,\n             reason='逐原子取投影绝对值后相加，丢失相互抵消。'),\n        dict(rule='magnitude_product', value=math.fsum(kit.norm(f) * kit.norm(d) for f, d in zip(fl, dl)), plausibility=2,\n             reason='只乘力与位移的模长，忽略夹角。'),\n    ]\n    decimals, tol, sep = 4, '0.00005', '0.0500'\n    chosen, rejected, goal, rank = kit.choose_numeric(derivative, candidates, decimals=decimals, tolerance=tol,\n                                                      min_separation=sep, seed=seed, context=spec['id'], target=spec.get('target_position'))\n    options, audit = kit.label_numeric(derivative, chosen, decimals=decimals, unit='eV', seed=seed, context=spec['id'],\n                                       correct_reason='B 处沿给定路径方向的导数 = −Σ F_i(B)·(路径方向位移)；十进制与浮点实现一致。')\n    key = kit.validate_numeric(options, derivative, decimals=decimals, tolerance=tol, min_separation=sep, unit='eV')\n    path = ('r_i(λ) = r_i(A) + λ[r_i(B) − r_i(A)], what is dE/dλ at λ = 1 (that is, at B)' if sign > 0 else\n            'r_i(λ) = r_i(B) + λ[r_i(A) − r_i(B)], which starts at B and moves toward A, what is dE/dλ at λ = 0 (that is, at B)')\n    question = ('Structures A and B of the same molecule share atom order and one Cartesian frame (angstrom). '\n                'The table gives the total PBE0+MBD force on every atom at B (eV/angstrom), with F_i = −∂E/∂r_i. '\n                'Along the straight path %s, in eV? Do not realign, mass-weight or normalize the displacement.') % path\n    return dict(\n        question=question,\n        scope=spec['scope'],\n        inputs=[dict(name='A.xyz', format='xyz', unit='angstrom', text=a_text),\n                dict(name='B.xyz', format='xyz', unit='angstrom', text=b_text),\n                dict(name='forces_B.txt', format='force-table', unit='eV/angstrom', text=f_text)],\n        numeric=dict(value=kit.display(derivative, decimals), unit='eV', decimals=decimals, tolerance=tol),\n        options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected,\n        rank=dict(target=goal, achieved=rank),\n        checks=dict(decimal_projection_S_eV=str(s_exact), float_projection_S_eV=s_float,\n                    derivative_eV=str(derivative), direction=direction, atom_order_consistent=True,\n                    source_ids=[data['reference_id'], data['displaced_id']], force_key=data['force_key'],\n                    limits='局部方向导数，不是 E(B)−E(A)，也不证明 A 是 PBE0+MBD 极小点。'),\n        scales=dict(input_nm=kit.dmax(pb) / 10, reasoning_nm=kit.dmax(pb) / 10,\n                    reasoning_definition='全部原子参与：B 的最大原子间距'),\n        input_hashes={spec['asset']: kit.sha256(raw)})\n",
@@ -52686,6 +53907,6 @@
   "task_families/vortex.py": "\"\"\"Abrikosov vortex lattices (quantum, 100-1000 nm): paper-parameter models.\n\nInputs are the vortex-centre maps built by tools/build_vortex_assets.py: MgB2 at the four applied fields of Cottet et al.\n(arXiv:1401.4062) and BSCCO at the measured lattice constant of Schaefermeier et al. (arXiv:2602.13060). Questions concern the\nlattice spacing (356-855 nm), the vortex density, flux quantisation (one h/2e per vortex), the first SANS Bragg peak, and the\nchoice of field for a target lattice (design).\n\"\"\"\nimport math\nfrom . import kit\n\nVERSION = '0.1.0'\nPHI0 = 2.067833848e-15\nTOL = 1e-5\nPAPERS = {'cottet': 'Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K)',\n          'schaefermeier': 'Schaefermeier et al. (arXiv:2602.13060; BSCCO-2212, scanning NV magnetometry at 71 K)'}\n\n\ndef conditions(paper, field_text):\n    return ('Model conditions: the only measured input is %s reported by %s; the vortices form an ideal triangular lattice with '\n            'exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform '\n            'field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an '\n            'arbitrary orientation.' % (field_text, PAPERS[paper]))\n\n\ndef load(root, asset):\n    raw = (root / 'docs' / asset).read_bytes()\n    text = raw.decode('utf-8')\n    lines = text.splitlines()\n    rows = [l.split() for l in lines[2:] if l.strip()]\n    if int(lines[0]) != len(rows) or any(len(r) != 3 or r[0] != 'V' for r in rows):\n        raise ValueError('Expected count, comment and \"V x y\" rows')\n    return text, [(float(r[1]), float(r[2])) for r in rows], kit.sha256(raw)\n\n\ndef lattice_spacing(pts, expected):\n    c = (math.fsum(p[0] for p in pts) / len(pts), math.fsum(p[1] for p in pts) / len(pts))\n    i = min(range(len(pts)), key=lambda k: math.dist(pts[k], c))\n    d = sorted(math.dist(pts[i], p) for j, p in enumerate(pts) if j != i)\n    first = [x for x in d if x - d[0] <= TOL]\n    if len(first) != 6:\n        raise ValueError('Vortices do not form a triangular lattice around the centre')\n    a = math.fsum(first) / 6\n    if abs(a - expected) > 1e-3:\n        raise ValueError('Lattice spacing does not match the published value')\n    return a\n\n\ndef field_from(a):                    # tesla, a in nm\n    return 2 * PHI0 / (math.sqrt(3) * (a * 1e-9) ** 2)\n\n\ndef spacing_from(b):                  # nm\n    return math.sqrt(2 * PHI0 / (math.sqrt(3) * b)) * 1e9\n\n\ndef density(a):                       # vortices per um^2\n    return 2 / (math.sqrt(3) * (a / 1000) ** 2)\n\n\ndef q10(a):                           # um^-1, first Bragg peak of the triangular lattice\n    return 4 * math.pi / (math.sqrt(3) * a / 1000)\n\n\nSUBJECT = ('The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor '\n           'in a perpendicular magnetic field.')\nASK = {\n    'spacing': ('What is the vortex lattice spacing (centre-to-centre distance between neighbouring vortices), in nm?',\n                1, '0.05', '10.0', 'nm', 'perception'),\n    'density': ('How many vortices are there per square micrometre (areal vortex density)?', 3, '0.0005', '0.150', 'um^-2', 'perception'),\n    'field': ('Each vortex carries one superconducting flux quantum Φ0 = h/(2e) = 2.0678 × 10⁻¹⁵ Wb. What is the magnetic induction B '\n              'inside the superconductor that produces this lattice, in mT?', 3, '0.0005', '0.150', 'mT', 'inference'),\n    'flux': ('The magnetic induction inside the superconductor is B = %s mT. How much magnetic flux does each vortex carry, in units of '\n             '10⁻¹⁵ Wb?', 3, '0.0005', '0.150', '1e-15 Wb', 'inference'),\n    'sans_q': ('In a small-angle neutron scattering experiment on this lattice, at what scattering vector q (q = 4π sinθ/λ) does the '\n               'first-order Bragg peak of the vortex lattice appear, in μm⁻¹?', 2, '0.005', '0.50', 'um^-1', 'inference'),\n}\n\n\ndef candidates(ask, a, b_mT):\n    s3 = math.sqrt(3)\n    if ask == 'spacing':\n        return a, [dict(rule='row_spacing', value=a * s3 / 2, plausibility=3, reason='报告了相邻涡旋行的间距（√3/2）a。'),\n                   dict(rule='second_neighbour', value=a * s3, plausibility=2, reason='报告了次近邻距离 √3 a。'),\n                   dict(rule='square_lattice_guess', value=a * (s3 / 2) ** 0.5, plausibility=2, reason='按正方格子由密度反推间距。'),\n                   dict(rule='half_spacing', value=a / 2, plausibility=1, reason='报告了半个间距。'),\n                   dict(rule='double_spacing', value=2 * a, plausibility=2, reason='报告了隔一个涡旋的距离 2a。')]\n    if ask == 'density':\n        n = density(a)\n        return n, [dict(rule='square_cell', value=1 / (a / 1000) ** 2, plausibility=3, reason='每个涡旋按 a² 的正方形面积计。'),\n                   dict(rule='triangle_cell', value=2 * n, plausibility=2, reason='用三角形面积（半个晶胞）当作每个涡旋的面积。'),\n                   dict(rule='half_density', value=n / 2, plausibility=2, reason='晶胞面积多乘了 2。'),\n                   dict(rule='circle_cell', value=1 / (math.pi * (a / 2000) ** 2), plausibility=2, reason='每个涡旋按直径为 a 的圆面积计。')]\n    if ask == 'field':\n        b = field_from(a) * 1e3\n        return b, [dict(rule='square_lattice', value=PHI0 / (a * 1e-9) ** 2 * 1e3, plausibility=3, reason='按正方格子 B = Φ0/a²。'),\n                   dict(rule='flux_h_over_e', value=2 * b, plausibility=3, reason='用 h/e（单电子磁通量子）代替 h/2e。'),\n                   dict(rule='flux_h_over_4e', value=b / 2, plausibility=2, reason='磁通量子多除了 2。'),\n                   dict(rule='gauss_mT_slip', value=b * 10, plausibility=2, reason='高斯与毫特斯拉换算错（1 mT = 10 G）。'),\n                   dict(rule='second_neighbour_as_spacing', value=b / 3, plausibility=2, reason='把次近邻距离 √3a 当作晶格间距。')]\n    if ask == 'flux':\n        cell = math.sqrt(3) / 2 * (a * 1e-9) ** 2\n        phi = b_mT * 1e-3 * cell * 1e15\n        return phi, [dict(rule='h_over_e', value=phi * 2, plausibility=3, reason='报告了 h/e（把超导电子对的电荷当作 e）。'),\n                     dict(rule='square_cell', value=b_mT * 1e-3 * (a * 1e-9) ** 2 * 1e15, plausibility=3, reason='每个涡旋按 a² 面积计。'),\n                     dict(rule='triangle_cell', value=phi / 2, plausibility=2, reason='每个涡旋按三角形面积计。'),\n                     dict(rule='hbar_over_2e', value=phi / (2 * math.pi), plausibility=1, reason='报告了 ħ/(2e)，即 Φ0/2π。')]\n    q = q10(a)\n    return q, [dict(rule='two_pi_over_a', value=2 * math.pi / (a / 1000), plausibility=3, reason='用 2π/a，而三角格子首峰为 4π/(√3 a)。'),\n               dict(rule='missing_two_pi', value=q / (2 * math.pi), plausibility=2, reason='漏掉 2π。'),\n               dict(rule='second_order_peak', value=q * math.sqrt(3), plausibility=2, reason='报告了第二个峰（√3 倍）。'),\n               dict(rule='square_lattice_q', value=2 * math.pi / (a * (math.sqrt(3) / 2) ** 0.5 / 1000), plausibility=2,\n                    reason='按等密度正方格子计算首峰。')]\n\n\ndef build(spec, root, seed, ability):\n    ask = spec['ask']\n    text_q, decimals, tol, sep, unit, want = ASK[ask]\n    if want != ability:\n        raise ValueError('Quantity %s is not %s' % (ask, ability))\n    text, pts, digest = load(root, spec['asset'])\n    a = lattice_spacing(pts, spec['spacing_nm'])\n    b_mT = spec.get('field_mT')\n    if ask == 'flux':\n        text_q = text_q % kit.display(b_mT, 2)\n    value, cands = candidates(ask, a, b_mT)\n    picked, rejected, goal, rank = kit.choose_numeric(value, cands, decimals=decimals, tolerance=tol, min_separation=sep, seed=seed,\n                                                      context=spec['id'], lower=0, target=spec.get('target_position'),\n                                                      distractor_separation=str(float(sep) / 2))\n    options, audit = kit.label_numeric(value, picked, decimals=decimals, unit=unit, seed=seed, context=spec['id'],\n                                       correct_reason='三角涡旋晶格：a = %.3f nm，B = 2Φ0/(√3 a²) = %.4f mT，n = B/Φ0。' % (a, field_from(a) * 1e3))\n    key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=sep, unit=unit,\n                               distractor_separation=str(float(sep) / 2))\n    question = '%s %s %s' % (SUBJECT, conditions(spec['paper'], spec['measured_text']), text_q)\n    return dict(question=question, scope=spec['scope'],\n                inputs=[dict(name=spec['asset'].rsplit('/', 1)[1], format='vortex-map', unit='nm', text=text)],\n                numeric=dict(value=kit.display(value, decimals), unit=unit, decimals=decimals, tolerance=tol),\n                options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected, rank=dict(target=goal, achieved=rank),\n                checks=dict(vortices=len(pts), spacing_nm=a, field_mT=field_from(a) * 1e3, density_per_um2=density(a), q10_per_um=q10(a),\n                            limits='理想三角涡旋晶格（论文用作对比的同一理想化）；不含钉扎无序与热涨落。'),\n                scales=dict(input_nm=max(math.dist(p, q) for p in pts for q in pts), reasoning_nm=a, reasoning_definition='涡旋晶格间距 a'),\n                input_hashes={spec['asset']: digest})\n\n\ndef build_geometry(spec, root, seed):\n    return build(spec, root, seed, 'perception')\n\n\ndef build_inference(spec, root, seed):\n    return build(spec, root, seed, 'inference')\n\n\nGOALS = {'spacing': ('the vortex lattice spacing is closest to %g nm', lambda a: a),\n         'sans_q': ('the first-order small-angle-neutron-scattering Bragg peak of the vortex lattice (q = 4π sinθ/λ) is closest to %g μm⁻¹',\n                    q10),\n         'min_density': ('the field is as low as possible while the areal vortex density is at least %g vortices per square micrometre',\n                         density)}\nWRONG = {'spacing': [('row_spacing', lambda a: a * math.sqrt(3) / 2, '把行间距当作晶格间距'),\n                     ('second_neighbour', lambda a: a * math.sqrt(3), '把次近邻距离当作晶格间距')],\n         'sans_q': [('two_pi_over_a', lambda a: 2 * math.pi / (a / 1000), '用 2π/a 计算首峰'),\n                    ('second_order_peak', lambda a: q10(a) * math.sqrt(3), '用第二个峰')],\n         'min_density': [('square_cell', lambda a: 1 / (a / 1000) ** 2, '每个涡旋按 a² 面积计'),\n                         ('half_density', lambda a: density(a) / 2, '晶胞面积多乘 2')]}\n\n\ndef build_design(spec, root, seed):\n    rows, inputs, hashes = [], [], {}\n    for asset, (label, b_mT, a_exp) in zip(spec['candidates'], spec['fields']):\n        text, pts, digest = load(root, asset)\n        a = lattice_spacing(pts, a_exp)\n        rows.append(dict(label=label, name=asset.rsplit('/', 1)[1], a=a, b=b_mT))\n        inputs.append(dict(name=asset.rsplit('/', 1)[1], format='vortex-map', unit='nm', text=text))\n        hashes[asset] = digest\n    goal, t = spec['goal'], spec['target']\n    text_goal, prop = GOALS[goal]\n    why = {}\n    if goal == 'min_density':\n        ok = [r for r in rows if prop(r['a']) >= t]\n        if not ok or min(abs(prop(r['a']) - t) for r in rows) < 0.2:\n            raise ValueError('No candidate meets the target, or one sits too close to it')\n        best = min(ok, key=lambda r: r['b'])\n        for r in rows:\n            if r is best:\n                continue\n            fooled = [rule for rule, f, _ in WRONG[goal] if (f(r['a']) >= t) != (prop(r['a']) >= t)]\n            if prop(r['a']) < t:\n                why[r['label']] = (('passes_if_' + fooled[0]) if fooled else 'too_sparse',\n                                   '密度 %.2f /μm²，未达到 %g%s。' % (prop(r['a']), t, '；若%s会误判为满足' % dict((x, z) for x, _, z in WRONG[goal])[fooled[0]] if fooled else ''),\n                                   3 if fooled else 2)\n            else:\n                why[r['label']] = ('meets_but_higher_field', '密度 %.2f /μm² 满足，但磁场更高。' % prop(r['a']), 2)\n        reason_ok = '满足密度要求的候选中磁场最低（密度 %.2f /μm²）。' % prop(best['a'])\n    else:\n        ranked = sorted(rows, key=lambda r: abs(prop(r['a']) - t))\n        best, runner = ranked[0], ranked[1]\n        if abs(prop(runner['a']) - t) < 1.5 * abs(prop(best['a']) - t) or abs(prop(runner['a']) - t) - abs(prop(best['a']) - t) < 0.03 * t:\n            raise ValueError('Winning margin too small')\n        for rule, f, note in WRONG[goal]:\n            pick = min(rows, key=lambda r: abs(f(r['a']) - t))\n            if pick is not best and pick['label'] not in why:\n                why[pick['label']] = (rule, '%s时它最接近目标（%.2f）。' % (note, f(pick['a'])), 3)\n        for r in rows:\n            if r is not best and r['label'] not in why:\n                why[r['label']] = ('farther_from_target', '正确计算为 %.2f，离目标更远。' % prop(r['a']), 2)\n        reason_ok = '正确计算为 %.2f，最接近目标。' % prop(best['a'])\n    label = lambda r: '%s (%s)' % (r['label'], r['name'])\n    others = [(why[r['label']][0], label(r), why[r['label']][1], why[r['label']][2]) for r in rows if r is not best]\n    order = kit.place(('correct', label(best), reason_ok, 3), others, spec.get('target_position'), seed, spec['id'], key=lambda p: p[0])\n    options = [dict(label=l, value=p[1]) for l, p in zip(kit.LABELS, order)]\n    key = kit.validate_verdicts(options, [p[0] == 'correct' for p in order])\n    audit = [dict(label=l, value=p[1], rule=p[0], reason=p[2], is_correct=p[0] == 'correct') for l, p in zip(kit.LABELS, order)]\n    question = ('The four files list the vortex centres (nm) in model images of the Abrikosov vortex lattice of an MgB2 crystal at four '\n                'applied fields (files named by field). %s You must choose one applied field such that %s. Which field should you choose?'\n                % (conditions('cottet', 'the applied magnetic field of each image'), text_goal % t))\n    return dict(question=question, scope=spec['scope'], inputs=inputs, numeric=None, options=options, correct_label=key,\n                option_audit=audit, excluded_candidates=[], rank=None,\n                checks=dict(candidates=[dict(field=r['label'], spacing_nm=r['a'], value=prop(r['a'])) for r in rows], goal=goal, target=t,\n                            design_note='设计选择：候选为论文中实际施加的磁场，性质由模型涡旋图计算（推断的逆问题）。',\n                            limits='理想三角涡旋晶格；论文指出 188.7 G 时单个涡旋已难以分辨。'),\n                scales=dict(input_nm=12 * max(r['a'] for r in rows), reasoning_nm=max(r['a'] for r in rows),\n                            reasoning_definition='候选中最大的涡旋晶格间距'),\n                input_hashes=hashes)\n",
   "family_engine.py": "\"\"\"Run reusable task families over a manifest of real inputs: define -> construct -> verify.\n\nNo model/API calls. Every instance is built by its family function, all four options\nare verified, and student packets (no answers, evidence or mechanisms) are written\nseparately from reviewer packets. Output directories are never overwritten.\nDevelopment pilots only: nothing here admits questions to the catalog.\n\npython family_engine.py --manifest templates/family-manifest.json --out runs/family-new --seed geobench-family-v1\n\"\"\"\nimport argparse\nimport hashlib\nimport json\nfrom collections import Counter\nfrom pathlib import Path\nfrom task_families import FAMILIES, kit\n\nROOT = Path(__file__).resolve().parent\nVERSION = '0.1.0'\nMODULES = {\n    'M0': '范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）',\n    'M1': '材料：docs/assets 输入、来源、许可与 SHA-256',\n    'M2': '证据：计算器复核或数据集性质记录（审核侧）',\n    'M3': '题型契约：registry.json 中的族定义与适用条件',\n    'M4': '构造：族函数生成题干、正确值与候选错误机制',\n    'M5': '质量：四项逐一核验、唯一性、分隔、捷径诊断',\n    'M6': '导出：学生包 / 审核包分离与运行快照',\n}\n\n\ndef code_files():\n    files = sorted((ROOT / 'task_families').glob('*.py')) + [ROOT / 'family_engine.py', ROOT / 'template_engine.py',\n                                                              ROOT / 'tools/recompute_materials_batch.py',\n                                                              ROOT / 'tools/recompute_materials_batch2.py']\n    return {str(p.relative_to(ROOT)).replace('\\\\', '/'): p for p in files}\n\n\ndef build_instance(spec, seed):\n    family = FAMILIES[spec['family']]\n    if not spec.get('scope', '').strip() or not spec.get('source', '').strip():\n        raise ValueError('Missing scope or source')\n    asset = (ROOT / 'docs' / spec['asset']).resolve()\n    if not asset.is_relative_to((ROOT / 'docs/assets').resolve()):\n        raise ValueError('Asset must stay inside docs/assets')\n    return family, family['build'](spec, ROOT, seed)\n\n\ndef run(manifest_path, out, seed='geobench-family-v1'):\n    manifest_path, out = Path(manifest_path), Path(out)\n    if out.exists():\n        raise ValueError('Output exists; use a new directory to preserve history')\n    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))\n    ids = [x['id'] for x in manifest['items']]\n    if not ids or len(set(ids)) != len(ids):\n        raise ValueError('Empty batch or duplicate ID')\n    students, numeric_students, teachers, stages, failures = [], [], [], [], []\n    counters = Counter()\n    for spec in manifest['items']:\n        # Batch-level balance: within each family, correct positions cycle A..D from a seeded offset.\n        offset = kit.digest(seed, spec['family'], 'offset')[0] % 4\n        spec = dict(spec, target_position=1 + (offset + counters[spec['family']]) % 4)\n        counters[spec['family']] += 1\n        try:\n            family, built = build_instance(spec, seed)\n        except (ValueError, KeyError) as error:\n            failures.append(dict(id=spec['id'], family=spec['family'], stage='construct/verify', reason=str(error)))\n            continue\n        students.append(dict(id=spec['id'], family=spec['family'], ability=family['ability'],\n                             question=built['question'], scope=built['scope'], inputs=built['inputs'],\n                             options=built['options'], response_format='one label: A/B/C/D'))\n        if built['numeric']:\n            n = built['numeric']\n            numeric_students.append(dict(id='N-' + spec['id'], family=spec['family'], ability=family['ability'],\n                                         question=built['question'], scope=built['scope'], inputs=built['inputs'],\n                                         response_format=dict(value='one number rounded to %d decimals' % n['decimals'],\n                                                              unit=n['unit'])))\n        shortcuts = None\n        if built['rank']:\n            pairs = [(o['label'], o['value']) for o in built['options']]\n            shortcuts = dict(kit.rank_shortcuts(pairs, built['correct_label']),\n                             mirror_pair_cue=kit.mirror_pair_cue(pairs, built['correct_label']))\n        teachers.append(dict(id=spec['id'], family=spec['family'], family_version=family['version'],\n                             ability=family['ability'], correct_label=built['correct_label'],\n                             numeric_answer=built['numeric'], option_audit=built['option_audit'],\n                             excluded_candidates=built['excluded_candidates'], rank=built['rank'],\n                             rank_shortcuts=shortcuts, checks=built['checks'], scales=built['scales'],\n                             source=spec['source'], license=spec.get('license', ''), legacy_qa=spec.get('legacy_qa'),\n                             input_hashes=built['input_hashes'], seed=seed, target_position=spec['target_position'],\n                             option_order=built.get('option_order') or ('numeric ascending (label = rank)' if built['rank'] else 'correct at batch-balanced target; others sha256-sorted'),\n                             human_review='pending', catalog_admitted=False))\n        stages.append(dict(id=spec['id'], family=spec['family'],\n                           define=dict(family=spec['family'], version=family['version'], ability=family['ability'],\n                                       output=family['output'], module=family['module']),\n                           construct=dict(inputs=[dict(name=i['name'], format=i['format'], chars=len(i['text']))\n                                                  for i in built['inputs']],\n                                          candidates_considered=len(built['option_audit']) + len(built['excluded_candidates'])),\n                           verify=dict(four_options_verified=True, unique_correct=True, correct_label=built['correct_label'],\n                                       checks=sorted(k for k, v in built['checks'].items() if v is True)),\n                           modules=MODULES))\n    positions = Counter(t['correct_label'] for t in teachers)\n    by_family = {}\n    for t in teachers:\n        f = by_family.setdefault(t['family'], dict(passed=0, shortcut_hits=Counter()))\n        f['passed'] += 1\n        for k, v in (t['rank_shortcuts'] or {}).items():\n            f['shortcut_hits'][k] += int(v)\n    for f in failures:\n        by_family.setdefault(f['family'], dict(passed=0, shortcut_hits=Counter()))\n    for name, f in by_family.items():\n        f['attempted'] = sum(1 for s in manifest['items'] if s['family'] == name)\n        f['shortcut_hits'] = dict(f['shortcut_hits'])\n    code = code_files()\n    report = dict(version=VERSION, kind='reusable_family_development_pilot', seed=seed,\n                  attempted=len(ids), passed=len(teachers), failures=failures, model_calls=0,\n                  catalog_admitted=0, human_review='pending', by_family=by_family,\n                  correct_position_counts={l: positions.get(l, 0) for l in kit.LABELS},\n                  manifest_sha256=kit.sha256(manifest_path.read_bytes()),\n                  registry_sha256=kit.sha256((ROOT / 'templates/registry.json').read_bytes()),\n                  code_sha256={k: kit.sha256(p.read_bytes()) for k, p in code.items()},\n                  difficulty_note='程序通过只说明四项已核验且唯一正确；难度、迷惑性与科学意义仍需人工审核与模型实验。',\n                  limits='开发试跑，不计入题库；模板与来源选择待人工审核。')\n    out.mkdir(parents=True)\n    for name, data in [('student-packets.json', students), ('numeric-student-packets.json', numeric_students),\n                       ('private-answers.json', teachers), ('stage-records.json', stages), ('verification.json', report)]:\n        (out / name).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\\n', encoding='utf-8', newline='\\n')\n    snap = out / 'snapshot'\n    for rel, p in code.items():\n        (snap / rel).parent.mkdir(parents=True, exist_ok=True)\n        (snap / rel).write_bytes(p.read_bytes())\n    (snap / 'manifest.json').write_bytes(manifest_path.read_bytes())\n    (snap / 'registry.json').write_bytes((ROOT / 'templates/registry.json').read_bytes())\n    return report\n\n\nif __name__ == '__main__':\n    p = argparse.ArgumentParser(description=__doc__)\n    p.add_argument('--manifest', type=Path, required=True)\n    p.add_argument('--out', type=Path, required=True)\n    p.add_argument('--seed', default='geobench-family-v1')\n    a = p.parse_args()\n    r = run(a.manifest, a.out, a.seed)\n    print(json.dumps(dict(attempted=r['attempted'], passed=r['passed'], failures=r['failures'],\n                          positions=r['correct_position_counts'], model_calls=0), ensure_ascii=False))\n"
  },
- "run": "family-pilot-v34",
+ "run": "family-pilot-v35",
  "note": "Public development examples; student packets and reviewer packets are separate. All pending human audit; no catalog admissions; not a hidden test set."
 }

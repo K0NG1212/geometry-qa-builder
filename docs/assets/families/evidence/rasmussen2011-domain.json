@@ -1,0 +1,100 @@
+{
+ "kind": "evidence_card",
+ "id": "rasmussen2011-domain",
+ "paper": "paper-rasmussen-b2ar-gs",
+ "short_citation": "Rasmussen et al., Nature 477, 549 (2011)",
+ "citation": "Rasmussen et al., \"Crystal structure of the beta2 adrenergic receptor-Gs protein complex\", Nature 477, 549 (2011), doi:10.1038/nature10361 (author manuscript PMC3184188; PDB 3SN6)",
+ "license": "PMC author manuscript (not CC); facts and numbers only, no text or figures reproduced",
+ "family": "evidence_elimination",
+ "topic": "The crystal structure of the beta2 adrenergic receptor bound to an agonist and to the nucleotide-free Gs heterotrimer (3.2 A) shows the alpha-helical domain of Gs-alpha swung away from its Ras-like GTPase domain, by about 127 degrees. A nanobody, Nb35, had been added to make the complex crystallize.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "Nb35 binds at the interface between the Gs-beta subunit and the Ras-like domain of Gs-alpha; none of its contacts on the Ras domain are residues that touch the alpha-helical domain in the nucleotide-bound structure.",
+   "locator": "Structure of activated Gs; Fig. 2b, Fig. S6",
+   "observed": {
+    "nanobody_contacts_helical_domain": true
+   }
+  },
+  {
+   "id": "E2",
+   "text": "Superimposing the Ras domains of the nucleotide-bound Gs-alpha structure and of the complex leaves no overlap between Nb35 and the alpha-helical domain.",
+   "locator": "Structure of activated Gs; Fig. S6",
+   "observed": {
+    "nanobody_overlaps_helical_domain": true
+   }
+  },
+  {
+   "id": "E3",
+   "text": "Single-particle electron microscopy of the complex in detergent, without any nanobody, shows the alpha-helical domain in variable positions.",
+   "locator": "Crystallization of the complex (EM analysis); Fig. 1b",
+   "observed": {
+    "domain_mobile_without_nanobody": false
+   }
+  },
+  {
+   "id": "E4",
+   "text": "Double electron-electron resonance on a related G protein bound to light-activated rhodopsin measures distance changes of up to 20 A between the two domains.",
+   "locator": "Structure of activated Gs (DEER reference)",
+   "observed": {
+    "independent_methods_see_motion": true
+   }
+  },
+  {
+   "id": "E5",
+   "text": "Apyrase was used to destroy the GDP released on complex formation, since GDP or GTP analogues disrupt the high-affinity complex; deuterium exchange at the interface between the two domains increases on complex formation.",
+   "locator": "Crystallization of the complex; Structure of activated Gs",
+   "observed": {
+    "nucleotide_still_bound": false
+   }
+  }
+ ],
+ "ask": "Which account of the displaced alpha-helical domain is consistent with all of these observations?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "text": "Removing the nucleotide unlocks the two domains, so the alpha-helical domain becomes mobile; the position seen in the crystal is only one of the conformations it can adopt, selected by crystal packing.",
+   "predicts": {
+    "domain_mobile_without_nanobody": false,
+    "independent_methods_see_motion": true,
+    "nucleotide_still_bound": false
+   },
+   "locator": "Structure of activated Gs: the position most likely reflects one of an ensemble of conformations, stabilized by crystal packing",
+   "reason": "与全部观测一致，即原文结论。",
+   "paper_conclusion": true
+  },
+  {
+   "rule": "nanobody_artefact",
+   "text": "Nb35 pushed the alpha-helical domain aside, so the displacement is an artefact of the crystallization aid.",
+   "predicts": {
+    "nanobody_contacts_helical_domain": false,
+    "nanobody_overlaps_helical_domain": false
+   },
+   "locator": "Fig. S6: Nb35 neither contacts the helical domain nor overlaps it after superposition",
+   "reason": "Nb35 结合在 Gbeta 与 Ras 结构域的界面，既不接触也不与螺旋结构域重叠；无纳米抗体的电镜同样看到该结构域位置可变。"
+  },
+  {
+   "rule": "crystal_packing_only",
+   "text": "The two domains stay together in solution; only the crystal lattice pulls them apart.",
+   "predicts": {
+    "domain_mobile_without_nanobody": true
+   },
+   "locator": "Fig. 1b: EM in detergent solution already shows variable positions",
+   "reason": "溶液中的单颗粒电镜已经看到该结构域位置可变，并非晶体中才分开。"
+  },
+  {
+   "rule": "nucleotide_bound",
+   "text": "GDP is still bound in a closed nucleotide pocket, and the apparent displacement is a modelling error.",
+   "predicts": {
+    "nucleotide_still_bound": true
+   },
+   "locator": "Crystallization of the complex: apyrase removed the GDP, which otherwise disrupts the complex",
+   "reason": "制备时用 apyrase 除去了 GDP，而且 GDP 或 GTP 类似物会破坏该复合物，复合物本身就是无核苷酸状态。"
+  }
+ ],
+ "scale": {
+  "input_nm": 11,
+  "reasoning_nm": 2.0,
+  "definition": "Gs-alpha 两个结构域之间的位移（约 2 nm）"
+ }
+}

@@ -1,0 +1,88 @@
+{
+ "kind": "evidence_card",
+ "id": "jiang2015-channel",
+ "paper": "paper-jiang-anthrax-pa-pore",
+ "short_citation": "Jiang et al., Nature 521, 545 (2015)",
+ "citation": "Jiang, Pentelute, Collier & Zhou, \"Atomic structure of anthrax protective antigen pore elucidates toxin translocation\", Nature 521, 545 (2015), doi:10.1038/nature14247 (author manuscript PMC4519040; PDB 3J9C)",
+ "license": "PMC author manuscript (not CC); facts and numbers only, no text or figures reproduced",
+ "family": "evidence_elimination",
+ "topic": "The cryo-EM structure of the anthrax protective antigen (PA) pore at 2.9 A resolution shows the channel through which the enzymes lethal factor and edema factor cross the endosomal membrane.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "The mouth of the channel is 30 A wide at its opening and narrows to about 20 A inside; it can take secondary-structure elements but not folded domains such as the N-terminal domain of lethal factor.",
+   "locator": "Main text (translocation channel); Fig. 3a",
+   "observed": {
+    "mouth_admits_folded_domain": false
+   }
+  },
+  {
+   "id": "E2",
+   "text": "Below the mouth, a ring of seven Phe427 side chains (the phi clamp) leaves a solvent-excluded hole of only 6 A, the narrowest point of the whole channel.",
+   "locator": "Main text (translocation channel); Fig. 3a-b, Fig. 4",
+   "observed": {
+    "clamp_admits_helix": false
+   }
+  },
+  {
+   "id": "E3",
+   "text": "Below the clamp, the throat (about 18 A) and the tube formed by the 14-stranded beta barrel (inner diameter 12 to 18 A) are wide enough to hold an alpha helix.",
+   "locator": "Main text (translocation channel); Fig. 3a",
+   "observed": {
+    "tube_admits_helix": true
+   }
+  },
+  {
+   "id": "E4",
+   "text": "Apart from the mouth and the lower end of the tube the channel wall has no openings, and mutating even one of the seven Phe427 residues severely reduces translocation.",
+   "locator": "Main text (translocation channel and phi-clamp paragraphs)"
+  }
+ ],
+ "ask": "Which description of how a substrate protein passes through this channel is consistent with all of these facts?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "text": "The substrate has to be fully unfolded to pass the phi clamp, and may form an alpha helix again in the wider throat and tube below it.",
+   "predicts": {
+    "clamp_admits_helix": false,
+    "tube_admits_helix": true,
+    "mouth_admits_folded_domain": false
+   },
+   "locator": "Main text: the clamp may only allow passage of fully unfolded polypeptides; throat and tube can accommodate an alpha helix",
+   "reason": "与全部观测一致，即原文结论。",
+   "paper_conclusion": true
+  },
+  {
+   "rule": "folded_domain",
+   "text": "Lethal factor passes through as an intact folded domain.",
+   "predicts": {
+    "mouth_admits_folded_domain": true
+   },
+   "locator": "Main text: the mouth cannot accommodate folded domains",
+   "reason": "孔口内径约 20 A，容不下折叠结构域，更过不了 6 A 的夹子。"
+  },
+  {
+   "rule": "helix_through_clamp",
+   "text": "The substrate passes the phi clamp as preformed alpha helices.",
+   "predicts": {
+    "clamp_admits_helix": true
+   },
+   "locator": "Main text: the 6 A clamp is smaller than secondary-structure elements",
+   "reason": "phi 夹只有 6 A，比 alpha 螺旋还窄。"
+  },
+  {
+   "rule": "extended_throughout",
+   "text": "The substrate has to stay fully extended along the whole channel, because no part of it is wide enough for a helix.",
+   "predicts": {
+    "tube_admits_helix": false
+   },
+   "locator": "Main text: the throat and tube (over 12 A) can hold an alpha helix",
+   "reason": "夹子下方的喉部与管道有 12–18 A，足以容纳 alpha 螺旋。"
+  }
+ ],
+ "scale": {
+  "input_nm": 10.5,
+  "reasoning_nm": 3.0,
+  "definition": "通道各段的内径（0.6–3 nm）"
+ }
+}

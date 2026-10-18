@@ -26,7 +26,7 @@ VERSION = '0.1.0'
 H = 6.62607015e-34          # J s, exact (SI 2019)
 E = 1.602176634e-19         # C, exact (SI 2019)
 FLUX = {'h/2e': H / (2 * E), 'h/e': H / E}
-UNITS = {'nm': ' nm', 'um^2': ' µm²', 'T': ' T', 'degree': '°', 'angstrom': ' Å', '': ''}
+UNITS = {'nm': ' nm', 'um^2': ' µm²', 'T': ' T', 'degree': '°', 'angstrom': ' Å', 'eV': ' eV', '': ''}
 NUMBER = re.compile(r'^(-?\d+(?:\.\d+)?)(?: × 10\^(-?\d+))?')
 
 
@@ -107,6 +107,12 @@ def compute(kind, a, v, files):
         return arg(v, a['lam_R']) * arg(v, a['c_R']) / (arg(v, a['lam_L']) * arg(v, a['c_L']))
     if kind == 'wavelength_ratio':
         return arg(v, a['lam_R']) / arg(v, a['lam_L'])
+    if kind == 'photon_energy_shift':                            # E = hc/lambda; shift = E(to) - E(from), in eV
+        hc = arg(v, a['hc'])
+        return hc / arg(v, a['lam_to']) - hc / arg(v, a['lam_from'])
+    if kind == 'regular_polygon_radius':                         # circumradius of a regular n-gon of given side
+        n = arg(v, a['n'])
+        return arg(v, a['side']) / (2.0 * math.sin(math.pi / n))
     if kind in ('layer_ratio', 'layer_ratio_inverted'):         # Dimitrov-Nagayama: k = beta h Je phi / (0.605 d v (1 - phi))
         layers = lambda speed: 1.0 / (0.605 * speed)               # same suspension and meniscus: all other factors cancel
         ratio = layers(arg(v, a['v_slow'])) / layers(arg(v, a['v_fast']))

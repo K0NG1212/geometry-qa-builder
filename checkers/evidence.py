@@ -16,7 +16,7 @@ from .common import need, read_xyz, dist, verify_hashes
 
 H = Decimal('6.62607015e-34')
 E = Decimal('1.602176634e-19')
-UNIT_TEXT = {'nm': ' nm', 'um^2': ' µm²', 'T': ' T', 'degree': '°', 'angstrom': ' Å', '': ''}
+UNIT_TEXT = {'nm': ' nm', 'um^2': ' µm²', 'T': ' T', 'degree': '°', 'angstrom': ' Å', 'eV': ' eV', '': ''}
 NUM = re.compile(r'(-?\d+(?:\.\d+)?)(?: × 10\^(-?\d+))?')
 
 
@@ -107,6 +107,14 @@ def quantity(kind, a, v, inputs, card):
             return (get(v, a['lam_R']) * get(v, a['c_R'])) / (get(v, a['lam_L']) * get(v, a['c_L']))
         if kind == 'wavelength_ratio':
             return get(v, a['lam_R']) / get(v, a['lam_L'])
+        if kind == 'photon_energy_shift':               # same formula, Decimal arithmetic
+            hc = get(v, a['hc'])
+            return hc / get(v, a['lam_to']) - hc / get(v, a['lam_from'])
+        if kind == 'regular_polygon_radius':            # via the half-angle: R = side / (2 sin(pi/n))
+            n = int(get(v, a['n']))
+            need(n >= 3, 'A polygon needs at least three vertices')
+            half = Decimal(repr(math.sin(math.pi / n)))
+            return get(v, a['side']) / (2 * half)
         if kind == 'layer_ratio':                       # k proportional to 1/v at fixed suspension
             return get(v, a['v_fast']) / get(v, a['v_slow'])
         if kind == 'layer_ratio_inverted':

@@ -1,12 +1,12 @@
 {
  "kind": "format_check",
  "date": "2026-10-13",
- "checked": 259,
- "with_issues": 17,
+ "checked": 267,
+ "with_issues": 19,
  "by_severity": {
   "high": 0,
   "medium": 0,
-  "low": 17
+  "low": 19
  },
  "by_rule": {
   "not_four_choice": 0,
@@ -16,7 +16,7 @@
   "needs_explanation": 0,
   "binary_inside": 0,
   "main_record_old_format": 0,
-  "two_binaries_combined": 15,
+  "two_binaries_combined": 17,
   "mirror_pair": 2,
   "precision_collapse": 0
  },
@@ -73,13 +73,28 @@
   }
  },
  "answer_positions": {
-  "A": 57,
-  "B": 76,
-  "C": 72,
-  "D": 54
+  "A": 58,
+  "B": 78,
+  "C": 75,
+  "D": 56
  },
  "note": "Automatic rules plus findings checked by hand (REVIEWED). Read-only; fixes follow the RUNBOOK (whole-family regeneration, supersede or archive), not edits of single questions.",
  "items": [
+  {
+   "id": "BNI046",
+   "title": "炭疽毒素 · 前孔中 Phe427 环的半径 → Φ-夹如何形成（证据题）",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "two_binaries_combined",
+     "severity": "low",
+     "label": "两个二选一拼成四选一",
+     "detail": "证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。"
+    }
+   ],
+   "suggestion": ""
+  },
   {
    "id": "BNP014",
    "title": "1UBQ · Val26 主链 ψ 二面角（四选一）",
@@ -233,6 +248,21 @@
   {
    "id": "MNI036",
    "title": "SiO₂ 胶体晶体 · 提拉速度 → 颗粒层数 → 反射峰（证据题）",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "two_binaries_combined",
+     "severity": "low",
+     "label": "两个二选一拼成四选一",
+     "detail": "证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
+   "id": "MNI037",
+   "title": "卤化物钙钛矿 · 掺 Rb 的吸收边位移 → 带隙变化 → 八面体倾转（证据题）",
    "legacy": false,
    "worst": "low",
    "issues": [

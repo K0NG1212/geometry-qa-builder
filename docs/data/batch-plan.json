@@ -6,10 +6,10 @@
  "enumeration_run": "enum-v34",
  "summary": {
   "target": 1230,
-  "max_selectable": 660,
-  "max_balanced": 660,
+  "max_selectable": 668,
+  "max_balanced": 668,
   "cells_meeting_rule": 2,
-  "paper_parameter_share_of_selectable": 0.083,
+  "paper_parameter_share_of_selectable": 0.082,
   "max_paper_parameter_share": 0.25
  },
  "cells": [
@@ -128,35 +128,36 @@
    "cell": "materials 0.1-1",
    "tier": "A",
    "target": 100,
-   "max_selectable": 87,
-   "max_balanced": 87,
-   "families": 4,
+   "max_selectable": 89,
+   "max_balanced": 89,
+   "families": 6,
    "families_by_ability": {
     "perception": 1,
-    "inference": 2,
+    "inference": 4,
     "design": 1
    },
-   "sources": 17,
+   "sources": 19,
    "paper_systems": [],
    "ability_max": {
     "perception": 25,
-    "inference": 37,
+    "inference": 39,
     "design": 25
    },
    "pool": {
-    "admitted": 25,
+    "admitted": 27,
     "enumerated": 235
    },
    "family_flow": {
     "coordination_shell": 25,
     "first_diffraction_peak": 25,
     "diffraction_design": 25,
-    "kinematic_extinction": 12
+    "kinematic_extinction": 12,
+    "evidence_quantity": 1,
+    "evidence_elimination": 1
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 87 / 100 道",
-    "题型族 4 个，需 ≥ 6",
+    "最多只能选 89 / 100 道",
     "感知 族 1 个，需 ≥ 2",
     "设计 族 1 个，需 ≥ 2"
    ]
@@ -204,77 +205,77 @@
    "cell": "biology 0.1-1",
    "tier": "A",
    "target": 100,
-   "max_selectable": 64,
-   "max_balanced": 64,
-   "families": 4,
+   "max_selectable": 65,
+   "max_balanced": 65,
+   "families": 5,
    "families_by_ability": {
     "perception": 2,
-    "inference": 1,
+    "inference": 2,
     "design": 1
    },
-   "sources": 8,
+   "sources": 9,
    "paper_systems": [],
    "ability_max": {
     "perception": 28,
-    "inference": 25,
+    "inference": 26,
     "design": 25
    },
    "pool": {
-    "admitted": 12,
+    "admitted": 13,
     "enumerated": 1856
    },
    "family_flow": {
     "backbone_torsion": 25,
     "secondary_structure": 25,
     "disulfide_design": 11,
-    "named_bond_distance": 3
+    "named_bond_distance": 3,
+    "evidence_elimination": 1
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 64 / 100 道",
-    "题型族 4 个，需 ≥ 6",
-    "推断 族 1 个，需 ≥ 2",
+    "最多只能选 65 / 100 道",
+    "题型族 5 个，需 ≥ 6",
     "设计 族 1 个，需 ≥ 2",
-    "来源 8 个，需 ≥ 15"
+    "来源 9 个，需 ≥ 15"
    ]
   },
   {
    "cell": "biology 1-10",
    "tier": "A",
    "target": 100,
-   "max_selectable": 58,
-   "max_balanced": 58,
-   "families": 4,
+   "max_selectable": 62,
+   "max_balanced": 62,
+   "families": 6,
    "families_by_ability": {
     "perception": 1,
-    "inference": 2,
+    "inference": 4,
     "design": 1
    },
-   "sources": 14,
+   "sources": 18,
    "paper_systems": [],
    "ability_max": {
     "perception": 3,
-    "inference": 30,
+    "inference": 34,
     "design": 25
    },
    "pool": {
-    "admitted": 15,
+    "admitted": 19,
     "enumerated": 23452
    },
    "family_flow": {
     "fret_efficiency": 25,
     "fret_design": 25,
     "guinier_intensity": 5,
-    "extent_choice_v2": 3
+    "extent_choice_v2": 3,
+    "evidence_elimination": 3,
+    "evidence_quantity": 1
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 58 / 100 道",
-    "题型族 4 个，需 ≥ 6",
+    "最多只能选 62 / 100 道",
     "感知 族 1 个，需 ≥ 2",
     "感知 最多 3 道，需 ≥ 23",
-    "设计 族 1 个，需 ≥ 2",
-    "来源 14 个，需 ≥ 15"
+    "设计 族 1 个，需 ≥ 2"
    ]
   },
   {
@@ -432,41 +433,40 @@
    "cell": "quantum 10-100",
    "tier": "C",
    "target": 50,
-   "max_selectable": 16,
-   "max_balanced": 16,
+   "max_selectable": 17,
+   "max_balanced": 17,
    "families": 5,
    "families_by_ability": {
     "perception": 1,
     "inference": 3,
     "design": 1
    },
-   "sources": 8,
+   "sources": 9,
    "paper_systems": [
     "moire.py"
    ],
    "ability_max": {
     "perception": 3,
-    "inference": 10,
+    "inference": 11,
     "design": 3
    },
    "pool": {
-    "admitted": 16,
+    "admitted": 17,
     "enumerated": 0
    },
    "family_flow": {
+    "evidence_elimination": 5,
     "moire_inference": 4,
-    "evidence_elimination": 4,
     "moire_geometry": 3,
     "moire_design": 3,
     "evidence_quantity": 2
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 16 / 50 道",
+    "最多只能选 17 / 50 道",
     "题型族 5 个，需 ≥ 6",
     "感知 族 1 个，需 ≥ 2",
     "感知 最多 3 道，需 ≥ 11",
-    "推断 最多 10 道，需 ≥ 11",
     "设计 族 1 个，需 ≥ 2",
     "设计 最多 3 道，需 ≥ 11",
     "论文参数体系 1 个，需 ≥ 2"

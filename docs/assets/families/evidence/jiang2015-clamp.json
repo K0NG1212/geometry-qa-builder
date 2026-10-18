@@ -1,0 +1,82 @@
+{
+ "kind": "evidence_card",
+ "id": "jiang2015-clamp",
+ "paper": "paper-jiang-anthrax-pa-pore",
+ "short_citation": "Jiang et al., Nature 521, 545 (2015)",
+ "citation": "Jiang, Pentelute, Collier & Zhou, \"Atomic structure of anthrax protective antigen pore elucidates toxin translocation\", Nature 521, 545 (2015), doi:10.1038/nature14247 (author manuscript PMC4519040; PDB 3J9C)",
+ "license": "PMC author manuscript (not CC); facts and numbers only, no text or figures reproduced",
+ "family": "evidence_quantity",
+ "topic": "In the anthrax protective antigen (PA) prepore the seven 2beta10-2beta11 loops of the heptamer do not touch one another; in the pore they close into an iris that forms the phi clamp.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "In the prepore the 7 loops of the heptamer circumscribe a 30 A central hole, with neighbouring Phe427 side chains spaced about 14 A apart.",
+   "locator": "Main text (phi-clamp paragraph); Extended Data Fig. 5a",
+   "values": {
+    "spacing_A": [
+     14,
+     "14 A"
+    ],
+    "n_protomers": [
+     7,
+     "7 loops"
+    ]
+   }
+  },
+  {
+   "id": "E2",
+   "text": "In the pore the same seven loops converge into an iris with a hole of only 6 A, bounded by a symmetric arrangement of the seven Phe427 residues.",
+   "locator": "Main text (phi-clamp paragraph); Fig. 4"
+  },
+  {
+   "id": "E3",
+   "text": "The convergence comes from a 15 degree rotation of each domain 2c about its hinge, whose distal edge moves about 12 A towards the central axis of the pore.",
+   "locator": "Main text (second layer); Fig. 5c"
+  },
+  {
+   "id": "E4",
+   "text": "Domains 1 and 3 are essentially unchanged between prepore and pore (C-alpha r.m.s.d. 0.54 and 0.58 A), while domain 2c changes by 6.87 A.",
+   "locator": "Fig. 5c caption"
+  }
+ ],
+ "ask": "Treat the seven Phe427 residues of the prepore as the vertices of a regular polygon with the stated nearest-neighbour spacing, and compute the radius of the circle through them (in angstrom). Then choose the account of how the phi clamp forms. Choose the option in which both the value and the conclusion are correct.",
+ "quantity": {
+  "kind": "regular_polygon_radius",
+  "args": {
+   "side": "spacing_A",
+   "n": "n_protomers"
+  },
+  "label": "Radius of the Phe427 ring in the prepore ~",
+  "unit": "angstrom",
+  "decimals": 2,
+  "tolerance": "0.005",
+  "min_separation": "1.00"
+ },
+ "error": {
+  "rule": "hexagon_instead_of_heptagon",
+  "kind": "regular_polygon_radius",
+  "args": {
+   "side": "spacing_A",
+   "n": 6
+  },
+  "plausibility": 3,
+  "reason": "把七个残基当作正六边形的顶点（六边形的边长等于半径），忽略 PA 是七聚体。"
+ },
+ "conclusions": {
+  "paper": {
+   "text": "The ring is about 32 A across in the prepore, matching its 30 A hole, so the 6 A clamp cannot be made by side-chain rotation alone: whole domains must swing inwards, as the 15 degree rotation and 12 A displacement show.",
+   "locator": "Main text (phi clamp and second layer); Extended Data Fig. 5a; Fig. 5c"
+  },
+  "rejected": {
+   "rule": "side_chain_rotation",
+   "text": "The phi clamp is already present in the prepore and only needs the Phe427 side chains to rotate into place; the protein backbone does not move.",
+   "locator": "Main text (phi-clamp paragraph): in the prepore the loops do not engage each other",
+   "reason": "前孔中七个残基相距约 14 A、围出 30 A 的孔，仅靠侧链转动无法形成 6 A 的夹子；原文给出结构域整体旋转 15 度、远端内移 12 A。"
+  }
+ },
+ "scale": {
+  "input_nm": 10.5,
+  "reasoning_nm": 3.2,
+  "definition": "前孔中 Phe427 环的直径（约 3.2 nm）"
+ }
+}

@@ -1,6 +1,6 @@
 {
  "kind": "evidence_sources",
- "updated": "2026-10-16",
+ "updated": "2026-10-18",
  "method": "证据卡由 Claude Code（模型 claude-opus-5-5）阅读全文后人工转录：只记录事实与数值（转述，不转载原文段落或图），每条带原文位置；结论与被排除的解释同样带位置。程序检查数值与逻辑，忠实性由 L1 人工对照原文。",
  "papers": {
   "hbond2021": {
@@ -196,6 +196,106 @@
     "sha256": "0a742038a3ef41d99ac84518b129462245964a2f5926c269880b69d5333b00a8",
     "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
    }
+  },
+  "paper-cuello-kcsa-gating": {
+   "citation": "Cuello, Cortes, Perozo et al., \"The gating cycle of a K+ channel at atomic resolution\", eLife 6, e28032 (2017), doi:10.7554/eLife.28032 (PMC5711375; PDB 5VK6, 5VKE, 5VKH)",
+   "license": "CC BY 4.0; facts and numbers only",
+   "cards": [
+    {
+     "file": "cuello2017-collapse.json",
+     "sha256": "11e2b525906135668634cd23e7ae1a34252e16c98b97d591d7588104378101df",
+     "family": "evidence_elimination"
+    }
+   ],
+   "full_text": {
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5711375/fullTextXML",
+    "local_file": "inputs/papers/kcsa2017/kcsa2017-PMC5711375.xml",
+    "sha256": "8991d60ab4fda3e512c1c3bceea869dbad75a2c7d04ba70894ead11f05a9e105",
+    "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
+   }
+  },
+  "paper-filip-perovskite-steric": {
+   "citation": "Filip, Eperon, Snaith & Giustino, \"Steric engineering of metal-halide perovskites with tunable optical band gaps\", Nat. Commun. 5, 5757 (2014), doi:10.1038/ncomms6757",
+   "license": "© 2014 Macmillan Publishers Limited, all rights reserved (not CC); facts and numbers only, no text or figures reproduced",
+   "cards": [
+    {
+     "file": "filip2014-angle.json",
+     "sha256": "a0c6000ff773f37487d221d2f7f5228fd9430c6f58c2718f16f63a132f0fcb6f",
+     "family": "evidence_elimination"
+    },
+    {
+     "file": "filip2014-rbcs.json",
+     "sha256": "2c13587fdda85643bbd472208d90edff056ec485d688d93c48ba91b367a1e9a8",
+     "family": "evidence_quantity"
+    }
+   ],
+   "full_text": {
+    "url": "https://www.nature.com/articles/ncomms6757.pdf",
+    "local_file": "inputs/papers/filip2014/filip2014-ncomms.pdf",
+    "sha256": "b1e9748833f81f496a7b2414f7f5228a34090cf1dfd4d6d7b36160610200c52f",
+    "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
+   }
+  },
+  "paper-jiang-anthrax-pa-pore": {
+   "citation": "Jiang, Pentelute, Collier & Zhou, \"Atomic structure of anthrax protective antigen pore elucidates toxin translocation\", Nature 521, 545 (2015), doi:10.1038/nature14247 (author manuscript PMC4519040; PDB 3J9C)",
+   "license": "PMC author manuscript (not CC); facts and numbers only, no text or figures reproduced",
+   "cards": [
+    {
+     "file": "jiang2015-channel.json",
+     "sha256": "60005bd18664f2b96cedaf735baf62a1f7ee7838d3a073c7d481d77de8558824",
+     "family": "evidence_elimination"
+    },
+    {
+     "file": "jiang2015-clamp.json",
+     "sha256": "caa5484f4079ff87385f277816ac578f5dc485ac79d3871b18fba2e68ead25f2",
+     "family": "evidence_quantity"
+    },
+    {
+     "file": "jiang2015-sequence.json",
+     "sha256": "ce7c9ab2219d28a5038407cfcdfd3e1aeaf2ab958727328d11c2d41f407ea6de",
+     "family": "evidence_elimination"
+    }
+   ],
+   "full_text": {
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4519040/fullTextXML",
+    "local_file": "inputs/papers/jiang2015/jiang2015-PMC4519040.xml",
+    "sha256": "e2add833ecbe2a7d36345c0ef322096484305d9a5a5924d6e2074ae0babbc661",
+    "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
+   }
+  },
+  "paper-muhlbauer-mnsi-skyrmion": {
+   "citation": "Mühlbauer, Binz, Jonietz, Pfleiderer, Rosch, Neubauer, Georgii & Böni, \"Skyrmion Lattice in a Chiral Magnet\", Science 323, 915 (2009); arXiv:0902.1968v1",
+   "license": "arXiv.org perpetual non-exclusive license; facts and numbers only, no text or figures reproduced",
+   "cards": [
+    {
+     "file": "muhlbauer2009-skyrmion.json",
+     "sha256": "6a8e1706d4a1f3a215514787e7eefe673d66dbd387da533aef85b64dab301a19",
+     "family": "evidence_elimination"
+    }
+   ],
+   "full_text": {
+    "url": "https://arxiv.org/pdf/0902.1968",
+    "local_file": "inputs/papers/muhlbauer2009/muhlbauer2009-arxiv-0902.1968.pdf",
+    "sha256": "523d84ca1aba8a57679536f21afe42ec73ecb26bd503ec3fe36f590bd2390657",
+    "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
+   }
+  },
+  "paper-rasmussen-b2ar-gs": {
+   "citation": "Rasmussen et al., \"Crystal structure of the beta2 adrenergic receptor-Gs protein complex\", Nature 477, 549 (2011), doi:10.1038/nature10361 (author manuscript PMC3184188; PDB 3SN6)",
+   "license": "PMC author manuscript (not CC); facts and numbers only, no text or figures reproduced",
+   "cards": [
+    {
+     "file": "rasmussen2011-domain.json",
+     "sha256": "360216011ba992e64d70da1d2e4d27c770c3a2b83b1c4b2ff05f2a04294f03d1",
+     "family": "evidence_elimination"
+    }
+   ],
+   "full_text": {
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3184188/fullTextXML",
+    "local_file": "inputs/papers/rasmussen2011/rasmussen2011-PMC3184188.xml",
+    "sha256": "88b16790c7b0779168129ee1209e498e8df1df9449cedfba9ccd02473df31a0c",
+    "note": "全文只在本地（inputs/ 不入库）；审核时按证据卡中的 locator 对照。"
+   }
   }
  },
  "structures": [
@@ -232,6 +332,22 @@
   {
    "candidate": "S2 (Schäfermeier 2026, YBCO vortex disorder)",
    "reason": "推理尺度是 1.18 mT 下的涡旋间距约 1.4 μm，超出题库 0.1–1000 nm 的范围；为免改用别的尺寸定义凑入范围，暂不出题。"
+  },
+  {
+   "candidate": "MU2 (Mühlbauer 2009, helix period / lattice constant)",
+   "reason": "一步除法，难度过低；P2b 已由 MU1 覆盖，扩充该叶子应另找论文。"
+  },
+  {
+   "candidate": "KC2 (Cuello 2017, Tyr82 gates the inactivation cavity)",
+   "reason": "几何性弱；干扰项“失活水是结晶假象”原文未明确排除，答案不够干净。"
+  },
+  {
+   "candidate": "RA2 (Rasmussen 2011, peptide fusion affinity)",
+   "reason": "只是亲和力倍数的自由能换算，与几何无关。"
+  },
+  {
+   "candidate": "Wrapp 2020 (spike protein)",
+   "reason": "Europe PMC 接口报错、bioRxiv 拒绝脚本访问，需用户用浏览器下载。"
   }
  ]
 }

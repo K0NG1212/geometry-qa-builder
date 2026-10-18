@@ -17,7 +17,7 @@
  },
  "summary": {
   "selected": 160,
-  "reserve": 99,
+  "reserve": 107,
   "out_of_range": [],
   "abilities": {
    "perception": 59,
@@ -34,7 +34,7 @@
   "legacy_units": 0,
   "pending_decision": {
    "measurement_condition_design": 12,
-   "experimental_evidence": 7
+   "experimental_evidence": 6
   },
   "full_cells": 16
  },
@@ -710,8 +710,8 @@
    "cell": "biology 0.1-1",
    "domain": "biology",
    "bin": "0.1-1",
-   "available": 12,
-   "eligible": 12,
+   "available": 13,
+   "eligible": 13,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -773,13 +773,13 @@
      "pending": "experimental_evidence"
     },
     {
-     "id": "BNI026",
+     "id": "BNI047",
      "ability": "inference",
      "form": "family",
-     "unit": "secondary_structure",
-     "instance": "FA-SS-1CRN-34",
-     "source": "pdb-bio-nm",
-     "pending": "experimental_evidence"
+     "unit": "evidence_elimination",
+     "instance": "FA-EVE-KCS-COLLAPSE",
+     "source": "paper-cuello-kcsa-gating",
+     "pending": null
     },
     {
      "id": "BND003",
@@ -811,6 +811,16 @@
    ],
    "reserve": [
     {
+     "id": "BNI026",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "FA-SS-1CRN-34",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "BNP013",
      "ability": "perception",
      "form": "family",
@@ -831,14 +841,14 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 12 道，其中经独立检查 12 道"
+   "rationale": "可用 13 道，其中经独立检查 13 道"
   },
   {
    "cell": "biology 1-10",
    "domain": "biology",
    "bin": "1-10",
-   "available": 15,
-   "eligible": 15,
+   "available": 19,
+   "eligible": 19,
    "abilities": {
     "perception": 3,
     "inference": 4,
@@ -891,21 +901,21 @@
      "pending": null
     },
     {
-     "id": "BNI013",
+     "id": "BNI046",
      "ability": "inference",
      "form": "family",
-     "unit": "guinier_intensity",
-     "instance": "FA-GUIN-1EHZ",
-     "source": "pdb-bio-nm",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-JIA-CLAMP",
+     "source": "paper-jiang-anthrax-pa-pore",
      "pending": null
     },
     {
-     "id": "BNI043",
+     "id": "BNI048",
      "ability": "inference",
      "form": "family",
-     "unit": "fret_efficiency",
-     "instance": "FA-FRET-1BNA",
-     "source": "pdb-bio-nm",
+     "unit": "evidence_elimination",
+     "instance": "FA-EVE-RAS-DOMAIN",
+     "source": "paper-rasmussen-b2ar-gs",
      "pending": null
     },
     {
@@ -958,6 +968,16 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "BNI013",
+     "ability": "inference",
+     "form": "family",
+     "unit": "guinier_intensity",
+     "instance": "FA-GUIN-1EHZ",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "BNI014",
      "ability": "inference",
      "form": "family",
@@ -986,9 +1006,39 @@
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI043",
+     "ability": "inference",
+     "form": "family",
+     "unit": "fret_efficiency",
+     "instance": "FA-FRET-1BNA",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI044",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_elimination",
+     "instance": "FA-EVE-JIA-CHANNEL",
+     "source": "paper-jiang-anthrax-pa-pore",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI045",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_elimination",
+     "instance": "FA-EVE-JIA-SEQUENCE",
+     "source": "paper-jiang-anthrax-pa-pore",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 15 道，其中经独立检查 15 道"
+   "rationale": "可用 19 道，其中经独立检查 19 道"
   },
   {
    "cell": "biology 10-100",
@@ -1537,8 +1587,8 @@
    "cell": "materials 0.1-1",
    "domain": "materials",
    "bin": "0.1-1",
-   "available": 25,
-   "eligible": 25,
+   "available": 27,
+   "eligible": 27,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -1582,15 +1632,6 @@
      "pending": null
     },
     {
-     "id": "MNI012",
-     "ability": "inference",
-     "form": "family",
-     "unit": "kinematic_extinction",
-     "instance": "FA-EXT-DIAMOND",
-     "source": "cod-materials-cell",
-     "pending": null
-    },
-    {
      "id": "MNI015",
      "ability": "inference",
      "form": "family",
@@ -1600,12 +1641,21 @@
      "pending": null
     },
     {
-     "id": "MNI016",
+     "id": "MNI037",
      "ability": "inference",
      "form": "family",
-     "unit": "first_diffraction_peak",
-     "instance": "FA-PEAK-CSCL",
-     "source": "cod-materials-cell",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-FIL-RBCS",
+     "source": "paper-filip-perovskite-steric",
+     "pending": null
+    },
+    {
+     "id": "MNI038",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_elimination",
+     "instance": "FA-EVE-FIL-ANGLE",
+     "source": "paper-filip-perovskite-steric",
      "pending": null
     },
     {
@@ -1643,6 +1693,26 @@
      "form": "family",
      "unit": "kinematic_extinction",
      "instance": "FA-EXT-NACL",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI012",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "FA-EXT-DIAMOND",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI016",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "FA-PEAK-CSCL",
      "source": "cod-materials-cell",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -1788,7 +1858,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 25 道，其中经独立检查 25 道"
+   "rationale": "可用 27 道，其中经独立检查 27 道"
   },
   {
    "cell": "materials 1-10",
@@ -2427,8 +2497,8 @@
    "cell": "quantum 10-100",
    "domain": "quantum",
    "bin": "10-100",
-   "available": 16,
-   "eligible": 16,
+   "available": 17,
+   "eligible": 17,
    "abilities": {
     "perception": 3,
     "inference": 4,
@@ -2490,12 +2560,12 @@
      "pending": null
     },
     {
-     "id": "QNI034",
+     "id": "QNI038",
      "ability": "inference",
      "form": "family",
      "unit": "evidence_elimination",
-     "instance": "FA-EVE-CAO-POCKETS",
-     "source": "paper-cao-magic-angle",
+     "instance": "FA-EVE-MUH-SKYRMION",
+     "source": "paper-muhlbauer-mnsi-skyrmion",
      "pending": null
     },
     {
@@ -2568,6 +2638,16 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "QNI034",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_elimination",
+     "instance": "FA-EVE-CAO-POCKETS",
+     "source": "paper-cao-magic-angle",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "QNI035",
      "ability": "inference",
      "form": "family",
@@ -2588,7 +2668,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 16 道，其中经独立检查 16 道"
+   "rationale": "可用 17 道，其中经独立检查 17 道"
   },
   {
    "cell": "quantum 100-1000",
@@ -2752,7 +2832,6 @@
   "BND015",
   "BNI011",
   "BNI012",
-  "BNI013",
   "BNI017",
   "BNI019",
   "BNI020",
@@ -2761,10 +2840,11 @@
   "BNI023",
   "BNI024",
   "BNI025",
-  "BNI026",
   "BNI033",
   "BNI037",
-  "BNI043",
+  "BNI046",
+  "BNI047",
+  "BNI048",
   "BNP014",
   "BNP015",
   "BNP020",
@@ -2831,10 +2911,8 @@
   "MND010",
   "MND011",
   "MND012",
-  "MNI012",
   "MNI013",
   "MNI015",
-  "MNI016",
   "MNI018",
   "MNI019",
   "MNI020",
@@ -2844,6 +2922,8 @@
   "MNI025",
   "MNI026",
   "MNI036",
+  "MNI037",
+  "MNI038",
   "MNP011",
   "MNP012",
   "MNP013",
@@ -2883,7 +2963,7 @@
   "QNI031",
   "QNI032",
   "QNI033",
-  "QNI034",
+  "QNI038",
   "QNP013",
   "QNP014",
   "QNP015",

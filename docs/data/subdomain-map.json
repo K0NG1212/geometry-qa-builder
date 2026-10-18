@@ -7,12 +7,11 @@
   "level1": 32,
   "leaves": 89,
   "meaningful_pixels": 74,
-  "pixels_with_questions": 28,
-  "empty_meaningful_pixels": 46,
+  "pixels_with_questions": 32,
+  "empty_meaningful_pixels": 42,
   "pixels_with_enumerator": 25,
-  "leaves_with_questions": 28,
+  "leaves_with_questions": 33,
   "empty_level1": [
-   "P2",
    "P7",
    "C3",
    "C5",
@@ -22,8 +21,6 @@
    "M7",
    "M8",
    "B3",
-   "B4",
-   "B5",
    "B9"
   ],
   "domain_changes": {
@@ -31,7 +28,7 @@
    "materials -> physics": 11,
    "chemistry -> physics": 4
   },
-  "active_questions": 259,
+  "active_questions": 267,
   "questions_outside_meaningful_pixels": [],
   "planning_total": 2500,
   "mean_target_per_pixel": 34
@@ -143,13 +140,15 @@
    "meaningful": true
   },
   {
-   "questions": 0,
+   "questions": 1,
    "abilities": {
     "perception": 0,
-    "inference": 0,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "QNI038"
+   ],
    "enumerated_estimate": 0,
    "l1": "P2",
    "domain": "physics",
@@ -1221,10 +1220,10 @@
    "meaningful": false
   },
   {
-   "questions": 10,
+   "questions": 12,
    "abilities": {
     "perception": 2,
-    "inference": 6,
+    "inference": 8,
     "design": 2
    },
    "ids": [
@@ -1237,7 +1236,9 @@
     "MNP025",
     "MNI033",
     "MNI034",
-    "MNI035"
+    "MNI035",
+    "MNI037",
+    "MNI038"
    ],
    "enumerated_estimate": 48,
    "l1": "M3",
@@ -1822,13 +1823,15 @@
    "meaningful": false
   },
   {
-   "questions": 0,
+   "questions": 1,
    "abilities": {
     "perception": 0,
-    "inference": 0,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "BNI047"
+   ],
    "enumerated_estimate": 0,
    "l1": "B4",
    "domain": "biology",
@@ -1837,13 +1840,15 @@
    "meaningful": true
   },
   {
-   "questions": 0,
+   "questions": 1,
    "abilities": {
     "perception": 0,
-    "inference": 0,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "BNI048"
+   ],
    "enumerated_estimate": 0,
    "l1": "B4",
    "domain": "biology",
@@ -1897,13 +1902,17 @@
    "meaningful": true
   },
   {
-   "questions": 0,
+   "questions": 3,
    "abilities": {
     "perception": 0,
-    "inference": 0,
+    "inference": 3,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "BNI044",
+    "BNI045",
+    "BNI046"
+   ],
    "enumerated_estimate": 0,
    "l1": "B5",
    "domain": "biology",
@@ -2304,13 +2313,15 @@
    "name": "磁结构（铁磁、反铁磁）"
   },
   {
-   "questions": 0,
+   "questions": 1,
    "abilities": {
     "perception": 0,
-    "inference": 0,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "QNI038"
+   ],
    "enumerated_estimate": 0,
    "leaf": "P2b",
    "l1": "P2",
@@ -3108,13 +3119,16 @@
    "name": "元素与化合物半导体"
   },
   {
-   "questions": 0,
+   "questions": 2,
    "abilities": {
     "perception": 0,
-    "inference": 0,
+    "inference": 2,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "MNI037",
+    "MNI038"
+   ],
    "enumerated_estimate": 0,
    "leaf": "M3b",
    "l1": "M3",
@@ -3478,13 +3492,15 @@
    "name": "金属与小分子载体"
   },
   {
-   "questions": 0,
+   "questions": 1,
    "abilities": {
     "perception": 0,
-    "inference": 0,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "BNI047"
+   ],
    "enumerated_estimate": 0,
    "leaf": "B4a",
    "l1": "B4",
@@ -3506,13 +3522,15 @@
    "name": "转运体"
   },
   {
-   "questions": 0,
+   "questions": 1,
    "abilities": {
     "perception": 0,
-    "inference": 0,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "BNI048"
+   ],
    "enumerated_estimate": 0,
    "leaf": "B4c",
    "l1": "B4",
@@ -3520,13 +3538,17 @@
    "name": "受体"
   },
   {
-   "questions": 0,
+   "questions": 3,
    "abilities": {
     "perception": 0,
-    "inference": 0,
+    "inference": 3,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "BNI044",
+    "BNI045",
+    "BNI046"
+   ],
    "enumerated_estimate": 0,
    "leaf": "B5a",
    "l1": "B5",
@@ -5684,6 +5706,38 @@
   ],
   "MNI036": [
    "SiO₂ 胶体晶体 · 提拉速度 → 颗粒层数 → 反射峰（证据题）",
+   "inference"
+  ],
+  "QNI038": [
+   "MnSi 中子散射 · A 相的六重图样说明什么（证据排除题）",
+   "inference"
+  ],
+  "MNI037": [
+   "卤化物钙钛矿 · 掺 Rb 的吸收边位移 → 带隙变化 → 八面体倾转（证据题）",
+   "inference"
+  ],
+  "MNI038": [
+   "卤化物钙钛矿 · 带隙由什么结构参数控制（证据排除题）",
+   "inference"
+  ],
+  "BNI044": [
+   "炭疽毒素孔道 · 底物以什么构象通过通道（证据排除题）",
+   "inference"
+  ],
+  "BNI045": [
+   "炭疽毒素 · 低 pH 转变的顺序与 pH 感受器（证据排除题）",
+   "inference"
+  ],
+  "BNI046": [
+   "炭疽毒素 · 前孔中 Phe427 环的半径 → Φ-夹如何形成（证据题）",
+   "inference"
+  ],
+  "BNI047": [
+   "KcsA 钾通道 · 深度 C 型失活对应什么结构变化（证据排除题）",
+   "inference"
+  ],
+  "BNI048": [
+   "β₂ 受体–Gs 复合物 · 螺旋结构域大幅位移是真实的吗（证据排除题）",
    "inference"
   ]
  }

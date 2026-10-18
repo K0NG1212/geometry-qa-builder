@@ -1,6 +1,6 @@
 {
  "kind": "review_queue",
- "date": "2026-10-16",
+ "date": "2026-10-18",
  "summary": {
   "scope": "selection",
   "units_all_active": 49,
@@ -34,8 +34,8 @@
   },
   "next_l3_batch": "l3-batch-001",
   "l3_sample": 160,
-  "l3_strata": 88,
-  "l3_steady_state_sample": 134,
+  "l3_strata": 92,
+  "l3_steady_state_sample": 135,
   "model_calls": 0,
   "reviews_recorded": {
    "L1": 0,
@@ -2237,16 +2237,16 @@
    "bindings": {
     "L1": {
      "registry_row": "5572d3ebf3b6312cc7b8f54d34c27634464c9bce131da8051912b1c6af944813",
-     "task_families/evidence.py": "43b25a7fb218ce1a4dc4b81b9ac11775c82497f987c3ce9fba915f75a378fa31"
+     "task_families/evidence.py": "212ee0b90156c8149ae25f0014c175a2d9be5f293a49d162bd7c7750a1731f27"
     },
     "L2": {
-     "checkers/evidence.py": "26fbeed90e9169d0a66085c01d1fb875733bdf00390bd592f541aebbe36a52e8",
+     "checkers/evidence.py": "577fb0a912b4b122cdbbc22390bf575ff1d036f522ababed9a3a40b22e128ee9",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 5,
+   "instances": 8,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -2320,50 +2320,50 @@
       ]
      },
      {
-      "instance": "FA-EVE-CAO-POCKETS",
-      "question": "Shubnikov-de Haas oscillations of a magic-angle twisted bilayer graphene (MA-TBG) device are mapped against carrier density n and magnetic field on the hole side; ns is the density that fills one superlattice band (4 electrons per moiré cell). The attached evidence.txt gives the evidence (facts E1–E5 from Cao et al., Nature 556, 43 (2018); numbers as reported in the paper). Which explanation of the extra Landau fan is consistent with all of these observations?",
+      "instance": "FA-EVE-COT-BEND",
+      "question": "Cryo-Lorentz TEM images of flux vortices in a 300 nm thick MgB2 lamella (pre-tilted by 45°) at 5 K, for fields between 50.8 and 188.7 G. The attached evidence.txt gives the evidence (facts E1–E4 from Cottet et al., arXiv:1401.4062; numbers as reported in the paper). Which explanation of the dark bands is consistent with all of these observations?",
       "options": [
        {
         "label": "A",
-        "value": "A doubled unit cell from strain or a charge density wave, which halves the filling factors of the ordinary single-particle bands."
+        "value": "Ferromagnetic domains of a magnetic impurity phase in the crystal."
        },
        {
         "label": "B",
-        "value": "Small Fermi pockets of quasiparticles counted from the half-filling correlated insulator, with half the usual degeneracy; the carriers above the superconducting dome are only |n| - ns/2."
+        "value": "Vortex-free Meissner domains of an intermediate (type-1.5) superconducting state."
        },
        {
         "label": "C",
-        "value": "Fractional Landau fans of the Hofstadter butterfly of the moiré superlattice."
+        "value": "Bend contours: diffraction contrast where local bending of the thin crystal meets the Bragg condition; they hide vortices but do not change the vortex lattice."
        },
        {
         "label": "D",
-        "value": "The ordinary single-particle Fermi surface of all |n| carriers, with the usual four-fold degeneracy."
+        "value": "Lines of strong pinning centres that hold the vortices in place."
        }
       ],
       "inputs": [
        "evidence.txt"
       ],
-      "correct_label": "B",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
-        "rule": "cell_doubling",
-        "reason": "与 E1 矛盾：晶胞加倍要求事先破缺自旋或谷简并，但从电中性点和 −ns 出发的扇仍是四重简并。（Quantum oscillations (p. 7): would require spin or valley degeneracy to be broken a priori）"
+        "rule": "magnetic_domains",
+        "reason": "与 E2 矛盾：磁畴是样品的固有磁结构，不会因轻微倾转改变位置。（Results (bend-contour test)）"
        },
        {
         "label": "B",
-        "rule": "correct",
-        "reason": "与全部事实一致，即原文结论（Quantum oscillations (p. 8): small Fermi surfaces from the correlated insulating state; halved degeneracy）。"
+        "rule": "meissner_domains",
+        "reason": "与 E2、E3 矛盾：磁性的无涡旋畴不会随样品轻微倾转而移动，也不会被涡旋穿越。（Introduction and Results: no stripes or gossamer patterns; conventional type-II behaviour）"
        },
        {
         "label": "C",
-        "rule": "hofstadter_butterfly",
-        "reason": "与 E3 矛盾：Hofstadter 分形通常要 10 T 以上才明显，而这个扇在约 1 T 就出现。（Quantum oscillations (p. 7): Hofstadter features need fields > 10 T）"
+        "rule": "correct",
+        "reason": "与全部事实一致，即原文结论（Results: bend contours due to diffraction contrast; crossing curves confirm they do not affect the lattice）。"
        },
        {
         "label": "D",
-        "rule": "large_fermi_surface",
-        "reason": "与 E4 矛盾：半填充附近测得 M = 2，面积随 |n| − ns/2 变化，不是全部载流子的大费米面。（Quantum oscillations (p. 8): M = 2 near the correlated state）"
+        "rule": "pinning_lines",
+        "reason": "与 E2、E3 矛盾：钉扎线是固定缺陷，不随倾转移动，且会阻止涡旋在区域间移动。（Results: no vortex pinning except at the edge）"
        }
       ]
      }
@@ -2381,16 +2381,16 @@
    "bindings": {
     "L1": {
      "registry_row": "24357721608e582ef78e22b358bd57e6bbe6109a76da8654cf7269f7c058ac9c",
-     "task_families/evidence.py": "43b25a7fb218ce1a4dc4b81b9ac11775c82497f987c3ce9fba915f75a378fa31"
+     "task_families/evidence.py": "212ee0b90156c8149ae25f0014c175a2d9be5f293a49d162bd7c7750a1731f27"
     },
     "L2": {
-     "checkers/evidence.py": "26fbeed90e9169d0a66085c01d1fb875733bdf00390bd592f541aebbe36a52e8",
+     "checkers/evidence.py": "577fb0a912b4b122cdbbc22390bf575ff1d036f522ababed9a3a40b22e128ee9",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 6,
+   "instances": 8,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -2692,7 +2692,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 4,
+   "instances": 3,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -2724,58 +2724,6 @@
      "template_review": "本轮迁移新建，待人工审核。"
     },
     "samples": [
-     {
-      "instance": "FA-PEAK-CSCL",
-      "question": "The table lists every atom of one conventional cubic cell of caesium chloride (CsCl, COD 9008789). Use the kinematic structure factor with atomic numbers as angle-independent weights (Cl = 17, Cs = 55). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
-      "options": [
-       {
-        "label": "A",
-        "value": "21.54",
-        "unit": "degree"
-       },
-       {
-        "label": "B",
-        "value": "30.64",
-        "unit": "degree"
-       },
-       {
-        "label": "C",
-        "value": "37.76",
-        "unit": "degree"
-       },
-       {
-        "label": "D",
-        "value": "43.88",
-        "unit": "degree"
-       }
-      ],
-      "inputs": [
-       "FA-PEAK-CSCL-cell.txt"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "第一个 |F|≠0 的反射 (1 0 0)，d = 4.12300 Å，2θ = 2 arcsin(λ/2d)。"
-       },
-       {
-        "label": "B",
-        "rule": "assumed_lattice_rule:I",
-        "reason": "按体心晶格规则判断，得到 (1 1 0)；与实际坐标算出的结构因子不符。"
-       },
-       {
-        "label": "C",
-        "rule": "assumed_lattice_rule:F",
-        "reason": "按面心晶格规则判断，得到 (1 1 1)；与实际坐标算出的结构因子不符。"
-       },
-       {
-        "label": "D",
-        "rule": "bragg_missing_factor_two",
-        "reason": "布拉格公式漏掉 2（用 λ = d sinθ，与把二级衍射当一级相同）。"
-       }
-      ]
-     },
      {
       "instance": "FA-PEAK-MOF5",
       "question": "The table lists every atom of one conventional cubic cell of MOF-5 (Zn4O(BDC)3, COD 1516287). Use the kinematic structure factor with atomic numbers as angle-independent weights (C = 6, H = 1, O = 8, Zn = 30). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
@@ -2825,6 +2773,58 @@
         "label": "D",
         "rule": "correct",
         "reason": "第一个 |F|≠0 的反射 (1 1 1)，d = 14.90990 Å，2θ = 2 arcsin(λ/2d)。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-PEAK-NACL",
+      "question": "The table lists every atom of one conventional cubic cell of halite (NaCl, COD 9008678). Use the kinematic structure factor with atomic numbers as angle-independent weights (Cl = 17, Na = 11). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
+      "options": [
+       {
+        "label": "A",
+        "value": "13.68",
+        "unit": "degree"
+       },
+       {
+        "label": "B",
+        "value": "15.70",
+        "unit": "degree"
+       },
+       {
+        "label": "C",
+        "value": "22.27",
+        "unit": "degree"
+       },
+       {
+        "label": "D",
+        "value": "27.36",
+        "unit": "degree"
+       }
+      ],
+      "inputs": [
+       "FA-PEAK-NACL-cell.txt"
+      ],
+      "correct_label": "D",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "theta_not_two_theta",
+        "reason": "报告了 θ 而非 2θ。"
+       },
+       {
+        "label": "B",
+        "rule": "lowest_index_ignoring_extinction",
+        "reason": "取最低指数反射 (1 0 0)，未检查它是否消光。"
+       },
+       {
+        "label": "C",
+        "rule": "assumed_lattice_rule:I",
+        "reason": "按体心晶格规则判断，得到 (1 1 0)；与实际坐标算出的结构因子不符。"
+       },
+       {
+        "label": "D",
+        "rule": "correct",
+        "reason": "第一个 |F|≠0 的反射 (1 1 1)，d = 3.25658 Å，2θ = 2 arcsin(λ/2d)。"
        }
       ]
      }
@@ -3153,7 +3153,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 2,
+   "instances": 1,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -3184,58 +3184,6 @@
      "template_review": "本轮迁移新建，待人工审核。"
     },
     "samples": [
-     {
-      "instance": "FA-FRET-1BNA",
-      "question": "The excerpt contains the ATOM records of chain A of PDB entry 1BNA (B-DNA dodecamer (Drew–Dickerson)), copied unchanged. Model a FRET donor as a point at atom C1' of nucleotide Dc1 and an acceptor as a point at atom C1' of nucleotide Dg12. Assume a Förster radius R0 = 3.50 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?",
-      "options": [
-       {
-        "label": "A",
-        "value": "0.063",
-        "unit": ""
-       },
-       {
-        "label": "B",
-        "value": "0.480",
-        "unit": ""
-       },
-       {
-        "label": "C",
-        "value": "0.520",
-        "unit": ""
-       },
-       {
-        "label": "D",
-        "value": "0.693",
-        "unit": ""
-       }
-      ],
-      "inputs": [
-       "1BNA-chainA.pdb"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "path_length_distance",
-        "reason": "用沿链骨架标记原子（C1'）的路径长度代替空间直线距离。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "r = 3.5472 nm（直线距离），E = 1/(1+(r/R0)^6)。"
-       },
-       {
-        "label": "C",
-        "rule": "complement",
-        "reason": "报告了 1−E（供体保留的比例）。"
-       },
-       {
-        "label": "D",
-        "rule": "closest_atom_pair",
-        "reason": "用两残基间最近的重原子对距离（3.056 nm）代替指定标记原子的间距。"
-       }
-      ]
-     },
      {
       "instance": "FA-FRET-6LYZ",
       "question": "The excerpt contains the ATOM records of chain A of PDB entry 6LYZ (hen egg-white lysozyme; probes at the two chain termini), copied unchanged. Model a FRET donor as a point at atom CA of Lys1 and an acceptor as a point at atom CA of Leu129. Assume a Förster radius R0 = 2.20 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?",
@@ -3287,6 +3235,58 @@
         "reason": "用两残基间最近的重原子对距离（1.430 nm）代替指定标记原子的间距。"
        }
       ]
+     },
+     {
+      "instance": "FA-FRET-1BNA",
+      "question": "The excerpt contains the ATOM records of chain A of PDB entry 1BNA (B-DNA dodecamer (Drew–Dickerson)), copied unchanged. Model a FRET donor as a point at atom C1' of nucleotide Dc1 and an acceptor as a point at atom C1' of nucleotide Dg12. Assume a Förster radius R0 = 3.50 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?",
+      "options": [
+       {
+        "label": "A",
+        "value": "0.063",
+        "unit": ""
+       },
+       {
+        "label": "B",
+        "value": "0.480",
+        "unit": ""
+       },
+       {
+        "label": "C",
+        "value": "0.520",
+        "unit": ""
+       },
+       {
+        "label": "D",
+        "value": "0.693",
+        "unit": ""
+       }
+      ],
+      "inputs": [
+       "1BNA-chainA.pdb"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "path_length_distance",
+        "reason": "用沿链骨架标记原子（C1'）的路径长度代替空间直线距离。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "r = 3.5472 nm（直线距离），E = 1/(1+(r/R0)^6)。"
+       },
+       {
+        "label": "C",
+        "rule": "complement",
+        "reason": "报告了 1−E（供体保留的比例）。"
+       },
+       {
+        "label": "D",
+        "rule": "closest_atom_pair",
+        "reason": "用两残基间最近的重原子对距离（3.056 nm）代替指定标记原子的间距。"
+       }
+      ]
      }
     ]
    }
@@ -3311,7 +3311,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 4,
+   "instances": 3,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -3924,7 +3924,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 2,
+   "instances": 1,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -3952,54 +3952,6 @@
      "template_review": "本轮新建，待人工审核。"
     },
     "samples": [
-     {
-      "instance": "FA-EXT-DIAMOND",
-      "question": "The table lists every atom of one conventional cubic cell of diamond (C, COD 9008564) as fractional coordinates. Use the kinematic structure factor F(hkl) = Σ_j Z_j exp[2πi(h x_j + k y_j + l z_j)] with atomic numbers as angle-independent weights (C = 6). Exactly one of the four reflections below has |F| = 0. Which one?",
-      "options": [
-       {
-        "label": "A",
-        "value": "(3 1 1)"
-       },
-       {
-        "label": "B",
-        "value": "(1 1 1)"
-       },
-       {
-        "label": "C",
-        "value": "(2 2 0)"
-       },
-       {
-        "label": "D",
-        "value": "(2 2 2)"
-       }
-      ],
-      "inputs": [
-       "FA-EXT-DIAMOND-cell.txt"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "wrong_rule:I",
-        "reason": "按“体心 I：h+k+l 为奇数消光”会判为消光，但本结构实际坐标给出非零 |F|。"
-       },
-       {
-        "label": "B",
-        "rule": "wrong_rule:I",
-        "reason": "按“体心 I：h+k+l 为奇数消光”会判为消光，但本结构实际坐标给出非零 |F|。"
-       },
-       {
-        "label": "C",
-        "rule": "allowed_generic",
-        "reason": "普通允许反射，非零。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "由表中全部原子坐标求和，|F|/F000 ≤ 1e-6。"
-       }
-      ]
-     },
      {
       "instance": "FA-EXT-SALEM2",
       "question": "The table lists every atom of one conventional cubic cell of Zn(imidazolate)2 with ZIF-8 sodalite topology (SALEM-2, COD 4118891; major-occupancy linker sites) as fractional coordinates. Use the kinematic structure factor F(hkl) = Σ_j Z_j exp[2πi(h x_j + k y_j + l z_j)] with atomic numbers as angle-independent weights (C = 6, H = 1, N = 7, Zn = 30). Exactly one of the four reflections below has |F| = 0. Which one?",
@@ -4045,6 +3997,54 @@
         "label": "D",
         "rule": "wrong_rule:F+d",
         "reason": "按“面心 F 加金刚石滑移：另有全偶且 h+k+l=4n+2 消光”会判为消光，但本结构实际坐标给出非零 |F|。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-EXT-BROOKITE",
+      "question": "The table lists every atom of one conventional cell (cell parameters in the first line of the table) of brookite (TiO2, COD 9004137) as fractional coordinates. Use the kinematic structure factor F(hkl) = Σ_j Z_j exp[2πi(h x_j + k y_j + l z_j)] with atomic numbers as angle-independent weights (O = 8, Ti = 22). Exactly one of the four reflections below has |F| = 0. Which one?",
+      "options": [
+       {
+        "label": "A",
+        "value": "(2 1 1)"
+       },
+       {
+        "label": "B",
+        "value": "(1 1 1)"
+       },
+       {
+        "label": "C",
+        "value": "(1 0 2)"
+       },
+       {
+        "label": "D",
+        "value": "(0 1 3)"
+       }
+      ],
+      "inputs": [
+       "FA-EXT-BROOKITE-cell.txt"
+      ],
+      "correct_label": "D",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "allowed_generic",
+        "reason": "普通允许反射，非零。"
+       },
+       {
+        "label": "B",
+        "rule": "weak_not_absent",
+        "reason": "强度较弱（|F|/F000=0.245），但不为零，弱不等于消光。"
+       },
+       {
+        "label": "C",
+        "rule": "axis_confusion",
+        "reason": "指数换轴后的 (0 1 2) 是消光的；把那条消光条件套到了另一根晶轴上，但本反射 |F| 不为零。"
+       },
+       {
+        "label": "D",
+        "rule": "correct",
+        "reason": "由表中全部原子坐标求和，|F|/F000 ≤ 1e-6。"
        }
       ]
      }
@@ -5957,7 +5957,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 3,
+   "instances": 2,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -5982,54 +5982,6 @@
      "template_review": "本轮新建（A2/A3），待人工审核。"
     },
     "samples": [
-     {
-      "instance": "FA-SS-1CRN-34",
-      "question": "The excerpt contains residues 33–35 of chain A from PDB entry 1CRN (crambin, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone dihedrals φ and ψ of Ile34 (IUPAC sign convention) and assign the residue to the nearest of these reference backbone conformations, measuring distance in the (φ, ψ) plane with 360° periodicity: right-handed α-helix (φ −57°, ψ −47°), β-strand (φ −120°, ψ +130°), polyproline II (φ −75°, ψ +145°), left-handed α-helix (φ +57°, ψ +47°). Which conformation does Ile34 adopt?",
-      "options": [
-       {
-        "label": "A",
-        "value": "β-strand"
-       },
-       {
-        "label": "B",
-        "value": "polyproline II"
-       },
-       {
-        "label": "C",
-        "value": "right-handed α-helix"
-       },
-       {
-        "label": "D",
-        "value": "left-handed α-helix"
-       }
-      ],
-      "inputs": [
-       "1CRN-A34-excerpt.pdb"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "φ = -111.6°，ψ = 129.6°，最近参考构象（8°）；与条目 SHEET 记录一致。"
-       },
-       {
-        "label": "B",
-        "rule": "second_nearest_reference",
-        "reason": "次近的参考构象（距离 40°，正确者 8°）；两者易混。"
-       },
-       {
-        "label": "C",
-        "rule": "other_reference",
-        "reason": "距离 185°，明显更远。"
-       },
-       {
-        "label": "D",
-        "rule": "other_reference",
-        "reason": "距离 188°，明显更远。"
-       }
-      ]
-     },
      {
       "instance": "FA-SS-1UBQ-43",
       "question": "The excerpt contains residues 42–44 of chain A from PDB entry 1UBQ (ubiquitin, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone dihedrals φ and ψ of Leu43 (IUPAC sign convention) and assign the residue to the nearest of these reference backbone conformations, measuring distance in the (φ, ψ) plane with 360° periodicity: right-handed α-helix (φ −57°, ψ −47°), β-strand (φ −120°, ψ +130°), polyproline II (φ −75°, ψ +145°), left-handed α-helix (φ +57°, ψ +47°). Which conformation does Leu43 adopt?",
@@ -6075,6 +6027,54 @@
         "label": "D",
         "rule": "second_nearest_reference",
         "reason": "次近的参考构象（距离 32°，正确者 16°）；两者易混。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-SS-6LYZ-90",
+      "question": "The excerpt contains residues 89–91 of chain A from PDB entry 6LYZ (hen egg-white lysozyme, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone dihedrals φ and ψ of Ala90 (IUPAC sign convention) and assign the residue to the nearest of these reference backbone conformations, measuring distance in the (φ, ψ) plane with 360° periodicity: right-handed α-helix (φ −57°, ψ −47°), β-strand (φ −120°, ψ +130°), polyproline II (φ −75°, ψ +145°), left-handed α-helix (φ +57°, ψ +47°). Which conformation does Ala90 adopt?",
+      "options": [
+       {
+        "label": "A",
+        "value": "β-strand"
+       },
+       {
+        "label": "B",
+        "value": "polyproline II"
+       },
+       {
+        "label": "C",
+        "value": "left-handed α-helix"
+       },
+       {
+        "label": "D",
+        "value": "right-handed α-helix"
+       }
+      ],
+      "inputs": [
+       "6LYZ-A90-excerpt.pdb"
+      ],
+      "correct_label": "D",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "other_reference",
+        "reason": "距离 177°，明显更远。"
+       },
+       {
+        "label": "B",
+        "rule": "other_reference",
+        "reason": "距离 178°，明显更远。"
+       },
+       {
+        "label": "C",
+        "rule": "second_nearest_reference",
+        "reason": "次近的参考构象（距离 146°，正确者 11°）；两者易混。"
+       },
+       {
+        "label": "D",
+        "rule": "correct",
+        "reason": "φ = -62.7°，ψ = -37.1°，最近参考构象（11°）；与条目 HELIX 记录一致。"
        }
       ]
      }
@@ -7914,18 +7914,6 @@
    ]
   },
   {
-   "stratum": "evidence_elimination | paper-cao-magic-angle | quantum 10-100",
-   "unit": "evidence_elimination",
-   "source": "paper-cao-magic-angle",
-   "cell": "quantum 10-100",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "QNI034"
-   ]
-  },
-  {
    "stratum": "evidence_elimination | paper-cottet-mgb2-vortex | quantum 100-1000",
    "unit": "evidence_elimination",
    "source": "paper-cottet-mgb2-vortex",
@@ -7938,6 +7926,30 @@
    ]
   },
   {
+   "stratum": "evidence_elimination | paper-cuello-kcsa-gating | biology 0.1-1",
+   "unit": "evidence_elimination",
+   "source": "paper-cuello-kcsa-gating",
+   "cell": "biology 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "BNI047"
+   ]
+  },
+  {
+   "stratum": "evidence_elimination | paper-filip-perovskite-steric | materials 0.1-1",
+   "unit": "evidence_elimination",
+   "source": "paper-filip-perovskite-steric",
+   "cell": "materials 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "MNI038"
+   ]
+  },
+  {
    "stratum": "evidence_elimination | paper-kerelsky-tbg-stm | quantum 10-100",
    "unit": "evidence_elimination",
    "source": "paper-kerelsky-tbg-stm",
@@ -7947,6 +7959,30 @@
    "rule": "first batch: all",
    "ids": [
     "QNI032"
+   ]
+  },
+  {
+   "stratum": "evidence_elimination | paper-muhlbauer-mnsi-skyrmion | quantum 10-100",
+   "unit": "evidence_elimination",
+   "source": "paper-muhlbauer-mnsi-skyrmion",
+   "cell": "quantum 10-100",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI038"
+   ]
+  },
+  {
+   "stratum": "evidence_elimination | paper-rasmussen-b2ar-gs | biology 1-10",
+   "unit": "evidence_elimination",
+   "source": "paper-rasmussen-b2ar-gs",
+   "cell": "biology 1-10",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "BNI048"
    ]
   },
   {
@@ -7995,6 +8031,30 @@
    "rule": "first batch: all",
    "ids": [
     "CNI026"
+   ]
+  },
+  {
+   "stratum": "evidence_quantity | paper-filip-perovskite-steric | materials 0.1-1",
+   "unit": "evidence_quantity",
+   "source": "paper-filip-perovskite-steric",
+   "cell": "materials 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "MNI037"
+   ]
+  },
+  {
+   "stratum": "evidence_quantity | paper-jiang-anthrax-pa-pore | biology 1-10",
+   "unit": "evidence_quantity",
+   "source": "paper-jiang-anthrax-pa-pore",
+   "cell": "biology 1-10",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "BNI046"
    ]
   },
   {
@@ -8096,12 +8156,11 @@
    "unit": "first_diffraction_peak",
    "source": "cod-materials-cell",
    "cell": "materials 0.1-1",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "MNI015",
-    "MNI016"
+    "MNI015"
    ]
   },
   {
@@ -8148,12 +8207,11 @@
    "unit": "fret_efficiency",
    "source": "pdb-bio-nm",
    "cell": "biology 1-10",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "BNI011",
-    "BNI043"
+    "BNI011"
    ]
   },
   {
@@ -8161,12 +8219,11 @@
    "unit": "guinier_intensity",
    "source": "pdb-bio-nm",
    "cell": "biology 1-10",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "BNI012",
-    "BNI013"
+    "BNI012"
    ]
   },
   {
@@ -8251,18 +8308,6 @@
    "rule": "first batch: all",
    "ids": [
     "CND013"
-   ]
-  },
-  {
-   "stratum": "kinematic_extinction | cod-materials-cell | materials 0.1-1",
-   "unit": "kinematic_extinction",
-   "source": "cod-materials-cell",
-   "cell": "materials 0.1-1",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "MNI012"
    ]
   },
   {
@@ -8552,13 +8597,12 @@
    "unit": "secondary_structure",
    "source": "pdb-bio-nm",
    "cell": "biology 0.1-1",
-   "size": 3,
-   "sample": 3,
+   "size": 2,
+   "sample": 2,
    "rule": "first batch: all",
    "ids": [
     "BNI024",
-    "BNI025",
-    "BNI026"
+    "BNI025"
    ]
   },
   {
@@ -8707,7 +8751,6 @@
  "stages": {
   "BNP014": "L0",
   "BNP015": "L0",
-  "MNI012": "L0",
   "MNI013": "L0",
   "QND003": "L0",
   "QND004": "L0",
@@ -8724,12 +8767,10 @@
   "MNP013": "L0",
   "MNP014": "L0",
   "MNI015": "L0",
-  "MNI016": "L0",
   "MNI018": "L0",
   "MNI019": "L0",
   "BNI011": "L0",
   "BNI012": "L0",
-  "BNI013": "L0",
   "BNP020": "L0",
   "BNI017": "L0",
   "BNP023": "L0",
@@ -8780,7 +8821,6 @@
   "BND002": "L0",
   "BNI024": "L0",
   "BNI025": "L0",
-  "BNI026": "L0",
   "CNI014": "L0",
   "CNI016": "L0",
   "CND007": "L0",
@@ -8835,7 +8875,6 @@
   "BNP038": "L0",
   "BNP039": "L0",
   "CNP027": "L0",
-  "BNI043": "L0",
   "BNP040": "L0",
   "BNP041": "L0",
   "BNP042": "L0",
@@ -8862,9 +8901,14 @@
   "QNI033": "L0",
   "CNI026": "L0",
   "CNI029": "L0",
-  "QNI034": "L0",
   "CNI031": "L0",
-  "MNI036": "L0"
+  "MNI036": "L0",
+  "QNI038": "L0",
+  "MNI037": "L0",
+  "MNI038": "L0",
+  "BNI046": "L0",
+  "BNI047": "L0",
+  "BNI048": "L0"
  },
  "forms": {
   "BNP014": {
@@ -8874,10 +8918,6 @@
   "BNP015": {
    "form": "family",
    "instance": "FA-TOR-6LYZ-T43"
-  },
-  "MNI012": {
-   "form": "family",
-   "instance": "FA-EXT-DIAMOND"
   },
   "MNI013": {
    "form": "family",
@@ -8943,10 +8983,6 @@
    "form": "family",
    "instance": "FA-PEAK-NACL"
   },
-  "MNI016": {
-   "form": "family",
-   "instance": "FA-PEAK-CSCL"
-  },
   "MNI018": {
    "form": "family",
    "instance": "FA-PEAK-SALEM2"
@@ -8962,10 +8998,6 @@
   "BNI012": {
    "form": "family",
    "instance": "FA-GUIN-6LYZ"
-  },
-  "BNI013": {
-   "form": "family",
-   "instance": "FA-GUIN-1EHZ"
   },
   "BNP020": {
    "form": "family",
@@ -9166,10 +9198,6 @@
   "BNI025": {
    "form": "family",
    "instance": "FA-SS-6LYZ-90"
-  },
-  "BNI026": {
-   "form": "family",
-   "instance": "FA-SS-1CRN-34"
   },
   "CNI014": {
    "form": "family",
@@ -9387,10 +9415,6 @@
    "form": "family",
    "instance": "FA-DIST-WP6-C20O22"
   },
-  "BNI043": {
-   "form": "family",
-   "instance": "FA-FRET-1BNA"
-  },
   "BNP040": {
    "form": "family",
    "instance": "FC-BNP002-1UBQ"
@@ -9495,10 +9519,6 @@
    "form": "family",
    "instance": "FA-EVE-SHA-IONS"
   },
-  "QNI034": {
-   "form": "family",
-   "instance": "FA-EVE-CAO-POCKETS"
-  },
   "CNI031": {
    "form": "family",
    "instance": "FA-EVE-ALT-STABILITY"
@@ -9506,6 +9526,30 @@
   "MNI036": {
    "form": "family",
    "instance": "FA-EVQ-FOO-LAYERS"
+  },
+  "QNI038": {
+   "form": "family",
+   "instance": "FA-EVE-MUH-SKYRMION"
+  },
+  "MNI037": {
+   "form": "family",
+   "instance": "FA-EVQ-FIL-RBCS"
+  },
+  "MNI038": {
+   "form": "family",
+   "instance": "FA-EVE-FIL-ANGLE"
+  },
+  "BNI046": {
+   "form": "family",
+   "instance": "FA-EVQ-JIA-CLAMP"
+  },
+  "BNI047": {
+   "form": "family",
+   "instance": "FA-EVE-KCS-COLLAPSE"
+  },
+  "BNI048": {
+   "form": "family",
+   "instance": "FA-EVE-RAS-DOMAIN"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."

@@ -1,0 +1,95 @@
+{
+ "kind": "evidence_card",
+ "id": "muhlbauer2009-skyrmion",
+ "paper": "paper-muhlbauer-mnsi-skyrmion",
+ "short_citation": "Mühlbauer et al., Science 323, 915 (2009)",
+ "citation": "Mühlbauer, Binz, Jonietz, Pfleiderer, Rosch, Neubauer, Georgii & Böni, \"Skyrmion Lattice in a Chiral Magnet\", Science 323, 915 (2009); arXiv:0902.1968v1",
+ "license": "arXiv.org perpetual non-exclusive license; facts and numbers only, no text or figures reproduced",
+ "family": "evidence_elimination",
+ "topic": "Small-angle neutron scattering is measured on single crystals of the cubic chiral magnet MnSi (Tc = 29.5 K), with the neutron beam parallel to the applied magnetic field.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "In zero field MnSi orders as a helix of period about 190 A along the cubic <111> directions; the atomic lattice constant is 4.56 A.",
+   "locator": "Main text p. 2 (hierarchy of energy scales)"
+  },
+  {
+   "id": "E2",
+   "text": "In the \"A phase\", just below Tc and in a field of about half the field Bc2 that fully polarizes the spins, six Bragg spots appear on a regular hexagon.",
+   "locator": "Main text p. 3; Fig. 2B",
+   "observed": {
+    "sixfold": true
+   }
+  },
+  {
+   "id": "E3",
+   "text": "With the sample rotated into many different orientations (the field always along the beam), the six spots always form a regular hexagon in the plane perpendicular to the field, whatever the orientation of the crystal axes.",
+   "locator": "Main text p. 3; Fig. 2C",
+   "observed": {
+    "spots_perpendicular_to_field": true,
+    "pattern_follows_field_not_lattice": true
+   }
+  },
+  {
+   "id": "E4",
+   "text": "At lower temperature in the same field range (the conical phase), the spots lie along the field direction instead.",
+   "locator": "Main text p. 3-4; Fig. 1A, 2F"
+  },
+  {
+   "id": "E5",
+   "text": "Rocking scans give a magnetic mosaicity of about 1.75 degrees in the A phase, half the 3.5 degrees of the helical state, corresponding to a correlation length of at least 5500 A.",
+   "locator": "Main text p. 3",
+   "observed": {
+    "long_range_order": true
+   }
+  }
+ ],
+ "ask": "Which interpretation of the A phase is consistent with all of these observations?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "text": "A lattice of skyrmion lines: three helices at 120 degrees to each other in the plane perpendicular to the field, a long-range-ordered spin crystal oriented by the field and decoupled from the atomic lattice.",
+   "predicts": {
+    "sixfold": true,
+    "spots_perpendicular_to_field": true,
+    "pattern_follows_field_not_lattice": true,
+    "long_range_order": true
+   },
+   "locator": "Main text pp. 3-5: multi-Q structure of three helices perpendicular to B, independent of lattice orientation",
+   "reason": "与全部观测一致，即原文结论。",
+   "paper_conclusion": true
+  },
+  {
+   "rule": "single_q_helix",
+   "text": "A single helix with its wave vector perpendicular to the field (the earlier interpretation), giving one pair of spots per domain.",
+   "predicts": {
+    "sixfold": false
+   },
+   "locator": "Main text p. 2-3: the A phase had been believed to be a single-Q helix",
+   "reason": "单一螺旋每个畴只给一对斑点，而实测是规则六边形上的六个斑点。"
+  },
+  {
+   "rule": "conical_phase",
+   "text": "The conical phase, with the helix wave vector along the field.",
+   "predicts": {
+    "spots_perpendicular_to_field": false
+   },
+   "locator": "Main text p. 3-4; Fig. 1A",
+   "reason": "锥形相的斑点沿磁场方向，而 A 相的斑点在严格垂直于磁场的平面内。"
+  },
+  {
+   "rule": "lattice_pinned_multi_q",
+   "text": "A multi-Q magnetic structure locked to the atomic lattice, as in the rare-earth magnets.",
+   "predicts": {
+    "pattern_follows_field_not_lattice": false
+   },
+   "locator": "Main text p. 6: rare-earth multi-Q structures are strongly pinned to the lattice",
+   "reason": "被原子晶格钉住的结构会随晶轴取向改变图样，而这里的六重图样只跟随磁场。"
+  }
+ ],
+ "scale": {
+  "input_nm": 19,
+  "reasoning_nm": 19,
+  "definition": "磁螺旋周期（约 19 nm）"
+ }
+}

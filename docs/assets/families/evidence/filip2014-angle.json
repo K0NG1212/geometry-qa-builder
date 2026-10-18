@@ -1,0 +1,91 @@
+{
+ "kind": "evidence_card",
+ "id": "filip2014-angle",
+ "paper": "paper-filip-perovskite-steric",
+ "short_citation": "Filip et al., Nat. Commun. 5, 5757 (2014)",
+ "citation": "Filip, Eperon, Snaith & Giustino, \"Steric engineering of metal-halide perovskites with tunable optical band gaps\", Nat. Commun. 5, 5757 (2014), doi:10.1038/ncomms6757",
+ "license": "© 2014 Macmillan Publishers Limited, all rights reserved (not CC); facts and numbers only, no text or figures reproduced",
+ "family": "evidence_elimination",
+ "topic": "First-principles calculations map the band gap of lead-iodide perovskites APbI3 (corner-sharing PbI6 octahedra with a cation A in the cavities) across many real and hypothetical cations.",
+ "facts": [
+  {
+   "id": "E1",
+   "text": "Band structures computed with and without the cation agree near the gap; the cation states lie several eV away from the band edges.",
+   "locator": "Main text p. 2; Fig. 1b",
+   "observed": {
+    "cation_states_at_edge": false
+   }
+  },
+  {
+   "id": "E2",
+   "text": "In the measured structures of methylammonium lead iodide the Pb-I bond lengths deviate by at most 0.1 per cent from their average of 3.18 A, and the diagonals of each octahedron are within 4 degrees of perpendicular.",
+   "locator": "Main text p. 2 (X-ray data)",
+   "observed": {
+    "octahedra_regular": true
+   }
+  },
+  {
+   "id": "E3",
+   "text": "A model built from perfectly regular corner-sharing octahedra with no cation at all reproduces a gap that varies by up to about 1 eV with the Pb-I-Pb bond angles, following the largest of those angles.",
+   "locator": "Fig. 2; Fig. 3b",
+   "observed": {
+    "angle_controls_gap": true
+   }
+  },
+  {
+   "id": "E4",
+   "text": "At fixed bond angles, the spread of Pb-I bond lengths among the realistic structures changes the gap by about 0.2 eV (roughly 3 eV per angstrom).",
+   "locator": "Fig. 2 caption",
+   "observed": {
+    "bond_length_dominates": false
+   }
+  }
+ ],
+ "ask": "Which explanation of how the cation tunes the band gap is consistent with all of these facts?",
+ "hypotheses": [
+  {
+   "rule": "paper_conclusion",
+   "text": "The gap is set by the largest Pb-I-Pb bond angle, that is by the octahedral tilt; the cation acts only through its steric size, by controlling that tilt.",
+   "predicts": {
+    "angle_controls_gap": true,
+    "cation_states_at_edge": false,
+    "octahedra_regular": true
+   },
+   "locator": "Abstract and Fig. 3b: the gap correlates with the largest metal-halide-metal bond angle, tuned through the steric size of the cation",
+   "reason": "与全部观测一致，即原文结论。",
+   "paper_conclusion": true
+  },
+  {
+   "rule": "cation_orbitals",
+   "text": "The orbitals of the cation form the band edges and set the gap directly.",
+   "predicts": {
+    "cation_states_at_edge": true
+   },
+   "locator": "Fig. 1b: the cation states are far from the gap",
+   "reason": "去掉阳离子后带隙附近的能带几乎不变，说明带边不是阳离子轨道。"
+  },
+  {
+   "rule": "bond_length",
+   "text": "Changes of the Pb-I bond length dominate the gap.",
+   "predicts": {
+    "bond_length_dominates": true
+   },
+   "locator": "Fig. 2 caption: bond-length spread accounts for about 0.2 eV",
+   "reason": "键长差异只带来约 0.2 eV，而键角变化可达约 1 eV。"
+  },
+  {
+   "rule": "octahedral_distortion",
+   "text": "Distortion of the PbI6 octahedra themselves dominates the gap.",
+   "predicts": {
+    "octahedra_regular": false
+   },
+   "locator": "Main text p. 2: the measured octahedra are regular to within 0.1 per cent and 4 degrees",
+   "reason": "实测八面体几乎正则，而且完全正则的八面体模型已能重现带隙随键角的变化。"
+  }
+ ],
+ "scale": {
+  "input_nm": 0.64,
+  "reasoning_nm": 0.64,
+  "definition": "Pb–I–Pb 连接（约 0.64 nm）"
+ }
+}

@@ -4,10 +4,10 @@
   "families": 49,
   "checkers": 49,
   "family_modules": 21,
-  "manifest_instances": 260,
-  "run": "family-pilot-v34",
-  "attempted": 260,
-  "passed": 259,
+  "manifest_instances": 268,
+  "run": "family-pilot-v35",
+  "attempted": 268,
+  "passed": 267,
   "failures": [
    {
     "id": "FA-CONF-7063-max_dipole",
@@ -16,12 +16,12 @@
     "reason": "No four-candidate set with a unique best above the margin"
    }
   ],
-  "independent_checked": 259,
-  "independent_passed": 259,
+  "independent_checked": 267,
+  "independent_passed": 267,
   "tests": 357,
-  "code_lines": 7855,
-  "generator_lines": 5408,
-  "checker_lines": 2447,
+  "code_lines": 7869,
+  "generator_lines": 5414,
+  "checker_lines": 2455,
   "abilities": {
    "perception": 15,
    "inference": 20,
@@ -149,7 +149,7 @@
      "path": "docs/data/coverage-plan.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/docs/data/coverage-plan.json",
      "lines": 1409,
-     "sha256": "e9eb18ff6e83c7d5171ed4c62bb01abfe36248a40289471b17d8c8758ce00d5e"
+     "sha256": "64086de84465c8f89a7490e364cd2bd1f30ac137af8429bf858bc6f3f065623c"
     }
    ]
   },
@@ -390,8 +390,8 @@
     {
      "path": "templates/admission-map.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/templates/admission-map.json",
-     "lines": 2592,
-     "sha256": "fd6369bc6621bb131c84683b495d0d6263546ed6bc65d86466c96a35205d50e9"
+     "lines": 2696,
+     "sha256": "22b53a9d3697e9a4650649d55f8dcf1e03928e5e6e3910f7ef393bbab9783577"
     }
    ]
   },
@@ -2337,11 +2337,13 @@
    },
    "checker": "checkers/evidence.py:evidence_quantity",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/evidence.py",
-   "instances": 10,
-   "active": 10,
+   "instances": 12,
+   "active": 12,
    "cells": [
+    "biology 1-10",
     "chemistry 0.1-1",
     "chemistry 100-1000",
+    "materials 0.1-1",
     "materials 100-1000",
     "quantum 0.1-1",
     "quantum 10-100",
@@ -2375,11 +2377,14 @@
    },
    "checker": "checkers/evidence.py:evidence_elimination",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/evidence.py",
-   "instances": 9,
-   "active": 9,
+   "instances": 15,
+   "active": 15,
    "cells": [
+    "biology 0.1-1",
+    "biology 1-10",
     "chemistry 0.1-1",
     "chemistry 100-1000",
+    "materials 0.1-1",
     "quantum 10-100",
     "quantum 100-1000"
    ],
