@@ -2,17 +2,17 @@
  "kind": "independent_check",
  "checker_version": "0.1.0",
  "origin": {
-  "source": "family-pilot-v35"
+  "source": "family-pilot-v36"
  },
- "checked": 267,
- "passed": 267,
+ "checked": 310,
+ "passed": 310,
  "failed": [],
  "by_family": {
   "named_bond_angle": {
    "pass": 4
   },
   "backbone_torsion": {
-   "pass": 3
+   "pass": 7
   },
   "force_path_derivative": {
    "pass": 5
@@ -39,13 +39,13 @@
    "pass": 8
   },
   "coordination_shell": {
-   "pass": 10
+   "pass": 22
   },
   "first_diffraction_peak": {
-   "pass": 10
+   "pass": 22
   },
   "fret_efficiency": {
-   "pass": 4
+   "pass": 8
   },
   "guinier_intensity": {
    "pass": 11
@@ -96,7 +96,7 @@
    "pass": 3
   },
   "secondary_structure": {
-   "pass": 3
+   "pass": 6
   },
   "binding_evidence_choice": {
    "pass": 3
@@ -114,10 +114,10 @@
    "pass": 6
   },
   "disulfide_design": {
-   "pass": 3
+   "pass": 7
   },
   "fret_design": {
-   "pass": 3
+   "pass": 7
   },
   "vortex_geometry": {
    "pass": 3
@@ -4851,6 +4851,957 @@
     "observations": 5
    },
    "method": "predictions compared with observations from the hashed card; single survivor",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-CU",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "recomputed": "12 at 2.5562 Å",
+   "parameters": {
+    "partner": "Cu",
+    "mu4_node": false
+   },
+   "method": "own periodic neighbour search over 27 cells",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-CU",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "43.3169109192",
+   "rounded": "43.32",
+   "label": "B",
+   "nearest_distractor_gap": "7.1330890808",
+   "parameters": {
+    "weights": {
+     "Cu": 29
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     1,
+     1,
+     1
+    ]
+   },
+   "method": "all (h k l) up to 5 with own structure-factor sum",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-FE",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "recomputed": "8 at 2.4820 Å",
+   "parameters": {
+    "partner": "Fe",
+    "mu4_node": false
+   },
+   "method": "own periodic neighbour search over 27 cells",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-FE",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "44.6798451329",
+   "rounded": "44.68",
+   "label": "C",
+   "nearest_distractor_gap": "10.8101548671",
+   "parameters": {
+    "weights": {
+     "Fe": 26
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     0,
+     1,
+     1
+    ]
+   },
+   "method": "all (h k l) up to 5 with own structure-factor sum",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-MG",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "recomputed": "6 at 3.1969 Å",
+   "parameters": {
+    "partner": "Mg",
+    "cell": {
+     "a": 3.20927,
+     "b": 3.20927,
+     "c": 5.21033,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 2
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-MG",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "32.1809809199",
+   "rounded": "32.18",
+   "label": "D",
+   "nearest_distractor_gap": "4.4009809199",
+   "parameters": {
+    "weights": {
+     "Mg": 12
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     -1,
+     0,
+     0
+    ],
+    "cell": {
+     "a": 3.20927,
+     "b": 3.20927,
+     "c": 5.21033,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 2
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-ALNI",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "recomputed": "8 at 2.4950 Å",
+   "parameters": {
+    "partner": "Al",
+    "mu4_node": false
+   },
+   "method": "own periodic neighbour search over 27 cells",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-ALNI",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "31.0159427346",
+   "rounded": "31.02",
+   "label": "A",
+   "nearest_distractor_gap": "13.4140572654",
+   "parameters": {
+    "weights": {
+     "Al": 13,
+     "Ni": 28
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     0,
+     0,
+     1
+    ]
+   },
+   "method": "all (h k l) up to 5 with own structure-factor sum",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-B5H9",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "recomputed": "1 at 1.6543 Å",
+   "parameters": {
+    "partner": "B",
+    "cell": {
+     "a": 10.201,
+     "b": 10.201,
+     "c": 9.996,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 90.0
+    },
+    "cif_atoms": 112
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-B5H9",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "8.6613058599",
+   "rounded": "8.66",
+   "label": "B",
+   "nearest_distractor_gap": "4.3313058599",
+   "parameters": {
+    "weights": {
+     "B": 5,
+     "H": 1
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     -1,
+     0,
+     0
+    ],
+    "cell": {
+     "a": 10.201,
+     "b": 10.201,
+     "c": 9.996,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 90.0
+    },
+    "cif_atoms": 112
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-K2CUF4",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "recomputed": "2 at 1.9388 Å",
+   "parameters": {
+    "partner": "F",
+    "cell": {
+     "a": 4.147,
+     "b": 4.147,
+     "c": 12.73,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 90.0
+    },
+    "cif_atoms": 14
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-K2CUF4",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "13.9020862934",
+   "rounded": "13.90",
+   "label": "B",
+   "nearest_distractor_gap": "6.9620862934",
+   "parameters": {
+    "weights": {
+     "Cu": 29,
+     "F": 9,
+     "K": 19
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     0,
+     0,
+     -2
+    ],
+    "cell": {
+     "a": 4.147,
+     "b": 4.147,
+     "c": 12.73,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 90.0
+    },
+    "cif_atoms": 14
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-MN2CO10",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "recomputed": "1 at 1.8223 Å",
+   "parameters": {
+    "partner": "C",
+    "cell": {
+     "a": 14.1257,
+     "b": 6.8799,
+     "c": 14.3121,
+     "alpha": 90.0,
+     "beta": 105.078,
+     "gamma": 90.0
+    },
+    "cif_atoms": 88
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-MN2CO10",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "12.8014136994",
+   "rounded": "12.80",
+   "label": "C",
+   "nearest_distractor_gap": "6.4114136994",
+   "parameters": {
+    "weights": {
+     "C": 6,
+     "Mn": 25,
+     "O": 8
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     0,
+     0,
+     -2
+    ],
+    "cell": {
+     "a": 14.1257,
+     "b": 6.8799,
+     "c": 14.3121,
+     "alpha": 90.0,
+     "beta": 105.078,
+     "gamma": 90.0
+    },
+    "cif_atoms": 88
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-PARA-I",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "recomputed": "1 at 1.2399 Å",
+   "parameters": {
+    "partner": "C",
+    "cell": {
+     "a": 7.0915,
+     "b": 9.2149,
+     "c": 11.6015,
+     "alpha": 90.0,
+     "beta": 97.865,
+     "gamma": 90.0
+    },
+    "cif_atoms": 80
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-PARA-I",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "12.3017145644",
+   "rounded": "12.30",
+   "label": "A",
+   "nearest_distractor_gap": "1.5282854356",
+   "parameters": {
+    "weights": {
+     "C": 6,
+     "H": 1,
+     "N": 7,
+     "O": 8
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     0,
+     -1,
+     -1
+    ],
+    "cell": {
+     "a": 7.0915,
+     "b": 9.2149,
+     "c": 11.6015,
+     "alpha": 90.0,
+     "beta": 97.865,
+     "gamma": 90.0
+    },
+    "cif_atoms": 80
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-PARA-II",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "recomputed": "1 at 1.2325 Å",
+   "parameters": {
+    "partner": "C",
+    "cell": {
+     "a": 11.8237,
+     "b": 7.3971,
+     "c": 17.1526,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 90.0
+    },
+    "cif_atoms": 160
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-PARA-II",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "10.3061916935",
+   "rounded": "10.31",
+   "label": "B",
+   "nearest_distractor_gap": "2.4338083065",
+   "parameters": {
+    "weights": {
+     "C": 6,
+     "H": 1,
+     "N": 7,
+     "O": 8
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     0,
+     0,
+     -2
+    ],
+    "cell": {
+     "a": 11.8237,
+     "b": 7.3971,
+     "c": 17.1526,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 90.0
+    },
+    "cif_atoms": 160
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-PENTACENE",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "recomputed": "1 at 1.3962 Å",
+   "parameters": {
+    "partner": "C",
+    "cell": {
+     "a": 6.266,
+     "b": 7.775,
+     "c": 14.53,
+     "alpha": 76.475,
+     "beta": 87.682,
+     "gamma": 84.684
+    },
+    "cif_atoms": 72
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-PENTACENE",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "6.2525643407",
+   "rounded": "6.25",
+   "label": "B",
+   "nearest_distractor_gap": "3.1225643407",
+   "parameters": {
+    "weights": {
+     "C": 6,
+     "H": 1
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     0,
+     0,
+     -1
+    ],
+    "cell": {
+     "a": 6.266,
+     "b": 7.775,
+     "c": 14.53,
+     "alpha": 76.475,
+     "beta": 87.682,
+     "gamma": 84.684
+    },
+    "cif_atoms": 72
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-HAP",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "recomputed": "1 at 1.4960 Å",
+   "parameters": {
+    "partner": "O",
+    "cell": {
+     "a": 9.4,
+     "b": 9.4,
+     "c": 6.93,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 42
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-HAP",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "10.8593609759",
+   "rounded": "10.86",
+   "label": "C",
+   "nearest_distractor_gap": "1.4593609759",
+   "parameters": {
+    "weights": {
+     "Ca": 20,
+     "O": 8,
+     "P": 15
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     -1,
+     0,
+     0
+    ],
+    "cell": {
+     "a": 9.4,
+     "b": 9.4,
+     "c": 6.93,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 42
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-COORD-ARAGONITE",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "recomputed": "1 at 2.4127 Å",
+   "parameters": {
+    "partner": "O",
+    "cell": {
+     "a": 4.96183,
+     "b": 7.96914,
+     "c": 5.74285,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 90.0
+    },
+    "cif_atoms": 20
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "FA-PEAK-ARAGONITE",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "19.0330262073",
+   "rounded": "19.03",
+   "label": "A",
+   "nearest_distractor_gap": "2.0369737927",
+   "parameters": {
+    "weights": {
+     "C": 6,
+     "Ca": 20,
+     "O": 8
+    },
+    "wavelength_A": 1.5406,
+    "reflection": [
+     0,
+     -1,
+     -1
+    ],
+    "cell": {
+     "a": 4.96183,
+     "b": 7.96914,
+     "c": 5.74285,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 90.0
+    },
+    "cif_atoms": 20
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1A6M-TOR-2-PHI",
+   "family": "backbone_torsion",
+   "checker_version": "0.1.0",
+   "recomputed": "-75.9986723322",
+   "rounded": "-76.0",
+   "label": "D",
+   "nearest_distractor_gap": "138.7013276678",
+   "parameters": {
+    "atoms": "C(1)–N(2)–CA(2)–C(2)"
+   },
+   "method": "acos of plane normals with triple-product sign",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1A6M-SS-6",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "parameters": {
+    "phi": -66.20020310231278,
+    "psi": -44.188086996862985,
+    "distances": {
+     "right-handed α-helix": 9.62032181691533,
+     "β-strand": 182.30717977594603,
+     "polyproline II": 171.03843442113177,
+     "left-handed α-helix": 153.2760818086063
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1A6M-FRET-1-15",
+   "family": "fret_efficiency",
+   "checker_version": "0.1.0",
+   "recomputed": "0.4178526731",
+   "rounded": "0.418",
+   "label": "B",
+   "nearest_distractor_gap": "0.0821473269",
+   "parameters": {
+    "sites": [
+     [
+      "CA",
+      "Val",
+      "1"
+     ],
+     [
+      "CA",
+      "Ala",
+      "15"
+     ]
+    ],
+    "R0_nm": 2.0,
+    "r_nm": 2.113642905033866
+   },
+   "method": "straight-line distance; Foerster law",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1A6M-DS-2-6",
+   "family": "disulfide_design",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "parameters": {
+    "CA": [
+     4.4,
+     6.8
+    ],
+    "CB": [
+     3.45,
+     4.5
+    ]
+   },
+   "method": "Decimal distances; stated windows",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1A6M-FD-25-1-18",
+   "family": "fret_design",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "parameters": {
+    "efficiency": {
+     "A": 0.2451,
+     "B": 0.928,
+     "C": 0.0968,
+     "D": 0.9722
+    },
+    "R0_nm": 2.0
+   },
+   "method": "Decimal distances; Förster law",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1FHA-TOR-6-PHI",
+   "family": "backbone_torsion",
+   "checker_version": "0.1.0",
+   "recomputed": "-64.5299939094",
+   "rounded": "-64.5",
+   "label": "A",
+   "nearest_distractor_gap": "129.0299939094",
+   "parameters": {
+    "atoms": "C(5)–N(6)–CA(6)–C(6)"
+   },
+   "method": "acos of plane normals with triple-product sign",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1FHA-FRET-5-22",
+   "family": "fret_efficiency",
+   "checker_version": "0.1.0",
+   "recomputed": "0.4526843125",
+   "rounded": "0.453",
+   "label": "B",
+   "nearest_distractor_gap": "0.0473156875",
+   "parameters": {
+    "sites": [
+     [
+      "CA",
+      "Thr",
+      "5"
+     ],
+     [
+      "CA",
+      "Arg",
+      "22"
+     ]
+    ],
+    "R0_nm": 2.0,
+    "r_nm": 2.064288552988656
+   },
+   "method": "straight-line distance; Foerster law",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1FHA-DS-6-9",
+   "family": "disulfide_design",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "parameters": {
+    "CA": [
+     4.4,
+     6.8
+    ],
+    "CB": [
+     3.45,
+     4.5
+    ]
+   },
+   "method": "Decimal distances; stated windows",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1FHA-FD-25-5-42",
+   "family": "fret_design",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "parameters": {
+    "efficiency": {
+     "A": 0.7495,
+     "B": 0.2411,
+     "C": 0.3764,
+     "D": 0.9974
+    },
+    "R0_nm": 4.0
+   },
+   "method": "Decimal distances; Förster law",
+   "status": "pass"
+  },
+  {
+   "id": "EN-12E8-TOR-2-PHI",
+   "family": "backbone_torsion",
+   "checker_version": "0.1.0",
+   "recomputed": "-61.9317514121",
+   "rounded": "-61.9",
+   "label": "B",
+   "nearest_distractor_gap": "86.4682485879",
+   "parameters": {
+    "atoms": "C(1)–N(2)–CA(2)–C(2)"
+   },
+   "method": "acos of plane normals with triple-product sign",
+   "status": "pass"
+  },
+  {
+   "id": "EN-12E8-SS-3",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "parameters": {
+    "phi": -148.4427531164259,
+    "psi": 142.55734800850135,
+    "distances": {
+     "right-handed α-helix": 193.42304597799804,
+     "β-strand": 31.09143280469024,
+     "polyproline II": 73.48336229427625,
+     "left-handed α-helix": 181.7117203777673
+    },
+    "record": "SHEET"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-12E8-FRET-1-8",
+   "family": "fret_efficiency",
+   "checker_version": "0.1.0",
+   "recomputed": "0.7556052858",
+   "rounded": "0.756",
+   "label": "C",
+   "nearest_distractor_gap": "0.1213947142",
+   "parameters": {
+    "sites": [
+     [
+      "CA",
+      "Glu",
+      "1"
+     ],
+     [
+      "CA",
+      "Gly",
+      "8"
+     ]
+    ],
+    "R0_nm": 2.5,
+    "r_nm": 2.0712831819912987
+   },
+   "method": "straight-line distance; Foerster law",
+   "status": "pass"
+  },
+  {
+   "id": "EN-12E8-DS-7-21",
+   "family": "disulfide_design",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "parameters": {
+    "CA": [
+     4.4,
+     6.8
+    ],
+    "CB": [
+     3.45,
+     4.5
+    ]
+   },
+   "method": "Decimal distances; stated windows",
+   "status": "pass"
+  },
+  {
+   "id": "EN-12E8-FD-25-1-11",
+   "family": "fret_design",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "parameters": {
+    "efficiency": {
+     "A": 0.3487,
+     "B": 0.9478,
+     "C": 0.2354,
+     "D": 0.9353
+    },
+    "R0_nm": 2.5
+   },
+   "method": "Decimal distances; Förster law",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HHK-TOR-2-PHI",
+   "family": "backbone_torsion",
+   "checker_version": "0.1.0",
+   "recomputed": "-66.1432006053",
+   "rounded": "-66.1",
+   "label": "C",
+   "nearest_distractor_gap": "77.3567993947",
+   "parameters": {
+    "atoms": "C(1)–N(2)–CA(2)–C(2)"
+   },
+   "method": "acos of plane normals with triple-product sign",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HHK-SS-3",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "parameters": {
+    "phi": -143.49850010856565,
+    "psi": 156.50965320166142,
+    "distances": {
+     "right-handed α-helix": 178.80497521628365,
+     "β-strand": 35.42514954413908,
+     "polyproline II": 69.45874051511215,
+     "left-handed α-helix": 193.4763360516355
+    },
+    "record": "SHEET"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HHK-FRET-1-7",
+   "family": "fret_efficiency",
+   "checker_version": "0.1.0",
+   "recomputed": "0.7572371756",
+   "rounded": "0.757",
+   "label": "D",
+   "nearest_distractor_gap": "0.1262371756",
+   "parameters": {
+    "sites": [
+     [
+      "CA",
+      "Gly",
+      "1"
+     ],
+     [
+      "CA",
+      "Tyr",
+      "7"
+     ]
+    ],
+    "R0_nm": 2.5,
+    "r_nm": 2.0682278622047425
+   },
+   "method": "straight-line distance; Foerster law",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HHK-DS-5-168",
+   "family": "disulfide_design",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "parameters": {
+    "CA": [
+     4.4,
+     6.8
+    ],
+    "CB": [
+     3.45,
+     4.5
+    ]
+   },
+   "method": "Decimal distances; stated windows",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HHK-FD-25-1-16",
+   "family": "fret_design",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "parameters": {
+    "efficiency": {
+     "A": 0.133,
+     "B": 0.9978,
+     "C": 0.1432,
+     "D": 0.2402
+    },
+    "R0_nm": 4.0
+   },
+   "method": "Decimal distances; Förster law",
    "status": "pass"
   }
  ],

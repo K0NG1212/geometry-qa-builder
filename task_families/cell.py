@@ -65,11 +65,24 @@ def _operation(text):
     return out
 
 
+# Elements seen in the registered CIFs. A symbol outside this set is refused rather than guessed: a CIF
+# written "FE" would otherwise be read as fluorine by the leading-letters rule, silently changing the answer.
+CIF_ELEMENTS = {'H', 'B', 'C', 'N', 'O', 'F', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'K', 'Ca', 'Ti',
+                'Mn', 'Fe', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Rb', 'Sr', 'Zr', 'Cd',
+                'In', 'Sn', 'Sb', 'Te', 'I', 'Cs', 'Ba', 'Au', 'Hg', 'Pb', 'Bi'}
+
+
 def _element(symbol, label):
-    m = re.match(r'([A-Z][a-z]?)', symbol or label)
+    m = re.match(r'([A-Za-z]{1,2})', symbol or label)
     if not m:
         raise ValueError('No element in %r / %r' % (symbol, label))
-    return m.group(1)
+    token = m.group(1)
+    name = token.capitalize()
+    if name not in CIF_ELEMENTS:
+        name = token[0].upper()                      # "O1"/"C2a": a one-letter symbol followed by a label suffix
+    if name not in CIF_ELEMENTS:
+        raise ValueError('Unknown element %r in %r / %r' % (token, symbol, label))
+    return name
 
 
 def snap(x):

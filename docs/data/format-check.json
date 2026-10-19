@@ -1,12 +1,12 @@
 {
  "kind": "format_check",
  "date": "2026-10-13",
- "checked": 267,
- "with_issues": 19,
+ "checked": 310,
+ "with_issues": 21,
  "by_severity": {
   "high": 0,
   "medium": 0,
-  "low": 19
+  "low": 21
  },
  "by_rule": {
   "not_four_choice": 0,
@@ -17,7 +17,7 @@
   "binary_inside": 0,
   "main_record_old_format": 0,
   "two_binaries_combined": 17,
-  "mirror_pair": 2,
+  "mirror_pair": 4,
   "precision_collapse": 0
  },
  "rules": {
@@ -73,10 +73,10 @@
   }
  },
  "answer_positions": {
-  "A": 58,
-  "B": 78,
-  "C": 75,
-  "D": 56
+  "A": 67,
+  "B": 92,
+  "C": 86,
+  "D": 65
  },
  "note": "Automatic rules plus findings checked by hand (REVIEWED). Read-only; fixes follow the RUNBOOK (whole-family regeneration, supersede or archive), not edits of single questions.",
  "items": [
@@ -106,6 +106,36 @@
      "severity": "low",
      "label": "选项中正负成对",
      "detail": "选项：-58.4 / -46.4 / 46.4 / 133.6"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
+   "id": "BNP043",
+   "title": "肌红蛋白 1A6M · 主链二面角",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "mirror_pair",
+     "severity": "low",
+     "label": "选项中正负成对",
+     "detail": "选项：76.0 / 104.0 / 145.3 / -76.0"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
+   "id": "BNP044",
+   "title": "人 H 链铁蛋白 1FHA · 主链二面角",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "mirror_pair",
+     "severity": "low",
+     "label": "选项中正负成对",
+     "detail": "选项：-64.5 / 64.5 / 115.5 / 141.3"
     }
    ],
    "suggestion": ""

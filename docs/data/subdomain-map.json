@@ -7,28 +7,22 @@
   "level1": 32,
   "leaves": 89,
   "meaningful_pixels": 74,
-  "pixels_with_questions": 32,
-  "empty_meaningful_pixels": 42,
+  "pixels_with_questions": 42,
+  "empty_meaningful_pixels": 32,
   "pixels_with_enumerator": 25,
-  "leaves_with_questions": 33,
+  "leaves_with_questions": 45,
   "empty_level1": [
    "P7",
-   "C3",
    "C5",
    "C6",
-   "M1",
-   "M5",
-   "M7",
-   "M8",
-   "B3",
-   "B9"
+   "M7"
   ],
   "domain_changes": {
    "quantum -> chemistry": 19,
    "materials -> physics": 11,
    "chemistry -> physics": 4
   },
-  "active_questions": 267,
+  "active_questions": 310,
   "questions_outside_meaningful_pixels": [],
   "planning_total": 2500,
   "mean_target_per_pixel": 34
@@ -688,13 +682,19 @@
    "meaningful": false
   },
   {
-   "questions": 0,
+   "questions": 5,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 3,
+    "inference": 2,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "CNP038",
+    "CNP039",
+    "CNI033",
+    "CNP040",
+    "CNI034"
+   ],
    "enumerated_estimate": 0,
    "l1": "C3",
    "domain": "chemistry",
@@ -703,13 +703,15 @@
    "meaningful": true
   },
   {
-   "questions": 0,
+   "questions": 1,
    "abilities": {
     "perception": 0,
-    "inference": 0,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "CNI032"
+   ],
    "enumerated_estimate": 0,
    "l1": "C3",
    "domain": "chemistry",
@@ -1084,13 +1086,22 @@
    "meaningful": true
   },
   {
-   "questions": 0,
+   "questions": 8,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 4,
+    "inference": 4,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "MNP031",
+    "MNI039",
+    "MNP032",
+    "MNI040",
+    "MNP033",
+    "MNI041",
+    "MNP034",
+    "MNI042"
+   ],
    "enumerated_estimate": 0,
    "l1": "M1",
    "domain": "materials",
@@ -1366,13 +1377,19 @@
    "meaningful": false
   },
   {
-   "questions": 0,
+   "questions": 5,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 3,
+    "inference": 2,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "MNP035",
+    "MNI043",
+    "MNP036",
+    "MNI044",
+    "MNP037"
+   ],
    "enumerated_estimate": 0,
    "l1": "M5",
    "domain": "materials",
@@ -1381,13 +1398,15 @@
    "meaningful": true
   },
   {
-   "questions": 0,
+   "questions": 1,
    "abilities": {
     "perception": 0,
-    "inference": 0,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "MNI045"
+   ],
    "enumerated_estimate": 0,
    "l1": "M5",
    "domain": "materials",
@@ -1557,13 +1576,18 @@
    "meaningful": false
   },
   {
-   "questions": 0,
+   "questions": 4,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 2,
+    "inference": 2,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "MNP038",
+    "MNI046",
+    "MNP039",
+    "MNI047"
+   ],
    "enumerated_estimate": 0,
    "l1": "M8",
    "domain": "materials",
@@ -1763,13 +1787,19 @@
    "meaningful": false
   },
   {
-   "questions": 0,
+   "questions": 5,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
+    "perception": 2,
+    "inference": 1,
+    "design": 2
    },
-   "ids": [],
+   "ids": [
+    "BNP043",
+    "BNI049",
+    "BND016",
+    "BNP044",
+    "BND018"
+   ],
    "enumerated_estimate": 284,
    "l1": "B3",
    "domain": "biology",
@@ -1778,13 +1808,18 @@
    "meaningful": true
   },
   {
-   "questions": 0,
+   "questions": 4,
    "abilities": {
     "perception": 0,
-    "inference": 0,
-    "design": 0
+    "inference": 2,
+    "design": 2
    },
-   "ids": [],
+   "ids": [
+    "BNI050",
+    "BND017",
+    "BNI052",
+    "BND019"
+   ],
    "enumerated_estimate": 4632,
    "l1": "B3",
    "domain": "biology",
@@ -2194,13 +2229,20 @@
    "meaningful": false
   },
   {
-   "questions": 0,
+   "questions": 6,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
+    "perception": 2,
+    "inference": 2,
+    "design": 2
    },
-   "ids": [],
+   "ids": [
+    "BNP045",
+    "BNI053",
+    "BND020",
+    "BNP046",
+    "BNI055",
+    "BND022"
+   ],
    "enumerated_estimate": 0,
    "l1": "B9",
    "domain": "biology",
@@ -2209,13 +2251,18 @@
    "meaningful": true
   },
   {
-   "questions": 0,
+   "questions": 4,
    "abilities": {
     "perception": 0,
-    "inference": 0,
-    "design": 0
+    "inference": 2,
+    "design": 2
    },
-   "ids": [],
+   "ids": [
+    "BNI054",
+    "BND021",
+    "BNI056",
+    "BND023"
+   ],
    "enumerated_estimate": 0,
    "l1": "B9",
    "domain": "biology",
@@ -2747,13 +2794,16 @@
    "name": "分子电性质"
   },
   {
-   "questions": 0,
+   "questions": 2,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 1,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "CNP038",
+    "CNI032"
+   ],
    "enumerated_estimate": 0,
    "leaf": "C3a",
    "l1": "C3",
@@ -2761,13 +2811,16 @@
    "name": "主族化合物"
   },
   {
-   "questions": 0,
+   "questions": 2,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 1,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "CNP039",
+    "CNI033"
+   ],
    "enumerated_estimate": 0,
    "leaf": "C3b",
    "l1": "C3",
@@ -2775,13 +2828,16 @@
    "name": "过渡金属配合物"
   },
   {
-   "questions": 0,
+   "questions": 2,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 1,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "CNP040",
+    "CNI034"
+   ],
    "enumerated_estimate": 0,
    "leaf": "C3c",
    "l1": "C3",
@@ -3007,13 +3063,20 @@
    "name": "两亲分子与胶束"
   },
   {
-   "questions": 0,
+   "questions": 6,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 3,
+    "inference": 3,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "MNP031",
+    "MNI039",
+    "MNP032",
+    "MNI040",
+    "MNP033",
+    "MNI041"
+   ],
    "enumerated_estimate": 0,
    "leaf": "M1a",
    "l1": "M1",
@@ -3021,13 +3084,16 @@
    "name": "纯金属晶格"
   },
   {
-   "questions": 0,
+   "questions": 2,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 1,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "MNP034",
+    "MNI042"
+   ],
    "enumerated_estimate": 0,
    "leaf": "M1b",
    "l1": "M1",
@@ -3205,13 +3271,18 @@
    "name": "沸石"
   },
   {
-   "questions": 0,
+   "questions": 4,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 2,
+    "inference": 2,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "MNP035",
+    "MNI043",
+    "MNP036",
+    "MNI044"
+   ],
    "enumerated_estimate": 0,
    "leaf": "M5a",
    "l1": "M5",
@@ -3219,13 +3290,16 @@
    "name": "分子晶体与多晶型"
   },
   {
-   "questions": 0,
+   "questions": 2,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 1,
+    "inference": 1,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "MNP037",
+    "MNI045"
+   ],
    "enumerated_estimate": 0,
    "leaf": "M5b",
    "l1": "M5",
@@ -3342,13 +3416,18 @@
    "name": "晶界与异质界面"
   },
   {
-   "questions": 0,
+   "questions": 4,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 2,
+    "inference": 2,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "MNP038",
+    "MNI046",
+    "MNP039",
+    "MNI047"
+   ],
    "enumerated_estimate": 0,
    "leaf": "M8a",
    "l1": "M8",
@@ -3464,13 +3543,19 @@
    "name": "信号与调控蛋白"
   },
   {
-   "questions": 0,
+   "questions": 5,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
+    "perception": 1,
+    "inference": 2,
+    "design": 2
    },
-   "ids": [],
+   "ids": [
+    "BNP043",
+    "BNI049",
+    "BNI050",
+    "BND016",
+    "BND017"
+   ],
    "enumerated_estimate": 4916,
    "leaf": "B3a",
    "l1": "B3",
@@ -3478,13 +3563,18 @@
    "name": "氧结合蛋白"
   },
   {
-   "questions": 0,
+   "questions": 4,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
+    "perception": 1,
+    "inference": 1,
+    "design": 2
    },
-   "ids": [],
+   "ids": [
+    "BNP044",
+    "BNI052",
+    "BND018",
+    "BND019"
+   ],
    "enumerated_estimate": 0,
    "leaf": "B3b",
    "l1": "B3",
@@ -3774,13 +3864,19 @@
    "name": "能量转换"
   },
   {
-   "questions": 0,
+   "questions": 5,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
+    "perception": 1,
+    "inference": 2,
+    "design": 2
    },
-   "ids": [],
+   "ids": [
+    "BNP045",
+    "BNI053",
+    "BNI054",
+    "BND020",
+    "BND021"
+   ],
    "enumerated_estimate": 0,
    "leaf": "B9a",
    "l1": "B9",
@@ -3788,13 +3884,19 @@
    "name": "抗体与抗原"
   },
   {
-   "questions": 0,
+   "questions": 5,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
+    "perception": 1,
+    "inference": 2,
+    "design": 2
    },
-   "ids": [],
+   "ids": [
+    "BNP046",
+    "BNI055",
+    "BNI056",
+    "BND022",
+    "BND023"
+   ],
    "enumerated_estimate": 0,
    "leaf": "B9b",
    "l1": "B9",
@@ -5739,6 +5841,178 @@
   "BNI048": [
    "β₂ 受体–Gs 复合物 · 螺旋结构域大幅位移是真实的吗（证据排除题）",
    "inference"
+  ],
+  "MNP031": [
+   "铜（面心立方） · Cu 原子的最近邻壳层（配位壳层）",
+   "perception"
+  ],
+  "MNI039": [
+   "铜（面心立方） · 首个衍射峰（Cu Kα）",
+   "inference"
+  ],
+  "MNP032": [
+   "α-铁（体心立方） · Fe 原子的最近邻壳层（配位壳层）",
+   "perception"
+  ],
+  "MNI040": [
+   "α-铁（体心立方） · 首个衍射峰（Cu Kα）",
+   "inference"
+  ],
+  "MNP033": [
+   "镁（密排六方） · Mg 原子的最近邻壳层（配位壳层）",
+   "perception"
+  ],
+  "MNI041": [
+   "镁（密排六方） · 首个衍射峰（Cu Kα）",
+   "inference"
+  ],
+  "MNP034": [
+   "AlNi 有序合金 · Ni 周围最近的 Al 壳层（配位壳层）",
+   "perception"
+  ],
+  "MNI042": [
+   "AlNi 有序合金 · 首个衍射峰（Cu Kα）",
+   "inference"
+  ],
+  "CNP038": [
+   "五硼烷 B₅H₉ · B 原子的最近邻 B 壳层（配位壳层）",
+   "perception"
+  ],
+  "CNI032": [
+   "五硼烷 B₅H₉ · 首个衍射峰（Cu Kα）",
+   "inference"
+  ],
+  "CNP039": [
+   "K₂CuF₄ · Cu 周围最近的 F 壳层（配位壳层）",
+   "perception"
+  ],
+  "CNI033": [
+   "K₂CuF₄ · 首个衍射峰（Cu Kα）",
+   "inference"
+  ],
+  "CNP040": [
+   "十羰基二锰 Mn₂(CO)₁₀ · Mn 周围最近的 C 壳层（配位壳层）",
+   "perception"
+  ],
+  "CNI034": [
+   "十羰基二锰 Mn₂(CO)₁₀ · 首个衍射峰（Cu Kα）",
+   "inference"
+  ],
+  "MNP035": [
+   "对乙酰氨基酚 I 型 · O 周围最近的 C 壳层（配位壳层）",
+   "perception"
+  ],
+  "MNI043": [
+   "对乙酰氨基酚 I 型 · 首个衍射峰（Cu Kα）",
+   "inference"
+  ],
+  "MNP036": [
+   "对乙酰氨基酚 II 型 · O 周围最近的 C 壳层（配位壳层）",
+   "perception"
+  ],
+  "MNI044": [
+   "对乙酰氨基酚 II 型 · 首个衍射峰（Cu Kα）",
+   "inference"
+  ],
+  "MNP037": [
+   "并五苯 · C 原子的最近邻 C 壳层（配位壳层）",
+   "perception"
+  ],
+  "MNI045": [
+   "并五苯 · 首个衍射峰（Cu Kα）",
+   "inference"
+  ],
+  "MNP038": [
+   "羟基磷灰石 · P 周围最近的 O 壳层（配位壳层）",
+   "perception"
+  ],
+  "MNI046": [
+   "羟基磷灰石 · 首个衍射峰（Cu Kα）",
+   "inference"
+  ],
+  "MNP039": [
+   "文石 CaCO₃ · Ca 周围最近的 O 壳层（配位壳层）",
+   "perception"
+  ],
+  "MNI047": [
+   "文石 CaCO₃ · 首个衍射峰（Cu Kα）",
+   "inference"
+  ],
+  "BNP043": [
+   "肌红蛋白 1A6M · 主链二面角",
+   "perception"
+  ],
+  "BNI049": [
+   "肌红蛋白 1A6M · 由主链二面角判断二级结构",
+   "inference"
+  ],
+  "BNI050": [
+   "肌红蛋白 1A6M · FRET 效率",
+   "inference"
+  ],
+  "BND016": [
+   "肌红蛋白 1A6M · 二硫键工程位点选择",
+   "design"
+  ],
+  "BND017": [
+   "肌红蛋白 1A6M · FRET 标记位点设计",
+   "design"
+  ],
+  "BNP044": [
+   "人 H 链铁蛋白 1FHA · 主链二面角",
+   "perception"
+  ],
+  "BNI052": [
+   "人 H 链铁蛋白 1FHA · FRET 效率",
+   "inference"
+  ],
+  "BND018": [
+   "人 H 链铁蛋白 1FHA · 二硫键工程位点选择",
+   "design"
+  ],
+  "BND019": [
+   "人 H 链铁蛋白 1FHA · FRET 标记位点设计",
+   "design"
+  ],
+  "BNP045": [
+   "抗体 Fab 片段 12E8 · 主链二面角",
+   "perception"
+  ],
+  "BNI053": [
+   "抗体 Fab 片段 12E8 · 由主链二面角判断二级结构",
+   "inference"
+  ],
+  "BNI054": [
+   "抗体 Fab 片段 12E8 · FRET 效率",
+   "inference"
+  ],
+  "BND020": [
+   "抗体 Fab 片段 12E8 · 二硫键工程位点选择",
+   "design"
+  ],
+  "BND021": [
+   "抗体 Fab 片段 12E8 · FRET 标记位点设计",
+   "design"
+  ],
+  "BNP046": [
+   "MHC I 类分子 1HHK · 主链二面角",
+   "perception"
+  ],
+  "BNI055": [
+   "MHC I 类分子 1HHK · 由主链二面角判断二级结构",
+   "inference"
+  ],
+  "BNI056": [
+   "MHC I 类分子 1HHK · FRET 效率",
+   "inference"
+  ],
+  "BND022": [
+   "MHC I 类分子 1HHK · 二硫键工程位点选择",
+   "design"
+  ],
+  "BND023": [
+   "MHC I 类分子 1HHK · FRET 标记位点设计",
+   "design"
   ]
  }
 }

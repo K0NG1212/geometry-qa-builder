@@ -4,10 +4,10 @@
   "families": 49,
   "checkers": 49,
   "family_modules": 21,
-  "manifest_instances": 268,
-  "run": "family-pilot-v35",
-  "attempted": 268,
-  "passed": 267,
+  "manifest_instances": 311,
+  "run": "family-pilot-v36",
+  "attempted": 311,
+  "passed": 310,
   "failures": [
    {
     "id": "FA-CONF-7063-max_dipole",
@@ -16,11 +16,11 @@
     "reason": "No four-candidate set with a unique best above the margin"
    }
   ],
-  "independent_checked": 267,
-  "independent_passed": 267,
+  "independent_checked": 310,
+  "independent_passed": 310,
   "tests": 357,
-  "code_lines": 7869,
-  "generator_lines": 5414,
+  "code_lines": 7882,
+  "generator_lines": 5427,
   "checker_lines": 2455,
   "abilities": {
    "perception": 15,
@@ -149,7 +149,7 @@
      "path": "docs/data/coverage-plan.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/docs/data/coverage-plan.json",
      "lines": 1409,
-     "sha256": "64086de84465c8f89a7490e364cd2bd1f30ac137af8429bf858bc6f3f065623c"
+     "sha256": "3a52afa66f879a37a4c87d1860c98869ef86579b31f75d46a03dc304f95adfe6"
     }
    ]
   },
@@ -390,8 +390,8 @@
     {
      "path": "templates/admission-map.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/templates/admission-map.json",
-     "lines": 2696,
-     "sha256": "22b53a9d3697e9a4650649d55f8dcf1e03928e5e6e3910f7ef393bbab9783577"
+     "lines": 3126,
+     "sha256": "b666dfee2ec39e5a57f26e5cacdc0e90a9b7f42ffa6c46becf4f0083d97bca22"
     }
    ]
   },
@@ -597,8 +597,8 @@
    },
    "checker": "checkers/families.py:backbone_torsion",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/families.py",
-   "instances": 3,
-   "active": 3,
+   "instances": 7,
+   "active": 7,
    "cells": [
     "biology 0.1-1"
    ],
@@ -916,9 +916,10 @@
    },
    "checker": "checkers/migrated.py:coordination_shell",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 10,
-   "active": 10,
+   "instances": 22,
+   "active": 22,
    "cells": [
+    "chemistry 0.1-1",
     "materials 0.1-1",
     "materials 1-10"
    ],
@@ -957,9 +958,11 @@
    },
    "checker": "checkers/migrated.py:first_diffraction_peak",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 10,
-   "active": 10,
+   "instances": 22,
+   "active": 22,
    "cells": [
+    "chemistry 0.1-1",
+    "chemistry 1-10",
     "materials 0.1-1",
     "materials 1-10"
    ],
@@ -997,8 +1000,8 @@
    },
    "checker": "checkers/migrated.py:fret_efficiency",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 4,
-   "active": 4,
+   "instances": 8,
+   "active": 8,
    "cells": [
     "biology 1-10"
    ],
@@ -1674,8 +1677,8 @@
    },
    "checker": "checkers/migrated.py:secondary_structure",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/migrated.py",
-   "instances": 3,
-   "active": 3,
+   "instances": 6,
+   "active": 6,
    "cells": [
     "biology 0.1-1"
    ],
@@ -1885,8 +1888,8 @@
    },
    "checker": "checkers/design_extra.py:disulfide_design",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/design_extra.py",
-   "instances": 3,
-   "active": 3,
+   "instances": 7,
+   "active": 7,
    "cells": [
     "biology 0.1-1"
    ],
@@ -1918,8 +1921,8 @@
    },
    "checker": "checkers/design_extra.py:fret_design",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/design_extra.py",
-   "instances": 3,
-   "active": 3,
+   "instances": 7,
+   "active": 7,
    "cells": [
     "biology 1-10"
    ],

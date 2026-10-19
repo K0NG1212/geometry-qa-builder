@@ -4,17 +4,17 @@
  "summary": {
   "scope": "selection",
   "units_all_active": 49,
-  "units": 49,
-  "families": 49,
+  "units": 48,
+  "families": 48,
   "legacy_units": 0,
   "L1": {
-   "pending": 49,
+   "pending": 48,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
   "L2": {
-   "pending": 49,
+   "pending": 48,
    "approved": 0,
    "revise": 0,
    "stale": 0
@@ -34,7 +34,7 @@
   },
   "next_l3_batch": "l3-batch-001",
   "l3_sample": 160,
-  "l3_strata": 92,
+  "l3_strata": 94,
   "l3_steady_state_sample": 135,
   "model_calls": 0,
   "reviews_recorded": {
@@ -717,7 +717,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 2,
+   "instances": 1,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -795,54 +795,54 @@
       ]
      },
      {
-      "instance": "FA-HG-EV3",
+      "instance": "FA-HG-EV2",
       "question": "The files give the SAMPL9 WP6 host (a carboxylated pillar[6]arene; host file shown with 12 carboxylates) and four candidate guests as 3D structures (XYZ, angstrom). Binding to WP6 was measured by isothermal titration calorimetry in 1× PBS at pH 7.40 and 298.15 K; all complexes are 1:1. Which guest binds WP6 most strongly, i.e. has the most negative measured binding free energy?",
       "options": [
        {
         "label": "A",
-        "value": "G3: norbornan-2-ylammonium (WP6-G3.xyz)"
+        "value": "G4: trimethylsilylmethylammonium (WP6-G4.xyz)"
        },
        {
         "label": "B",
-        "value": "G8: 3-[benzyl(dimethyl)ammonio]propane-1-sulfonate (WP6-G8.xyz)"
+        "value": "G5: [3,5-dimethyl-7-(trimethylammonio)-1-adamantyl]-trimethyl-ammonium (WP6-G5.xyz)"
        },
        {
         "label": "C",
-        "value": "G11: 2,2-dimethylpropylammonium (WP6-G11.xyz)"
+        "value": "G9: (3-hydroxy-1-adamantyl)ammonium (WP6-G9.xyz)"
        },
        {
         "label": "D",
-        "value": "G5: [3,5-dimethyl-7-(trimethylammonio)-1-adamantyl]-trimethyl-ammonium (WP6-G5.xyz)"
+        "value": "G10: trimethyl-[[4-[(trimethylammonio)methyl]phenyl]methyl]ammonium (WP6-G10.xyz)"
        }
       ],
       "inputs": [
        "WP6.xyz",
-       "WP6-G3.xyz",
-       "WP6-G11.xyz",
-       "WP6-G8.xyz",
+       "WP6-G10.xyz",
+       "WP6-G4.xyz",
+       "WP6-G9.xyz",
        "WP6-G5.xyz"
       ],
-      "correct_label": "A",
+      "correct_label": "D",
       "audit": [
        {
         "label": "A",
-        "rule": "correct",
-        "reason": "实测 ΔG = -7.91 ± 0.03 kcal/mol，最负；领先 1.74。"
+        "rule": "next_strongest",
+        "reason": "实测 ΔG = -7.77 kcal/mol，次强，比最强弱 2.06。"
        },
        {
         "label": "B",
-        "rule": "weaker_binder",
-        "reason": "实测 ΔG = -5.96 kcal/mol，比最强弱 1.95。"
+        "rule": "dication_but_weaker",
+        "reason": "虽为双阳离子，实测 ΔG = -5.40 kcal/mol，比最强弱 4.43（仅凭电荷判断会误选）。"
        },
        {
         "label": "C",
-        "rule": "next_strongest",
-        "reason": "实测 ΔG = -6.17 kcal/mol，次强，比最强弱 1.74。"
+        "rule": "weaker_binder",
+        "reason": "实测 ΔG = -6.23 kcal/mol，比最强弱 3.60。"
        },
        {
         "label": "D",
-        "rule": "dication_but_weaker",
-        "reason": "虽为双阳离子，实测 ΔG = -5.40 kcal/mol，比最强弱 2.51（仅凭电荷判断会误选）。"
+        "rule": "correct",
+        "reason": "实测 ΔG = -9.83 ± 0.04 kcal/mol，最负；领先 2.06。"
        }
       ]
      }
@@ -1645,7 +1645,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 6,
+   "instances": 7,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -1674,35 +1674,35 @@
     },
     "samples": [
      {
-      "instance": "FA-COORD-CSCL",
-      "question": "The table lists every atom of one conventional cubic cell of caesium chloride (CsCl, COD 9008789). Treat the crystal as infinite and periodic. Around the Cs atom at fractional (0.0000, 0.0000, 0.0000), how many Cl atoms form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.",
+      "instance": "FA-COORD-ALNI",
+      "question": "The table lists every atom of one conventional cubic cell of aluminium nickel (AlNi, ordered B2 alloy, COD 9008802). Treat the crystal as infinite and periodic. Around the Ni atom at fractional (0.5000, 0.5000, 0.5000), how many Al atoms form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.",
       "options": [
        {
         "label": "A",
-        "value": "8 at 3.571 Å"
+        "value": "8 at 2.495 Å"
        },
        {
         "label": "B",
-        "value": "1 at 3.571 Å"
+        "value": "1 at 2.495 Å"
        },
        {
         "label": "C",
-        "value": "12 at 6.837 Å"
+        "value": "12 at 4.778 Å"
        },
        {
         "label": "D",
-        "value": "6 at 4.123 Å"
+        "value": "6 at 2.881 Å"
        }
       ],
       "inputs": [
-       "FA-COORD-CSCL-cell.txt"
+       "FA-COORD-ALNI-cell.txt"
       ],
       "correct_label": "A",
       "audit": [
        {
         "label": "A",
         "rule": "correct",
-        "reason": "含周期映像的最近壳层：8 个，距离 3.5706 Å。"
+        "reason": "含周期映像的最近壳层：8 个，距离 2.4950 Å。"
        },
        {
         "label": "B",
@@ -1722,30 +1722,30 @@
       ]
      },
      {
-      "instance": "FA-COORD-MGO",
-      "question": "The table lists every atom of one conventional cubic cell of periclase (MgO, COD 1000053). Treat the crystal as infinite and periodic. Around the Mg atom at fractional (0.0000, 0.0000, 0.0000), how many O atoms form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.",
+      "instance": "FA-COORD-K2CUF4",
+      "question": "The table lists every atom of one conventional cell (cell parameters in the first line of the table) of potassium copper fluoride (K2CuF4, COD 1527502). Treat the crystal as infinite and periodic. Around the Cu atom at fractional (0.0000, 0.0000, 0.0000), how many F atoms lie at the shortest Cu–F distance (atoms within 0.001 Å of it count as the same distance), and what is that distance? Distances are rounded to 0.001 Å.",
       "options": [
        {
         "label": "A",
-        "value": "8 at 3.652 Å"
+        "value": "4 at 2.074 Å"
        },
        {
         "label": "B",
-        "value": "3 at 2.109 Å"
+        "value": "1 at 1.939 Å"
        },
        {
         "label": "C",
-        "value": "12 at 2.982 Å"
+        "value": "2 at 1.939 Å"
        },
        {
         "label": "D",
-        "value": "6 at 2.109 Å"
+        "value": "6 at 1.939 Å"
        }
       ],
       "inputs": [
-       "FA-COORD-MGO-cell.txt"
+       "FA-COORD-K2CUF4-cell.txt"
       ],
-      "correct_label": "D",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
@@ -1759,13 +1759,13 @@
        },
        {
         "label": "C",
-        "rule": "same_species_shell",
-        "reason": "数成与中心同种元素的最近壳层。"
+        "rule": "correct",
+        "reason": "含周期映像的最近壳层：2 个，距离 1.9388 Å。"
        },
        {
         "label": "D",
-        "rule": "correct",
-        "reason": "含周期映像的最近壳层：6 个，距离 2.1085 Å。"
+        "rule": "whole_coordination_polyhedron",
+        "reason": "把整个配位多面体（6 个，含 1.939–2.074 Å 的较长键）都算作最短距离的一组。"
        }
       ]
      }
@@ -2128,6 +2128,54 @@
     },
     "samples": [
      {
+      "instance": "EN-1A6M-DS-2-6",
+      "question": "The excerpt contains the ATOM records of the 7 residues involved, from chain A of PDB entry 1A6M (sperm whale oxy-myoglobin, X-ray 1.0 Å), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?",
+      "options": [
+       {
+        "label": "A",
+        "value": "Ile99–Leu104"
+       },
+       {
+        "label": "B",
+        "value": "Ala53–Ala57"
+       },
+       {
+        "label": "C",
+        "value": "Leu2–Glu6"
+       },
+       {
+        "label": "D",
+        "value": "Ile101–Leu104"
+       }
+      ],
+      "inputs": [
+       "1A6M-6-design-excerpt.pdb"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "both_out",
+        "reason": "Cα–Cα 7.77 Å、Cβ–Cβ 6.89 Å 均不在窗口内。"
+       },
+       {
+        "label": "B",
+        "rule": "calpha_only",
+        "reason": "Cα–Cα 6.18 Å 在窗口内，但 Cβ–Cβ 6.23 Å 不在 3.45–4.50 Å（只看 Cα 会误选）。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "Cα–Cα 5.77 Å，Cβ–Cβ 4.09 Å，两项均在窗口内。"
+       },
+       {
+        "label": "D",
+        "rule": "calpha_only",
+        "reason": "Cα–Cα 5.05 Å 在窗口内，但 Cβ–Cβ 5.35 Å 不在 3.45–4.50 Å（只看 Cα 会误选）。"
+       }
+      ]
+     },
+     {
       "instance": "FA-DS-1UBQ-A",
       "question": "The excerpt contains the ATOM records of the 7 residues involved, from chain A of PDB entry 1UBQ (ubiquitin, X-ray), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?",
       "options": [
@@ -2172,54 +2220,6 @@
         "label": "D",
         "rule": "correct",
         "reason": "Cα–Cα 4.52 Å，Cβ–Cβ 4.27 Å，两项均在窗口内。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-DS-1UBQ-B",
-      "question": "The excerpt contains the ATOM records of the 7 residues involved, from chain A of PDB entry 1UBQ (ubiquitin, X-ray), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?",
-      "options": [
-       {
-        "label": "A",
-        "value": "Lys27–Pro38"
-       },
-       {
-        "label": "B",
-        "value": "Met1–Gln62"
-       },
-       {
-        "label": "C",
-        "value": "Gln2–Glu18"
-       },
-       {
-        "label": "D",
-        "value": "Met1–Val17"
-       }
-      ],
-      "inputs": [
-       "1UBQ-B-design-excerpt.pdb"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "Cα–Cα 5.42 Å，Cβ–Cβ 4.03 Å，两项均在窗口内。"
-       },
-       {
-        "label": "B",
-        "rule": "both_out",
-        "reason": "Cα–Cα 8.10 Å、Cβ–Cβ 7.69 Å 均不在窗口内。"
-       },
-       {
-        "label": "C",
-        "rule": "both_out",
-        "reason": "Cα–Cα 8.50 Å、Cβ–Cβ 11.05 Å 均不在窗口内。"
-       },
-       {
-        "label": "D",
-        "rule": "calpha_only",
-        "reason": "Cα–Cα 5.36 Å 在窗口内，但 Cβ–Cβ 6.26 Å 不在 3.45–4.50 Å（只看 Cα 会误选）。"
        }
       ]
      }
@@ -2692,7 +2692,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 3,
+   "instances": 5,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -2725,34 +2725,34 @@
     },
     "samples": [
      {
-      "instance": "FA-PEAK-MOF5",
-      "question": "The table lists every atom of one conventional cubic cell of MOF-5 (Zn4O(BDC)3, COD 1516287). Use the kinematic structure factor with atomic numbers as angle-independent weights (C = 6, H = 1, O = 8, Zn = 30). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
+      "instance": "FA-PEAK-B5H9",
+      "question": "The table lists every atom of one conventional cell (cell parameters in the first line of the table) of pentaborane (B5H9, COD 1521678). Use the kinematic structure factor with atomic numbers as angle-independent weights (B = 5, H = 1). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
       "options": [
        {
         "label": "A",
-        "value": "2.96",
+        "value": "4.33",
         "unit": "degree"
        },
        {
         "label": "B",
-        "value": "3.42",
+        "value": "8.66",
         "unit": "degree"
        },
        {
         "label": "C",
-        "value": "4.84",
+        "value": "17.37",
         "unit": "degree"
        },
        {
         "label": "D",
-        "value": "5.92",
+        "value": "21.61",
         "unit": "degree"
        }
       ],
       "inputs": [
-       "FA-PEAK-MOF5-cell.txt"
+       "FA-PEAK-B5H9-cell.txt"
       ],
-      "correct_label": "D",
+      "correct_label": "B",
       "audit": [
        {
         "label": "A",
@@ -2761,70 +2761,70 @@
        },
        {
         "label": "B",
-        "rule": "assumed_lattice_rule:P",
-        "reason": "按简单立方晶格规则判断，得到 (1 0 0)；与实际坐标算出的结构因子不符。"
+        "rule": "correct",
+        "reason": "第一个 |F|≠0 的反射 (0 1 0)，d = 10.20100 Å，2θ = 2 arcsin(λ/2d)。"
        },
        {
         "label": "C",
-        "rule": "assumed_lattice_rule:I",
-        "reason": "按体心晶格规则判断，得到 (1 1 0)；与实际坐标算出的结构因子不符。"
+        "rule": "bragg_missing_factor_two",
+        "reason": "布拉格公式漏掉 2（用 λ = d sinθ，与把二级衍射当一级相同）。"
        },
        {
         "label": "D",
-        "rule": "correct",
-        "reason": "第一个 |F|≠0 的反射 (1 1 1)，d = 14.90990 Å，2θ = 2 arcsin(λ/2d)。"
+        "rule": "strongest_not_first",
+        "reason": "把最强的反射 (1 -1 -2) 当作第一个峰（混淆了强度与出现角度）。"
        }
       ]
      },
      {
-      "instance": "FA-PEAK-NACL",
-      "question": "The table lists every atom of one conventional cubic cell of halite (NaCl, COD 9008678). Use the kinematic structure factor with atomic numbers as angle-independent weights (Cl = 17, Na = 11). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
+      "instance": "FA-PEAK-K2CUF4",
+      "question": "The table lists every atom of one conventional cell (cell parameters in the first line of the table) of potassium copper fluoride (K2CuF4, COD 1527502). Use the kinematic structure factor with atomic numbers as angle-independent weights (Cu = 29, F = 9, K = 19). For radiation of wavelength 1.54060 Å and first-order Bragg diffraction, at what angle 2θ does the lowest-angle reflection with non-zero intensity appear?",
       "options": [
        {
         "label": "A",
-        "value": "13.68",
+        "value": "6.94",
         "unit": "degree"
        },
        {
         "label": "B",
-        "value": "15.70",
+        "value": "13.90",
         "unit": "degree"
        },
        {
         "label": "C",
-        "value": "22.27",
+        "value": "28.01",
         "unit": "degree"
        },
        {
         "label": "D",
-        "value": "27.36",
+        "value": "43.62",
         "unit": "degree"
        }
       ],
       "inputs": [
-       "FA-PEAK-NACL-cell.txt"
+       "FA-PEAK-K2CUF4-cell.txt"
       ],
-      "correct_label": "D",
+      "correct_label": "B",
       "audit": [
        {
         "label": "A",
-        "rule": "theta_not_two_theta",
-        "reason": "报告了 θ 而非 2θ。"
+        "rule": "lowest_index_ignoring_extinction",
+        "reason": "取最低角反射 (0 0 1)，未检查它是否消光。"
        },
        {
         "label": "B",
-        "rule": "lowest_index_ignoring_extinction",
-        "reason": "取最低指数反射 (1 0 0)，未检查它是否消光。"
+        "rule": "correct",
+        "reason": "第一个 |F|≠0 的反射 (0 0 2)，d = 6.36500 Å，2θ = 2 arcsin(λ/2d)。"
        },
        {
         "label": "C",
-        "rule": "assumed_lattice_rule:I",
-        "reason": "按体心晶格规则判断，得到 (1 1 0)；与实际坐标算出的结构因子不符。"
+        "rule": "bragg_missing_factor_two",
+        "reason": "布拉格公式漏掉 2（用 λ = d sinθ，与把二级衍射当一级相同）。"
        },
        {
         "label": "D",
-        "rule": "correct",
-        "reason": "第一个 |F|≠0 的反射 (1 1 1)，d = 3.25658 Å，2θ = 2 arcsin(λ/2d)。"
+        "rule": "cubic_d_formula",
+        "reason": "对非立方晶胞套用立方公式 d = a/√(h²+k²+l²)（忽略 b、c 与晶胞角）。"
        }
       ]
      }
@@ -3035,98 +3035,98 @@
     },
     "samples": [
      {
-      "instance": "FA-FD-1EHZ",
-      "question": "The excerpt contains the ATOM records of the 8 nucleotides involved, from chain A of PDB entry 1EHZ (yeast tRNA-Phe, X-ray), copied unchanged (angstrom). You will attach a donor and an acceptor dye to one of the four candidate pairs; treat each dye as a point at the P atom of its nucleotide, with Förster radius R0 = 5.4 nm and the standard point-dipole Förster law. You want a steady-state FRET efficiency as close as possible to 0.50. Which pair should you label?",
+      "instance": "EN-12E8-FD-25-1-11",
+      "question": "The excerpt contains the ATOM records of the 8 residues involved, from chain H of PDB entry 12E8 (2E8 Fab fragment, heavy chain, X-ray), copied unchanged (angstrom). You will attach a donor and an acceptor dye to one of the four candidate pairs; treat each dye as a point at the CA atom of its residue, with Förster radius R0 = 2.5 nm and the standard point-dipole Förster law. You want a steady-state FRET efficiency as close as possible to 0.25. Which pair should you label?",
       "options": [
        {
         "label": "A",
-        "value": "G20–U33"
+        "value": "Tyr145–Val183"
        },
        {
         "label": "B",
-        "value": "A35–C61"
+        "value": "Leu4–Arg100"
        },
        {
         "label": "C",
-        "value": "A36–C74"
+        "value": "Glu1–Val11"
        },
        {
         "label": "D",
-        "value": "A31–A76"
+        "value": "Leu170–Ser179"
        }
       ],
       "inputs": [
-       "1EHZ-1EHZ-design-excerpt.pdb"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "farther_from_target",
-        "reason": "r = 4.30 nm，E = 0.797，离目标更远。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "r = 5.40 nm，E = 0.499，最接近目标。"
-       },
-       {
-        "label": "C",
-        "rule": "farther_from_target",
-        "reason": "r = 6.62 nm，E = 0.228，离目标更远。"
-       },
-       {
-        "label": "D",
-        "rule": "farther_from_target",
-        "reason": "r = 7.19 nm，E = 0.152，离目标更远。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-FD-1UBQ",
-      "question": "The excerpt contains the ATOM records of the 8 residues involved, from chain A of PDB entry 1UBQ (ubiquitin, X-ray), copied unchanged (angstrom). You will attach a donor and an acceptor dye to one of the four candidate pairs; treat each dye as a point at the CA atom of its residue, with Förster radius R0 = 2.5 nm and the standard point-dipole Förster law. You want a steady-state FRET efficiency as close as possible to 0.75. Which pair should you label?",
-      "options": [
-       {
-        "label": "A",
-        "value": "Lys11–Lys29"
-       },
-       {
-        "label": "B",
-        "value": "Gln2–Arg72"
-       },
-       {
-        "label": "C",
-        "value": "Ile61–Leu71"
-       },
-       {
-        "label": "D",
-        "value": "Glu64–Arg74"
-       }
-      ],
-      "inputs": [
-       "1UBQ-1UBQ-design-excerpt.pdb"
+       "12E8-11-design-excerpt.pdb"
       ],
       "correct_label": "C",
       "audit": [
        {
         "label": "A",
-        "rule": "inverse_square",
-        "reason": "把 r⁶ 写成 r²时它最接近目标（0.709）。"
+        "rule": "farther_from_target",
+        "reason": "r = 2.77 nm，E = 0.349，离目标更远。"
        },
        {
         "label": "B",
         "rule": "farther_from_target",
-        "reason": "r = 2.50 nm，E = 0.501，离目标更远。"
+        "reason": "r = 1.19 nm，E = 0.989，离目标更远。"
        },
        {
         "label": "C",
         "rule": "correct",
-        "reason": "r = 2.08 nm，E = 0.751，最接近目标。"
+        "reason": "r = 3.04 nm，E = 0.235，最接近目标。"
        },
        {
         "label": "D",
         "rule": "complement",
-        "reason": "把效率算成 1 − E时它最接近目标（0.786）。"
+        "reason": "把效率算成 1 − E时它最接近目标（0.065）。"
+       }
+      ]
+     },
+     {
+      "instance": "EN-1FHA-FD-25-5-42",
+      "question": "The excerpt contains the ATOM records of the 8 residues involved, from chain A of PDB entry 1FHA (human H-chain ferritin, X-ray), copied unchanged (angstrom). You will attach a donor and an acceptor dye to one of the four candidate pairs; treat each dye as a point at the CA atom of its residue, with Förster radius R0 = 4.0 nm and the standard point-dipole Förster law. You want a steady-state FRET efficiency as close as possible to 0.25. Which pair should you label?",
+      "options": [
+       {
+        "label": "A",
+        "value": "Asp44–Glu67"
+       },
+       {
+        "label": "B",
+        "value": "Thr5–Asp42"
+       },
+       {
+        "label": "C",
+        "value": "Asn50–Asp123"
+       },
+       {
+        "label": "D",
+        "value": "Leu120–Leu138"
+       }
+      ],
+      "inputs": [
+       "1FHA-42-design-excerpt.pdb"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "complement",
+        "reason": "把效率算成 1 − E时它最接近目标（0.250）。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "r = 4.84 nm，E = 0.241，最接近目标。"
+       },
+       {
+        "label": "C",
+        "rule": "farther_from_target",
+        "reason": "r = 4.35 nm，E = 0.376，离目标更远。"
+       },
+       {
+        "label": "D",
+        "rule": "farther_from_target",
+        "reason": "r = 1.48 nm，E = 0.997，离目标更远。"
        }
       ]
      }
@@ -3237,54 +3237,54 @@
       ]
      },
      {
-      "instance": "FA-FRET-1BNA",
-      "question": "The excerpt contains the ATOM records of chain A of PDB entry 1BNA (B-DNA dodecamer (Drew–Dickerson)), copied unchanged. Model a FRET donor as a point at atom C1' of nucleotide Dc1 and an acceptor as a point at atom C1' of nucleotide Dg12. Assume a Förster radius R0 = 3.50 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?",
+      "instance": "EN-12E8-FRET-1-8",
+      "question": "The excerpt contains the ATOM records of chain H of PDB entry 12E8 (2E8 Fab fragment, heavy chain, X-ray), copied unchanged. Model a FRET donor as a point at atom CA of Glu1 and an acceptor as a point at atom CA of Gly8. Assume a Förster radius R0 = 2.50 nm (orientation and spectral factors already included). What transfer efficiency does the Förster model predict?",
       "options": [
        {
         "label": "A",
-        "value": "0.063",
+        "value": "0.244",
         "unit": ""
        },
        {
         "label": "B",
-        "value": "0.480",
+        "value": "0.404",
         "unit": ""
        },
        {
         "label": "C",
-        "value": "0.520",
+        "value": "0.756",
         "unit": ""
        },
        {
         "label": "D",
-        "value": "0.693",
+        "value": "0.877",
         "unit": ""
        }
       ],
       "inputs": [
-       "1BNA-chainA.pdb"
+       "12E8-chainH.pdb"
       ],
-      "correct_label": "B",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
-        "rule": "path_length_distance",
-        "reason": "用沿链骨架标记原子（C1'）的路径长度代替空间直线距离。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "r = 3.5472 nm（直线距离），E = 1/(1+(r/R0)^6)。"
-       },
-       {
-        "label": "C",
         "rule": "complement",
         "reason": "报告了 1−E（供体保留的比例）。"
        },
        {
+        "label": "B",
+        "rule": "path_length_distance",
+        "reason": "用沿链骨架标记原子（CA）的路径长度代替空间直线距离。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "r = 2.0713 nm（直线距离），E = 1/(1+(r/R0)^6)。"
+       },
+       {
         "label": "D",
         "rule": "closest_atom_pair",
-        "reason": "用两残基间最近的重原子对距离（3.056 nm）代替指定标记原子的间距。"
+        "reason": "用两残基间最近的重原子对距离（1.803 nm）代替指定标记原子的间距。"
        }
       ]
      }
@@ -3443,157 +3443,6 @@
         "label": "D",
         "rule": "single_axis_spread_as_rg",
         "reason": "把单一坐标轴方向的均方根离散度当作回转半径（偏小），强度因而偏大。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "hbond_criteria",
-   "kind": "family",
-   "ability": "inference",
-   "registry_id": "hbond_criteria",
-   "generator": "task_families/hbond.py",
-   "checker": "checkers/hbonds.py",
-   "checker_function": "hbond_criteria",
-   "bindings": {
-    "L1": {
-     "registry_row": "b4b75026d3dbecc4029a42b3783c9847af783b1f441b8a26e8782a38a355c9fa",
-     "task_families/hbond.py": "1d4f4c97414f1ea9f179951b827fa412051fa5d429a918e00286dc1a59549c09"
-    },
-    "L2": {
-     "checkers/hbonds.py": "31403a45307cefac4c850430d1e6db93eaadf15c898a0d15822e7941a386ed0f",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 1,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "按几何判据识别氢键",
-     "concept": "给定操作判据（H···A ≤ d、D–H···A ≥ θ），在四个候选接触中判断哪一个构成分子内氢键；考查“只看给体–受体距离不够，氢要指向受体”。",
-     "inputs": "XYZ（论文 SI 的计算构象，按行号计数）。",
-     "physical_conditions": "单一计算构象，坐标原样；不含振动平均与溶剂。",
-     "reasoning_scale": "给体–受体或氢–受体距离（0.15–0.5 nm）",
-     "scale_limits": "分子内单个接触的局部几何。",
-     "source_basis": "Altun, Bleda & Trindle, Molecules 26, 2623 (2021)（CC BY 4.0）SI 第 3–6 页坐标（仓库内已有资产）",
-     "answer_method": "逐个候选计算 H···A 与 D–H···A 角，恰好一个同时满足两项判据；每个候选与阈值至少相差 0.10 Å / 5°。",
-     "distractor_mechanisms": [
-      "donor_acceptor_close",
-      "distance_only",
-      "angle_only",
-      "neither"
-     ],
-     "four_choice_validation": "恰好一个候选满足两项判据；其余各记录不满足的原因；正确项按批次目标位置放置。",
-     "principle": "氢键的几何判据同时要求距离与方向；给体与受体靠近而氢背向受体时不构成氢键。",
-     "validation": "独立检查器（checkers/hbonds.py:hbond_criteria）从题干读出判据与各候选的构象和原子，逐个重算并要求恰好一个满足。",
-     "limits": "判据是题设操作定义，不是氢键的普适定义；不判断能量。",
-     "template_review": "2026-10-13 新建，待 L1/L2 人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-HBC-SET2",
-      "question": "Four computed conformers of 3-hydroxy-2-butenamide (enol tautomers and rotamers) from Altun, Bleda & Trindle (2021) are supplied. Attached: conformer TWO = conformer_TWO.xyz, conformer THREE = conformer_THREE.xyz, conformer FOUR = conformer_FOUR.xyz, conformer FIVE = conformer_FIVE.xyz (atoms are numbered by XYZ row, counted from 1 after the two header lines; numbering differs between conformers). Use these geometric criteria for an intramolecular hydrogen bond D–H···A: H···A distance ≤ 2.2 Å and D–H···A angle ≥ 130° (vertex at H). These are task criteria, not a universal definition. Which of the four candidate contacts meets both criteria?",
-      "options": [
-       {
-        "label": "A",
-        "value": "O13–H14···N3 in conformer FOUR"
-       },
-       {
-        "label": "B",
-        "value": "O5–H4···N11 in conformer FIVE"
-       },
-       {
-        "label": "C",
-        "value": "N3–H4···O13 in conformer FOUR"
-       },
-       {
-        "label": "D",
-        "value": "N7–H8···O6 in conformer THREE"
-       }
-      ],
-      "inputs": [
-       "conformer_TWO.xyz",
-       "conformer_THREE.xyz",
-       "conformer_FOUR.xyz",
-       "conformer_FIVE.xyz"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "donor_acceptor_close",
-        "reason": "给体与受体只相距 2.75 Å，但 H···A 3.69 Å、角度 10.2°：氢没有指向受体（只看重原子距离会误选）。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "H···A 1.93 Å ≤ 2.2 Å，角度 138.3° ≥ 130°，两项都满足。"
-       },
-       {
-        "label": "C",
-        "rule": "donor_acceptor_close",
-        "reason": "给体与受体只相距 2.75 Å，但 H···A 3.68 Å、角度 18.2°：氢没有指向受体（只看重原子距离会误选）。"
-       },
-       {
-        "label": "D",
-        "rule": "donor_acceptor_close",
-        "reason": "给体与受体只相距 2.27 Å，但 H···A 2.46 Å、角度 67.7°：氢没有指向受体（只看重原子距离会误选）。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-HBC-SET1",
-      "question": "Four computed conformers of 3-hydroxy-2-butenamide (enol tautomers and rotamers) from Altun, Bleda & Trindle (2021) are supplied. Attached: conformer TWO = conformer_TWO.xyz, conformer THREE = conformer_THREE.xyz, conformer FOUR = conformer_FOUR.xyz, conformer FIVE = conformer_FIVE.xyz (atoms are numbered by XYZ row, counted from 1 after the two header lines; numbering differs between conformers). Use these geometric criteria for an intramolecular hydrogen bond D–H···A: H···A distance ≤ 2.2 Å and D–H···A angle ≥ 130° (vertex at H). These are task criteria, not a universal definition. Which of the four candidate contacts meets both criteria?",
-      "options": [
-       {
-        "label": "A",
-        "value": "O6–H5···O14 in conformer TWO"
-       },
-       {
-        "label": "B",
-        "value": "N11–H13···O14 in conformer TWO"
-       },
-       {
-        "label": "C",
-        "value": "N11–H13···O5 in conformer FIVE"
-       },
-       {
-        "label": "D",
-        "value": "O5–H14···O6 in conformer THREE"
-       }
-      ],
-      "inputs": [
-       "conformer_TWO.xyz",
-       "conformer_THREE.xyz",
-       "conformer_FOUR.xyz",
-       "conformer_FIVE.xyz"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "H···A 1.61 Å ≤ 2.2 Å，角度 151.5° ≥ 130°，两项都满足。"
-       },
-       {
-        "label": "B",
-        "rule": "donor_acceptor_close",
-        "reason": "给体与受体只相距 2.26 Å，但 H···A 2.46 Å、角度 66.8°：氢没有指向受体（只看重原子距离会误选）。"
-       },
-       {
-        "label": "C",
-        "rule": "donor_acceptor_close",
-        "reason": "给体与受体只相距 2.73 Å，但 H···A 2.66 Å、角度 83.3°：氢没有指向受体（只看重原子距离会误选）。"
-       },
-       {
-        "label": "D",
-        "rule": "donor_acceptor_close",
-        "reason": "给体与受体只相距 2.79 Å，但 H···A 3.73 Å、角度 9.0°：氢没有指向受体（只看重原子距离会误选）。"
        }
       ]
      }
@@ -4545,7 +4394,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 2,
+   "instances": 1,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -4625,54 +4474,54 @@
       ]
      },
      {
-      "instance": "FA-ANG-WP6",
-      "question": "The supplied XYZ is one WP6 (carboxylated pillar[6]arene) host conformer (150 atoms, angstrom); labels are element plus XYZ row. Atoms C3–C1–C4 form an internal angle of the phenylene ring C1-C4-C5-C2-C6-C3 (C3 = row 3, C1 = row 1, C4 = row 4; rows counted from 1 after the two XYZ header lines). What is the C3–C1–C4 bond angle at C1 in this supplied conformer?",
+      "instance": "FA-ANG-BCD",
+      "question": "The supplied XYZ is one beta-cyclodextrin host conformer (147 atoms, angstrom). Atoms C4–O3–C37 form the bridging ether linkage between two glucose units, O3 bonded to C4 and C37 as in the source PDB CONECT record (C4 = row 4, O3 = row 45, C37 = row 37; rows counted from 1 after the two XYZ header lines). What is the C4–O3–C37 bond angle at O3 in this supplied conformer?",
       "options": [
        {
         "label": "A",
-        "value": "116.70",
+        "value": "105.31",
         "unit": "degree"
        },
        {
         "label": "B",
-        "value": "117.63",
+        "value": "109.47",
         "unit": "degree"
        },
        {
         "label": "C",
-        "value": "119.94",
+        "value": "111.70",
         "unit": "degree"
        },
        {
         "label": "D",
-        "value": "122.32",
+        "value": "116.03",
         "unit": "degree"
        }
       ],
       "inputs": [
-       "WP6.xyz"
+       "BCD.xyz"
       ],
-      "correct_label": "C",
+      "correct_label": "D",
       "audit": [
        {
         "label": "A",
-        "rule": "angle_at_adjacent_atom:C1-C3-C(row 6)",
-        "reason": "测成相邻原子 C3 处的键角，而非题目指定的顶点 C1。"
+        "rule": "angle_at_adjacent_atom:O3-C4-C(row 3)",
+        "reason": "测成相邻原子 C4 处的键角，而非题目指定的顶点 O3。"
        },
        {
         "label": "B",
-        "rule": "other_neighbor:C3-C1-O(row 12)",
-        "reason": "顶点正确，但另一端选成与 C1 相连的 O(row 12)。"
+        "rule": "idealized_value",
+        "reason": "直接套用理想杂化角 109.47（sp3 tetrahedral），没有测量这一构象。"
        },
        {
         "label": "C",
-        "rule": "correct",
-        "reason": "按向量夹角公式在指定顶点计算；另以 atan2 实现复核。"
+        "rule": "angle_at_adjacent_atom:O3-C37-O(row 76)",
+        "reason": "测成相邻原子 C37 处的键角，而非题目指定的顶点 O3。"
        },
        {
         "label": "D",
-        "rule": "other_neighbor:O(row 12)-C1-C4",
-        "reason": "顶点正确，但一端选成与 C1 相连的 O(row 12)。"
+        "rule": "correct",
+        "reason": "按向量夹角公式在指定顶点计算；另以 atan2 实现复核。"
        }
       ]
      }
@@ -5983,6 +5832,54 @@
     },
     "samples": [
      {
+      "instance": "EN-12E8-SS-3",
+      "question": "The excerpt contains residues 2–4 of chain H from PDB entry 12E8 (2E8 Fab fragment, heavy chain, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone dihedrals φ and ψ of Gln3 (IUPAC sign convention) and assign the residue to the nearest of these reference backbone conformations, measuring distance in the (φ, ψ) plane with 360° periodicity: right-handed α-helix (φ −57°, ψ −47°), β-strand (φ −120°, ψ +130°), polyproline II (φ −75°, ψ +145°), left-handed α-helix (φ +57°, ψ +47°). Which conformation does Gln3 adopt?",
+      "options": [
+       {
+        "label": "A",
+        "value": "right-handed α-helix"
+       },
+       {
+        "label": "B",
+        "value": "left-handed α-helix"
+       },
+       {
+        "label": "C",
+        "value": "β-strand"
+       },
+       {
+        "label": "D",
+        "value": "polyproline II"
+       }
+      ],
+      "inputs": [
+       "12E8-H3-excerpt.pdb"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "other_reference",
+        "reason": "距离 193°，明显更远。"
+       },
+       {
+        "label": "B",
+        "rule": "other_reference",
+        "reason": "距离 182°，明显更远。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "φ = -148.4°，ψ = 142.6°，最近参考构象（31°）；与条目 SHEET 记录一致。"
+       },
+       {
+        "label": "D",
+        "rule": "second_nearest_reference",
+        "reason": "次近的参考构象（距离 73°，正确者 31°）；两者易混。"
+       }
+      ]
+     },
+     {
       "instance": "FA-SS-1UBQ-43",
       "question": "The excerpt contains residues 42–44 of chain A from PDB entry 1UBQ (ubiquitin, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone dihedrals φ and ψ of Leu43 (IUPAC sign convention) and assign the residue to the nearest of these reference backbone conformations, measuring distance in the (φ, ψ) plane with 360° periodicity: right-handed α-helix (φ −57°, ψ −47°), β-strand (φ −120°, ψ +130°), polyproline II (φ −75°, ψ +145°), left-handed α-helix (φ +57°, ψ +47°). Which conformation does Leu43 adopt?",
       "options": [
@@ -6027,54 +5924,6 @@
         "label": "D",
         "rule": "second_nearest_reference",
         "reason": "次近的参考构象（距离 32°，正确者 16°）；两者易混。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-SS-6LYZ-90",
-      "question": "The excerpt contains residues 89–91 of chain A from PDB entry 6LYZ (hen egg-white lysozyme, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone dihedrals φ and ψ of Ala90 (IUPAC sign convention) and assign the residue to the nearest of these reference backbone conformations, measuring distance in the (φ, ψ) plane with 360° periodicity: right-handed α-helix (φ −57°, ψ −47°), β-strand (φ −120°, ψ +130°), polyproline II (φ −75°, ψ +145°), left-handed α-helix (φ +57°, ψ +47°). Which conformation does Ala90 adopt?",
-      "options": [
-       {
-        "label": "A",
-        "value": "β-strand"
-       },
-       {
-        "label": "B",
-        "value": "polyproline II"
-       },
-       {
-        "label": "C",
-        "value": "left-handed α-helix"
-       },
-       {
-        "label": "D",
-        "value": "right-handed α-helix"
-       }
-      ],
-      "inputs": [
-       "6LYZ-A90-excerpt.pdb"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "other_reference",
-        "reason": "距离 177°，明显更远。"
-       },
-       {
-        "label": "B",
-        "rule": "other_reference",
-        "reason": "距离 178°，明显更远。"
-       },
-       {
-        "label": "C",
-        "rule": "second_nearest_reference",
-        "reason": "次近的参考构象（距离 146°，正确者 11°）；两者易混。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "φ = -62.7°，ψ = -37.1°，最近参考构象（11°）；与条目 HELIX 记录一致。"
        }
       ]
      }
@@ -7683,12 +7532,11 @@
    "unit": "binding_evidence_choice",
    "source": "sampl9",
    "cell": "chemistry 1-10",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "CNI014",
-    "CNI016"
+    "CNI014"
    ]
   },
   {
@@ -7795,6 +7643,18 @@
    ]
   },
   {
+   "stratum": "coordination_shell | cod-materials-cell | chemistry 0.1-1",
+   "unit": "coordination_shell",
+   "source": "cod-materials-cell",
+   "cell": "chemistry 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNP039"
+   ]
+  },
+  {
    "stratum": "coordination_shell | cod-materials-cell | materials 0.1-1",
    "unit": "coordination_shell",
    "source": "cod-materials-cell",
@@ -7804,9 +7664,9 @@
    "rule": "first batch: all",
    "ids": [
     "MNP011",
-    "MNP012",
-    "MNP022",
-    "MNP024"
+    "MNP024",
+    "MNP034",
+    "MNP037"
    ]
   },
   {
@@ -7898,7 +7758,7 @@
    "ids": [
     "BND003",
     "BND004",
-    "BND005"
+    "BND016"
    ]
   },
   {
@@ -8152,6 +8012,30 @@
    ]
   },
   {
+   "stratum": "first_diffraction_peak | cod-materials-cell | chemistry 0.1-1",
+   "unit": "first_diffraction_peak",
+   "source": "cod-materials-cell",
+   "cell": "chemistry 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNI033"
+   ]
+  },
+  {
+   "stratum": "first_diffraction_peak | cod-materials-cell | chemistry 1-10",
+   "unit": "first_diffraction_peak",
+   "source": "cod-materials-cell",
+   "cell": "chemistry 1-10",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNI032"
+   ]
+  },
+  {
    "stratum": "first_diffraction_peak | cod-materials-cell | materials 0.1-1",
    "unit": "first_diffraction_peak",
    "source": "cod-materials-cell",
@@ -8160,7 +8044,19 @@
    "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "MNI015"
+    "MNI043"
+   ]
+  },
+  {
+   "stratum": "first_diffraction_peak | cod-materials-cell | materials 1-10",
+   "unit": "first_diffraction_peak",
+   "source": "cod-materials-cell",
+   "cell": "materials 1-10",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "MNI045"
    ]
   },
   {
@@ -8168,11 +8064,10 @@
    "unit": "first_diffraction_peak",
    "source": "cod-mof",
    "cell": "materials 1-10",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "MNI018",
     "MNI019"
    ]
   },
@@ -8197,9 +8092,9 @@
    "sample": 3,
    "rule": "first batch: all",
    "ids": [
-    "BND006",
     "BND007",
-    "BND008"
+    "BND019",
+    "BND021"
    ]
   },
   {
@@ -8248,18 +8143,6 @@
    "rule": "first batch: all",
    "ids": [
     "CNI011"
-   ]
-  },
-  {
-   "stratum": "hbond_criteria | hbond2021 | chemistry 0.1-1",
-   "unit": "hbond_criteria",
-   "source": "hbond2021",
-   "cell": "chemistry 0.1-1",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "CNI024"
    ]
   },
   {
@@ -8383,18 +8266,6 @@
    "rule": "first batch: all",
    "ids": [
     "QNP016"
-   ]
-  },
-  {
-   "stratum": "named_bond_angle | sampl9 | chemistry 0.1-1",
-   "unit": "named_bond_angle",
-   "source": "sampl9",
-   "cell": "chemistry 0.1-1",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "CNP032"
    ]
   },
   {
@@ -8602,7 +8473,7 @@
    "rule": "first batch: all",
    "ids": [
     "BNI024",
-    "BNI025"
+    "BNI053"
    ]
   },
   {
@@ -8763,11 +8634,8 @@
   "QNP015": "L0",
   "QNP016": "L0",
   "MNP011": "L0",
-  "MNP012": "L0",
   "MNP013": "L0",
   "MNP014": "L0",
-  "MNI015": "L0",
-  "MNI018": "L0",
   "MNI019": "L0",
   "BNI011": "L0",
   "BNI012": "L0",
@@ -8820,9 +8688,7 @@
   "BNI023": "L0",
   "BND002": "L0",
   "BNI024": "L0",
-  "BNI025": "L0",
   "CNI014": "L0",
-  "CNI016": "L0",
   "CND007": "L0",
   "CND008": "L0",
   "QNI014": "L0",
@@ -8838,10 +8704,7 @@
   "MND012": "L0",
   "BND003": "L0",
   "BND004": "L0",
-  "BND005": "L0",
-  "BND006": "L0",
   "BND007": "L0",
-  "BND008": "L0",
   "BND009": "L0",
   "BND010": "L0",
   "QNP020": "L0",
@@ -8859,7 +8722,6 @@
   "CND009": "L0",
   "CND010": "L0",
   "CND011": "L0",
-  "MNP022": "L0",
   "MNP024": "L0",
   "BNP031": "L0",
   "BNP034": "L0",
@@ -8879,9 +8741,7 @@
   "BNP041": "L0",
   "BNP042": "L0",
   "CNP029": "L0",
-  "CNI024": "L0",
   "QNI023": "L0",
-  "CNP032": "L0",
   "QNP023": "L0",
   "QNP024": "L0",
   "QNP025": "L0",
@@ -8908,7 +8768,18 @@
   "MNI038": "L0",
   "BNI046": "L0",
   "BNI047": "L0",
-  "BNI048": "L0"
+  "BNI048": "L0",
+  "MNP034": "L0",
+  "CNI032": "L0",
+  "CNP039": "L0",
+  "CNI033": "L0",
+  "MNI043": "L0",
+  "MNP037": "L0",
+  "MNI045": "L0",
+  "BND016": "L0",
+  "BND019": "L0",
+  "BNI053": "L0",
+  "BND021": "L0"
  },
  "forms": {
   "BNP014": {
@@ -8967,10 +8838,6 @@
    "form": "family",
    "instance": "FA-COORD-MGO"
   },
-  "MNP012": {
-   "form": "family",
-   "instance": "FA-COORD-CSCL"
-  },
   "MNP013": {
    "form": "family",
    "instance": "FA-COORD-SALEM2-ZN"
@@ -8978,14 +8845,6 @@
   "MNP014": {
    "form": "family",
    "instance": "FA-COORD-MOF5-NODE"
-  },
-  "MNI015": {
-   "form": "family",
-   "instance": "FA-PEAK-NACL"
-  },
-  "MNI018": {
-   "form": "family",
-   "instance": "FA-PEAK-SALEM2"
   },
   "MNI019": {
    "form": "family",
@@ -9195,17 +9054,9 @@
    "form": "family",
    "instance": "FA-SS-1UBQ-43"
   },
-  "BNI025": {
-   "form": "family",
-   "instance": "FA-SS-6LYZ-90"
-  },
   "CNI014": {
    "form": "family",
    "instance": "FA-HG-EV1"
-  },
-  "CNI016": {
-   "form": "family",
-   "instance": "FA-HG-EV3"
   },
   "CND007": {
    "form": "family",
@@ -9267,21 +9118,9 @@
    "form": "family",
    "instance": "FA-DS-1UBQ-B"
   },
-  "BND005": {
-   "form": "family",
-   "instance": "FA-DS-6LYZ"
-  },
-  "BND006": {
-   "form": "family",
-   "instance": "FA-FD-1EHZ"
-  },
   "BND007": {
    "form": "family",
    "instance": "FA-FD-1UBQ"
-  },
-  "BND008": {
-   "form": "family",
-   "instance": "FA-FD-6LYZ"
   },
   "BND009": {
    "form": "family",
@@ -9350,10 +9189,6 @@
   "CND011": {
    "form": "family",
    "instance": "FA-CH-DES-BELOW620"
-  },
-  "MNP022": {
-   "form": "family",
-   "instance": "FA-COORD-RUTILE"
   },
   "MNP024": {
    "form": "family",
@@ -9431,17 +9266,9 @@
    "form": "family",
    "instance": "FA-HBG-FIVE-HN"
   },
-  "CNI024": {
-   "form": "family",
-   "instance": "FA-HBC-SET2"
-  },
   "QNI023": {
    "form": "family",
    "instance": "FA-FP-QM7X-7040-D2"
-  },
-  "CNP032": {
-   "form": "family",
-   "instance": "FA-ANG-WP6"
   },
   "QNP023": {
    "form": "family",
@@ -9550,6 +9377,50 @@
   "BNI048": {
    "form": "family",
    "instance": "FA-EVE-RAS-DOMAIN"
+  },
+  "MNP034": {
+   "form": "family",
+   "instance": "FA-COORD-ALNI"
+  },
+  "CNI032": {
+   "form": "family",
+   "instance": "FA-PEAK-B5H9"
+  },
+  "CNP039": {
+   "form": "family",
+   "instance": "FA-COORD-K2CUF4"
+  },
+  "CNI033": {
+   "form": "family",
+   "instance": "FA-PEAK-K2CUF4"
+  },
+  "MNI043": {
+   "form": "family",
+   "instance": "FA-PEAK-PARA-I"
+  },
+  "MNP037": {
+   "form": "family",
+   "instance": "FA-COORD-PENTACENE"
+  },
+  "MNI045": {
+   "form": "family",
+   "instance": "FA-PEAK-PENTACENE"
+  },
+  "BND016": {
+   "form": "family",
+   "instance": "EN-1A6M-DS-2-6"
+  },
+  "BND019": {
+   "form": "family",
+   "instance": "EN-1FHA-FD-25-5-42"
+  },
+  "BNI053": {
+   "form": "family",
+   "instance": "EN-12E8-SS-3"
+  },
+  "BND021": {
+   "form": "family",
+   "instance": "EN-12E8-FD-25-1-11"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."
