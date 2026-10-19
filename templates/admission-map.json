@@ -447,6 +447,15 @@
       "attribution": "事实数据取自论文（逐条转述，未转载文字或图）；证据卡见 docs/assets/families/evidence/。",
       "sizeDefinition": "推理：证据所涉几何量（见各题）。",
       "learningObjective": "由论文证据推出关键结论，并排除论文讨论过的其他解释。"
+    },
+    "design_choice": {
+      "domain": "chemistry",
+      "scale": "host_molecule",
+      "reasoning": "molecular",
+      "paper": "paper-vincent-molecular-clips",
+      "attribution": "候选结构描述与实测性质均取自论文（逐项转述，未转载文字或图），三篇皆为 CC BY；设计卡与来源见 docs/assets/families/design/。",
+      "sizeDefinition": "推理：决定目标性质的那一处几何（见各题）。",
+      "learningObjective": "给定目标性质的阈值，从同一篇论文做过并测过的四个结构中选出达到目标的那一个（有实测证据的设计）。"
     }
   },
   "instances": [
@@ -3079,6 +3088,66 @@
       "attribution": "结构取自 RCSB PDB（wwPDB，CC0）；ATOM 记录逐行照抄，未改动坐标。",
       "sizeDefinition": "推理：候选残基对之间的距离（1–10 nm）。",
       "learningObjective": "在 B9b（MHC 与 T 细胞受体）的实测结构上FRET 标记位点设计。"
+    },
+    {
+      "instance": "FA-DES-VIN-WALLS",
+      "action": "new",
+      "catalog_id": "CND014",
+      "paper": "paper-vincent-molecular-clips",
+      "title": "分子夹设计 · 结合常数 ≥ 5 × 10⁶ M⁻¹ 的主体–染料配对（四选一）",
+      "sizeDefinition": "输入与推理：主体芳香墙的长轴（萘约 0.70 nm，蒽约 0.92 nm）。",
+      "learningObjective": "在 C4b（主客体识别与结合）上按实测结合常数选出同时延长主体墙与客体稠环的配对。"
+    },
+    {
+      "instance": "FA-DES-VIN-MV",
+      "action": "new",
+      "catalog_id": "CND015",
+      "paper": "paper-vincent-molecular-clips",
+      "title": "分子夹设计 · 结合常数 ≥ 5 × 10⁴ M⁻¹ 的主体–染料配对（四选一）",
+      "sizeDefinition": "输入与推理：主体芳香墙的长轴（萘约 0.70 nm，蒽约 0.92 nm）。",
+      "learningObjective": "在 C4b（主客体识别与结合）上识别“墙越长越好”失效的实测反例（扭曲联吡啶鎓客体）。"
+    },
+    {
+      "instance": "FA-DES-RAN-NITRATE",
+      "action": "new",
+      "catalog_id": "CND016",
+      "paper": "paper-rando-bambusuril",
+      "title": "竹环脲设计 · 偏好硝酸根而非溴离子的受体（四选一）",
+      "sizeDefinition": "输入与推理：大环空腔内的 C–H···X⁻ 接触长度（约 0.31 nm）。",
+      "learningObjective": "在 C4a（大环主体）上按实测选择性比值选出柔性门户的受体，而非绝对结合最强的那个。"
+    },
+    {
+      "instance": "FA-DES-RAN-BROMIDE",
+      "action": "new",
+      "catalog_id": "CND017",
+      "paper": "paper-rando-bambusuril",
+      "title": "竹环脲设计 · 溴离子结合常数 ≥ 1 × 10⁹ M⁻¹ 的受体（四选一）",
+      "sizeDefinition": "输入与推理：大环空腔内的 C–H···X⁻ 接触长度（约 0.31 nm）。",
+      "learningObjective": "在 C4a（大环主体）上按实测结合常数区分两个取代基相同、仅位置不同的非对映异构体大环。"
+    },
+    {
+      "instance": "FA-DES-CHE-SIEVE",
+      "action": "new",
+      "catalog_id": "MND013",
+      "paper": "paper-chetry-mof-isotopologue",
+      "title": "MOF 设计 · 30 K 下选择性 ≥ 12 且 D₂ 吸附量 ≥ 2 mmol g⁻¹ 的框架（四选一）",
+      "sizeDefinition": "输入：候选框架中最大的孔径（约 0.8 nm）；推理：决定动力学量子筛分的孔口直径（0.32–0.80 nm）。",
+      "learningObjective": "在 M4a（金属有机框架）上按实测选择性与吸附量在孔口尺寸的取舍中选型。",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic"
+    },
+    {
+      "instance": "FA-DES-CHE-FLOW",
+      "action": "new",
+      "catalog_id": "MND014",
+      "paper": "paper-chetry-mof-isotopologue",
+      "title": "MOF 设计 · 30 K 下 D₂ 吸附量 ≥ 5 mmol g⁻¹ 且选择性 ≥ 2 的框架（四选一）",
+      "sizeDefinition": "输入：候选框架中最大的孔径（约 0.8 nm）；推理：决定动力学量子筛分的孔口直径（0.32–0.80 nm）。",
+      "learningObjective": "在 M4a（金属有机框架）上识别同一张实测表在目标改为通量后答案反转（最窄孔 → 最宽孔）。",
+      "domain": "materials",
+      "scale": "crystal",
+      "reasoning": "periodic"
     }
   ],
   "retire": [

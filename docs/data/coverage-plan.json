@@ -3,7 +3,7 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 310,
+  "current_total": 316,
   "capped_total": 160,
   "over_target_cells": [
    "quantum 0.1-1",
@@ -19,7 +19,7 @@
    "biology 1-10",
    "biology 10-100"
   ],
-  "provisional_total": 310,
+  "provisional_total": 316,
   "ability_gaps": 2,
   "gap_slots": 2,
   "gaps_by_best_route": {
@@ -369,8 +369,8 @@
    "domain": "chemistry",
    "cell": "0.1-1",
    "target": 10,
-   "current": 35,
-   "provisional": 35,
+   "current": 39,
+   "provisional": 39,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -473,13 +473,19 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 4,
+     "current": 8,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
       {
        "family": "conformer_target_selection",
        "name": "构象设计选择",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "design_choice",
+       "name": "有证据的结构优化选择（论文案例）",
        "kind": "ready",
        "status": "pilot"
       },
@@ -494,12 +500,6 @@
        "name": "立体构型设计选择",
        "kind": "ready",
        "status": "pilot"
-      },
-      {
-       "family": "design_choice",
-       "name": "有证据的结构优化选择（论文案例）",
-       "kind": "build",
-       "status": "planned"
       }
      ],
      "rework_in_cell": [],
@@ -586,12 +586,6 @@
        "name": "单氘代位点设计",
        "kind": "ready",
        "status": "pilot"
-      },
-      {
-       "family": "design_choice",
-       "name": "有证据的结构优化选择（论文案例）",
-       "kind": "build",
-       "status": "planned"
       }
      ],
      "rework_in_cell": [],
@@ -774,8 +768,8 @@
    "domain": "materials",
    "cell": "0.1-1",
    "target": 10,
-   "current": 44,
-   "provisional": 44,
+   "current": 46,
+   "provisional": 46,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -829,10 +823,16 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 3,
+     "current": 5,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
+      {
+       "family": "design_choice",
+       "name": "有证据的结构优化选择（论文案例）",
+       "kind": "ready",
+       "status": "pilot"
+      },
       {
        "family": "diffraction_design",
        "name": "衍射设计：选晶体、选谱线或定波长",
@@ -1143,12 +1143,6 @@
        "name": "二硫键工程位点选择",
        "kind": "ready",
        "status": "pilot"
-      },
-      {
-       "family": "design_choice",
-       "name": "有证据的结构优化选择（论文案例）",
-       "kind": "build",
-       "status": "planned"
       }
      ],
      "rework_in_cell": [],
@@ -1237,12 +1231,6 @@
        "name": "FRET 标记位点设计",
        "kind": "ready",
        "status": "pilot"
-      },
-      {
-       "family": "design_choice",
-       "name": "有证据的结构优化选择（论文案例）",
-       "kind": "build",
-       "status": "planned"
       }
      ],
      "rework_in_cell": [],

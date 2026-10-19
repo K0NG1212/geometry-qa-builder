@@ -1,0 +1,141 @@
+{
+ "kind": "design_card",
+ "family": "design_choice",
+ "id": "rando2025-nitrate",
+ "paper": "paper-rando-bambusuril",
+ "citation": "Rando, Grewal, Sokolov & Kulhanek, \"Reversing selectivity of bambusuril macrocycles toward inorganic anions by installing spacious substituents on their portals\", Chem. Sci. (2025), doi:10.1039/d4sc07150f (Europe PMC PMC11639902)",
+ "short_citation": "Rando et al., Chem. Sci. (2025)",
+ "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+ "setting": "A bambus[6]uril is a macrocycle of six glycoluril units joined by six methylene bridges. One inorganic anion binds in the centre of the cavity, held by the twelve C-H...X- contacts of the glycoluril methine protons, and the substituents on the nitrogen atoms sit on the two portals. Bromide is a small spherical anion; nitrate is larger and trigonal planar. Apparent 1:1 association constants Ka were measured by isothermal titration calorimetry on tetrabutylammonium salts at 298.15 K, with standard deviations below 17 %.",
+ "goal": "You need a receptor that picks nitrate out of a solution in which bromide is present at a similar concentration, so absolute affinity is not enough: the receptor has to prefer nitrate.",
+ "ask": "Which candidate receptor system should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "Ka_NO3": {
+   "label": "apparent Ka for nitrate (M^-1)",
+   "locator": "Table 1 / Table S3"
+  },
+  "Ka_Br": {
+   "label": "apparent Ka for bromide (M^-1)",
+   "locator": "Table 1 / Table S3"
+  }
+ },
+ "derived": {
+  "sel_NO3_Br": {
+   "ratio": [
+    "Ka_NO3",
+    "Ka_Br"
+   ],
+   "label": "Ka(NO3-) / Ka(Br-)"
+  }
+ },
+ "constraints": [
+  {
+   "key": "selectivity",
+   "property": "sel_NO3_Br",
+   "op": ">=",
+   "value": 1.5,
+   "display": "1.5",
+   "text": "the measured apparent association constant for nitrate is at least 1.5 times the one for bromide under the same conditions"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "BnBU-CHCl3",
+   "name": "BnBU in chloroform",
+   "geometry": "Twelve benzyl groups on the portals. A CH2 spacer separates each portal nitrogen from its phenyl ring, so the rings can swing clear of the cavity axis and the macrocycle stays flexible and adapts to the anion; in its chloride complex all twelve C-H...Cl- contacts are equal at 3.13 A. Titrated in chloroform.",
+   "measured": {
+    "Ka_NO3": {
+     "value": 1800000000.0,
+     "display": "1.8 × 10^9",
+     "locator": "Table 1, row NO3-, column BnBU (CHCl3, 298.15 K, ITC)"
+    },
+    "Ka_Br": {
+     "value": 670000000.0,
+     "display": "6.7 × 10^8",
+     "locator": "Table 1, row Br-, column BnBU (CHCl3, 298.15 K, ITC)"
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "BU1-CHCl3",
+   "name": "BU1 in chloroform",
+   "geometry": "Six (S)-1-phenylethyl groups and six methyl groups on the portals, the phenylethyl groups at the R1 positions. These bulkier substituents (no CH2 spacer; the phenyl sits on a stereocentre carrying a methyl group) take up the closed arrangement over the cavity axis and twist the cavity into a screw: the two methine C-H...X- contacts of each glycoluril unit differ in length by about 0.3 A. Titrated in chloroform.",
+   "measured": {
+    "Ka_NO3": {
+     "value": 510000.0,
+     "display": "5.1 × 10^5",
+     "locator": "Table 1, row NO3-, column BU1 (CHCl3, 298.15 K, ITC)"
+    },
+    "Ka_Br": {
+     "value": 11000000.0,
+     "display": "1.1 × 10^7",
+     "locator": "Table 1, row Br-, column BU1 (CHCl3, 298.15 K, ITC)"
+    }
+   },
+   "rule": "measured_inferior_analogue",
+   "reason": "实测 Ka(NO₃⁻)/Ka(Br⁻) = 0.046：强烈偏好较小的球形 Br⁻（22 倍），方向与目标相反。",
+   "plausibility": 3
+  },
+  {
+   "id": "BU2-CHCl3",
+   "name": "BU2 in chloroform",
+   "geometry": "The diastereomer of BU1, the same six (S)-1-phenylethyl and six methyl groups but exchanged between the R1 and R2 positions of each glycoluril. The phenylethyl groups point away from the cavity (the open arrangement) and all twelve C-H...X- contacts come out equal in length, so the rigidified cavity is undistorted. Titrated in chloroform.",
+   "measured": {
+    "Ka_NO3": {
+     "value": 3000000000.0,
+     "display": "3.0 × 10^9",
+     "locator": "Table 1, row NO3-, column BU2 (CHCl3, 298.15 K, ITC)"
+    },
+    "Ka_Br": {
+     "value": 9800000000.0,
+     "display": "9.8 × 10^9",
+     "locator": "Table 1, row Br-, column BU2 (CHCl3, 298.15 K, ITC)"
+    }
+   },
+   "rule": "strongest_binder_cue",
+   "reason": "四者中绝对结合常数最高（Ka(NO₃⁻) = 3.0 × 10⁹ M⁻¹），但比值只有 0.31，仍偏好 Br⁻ 约 3.3 倍。“结合最强”不等于“选择性方向正确”。",
+   "plausibility": 3
+  },
+  {
+   "id": "BU1-MeCN",
+   "name": "BU1 in acetonitrile",
+   "geometry": "BU1 as described for the chloroform candidate, with the same portal substituents and the same screw-distorted cavity, but titrated in acetonitrile instead of chloroform; the macrocycle is unchanged.",
+   "measured": {
+    "Ka_NO3": {
+     "value": 2900000.0,
+     "display": "2.9 × 10^6",
+     "locator": "Table S3 (acetonitrile, ITC); quoted in Results and discussion"
+    },
+    "Ka_Br": {
+     "value": 26000000.0,
+     "display": "2.6 × 10^7",
+     "locator": "Table S3 (acetonitrile, ITC); quoted in Results and discussion"
+    }
+   },
+   "rule": "solvent_change_insufficient",
+   "reason": "换溶剂不改变大环几何：实测比值 0.11，在乙腈中仍偏好 Br⁻（9 倍），与在氯仿中同向。",
+   "plausibility": 3
+  }
+ ],
+ "paper_choice": "BnBU-CHCl3",
+ "paper_choice_locator": "Results and discussion：“BnBU preferentially binds NO3- over Br- with a selectivity of 3 in chloroform”，而 BU1 在氯仿与乙腈中都偏好 Br⁻（22 与 9 倍）；Table 1 的 NO3- 与 Br- 行",
+ "naive_cue": {
+  "heuristic": "挑绝对结合常数最大的受体",
+  "picks": "BU2-CHCl3",
+  "is_correct": false,
+  "note": "BU2 的 Ka 比 BnBU 高，但两种阴离子一起变高，选择性方向反而是错的。"
+ },
+ "scale": {
+  "input_nm": 0.313,
+  "reasoning_nm": 0.313,
+  "definition": "大环空腔内 C-H...X- 接触长度（BnBU·Cl⁻ 实测 3.13 Å）；BU1 的两个接触相差约 0.3 Å"
+ },
+ "notes": [
+  "原文正文给出的 BU2/BU1 选择性（F 592、Cl 1273、Br 891、I 750）与表 1 的 Ka 一致；NO₃⁻ 的 5822 用表 1 两位有效数字算得 5882，约差 1%，应为表 1 取整所致。",
+  "表 2 的实验 ΔGb 与表 1 的表观 Ka 并不自洽（按 ΔG = −RT ln Ka，Br⁻ 相差最大，41.4 kJ/mol 对应 1.8 × 10⁷ 而表 1 为 1.1 × 10⁷）；原文未说明两者的关系，本题只用表 1 与表 S3 的 Ka，不用表 2。",
+  "原文未给出大环直径，尺度标注取其给出的 C-H...X- 接触长度。"
+ ]
+}

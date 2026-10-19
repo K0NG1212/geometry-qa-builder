@@ -1,20 +1,20 @@
 {
  "kind": "review_queue",
- "date": "2026-10-18",
+ "date": "2026-10-19",
  "summary": {
   "scope": "selection",
-  "units_all_active": 49,
-  "units": 48,
-  "families": 48,
+  "units_all_active": 50,
+  "units": 49,
+  "families": 49,
   "legacy_units": 0,
   "L1": {
-   "pending": 48,
+   "pending": 49,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
   "L2": {
-   "pending": 48,
+   "pending": 49,
    "approved": 0,
    "revise": 0,
    "stale": 0
@@ -34,8 +34,8 @@
   },
   "next_l3_batch": "l3-batch-001",
   "l3_sample": 160,
-  "l3_strata": 94,
-  "l3_steady_state_sample": 135,
+  "l3_strata": 96,
+  "l3_steady_state_sample": 136,
   "model_calls": 0,
   "reviews_recorded": {
    "L1": 0,
@@ -404,7 +404,7 @@
      "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/families.py": "68cf2fbf757a4d10a27067ae08b62976e3ecdecefe5c6912c27be0b04f06b25e",
+     "checkers/families.py": "1b44f1eab578c983fa0c433d5ba82b86888a12e5a6033b928d69ee0ced4ef88c",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1487,7 +1487,7 @@
      "task_families/conformer_design.py": "c1df20bcb3ca7c59938dcfc28012c37beca3d235e0181495fb2b6d9e9d54a211"
     },
     "L2": {
-     "checkers/families.py": "68cf2fbf757a4d10a27067ae08b62976e3ecdecefe5c6912c27be0b04f06b25e",
+     "checkers/families.py": "1b44f1eab578c983fa0c433d5ba82b86888a12e5a6033b928d69ee0ced4ef88c",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1934,6 +1934,155 @@
    }
   },
   {
+   "unit": "design_choice",
+   "kind": "family",
+   "ability": "design",
+   "registry_id": "design_choice",
+   "generator": "task_families/paper_design.py",
+   "checker": "checkers/paper_design.py",
+   "checker_function": "design_choice",
+   "bindings": {
+    "L1": {
+     "registry_row": "465159cd696cb6f9d057ddcea21d217eb1f17c4c77735b7f466dbaf28267e184",
+     "task_families/paper_design.py": "bf19bf52f24397e4f34292a69a594455fec75575916c0ee9febfd5e89bbe5248"
+    },
+    "L2": {
+     "checkers/paper_design.py": "5931be583eb5bcc1707b4e277198e3ddb015b06f61f48d2e17e2be96d5aefa04",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 3,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "有证据的结构优化选择（论文案例）",
+     "concept": "从论文中记录在案的结构优化构题：作者为某个目标刻意改了一处结构特征（芳香墙加长、门户取代基加大、孔口收窄），并对每个变体都测了性质。题干给出目标（实测性质的阈值）与四个只用结构描述呈现的候选；实测表留在审核侧，所以这是设计选择，不是查表。",
+     "inputs": "candidates.txt（四个候选的结构描述，逐项转述并带原文位置）；实测性质表与原文位置只在审核侧。",
+     "physical_conditions": "按论文的实测条件写入题干（缓冲液与温度、溶剂与温度、暴露压力与温度）。",
+     "reasoning_scale": "决定性质的那一处几何（芳香墙长轴 0.70–0.92 nm；C–H···X⁻ 接触 0.31 nm；孔口 0.32–0.80 nm）",
+     "scale_limits": "尺度取决定目标性质的那一处几何，不取整个候选分子或整块晶体。",
+     "source_basis": "2026-10-19 下载的三篇 CC BY 全文（本地 inputs/papers/，不入库）：Vincent 2025（分子夹芳香墙 H1→H2，Table 1 的 14 种染料 × 2 主体）、Rando 2025（竹环脲门户取代基 BnBU/BU1/BU2，Table 1 与 Table S3 的 10 种阴离子）、Chetry 2026（MOF 孔口与 D₂/H₂ 分离，Table 1 与 TDS 结果）。设计卡 docs/assets/families/design/*.json 逐项记录原文位置。",
+     "answer_method": "逐个候选、逐条约束比对实测值；恰好一个候选满足全部约束，且必须是原文选定的那一个。",
+     "distractor_mechanisms": [
+      "measured_inferior_analogue（同篇论文测过但不达标的同类结构）",
+      "violates_constraint（主性质达标却破坏另一条约束，如最窄孔把容量压到 0.2 mmol g⁻¹）",
+      "host_walls_not_extended / guest_not_extended / neither_extended（只改一侧的 π 延长）",
+      "extended_walls_weaken_this_guest（实测反例：延长墙反而变弱）",
+      "strongest_binder_cue（绝对结合最强但选择性方向错）",
+      "distorted_cavity（取代基一样大，位置不同导致空腔扭曲）",
+      "solvent_change_insufficient（换溶剂不改变几何）",
+      "narrowest_pore_cue / pore_too_wide / interpenetrated_network（孔口几何的三种误判）"
+     ],
+     "four_choice_validation": "四个候选必须对每条受约束的性质都有实测值且带原文位置（“未测过”不会被当成“不行”）；每个候选与每个阈值之间必须有 margin（默认 1.2 倍）的距离；恰好一个候选满足全部约束。",
+     "principle": "设计 = 给定目标选结构；正确答案由论文的实测值确定，干扰项是同一篇论文做过、测过但不达标的结构。",
+     "validation": "独立检查器（checkers/paper_design.py:design_choice）读取哈希核对的设计卡，核对 candidates.txt 与卡片逐行一致，从题干文本中重新解析每个阈值（卡片只提供比较方向），用 Decimal 重新判定，并要求唯一满足者即原文选定者。单侧界（原文只给 “> 16”）只允许判定其能判定的一侧，另一侧直接报错。",
+     "limits": "程序保证：四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干印出的阈值就是代码执行的阈值。程序不能保证：所给结构描述是否足以推出答案而非靠记忆（著名材料有被认出的风险），以及结构描述是否忠于原文；两者须 L1 对照原文位置核对，难度由 L4 判定。Chetry 2026 严格说是“在已有材料中筛选”而非“为目标改造结构”，是否计入路线① 待导师审定。",
+     "template_review": "2026-10-19 由 planned 转 pilot（导师设计题路线①），待 L1/L2 人工审核；L1 须逐项对照原文位置。"
+    },
+    "samples": [
+     {
+      "instance": "FA-DES-CHE-FLOW",
+      "question": "Dihydrogen isotopologues can be separated in a nanoporous framework by kinetic quantum sieving: the thermal de Broglie wavelength of H2 is longer than that of D2, so in a pore whose aperture is comparable to that wavelength H2 meets the higher diffusion barrier and the heavier D2 diffuses faster; the effect grows as the temperature falls. All four candidates below are rigid frameworks, so framework flexibility plays no part, and the paper treats them as lacking accessible open metal sites, although its Zeo++ analysis does report an open metal site density for one of them (noted in candidates.txt). Each framework was exposed to a 1:1 D2:H2 mixture at 100 mbar and 30 K for 10 min, and the selectivity S(D2/H2) and the D2 uptake were then read off the thermal desorption spectrum. You need the sorbent for a throughput stage instead: it has to move as much D2 per gram per cycle as possible, and only needs to beat cryogenic distillation, whose selectivity is 1.4, with some room to spare. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Chetry et al., ACS Appl. Mater. Interfaces (2026). The candidate must satisfy: (capacity) the measured D2 uptake at an exposure temperature of 30 K is at least 5 mmol g^-1; (selectivity) the measured D2/H2 selectivity under the same conditions is at least 2. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate framework should you choose?",
+      "options": [
+       {
+        "label": "A",
+        "value": "Ag-Bpz: Ag-Bpz, a silver bipyrazolate framework"
+       },
+       {
+        "label": "B",
+        "value": "Cu-4Py-Me: Cu-4Py-Me, the copper triazolyl-isophthalate [Cu(Me-4py-trz-ia)]"
+       },
+       {
+        "label": "C",
+        "value": "Cu-tetrazolate: Cu-tetrazolate, a copper tetrazolate framework"
+       },
+       {
+        "label": "D",
+        "value": "UTSA-16(Co): UTSA-16(Co), a cobalt citrate framework"
+       }
+      ],
+      "inputs": [
+       "candidates.txt"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "interpenetrated_network",
+        "reason": "不满足约束 capacity：孔容中有 8 Å 的一档，但高度互穿的骨架使实测 D₂ 吸附量只有 3.8 mmol g⁻¹，仍不够；“有宽孔”不等于“有可用孔容”。"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "实测值满足全部目标约束，且是原文选定的结构（Conclusions：“Cu-4Py-Me (5.5 A, S_D2/H2 = 8) represents a practical compromise, delivering … uptake with moderate selectivity”；Results 给出 S = 8 与 D₂ 吸附量）。"
+       },
+       {
+        "label": "C",
+        "rule": "narrowest_pore_cue",
+        "reason": "不满足约束 capacity：孔口最窄、选择性最高，但实测 D₂ 吸附量只有 0.2 mmol g⁻¹，离 5 差一个半数量级。"
+       },
+       {
+        "label": "D",
+        "rule": "measured_inferior_analogue",
+        "reason": "不满足约束 capacity：孔口 3.4–4.4 Å 时实测吸附量 2.7 mmol g⁻¹，选择性虽高但容量不够。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-DES-CHE-SIEVE",
+      "question": "Dihydrogen isotopologues can be separated in a nanoporous framework by kinetic quantum sieving: the thermal de Broglie wavelength of H2 is longer than that of D2, so in a pore whose aperture is comparable to that wavelength H2 meets the higher diffusion barrier and the heavier D2 diffuses faster; the effect grows as the temperature falls. All four candidates below are rigid frameworks, so framework flexibility plays no part, and the paper treats them as lacking accessible open metal sites, although its Zeo++ analysis does report an open metal site density for one of them (noted in candidates.txt). Each framework was exposed to a 1:1 D2:H2 mixture at 100 mbar and 30 K for 10 min, and the selectivity S(D2/H2) and the D2 uptake were then read off the thermal desorption spectrum. You need the sorbent for an enrichment stage: it has to reach a useful separation factor and still take up enough D2 per gram for a cycle to be worth running. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Chetry et al., ACS Appl. Mater. Interfaces (2026). The candidate must satisfy: (selectivity) the measured D2/H2 selectivity at an exposure temperature of 30 K is at least 12; (capacity) the measured D2 uptake under the same conditions is at least 2 mmol g^-1. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate framework should you choose?",
+      "options": [
+       {
+        "label": "A",
+        "value": "UTSA-16(Co): UTSA-16(Co), a cobalt citrate framework"
+       },
+       {
+        "label": "B",
+        "value": "Cu-tetrazolate: Cu-tetrazolate, a copper tetrazolate framework"
+       },
+       {
+        "label": "C",
+        "value": "Ag-Bpz: Ag-Bpz, a silver bipyrazolate framework"
+       },
+       {
+        "label": "D",
+        "value": "Cu-4Py-Me: Cu-4Py-Me, the copper triazolyl-isophthalate [Cu(Me-4py-trz-ia)]"
+       }
+      ],
+      "inputs": [
+       "candidates.txt"
+      ],
+      "correct_label": "A",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "correct",
+        "reason": "实测值满足全部目标约束，且是原文选定的结构（Conclusions：“Cu-tetrazolate (3.2-3.6 A, S > 16 at 30 K) and UTSA-16(Co) (3.4-4.4 A, S = 15) demonstrate high selectivity, although with inherently limited uptake”，并把 Cu-4Py-Me 列为“practical compromise”；Results 给出四者的 S 与 D₂ 吸附量）。"
+       },
+       {
+        "label": "B",
+        "rule": "narrowest_pore_cue",
+        "reason": "不满足约束 capacity：孔口最窄、选择性确实最高（原文 > 16），但实测 D₂ 吸附量只有 0.2 mmol g⁻¹，容量差一个数量级。“孔越窄越好”在容量上立刻失效。"
+       },
+       {
+        "label": "C",
+        "rule": "interpenetrated_network",
+        "reason": "不满足约束 selectivity：孔口（3.5 Å）与最窄的一档相当，却只测到 5.5 的选择性：主要孔容来自 3.5 与 8 Å 两档且骨架高度互穿，原文把它较低的选择性与吸附量归于这种互穿结构。“孔口窄”不足以保证筛分。"
+       },
+       {
+        "label": "D",
+        "rule": "pore_too_wide",
+        "reason": "不满足约束 selectivity：孔口 5.5 Å 远宽于量子筛分所需，实测选择性只有 8，未达 12；它的吸附量最高（9.7 mmol g⁻¹）却不解决选择性。"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
    "unit": "diffraction_design",
    "kind": "family",
    "ability": "design",
@@ -1953,7 +2102,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 6,
+   "instances": 4,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -2032,8 +2181,8 @@
       ]
      },
      {
-      "instance": "FA-XD-ANODE-NACL",
-      "question": "The table lists every atom of one conventional cubic cell of halite (NaCl, COD 9008678). Use the kinematic structure factor with atomic numbers as angle-independent weights and first-order Bragg diffraction; the relevant peak is the lowest-angle reflection with non-zero intensity. Weights: Cl = 17, Na = 11. You must choose the X-ray source line that places this lowest-angle reflection with non-zero intensity closest to 2θ = 32.00° (for example, to keep it clear of the beam stop while resolving it well). Which line should you choose?",
+      "instance": "FA-XD-ANODE-SALEM2",
+      "question": "The table lists every atom of one conventional cubic cell of Zn(imidazolate)2 with ZIF-8 sodalite topology (SALEM-2, COD 4118891; major-occupancy linker sites). Use the kinematic structure factor with atomic numbers as angle-independent weights and first-order Bragg diffraction; the relevant peak is the lowest-angle reflection with non-zero intensity. Weights: C = 6, H = 1, N = 7, Zn = 30. You must choose the X-ray source line that places this lowest-angle reflection with non-zero intensity closest to 2θ = 11.00° (for example, to keep it clear of the beam stop while resolving it well). Which line should you choose?",
       "options": [
        {
         "label": "A",
@@ -2041,11 +2190,11 @@
        },
        {
         "label": "B",
-        "value": "Cr Kα1 (λ = 2.28970 Å)"
+        "value": "Cu Kα1 (λ = 1.54056 Å)"
        },
        {
         "label": "C",
-        "value": "Cu Kα1 (λ = 1.54056 Å)"
+        "value": "Cr Kα1 (λ = 2.28970 Å)"
        },
        {
         "label": "D",
@@ -2053,29 +2202,29 @@
        }
       ],
       "inputs": [
-       "FA-XD-ANODE-NACL-cell.txt"
+       "FA-XD-ANODE-SALEM2-cell.txt"
       ],
-      "correct_label": "A",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
-        "rule": "correct",
-        "reason": "首个非零反射 (1 1 1)，d = 3.2566 Å，2θ = 31.88°。"
+        "rule": "farther_from_target",
+        "reason": "首个非零反射在 2θ = 8.62°，离目标更远。"
        },
        {
         "label": "B",
-        "rule": "lowest_index_ignoring_extinction",
-        "reason": "取最低指数反射、未检查消光时它最接近目标（23.42°）。"
+        "rule": "farther_from_target",
+        "reason": "首个非零反射在 2θ = 7.42°，离目标更远。"
        },
        {
         "label": "C",
-        "rule": "farther_from_target",
-        "reason": "首个非零反射在 2θ = 27.36°，离目标更远。"
+        "rule": "correct",
+        "reason": "首个非零反射 (1 1 0)，d = 11.9008 Å，2θ = 11.04°。"
        },
        {
         "label": "D",
         "rule": "farther_from_target",
-        "reason": "首个非零反射在 2θ = 12.50°，离目标更远。"
+        "reason": "首个非零反射在 2θ = 3.42°，离目标更远。"
        }
       ]
      }
@@ -2530,7 +2679,7 @@
      "task_families/extent_choice.py": "e1ddb871279c3ae81c1e5e74590674b8f3fd71efdcd2c1c281a722ea123f4bf4"
     },
     "L2": {
-     "checkers/families.py": "68cf2fbf757a4d10a27067ae08b62976e3ecdecefe5c6912c27be0b04f06b25e",
+     "checkers/families.py": "1b44f1eab578c983fa0c433d5ba82b86888a12e5a6033b928d69ee0ced4ef88c",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2845,7 +2994,7 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af"
     },
     "L2": {
-     "checkers/families.py": "68cf2fbf757a4d10a27067ae08b62976e3ecdecefe5c6912c27be0b04f06b25e",
+     "checkers/families.py": "1b44f1eab578c983fa0c433d5ba82b86888a12e5a6033b928d69ee0ced4ef88c",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3767,7 +3916,7 @@
      "task_families/extinction.py": "f9721343ded2f4de07dfaf787d4b59f4322cbaf782248414430677ddfad71e1f"
     },
     "L2": {
-     "checkers/families.py": "68cf2fbf757a4d10a27067ae08b62976e3ecdecefe5c6912c27be0b04f06b25e",
+     "checkers/families.py": "1b44f1eab578c983fa0c433d5ba82b86888a12e5a6033b928d69ee0ced4ef88c",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -4388,7 +4537,7 @@
      "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/families.py": "68cf2fbf757a4d10a27067ae08b62976e3ecdecefe5c6912c27be0b04f06b25e",
+     "checkers/families.py": "1b44f1eab578c983fa0c433d5ba82b86888a12e5a6033b928d69ee0ced4ef88c",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -5950,7 +6099,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 2,
+   "instances": 1,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -5975,58 +6124,6 @@
      "template_review": "本轮新建，待人工审核。"
     },
     "samples": [
-     {
-      "instance": "FA-SDES-7029",
-      "question": "S0 is one conformer of a C4H8N2S1 molecule. You may change it only by changing the configuration of its stereo elements (the handedness of stereocentres or the cis/trans arrangement at double bonds): same atoms, same bonds; a change of conformation alone does not count. Goal: a structure whose PBE0+MBD energy (single point at the supplied geometry) is at least 0.0434 eV (1 kcal/mol) lower than that of S0. Candidates A–D have been rigidly rotated and their atom order may differ from S0. Which candidate satisfies both the allowed modification and the goal?",
-      "options": [
-       {
-        "label": "A",
-        "value": "candidate_A.xyz"
-       },
-       {
-        "label": "B",
-        "value": "candidate_B.xyz"
-       },
-       {
-        "label": "C",
-        "value": "candidate_C.xyz"
-       },
-       {
-        "label": "D",
-        "value": "candidate_D.xyz"
-       }
-      ],
-      "inputs": [
-       "S0.xyz",
-       "candidate_A.xyz",
-       "candidate_B.xyz",
-       "candidate_C.xyz",
-       "candidate_D.xyz"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "Geom-m7030-i1-c3-opt",
-        "reason": "分子式相同但键连不同（构造异构体），违反“键连不变”。"
-       },
-       {
-        "label": "B",
-        "rule": "mirror of Geom-m7029-i1-c2-opt",
-        "reason": "S0 无手性中心，镜像仍是同一化合物（仅构象镜像），未改变构型且能量相同。"
-       },
-       {
-        "label": "C",
-        "rule": "Geom-m7029-i2-c2-opt",
-        "reason": "只改变构型（非对映体），能量低 0.0590 eV，满足目标。"
-       },
-       {
-        "label": "D",
-        "rule": "Geom-m7029-i1-c4-opt",
-        "reason": "能量更低（-0.0544 eV）但只是同一构型的另一构象，不属于允许的修改。"
-       }
-      ]
-     },
      {
       "instance": "FA-SDES-7110",
       "question": "S0 is one conformer of a C3H7N1O2S1 molecule. You may change it only by changing the configuration of its stereo elements (the handedness of stereocentres or the cis/trans arrangement at double bonds): same atoms, same bonds; a change of conformation alone does not count. Goal: a structure whose PBE0+MBD energy (single point at the supplied geometry) is at least 0.0434 eV (1 kcal/mol) lower than that of S0. Candidates A–D have been rigidly rotated and their atom order may differ from S0. Which candidate satisfies both the allowed modification and the goal?",
@@ -6076,6 +6173,58 @@
         "label": "D",
         "rule": "mirror of Geom-m7110-i2-c2-opt",
         "reason": "镜像（对映体）：构型改变但能量按反演对称与 S0 完全相同，未达到降低目标。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-SDES-7029",
+      "question": "S0 is one conformer of a C4H8N2S1 molecule. You may change it only by changing the configuration of its stereo elements (the handedness of stereocentres or the cis/trans arrangement at double bonds): same atoms, same bonds; a change of conformation alone does not count. Goal: a structure whose PBE0+MBD energy (single point at the supplied geometry) is at least 0.0434 eV (1 kcal/mol) lower than that of S0. Candidates A–D have been rigidly rotated and their atom order may differ from S0. Which candidate satisfies both the allowed modification and the goal?",
+      "options": [
+       {
+        "label": "A",
+        "value": "candidate_A.xyz"
+       },
+       {
+        "label": "B",
+        "value": "candidate_B.xyz"
+       },
+       {
+        "label": "C",
+        "value": "candidate_C.xyz"
+       },
+       {
+        "label": "D",
+        "value": "candidate_D.xyz"
+       }
+      ],
+      "inputs": [
+       "S0.xyz",
+       "candidate_A.xyz",
+       "candidate_B.xyz",
+       "candidate_C.xyz",
+       "candidate_D.xyz"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "Geom-m7030-i1-c3-opt",
+        "reason": "分子式相同但键连不同（构造异构体），违反“键连不变”。"
+       },
+       {
+        "label": "B",
+        "rule": "mirror of Geom-m7029-i1-c2-opt",
+        "reason": "S0 无手性中心，镜像仍是同一化合物（仅构象镜像），未改变构型且能量相同。"
+       },
+       {
+        "label": "C",
+        "rule": "Geom-m7029-i2-c2-opt",
+        "reason": "只改变构型（非对映体），能量低 0.0590 eV，满足目标。"
+       },
+       {
+        "label": "D",
+        "rule": "Geom-m7029-i1-c4-opt",
+        "reason": "能量更低（-0.0544 eV）但只是同一构型的另一构象，不属于允许的修改。"
        }
       ]
      }
@@ -7720,17 +7869,40 @@
    ]
   },
   {
+   "stratum": "design_choice | paper-chetry-mof-isotopologue | materials 0.1-1",
+   "unit": "design_choice",
+   "source": "paper-chetry-mof-isotopologue",
+   "cell": "materials 0.1-1",
+   "size": 2,
+   "sample": 2,
+   "rule": "first batch: all",
+   "ids": [
+    "MND013",
+    "MND014"
+   ]
+  },
+  {
+   "stratum": "design_choice | paper-rando-bambusuril | chemistry 0.1-1",
+   "unit": "design_choice",
+   "source": "paper-rando-bambusuril",
+   "cell": "chemistry 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CND017"
+   ]
+  },
+  {
    "stratum": "diffraction_design | cod-materials-cell | materials 0.1-1",
    "unit": "diffraction_design",
    "source": "cod-materials-cell",
    "cell": "materials 0.1-1",
-   "size": 3,
-   "sample": 3,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "MND007",
-    "MND008",
-    "MND009"
+    "MND007"
    ]
   },
   {
@@ -8481,11 +8653,10 @@
    "unit": "stereo_design_selection",
    "source": "qm7x",
    "cell": "chemistry 0.1-1",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "CND001",
     "CND003"
    ]
   },
@@ -8627,7 +8798,6 @@
   "QND004": "L0",
   "CNP016": "L0",
   "CNI008": "L0",
-  "CND001": "L0",
   "CND003": "L0",
   "QNP013": "L0",
   "QNP014": "L0",
@@ -8697,8 +8867,6 @@
   "QND008": "L0",
   "QND009": "L0",
   "MND007": "L0",
-  "MND008": "L0",
-  "MND009": "L0",
   "MND010": "L0",
   "MND011": "L0",
   "MND012": "L0",
@@ -8779,7 +8947,10 @@
   "BND016": "L0",
   "BND019": "L0",
   "BNI053": "L0",
-  "BND021": "L0"
+  "BND021": "L0",
+  "CND017": "L0",
+  "MND013": "L0",
+  "MND014": "L0"
  },
  "forms": {
   "BNP014": {
@@ -8809,10 +8980,6 @@
   "CNI008": {
    "form": "family",
    "instance": "FA-SPROP-7089"
-  },
-  "CND001": {
-   "form": "family",
-   "instance": "FA-SDES-7029"
   },
   "CND003": {
    "form": "family",
@@ -9089,14 +9256,6 @@
   "MND007": {
    "form": "family",
    "instance": "FA-XD-CRYSTAL-CU"
-  },
-  "MND008": {
-   "form": "family",
-   "instance": "FA-XD-CRYSTAL-MO"
-  },
-  "MND009": {
-   "form": "family",
-   "instance": "FA-XD-ANODE-NACL"
   },
   "MND010": {
    "form": "family",
@@ -9421,6 +9580,18 @@
   "BND021": {
    "form": "family",
    "instance": "EN-12E8-FD-25-1-11"
+  },
+  "CND017": {
+   "form": "family",
+   "instance": "FA-DES-RAN-BROMIDE"
+  },
+  "MND013": {
+   "form": "family",
+   "instance": "FA-DES-CHE-SIEVE"
+  },
+  "MND014": {
+   "form": "family",
+   "instance": "FA-DES-CHE-FLOW"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."

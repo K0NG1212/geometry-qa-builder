@@ -1,0 +1,106 @@
+{
+ "kind": "design_sources",
+ "updated": "2026-10-19",
+ "method": "设计卡由 Claude Code（模型 claude-opus-5）阅读全文后人工转录：候选的结构描述与实测性质分别转述并各带原文位置，不转载原文段落或图。程序检查“四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干阈值即代码阈值”；结构描述是否忠于原文、是否足以推出答案，由 L1/L4 人工判定。",
+ "route": "导师设计题路线①：找人做过的结构优化论文，把“目标性质”摘出来做题干，被选中的结构就是答案，干扰项是同一篇论文里做过、测过但不达标的其他结构。",
+ "papers": {
+  "vincent2025": {
+   "citation": "Vincent, King, Murkli & Isaacs, \"Aromatic Wall Extension of Glycoluril-Derived Molecular Clips Enhances Binding of Planar Aromatic Dyes\", Chem. Eur. J. (2025), doi:10.1002/chem.202502177 (Europe PMC PMC12415320)",
+   "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+   "optimization": "主体芳香墙从萘（H1）延长为蒽（H2），每面 π 表面积 +46.5 Å²；对 14 种染料逐一测结合常数。",
+   "evidence_table": "Table 1（Ka，PBS，室温，每次滴定重复两次）",
+   "cards": [
+    {
+     "file": "vincent2025-walls.json",
+     "sha256": "5ef3d26e88693ccc8d35b4f51fc76e3a2f2ed8a36f56b946f9831aff43d10c51",
+     "family": "design_choice"
+    },
+    {
+     "file": "vincent2025-viologen.json",
+     "sha256": "87eff8876036344e1dc301e7dffd04d281506a1d1bfc101371faab855d2b6e6f",
+     "family": "design_choice"
+    }
+   ],
+   "full_text": {
+    "url": "https://doi.org/10.1002/chem.202502177",
+    "local_file": "inputs/papers/vincent2025/vincent2025-PMC12415320.xml（仓库外）",
+    "sha256": {
+     "vincent2025-PMC12415320.xml": "3f2b8d2f1a0c15c2594e096253739d4597b386b087f3709210376d1d225068ad"
+    }
+   }
+  },
+  "rando2025": {
+   "citation": "Rando, Grewal, Sokolov & Kulhanek, \"Reversing selectivity of bambusuril macrocycles toward inorganic anions by installing spacious substituents on their portals\", Chem. Sci. (2025), doi:10.1039/d4sc07150f (Europe PMC PMC11639902)",
+   "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+   "optimization": "把门户取代基从苄基（BnBU）换成体积更大的 (S)-1-苯乙基，并比较两种位置排布的非对映异构体BU1 与 BU2；对 10 种无机阴离子逐一测结合常数。",
+   "evidence_table": "Table 1（ITC，氯仿，298.15 K）与 Table S3（乙腈）",
+   "cards": [
+    {
+     "file": "rando2025-nitrate.json",
+     "sha256": "12a008a1e37e7dc899b4e4c87447e7915f9cbf3722d5997bc07f13059084fe4c",
+     "family": "design_choice"
+    },
+    {
+     "file": "rando2025-bromide.json",
+     "sha256": "1cd93de61579c31ea9b5c1bd5bc770456d18524070a5e2fd4169cd2bf14bcc3d",
+     "family": "design_choice"
+    }
+   ],
+   "full_text": {
+    "url": "https://doi.org/10.1039/d4sc07150f",
+    "local_file": "inputs/papers/rando2025/rando2025-PMC11639902.xml（仓库外）",
+    "sha256": {
+     "rando2025-PMC11639902.xml": "266d50d6ad3913dbc2b8b62546ec5a4de80672c6ed3bef8257ad92d163acc479"
+    }
+   }
+  },
+  "chetry2026": {
+   "citation": "Chetry, Sarkar, Bakhtian & Hirscher, \"Influence of Structural Determinants on Dihydrogen Adsorption and Isotopologue Separation in Nanoporous Metal-Organic Frameworks\", ACS Appl. Mater. Interfaces (2026), doi:10.1021/acsami.5c24726 (Europe PMC PMC13022808)",
+   "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+   "optimization": "系统比较一批 MOF 的孔口尺寸、开放金属位与骨架柔性对 D₂/H₂ 分离的影响，并给出选型准则（“select linker size to achieve 3.0–4.5 Å pores for strong KQS”）。",
+   "evidence_table": "Table 1（孔径、开放金属位密度、吸附量、吸附热）与 Results（TDS 的选择性与 D₂ 吸附量）",
+   "cards": [
+    {
+     "file": "chetry2026-sieving.json",
+     "sha256": "b00a4a582f6446e3273363cdc0044cb25765dc123170df97d8ecc86a9ecf52be",
+     "family": "design_choice"
+    },
+    {
+     "file": "chetry2026-throughput.json",
+     "sha256": "3fdb8511d681b9568e8aa57a04a0bcdf3fc6d8fd22dcc181040fa177aa8833db",
+     "family": "design_choice"
+    }
+   ],
+   "full_text": {
+    "url": "https://doi.org/10.1021/acsami.5c24726",
+    "local_file": "inputs/papers/chetry2026/chetry2026-PMC13022808.xml（仓库外）",
+    "sha256": {
+     "chetry2026-PMC13022808.xml": "0b55aa4f1f3703ed42c3dbe7996735f2b6cfa773021cd50c348503b79a2d25c1"
+    }
+   }
+  }
+ },
+ "route_note": "chetry2026 严格说是“在已有材料中筛选”而不是“为目标改造一个结构”，与 vincent2025、rando2025 的改造式优化不同；仍然采用，因为四个候选都有实测值、决定因素是孔口几何，且材料领域目前缺这类设计题。是否计入路线① 由导师审定。",
+ "not_used": [
+  {
+   "candidate": "Chetry 2026：柔性 MOF（[Cu2(Et-trz-ia)2]、[Cu2(nPr-trz-ia)2]）在 77 K 的选择性",
+   "reason": "摘要写 1.4–2.3、正文写 Et 为 2.3（nPr 只写“降低”未给数值）、结论写 1.6–2.4，三处不自洽，无法取定值。"
+  },
+  {
+   "candidate": "Chetry 2026：Ni-MOF-74(Co) 作为候选",
+   "reason": "它靠开放金属位的化学亲和量子筛分（孔径约 10–11 Å），与孔口几何决定的动力学量子筛分机制不同，放进同一组候选会让“几何决定”不成立。"
+  },
+  {
+   "candidate": "Rando 2025：表 2 的结合能分解（ΔGb、ΔEb 等）",
+   "reason": "表 2 的实验 ΔGb 与表 1 的表观 Ka 不自洽（Br⁻ 相差最大：41.4 kJ/mol 对应 1.8 × 10⁷ 而表 1 为 1.1 × 10⁷），原文未说明换算关系。"
+  },
+  {
+   "candidate": "Vincent 2025：ClO₄⁻/Cl⁻ 型“四个主体”题",
+   "reason": "本文只做了两个主体（H1、H2），凑不出四个都有实测值的主体候选；改为主体–客体配对作候选。"
+  },
+  {
+   "candidate": "PMC12133026（电荷调控）、PMC12473877（单一聚合物）、PMC12922737 与 PMC11339946（无表格）、PMC9832537（有立体位阻描述符但无目标性质实测值）",
+   "reason": "检索中逐篇排除：决定因素不是几何，或候选不足四个，或没有可用的实测性质表。"
+  }
+ ]
+}

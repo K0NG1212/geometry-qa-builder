@@ -7,8 +7,8 @@
   "level1": 32,
   "leaves": 89,
   "meaningful_pixels": 74,
-  "pixels_with_questions": 42,
-  "empty_meaningful_pixels": 32,
+  "pixels_with_questions": 43,
+  "empty_meaningful_pixels": 31,
   "pixels_with_enumerator": 25,
   "leaves_with_questions": 45,
   "empty_level1": [
@@ -22,7 +22,7 @@
    "materials -> physics": 11,
    "chemistry -> physics": 4
   },
-  "active_questions": 310,
+  "active_questions": 316,
   "questions_outside_meaningful_pixels": [],
   "planning_total": 2500,
   "mean_target_per_pixel": 34
@@ -750,17 +750,21 @@
    "meaningful": false
   },
   {
-   "questions": 4,
+   "questions": 8,
    "abilities": {
     "perception": 4,
     "inference": 0,
-    "design": 0
+    "design": 4
    },
    "ids": [
     "CNP027",
     "CNP031",
     "CNP032",
-    "CNP033"
+    "CNP033",
+    "CND014",
+    "CND015",
+    "CND016",
+    "CND017"
    ],
    "enumerated_estimate": 612,
    "l1": "C4",
@@ -1304,13 +1308,16 @@
    "meaningful": false
   },
   {
-   "questions": 0,
+   "questions": 2,
    "abilities": {
     "perception": 0,
     "inference": 0,
-    "design": 0
+    "design": 2
    },
-   "ids": [],
+   "ids": [
+    "MND013",
+    "MND014"
+   ],
    "enumerated_estimate": 22,
    "l1": "M4",
    "domain": "materials",
@@ -2845,17 +2852,19 @@
    "name": "金属簇与有机金属"
   },
   {
-   "questions": 4,
+   "questions": 6,
    "abilities": {
     "perception": 4,
     "inference": 0,
-    "design": 0
+    "design": 2
    },
    "ids": [
     "CNP027",
     "CNP031",
     "CNP032",
-    "CNP033"
+    "CNP033",
+    "CND016",
+    "CND017"
    ],
    "enumerated_estimate": 618,
    "leaf": "C4a",
@@ -2864,18 +2873,20 @@
    "name": "大环主体"
   },
   {
-   "questions": 5,
+   "questions": 7,
    "abilities": {
     "perception": 0,
     "inference": 3,
-    "design": 2
+    "design": 4
    },
    "ids": [
     "CNI014",
     "CNI015",
     "CNI016",
     "CND007",
-    "CND008"
+    "CND008",
+    "CND014",
+    "CND015"
    ],
    "enumerated_estimate": 0,
    "leaf": "C4b",
@@ -3216,11 +3227,11 @@
    "name": "缺陷与掺杂"
   },
   {
-   "questions": 12,
+   "questions": 14,
    "abilities": {
     "perception": 5,
     "inference": 4,
-    "design": 3
+    "design": 5
    },
    "ids": [
     "MNI013",
@@ -3234,7 +3245,9 @@
     "MND012",
     "MNP028",
     "MNP029",
-    "MNP030"
+    "MNP030",
+    "MND013",
+    "MND014"
    ],
    "enumerated_estimate": 51,
    "leaf": "M4a",
@@ -6012,6 +6025,30 @@
   ],
   "BND023": [
    "MHC I 类分子 1HHK · FRET 标记位点设计",
+   "design"
+  ],
+  "CND014": [
+   "分子夹设计 · 结合常数 ≥ 5 × 10⁶ M⁻¹ 的主体–染料配对（四选一）",
+   "design"
+  ],
+  "CND015": [
+   "分子夹设计 · 结合常数 ≥ 5 × 10⁴ M⁻¹ 的主体–染料配对（四选一）",
+   "design"
+  ],
+  "CND016": [
+   "竹环脲设计 · 偏好硝酸根而非溴离子的受体（四选一）",
+   "design"
+  ],
+  "CND017": [
+   "竹环脲设计 · 溴离子结合常数 ≥ 1 × 10⁹ M⁻¹ 的受体（四选一）",
+   "design"
+  ],
+  "MND013": [
+   "MOF 设计 · 30 K 下选择性 ≥ 12 且 D₂ 吸附量 ≥ 2 mmol g⁻¹ 的框架（四选一）",
+   "design"
+  ],
+  "MND014": [
+   "MOF 设计 · 30 K 下 D₂ 吸附量 ≥ 5 mmol g⁻¹ 且选择性 ≥ 2 的框架（四选一）",
    "design"
   ]
  }

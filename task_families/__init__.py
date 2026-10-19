@@ -1,6 +1,6 @@
 """Reusable task families. Each family id maps to one build function and one
 ability; the engine never dispatches by question ID."""
-from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire, hostguest, quantum_dot, diffraction_design, protein_design, vortex, cholesteric, rotational, hbond, evidence
+from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire, hostguest, quantum_dot, diffraction_design, protein_design, vortex, cholesteric, rotational, hbond, evidence, paper_design
 
 FAMILIES = {
     'named_bond_angle': dict(build=local_geometry.build_bond_angle, ability='perception',
@@ -101,4 +101,6 @@ FAMILIES = {
         output='choice', version=evidence.VERSION, module='task_families/evidence.py'),
     'evidence_elimination': dict(build=evidence.build_elimination, ability='inference',
         output='choice', version=evidence.VERSION, module='task_families/evidence.py'),
+    'design_choice': dict(build=paper_design.build, ability='design',
+        output='choice', version=paper_design.VERSION, module='task_families/paper_design.py'),
 }

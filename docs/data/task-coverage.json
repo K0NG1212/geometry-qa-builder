@@ -30,12 +30,12 @@
  },
  "summary": {
   "types_defined": 54,
-  "types_with_running_code": 47,
+  "types_with_running_code": 48,
   "status": {
    "implemented": 2,
-   "pilot": 45,
+   "pilot": 46,
    "existing_legacy": 3,
-   "planned": 2,
+   "planned": 1,
    "rebuild_needed": 1,
    "blocked": 1
   },
@@ -52,15 +52,14 @@
     "rebuild_needed": 1
    },
    "design": {
-    "pilot": 14,
-    "planned": 1,
+    "pilot": 15,
     "blocked": 1
    }
   },
-  "development_instances": 310,
+  "development_instances": 316,
   "instance_failures": 1,
-  "independent_pass": 310,
-  "independent_checked": 310,
+  "independent_pass": 316,
+  "independent_checked": 316,
   "legacy_candidates": 80,
   "legacy_decisions": {
    "retain": 42,
@@ -69,7 +68,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v36",
+ "family_run": "family-pilot-v37",
  "rows": [
   {
    "id": "global_extent",
@@ -3355,46 +3354,66 @@
    "id": "design_choice",
    "name": "有证据的结构优化选择（论文案例）",
    "ability": "design",
-   "status": "planned",
+   "status": "pilot",
    "priority": 2,
-   "concept": "从论文中的实证优化（如先导化合物优化 S0→S1）构题，候选有性质证据。",
+   "concept": "从论文中记录在案的结构优化构题：作者为某个目标刻意改了一处结构特征（芳香墙加长、门户取代基加大、孔口收窄），并对每个变体都测了性质。题干给出目标（实测性质的阈值）与四个只用结构描述呈现的候选；实测表留在审核侧，所以这是设计选择，不是查表。",
    "domains": [
     "chemistry",
-    "biology"
+    "materials"
    ],
-   "input_scale": "分子/复合物",
-   "reasoning_scale": "结合口袋或修饰位点",
+   "input_scale": "候选结构（分子夹–染料复合物、大环空腔、框架孔口）",
+   "reasoning_scale": "决定性质的那一处几何（芳香墙长轴 0.70–0.92 nm；C–H···X⁻ 接触 0.31 nm；孔口 0.32–0.80 nm）",
    "scale_cells": [
-    "0.1-1",
-    "1-10"
+    "0.1-1"
    ],
-   "scale_limits": "“论文选择了 B”不证明 A/C/D 不行；未知不等于错误。",
-   "inputs": "初始结构、目标、限制、候选修改；审核侧保存真实 S1/S2 及性质证据。",
-   "physical_conditions": "按论文实验条件。",
+   "scale_limits": "尺度取决定目标性质的那一处几何，不取整个候选分子或整块晶体。",
+   "inputs": "candidates.txt（四个候选的结构描述，逐项转述并带原文位置）；实测性质表与原文位置只在审核侧。",
+   "physical_conditions": "按论文的实测条件写入题干（缓冲液与温度、溶剂与温度、暴露压力与温度）。",
    "output_forms": [
     "choice"
    ],
-   "source_basis": "待定：需带全部候选性质表的优化论文",
-   "answer_method": "证据表逐项核对。",
+   "source_basis": "2026-10-19 下载的三篇 CC BY 全文（本地 inputs/papers/，不入库）：Vincent 2025（分子夹芳香墙 H1→H2，Table 1 的 14 种染料 × 2 主体）、Rando 2025（竹环脲门户取代基 BnBU/BU1/BU2，Table 1 与 Table S3 的 10 种阴离子）、Chetry 2026（MOF 孔口与 D₂/H₂ 分离，Table 1 与 TDS 结果）。设计卡 docs/assets/families/design/*.json 逐项记录原文位置。",
+   "answer_method": "逐个候选、逐条约束比对实测值；恰好一个候选满足全部约束，且必须是原文选定的那一个。",
    "distractor_mechanisms": [
-    "measured_inferior_analogue",
-    "violates_constraint",
-    "untested_is_not_false"
+    "measured_inferior_analogue（同篇论文测过但不达标的同类结构）",
+    "violates_constraint（主性质达标却破坏另一条约束，如最窄孔把容量压到 0.2 mmol g⁻¹）",
+    "host_walls_not_extended / guest_not_extended / neither_extended（只改一侧的 π 延长）",
+    "extended_walls_weaken_this_guest（实测反例：延长墙反而变弱）",
+    "strongest_binder_cue（绝对结合最强但选择性方向错）",
+    "distorted_cavity（取代基一样大，位置不同导致空腔扭曲）",
+    "solvent_change_insufficient（换溶剂不改变几何）",
+    "narrowest_pore_cue / pore_too_wide / interpenetrated_network（孔口几何的三种误判）"
    ],
-   "four_choice_validation": "需四项均有测量值。",
+   "four_choice_validation": "四个候选必须对每条受约束的性质都有实测值且带原文位置（“未测过”不会被当成“不行”）；每个候选与每个阈值之间必须有 margin（默认 1.2 倍）的距离；恰好一个候选满足全部约束。",
    "legacy_families": [],
    "legacy_qa": [],
-   "code": [],
-   "tests": [],
-   "builder_modules": "M3 旧门槛拒绝 design，不删除保护。",
-   "gap": "本轮未取得带四个候选测量值且许可可公开的案例；未虚构。 化学 1–10 已由 binding_design_choice（SAMPL9 实测）实现。",
-   "engine_families": [],
-   "independent_checker": "",
-   "instance_ids": [],
-   "instance_count": 0,
-   "independent_pass": 0,
+   "code": [
+    "task_families/paper_design.py",
+    "checkers/paper_design.py"
+   ],
+   "tests": [
+    "tests/test_paper_design.py"
+   ],
+   "builder_modules": "族引擎内实现；设计卡人工转录，候选结构描述与实测值各带原文位置供 L1 对照。",
+   "gap": "第一批 6 道（3 篇论文，每篇两个目标共用一张实测表）。只覆盖化学 C4a/C4b 与材料 M4a，都不是空白子领域；尚未覆盖生物、量子，也未覆盖 C5 反应与催化（检索中未找到既开放获取、又有四个候选的实测性能表的优化论文）。",
+   "engine_families": [
+    "design_choice"
+   ],
+   "independent_checker": "checkers/paper_design.py:design_choice",
+   "instance_ids": [
+    "FA-DES-VIN-WALLS",
+    "FA-DES-VIN-MV",
+    "FA-DES-RAN-NITRATE",
+    "FA-DES-RAN-BROMIDE",
+    "FA-DES-CHE-SIEVE",
+    "FA-DES-CHE-FLOW"
+   ],
+   "instance_count": 6,
+   "independent_pass": 6,
    "instance_failures": 0,
-   "instance_reasoning_cells": [],
+   "instance_reasoning_cells": [
+    "0.1-1"
+   ],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },

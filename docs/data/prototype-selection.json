@@ -17,7 +17,7 @@
  },
  "summary": {
   "selected": 160,
-  "reserve": 150,
+  "reserve": 156,
   "out_of_range": [],
   "abilities": {
    "perception": 59,
@@ -29,11 +29,11 @@
    "family-version": 0,
    "legacy": 0
   },
-  "review_units": 48,
-  "family_units": 48,
+  "review_units": 49,
+  "family_units": 49,
   "legacy_units": 0,
   "pending_decision": {
-   "measurement_condition_design": 12,
+   "measurement_condition_design": 11,
    "experimental_evidence": 5
   },
   "full_cells": 16
@@ -43,8 +43,8 @@
    "cell": "chemistry 0.1-1",
    "domain": "chemistry",
    "bin": "0.1-1",
-   "available": 35,
-   "eligible": 35,
+   "available": 39,
+   "eligible": 39,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -115,15 +115,6 @@
      "pending": null
     },
     {
-     "id": "CND001",
-     "ability": "design",
-     "form": "family",
-     "unit": "stereo_design_selection",
-     "instance": "FA-SDES-7029",
-     "source": "qm7x",
-     "pending": null
-    },
-    {
      "id": "CND003",
      "ability": "design",
      "form": "family",
@@ -140,9 +131,28 @@
      "instance": "FA-ISO-G9-110",
      "source": "sampl9",
      "pending": null
+    },
+    {
+     "id": "CND017",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-RAN-BROMIDE",
+     "source": "paper-rando-bambusuril",
+     "pending": null
     }
    ],
    "reserve": [
+    {
+     "id": "CND001",
+     "ability": "design",
+     "form": "family",
+     "unit": "stereo_design_selection",
+     "instance": "FA-SDES-7029",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
     {
      "id": "CND002",
      "ability": "design",
@@ -150,6 +160,36 @@
      "unit": "stereo_design_selection",
      "instance": "FA-SDES-7033",
      "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CND014",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-VIN-WALLS",
+     "source": "paper-vincent-molecular-clips",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CND015",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-VIN-MV",
+     "source": "paper-vincent-molecular-clips",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CND016",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-RAN-NITRATE",
+     "source": "paper-rando-bambusuril",
      "pending": null,
      "reason": "本格已满 10 道"
     },
@@ -394,7 +434,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 35 道，其中经独立检查 35 道"
+   "rationale": "可用 39 道，其中经独立检查 39 道"
   },
   {
    "cell": "chemistry 1-10",
@@ -1837,8 +1877,8 @@
    "cell": "materials 0.1-1",
    "domain": "materials",
    "bin": "0.1-1",
-   "available": 44,
-   "eligible": 44,
+   "available": 46,
+   "eligible": 46,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -1918,13 +1958,34 @@
      "pending": null
     },
     {
+     "id": "MND013",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-CHE-SIEVE",
+     "source": "paper-chetry-mof-isotopologue",
+     "pending": null
+    },
+    {
+     "id": "MND014",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-CHE-FLOW",
+     "source": "paper-chetry-mof-isotopologue",
+     "pending": null
+    }
+   ],
+   "reserve": [
+    {
      "id": "MND008",
      "ability": "design",
      "form": "family",
      "unit": "diffraction_design",
      "instance": "FA-XD-CRYSTAL-MO",
      "source": "cod-materials-cell",
-     "pending": null
+     "pending": null,
+     "reason": "本格已满 10 道"
     },
     {
      "id": "MND009",
@@ -1933,10 +1994,9 @@
      "unit": "diffraction_design",
      "instance": "FA-XD-ANODE-NACL",
      "source": "cod-materials-cell",
-     "pending": "measurement_condition_design"
-    }
-   ],
-   "reserve": [
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
     {
      "id": "MNI011",
      "ability": "inference",
@@ -2278,7 +2338,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 44 道，其中经独立检查 44 道"
+   "rationale": "可用 46 道，其中经独立检查 46 道"
   },
   {
    "cell": "materials 1-10",
@@ -3289,7 +3349,6 @@
   "BNP040",
   "BNP041",
   "BNP042",
-  "CND001",
   "CND003",
   "CND004",
   "CND005",
@@ -3301,6 +3360,7 @@
   "CND011",
   "CND012",
   "CND013",
+  "CND017",
   "CNI008",
   "CNI011",
   "CNI012",
@@ -3336,11 +3396,11 @@
   "MND005",
   "MND006",
   "MND007",
-  "MND008",
-  "MND009",
   "MND010",
   "MND011",
   "MND012",
+  "MND013",
+  "MND014",
   "MNI013",
   "MNI019",
   "MNI020",

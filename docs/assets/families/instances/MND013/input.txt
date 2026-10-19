@@ -1,0 +1,15 @@
+Dihydrogen isotopologues can be separated in a nanoporous framework by kinetic quantum sieving: the thermal de Broglie wavelength of H2 is longer than that of D2, so in a pore whose aperture is comparable to that wavelength H2 meets the higher diffusion barrier and the heavier D2 diffuses faster; the effect grows as the temperature falls. All four candidates below are rigid frameworks, so framework flexibility plays no part, and the paper treats them as lacking accessible open metal sites, although its Zeo++ analysis does report an open metal site density for one of them (noted in candidates.txt). Each framework was exposed to a 1:1 D2:H2 mixture at 100 mbar and 30 K for 10 min, and the selectivity S(D2/H2) and the D2 uptake were then read off the thermal desorption spectrum. You need the sorbent for an enrichment stage: it has to reach a useful separation factor and still take up enough D2 per gram for a cycle to be worth running. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Chetry et al., ACS Appl. Mater. Interfaces (2026). The candidate must satisfy: (selectivity) the measured D2/H2 selectivity at an exposure temperature of 30 K is at least 12; (capacity) the measured D2 uptake under the same conditions is at least 2 mmol g^-1. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate framework should you choose?
+
+选项：
+A. UTSA-16(Co): UTSA-16(Co), a cobalt citrate framework
+B. Cu-tetrazolate: Cu-tetrazolate, a copper tetrazolate framework
+C. Ag-Bpz: Ag-Bpz, a silver bipyrazolate framework
+D. Cu-4Py-Me: Cu-4Py-Me, the copper triazolyl-isophthalate [Cu(Me-4py-trz-ia)]
+
+附件：candidates.txt（均为本题完整输入）。范围：候选的结构描述取自论文（转述，不转载原文段落或图）；实测性质表只在审核侧，考生看不到。只依据题干给出的目标与候选结构描述，加通用科学知识作答；不需要也不允许查阅论文。 只回答一个字母 A、B、C 或 D。
+
+===== candidates.txt =====
+Ag-Bpz: Ag-Bpz, a silver bipyrazolate framework — Table 1 gives a pore size of 3.5-8 A: Zeo++ puts the aperture at 3.5 A but finds the pore volume dominated by supermicropores at 3.5 and 8 A, and the framework is highly interpenetrated. Zeo++ also finds open metal sites here, at a density of 7.9 mmol cm^-3.
+Cu-4Py-Me: Cu-4Py-Me, the copper triazolyl-isophthalate [Cu(Me-4py-trz-ia)] — Table 1 gives a single pore size of 5.5 A, the widest aperture of the four. Zeo++ classes it as ultramicroporous only, and finds no open metal sites.
+Cu-tetrazolate: Cu-tetrazolate, a copper tetrazolate framework — Table 1 gives a pore size of 3.2-3.6 A, the tightest of the four; the short rigid tetrazolate linker is what generates so narrow an aperture. Zeo++ classes it as ultramicroporous only, and finds no open metal sites.
+UTSA-16(Co): UTSA-16(Co), a cobalt citrate framework — Table 1 gives a pore size of 3.4-4.4 A, one step wider than the tightest; the rigid citrate linker also generates tight pores. Zeo++ classes it as ultramicroporous only, and finds no open metal sites.

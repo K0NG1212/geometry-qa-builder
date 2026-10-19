@@ -1,0 +1,109 @@
+{
+ "kind": "design_card",
+ "family": "design_choice",
+ "id": "vincent2025-walls",
+ "paper": "paper-vincent-molecular-clips",
+ "citation": "Vincent, King, Murkli & Isaacs, \"Aromatic Wall Extension of Glycoluril-Derived Molecular Clips Enhances Binding of Planar Aromatic Dyes\", Chem. Eur. J. (2025), doi:10.1002/chem.202502177 (Europe PMC PMC12415320)",
+ "short_citation": "Vincent et al., Chem. Eur. J. (2025)",
+ "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+ "setting": "Methylene-bridged glycoluril dimers, called molecular clips, bind a guest inside a cleft between two roughly parallel dialkoxyaromatic side walls. With the planar cationic dyes used here the guest stacks between the walls and its cationic group sits at the ureidyl carbonyl portals. Two clips differing only in their walls were made: H1 with naphthalene walls and H2 with anthracene walls. Apparent 1:1 binding constants Ka were measured by direct or competitive UV/Vis or fluorescence titration in phosphate buffered saline (PBS) at room temperature, every titration in duplicate.",
+ "goal": "You are assembling a clip-dye reporter pair that has to work at low micromolar concentrations, so it needs a tight 1:1 complex.",
+ "ask": "Which candidate pair should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "Ka": {
+   "label": "apparent 1:1 binding constant Ka (M^-1), PBS, room temperature",
+   "locator": "Table 1"
+  }
+ },
+ "constraints": [
+  {
+   "key": "affinity",
+   "property": "Ka",
+   "op": ">=",
+   "value": 5000000.0,
+   "display": "5 × 10^6 M^-1",
+   "text": "the measured binding constant in PBS at room temperature is at least 5 × 10^6 M^-1"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "H2-NMeAc",
+   "name": "H2 + NMeAc",
+   "geometry": "Clip H2: two anthracene walls, three linearly fused six-membered rings per wall, long axis of the wall about 0.92 nm; MMFF-minimised anthracene surface area 208.0 A^2 per wall. Four OCH2CH2CH2SO3Na arms make it soluble in water to at least 7 mM. Guest NMeAc: an N-methylacridinium cation, three six-membered rings fused in a line and therefore flat, with the methyl group on the central ring nitrogen.",
+   "measured": {
+    "Ka": {
+     "value": 10700000.0,
+     "display": "(1.07 ± 0.10) × 10^7",
+     "locator": "Table 1, row NMeAc, column H2 [M^-1] PBS"
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "H1-NMeAc",
+   "name": "H1 + NMeAc",
+   "geometry": "Clip H1: the naphthalene-walled member of the same methylene-bridged glycoluril dimer family and the comparator in this study; two linearly fused rings per wall, long axis about 0.70 nm; MMFF-minimised naphthalene surface area 161.5 A^2 per wall, 46.5 A^2 less than anthracene. Guest NMeAc: an N-methylacridinium cation, three six-membered rings fused in a line and therefore flat, with the methyl group on the central ring nitrogen.",
+   "measured": {
+    "Ka": {
+     "value": 259000.0,
+     "display": "(2.59 ± 0.36) × 10^5",
+     "locator": "Table 1, row NMeAc, column H1 [M^-1] PBS"
+    }
+   },
+   "rule": "host_walls_not_extended",
+   "reason": "同一客体，只把主体的墙从蒽缩回萘（每面 π 表面积少 46.5 Å²）：实测 Ka = 2.59 × 10⁵ M⁻¹，是蒽墙的 1/41.5，未达目标。",
+   "plausibility": 3
+  },
+  {
+   "id": "H2-NMeQ",
+   "name": "H2 + NMeQ",
+   "geometry": "Clip H2: two anthracene walls, three linearly fused six-membered rings per wall, long axis of the wall about 0.92 nm; MMFF-minimised anthracene surface area 208.0 A^2 per wall. Four OCH2CH2CH2SO3Na arms make it soluble in water to at least 7 mM. Guest NMeQ: an N-methylquinolinium cation, two fused six-membered rings, flat, with the methyl group on the ring nitrogen; one fused ring fewer than NMeAc.",
+   "measured": {
+    "Ka": {
+     "value": 15000.0,
+     "display": "(1.50 ± 0.05) × 10^4",
+     "locator": "Table 1, row NMeQ, column H2 [M^-1] PBS"
+    }
+   },
+   "rule": "guest_not_extended",
+   "reason": "主体已是蒽墙，但客体少一个稠环：实测 Ka = 1.50 × 10⁴ M⁻¹，是同主体下 NMeAc 的 1/717。",
+   "plausibility": 3
+  },
+  {
+   "id": "H1-NMeQ",
+   "name": "H1 + NMeQ",
+   "geometry": "Clip H1: the naphthalene-walled member of the same methylene-bridged glycoluril dimer family and the comparator in this study; two linearly fused rings per wall, long axis about 0.70 nm; MMFF-minimised naphthalene surface area 161.5 A^2 per wall, 46.5 A^2 less than anthracene. Guest NMeQ: an N-methylquinolinium cation, two fused six-membered rings, flat, with the methyl group on the ring nitrogen; one fused ring fewer than NMeAc.",
+   "measured": {
+    "Ka": {
+     "value": 6340.0,
+     "display": "(6.34 ± 0.08) × 10^3",
+     "locator": "Table 1, row NMeQ, column H1 [M^-1] PBS"
+    }
+   },
+   "rule": "neither_extended",
+   "reason": "主体与客体都少一个稠环：实测 Ka = 6.34 × 10³ M⁻¹，为四者最低。",
+   "plausibility": 2
+  }
+ ],
+ "paper_choice": "H2-NMeAc",
+ "paper_choice_locator": "Design, Synthesis and Characterization of Anthracene-Walled H2（延长墙以增大疏水空腔）；Table 1 与 Conclusion（H2·NMeAc 的 Ka = 1.07 × 10⁷ M⁻¹，比 H1·NMeAc 高 41.5 倍）",
+ "naive_cue": {
+  "heuristic": "只看主体：墙越长越好",
+  "picks": "任一 H2 组合",
+  "is_correct": false,
+  "note": "只认 H2 会在 H2-NMeAc 与 H2-NMeQ 之间二选一，必须同时看客体的稠环数才能定答案。"
+ },
+ "scale": {
+  "input_nm": 0.92,
+  "reasoning_nm": 0.92,
+  "definition": "主体芳香墙的长轴（蒽约 0.92 nm，萘约 0.70 nm），差别即稠环数"
+ },
+ "notes": [
+  "原文给出的几何量是 MMFF 优化的萘与蒽表面积（161.5 与 208.0 Å²，每面相差 46.5 Å²）；墙的长轴（0.70 / 0.92 nm）是萘与蒽的通用几何常识，不是原文数值，仅用于候选描述与尺度标注。",
+  "原文未给出 H1 的侧臂与溶解度，故候选描述只对 H2 写明侧臂与 ≥ 7 mM 溶解度。",
+  "MV 的结构（4,4'-联吡啶鎓，两环以单键相连而非稠合）是通用化学常识，不是本文的表述。",
+  "原文把 Whitesides 的表面积系数写作 “-20 cal mol^-1 K^-1”，按上下文应为 cal mol^-1 Å^-2；本题不用该系数。"
+ ]
+}
