@@ -3226,6 +3226,110 @@
       "engine_families": [
         "evidence_elimination"
       ]
+    },
+    {
+      "status": "pilot",
+      "priority": 1,
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "domains": [
+        "chemistry"
+      ],
+      "physical_conditions": "omega-B97x/6-31G(d) 的势能面驻点与路径，按原数据集；题干写明理论级别。",
+      "input_scale": "偶氮苯分子（约 0.9 nm）",
+      "reasoning_scale": "C–N=N–C 四原子片段（约 0.25–0.30 nm）",
+      "scale_cells": [
+        "0.1-1"
+      ],
+      "scale_limits": "尺度取决定判据的 C–N=N–C 片段，不取整个分子。",
+      "source_basis": "Landscape17（CC BY 4.0）发表的偶氮苯动力学转变网络：2 个极小点、4 个过渡态与 4 条最陡下降路径（608 帧），omega-B97x/6-31G(d)，每个过渡态经 Hessian 验证只有一个负特征值。资产由 tools/build_reaction_assets.py 从本地副本（inputs/landscape17/，不入库）转出，只去掉力列；源文件与资产双哈希见 docs/assets/families/reaction/sources.json。",
+      "code": [
+        "task_families/reaction_path.py",
+        "checkers/reaction_path.py",
+        "tools/build_reaction_assets.py"
+      ],
+      "tests": [
+        "tests/test_reaction_path.py"
+      ],
+      "builder_modules": "族引擎内实现；题卡人工撰写，每个结构与每条判据都记原数据集文件位置供 L1 对照。",
+      "template_review": "2026-10-19 新建（填 C5a 反应路径与过渡态），待 L1/L2 人工审核。",
+      "id": "reaction_mechanism_choice",
+      "name": "过渡态几何 → 反应机理（偶氮苯顺反异构）",
+      "ability": "inference",
+      "concept": "给出一个已发表的过渡态与该分子的两个极小点，按题干印出的分类规则从几何判断它对应哪种运动：先数有几个 C–N=N 角张开到 160° 以上，只有都未张开时才看两环相对 N=N 是共面还是扭转。",
+      "inputs": "三个 XYZ（过渡态 + 两个极小点，附件名不透露哪个是顺式）；分类规则与阈值印在题干里。",
+      "answer_method": "代码按分类规则算出描述符，逐条比对四个机理的预期，恰好一个存活且必须是题卡结论。",
+      "distractor_mechanisms": [
+        "rotation_about_nn（绕 N=N 旋转：需两角未张开且两环扭转 60°–120°）",
+        "concerted_inversion（两个氮同时反转：需两角同时张开）",
+        "no_configuration_change（平面结构、两角都弯曲，实为苯环绕 C–N 转动）"
+      ],
+      "four_choice_validation": "四个机理各自对两个描述符给出完整预期；恰好一个存活；独立检查器重算并重做排除。",
+      "principle": "把机理放回它的几何判据上：几何量决定，不靠记忆已知结论。",
+      "validation": "独立检查器（checkers/reaction_path.py:reaction_mechanism_choice）读取哈希核对的题卡，核对三个附件与资产一致，从题干文本中重新解析三个阈值，用余弦定理与轴向正交框（Decimal）重算角与二面角（出题端用点积与平面法向量、浮点），重做排除并要求唯一存活者即题卡结论。",
+      "limits": "C–N=N–C 二面角在某个 C–N=N 角接近 180° 时病态（定义其中一个平面的三原子趋于共线），因此分类规则先看角、再看二面角，并在有角张开时把二面角判为未定义。 另外：Landscape17 只给驻点与路径，不给机理名称；\"反转/旋转/协同反转\"是偶氮苯文献的习惯叫法，答案完全由题干的分类规则作用于已发表坐标得出，不依赖未引用的论断。这些名称用得是否恰当、四个候选是否该是这四个，须 L1 对照原数据集与文献核对。",
+      "gap": "第一批 3 道（1 个反转过渡态 + 2 个苯环转动过渡态）。本数据集偶氮苯势能面上的四个过渡态全是平面结构，没有旋转过渡态，所以\"旋转\"与\"协同反转\"始终是干扰项，内容分布不均，须 L4 评估。其余五个分子（乙醇、丙二醛、对乙酰氨基酚、水杨酸、阿司匹林）的驻点是构象型的，不属 C5a。",
+      "engine_families": [
+        "reaction_mechanism_choice"
+      ],
+      "independent_checker": "checkers/reaction_path.py:reaction_mechanism_choice",
+      "citation": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x；数据集 Landscape17, doi:10.6084/m9.figshare.29949230（CC BY 4.0）"
+    },
+    {
+      "status": "pilot",
+      "priority": 1,
+      "output": "choice",
+      "output_forms": [
+        "choice"
+      ],
+      "legacy_families": [],
+      "legacy_qa": [],
+      "domains": [
+        "chemistry"
+      ],
+      "physical_conditions": "omega-B97x/6-31G(d) 的势能面驻点与路径，按原数据集；题干写明理论级别。",
+      "input_scale": "偶氮苯分子（约 0.9 nm）",
+      "reasoning_scale": "C–N=N–C 四原子片段（约 0.25–0.30 nm）",
+      "scale_cells": [
+        "0.1-1"
+      ],
+      "scale_limits": "尺度取决定判据的 C–N=N–C 片段，不取整个分子。",
+      "source_basis": "Landscape17（CC BY 4.0）发表的偶氮苯动力学转变网络：2 个极小点、4 个过渡态与 4 条最陡下降路径（608 帧），omega-B97x/6-31G(d)，每个过渡态经 Hessian 验证只有一个负特征值。资产由 tools/build_reaction_assets.py 从本地副本（inputs/landscape17/，不入库）转出，只去掉力列；源文件与资产双哈希见 docs/assets/families/reaction/sources.json。",
+      "code": [
+        "task_families/reaction_path.py",
+        "checkers/reaction_path.py",
+        "tools/build_reaction_assets.py"
+      ],
+      "tests": [
+        "tests/test_reaction_path.py"
+      ],
+      "builder_modules": "族引擎内实现；题卡人工撰写，每个结构与每条判据都记原数据集文件位置供 L1 对照。",
+      "template_review": "2026-10-19 新建（填 C5a 反应路径与过渡态），待 L1/L2 人工审核。",
+      "id": "reaction_geometry_target",
+      "name": "按几何目标选反应路径上的构型",
+      "ability": "design",
+      "concept": "给出几何目标（对 C–N=N 角、两条 C–N 键之差等的窗口），在同一条最陡下降路径或同一张网络的四个构型中选出满足全部目标的那一个；四个附件按种子改名为 candidate-1…4 并重新分配内容，必须测量而不能认出来。",
+      "inputs": "四个 XYZ（candidate-1…4，顺序与命名不含信息）；几何目标与阈值印在题干里。",
+      "answer_method": "代码对每个候选算出受约束的几何量，逐条比对阈值，恰好一个满足全部目标且必须是题卡预期者。",
+      "distractor_mechanisms": [
+        "angle_still_open（路径上更靠过渡态一侧，角还没降进窗口）",
+        "angle_already_closed（更靠极小点一侧，角已降出窗口）",
+        "planar_cis_minimum / planar_trans_minimum / planar_ring_rotation_saddle（平面驻点，没有所需的张开与键长不对称）"
+      ],
+      "four_choice_validation": "每个候选与每个阈值至少相差规定的绝对裕度（角 2°–10°、键长 0.02 Å）；四个候选在受约束的量上互不相同；恰好一个满足全部目标；题干印出的阈值就是代码执行的阈值。",
+      "principle": "设计 = 推断的逆问题：给定几何目标选构型。",
+      "validation": "独立检查器（checkers/reaction_path.py:reaction_geometry_target）读取哈希核对的题卡，按内容（而非附件名）核对四个附件就是题卡的四个候选，从题干文本中重新解析每条目标，用 Decimal 重算并重做判定。",
+      "limits": "C–N=N–C 二面角在某个 C–N=N 角接近 180° 时病态（定义其中一个平面的三原子趋于共线），因此分类规则先看角、再看二面角，并在有角张开时把二面角判为未定义。 这是\"按几何目标选构型\"，不是改变结构的分子设计；是否计为设计题需教授审定（与 scattering_q_design、opal_design 同一保留意见）。",
+      "gap": "第一批 2 道（1 道在路径帧上、1 道在驻点上），只覆盖偶氮苯。",
+      "engine_families": [
+        "reaction_geometry_target"
+      ],
+      "independent_checker": "checkers/reaction_path.py:reaction_geometry_target",
+      "citation": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x；数据集 Landscape17, doi:10.6084/m9.figshare.29949230（CC BY 4.0）"
     }
   ]
 }

@@ -29,11 +29,11 @@
   }
  },
  "summary": {
-  "types_defined": 54,
-  "types_with_running_code": 48,
+  "types_defined": 56,
+  "types_with_running_code": 50,
   "status": {
    "implemented": 2,
-   "pilot": 46,
+   "pilot": 48,
    "existing_legacy": 3,
    "planned": 1,
    "rebuild_needed": 1,
@@ -46,20 +46,20 @@
     "existing_legacy": 2
    },
    "inference": {
-    "pilot": 19,
+    "pilot": 20,
     "planned": 1,
     "existing_legacy": 1,
     "rebuild_needed": 1
    },
    "design": {
-    "pilot": 15,
+    "pilot": 16,
     "blocked": 1
    }
   },
-  "development_instances": 316,
+  "development_instances": 327,
   "instance_failures": 1,
-  "independent_pass": 316,
-  "independent_checked": 316,
+  "independent_pass": 327,
+  "independent_checked": 327,
   "legacy_candidates": 80,
   "legacy_decisions": {
    "retain": 42,
@@ -68,7 +68,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v37",
+ "family_run": "family-pilot-v39",
  "rows": [
   {
    "id": "global_extent",
@@ -314,10 +314,13 @@
     "FA-ANG-BCD",
     "FA-ANG-WP6",
     "FA-ANG-DMBCD",
-    "FA-ANG-7040-OSO"
+    "FA-ANG-7040-OSO",
+    "FA-RXN-TS01-ANG-CB",
+    "FA-RXN-TS01-ANG-CA",
+    "FA-RXN-MIN1-ANG-CB"
    ],
-   "instance_count": 4,
-   "independent_pass": 4,
+   "instance_count": 7,
+   "independent_pass": 7,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "0.1-1"
@@ -477,10 +480,13 @@
     "FA-DIST-6LYZ-SS",
     "FA-DIST-6LYZ-SS30",
     "FA-DIST-1CRN-SS16",
-    "FA-DIST-WP6-C20O22"
+    "FA-DIST-WP6-C20O22",
+    "FA-RXN-TS01-NN",
+    "FA-RXN-MIN1-NN",
+    "FA-RXN-TS01-CN"
    ],
-   "instance_count": 8,
-   "independent_pass": 8,
+   "instance_count": 11,
+   "independent_pass": 11,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "0.1-1"
@@ -3868,6 +3874,123 @@
     "1-10",
     "10-100",
     "100-1000"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "reaction_mechanism_choice",
+   "name": "过渡态几何 → 反应机理（偶氮苯顺反异构）",
+   "ability": "inference",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "给出一个已发表的过渡态与该分子的两个极小点，按题干印出的分类规则从几何判断它对应哪种运动：先数有几个 C–N=N 角张开到 160° 以上，只有都未张开时才看两环相对 N=N 是共面还是扭转。",
+   "domains": [
+    "chemistry"
+   ],
+   "input_scale": "偶氮苯分子（约 0.9 nm）",
+   "reasoning_scale": "C–N=N–C 四原子片段（约 0.25–0.30 nm）",
+   "scale_cells": [
+    "0.1-1"
+   ],
+   "scale_limits": "尺度取决定判据的 C–N=N–C 片段，不取整个分子。",
+   "inputs": "三个 XYZ（过渡态 + 两个极小点，附件名不透露哪个是顺式）；分类规则与阈值印在题干里。",
+   "physical_conditions": "omega-B97x/6-31G(d) 的势能面驻点与路径，按原数据集；题干写明理论级别。",
+   "output_forms": [
+    "choice"
+   ],
+   "source_basis": "Landscape17（CC BY 4.0）发表的偶氮苯动力学转变网络：2 个极小点、4 个过渡态与 4 条最陡下降路径（608 帧），omega-B97x/6-31G(d)，每个过渡态经 Hessian 验证只有一个负特征值。资产由 tools/build_reaction_assets.py 从本地副本（inputs/landscape17/，不入库）转出，只去掉力列；源文件与资产双哈希见 docs/assets/families/reaction/sources.json。",
+   "answer_method": "代码按分类规则算出描述符，逐条比对四个机理的预期，恰好一个存活且必须是题卡结论。",
+   "distractor_mechanisms": [
+    "rotation_about_nn（绕 N=N 旋转：需两角未张开且两环扭转 60°–120°）",
+    "concerted_inversion（两个氮同时反转：需两角同时张开）",
+    "no_configuration_change（平面结构、两角都弯曲，实为苯环绕 C–N 转动）"
+   ],
+   "four_choice_validation": "四个机理各自对两个描述符给出完整预期；恰好一个存活；独立检查器重算并重做排除。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/reaction_path.py",
+    "checkers/reaction_path.py",
+    "tools/build_reaction_assets.py"
+   ],
+   "tests": [
+    "tests/test_reaction_path.py"
+   ],
+   "builder_modules": "族引擎内实现；题卡人工撰写，每个结构与每条判据都记原数据集文件位置供 L1 对照。",
+   "gap": "第一批 3 道（1 个反转过渡态 + 2 个苯环转动过渡态）。本数据集偶氮苯势能面上的四个过渡态全是平面结构，没有旋转过渡态，所以\"旋转\"与\"协同反转\"始终是干扰项，内容分布不均，须 L4 评估。其余五个分子（乙醇、丙二醛、对乙酰氨基酚、水杨酸、阿司匹林）的驻点是构象型的，不属 C5a。",
+   "engine_families": [
+    "reaction_mechanism_choice"
+   ],
+   "independent_checker": "checkers/reaction_path.py:reaction_mechanism_choice",
+   "instance_ids": [
+    "FA-RXN-MECH-TS01",
+    "FA-RXN-MECH-TS11",
+    "FA-RXN-MECH-TS002"
+   ],
+   "instance_count": 3,
+   "independent_pass": 3,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "0.1-1"
+   ],
+   "legacy_decisions": {},
+   "legacy_choice_v01": 0
+  },
+  {
+   "id": "reaction_geometry_target",
+   "name": "按几何目标选反应路径上的构型",
+   "ability": "design",
+   "status": "pilot",
+   "priority": 1,
+   "concept": "给出几何目标（对 C–N=N 角、两条 C–N 键之差等的窗口），在同一条最陡下降路径或同一张网络的四个构型中选出满足全部目标的那一个；四个附件按种子改名为 candidate-1…4 并重新分配内容，必须测量而不能认出来。",
+   "domains": [
+    "chemistry"
+   ],
+   "input_scale": "偶氮苯分子（约 0.9 nm）",
+   "reasoning_scale": "C–N=N–C 四原子片段（约 0.25–0.30 nm）",
+   "scale_cells": [
+    "0.1-1"
+   ],
+   "scale_limits": "尺度取决定判据的 C–N=N–C 片段，不取整个分子。",
+   "inputs": "四个 XYZ（candidate-1…4，顺序与命名不含信息）；几何目标与阈值印在题干里。",
+   "physical_conditions": "omega-B97x/6-31G(d) 的势能面驻点与路径，按原数据集；题干写明理论级别。",
+   "output_forms": [
+    "choice"
+   ],
+   "source_basis": "Landscape17（CC BY 4.0）发表的偶氮苯动力学转变网络：2 个极小点、4 个过渡态与 4 条最陡下降路径（608 帧），omega-B97x/6-31G(d)，每个过渡态经 Hessian 验证只有一个负特征值。资产由 tools/build_reaction_assets.py 从本地副本（inputs/landscape17/，不入库）转出，只去掉力列；源文件与资产双哈希见 docs/assets/families/reaction/sources.json。",
+   "answer_method": "代码对每个候选算出受约束的几何量，逐条比对阈值，恰好一个满足全部目标且必须是题卡预期者。",
+   "distractor_mechanisms": [
+    "angle_still_open（路径上更靠过渡态一侧，角还没降进窗口）",
+    "angle_already_closed（更靠极小点一侧，角已降出窗口）",
+    "planar_cis_minimum / planar_trans_minimum / planar_ring_rotation_saddle（平面驻点，没有所需的张开与键长不对称）"
+   ],
+   "four_choice_validation": "每个候选与每个阈值至少相差规定的绝对裕度（角 2°–10°、键长 0.02 Å）；四个候选在受约束的量上互不相同；恰好一个满足全部目标；题干印出的阈值就是代码执行的阈值。",
+   "legacy_families": [],
+   "legacy_qa": [],
+   "code": [
+    "task_families/reaction_path.py",
+    "checkers/reaction_path.py",
+    "tools/build_reaction_assets.py"
+   ],
+   "tests": [
+    "tests/test_reaction_path.py"
+   ],
+   "builder_modules": "族引擎内实现；题卡人工撰写，每个结构与每条判据都记原数据集文件位置供 L1 对照。",
+   "gap": "第一批 2 道（1 道在路径帧上、1 道在驻点上），只覆盖偶氮苯。",
+   "engine_families": [
+    "reaction_geometry_target"
+   ],
+   "independent_checker": "checkers/reaction_path.py:reaction_geometry_target",
+   "instance_ids": [
+    "FA-RXN-TARGET-ANGLE",
+    "FA-RXN-TARGET-SPEC"
+   ],
+   "instance_count": 2,
+   "independent_pass": 2,
+   "instance_failures": 0,
+   "instance_reasoning_cells": [
+    "0.1-1"
    ],
    "legacy_decisions": {},
    "legacy_choice_v01": 0

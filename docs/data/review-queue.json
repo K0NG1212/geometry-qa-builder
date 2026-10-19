@@ -3,7 +3,7 @@
  "date": "2026-10-19",
  "summary": {
   "scope": "selection",
-  "units_all_active": 50,
+  "units_all_active": 52,
   "units": 49,
   "families": 49,
   "legacy_units": 0,
@@ -404,7 +404,7 @@
      "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/families.py": "1b44f1eab578c983fa0c433d5ba82b86888a12e5a6033b928d69ee0ced4ef88c",
+     "checkers/families.py": "420248f438e9c8f23c6ac9ca4151d385886fec47f8a3b470c548d05e332a304d",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1487,7 +1487,7 @@
      "task_families/conformer_design.py": "c1df20bcb3ca7c59938dcfc28012c37beca3d235e0181495fb2b6d9e9d54a211"
     },
     "L2": {
-     "checkers/families.py": "1b44f1eab578c983fa0c433d5ba82b86888a12e5a6033b928d69ee0ced4ef88c",
+     "checkers/families.py": "420248f438e9c8f23c6ac9ca4151d385886fec47f8a3b470c548d05e332a304d",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -1645,7 +1645,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 7,
+   "instances": 6,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -1722,30 +1722,30 @@
       ]
      },
      {
-      "instance": "FA-COORD-K2CUF4",
-      "question": "The table lists every atom of one conventional cell (cell parameters in the first line of the table) of potassium copper fluoride (K2CuF4, COD 1527502). Treat the crystal as infinite and periodic. Around the Cu atom at fractional (0.0000, 0.0000, 0.0000), how many F atoms lie at the shortest Cu–F distance (atoms within 0.001 Å of it count as the same distance), and what is that distance? Distances are rounded to 0.001 Å.",
+      "instance": "FA-COORD-MGO",
+      "question": "The table lists every atom of one conventional cubic cell of periclase (MgO, COD 1000053). Treat the crystal as infinite and periodic. Around the Mg atom at fractional (0.0000, 0.0000, 0.0000), how many O atoms form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.",
       "options": [
        {
         "label": "A",
-        "value": "4 at 2.074 Å"
+        "value": "8 at 3.652 Å"
        },
        {
         "label": "B",
-        "value": "1 at 1.939 Å"
+        "value": "3 at 2.109 Å"
        },
        {
         "label": "C",
-        "value": "2 at 1.939 Å"
+        "value": "12 at 2.982 Å"
        },
        {
         "label": "D",
-        "value": "6 at 1.939 Å"
+        "value": "6 at 2.109 Å"
        }
       ],
       "inputs": [
-       "FA-COORD-K2CUF4-cell.txt"
+       "FA-COORD-MGO-cell.txt"
       ],
-      "correct_label": "C",
+      "correct_label": "D",
       "audit": [
        {
         "label": "A",
@@ -1759,13 +1759,13 @@
        },
        {
         "label": "C",
-        "rule": "correct",
-        "reason": "含周期映像的最近壳层：2 个，距离 1.9388 Å。"
+        "rule": "same_species_shell",
+        "reason": "数成与中心同种元素的最近壳层。"
        },
        {
         "label": "D",
-        "rule": "whole_coordination_polyhedron",
-        "reason": "把整个配位多面体（6 个，含 1.939–2.074 Å 的较长键）都算作最短距离的一组。"
+        "rule": "correct",
+        "reason": "含周期映像的最近壳层：6 个，距离 2.1085 Å。"
        }
       ]
      }
@@ -2679,7 +2679,7 @@
      "task_families/extent_choice.py": "e1ddb871279c3ae81c1e5e74590674b8f3fd71efdcd2c1c281a722ea123f4bf4"
     },
     "L2": {
-     "checkers/families.py": "1b44f1eab578c983fa0c433d5ba82b86888a12e5a6033b928d69ee0ced4ef88c",
+     "checkers/families.py": "420248f438e9c8f23c6ac9ca4151d385886fec47f8a3b470c548d05e332a304d",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2994,7 +2994,7 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af"
     },
     "L2": {
-     "checkers/families.py": "1b44f1eab578c983fa0c433d5ba82b86888a12e5a6033b928d69ee0ced4ef88c",
+     "checkers/families.py": "420248f438e9c8f23c6ac9ca4151d385886fec47f8a3b470c548d05e332a304d",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3916,7 +3916,7 @@
      "task_families/extinction.py": "f9721343ded2f4de07dfaf787d4b59f4322cbaf782248414430677ddfad71e1f"
     },
     "L2": {
-     "checkers/families.py": "1b44f1eab578c983fa0c433d5ba82b86888a12e5a6033b928d69ee0ced4ef88c",
+     "checkers/families.py": "420248f438e9c8f23c6ac9ca4151d385886fec47f8a3b470c548d05e332a304d",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -4537,13 +4537,13 @@
      "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/families.py": "1b44f1eab578c983fa0c433d5ba82b86888a12e5a6033b928d69ee0ced4ef88c",
+     "checkers/families.py": "420248f438e9c8f23c6ac9ca4151d385886fec47f8a3b470c548d05e332a304d",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 1,
+   "instances": 2,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -4623,54 +4623,54 @@
       ]
      },
      {
-      "instance": "FA-ANG-BCD",
-      "question": "The supplied XYZ is one beta-cyclodextrin host conformer (147 atoms, angstrom). Atoms C4–O3–C37 form the bridging ether linkage between two glucose units, O3 bonded to C4 and C37 as in the source PDB CONECT record (C4 = row 4, O3 = row 45, C37 = row 37; rows counted from 1 after the two XYZ header lines). What is the C4–O3–C37 bond angle at O3 in this supplied conformer?",
+      "instance": "FA-ANG-WP6",
+      "question": "The supplied XYZ is one WP6 (carboxylated pillar[6]arene) host conformer (150 atoms, angstrom); labels are element plus XYZ row. Atoms C3–C1–C4 form an internal angle of the phenylene ring C1-C4-C5-C2-C6-C3 (C3 = row 3, C1 = row 1, C4 = row 4; rows counted from 1 after the two XYZ header lines). What is the C3–C1–C4 bond angle at C1 in this supplied conformer?",
       "options": [
        {
         "label": "A",
-        "value": "105.31",
+        "value": "116.70",
         "unit": "degree"
        },
        {
         "label": "B",
-        "value": "109.47",
+        "value": "117.63",
         "unit": "degree"
        },
        {
         "label": "C",
-        "value": "111.70",
+        "value": "119.94",
         "unit": "degree"
        },
        {
         "label": "D",
-        "value": "116.03",
+        "value": "122.32",
         "unit": "degree"
        }
       ],
       "inputs": [
-       "BCD.xyz"
+       "WP6.xyz"
       ],
-      "correct_label": "D",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
-        "rule": "angle_at_adjacent_atom:O3-C4-C(row 3)",
-        "reason": "测成相邻原子 C4 处的键角，而非题目指定的顶点 O3。"
+        "rule": "angle_at_adjacent_atom:C1-C3-C(row 6)",
+        "reason": "测成相邻原子 C3 处的键角，而非题目指定的顶点 C1。"
        },
        {
         "label": "B",
-        "rule": "idealized_value",
-        "reason": "直接套用理想杂化角 109.47（sp3 tetrahedral），没有测量这一构象。"
+        "rule": "other_neighbor:C3-C1-O(row 12)",
+        "reason": "顶点正确，但另一端选成与 C1 相连的 O(row 12)。"
        },
        {
         "label": "C",
-        "rule": "angle_at_adjacent_atom:O3-C37-O(row 76)",
-        "reason": "测成相邻原子 C37 处的键角，而非题目指定的顶点 O3。"
+        "rule": "correct",
+        "reason": "按向量夹角公式在指定顶点计算；另以 atan2 实现复核。"
        },
        {
         "label": "D",
-        "rule": "correct",
-        "reason": "按向量夹角公式在指定顶点计算；另以 atan2 实现复核。"
+        "rule": "other_neighbor:O(row 12)-C1-C4",
+        "reason": "顶点正确，但一端选成与 C1 相连的 O(row 12)。"
        }
       ]
      }
@@ -5616,6 +5616,156 @@
    }
   },
   {
+   "unit": "reaction_geometry_target",
+   "kind": "family",
+   "ability": "design",
+   "registry_id": "reaction_geometry_target",
+   "generator": "task_families/reaction_path.py",
+   "checker": "checkers/reaction_path.py",
+   "checker_function": "reaction_geometry_target",
+   "bindings": {
+    "L1": {
+     "registry_row": "f4c7212ab64559f8540c3e2a3100b1762906e2f3a86476cf93b2a16642b2d0dc",
+     "task_families/reaction_path.py": "0667b4fbc08c412ab41cd30bde5d5c2bf819d4f0b86883db151c0b023cc9f236"
+    },
+    "L2": {
+     "checkers/reaction_path.py": "2f8063c5f1a835d9919586a6af5304d2d35f5ae133c0141dc3624199bf3fd66f",
+     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
+    }
+   },
+   "L1": "pending",
+   "L2": "pending",
+   "instances": 1,
+   "L1_record": null,
+   "L2_record": null,
+   "card": {
+    "template": {
+     "name": "按几何目标选反应路径上的构型",
+     "concept": "给出几何目标（对 C–N=N 角、两条 C–N 键之差等的窗口），在同一条最陡下降路径或同一张网络的四个构型中选出满足全部目标的那一个；四个附件按种子改名为 candidate-1…4 并重新分配内容，必须测量而不能认出来。",
+     "inputs": "四个 XYZ（candidate-1…4，顺序与命名不含信息）；几何目标与阈值印在题干里。",
+     "physical_conditions": "omega-B97x/6-31G(d) 的势能面驻点与路径，按原数据集；题干写明理论级别。",
+     "reasoning_scale": "C–N=N–C 四原子片段（约 0.25–0.30 nm）",
+     "scale_limits": "尺度取决定判据的 C–N=N–C 片段，不取整个分子。",
+     "source_basis": "Landscape17（CC BY 4.0）发表的偶氮苯动力学转变网络：2 个极小点、4 个过渡态与 4 条最陡下降路径（608 帧），omega-B97x/6-31G(d)，每个过渡态经 Hessian 验证只有一个负特征值。资产由 tools/build_reaction_assets.py 从本地副本（inputs/landscape17/，不入库）转出，只去掉力列；源文件与资产双哈希见 docs/assets/families/reaction/sources.json。",
+     "answer_method": "代码对每个候选算出受约束的几何量，逐条比对阈值，恰好一个满足全部目标且必须是题卡预期者。",
+     "distractor_mechanisms": [
+      "angle_still_open（路径上更靠过渡态一侧，角还没降进窗口）",
+      "angle_already_closed（更靠极小点一侧，角已降出窗口）",
+      "planar_cis_minimum / planar_trans_minimum / planar_ring_rotation_saddle（平面驻点，没有所需的张开与键长不对称）"
+     ],
+     "four_choice_validation": "每个候选与每个阈值至少相差规定的绝对裕度（角 2°–10°、键长 0.02 Å）；四个候选在受约束的量上互不相同；恰好一个满足全部目标；题干印出的阈值就是代码执行的阈值。",
+     "principle": "设计 = 推断的逆问题：给定几何目标选构型。",
+     "validation": "独立检查器（checkers/reaction_path.py:reaction_geometry_target）读取哈希核对的题卡，按内容（而非附件名）核对四个附件就是题卡的四个候选，从题干文本中重新解析每条目标，用 Decimal 重算并重做判定。",
+     "limits": "C–N=N–C 二面角在某个 C–N=N 角接近 180° 时病态（定义其中一个平面的三原子趋于共线），因此分类规则先看角、再看二面角，并在有角张开时把二面角判为未定义。 这是\"按几何目标选构型\"，不是改变结构的分子设计；是否计为设计题需教授审定（与 scattering_q_design、opal_design 同一保留意见）。",
+     "template_review": "2026-10-19 新建（填 C5a 反应路径与过渡态），待 L1/L2 人工审核。"
+    },
+    "samples": [
+     {
+      "instance": "FA-RXN-TARGET-SPEC",
+      "question": "Azobenzene, C6H5-N=N-C6H5, has two distinct configurations about its N=N bond, cis and trans. The structures below are stationary points of its potential energy surface at omega-B97x/6-31G(d), taken from a published kinetic transition network in which every minimum and every transition state was located and verified by Hessian analysis. You are setting up a transition-state refinement for the pathway in which one nitrogen inverts in the plane of the fragment, and need a starting geometry that already shows that distortion: one C-N=N angle opened towards 180 degrees, and the two C-N bonds no longer equal, because the inverting nitrogen shortens its own C-N bond. The four attached files candidate-1.xyz to candidate-4.xyz are four stationary points of the same published network, in no particular order (rows counted from 1 after the two XYZ header lines; the fragment is C6 (row 6) - N13 (row 13) = N14 (row 14) - C15 (row 15)). Required: (opened angle) one of the two C-N=N angles is at least 160 degrees; (C-N asymmetry) the two C-N bond lengths differ by at least 0.05 angstrom. Exactly one of the four meets every requirement. Which candidate should you take?",
+      "options": [
+       {
+        "label": "A",
+        "value": "candidate-1"
+       },
+       {
+        "label": "B",
+        "value": "candidate-2"
+       },
+       {
+        "label": "C",
+        "value": "candidate-3"
+       },
+       {
+        "label": "D",
+        "value": "candidate-4"
+       }
+      ],
+      "inputs": [
+       "candidate-1.xyz",
+       "candidate-2.xyz",
+       "candidate-3.xyz",
+       "candidate-4.xyz"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "planar_trans_minimum",
+        "reason": "不满足 opened angle、C-N asymmetry：angle_max = 114.397°、cn_asymmetry = 0.0000 Å"
+       },
+       {
+        "label": "B",
+        "rule": "planar_ring_rotation_saddle",
+        "reason": "不满足 opened angle、C-N asymmetry：angle_max = 114.188°、cn_asymmetry = 0.0008 Å"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "满足全部目标：angle_max = 179.228°、cn_asymmetry = 0.1183 Å（来源 Landscape17/azobenzene/Conformations/coordsts_0_1.xyz）。"
+       },
+       {
+        "label": "D",
+        "rule": "planar_cis_minimum",
+        "reason": "不满足 opened angle、C-N asymmetry：angle_max = 122.751°、cn_asymmetry = 0.0000 Å"
+       }
+      ]
+     },
+     {
+      "instance": "FA-RXN-TARGET-ANGLE",
+      "question": "Azobenzene, C6H5-N=N-C6H5, has two distinct configurations about its N=N bond, cis and trans. The structures below are stationary points of its potential energy surface at omega-B97x/6-31G(d), taken from a published kinetic transition network in which every minimum and every transition state was located and verified by Hessian analysis. From the transition state that interconverts the two configurations, the published network also stores the approximate steepest-descent path down to the trans minimum: along it the opened C-N=N angle closes again and the N=N bond lengthens back. The four attached files candidate-1.xyz to candidate-4.xyz are four configurations taken from that steepest-descent path, in no particular order (rows counted from 1 after the two XYZ header lines; the fragment is C6 (row 6) - N13 (row 13) = N14 (row 14) - C15 (row 15)). Required: (upper limit) the larger of the two C-N=N angles is at most 132 degrees; (lower limit) the larger of the two C-N=N angles is at least 126 degrees. Exactly one of the four meets every requirement. Which candidate should you take?",
+      "options": [
+       {
+        "label": "A",
+        "value": "candidate-1"
+       },
+       {
+        "label": "B",
+        "value": "candidate-2"
+       },
+       {
+        "label": "C",
+        "value": "candidate-3"
+       },
+       {
+        "label": "D",
+        "value": "candidate-4"
+       }
+      ],
+      "inputs": [
+       "candidate-1.xyz",
+       "candidate-2.xyz",
+       "candidate-3.xyz",
+       "candidate-4.xyz"
+      ],
+      "correct_label": "B",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "angle_already_closed",
+        "reason": "不满足 lower limit：angle_max = 122.812°"
+       },
+       {
+        "label": "B",
+        "rule": "correct",
+        "reason": "满足全部目标：angle_max = 128.765°（来源 Landscape17/azobenzene/SteepestDescent/01/coordsplus_010.xyz）。"
+       },
+       {
+        "label": "C",
+        "rule": "angle_still_open",
+        "reason": "不满足 upper limit：angle_max = 138.299°"
+       },
+       {
+        "label": "D",
+        "rule": "angle_still_open",
+        "reason": "不满足 upper limit：angle_max = 134.905°"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
    "unit": "rotational_line",
    "kind": "family",
    "ability": "inference",
@@ -6073,158 +6223,6 @@
         "label": "D",
         "rule": "second_nearest_reference",
         "reason": "次近的参考构象（距离 32°，正确者 16°）；两者易混。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "stereo_design_selection",
-   "kind": "family",
-   "ability": "design",
-   "registry_id": "stereo_design_selection",
-   "generator": "task_families/stereo.py",
-   "checker": "checkers/stereo.py",
-   "checker_function": "stereo_design_selection",
-   "bindings": {
-    "L1": {
-     "registry_row": "0f2de24667ddcb91f9927776a89a21e8e4b0efe706d479a085ebc7977545f112",
-     "task_families/stereo.py": "6b3b6af008d12b295cd89020110e1259d4941ec02424273e8f5f758e8401c370"
-    },
-    "L2": {
-     "checkers/stereo.py": "70f02daf0cae0c92a6c79fc118cc08334330e93287e688931a653bd927489625",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 1,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "立体构型设计选择",
-     "concept": "给定 S0 与目标（能量降低 ≥1 kcal/mol），只允许改变构型（立体中心手性或双键顺反），从四个候选中选唯一满足者；陷阱：镜像（构型变但能量不变）、只改构象（能量更低但不允许）、构造异构体（键连不同）。",
-     "inputs": "S0 与四个候选 XYZ（均刚性旋转；构造异构体原子顺序不同）；性质证据在审核侧。",
-     "physical_conditions": "同 stereo_property_inference。",
-     "reasoning_scale": "立体中心与整分子",
-     "scale_limits": "候选须满足约束且互不等价（排除镜像/构象重复）。",
-     "source_basis": "QM7-X 立体异构体与构象（CC BY 4.0），15 个分子的全部优化构象",
-     "answer_method": "逐项判定与 S0 的关系（是否只改构型）+ 能量证据（数据集值；镜像按反演对称等于 S0）。",
-     "distractor_mechanisms": [
-      "mirror_image_no_energy_change",
-      "conformation_only_change",
-      "constitution_changed"
-     ],
-     "four_choice_validation": "恰好一项同时满足约束与目标；独立检查器复核每一项。",
-     "principle": "设计 = 推断的逆问题。",
-     "validation": "独立检查器重算关系与能量差。",
-     "limits": "计算证据只对所述理论水平成立。",
-     "template_review": "本轮新建，待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-SDES-7110",
-      "question": "S0 is one conformer of a C3H7N1O2S1 molecule. You may change it only by changing the configuration of its stereo elements (the handedness of stereocentres or the cis/trans arrangement at double bonds): same atoms, same bonds; a change of conformation alone does not count. Goal: a structure whose PBE0+MBD energy (single point at the supplied geometry) is at least 0.0434 eV (1 kcal/mol) lower than that of S0. Candidates A–D have been rigidly rotated and their atom order may differ from S0. Which candidate satisfies both the allowed modification and the goal?",
-      "options": [
-       {
-        "label": "A",
-        "value": "candidate_A.xyz"
-       },
-       {
-        "label": "B",
-        "value": "candidate_B.xyz"
-       },
-       {
-        "label": "C",
-        "value": "candidate_C.xyz"
-       },
-       {
-        "label": "D",
-        "value": "candidate_D.xyz"
-       }
-      ],
-      "inputs": [
-       "S0.xyz",
-       "candidate_A.xyz",
-       "candidate_B.xyz",
-       "candidate_C.xyz",
-       "candidate_D.xyz"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "Geom-m7110-i1-c1-opt",
-        "reason": "只改变构型（非对映体），能量低 0.1763 eV，满足目标。"
-       },
-       {
-        "label": "B",
-        "rule": "Geom-m7038-i1-c1-opt",
-        "reason": "分子式相同但键连不同（构造异构体），违反“键连不变”。"
-       },
-       {
-        "label": "C",
-        "rule": "Geom-m7110-i2-c1-opt",
-        "reason": "能量更低（-0.0962 eV）但只是同一构型的另一构象，不属于允许的修改。"
-       },
-       {
-        "label": "D",
-        "rule": "mirror of Geom-m7110-i2-c2-opt",
-        "reason": "镜像（对映体）：构型改变但能量按反演对称与 S0 完全相同，未达到降低目标。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-SDES-7029",
-      "question": "S0 is one conformer of a C4H8N2S1 molecule. You may change it only by changing the configuration of its stereo elements (the handedness of stereocentres or the cis/trans arrangement at double bonds): same atoms, same bonds; a change of conformation alone does not count. Goal: a structure whose PBE0+MBD energy (single point at the supplied geometry) is at least 0.0434 eV (1 kcal/mol) lower than that of S0. Candidates A–D have been rigidly rotated and their atom order may differ from S0. Which candidate satisfies both the allowed modification and the goal?",
-      "options": [
-       {
-        "label": "A",
-        "value": "candidate_A.xyz"
-       },
-       {
-        "label": "B",
-        "value": "candidate_B.xyz"
-       },
-       {
-        "label": "C",
-        "value": "candidate_C.xyz"
-       },
-       {
-        "label": "D",
-        "value": "candidate_D.xyz"
-       }
-      ],
-      "inputs": [
-       "S0.xyz",
-       "candidate_A.xyz",
-       "candidate_B.xyz",
-       "candidate_C.xyz",
-       "candidate_D.xyz"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "Geom-m7030-i1-c3-opt",
-        "reason": "分子式相同但键连不同（构造异构体），违反“键连不变”。"
-       },
-       {
-        "label": "B",
-        "rule": "mirror of Geom-m7029-i1-c2-opt",
-        "reason": "S0 无手性中心，镜像仍是同一化合物（仅构象镜像），未改变构型且能量相同。"
-       },
-       {
-        "label": "C",
-        "rule": "Geom-m7029-i2-c2-opt",
-        "reason": "只改变构型（非对映体），能量低 0.0590 eV，满足目标。"
-       },
-       {
-        "label": "D",
-        "rule": "Geom-m7029-i1-c4-opt",
-        "reason": "能量更低（-0.0544 eV）但只是同一构型的另一构象，不属于允许的修改。"
        }
       ]
      }
@@ -7792,18 +7790,6 @@
    ]
   },
   {
-   "stratum": "coordination_shell | cod-materials-cell | chemistry 0.1-1",
-   "unit": "coordination_shell",
-   "source": "cod-materials-cell",
-   "cell": "chemistry 0.1-1",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "CNP039"
-   ]
-  },
-  {
    "stratum": "coordination_shell | cod-materials-cell | materials 0.1-1",
    "unit": "coordination_shell",
    "source": "cod-materials-cell",
@@ -8441,6 +8427,30 @@
    ]
   },
   {
+   "stratum": "named_bond_angle | sampl9 | chemistry 0.1-1",
+   "unit": "named_bond_angle",
+   "source": "sampl9",
+   "cell": "chemistry 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNP032"
+   ]
+  },
+  {
+   "stratum": "named_bond_distance | paper-landscape17-azobenzene | chemistry 0.1-1",
+   "unit": "named_bond_distance",
+   "source": "paper-landscape17-azobenzene",
+   "cell": "chemistry 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNP044"
+   ]
+  },
+  {
    "stratum": "named_bond_distance | pdb-bio-nm | biology 0.1-1",
    "unit": "named_bond_distance",
    "source": "pdb-bio-nm",
@@ -8465,18 +8475,6 @@
     "QNP013",
     "QNP014",
     "QNP015"
-   ]
-  },
-  {
-   "stratum": "named_bond_distance | sampl9 | chemistry 0.1-1",
-   "unit": "named_bond_distance",
-   "source": "sampl9",
-   "cell": "chemistry 0.1-1",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "CNP027"
    ]
   },
   {
@@ -8571,6 +8569,18 @@
    ]
   },
   {
+   "stratum": "reaction_geometry_target | paper-landscape17-azobenzene | chemistry 0.1-1",
+   "unit": "reaction_geometry_target",
+   "source": "paper-landscape17-azobenzene",
+   "cell": "chemistry 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CND019"
+   ]
+  },
+  {
    "stratum": "rotational_line | qm7x | quantum 0.1-1",
    "unit": "rotational_line",
    "source": "qm7x",
@@ -8646,18 +8656,6 @@
    "ids": [
     "BNI024",
     "BNI053"
-   ]
-  },
-  {
-   "stratum": "stereo_design_selection | qm7x | chemistry 0.1-1",
-   "unit": "stereo_design_selection",
-   "source": "qm7x",
-   "cell": "chemistry 0.1-1",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "CND003"
    ]
   },
   {
@@ -8798,7 +8796,6 @@
   "QND004": "L0",
   "CNP016": "L0",
   "CNI008": "L0",
-  "CND003": "L0",
   "QNP013": "L0",
   "QNP014": "L0",
   "QNP015": "L0",
@@ -8904,12 +8901,12 @@
   "CND013": "L0",
   "BNP038": "L0",
   "BNP039": "L0",
-  "CNP027": "L0",
   "BNP040": "L0",
   "BNP041": "L0",
   "BNP042": "L0",
   "CNP029": "L0",
   "QNI023": "L0",
+  "CNP032": "L0",
   "QNP023": "L0",
   "QNP024": "L0",
   "QNP025": "L0",
@@ -8939,7 +8936,6 @@
   "BNI048": "L0",
   "MNP034": "L0",
   "CNI032": "L0",
-  "CNP039": "L0",
   "CNI033": "L0",
   "MNI043": "L0",
   "MNP037": "L0",
@@ -8950,7 +8946,9 @@
   "BND021": "L0",
   "CND017": "L0",
   "MND013": "L0",
-  "MND014": "L0"
+  "MND014": "L0",
+  "CNP044": "L0",
+  "CND019": "L0"
  },
  "forms": {
   "BNP014": {
@@ -8980,10 +8978,6 @@
   "CNI008": {
    "form": "family",
    "instance": "FA-SPROP-7089"
-  },
-  "CND003": {
-   "form": "family",
-   "instance": "FA-SDES-7110"
   },
   "QNP013": {
    "form": "family",
@@ -9405,10 +9399,6 @@
    "form": "family",
    "instance": "FA-DIST-1CRN-SS16"
   },
-  "CNP027": {
-   "form": "family",
-   "instance": "FA-DIST-WP6-C20O22"
-  },
   "BNP040": {
    "form": "family",
    "instance": "FC-BNP002-1UBQ"
@@ -9428,6 +9418,10 @@
   "QNI023": {
    "form": "family",
    "instance": "FA-FP-QM7X-7040-D2"
+  },
+  "CNP032": {
+   "form": "family",
+   "instance": "FA-ANG-WP6"
   },
   "QNP023": {
    "form": "family",
@@ -9545,10 +9539,6 @@
    "form": "family",
    "instance": "FA-PEAK-B5H9"
   },
-  "CNP039": {
-   "form": "family",
-   "instance": "FA-COORD-K2CUF4"
-  },
   "CNI033": {
    "form": "family",
    "instance": "FA-PEAK-K2CUF4"
@@ -9592,6 +9582,14 @@
   "MND014": {
    "form": "family",
    "instance": "FA-DES-CHE-FLOW"
+  },
+  "CNP044": {
+   "form": "family",
+   "instance": "FA-RXN-TS01-NN"
+  },
+  "CND019": {
+   "form": "family",
+   "instance": "FA-RXN-TARGET-SPEC"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."

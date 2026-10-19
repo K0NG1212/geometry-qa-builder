@@ -1,0 +1,92 @@
+{
+ "kind": "reaction_sources",
+ "updated": "2026-10-19",
+ "citation": "Carare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230",
+ "license": "CC BY 4.0 (Landscape17); coordinates copied unchanged, forces and energies not republished",
+ "dataset": "Landscape17 (Figshare doi:10.6084/m9.figshare.29949230), local copy inputs/landscape17/ (not in the repository; checksums in its SOURCES.md)",
+ "built_by": "python tools/build_reaction_assets.py --landscape17 inputs/landscape17/extracted/Landscape17",
+ "note": "仅去掉力列与注释行中的能量，坐标逐位照抄；能量留在本文件供审核侧使用。",
+ "assets": {
+  "azobenzene-min-0.xyz": {
+   "source_file": "Landscape17/azobenzene/Conformations/coordsmin_0.xyz",
+   "structure": "local minimum 0",
+   "atoms": 24,
+   "energy_eV": "-15580.731226037506",
+   "level_of_theory": "omega-B97x/6-31G(d) (Psi4), as published in Landscape17",
+   "source_sha256": "fb754f2ec7e02a7559353751efc9ac13a4bc0943f2636292a8489663c906ad1d",
+   "asset_sha256": "ccff3c8d4ad726d74af722727b8eb64fd927f10e34f30a7e076fdc426679ac38"
+  },
+  "azobenzene-min-1.xyz": {
+   "source_file": "Landscape17/azobenzene/Conformations/coordsmin_1.xyz",
+   "structure": "local minimum 1",
+   "atoms": 24,
+   "energy_eV": "-15581.313415605047",
+   "level_of_theory": "omega-B97x/6-31G(d) (Psi4), as published in Landscape17",
+   "source_sha256": "36e897a5a6b0c7c7f4b8380ce73f963f08cd786fd860e8b982014f2c2e44a1f8",
+   "asset_sha256": "6e04d3b12aa683e7abad9db68f99aceaf45c3cbeca47f0beb99d2834e99514f1"
+  },
+  "azobenzene-path-01-plus-004.xyz": {
+   "source_file": "Landscape17/azobenzene/SteepestDescent/01/coordsplus_004.xyz",
+   "structure": "frame 004 of the plus branch of the path from the 0-1 transition state",
+   "atoms": 24,
+   "energy_eV": "-15579.952855870886",
+   "level_of_theory": "omega-B97x/6-31G(d) (Psi4), as published in Landscape17",
+   "source_sha256": "1d872519a40524050e55606a8ad27591a516a93f9c022b5e7144b075272a5652",
+   "asset_sha256": "0b540c1349e6f5e66ea4b4c829872ab410a4ae99d3703d214cf4885d132e0e04"
+  },
+  "azobenzene-path-01-plus-008.xyz": {
+   "source_file": "Landscape17/azobenzene/SteepestDescent/01/coordsplus_008.xyz",
+   "structure": "frame 008 of the same branch",
+   "atoms": 24,
+   "energy_eV": "-15580.074218495376",
+   "level_of_theory": "omega-B97x/6-31G(d) (Psi4), as published in Landscape17",
+   "source_sha256": "82b35e6969d670bc0193110fb59801aeeb7863f65610aca2734e80892da07f36",
+   "asset_sha256": "9d853b6a807d17c743c0402a744d59d74ae4e3cb8c4e15c663215e38d25e951d"
+  },
+  "azobenzene-path-01-plus-010.xyz": {
+   "source_file": "Landscape17/azobenzene/SteepestDescent/01/coordsplus_010.xyz",
+   "structure": "frame 010 of the same branch",
+   "atoms": 24,
+   "energy_eV": "-15580.167187167763",
+   "level_of_theory": "omega-B97x/6-31G(d) (Psi4), as published in Landscape17",
+   "source_sha256": "b378c4f49d45d5275d7d90ed3ad80313137a5324af13600740f3f19aacce7336",
+   "asset_sha256": "79068628daef4ce00c06a957bf2d10f59e70d6732a6d9ab53eaa223b4ada8fd8"
+  },
+  "azobenzene-path-01-plus-016.xyz": {
+   "source_file": "Landscape17/azobenzene/SteepestDescent/01/coordsplus_016.xyz",
+   "structure": "frame 016 of the same branch",
+   "atoms": 24,
+   "energy_eV": "-15580.377748450837",
+   "level_of_theory": "omega-B97x/6-31G(d) (Psi4), as published in Landscape17",
+   "source_sha256": "57eaf504fcb87a57965f81f443240e0bc5181a4fe0333ee5cd7108fbcd779155",
+   "asset_sha256": "59bc32814c7c5612d4c7b8d23de185c96a987475f7d72997d9c43183d4123e81"
+  },
+  "azobenzene-ts-0-0-2.xyz": {
+   "source_file": "Landscape17/azobenzene/Conformations/coordsts_0_0_2.xyz",
+   "structure": "second transition state connecting minimum 0 to itself",
+   "atoms": 24,
+   "energy_eV": "-15580.64383201233",
+   "level_of_theory": "omega-B97x/6-31G(d) (Psi4), as published in Landscape17",
+   "source_sha256": "eab3b5850fa06829797e4789f4992564ddd5f80cc4ed4f1fdb2636bf6cc1ea51",
+   "asset_sha256": "4c2ff5f3610ddae16b53f5a88ab85d0ac19bcf0d01a87cd94fbea73d3f3b1429"
+  },
+  "azobenzene-ts-0-1.xyz": {
+   "source_file": "Landscape17/azobenzene/Conformations/coordsts_0_1.xyz",
+   "structure": "transition state connecting minima 0 and 1",
+   "atoms": 24,
+   "energy_eV": "-15579.475121822603",
+   "level_of_theory": "omega-B97x/6-31G(d) (Psi4), as published in Landscape17",
+   "source_sha256": "5b6a4540ee0c20db8fbdc18e11182cf83cf9009a87df01ba94af4fe54e530ed3",
+   "asset_sha256": "3d5006e3b8bb5de01f5ecf70b74febfe5d82268f210730d6025503f3923fece2"
+  },
+  "azobenzene-ts-1-1.xyz": {
+   "source_file": "Landscape17/azobenzene/Conformations/coordsts_1_1.xyz",
+   "structure": "transition state connecting minimum 1 to itself",
+   "atoms": 24,
+   "energy_eV": "-15581.086358632325",
+   "level_of_theory": "omega-B97x/6-31G(d) (Psi4), as published in Landscape17",
+   "source_sha256": "f535326543f47d72e93d1ae3b46acdd931fc34ae00d429c29873226c358439d4",
+   "asset_sha256": "4b75da5ef692fe83ddd8323c6023c6a1cd3985d9a93ef5978ba0670cf27625f6"
+  }
+ }
+}

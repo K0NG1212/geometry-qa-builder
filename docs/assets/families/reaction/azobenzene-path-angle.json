@@ -1,0 +1,100 @@
+{
+ "kind": "reaction_card",
+ "family": "reaction_geometry_target",
+ "id": "azobenzene-path-angle",
+ "dataset": "landscape17",
+ "citation": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230",
+ "license": "CC BY 4.0 (Landscape17); 坐标逐位照抄，力与能量不随资产发布",
+ "system": "Azobenzene, C6H5-N=N-C6H5, has two distinct configurations about its N=N bond, cis and trans. The structures below are stationary points of its potential energy surface at omega-B97x/6-31G(d), taken from a published kinetic transition network in which every minimum and every transition state was located and verified by Hessian analysis. From the transition state that interconverts the two configurations, the published network also stores the approximate steepest-descent path down to the trans minimum: along it the opened C-N=N angle closes again and the N=N bond lengthens back.",
+ "fragment": "C6 (row 6) - N13 (row 13) = N14 (row 14) - C15 (row 15)",
+ "atoms": {
+  "c_a": 6,
+  "n_a": 13,
+  "n_b": 14,
+  "c_b": 15
+ },
+ "thresholds": {
+  "near_linear_deg": 160,
+  "planar_window_deg": 20,
+  "twisted_window_deg": [
+   60,
+   120
+  ]
+ },
+ "ask": "Which candidate should you take?",
+ "candidate_note": "four configurations taken from that steepest-descent path",
+ "objective": "选出路径上满足给定几何窗口的那一帧：这是\"按几何目标选构型\"，即推断的逆问题。",
+ "constraints": [
+  {
+   "name": "upper limit",
+   "key": "angle_max",
+   "op": "<=",
+   "value": 132,
+   "display": "132",
+   "unit": "degree",
+   "margin": 2.0,
+   "decimals": 3,
+   "text": "the larger of the two C-N=N angles is at most 132 degrees"
+  },
+  {
+   "name": "lower limit",
+   "key": "angle_max",
+   "op": ">=",
+   "value": 126,
+   "display": "126",
+   "unit": "degree",
+   "margin": 2.0,
+   "decimals": 3,
+   "text": "the larger of the two C-N=N angles is at least 126 degrees"
+  }
+ ],
+ "candidates": [
+  {
+   "key": "azobenzene-path-01-plus-004"
+  },
+  {
+   "key": "azobenzene-path-01-plus-008"
+  },
+  {
+   "key": "azobenzene-path-01-plus-010"
+  },
+  {
+   "key": "azobenzene-path-01-plus-016"
+  }
+ ],
+ "files": [
+  {
+   "key": "azobenzene-path-01-plus-004",
+   "asset": "assets/families/reaction/azobenzene-path-01-plus-004.xyz",
+   "locator": "Landscape17/azobenzene/SteepestDescent/01/coordsplus_004.xyz"
+  },
+  {
+   "key": "azobenzene-path-01-plus-008",
+   "asset": "assets/families/reaction/azobenzene-path-01-plus-008.xyz",
+   "locator": "Landscape17/azobenzene/SteepestDescent/01/coordsplus_008.xyz"
+  },
+  {
+   "key": "azobenzene-path-01-plus-010",
+   "asset": "assets/families/reaction/azobenzene-path-01-plus-010.xyz",
+   "locator": "Landscape17/azobenzene/SteepestDescent/01/coordsplus_010.xyz"
+  },
+  {
+   "key": "azobenzene-path-01-plus-016",
+   "asset": "assets/families/reaction/azobenzene-path-01-plus-016.xyz",
+   "locator": "Landscape17/azobenzene/SteepestDescent/01/coordsplus_016.xyz"
+  }
+ ],
+ "expected": "azobenzene-path-01-plus-010",
+ "rules": {
+  "azobenzene-path-01-plus-004": "angle_still_open",
+  "azobenzene-path-01-plus-008": "angle_still_open",
+  "azobenzene-path-01-plus-010": "correct",
+  "azobenzene-path-01-plus-016": "angle_already_closed"
+ },
+ "notes": [
+  "C–N=N–C 二面角在某个 C–N=N 角接近 180° 时是病态的：定义其中一个平面的三个原子趋于共线，二面角会在 0° 与 180° 之间跳变，幅度远超已发表坐标的精度。因此分类规则先看角、再看二面角，并在有角张开时直接把二面角判为未定义。",
+  "四帧的 angle_max 实测为 138.299°、134.905°、128.765°、122.812°，沿路径单调下降；窗口 126°-132° 只套住第三帧，且每一帧与两个边界都相差 2° 以上。",
+  "资产文件名含帧号，但附件按种子改名为 candidate-1…4 并重新分配内容，题面不透露路径顺序。",
+  "这是按几何目标选构型，不是改变结构的分子设计；是否计为设计题需人工审定（与 scattering_q_design、opal_design 同一保留意见）。"
+ ]
+}

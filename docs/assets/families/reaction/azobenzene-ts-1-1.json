@@ -1,0 +1,90 @@
+{
+ "kind": "reaction_card",
+ "family": "reaction_mechanism_choice",
+ "id": "azobenzene-ts-1-1",
+ "dataset": "landscape17",
+ "citation": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230",
+ "license": "CC BY 4.0 (Landscape17); 坐标逐位照抄，力与能量不随资产发布",
+ "system": "Azobenzene, C6H5-N=N-C6H5, has two distinct configurations about its N=N bond, cis and trans. The structures below are stationary points of its potential energy surface at omega-B97x/6-31G(d), taken from a published kinetic transition network in which every minimum and every transition state was located and verified by Hessian analysis.",
+ "fragment": "C6 (row 6) - N13 (row 13) = N14 (row 14) - C15 (row 15)",
+ "atoms": {
+  "c_a": 6,
+  "n_a": 13,
+  "n_b": 14,
+  "c_b": 15
+ },
+ "thresholds": {
+  "near_linear_deg": 160,
+  "planar_window_deg": 20,
+  "twisted_window_deg": [
+   60,
+   120
+  ]
+ },
+ "ask": "Which of the following describes this transition state?",
+ "files": [
+  {
+   "key": "ts",
+   "asset": "assets/families/reaction/azobenzene-ts-1-1.xyz",
+   "locator": "Landscape17/azobenzene/Conformations/coordsts_1_1.xyz（数据集按文件名记为连接极小点 1 与它自身）"
+  },
+  {
+   "key": "min_a",
+   "asset": "assets/families/reaction/azobenzene-min-0.xyz",
+   "locator": "Landscape17/azobenzene/Conformations/coordsmin_0.xyz（极小点 0）"
+  },
+  {
+   "key": "min_b",
+   "asset": "assets/families/reaction/azobenzene-min-1.xyz",
+   "locator": "Landscape17/azobenzene/Conformations/coordsmin_1.xyz（极小点 1）"
+  }
+ ],
+ "hypotheses": [
+  {
+   "rule": "inversion_at_one_nitrogen",
+   "text": "It interconverts the two configurations by inversion at one nitrogen: the C-N=N angle at that nitrogen opens towards 180 degrees within the plane of the fragment, while the other nitrogen keeps its bent geometry.",
+   "predicts": {
+    "near_linear_count": 1,
+    "ring_plane": "undefined"
+   },
+   "locator": "分类规则（题干给出）；结构见 Landscape17/azobenzene/Conformations/coordsts_1_1.xyz（数据集按文件名记为连接极小点 1 与它自身）",
+   "reason": "只有一个 C–N=N 角张开到 160° 以上时才成立。"
+  },
+  {
+   "rule": "rotation_about_nn",
+   "text": "It interconverts the two configurations by rotation about the N=N bond: the two rings twist out of a common plane while both C-N=N angles stay bent.",
+   "predicts": {
+    "near_linear_count": 0,
+    "ring_plane": "twisted"
+   },
+   "locator": "分类规则（题干给出）；结构见 Landscape17/azobenzene/Conformations/coordsts_1_1.xyz（数据集按文件名记为连接极小点 1 与它自身）",
+   "reason": "需要两个角都未张开、而且两环相对 N=N 扭转到 60°-120° 之间。"
+  },
+  {
+   "rule": "concerted_inversion",
+   "text": "It interconverts the two configurations by concerted inversion at both nitrogens: both C-N=N angles open towards 180 degrees at the same time.",
+   "predicts": {
+    "near_linear_count": 2,
+    "ring_plane": "undefined"
+   },
+   "locator": "分类规则（题干给出）；结构见 Landscape17/azobenzene/Conformations/coordsts_1_1.xyz（数据集按文件名记为连接极小点 1 与它自身）",
+   "reason": "需要两个 C–N=N 角同时张开到 160° 以上。"
+  },
+  {
+   "rule": "no_configuration_change",
+   "text": "It does not interconvert the two configurations at all: it is a planar structure in which both C-N=N angles stay bent, so the motion is a rotation of one phenyl ring about its C-N bond.",
+   "predicts": {
+    "near_linear_count": 0,
+    "ring_plane": "planar"
+   },
+   "locator": "分类规则（题干给出）；结构见 Landscape17/azobenzene/Conformations/coordsts_1_1.xyz（数据集按文件名记为连接极小点 1 与它自身）",
+   "reason": "需要两个角都未张开、而且两环共面。",
+   "mechanism_conclusion": true
+  }
+ ],
+ "notes": [
+  "Landscape17 只给驻点与路径，不给机理名称。选项中\"反转 / 旋转 / 协同反转\"是偶氮苯文献里对这几种运动的习惯叫法；本题的正确答案完全由题干印出的分类规则作用于已发表坐标得出，不依赖任何未引用的论断。这些名称用得是否恰当属 L1 人工核对。",
+  "C–N=N–C 二面角在某个 C–N=N 角接近 180° 时是病态的：定义其中一个平面的三个原子趋于共线，二面角会在 0° 与 180° 之间跳变，幅度远超已发表坐标的精度。因此分类规则先看角、再看二面角，并在有角张开时直接把二面角判为未定义。",
+  "该过渡态的两个 C–N=N 角实测为 114.188° 与 112.885°，C–N=N–C 二面角 179.960°，与反式极小点（114.395°/114.397°，179.993°）同属平面反式构型。"
+ ]
+}

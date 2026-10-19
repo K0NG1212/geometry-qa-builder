@@ -17,7 +17,7 @@
  },
  "summary": {
   "selected": 160,
-  "reserve": 156,
+  "reserve": 167,
   "out_of_range": [],
   "abilities": {
    "perception": 59,
@@ -43,8 +43,8 @@
    "cell": "chemistry 0.1-1",
    "domain": "chemistry",
    "bin": "0.1-1",
-   "available": 39,
-   "eligible": 39,
+   "available": 50,
+   "eligible": 50,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -61,15 +61,6 @@
      "pending": null
     },
     {
-     "id": "CNP027",
-     "ability": "perception",
-     "form": "family",
-     "unit": "named_bond_distance",
-     "instance": "FA-DIST-WP6-C20O22",
-     "source": "sampl9",
-     "pending": null
-    },
-    {
      "id": "CNP029",
      "ability": "perception",
      "form": "family",
@@ -79,12 +70,21 @@
      "pending": null
     },
     {
-     "id": "CNP039",
+     "id": "CNP032",
      "ability": "perception",
      "form": "family",
-     "unit": "coordination_shell",
-     "instance": "FA-COORD-K2CUF4",
-     "source": "cod-materials-cell",
+     "unit": "named_bond_angle",
+     "instance": "FA-ANG-WP6",
+     "source": "sampl9",
+     "pending": null
+    },
+    {
+     "id": "CNP044",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "FA-RXN-TS01-NN",
+     "source": "paper-landscape17-azobenzene",
      "pending": null
     },
     {
@@ -115,15 +115,6 @@
      "pending": null
     },
     {
-     "id": "CND003",
-     "ability": "design",
-     "form": "family",
-     "unit": "stereo_design_selection",
-     "instance": "FA-SDES-7110",
-     "source": "qm7x",
-     "pending": null
-    },
-    {
      "id": "CND012",
      "ability": "design",
      "form": "family",
@@ -139,6 +130,15 @@
      "unit": "design_choice",
      "instance": "FA-DES-RAN-BROMIDE",
      "source": "paper-rando-bambusuril",
+     "pending": null
+    },
+    {
+     "id": "CND019",
+     "ability": "design",
+     "form": "family",
+     "unit": "reaction_geometry_target",
+     "instance": "FA-RXN-TARGET-SPEC",
+     "source": "paper-landscape17-azobenzene",
      "pending": null
     }
    ],
@@ -159,6 +159,16 @@
      "form": "family",
      "unit": "stereo_design_selection",
      "instance": "FA-SDES-7033",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CND003",
+     "ability": "design",
+     "form": "family",
+     "unit": "stereo_design_selection",
+     "instance": "FA-SDES-7110",
      "source": "qm7x",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -190,6 +200,16 @@
      "unit": "design_choice",
      "instance": "FA-DES-RAN-NITRATE",
      "source": "paper-rando-bambusuril",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CND018",
+     "ability": "design",
+     "form": "family",
+     "unit": "reaction_geometry_target",
+     "instance": "FA-RXN-TARGET-ANGLE",
+     "source": "paper-landscape17-azobenzene",
      "pending": null,
      "reason": "本格已满 10 道"
     },
@@ -294,6 +314,36 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "CNI035",
+     "ability": "inference",
+     "form": "family",
+     "unit": "reaction_mechanism_choice",
+     "instance": "FA-RXN-MECH-TS01",
+     "source": "paper-landscape17-azobenzene",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNI036",
+     "ability": "inference",
+     "form": "family",
+     "unit": "reaction_mechanism_choice",
+     "instance": "FA-RXN-MECH-TS11",
+     "source": "paper-landscape17-azobenzene",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNI037",
+     "ability": "inference",
+     "form": "family",
+     "unit": "reaction_mechanism_choice",
+     "instance": "FA-RXN-MECH-TS002",
+     "source": "paper-landscape17-azobenzene",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "CNP012",
      "ability": "perception",
      "form": "family",
@@ -364,6 +414,16 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "CNP027",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "FA-DIST-WP6-C20O22",
+     "source": "sampl9",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "CNP028",
      "ability": "perception",
      "form": "family",
@@ -394,16 +454,6 @@
      "reason": "本格已满 10 道"
     },
     {
-     "id": "CNP032",
-     "ability": "perception",
-     "form": "family",
-     "unit": "named_bond_angle",
-     "instance": "FA-ANG-WP6",
-     "source": "sampl9",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
      "id": "CNP033",
      "ability": "perception",
      "form": "family",
@@ -424,6 +474,16 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "CNP039",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "FA-COORD-K2CUF4",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "CNP040",
      "ability": "perception",
      "form": "family",
@@ -432,9 +492,59 @@
      "source": "cod-materials-cell",
      "pending": null,
      "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP041",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "FA-RXN-TS01-ANG-CB",
+     "source": "paper-landscape17-azobenzene",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP042",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "FA-RXN-TS01-ANG-CA",
+     "source": "paper-landscape17-azobenzene",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP043",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "FA-RXN-MIN1-ANG-CB",
+     "source": "paper-landscape17-azobenzene",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP045",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "FA-RXN-MIN1-NN",
+     "source": "paper-landscape17-azobenzene",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP046",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "FA-RXN-TS01-CN",
+     "source": "paper-landscape17-azobenzene",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 39 道，其中经独立检查 39 道"
+   "rationale": "可用 50 道，其中经独立检查 50 道"
   },
   {
    "cell": "chemistry 1-10",
@@ -3349,7 +3459,6 @@
   "BNP040",
   "BNP041",
   "BNP042",
-  "CND003",
   "CND004",
   "CND005",
   "CND006",
@@ -3361,6 +3470,7 @@
   "CND012",
   "CND013",
   "CND017",
+  "CND019",
   "CNI008",
   "CNI011",
   "CNI012",
@@ -3382,13 +3492,13 @@
   "CNP024",
   "CNP025",
   "CNP026",
-  "CNP027",
   "CNP029",
+  "CNP032",
   "CNP034",
   "CNP035",
   "CNP036",
   "CNP037",
-  "CNP039",
+  "CNP044",
   "MND001",
   "MND002",
   "MND003",

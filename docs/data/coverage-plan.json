@@ -3,7 +3,7 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 316,
+  "current_total": 327,
   "capped_total": 160,
   "over_target_cells": [
    "quantum 0.1-1",
@@ -19,7 +19,7 @@
    "biology 1-10",
    "biology 10-100"
   ],
-  "provisional_total": 316,
+  "provisional_total": 327,
   "ability_gaps": 2,
   "gap_slots": 2,
   "gaps_by_best_route": {
@@ -369,12 +369,12 @@
    "domain": "chemistry",
    "cell": "0.1-1",
    "target": 10,
-   "current": 39,
-   "provisional": 39,
+   "current": 50,
+   "provisional": 50,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 18,
+     "current": 24,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -419,7 +419,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 13,
+     "current": 16,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -438,6 +438,12 @@
       {
        "family": "hbond_criteria",
        "name": "按几何判据识别氢键",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "reaction_mechanism_choice",
+       "name": "过渡态几何 → 反应机理（偶氮苯顺反异构）",
        "kind": "ready",
        "status": "pilot"
       },
@@ -473,7 +479,7 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 8,
+     "current": 10,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -492,6 +498,12 @@
       {
        "family": "isotopologue_design",
        "name": "单氘代位点设计",
+       "kind": "ready",
+       "status": "pilot"
+      },
+      {
+       "family": "reaction_geometry_target",
+       "name": "按几何目标选反应路径上的构型",
        "kind": "ready",
        "status": "pilot"
       },

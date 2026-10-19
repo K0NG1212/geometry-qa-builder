@@ -5100,6 +5100,193 @@
    "source": "Chetry, Sarkar, Bakhtian & Hirscher, \"Influence of Structural Determinants on Dihydrogen Adsorption and Isotopologue Separation in Nanoporous Metal-Organic Frameworks\", ACS Appl. Mater. Interfaces (2026), doi:10.1021/acsami.5c24726 (Europe PMC PMC13022808)；设计卡逐项记录原文位置（docs/assets/families/design/chetry2026-throughput.json）",
    "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
    "scope": "候选的结构描述取自论文（转述，不转载原文段落或图）；实测性质表只在审核侧，考生看不到。只依据题干给出的目标与候选结构描述，加通用科学知识作答；不需要也不允许查阅论文。"
+  },
+  {
+   "id": "FA-RXN-TS01-ANG-CB",
+   "family": "named_bond_angle",
+   "asset": "assets/families/reaction/azobenzene-ts-0-1.xyz",
+   "source": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230；资产构建与来源哈希见 docs/assets/families/reaction/sources.json",
+   "license": "CC BY 4.0 (Landscape17)；坐标逐位照抄，力与能量不随资产发布",
+   "atoms": [
+    {
+     "row": 15,
+     "name": "C15",
+     "element": "C"
+    },
+    {
+     "row": 14,
+     "name": "N14",
+     "element": "N"
+    },
+    {
+     "row": 13,
+     "name": "N13",
+     "element": "N"
+    }
+   ],
+   "context": "The supplied XYZ is a published transition state of azobenzene at omega-B97x/6-31G(d) (24 atoms, angstrom); rows are counted from 1 after the two header lines.",
+   "linkage": "the azo linkage C6-N13=N14-C15 of azobenzene, as published in the Landscape17 network",
+   "scope": "XYZ 为 Landscape17 已发表的驻点坐标（omega-B97x/6-31G(d)），只去掉力列；只量这一个构型，不外推到实验或其他泛函。"
+  },
+  {
+   "id": "FA-RXN-TS01-ANG-CA",
+   "family": "named_bond_angle",
+   "asset": "assets/families/reaction/azobenzene-ts-0-1.xyz",
+   "source": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230；资产构建与来源哈希见 docs/assets/families/reaction/sources.json",
+   "license": "CC BY 4.0 (Landscape17)；坐标逐位照抄，力与能量不随资产发布",
+   "atoms": [
+    {
+     "row": 6,
+     "name": "C6",
+     "element": "C"
+    },
+    {
+     "row": 13,
+     "name": "N13",
+     "element": "N"
+    },
+    {
+     "row": 14,
+     "name": "N14",
+     "element": "N"
+    }
+   ],
+   "context": "The supplied XYZ is a published transition state of azobenzene at omega-B97x/6-31G(d) (24 atoms, angstrom); rows are counted from 1 after the two header lines.",
+   "linkage": "the azo linkage C6-N13=N14-C15 of azobenzene, as published in the Landscape17 network",
+   "scope": "XYZ 为 Landscape17 已发表的驻点坐标（omega-B97x/6-31G(d)），只去掉力列；只量这一个构型，不外推到实验或其他泛函。"
+  },
+  {
+   "id": "FA-RXN-MIN1-ANG-CB",
+   "family": "named_bond_angle",
+   "asset": "assets/families/reaction/azobenzene-min-1.xyz",
+   "source": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230；资产构建与来源哈希见 docs/assets/families/reaction/sources.json",
+   "license": "CC BY 4.0 (Landscape17)；坐标逐位照抄，力与能量不随资产发布",
+   "atoms": [
+    {
+     "row": 15,
+     "name": "C15",
+     "element": "C"
+    },
+    {
+     "row": 14,
+     "name": "N14",
+     "element": "N"
+    },
+    {
+     "row": 13,
+     "name": "N13",
+     "element": "N"
+    }
+   ],
+   "context": "The supplied XYZ is a published local minimum of azobenzene at omega-B97x/6-31G(d) (24 atoms, angstrom); rows are counted from 1 after the two header lines.",
+   "linkage": "the azo linkage C6-N13=N14-C15 of azobenzene, as published in the Landscape17 network",
+   "scope": "XYZ 为 Landscape17 已发表的驻点坐标（omega-B97x/6-31G(d)），只去掉力列；只量这一个构型，不外推到实验或其他泛函。"
+  },
+  {
+   "id": "FA-RXN-TS01-NN",
+   "family": "named_bond_distance",
+   "asset": "assets/families/reaction/azobenzene-ts-0-1.xyz",
+   "source": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230；资产构建与来源哈希见 docs/assets/families/reaction/sources.json",
+   "license": "CC BY 4.0 (Landscape17)；坐标逐位照抄，力与能量不随资产发布",
+   "atoms": [
+    {
+     "row": 13,
+     "name": "N13",
+     "element": "N"
+    },
+    {
+     "row": 14,
+     "name": "N14",
+     "element": "N"
+    }
+   ],
+   "context": "The supplied XYZ is a published transition state of azobenzene at omega-B97x/6-31G(d) (24 atoms, angstrom); rows are counted from 1 after the two header lines.",
+   "bond": "the N=N bond of the azo linkage C6-N13=N14-C15 of azobenzene, as published in the Landscape17 network",
+   "scope": "XYZ 为 Landscape17 已发表的驻点坐标（omega-B97x/6-31G(d)），只去掉力列；只量这一个构型，不外推到实验或其他泛函。"
+  },
+  {
+   "id": "FA-RXN-MIN1-NN",
+   "family": "named_bond_distance",
+   "asset": "assets/families/reaction/azobenzene-min-1.xyz",
+   "source": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230；资产构建与来源哈希见 docs/assets/families/reaction/sources.json",
+   "license": "CC BY 4.0 (Landscape17)；坐标逐位照抄，力与能量不随资产发布",
+   "atoms": [
+    {
+     "row": 13,
+     "name": "N13",
+     "element": "N"
+    },
+    {
+     "row": 14,
+     "name": "N14",
+     "element": "N"
+    }
+   ],
+   "context": "The supplied XYZ is a published local minimum of azobenzene at omega-B97x/6-31G(d) (24 atoms, angstrom); rows are counted from 1 after the two header lines.",
+   "bond": "the N=N bond of the azo linkage C6-N13=N14-C15 of azobenzene, as published in the Landscape17 network",
+   "scope": "XYZ 为 Landscape17 已发表的驻点坐标（omega-B97x/6-31G(d)），只去掉力列；只量这一个构型，不外推到实验或其他泛函。"
+  },
+  {
+   "id": "FA-RXN-TS01-CN",
+   "family": "named_bond_distance",
+   "asset": "assets/families/reaction/azobenzene-ts-0-1.xyz",
+   "source": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230；资产构建与来源哈希见 docs/assets/families/reaction/sources.json",
+   "license": "CC BY 4.0 (Landscape17)；坐标逐位照抄，力与能量不随资产发布",
+   "atoms": [
+    {
+     "row": 15,
+     "name": "C15",
+     "element": "C"
+    },
+    {
+     "row": 14,
+     "name": "N14",
+     "element": "N"
+    }
+   ],
+   "context": "The supplied XYZ is a published transition state of azobenzene at omega-B97x/6-31G(d) (24 atoms, angstrom); rows are counted from 1 after the two header lines.",
+   "bond": "the C15-N14 bond of the azo linkage C6-N13=N14-C15 of azobenzene, as published in the Landscape17 network",
+   "scope": "XYZ 为 Landscape17 已发表的驻点坐标（omega-B97x/6-31G(d)），只去掉力列；只量这一个构型，不外推到实验或其他泛函。"
+  },
+  {
+   "id": "FA-RXN-MECH-TS01",
+   "family": "reaction_mechanism_choice",
+   "asset": "assets/families/reaction/azobenzene-ts-0-1.json",
+   "source": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230；资产构建与来源哈希见 docs/assets/families/reaction/sources.json",
+   "license": "CC BY 4.0 (Landscape17)；坐标逐位照抄，力与能量不随资产发布",
+   "scope": "三个附件都是 Landscape17 已发表的驻点坐标；只依据题干给出的分类规则与所给坐标作答，不需要也不允许查阅数据集或文献。"
+  },
+  {
+   "id": "FA-RXN-MECH-TS11",
+   "family": "reaction_mechanism_choice",
+   "asset": "assets/families/reaction/azobenzene-ts-1-1.json",
+   "source": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230；资产构建与来源哈希见 docs/assets/families/reaction/sources.json",
+   "license": "CC BY 4.0 (Landscape17)；坐标逐位照抄，力与能量不随资产发布",
+   "scope": "三个附件都是 Landscape17 已发表的驻点坐标；只依据题干给出的分类规则与所给坐标作答，不需要也不允许查阅数据集或文献。"
+  },
+  {
+   "id": "FA-RXN-MECH-TS002",
+   "family": "reaction_mechanism_choice",
+   "asset": "assets/families/reaction/azobenzene-ts-0-0-2.json",
+   "source": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230；资产构建与来源哈希见 docs/assets/families/reaction/sources.json",
+   "license": "CC BY 4.0 (Landscape17)；坐标逐位照抄，力与能量不随资产发布",
+   "scope": "三个附件都是 Landscape17 已发表的驻点坐标；只依据题干给出的分类规则与所给坐标作答，不需要也不允许查阅数据集或文献。"
+  },
+  {
+   "id": "FA-RXN-TARGET-ANGLE",
+   "family": "reaction_geometry_target",
+   "asset": "assets/families/reaction/azobenzene-path-angle.json",
+   "source": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230；资产构建与来源哈希见 docs/assets/families/reaction/sources.json",
+   "license": "CC BY 4.0 (Landscape17)；坐标逐位照抄，力与能量不随资产发布",
+   "scope": "四个附件都是 Landscape17 已发表的坐标，附件名与顺序不含信息；只依据题干给出的几何目标与所给坐标作答。"
+  },
+  {
+   "id": "FA-RXN-TARGET-SPEC",
+   "family": "reaction_geometry_target",
+   "asset": "assets/families/reaction/azobenzene-inversion-spec.json",
+   "source": "Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, \"Global properties of the energy landscape: a testing and training arena for machine learned potentials\", npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x; dataset Landscape17, doi:10.6084/m9.figshare.29949230；资产构建与来源哈希见 docs/assets/families/reaction/sources.json",
+   "license": "CC BY 4.0 (Landscape17)；坐标逐位照抄，力与能量不随资产发布",
+   "scope": "四个附件都是 Landscape17 已发表的坐标，附件名与顺序不含信息；只依据题干给出的几何目标与所给坐标作答。"
   }
  ]
 }

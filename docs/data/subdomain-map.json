@@ -7,13 +7,12 @@
   "level1": 32,
   "leaves": 89,
   "meaningful_pixels": 74,
-  "pixels_with_questions": 43,
-  "empty_meaningful_pixels": 31,
+  "pixels_with_questions": 44,
+  "empty_meaningful_pixels": 30,
   "pixels_with_enumerator": 25,
-  "leaves_with_questions": 45,
+  "leaves_with_questions": 46,
   "empty_level1": [
    "P7",
-   "C5",
    "C6",
    "M7"
   ],
@@ -22,7 +21,7 @@
    "materials -> physics": 11,
    "chemistry -> physics": 4
   },
-  "active_questions": 316,
+  "active_questions": 327,
   "questions_outside_meaningful_pixels": [],
   "planning_total": 2500,
   "mean_target_per_pixel": 34
@@ -825,13 +824,25 @@
    "meaningful": false
   },
   {
-   "questions": 0,
+   "questions": 11,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
+    "perception": 6,
+    "inference": 3,
+    "design": 2
    },
-   "ids": [],
+   "ids": [
+    "CNP041",
+    "CNP042",
+    "CNP043",
+    "CNP044",
+    "CNP045",
+    "CNP046",
+    "CNI035",
+    "CNI036",
+    "CNI037",
+    "CND018",
+    "CND019"
+   ],
    "enumerated_estimate": 0,
    "l1": "C5",
    "domain": "chemistry",
@@ -2909,13 +2920,25 @@
    "name": "分子笼与自组装"
   },
   {
-   "questions": 0,
+   "questions": 11,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
-    "design": 0
+    "perception": 6,
+    "inference": 3,
+    "design": 2
    },
-   "ids": [],
+   "ids": [
+    "CNP041",
+    "CNP042",
+    "CNP043",
+    "CNP044",
+    "CNP045",
+    "CNP046",
+    "CNI035",
+    "CNI036",
+    "CNI037",
+    "CND018",
+    "CND019"
+   ],
    "enumerated_estimate": 0,
    "leaf": "C5a",
    "l1": "C5",
@@ -6049,6 +6072,50 @@
   ],
   "MND014": [
    "MOF 设计 · 30 K 下 D₂ 吸附量 ≥ 5 mmol g⁻¹ 且选择性 ≥ 2 的框架（四选一）",
+   "design"
+  ],
+  "CNP041": [
+   "偶氮苯反转过渡态 · C15–N14–N13 键角",
+   "perception"
+  ],
+  "CNP042": [
+   "偶氮苯反转过渡态 · C6–N13–N14 键角",
+   "perception"
+  ],
+  "CNP043": [
+   "偶氮苯反式极小点 · C15–N14–N13 键角",
+   "perception"
+  ],
+  "CNP044": [
+   "偶氮苯反转过渡态 · N=N 键长",
+   "perception"
+  ],
+  "CNP045": [
+   "偶氮苯反式极小点 · N=N 键长",
+   "perception"
+  ],
+  "CNP046": [
+   "偶氮苯反转过渡态 · C15–N14 键长",
+   "perception"
+  ],
+  "CNI035": [
+   "偶氮苯过渡态机理判定 · 连接顺式与反式的过渡态（四选一）",
+   "inference"
+  ],
+  "CNI036": [
+   "偶氮苯过渡态机理判定 · 反式一侧的过渡态（四选一）",
+   "inference"
+  ],
+  "CNI037": [
+   "偶氮苯过渡态机理判定 · 顺式一侧的过渡态（四选一）",
+   "inference"
+  ],
+  "CND018": [
+   "偶氮苯路径设计 · 张开角落在 126°–132° 的路径帧（四选一）",
+   "design"
+  ],
+  "CND019": [
+   "偶氮苯构型设计 · 满足反转规格的起始驻点（四选一）",
    "design"
   ]
  }
