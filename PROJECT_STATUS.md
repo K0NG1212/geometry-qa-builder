@@ -2,7 +2,13 @@
 
 > 交接入口：[HANDOFF_2026-10-19.md](HANDOFF_2026-10-19.md)（最新增量）；[HANDOFF_2026-10-18.md](HANDOFF_2026-10-18.md)（证据题两族与子领域/旭日图）；[HANDOFF_2026-10-06.md](HANDOFF_2026-10-06.md)（协作方式与判断原则、批量选题规则、第六次会议记录）；[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（来源路线、代码地图、流程与经验）；[HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史。
 
-## 最新：C5a 反应路径与过渡态填上——Landscape17 偶氮苯，11 道新题（2026-10-19，Claude Code 会话，模型 claude-opus-5）
+## 演示脚本（2026-10-20，Claude Code 会话，模型 claude-opus-5）
+
+- `tools/demo_independent_checker.py`：取一个已入库的题型族实例，先按原样跑一次独立检查器，再分别改答案键、改题干里印出的阈值、改附件里的一个数字、改审核侧资产的哈希，各跑一次；**只有第一行应当 pass**。只读仓库，不写文件。
+- 在 `reaction_mechanism_choice`、`reaction_geometry_target`、`design_choice`、`evidence_quantity` 四个族上验证过，`--instance` 可换。给会议现场演示"检查器确实能抓出被动过的题"用。
+- **题库未改动**，active 仍为 327，最新运行仍为 `runs/family-pilot-v39`。
+
+## C5a 反应路径与过渡态填上——Landscape17 偶氮苯，11 道新题（2026-10-19，Claude Code 会话，模型 claude-opus-5）
 
 - **先找论文，没找到；改用数据集。** 约 25 组检索后没有一篇催化论文能同时满足设计题路线① 的四个条件，系统性原因与逐篇排除记录见 [DESIGN_CANDIDATES.md](DESIGN_CANDIDATES.md) 第八节。顺手查清了子领域草案里标着"许可待查"的两个数据集：**Landscape17 为 CC BY 4.0、53 MB**，RGD1-CNHO 为 CC BY 4.0、1.4 GB（未下）。
 - **用户 2026-10-19 确认"只下 D1"**：Landscape17（Figshare doi:10.6084/m9.figshare.29949230，md5 与 Figshare 记录一致），放 `inputs/landscape17/`（不入库），来源与校验和见该目录 `SOURCES.md`。
