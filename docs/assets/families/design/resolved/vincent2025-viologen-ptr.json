@@ -1,0 +1,139 @@
+{
+ "kind": "design_card",
+ "family": "design_choice",
+ "id": "vincent2025-viologen-ptr",
+ "paper": "paper-vincent-molecular-clips",
+ "citation": "Vincent, King, Murkli & Isaacs, \"Aromatic Wall Extension of Glycoluril-Derived Molecular Clips Enhances Binding of Planar Aromatic Dyes\", Chem. Eur. J. (2025), doi:10.1002/chem.202502177 (Europe PMC PMC12415320)",
+ "short_citation": "Vincent et al., Chem. Eur. J. (2025)",
+ "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+ "setting": "Methylene-bridged glycoluril dimers, called molecular clips, bind a guest inside a cleft between two roughly parallel dialkoxyaromatic side walls. With the planar cationic dyes used here the guest stacks between the walls and its cationic group sits at the ureidyl carbonyl portals. Two clips differing only in their walls were made: H1 with naphthalene walls and H2 with anthracene walls. Apparent 1:1 binding constants Ka were measured by direct or competitive UV/Vis or fluorescence titration in phosphate buffered saline (PBS) at room temperature, every titration in duplicate.",
+ "goal": "You are choosing a clip-dye pair for a titration that runs at tens of micromolar, so a moderate but reliable affinity is enough.",
+ "ask": "Which candidate pair should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "Ka": {
+   "label": "apparent 1:1 binding constant Ka (M^-1), PBS, room temperature",
+   "locator": "Table 1"
+  }
+ },
+ "constraints": [
+  {
+   "key": "affinity",
+   "property": "Ka",
+   "op": ">=",
+   "value": 50000.0,
+   "display": "5 × 10^4 M^-1",
+   "text": "the measured binding constant in PBS at room temperature is at least 5 × 10^4 M^-1"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "H1-MV",
+   "name": "H1 + MV",
+   "geometry": "Clip H1: the naphthalene-walled member of the same methylene-bridged glycoluril dimer family and the comparator in this study; two linearly fused rings per wall, long axis about 0.70 nm; MMFF-minimised naphthalene surface area 161.5 A^2 per wall, 46.5 A^2 less than anthracene. Guest MV: methyl viologen, 1,1'-dimethyl-4,4'-bipyridinium. Its two six-membered rings are joined by a single bond instead of being fused, so they are not held coplanar and twist relative to each other; each ring nitrogen carries a methyl group, giving a dication.",
+   "measured": {
+    "Ka": {
+     "value": 112000.0,
+     "display": "(1.12 ± 0.02) × 10^5",
+     "locator": "Table 1, row MV, column H1 [M^-1] PBS",
+     "source": {
+      "table": "Table 1",
+      "row": "MV",
+      "column": "H1 [M^-1] PBS"
+     }
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "H2-MV",
+   "name": "H2 + MV",
+   "geometry": "Clip H2: two anthracene walls, three linearly fused six-membered rings per wall, long axis of the wall about 0.92 nm; MMFF-minimised anthracene surface area 208.0 A^2 per wall. Four OCH2CH2CH2SO3Na arms make it soluble in water to at least 7 mM. Guest MV: methyl viologen, 1,1'-dimethyl-4,4'-bipyridinium. Its two six-membered rings are joined by a single bond instead of being fused, so they are not held coplanar and twist relative to each other; each ring nitrogen carries a methyl group, giving a dication.",
+   "measured": {
+    "Ka": {
+     "value": 25900.0,
+     "display": "(2.59 ± 0.14) × 10^4",
+     "locator": "Table 1, row MV, column H2 [M^-1] PBS",
+     "source": {
+      "table": "Table 1",
+      "row": "MV",
+      "column": "H2 [M^-1] PBS"
+     }
+    }
+   },
+   "rule": "extended_walls_weaken_this_guest",
+   "reason": "同一客体换成蒽墙反而变弱：实测 Ka 从 1.12 × 10⁵ 降到 2.59 × 10⁴ M⁻¹（0.23 倍）。MV 是原文 14 种染料中唯一在延长墙后结合变弱的一个；原文未对这一例外给出解释。",
+   "plausibility": 3
+  },
+  {
+   "id": "H2-NMeQ",
+   "name": "H2 + NMeQ",
+   "geometry": "Clip H2: two anthracene walls, three linearly fused six-membered rings per wall, long axis of the wall about 0.92 nm; MMFF-minimised anthracene surface area 208.0 A^2 per wall. Four OCH2CH2CH2SO3Na arms make it soluble in water to at least 7 mM. Guest NMeQ: an N-methylquinolinium cation, two fused six-membered rings, flat, with the methyl group on the ring nitrogen; one fused ring fewer than NMeAc.",
+   "measured": {
+    "Ka": {
+     "value": 15000.0,
+     "display": "(1.50 ± 0.05) × 10^4",
+     "locator": "Table 1, row NMeQ, column H2 [M^-1] PBS",
+     "source": {
+      "table": "Table 1",
+      "row": "NMeQ",
+      "column": "H2 [M^-1] PBS"
+     }
+    }
+   },
+   "rule": "measured_inferior_analogue",
+   "reason": "实测 Ka = 1.50 × 10⁴ M⁻¹，未达目标。",
+   "plausibility": 3
+  },
+  {
+   "id": "H1-NMeQ",
+   "name": "H1 + NMeQ",
+   "geometry": "Clip H1: the naphthalene-walled member of the same methylene-bridged glycoluril dimer family and the comparator in this study; two linearly fused rings per wall, long axis about 0.70 nm; MMFF-minimised naphthalene surface area 161.5 A^2 per wall, 46.5 A^2 less than anthracene. Guest NMeQ: an N-methylquinolinium cation, two fused six-membered rings, flat, with the methyl group on the ring nitrogen; one fused ring fewer than NMeAc.",
+   "measured": {
+    "Ka": {
+     "value": 6340.0,
+     "display": "(6.34 ± 0.08) × 10^3",
+     "locator": "Table 1, row NMeQ, column H1 [M^-1] PBS",
+     "source": {
+      "table": "Table 1",
+      "row": "NMeQ",
+      "column": "H1 [M^-1] PBS"
+     }
+    }
+   },
+   "rule": "measured_inferior_analogue",
+   "reason": "实测 Ka = 6.34 × 10³ M⁻¹，为四者最低。",
+   "plausibility": 2
+  }
+ ],
+ "paper_choice": "H1-MV",
+ "paper_choice_locator": "Influence of π-Extension of Aromatic Walls of Host on Host·Dye Binding Affinity（逐个客体列出 H2/H1 的倍数，MV 为 0.23 倍，是唯一小于 1 的一项）；Table 1 的 MV 行",
+ "naive_cue": {
+  "heuristic": "蒽墙的 π 表面积更大，总是结合更强",
+  "picks": "H2-MV",
+  "is_correct": false,
+  "note": "本题正是该启发式失效的实测反例：扩大墙面反而把 Ka 压到目标以下。"
+ },
+ "scale": {
+  "input_nm": 0.92,
+  "reasoning_nm": 0.92,
+  "definition": "主体芳香墙的长轴（蒽约 0.92 nm，萘约 0.70 nm），差别即稠环数"
+ },
+ "notes": [
+  "原文只报告 MV 的 0.23 倍这一事实，没有解释机理；本题的答案由实测 Ka 确定，候选描述只陈述 MV 的联吡啶鎓几何（两环以单键相连、不共平面），不替原文下结论。",
+  "若 L1/L4 认为“未解释的反常”不宜作设计题，本题应整题退役而不是改数值。"
+ ],
+ "paper_xml": {
+  "path": "inputs/papers/vincent2025/vincent2025-PMC12415320.xml",
+  "sha256": "3f2b8d2f1a0c15c2594e096253739d4597b386b087f3709210376d1d225068ad"
+ },
+ "derived_from_card": "assets/families/design/vincent2025-viologen.json",
+ "resolved_from": {
+  "pointer_card": "assets/families/design/pointers/vincent2025-viologen-ptr.json",
+  "pointer_sha256": "a5fa8675448f24a1bc02563fe21c0262bc75dd32b1dd460ba942c046b9a47ebe",
+  "paper_xml": "inputs/papers/vincent2025/vincent2025-PMC12415320.xml",
+  "paper_xml_sha256": "3f2b8d2f1a0c15c2594e096253739d4597b386b087f3709210376d1d225068ad",
+  "tool": "tools/resolve_design_cards.py"
+ }
+}

@@ -1,0 +1,209 @@
+{
+ "kind": "design_card",
+ "family": "design_choice",
+ "id": "chetry2026-sieving-ptr",
+ "paper": "paper-chetry-mof-isotopologue",
+ "citation": "Chetry, Sarkar, Bakhtian & Hirscher, \"Influence of Structural Determinants on Dihydrogen Adsorption and Isotopologue Separation in Nanoporous Metal-Organic Frameworks\", ACS Appl. Mater. Interfaces (2026), doi:10.1021/acsami.5c24726 (Europe PMC PMC13022808)",
+ "short_citation": "Chetry et al., ACS Appl. Mater. Interfaces (2026)",
+ "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+ "setting": "Dihydrogen isotopologues can be separated in a nanoporous framework by kinetic quantum sieving: the thermal de Broglie wavelength of H2 is longer than that of D2, so in a pore whose aperture is comparable to that wavelength H2 meets the higher diffusion barrier and the heavier D2 diffuses faster; the effect grows as the temperature falls. All four candidates below are rigid frameworks, so framework flexibility plays no part, and the paper treats them as lacking accessible open metal sites, although its Zeo++ analysis does report an open metal site density for one of them (noted in candidates.txt). Each framework was exposed to a 1:1 D2:H2 mixture at 100 mbar and 30 K for 10 min, and the selectivity S(D2/H2) and the D2 uptake were then read off the thermal desorption spectrum.",
+ "goal": "You need the sorbent for an enrichment stage: it has to reach a useful separation factor and still take up enough D2 per gram for a cycle to be worth running.",
+ "ask": "Which candidate framework should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "S_30K": {
+   "label": "D2/H2 selectivity at Texp = 30 K (TDS)",
+   "locator": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)"
+  },
+  "uptake_30K": {
+   "label": "D2 uptake at Texp = 30 K (mmol g^-1, TDS)",
+   "locator": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)"
+  }
+ },
+ "constraints": [
+  {
+   "key": "selectivity",
+   "property": "S_30K",
+   "op": ">=",
+   "value": 12,
+   "display": "12",
+   "text": "the measured D2/H2 selectivity at an exposure temperature of 30 K is at least 12"
+  },
+  {
+   "key": "capacity",
+   "property": "uptake_30K",
+   "op": ">=",
+   "value": 2,
+   "display": "2 mmol g^-1",
+   "text": "the measured D2 uptake under the same conditions is at least 2 mmol g^-1"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "UTSA-16(Co)",
+   "name": "UTSA-16(Co), a cobalt citrate framework",
+   "geometry": "Table 1 gives a pore size of 3.4-4.4 A, one step wider than the tightest; the rigid citrate linker also generates tight pores. Zeo++ classes it as ultramicroporous only, and finds no open metal sites.",
+   "measured": {
+    "S_30K": {
+     "value": 15.0,
+     "display": "15",
+     "locator": "Section \"Dihydrogen Isotopologues Separation\": \"higher selectivity (SD2/H2 = 15)\"",
+     "source": {
+      "section": "Dihydrogen Isotopologues Separation",
+      "quote": "higher selectivity (SD2/H2 = 15)",
+      "display": "15",
+      "subject": "UTSA-16(Co)"
+     }
+    },
+    "uptake_30K": {
+     "value": 2.7,
+     "display": "2.7 mmol g^-1",
+     "locator": "Section \"Dihydrogen Isotopologues Separation\": \"compromised D2 uptake (2.7 mmol g^-1)\"",
+     "source": {
+      "section": "Dihydrogen Isotopologues Separation",
+      "quote": "compromised D2 uptake (2.7 mmol g^-1)",
+      "display": "2.7 mmol g^-1",
+      "subject": "UTSA-16(Co)"
+     }
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3,
+   "paper_name": "UTSA-16(Co)"
+  },
+  {
+   "id": "Cu-tetrazolate",
+   "name": "Cu-tetrazolate, a copper tetrazolate framework",
+   "geometry": "Table 1 gives a pore size of 3.2-3.6 A, the tightest of the four; the short rigid tetrazolate linker is what generates so narrow an aperture. Zeo++ classes it as ultramicroporous only, and finds no open metal sites.",
+   "measured": {
+    "S_30K": {
+     "value": 16.0,
+     "display": "> 16",
+     "locator": "Section \"Conclusions\": \"SD2/H2 > 16 at 30 K\"",
+     "source": {
+      "section": "Conclusions",
+      "quote": "SD2/H2 > 16 at 30 K",
+      "display": "> 16",
+      "subject": "Cu-tetrazolate"
+     },
+     "bound": "lower"
+    },
+    "uptake_30K": {
+     "value": 0.2,
+     "display": "0.2 mmol g^-1",
+     "locator": "Section \"Dihydrogen Isotopologues Separation\": \"only 0.2 mmol g^-1\"",
+     "source": {
+      "section": "Dihydrogen Isotopologues Separation",
+      "quote": "only 0.2 mmol g^-1",
+      "display": "0.2 mmol g^-1",
+      "subject": "Cu-tetrazolate"
+     }
+    }
+   },
+   "rule": "narrowest_pore_cue",
+   "reason": "孔口最窄、选择性确实最高（原文 > 16），但实测 D₂ 吸附量只有 0.2 mmol g⁻¹，容量差一个数量级。“孔越窄越好”在容量上立刻失效。",
+   "plausibility": 3,
+   "paper_name": "Cu-tetrazolate"
+  },
+  {
+   "id": "Cu-4Py-Me",
+   "name": "Cu-4Py-Me, the copper triazolyl-isophthalate [Cu(Me-4py-trz-ia)]",
+   "geometry": "Table 1 gives a single pore size of 5.5 A, the widest aperture of the four. Zeo++ classes it as ultramicroporous only, and finds no open metal sites.",
+   "measured": {
+    "S_30K": {
+     "value": 8.0,
+     "display": "8",
+     "locator": "Section \"Dihydrogen Isotopologues Separation\": \"moderate selectivity SD2/H2 = 8\"",
+     "source": {
+      "section": "Dihydrogen Isotopologues Separation",
+      "quote": "moderate selectivity SD2/H2 = 8",
+      "display": "8",
+      "subject": "Cu-4Py-Me"
+     }
+    },
+    "uptake_30K": {
+     "value": 9.7,
+     "display": "9.7 mmol g^-1",
+     "locator": "Section \"Dihydrogen Isotopologues Separation\": \"high D2 uptake of 9.7 mmol g^-1\"",
+     "source": {
+      "section": "Dihydrogen Isotopologues Separation",
+      "quote": "high D2 uptake of 9.7 mmol g^-1",
+      "display": "9.7 mmol g^-1",
+      "subject": "Cu-4Py-Me"
+     }
+    }
+   },
+   "rule": "pore_too_wide",
+   "reason": "孔口 5.5 Å 远宽于量子筛分所需，实测选择性只有 8，未达 12；它的吸附量最高（9.7 mmol g⁻¹）却不解决选择性。",
+   "plausibility": 3,
+   "paper_name": "Cu-4Py-Me"
+  },
+  {
+   "id": "Ag-Bpz",
+   "name": "Ag-Bpz, a silver bipyrazolate framework",
+   "geometry": "Table 1 gives a pore size of 3.5-8 A: Zeo++ puts the aperture at 3.5 A but finds the pore volume dominated by supermicropores at 3.5 and 8 A, and the framework is highly interpenetrated. Zeo++ also finds open metal sites here, at a density of 7.9 mmol cm^-3.",
+   "measured": {
+    "S_30K": {
+     "value": 5.5,
+     "display": "5.5",
+     "locator": "Section \"Dihydrogen Isotopologues Separation\": \"selectivity of SD2/H2 = 5.5\"",
+     "source": {
+      "section": "Dihydrogen Isotopologues Separation",
+      "quote": "selectivity of SD2/H2 = 5.5",
+      "display": "5.5",
+      "subject": "Ag-Bpz"
+     }
+    },
+    "uptake_30K": {
+     "value": 3.8,
+     "display": "3.8 mmol g^-1",
+     "locator": "Section \"Dihydrogen Isotopologues Separation\": \"D2 uptakes of 3.8 mmol g^-1\"",
+     "source": {
+      "section": "Dihydrogen Isotopologues Separation",
+      "quote": "D2 uptakes of 3.8 mmol g^-1",
+      "display": "3.8 mmol g^-1",
+      "subject": "Ag-Bpz"
+     }
+    }
+   },
+   "rule": "interpenetrated_network",
+   "reason": "孔口（3.5 Å）与最窄的一档相当，却只测到 5.5 的选择性：主要孔容来自 3.5 与 8 Å 两档且骨架高度互穿，原文把它较低的选择性与吸附量归于这种互穿结构。“孔口窄”不足以保证筛分。",
+   "plausibility": 3,
+   "paper_name": "Ag-Bpz"
+  }
+ ],
+ "paper_choice": "UTSA-16(Co)",
+ "paper_choice_locator": "Conclusions：“Cu-tetrazolate (3.2-3.6 A, S > 16 at 30 K) and UTSA-16(Co) (3.4-4.4 A, S = 15) demonstrate high selectivity, although with inherently limited uptake”，并把 Cu-4Py-Me 列为“practical compromise”；Results 给出四者的 S 与 D₂ 吸附量",
+ "naive_cue": {
+  "heuristic": "量子筛分靠窄孔，所以选孔口最窄的",
+  "picks": "Cu-tetrazolate",
+  "is_correct": false,
+  "note": "最窄的孔确实给出最高选择性，却把容量压到 0.2 mmol g⁻¹；要同时满足两项必须退一档孔径。"
+ },
+ "scale": {
+  "input_nm": 0.8,
+  "reasoning_nm": 0.44,
+  "definition": "决定动力学量子筛分的孔口直径（四个候选为 0.32–0.80 nm；判据取孔口上限一侧）"
+ },
+ "notes": [
+  "Cu-4Py-Me 的 D₂ 吸附量在正文为 9.7 mmol g⁻¹、在结论为 10.9 mmol g⁻¹，原文自相矛盾；本卡用正文值，且两个取值都不改变两道题的答案（它在容量题上都达标、在选择性题上都不达标）。",
+  "Cu-tetrazolate 的 30 K 选择性原文只给 “> 16”（正文仅称“四者中最高”，未给数值），故按下界记录并由代码限制其用法。",
+  "Ag-Bpz 在表 1 列有 7.9 mmol cm⁻³ 的开放金属位密度，但正文把它与其余三者一并归为“缺少可接近的开放金属位”；候选描述两头都写明，约束不使用该项。",
+  "正文在讨论趋势时把 Cu-tetrazolate 的孔径写作“3.4 Å”，与表 1 的 3.2–3.6 Å 不同；候选描述用表 1。",
+  "Ag-Bpz 的孔径在表 1 为 3.5–8 Å，而 Characterization of MOFs 的 Zeo++ 结果称“孔口 3.5 Å，主要贡献来自 3.5 与 8 Å 的超微孔”；候选描述两者都写明，不替原文取舍。",
+  "原文在趋势段落称这四者“缺少可接近的开放金属位”，但 Zeo++ 段落为 Ag-Bpz 给出 7.9 mmol cm⁻³ 的开放金属位密度，原文自相矛盾；题干与候选描述把两种说法都交给考生，约束不使用该项。",
+  "柔性 MOF（[Cu2(Et-trz-ia)2]、[Cu2(nPr-trz-ia)2]）与 Ni-MOF-74(Co) 未作候选：前者的 77 K 选择性在摘要、正文与结论中分别为 1.4–2.3、2.3 与 1.6–2.4，不自洽；后者靠开放金属位而非孔口几何，机制不同。"
+ ],
+ "paper_xml": {
+  "path": "inputs/papers/chetry2026/chetry2026-PMC13022808.xml",
+  "sha256": "0b55aa4f1f3703ed42c3dbe7996735f2b6cfa773021cd50c348503b79a2d25c1"
+ },
+ "derived_from_card": "assets/families/design/chetry2026-sieving.json",
+ "resolved_from": {
+  "pointer_card": "assets/families/design/pointers/chetry2026-sieving-ptr.json",
+  "pointer_sha256": "a6f54832329b069950edd74b0eaf4b44992c188d8f221702606caf334bc39cc9",
+  "paper_xml": "inputs/papers/chetry2026/chetry2026-PMC13022808.xml",
+  "paper_xml_sha256": "0b55aa4f1f3703ed42c3dbe7996735f2b6cfa773021cd50c348503b79a2d25c1",
+  "tool": "tools/resolve_design_cards.py"
+ }
+}
