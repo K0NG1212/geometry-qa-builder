@@ -27,16 +27,18 @@ SKIP = ('xref',)
 NOT_PROSE = ('table-wrap', 'fig', 'supplementary-material', 'title', 'label')
 
 
-def _flat(node, skip):
+def _flat(node, skip, depth=0):
+    """depth counts enclosing <sup> elements: only the outermost superscript is marked with a caret."""
     out = []
     for n in node.childNodes:
         if n.nodeType == n.TEXT_NODE or n.nodeType == n.CDATA_SECTION_NODE:
             out.append(n.data)
         elif n.nodeType == n.ELEMENT_NODE and n.tagName not in SKIP and n.tagName not in skip:
-            inner = _flat(n, skip)
-            if n.tagName == 'sup':
+            sup = n.tagName == 'sup'
+            inner = _flat(n, skip, depth + sup)
+            if sup:
                 inner = re.sub(r'[\[\]]', '', inner).strip().replace('−', '-').replace('–', '-')
-                out.append('^' + inner if inner else '')
+                out.append(('^' if inner and depth == 0 else '') + inner)
             else:
                 out.append(inner)
     return ''.join(out)

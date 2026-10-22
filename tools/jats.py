@@ -9,7 +9,9 @@ Rendering rules, the same for table cells, header labels and section text:
   * <xref> (citation and footnote markers) is dropped;
   * <sup>x</sup> becomes "^x"; square brackets inside a superscript are dropped (a footnote marker glued to an
     exponent, "10<sup>7[</sup><xref/><sup>]</sup>", reads "10^7"), and so is a superscript left empty;
-    a minus sign or en dash inside a superscript becomes "-" ("M<sup>−1</sup>" reads "M^-1");
+    a minus sign or en dash inside a superscript becomes "-" ("M<sup>−1</sup>" reads "M^-1"); a superscript nested
+    in a superscript adds no second caret (some publishers wrap exponents twice: "cm<sup><sup>–3</sup></sup>" reads
+    "cm^-3");
   * <sub>x</sub> is kept as plain text ("NO<sub>3</sub>" reads "NO3");
   * soft hyphens (U+00AD) are removed and runs of whitespace collapse to one space.
 XML entities are decoded by the parser ("&gt; 16" reads "> 16").
@@ -25,18 +27,18 @@ def load(path):
     return ET.parse(str(path)).getroot()
 
 
-def _text(elem, skip):
+def _text(elem, skip, in_sup=False):
     parts = [elem.text or '']
     for child in elem:
         tag = child.tag
         if tag in SKIP or tag in skip:
             pass
         elif tag == 'sup':
-            inner = _text(child, skip).replace('[', '').replace(']', '').strip().translate(SUP_DASHES)
+            inner = _text(child, skip, True).replace('[', '').replace(']', '').strip().translate(SUP_DASHES)
             if inner:
-                parts.append('^' + inner)
+                parts.append(inner if in_sup else '^' + inner)
         else:
-            parts.append(_text(child, skip))
+            parts.append(_text(child, skip, in_sup))
         parts.append(child.tail or '')
     return ''.join(parts)
 

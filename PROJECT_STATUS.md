@@ -2,6 +2,17 @@
 
 > 交接入口：[HANDOFF_2026-10-21.md](HANDOFF_2026-10-21.md)（当前唯一主线 + 搁置的想法）；[HANDOFF_2026-10-19.md](HANDOFF_2026-10-19.md)（现状数字与待决事项）；[HANDOFF_2026-10-18.md](HANDOFF_2026-10-18.md)（证据题两族与子领域/旭日图）；[HANDOFF_2026-10-06.md](HANDOFF_2026-10-06.md)（协作方式与判断原则、批量选题规则、第六次会议记录）；[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（来源路线、代码地图、流程与经验）；[HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史。
 
+## B2：检索候选论文并用代码预筛表格（2026-10-22，Claude Code 会话，模型 claude-opus-5-5）
+
+- **检索**（只查元数据）：Europe PMC 官方 REST 接口，查询式与过滤条件在 `templates/paper-search.json`（开放获取、CC BY、全文在 Europe PMC、排除综述、2015–2026），工具 `tools/search_papers.py`。6 组查询（主客体、多孔分离、链长、环大小、二硫键工程、层间距膜）共 633 篇，**已用过的 3 篇设计题论文全部找回**（召回检查，见配置 `known_good`）。结果 `runs/paper-search-v01/`。
+- **下载**（用户 2026-10-22 批准"全部下载"，并要求放 D 盘）：630 个 JATS XML，共 80.3 MB，来自 Europe PMC `/{PMCID}/fullTextXML`，全部 CC BY。实际存放于 `D:\GeoBench-data\paper-candidates\`，仓库内 `inputs/paper-candidates` 是指向它的目录联接（与 `runs/` 相同做法；不得用 `rm -rf`）。每个文件的来源、大小、SHA-256、日期记在该目录 `SOURCES.json`。首次 5 个网络错误，续传后 630/630。
+- **预筛** `tools/prefilter_tables.py`（只解析不执行）：保留"至少 4 行数据、至少 1 列 4 个以上数值，且表头或表题写明单位或测量量"的表，再按关键词分档（表题为精修统计、模拟、对接、药代、配方、文献比较等 → 排除；表题或列名出现结合常数、选择性、吸附量、Tm 等 → 强档；其余 → 仅形状）。结果 `runs/paper-prefilter-v04/`（含 `candidates.md` 可读清单）：
+  - 630 篇中 232 篇全文无表格（数据在图或补充材料），86 篇有表但形状不符，**312 篇保留**；其中 **强档 187**、仅形状 100、排除 25。
+  - 按查询的强档数：主客体 106、多孔分离 34、链长 22、层间距膜 17、环大小 8、二硫键工程 3。
+- **校准时修掉的三处问题**：表题里写单位、列名是化合物名的表（Rando Table 1）原先被漏掉；出版社把上标套两层（`<sup><sup>–3</sup></sup>`）渲染成 `^^-3`，`tools/jats.py` 与 `checkers/paper_sources.py` 同步改为只加一个 `^`（6 张解析卡逐字节不变）；测量量关键词只认单数（"constants" 不命中），新测试抓出后改正。v01–v03 为中间版本，保留不删。
+- **已知局限**：强档里约三分之一偏药理（受体结合 Ki、IC50），主要来自主客体查询里过宽的 "receptor"、"cavity"（会匹配 oral cavity）等词；收紧查询记为搁置想法。预筛不判断几何是否决定性质、数值是实测还是计算——那是 B3 与 L1 的事。
+- 新增 `tests/test_paper_search.py`（11 项，不联网）；系统页统计已重新导出。**题库未改动**，active 仍为 327。
+
 ## B1b：6 道设计题改由解析卡生成，运行 v40（2026-10-21，Claude Code 会话，模型 claude-opus-5-5）
 
 - **做了什么**：`templates/family-manifest.json` 中 CND014–017、MND013–014 的 `asset` 从手抄卡换成 `docs/assets/families/design/resolved/*-ptr.json`（实测值由代码从论文 JATS XML 读出），`source` 写明指针卡与解析卡。题号、实例号、目录号都不变；没有用 admission-map 的 supersede（那是给重做旧题用的）。出题代码与检查器代码均未改。
