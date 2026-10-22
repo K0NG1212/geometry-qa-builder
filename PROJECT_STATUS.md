@@ -2,6 +2,15 @@
 
 > 交接入口：[HANDOFF_2026-10-21.md](HANDOFF_2026-10-21.md)（当前唯一主线 + 搁置的想法）；[HANDOFF_2026-10-19.md](HANDOFF_2026-10-19.md)（现状数字与待决事项）；[HANDOFF_2026-10-18.md](HANDOFF_2026-10-18.md)（证据题两族与子领域/旭日图）；[HANDOFF_2026-10-06.md](HANDOFF_2026-10-06.md)（协作方式与判断原则、批量选题规则、第六次会议记录）；[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（来源路线、代码地图、流程与经验）；[HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史。
 
+## B1b：6 道设计题改由解析卡生成，运行 v40（2026-10-21，Claude Code 会话，模型 claude-opus-5-5）
+
+- **做了什么**：`templates/family-manifest.json` 中 CND014–017、MND013–014 的 `asset` 从手抄卡换成 `docs/assets/families/design/resolved/*-ptr.json`（实测值由代码从论文 JATS XML 读出），`source` 写明指针卡与解析卡。题号、实例号、目录号都不变；没有用 admission-map 的 supersede（那是给重做旧题用的）。出题代码与检查器代码均未改。
+- **运行 runs/family-pilot-v40**（种子 geobench-family-v1，与 v39 相同）：生成 327/328（唯一失败仍为 FA-CONF-7063-max_dipole），独立检查 327/327。
+- **与 v39 逐条比较**：学生包 327/327、数值学生包 186/186、阶段记录 327/327 完全相同；答案键 321 道相同，6 道设计题只在卡片编号、原文位置、资产哈希、来源说明四处不同，正确答案与选项审核不变。
+- **导出与入库**：`export_family_workbench.py`（完整重放通过）→ `admit_family_instances.py --date 2026-10-21` → 第 9、10 步全部导出脚本。catalog 中每条记录的运行号与审核日期按惯例刷新为 v40 / 2026-10-21，其余改动只有这 6 道的来源说明；行尾保持 CRLF。
+- **结果**：active 仍为 327，能力 114 / 144 / 69，格式检查仍 21 道低严重度，子领域统计不变。
+- 旧手抄卡 `docs/assets/families/design/*.json` 保留（v39 及更早的运行要用它们重放）。
+
 ## 主线完成：设计卡的实测值改由代码从论文 XML 读取（2026-10-21，Claude Code 会话，模型 claude-opus-5-5）
 
 - **做法**：6 张设计卡各派生一张指针卡（`docs/assets/families/design/pointers/`），每个实测值不再手填，而是指向原文的**表格单元格**（vincent2025、rando2025 氯仿）或**正文短引文**（chetry2026 全部；rando2025 乙腈值来自补充材料 Table S3，指向正文引用它的那句）。`tools/resolve_design_cards.py` 用 `tools/jats.py` 从本地 XML 读出数值，写成普通设计卡（`docs/assets/families/design/resolved/`）；出题端 `paper_design.py` 不改。XML 不入库，所以解析放在出题之前，出题与重放不需要 XML。

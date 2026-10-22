@@ -99,9 +99,11 @@ class ResolvedCardTests(unittest.TestCase):
     def test_questions_from_resolved_cards_equal_the_v39_questions(self):
         self.assertEqual(len(SPECS), 6)
         for spec in SPECS:
-            new_asset = 'assets/families/design/resolved/%s-ptr.json' % Path(spec['asset']).stem
+            new_asset = spec['asset']                    # the manifest builds from the resolved card since v40
+            self.assertTrue(new_asset.startswith('assets/families/design/resolved/'), spec['id'])
+            old_asset = json.loads((ROOT / 'docs' / new_asset).read_text(encoding='utf-8'))['derived_from_card']
             for target in (1, 2, 3, 4):
-                old, new = build(spec, spec['asset'], target), build(spec, new_asset, target)
+                old, new = build(spec, old_asset, target), build(spec, new_asset, target)
                 for field in ('question', 'options', 'correct_label', 'inputs', 'numeric'):
                     self.assertEqual(old[field], new[field], (spec['id'], target, field))
                 packet = dict(id=spec['id'], family=spec['family'], question=new['question'], inputs=new['inputs'],

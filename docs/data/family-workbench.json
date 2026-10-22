@@ -446,7 +446,7 @@
    "C": 90,
    "D": 68
   },
-  "manifest_sha256": "ae2440cad3de944793a522046129ea463f91c07127528cb3df7b73d0300fca8e",
+  "manifest_sha256": "73264f15cda253785f585517fd27aed6fb4571f0ba0c0d18d7edc3196a66bbbf",
   "registry_sha256": "6c046ba82e8e03d8c9f4fc04f2eb55981763c090db06536c689f8bb7d979723d",
   "code_sha256": {
    "task_families/__init__.py": "da9069d6a9d4f9ec4fde48c1f2452b7f2c0fb9f29da1997f6a99dbac3149b6a3",
@@ -50417,7 +50417,7 @@
    "rank": null,
    "rank_shortcuts": null,
    "checks": {
-    "card": "vincent2025-walls",
+    "card": "vincent2025-walls-ptr",
     "paper_choice": "H2-NMeAc",
     "failures": {
      "H2-NMeAc": [],
@@ -50479,11 +50479,11 @@
     "reasoning_nm": 0.92,
     "reasoning_definition": "主体芳香墙的长轴（蒽约 0.92 nm，萘约 0.70 nm），差别即稠环数"
    },
-   "source": "Vincent, King, Murkli & Isaacs, \"Aromatic Wall Extension of Glycoluril-Derived Molecular Clips Enhances Binding of Planar Aromatic Dyes\", Chem. Eur. J. (2025), doi:10.1002/chem.202502177 (Europe PMC PMC12415320)；设计卡逐项记录原文位置（docs/assets/families/design/vincent2025-walls.json）",
+   "source": "Vincent, King, Murkli & Isaacs, \"Aromatic Wall Extension of Glycoluril-Derived Molecular Clips Enhances Binding of Planar Aromatic Dyes\", Chem. Eur. J. (2025), doi:10.1002/chem.202502177 (Europe PMC PMC12415320)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/vincent2025-walls-ptr.json → 解析卡 docs/assets/families/design/resolved/vincent2025-walls-ptr.json）",
    "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
    "legacy_qa": null,
    "input_hashes": {
-    "assets/families/design/vincent2025-walls.json": "5ef3d26e88693ccc8d35b4f51fc76e3a2f2ed8a36f56b946f9831aff43d10c51"
+    "assets/families/design/resolved/vincent2025-walls-ptr.json": "6c9bab34283494ed1f063bddf4cce1c4d94ce355456425e8dda0f681e72ffe9e"
    },
    "seed": "geobench-family-v1",
    "target_position": 1,
@@ -50536,7 +50536,7 @@
    "rank": null,
    "rank_shortcuts": null,
    "checks": {
-    "card": "vincent2025-viologen",
+    "card": "vincent2025-viologen-ptr",
     "paper_choice": "H1-MV",
     "failures": {
      "H1-MV": [],
@@ -50596,11 +50596,11 @@
     "reasoning_nm": 0.92,
     "reasoning_definition": "主体芳香墙的长轴（蒽约 0.92 nm，萘约 0.70 nm），差别即稠环数"
    },
-   "source": "Vincent, King, Murkli & Isaacs, \"Aromatic Wall Extension of Glycoluril-Derived Molecular Clips Enhances Binding of Planar Aromatic Dyes\", Chem. Eur. J. (2025), doi:10.1002/chem.202502177 (Europe PMC PMC12415320)；设计卡逐项记录原文位置（docs/assets/families/design/vincent2025-viologen.json）",
+   "source": "Vincent, King, Murkli & Isaacs, \"Aromatic Wall Extension of Glycoluril-Derived Molecular Clips Enhances Binding of Planar Aromatic Dyes\", Chem. Eur. J. (2025), doi:10.1002/chem.202502177 (Europe PMC PMC12415320)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/vincent2025-viologen-ptr.json → 解析卡 docs/assets/families/design/resolved/vincent2025-viologen-ptr.json）",
    "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
    "legacy_qa": null,
    "input_hashes": {
-    "assets/families/design/vincent2025-viologen.json": "87eff8876036344e1dc301e7dffd04d281506a1d1bfc101371faab855d2b6e6f"
+    "assets/families/design/resolved/vincent2025-viologen-ptr.json": "2a5e18a1a3cb8efdf502529aa3c7beda2b2f1e232892fea33004847cb089f8a4"
    },
    "seed": "geobench-family-v1",
    "target_position": 2,
@@ -50653,7 +50653,7 @@
    "rank": null,
    "rank_shortcuts": null,
    "checks": {
-    "card": "rando2025-nitrate",
+    "card": "rando2025-nitrate-ptr",
     "paper_choice": "BnBU-CHCl3",
     "failures": {
      "BnBU-CHCl3": [],
@@ -50688,20 +50688,20 @@
     },
     "locators": {
      "BnBU-CHCl3": {
-      "Ka_NO3": "Table 1, row NO3-, column BnBU (CHCl3, 298.15 K, ITC)",
-      "Ka_Br": "Table 1, row Br-, column BnBU (CHCl3, 298.15 K, ITC)"
+      "Ka_NO3": "Table 1, row NO3^-, column BnBU",
+      "Ka_Br": "Table 1, row Br^-, column BnBU"
      },
      "BU1-CHCl3": {
-      "Ka_NO3": "Table 1, row NO3-, column BU1 (CHCl3, 298.15 K, ITC)",
-      "Ka_Br": "Table 1, row Br-, column BU1 (CHCl3, 298.15 K, ITC)"
+      "Ka_NO3": "Table 1, row NO3^-, column BU1",
+      "Ka_Br": "Table 1, row Br^-, column BU1"
      },
      "BU2-CHCl3": {
-      "Ka_NO3": "Table 1, row NO3-, column BU2 (CHCl3, 298.15 K, ITC)",
-      "Ka_Br": "Table 1, row Br-, column BU2 (CHCl3, 298.15 K, ITC)"
+      "Ka_NO3": "Table 1, row NO3^-, column BU2",
+      "Ka_Br": "Table 1, row Br^-, column BU2"
      },
      "BU1-MeCN": {
-      "Ka_NO3": "Table S3 (acetonitrile, ITC); quoted in Results and discussion",
-      "Ka_Br": "Table S3 (acetonitrile, ITC); quoted in Results and discussion"
+      "Ka_NO3": "Section \"Results and discussion\": \"NO3^- (2.9 × 10^6 M^-1) in acetonitrile\"",
+      "Ka_Br": "Section \"Results and discussion\": \"Br^- (2.6 × 10^7 M^-1)\""
      }
     },
     "naive_cue": {
@@ -50722,11 +50722,11 @@
     "reasoning_nm": 0.313,
     "reasoning_definition": "大环空腔内 C-H...X- 接触长度（BnBU·Cl⁻ 实测 3.13 Å）；BU1 的两个接触相差约 0.3 Å"
    },
-   "source": "Rando, Grewal, Sokolov & Kulhanek, \"Reversing selectivity of bambusuril macrocycles toward inorganic anions by installing spacious substituents on their portals\", Chem. Sci. (2025), doi:10.1039/d4sc07150f (Europe PMC PMC11639902)；设计卡逐项记录原文位置（docs/assets/families/design/rando2025-nitrate.json）",
+   "source": "Rando, Grewal, Sokolov & Kulhanek, \"Reversing selectivity of bambusuril macrocycles toward inorganic anions by installing spacious substituents on their portals\", Chem. Sci. (2025), doi:10.1039/d4sc07150f (Europe PMC PMC11639902)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/rando2025-nitrate-ptr.json → 解析卡 docs/assets/families/design/resolved/rando2025-nitrate-ptr.json）",
    "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
    "legacy_qa": null,
    "input_hashes": {
-    "assets/families/design/rando2025-nitrate.json": "12a008a1e37e7dc899b4e4c87447e7915f9cbf3722d5997bc07f13059084fe4c"
+    "assets/families/design/resolved/rando2025-nitrate-ptr.json": "f7fff3d48fa51d11e0c1317c8e88fa268e1012433b883776ef2059ef77770458"
    },
    "seed": "geobench-family-v1",
    "target_position": 3,
@@ -50779,7 +50779,7 @@
    "rank": null,
    "rank_shortcuts": null,
    "checks": {
-    "card": "rando2025-bromide",
+    "card": "rando2025-bromide-ptr",
     "paper_choice": "BU2-CHCl3",
     "failures": {
      "BU2-CHCl3": [],
@@ -50814,20 +50814,20 @@
     },
     "locators": {
      "BU2-CHCl3": {
-      "Ka_NO3": "Table 1, row NO3-, column BU2 (CHCl3, 298.15 K, ITC)",
-      "Ka_Br": "Table 1, row Br-, column BU2 (CHCl3, 298.15 K, ITC)"
+      "Ka_NO3": "Table 1, row NO3^-, column BU2",
+      "Ka_Br": "Table 1, row Br^-, column BU2"
      },
      "BnBU-CHCl3": {
-      "Ka_NO3": "Table 1, row NO3-, column BnBU (CHCl3, 298.15 K, ITC)",
-      "Ka_Br": "Table 1, row Br-, column BnBU (CHCl3, 298.15 K, ITC)"
+      "Ka_NO3": "Table 1, row NO3^-, column BnBU",
+      "Ka_Br": "Table 1, row Br^-, column BnBU"
      },
      "BU1-CHCl3": {
-      "Ka_NO3": "Table 1, row NO3-, column BU1 (CHCl3, 298.15 K, ITC)",
-      "Ka_Br": "Table 1, row Br-, column BU1 (CHCl3, 298.15 K, ITC)"
+      "Ka_NO3": "Table 1, row NO3^-, column BU1",
+      "Ka_Br": "Table 1, row Br^-, column BU1"
      },
      "BU1-MeCN": {
-      "Ka_NO3": "Table S3 (acetonitrile, ITC); quoted in Results and discussion",
-      "Ka_Br": "Table S3 (acetonitrile, ITC); quoted in Results and discussion"
+      "Ka_NO3": "Section \"Results and discussion\": \"NO3^- (2.9 × 10^6 M^-1) in acetonitrile\"",
+      "Ka_Br": "Section \"Results and discussion\": \"Br^- (2.6 × 10^7 M^-1)\""
      }
     },
     "naive_cue": {
@@ -50847,11 +50847,11 @@
     "reasoning_nm": 0.313,
     "reasoning_definition": "大环空腔内 C-H...X- 接触长度（BnBU·Cl⁻ 实测 3.13 Å）；BU1 的两个接触相差约 0.3 Å"
    },
-   "source": "Rando, Grewal, Sokolov & Kulhanek, \"Reversing selectivity of bambusuril macrocycles toward inorganic anions by installing spacious substituents on their portals\", Chem. Sci. (2025), doi:10.1039/d4sc07150f (Europe PMC PMC11639902)；设计卡逐项记录原文位置（docs/assets/families/design/rando2025-bromide.json）",
+   "source": "Rando, Grewal, Sokolov & Kulhanek, \"Reversing selectivity of bambusuril macrocycles toward inorganic anions by installing spacious substituents on their portals\", Chem. Sci. (2025), doi:10.1039/d4sc07150f (Europe PMC PMC11639902)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/rando2025-bromide-ptr.json → 解析卡 docs/assets/families/design/resolved/rando2025-bromide-ptr.json）",
    "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
    "legacy_qa": null,
    "input_hashes": {
-    "assets/families/design/rando2025-bromide.json": "1cd93de61579c31ea9b5c1bd5bc770456d18524070a5e2fd4169cd2bf14bcc3d"
+    "assets/families/design/resolved/rando2025-bromide-ptr.json": "7294237b40a955545d57f06dc010667247d7b756f0ce850c3cdc9e9f5b66a5e6"
    },
    "seed": "geobench-family-v1",
    "target_position": 4,
@@ -50904,7 +50904,7 @@
    "rank": null,
    "rank_shortcuts": null,
    "checks": {
-    "card": "chetry2026-sieving",
+    "card": "chetry2026-sieving-ptr",
     "paper_choice": "UTSA-16(Co)",
     "failures": {
      "UTSA-16(Co)": [],
@@ -50939,20 +50939,20 @@
     },
     "locators": {
      "UTSA-16(Co)": {
-      "S_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)",
-      "uptake_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)"
+      "S_30K": "Section \"Dihydrogen Isotopologues Separation\": \"higher selectivity (SD2/H2 = 15)\"",
+      "uptake_30K": "Section \"Dihydrogen Isotopologues Separation\": \"compromised D2 uptake (2.7 mmol g^-1)\""
      },
      "Cu-tetrazolate": {
-      "S_30K": "Conclusions（原文写 “Cu-tetrazolate (3.2-3.6 A, S_D2/H2 > 16 at 30 K)”，只给下界；此处按下界 16 记录，代码只允许它判定“满足下界型约束”，不允许用它判定不满足）",
-      "uptake_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)"
+      "S_30K": "Section \"Conclusions\": \"SD2/H2 > 16 at 30 K\"",
+      "uptake_30K": "Section \"Dihydrogen Isotopologues Separation\": \"only 0.2 mmol g^-1\""
      },
      "Cu-4Py-Me": {
-      "S_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)",
-      "uptake_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)"
+      "S_30K": "Section \"Dihydrogen Isotopologues Separation\": \"moderate selectivity SD2/H2 = 8\"",
+      "uptake_30K": "Section \"Dihydrogen Isotopologues Separation\": \"high D2 uptake of 9.7 mmol g^-1\""
      },
      "Ag-Bpz": {
-      "S_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)",
-      "uptake_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)"
+      "S_30K": "Section \"Dihydrogen Isotopologues Separation\": \"selectivity of SD2/H2 = 5.5\"",
+      "uptake_30K": "Section \"Dihydrogen Isotopologues Separation\": \"D2 uptakes of 3.8 mmol g^-1\""
      }
     },
     "naive_cue": {
@@ -50977,11 +50977,11 @@
     "reasoning_nm": 0.44,
     "reasoning_definition": "决定动力学量子筛分的孔口直径（四个候选为 0.32–0.80 nm；判据取孔口上限一侧）"
    },
-   "source": "Chetry, Sarkar, Bakhtian & Hirscher, \"Influence of Structural Determinants on Dihydrogen Adsorption and Isotopologue Separation in Nanoporous Metal-Organic Frameworks\", ACS Appl. Mater. Interfaces (2026), doi:10.1021/acsami.5c24726 (Europe PMC PMC13022808)；设计卡逐项记录原文位置（docs/assets/families/design/chetry2026-sieving.json）",
+   "source": "Chetry, Sarkar, Bakhtian & Hirscher, \"Influence of Structural Determinants on Dihydrogen Adsorption and Isotopologue Separation in Nanoporous Metal-Organic Frameworks\", ACS Appl. Mater. Interfaces (2026), doi:10.1021/acsami.5c24726 (Europe PMC PMC13022808)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/chetry2026-sieving-ptr.json → 解析卡 docs/assets/families/design/resolved/chetry2026-sieving-ptr.json）",
    "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
    "legacy_qa": null,
    "input_hashes": {
-    "assets/families/design/chetry2026-sieving.json": "b00a4a582f6446e3273363cdc0044cb25765dc123170df97d8ecc86a9ecf52be"
+    "assets/families/design/resolved/chetry2026-sieving-ptr.json": "cb8fc589774b24391088e580f733439063bf6908a7164c112687fa5e317fb2db"
    },
    "seed": "geobench-family-v1",
    "target_position": 1,
@@ -51034,7 +51034,7 @@
    "rank": null,
    "rank_shortcuts": null,
    "checks": {
-    "card": "chetry2026-throughput",
+    "card": "chetry2026-throughput-ptr",
     "paper_choice": "Cu-4Py-Me",
     "failures": {
      "Cu-4Py-Me": [],
@@ -51069,20 +51069,20 @@
     },
     "locators": {
      "Cu-4Py-Me": {
-      "S_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)",
-      "uptake_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)"
+      "S_30K": "Section \"Dihydrogen Isotopologues Separation\": \"moderate selectivity SD2/H2 = 8\"",
+      "uptake_30K": "Section \"Dihydrogen Isotopologues Separation\": \"high D2 uptake of 9.7 mmol g^-1\""
      },
      "Cu-tetrazolate": {
-      "S_30K": "Conclusions（原文写 “Cu-tetrazolate (3.2-3.6 A, S_D2/H2 > 16 at 30 K)”，只给下界；此处按下界 16 记录，代码只允许它判定“满足下界型约束”，不允许用它判定不满足）",
-      "uptake_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)"
+      "S_30K": "Section \"Conclusions\": \"SD2/H2 > 16 at 30 K\"",
+      "uptake_30K": "Section \"Dihydrogen Isotopologues Separation\": \"only 0.2 mmol g^-1\""
      },
      "UTSA-16(Co)": {
-      "S_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)",
-      "uptake_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)"
+      "S_30K": "Section \"Dihydrogen Isotopologues Separation\": \"higher selectivity (SD2/H2 = 15)\"",
+      "uptake_30K": "Section \"Dihydrogen Isotopologues Separation\": \"compromised D2 uptake (2.7 mmol g^-1)\""
      },
      "Ag-Bpz": {
-      "S_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)",
-      "uptake_30K": "Results and Discussion, Dihydrogen Isotopologues Separation (TDS, Texp = 30 K, pexp = 100 mbar, texp = 10 min)"
+      "S_30K": "Section \"Dihydrogen Isotopologues Separation\": \"selectivity of SD2/H2 = 5.5\"",
+      "uptake_30K": "Section \"Dihydrogen Isotopologues Separation\": \"D2 uptakes of 3.8 mmol g^-1\""
      }
     },
     "naive_cue": {
@@ -51107,11 +51107,11 @@
     "reasoning_nm": 0.44,
     "reasoning_definition": "决定动力学量子筛分的孔口直径（四个候选为 0.32–0.80 nm；判据取孔口上限一侧）"
    },
-   "source": "Chetry, Sarkar, Bakhtian & Hirscher, \"Influence of Structural Determinants on Dihydrogen Adsorption and Isotopologue Separation in Nanoporous Metal-Organic Frameworks\", ACS Appl. Mater. Interfaces (2026), doi:10.1021/acsami.5c24726 (Europe PMC PMC13022808)；设计卡逐项记录原文位置（docs/assets/families/design/chetry2026-throughput.json）",
+   "source": "Chetry, Sarkar, Bakhtian & Hirscher, \"Influence of Structural Determinants on Dihydrogen Adsorption and Isotopologue Separation in Nanoporous Metal-Organic Frameworks\", ACS Appl. Mater. Interfaces (2026), doi:10.1021/acsami.5c24726 (Europe PMC PMC13022808)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/chetry2026-throughput-ptr.json → 解析卡 docs/assets/families/design/resolved/chetry2026-throughput-ptr.json）",
    "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
    "legacy_qa": null,
    "input_hashes": {
-    "assets/families/design/chetry2026-throughput.json": "3fdb8511d681b9568e8aa57a04a0bcdf3fc6d8fd22dcc181040fa177aa8833db"
+    "assets/families/design/resolved/chetry2026-throughput-ptr.json": "9ab8e159da3d51d3c8d4dce064a688bdf48306fe2efc1e676286d45e3a563791"
    },
    "seed": "geobench-family-v1",
    "target_position": 2,
@@ -65058,6 +65058,6 @@
   "task_families/vortex.py": "\"\"\"Abrikosov vortex lattices (quantum, 100-1000 nm): paper-parameter models.\n\nInputs are the vortex-centre maps built by tools/build_vortex_assets.py: MgB2 at the four applied fields of Cottet et al.\n(arXiv:1401.4062) and BSCCO at the measured lattice constant of Schaefermeier et al. (arXiv:2602.13060). Questions concern the\nlattice spacing (356-855 nm), the vortex density, flux quantisation (one h/2e per vortex), the first SANS Bragg peak, and the\nchoice of field for a target lattice (design).\n\"\"\"\nimport math\nfrom . import kit\n\nVERSION = '0.1.0'\nPHI0 = 2.067833848e-15\nTOL = 1e-5\nPAPERS = {'cottet': 'Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K)',\n          'schaefermeier': 'Schaefermeier et al. (arXiv:2602.13060; BSCCO-2212, scanning NV magnetometry at 71 K)'}\n\n\ndef conditions(paper, field_text):\n    return ('Model conditions: the only measured input is %s reported by %s; the vortices form an ideal triangular lattice with '\n            'exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform '\n            'field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an '\n            'arbitrary orientation.' % (field_text, PAPERS[paper]))\n\n\ndef load(root, asset):\n    raw = (root / 'docs' / asset).read_bytes()\n    text = raw.decode('utf-8')\n    lines = text.splitlines()\n    rows = [l.split() for l in lines[2:] if l.strip()]\n    if int(lines[0]) != len(rows) or any(len(r) != 3 or r[0] != 'V' for r in rows):\n        raise ValueError('Expected count, comment and \"V x y\" rows')\n    return text, [(float(r[1]), float(r[2])) for r in rows], kit.sha256(raw)\n\n\ndef lattice_spacing(pts, expected):\n    c = (math.fsum(p[0] for p in pts) / len(pts), math.fsum(p[1] for p in pts) / len(pts))\n    i = min(range(len(pts)), key=lambda k: math.dist(pts[k], c))\n    d = sorted(math.dist(pts[i], p) for j, p in enumerate(pts) if j != i)\n    first = [x for x in d if x - d[0] <= TOL]\n    if len(first) != 6:\n        raise ValueError('Vortices do not form a triangular lattice around the centre')\n    a = math.fsum(first) / 6\n    if abs(a - expected) > 1e-3:\n        raise ValueError('Lattice spacing does not match the published value')\n    return a\n\n\ndef field_from(a):                    # tesla, a in nm\n    return 2 * PHI0 / (math.sqrt(3) * (a * 1e-9) ** 2)\n\n\ndef spacing_from(b):                  # nm\n    return math.sqrt(2 * PHI0 / (math.sqrt(3) * b)) * 1e9\n\n\ndef density(a):                       # vortices per um^2\n    return 2 / (math.sqrt(3) * (a / 1000) ** 2)\n\n\ndef q10(a):                           # um^-1, first Bragg peak of the triangular lattice\n    return 4 * math.pi / (math.sqrt(3) * a / 1000)\n\n\nSUBJECT = ('The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor '\n           'in a perpendicular magnetic field.')\nASK = {\n    'spacing': ('What is the vortex lattice spacing (centre-to-centre distance between neighbouring vortices), in nm?',\n                1, '0.05', '10.0', 'nm', 'perception'),\n    'density': ('How many vortices are there per square micrometre (areal vortex density)?', 3, '0.0005', '0.150', 'um^-2', 'perception'),\n    'field': ('Each vortex carries one superconducting flux quantum Φ0 = h/(2e) = 2.0678 × 10⁻¹⁵ Wb. What is the magnetic induction B '\n              'inside the superconductor that produces this lattice, in mT?', 3, '0.0005', '0.150', 'mT', 'inference'),\n    'flux': ('The magnetic induction inside the superconductor is B = %s mT. How much magnetic flux does each vortex carry, in units of '\n             '10⁻¹⁵ Wb?', 3, '0.0005', '0.150', '1e-15 Wb', 'inference'),\n    'sans_q': ('In a small-angle neutron scattering experiment on this lattice, at what scattering vector q (q = 4π sinθ/λ) does the '\n               'first-order Bragg peak of the vortex lattice appear, in μm⁻¹?', 2, '0.005', '0.50', 'um^-1', 'inference'),\n}\n\n\ndef candidates(ask, a, b_mT):\n    s3 = math.sqrt(3)\n    if ask == 'spacing':\n        return a, [dict(rule='row_spacing', value=a * s3 / 2, plausibility=3, reason='报告了相邻涡旋行的间距（√3/2）a。'),\n                   dict(rule='second_neighbour', value=a * s3, plausibility=2, reason='报告了次近邻距离 √3 a。'),\n                   dict(rule='square_lattice_guess', value=a * (s3 / 2) ** 0.5, plausibility=2, reason='按正方格子由密度反推间距。'),\n                   dict(rule='half_spacing', value=a / 2, plausibility=1, reason='报告了半个间距。'),\n                   dict(rule='double_spacing', value=2 * a, plausibility=2, reason='报告了隔一个涡旋的距离 2a。')]\n    if ask == 'density':\n        n = density(a)\n        return n, [dict(rule='square_cell', value=1 / (a / 1000) ** 2, plausibility=3, reason='每个涡旋按 a² 的正方形面积计。'),\n                   dict(rule='triangle_cell', value=2 * n, plausibility=2, reason='用三角形面积（半个晶胞）当作每个涡旋的面积。'),\n                   dict(rule='half_density', value=n / 2, plausibility=2, reason='晶胞面积多乘了 2。'),\n                   dict(rule='circle_cell', value=1 / (math.pi * (a / 2000) ** 2), plausibility=2, reason='每个涡旋按直径为 a 的圆面积计。')]\n    if ask == 'field':\n        b = field_from(a) * 1e3\n        return b, [dict(rule='square_lattice', value=PHI0 / (a * 1e-9) ** 2 * 1e3, plausibility=3, reason='按正方格子 B = Φ0/a²。'),\n                   dict(rule='flux_h_over_e', value=2 * b, plausibility=3, reason='用 h/e（单电子磁通量子）代替 h/2e。'),\n                   dict(rule='flux_h_over_4e', value=b / 2, plausibility=2, reason='磁通量子多除了 2。'),\n                   dict(rule='gauss_mT_slip', value=b * 10, plausibility=2, reason='高斯与毫特斯拉换算错（1 mT = 10 G）。'),\n                   dict(rule='second_neighbour_as_spacing', value=b / 3, plausibility=2, reason='把次近邻距离 √3a 当作晶格间距。')]\n    if ask == 'flux':\n        cell = math.sqrt(3) / 2 * (a * 1e-9) ** 2\n        phi = b_mT * 1e-3 * cell * 1e15\n        return phi, [dict(rule='h_over_e', value=phi * 2, plausibility=3, reason='报告了 h/e（把超导电子对的电荷当作 e）。'),\n                     dict(rule='square_cell', value=b_mT * 1e-3 * (a * 1e-9) ** 2 * 1e15, plausibility=3, reason='每个涡旋按 a² 面积计。'),\n                     dict(rule='triangle_cell', value=phi / 2, plausibility=2, reason='每个涡旋按三角形面积计。'),\n                     dict(rule='hbar_over_2e', value=phi / (2 * math.pi), plausibility=1, reason='报告了 ħ/(2e)，即 Φ0/2π。')]\n    q = q10(a)\n    return q, [dict(rule='two_pi_over_a', value=2 * math.pi / (a / 1000), plausibility=3, reason='用 2π/a，而三角格子首峰为 4π/(√3 a)。'),\n               dict(rule='missing_two_pi', value=q / (2 * math.pi), plausibility=2, reason='漏掉 2π。'),\n               dict(rule='second_order_peak', value=q * math.sqrt(3), plausibility=2, reason='报告了第二个峰（√3 倍）。'),\n               dict(rule='square_lattice_q', value=2 * math.pi / (a * (math.sqrt(3) / 2) ** 0.5 / 1000), plausibility=2,\n                    reason='按等密度正方格子计算首峰。')]\n\n\ndef build(spec, root, seed, ability):\n    ask = spec['ask']\n    text_q, decimals, tol, sep, unit, want = ASK[ask]\n    if want != ability:\n        raise ValueError('Quantity %s is not %s' % (ask, ability))\n    text, pts, digest = load(root, spec['asset'])\n    a = lattice_spacing(pts, spec['spacing_nm'])\n    b_mT = spec.get('field_mT')\n    if ask == 'flux':\n        text_q = text_q % kit.display(b_mT, 2)\n    value, cands = candidates(ask, a, b_mT)\n    picked, rejected, goal, rank = kit.choose_numeric(value, cands, decimals=decimals, tolerance=tol, min_separation=sep, seed=seed,\n                                                      context=spec['id'], lower=0, target=spec.get('target_position'),\n                                                      distractor_separation=str(float(sep) / 2))\n    options, audit = kit.label_numeric(value, picked, decimals=decimals, unit=unit, seed=seed, context=spec['id'],\n                                       correct_reason='三角涡旋晶格：a = %.3f nm，B = 2Φ0/(√3 a²) = %.4f mT，n = B/Φ0。' % (a, field_from(a) * 1e3))\n    key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=sep, unit=unit,\n                               distractor_separation=str(float(sep) / 2))\n    question = '%s %s %s' % (SUBJECT, conditions(spec['paper'], spec['measured_text']), text_q)\n    return dict(question=question, scope=spec['scope'],\n                inputs=[dict(name=spec['asset'].rsplit('/', 1)[1], format='vortex-map', unit='nm', text=text)],\n                numeric=dict(value=kit.display(value, decimals), unit=unit, decimals=decimals, tolerance=tol),\n                options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected, rank=dict(target=goal, achieved=rank),\n                checks=dict(vortices=len(pts), spacing_nm=a, field_mT=field_from(a) * 1e3, density_per_um2=density(a), q10_per_um=q10(a),\n                            limits='理想三角涡旋晶格（论文用作对比的同一理想化）；不含钉扎无序与热涨落。'),\n                scales=dict(input_nm=max(math.dist(p, q) for p in pts for q in pts), reasoning_nm=a, reasoning_definition='涡旋晶格间距 a'),\n                input_hashes={spec['asset']: digest})\n\n\ndef build_geometry(spec, root, seed):\n    return build(spec, root, seed, 'perception')\n\n\ndef build_inference(spec, root, seed):\n    return build(spec, root, seed, 'inference')\n\n\nGOALS = {'spacing': ('the vortex lattice spacing is closest to %g nm', lambda a: a),\n         'sans_q': ('the first-order small-angle-neutron-scattering Bragg peak of the vortex lattice (q = 4π sinθ/λ) is closest to %g μm⁻¹',\n                    q10),\n         'min_density': ('the field is as low as possible while the areal vortex density is at least %g vortices per square micrometre',\n                         density)}\nWRONG = {'spacing': [('row_spacing', lambda a: a * math.sqrt(3) / 2, '把行间距当作晶格间距'),\n                     ('second_neighbour', lambda a: a * math.sqrt(3), '把次近邻距离当作晶格间距')],\n         'sans_q': [('two_pi_over_a', lambda a: 2 * math.pi / (a / 1000), '用 2π/a 计算首峰'),\n                    ('second_order_peak', lambda a: q10(a) * math.sqrt(3), '用第二个峰')],\n         'min_density': [('square_cell', lambda a: 1 / (a / 1000) ** 2, '每个涡旋按 a² 面积计'),\n                         ('half_density', lambda a: density(a) / 2, '晶胞面积多乘 2')]}\n\n\ndef build_design(spec, root, seed):\n    rows, inputs, hashes = [], [], {}\n    for asset, (label, b_mT, a_exp) in zip(spec['candidates'], spec['fields']):\n        text, pts, digest = load(root, asset)\n        a = lattice_spacing(pts, a_exp)\n        rows.append(dict(label=label, name=asset.rsplit('/', 1)[1], a=a, b=b_mT))\n        inputs.append(dict(name=asset.rsplit('/', 1)[1], format='vortex-map', unit='nm', text=text))\n        hashes[asset] = digest\n    goal, t = spec['goal'], spec['target']\n    text_goal, prop = GOALS[goal]\n    why = {}\n    if goal == 'min_density':\n        ok = [r for r in rows if prop(r['a']) >= t]\n        if not ok or min(abs(prop(r['a']) - t) for r in rows) < 0.2:\n            raise ValueError('No candidate meets the target, or one sits too close to it')\n        best = min(ok, key=lambda r: r['b'])\n        for r in rows:\n            if r is best:\n                continue\n            fooled = [rule for rule, f, _ in WRONG[goal] if (f(r['a']) >= t) != (prop(r['a']) >= t)]\n            if prop(r['a']) < t:\n                why[r['label']] = (('passes_if_' + fooled[0]) if fooled else 'too_sparse',\n                                   '密度 %.2f /μm²，未达到 %g%s。' % (prop(r['a']), t, '；若%s会误判为满足' % dict((x, z) for x, _, z in WRONG[goal])[fooled[0]] if fooled else ''),\n                                   3 if fooled else 2)\n            else:\n                why[r['label']] = ('meets_but_higher_field', '密度 %.2f /μm² 满足，但磁场更高。' % prop(r['a']), 2)\n        reason_ok = '满足密度要求的候选中磁场最低（密度 %.2f /μm²）。' % prop(best['a'])\n    else:\n        ranked = sorted(rows, key=lambda r: abs(prop(r['a']) - t))\n        best, runner = ranked[0], ranked[1]\n        if abs(prop(runner['a']) - t) < 1.5 * abs(prop(best['a']) - t) or abs(prop(runner['a']) - t) - abs(prop(best['a']) - t) < 0.03 * t:\n            raise ValueError('Winning margin too small')\n        for rule, f, note in WRONG[goal]:\n            pick = min(rows, key=lambda r: abs(f(r['a']) - t))\n            if pick is not best and pick['label'] not in why:\n                why[pick['label']] = (rule, '%s时它最接近目标（%.2f）。' % (note, f(pick['a'])), 3)\n        for r in rows:\n            if r is not best and r['label'] not in why:\n                why[r['label']] = ('farther_from_target', '正确计算为 %.2f，离目标更远。' % prop(r['a']), 2)\n        reason_ok = '正确计算为 %.2f，最接近目标。' % prop(best['a'])\n    label = lambda r: '%s (%s)' % (r['label'], r['name'])\n    others = [(why[r['label']][0], label(r), why[r['label']][1], why[r['label']][2]) for r in rows if r is not best]\n    order = kit.place(('correct', label(best), reason_ok, 3), others, spec.get('target_position'), seed, spec['id'], key=lambda p: p[0])\n    options = [dict(label=l, value=p[1]) for l, p in zip(kit.LABELS, order)]\n    key = kit.validate_verdicts(options, [p[0] == 'correct' for p in order])\n    audit = [dict(label=l, value=p[1], rule=p[0], reason=p[2], is_correct=p[0] == 'correct') for l, p in zip(kit.LABELS, order)]\n    question = ('The four files list the vortex centres (nm) in model images of the Abrikosov vortex lattice of an MgB2 crystal at four '\n                'applied fields (files named by field). %s You must choose one applied field such that %s. Which field should you choose?'\n                % (conditions('cottet', 'the applied magnetic field of each image'), text_goal % t))\n    return dict(question=question, scope=spec['scope'], inputs=inputs, numeric=None, options=options, correct_label=key,\n                option_audit=audit, excluded_candidates=[], rank=None,\n                checks=dict(candidates=[dict(field=r['label'], spacing_nm=r['a'], value=prop(r['a'])) for r in rows], goal=goal, target=t,\n                            design_note='设计选择：候选为论文中实际施加的磁场，性质由模型涡旋图计算（推断的逆问题）。',\n                            limits='理想三角涡旋晶格；论文指出 188.7 G 时单个涡旋已难以分辨。'),\n                scales=dict(input_nm=12 * max(r['a'] for r in rows), reasoning_nm=max(r['a'] for r in rows),\n                            reasoning_definition='候选中最大的涡旋晶格间距'),\n                input_hashes=hashes)\n",
   "family_engine.py": "\"\"\"Run reusable task families over a manifest of real inputs: define -> construct -> verify.\n\nNo model/API calls. Every instance is built by its family function, all four options\nare verified, and student packets (no answers, evidence or mechanisms) are written\nseparately from reviewer packets. Output directories are never overwritten.\nDevelopment pilots only: nothing here admits questions to the catalog.\n\npython family_engine.py --manifest templates/family-manifest.json --out runs/family-new --seed geobench-family-v1\n\"\"\"\nimport argparse\nimport hashlib\nimport json\nfrom collections import Counter\nfrom pathlib import Path\nfrom task_families import FAMILIES, kit\n\nROOT = Path(__file__).resolve().parent\nVERSION = '0.1.0'\nMODULES = {\n    'M0': '范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）',\n    'M1': '材料：docs/assets 输入、来源、许可与 SHA-256',\n    'M2': '证据：计算器复核或数据集性质记录（审核侧）',\n    'M3': '题型契约：registry.json 中的族定义与适用条件',\n    'M4': '构造：族函数生成题干、正确值与候选错误机制',\n    'M5': '质量：四项逐一核验、唯一性、分隔、捷径诊断',\n    'M6': '导出：学生包 / 审核包分离与运行快照',\n}\n\n\ndef code_files():\n    files = sorted((ROOT / 'task_families').glob('*.py')) + [ROOT / 'family_engine.py', ROOT / 'template_engine.py',\n                                                              ROOT / 'tools/recompute_materials_batch.py',\n                                                              ROOT / 'tools/recompute_materials_batch2.py']\n    return {str(p.relative_to(ROOT)).replace('\\\\', '/'): p for p in files}\n\n\ndef build_instance(spec, seed):\n    family = FAMILIES[spec['family']]\n    if not spec.get('scope', '').strip() or not spec.get('source', '').strip():\n        raise ValueError('Missing scope or source')\n    asset = (ROOT / 'docs' / spec['asset']).resolve()\n    if not asset.is_relative_to((ROOT / 'docs/assets').resolve()):\n        raise ValueError('Asset must stay inside docs/assets')\n    return family, family['build'](spec, ROOT, seed)\n\n\ndef run(manifest_path, out, seed='geobench-family-v1'):\n    manifest_path, out = Path(manifest_path), Path(out)\n    if out.exists():\n        raise ValueError('Output exists; use a new directory to preserve history')\n    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))\n    ids = [x['id'] for x in manifest['items']]\n    if not ids or len(set(ids)) != len(ids):\n        raise ValueError('Empty batch or duplicate ID')\n    students, numeric_students, teachers, stages, failures = [], [], [], [], []\n    counters = Counter()\n    for spec in manifest['items']:\n        # Batch-level balance: within each family, correct positions cycle A..D from a seeded offset.\n        offset = kit.digest(seed, spec['family'], 'offset')[0] % 4\n        spec = dict(spec, target_position=1 + (offset + counters[spec['family']]) % 4)\n        counters[spec['family']] += 1\n        try:\n            family, built = build_instance(spec, seed)\n        except (ValueError, KeyError) as error:\n            failures.append(dict(id=spec['id'], family=spec['family'], stage='construct/verify', reason=str(error)))\n            continue\n        students.append(dict(id=spec['id'], family=spec['family'], ability=family['ability'],\n                             question=built['question'], scope=built['scope'], inputs=built['inputs'],\n                             options=built['options'], response_format='one label: A/B/C/D'))\n        if built['numeric']:\n            n = built['numeric']\n            numeric_students.append(dict(id='N-' + spec['id'], family=spec['family'], ability=family['ability'],\n                                         question=built['question'], scope=built['scope'], inputs=built['inputs'],\n                                         response_format=dict(value='one number rounded to %d decimals' % n['decimals'],\n                                                              unit=n['unit'])))\n        shortcuts = None\n        if built['rank']:\n            pairs = [(o['label'], o['value']) for o in built['options']]\n            shortcuts = dict(kit.rank_shortcuts(pairs, built['correct_label']),\n                             mirror_pair_cue=kit.mirror_pair_cue(pairs, built['correct_label']))\n        teachers.append(dict(id=spec['id'], family=spec['family'], family_version=family['version'],\n                             ability=family['ability'], correct_label=built['correct_label'],\n                             numeric_answer=built['numeric'], option_audit=built['option_audit'],\n                             excluded_candidates=built['excluded_candidates'], rank=built['rank'],\n                             rank_shortcuts=shortcuts, checks=built['checks'], scales=built['scales'],\n                             source=spec['source'], license=spec.get('license', ''), legacy_qa=spec.get('legacy_qa'),\n                             input_hashes=built['input_hashes'], seed=seed, target_position=spec['target_position'],\n                             option_order=built.get('option_order') or ('numeric ascending (label = rank)' if built['rank'] else 'correct at batch-balanced target; others sha256-sorted'),\n                             human_review='pending', catalog_admitted=False))\n        stages.append(dict(id=spec['id'], family=spec['family'],\n                           define=dict(family=spec['family'], version=family['version'], ability=family['ability'],\n                                       output=family['output'], module=family['module']),\n                           construct=dict(inputs=[dict(name=i['name'], format=i['format'], chars=len(i['text']))\n                                                  for i in built['inputs']],\n                                          candidates_considered=len(built['option_audit']) + len(built['excluded_candidates'])),\n                           verify=dict(four_options_verified=True, unique_correct=True, correct_label=built['correct_label'],\n                                       checks=sorted(k for k, v in built['checks'].items() if v is True)),\n                           modules=MODULES))\n    positions = Counter(t['correct_label'] for t in teachers)\n    by_family = {}\n    for t in teachers:\n        f = by_family.setdefault(t['family'], dict(passed=0, shortcut_hits=Counter()))\n        f['passed'] += 1\n        for k, v in (t['rank_shortcuts'] or {}).items():\n            f['shortcut_hits'][k] += int(v)\n    for f in failures:\n        by_family.setdefault(f['family'], dict(passed=0, shortcut_hits=Counter()))\n    for name, f in by_family.items():\n        f['attempted'] = sum(1 for s in manifest['items'] if s['family'] == name)\n        f['shortcut_hits'] = dict(f['shortcut_hits'])\n    code = code_files()\n    report = dict(version=VERSION, kind='reusable_family_development_pilot', seed=seed,\n                  attempted=len(ids), passed=len(teachers), failures=failures, model_calls=0,\n                  catalog_admitted=0, human_review='pending', by_family=by_family,\n                  correct_position_counts={l: positions.get(l, 0) for l in kit.LABELS},\n                  manifest_sha256=kit.sha256(manifest_path.read_bytes()),\n                  registry_sha256=kit.sha256((ROOT / 'templates/registry.json').read_bytes()),\n                  code_sha256={k: kit.sha256(p.read_bytes()) for k, p in code.items()},\n                  difficulty_note='程序通过只说明四项已核验且唯一正确；难度、迷惑性与科学意义仍需人工审核与模型实验。',\n                  limits='开发试跑，不计入题库；模板与来源选择待人工审核。')\n    out.mkdir(parents=True)\n    for name, data in [('student-packets.json', students), ('numeric-student-packets.json', numeric_students),\n                       ('private-answers.json', teachers), ('stage-records.json', stages), ('verification.json', report)]:\n        (out / name).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\\n', encoding='utf-8', newline='\\n')\n    snap = out / 'snapshot'\n    for rel, p in code.items():\n        (snap / rel).parent.mkdir(parents=True, exist_ok=True)\n        (snap / rel).write_bytes(p.read_bytes())\n    (snap / 'manifest.json').write_bytes(manifest_path.read_bytes())\n    (snap / 'registry.json').write_bytes((ROOT / 'templates/registry.json').read_bytes())\n    return report\n\n\nif __name__ == '__main__':\n    p = argparse.ArgumentParser(description=__doc__)\n    p.add_argument('--manifest', type=Path, required=True)\n    p.add_argument('--out', type=Path, required=True)\n    p.add_argument('--seed', default='geobench-family-v1')\n    a = p.parse_args()\n    r = run(a.manifest, a.out, a.seed)\n    print(json.dumps(dict(attempted=r['attempted'], passed=r['passed'], failures=r['failures'],\n                          positions=r['correct_position_counts'], model_calls=0), ensure_ascii=False))\n"
  },
- "run": "family-pilot-v39",
+ "run": "family-pilot-v40",
  "note": "Public development examples; student packets and reviewer packets are separate. All pending human audit; no catalog admissions; not a hidden test set."
 }
