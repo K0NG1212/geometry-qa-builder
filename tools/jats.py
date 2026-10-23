@@ -82,13 +82,31 @@ def table(root, label):
     return grid
 
 
-def cell(root, label, row, column):
-    """The rendered cell in the row whose first cell is `row` and the column whose header (first row) is `column`.
+def header_path(column):
+    """A column is named by its header text, or by a list of header texts from the top row down when the table has
+    several header rows (["Flux", "Methanol"]); the length of the list is the number of header rows."""
+    return [column] if isinstance(column, str) else list(column)
 
-    Both labels must match exactly one row and one column; anything else is refused rather than guessed."""
+
+def cell(root, label, row, column, row_column=None):
+    """The rendered cell in the row labelled `row` and the column whose header path is `column`.
+
+    The row label is read from the first column, or from the column named by `row_column` (same header path form)
+    when the first column only numbers the entries. Every label must match exactly one row and one column;
+    anything else is refused rather than guessed."""
     grid = table(root, label)
-    cols = [j for j, h in enumerate(grid[0]) if h == column]
-    rows = [i for i, r in enumerate(grid) if i > 0 and r[0] == row]
+    path = header_path(column)
+    depth = len(path)
+    find = lambda p: [j for j in range(len(grid[0])) if [grid[k][j] for k in range(depth)] == p]
+    cols = find(path)
+    if row_column is None:
+        key = 0
+    else:
+        keys = find(header_path(row_column))
+        if len(header_path(row_column)) != depth or len(keys) != 1:
+            raise ValueError('Table %r: row label column %r not found exactly once' % (label, row_column))
+        key = keys[0]
+    rows = [i for i in range(depth, len(grid)) if grid[i][key] == row]
     if len(cols) != 1 or len(rows) != 1:
         raise ValueError('Table %r: %d rows labelled %r, %d columns labelled %r' % (label, len(rows), row, len(cols), column))
     return grid[rows[0]][cols[0]]

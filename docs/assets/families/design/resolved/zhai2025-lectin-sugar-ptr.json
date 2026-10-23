@@ -1,0 +1,175 @@
+{
+ "kind": "design_card",
+ "family": "design_choice",
+ "id": "zhai2025-lectin-sugar-ptr",
+ "paper": "paper-zhai-synthetic-lectin",
+ "citation": "Zhai, Xu, Cui, Wojtas, Cai & Liu, \"A Synthetic Lectin for Glucuronate\", ACS Cent. Sci. 11, 1753 (2025), doi:10.1021/acscentsci.5c00951 (Europe PMC PMC12464755)",
+ "short_citation": "Zhai et al., ACS Cent. Sci. (2025)",
+ "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+ "setting": "Recognising hydrophilic carbohydrates in water is hard because water competes for every hydroxyl group. The receptor here, MPNT2+, is a water-soluble tetralactam macrocycle built from two dimethylnaphthalene panels joined by pyridinium spacers, giving a rigid preorganised cavity in which the two aromatic panels face each other and the lactam N-H groups point inward. A pyranose sugar bound in that cavity makes hydrogen bonds to the inward N-H donors and C-H...pi contacts between its ring C-H bonds and the naphthalene panels. The paper reports that the C-H bonds at the C2 and C5 positions make the largest contacts, that the C1 C-H bond makes none, and that the receptor prefers sugars whose ring substituents all sit in equatorial positions, since an axial substituent turns the corresponding C-H bond away from a panel. The receptor carries two positive charges, but the paper states that electrostatic attraction to an anionic substrate is by itself not enough to drive binding in water: the anionic sugar Neu5Ac shows no measurable binding at all. Association constants were measured in water by isothermal titration calorimetry and, independently, by NMR titration.",
+ "goal": "You are building a sensor for one metabolite in aqueous solution and need a substrate that this receptor holds at least ten thousandfold above background, which is far above what it manages for ordinary monosaccharides.",
+ "ask": "Which candidate substrate should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "Ka_ITC": {
+   "label": "association constant with MPNT2+ in water (M^-1, isothermal titration calorimetry)",
+   "locator": "Table 1, column ITC under the heading BPTL2+/Ka (M^-1)"
+  }
+ },
+ "constraints": [
+  {
+   "key": "affinity",
+   "property": "Ka_ITC",
+   "op": ">=",
+   "value": 10000,
+   "display": "1 × 10^4 M^-1",
+   "text": "the measured association constant in water is at least 1 × 10^4 M^-1"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "Glucuronic acid",
+   "paper_name": "Glucuronic acid",
+   "name": "glucuronic acid, the C6-carboxylate of glucose",
+   "geometry": "A pyranose whose substituents are all equatorial, as in glucose, with the C6 hydroxymethyl group replaced by a carboxylate. The all-equatorial pattern leaves the C2 and C5 C-H bonds pointing at the aromatic panels.",
+   "measured": {
+    "Ka_ITC": {
+     "value": 100000.0,
+     "display": "(1.0 ± 0.1) × 10^5",
+     "locator": "1, row Glucuronic acid, column BPTL^2+/K a (M^-1) / ITC (row label in column  / Substrates)",
+     "source": {
+      "table": "1",
+      "row": "Glucuronic acid",
+      "column": [
+       "BPTL^2+/K a (M^-1)",
+       "ITC"
+      ],
+      "row_column": [
+       "",
+       "Substrates"
+      ]
+     }
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "Glucose",
+   "paper_name": "Glucose",
+   "name": "glucose, the parent all-equatorial hexose",
+   "geometry": "The same all-equatorial substitution pattern as glucuronic acid, with a neutral hydroxymethyl group at C6 instead of a carboxylate; the ring geometry and the orientation of every C-H bond are the same.",
+   "measured": {
+    "Ka_ITC": {
+     "value": 1700.0,
+     "display": "1700 ± 83",
+     "locator": "1, row Glucose, column BPTL^2+/K a (M^-1) / ITC (row label in column  / Substrates)",
+     "source": {
+      "table": "1",
+      "row": "Glucose",
+      "column": [
+       "BPTL^2+/K a (M^-1)",
+       "ITC"
+      ],
+      "row_column": [
+       "",
+       "Substrates"
+      ]
+     }
+    }
+   },
+   "rule": "same_geometry_lower_affinity",
+   "reason": "环上取代基取向与答案完全相同，但实测 Ka 只有 1700 M⁻¹，比 1 × 10⁴ 低一个数量级：同样的全平伏构型本身达不到目标档位。",
+   "plausibility": 3
+  },
+  {
+   "id": "Methyl alpha-glucoside",
+   "paper_name": "Methyl α-glucoside",
+   "name": "methyl alpha-glucoside, glucose with an alpha-linked methyl group at the anomeric carbon",
+   "geometry": "Glucose with the C1 hydroxyl replaced by an alpha-linked methoxy group, which turns the C1 C-H bond from axial to equatorial. The paper notes that the C1 C-H bond makes no C-H...pi contact, so this flip is the least consequential of the ones compared, but the alpha linkage still alters the orientation of that bond.",
+   "measured": {
+    "Ka_ITC": {
+     "value": 252.0,
+     "display": "252 ± 25",
+     "locator": "1, row Methyl α-glucoside, column BPTL^2+/K a (M^-1) / ITC (row label in column  / Substrates)",
+     "source": {
+      "table": "1",
+      "row": "Methyl α-glucoside",
+      "column": [
+       "BPTL^2+/K a (M^-1)",
+       "ITC"
+      ],
+      "row_column": [
+       "",
+       "Substrates"
+      ]
+     }
+    }
+   },
+   "rule": "anomeric_flip",
+   "reason": "α 端基连接改变 C1 C–H 取向，实测 Ka 为 252 M⁻¹，远低于目标。",
+   "plausibility": 3
+  },
+  {
+   "id": "Galactose",
+   "paper_name": "Galactose",
+   "name": "galactose, the C4 epimer of glucose",
+   "geometry": "Differs from glucose only at C4, where the hydroxyl is inverted from equatorial to axial; that inversion turns the C4 C-H bond away from the naphthalene panel it would otherwise contact.",
+   "measured": {
+    "Ka_ITC": {
+     "value": 52.0,
+     "display": "52 ± 3",
+     "locator": "1, row Galactose, column BPTL^2+/K a (M^-1) / ITC (row label in column  / Substrates)",
+     "source": {
+      "table": "1",
+      "row": "Galactose",
+      "column": [
+       "BPTL^2+/K a (M^-1)",
+       "ITC"
+      ],
+      "row_column": [
+       "",
+       "Substrates"
+      ]
+     }
+    }
+   },
+   "rule": "single_axial_inversion",
+   "reason": "只把 C4 羟基从平伏翻成直立，实测 Ka 就从葡萄糖的 1700 掉到 52 M⁻¹（33 倍），离目标最远。",
+   "plausibility": 3
+  }
+ ],
+ "paper_choice": "Glucuronic acid",
+ "paper_choice_locator": "标题即 \"A Synthetic Lectin for Glucuronate\"；Evaluation of Carbohydrate Binding in Water 一节称 \"MPNT^2+·2Cl^- exhibited good selectivity toward carbohydrates with an all-equatorial substitution pattern. Glucuronate, glucose, and methyl β-glucoside are representative examples of this configuration and displayed the highest binding affinities\"；Table 1 的 ITC 列给出四个候选的实测值",
+ "naive_cue": {
+  "heuristic": "受体带两个正电荷，所以带负电的糖静电吸引最强",
+  "picks": "Glucuronic acid",
+  "is_correct": true,
+  "note": "本题的天真启发式恰好也选对，所以它的区分力有限（见 notes 第一条）。原文自己的反例是阴离子糖 Neu5Ac 完全测不到结合，说明电荷本身不足以决定；但该候选因无数值（N.D.）不能进入四选一。"
+ },
+ "scale": {
+  "input_nm": 1.6,
+  "reasoning_nm": 0.5,
+  "definition": "吡喃糖环上取代基的平伏/直立取向（判据为单个 C–H 或 C–O 键的朝向，环直径约 0.5 nm；本项为估算，原文未给出距离数值）"
+ },
+ "notes": [
+  "**本卡的主要保留意见**：天真的静电启发式与正确答案一致（is_correct: true），所以这道题可能只考\"认出带电的那个\"而不是几何推理。是否保留、或改成只在中性糖之间比较（那样正确答案是葡萄糖，但\"原文选定者\"严格说是葡萄糖醛酸，不再满足题型族的原规则），须 L1 判定。",
+  "原文正文把半乳糖的亲和力写作 65 M⁻¹，而表 1 的 ITC 列为 52 ± 3、NMR 列为 68 ± 1，三处不一致；本卡用表 1 的 ITC 列，并把这一不一致交给 L1。该不一致不改变本题答案（三个取值都远低于 1 × 10⁴）。",
+  "表 1 的表头有两行，且行标签在第二列（第一列是条目编号）；本卡用两行表头路径与 row_column 指针定位，这是 2026-10-23 为此新增的解析能力。",
+  "表头写作 \"BPTL^2+/K a (M^-1)\"，而正文中的受体代号是 MPNT^2+；原文表头与正文代号不一致，须 L1 核对是否同一化合物。本卡的题干按正文使用 MPNT2+。",
+  "甘露糖与果糖在表中为 N.D.（测不到结合），Neu5Ac 亦为 N.D.；它们没有可解析的数值，不能作候选，但原文用它们论证\"电荷不足以决定结合\"。",
+  "候选集里刻意不含甲基 β-葡萄糖苷（575 M⁻¹），否则与甲基 α-葡萄糖苷构成\"两个二选一\"式的候选，格式检查会标记。"
+ ],
+ "paper_xml": {
+  "path": "inputs/paper-candidates/PMC12464755.xml",
+  "sha256": "a80d99b24b2c80536a880d02e84fc254fe1fb405f12083a8edfbe8aa0777daf4"
+ },
+ "derived_from_card": null,
+ "resolved_from": {
+  "pointer_card": "assets/families/design/pointers/zhai2025-lectin-sugar-ptr.json",
+  "pointer_sha256": "9e322f9c017c5e53237fa096191ed72935055d0459894ff218fc8763d8c2f30f",
+  "paper_xml": "inputs/paper-candidates/PMC12464755.xml",
+  "paper_xml_sha256": "a80d99b24b2c80536a880d02e84fc254fe1fb405f12083a8edfbe8aa0777daf4",
+  "tool": "tools/resolve_design_cards.py"
+ }
+}

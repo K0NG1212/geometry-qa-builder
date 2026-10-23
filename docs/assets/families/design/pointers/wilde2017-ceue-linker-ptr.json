@@ -1,0 +1,119 @@
+{
+ "kind": "design_pointer_card",
+ "family": "design_choice",
+ "id": "wilde2017-ceue-linker-ptr",
+ "paper": "paper-wilde-ceue-licam",
+ "citation": "Wilde, Hughes, Blagova, Moroz, Thomas, Turkenburg, Raines, Duhme-Klair & Wilson, \"Interactions of the periplasmic binding protein CeuE with Fe(III) n-LICAM4- siderophore analogues of varied linker length\", Sci. Rep. 7, 45941 (2017), doi:10.1038/srep45941 (Europe PMC PMC5382913)",
+ "short_citation": "Wilde et al., Sci. Rep. (2017)",
+ "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+ "setting": "Bacteria scavenge iron with siderophores, and the periplasmic binding protein CeuE of Campylobacter jejuni captures the resulting Fe(III) complexes. The CeuE pocket completes the octahedral coordination of the iron with two of its own side chains, His227 and Tyr288, so a tetradentate siderophore only has to supply four of the six donors. The candidates are Fe(III) complexes of synthetic tetradentate bis-catecholamide ligands n-LICAM4-, in which the two catecholamide units are joined by a backbone linker of n atoms; the authors prepared n = 4, 5, 6 and 8 and measured the dissociation constant of each complex from wild-type CeuE by intrinsic fluorescence quenching, in triplicate, fitted to a 1:1 model. Co-crystal structures give the angle between the mean planes of the two catecholate rings as 97 degrees for the 4-atom linker and 111, 110 and 110 degrees for the 5-, 6- and 8-atom linkers, against an optimum of about 110 degrees; the paper states that the short butylene linker of the 4-atom ligand cannot reach that optimum, while the longer linkers can, at the cost of more conformational freedom. For reference, the natural hexadentate siderophore enterobactin carries a 5-atom backbone linker between its catecholamide groups.",
+ "goal": "You need the analogue that the protein holds most tightly, so that it stays bound while the complex is handed on to the transporter.",
+ "ask": "Which candidate iron-siderophore complex should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "Kd_WT": {
+   "label": "dissociation constant from wild-type CeuE (nM, intrinsic fluorescence quenching, 1:1 model, triplicate)",
+   "locator": "Table 1, column WT CeuE Kd/nM"
+  }
+ },
+ "constraints": [
+  {
+   "key": "affinity",
+   "property": "Kd_WT",
+   "op": "<=",
+   "value": 15,
+   "display": "15 nM",
+   "text": "the measured dissociation constant from wild-type CeuE is at most 15 nM"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "Fe-5-Lic",
+   "paper_name": "5",
+   "name": "the Fe(III) complex of 5-LICAM4-, whose two catecholamide units are joined by a five-atom backbone linker",
+   "geometry": "Five atoms between the two catecholamide units, the same linker length as in natural enterobactin. In the co-crystal structure the angle between the mean planes of the two catecholate rings is 111 degrees, at the optimum of about 110 degrees, and the linker is the shortest one that reaches it.",
+   "measured": {
+    "Kd_WT": {
+     "table": "Table 1",
+     "row": "5",
+     "column": "WT CeuE Kd/nM"
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "Fe-4-Lic",
+   "paper_name": "4",
+   "name": "the Fe(III) complex of 4-LICAM4-, with a four-atom butylene linker",
+   "geometry": "Four atoms between the two catecholamide units, the shortest of the series. In the co-crystal structure the angle between the catecholate mean planes is strained to 97 degrees instead of the optimal 110; the paper attributes this to the short butylene linker.",
+   "measured": {
+    "Kd_WT": {
+     "table": "Table 1",
+     "row": "4",
+     "column": "WT CeuE Kd/nM"
+    }
+   },
+   "rule": "strained_short_linker",
+   "reason": "链太短，两个儿茶酚平面只能张到 97°（最优约 110°），实测 Kd 为 21 nM，未达 15 nM。",
+   "plausibility": 3
+  },
+  {
+   "id": "Fe-6-Lic",
+   "paper_name": "6",
+   "name": "the Fe(III) complex of 6-LICAM4-, with a six-atom linker",
+   "geometry": "Six atoms between the two catecholamide units. The angle between the catecholate mean planes is 110 degrees, the same as the optimum, so the iron coordination is unstrained; the extra atom adds conformational freedom to the linker.",
+   "measured": {
+    "Kd_WT": {
+     "table": "Table 1",
+     "row": "6",
+     "column": "WT CeuE Kd/nM"
+    }
+   },
+   "rule": "flexibility_cost",
+   "reason": "几何角度已达最优（110°），但多出的构象自由度带来熵代价，实测 Kd 为 33 nM，未达 15 nM。",
+   "plausibility": 3
+  },
+  {
+   "id": "Fe-8-Lic",
+   "paper_name": "8",
+   "name": "the Fe(III) complex of 8-LICAM4-, with an eight-atom linker",
+   "geometry": "Eight atoms between the two catecholamide units, the longest of the series. The angle between the catecholate mean planes is 110 degrees, identical to that of the six-atom ligand, so the paper ascribes its weaker binding to the larger number of conformational degrees of freedom in the longer linker rather than to the coordination geometry.",
+   "measured": {
+    "Kd_WT": {
+     "table": "Table 1",
+     "row": "8",
+     "column": "WT CeuE Kd/nM"
+    }
+   },
+   "rule": "longest_linker",
+   "reason": "二面角与六原子链相同（110°），但链最长、构象自由度最多，实测 Kd 为 58 nM，是四者中最弱的。",
+   "plausibility": 3
+  }
+ ],
+ "paper_choice": "Fe-5-Lic",
+ "paper_choice_locator": "Summary and Conclusions：\"the affinities of CeuE for Fe-4-Lic, Fe-5-Lic, Fe-6-Lic and Fe-8-Lic were determined using fluorescence quenching, which yielded dissociation constants of 21 ± 6 nM, < 10 nM, 33 ± 8 nM and 58 ± 8 nM, respectively\"；Intrinsic fluorescence quenching 一节称 Fe-5-Lic 结合过紧，无法算出准确的解离常数，并指出其结合比 Fe-4-Lic 与 Fe-6-Lic 都略紧",
+ "naive_cue": {
+  "heuristic": "链越长越柔软，越容易适应口袋，所以选最长的八原子链",
+  "picks": "Fe-8-Lic",
+  "is_correct": false,
+  "note": "最长的链确实能达到最优二面角，但构象自由度最多，实测反而最弱（58 nM）；答案是能达到最优角度的最短链。"
+ },
+ "scale": {
+  "input_nm": 1.0,
+  "reasoning_nm": 0.63,
+  "definition": "两个儿茶酰胺单元之间的主链连接长度（4–8 个原子，按 C–C 键长约 0.13 nm 估算为 0.5–1.0 nm，本项为估算而非原文给出的数值）；原文给出的几何量是两个儿茶酚平面的夹角（97°–111°）"
+ },
+ "notes": [
+  "Fe-5-Lic 的 Kd 在表 1 中记作 \"<10\"，是单侧上界：原文说它结合过紧，无法测得准确值。代码按上界处理，只允许它判定\"满足 ≤ 15 nM\"这一侧，不允许用它断定不满足任何下界型约束。",
+  "原文称 Fe-4-Lic（21 ± 6 nM）与 Fe-6-Lic（33 ± 8 nM）的 Kd 在彼此三个标准差之内，不能视为有显著差别；本题的阈值 15 nM 不依赖这两者的先后，两者都明确未达标。",
+  "表 1 另有两个突变体（H227L、H227A）的 Kd 列，本题只用野生型那一列；原文指出突变体的趋势与野生型一致但整体更弱。",
+  "决定量是连接链长度这一几何参数，但原文把 Fe-6/Fe-8 的差别归于构象熵而非配位几何（两者二面角相同）。因此\"几何是判据\"在本题成立的方式是：链长同时决定能否达到最优二面角与构象自由度。是否接受这一点须 L1 判定。",
+  "候选的结构描述里写出了原文报告的二面角（97°/111°/110°/110°），其中 110° 与 111° 本身不足以区分 Fe-5/Fe-6/Fe-8，考生必须结合链长与构象自由度推理。这是否足以推出答案须 L1 判定。"
+ ],
+ "paper_xml": {
+  "path": "inputs/paper-candidates/PMC5382913.xml",
+  "sha256": "9af26fc57e3dc479ac2f6cf0b568791bb93efb531910de111c14fdbdc3f2962e"
+ },
+ "derived_from_card": null
+}

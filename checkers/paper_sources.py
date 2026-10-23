@@ -79,12 +79,30 @@ def section_text(doc, title):
     return text_of(secs[0], NOT_PROSE)
 
 
+def columns_named(grid, name):
+    """Column indices whose header cells, read down the header rows, equal `name` (a string: one header row)."""
+    path = [name] if isinstance(name, str) else list(name)
+    return [j for j in range(len(grid[0])) if all(grid[k][j] == h for k, h in enumerate(path))], len(path)
+
+
+# Printed forms the shared number parser would misread: "× 10" with no exponent (read as ×1) and thousands separators
+# ("13,800" read as 13). Refused here until the parser handles them.
+UNSAFE_DISPLAY = re.compile(r'×\s*10(?!\s*\^)|^\(?\s*[<>]?\s*\d{1,3},\d{3}')
+
+
 def check_entry(doc, names, cand, prop, entry):
     p = entry['source']
+    need(not UNSAFE_DISPLAY.search(entry['display']), '%s/%s: %r is a printed form the number parser misreads'
+         % (cand, prop, entry['display']))
     if 'table' in p:
         grid = grid_of(doc, p['table'])
-        rows = [i for i in range(1, len(grid)) if grid[i][0] == p['row']]
-        cols = [j for j, h in enumerate(grid[0]) if h == p['column']]
+        cols, depth = columns_named(grid, p['column'])
+        key = 0
+        if p.get('row_column') is not None:
+            keys, key_depth = columns_named(grid, p['row_column'])
+            need(len(keys) == 1 and key_depth == depth, '%s/%s: row label column %r not unique' % (cand, prop, p['row_column']))
+            key = keys[0]
+        rows = [i for i in range(depth, len(grid)) if grid[i][key] == p['row']]
         need(len(rows) == 1 and len(cols) == 1, '%s/%s: row %r or column %r not unique' % (cand, prop, p['row'], p['column']))
         need(grid[rows[0]][cols[0]] == entry['display'], '%s/%s: the paper prints %r, the card has %r'
              % (cand, prop, grid[rows[0]][cols[0]], entry['display']))

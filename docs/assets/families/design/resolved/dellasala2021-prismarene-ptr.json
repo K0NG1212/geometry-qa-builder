@@ -1,0 +1,146 @@
+{
+ "kind": "design_card",
+ "family": "design_choice",
+ "id": "dellasala2021-prismarene-ptr",
+ "paper": "paper-dellasala-prismarene",
+ "citation": "Della Sala, Del Regno, Di Marino, Calabrese, Palo, Talotta, Geremia, Hickey, Capobianco, Neri & Gaeta, \"An intramolecularly self-templated synthesis of macrocycles: self-filling effects on the formation of prismarenes\", Chem. Sci. 12, 9952 (2021), doi:10.1039/d1sc02199k (Europe PMC PMC8317625)",
+ "short_citation": "Della Sala et al., Chem. Sci. (2021)",
+ "license": "CC BY 3.0; facts and numbers only, no text or figures reproduced",
+ "setting": "Prismarenes are macrocycles built from 2,6-dialkoxynaphthalene units whose aromatic walls enclose a prism-shaped cavity lined with pi electron density, so they bind quaternary ammonium cations through C-H...pi contacts with the guest's methyl groups. The pentamers, prism[5]arenes, adopt an almost regular pentagonal prism (canting angles 90.0 +- 3.3 degrees, interior dihedral angles averaging 108 degrees, the ideal value) with a cavity that stays open, and a bound ammonium guest sits centred in it. The hexamers, prism[6]arenes, instead adopt a cuboid in which four of the alkyl chains turn inward and pack against the aromatic walls, filling the macrocycle's own cavity: the paper measures the resulting free cavity volume as 49 cubic angstroms for the ethoxy hexamer and 77 cubic angstroms for the propoxy hexamer, with the chains filling 90 percent and 84 percent of the available space respectively. Association constants with the dicationic guest N,N,N',N'-tetramethylpiperazonium were measured by competition NMR experiments in dichloromethane-d2 at 298 K, with errors below 15 percent.",
+ "goal": "You need a host that binds the tetramethylpiperazonium dication essentially quantitatively at micromolar concentrations, so nothing below a billion per mole will do.",
+ "ask": "Which candidate macrocycle should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "Ka_TMP": {
+   "label": "association constant with N,N,N',N'-tetramethylpiperazonium (M^-1, competition 1H NMR, CD2Cl2, 298 K)",
+   "locator": "binding-constant table, column 72+"
+  }
+ },
+ "constraints": [
+  {
+   "key": "affinity",
+   "property": "Ka_TMP",
+   "op": ">=",
+   "value": 1000000000,
+   "display": "1 × 10^9 M^-1",
+   "text": "the measured association constant with the tetramethylpiperazonium dication is at least 1 × 10^9 M^-1"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "PrS[5]nPr",
+   "paper_name": "PrS[5]nPr",
+   "name": "the propoxy-prism[5]arene, a pentamer carrying propoxy chains",
+   "geometry": "Five naphthalene units in an almost regular pentagonal prism, interior dihedral angles averaging the ideal 108 degrees. The cavity stays open, so a bound ammonium guest sits centred inside it making C-H...pi contacts with the walls; the chains here are the longest of the two pentamers.",
+   "measured": {
+    "Ka_TMP": {
+     "value": 1400000000.0,
+     "display": "1.4 × 10^9",
+     "locator": "tab2, row PrS[5]nPr, column 72+",
+     "source": {
+      "table": "tab2",
+      "row": "PrS[5]nPr",
+      "column": "72+"
+     }
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "PrS[5]Me",
+   "paper_name": "PrS[5]Me",
+   "name": "the methoxy-prism[5]arene, the same pentamer with methoxy chains",
+   "geometry": "The same open pentagonal-prism cavity as the propoxy pentamer, with short methoxy groups instead of propoxy chains. The paper reports a bound tetramethylammonium guest well centred in this cavity, giving C-H...pi contacts with the walls.",
+   "measured": {
+    "Ka_TMP": {
+     "value": 18000000.0,
+     "display": "1.8 × 10^7",
+     "locator": "tab2, row PrS[5]Me, column 72+",
+     "source": {
+      "table": "tab2",
+      "row": "PrS[5]Me",
+      "column": "72+"
+     }
+    }
+   },
+   "rule": "shorter_chains_same_ring",
+   "reason": "与答案同为开放空腔的五聚体，只是链短，实测 Ka 为 1.8 × 10⁷ M⁻¹，比目标低约 55 倍。",
+   "plausibility": 3
+  },
+  {
+   "id": "PrS[6]nPr",
+   "paper_name": "PrS[6]nPr",
+   "name": "the propoxy-prism[6]arene, the six-unit homologue with the same propoxy chains",
+   "geometry": "Six naphthalene units in a cuboid. Four of its propoxy chains turn inward and pack against the aromatic walls, filling 84 percent of the enclosed space and leaving a free cavity volume of 77 cubic angstroms, the larger of the two hexamers.",
+   "measured": {
+    "Ka_TMP": {
+     "value": 120000000.0,
+     "display": "1.2 × 10^8",
+     "locator": "tab2, row PrS[6]nPr, column 72+",
+     "source": {
+      "table": "tab2",
+      "row": "PrS[6]nPr",
+      "column": "72+"
+     }
+    }
+   },
+   "rule": "larger_ring_self_filled",
+   "reason": "环更大，但四条链向内填掉 84% 的空间（自由腔体积 77 Å³），实测 Ka 只有 1.2 × 10⁸ M⁻¹，比目标低约 8 倍。",
+   "plausibility": 3
+  },
+  {
+   "id": "PrS[6]Et",
+   "paper_name": "PrS[6]Et",
+   "name": "the ethoxy-prism[6]arene, the six-unit homologue with shorter ethoxy chains",
+   "geometry": "The same cuboid hexamer skeleton, with ethoxy chains that pack inside more efficiently than propoxy: they fill 90 percent of the enclosed space and leave a free cavity volume of only 49 cubic angstroms, the smallest of the four.",
+   "measured": {
+    "Ka_TMP": {
+     "value": 100000000.0,
+     "display": "1.0 × 10^8",
+     "locator": "tab2, row PrS[6]Et, column 72+",
+     "source": {
+      "table": "tab2",
+      "row": "PrS[6]Et",
+      "column": "72+"
+     }
+    }
+   },
+   "rule": "most_self_filled",
+   "reason": "自由腔体积最小（49 Å³，被自身链填掉 90%），实测 Ka 为 1.0 × 10⁸ M⁻¹，比目标低 10 倍。",
+   "plausibility": 3
+  }
+ ],
+ "paper_choice": "PrS[5]nPr",
+ "paper_choice_locator": "Molecular recognition properties of ethoxy- and propoxy-prism[n]arenes 一节：\"an association constant value of 1.4 × 10^9 M^-1 (298 K, CD2Cl2) was determined for the 72+@PrS[5]nPr com[plex]\"，是该表中对 72+ 报告的最高值；结合常数表的 72+ 列给出四个候选的实测值",
+ "naive_cue": {
+  "heuristic": "六聚体的环更大，容纳体积大的双阳离子应当更强",
+  "picks": "PrS[6]nPr",
+  "is_correct": false,
+  "note": "六聚体的环确实更大，但它的四条烷基链向内把自己的空腔填掉 84–90%，可用空间反而小；开放空腔的五聚体高一个数量级。"
+ },
+ "scale": {
+  "input_nm": 1.3,
+  "reasoning_nm": 0.42,
+  "definition": "大环自身的自由空腔体积（原文给出六聚体为 49 与 77 Å³，按立方根折算约 0.37–0.43 nm；折算为本项目所加，原文只给体积）"
+ },
+ "notes": [
+  "该表在 XML 里没有 <label> 元素，解析器退回用它的 id \"tab2\" 作表标签（原文编号为 Table 2）；因此指针与原文位置里写的是 tab2。L1 核对时请找结合常数表（表题为 \"Binding constant values of prism[n]arene host–guest complexes determined by 1H NMR experiments in CD2Cl2\"）。",
+  "同一张表还有 52+、6+ 等客体列，它们对五聚体与六聚体呈相反的强弱趋势（例如对 52+，五聚体高出六聚体约 10⁵ 倍），本可再出一道答案相反的题；但这两个客体的化学身份只画在图里，XML 正文读不到，**按不得由图注推断的规则，本轮不使用这两列**。只有 72+ 在正文中被写明为 N,N,N′,N′-四甲基哌嗪双阳离子。",
+  "**保留意见**：答案与同为开放五聚体的 PrS[5]Me 相差 78 倍，而原文并未说明五聚体内部\"链越长越强\"的原因（只对六聚体给出自填充的体积数据）。因此仅凭卡片里的结构描述，考生可能无法在两个五聚体之间做出有依据的区分，须 L1 判定本题是否成立。",
+  "原文的主题是自填充对大环合成产率的影响，并非为某个目标挑选主体；paper_choice 取的是原文对 72+ 报告的最强结合者，措辞已在 paper_choice_locator 中写明。",
+  "结合常数由竞争 NMR 实验测得，原文给出的误差为小于 15%，表中不逐项列出。"
+ ],
+ "paper_xml": {
+  "path": "inputs/paper-candidates/PMC8317625.xml",
+  "sha256": "e7250a4dea17b6386fe7524feef1b244fd1abd5655023f1bb8590bb172738a5b"
+ },
+ "derived_from_card": null,
+ "resolved_from": {
+  "pointer_card": "assets/families/design/pointers/dellasala2021-prismarene-ptr.json",
+  "pointer_sha256": "81fd12b1aa0f01b36261ee6bed5d3e062cc3f1192e9726a79055b3239d9f7391",
+  "paper_xml": "inputs/paper-candidates/PMC8317625.xml",
+  "paper_xml_sha256": "e7250a4dea17b6386fe7524feef1b244fd1abd5655023f1bb8590bb172738a5b",
+  "tool": "tools/resolve_design_cards.py"
+ }
+}

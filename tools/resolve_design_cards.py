@@ -62,10 +62,19 @@ def nearest_subject(text, before, names):
     return best[1] if best else None
 
 
+def misreadable(display):
+    """True for printed numbers the shared parser would misread: '× 10' with no exponent (it reads ×1) and
+    thousands separators ('13,800' reads 13). Such values are refused until the parser handles them."""
+    return bool(re.search(r'×\s*10(?!\s*\^)', display) or re.match(r'\(?\s*[<>]?\s*\d{1,3},\d{3}', display))
+
+
 def resolve_entry(xml, names, pointer):
     if 'table' in pointer:
-        display = jats.cell(xml, pointer['table'], pointer['row'], pointer['column'])
-        locator = '%s, row %s, column %s' % (pointer['table'], pointer['row'], pointer['column'])
+        display = jats.cell(xml, pointer['table'], pointer['row'], pointer['column'], pointer.get('row_column'))
+        name = lambda c: c if isinstance(c, str) else ' / '.join(c)
+        locator = '%s, row %s, column %s' % (pointer['table'], pointer['row'], name(pointer['column']))
+        if pointer.get('row_column') is not None:
+            locator += ' (row label in column %s)' % name(pointer['row_column'])
     else:
         jats.quote(xml, pointer['section'], pointer['quote'])
         display = pointer['display']
@@ -76,6 +85,8 @@ def resolve_entry(xml, names, pointer):
         if subject != pointer['subject']:
             raise ValueError('Nearest candidate before %r is %r, not %r' % (pointer['quote'], subject, pointer['subject']))
         locator = 'Section "%s": "%s"' % (pointer['section'], pointer['quote'])
+    if misreadable(display):
+        raise ValueError('%r is a printed form the number parser misreads; not usable yet' % display)
     bound, _ = parse_display(display)
     entry = dict(value=exact_value(display), display=display, locator=locator, source=pointer)
     if bound:

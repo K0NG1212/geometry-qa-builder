@@ -1,0 +1,1990 @@
+{
+ "kind": "paper_triage",
+ "version": "0.1.0",
+ "date": "2026-10-23",
+ "judged_by": "Claude Code 会话，模型 claude-opus-5-5（用户 2026-10-23 决定由本会话分拣）",
+ "status": "模型分拣结论，未经人工审核；同一会话的判断不算独立审核，供 L1 逐篇核对",
+ "input": {
+  "prefilter": "runs/paper-prefilter-v08",
+  "digest": "runs/b3-digest-v01",
+  "search": "runs/paper-search-v02",
+  "full_texts": "inputs/paper-candidates（D:\\GeoBench-data\\paper-candidates，不入库）"
+ },
+ "criteria": {
+  "design": "同一篇至少 4 个结构变体，在一处可描述的几何特征上系统变化；每个变体有实测性质；论文把差异归因于该几何特征；能写成\"给目标阈值、问哪个结构达到\"（沿用 design_choice 的约束）",
+  "evidence": "不满足设计条件，但有可供 evidence_quantity / evidence_elimination 使用的实测数值与结论",
+  "unsure": "强档表不足以判断（实测还是计算未明，或关键数据在其他表），须打开全文核对",
+  "reject": "计算值 computed；决定因素非几何 not_geometric；变体少于 4 few_variants；偏离主题 off_topic；条件而非结构的序列 conditions_series；与文献或方法的比较表 method_comparison；其他 other"
+ },
+ "reading_basis": "每篇只读了摘要开头与强档表的表题、表头、行名、测量列（runs/b3-digest-v01）；未读全文，\"design\" 只表示值得写卡，写卡时须回到全文核对",
+ "summary": {
+  "papers": 174,
+  "decisions": {
+   "design": 33,
+   "evidence": 31,
+   "reject": 106,
+   "unsure": 4
+  },
+  "reject_reasons": {
+   "conditions_series": 21,
+   "not_geometric": 20,
+   "method_comparison": 19,
+   "computed": 14,
+   "off_topic": 12,
+   "other": 11,
+   "few_variants": 9
+  },
+  "by_query": {
+   "disulfide_engineering": {
+    "design": 2,
+    "evidence": 1
+   },
+   "host_guest": {
+    "reject": 45,
+    "design": 23,
+    "evidence": 14,
+    "unsure": 3
+   },
+   "interlayer_membrane": {
+    "reject": 16,
+    "evidence": 4,
+    "design": 1
+   },
+   "linker_length": {
+    "evidence": 3,
+    "reject": 14,
+    "design": 1
+   },
+   "porous_separation": {
+    "reject": 28,
+    "design": 5,
+    "evidence": 8,
+    "unsure": 1
+   },
+   "ring_size": {
+    "design": 2,
+    "reject": 4,
+    "evidence": 2
+   }
+  }
+ },
+ "papers": [
+  {
+   "pmcid": "PMC11432317",
+   "title": "Disulfide Bond Engineering of Soluble ACE2 for Thermal Stability Enhancement.",
+   "year": "2024",
+   "queries": [
+    "disulfide_engineering"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "sACE2 引入二硫键 9 个突变体：表 1 同时给 Cα 距离与实测 Tm/ΔTm；几何（Cα 距离、位置）只部分决定 ΔTm，须 L1 判断"
+  },
+  {
+   "pmcid": "PMC4935852",
+   "title": "Engineering de novo disulfide bond in bacterial α-type carbonic anhydrase for thermostable carbon sequestration.",
+   "year": "2016",
+   "queries": [
+    "disulfide_engineering"
+   ],
+   "decision": "evidence",
+   "reason": "few_variants",
+   "note": "碳酸酐酶 3 个二硫键变体 + 野生型的实测 Tm；表中无几何量，作设计题候选不足"
+  },
+  {
+   "pmcid": "PMC9570233",
+   "title": "Improving Both the Thermostability and Catalytic Efficiency of Phospholipase D from Moritella sp. JT01 through Disulfide Bond Engineering Strategy.",
+   "year": "2022",
+   "queries": [
+    "disulfide_engineering"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "磷脂酶 D 14 个以上二硫键突变体，实测 Tm 与 t1/2；几何描述须到正文找（键位距离）"
+  },
+  {
+   "pmcid": "PMC10096402",
+   "title": "Amphiphilic Cyclodextrin Nanoparticles as Delivery System for Idebenone: A Preformulation Study.",
+   "year": "2023",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "变化的是浓度，不是结构"
+  },
+  {
+   "pmcid": "PMC10304928",
+   "title": "Hexahexyloxycalix[6]arene, a Conformationally Adaptive Host for the Complexation of Linear and Branched Alkylammonium Guests.",
+   "year": "2023",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "表为 NBO 计算的氢键贡献"
+  },
+  {
+   "pmcid": "PMC10321056",
+   "title": "Limitations of non-polarizable force fields in describing anion binding poses in non-polar synthetic hosts.",
+   "year": "2023",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "力场 PMF 计算的结合自由能（只有一行 ITC）"
+  },
+  {
+   "pmcid": "PMC10598568",
+   "title": "A Closed Cavity Strategy for Selective Dipeptide Binding by a Polyaromatic Receptor in Water.",
+   "year": "2023",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "封闭空腔受体对 4 种二肽客体（FF、FF-Me、FF-3Me、WF）的 ITC 实测 Ka；客体尺寸/形状与空腔匹配"
+  },
+  {
+   "pmcid": "PMC10755866",
+   "title": "Modulation of redox reactivity of resazurin through host-guest complexation with Cucurbit[n]uril (n = 7, 8).",
+   "year": "2023",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": "few_variants",
+   "note": "CB7 与 CB8 两个主体；表中有客体体积、堆积系数与结合常数，适合证据题"
+  },
+  {
+   "pmcid": "PMC10988627",
+   "title": "Peptide recognition by a synthetic receptor at subnanomolar concentrations.",
+   "year": "2024",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": "not_geometric",
+   "note": "Q8 与 5 个五肽的实测 Kd；决定因素是序列位置（N 端 Lys-Phe），非几何"
+  },
+  {
+   "pmcid": "PMC11173409",
+   "title": "Polyaromatic Hydrocarbon Inclusion Complexes with 2-Hydroxylpropyl-β/γ-Cyclodextrin: Molecular Dynamic Simulation and Spectroscopic Studies.",
+   "year": "2024",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": "uncertain_values",
+   "note": "4 种多环芳烃 × 2 种羟丙基环糊精的结合常数；不确定度大（如 49 ± 29），设计题裕度难保证"
+  },
+  {
+   "pmcid": "PMC11241027",
+   "title": "Phenolic Acid-β-Cyclodextrin Complexation Study to Mask Bitterness in Wheat Bran: A Machine Learning-Based QSAR Study.",
+   "year": "2024",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "对接打分与 QSAR"
+  },
+  {
+   "pmcid": "PMC11331485",
+   "title": "Coordination-cage binding and catalysed hydrolysis of organophosphorus chemical warfare agent simulants.",
+   "year": "2024",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "配位笼 20 个客体的 SA/V 与 K；DESIGN_CANDIDATES 第八节已判：体积不决定 K"
+  },
+  {
+   "pmcid": "PMC11457137",
+   "title": "Exploring the Recognition Mechanism of Surfactant-Cyclodextrin Complex Formation: Insights from SPR Studies on Temperature and Ionic Liquid Influence.",
+   "year": "2024",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "温度与离子液体浓度序列"
+  },
+  {
+   "pmcid": "PMC11597089",
+   "title": "Kratom Alkaloids: A Blood-Brain Barrier Specific Membrane Permeability Assay-Guided Isolation and Cyclodextrin Complexation Study.",
+   "year": "2024",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "4 种非对映异构生物碱 × 多种环糊精的实测稳定常数（毛细管电泳与 HPLC）；环糊精空腔尺寸与客体立体构型"
+  },
+  {
+   "pmcid": "PMC11677767",
+   "title": "Investigation of Host-Guest Interactions in 2-Ureido-4-ferrocenylpyrimidine Derivatives.",
+   "year": "2024",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "few_variants",
+   "note": "只有 2 个化合物"
+  },
+  {
+   "pmcid": "PMC11945384",
+   "title": "Acyclic Cucurbit[n]uril-Enabled Detection of Aflatoxin B1 via Host-Guest Chemistry and Bioluminescent Immunoassay.",
+   "year": "2025",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "检测方法与缓冲条件比较"
+  },
+  {
+   "pmcid": "PMC12001018",
+   "title": "Substituent effects of fluorinated bambusurils on their anion transport.",
+   "year": "2025",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "12 个氟代竹环脲的取代基效应以电子（σ、logP）为主"
+  },
+  {
+   "pmcid": "PMC12153104",
+   "title": "Extraordinary kinetic inertness of lanthanide(iii) complexes of pyridine-rigidified 18-membered hexaazamacrocycles with four acetate pendant arms.",
+   "year": "2025",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "18 元六氮大环 H4pyta 与 7 种镧系离子的实测 log K，并与不同空腔的配体比较；离子半径与空腔尺寸匹配是几何判据。注意表中部分配体的常数引自文献"
+  },
+  {
+   "pmcid": "PMC12345398",
+   "title": "Enhanced fluorescence emission or singlet oxygen production of cationic porphyrazines and porphyrins through combination with carbon dots.",
+   "year": "2025",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "卟啉/卟嗪是否金属化，非几何"
+  },
+  {
+   "pmcid": "PMC12388632",
+   "title": "Avibactam-Cyclodextrin Inclusion Complexes: Computational and Thermodynamic Insights for Drug Delivery, Detection, and Environmental Scavenging.",
+   "year": "2025",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "unsure",
+   "reason": "measured_or_computed",
+   "note": "阿维巴坦与 4 种环糊精的结合热力学；标题含 computational，须核对是否 ITC 实测"
+  },
+  {
+   "pmcid": "PMC12464755",
+   "title": "A Synthetic Lectin for Glucuronate.",
+   "year": "2025",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "四内酰胺大环合成凝集素对 11 种糖的实测 Ka；区分在于糖的立体构型（羟基取向）"
+  },
+  {
+   "pmcid": "PMC12569696",
+   "title": "Tunable Anion Recognition at the Lower Rim of Resorcin[4]arenes: Strength, Selectivity, and Transport.",
+   "year": "2025",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "间苯二酚杯芳烃上缘吸电子基，电子效应"
+  },
+  {
+   "pmcid": "PMC12617332",
+   "title": "Anion Binding by Macrocyclic Receptors: Computational Landscape of 1:1 and 2:1 Stoichiometries.",
+   "year": "2025",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "计算的结合自由能"
+  },
+  {
+   "pmcid": "PMC12733046",
+   "title": "Synthesis of Novel Anion Recognition Molecules as Quinazoline Precursors.",
+   "year": "2025",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "硫脲芳基取代基电子效应"
+  },
+  {
+   "pmcid": "PMC12854773",
+   "title": "Neutral anion-detecting organic cages based on anion-π interactions.",
+   "year": "2026",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "阴离子-π 笼的取代基电子效应"
+  },
+  {
+   "pmcid": "PMC12879178",
+   "title": "The \"Missing Link\", Allostery and SynergismHosting of Metal Cations by Regular and Partial Cone Calix[4]arene Isomers.",
+   "year": "2026",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "杯[4]芳烃锥式与部分锥式两种构象异构体对碱金属与碱土金属离子的实测 log K；构象（一个芳环翻转）与离子尺寸是几何判据"
+  },
+  {
+   "pmcid": "PMC12890307",
+   "title": "Diketo[n]CPPs as chiral and shape-adaptive fullerene hosts and precursors to DBP[n]CPPs.",
+   "year": "2026",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "二酮[8]/[9]CPP 纳米环与 C60/C70 的实测 K（2 × 2 = 4 个组合）；环尺寸与富勒烯尺寸匹配。候选恰好 4 个，偏少"
+  },
+  {
+   "pmcid": "PMC12902930",
+   "title": "Upgrading pillar[n]arenes to reversible photocontrolled self-folding hosts for photoswitchable guest uptake/release and self-assembly.",
+   "year": "2026",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "AzoP[5]A 与 AzoP[6]A 对客体 G1–G6 的实测 Ka；柱[5]/[6]芳烃空腔尺寸"
+  },
+  {
+   "pmcid": "PMC13054815",
+   "title": "Dipyridinophane ligands - synthesis and coordination study.",
+   "year": "2026",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "二吡啶环番配体差别在侧臂（乙酸/膦酸），环大小相同"
+  },
+  {
+   "pmcid": "PMC13075020",
+   "title": "Connectivity-Rewired Construction of Hydrogen-Bonded Azo-Macrocycles Enables Photoswitchable Recognition of Lithium Ions.",
+   "year": "2026",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "两个连接方式互为异构的偶氮大环对 Li+/Na+ 的实测 Ka（4 个组合）；空腔更小、更会聚是几何判据。候选偏少"
+  },
+  {
+   "pmcid": "PMC13097242",
+   "title": "A Bambusuril That Responds to Anion Binding in Its Absorption Spectrum.",
+   "year": "2026",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": "few_variants",
+   "note": "只有 BU1、BU2 两个竹环脲"
+  },
+  {
+   "pmcid": "PMC13296734",
+   "title": "New Fluorescent Probes, Their Spectroscopic Properties, and an Iterative Analysis of Their Complexation with Cyclodextrins.",
+   "year": "2026",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "香豆素取代基电子效应（σp）"
+  },
+  {
+   "pmcid": "PMC13409023",
+   "title": "Development of 3-decen-2-one/HP-β-CD Inclusion Complex with Enhanced Stability and Its Application for Potato Postharvest Preservation.",
+   "year": "2026",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "MM-GBSA 能量分解"
+  },
+  {
+   "pmcid": "PMC13420539",
+   "title": "An Aqueous Orange II/γ-Cyclodextrin Complex: Calculation of the Guest/Host Binding Constant and the Superstructure Rod Length.",
+   "year": "2026",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "few_variants",
+   "note": "单一体系的计算变量表"
+  },
+  {
+   "pmcid": "PMC13628540",
+   "title": "Exploring Calixarene-Based Pseudorotaxane Architectures: Threading Ammonium Axles With an Exo-Rim π-Functionalized Calix[6]Arene Macrocycle.",
+   "year": "2026",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "两个杯[6]芳烃主体对 6 个二烷基铵轴（3a–3f）的实测 Ka；轴端基团体积决定能否穿入"
+  },
+  {
+   "pmcid": "PMC4613223",
+   "title": "NMR Studies on Li⁺, Na⁺ and K⁺ Complexes of Orthoester Cryptand o-Me₂-1.1.1.",
+   "year": "2015",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": "few_variants",
+   "note": "单一穴醚对 Li+/Na+/K+ 的实测 K；只有一个主体，抗衡离子不同"
+  },
+  {
+   "pmcid": "PMC4849784",
+   "title": "Interactions of Indole Derivatives with β-Cyclodextrin: A Quantitative Structure-Property Relationship Study.",
+   "year": "2016",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "other",
+   "note": "QSPR 保留因子模型"
+  },
+  {
+   "pmcid": "PMC4883424",
+   "title": "Theoretical and Experimental: The Synthetic and Anion-Binding Properties of Tripodal Salicylaldehyde Derivatives.",
+   "year": "2016",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "水杨醛三足探针的取代基电子效应"
+  },
+  {
+   "pmcid": "PMC5399641",
+   "title": "Macrocyclic shape-persistency of cyclo[6]aramide results in enhanced multipoint recognition for the highly efficient template-directed synthesis of rotaxanes.",
+   "year": "2017",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "形状持久的环[6]芳酰胺对联吡啶盐 G1–G4 的实测 K；与非形状持久的大环 5 比较"
+  },
+  {
+   "pmcid": "PMC5476613",
+   "title": "Host-guest assembly for highly sensitive probing of a chiral mono-alcohol with a zinc trisporphyrinate.",
+   "year": "2017",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "锌三卟啉对 6 种手性醇的实测 K；表中混有计算的 CD 贡献"
+  },
+  {
+   "pmcid": "PMC5477839",
+   "title": "Chiral hemicucurbit[8]uril as an anion receptor: selectivity to size, shape and charge distribution.",
+   "year": "2017",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "手性半葫芦[8]脲对 10 种阴离子的实测 Ka，表中同时给阴离子体积与堆积系数；尺寸与形状是判据"
+  },
+  {
+   "pmcid": "PMC5519707",
+   "title": "Remarkable hexafunctional anion receptor with operational urea-based inner cleft and thiourea-based outer cleft: Novel design with high-efficiency for sulfate binding.",
+   "year": "2017",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "单一三足受体对 5 种阴离子的实测 log K"
+  },
+  {
+   "pmcid": "PMC5588781",
+   "title": "pH-dependent binding of guests in the cavity of a polyhedral coordination cage: reversible uptake and release of drug molecules.",
+   "year": "2015",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "配位笼对客体中性/带电形式的结合差别，由电荷决定"
+  },
+  {
+   "pmcid": "PMC5665100",
+   "title": "Unveiling the nature of supramolecular crown ether-C60 interactions.",
+   "year": "2015",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "unsure",
+   "reason": "measured_or_computed",
+   "note": "冠醚尺寸系统变化与 C60 结合；强档表是计算的结合能，实测结合常数可能在另一张表"
+  },
+  {
+   "pmcid": "PMC6014085",
+   "title": "Macrocyclic squaramides: anion receptors with high sulfate binding affinity and selectivity in aqueous media.",
+   "year": "2016",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "[2]- 与 [3]-大环方酰胺对 12 种阴离子的实测 Ka；大环尺寸与硫酸根尺寸形状匹配"
+  },
+  {
+   "pmcid": "PMC6099102",
+   "title": "Effect of the Nature of Donor Atoms on the Thermodynamic, Kinetic and Relaxation Properties of Mn(II) Complexes Formed With Some Trisubstituted 12-Membered Macrocyclic Ligands.",
+   "year": "2018",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "12 元大环配体的差别主要在供体原子与侧臂，不是几何"
+  },
+  {
+   "pmcid": "PMC6152132",
+   "title": "Sequestration Effect on the Open-Cyclic Switchable Property of Warfarin Induced by Cyclodextrin: Time-Resolved Fluorescence Study.",
+   "year": "2017",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "few_variants",
+   "note": "华法林与一种环糊精"
+  },
+  {
+   "pmcid": "PMC6185989",
+   "title": "Cramming versus threading of long amphiphilic oligomers into a polyaromatic capsule.",
+   "year": "2018",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "多芳香胶囊对不同链长寡聚环氧乙烷的实测 Ka（4 行）；链长决定塞入还是穿过。候选偏少"
+  },
+  {
+   "pmcid": "PMC6273894",
+   "title": "Evidence of the Disassembly of α-Cyclodextrin-octylamine Inclusion Compounds Conjugated to Gold Nanoparticles via Thermal and Photothermal Effects.",
+   "year": "2016",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "浓度序列"
+  },
+  {
+   "pmcid": "PMC6274253",
+   "title": "Synthesis and Properties of Bis-Porphyrin Molecular Tweezers: Effects of Spacer Flexibility on Binding and Supramolecular Chirogenesis.",
+   "year": "2015",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "3 个双卟啉分子钳 × 4 个双氮客体（DABCO、联吡啶、二胺己烷、二胺十二烷）的实测 Ka；客体 N···N 长度与卟啉间距匹配"
+  },
+  {
+   "pmcid": "PMC6388092",
+   "title": "Predicting protein-ligand binding affinity and correcting crystal structures with quantum mechanical calculations: lactate dehydrogenase A.",
+   "year": "2019",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "量子化学计算方法学"
+  },
+  {
+   "pmcid": "PMC6480120",
+   "title": "Investigating the Influence of Steric Hindrance on Selective Anion Transport.",
+   "year": "2019",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "6 个 tren 三硫脲受体，烷基取代基位阻递增，对 Cl-、HCO3-、H2PO4- 的实测 Ka；论文明确归因于位阻"
+  },
+  {
+   "pmcid": "PMC6541326",
+   "title": "Precious metal-free molecular machines for solar thermal energy storage.",
+   "year": "2019",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "other",
+   "note": "冠醚染料的光物理与光异构化，非结合几何"
+  },
+  {
+   "pmcid": "PMC6680264",
+   "title": "A Quantitative Study of the Effects of Guest Flexibility on Binding Inside a Coordination Cage Host.",
+   "year": "2017",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "配位笼对 18 个同分异构脂肪酮的实测 K，表中给可旋转键数、表面积、体积；同碳数下支化与柔性决定结合"
+  },
+  {
+   "pmcid": "PMC6983243",
+   "title": "Mass Spectrometry Reveals Complexing Properties of Modified PNP-Lariat Ether Containing Benzyl Derivative of (S)-Prolinamine.",
+   "year": "2019",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "few_variants",
+   "note": "单一配体与 Ag+ 的逐级稳定常数"
+  },
+  {
+   "pmcid": "PMC7079011",
+   "title": "Coordination-Cage-Catalysed Hydrolysis of Organophosphates: Cavity- or Surface-Based?",
+   "year": "2020",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "笼催化速率，条件与底物混杂"
+  },
+  {
+   "pmcid": "PMC7318346",
+   "title": "Face-Fusion of Icosahedral Boron Hydride Increases Affinity to γ-Cyclodextrin: closo,closo-[B21 H18 ]- as an Anion with Very Low Free Energy of Dehydration.",
+   "year": "2020",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": "not_geometric",
+   "note": "8 种硼簇阴离子与 γ-环糊精的实测 Ka；论文归因于脱水自由能而非尺寸"
+  },
+  {
+   "pmcid": "PMC7418101",
+   "title": "Design, synthesis and application of carbazole macrocycles in anion sensors.",
+   "year": "2020",
+   "queries": [
+    "host_guest",
+    "ring_size"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "亚甲基桥联咔唑大环，环大小 -(CH2)n- 系统变化，17 个受体 × 5 种羧酸根的实测 log Kass"
+  },
+  {
+   "pmcid": "PMC7540564",
+   "title": "Template-Controlled Synthesis of Polyimidazolium Salts by Multiple [2+2] Cycloaddition Reactions.",
+   "year": "2020",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": "few_variants",
+   "note": "四咪唑与八咪唑两个主体对若干阴离子的实测 K"
+  },
+  {
+   "pmcid": "PMC7662831",
+   "title": "Photophysical Properties of Donor-Acceptor Stenhouse Adducts and Their Inclusion Complexes with Cyclodextrins and Cucurbit[7]uril.",
+   "year": "2020",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "other",
+   "note": "光开关染料的光物理"
+  },
+  {
+   "pmcid": "PMC7663148",
+   "title": "Binding Modes of a Phenylpyridinium Styryl Fluorescent Dye with Cucurbiturils.",
+   "year": "2020",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "few_variants",
+   "note": "Me4CB6 与 CB7 两个主体；强档表是光物理"
+  },
+  {
+   "pmcid": "PMC8004752",
+   "title": "Solution and Solid State Studies of Urea Derivatives of DITIPIRAM Acting as Powerful Anion Receptors.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "脲基对位取代基电子效应"
+  },
+  {
+   "pmcid": "PMC8038083",
+   "title": "Switching Ion Binding Selectivity of Thiacalix[4]arene Monocrowns at Liquid-Liquid and 2D-Confined Interfaces.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "unsure",
+   "reason": "measured_or_computed",
+   "note": "硫杂杯芳烃单冠醚，冠醚环大小 4/5/6 是几何量；表为单分子层上由等温线算得的 ΔG，须核对实测结合数据"
+  },
+  {
+   "pmcid": "PMC8113725",
+   "title": "Structure-activity relationship of ipglycermide binding to phosphoglycerate mutases.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "off_topic",
+   "note": "环肽抑制剂的构效关系（药理）"
+  },
+  {
+   "pmcid": "PMC8152522",
+   "title": "Tuning the anion binding properties of lanthanide receptors to discriminate nucleoside phosphates in a sensing array.",
+   "year": "2020",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "3 个镧系受体对 ATP/ADP/AMP 的实测 log Ka；差别在配体结构单元，几何不明确"
+  },
+  {
+   "pmcid": "PMC8199442",
+   "title": "Carbazole-Based Colorimetric Anion Sensors.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "咔唑二酰胺受体的吸电子取代基"
+  },
+  {
+   "pmcid": "PMC8199946",
+   "title": "Synthesis of Carbohydrate Based Macrolactones and Their Applications as Receptors for Ion Recognition and Catalysis.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "other",
+   "note": "大环内酯催化点击反应的转化率"
+  },
+  {
+   "pmcid": "PMC8317625",
+   "title": "An intramolecularly self-templated synthesis of macrocycles: self-filling effects on the formation of prismarenes.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "棱柱[5]/[6]芳烃（环大小）× 甲基/乙基/丙基（链长、自填充）× 5 种客体的实测结合常数"
+  },
+  {
+   "pmcid": "PMC8400697",
+   "title": "Distinctive Supramolecular Features of β-Cyclodextrin Inclusion Complexes with Antidepressants Protriptyline and Maprotiline: A Comprehensive Structural Investigation.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "other",
+   "note": "环糊精-三环类抗抑郁药复合物的文献汇编表"
+  },
+  {
+   "pmcid": "PMC8408160",
+   "title": "A contorted nanographene shelter.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "三棱柱六阳离子笼对平面晕苯与 3 个扭曲纳米石墨烯的实测 Ka；客体形状（平面/扭曲）是判据。候选恰好 4 个"
+  },
+  {
+   "pmcid": "PMC8479806",
+   "title": "Modeling Kinetics and Thermodynamics of Guest Encapsulation into the [M4L6]12- Supramolecular Organometallic Cage.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "APR 计算的结合自由能"
+  },
+  {
+   "pmcid": "PMC8515455",
+   "title": "Photoactive preorganized subphthalocyanine-based molecular tweezers for selective complexation of fullerenes.",
+   "year": "2020",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "other",
+   "note": "荧光量子产率"
+  },
+  {
+   "pmcid": "PMC8518858",
+   "title": "Modulating Chalcogen Bonding and Halogen Bonding Sigma-Hole Donor Atom Potency and Selectivity for Halide Anion Recognition.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "硫属键/卤键供体的电子效应"
+  },
+  {
+   "pmcid": "PMC8596797",
+   "title": "Halogen-Bonding Strapped Porphyrin BODIPY Rotaxanes for Dual Optical and Electrochemical Anion Sensing.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "卤键卟啉轮烷对卤离子的实测 Ka，预组织空腔；不同主体结构差别多样"
+  },
+  {
+   "pmcid": "PMC8597839",
+   "title": "Interaction of anions with the surface of a coordination cage in aqueous solution probed by their effect on a cage-catalysed Kemp elimination.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "外加阴离子浓度序列"
+  },
+  {
+   "pmcid": "PMC8659250",
+   "title": "Adjusting the Structure of β-Cyclodextrin to Improve Complexation of Anthraquinone-Derived Drugs.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "β-环糊精衍生物取代基为胺、硫辛酸、半乳糖，差别是化学"
+  },
+  {
+   "pmcid": "PMC8777861",
+   "title": "Molecular Recognition by Pillar[5]arenes: Evidence for Simultaneous Electrostatic and Hydrophobic Interactions.",
+   "year": "2021",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "阳离子柱[5]芳烃对 C3–C8 烷基磺酸根的实测 K；链长（疏水部分进入空腔的长度）是判据"
+  },
+  {
+   "pmcid": "PMC8911665",
+   "title": "Synthesis of Ionizable Calix[4]arenes for Chelation of Selected Divalent Cations.",
+   "year": "2022",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "12 个杯[4]芳烃（冠醚桥大小不同或开链）对 Ba2+/Sr2+/Pb2+ 的实测 log K（表 2 UV 滴定）；冠环大小与离子半径匹配"
+  },
+  {
+   "pmcid": "PMC8938452",
+   "title": "Design, synthesis and bioactive properties of a class of macrocycles with tunable functional groups and ring size.",
+   "year": "2022",
+   "queries": [
+    "host_guest",
+    "ring_size"
+   ],
+   "decision": "reject",
+   "reason": "other",
+   "note": "大环合成产率"
+  },
+  {
+   "pmcid": "PMC9006924",
+   "title": "Cucurbiturils mimicked by low polarizability solvents with pre-formed cavities: an empirical model to predict hydrocarbon selectivity.",
+   "year": "2022",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": "not_geometric",
+   "note": "CB[8] 与九种烃的相对结合亲和力（竞争 19F NMR）；论文结论是极化率而非尺寸决定选择性"
+  },
+  {
+   "pmcid": "PMC9059121",
+   "title": "On the Nature of Guest Complexation in Water: Triggered Wetting-Water-Mediated Binding.",
+   "year": "2022",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "TEMOA 与门户带乙基的 TEEtOA 两个深穴主体 × 客体 G1–G5 的 ITC 实测；门户基团几何。与搁置想法 C1（SAMPL）重合"
+  },
+  {
+   "pmcid": "PMC9064442",
+   "title": "Carboxylato-pillar[6]arene-based fluorescent indicator displacement assays for the recognition of monoamine neurotransmitters.",
+   "year": "2019",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "羧基柱[5]与柱[6]芳烃（WP5/WP6）对 3 个荧光指示剂的实测 log K；论文明确讨论尺寸选择性"
+  },
+  {
+   "pmcid": "PMC9321576",
+   "title": "Hydroxy Groups Enhance [2]Rotaxane Anion Binding Selectivity.",
+   "year": "2022",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "轮烷羟基的氢键供体，化学因素"
+  },
+  {
+   "pmcid": "PMC9596595",
+   "title": "An overview of the SAMPL8 host-guest binding challenge.",
+   "year": "2022",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "SAMPL8 挑战的实测结合数据汇总（CB8、TEMOA、TEETOA）；与搁置想法 C1 重合，原始测量在其他论文"
+  },
+  {
+   "pmcid": "PMC9656310",
+   "title": "Chiral Discrimination Mechanisms by Silylated-Acetylated Cyclodextrins: Superficial Interactions vs. Inclusion.",
+   "year": "2022",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "other",
+   "note": "手性识别的 NMR 化学位移差，非结合常数"
+  },
+  {
+   "pmcid": "PMC9657192",
+   "title": "Entropy-Driven Inclusion of Natural Protoberberine Alkaloids in Sulfobutylether-β-Cyclodextrin.",
+   "year": "2022",
+   "queries": [
+    "host_guest",
+    "ring_size"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "5 种原小檗碱生物碱 × SBE-β-CD 与 CB7 的实测结合常数；差别为取代基型式，论文强调熵驱动"
+  },
+  {
+   "pmcid": "PMC9775453",
+   "title": "Structural Studies of Piperine Inclusion Complexes in Native and Derivative β-Cyclodextrins.",
+   "year": "2022",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "MM/GBSA"
+  },
+  {
+   "pmcid": "PMC9820443",
+   "title": "Molecular Pincers Using a Combination of N-H and C-H Donors for Anion Binding.",
+   "year": "2022",
+   "queries": [
+    "host_guest"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "萘酰亚胺吸电子效应"
+  },
+  {
+   "pmcid": "PMC10126819",
+   "title": "Functionalized graphene oxide-based lamellar membranes for organic solvent nanofiltration applications.",
+   "year": "2023",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的性能比较表"
+  },
+  {
+   "pmcid": "PMC10224030",
+   "title": "A Facile Way to Fabricate GO-EDA/Al2O3 Tubular Nanofiltration Membranes with Enhanced Desalination Stability via Fine-Tuning the pH of the Membrane-Forming Suspensions.",
+   "year": "2023",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的脱盐性能比较表"
+  },
+  {
+   "pmcid": "PMC11562068",
+   "title": "Guide for Nonequilibrium Molecular Dynamics Simulations of Organic Solvent Transport in Nanopores: The Case of 2D MXene Membranes.",
+   "year": "2024",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "非平衡分子动力学"
+  },
+  {
+   "pmcid": "PMC11767988",
+   "title": "Large-Area Clay Composite Membranes with Enhanced Permeability for Efficient Dye/Salt Separation.",
+   "year": "2025",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的比较表"
+  },
+  {
+   "pmcid": "PMC12566382",
+   "title": "Glutaraldehyde Cross-Linked MXene-Nanocellulose Membrane for Efficient Dye/Salt Separation.",
+   "year": "2025",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的比较表"
+  },
+  {
+   "pmcid": "PMC12844043",
+   "title": "Preparation of Ester-Crosslinked PI Membranes with Enhanced Gas Selectivity and Plasticization Resistance.",
+   "year": "2026",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "交联热处理温度与老化时间序列"
+  },
+  {
+   "pmcid": "PMC13117143",
+   "title": "Hybrid PANI/UiO-66 Thin Film Nanocomposite Membranes with Enhanced Affinity for Heavy-Metal Removal from Drinking Water.",
+   "year": "2026",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的比较表"
+  },
+  {
+   "pmcid": "PMC13200180",
+   "title": "Interfacial Thermodynamics of Ti3C2T x MXene-PVDF-PTFE Triple Interface Systems for Hierarchical Membrane Distillation.",
+   "year": "2026",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的比较表"
+  },
+  {
+   "pmcid": "PMC13678592",
+   "title": "Multilayer membranes of graphene oxide nanosheets on cellulose filter papers for high-flux water filtration and high proton conductivity.",
+   "year": "2026",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的比较表"
+  },
+  {
+   "pmcid": "PMC5507043",
+   "title": "Gas Permeation Properties of Soluble Aromatic Polyimides Based on 4-Fluoro-4,4'-Diaminotriphenylmethane.",
+   "year": "2015",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "4 种 TMF 聚酰亚胺的实测气体渗透率与选择性；链堆积（WAXS d 间距）可能在另一表，须核对"
+  },
+  {
+   "pmcid": "PMC5770667",
+   "title": "Development of Nanostructured Water Treatment Membranes Based on Thermotropic Liquid Crystals: Molecular Design of Sub-Nanoporous Materials.",
+   "year": "2018",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "液晶纳米孔膜对葡萄糖、蔗糖、棉子糖、NaCl 的实测截留率，表中给溶质 Stokes 半径；尺寸筛分是判据"
+  },
+  {
+   "pmcid": "PMC5902455",
+   "title": "Highly stable graphene-oxide-based membranes with superior permeability.",
+   "year": "2018",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献石墨烯膜的比较表"
+  },
+  {
+   "pmcid": "PMC6358734",
+   "title": "Functionalized Cellulose Nanocrystal Nanocomposite Membranes with Controlled Interfacial Transport for Improved Reverse Osmosis Performance.",
+   "year": "2019",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的比较表"
+  },
+  {
+   "pmcid": "PMC6418752",
+   "title": "The Preparation and Study of Ethylene Glycol-Modified Graphene Oxide Membranes for Water Purification.",
+   "year": "2019",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "evidence",
+   "reason": "few_variants",
+   "note": "GO 与 GO/EG 两种膜，XRD 实测层间距 0.825 与 0.634 nm 及渗透性能；几何量与性能都有，但只有两种膜"
+  },
+  {
+   "pmcid": "PMC7039937",
+   "title": "Preparation of Covalent-Ionically Cross-Linked UiO-66-NH2/Sulfonated Aromatic Composite Proton Exchange Membranes With Excellent Performance.",
+   "year": "2020",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "MOF 填料含量序列"
+  },
+  {
+   "pmcid": "PMC7820404",
+   "title": "Controlling nanochannel orientation and dimensions in graphene-based nanofluidic membranes.",
+   "year": "2021",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "few_variants",
+   "note": "两种膜结构的通量"
+  },
+  {
+   "pmcid": "PMC8401153",
+   "title": "Polyphenylsulfone (PPSU)-Based Copolymeric Membranes: Effects of Chemical Structure and Content on Gas Permeation and Separation.",
+   "year": "2021",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "PPSU 共聚物中四甲基联苯酚含量递增，实测气体渗透与选择性；链堆积变化，组成序列"
+  },
+  {
+   "pmcid": "PMC9031111",
+   "title": "Enhancing the Dye-Rejection Efficiencies and Stability of Graphene Oxide-Based Nanofiltration Membranes via Divalent Cation Intercalation and Mild Reduction.",
+   "year": "2022",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的比较表"
+  },
+  {
+   "pmcid": "PMC9076233",
+   "title": "Ultrahigh permeance of a chemical cross-linked graphene oxide nanofiltration membrane enhanced by cation-π interaction.",
+   "year": "2019",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的比较表"
+  },
+  {
+   "pmcid": "PMC9608636",
+   "title": "Ti3C2 MXene Membranes for Gas Separation: Influence of Heat Treatment Conditions on D-Spacing and Surface Functionalization.",
+   "year": "2022",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "MXene 膜 XRD 实测层间距与 H2/CO2 选择性同表；样品是工艺条件与重复样，不是结构变体"
+  },
+  {
+   "pmcid": "PMC9609337",
+   "title": "Enhanced Removal of Endocrine-Disrupting Compounds from Wastewater Using Reverse Osmosis Membrane with Titania Nanotube-Constructed Nanochannels.",
+   "year": "2022",
+   "queries": [
+    "interlayer_membrane"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与商品膜和文献的比较表"
+  },
+  {
+   "pmcid": "PMC10108176",
+   "title": "Halogen-Bonding Heteroditopic [2]Catenanes for Recognition of Alkali Metal/Halide Ion Pairs.",
+   "year": "2023",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "evidence",
+   "reason": "few_variants",
+   "note": "二甘醇与三甘醇连接的两个 [2]索烃（链长）对离子对的实测 Ka"
+  },
+  {
+   "pmcid": "PMC10155618",
+   "title": "Phenanthridine-pyrene conjugates as fluorescent probes for DNA/RNA and an inactive mutant of dipeptidyl peptidase enzyme.",
+   "year": "2023",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "off_topic",
+   "note": "荧光探针与 DNA/RNA 结合"
+  },
+  {
+   "pmcid": "PMC11025371",
+   "title": "Alcohols as inhibitors of ammonia oxidizing archaea and bacteria.",
+   "year": "2023",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "off_topic",
+   "note": "醇类对氨氧化菌的 IC50"
+  },
+  {
+   "pmcid": "PMC11369091",
+   "title": "Aggregation behavior of newly synthesized Gemini cationic surfactants in absence and in presence of different inorganic salts in 15% DMSO-water solvent.",
+   "year": "2024",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "表面活性剂胶束化随盐浓度变化"
+  },
+  {
+   "pmcid": "PMC11636038",
+   "title": "Synergistic enhancing of micellization and thermodynamic properties of some Gemini cationic surfactants related to benzo[d]thiazol-3-ium bromide.",
+   "year": "2024",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "表面活性剂胶束化随盐浓度变化"
+  },
+  {
+   "pmcid": "PMC12449371",
+   "title": "The role of unsaturated fatty acids in modulating human butyrylcholinesterase activity: insights from kinetics and molecular docking.",
+   "year": "2025",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "off_topic",
+   "note": "脂肪酸对酶的抑制"
+  },
+  {
+   "pmcid": "PMC12917589",
+   "title": "Decoding the interplay between protic ionic liquids and drug: spectrophotometric, electrochemical, and DFT exploration of mitoxantrone.",
+   "year": "2026",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "off_topic",
+   "note": "离子液体与药物"
+  },
+  {
+   "pmcid": "PMC13164588",
+   "title": "A Study of 3-Substituted 7-Methoxy-2,3,4,5-tetrahydro-1H-benzo[d]azepin-1-ols Leading to Candidate PET Radioligands for Imaging Brain GluN2B: Design, Synthesis, and Structure-Activity Relationships.",
+   "year": "2026",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "off_topic",
+   "note": "PET 放射配体 Ki"
+  },
+  {
+   "pmcid": "PMC13208323",
+   "title": "P-Selectin Inhibition and the Structure-Activity Relationship of Sea Cucumber-Derived Fucosylated Glycosaminoglycan Oligosaccharides.",
+   "year": "2026",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "off_topic",
+   "note": "寡糖对 P-选择素的 IC50"
+  },
+  {
+   "pmcid": "PMC4897139",
+   "title": "Toxicity and Loss of Mitochondrial Membrane Potential Induced by Alkyl Gallates in Trypanosoma cruzi.",
+   "year": "2015",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "off_topic",
+   "note": "烷基没食子酸酯的抗锥虫 IC50"
+  },
+  {
+   "pmcid": "PMC5382913",
+   "title": "Interactions of the periplasmic binding protein CeuE with Fe(III) n-LICAM4- siderophore analogues of varied linker length.",
+   "year": "2017",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "周质结合蛋白 CeuE 与连接链长 4/5/6/8 个碳的铁载体类似物的实测 Kd（野生型与两个突变体），有共晶结构；连接链长是判据"
+  },
+  {
+   "pmcid": "PMC5477022",
+   "title": "Designed multi-stranded heme binding β-sheet peptides in membrane.",
+   "year": "2016",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "设计肽的序列差别"
+  },
+  {
+   "pmcid": "PMC6723797",
+   "title": "Effects of Chain Length of Chitosan Oligosaccharides on Solution Properties and Complexation with siRNA.",
+   "year": "2019",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "壳寡糖聚合度 5–50 与 siRNA 的 ITC；链长效应以静电为主"
+  },
+  {
+   "pmcid": "PMC6787221",
+   "title": "Molecular recognition of ubiquitin and Lys63-linked diubiquitin by STAM2 UIM-SH3 dual domain: the effect of its linker length and flexibility.",
+   "year": "2019",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "STAM2 双结构域连接区缺失变体的实测 Kd；连接区长度与柔性"
+  },
+  {
+   "pmcid": "PMC6806164",
+   "title": "A Highly Selective Biosensor Based on Peptide Directly Derived from the HarmOBP7 Aldehyde Binding Site.",
+   "year": "2019",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "表中亲和力为 kcal/mol 的计算值"
+  },
+  {
+   "pmcid": "PMC7068604",
+   "title": "Investigation of the Interaction Mechanism of Perfluoroalkyl Carboxylic Acids with Human Serum Albumin by Spectroscopic Methods.",
+   "year": "2020",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "few_variants",
+   "note": "两种全氟羧酸与白蛋白在不同温度"
+  },
+  {
+   "pmcid": "PMC7684686",
+   "title": "Synthesis and investigation of quadruplex-DNA-binding, 9-O-substituted berberine derivatives.",
+   "year": "2020",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "off_topic",
+   "note": "小檗碱衍生物与 G-四链体 DNA 结合"
+  },
+  {
+   "pmcid": "PMC9106000",
+   "title": "The Regulatory Roles of Intrinsically Disordered Linker in VRN1-DNA Phase Separation.",
+   "year": "2022",
+   "queries": [
+    "linker_length"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "聚合物链模型拟合，Kd 引自文献"
+  },
+  {
+   "pmcid": "PMC10053294",
+   "title": "Polymer-Infiltrated Metal-Organic Frameworks for Thin-Film Composite Mixed-Matrix Membranes with High Gas Separation Properties.",
+   "year": "2023",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "MOF 含量序列加文献比较"
+  },
+  {
+   "pmcid": "PMC10084447",
+   "title": "CO2 Capture and Gas Storage Capacities Enhancement of HKUST-1 by Hybridization with Functionalized Graphene-like Materials.",
+   "year": "2023",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "HKUST-1 与不同官能化石墨烯杂化，化学因素"
+  },
+  {
+   "pmcid": "PMC10153466",
+   "title": "Separation of C18 Fatty Acid Esters and Fatty Acids Derived from Vegetable Oils Using Nanometer-Sized Covalent Organic Frameworks Incorporated in Polyepoxy Membranes.",
+   "year": "2023",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "四种孔径不同的 COF（HCOF、TpPA、TpBD、TpBDDA）嵌入环氧膜，C18 脂肪酸甲酯与脂肪酸的实测通量与相对通量；COF 孔径是判据，须到正文核对孔径数值"
+  },
+  {
+   "pmcid": "PMC10221586",
+   "title": "Preparation and Lithium-Ion Separation Property of ZIF-8 Membrane with Excellent Flexibility.",
+   "year": "2023",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的比较表"
+  },
+  {
+   "pmcid": "PMC10303906",
+   "title": "Constructing Randomly Lamellar HKUST-1@Clinoptilolite through Polyethylene Glycol-Assisted Hydrothermal Method and Coordinated Complexation for Enhanced Adsorptive Separation for CO2 and CH4.",
+   "year": "2023",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "制备条件不同的样品加文献值"
+  },
+  {
+   "pmcid": "PMC10672818",
+   "title": "High-Performance FAU Zeolite Membranes Derived from Nano-Seeds for Gas Separation.",
+   "year": "2023",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "同一配方的重复膜"
+  },
+  {
+   "pmcid": "PMC10673579",
+   "title": "Preparation and Characterization of New and Low-Cost Ceramic Flat Membranes Based on Zeolite-Clay for the Removal of Indigo Blue Dye Molecules.",
+   "year": "2023",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "other",
+   "note": "孔堵塞模型拟合参数"
+  },
+  {
+   "pmcid": "PMC10695959",
+   "title": "Pore size engineering of cost-effective all-nanoporous multilayer membranes for propane/propylene separation.",
+   "year": "2023",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的比较表"
+  },
+  {
+   "pmcid": "PMC10708271",
+   "title": "Efficient Selective Capture of Carbon Dioxide from Nitrogen and Methane Using a Metal-Organic Framework-Based Nanotrap.",
+   "year": "2023",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "三唑类 MOF 的 CO2 吸附量文献汇编"
+  },
+  {
+   "pmcid": "PMC11596232",
+   "title": "Organic Solvent Nanofiltration Membrane with In Situ Constructed Covalent Organic Frameworks as Separation Layer.",
+   "year": "2024",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的比较表"
+  },
+  {
+   "pmcid": "PMC11920950",
+   "title": "[Cu2(trz-ia)2]─An Ultramicroporous Cu2 Paddle Wheel Triazolyl Isophthalate MOF: A Comparative Study of Its Properties in Dihydrogen Adsorption and Isotopologue Separation.",
+   "year": "2025",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "[Cu2(trz-ia)2] 的 D2/H2 分离，表为与各类多孔材料的文献汇编；与 chetry2026 同一课题组，可回到原始论文补该族候选"
+  },
+  {
+   "pmcid": "PMC12152726",
+   "title": "Facile method for enhancing the CO2 adsorption capacity of zeolites through vacuum-assisted alkaline treatment.",
+   "year": "2025",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "SSZ-13、T 型、NaA 三种沸石及其碱处理样品的实测织构与 CO2 吸附量；变化以处理条件为主"
+  },
+  {
+   "pmcid": "PMC12471772",
+   "title": "Pore-Discriminative Pervaporation of Xylene Isomers Through In Situ Synthesized MIL-100(In) Membranes.",
+   "year": "2025",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的比较表"
+  },
+  {
+   "pmcid": "PMC12609680",
+   "title": "Effective Pore Distribution and Mechanism of CO2/CH4 Dynamic Separation by Carbon Molecular Sieves.",
+   "year": "2025",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "30 个无烟煤基碳分子筛样品，论文把有效孔径区间与 CO2/CH4 选择性关联；强档表只列性能，孔径须到另一表核对"
+  },
+  {
+   "pmcid": "PMC13117137",
+   "title": "Permeation Behaviors of MFI Zeolite Membranes Activated by Rapid Ozonation.",
+   "year": "2026",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "与文献膜的活化条件比较"
+  },
+  {
+   "pmcid": "PMC13118001",
+   "title": "Tailoring Copper Pillars to Prevent Physical Aging in Matrimid® 5218 Carbon Molecular Sieve Membranes.",
+   "year": "2026",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "老化前后"
+  },
+  {
+   "pmcid": "PMC13307064",
+   "title": "Enhanced CO2 Uptake in Cobalt-Based MOFs via Textural Optimization and Water-Induced Flexibility.",
+   "year": "2026",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "浓度与温度条件序列"
+  },
+  {
+   "pmcid": "PMC13362548",
+   "title": "Solvent Polarity Engineering in Low-DMF ZIF-7 Membrane Growth: Crystallization Behavior, Heterogeneous Intergrowth, and Microstructural Evolution.",
+   "year": "2026",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "两张 ZIF-7 膜对 5 种气体的渗透率，表中给气体动力学直径；尺寸筛分，但部分是定性趋势"
+  },
+  {
+   "pmcid": "PMC13568030",
+   "title": "Enhanced Gas Separation Performance of Carbon Molecular Sieve Membranes Derived from Polyimide/Polyaniline Blend Precursors.",
+   "year": "2026",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "聚苯胺含量与老化序列"
+  },
+  {
+   "pmcid": "PMC13653574",
+   "title": "Low-Pressure CO2 and Aromatic Recognition by Interlayer Adaptive Crystal of π-Hole-Functionalized Zn(II) Coordination Sheets.",
+   "year": "2026",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "other",
+   "note": "层状晶体吸附不同芳烃后的晶胞参数，无结合或分离性质"
+  },
+  {
+   "pmcid": "PMC5746948",
+   "title": "Acidic Mesoporous Zeolite ZSM-5 Supported Cu Catalyst with Good Catalytic Performance in the Hydroxysulfurization of Styrenes with Disulfides.",
+   "year": "2017",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "not_geometric",
+   "note": "沸石负载铜催化，孔径与酸性混杂，论文归因含电子性质"
+  },
+  {
+   "pmcid": "PMC5909670",
+   "title": "A zeolite-like aluminophosphate membrane with molecular-sieving property for water desalination.",
+   "year": "2018",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "evidence",
+   "reason": "few_variants",
+   "note": "单一 AlPO4-18 膜对不同阳离子的截留率；水合离子尺寸"
+  },
+  {
+   "pmcid": "PMC6401715",
+   "title": "Mixed Membranes Comprising Carboxymethyl Cellulose (as Capping Agent and Gas Barrier Matrix) and Nanoporous ZIF-L Nanosheets for Gas Separation Applications.",
+   "year": "2018",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "ZIF-L 纳米片含量序列"
+  },
+  {
+   "pmcid": "PMC6410028",
+   "title": "Performance of Toluene Removal in a Nonthermal Plasma Catalysis System over Flake-Like HZSM-5 Zeolite with Tunable Pore Size and Evaluation of Its Byproducts.",
+   "year": "2019",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "孔径可调的片状 HZSM-5 系列 Z0–Z4，对多种污染物的实测平衡吸附量；孔径是判据，孔径数值须到另一表核对"
+  },
+  {
+   "pmcid": "PMC6680943",
+   "title": "Hydrophobic *BEA-Type Zeolite Membranes on Tubular Silica Supports for Alcohol/Water Separation by Pervaporation.",
+   "year": "2019",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "合成凝胶配比序列"
+  },
+  {
+   "pmcid": "PMC7013983",
+   "title": "Carbonization and Preparation of Nitrogen-Doped Porous Carbon Materials from Zn-MOF and Its Applications.",
+   "year": "2020",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "不同碳化温度的氮掺杂多孔碳，实测孔径、微孔体积与 CO2 吸附量同表；变化的是工艺条件"
+  },
+  {
+   "pmcid": "PMC7180546",
+   "title": "Improved Predictive Tools for Structural Properties of Metal-Organic Frameworks.",
+   "year": "2020",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "泛函对 MOF 结构参数的误差"
+  },
+  {
+   "pmcid": "PMC7655961",
+   "title": "Unusually Low Heat of Adsorption of CO2 on AlPO and SAPO Molecular Sieves.",
+   "year": "2020",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "AlPO-42、Si-LTA、AlPO-34、Si-CHA、SAPO-34、CHA 的实测 CO2 吸附量；拓扑（LTA/CHA）与组成同时变化，论文重点在吸附热"
+  },
+  {
+   "pmcid": "PMC8005107",
+   "title": "Pervaporative Dehydration of Organic Solvents Using High-Silica CHA-Type Zeolite Membrane.",
+   "year": "2021",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "other",
+   "note": "Wilson 与 Antoine 常数"
+  },
+  {
+   "pmcid": "PMC8074615",
+   "title": "The utilization of micro-mesoporous carbon-based filler in the P84 hollow fibre membrane for gas separation.",
+   "year": "2021",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "填料含量序列"
+  },
+  {
+   "pmcid": "PMC8229386",
+   "title": "Characterization of an Isostructural MOF Series of Imidazolate Frameworks Potsdam by Means of Sorption Experiments with Water Vapor.",
+   "year": "2021",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "同网格 IFP 系列（IFP-1/2/4/5/8，连接体取代基改变孔径）的实测比表面、微孔体积与水蒸气最大吸附量；论文指出水吸附受孔径分布支配"
+  },
+  {
+   "pmcid": "PMC8399176",
+   "title": "Development of Methanol Permselective FAU-Type Zeolite Membranes and Their Permeation and Separation Performances.",
+   "year": "2021",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "CHA、LTA、MFI、FAU 四种沸石膜分离甲醇/己酸甲酯的实测通量与分离因子；沸石孔口大小是判据，另有溶剂分子大小序列"
+  },
+  {
+   "pmcid": "PMC8457162",
+   "title": "Impact of Pore Size and Defects on the Selective Adsorption of Acetylene in Alkyne-Functionalized Nickel(II)-Pyrazolate-Based MOFs.",
+   "year": "2021",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "两个同网格 Ni 吡唑 MOF 及其 KOH 处理样（孔径与缺陷）的实测 C2H2/CO2 吸附量与选择性；标题即孔径影响。候选恰好 4 个"
+  },
+  {
+   "pmcid": "PMC8466813",
+   "title": "CO2/N2 Gas Separation Using Pebax/ZIF-7-PSf Composite Membranes.",
+   "year": "2021",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "ZIF-7 含量序列"
+  },
+  {
+   "pmcid": "PMC8708020",
+   "title": "Efficient Helium Separation with Two-Dimensional Metal-Organic Framework Fe/Ni-PTC: A Theoretical Study.",
+   "year": "2021",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "第一性原理与分子动力学"
+  },
+  {
+   "pmcid": "PMC9043786",
+   "title": "In situ constructed zeolite membranes on rough supports with the assistance of reticulated hydrotalcite interlayer.",
+   "year": "2021",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "conditions_series",
+   "note": "重复膜与文献值"
+  },
+  {
+   "pmcid": "PMC9370968",
+   "title": "β-Ketoenamine Covalent Organic Frameworks-Effects of Functionalization on Pollutant Adsorption.",
+   "year": "2022",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "unsure",
+   "reason": "table_not_strong",
+   "note": "TFP 系 β-酮烯胺 COF 的孔径与壁官能化对吸附的影响；强档表只有合成产率，吸附数据须到其他表核对"
+  },
+  {
+   "pmcid": "PMC9690669",
+   "title": "In Silico Screening of Metal-Organic Frameworks for Formaldehyde Capture with and without Humidity by Molecular Simulation.",
+   "year": "2022",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "computed",
+   "note": "GCMC 筛选"
+  },
+  {
+   "pmcid": "PMC9698860",
+   "title": "Controlled Covalent Functionalization of ZIF-90 for Selective CO2 Capture & Separation.",
+   "year": "2022",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "method_comparison",
+   "note": "ZIF 系列 CO2 吸附的文献汇编"
+  },
+  {
+   "pmcid": "PMC9737143",
+   "title": "Enhanced Adsorption Selectivity of Carbon Dioxide and Ethane on Porous Metal-Organic Framework Functionalized by a Sulfur-Rich Heterocycle.",
+   "year": "2022",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "few_variants",
+   "note": "单一 MOF 对多种气体"
+  },
+  {
+   "pmcid": "PMC9751146",
+   "title": "Quantification of gas-accessible microporosity in metal-organic framework glasses.",
+   "year": "2022",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "ZIF 晶体与对应 MOF 玻璃的实测最大气体吸附量；孔径与孔口限制直径是论文主题"
+  },
+  {
+   "pmcid": "PMC9864284",
+   "title": "Esterification of Acetic Acid by Flow-Type Membrane Reactor with AEI Zeolite Membrane.",
+   "year": "2023",
+   "queries": [
+    "porous_separation"
+   ],
+   "decision": "reject",
+   "reason": "few_variants",
+   "note": "单一 AEI 膜"
+  },
+  {
+   "pmcid": "PMC10302251",
+   "title": "N,N-Bis(2,4-Dibenzhydryl-6-cycloalkylphenyl)butane-2,3-diimine-Nickel Complexes as Tunable and Effective Catalysts for High-Molecular-Weight PE Elastomers.",
+   "year": "2023",
+   "queries": [
+    "ring_size"
+   ],
+   "decision": "evidence",
+   "reason": null,
+   "note": "邻位环烷基环大小 C5/C6/C8/C12 的镍催化剂，实测聚合活性与聚合物 Mw、Tm；催化性能不只由位阻决定（同 DESIGN_CANDIDATES 第八节的系统性结论）"
+  },
+  {
+   "pmcid": "PMC11360128",
+   "title": "Rigid Macrocycle Metal Complexes as CXCR4 Chemokine Receptor Antagonists: Influence of Ring Size.",
+   "year": "2024",
+   "queries": [
+    "ring_size"
+   ],
+   "decision": "reject",
+   "reason": "off_topic",
+   "note": "CXCR4 拮抗剂 IC50"
+  },
+  {
+   "pmcid": "PMC4686784",
+   "title": "Structural studies on molecular mechanisms of Nelfinavir resistance caused by non-active site mutation V77I in HIV-1 protease.",
+   "year": "2015",
+   "queries": [
+    "ring_size"
+   ],
+   "decision": "reject",
+   "reason": "off_topic",
+   "note": "HIV 蛋白酶结合腔计算"
+  },
+  {
+   "pmcid": "PMC5468338",
+   "title": "Novel Class IIa-Selective Histone Deacetylase Inhibitors Discovered Using an in Silico Virtual Screening Approach.",
+   "year": "2017",
+   "queries": [
+    "ring_size"
+   ],
+   "decision": "reject",
+   "reason": "off_topic",
+   "note": "HDAC 抑制剂 IC50"
+  },
+  {
+   "pmcid": "PMC6013913",
+   "title": "Cationic pillar[6]arene/ATP host-guest recognition: selectivity, inhibition of ATP hydrolysis, and application in multidrug resistance treatment.",
+   "year": "2016",
+   "queries": [
+    "ring_size"
+   ],
+   "decision": "design",
+   "reason": null,
+   "note": "WP5 与 WP6 对 ATP/ADP/AMP 的 ITC 实测 Ka；论文明确归因于空腔尺寸与客体长度"
+  }
+ ]
+}
