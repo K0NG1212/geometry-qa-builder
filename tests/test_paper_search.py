@@ -94,6 +94,13 @@ class PrefilterTests(unittest.TestCase):
         self.assertEqual(prefilter_tables.tier('Comparison with other reported catalysts', ['Selectivity']), 'excluded')
         self.assertEqual(prefilter_tables.tier('Sample list', ['Mass (mg)']), 'shape_only')
 
+    def test_pharmacology_diagnostic_spares_supramolecular_receptors(self):
+        like = lambda title: prefilter_tables.pharma_like(dict(title=title, kept=[]))
+        self.assertFalse(like('Macrocyclic squaramides: anion receptors with high sulfate binding affinity'))
+        self.assertFalse(like('Peptide recognition by a synthetic receptor at subnanomolar concentrations'))
+        self.assertTrue(like('Rigid Macrocycle Metal Complexes as CXCR4 Chemokine Receptor Antagonists'))
+        self.assertTrue(like('Synthesis and antitumor activity of novel N-substituted carbazoles'))
+
     def test_a_screened_paper_takes_its_best_table_tier(self):
         r = screen(article(table('Table 1', 'Sample list', ['Entry', 'Mass (mg)'], ROWS),
                            table('Table 2', 'Association constants', ['Guest', 'BU1'], ROWS)))

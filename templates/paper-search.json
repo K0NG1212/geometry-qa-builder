@@ -1,37 +1,205 @@
 {
  "kind": "paper_search",
- "version": "0.1.0",
+ "version": "0.2.0",
  "purpose": "B2 (HANDOFF_2026-10-21 §1): find open-access CC BY papers that may carry a design or evidence question - one structural feature changed on purpose, a property measured for every variant. Metadata only; full texts are downloaded only after the user approves the list.",
  "endpoint": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
- "filters": "OPEN_ACCESS:y AND LICENSE:\"cc by\" AND IN_EPMC:y AND (NOT PUB_TYPE:\"review\") AND PUB_YEAR:[2015 TO 2026]",
+ "filters": "OPEN_ACCESS:y AND LICENSE:\"cc by\" AND IN_EPMC:y AND (NOT PUB_TYPE:\"review\") AND PUB_YEAR:[2015 TO 2026] AND (NOT (TITLE:\"antitumor\" OR TITLE:\"antitumour\" OR TITLE:\"anticancer\" OR TITLE:\"anti-cancer\" OR TITLE:\"antiviral\" OR TITLE:\"antibacterial\" OR TITLE:\"antimicrobial\" OR TITLE:\"cytotoxic\" OR TITLE:\"cytotoxicity\" OR TITLE:\"pharmacological\" OR TITLE:\"in vivo\"))",
  "fields_note": "Each group is OR-ed over TITLE and ABSTRACT; the groups of one query are AND-ed. Plural forms are listed explicitly (phrase search does not stem: 'molecular clip' misses 'Molecular Clips').",
  "queries": {
   "host_guest": [
-   ["macrocycle", "macrocycles", "cucurbituril", "cucurbiturils", "cyclodextrin", "cyclodextrins", "pillararene", "pillararenes", "calixarene", "calixarenes", "bambusuril", "bambusurils", "molecular cage", "molecular cages", "cryptand", "crown ether", "molecular clip", "molecular clips", "molecular tweezer", "molecular tweezers", "receptor", "receptors"],
-   ["binding constant", "binding constants", "association constant", "association constants", "anion binding", "binding affinity", "binding affinities"],
-   ["cavity", "substituent", "substituents", "wall", "walls", "size", "portal", "portals"]
+   [
+    "macrocycle",
+    "macrocycles",
+    "cucurbituril",
+    "cucurbiturils",
+    "cyclodextrin",
+    "cyclodextrins",
+    "pillararene",
+    "pillararenes",
+    "calixarene",
+    "calixarenes",
+    "bambusuril",
+    "bambusurils",
+    "molecular cage",
+    "molecular cages",
+    "coordination cage",
+    "coordination cages",
+    "organic cage",
+    "organic cages",
+    "cryptand",
+    "cryptands",
+    "crown ether",
+    "crown ethers",
+    "molecular clip",
+    "molecular clips",
+    "molecular tweezer",
+    "molecular tweezers",
+    "synthetic receptor",
+    "synthetic receptors",
+    "artificial receptor",
+    "artificial receptors",
+    "anion receptor",
+    "anion receptors",
+    "macrocyclic receptor",
+    "macrocyclic receptors",
+    "supramolecular host",
+    "host-guest",
+    "host–guest",
+    "cyclophane",
+    "cyclophanes",
+    "foldamer",
+    "foldamers"
+   ],
+   [
+    "binding constant",
+    "binding constants",
+    "association constant",
+    "association constants",
+    "stability constant",
+    "stability constants",
+    "anion binding",
+    "binding affinity",
+    "binding affinities",
+    "binding selectivity"
+   ],
+   [
+    "cavity",
+    "cavities",
+    "substituent",
+    "substituents",
+    "wall",
+    "walls",
+    "size",
+    "sizes",
+    "portal",
+    "portals",
+    "shape",
+    "ring size",
+    "preorganization",
+    "rigidity"
+   ]
   ],
   "porous_separation": [
-   ["pore aperture", "pore size", "pore sizes", "window size", "aperture", "ultramicroporous", "quantum sieving", "molecular sieving"],
-   ["selectivity", "separation", "uptake"],
-   ["metal-organic framework", "metal-organic frameworks", "MOF", "MOFs", "zeolite", "zeolites", "covalent organic framework", "covalent organic frameworks"]
+   [
+    "pore aperture",
+    "pore apertures",
+    "pore size",
+    "pore sizes",
+    "pore diameter",
+    "pore width",
+    "window size",
+    "window sizes",
+    "aperture",
+    "apertures",
+    "ultramicroporous",
+    "ultramicropore",
+    "quantum sieving",
+    "molecular sieving",
+    "kinetic sieving"
+   ],
+   [
+    "selectivity",
+    "selectivities",
+    "separation",
+    "separations",
+    "uptake",
+    "uptakes",
+    "permeance"
+   ],
+   [
+    "metal-organic framework",
+    "metal-organic frameworks",
+    "MOF",
+    "MOFs",
+    "zeolite",
+    "zeolites",
+    "zeolitic imidazolate framework",
+    "ZIF",
+    "ZIFs",
+    "covalent organic framework",
+    "covalent organic frameworks",
+    "porous coordination polymer",
+    "porous coordination polymers",
+    "porous organic cage",
+    "porous organic cages",
+    "carbon molecular sieve"
+   ]
   ],
   "linker_length": [
-   ["linker length", "spacer length", "tether length", "chain length"],
-   ["binding affinity", "association constant", "dissociation constant", "binding constant", "IC50"]
+   [
+    "linker length",
+    "spacer length",
+    "tether length",
+    "chain length"
+   ],
+   [
+    "binding affinity",
+    "association constant",
+    "dissociation constant",
+    "binding constant",
+    "IC50"
+   ]
   ],
   "ring_size": [
-   ["ring size", "macrocycle size", "cavity size"],
-   ["binding affinity", "dissociation constant", "association constant", "selectivity", "binding constant"]
+   [
+    "ring size",
+    "macrocycle size",
+    "cavity size"
+   ],
+   [
+    "binding affinity",
+    "dissociation constant",
+    "association constant",
+    "selectivity",
+    "binding constant"
+   ]
   ],
   "disulfide_engineering": [
-   ["engineered disulfide", "disulfide engineering", "introduced disulfide", "disulfide bond engineering", "rational disulfide"],
-   ["melting temperature", "thermostability", "thermal stability"]
+   [
+    "engineered disulfide",
+    "disulfide engineering",
+    "introduced disulfide",
+    "disulfide bond engineering",
+    "rational disulfide"
+   ],
+   [
+    "melting temperature",
+    "thermostability",
+    "thermal stability"
+   ]
   ],
   "interlayer_membrane": [
-   ["interlayer spacing", "d-spacing", "interlayer distance", "nanochannel", "nanochannels"],
-   ["rejection", "permeance", "ion selectivity", "sieving"],
-   ["membrane", "membranes", "laminar"]
+   [
+    "interlayer spacing",
+    "interlayer spacings",
+    "d-spacing",
+    "d-spacings",
+    "interlayer distance",
+    "interlayer distances",
+    "nanochannel",
+    "nanochannels",
+    "nanoslit",
+    "nanoslits",
+    "channel size",
+    "channel width"
+   ],
+   [
+    "rejection",
+    "rejections",
+    "permeance",
+    "permeances",
+    "ion selectivity",
+    "ion sieving",
+    "molecular sieving",
+    "sieving",
+    "selectivity"
+   ],
+   [
+    "membrane",
+    "membranes",
+    "laminar",
+    "lamellar"
+   ]
   ]
  },
  "known_good": {
@@ -39,5 +207,9 @@
   "PMC11639902": "rando2025 (design_choice)",
   "PMC13022808": "chetry2026 (design_choice)"
  },
- "known_good_note": "Recall check: papers already turned into design questions must be found by the queries; a query set that loses them is too narrow."
+ "known_good_note": "Recall check: papers already turned into design questions must be found by the queries; a query set that loses them is too narrow.",
+ "changes": [
+  "0.2.0 (2026-10-23, B2b): host_guest keeps supramolecular host words only (plain \"receptor(s)\" removed; \"synthetic/artificial/anion/macrocyclic receptor\", cages, cyclophanes, foldamers added); porous_separation and interlayer_membrane gain plurals and synonyms; shared filter drops titles with antitumor/anticancer/antiviral/antibacterial/antimicrobial/cytotoxic/pharmacological/in vivo. Against v01 on the same papers: strong-tier pharmacology-like 44/187 -> 12/129; known_good 3/3.",
+  "0.1.0 (2026-10-22, B2): first query set (runs/paper-search-v01)."
+ ]
 }

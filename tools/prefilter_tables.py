@@ -38,6 +38,17 @@ EXCLUDE = re.compile(r'refinement|data collection|crystallographic data|crystal 
                      r'model parameters|parameters (?:of|for) the .{0,40}model|fitting parameters|primer|sequences|'
                      r'characteristics of (?:the )?(?:patients|participants)|demographic', re.I)
 
+# Diagnostic only (B2b): papers whose title or kept-table captions read as pharmacology. Counted among strong
+# papers to measure query noise; it never changes a status or a tier. A plain "receptor" is not counted:
+# supramolecular anion receptors are on topic.
+PHARMA = re.compile(r'inhibit|agonist|antagon|kinase|\bdrugs?\b|IC50|\bKi\b|antitumou?r|anti-?cancer|cytotox|'
+                    r'antivir|antibacter|antimicrob|pharmacolog|chemokine|in vivo', re.I)
+
+
+def pharma_like(paper):
+    text = (paper.get('title') or '') + ' ' + ' '.join(t['caption'] for t in paper.get('kept', []))
+    return bool(PHARMA.search(text))
+
 
 def tier(caption, measured):
     """'excluded' (caption names a non-measured or off-topic table), 'strong' (a measured quantity is named in the
@@ -145,9 +156,12 @@ def main(argv=None):
             for q in r['queries']:
                 by_query[q].setdefault('tier_' + r['tier'], 0)
                 by_query[q]['tier_' + r['tier']] += 1
+            r['pharma_like'] = pharma_like(r)
+    strong_pharma = sum(1 for r in rows if r.get('tier') == 'strong' and r.get('pharma_like'))
+    tiers['strong_pharma_like'] = strong_pharma
     out.mkdir(parents=True)
     rule = dict(min_rows=MIN_ROWS, min_numeric=MIN_NUMERIC, number=NUMBER.pattern, unit=UNIT.pattern, quantity=QUANTITY.pattern,
-                exclude=EXCLUDE.pattern)
+                exclude=EXCLUDE.pattern, pharma_diagnostic=PHARMA.pattern)
     (out / 'prefilter.json').write_text(json.dumps(dict(kind='paper_prefilter_run', search=args.search, xml=args.xml,
                                                         rule=rule, status=status, tiers=tiers, by_query=by_query, papers=rows),
                                                    ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
