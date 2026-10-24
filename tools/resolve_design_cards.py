@@ -63,9 +63,12 @@ def nearest_subject(text, before, names):
 
 
 def misreadable(display):
-    """True for printed numbers the shared parser would misread: '× 10' with no exponent (it reads ×1) and
-    thousands separators ('13,800' reads 13). Such values are refused until the parser handles them."""
-    return bool(re.search(r'×\s*10(?!\s*\^)', display) or re.match(r'\(?\s*[<>]?\s*\d{1,3},\d{3}', display))
+    """True for printed numbers the shared parser would misread, so the value is refused rather than guessed:
+    '× 10' with no exponent (read as ×1), thousands separators ('13,800' reads 13), cells holding two numbers
+    at once ('1.59/0.38' for a pair of gases, read as 1.59), and a bare power of ten ('>10^4' reads 10, a
+    thousandfold error, because the parser only knows the mantissa-times-power form)."""
+    return bool(re.search(r'×\s*10(?!\s*\^)', display) or re.match(r'\(?\s*[<>]?\s*\d{1,3},\d{3}', display)
+                or re.search(r'\d\s*/\s*\d', display) or re.match(r'\(?\s*[<>≤≥]?\s*\d+\s*\^', display))
 
 
 def resolve_entry(xml, names, pointer):

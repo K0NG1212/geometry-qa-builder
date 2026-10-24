@@ -1,6 +1,6 @@
 {
  "kind": "subdomain_pixel_map",
- "taxonomy_version": "0.2.0",
+ "taxonomy_version": "0.2.1",
  "taxonomy_status": "draft",
  "note": "Draft taxonomy pending the advisor; assignment is automatic (by structure, source and family) and individual questions may need manual reassignment.",
  "summary": {
@@ -10,7 +10,7 @@
   "pixels_with_questions": 44,
   "empty_meaningful_pixels": 30,
   "pixels_with_enumerator": 25,
-  "leaves_with_questions": 46,
+  "leaves_with_questions": 48,
   "empty_level1": [
    "P7",
    "C6",
@@ -21,7 +21,7 @@
    "materials -> physics": 11,
    "chemistry -> physics": 4
   },
-  "active_questions": 327,
+  "active_questions": 336,
   "questions_outside_meaningful_pixels": [],
   "planning_total": 2500,
   "mean_target_per_pixel": 34
@@ -749,11 +749,11 @@
    "meaningful": false
   },
   {
-   "questions": 8,
+   "questions": 15,
    "abilities": {
     "perception": 4,
     "inference": 0,
-    "design": 4
+    "design": 11
    },
    "ids": [
     "CNP027",
@@ -763,7 +763,14 @@
     "CND014",
     "CND015",
     "CND016",
-    "CND017"
+    "CND017",
+    "CND020",
+    "CND021",
+    "CND022",
+    "CND023",
+    "CND024",
+    "CND025",
+    "CND026"
    ],
    "enumerated_estimate": 612,
    "l1": "C4",
@@ -1319,15 +1326,16 @@
    "meaningful": false
   },
   {
-   "questions": 2,
+   "questions": 3,
    "abilities": {
     "perception": 0,
     "inference": 0,
-    "design": 2
+    "design": 3
    },
    "ids": [
     "MND013",
-    "MND014"
+    "MND014",
+    "MND015"
    ],
    "enumerated_estimate": 22,
    "l1": "M4",
@@ -1805,18 +1813,19 @@
    "meaningful": false
   },
   {
-   "questions": 5,
+   "questions": 6,
    "abilities": {
     "perception": 2,
     "inference": 1,
-    "design": 2
+    "design": 3
    },
    "ids": [
     "BNP043",
     "BNI049",
     "BND016",
     "BNP044",
-    "BND018"
+    "BND018",
+    "BND024"
    ],
    "enumerated_estimate": 284,
    "l1": "B3",
@@ -2863,11 +2872,11 @@
    "name": "金属簇与有机金属"
   },
   {
-   "questions": 6,
+   "questions": 8,
    "abilities": {
     "perception": 4,
     "inference": 0,
-    "design": 2
+    "design": 4
    },
    "ids": [
     "CNP027",
@@ -2875,7 +2884,9 @@
     "CNP032",
     "CNP033",
     "CND016",
-    "CND017"
+    "CND017",
+    "CND021",
+    "CND025"
    ],
    "enumerated_estimate": 618,
    "leaf": "C4a",
@@ -2884,11 +2895,11 @@
    "name": "大环主体"
   },
   {
-   "questions": 7,
+   "questions": 11,
    "abilities": {
     "perception": 0,
     "inference": 3,
-    "design": 4
+    "design": 8
    },
    "ids": [
     "CNI014",
@@ -2897,7 +2908,11 @@
     "CND007",
     "CND008",
     "CND014",
-    "CND015"
+    "CND015",
+    "CND020",
+    "CND022",
+    "CND023",
+    "CND024"
    ],
    "enumerated_estimate": 0,
    "leaf": "C4b",
@@ -2906,13 +2921,15 @@
    "name": "主客体识别与结合"
   },
   {
-   "questions": 0,
+   "questions": 1,
    "abilities": {
     "perception": 0,
     "inference": 0,
-    "design": 0
+    "design": 1
    },
-   "ids": [],
+   "ids": [
+    "CND026"
+   ],
    "enumerated_estimate": 0,
    "leaf": "C4c",
    "l1": "C4",
@@ -3293,13 +3310,15 @@
    "name": "共价有机框架（COF）"
   },
   {
-   "questions": 0,
+   "questions": 1,
    "abilities": {
     "perception": 0,
     "inference": 0,
-    "design": 0
+    "design": 1
    },
-   "ids": [],
+   "ids": [
+    "MND015"
+   ],
    "enumerated_estimate": 0,
    "leaf": "M4c",
    "l1": "M4",
@@ -3599,17 +3618,18 @@
    "name": "氧结合蛋白"
   },
   {
-   "questions": 4,
+   "questions": 5,
    "abilities": {
     "perception": 1,
     "inference": 1,
-    "design": 2
+    "design": 3
    },
    "ids": [
     "BNP044",
     "BNI052",
     "BND018",
-    "BND019"
+    "BND019",
+    "BND024"
    ],
    "enumerated_estimate": 0,
    "leaf": "B3b",
@@ -6116,6 +6136,42 @@
   ],
   "CND019": [
    "偶氮苯构型设计 · 满足反转规格的起始驻点（四选一）",
+   "design"
+  ],
+  "BND024": [
+   "铁载体类似物设计 · 从周质结合蛋白解离常数 ≤ 15 nM 的连接链长（四选一）",
+   "design"
+  ],
+  "CND020": [
+   "合成凝集素设计 · 水中结合常数 ≥ 1 × 10⁴ M⁻¹ 的糖（四选一）",
+   "design"
+  ],
+  "CND021": [
+   "棱柱芳烃设计 · 四甲基哌嗪双阳离子结合常数 ≥ 1 × 10⁹ M⁻¹ 的主体（四选一）",
+   "design"
+  ],
+  "CND022": [
+   "双卟啉分子钳设计 · 刚性短二胺 DABCO 结合常数 ≥ 1 × 10⁶ M⁻¹ 的主体（四选一）",
+   "design"
+  ],
+  "CND023": [
+   "双卟啉分子钳设计 · 柔性六碳二胺结合常数 ≥ 4 × 10⁶ M⁻¹ 的主体（四选一）",
+   "design"
+  ],
+  "CND024": [
+   "柱[5]芳烃设计 · 水中结合常数 ≥ 3 × 10⁷ M⁻¹ 的烷基磺酸盐（四选一）",
+   "design"
+  ],
+  "CND025": [
+   "半葫芦[8]脲设计 · 结合常数 ≥ 1 × 10⁵ M⁻¹ 的阴离子（四选一）",
+   "design"
+  ],
+  "CND026": [
+   "封闭空腔设计 · 水中结合常数 ≥ 3.5 × 10⁵ M⁻¹ 的二肽（四选一）",
+   "design"
+  ],
+  "MND015": [
+   "沸石膜设计 · 甲醇/己酸甲酯分离因子 ≥ 2000 的骨架（四选一）",
    "design"
   ]
  }

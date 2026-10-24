@@ -1,5 +1,5 @@
 {
-  "version": "0.11.0",
+  "version": "0.12.0",
   "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
   "rules": {
     "new": "Genuinely new question: added as a new catalog record (provisional).",
@@ -3309,6 +3309,114 @@
       "attribution": "结构取自 Landscape17（CC BY 4.0，Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, npj Comput. Mater. (2025), doi:10.1038/s41524-025-01878-x；数据集 Landscape17, doi:10.6084/m9.figshare.29949230（CC BY 4.0））；坐标逐位照抄，只去掉力列，力与能量不随资产发布。",
       "sizeDefinition": "输入：偶氮苯分子（约 0.9 nm）；推理：C–N=N–C 四原子片段（约 0.25–0.30 nm）。",
       "learningObjective": "在 C5a 的四个驻点中按\"一角张开 + 两条 C–N 键不等\"的规格选起始构型。"
+    },
+    {
+      "instance": "FA-DES-CEUE-LINKER",
+      "action": "new",
+      "catalog_id": "BND024",
+      "paper": "paper-wilde-ceue-licam",
+      "title": "铁载体类似物设计 · 从周质结合蛋白解离常数 ≤ 15 nM 的连接链长（四选一）",
+      "domain": "biology",
+      "scale": "protein",
+      "sizeDefinition": "输入：Fe(III)–铁载体配合物整体（约 1 nm）；推理：两个儿茶酰胺之间的主链连接长度（4–8 个原子，约 0.5–1.0 nm）。",
+      "learningObjective": "在 B 域蛋白–配体识别上按实测 Kd 选出能达到最优配位二面角的最短连接链，而非最柔性的最长链。",
+      "attribution": "候选结构描述与实测性质取自论文（逐项转述，未转载文字或图）；实测值由代码从论文 JATS XML 读出，指针与原文位置见设计卡。"
+    },
+    {
+      "instance": "FA-DES-LECTIN-GLCA",
+      "action": "new",
+      "catalog_id": "CND020",
+      "paper": "paper-zhai-synthetic-lectin",
+      "title": "合成凝集素设计 · 水中结合常数 ≥ 1 × 10⁴ M⁻¹ 的糖（四选一）",
+      "domain": "chemistry",
+      "scale": "host_molecule",
+      "sizeDefinition": "输入：受体–糖复合物（约 1.6 nm）；推理：吡喃糖环取代基的平伏/直立取向（环直径约 0.5 nm）。",
+      "learningObjective": "在 C4b（主客体识别）上按实测 Ka 判断糖环取代基取向对结合的影响；单个羟基由平伏翻成直立即损失 33 倍。",
+      "attribution": "候选结构描述与实测性质取自论文（逐项转述，未转载文字或图）；实测值由代码从论文 JATS XML 读出，指针与原文位置见设计卡。"
+    },
+    {
+      "instance": "FA-DES-PRISM-TMP",
+      "action": "new",
+      "catalog_id": "CND021",
+      "paper": "paper-dellasala-prismarene",
+      "title": "棱柱芳烃设计 · 四甲基哌嗪双阳离子结合常数 ≥ 1 × 10⁹ M⁻¹ 的主体（四选一）",
+      "domain": "chemistry",
+      "scale": "host_molecule",
+      "sizeDefinition": "输入：大环主体（约 1.3 nm）；推理：大环自身的自由空腔体积（六聚体 49 与 77 Å³，约 0.37–0.43 nm）。",
+      "learningObjective": "在 C4a（大环主体）上识别自填充效应：环更大的六聚体被自己的烷基链填掉 84–90%，可用空腔反而小于开放的五聚体。",
+      "attribution": "候选结构描述与实测性质取自论文（逐项转述，未转载文字或图）；实测值由代码从论文 JATS XML 读出，指针与原文位置见设计卡。"
+    },
+    {
+      "instance": "FA-DES-TWZ-DABCO",
+      "action": "new",
+      "catalog_id": "CND022",
+      "paper": "paper-blom-bisporphyrin-tweezers",
+      "title": "双卟啉分子钳设计 · 刚性短二胺 DABCO 结合常数 ≥ 1 × 10⁶ M⁻¹ 的主体（四选一）",
+      "domain": "chemistry",
+      "scale": "host_molecule",
+      "sizeDefinition": "输入：分子钳–客体复合物（约 2 nm）；推理：两个卟啉锌原子之间的距离（4.9–7.3 Å）与客体两氮间距的匹配。",
+      "learningObjective": "在 C4b 上按实测 Ka 判断预组织：对刚性短客体，能调整卟啉间距的半刚性间隔基胜过最刚硬的间隔基。",
+      "attribution": "候选结构描述与实测性质取自论文（逐项转述，未转载文字或图）；实测值由代码从论文 JATS XML 读出，指针与原文位置见设计卡。"
+    },
+    {
+      "instance": "FA-DES-TWZ-DIAMINE",
+      "action": "new",
+      "catalog_id": "CND023",
+      "paper": "paper-blom-bisporphyrin-tweezers",
+      "title": "双卟啉分子钳设计 · 柔性六碳二胺结合常数 ≥ 4 × 10⁶ M⁻¹ 的主体（四选一）",
+      "domain": "chemistry",
+      "scale": "host_molecule",
+      "sizeDefinition": "输入：分子钳–客体复合物（约 2 nm）；推理：卟啉锌间距可变范围（4.9–7.3 Å）与可盘绕六碳链的匹配。",
+      "learningObjective": "在 C4b 上识别答案随客体反转：客体从刚性短二胺换成可盘绕长二胺后，最佳主体从半刚性间隔基换成柔性最大的间隔基。",
+      "attribution": "候选结构描述与实测性质取自论文（逐项转述，未转载文字或图）；实测值由代码从论文 JATS XML 读出，指针与原文位置见设计卡。"
+    },
+    {
+      "instance": "FA-DES-PILLAR-C8",
+      "action": "new",
+      "catalog_id": "CND024",
+      "paper": "paper-gomez-pillararene-alkylsulfonate",
+      "title": "柱[5]芳烃设计 · 水中结合常数 ≥ 3 × 10⁷ M⁻¹ 的烷基磺酸盐（四选一）",
+      "domain": "chemistry",
+      "scale": "host_molecule",
+      "sizeDefinition": "输入：主客体复合物（约 1.3 nm）；推理：可埋入疏水通道的烷基链长度（3–8 个碳，约 0.4–0.9 nm）。",
+      "learningObjective": "在 C4b 上按实测 K 判断在磺酸头与电荷固定不变时，埋入疏水通道的链长如何决定结合强度。",
+      "attribution": "候选结构描述与实测性质取自论文（逐项转述，未转载文字或图）；实测值由代码从论文 JATS XML 读出，指针与原文位置见设计卡。"
+    },
+    {
+      "instance": "FA-DES-HEMICUC-SBF6",
+      "action": "new",
+      "catalog_id": "CND025",
+      "paper": "paper-kaabel-cychc8-anions",
+      "title": "半葫芦[8]脲设计 · 结合常数 ≥ 1 × 10⁵ M⁻¹ 的阴离子（四选一）",
+      "domain": "chemistry",
+      "scale": "host_molecule",
+      "sizeDefinition": "输入：主客体复合物（约 0.9 nm）；推理：客体体积（54.7–81.8 Å³，约 0.38–0.43 nm）与 123 Å³ 空腔之比。",
+      "learningObjective": "在 C4a 上检验堆积系数判据：实测最强的客体堆积系数 0.67 已超出 Rebek 最优区间，最接近 0.55 的反而弱两个数量级。",
+      "attribution": "候选结构描述与实测性质取自论文（逐项转述，未转载文字或图）；实测值由代码从论文 JATS XML 读出，指针与原文位置见设计卡。"
+    },
+    {
+      "instance": "FA-DES-CAPSULE-FF3ME",
+      "action": "new",
+      "catalog_id": "CND026",
+      "paper": "paper-shuto-closed-cavity-dipeptide",
+      "title": "封闭空腔设计 · 水中结合常数 ≥ 3.5 × 10⁵ M⁻¹ 的二肽（四选一）",
+      "domain": "chemistry",
+      "scale": "host_molecule",
+      "sizeDefinition": "输入：胶囊–二肽复合物（约 1.8 nm）；推理：客体在封闭空腔内的整体尺寸与形状（二肽长约 0.6 nm）。",
+      "learningObjective": "在 C4b 上判断封闭空腔的选择性：客体更小并不更易被握紧，两端甲基化带来的额外 CH–π 接触把 Ka 提到 4.4 倍。",
+      "attribution": "候选结构描述与实测性质取自论文（逐项转述，未转载文字或图）；实测值由代码从论文 JATS XML 读出，指针与原文位置见设计卡。"
+    },
+    {
+      "instance": "FA-DES-ZEOLITE-FAU",
+      "action": "new",
+      "catalog_id": "MND015",
+      "paper": "paper-ikeda-fau-methanol",
+      "title": "沸石膜设计 · 甲醇/己酸甲酯分离因子 ≥ 2000 的骨架（四选一）",
+      "domain": "materials",
+      "scale": "crystal",
+      "sizeDefinition": "输入与推理：沸石骨架的孔口直径（CHA 0.38、LTA 0.42、FAU 0.74 nm；甲醇分子 0.380 nm）。",
+      "learningObjective": "在 M4（多孔与框架材料）上检验筛分直觉：孔径与目标分子几乎相等的骨架分离因子并非最高，孔径约为其两倍的 FAU 最高。",
+      "attribution": "候选结构描述与实测性质取自论文（逐项转述，未转载文字或图）；实测值由代码从论文 JATS XML 读出，指针与原文位置见设计卡。"
     }
   ],
   "retire": [

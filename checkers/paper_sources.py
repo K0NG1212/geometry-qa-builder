@@ -85,9 +85,11 @@ def columns_named(grid, name):
     return [j for j in range(len(grid[0])) if all(grid[k][j] == h for k, h in enumerate(path))], len(path)
 
 
-# Printed forms the shared number parser would misread: "× 10" with no exponent (read as ×1) and thousands separators
-# ("13,800" read as 13). Refused here until the parser handles them.
-UNSAFE_DISPLAY = re.compile(r'×\s*10(?!\s*\^)|^\(?\s*[<>]?\s*\d{1,3},\d{3}')
+# Printed forms the shared number parser would misread: "× 10" with no exponent (read as ×1), thousands separators
+# ("13,800" read as 13), and two numbers in one cell ("1.59/0.38" for a pair of gases, read as 1.59). Refused here
+# until the parser handles them.
+UNSAFE_DISPLAY = re.compile(r'×\s*10(?!\s*\^)|^\(?\s*[<>]?\s*\d{1,3},\d{3}|\d\s*/\s*\d'
+                            r'|^\(?\s*[<>≤≥]?\s*\d+\s*\^')      # a bare power of ten: ">10^4" would read as 10
 
 
 def check_entry(doc, names, cand, prop, entry):

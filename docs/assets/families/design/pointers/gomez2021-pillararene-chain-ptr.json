@@ -1,0 +1,119 @@
+{
+ "kind": "design_pointer_card",
+ "family": "design_choice",
+ "id": "gomez2021-pillararene-chain-ptr",
+ "paper": "paper-gomez-pillararene-alkylsulfonate",
+ "citation": "Gomez-Gonzalez, Garcia-Rio, Basilio, Mejuto, Simal-Gandara, Ostos & Lebron et al., \"Molecular Recognition by Pillar[5]arenes: Evidence for Simultaneous Electrostatic and Hydrophobic Interactions\", Pharmaceutics 14, 60 (2021), doi:10.3390/pharmaceutics14010060 (Europe PMC PMC8777861)",
+ "short_citation": "Gomez-Gonzalez et al., Pharmaceutics (2021)",
+ "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+ "setting": "A cationic pillar[5]arene is a barrel-shaped macrocycle of five hydroquinone units: the inside of the barrel is a hydrophobic aromatic channel, and each rim carries five positive charges. The guests below are straight-chain alkylsulfonates, so every one of them presents the same singly charged sulfonate head and differs only in how many carbons follow it. The paper reports that the alkyl chain is included in the hydrophobic aromatic cavity while the sulfonate group is held at the multicationic rim by ionic interactions, so the electrostatic part of the binding is the same for all four candidates and only the length of chain that can be buried inside the barrel changes. Association constants were measured in water by NMR and isothermal titration calorimetry.",
+ "goal": "You need the guest this receptor holds most strongly, above three times ten million per mole.",
+ "ask": "Which candidate guest should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "K_water": {
+   "label": "association constant with the cationic pillar[5]arene in water (M^-1, ITC)",
+   "locator": "Table 2, column K (M^-1)"
+  }
+ },
+ "constraints": [
+  {
+   "key": "affinity",
+   "property": "K_water",
+   "op": ">=",
+   "value": 30000000,
+   "display": "3 × 10^7 M^-1",
+   "text": "the measured association constant in water is at least 3 × 10^7 M^-1"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "C8SO3-",
+   "paper_name": "C8SO3^-",
+   "name": "octanesulfonate, an eight-carbon chain ending in a sulfonate group",
+   "geometry": "The longest chain of the four, so the greatest length of alkyl chain can be buried in the hydrophobic channel of the barrel while the sulfonate head stays at the cationic rim.",
+   "measured": {
+    "K_water": {
+     "table": "Table 2",
+     "row": "C8SO3^-",
+     "column": "K (M^-1)"
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "C6SO3-",
+   "paper_name": "C6SO3^-",
+   "name": "hexanesulfonate, a six-carbon chain ending in a sulfonate group",
+   "geometry": "Two carbons shorter than the longest candidate; the same sulfonate head sits at the same cationic rim, so two fewer CH2 groups are available to fill the hydrophobic channel.",
+   "measured": {
+    "K_water": {
+     "table": "Table 2",
+     "row": "C6SO3^-",
+     "column": "K (M^-1)"
+    }
+   },
+   "rule": "two_carbons_short",
+   "reason": "少两个碳，实测 K 为 1.67 × 10⁷ M⁻¹，未达 3 × 10⁷。",
+   "plausibility": 3
+  },
+  {
+   "id": "C4SO3-",
+   "paper_name": "C4SO3^-",
+   "name": "butanesulfonate, a four-carbon chain ending in a sulfonate group",
+   "geometry": "Half the chain length of the longest candidate, with the same charged head; only a short stretch of alkyl chain can enter the channel.",
+   "measured": {
+    "K_water": {
+     "table": "Table 2",
+     "row": "C4SO3^-",
+     "column": "K (M^-1)"
+    }
+   },
+   "rule": "half_the_chain",
+   "reason": "实测 K 为 2.63 × 10⁶ M⁻¹，比目标低一个数量级。",
+   "plausibility": 3
+  },
+  {
+   "id": "C3SO3-",
+   "paper_name": "C3SO3^-",
+   "name": "propanesulfonate, a three-carbon chain ending in a sulfonate group",
+   "geometry": "The shortest chain of the four: with only three carbons there is almost nothing to bury in the hydrophobic channel. Its titration had to be run at a higher receptor concentration than the other three, which the reviewer-side notes record.",
+   "measured": {
+    "K_water": {
+     "table": "Table 2",
+     "row": "C3SO3^-",
+     "column": "K (M^-1)"
+    }
+   },
+   "rule": "shortest_chain",
+   "reason": "实测 K 只有 7.22 × 10³ M⁻¹；原文称从丙磺酸盐到辛磺酸盐结合常数增加近 10⁴ 倍，这一端就是最弱的。",
+   "plausibility": 3
+  }
+ ],
+ "paper_choice": "C8SO3-",
+ "paper_choice_locator": "摘要：\"binding constants of up to 10^7 M^-1 for the guest with higher hydrophobic character\"；正文：\"alkylsulfonate binding constants to be very sensitive to alkylsulfonate chain length with an increase of almost 10^4 fold ongoing from propane to octanesulfonate\"；Table 2 给出四个候选的实测 K",
+ "naive_cue": {
+  "heuristic": "链越长、疏水部分越多，结合越强，所以选最长的辛磺酸盐",
+  "picks": "C8SO3-",
+  "is_correct": true,
+  "note": "**本卡的主要保留意见**：天真启发式与正确答案一致。这一列的实测值随链长单调上升，没有反例，所以这道题可能只考\"选最长的\"。保留它是因为量化关系清楚（近 10⁴ 倍）且电荷被固定住，但是否值得计入须 L1 判定。"
+ },
+ "scale": {
+  "input_nm": 1.3,
+  "reasoning_nm": 0.9,
+  "definition": "可埋入柱芳烃疏水通道的烷基链长度（3–8 个碳，按 C–C 键长约 0.126 nm 的全反式链估算约 0.4–0.9 nm；本折算为估算，原文只给碳数）"
+ },
+ "notes": [
+  "**保留意见见 naive_cue**：单调序列，天真启发式也能选对，区分力有限。",
+  "候选集里刻意不含戊磺酸盐（C5，5.88 × 10⁶ M⁻¹），以免四个候选里出现两组相邻碳数构成的\"二选一\"结构。",
+  "原文明确说明四个候选的磺酸头相同、只有链长不同，并把链段埋入疏水通道、磺酸头留在阳离子端口作为结合图像；这是把差别归于几何（链长）的依据。但摘要同时强调静电与疏水\"同时\"起作用，电荷虽相同，溶剂化与疏水效应的分解未逐项给出。",
+  "丙磺酸盐的实测条件与其余三者不同（受体浓度 0.25 mM 而非 0.04 mM，因其结合太弱），原文已说明；该差异写入候选描述，交 L1 判断是否影响可比性。",
+  "表 2 同时给出 ΔG°、ΔH°、TS° 三列（kcal/mol）；这些是能量量，按本族的裕度规则（倍数比较）不适用，本题只用 K 列。"
+ ],
+ "paper_xml": {
+  "path": "inputs/paper-candidates/PMC8777861.xml",
+  "sha256": "e4b43340edad4ce6be77d11695f61ee1956a76e011925c432d674c8412b1bbf8"
+ },
+ "derived_from_card": null
+}

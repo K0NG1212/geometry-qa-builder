@@ -17,7 +17,7 @@
  },
  "summary": {
   "selected": 160,
-  "reserve": 167,
+  "reserve": 176,
   "out_of_range": [],
   "abilities": {
    "perception": 59,
@@ -43,8 +43,8 @@
    "cell": "chemistry 0.1-1",
    "domain": "chemistry",
    "bin": "0.1-1",
-   "available": 50,
-   "eligible": 50,
+   "available": 57,
+   "eligible": 57,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -124,21 +124,21 @@
      "pending": null
     },
     {
-     "id": "CND017",
-     "ability": "design",
-     "form": "family",
-     "unit": "design_choice",
-     "instance": "FA-DES-RAN-BROMIDE",
-     "source": "paper-rando-bambusuril",
-     "pending": null
-    },
-    {
      "id": "CND019",
      "ability": "design",
      "form": "family",
      "unit": "reaction_geometry_target",
      "instance": "FA-RXN-TARGET-SPEC",
      "source": "paper-landscape17-azobenzene",
+     "pending": null
+    },
+    {
+     "id": "CND021",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-PRISM-TMP",
+     "source": "paper-dellasala-prismarene",
      "pending": null
     }
    ],
@@ -204,12 +204,82 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "CND017",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-RAN-BROMIDE",
+     "source": "paper-rando-bambusuril",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "CND018",
      "ability": "design",
      "form": "family",
      "unit": "reaction_geometry_target",
      "instance": "FA-RXN-TARGET-ANGLE",
      "source": "paper-landscape17-azobenzene",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CND020",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-LECTIN-GLCA",
+     "source": "paper-zhai-synthetic-lectin",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CND022",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-TWZ-DABCO",
+     "source": "paper-blom-bisporphyrin-tweezers",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CND023",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-TWZ-DIAMINE",
+     "source": "paper-blom-bisporphyrin-tweezers",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CND024",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-PILLAR-C8",
+     "source": "paper-gomez-pillararene-alkylsulfonate",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CND025",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-HEMICUC-SBF6",
+     "source": "paper-kaabel-cychc8-anions",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CND026",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-CAPSULE-FF3ME",
+     "source": "paper-shuto-closed-cavity-dipeptide",
      "pending": null,
      "reason": "本格已满 10 道"
     },
@@ -544,7 +614,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 50 道，其中经独立检查 50 道"
+   "rationale": "可用 57 道，其中经独立检查 57 道"
   },
   {
    "cell": "chemistry 1-10",
@@ -920,8 +990,8 @@
    "cell": "biology 0.1-1",
    "domain": "biology",
    "bin": "0.1-1",
-   "available": 24,
-   "eligible": 24,
+   "available": 25,
+   "eligible": 25,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -1001,15 +1071,6 @@
      "pending": null
     },
     {
-     "id": "BND004",
-     "ability": "design",
-     "form": "family",
-     "unit": "disulfide_design",
-     "instance": "FA-DS-1UBQ-B",
-     "source": "pdb-bio-nm",
-     "pending": null
-    },
-    {
      "id": "BND016",
      "ability": "design",
      "form": "family",
@@ -1017,9 +1078,28 @@
      "instance": "EN-1A6M-DS-2-6",
      "source": "pdb-bio-nm",
      "pending": null
+    },
+    {
+     "id": "BND024",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-CEUE-LINKER",
+     "source": "paper-wilde-ceue-licam",
+     "pending": null
     }
    ],
    "reserve": [
+    {
+     "id": "BND004",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "FA-DS-1UBQ-B",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
     {
      "id": "BND005",
      "ability": "design",
@@ -1161,7 +1241,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 24 道，其中经独立检查 24 道"
+   "rationale": "可用 25 道，其中经独立检查 25 道"
   },
   {
    "cell": "biology 1-10",
@@ -1987,8 +2067,8 @@
    "cell": "materials 0.1-1",
    "domain": "materials",
    "bin": "0.1-1",
-   "available": 46,
-   "eligible": 46,
+   "available": 47,
+   "eligible": 47,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -2068,21 +2148,21 @@
      "pending": null
     },
     {
-     "id": "MND013",
-     "ability": "design",
-     "form": "family",
-     "unit": "design_choice",
-     "instance": "FA-DES-CHE-SIEVE",
-     "source": "paper-chetry-mof-isotopologue",
-     "pending": null
-    },
-    {
      "id": "MND014",
      "ability": "design",
      "form": "family",
      "unit": "design_choice",
      "instance": "FA-DES-CHE-FLOW",
      "source": "paper-chetry-mof-isotopologue",
+     "pending": null
+    },
+    {
+     "id": "MND015",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-ZEOLITE-FAU",
+     "source": "paper-ikeda-fau-methanol",
      "pending": null
     }
    ],
@@ -2105,6 +2185,16 @@
      "instance": "FA-XD-ANODE-NACL",
      "source": "cod-materials-cell",
      "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND013",
+     "ability": "design",
+     "form": "family",
+     "unit": "design_choice",
+     "instance": "FA-DES-CHE-SIEVE",
+     "source": "paper-chetry-mof-isotopologue",
+     "pending": null,
      "reason": "本格已满 10 道"
     },
     {
@@ -2448,7 +2538,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 46 道，其中经独立检查 46 道"
+   "rationale": "可用 47 道，其中经独立检查 47 道"
   },
   {
    "cell": "materials 1-10",
@@ -3422,7 +3512,6 @@
   "BND001",
   "BND002",
   "BND003",
-  "BND004",
   "BND007",
   "BND009",
   "BND010",
@@ -3430,6 +3519,7 @@
   "BND016",
   "BND019",
   "BND021",
+  "BND024",
   "BNI011",
   "BNI012",
   "BNI017",
@@ -3469,8 +3559,8 @@
   "CND011",
   "CND012",
   "CND013",
-  "CND017",
   "CND019",
+  "CND021",
   "CNI008",
   "CNI011",
   "CNI012",
@@ -3509,8 +3599,8 @@
   "MND010",
   "MND011",
   "MND012",
-  "MND013",
   "MND014",
+  "MND015",
   "MNI013",
   "MNI019",
   "MNI020",

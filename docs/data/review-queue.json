@@ -1,6 +1,6 @@
 {
  "kind": "review_queue",
- "date": "2026-10-21",
+ "date": "2026-10-24",
  "summary": {
   "scope": "selection",
   "units_all_active": 52,
@@ -34,8 +34,8 @@
   },
   "next_l3_batch": "l3-batch-001",
   "l3_sample": 160,
-  "l3_strata": 96,
-  "l3_steady_state_sample": 136,
+  "l3_strata": 98,
+  "l3_steady_state_sample": 137,
   "model_calls": 0,
   "reviews_recorded": {
    "L1": 0,
@@ -1953,7 +1953,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 3,
+   "instances": 4,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -1983,6 +1983,54 @@
      "template_review": "2026-10-19 由 planned 转 pilot（导师设计题路线①），待 L1/L2 人工审核；L1 须逐项对照原文位置。"
     },
     "samples": [
+     {
+      "instance": "FA-DES-CEUE-LINKER",
+      "question": "Bacteria scavenge iron with siderophores, and the periplasmic binding protein CeuE of Campylobacter jejuni captures the resulting Fe(III) complexes. The CeuE pocket completes the octahedral coordination of the iron with two of its own side chains, His227 and Tyr288, so a tetradentate siderophore only has to supply four of the six donors. The candidates are Fe(III) complexes of synthetic tetradentate bis-catecholamide ligands n-LICAM4-, in which the two catecholamide units are joined by a backbone linker of n atoms; the authors prepared n = 4, 5, 6 and 8 and measured the dissociation constant of each complex from wild-type CeuE by intrinsic fluorescence quenching, in triplicate, fitted to a 1:1 model. Co-crystal structures give the angle between the mean planes of the two catecholate rings as 97 degrees for the 4-atom linker and 111, 110 and 110 degrees for the 5-, 6- and 8-atom linkers, against an optimum of about 110 degrees; the paper states that the short butylene linker of the 4-atom ligand cannot reach that optimum, while the longer linkers can, at the cost of more conformational freedom. For reference, the natural hexadentate siderophore enterobactin carries a 5-atom backbone linker between its catecholamide groups. You need the analogue that the protein holds most tightly, so that it stays bound while the complex is handed on to the transporter. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Wilde et al., Sci. Rep. (2017). The candidate must satisfy: (affinity) the measured dissociation constant from wild-type CeuE is at most 15 nM. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate iron-siderophore complex should you choose?",
+      "options": [
+       {
+        "label": "A",
+        "value": "Fe-8-Lic: the Fe(III) complex of 8-LICAM4-, with an eight-atom linker"
+       },
+       {
+        "label": "B",
+        "value": "Fe-6-Lic: the Fe(III) complex of 6-LICAM4-, with a six-atom linker"
+       },
+       {
+        "label": "C",
+        "value": "Fe-5-Lic: the Fe(III) complex of 5-LICAM4-, whose two catecholamide units are joined by a five-atom backbone linker"
+       },
+       {
+        "label": "D",
+        "value": "Fe-4-Lic: the Fe(III) complex of 4-LICAM4-, with a four-atom butylene linker"
+       }
+      ],
+      "inputs": [
+       "candidates.txt"
+      ],
+      "correct_label": "C",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "longest_linker",
+        "reason": "不满足约束 affinity：二面角与六原子链相同（110°），但链最长、构象自由度最多，实测 Kd 为 58 nM，是四者中最弱的。"
+       },
+       {
+        "label": "B",
+        "rule": "flexibility_cost",
+        "reason": "不满足约束 affinity：几何角度已达最优（110°），但多出的构象自由度带来熵代价，实测 Kd 为 33 nM，未达 15 nM。"
+       },
+       {
+        "label": "C",
+        "rule": "correct",
+        "reason": "实测值满足全部目标约束，且是原文选定的结构（Summary and Conclusions：\"the affinities of CeuE for Fe-4-Lic, Fe-5-Lic, Fe-6-Lic and Fe-8-Lic were determined using fluorescence quenching, which yielded dissociation constants of 21 ± 6 nM, < 10 nM, 33 ± 8 nM and 58 ± 8 nM, respectively\"；Intrinsic fluorescence quenching 一节称 Fe-5-Lic 结合过紧，无法算出准确的解离常数，并指出其结合比 Fe-4-Lic 与 Fe-6-Lic 都略紧）。"
+       },
+       {
+        "label": "D",
+        "rule": "strained_short_linker",
+        "reason": "不满足约束 affinity：链太短，两个儿茶酚平面只能张到 97°（最优约 110°），实测 Kd 为 21 nM，未达 15 nM。"
+       }
+      ]
+     },
      {
       "instance": "FA-DES-CHE-FLOW",
       "question": "Dihydrogen isotopologues can be separated in a nanoporous framework by kinetic quantum sieving: the thermal de Broglie wavelength of H2 is longer than that of D2, so in a pore whose aperture is comparable to that wavelength H2 meets the higher diffusion barrier and the heavier D2 diffuses faster; the effect grows as the temperature falls. All four candidates below are rigid frameworks, so framework flexibility plays no part, and the paper treats them as lacking accessible open metal sites, although its Zeo++ analysis does report an open metal site density for one of them (noted in candidates.txt). Each framework was exposed to a 1:1 D2:H2 mixture at 100 mbar and 30 K for 10 min, and the selectivity S(D2/H2) and the D2 uptake were then read off the thermal desorption spectrum. You need the sorbent for a throughput stage instead: it has to move as much D2 per gram per cycle as possible, and only needs to beat cryogenic distillation, whose selectivity is 1.4, with some room to spare. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Chetry et al., ACS Appl. Mater. Interfaces (2026). The candidate must satisfy: (capacity) the measured D2 uptake at an exposure temperature of 30 K is at least 5 mmol g^-1; (selectivity) the measured D2/H2 selectivity under the same conditions is at least 2. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate framework should you choose?",
@@ -2028,54 +2076,6 @@
         "label": "D",
         "rule": "measured_inferior_analogue",
         "reason": "不满足约束 capacity：孔口 3.4–4.4 Å 时实测吸附量 2.7 mmol g⁻¹，选择性虽高但容量不够。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-DES-CHE-SIEVE",
-      "question": "Dihydrogen isotopologues can be separated in a nanoporous framework by kinetic quantum sieving: the thermal de Broglie wavelength of H2 is longer than that of D2, so in a pore whose aperture is comparable to that wavelength H2 meets the higher diffusion barrier and the heavier D2 diffuses faster; the effect grows as the temperature falls. All four candidates below are rigid frameworks, so framework flexibility plays no part, and the paper treats them as lacking accessible open metal sites, although its Zeo++ analysis does report an open metal site density for one of them (noted in candidates.txt). Each framework was exposed to a 1:1 D2:H2 mixture at 100 mbar and 30 K for 10 min, and the selectivity S(D2/H2) and the D2 uptake were then read off the thermal desorption spectrum. You need the sorbent for an enrichment stage: it has to reach a useful separation factor and still take up enough D2 per gram for a cycle to be worth running. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Chetry et al., ACS Appl. Mater. Interfaces (2026). The candidate must satisfy: (selectivity) the measured D2/H2 selectivity at an exposure temperature of 30 K is at least 12; (capacity) the measured D2 uptake under the same conditions is at least 2 mmol g^-1. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate framework should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "UTSA-16(Co): UTSA-16(Co), a cobalt citrate framework"
-       },
-       {
-        "label": "B",
-        "value": "Cu-tetrazolate: Cu-tetrazolate, a copper tetrazolate framework"
-       },
-       {
-        "label": "C",
-        "value": "Ag-Bpz: Ag-Bpz, a silver bipyrazolate framework"
-       },
-       {
-        "label": "D",
-        "value": "Cu-4Py-Me: Cu-4Py-Me, the copper triazolyl-isophthalate [Cu(Me-4py-trz-ia)]"
-       }
-      ],
-      "inputs": [
-       "candidates.txt"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "实测值满足全部目标约束，且是原文选定的结构（Conclusions：“Cu-tetrazolate (3.2-3.6 A, S > 16 at 30 K) and UTSA-16(Co) (3.4-4.4 A, S = 15) demonstrate high selectivity, although with inherently limited uptake”，并把 Cu-4Py-Me 列为“practical compromise”；Results 给出四者的 S 与 D₂ 吸附量）。"
-       },
-       {
-        "label": "B",
-        "rule": "narrowest_pore_cue",
-        "reason": "不满足约束 capacity：孔口最窄、选择性确实最高（原文 > 16），但实测 D₂ 吸附量只有 0.2 mmol g⁻¹，容量差一个数量级。“孔越窄越好”在容量上立刻失效。"
-       },
-       {
-        "label": "C",
-        "rule": "interpenetrated_network",
-        "reason": "不满足约束 selectivity：孔口（3.5 Å）与最窄的一档相当，却只测到 5.5 的选择性：主要孔容来自 3.5 与 8 Å 两档且骨架高度互穿，原文把它较低的选择性与吸附量归于这种互穿结构。“孔口窄”不足以保证筛分。"
-       },
-       {
-        "label": "D",
-        "rule": "pore_too_wide",
-        "reason": "不满足约束 selectivity：孔口 5.5 Å 远宽于量子筛分所需，实测选择性只有 8，未达 12；它的吸附量最高（9.7 mmol g⁻¹）却不解决选择性。"
        }
       ]
      }
@@ -2251,7 +2251,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 3,
+   "instances": 2,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -7859,24 +7859,47 @@
    "unit": "design_choice",
    "source": "paper-chetry-mof-isotopologue",
    "cell": "materials 0.1-1",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "MND013",
     "MND014"
    ]
   },
   {
-   "stratum": "design_choice | paper-rando-bambusuril | chemistry 0.1-1",
+   "stratum": "design_choice | paper-dellasala-prismarene | chemistry 0.1-1",
    "unit": "design_choice",
-   "source": "paper-rando-bambusuril",
+   "source": "paper-dellasala-prismarene",
    "cell": "chemistry 0.1-1",
    "size": 1,
    "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "CND017"
+    "CND021"
+   ]
+  },
+  {
+   "stratum": "design_choice | paper-ikeda-fau-methanol | materials 0.1-1",
+   "unit": "design_choice",
+   "source": "paper-ikeda-fau-methanol",
+   "cell": "materials 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "MND015"
+   ]
+  },
+  {
+   "stratum": "design_choice | paper-wilde-ceue-licam | biology 0.1-1",
+   "unit": "design_choice",
+   "source": "paper-wilde-ceue-licam",
+   "cell": "biology 0.1-1",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "BND024"
    ]
   },
   {
@@ -7910,12 +7933,11 @@
    "unit": "disulfide_design",
    "source": "pdb-bio-nm",
    "cell": "biology 0.1-1",
-   "size": 3,
-   "sample": 3,
+   "size": 2,
+   "sample": 2,
    "rule": "first batch: all",
    "ids": [
     "BND003",
-    "BND004",
     "BND016"
    ]
   },
@@ -8868,7 +8890,6 @@
   "MND011": "L0",
   "MND012": "L0",
   "BND003": "L0",
-  "BND004": "L0",
   "BND007": "L0",
   "BND009": "L0",
   "BND010": "L0",
@@ -8944,11 +8965,12 @@
   "BND019": "L0",
   "BNI053": "L0",
   "BND021": "L0",
-  "CND017": "L0",
-  "MND013": "L0",
   "MND014": "L0",
   "CNP044": "L0",
-  "CND019": "L0"
+  "CND019": "L0",
+  "BND024": "L0",
+  "CND021": "L0",
+  "MND015": "L0"
  },
  "forms": {
   "BNP014": {
@@ -9267,10 +9289,6 @@
    "form": "family",
    "instance": "FA-DS-1UBQ-A"
   },
-  "BND004": {
-   "form": "family",
-   "instance": "FA-DS-1UBQ-B"
-  },
   "BND007": {
    "form": "family",
    "instance": "FA-FD-1UBQ"
@@ -9571,14 +9589,6 @@
    "form": "family",
    "instance": "EN-12E8-FD-25-1-11"
   },
-  "CND017": {
-   "form": "family",
-   "instance": "FA-DES-RAN-BROMIDE"
-  },
-  "MND013": {
-   "form": "family",
-   "instance": "FA-DES-CHE-SIEVE"
-  },
   "MND014": {
    "form": "family",
    "instance": "FA-DES-CHE-FLOW"
@@ -9590,6 +9600,18 @@
   "CND019": {
    "form": "family",
    "instance": "FA-RXN-TARGET-SPEC"
+  },
+  "BND024": {
+   "form": "family",
+   "instance": "FA-DES-CEUE-LINKER"
+  },
+  "CND021": {
+   "form": "family",
+   "instance": "FA-DES-PRISM-TMP"
+  },
+  "MND015": {
+   "form": "family",
+   "instance": "FA-DES-ZEOLITE-FAU"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."

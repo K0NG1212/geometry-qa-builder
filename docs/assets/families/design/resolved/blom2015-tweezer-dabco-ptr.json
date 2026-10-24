@@ -1,0 +1,159 @@
+{
+ "kind": "design_card",
+ "family": "design_choice",
+ "id": "blom2015-tweezer-dabco-ptr",
+ "paper": "paper-blom-bisporphyrin-tweezers",
+ "citation": "Blom, Norrehed, Andersson, Huang, Light, Bergquist, Grennberg et al., \"Synthesis and Properties of Bis-Porphyrin Molecular Tweezers: Effects of Spacer Flexibility on Binding and Supramolecular Chirogenesis\", Molecules 21, 16 (2015), doi:10.3390/molecules21010016 (Europe PMC PMC6274253)",
+ "short_citation": "Blom et al., Molecules (2015)",
+ "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+ "setting": "A bisporphyrin molecular tweezer carries two zinc porphyrins on a common spacer. A ditopic guest with two nitrogen donors can coordinate one nitrogen to each zinc, so the tweezer binds it far more strongly than a single porphyrin does, but only if the separation between the two zinc atoms can match the distance between the guest's two nitrogens. The three tweezers below differ only in the spacer, and the paper reports how far each one can change its interporphyrin separation: the enediyne tweezer goes from a Zn-Zn distance of 4.9 angstrom in the free host to 7.0 angstrom in the complex, the stiff-stilbene tweezer only from 6.2 to 7.3 angstrom, and the glycoluril tweezer varies its interporphyrin distance through conformational changes of its seven-membered rings. The fourth candidate is a single zinc porphyrin, which has only one binding site. The guest here, DABCO (diazabicyclo[2.2.2]octane), is a rigid cage amine and, with 4,4'-bipyridyl, has the shortest nitrogen-nitrogen distance of the guests studied; being rigid, it cannot itself change shape to help the fit. Association constants were measured by UV-vis titration in dichloromethane at room temperature.",
+ "goal": "You need to pick up this short, rigid diamine essentially completely at micromolar concentrations, so you need an association constant of at least a million per mole.",
+ "ask": "Which candidate host should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "Ka_DABCO": {
+   "label": "association constant with DABCO (M^-1, UV-vis titration, dichloromethane, room temperature)",
+   "locator": "Table 4, row DABCO 19"
+  }
+ },
+ "constraints": [
+  {
+   "key": "affinity",
+   "property": "Ka_DABCO",
+   "op": ">=",
+   "value": 1000000,
+   "display": "1 × 10^6 M^-1",
+   "text": "the measured association constant with DABCO is at least 1 × 10^6 M^-1"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "tweezer-3-glycoluril",
+   "paper_name": "3",
+   "name": "the glycoluril tweezer, whose two porphyrins sit on a semi-rigid glycoluril spacer",
+   "geometry": "The spacer is a glycoluril unit, and the paper reports that this tweezer can vary its interporphyrin distance through conformational changes of the seven-membered rings of the glycoluril backbone, so the separation of the two zinc atoms can adapt to the guest. The porphyrins are attached to the spacer by two covalent bonds each, which prevents lateral dislocation and porphyrin rotation but leaves twisting available.",
+   "measured": {
+    "Ka_DABCO": {
+     "value": 3000000.0,
+     "display": "3 × 10^6 c",
+     "locator": "Table 4, row DABCO 19 ^b, column Host Ka/M^-1 / 3",
+     "source": {
+      "table": "Table 4",
+      "row": "DABCO 19 ^b",
+      "column": [
+       "Host Ka/M^-1",
+       "3"
+      ]
+     }
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "tweezer-2-stiff-stilbene",
+   "paper_name": "Z-2",
+   "name": "the stiff-stilbene tweezer, whose spacer is a helical stiff stilbene",
+   "geometry": "The least flexible of the three spacers: the paper reports that its Zn-Zn distance increases only slightly on binding, from 6.2 angstrom in the free tweezer to 7.3 angstrom in the complex, so it cannot vary its interporphyrin distance the way the enediyne and glycoluril tweezers can.",
+   "measured": {
+    "Ka_DABCO": {
+     "value": 400000.0,
+     "display": "4 × 10^5",
+     "locator": "Table 4, row DABCO 19 ^b, column Host Ka/M^-1 / Z-2",
+     "source": {
+      "table": "Table 4",
+      "row": "DABCO 19 ^b",
+      "column": [
+       "Host Ka/M^-1",
+       "Z-2"
+      ]
+     }
+    }
+   },
+   "rule": "too_rigid_to_adapt",
+   "reason": "间隔基最刚硬，Zn–Zn 距离只能从 6.2 Å 变到 7.3 Å，对这个短客体实测 Ka 为 4 × 10⁵ M⁻¹，未达 1 × 10⁶。",
+   "plausibility": 3
+  },
+  {
+   "id": "tweezer-1-enediyne",
+   "paper_name": "Z-1",
+   "name": "the enediyne tweezer, whose spacer is a planar enediyne",
+   "geometry": "The planar enediyne spacer leaves the two zinc atoms only 4.9 angstrom apart in the free tweezer and 7.0 angstrom apart in the complex, the largest change of the three; the paper notes that this difference between the free and bound geometries leaves only a small preorganisation effect for the shortest guest.",
+   "measured": {
+    "Ka_DABCO": {
+     "value": 20000.0,
+     "display": "2 × 10^4",
+     "locator": "Table 4, row DABCO 19 ^b, column Host Ka/M^-1 / Z-1",
+     "source": {
+      "table": "Table 4",
+      "row": "DABCO 19 ^b",
+      "column": [
+       "Host Ka/M^-1",
+       "Z-1"
+      ]
+     }
+    }
+   },
+   "rule": "poor_preorganisation",
+   "reason": "游离态 Zn–Zn 只有 4.9 Å，结合时要撑到 7.0 Å，预组织效应最小；对 DABCO 实测 Ka 只有 2 × 10⁴ M⁻¹，是三个分子钳里最低的。",
+   "plausibility": 3
+  },
+  {
+   "id": "Zn-TPP-single-porphyrin",
+   "paper_name": "Zn-TPP",
+   "name": "Zn-TPP, a single zinc tetraphenylporphyrin with no spacer and no second porphyrin",
+   "geometry": "One porphyrin, hence one zinc binding site: a ditopic guest can only coordinate at one end, so none of the cooperativity available to a two-site tweezer is possible. It serves as the reference host in the paper.",
+   "measured": {
+    "Ka_DABCO": {
+     "value": 8000.0,
+     "display": "8 × 10^3",
+     "locator": "Table 4, row DABCO 19 ^b, column Host Ka/M^-1 / Zn-TPP ^a",
+     "source": {
+      "table": "Table 4",
+      "row": "DABCO 19 ^b",
+      "column": [
+       "Host Ka/M^-1",
+       "Zn-TPP ^a"
+      ]
+     }
+    }
+   },
+   "rule": "single_binding_site",
+   "reason": "只有一个结合位点，谈不上两端协同；实测 Ka 为 8 × 10³ M⁻¹，四者中最低。原文称分子钳的 Ka 比它高出最多三个数量级。",
+   "plausibility": 3
+  }
+ ],
+ "paper_choice": "tweezer-3-glycoluril",
+ "paper_choice_locator": "Table 4 的 DABCO 19 行：三个分子钳与参照 Zn-TPP 的实测 Ka 中，glycoluril 分子钳 3 最高（3 × 10⁶ M⁻¹）；Results 一节解释 \"For the smallest guest, DABCO 19, tweezer 1 has the lowest binding constant, which is probably due to the difference between interporphyrin distance in the free tweezer and in the complex, resulting in only a small preorganization effect\"，并说明分子钳 2 \"cannot vary its interporphyrin distance to improve binding, as is the case for 1 and 3\"",
+ "naive_cue": {
+  "heuristic": "间隔基越刚硬、预组织越好，所以选最刚硬的 stiff stilbene",
+  "picks": "tweezer-2-stiff-stilbene",
+  "is_correct": false,
+  "note": "刚硬本身不够：它的 Zn–Zn 距离恰好卡在 6.2–7.3 Å，无法为这个最短的客体调整；能调整距离的半刚性 glycoluril 反而高一个数量级。"
+ },
+ "scale": {
+  "input_nm": 2.0,
+  "reasoning_nm": 0.62,
+  "definition": "两个卟啉锌原子之间的距离（原文给出 4.9–7.3 Å），与客体两个氮原子的间距相匹配"
+ },
+ "notes": [
+  "表 4 的表头有两行（第一行是量名 Host Ka/M^-1，第二行是主体代号），本卡用两行表头路径定位；**四个候选取自同一行的四列**，与以往按行取候选的卡不同。",
+  "原文未给 glycoluril 分子钳 3 的 Zn–Zn 距离数值，只说它能通过七元环的构象变化改变卟啉间距；候选描述照此措辞，不补数值。",
+  "原文的主题是比较三种间隔基的柔性与超分子手性，并非为某个目标挑主体；`paper_choice` 取的是表 4 中 DABCO 这一行实测最强者，措辞已写入 paper_choice_locator。",
+  "原文提醒这些 Zn–Zn 距离\"须谨慎解读\"（结合本身要求分子钳几何发生扭曲）；该保留意见随卡交给 L1。",
+  "同一张表、同样四个主体，换成客体 1,6-二氨基己烷的那道题答案变成 enediyne 分子钳（见 blom2015-tweezer-diamine-ptr）：答案随客体长度反转，这正是原文要说明的预组织效应。",
+  "Zn-TPP 在表中对 4,4′-联吡啶与 1,12-二氨基十二烷两行记作 \"-\"（未测），本题只用 DABCO 行，不受影响。"
+ ],
+ "paper_xml": {
+  "path": "inputs/paper-candidates/PMC6274253.xml",
+  "sha256": "63069d345f0de6bf8b82ed3e8ab60247b68b7cbd5ee0cd910f19316c9bab51a7"
+ },
+ "derived_from_card": null,
+ "resolved_from": {
+  "pointer_card": "assets/families/design/pointers/blom2015-tweezer-dabco-ptr.json",
+  "pointer_sha256": "a03320d4bb15e5bc23414f1bdb00511ea65952766c0ea17c174baae98bb2a13e",
+  "paper_xml": "inputs/paper-candidates/PMC6274253.xml",
+  "paper_xml_sha256": "63069d345f0de6bf8b82ed3e8ab60247b68b7cbd5ee0cd910f19316c9bab51a7",
+  "tool": "tools/resolve_design_cards.py"
+ }
+}

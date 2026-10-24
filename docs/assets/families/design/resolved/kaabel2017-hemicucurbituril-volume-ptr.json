@@ -1,0 +1,145 @@
+{
+ "kind": "design_card",
+ "family": "design_choice",
+ "id": "kaabel2017-hemicucurbituril-volume-ptr",
+ "paper": "paper-kaabel-cychc8-anions",
+ "citation": "Kaabel, Adamson, Topic, Kiesila, Kalenius, Oeren, Reimund et al., \"Chiral hemicucurbit[8]uril as an anion receptor: selectivity to size, shape and charge distribution\", Chem. Sci. 8, 2184 (2017), doi:10.1039/c6sc05058a (Europe PMC PMC5477839)",
+ "short_citation": "Kaabel et al., Chem. Sci. (2017)",
+ "license": "CC BY 3.0; facts and numbers only, no text or figures reproduced",
+ "setting": "The receptor is an eight-membered chiral hemicucurbituril, cycHC[8], whose portals open and close so that an anion is fully encapsulated in a 1:1 complex. The paper treats its cavity as an octahedrally shaped void of 123 cubic angstrom, reports the volume of every guest anion and the resulting packing coefficient, and notes that Rebek's criterion puts the best fit at a packing coefficient of 0.55 plus or minus 0.09. All four candidates below are symmetric oxo- or fluoro-anions of single negative charge with their charge spread evenly over the surface, and all were titrated under the same conditions. Association constants were measured by 1H NMR titration in deuterated methanol at 288 K; the anion volumes and packing coefficients are given in the same table.",
+ "goal": "You need the anion that this receptor holds most strongly, above a hundred thousand per mole.",
+ "ask": "Which candidate anion should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "Ka_MeOD": {
+   "label": "association constant with cycHC[8] (M^-1, 1H NMR titration, MeOD, 288 K)",
+   "locator": "Table 1, column K a (M^-1)"
+  }
+ },
+ "constraints": [
+  {
+   "key": "affinity",
+   "property": "Ka_MeOD",
+   "op": ">=",
+   "value": 100000,
+   "display": "1 × 10^5 M^-1",
+   "text": "the measured association constant with cycHC[8] is at least 1 × 10^5 M^-1"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "SbF6-",
+   "paper_name": "SbF6",
+   "name": "hexafluoroantimonate, an octahedral anion",
+   "geometry": "Volume 81.8 cubic angstrom and packing coefficient 0.67, the largest of the four and above Rebek's optimal range. The paper reports that octahedral anions of this kind are locked in a fixed position inside the cavity, with four fluorine atoms pointing at the corners of the macrocycle's square belt and the remaining two at the opposite portals, and that host-guest C-H...F contacts hold that orientation.",
+   "measured": {
+    "Ka_MeOD": {
+     "value": 250000.0,
+     "display": "(2.5 ± 0.7) × 10^5",
+     "locator": "Table 1, row SbF6 ^-, column K a (M^-1)",
+     "source": {
+      "table": "Table 1",
+      "row": "SbF6 ^-",
+      "column": "K a (M^-1)"
+     }
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "ReO4-",
+   "paper_name": "ReO4",
+   "name": "perrhenate, a tetrahedral anion",
+   "geometry": "Volume 64.8 cubic angstrom and packing coefficient 0.53, the closest of the four to the optimal 0.55 and sitting squarely in the 50 to 80 cubic angstrom range the paper identifies as favourable.",
+   "measured": {
+    "Ka_MeOD": {
+     "value": 4700.0,
+     "display": "(4.7 ± 0.4) × 10^3",
+     "locator": "Table 1, row ReO4 ^-, column K a (M^-1)",
+     "source": {
+      "table": "Table 1",
+      "row": "ReO4 ^-",
+      "column": "K a (M^-1)"
+     }
+    }
+   },
+   "rule": "optimal_packing_coefficient",
+   "reason": "堆积系数 0.53 最接近 Rebek 规则的 0.55，看似最佳匹配，实测 Ka 只有 4.7 × 10³ M⁻¹，比目标低一个多数量级。",
+   "plausibility": 3
+  },
+  {
+   "id": "IO4-",
+   "paper_name": "IO4",
+   "name": "periodate, a tetrahedral anion",
+   "geometry": "Volume 64.3 cubic angstrom and packing coefficient 0.52, almost the same size as perrhenate and likewise inside the favourable volume range.",
+   "measured": {
+    "Ka_MeOD": {
+     "value": 1800.0,
+     "display": "(1.8 ± 0.2) × 10^3",
+     "locator": "Table 1, row IO4 ^-, column K a (M^-1)",
+     "source": {
+      "table": "Table 1",
+      "row": "IO4 ^-",
+      "column": "K a (M^-1)"
+     }
+    }
+   },
+   "rule": "same_size_different_element",
+   "reason": "体积与高铼酸根几乎相同（64.3 对 64.8 Å³），实测 Ka 为 1.8 × 10³ M⁻¹，同样远未达标。",
+   "plausibility": 3
+  },
+  {
+   "id": "ClO4-",
+   "paper_name": "ClO4",
+   "name": "perchlorate, the smallest tetrahedral anion of the four",
+   "geometry": "Volume 54.7 cubic angstrom and packing coefficient 0.45, the smallest and loosest fit; the paper notes that smaller anions can form fewer simultaneous host-guest contacts.",
+   "measured": {
+    "Ka_MeOD": {
+     "value": 470.0,
+     "display": "(4.7 ± 0.2) × 10^2",
+     "locator": "Table 1, row ClO4 ^-, column K a (M^-1)",
+     "source": {
+      "table": "Table 1",
+      "row": "ClO4 ^-",
+      "column": "K a (M^-1)"
+     }
+    }
+   },
+   "rule": "too_small",
+   "reason": "体积最小、堆积系数 0.45，可同时形成的接触最少，实测 Ka 为 4.7 × 10² M⁻¹，四者中最弱。",
+   "plausibility": 3
+  }
+ ],
+ "paper_choice": "SbF6-",
+ "paper_choice_locator": "Results and discussion：质谱给出的亲和力顺序为 \"SbF6 ^- ≈ PF6 ^- > ReO4 ^- > ClO4 ^- > SCN^- > BF4 ^- > HSO4 ^- > CF3SO3 ^-, ranked by decreasing affinity for cycHC[8]\"；\"The complex with SbF6 ^- showed the largest complexation-induced chemical shift changes\"；Table 1 给出四个候选的实测 Ka 与体积、堆积系数",
+ "naive_cue": {
+  "heuristic": "按 Rebek 规则，堆积系数最接近 0.55 的客体匹配最好",
+  "picks": "ReO4-",
+  "is_correct": false,
+  "note": "堆积系数 0.53 的高铼酸根并不是最强的：实测最强的 SbF6⁻ 堆积系数为 0.67，已超出 Rebek 的最优区间。原文把它的强结合归于八面体形状被锁定、四个赤道氟指向方形带的四角所形成的多点 C–H···F 接触。"
+ },
+ "scale": {
+  "input_nm": 0.9,
+  "reasoning_nm": 0.43,
+  "definition": "客体阴离子的体积（原文表 1 给出 54.7–81.8 Å³，按立方根折算约 0.38–0.43 nm）与空腔体积 123 Å³ 之比（堆积系数）"
+ },
+ "notes": [
+  "**本卡最重要的保留意见**：原文明确指出亲和力同时受**溶剂化**影响（\"the affinity towards more heavily solvated anions was found to be lower than for weakly solvated ones\"）与**电荷分布**影响（三氟甲磺酸根体积与 SbF6⁻ 相近却弱得多，原文归因于电荷分布不对称，并用三氟乙酸根做了对照实验）。本卡只取四个电荷分布对称的候选以尽量固定这一变量，但溶剂化在四者之间仍有差别，**所以\"几何是唯一判据\"在本题并不严格成立**。是否接受须 L1 判定；若不接受，本卡应退役。",
+  "候选集里刻意不含 PF6⁻：它在表 1 中占三行（不同抗衡离子与条件），行标签不唯一，指针无法唯一定位。也不含体积相近但电荷分布不对称的 CF3SO3⁻ 与 CF3CO2⁻（它们正是原文的反例），以及卤离子（体积 13–35 Å³，原文称与空腔尺寸不匹配）。",
+  "表 1 的 K a 列中，CF3CO2⁻ 一行写作 \"<10\"（单侧上界）、BF4⁻ 与 CF3SO3⁻ 写作 \"(4.8 ± 0.4) × 10\" 形式——后者没有指数，会被数值解析读错（读成 4.8），已由两端的护栏拒绝，这也是本卡不使用这些行的原因之一。",
+  "原文给出的空腔体积 123 Å³ 与 Rebek 最优堆积系数 0.55 ± 0.09 都写进了题干，所以考生可以自行算出四个候选的堆积系数是否落在最优区间——这正是天真启发式失效之处。"
+ ],
+ "paper_xml": {
+  "path": "inputs/paper-candidates/PMC5477839.xml",
+  "sha256": "06e6ba1c47564b2b9d950338e3ed53a531e910c7f927a49e24378b29156ec62d"
+ },
+ "derived_from_card": null,
+ "resolved_from": {
+  "pointer_card": "assets/families/design/pointers/kaabel2017-hemicucurbituril-volume-ptr.json",
+  "pointer_sha256": "e6bdfafa81389951f1d080b9b2f0c6a8dd039c58e5e82bb2bd59ec0bb74e5b1d",
+  "paper_xml": "inputs/paper-candidates/PMC5477839.xml",
+  "paper_xml_sha256": "06e6ba1c47564b2b9d950338e3ed53a531e910c7f927a49e24378b29156ec62d",
+  "tool": "tools/resolve_design_cards.py"
+ }
+}

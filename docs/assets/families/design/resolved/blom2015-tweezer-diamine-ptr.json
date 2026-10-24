@@ -1,0 +1,159 @@
+{
+ "kind": "design_card",
+ "family": "design_choice",
+ "id": "blom2015-tweezer-diamine-ptr",
+ "paper": "paper-blom-bisporphyrin-tweezers",
+ "citation": "Blom, Norrehed, Andersson, Huang, Light, Bergquist, Grennberg et al., \"Synthesis and Properties of Bis-Porphyrin Molecular Tweezers: Effects of Spacer Flexibility on Binding and Supramolecular Chirogenesis\", Molecules 21, 16 (2015), doi:10.3390/molecules21010016 (Europe PMC PMC6274253)",
+ "short_citation": "Blom et al., Molecules (2015)",
+ "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+ "setting": "A bisporphyrin molecular tweezer carries two zinc porphyrins on a common spacer, and a guest with two nitrogen donors can coordinate one nitrogen to each zinc. How well that works depends on the spacer: the paper reports that the enediyne tweezer changes its Zn-Zn distance from 4.9 angstrom in the free host to 7.0 angstrom in the complex, that the stiff-stilbene tweezer moves only from 6.2 to 7.3 angstrom and can accommodate guests only by twisting its backbone, and that the glycoluril tweezer varies its interporphyrin distance through conformational changes of its seven-membered rings while porphyrin rotation stays limited. The fourth candidate is a single zinc porphyrin with one binding site. The guest here, 1,6-diaminohexane, is not rigid: its six-carbon chain can coil, so the distance between its two nitrogen atoms is not fixed and the guest can meet the host part of the way. Association constants were measured by UV-vis titration in dichloromethane at room temperature.",
+ "goal": "You need to bind this flexible six-carbon diamine as tightly as the series allows, above four million per mole.",
+ "ask": "Which candidate host should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "Ka_diaminohexane": {
+   "label": "association constant with 1,6-diaminohexane (M^-1, UV-vis titration, dichloromethane, room temperature)",
+   "locator": "Table 4, row 1,6-diaminohexane 21"
+  }
+ },
+ "constraints": [
+  {
+   "key": "affinity",
+   "property": "Ka_diaminohexane",
+   "op": ">=",
+   "value": 4000000,
+   "display": "4 × 10^6 M^-1",
+   "text": "the measured association constant with 1,6-diaminohexane is at least 4 × 10^6 M^-1"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "tweezer-1-enediyne",
+   "paper_name": "Z-1",
+   "name": "the enediyne tweezer, whose spacer is a planar enediyne",
+   "geometry": "The most flexible backbone of the three. Its Zn-Zn distance changes the most on binding, from 4.9 angstrom in the free tweezer to 7.0 angstrom in the complex, and the paper states that because its backbone is more flexible the cost of distortion on accommodating a guest is low.",
+   "measured": {
+    "Ka_diaminohexane": {
+     "value": 6000000.0,
+     "display": "6 × 10^6",
+     "locator": "Table 4, row 1,6-diaminohexane 21, column Host Ka/M^-1 / Z-1",
+     "source": {
+      "table": "Table 4",
+      "row": "1,6-diaminohexane 21",
+      "column": [
+       "Host Ka/M^-1",
+       "Z-1"
+      ]
+     }
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "tweezer-3-glycoluril",
+   "paper_name": "3",
+   "name": "the glycoluril tweezer, whose two porphyrins sit on a semi-rigid glycoluril spacer",
+   "geometry": "Semi-rigid: it can vary its interporphyrin distance through conformational changes of the seven-membered rings, and its porphyrins cannot rotate freely, which makes it the more preorganised of the two adaptable tweezers.",
+   "measured": {
+    "Ka_diaminohexane": {
+     "value": 2000000.0,
+     "display": "2 × 10^6 c",
+     "locator": "Table 4, row 1,6-diaminohexane 21, column Host Ka/M^-1 / 3",
+     "source": {
+      "table": "Table 4",
+      "row": "1,6-diaminohexane 21",
+      "column": [
+       "Host Ka/M^-1",
+       "3"
+      ]
+     }
+    }
+   },
+   "rule": "preorganisation_not_enough",
+   "reason": "更高的预组织程度在这个柔性客体上没有换来更强的结合：实测 Ka 为 2 × 10⁶ M⁻¹，未达 4 × 10⁶。原文明确指出这一点（见 notes）。",
+   "plausibility": 3
+  },
+  {
+   "id": "tweezer-2-stiff-stilbene",
+   "paper_name": "Z-2",
+   "name": "the stiff-stilbene tweezer, whose spacer is a helical stiff stilbene",
+   "geometry": "The least flexible spacer: its Zn-Zn distance moves only from 6.2 to 7.3 angstrom, and the paper states that it can accommodate guests only at the expense of distortion, primarily backbone twisting.",
+   "measured": {
+    "Ka_diaminohexane": {
+     "value": 500000.0,
+     "display": "5 × 10^5",
+     "locator": "Table 4, row 1,6-diaminohexane 21, column Host Ka/M^-1 / Z-2",
+     "source": {
+      "table": "Table 4",
+      "row": "1,6-diaminohexane 21",
+      "column": [
+       "Host Ka/M^-1",
+       "Z-2"
+      ]
+     }
+    }
+   },
+   "rule": "distortion_cost",
+   "reason": "容纳客体必须靠骨架扭曲，代价最高，实测 Ka 为 5 × 10⁵ M⁻¹，是三个分子钳里最低的。",
+   "plausibility": 3
+  },
+  {
+   "id": "Zn-TPP-single-porphyrin",
+   "paper_name": "Zn-TPP",
+   "name": "Zn-TPP, a single zinc tetraphenylporphyrin with no spacer and no second porphyrin",
+   "geometry": "One porphyrin, hence one zinc binding site: the guest can coordinate only at one end and none of the two-point cooperativity is available. It is the reference host in the paper.",
+   "measured": {
+    "Ka_diaminohexane": {
+     "value": 50000.0,
+     "display": "5 × 10^4",
+     "locator": "Table 4, row 1,6-diaminohexane 21, column Host Ka/M^-1 / Zn-TPP ^a",
+     "source": {
+      "table": "Table 4",
+      "row": "1,6-diaminohexane 21",
+      "column": [
+       "Host Ka/M^-1",
+       "Zn-TPP ^a"
+      ]
+     }
+    }
+   },
+   "rule": "single_binding_site",
+   "reason": "只有一个结合位点，实测 Ka 为 5 × 10⁴ M⁻¹，比三个分子钳都低一到两个数量级。",
+   "plausibility": 3
+  }
+ ],
+ "paper_choice": "tweezer-1-enediyne",
+ "paper_choice_locator": "Table 4 的 1,6-diaminohexane 21 行，enediyne 分子钳 Z-1 实测最高（6 × 10⁶ M⁻¹）；Results 一节总结 \"the largest binding constants are observed for 1, followed by 3, and with 2 showing the weakest binding\" 并解释 \"The backbone of tweezer 1 is more flexible, and the cost of distortion upon guest accommodation is therefore low, resulting in larger binding cons[tants]\"，又说 \"A higher degree of preorganization owing to limited porphyrin rotation as in 3 does not result in higher binding constants when compared to tweezer 1 with the most flexible spacer\"",
+ "naive_cue": {
+  "heuristic": "预组织程度越高越好，所以选卟啉转动受限的半刚性 glycoluril 分子钳",
+  "picks": "tweezer-3-glycoluril",
+  "is_correct": false,
+  "note": "原文专门指出这个直觉不成立：对柔性客体，预组织更高的 3 并没有比柔性最大的 1 结合更强。"
+ },
+ "scale": {
+  "input_nm": 2.0,
+  "reasoning_nm": 0.7,
+  "definition": "两个卟啉锌原子之间的距离（原文给出 4.9–7.3 Å）与可盘绕的六碳链两端氮原子间距的匹配"
+ },
+ "notes": [
+  "**与 blom2015-tweezer-dabco-ptr 共用同一张表、同样四个主体，只换客体**：客体从刚性的短 DABCO 换成可盘绕的 1,6-二氨基己烷，答案就从半刚性的 glycoluril 分子钳换成柔性最大的 enediyne 分子钳。这正是原文要说明的预组织与柔性之争，也说明设计题的答案取决于目标而非\"哪个主体最好\"。",
+  "表 4 的表头有两行；四个候选取自同一行的四列。",
+  "原文未给 glycoluril 分子钳 3 的 Zn–Zn 距离数值，只说它能通过七元环构象改变卟啉间距；候选描述照此措辞。",
+  "原文提醒这些 Zn–Zn 距离\"须谨慎解读\"（结合本身要求分子钳几何扭曲）。",
+  "原文的主题是比较间隔基柔性与超分子手性，并非为某个目标挑主体；`paper_choice` 取的是表 4 该行实测最强者。",
+  "柔性与\"几何\"的关系：本题的决定量是主体能把两个锌撑开多少（距离范围），以及为此付出的扭曲代价，属于构象几何而非单一长度。是否接受须 L1 判定。"
+ ],
+ "paper_xml": {
+  "path": "inputs/paper-candidates/PMC6274253.xml",
+  "sha256": "63069d345f0de6bf8b82ed3e8ab60247b68b7cbd5ee0cd910f19316c9bab51a7"
+ },
+ "derived_from_card": null,
+ "resolved_from": {
+  "pointer_card": "assets/families/design/pointers/blom2015-tweezer-diamine-ptr.json",
+  "pointer_sha256": "d3098d38e0315b829393f25087ef6cb4dd8d3611a9f013206a7f823f9631a79c",
+  "paper_xml": "inputs/paper-candidates/PMC6274253.xml",
+  "paper_xml_sha256": "63069d345f0de6bf8b82ed3e8ab60247b68b7cbd5ee0cd910f19316c9bab51a7",
+  "tool": "tools/resolve_design_cards.py"
+ }
+}

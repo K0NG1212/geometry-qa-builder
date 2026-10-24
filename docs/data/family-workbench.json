@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "kind": "reusable_family_development_pilot",
   "seed": "geobench-family-v1",
-  "attempted": 328,
-  "passed": 327,
+  "attempted": 337,
+  "passed": 336,
   "failures": [
    {
     "id": "FA-CONF-7063-max_dipole",
@@ -425,9 +425,9 @@
     "attempted": 15
    },
    "design_choice": {
-    "passed": 6,
+    "passed": 15,
     "shortcut_hits": {},
-    "attempted": 6
+    "attempted": 15
    },
    "reaction_mechanism_choice": {
     "passed": 3,
@@ -441,12 +441,12 @@
    }
   },
   "correct_position_counts": {
-   "A": 72,
-   "B": 97,
-   "C": 90,
-   "D": 68
+   "A": 74,
+   "B": 99,
+   "C": 93,
+   "D": 70
   },
-  "manifest_sha256": "73264f15cda253785f585517fd27aed6fb4571f0ba0c0d18d7edc3196a66bbbf",
+  "manifest_sha256": "66e72848ab33e559e29a5c00b73e86fe40c5f68399bb00ce7e6cc0df75e1d2dc",
   "registry_sha256": "6c046ba82e8e03d8c9f4fc04f2eb55981763c090db06536c689f8bb7d979723d",
   "code_sha256": {
    "task_families/__init__.py": "da9069d6a9d4f9ec4fde48c1f2452b7f2c0fb9f29da1997f6a99dbac3149b6a3",
@@ -16654,6 +16654,312 @@
     {
      "label": "D",
      "value": "candidate-4"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-DES-CEUE-LINKER",
+   "family": "design_choice",
+   "ability": "design",
+   "question": "Bacteria scavenge iron with siderophores, and the periplasmic binding protein CeuE of Campylobacter jejuni captures the resulting Fe(III) complexes. The CeuE pocket completes the octahedral coordination of the iron with two of its own side chains, His227 and Tyr288, so a tetradentate siderophore only has to supply four of the six donors. The candidates are Fe(III) complexes of synthetic tetradentate bis-catecholamide ligands n-LICAM4-, in which the two catecholamide units are joined by a backbone linker of n atoms; the authors prepared n = 4, 5, 6 and 8 and measured the dissociation constant of each complex from wild-type CeuE by intrinsic fluorescence quenching, in triplicate, fitted to a 1:1 model. Co-crystal structures give the angle between the mean planes of the two catecholate rings as 97 degrees for the 4-atom linker and 111, 110 and 110 degrees for the 5-, 6- and 8-atom linkers, against an optimum of about 110 degrees; the paper states that the short butylene linker of the 4-atom ligand cannot reach that optimum, while the longer linkers can, at the cost of more conformational freedom. For reference, the natural hexadentate siderophore enterobactin carries a 5-atom backbone linker between its catecholamide groups. You need the analogue that the protein holds most tightly, so that it stays bound while the complex is handed on to the transporter. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Wilde et al., Sci. Rep. (2017). The candidate must satisfy: (affinity) the measured dissociation constant from wild-type CeuE is at most 15 nM. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate iron-siderophore complex should you choose?",
+   "scope": "候选的结构描述取自论文（转述，不转载原文段落或图）；实测性质表只在审核侧，考生看不到。只依据题干给出的目标与候选结构描述，加通用科学知识作答；不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "candidates.txt",
+     "format": "text",
+     "unit": "结构描述，无单位",
+     "text": "Fe-4-Lic: the Fe(III) complex of 4-LICAM4-, with a four-atom butylene linker — Four atoms between the two catecholamide units, the shortest of the series. In the co-crystal structure the angle between the catecholate mean planes is strained to 97 degrees instead of the optimal 110; the paper attributes this to the short butylene linker.\nFe-5-Lic: the Fe(III) complex of 5-LICAM4-, whose two catecholamide units are joined by a five-atom backbone linker — Five atoms between the two catecholamide units, the same linker length as in natural enterobactin. In the co-crystal structure the angle between the mean planes of the two catecholate rings is 111 degrees, at the optimum of about 110 degrees, and the linker is the shortest one that reaches it.\nFe-6-Lic: the Fe(III) complex of 6-LICAM4-, with a six-atom linker — Six atoms between the two catecholamide units. The angle between the catecholate mean planes is 110 degrees, the same as the optimum, so the iron coordination is unstrained; the extra atom adds conformational freedom to the linker.\nFe-8-Lic: the Fe(III) complex of 8-LICAM4-, with an eight-atom linker — Eight atoms between the two catecholamide units, the longest of the series. The angle between the catecholate mean planes is 110 degrees, identical to that of the six-atom ligand, so the paper ascribes its weaker binding to the larger number of conformational degrees of freedom in the longer linker rather than to the coordination geometry.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "Fe-8-Lic: the Fe(III) complex of 8-LICAM4-, with an eight-atom linker"
+    },
+    {
+     "label": "B",
+     "value": "Fe-6-Lic: the Fe(III) complex of 6-LICAM4-, with a six-atom linker"
+    },
+    {
+     "label": "C",
+     "value": "Fe-5-Lic: the Fe(III) complex of 5-LICAM4-, whose two catecholamide units are joined by a five-atom backbone linker"
+    },
+    {
+     "label": "D",
+     "value": "Fe-4-Lic: the Fe(III) complex of 4-LICAM4-, with a four-atom butylene linker"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-DES-LECTIN-GLCA",
+   "family": "design_choice",
+   "ability": "design",
+   "question": "Recognising hydrophilic carbohydrates in water is hard because water competes for every hydroxyl group. The receptor here, MPNT2+, is a water-soluble tetralactam macrocycle built from two dimethylnaphthalene panels joined by pyridinium spacers, giving a rigid preorganised cavity in which the two aromatic panels face each other and the lactam N-H groups point inward. A pyranose sugar bound in that cavity makes hydrogen bonds to the inward N-H donors and C-H...pi contacts between its ring C-H bonds and the naphthalene panels. The paper reports that the C-H bonds at the C2 and C5 positions make the largest contacts, that the C1 C-H bond makes none, and that the receptor prefers sugars whose ring substituents all sit in equatorial positions, since an axial substituent turns the corresponding C-H bond away from a panel. The receptor carries two positive charges, but the paper states that electrostatic attraction to an anionic substrate is by itself not enough to drive binding in water: the anionic sugar Neu5Ac shows no measurable binding at all. Association constants were measured in water by isothermal titration calorimetry and, independently, by NMR titration. You are building a sensor for one metabolite in aqueous solution and need a substrate that this receptor holds at least ten thousandfold above background, which is far above what it manages for ordinary monosaccharides. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Zhai et al., ACS Cent. Sci. (2025). The candidate must satisfy: (affinity) the measured association constant in water is at least 1 × 10^4 M^-1. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate substrate should you choose?",
+   "scope": "候选的结构描述取自论文（转述，不转载原文段落或图）；实测性质表只在审核侧，考生看不到。只依据题干给出的目标与候选结构描述，加通用科学知识作答；不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "candidates.txt",
+     "format": "text",
+     "unit": "结构描述，无单位",
+     "text": "Galactose: galactose, the C4 epimer of glucose — Differs from glucose only at C4, where the hydroxyl is inverted from equatorial to axial; that inversion turns the C4 C-H bond away from the naphthalene panel it would otherwise contact.\nGlucose: glucose, the parent all-equatorial hexose — The same all-equatorial substitution pattern as glucuronic acid, with a neutral hydroxymethyl group at C6 instead of a carboxylate; the ring geometry and the orientation of every C-H bond are the same.\nGlucuronic acid: glucuronic acid, the C6-carboxylate of glucose — A pyranose whose substituents are all equatorial, as in glucose, with the C6 hydroxymethyl group replaced by a carboxylate. The all-equatorial pattern leaves the C2 and C5 C-H bonds pointing at the aromatic panels.\nMethyl alpha-glucoside: methyl alpha-glucoside, glucose with an alpha-linked methyl group at the anomeric carbon — Glucose with the C1 hydroxyl replaced by an alpha-linked methoxy group, which turns the C1 C-H bond from axial to equatorial. The paper notes that the C1 C-H bond makes no C-H...pi contact, so this flip is the least consequential of the ones compared, but the alpha linkage still alters the orientation of that bond.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "Galactose: galactose, the C4 epimer of glucose"
+    },
+    {
+     "label": "B",
+     "value": "Glucose: glucose, the parent all-equatorial hexose"
+    },
+    {
+     "label": "C",
+     "value": "Methyl alpha-glucoside: methyl alpha-glucoside, glucose with an alpha-linked methyl group at the anomeric carbon"
+    },
+    {
+     "label": "D",
+     "value": "Glucuronic acid: glucuronic acid, the C6-carboxylate of glucose"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-DES-PRISM-TMP",
+   "family": "design_choice",
+   "ability": "design",
+   "question": "Prismarenes are macrocycles built from 2,6-dialkoxynaphthalene units whose aromatic walls enclose a prism-shaped cavity lined with pi electron density, so they bind quaternary ammonium cations through C-H...pi contacts with the guest's methyl groups. The pentamers, prism[5]arenes, adopt an almost regular pentagonal prism (canting angles 90.0 +- 3.3 degrees, interior dihedral angles averaging 108 degrees, the ideal value) with a cavity that stays open, and a bound ammonium guest sits centred in it. The hexamers, prism[6]arenes, instead adopt a cuboid in which four of the alkyl chains turn inward and pack against the aromatic walls, filling the macrocycle's own cavity: the paper measures the resulting free cavity volume as 49 cubic angstroms for the ethoxy hexamer and 77 cubic angstroms for the propoxy hexamer, with the chains filling 90 percent and 84 percent of the available space respectively. Association constants with the dicationic guest N,N,N',N'-tetramethylpiperazonium were measured by competition NMR experiments in dichloromethane-d2 at 298 K, with errors below 15 percent. You need a host that binds the tetramethylpiperazonium dication essentially quantitatively at micromolar concentrations, so nothing below a billion per mole will do. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Della Sala et al., Chem. Sci. (2021). The candidate must satisfy: (affinity) the measured association constant with the tetramethylpiperazonium dication is at least 1 × 10^9 M^-1. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate macrocycle should you choose?",
+   "scope": "候选的结构描述取自论文（转述，不转载原文段落或图）；实测性质表只在审核侧，考生看不到。只依据题干给出的目标与候选结构描述，加通用科学知识作答；不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "candidates.txt",
+     "format": "text",
+     "unit": "结构描述，无单位",
+     "text": "PrS[5]Me: the methoxy-prism[5]arene, the same pentamer with methoxy chains — The same open pentagonal-prism cavity as the propoxy pentamer, with short methoxy groups instead of propoxy chains. The paper reports a bound tetramethylammonium guest well centred in this cavity, giving C-H...pi contacts with the walls.\nPrS[5]nPr: the propoxy-prism[5]arene, a pentamer carrying propoxy chains — Five naphthalene units in an almost regular pentagonal prism, interior dihedral angles averaging the ideal 108 degrees. The cavity stays open, so a bound ammonium guest sits centred inside it making C-H...pi contacts with the walls; the chains here are the longest of the two pentamers.\nPrS[6]Et: the ethoxy-prism[6]arene, the six-unit homologue with shorter ethoxy chains — The same cuboid hexamer skeleton, with ethoxy chains that pack inside more efficiently than propoxy: they fill 90 percent of the enclosed space and leave a free cavity volume of only 49 cubic angstroms, the smallest of the four.\nPrS[6]nPr: the propoxy-prism[6]arene, the six-unit homologue with the same propoxy chains — Six naphthalene units in a cuboid. Four of its propoxy chains turn inward and pack against the aromatic walls, filling 84 percent of the enclosed space and leaving a free cavity volume of 77 cubic angstroms, the larger of the two hexamers.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "PrS[5]nPr: the propoxy-prism[5]arene, a pentamer carrying propoxy chains"
+    },
+    {
+     "label": "B",
+     "value": "PrS[6]nPr: the propoxy-prism[6]arene, the six-unit homologue with the same propoxy chains"
+    },
+    {
+     "label": "C",
+     "value": "PrS[6]Et: the ethoxy-prism[6]arene, the six-unit homologue with shorter ethoxy chains"
+    },
+    {
+     "label": "D",
+     "value": "PrS[5]Me: the methoxy-prism[5]arene, the same pentamer with methoxy chains"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-DES-TWZ-DABCO",
+   "family": "design_choice",
+   "ability": "design",
+   "question": "A bisporphyrin molecular tweezer carries two zinc porphyrins on a common spacer. A ditopic guest with two nitrogen donors can coordinate one nitrogen to each zinc, so the tweezer binds it far more strongly than a single porphyrin does, but only if the separation between the two zinc atoms can match the distance between the guest's two nitrogens. The three tweezers below differ only in the spacer, and the paper reports how far each one can change its interporphyrin separation: the enediyne tweezer goes from a Zn-Zn distance of 4.9 angstrom in the free host to 7.0 angstrom in the complex, the stiff-stilbene tweezer only from 6.2 to 7.3 angstrom, and the glycoluril tweezer varies its interporphyrin distance through conformational changes of its seven-membered rings. The fourth candidate is a single zinc porphyrin, which has only one binding site. The guest here, DABCO (diazabicyclo[2.2.2]octane), is a rigid cage amine and, with 4,4'-bipyridyl, has the shortest nitrogen-nitrogen distance of the guests studied; being rigid, it cannot itself change shape to help the fit. Association constants were measured by UV-vis titration in dichloromethane at room temperature. You need to pick up this short, rigid diamine essentially completely at micromolar concentrations, so you need an association constant of at least a million per mole. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Blom et al., Molecules (2015). The candidate must satisfy: (affinity) the measured association constant with DABCO is at least 1 × 10^6 M^-1. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate host should you choose?",
+   "scope": "候选的结构描述取自论文（转述，不转载原文段落或图）；实测性质表只在审核侧，考生看不到。只依据题干给出的目标与候选结构描述，加通用科学知识作答；不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "candidates.txt",
+     "format": "text",
+     "unit": "结构描述，无单位",
+     "text": "Zn-TPP-single-porphyrin: Zn-TPP, a single zinc tetraphenylporphyrin with no spacer and no second porphyrin — One porphyrin, hence one zinc binding site: a ditopic guest can only coordinate at one end, so none of the cooperativity available to a two-site tweezer is possible. It serves as the reference host in the paper.\ntweezer-1-enediyne: the enediyne tweezer, whose spacer is a planar enediyne — The planar enediyne spacer leaves the two zinc atoms only 4.9 angstrom apart in the free tweezer and 7.0 angstrom apart in the complex, the largest change of the three; the paper notes that this difference between the free and bound geometries leaves only a small preorganisation effect for the shortest guest.\ntweezer-2-stiff-stilbene: the stiff-stilbene tweezer, whose spacer is a helical stiff stilbene — The least flexible of the three spacers: the paper reports that its Zn-Zn distance increases only slightly on binding, from 6.2 angstrom in the free tweezer to 7.3 angstrom in the complex, so it cannot vary its interporphyrin distance the way the enediyne and glycoluril tweezers can.\ntweezer-3-glycoluril: the glycoluril tweezer, whose two porphyrins sit on a semi-rigid glycoluril spacer — The spacer is a glycoluril unit, and the paper reports that this tweezer can vary its interporphyrin distance through conformational changes of the seven-membered rings of the glycoluril backbone, so the separation of the two zinc atoms can adapt to the guest. The porphyrins are attached to the spacer by two covalent bonds each, which prevents lateral dislocation and porphyrin rotation but leaves twisting available.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "tweezer-2-stiff-stilbene: the stiff-stilbene tweezer, whose spacer is a helical stiff stilbene"
+    },
+    {
+     "label": "B",
+     "value": "tweezer-3-glycoluril: the glycoluril tweezer, whose two porphyrins sit on a semi-rigid glycoluril spacer"
+    },
+    {
+     "label": "C",
+     "value": "tweezer-1-enediyne: the enediyne tweezer, whose spacer is a planar enediyne"
+    },
+    {
+     "label": "D",
+     "value": "Zn-TPP-single-porphyrin: Zn-TPP, a single zinc tetraphenylporphyrin with no spacer and no second porphyrin"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-DES-TWZ-DIAMINE",
+   "family": "design_choice",
+   "ability": "design",
+   "question": "A bisporphyrin molecular tweezer carries two zinc porphyrins on a common spacer, and a guest with two nitrogen donors can coordinate one nitrogen to each zinc. How well that works depends on the spacer: the paper reports that the enediyne tweezer changes its Zn-Zn distance from 4.9 angstrom in the free host to 7.0 angstrom in the complex, that the stiff-stilbene tweezer moves only from 6.2 to 7.3 angstrom and can accommodate guests only by twisting its backbone, and that the glycoluril tweezer varies its interporphyrin distance through conformational changes of its seven-membered rings while porphyrin rotation stays limited. The fourth candidate is a single zinc porphyrin with one binding site. The guest here, 1,6-diaminohexane, is not rigid: its six-carbon chain can coil, so the distance between its two nitrogen atoms is not fixed and the guest can meet the host part of the way. Association constants were measured by UV-vis titration in dichloromethane at room temperature. You need to bind this flexible six-carbon diamine as tightly as the series allows, above four million per mole. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Blom et al., Molecules (2015). The candidate must satisfy: (affinity) the measured association constant with 1,6-diaminohexane is at least 4 × 10^6 M^-1. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate host should you choose?",
+   "scope": "候选的结构描述取自论文（转述，不转载原文段落或图）；实测性质表只在审核侧，考生看不到。只依据题干给出的目标与候选结构描述，加通用科学知识作答；不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "candidates.txt",
+     "format": "text",
+     "unit": "结构描述，无单位",
+     "text": "Zn-TPP-single-porphyrin: Zn-TPP, a single zinc tetraphenylporphyrin with no spacer and no second porphyrin — One porphyrin, hence one zinc binding site: the guest can coordinate only at one end and none of the two-point cooperativity is available. It is the reference host in the paper.\ntweezer-1-enediyne: the enediyne tweezer, whose spacer is a planar enediyne — The most flexible backbone of the three. Its Zn-Zn distance changes the most on binding, from 4.9 angstrom in the free tweezer to 7.0 angstrom in the complex, and the paper states that because its backbone is more flexible the cost of distortion on accommodating a guest is low.\ntweezer-2-stiff-stilbene: the stiff-stilbene tweezer, whose spacer is a helical stiff stilbene — The least flexible spacer: its Zn-Zn distance moves only from 6.2 to 7.3 angstrom, and the paper states that it can accommodate guests only at the expense of distortion, primarily backbone twisting.\ntweezer-3-glycoluril: the glycoluril tweezer, whose two porphyrins sit on a semi-rigid glycoluril spacer — Semi-rigid: it can vary its interporphyrin distance through conformational changes of the seven-membered rings, and its porphyrins cannot rotate freely, which makes it the more preorganised of the two adaptable tweezers.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "tweezer-3-glycoluril: the glycoluril tweezer, whose two porphyrins sit on a semi-rigid glycoluril spacer"
+    },
+    {
+     "label": "B",
+     "value": "Zn-TPP-single-porphyrin: Zn-TPP, a single zinc tetraphenylporphyrin with no spacer and no second porphyrin"
+    },
+    {
+     "label": "C",
+     "value": "tweezer-1-enediyne: the enediyne tweezer, whose spacer is a planar enediyne"
+    },
+    {
+     "label": "D",
+     "value": "tweezer-2-stiff-stilbene: the stiff-stilbene tweezer, whose spacer is a helical stiff stilbene"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-DES-PILLAR-C8",
+   "family": "design_choice",
+   "ability": "design",
+   "question": "A cationic pillar[5]arene is a barrel-shaped macrocycle of five hydroquinone units: the inside of the barrel is a hydrophobic aromatic channel, and each rim carries five positive charges. The guests below are straight-chain alkylsulfonates, so every one of them presents the same singly charged sulfonate head and differs only in how many carbons follow it. The paper reports that the alkyl chain is included in the hydrophobic aromatic cavity while the sulfonate group is held at the multicationic rim by ionic interactions, so the electrostatic part of the binding is the same for all four candidates and only the length of chain that can be buried inside the barrel changes. Association constants were measured in water by NMR and isothermal titration calorimetry. You need the guest this receptor holds most strongly, above three times ten million per mole. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Gomez-Gonzalez et al., Pharmaceutics (2021). The candidate must satisfy: (affinity) the measured association constant in water is at least 3 × 10^7 M^-1. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate guest should you choose?",
+   "scope": "候选的结构描述取自论文（转述，不转载原文段落或图）；实测性质表只在审核侧，考生看不到。只依据题干给出的目标与候选结构描述，加通用科学知识作答；不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "candidates.txt",
+     "format": "text",
+     "unit": "结构描述，无单位",
+     "text": "C3SO3-: propanesulfonate, a three-carbon chain ending in a sulfonate group — The shortest chain of the four: with only three carbons there is almost nothing to bury in the hydrophobic channel. Its titration had to be run at a higher receptor concentration than the other three, which the reviewer-side notes record.\nC4SO3-: butanesulfonate, a four-carbon chain ending in a sulfonate group — Half the chain length of the longest candidate, with the same charged head; only a short stretch of alkyl chain can enter the channel.\nC6SO3-: hexanesulfonate, a six-carbon chain ending in a sulfonate group — Two carbons shorter than the longest candidate; the same sulfonate head sits at the same cationic rim, so two fewer CH2 groups are available to fill the hydrophobic channel.\nC8SO3-: octanesulfonate, an eight-carbon chain ending in a sulfonate group — The longest chain of the four, so the greatest length of alkyl chain can be buried in the hydrophobic channel of the barrel while the sulfonate head stays at the cationic rim.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "C6SO3-: hexanesulfonate, a six-carbon chain ending in a sulfonate group"
+    },
+    {
+     "label": "B",
+     "value": "C3SO3-: propanesulfonate, a three-carbon chain ending in a sulfonate group"
+    },
+    {
+     "label": "C",
+     "value": "C4SO3-: butanesulfonate, a four-carbon chain ending in a sulfonate group"
+    },
+    {
+     "label": "D",
+     "value": "C8SO3-: octanesulfonate, an eight-carbon chain ending in a sulfonate group"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-DES-HEMICUC-SBF6",
+   "family": "design_choice",
+   "ability": "design",
+   "question": "The receptor is an eight-membered chiral hemicucurbituril, cycHC[8], whose portals open and close so that an anion is fully encapsulated in a 1:1 complex. The paper treats its cavity as an octahedrally shaped void of 123 cubic angstrom, reports the volume of every guest anion and the resulting packing coefficient, and notes that Rebek's criterion puts the best fit at a packing coefficient of 0.55 plus or minus 0.09. All four candidates below are symmetric oxo- or fluoro-anions of single negative charge with their charge spread evenly over the surface, and all were titrated under the same conditions. Association constants were measured by 1H NMR titration in deuterated methanol at 288 K; the anion volumes and packing coefficients are given in the same table. You need the anion that this receptor holds most strongly, above a hundred thousand per mole. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Kaabel et al., Chem. Sci. (2017). The candidate must satisfy: (affinity) the measured association constant with cycHC[8] is at least 1 × 10^5 M^-1. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate anion should you choose?",
+   "scope": "候选的结构描述取自论文（转述，不转载原文段落或图）；实测性质表只在审核侧，考生看不到。只依据题干给出的目标与候选结构描述，加通用科学知识作答；不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "candidates.txt",
+     "format": "text",
+     "unit": "结构描述，无单位",
+     "text": "ClO4-: perchlorate, the smallest tetrahedral anion of the four — Volume 54.7 cubic angstrom and packing coefficient 0.45, the smallest and loosest fit; the paper notes that smaller anions can form fewer simultaneous host-guest contacts.\nIO4-: periodate, a tetrahedral anion — Volume 64.3 cubic angstrom and packing coefficient 0.52, almost the same size as perrhenate and likewise inside the favourable volume range.\nReO4-: perrhenate, a tetrahedral anion — Volume 64.8 cubic angstrom and packing coefficient 0.53, the closest of the four to the optimal 0.55 and sitting squarely in the 50 to 80 cubic angstrom range the paper identifies as favourable.\nSbF6-: hexafluoroantimonate, an octahedral anion — Volume 81.8 cubic angstrom and packing coefficient 0.67, the largest of the four and above Rebek's optimal range. The paper reports that octahedral anions of this kind are locked in a fixed position inside the cavity, with four fluorine atoms pointing at the corners of the macrocycle's square belt and the remaining two at the opposite portals, and that host-guest C-H...F contacts hold that orientation.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "SbF6-: hexafluoroantimonate, an octahedral anion"
+    },
+    {
+     "label": "B",
+     "value": "IO4-: periodate, a tetrahedral anion"
+    },
+    {
+     "label": "C",
+     "value": "ReO4-: perrhenate, a tetrahedral anion"
+    },
+    {
+     "label": "D",
+     "value": "ClO4-: perchlorate, the smallest tetrahedral anion of the four"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-DES-CAPSULE-FF3ME",
+   "family": "design_choice",
+   "ability": "design",
+   "question": "The receptor is a polyaromatic capsule whose spherical cavity is encircled by aromatic panels and is virtually isolated from the surrounding water: unlike an open cleft, a closed cavity of this kind accepts a guest only if the guest's whole shape can be enclosed, so the paper uses it to recognise oligopeptides by the number and kind of their residues. The candidates are phenylalanine-containing dipeptides and their methyl-protected derivatives, all bound as 1:1 complexes. The paper reports that protecting the ends of the dipeptide with methyl groups strengthens binding, which it ascribes to additional hydrophobic CH-pi contacts with the aromatic panels, and that the free amino acid phenylalanine shows no detectable binding at all. Association constants were measured by isothermal titration calorimetry in water at 298 K. You need a guest that this capsule encloses especially tightly, above 3.5 hundred thousand per mole, so that the complex survives dilution. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Shuto et al., JACS Au (2023). The candidate must satisfy: (affinity) the measured association constant in water is at least 3.5 × 10^5 M^-1. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate guest should you choose?",
+   "scope": "候选的结构描述取自论文（转述，不转载原文段落或图）；实测性质表只在审核侧，考生看不到。只依据题干给出的目标与候选结构描述，加通用科学知识作答；不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "candidates.txt",
+     "format": "text",
+     "unit": "结构描述，无单位",
+     "text": "FF: the unprotected phenylalanine dipeptide — The parent guest: two phenyl side chains and free, charged termini at both ends, so no methyl groups are available for extra contacts with the panels and the polar ends remain exposed inside a cavity isolated from water.\nFF-3Me: the phenylalanine dipeptide with methyl groups on both ends (C-terminal and N-terminal protection) — The same two phenyl side chains as the parent dipeptide, with methyl groups added at both the C-terminus and the N-terminus. The added methyl groups give further hydrophobic CH-pi contacts with the aromatic panels of the closed cavity, and the paper measures a 4.4-fold enhancement over the unprotected dipeptide.\nFF-Me: the phenylalanine dipeptide with a methyl group on the C-terminus only — Protected at one end instead of two: one methyl group fewer than the answer, hence fewer added CH-pi contacts inside the cavity. The paper measures a 2.5-fold enhancement over the unprotected dipeptide.\nWF: the tryptophan-phenylalanine dipeptide — One of the two phenyl side chains is replaced by the larger, bicyclic indole of tryptophan, so the guest's overall shape no longer matches the enclosed cavity as well; this is the guest the paper separates FF from in a competition experiment.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "FF: the unprotected phenylalanine dipeptide"
+    },
+    {
+     "label": "B",
+     "value": "FF-3Me: the phenylalanine dipeptide with methyl groups on both ends (C-terminal and N-terminal protection)"
+    },
+    {
+     "label": "C",
+     "value": "FF-Me: the phenylalanine dipeptide with a methyl group on the C-terminus only"
+    },
+    {
+     "label": "D",
+     "value": "WF: the tryptophan-phenylalanine dipeptide"
+    }
+   ],
+   "response_format": "one label: A/B/C/D"
+  },
+  {
+   "id": "FA-DES-ZEOLITE-FAU",
+   "family": "design_choice",
+   "ability": "design",
+   "question": "A zeolite membrane separates a liquid mixture by pervaporation: the feed contacts one side, the permeate is drawn off as vapour, and the zeolite framework's pore openings decide which molecule gets through. The task here is to pull methanol out of a 10 wt% methanol / methyl hexanoate mixture at 353 K; methanol is the small component, with a molecular size of 0.380 nm, while methyl hexanoate is a much larger ester. Four framework types were grown on the same porous alumina support tubes by the same secondary-growth method and tested under the same conditions. The paper gives pore diameters for three of them: CHA 0.38 nm and LTA 0.42 nm, both close to the size of methanol itself, and FAU 0.74 nm, which it calls the largest pore size among the membranes tested; it gives no pore diameter for the MFI framework. The separation factor below is the ratio that describes how much the permeate is enriched in methanol relative to the feed. You need a membrane that enriches methanol strongly in one pass, with a separation factor of at least two thousand. The attached candidates.txt describes four candidate structures, all of them prepared and measured in Ikeda et al., Membranes (2021). The candidate must satisfy: (enrichment) the measured methanol / methyl hexanoate separation factor at 353 K is at least 2000. Exactly one of the four does so in the measured data, which is not shown to you. Which candidate zeolite membrane should you choose?",
+   "scope": "候选的结构描述取自论文（转述，不转载原文段落或图）；实测性质表只在审核侧，考生看不到。只依据题干给出的目标与候选结构描述，加通用科学知识作答；不需要也不允许查阅论文。",
+   "inputs": [
+    {
+     "name": "candidates.txt",
+     "format": "text",
+     "unit": "结构描述，无单位",
+     "text": "CHA: the CHA-type membrane — A pore diameter of 0.38 nm, essentially equal to the 0.380 nm size of methanol, so the aperture matches the molecule it is meant to pass as closely as any of the four.\nFAU(10): the FAU-type membrane grown from a solution with a silica-to-alumina ratio of 10 — The FAU framework has a pore diameter of 0.74 nm, which the paper calls the largest among the membranes tested: roughly twice the 0.380 nm size of methanol, so methanol passes with little hindrance while the much larger ester does not.\nLTA: the LTA-type membrane — A pore diameter of 0.42 nm, one step wider than the size of methanol and the second narrowest of the four.\nMFI: the MFI-type membrane — The one framework for which the paper gives no pore diameter in the text; it was included because MFI membranes are known to separate alcohols from alcohol / ester mixtures.\n"
+    }
+   ],
+   "options": [
+    {
+     "label": "A",
+     "value": "CHA: the CHA-type membrane"
+    },
+    {
+     "label": "B",
+     "value": "LTA: the LTA-type membrane"
+    },
+    {
+     "label": "C",
+     "value": "FAU(10): the FAU-type membrane grown from a solution with a silica-to-alumina ratio of 10"
+    },
+    {
+     "label": "D",
+     "value": "MFI: the MFI-type membrane"
     }
    ],
    "response_format": "one label: A/B/C/D"
@@ -52335,6 +52641,1087 @@
    "option_order": "候选内容按种子分配到 candidate-1…4，与答案位置无关",
    "human_review": "pending",
    "catalog_admitted": false
+  },
+  {
+   "id": "FA-DES-CEUE-LINKER",
+   "family": "design_choice",
+   "family_version": "0.1.0",
+   "ability": "design",
+   "correct_label": "C",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "Fe-8-Lic: the Fe(III) complex of 8-LICAM4-, with an eight-atom linker",
+     "rule": "longest_linker",
+     "reason": "不满足约束 affinity：二面角与六原子链相同（110°），但链最长、构象自由度最多，实测 Kd 为 58 nM，是四者中最弱的。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "B",
+     "value": "Fe-6-Lic: the Fe(III) complex of 6-LICAM4-, with a six-atom linker",
+     "rule": "flexibility_cost",
+     "reason": "不满足约束 affinity：几何角度已达最优（110°），但多出的构象自由度带来熵代价，实测 Kd 为 33 nM，未达 15 nM。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "C",
+     "value": "Fe-5-Lic: the Fe(III) complex of 5-LICAM4-, whose two catecholamide units are joined by a five-atom backbone linker",
+     "rule": "correct",
+     "reason": "实测值满足全部目标约束，且是原文选定的结构（Summary and Conclusions：\"the affinities of CeuE for Fe-4-Lic, Fe-5-Lic, Fe-6-Lic and Fe-8-Lic were determined using fluorescence quenching, which yielded dissociation constants of 21 ± 6 nM, < 10 nM, 33 ± 8 nM and 58 ± 8 nM, respectively\"；Intrinsic fluorescence quenching 一节称 Fe-5-Lic 结合过紧，无法算出准确的解离常数，并指出其结合比 Fe-4-Lic 与 Fe-6-Lic 都略紧）。",
+     "is_correct": true,
+     "plausibility": 3
+    },
+    {
+     "label": "D",
+     "value": "Fe-4-Lic: the Fe(III) complex of 4-LICAM4-, with a four-atom butylene linker",
+     "rule": "strained_short_linker",
+     "reason": "不满足约束 affinity：链太短，两个儿茶酚平面只能张到 97°（最优约 110°），实测 Kd 为 21 nM，未达 15 nM。",
+     "is_correct": false,
+     "plausibility": 3
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "wilde2017-ceue-linker-ptr",
+    "paper_choice": "Fe-5-Lic",
+    "failures": {
+     "Fe-5-Lic": [],
+     "Fe-4-Lic": [
+      "affinity"
+     ],
+     "Fe-6-Lic": [
+      "affinity"
+     ],
+     "Fe-8-Lic": [
+      "affinity"
+     ]
+    },
+    "margin": 1.2,
+    "measured": {
+     "Fe-5-Lic": {
+      "Kd_WT": "<10"
+     },
+     "Fe-4-Lic": {
+      "Kd_WT": "21 ± 6"
+     },
+     "Fe-6-Lic": {
+      "Kd_WT": "33 ± 8"
+     },
+     "Fe-8-Lic": {
+      "Kd_WT": "58 ± 8"
+     }
+    },
+    "locators": {
+     "Fe-5-Lic": {
+      "Kd_WT": "Table 1, row 5, column WT CeuE Kd/nM"
+     },
+     "Fe-4-Lic": {
+      "Kd_WT": "Table 1, row 4, column WT CeuE Kd/nM"
+     },
+     "Fe-6-Lic": {
+      "Kd_WT": "Table 1, row 6, column WT CeuE Kd/nM"
+     },
+     "Fe-8-Lic": {
+      "Kd_WT": "Table 1, row 8, column WT CeuE Kd/nM"
+     }
+    },
+    "naive_cue": {
+     "heuristic": "链越长越柔软，越容易适应口袋，所以选最长的八原子链",
+     "picks": "Fe-8-Lic",
+     "is_correct": false,
+     "note": "最长的链确实能达到最优二面角，但构象自由度最多，实测反而最弱（58 nM）；答案是能达到最优角度的最短链。"
+    },
+    "notes": [
+     "Fe-5-Lic 的 Kd 在表 1 中记作 \"<10\"，是单侧上界：原文说它结合过紧，无法测得准确值。代码按上界处理，只允许它判定\"满足 ≤ 15 nM\"这一侧，不允许用它断定不满足任何下界型约束。",
+     "原文称 Fe-4-Lic（21 ± 6 nM）与 Fe-6-Lic（33 ± 8 nM）的 Kd 在彼此三个标准差之内，不能视为有显著差别；本题的阈值 15 nM 不依赖这两者的先后，两者都明确未达标。",
+     "表 1 另有两个突变体（H227L、H227A）的 Kd 列，本题只用野生型那一列；原文指出突变体的趋势与野生型一致但整体更弱。",
+     "决定量是连接链长度这一几何参数，但原文把 Fe-6/Fe-8 的差别归于构象熵而非配位几何（两者二面角相同）。因此\"几何是判据\"在本题成立的方式是：链长同时决定能否达到最优二面角与构象自由度。是否接受这一点须 L1 判定。",
+     "候选的结构描述里写出了原文报告的二面角（97°/111°/110°/110°），其中 110° 与 111° 本身不足以区分 Fe-5/Fe-6/Fe-8，考生必须结合链长与构象自由度推理。这是否足以推出答案须 L1 判定。"
+    ],
+    "limits": "程序保证：四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干印出的阈值就是代码执行的阈值。程序不能保证：所给结构描述足以推出答案而非靠记忆，也不能保证描述忠于原文——须对照原文位置人工核对（L1），难度由 L4 判定。"
+   },
+   "scales": {
+    "input_nm": 1.0,
+    "reasoning_nm": 0.63,
+    "reasoning_definition": "两个儿茶酰胺单元之间的主链连接长度（4–8 个原子，按 C–C 键长约 0.13 nm 估算为 0.5–1.0 nm，本项为估算而非原文给出的数值）；原文给出的几何量是两个儿茶酚平面的夹角（97°–111°）"
+   },
+   "source": "Wilde, Hughes, Blagova, Moroz, Thomas, Turkenburg, Raines, Duhme-Klair & Wilson, \"Interactions of the periplasmic binding protein CeuE with Fe(III) n-LICAM4- siderophore analogues of varied linker length\", Sci. Rep. 7, 45941 (2017), doi:10.1038/srep45941 (Europe PMC PMC5382913)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/wilde2017-ceue-linker-ptr.json → 解析卡 docs/assets/families/design/resolved/wilde2017-ceue-linker-ptr.json）",
+   "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/design/resolved/wilde2017-ceue-linker-ptr.json": "1bae479685d6d7052ae9494e0afb206267bb880b23a6c0da86b53d54a13bea46"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 3,
+   "option_order": "候选按 id 排序写入附件；正确项按批次目标位置插入选项，附件顺序与答案无关",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-DES-LECTIN-GLCA",
+   "family": "design_choice",
+   "family_version": "0.1.0",
+   "ability": "design",
+   "correct_label": "D",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "Galactose: galactose, the C4 epimer of glucose",
+     "rule": "single_axial_inversion",
+     "reason": "不满足约束 affinity：只把 C4 羟基从平伏翻成直立，实测 Ka 就从葡萄糖的 1700 掉到 52 M⁻¹（33 倍），离目标最远。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "B",
+     "value": "Glucose: glucose, the parent all-equatorial hexose",
+     "rule": "same_geometry_lower_affinity",
+     "reason": "不满足约束 affinity：环上取代基取向与答案完全相同，但实测 Ka 只有 1700 M⁻¹，比 1 × 10⁴ 低一个数量级：同样的全平伏构型本身达不到目标档位。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "C",
+     "value": "Methyl alpha-glucoside: methyl alpha-glucoside, glucose with an alpha-linked methyl group at the anomeric carbon",
+     "rule": "anomeric_flip",
+     "reason": "不满足约束 affinity：α 端基连接改变 C1 C–H 取向，实测 Ka 为 252 M⁻¹，远低于目标。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "D",
+     "value": "Glucuronic acid: glucuronic acid, the C6-carboxylate of glucose",
+     "rule": "correct",
+     "reason": "实测值满足全部目标约束，且是原文选定的结构（标题即 \"A Synthetic Lectin for Glucuronate\"；Evaluation of Carbohydrate Binding in Water 一节称 \"MPNT^2+·2Cl^- exhibited good selectivity toward carbohydrates with an all-equatorial substitution pattern. Glucuronate, glucose, and methyl β-glucoside are representative examples of this configuration and displayed the highest binding affinities\"；Table 1 的 ITC 列给出四个候选的实测值）。",
+     "is_correct": true,
+     "plausibility": 3
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "zhai2025-lectin-sugar-ptr",
+    "paper_choice": "Glucuronic acid",
+    "failures": {
+     "Glucuronic acid": [],
+     "Glucose": [
+      "affinity"
+     ],
+     "Methyl alpha-glucoside": [
+      "affinity"
+     ],
+     "Galactose": [
+      "affinity"
+     ]
+    },
+    "margin": 1.2,
+    "measured": {
+     "Glucuronic acid": {
+      "Ka_ITC": "(1.0 ± 0.1) × 10^5"
+     },
+     "Glucose": {
+      "Ka_ITC": "1700 ± 83"
+     },
+     "Methyl alpha-glucoside": {
+      "Ka_ITC": "252 ± 25"
+     },
+     "Galactose": {
+      "Ka_ITC": "52 ± 3"
+     }
+    },
+    "locators": {
+     "Glucuronic acid": {
+      "Ka_ITC": "1, row Glucuronic acid, column BPTL^2+/K a (M^-1) / ITC (row label in column  / Substrates)"
+     },
+     "Glucose": {
+      "Ka_ITC": "1, row Glucose, column BPTL^2+/K a (M^-1) / ITC (row label in column  / Substrates)"
+     },
+     "Methyl alpha-glucoside": {
+      "Ka_ITC": "1, row Methyl α-glucoside, column BPTL^2+/K a (M^-1) / ITC (row label in column  / Substrates)"
+     },
+     "Galactose": {
+      "Ka_ITC": "1, row Galactose, column BPTL^2+/K a (M^-1) / ITC (row label in column  / Substrates)"
+     }
+    },
+    "naive_cue": {
+     "heuristic": "受体带两个正电荷，所以带负电的糖静电吸引最强",
+     "picks": "Glucuronic acid",
+     "is_correct": true,
+     "note": "本题的天真启发式恰好也选对，所以它的区分力有限（见 notes 第一条）。原文自己的反例是阴离子糖 Neu5Ac 完全测不到结合，说明电荷本身不足以决定；但该候选因无数值（N.D.）不能进入四选一。"
+    },
+    "notes": [
+     "**本卡的主要保留意见**：天真的静电启发式与正确答案一致（is_correct: true），所以这道题可能只考\"认出带电的那个\"而不是几何推理。是否保留、或改成只在中性糖之间比较（那样正确答案是葡萄糖，但\"原文选定者\"严格说是葡萄糖醛酸，不再满足题型族的原规则），须 L1 判定。",
+     "原文正文把半乳糖的亲和力写作 65 M⁻¹，而表 1 的 ITC 列为 52 ± 3、NMR 列为 68 ± 1，三处不一致；本卡用表 1 的 ITC 列，并把这一不一致交给 L1。该不一致不改变本题答案（三个取值都远低于 1 × 10⁴）。",
+     "表 1 的表头有两行，且行标签在第二列（第一列是条目编号）；本卡用两行表头路径与 row_column 指针定位，这是 2026-10-23 为此新增的解析能力。",
+     "表头写作 \"BPTL^2+/K a (M^-1)\"，而正文中的受体代号是 MPNT^2+；原文表头与正文代号不一致，须 L1 核对是否同一化合物。本卡的题干按正文使用 MPNT2+。",
+     "甘露糖与果糖在表中为 N.D.（测不到结合），Neu5Ac 亦为 N.D.；它们没有可解析的数值，不能作候选，但原文用它们论证\"电荷不足以决定结合\"。",
+     "候选集里刻意不含甲基 β-葡萄糖苷（575 M⁻¹），否则与甲基 α-葡萄糖苷构成\"两个二选一\"式的候选，格式检查会标记。"
+    ],
+    "limits": "程序保证：四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干印出的阈值就是代码执行的阈值。程序不能保证：所给结构描述足以推出答案而非靠记忆，也不能保证描述忠于原文——须对照原文位置人工核对（L1），难度由 L4 判定。"
+   },
+   "scales": {
+    "input_nm": 1.6,
+    "reasoning_nm": 0.5,
+    "reasoning_definition": "吡喃糖环上取代基的平伏/直立取向（判据为单个 C–H 或 C–O 键的朝向，环直径约 0.5 nm；本项为估算，原文未给出距离数值）"
+   },
+   "source": "Zhai, Xu, Cui, Wojtas, Cai & Liu, \"A Synthetic Lectin for Glucuronate\", ACS Cent. Sci. 11, 1753 (2025), doi:10.1021/acscentsci.5c00951 (Europe PMC PMC12464755)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/zhai2025-lectin-sugar-ptr.json → 解析卡 docs/assets/families/design/resolved/zhai2025-lectin-sugar-ptr.json）",
+   "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/design/resolved/zhai2025-lectin-sugar-ptr.json": "ca7d543d0fba1ec49341cb66003481aac2959883cb2f3c54f3cbf1d5cd738803"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 4,
+   "option_order": "候选按 id 排序写入附件；正确项按批次目标位置插入选项，附件顺序与答案无关",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-DES-PRISM-TMP",
+   "family": "design_choice",
+   "family_version": "0.1.0",
+   "ability": "design",
+   "correct_label": "A",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "PrS[5]nPr: the propoxy-prism[5]arene, a pentamer carrying propoxy chains",
+     "rule": "correct",
+     "reason": "实测值满足全部目标约束，且是原文选定的结构（Molecular recognition properties of ethoxy- and propoxy-prism[n]arenes 一节：\"an association constant value of 1.4 × 10^9 M^-1 (298 K, CD2Cl2) was determined for the 72+@PrS[5]nPr com[plex]\"，是该表中对 72+ 报告的最高值；结合常数表的 72+ 列给出四个候选的实测值）。",
+     "is_correct": true,
+     "plausibility": 3
+    },
+    {
+     "label": "B",
+     "value": "PrS[6]nPr: the propoxy-prism[6]arene, the six-unit homologue with the same propoxy chains",
+     "rule": "larger_ring_self_filled",
+     "reason": "不满足约束 affinity：环更大，但四条链向内填掉 84% 的空间（自由腔体积 77 Å³），实测 Ka 只有 1.2 × 10⁸ M⁻¹，比目标低约 8 倍。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "C",
+     "value": "PrS[6]Et: the ethoxy-prism[6]arene, the six-unit homologue with shorter ethoxy chains",
+     "rule": "most_self_filled",
+     "reason": "不满足约束 affinity：自由腔体积最小（49 Å³，被自身链填掉 90%），实测 Ka 为 1.0 × 10⁸ M⁻¹，比目标低 10 倍。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "D",
+     "value": "PrS[5]Me: the methoxy-prism[5]arene, the same pentamer with methoxy chains",
+     "rule": "shorter_chains_same_ring",
+     "reason": "不满足约束 affinity：与答案同为开放空腔的五聚体，只是链短，实测 Ka 为 1.8 × 10⁷ M⁻¹，比目标低约 55 倍。",
+     "is_correct": false,
+     "plausibility": 3
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "dellasala2021-prismarene-ptr",
+    "paper_choice": "PrS[5]nPr",
+    "failures": {
+     "PrS[5]nPr": [],
+     "PrS[5]Me": [
+      "affinity"
+     ],
+     "PrS[6]nPr": [
+      "affinity"
+     ],
+     "PrS[6]Et": [
+      "affinity"
+     ]
+    },
+    "margin": 1.2,
+    "measured": {
+     "PrS[5]nPr": {
+      "Ka_TMP": "1.4 × 10^9"
+     },
+     "PrS[5]Me": {
+      "Ka_TMP": "1.8 × 10^7"
+     },
+     "PrS[6]nPr": {
+      "Ka_TMP": "1.2 × 10^8"
+     },
+     "PrS[6]Et": {
+      "Ka_TMP": "1.0 × 10^8"
+     }
+    },
+    "locators": {
+     "PrS[5]nPr": {
+      "Ka_TMP": "tab2, row PrS[5]nPr, column 72+"
+     },
+     "PrS[5]Me": {
+      "Ka_TMP": "tab2, row PrS[5]Me, column 72+"
+     },
+     "PrS[6]nPr": {
+      "Ka_TMP": "tab2, row PrS[6]nPr, column 72+"
+     },
+     "PrS[6]Et": {
+      "Ka_TMP": "tab2, row PrS[6]Et, column 72+"
+     }
+    },
+    "naive_cue": {
+     "heuristic": "六聚体的环更大，容纳体积大的双阳离子应当更强",
+     "picks": "PrS[6]nPr",
+     "is_correct": false,
+     "note": "六聚体的环确实更大，但它的四条烷基链向内把自己的空腔填掉 84–90%，可用空间反而小；开放空腔的五聚体高一个数量级。"
+    },
+    "notes": [
+     "该表在 XML 里没有 <label> 元素，解析器退回用它的 id \"tab2\" 作表标签（原文编号为 Table 2）；因此指针与原文位置里写的是 tab2。L1 核对时请找结合常数表（表题为 \"Binding constant values of prism[n]arene host–guest complexes determined by 1H NMR experiments in CD2Cl2\"）。",
+     "同一张表还有 52+、6+ 等客体列，它们对五聚体与六聚体呈相反的强弱趋势（例如对 52+，五聚体高出六聚体约 10⁵ 倍），本可再出一道答案相反的题；但这两个客体的化学身份只画在图里，XML 正文读不到，**按不得由图注推断的规则，本轮不使用这两列**。只有 72+ 在正文中被写明为 N,N,N′,N′-四甲基哌嗪双阳离子。",
+     "**保留意见**：答案与同为开放五聚体的 PrS[5]Me 相差 78 倍，而原文并未说明五聚体内部\"链越长越强\"的原因（只对六聚体给出自填充的体积数据）。因此仅凭卡片里的结构描述，考生可能无法在两个五聚体之间做出有依据的区分，须 L1 判定本题是否成立。",
+     "原文的主题是自填充对大环合成产率的影响，并非为某个目标挑选主体；paper_choice 取的是原文对 72+ 报告的最强结合者，措辞已在 paper_choice_locator 中写明。",
+     "结合常数由竞争 NMR 实验测得，原文给出的误差为小于 15%，表中不逐项列出。"
+    ],
+    "limits": "程序保证：四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干印出的阈值就是代码执行的阈值。程序不能保证：所给结构描述足以推出答案而非靠记忆，也不能保证描述忠于原文——须对照原文位置人工核对（L1），难度由 L4 判定。"
+   },
+   "scales": {
+    "input_nm": 1.3,
+    "reasoning_nm": 0.42,
+    "reasoning_definition": "大环自身的自由空腔体积（原文给出六聚体为 49 与 77 Å³，按立方根折算约 0.37–0.43 nm；折算为本项目所加，原文只给体积）"
+   },
+   "source": "Della Sala, Del Regno, Di Marino, Calabrese, Palo, Talotta, Geremia, Hickey, Capobianco, Neri & Gaeta, \"An intramolecularly self-templated synthesis of macrocycles: self-filling effects on the formation of prismarenes\", Chem. Sci. 12, 9952 (2021), doi:10.1039/d1sc02199k (Europe PMC PMC8317625)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/dellasala2021-prismarene-ptr.json → 解析卡 docs/assets/families/design/resolved/dellasala2021-prismarene-ptr.json）",
+   "license": "CC BY 3.0; facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/design/resolved/dellasala2021-prismarene-ptr.json": "05e374a3a49531d62da9843614e05999f68f0625ffdc92703c31cd5a5d46eaed"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 1,
+   "option_order": "候选按 id 排序写入附件；正确项按批次目标位置插入选项，附件顺序与答案无关",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-DES-TWZ-DABCO",
+   "family": "design_choice",
+   "family_version": "0.1.0",
+   "ability": "design",
+   "correct_label": "B",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "tweezer-2-stiff-stilbene: the stiff-stilbene tweezer, whose spacer is a helical stiff stilbene",
+     "rule": "too_rigid_to_adapt",
+     "reason": "不满足约束 affinity：间隔基最刚硬，Zn–Zn 距离只能从 6.2 Å 变到 7.3 Å，对这个短客体实测 Ka 为 4 × 10⁵ M⁻¹，未达 1 × 10⁶。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "B",
+     "value": "tweezer-3-glycoluril: the glycoluril tweezer, whose two porphyrins sit on a semi-rigid glycoluril spacer",
+     "rule": "correct",
+     "reason": "实测值满足全部目标约束，且是原文选定的结构（Table 4 的 DABCO 19 行：三个分子钳与参照 Zn-TPP 的实测 Ka 中，glycoluril 分子钳 3 最高（3 × 10⁶ M⁻¹）；Results 一节解释 \"For the smallest guest, DABCO 19, tweezer 1 has the lowest binding constant, which is probably due to the difference between interporphyrin distance in the free tweezer and in the complex, resulting in only a small preorganization effect\"，并说明分子钳 2 \"cannot vary its interporphyrin distance to improve binding, as is the case for 1 and 3\"）。",
+     "is_correct": true,
+     "plausibility": 3
+    },
+    {
+     "label": "C",
+     "value": "tweezer-1-enediyne: the enediyne tweezer, whose spacer is a planar enediyne",
+     "rule": "poor_preorganisation",
+     "reason": "不满足约束 affinity：游离态 Zn–Zn 只有 4.9 Å，结合时要撑到 7.0 Å，预组织效应最小；对 DABCO 实测 Ka 只有 2 × 10⁴ M⁻¹，是三个分子钳里最低的。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "D",
+     "value": "Zn-TPP-single-porphyrin: Zn-TPP, a single zinc tetraphenylporphyrin with no spacer and no second porphyrin",
+     "rule": "single_binding_site",
+     "reason": "不满足约束 affinity：只有一个结合位点，谈不上两端协同；实测 Ka 为 8 × 10³ M⁻¹，四者中最低。原文称分子钳的 Ka 比它高出最多三个数量级。",
+     "is_correct": false,
+     "plausibility": 3
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "blom2015-tweezer-dabco-ptr",
+    "paper_choice": "tweezer-3-glycoluril",
+    "failures": {
+     "tweezer-3-glycoluril": [],
+     "tweezer-2-stiff-stilbene": [
+      "affinity"
+     ],
+     "tweezer-1-enediyne": [
+      "affinity"
+     ],
+     "Zn-TPP-single-porphyrin": [
+      "affinity"
+     ]
+    },
+    "margin": 1.2,
+    "measured": {
+     "tweezer-3-glycoluril": {
+      "Ka_DABCO": "3 × 10^6 c"
+     },
+     "tweezer-2-stiff-stilbene": {
+      "Ka_DABCO": "4 × 10^5"
+     },
+     "tweezer-1-enediyne": {
+      "Ka_DABCO": "2 × 10^4"
+     },
+     "Zn-TPP-single-porphyrin": {
+      "Ka_DABCO": "8 × 10^3"
+     }
+    },
+    "locators": {
+     "tweezer-3-glycoluril": {
+      "Ka_DABCO": "Table 4, row DABCO 19 ^b, column Host Ka/M^-1 / 3"
+     },
+     "tweezer-2-stiff-stilbene": {
+      "Ka_DABCO": "Table 4, row DABCO 19 ^b, column Host Ka/M^-1 / Z-2"
+     },
+     "tweezer-1-enediyne": {
+      "Ka_DABCO": "Table 4, row DABCO 19 ^b, column Host Ka/M^-1 / Z-1"
+     },
+     "Zn-TPP-single-porphyrin": {
+      "Ka_DABCO": "Table 4, row DABCO 19 ^b, column Host Ka/M^-1 / Zn-TPP ^a"
+     }
+    },
+    "naive_cue": {
+     "heuristic": "间隔基越刚硬、预组织越好，所以选最刚硬的 stiff stilbene",
+     "picks": "tweezer-2-stiff-stilbene",
+     "is_correct": false,
+     "note": "刚硬本身不够：它的 Zn–Zn 距离恰好卡在 6.2–7.3 Å，无法为这个最短的客体调整；能调整距离的半刚性 glycoluril 反而高一个数量级。"
+    },
+    "notes": [
+     "表 4 的表头有两行（第一行是量名 Host Ka/M^-1，第二行是主体代号），本卡用两行表头路径定位；**四个候选取自同一行的四列**，与以往按行取候选的卡不同。",
+     "原文未给 glycoluril 分子钳 3 的 Zn–Zn 距离数值，只说它能通过七元环的构象变化改变卟啉间距；候选描述照此措辞，不补数值。",
+     "原文的主题是比较三种间隔基的柔性与超分子手性，并非为某个目标挑主体；`paper_choice` 取的是表 4 中 DABCO 这一行实测最强者，措辞已写入 paper_choice_locator。",
+     "原文提醒这些 Zn–Zn 距离\"须谨慎解读\"（结合本身要求分子钳几何发生扭曲）；该保留意见随卡交给 L1。",
+     "同一张表、同样四个主体，换成客体 1,6-二氨基己烷的那道题答案变成 enediyne 分子钳（见 blom2015-tweezer-diamine-ptr）：答案随客体长度反转，这正是原文要说明的预组织效应。",
+     "Zn-TPP 在表中对 4,4′-联吡啶与 1,12-二氨基十二烷两行记作 \"-\"（未测），本题只用 DABCO 行，不受影响。"
+    ],
+    "limits": "程序保证：四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干印出的阈值就是代码执行的阈值。程序不能保证：所给结构描述足以推出答案而非靠记忆，也不能保证描述忠于原文——须对照原文位置人工核对（L1），难度由 L4 判定。"
+   },
+   "scales": {
+    "input_nm": 2.0,
+    "reasoning_nm": 0.62,
+    "reasoning_definition": "两个卟啉锌原子之间的距离（原文给出 4.9–7.3 Å），与客体两个氮原子的间距相匹配"
+   },
+   "source": "Blom, Norrehed, Andersson, Huang, Light, Bergquist, Grennberg et al., \"Synthesis and Properties of Bis-Porphyrin Molecular Tweezers: Effects of Spacer Flexibility on Binding and Supramolecular Chirogenesis\", Molecules 21, 16 (2015), doi:10.3390/molecules21010016 (Europe PMC PMC6274253)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/blom2015-tweezer-dabco-ptr.json → 解析卡 docs/assets/families/design/resolved/blom2015-tweezer-dabco-ptr.json）",
+   "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/design/resolved/blom2015-tweezer-dabco-ptr.json": "42fc45cb6387e7944d5cd52b71489ae950d4d0a2ed93045663ca10809bd4b796"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 2,
+   "option_order": "候选按 id 排序写入附件；正确项按批次目标位置插入选项，附件顺序与答案无关",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-DES-TWZ-DIAMINE",
+   "family": "design_choice",
+   "family_version": "0.1.0",
+   "ability": "design",
+   "correct_label": "C",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "tweezer-3-glycoluril: the glycoluril tweezer, whose two porphyrins sit on a semi-rigid glycoluril spacer",
+     "rule": "preorganisation_not_enough",
+     "reason": "不满足约束 affinity：更高的预组织程度在这个柔性客体上没有换来更强的结合：实测 Ka 为 2 × 10⁶ M⁻¹，未达 4 × 10⁶。原文明确指出这一点（见 notes）。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "B",
+     "value": "Zn-TPP-single-porphyrin: Zn-TPP, a single zinc tetraphenylporphyrin with no spacer and no second porphyrin",
+     "rule": "single_binding_site",
+     "reason": "不满足约束 affinity：只有一个结合位点，实测 Ka 为 5 × 10⁴ M⁻¹，比三个分子钳都低一到两个数量级。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "C",
+     "value": "tweezer-1-enediyne: the enediyne tweezer, whose spacer is a planar enediyne",
+     "rule": "correct",
+     "reason": "实测值满足全部目标约束，且是原文选定的结构（Table 4 的 1,6-diaminohexane 21 行，enediyne 分子钳 Z-1 实测最高（6 × 10⁶ M⁻¹）；Results 一节总结 \"the largest binding constants are observed for 1, followed by 3, and with 2 showing the weakest binding\" 并解释 \"The backbone of tweezer 1 is more flexible, and the cost of distortion upon guest accommodation is therefore low, resulting in larger binding cons[tants]\"，又说 \"A higher degree of preorganization owing to limited porphyrin rotation as in 3 does not result in higher binding constants when compared to tweezer 1 with the most flexible spacer\"）。",
+     "is_correct": true,
+     "plausibility": 3
+    },
+    {
+     "label": "D",
+     "value": "tweezer-2-stiff-stilbene: the stiff-stilbene tweezer, whose spacer is a helical stiff stilbene",
+     "rule": "distortion_cost",
+     "reason": "不满足约束 affinity：容纳客体必须靠骨架扭曲，代价最高，实测 Ka 为 5 × 10⁵ M⁻¹，是三个分子钳里最低的。",
+     "is_correct": false,
+     "plausibility": 3
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "blom2015-tweezer-diamine-ptr",
+    "paper_choice": "tweezer-1-enediyne",
+    "failures": {
+     "tweezer-1-enediyne": [],
+     "tweezer-3-glycoluril": [
+      "affinity"
+     ],
+     "tweezer-2-stiff-stilbene": [
+      "affinity"
+     ],
+     "Zn-TPP-single-porphyrin": [
+      "affinity"
+     ]
+    },
+    "margin": 1.2,
+    "measured": {
+     "tweezer-1-enediyne": {
+      "Ka_diaminohexane": "6 × 10^6"
+     },
+     "tweezer-3-glycoluril": {
+      "Ka_diaminohexane": "2 × 10^6 c"
+     },
+     "tweezer-2-stiff-stilbene": {
+      "Ka_diaminohexane": "5 × 10^5"
+     },
+     "Zn-TPP-single-porphyrin": {
+      "Ka_diaminohexane": "5 × 10^4"
+     }
+    },
+    "locators": {
+     "tweezer-1-enediyne": {
+      "Ka_diaminohexane": "Table 4, row 1,6-diaminohexane 21, column Host Ka/M^-1 / Z-1"
+     },
+     "tweezer-3-glycoluril": {
+      "Ka_diaminohexane": "Table 4, row 1,6-diaminohexane 21, column Host Ka/M^-1 / 3"
+     },
+     "tweezer-2-stiff-stilbene": {
+      "Ka_diaminohexane": "Table 4, row 1,6-diaminohexane 21, column Host Ka/M^-1 / Z-2"
+     },
+     "Zn-TPP-single-porphyrin": {
+      "Ka_diaminohexane": "Table 4, row 1,6-diaminohexane 21, column Host Ka/M^-1 / Zn-TPP ^a"
+     }
+    },
+    "naive_cue": {
+     "heuristic": "预组织程度越高越好，所以选卟啉转动受限的半刚性 glycoluril 分子钳",
+     "picks": "tweezer-3-glycoluril",
+     "is_correct": false,
+     "note": "原文专门指出这个直觉不成立：对柔性客体，预组织更高的 3 并没有比柔性最大的 1 结合更强。"
+    },
+    "notes": [
+     "**与 blom2015-tweezer-dabco-ptr 共用同一张表、同样四个主体，只换客体**：客体从刚性的短 DABCO 换成可盘绕的 1,6-二氨基己烷，答案就从半刚性的 glycoluril 分子钳换成柔性最大的 enediyne 分子钳。这正是原文要说明的预组织与柔性之争，也说明设计题的答案取决于目标而非\"哪个主体最好\"。",
+     "表 4 的表头有两行；四个候选取自同一行的四列。",
+     "原文未给 glycoluril 分子钳 3 的 Zn–Zn 距离数值，只说它能通过七元环构象改变卟啉间距；候选描述照此措辞。",
+     "原文提醒这些 Zn–Zn 距离\"须谨慎解读\"（结合本身要求分子钳几何扭曲）。",
+     "原文的主题是比较间隔基柔性与超分子手性，并非为某个目标挑主体；`paper_choice` 取的是表 4 该行实测最强者。",
+     "柔性与\"几何\"的关系：本题的决定量是主体能把两个锌撑开多少（距离范围），以及为此付出的扭曲代价，属于构象几何而非单一长度。是否接受须 L1 判定。"
+    ],
+    "limits": "程序保证：四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干印出的阈值就是代码执行的阈值。程序不能保证：所给结构描述足以推出答案而非靠记忆，也不能保证描述忠于原文——须对照原文位置人工核对（L1），难度由 L4 判定。"
+   },
+   "scales": {
+    "input_nm": 2.0,
+    "reasoning_nm": 0.7,
+    "reasoning_definition": "两个卟啉锌原子之间的距离（原文给出 4.9–7.3 Å）与可盘绕的六碳链两端氮原子间距的匹配"
+   },
+   "source": "Blom, Norrehed, Andersson, Huang, Light, Bergquist, Grennberg et al., \"Synthesis and Properties of Bis-Porphyrin Molecular Tweezers: Effects of Spacer Flexibility on Binding and Supramolecular Chirogenesis\", Molecules 21, 16 (2015), doi:10.3390/molecules21010016 (Europe PMC PMC6274253)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/blom2015-tweezer-diamine-ptr.json → 解析卡 docs/assets/families/design/resolved/blom2015-tweezer-diamine-ptr.json）",
+   "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/design/resolved/blom2015-tweezer-diamine-ptr.json": "04a555b6ef09c834d5ffb8c1cfd541580093bfeb098f2a2a3c1c8c6ea24b8c35"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 3,
+   "option_order": "候选按 id 排序写入附件；正确项按批次目标位置插入选项，附件顺序与答案无关",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-DES-PILLAR-C8",
+   "family": "design_choice",
+   "family_version": "0.1.0",
+   "ability": "design",
+   "correct_label": "D",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "C6SO3-: hexanesulfonate, a six-carbon chain ending in a sulfonate group",
+     "rule": "two_carbons_short",
+     "reason": "不满足约束 affinity：少两个碳，实测 K 为 1.67 × 10⁷ M⁻¹，未达 3 × 10⁷。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "B",
+     "value": "C3SO3-: propanesulfonate, a three-carbon chain ending in a sulfonate group",
+     "rule": "shortest_chain",
+     "reason": "不满足约束 affinity：实测 K 只有 7.22 × 10³ M⁻¹；原文称从丙磺酸盐到辛磺酸盐结合常数增加近 10⁴ 倍，这一端就是最弱的。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "C",
+     "value": "C4SO3-: butanesulfonate, a four-carbon chain ending in a sulfonate group",
+     "rule": "half_the_chain",
+     "reason": "不满足约束 affinity：实测 K 为 2.63 × 10⁶ M⁻¹，比目标低一个数量级。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "D",
+     "value": "C8SO3-: octanesulfonate, an eight-carbon chain ending in a sulfonate group",
+     "rule": "correct",
+     "reason": "实测值满足全部目标约束，且是原文选定的结构（摘要：\"binding constants of up to 10^7 M^-1 for the guest with higher hydrophobic character\"；正文：\"alkylsulfonate binding constants to be very sensitive to alkylsulfonate chain length with an increase of almost 10^4 fold ongoing from propane to octanesulfonate\"；Table 2 给出四个候选的实测 K）。",
+     "is_correct": true,
+     "plausibility": 3
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "gomez2021-pillararene-chain-ptr",
+    "paper_choice": "C8SO3-",
+    "failures": {
+     "C8SO3-": [],
+     "C6SO3-": [
+      "affinity"
+     ],
+     "C4SO3-": [
+      "affinity"
+     ],
+     "C3SO3-": [
+      "affinity"
+     ]
+    },
+    "margin": 1.2,
+    "measured": {
+     "C8SO3-": {
+      "K_water": "(4.79 ± 0.18) × 10^7"
+     },
+     "C6SO3-": {
+      "K_water": "(1.67 ± 0.02) × 10^7"
+     },
+     "C4SO3-": {
+      "K_water": "(2.63 ± 0.01) × 10^6"
+     },
+     "C3SO3-": {
+      "K_water": "(7.22 ± 0.02) × 10^3"
+     }
+    },
+    "locators": {
+     "C8SO3-": {
+      "K_water": "Table 2, row C8SO3^-, column K (M^-1)"
+     },
+     "C6SO3-": {
+      "K_water": "Table 2, row C6SO3^-, column K (M^-1)"
+     },
+     "C4SO3-": {
+      "K_water": "Table 2, row C4SO3^-, column K (M^-1)"
+     },
+     "C3SO3-": {
+      "K_water": "Table 2, row C3SO3^-, column K (M^-1)"
+     }
+    },
+    "naive_cue": {
+     "heuristic": "链越长、疏水部分越多，结合越强，所以选最长的辛磺酸盐",
+     "picks": "C8SO3-",
+     "is_correct": true,
+     "note": "**本卡的主要保留意见**：天真启发式与正确答案一致。这一列的实测值随链长单调上升，没有反例，所以这道题可能只考\"选最长的\"。保留它是因为量化关系清楚（近 10⁴ 倍）且电荷被固定住，但是否值得计入须 L1 判定。"
+    },
+    "notes": [
+     "**保留意见见 naive_cue**：单调序列，天真启发式也能选对，区分力有限。",
+     "候选集里刻意不含戊磺酸盐（C5，5.88 × 10⁶ M⁻¹），以免四个候选里出现两组相邻碳数构成的\"二选一\"结构。",
+     "原文明确说明四个候选的磺酸头相同、只有链长不同，并把链段埋入疏水通道、磺酸头留在阳离子端口作为结合图像；这是把差别归于几何（链长）的依据。但摘要同时强调静电与疏水\"同时\"起作用，电荷虽相同，溶剂化与疏水效应的分解未逐项给出。",
+     "丙磺酸盐的实测条件与其余三者不同（受体浓度 0.25 mM 而非 0.04 mM，因其结合太弱），原文已说明；该差异写入候选描述，交 L1 判断是否影响可比性。",
+     "表 2 同时给出 ΔG°、ΔH°、TS° 三列（kcal/mol）；这些是能量量，按本族的裕度规则（倍数比较）不适用，本题只用 K 列。"
+    ],
+    "limits": "程序保证：四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干印出的阈值就是代码执行的阈值。程序不能保证：所给结构描述足以推出答案而非靠记忆，也不能保证描述忠于原文——须对照原文位置人工核对（L1），难度由 L4 判定。"
+   },
+   "scales": {
+    "input_nm": 1.3,
+    "reasoning_nm": 0.9,
+    "reasoning_definition": "可埋入柱芳烃疏水通道的烷基链长度（3–8 个碳，按 C–C 键长约 0.126 nm 的全反式链估算约 0.4–0.9 nm；本折算为估算，原文只给碳数）"
+   },
+   "source": "Gomez-Gonzalez, Garcia-Rio, Basilio, Mejuto, Simal-Gandara, Ostos & Lebron et al., \"Molecular Recognition by Pillar[5]arenes: Evidence for Simultaneous Electrostatic and Hydrophobic Interactions\", Pharmaceutics 14, 60 (2021), doi:10.3390/pharmaceutics14010060 (Europe PMC PMC8777861)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/gomez2021-pillararene-chain-ptr.json → 解析卡 docs/assets/families/design/resolved/gomez2021-pillararene-chain-ptr.json）",
+   "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/design/resolved/gomez2021-pillararene-chain-ptr.json": "d1ea90363c2156228ce5cf1bc3a67be1ee6517daee65bb6bf0939c8acd1ca490"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 4,
+   "option_order": "候选按 id 排序写入附件；正确项按批次目标位置插入选项，附件顺序与答案无关",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-DES-HEMICUC-SBF6",
+   "family": "design_choice",
+   "family_version": "0.1.0",
+   "ability": "design",
+   "correct_label": "A",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "SbF6-: hexafluoroantimonate, an octahedral anion",
+     "rule": "correct",
+     "reason": "实测值满足全部目标约束，且是原文选定的结构（Results and discussion：质谱给出的亲和力顺序为 \"SbF6 ^- ≈ PF6 ^- > ReO4 ^- > ClO4 ^- > SCN^- > BF4 ^- > HSO4 ^- > CF3SO3 ^-, ranked by decreasing affinity for cycHC[8]\"；\"The complex with SbF6 ^- showed the largest complexation-induced chemical shift changes\"；Table 1 给出四个候选的实测 Ka 与体积、堆积系数）。",
+     "is_correct": true,
+     "plausibility": 3
+    },
+    {
+     "label": "B",
+     "value": "IO4-: periodate, a tetrahedral anion",
+     "rule": "same_size_different_element",
+     "reason": "不满足约束 affinity：体积与高铼酸根几乎相同（64.3 对 64.8 Å³），实测 Ka 为 1.8 × 10³ M⁻¹，同样远未达标。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "C",
+     "value": "ReO4-: perrhenate, a tetrahedral anion",
+     "rule": "optimal_packing_coefficient",
+     "reason": "不满足约束 affinity：堆积系数 0.53 最接近 Rebek 规则的 0.55，看似最佳匹配，实测 Ka 只有 4.7 × 10³ M⁻¹，比目标低一个多数量级。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "D",
+     "value": "ClO4-: perchlorate, the smallest tetrahedral anion of the four",
+     "rule": "too_small",
+     "reason": "不满足约束 affinity：体积最小、堆积系数 0.45，可同时形成的接触最少，实测 Ka 为 4.7 × 10² M⁻¹，四者中最弱。",
+     "is_correct": false,
+     "plausibility": 3
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "kaabel2017-hemicucurbituril-volume-ptr",
+    "paper_choice": "SbF6-",
+    "failures": {
+     "SbF6-": [],
+     "ReO4-": [
+      "affinity"
+     ],
+     "IO4-": [
+      "affinity"
+     ],
+     "ClO4-": [
+      "affinity"
+     ]
+    },
+    "margin": 1.2,
+    "measured": {
+     "SbF6-": {
+      "Ka_MeOD": "(2.5 ± 0.7) × 10^5"
+     },
+     "ReO4-": {
+      "Ka_MeOD": "(4.7 ± 0.4) × 10^3"
+     },
+     "IO4-": {
+      "Ka_MeOD": "(1.8 ± 0.2) × 10^3"
+     },
+     "ClO4-": {
+      "Ka_MeOD": "(4.7 ± 0.2) × 10^2"
+     }
+    },
+    "locators": {
+     "SbF6-": {
+      "Ka_MeOD": "Table 1, row SbF6 ^-, column K a (M^-1)"
+     },
+     "ReO4-": {
+      "Ka_MeOD": "Table 1, row ReO4 ^-, column K a (M^-1)"
+     },
+     "IO4-": {
+      "Ka_MeOD": "Table 1, row IO4 ^-, column K a (M^-1)"
+     },
+     "ClO4-": {
+      "Ka_MeOD": "Table 1, row ClO4 ^-, column K a (M^-1)"
+     }
+    },
+    "naive_cue": {
+     "heuristic": "按 Rebek 规则，堆积系数最接近 0.55 的客体匹配最好",
+     "picks": "ReO4-",
+     "is_correct": false,
+     "note": "堆积系数 0.53 的高铼酸根并不是最强的：实测最强的 SbF6⁻ 堆积系数为 0.67，已超出 Rebek 的最优区间。原文把它的强结合归于八面体形状被锁定、四个赤道氟指向方形带的四角所形成的多点 C–H···F 接触。"
+    },
+    "notes": [
+     "**本卡最重要的保留意见**：原文明确指出亲和力同时受**溶剂化**影响（\"the affinity towards more heavily solvated anions was found to be lower than for weakly solvated ones\"）与**电荷分布**影响（三氟甲磺酸根体积与 SbF6⁻ 相近却弱得多，原文归因于电荷分布不对称，并用三氟乙酸根做了对照实验）。本卡只取四个电荷分布对称的候选以尽量固定这一变量，但溶剂化在四者之间仍有差别，**所以\"几何是唯一判据\"在本题并不严格成立**。是否接受须 L1 判定；若不接受，本卡应退役。",
+     "候选集里刻意不含 PF6⁻：它在表 1 中占三行（不同抗衡离子与条件），行标签不唯一，指针无法唯一定位。也不含体积相近但电荷分布不对称的 CF3SO3⁻ 与 CF3CO2⁻（它们正是原文的反例），以及卤离子（体积 13–35 Å³，原文称与空腔尺寸不匹配）。",
+     "表 1 的 K a 列中，CF3CO2⁻ 一行写作 \"<10\"（单侧上界）、BF4⁻ 与 CF3SO3⁻ 写作 \"(4.8 ± 0.4) × 10\" 形式——后者没有指数，会被数值解析读错（读成 4.8），已由两端的护栏拒绝，这也是本卡不使用这些行的原因之一。",
+     "原文给出的空腔体积 123 Å³ 与 Rebek 最优堆积系数 0.55 ± 0.09 都写进了题干，所以考生可以自行算出四个候选的堆积系数是否落在最优区间——这正是天真启发式失效之处。"
+    ],
+    "limits": "程序保证：四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干印出的阈值就是代码执行的阈值。程序不能保证：所给结构描述足以推出答案而非靠记忆，也不能保证描述忠于原文——须对照原文位置人工核对（L1），难度由 L4 判定。"
+   },
+   "scales": {
+    "input_nm": 0.9,
+    "reasoning_nm": 0.43,
+    "reasoning_definition": "客体阴离子的体积（原文表 1 给出 54.7–81.8 Å³，按立方根折算约 0.38–0.43 nm）与空腔体积 123 Å³ 之比（堆积系数）"
+   },
+   "source": "Kaabel, Adamson, Topic, Kiesila, Kalenius, Oeren, Reimund et al., \"Chiral hemicucurbit[8]uril as an anion receptor: selectivity to size, shape and charge distribution\", Chem. Sci. 8, 2184 (2017), doi:10.1039/c6sc05058a (Europe PMC PMC5477839)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/kaabel2017-hemicucurbituril-volume-ptr.json → 解析卡 docs/assets/families/design/resolved/kaabel2017-hemicucurbituril-volume-ptr.json）",
+   "license": "CC BY 3.0; facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/design/resolved/kaabel2017-hemicucurbituril-volume-ptr.json": "0ac21ad9a03d2dd1389bffaac6b746dbdeb3ef97e55c9c7f435a01669a2d127c"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 1,
+   "option_order": "候选按 id 排序写入附件；正确项按批次目标位置插入选项，附件顺序与答案无关",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-DES-CAPSULE-FF3ME",
+   "family": "design_choice",
+   "family_version": "0.1.0",
+   "ability": "design",
+   "correct_label": "B",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "FF: the unprotected phenylalanine dipeptide",
+     "rule": "smallest_guest",
+     "reason": "不满足约束 affinity：分子最小、端基未保护，实测 Ka 为 1.07 × 10⁵ M⁻¹，比目标低三倍多——客体小并不等于更容易被封闭空腔握紧。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "B",
+     "value": "FF-3Me: the phenylalanine dipeptide with methyl groups on both ends (C-terminal and N-terminal protection)",
+     "rule": "correct",
+     "reason": "实测值满足全部目标约束，且是原文选定的结构（Results：\"ITC studies revealed that C-terminal and C,N-terminal protections on FF with methyl groups enhance the host–guest interactions (2.5-fold for FF-Me and 4.4-fold for FF-3Me based on Ka) with 1 under the same conditions ... likely due to additional hydrophobic CH−π interactions\"；Table 1 给出四个候选的实测 Ka）。",
+     "is_correct": true,
+     "plausibility": 3
+    },
+    {
+     "label": "C",
+     "value": "FF-Me: the phenylalanine dipeptide with a methyl group on the C-terminus only",
+     "rule": "one_end_protected",
+     "reason": "不满足约束 affinity：只保护一端，实测 Ka 为 2.68 × 10⁵ M⁻¹，未达 3.5 × 10⁵。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "D",
+     "value": "WF: the tryptophan-phenylalanine dipeptide",
+     "rule": "bulkier_side_chain",
+     "reason": "不满足约束 affinity：把一个苯基换成更大的吲哚，实测 Ka 降到 2.59 × 10⁴ M⁻¹，四者中最弱。",
+     "is_correct": false,
+     "plausibility": 3
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "shuto2023-closed-cavity-ptr",
+    "paper_choice": "FF-3Me",
+    "failures": {
+     "FF-3Me": [],
+     "FF-Me": [
+      "affinity"
+     ],
+     "FF": [
+      "affinity"
+     ],
+     "WF": [
+      "affinity"
+     ]
+    },
+    "margin": 1.2,
+    "measured": {
+     "FF-3Me": {
+      "Ka_water": "(4.63 ± 0.61) × 10^5"
+     },
+     "FF-Me": {
+      "Ka_water": "(2.68 ± 0.84) × 10^5"
+     },
+     "FF": {
+      "Ka_water": "(1.07 ± 0.15) × 10^5"
+     },
+     "WF": {
+      "Ka_water": "(2.59 ± 0.41) × 10^4"
+     }
+    },
+    "locators": {
+     "FF-3Me": {
+      "Ka_water": "Table 1, row 1•FF-3Me, column Ka [M^-1]"
+     },
+     "FF-Me": {
+      "Ka_water": "Table 1, row 1•FF-Me, column Ka [M^-1]"
+     },
+     "FF": {
+      "Ka_water": "Table 1, row 1•FF, column Ka [M^-1]"
+     },
+     "WF": {
+      "Ka_water": "Table 1, row 1•WF, column Ka [M^-1]"
+     }
+    },
+    "naive_cue": {
+     "heuristic": "封闭空腔容积有限，所以最小的客体最容易被完整包住",
+     "picks": "FF",
+     "is_correct": false,
+     "note": "最小的未保护二肽实测最弱之一（1.07 × 10⁵）：两端加上甲基反而把 Ka 提到 4.4 倍，因为甲基与芳香面板之间多出疏水 CH–π 接触。"
+    },
+    "notes": [
+     "**保留意见**：原文对甲基化增强的解释是\"额外的疏水 CH–π 接触\"，这是接触数而非单一几何长度；WF 变弱的几何解释（吲哚比苯基大）是候选描述里的合理表述，但原文未逐项给出尺寸数值。是否算\"几何是判据\"须 L1 判定。",
+     "原文还测了游离苯丙氨酸 F（无可测结合）与三肽，并用竞争实验说明封闭空腔能从 FF/WF/WW 混合物中选出 FF；这些不作候选（F 与 WW 在表 1 中无数值）。",
+     "原文自己的目标客体是 FF（用于从混合物中选择性捕获），而本题按\"实测最强\"设定目标，答案是 FF-3Me（原文用作参照客体）。`paper_choice` 取的是原文报告的实测最强者，措辞已写入 paper_choice_locator；这与 zhai2025 卡的情形类似，须 L1 判断是否符合\"原文选定者\"的原意。",
+     "表 1 另有 ΔH、TΔS、ΔG 三列（kJ/mol），按本族裕度规则不适用，本题只用 Ka 列。"
+    ],
+    "limits": "程序保证：四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干印出的阈值就是代码执行的阈值。程序不能保证：所给结构描述足以推出答案而非靠记忆，也不能保证描述忠于原文——须对照原文位置人工核对（L1），难度由 L4 判定。"
+   },
+   "scales": {
+    "input_nm": 1.8,
+    "reasoning_nm": 0.6,
+    "reasoning_definition": "客体在封闭空腔内的整体尺寸与形状（二肽长约 0.6 nm；原文未给空腔直径数值，本项为估算）"
+   },
+   "source": "Shuto, Sumida, Yuasa, Sawada & Yoshizawa, \"A Closed Cavity Strategy for Selective Dipeptide Binding by a Polyaromatic Receptor in Water\", JACS Au 3, 2905 (2023), doi:10.1021/jacsau.3c00484 (Europe PMC PMC10598568)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/shuto2023-closed-cavity-ptr.json → 解析卡 docs/assets/families/design/resolved/shuto2023-closed-cavity-ptr.json）",
+   "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/design/resolved/shuto2023-closed-cavity-ptr.json": "f6026d5694b7e89d23a907f3c3a273531e2760c0b46ab448306f327b43b25dd7"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 2,
+   "option_order": "候选按 id 排序写入附件；正确项按批次目标位置插入选项，附件顺序与答案无关",
+   "human_review": "pending",
+   "catalog_admitted": false
+  },
+  {
+   "id": "FA-DES-ZEOLITE-FAU",
+   "family": "design_choice",
+   "family_version": "0.1.0",
+   "ability": "design",
+   "correct_label": "C",
+   "numeric_answer": null,
+   "option_audit": [
+    {
+     "label": "A",
+     "value": "CHA: the CHA-type membrane",
+     "rule": "aperture_matched_to_the_molecule",
+     "reason": "不满足约束 enrichment：孔径 0.38 nm 与甲醇分子（0.380 nm）几乎相等，看似最适合筛分，实测分离因子只有 1270，未达 2000；孔口恰好卡住要透过的分子，通量受限。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "B",
+     "value": "LTA: the LTA-type membrane",
+     "rule": "narrow_aperture",
+     "reason": "不满足约束 enrichment：孔径 0.42 nm，实测分离因子 225，远未达标。",
+     "is_correct": false,
+     "plausibility": 3
+    },
+    {
+     "label": "C",
+     "value": "FAU(10): the FAU-type membrane grown from a solution with a silica-to-alumina ratio of 10",
+     "rule": "correct",
+     "reason": "实测值满足全部目标约束，且是原文选定的结构（标题即 \"Development of Methanol Permselective FAU-Type Zeolite Membranes\"；Results 一节：\"The FAU(10) membrane with a large pore size showed an excellent methanol permeation flux of 86,600 µmol m^-2 s^-1 (=9.9 kg m^-2 h^-1) and a high separation factor of 6020. The reason was considered that FAU-type zeolite has the largest pore size (0.74 nm) among the tested zeolite mem[branes]\"；Table 3 给出四种膜的实测通量与分离因子）。",
+     "is_correct": true,
+     "plausibility": 3
+    },
+    {
+     "label": "D",
+     "value": "MFI: the MFI-type membrane",
+     "rule": "lowest_measured",
+     "reason": "不满足约束 enrichment：实测分离因子 168，四者中最低。",
+     "is_correct": false,
+     "plausibility": 3
+    }
+   ],
+   "excluded_candidates": [],
+   "rank": null,
+   "rank_shortcuts": null,
+   "checks": {
+    "card": "ikeda2021-zeolite-pore-ptr",
+    "paper_choice": "FAU(10)",
+    "failures": {
+     "FAU(10)": [],
+     "CHA": [
+      "enrichment"
+     ],
+     "LTA": [
+      "enrichment"
+     ],
+     "MFI": [
+      "enrichment"
+     ]
+    },
+    "margin": 1.2,
+    "measured": {
+     "FAU(10)": {
+      "separation_factor": "6020"
+     },
+     "CHA": {
+      "separation_factor": "1270"
+     },
+     "LTA": {
+      "separation_factor": "225"
+     },
+     "MFI": {
+      "separation_factor": "168"
+     }
+    },
+    "locators": {
+     "FAU(10)": {
+      "separation_factor": "Table 3, row FAU(10), column Separation Factor(-) / Separation Factor(-)"
+     },
+     "CHA": {
+      "separation_factor": "Table 3, row CHA, column Separation Factor(-) / Separation Factor(-)"
+     },
+     "LTA": {
+      "separation_factor": "Table 3, row LTA, column Separation Factor(-) / Separation Factor(-)"
+     },
+     "MFI": {
+      "separation_factor": "Table 3, row MFI, column Separation Factor(-) / Separation Factor(-)"
+     }
+    },
+    "naive_cue": {
+     "heuristic": "筛分靠孔口卡住大分子，所以选孔径最接近甲醇分子尺寸（0.38 nm）的 CHA",
+     "picks": "CHA",
+     "is_correct": false,
+     "note": "孔径与目标分子几乎相等时，目标分子自己也难通过：CHA 的分离因子只有 1270。孔径最大的 FAU（0.74 nm，约为甲醇的两倍）既让甲醇快速通过又挡住大得多的酯，分离因子反而最高。"
+    },
+    "notes": [
+     "表 3 的表头有两行（第一行把两个通量列并在一起），分离因子列在两行里是同一文本，本卡的列路径写成该文本重复两次。",
+     "**保留意见**：FAU(10) 除框架类型不同外，硅铝比也是 10（原文同时研究了框架结构与组成的影响），所以\"孔径决定\"不是唯一变量；原文对该膜性能的解释明确归于最大孔径。是否接受须 L1 判定。",
+     "原文正文未给 MFI 的孔径数值，候选描述照此说明，不补外部数值；答案由\"FAU 孔径最大\"这一原文给出的事实决定，不需要 MFI 的具体数值。",
+     "同表还有甲醇与己酸甲酯的实测通量两列；本题只用分离因子列。表 4、表 5 分别是硅铝比序列与不同溶剂的结果，属于条件序列，未用。",
+     "四个候选都是在相同支撑体、相同方法、相同条件下制备与测试的，这是把差别归于框架孔径的前提，已写入题干。"
+    ],
+    "limits": "程序保证：四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干印出的阈值就是代码执行的阈值。程序不能保证：所给结构描述足以推出答案而非靠记忆，也不能保证描述忠于原文——须对照原文位置人工核对（L1），难度由 L4 判定。"
+   },
+   "scales": {
+    "input_nm": 0.74,
+    "reasoning_nm": 0.74,
+    "reasoning_definition": "沸石骨架的孔口直径（原文给出 CHA 0.38 nm、LTA 0.42 nm、FAU 0.74 nm；甲醇分子尺寸 0.380 nm）"
+   },
+   "source": "Ikeda, Abe, Matsuura, Hasegawa & Yoshioka, \"Development of Methanol Permselective FAU-Type Zeolite Membranes and Their Permeation and Separation Performances\", Membranes 11, 627 (2021), doi:10.3390/membranes11080627 (Europe PMC PMC8399176)；实测值由 tools/resolve_design_cards.py 从论文 JATS XML 读出（指针卡 docs/assets/families/design/pointers/ikeda2021-zeolite-pore-ptr.json → 解析卡 docs/assets/families/design/resolved/ikeda2021-zeolite-pore-ptr.json）",
+   "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+   "legacy_qa": null,
+   "input_hashes": {
+    "assets/families/design/resolved/ikeda2021-zeolite-pore-ptr.json": "609ae6d964c941ba80697fff524f9eca84268bdad5a28dab6debd7c7721a4dc1"
+   },
+   "seed": "geobench-family-v1",
+   "target_position": 3,
+   "option_order": "候选按 id 排序写入附件；正确项按批次目标位置插入选项，附件顺序与答案无关",
+   "human_review": "pending",
+   "catalog_admitted": false
   }
  ],
  "stage_records": [
@@ -65026,6 +66413,330 @@
     "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
     "M6": "导出：学生包 / 审核包分离与运行快照"
    }
+  },
+  {
+   "id": "FA-DES-CEUE-LINKER",
+   "family": "design_choice",
+   "define": {
+    "family": "design_choice",
+    "version": "0.1.0",
+    "ability": "design",
+    "output": "choice",
+    "module": "task_families/paper_design.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "candidates.txt",
+      "format": "text",
+      "chars": 1467
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "C",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-DES-LECTIN-GLCA",
+   "family": "design_choice",
+   "define": {
+    "family": "design_choice",
+    "version": "0.1.0",
+    "ability": "design",
+    "output": "choice",
+    "module": "task_families/paper_design.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "candidates.txt",
+      "format": "text",
+      "chars": 1204
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "D",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-DES-PRISM-TMP",
+   "family": "design_choice",
+   "define": {
+    "family": "design_choice",
+    "version": "0.1.0",
+    "ability": "design",
+    "output": "choice",
+    "module": "task_families/paper_design.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "candidates.txt",
+      "format": "text",
+      "chars": 1326
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "A",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-DES-TWZ-DABCO",
+   "family": "design_choice",
+   "define": {
+    "family": "design_choice",
+    "version": "0.1.0",
+    "ability": "design",
+    "output": "choice",
+    "module": "task_families/paper_design.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "candidates.txt",
+      "format": "text",
+      "chars": 1619
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "B",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-DES-TWZ-DIAMINE",
+   "family": "design_choice",
+   "define": {
+    "family": "design_choice",
+    "version": "0.1.0",
+    "ability": "design",
+    "output": "choice",
+    "module": "task_families/paper_design.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "candidates.txt",
+      "format": "text",
+      "chars": 1268
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "C",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-DES-PILLAR-C8",
+   "family": "design_choice",
+   "define": {
+    "family": "design_choice",
+    "version": "0.1.0",
+    "ability": "design",
+    "output": "choice",
+    "module": "task_families/paper_design.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "candidates.txt",
+      "format": "text",
+      "chars": 1027
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "D",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-DES-HEMICUC-SBF6",
+   "family": "design_choice",
+   "define": {
+    "family": "design_choice",
+    "version": "0.1.0",
+    "ability": "design",
+    "output": "choice",
+    "module": "task_families/paper_design.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "candidates.txt",
+      "format": "text",
+      "chars": 1110
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "A",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-DES-CAPSULE-FF3ME",
+   "family": "design_choice",
+   "define": {
+    "family": "design_choice",
+    "version": "0.1.0",
+    "ability": "design",
+    "output": "choice",
+    "module": "task_families/paper_design.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "candidates.txt",
+      "format": "text",
+      "chars": 1261
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "B",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
+  },
+  {
+   "id": "FA-DES-ZEOLITE-FAU",
+   "family": "design_choice",
+   "define": {
+    "family": "design_choice",
+    "version": "0.1.0",
+    "ability": "design",
+    "output": "choice",
+    "module": "task_families/paper_design.py"
+   },
+   "construct": {
+    "inputs": [
+     {
+      "name": "candidates.txt",
+      "format": "text",
+      "chars": 864
+     }
+    ],
+    "candidates_considered": 4
+   },
+   "verify": {
+    "four_options_verified": true,
+    "unique_correct": true,
+    "correct_label": "C",
+    "checks": []
+   },
+   "modules": {
+    "M0": "范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）",
+    "M1": "材料：docs/assets 输入、来源、许可与 SHA-256",
+    "M2": "证据：计算器复核或数据集性质记录（审核侧）",
+    "M3": "题型契约：registry.json 中的族定义与适用条件",
+    "M4": "构造：族函数生成题干、正确值与候选错误机制",
+    "M5": "质量：四项逐一核验、唯一性、分隔、捷径诊断",
+    "M6": "导出：学生包 / 审核包分离与运行快照"
+   }
   }
  ],
  "code": {
@@ -65058,6 +66769,6 @@
   "task_families/vortex.py": "\"\"\"Abrikosov vortex lattices (quantum, 100-1000 nm): paper-parameter models.\n\nInputs are the vortex-centre maps built by tools/build_vortex_assets.py: MgB2 at the four applied fields of Cottet et al.\n(arXiv:1401.4062) and BSCCO at the measured lattice constant of Schaefermeier et al. (arXiv:2602.13060). Questions concern the\nlattice spacing (356-855 nm), the vortex density, flux quantisation (one h/2e per vortex), the first SANS Bragg peak, and the\nchoice of field for a target lattice (design).\n\"\"\"\nimport math\nfrom . import kit\n\nVERSION = '0.1.0'\nPHI0 = 2.067833848e-15\nTOL = 1e-5\nPAPERS = {'cottet': 'Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K)',\n          'schaefermeier': 'Schaefermeier et al. (arXiv:2602.13060; BSCCO-2212, scanning NV magnetometry at 71 K)'}\n\n\ndef conditions(paper, field_text):\n    return ('Model conditions: the only measured input is %s reported by %s; the vortices form an ideal triangular lattice with '\n            'exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform '\n            'field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an '\n            'arbitrary orientation.' % (field_text, PAPERS[paper]))\n\n\ndef load(root, asset):\n    raw = (root / 'docs' / asset).read_bytes()\n    text = raw.decode('utf-8')\n    lines = text.splitlines()\n    rows = [l.split() for l in lines[2:] if l.strip()]\n    if int(lines[0]) != len(rows) or any(len(r) != 3 or r[0] != 'V' for r in rows):\n        raise ValueError('Expected count, comment and \"V x y\" rows')\n    return text, [(float(r[1]), float(r[2])) for r in rows], kit.sha256(raw)\n\n\ndef lattice_spacing(pts, expected):\n    c = (math.fsum(p[0] for p in pts) / len(pts), math.fsum(p[1] for p in pts) / len(pts))\n    i = min(range(len(pts)), key=lambda k: math.dist(pts[k], c))\n    d = sorted(math.dist(pts[i], p) for j, p in enumerate(pts) if j != i)\n    first = [x for x in d if x - d[0] <= TOL]\n    if len(first) != 6:\n        raise ValueError('Vortices do not form a triangular lattice around the centre')\n    a = math.fsum(first) / 6\n    if abs(a - expected) > 1e-3:\n        raise ValueError('Lattice spacing does not match the published value')\n    return a\n\n\ndef field_from(a):                    # tesla, a in nm\n    return 2 * PHI0 / (math.sqrt(3) * (a * 1e-9) ** 2)\n\n\ndef spacing_from(b):                  # nm\n    return math.sqrt(2 * PHI0 / (math.sqrt(3) * b)) * 1e9\n\n\ndef density(a):                       # vortices per um^2\n    return 2 / (math.sqrt(3) * (a / 1000) ** 2)\n\n\ndef q10(a):                           # um^-1, first Bragg peak of the triangular lattice\n    return 4 * math.pi / (math.sqrt(3) * a / 1000)\n\n\nSUBJECT = ('The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor '\n           'in a perpendicular magnetic field.')\nASK = {\n    'spacing': ('What is the vortex lattice spacing (centre-to-centre distance between neighbouring vortices), in nm?',\n                1, '0.05', '10.0', 'nm', 'perception'),\n    'density': ('How many vortices are there per square micrometre (areal vortex density)?', 3, '0.0005', '0.150', 'um^-2', 'perception'),\n    'field': ('Each vortex carries one superconducting flux quantum Φ0 = h/(2e) = 2.0678 × 10⁻¹⁵ Wb. What is the magnetic induction B '\n              'inside the superconductor that produces this lattice, in mT?', 3, '0.0005', '0.150', 'mT', 'inference'),\n    'flux': ('The magnetic induction inside the superconductor is B = %s mT. How much magnetic flux does each vortex carry, in units of '\n             '10⁻¹⁵ Wb?', 3, '0.0005', '0.150', '1e-15 Wb', 'inference'),\n    'sans_q': ('In a small-angle neutron scattering experiment on this lattice, at what scattering vector q (q = 4π sinθ/λ) does the '\n               'first-order Bragg peak of the vortex lattice appear, in μm⁻¹?', 2, '0.005', '0.50', 'um^-1', 'inference'),\n}\n\n\ndef candidates(ask, a, b_mT):\n    s3 = math.sqrt(3)\n    if ask == 'spacing':\n        return a, [dict(rule='row_spacing', value=a * s3 / 2, plausibility=3, reason='报告了相邻涡旋行的间距（√3/2）a。'),\n                   dict(rule='second_neighbour', value=a * s3, plausibility=2, reason='报告了次近邻距离 √3 a。'),\n                   dict(rule='square_lattice_guess', value=a * (s3 / 2) ** 0.5, plausibility=2, reason='按正方格子由密度反推间距。'),\n                   dict(rule='half_spacing', value=a / 2, plausibility=1, reason='报告了半个间距。'),\n                   dict(rule='double_spacing', value=2 * a, plausibility=2, reason='报告了隔一个涡旋的距离 2a。')]\n    if ask == 'density':\n        n = density(a)\n        return n, [dict(rule='square_cell', value=1 / (a / 1000) ** 2, plausibility=3, reason='每个涡旋按 a² 的正方形面积计。'),\n                   dict(rule='triangle_cell', value=2 * n, plausibility=2, reason='用三角形面积（半个晶胞）当作每个涡旋的面积。'),\n                   dict(rule='half_density', value=n / 2, plausibility=2, reason='晶胞面积多乘了 2。'),\n                   dict(rule='circle_cell', value=1 / (math.pi * (a / 2000) ** 2), plausibility=2, reason='每个涡旋按直径为 a 的圆面积计。')]\n    if ask == 'field':\n        b = field_from(a) * 1e3\n        return b, [dict(rule='square_lattice', value=PHI0 / (a * 1e-9) ** 2 * 1e3, plausibility=3, reason='按正方格子 B = Φ0/a²。'),\n                   dict(rule='flux_h_over_e', value=2 * b, plausibility=3, reason='用 h/e（单电子磁通量子）代替 h/2e。'),\n                   dict(rule='flux_h_over_4e', value=b / 2, plausibility=2, reason='磁通量子多除了 2。'),\n                   dict(rule='gauss_mT_slip', value=b * 10, plausibility=2, reason='高斯与毫特斯拉换算错（1 mT = 10 G）。'),\n                   dict(rule='second_neighbour_as_spacing', value=b / 3, plausibility=2, reason='把次近邻距离 √3a 当作晶格间距。')]\n    if ask == 'flux':\n        cell = math.sqrt(3) / 2 * (a * 1e-9) ** 2\n        phi = b_mT * 1e-3 * cell * 1e15\n        return phi, [dict(rule='h_over_e', value=phi * 2, plausibility=3, reason='报告了 h/e（把超导电子对的电荷当作 e）。'),\n                     dict(rule='square_cell', value=b_mT * 1e-3 * (a * 1e-9) ** 2 * 1e15, plausibility=3, reason='每个涡旋按 a² 面积计。'),\n                     dict(rule='triangle_cell', value=phi / 2, plausibility=2, reason='每个涡旋按三角形面积计。'),\n                     dict(rule='hbar_over_2e', value=phi / (2 * math.pi), plausibility=1, reason='报告了 ħ/(2e)，即 Φ0/2π。')]\n    q = q10(a)\n    return q, [dict(rule='two_pi_over_a', value=2 * math.pi / (a / 1000), plausibility=3, reason='用 2π/a，而三角格子首峰为 4π/(√3 a)。'),\n               dict(rule='missing_two_pi', value=q / (2 * math.pi), plausibility=2, reason='漏掉 2π。'),\n               dict(rule='second_order_peak', value=q * math.sqrt(3), plausibility=2, reason='报告了第二个峰（√3 倍）。'),\n               dict(rule='square_lattice_q', value=2 * math.pi / (a * (math.sqrt(3) / 2) ** 0.5 / 1000), plausibility=2,\n                    reason='按等密度正方格子计算首峰。')]\n\n\ndef build(spec, root, seed, ability):\n    ask = spec['ask']\n    text_q, decimals, tol, sep, unit, want = ASK[ask]\n    if want != ability:\n        raise ValueError('Quantity %s is not %s' % (ask, ability))\n    text, pts, digest = load(root, spec['asset'])\n    a = lattice_spacing(pts, spec['spacing_nm'])\n    b_mT = spec.get('field_mT')\n    if ask == 'flux':\n        text_q = text_q % kit.display(b_mT, 2)\n    value, cands = candidates(ask, a, b_mT)\n    picked, rejected, goal, rank = kit.choose_numeric(value, cands, decimals=decimals, tolerance=tol, min_separation=sep, seed=seed,\n                                                      context=spec['id'], lower=0, target=spec.get('target_position'),\n                                                      distractor_separation=str(float(sep) / 2))\n    options, audit = kit.label_numeric(value, picked, decimals=decimals, unit=unit, seed=seed, context=spec['id'],\n                                       correct_reason='三角涡旋晶格：a = %.3f nm，B = 2Φ0/(√3 a²) = %.4f mT，n = B/Φ0。' % (a, field_from(a) * 1e3))\n    key = kit.validate_numeric(options, value, decimals=decimals, tolerance=tol, min_separation=sep, unit=unit,\n                               distractor_separation=str(float(sep) / 2))\n    question = '%s %s %s' % (SUBJECT, conditions(spec['paper'], spec['measured_text']), text_q)\n    return dict(question=question, scope=spec['scope'],\n                inputs=[dict(name=spec['asset'].rsplit('/', 1)[1], format='vortex-map', unit='nm', text=text)],\n                numeric=dict(value=kit.display(value, decimals), unit=unit, decimals=decimals, tolerance=tol),\n                options=options, correct_label=key, option_audit=audit, excluded_candidates=rejected, rank=dict(target=goal, achieved=rank),\n                checks=dict(vortices=len(pts), spacing_nm=a, field_mT=field_from(a) * 1e3, density_per_um2=density(a), q10_per_um=q10(a),\n                            limits='理想三角涡旋晶格（论文用作对比的同一理想化）；不含钉扎无序与热涨落。'),\n                scales=dict(input_nm=max(math.dist(p, q) for p in pts for q in pts), reasoning_nm=a, reasoning_definition='涡旋晶格间距 a'),\n                input_hashes={spec['asset']: digest})\n\n\ndef build_geometry(spec, root, seed):\n    return build(spec, root, seed, 'perception')\n\n\ndef build_inference(spec, root, seed):\n    return build(spec, root, seed, 'inference')\n\n\nGOALS = {'spacing': ('the vortex lattice spacing is closest to %g nm', lambda a: a),\n         'sans_q': ('the first-order small-angle-neutron-scattering Bragg peak of the vortex lattice (q = 4π sinθ/λ) is closest to %g μm⁻¹',\n                    q10),\n         'min_density': ('the field is as low as possible while the areal vortex density is at least %g vortices per square micrometre',\n                         density)}\nWRONG = {'spacing': [('row_spacing', lambda a: a * math.sqrt(3) / 2, '把行间距当作晶格间距'),\n                     ('second_neighbour', lambda a: a * math.sqrt(3), '把次近邻距离当作晶格间距')],\n         'sans_q': [('two_pi_over_a', lambda a: 2 * math.pi / (a / 1000), '用 2π/a 计算首峰'),\n                    ('second_order_peak', lambda a: q10(a) * math.sqrt(3), '用第二个峰')],\n         'min_density': [('square_cell', lambda a: 1 / (a / 1000) ** 2, '每个涡旋按 a² 面积计'),\n                         ('half_density', lambda a: density(a) / 2, '晶胞面积多乘 2')]}\n\n\ndef build_design(spec, root, seed):\n    rows, inputs, hashes = [], [], {}\n    for asset, (label, b_mT, a_exp) in zip(spec['candidates'], spec['fields']):\n        text, pts, digest = load(root, asset)\n        a = lattice_spacing(pts, a_exp)\n        rows.append(dict(label=label, name=asset.rsplit('/', 1)[1], a=a, b=b_mT))\n        inputs.append(dict(name=asset.rsplit('/', 1)[1], format='vortex-map', unit='nm', text=text))\n        hashes[asset] = digest\n    goal, t = spec['goal'], spec['target']\n    text_goal, prop = GOALS[goal]\n    why = {}\n    if goal == 'min_density':\n        ok = [r for r in rows if prop(r['a']) >= t]\n        if not ok or min(abs(prop(r['a']) - t) for r in rows) < 0.2:\n            raise ValueError('No candidate meets the target, or one sits too close to it')\n        best = min(ok, key=lambda r: r['b'])\n        for r in rows:\n            if r is best:\n                continue\n            fooled = [rule for rule, f, _ in WRONG[goal] if (f(r['a']) >= t) != (prop(r['a']) >= t)]\n            if prop(r['a']) < t:\n                why[r['label']] = (('passes_if_' + fooled[0]) if fooled else 'too_sparse',\n                                   '密度 %.2f /μm²，未达到 %g%s。' % (prop(r['a']), t, '；若%s会误判为满足' % dict((x, z) for x, _, z in WRONG[goal])[fooled[0]] if fooled else ''),\n                                   3 if fooled else 2)\n            else:\n                why[r['label']] = ('meets_but_higher_field', '密度 %.2f /μm² 满足，但磁场更高。' % prop(r['a']), 2)\n        reason_ok = '满足密度要求的候选中磁场最低（密度 %.2f /μm²）。' % prop(best['a'])\n    else:\n        ranked = sorted(rows, key=lambda r: abs(prop(r['a']) - t))\n        best, runner = ranked[0], ranked[1]\n        if abs(prop(runner['a']) - t) < 1.5 * abs(prop(best['a']) - t) or abs(prop(runner['a']) - t) - abs(prop(best['a']) - t) < 0.03 * t:\n            raise ValueError('Winning margin too small')\n        for rule, f, note in WRONG[goal]:\n            pick = min(rows, key=lambda r: abs(f(r['a']) - t))\n            if pick is not best and pick['label'] not in why:\n                why[pick['label']] = (rule, '%s时它最接近目标（%.2f）。' % (note, f(pick['a'])), 3)\n        for r in rows:\n            if r is not best and r['label'] not in why:\n                why[r['label']] = ('farther_from_target', '正确计算为 %.2f，离目标更远。' % prop(r['a']), 2)\n        reason_ok = '正确计算为 %.2f，最接近目标。' % prop(best['a'])\n    label = lambda r: '%s (%s)' % (r['label'], r['name'])\n    others = [(why[r['label']][0], label(r), why[r['label']][1], why[r['label']][2]) for r in rows if r is not best]\n    order = kit.place(('correct', label(best), reason_ok, 3), others, spec.get('target_position'), seed, spec['id'], key=lambda p: p[0])\n    options = [dict(label=l, value=p[1]) for l, p in zip(kit.LABELS, order)]\n    key = kit.validate_verdicts(options, [p[0] == 'correct' for p in order])\n    audit = [dict(label=l, value=p[1], rule=p[0], reason=p[2], is_correct=p[0] == 'correct') for l, p in zip(kit.LABELS, order)]\n    question = ('The four files list the vortex centres (nm) in model images of the Abrikosov vortex lattice of an MgB2 crystal at four '\n                'applied fields (files named by field). %s You must choose one applied field such that %s. Which field should you choose?'\n                % (conditions('cottet', 'the applied magnetic field of each image'), text_goal % t))\n    return dict(question=question, scope=spec['scope'], inputs=inputs, numeric=None, options=options, correct_label=key,\n                option_audit=audit, excluded_candidates=[], rank=None,\n                checks=dict(candidates=[dict(field=r['label'], spacing_nm=r['a'], value=prop(r['a'])) for r in rows], goal=goal, target=t,\n                            design_note='设计选择：候选为论文中实际施加的磁场，性质由模型涡旋图计算（推断的逆问题）。',\n                            limits='理想三角涡旋晶格；论文指出 188.7 G 时单个涡旋已难以分辨。'),\n                scales=dict(input_nm=12 * max(r['a'] for r in rows), reasoning_nm=max(r['a'] for r in rows),\n                            reasoning_definition='候选中最大的涡旋晶格间距'),\n                input_hashes=hashes)\n",
   "family_engine.py": "\"\"\"Run reusable task families over a manifest of real inputs: define -> construct -> verify.\n\nNo model/API calls. Every instance is built by its family function, all four options\nare verified, and student packets (no answers, evidence or mechanisms) are written\nseparately from reviewer packets. Output directories are never overwritten.\nDevelopment pilots only: nothing here admits questions to the catalog.\n\npython family_engine.py --manifest templates/family-manifest.json --out runs/family-new --seed geobench-family-v1\n\"\"\"\nimport argparse\nimport hashlib\nimport json\nfrom collections import Counter\nfrom pathlib import Path\nfrom task_families import FAMILIES, kit\n\nROOT = Path(__file__).resolve().parent\nVERSION = '0.1.0'\nMODULES = {\n    'M0': '范围与尺度：spec.scope + scales（输入尺度、推理尺度定义）',\n    'M1': '材料：docs/assets 输入、来源、许可与 SHA-256',\n    'M2': '证据：计算器复核或数据集性质记录（审核侧）',\n    'M3': '题型契约：registry.json 中的族定义与适用条件',\n    'M4': '构造：族函数生成题干、正确值与候选错误机制',\n    'M5': '质量：四项逐一核验、唯一性、分隔、捷径诊断',\n    'M6': '导出：学生包 / 审核包分离与运行快照',\n}\n\n\ndef code_files():\n    files = sorted((ROOT / 'task_families').glob('*.py')) + [ROOT / 'family_engine.py', ROOT / 'template_engine.py',\n                                                              ROOT / 'tools/recompute_materials_batch.py',\n                                                              ROOT / 'tools/recompute_materials_batch2.py']\n    return {str(p.relative_to(ROOT)).replace('\\\\', '/'): p for p in files}\n\n\ndef build_instance(spec, seed):\n    family = FAMILIES[spec['family']]\n    if not spec.get('scope', '').strip() or not spec.get('source', '').strip():\n        raise ValueError('Missing scope or source')\n    asset = (ROOT / 'docs' / spec['asset']).resolve()\n    if not asset.is_relative_to((ROOT / 'docs/assets').resolve()):\n        raise ValueError('Asset must stay inside docs/assets')\n    return family, family['build'](spec, ROOT, seed)\n\n\ndef run(manifest_path, out, seed='geobench-family-v1'):\n    manifest_path, out = Path(manifest_path), Path(out)\n    if out.exists():\n        raise ValueError('Output exists; use a new directory to preserve history')\n    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))\n    ids = [x['id'] for x in manifest['items']]\n    if not ids or len(set(ids)) != len(ids):\n        raise ValueError('Empty batch or duplicate ID')\n    students, numeric_students, teachers, stages, failures = [], [], [], [], []\n    counters = Counter()\n    for spec in manifest['items']:\n        # Batch-level balance: within each family, correct positions cycle A..D from a seeded offset.\n        offset = kit.digest(seed, spec['family'], 'offset')[0] % 4\n        spec = dict(spec, target_position=1 + (offset + counters[spec['family']]) % 4)\n        counters[spec['family']] += 1\n        try:\n            family, built = build_instance(spec, seed)\n        except (ValueError, KeyError) as error:\n            failures.append(dict(id=spec['id'], family=spec['family'], stage='construct/verify', reason=str(error)))\n            continue\n        students.append(dict(id=spec['id'], family=spec['family'], ability=family['ability'],\n                             question=built['question'], scope=built['scope'], inputs=built['inputs'],\n                             options=built['options'], response_format='one label: A/B/C/D'))\n        if built['numeric']:\n            n = built['numeric']\n            numeric_students.append(dict(id='N-' + spec['id'], family=spec['family'], ability=family['ability'],\n                                         question=built['question'], scope=built['scope'], inputs=built['inputs'],\n                                         response_format=dict(value='one number rounded to %d decimals' % n['decimals'],\n                                                              unit=n['unit'])))\n        shortcuts = None\n        if built['rank']:\n            pairs = [(o['label'], o['value']) for o in built['options']]\n            shortcuts = dict(kit.rank_shortcuts(pairs, built['correct_label']),\n                             mirror_pair_cue=kit.mirror_pair_cue(pairs, built['correct_label']))\n        teachers.append(dict(id=spec['id'], family=spec['family'], family_version=family['version'],\n                             ability=family['ability'], correct_label=built['correct_label'],\n                             numeric_answer=built['numeric'], option_audit=built['option_audit'],\n                             excluded_candidates=built['excluded_candidates'], rank=built['rank'],\n                             rank_shortcuts=shortcuts, checks=built['checks'], scales=built['scales'],\n                             source=spec['source'], license=spec.get('license', ''), legacy_qa=spec.get('legacy_qa'),\n                             input_hashes=built['input_hashes'], seed=seed, target_position=spec['target_position'],\n                             option_order=built.get('option_order') or ('numeric ascending (label = rank)' if built['rank'] else 'correct at batch-balanced target; others sha256-sorted'),\n                             human_review='pending', catalog_admitted=False))\n        stages.append(dict(id=spec['id'], family=spec['family'],\n                           define=dict(family=spec['family'], version=family['version'], ability=family['ability'],\n                                       output=family['output'], module=family['module']),\n                           construct=dict(inputs=[dict(name=i['name'], format=i['format'], chars=len(i['text']))\n                                                  for i in built['inputs']],\n                                          candidates_considered=len(built['option_audit']) + len(built['excluded_candidates'])),\n                           verify=dict(four_options_verified=True, unique_correct=True, correct_label=built['correct_label'],\n                                       checks=sorted(k for k, v in built['checks'].items() if v is True)),\n                           modules=MODULES))\n    positions = Counter(t['correct_label'] for t in teachers)\n    by_family = {}\n    for t in teachers:\n        f = by_family.setdefault(t['family'], dict(passed=0, shortcut_hits=Counter()))\n        f['passed'] += 1\n        for k, v in (t['rank_shortcuts'] or {}).items():\n            f['shortcut_hits'][k] += int(v)\n    for f in failures:\n        by_family.setdefault(f['family'], dict(passed=0, shortcut_hits=Counter()))\n    for name, f in by_family.items():\n        f['attempted'] = sum(1 for s in manifest['items'] if s['family'] == name)\n        f['shortcut_hits'] = dict(f['shortcut_hits'])\n    code = code_files()\n    report = dict(version=VERSION, kind='reusable_family_development_pilot', seed=seed,\n                  attempted=len(ids), passed=len(teachers), failures=failures, model_calls=0,\n                  catalog_admitted=0, human_review='pending', by_family=by_family,\n                  correct_position_counts={l: positions.get(l, 0) for l in kit.LABELS},\n                  manifest_sha256=kit.sha256(manifest_path.read_bytes()),\n                  registry_sha256=kit.sha256((ROOT / 'templates/registry.json').read_bytes()),\n                  code_sha256={k: kit.sha256(p.read_bytes()) for k, p in code.items()},\n                  difficulty_note='程序通过只说明四项已核验且唯一正确；难度、迷惑性与科学意义仍需人工审核与模型实验。',\n                  limits='开发试跑，不计入题库；模板与来源选择待人工审核。')\n    out.mkdir(parents=True)\n    for name, data in [('student-packets.json', students), ('numeric-student-packets.json', numeric_students),\n                       ('private-answers.json', teachers), ('stage-records.json', stages), ('verification.json', report)]:\n        (out / name).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\\n', encoding='utf-8', newline='\\n')\n    snap = out / 'snapshot'\n    for rel, p in code.items():\n        (snap / rel).parent.mkdir(parents=True, exist_ok=True)\n        (snap / rel).write_bytes(p.read_bytes())\n    (snap / 'manifest.json').write_bytes(manifest_path.read_bytes())\n    (snap / 'registry.json').write_bytes((ROOT / 'templates/registry.json').read_bytes())\n    return report\n\n\nif __name__ == '__main__':\n    p = argparse.ArgumentParser(description=__doc__)\n    p.add_argument('--manifest', type=Path, required=True)\n    p.add_argument('--out', type=Path, required=True)\n    p.add_argument('--seed', default='geobench-family-v1')\n    a = p.parse_args()\n    r = run(a.manifest, a.out, a.seed)\n    print(json.dumps(dict(attempted=r['attempted'], passed=r['passed'], failures=r['failures'],\n                          positions=r['correct_position_counts'], model_calls=0), ensure_ascii=False))\n"
  },
- "run": "family-pilot-v40",
+ "run": "family-pilot-v42",
  "note": "Public development examples; student packets and reviewer packets are separate. All pending human audit; no catalog admissions; not a hidden test set."
 }

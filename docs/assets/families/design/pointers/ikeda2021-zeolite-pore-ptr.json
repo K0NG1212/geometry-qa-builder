@@ -1,0 +1,131 @@
+{
+ "kind": "design_pointer_card",
+ "family": "design_choice",
+ "id": "ikeda2021-zeolite-pore-ptr",
+ "paper": "paper-ikeda-fau-methanol",
+ "citation": "Ikeda, Abe, Matsuura, Hasegawa & Yoshioka, \"Development of Methanol Permselective FAU-Type Zeolite Membranes and Their Permeation and Separation Performances\", Membranes 11, 627 (2021), doi:10.3390/membranes11080627 (Europe PMC PMC8399176)",
+ "short_citation": "Ikeda et al., Membranes (2021)",
+ "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+ "setting": "A zeolite membrane separates a liquid mixture by pervaporation: the feed contacts one side, the permeate is drawn off as vapour, and the zeolite framework's pore openings decide which molecule gets through. The task here is to pull methanol out of a 10 wt% methanol / methyl hexanoate mixture at 353 K; methanol is the small component, with a molecular size of 0.380 nm, while methyl hexanoate is a much larger ester. Four framework types were grown on the same porous alumina support tubes by the same secondary-growth method and tested under the same conditions. The paper gives pore diameters for three of them: CHA 0.38 nm and LTA 0.42 nm, both close to the size of methanol itself, and FAU 0.74 nm, which it calls the largest pore size among the membranes tested; it gives no pore diameter for the MFI framework. The separation factor below is the ratio that describes how much the permeate is enriched in methanol relative to the feed.",
+ "goal": "You need a membrane that enriches methanol strongly in one pass, with a separation factor of at least two thousand.",
+ "ask": "Which candidate zeolite membrane should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "separation_factor": {
+   "label": "methanol / methyl hexanoate separation factor at 353 K (pervaporation, 10 wt% methanol feed)",
+   "locator": "Table 3, column Separation Factor"
+  }
+ },
+ "constraints": [
+  {
+   "key": "enrichment",
+   "property": "separation_factor",
+   "op": ">=",
+   "value": 2000,
+   "display": "2000",
+   "text": "the measured methanol / methyl hexanoate separation factor at 353 K is at least 2000"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "FAU(10)",
+   "paper_name": "FAU(10)",
+   "name": "the FAU-type membrane grown from a solution with a silica-to-alumina ratio of 10",
+   "geometry": "The FAU framework has a pore diameter of 0.74 nm, which the paper calls the largest among the membranes tested: roughly twice the 0.380 nm size of methanol, so methanol passes with little hindrance while the much larger ester does not.",
+   "measured": {
+    "separation_factor": {
+     "table": "Table 3",
+     "row": "FAU(10)",
+     "column": [
+      "Separation Factor(-)",
+      "Separation Factor(-)"
+     ]
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "CHA",
+   "paper_name": "CHA",
+   "name": "the CHA-type membrane",
+   "geometry": "A pore diameter of 0.38 nm, essentially equal to the 0.380 nm size of methanol, so the aperture matches the molecule it is meant to pass as closely as any of the four.",
+   "measured": {
+    "separation_factor": {
+     "table": "Table 3",
+     "row": "CHA",
+     "column": [
+      "Separation Factor(-)",
+      "Separation Factor(-)"
+     ]
+    }
+   },
+   "rule": "aperture_matched_to_the_molecule",
+   "reason": "孔径 0.38 nm 与甲醇分子（0.380 nm）几乎相等，看似最适合筛分，实测分离因子只有 1270，未达 2000；孔口恰好卡住要透过的分子，通量受限。",
+   "plausibility": 3
+  },
+  {
+   "id": "LTA",
+   "paper_name": "LTA",
+   "name": "the LTA-type membrane",
+   "geometry": "A pore diameter of 0.42 nm, one step wider than the size of methanol and the second narrowest of the four.",
+   "measured": {
+    "separation_factor": {
+     "table": "Table 3",
+     "row": "LTA",
+     "column": [
+      "Separation Factor(-)",
+      "Separation Factor(-)"
+     ]
+    }
+   },
+   "rule": "narrow_aperture",
+   "reason": "孔径 0.42 nm，实测分离因子 225，远未达标。",
+   "plausibility": 3
+  },
+  {
+   "id": "MFI",
+   "paper_name": "MFI",
+   "name": "the MFI-type membrane",
+   "geometry": "The one framework for which the paper gives no pore diameter in the text; it was included because MFI membranes are known to separate alcohols from alcohol / ester mixtures.",
+   "measured": {
+    "separation_factor": {
+     "table": "Table 3",
+     "row": "MFI",
+     "column": [
+      "Separation Factor(-)",
+      "Separation Factor(-)"
+     ]
+    }
+   },
+   "rule": "lowest_measured",
+   "reason": "实测分离因子 168，四者中最低。",
+   "plausibility": 3
+  }
+ ],
+ "paper_choice": "FAU(10)",
+ "paper_choice_locator": "标题即 \"Development of Methanol Permselective FAU-Type Zeolite Membranes\"；Results 一节：\"The FAU(10) membrane with a large pore size showed an excellent methanol permeation flux of 86,600 µmol m^-2 s^-1 (=9.9 kg m^-2 h^-1) and a high separation factor of 6020. The reason was considered that FAU-type zeolite has the largest pore size (0.74 nm) among the tested zeolite mem[branes]\"；Table 3 给出四种膜的实测通量与分离因子",
+ "naive_cue": {
+  "heuristic": "筛分靠孔口卡住大分子，所以选孔径最接近甲醇分子尺寸（0.38 nm）的 CHA",
+  "picks": "CHA",
+  "is_correct": false,
+  "note": "孔径与目标分子几乎相等时，目标分子自己也难通过：CHA 的分离因子只有 1270。孔径最大的 FAU（0.74 nm，约为甲醇的两倍）既让甲醇快速通过又挡住大得多的酯，分离因子反而最高。"
+ },
+ "scale": {
+  "input_nm": 0.74,
+  "reasoning_nm": 0.74,
+  "definition": "沸石骨架的孔口直径（原文给出 CHA 0.38 nm、LTA 0.42 nm、FAU 0.74 nm；甲醇分子尺寸 0.380 nm）"
+ },
+ "notes": [
+  "表 3 的表头有两行（第一行把两个通量列并在一起），分离因子列在两行里是同一文本，本卡的列路径写成该文本重复两次。",
+  "**保留意见**：FAU(10) 除框架类型不同外，硅铝比也是 10（原文同时研究了框架结构与组成的影响），所以\"孔径决定\"不是唯一变量；原文对该膜性能的解释明确归于最大孔径。是否接受须 L1 判定。",
+  "原文正文未给 MFI 的孔径数值，候选描述照此说明，不补外部数值；答案由\"FAU 孔径最大\"这一原文给出的事实决定，不需要 MFI 的具体数值。",
+  "同表还有甲醇与己酸甲酯的实测通量两列；本题只用分离因子列。表 4、表 5 分别是硅铝比序列与不同溶剂的结果，属于条件序列，未用。",
+  "四个候选都是在相同支撑体、相同方法、相同条件下制备与测试的，这是把差别归于框架孔径的前提，已写入题干。"
+ ],
+ "paper_xml": {
+  "path": "inputs/paper-candidates/PMC8399176.xml",
+  "sha256": "edb13e1f973c44a0eb724c3b8ae8f655b1754936325e765acaf9bac9e098abf3"
+ },
+ "derived_from_card": null
+}

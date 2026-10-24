@@ -78,7 +78,7 @@ class RenderingTests(unittest.TestCase):
 @NEEDS_XML
 class ResolvedCardTests(unittest.TestCase):
     def test_every_pointer_card_resolves_to_the_stored_card_and_passes(self):
-        self.assertEqual(len(POINTERS), 9)               # 6 from v39 + 3 written in the B3 pilot
+        self.assertEqual(len(POINTERS), 15)              # 6 from v39 + 9 written in the B3 pilot
         for p in POINTERS:
             rel = 'assets/families/design/pointers/' + p.name
             self.assertEqual(resolve_design_cards.dump(resolve_design_cards.resolve(rel)),
@@ -103,11 +103,17 @@ class ResolvedCardTests(unittest.TestCase):
         self.assertEqual(checked, 6)                     # the six design_choice cards of v39
 
     def test_questions_from_resolved_cards_equal_the_v39_questions(self):
-        self.assertEqual(len(SPECS), 6)
+        """The six v39 questions must still come out of the pointer cards unchanged; the B3 cards have no
+        hand-transcribed predecessor to compare against, so they are checked in B3PilotCardTests instead."""
+        self.assertEqual(len(SPECS), 15)                 # 6 from v39 + 9 admitted in the B3 pilot
+        compared = 0
         for spec in SPECS:
             new_asset = spec['asset']                    # the manifest builds from the resolved card since v40
             self.assertTrue(new_asset.startswith('assets/families/design/resolved/'), spec['id'])
             old_asset = json.loads((ROOT / 'docs' / new_asset).read_text(encoding='utf-8'))['derived_from_card']
+            if not old_asset:
+                continue
+            compared += 1
             for target in (1, 2, 3, 4):
                 old, new = build(spec, old_asset, target), build(spec, new_asset, target)
                 for field in ('question', 'options', 'correct_label', 'inputs', 'numeric'):
@@ -117,6 +123,7 @@ class ResolvedCardTests(unittest.TestCase):
                 key = dict(id=spec['id'], family=spec['family'], correct_label=new['correct_label'],
                            numeric_answer=None, input_hashes=new['input_hashes'])
                 self.assertEqual(checkers.check(packet, key)['status'], 'pass', (spec['id'], target))
+        self.assertEqual(compared, 6)
 
 
 class PointerFormTests(unittest.TestCase):
@@ -144,7 +151,7 @@ class PointerFormTests(unittest.TestCase):
             jats.cell(tree, 'Table 1', 'Glucose', ['Ka (M^-1)', 'ITC'])
 
     def test_misreadable_printed_forms_are_refused(self):
-        for display in ('(4.8 ± 0.4) × 10', '13,800', '1.2 × 10'):
+        for display in ('(4.8 ± 0.4) × 10', '13,800', '1.2 × 10', '1.59/0.38', '3.4/2.3', '>10^4', '10^4'):
             self.assertTrue(resolve_design_cards.misreadable(display), display)
             self.assertTrue(paper_sources.UNSAFE_DISPLAY.search(display), display)
         for display in ('(1.07 ± 0.10) × 10^7', '1700 ± 83', '> 16', '58 ± 8', '2.7 mmol g^-1'):
@@ -158,7 +165,13 @@ class B3PilotCardTests(unittest.TestCase):
 
     CARDS = {'wilde2017-ceue-linker-ptr': 'Fe-5-Lic',
              'zhai2025-lectin-sugar-ptr': 'Glucuronic acid',
-             'dellasala2021-prismarene-ptr': 'PrS[5]nPr'}
+             'dellasala2021-prismarene-ptr': 'PrS[5]nPr',
+             'blom2015-tweezer-dabco-ptr': 'tweezer-3-glycoluril',
+             'blom2015-tweezer-diamine-ptr': 'tweezer-1-enediyne',
+             'ikeda2021-zeolite-pore-ptr': 'FAU(10)',
+             'gomez2021-pillararene-chain-ptr': 'C8SO3-',
+             'kaabel2017-hemicucurbituril-volume-ptr': 'SbF6-',
+             'shuto2023-closed-cavity-ptr': 'FF-3Me'}
     SCOPE = '候选的结构描述取自论文（转述）；实测性质表只在审核侧，考生看不到。'
 
     def test_each_card_builds_a_unique_winner_at_every_position(self):
@@ -177,12 +190,12 @@ class B3PilotCardTests(unittest.TestCase):
                            input_hashes=built['input_hashes'])
                 self.assertEqual(checkers.check(packet, key)['status'], 'pass', (name, target))
 
-    def test_the_new_cards_are_not_admitted(self):
-        """B3 phase one writes cards only: the manifest still builds the six v39 design questions."""
-        assets = {x['asset'] for x in SPECS}
-        self.assertEqual(len(SPECS), 6)
+    def test_every_card_is_registered_once(self):
+        """Admitted in the B3 pilot: each card backs exactly one manifest instance."""
+        assets = [x['asset'] for x in SPECS]
+        self.assertEqual(len(assets), len(set(assets)))
         for name in self.CARDS:
-            self.assertNotIn('assets/families/design/resolved/%s.json' % name, assets)
+            self.assertEqual(assets.count('assets/families/design/resolved/%s.json' % name), 1, name)
 
     def test_every_card_records_its_reservations(self):
         for name in self.CARDS:

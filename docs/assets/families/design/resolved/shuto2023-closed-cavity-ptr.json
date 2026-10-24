@@ -1,0 +1,145 @@
+{
+ "kind": "design_card",
+ "family": "design_choice",
+ "id": "shuto2023-closed-cavity-ptr",
+ "paper": "paper-shuto-closed-cavity-dipeptide",
+ "citation": "Shuto, Sumida, Yuasa, Sawada & Yoshizawa, \"A Closed Cavity Strategy for Selective Dipeptide Binding by a Polyaromatic Receptor in Water\", JACS Au 3, 2905 (2023), doi:10.1021/jacsau.3c00484 (Europe PMC PMC10598568)",
+ "short_citation": "Shuto et al., JACS Au (2023)",
+ "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+ "setting": "The receptor is a polyaromatic capsule whose spherical cavity is encircled by aromatic panels and is virtually isolated from the surrounding water: unlike an open cleft, a closed cavity of this kind accepts a guest only if the guest's whole shape can be enclosed, so the paper uses it to recognise oligopeptides by the number and kind of their residues. The candidates are phenylalanine-containing dipeptides and their methyl-protected derivatives, all bound as 1:1 complexes. The paper reports that protecting the ends of the dipeptide with methyl groups strengthens binding, which it ascribes to additional hydrophobic CH-pi contacts with the aromatic panels, and that the free amino acid phenylalanine shows no detectable binding at all. Association constants were measured by isothermal titration calorimetry in water at 298 K.",
+ "goal": "You need a guest that this capsule encloses especially tightly, above 3.5 hundred thousand per mole, so that the complex survives dilution.",
+ "ask": "Which candidate guest should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "Ka_water": {
+   "label": "association constant with the polyaromatic capsule (M^-1, ITC, water, 298 K)",
+   "locator": "Table 1, column Ka"
+  }
+ },
+ "constraints": [
+  {
+   "key": "affinity",
+   "property": "Ka_water",
+   "op": ">=",
+   "value": 350000,
+   "display": "3.5 × 10^5 M^-1",
+   "text": "the measured association constant in water is at least 3.5 × 10^5 M^-1"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "FF-3Me",
+   "paper_name": "FF-3Me",
+   "name": "the phenylalanine dipeptide with methyl groups on both ends (C-terminal and N-terminal protection)",
+   "geometry": "The same two phenyl side chains as the parent dipeptide, with methyl groups added at both the C-terminus and the N-terminus. The added methyl groups give further hydrophobic CH-pi contacts with the aromatic panels of the closed cavity, and the paper measures a 4.4-fold enhancement over the unprotected dipeptide.",
+   "measured": {
+    "Ka_water": {
+     "value": 463000.0,
+     "display": "(4.63 ± 0.61) × 10^5",
+     "locator": "Table 1, row 1•FF-3Me, column Ka [M^-1]",
+     "source": {
+      "table": "Table 1",
+      "row": "1•FF-3Me",
+      "column": "Ka [M^-1]"
+     }
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "FF-Me",
+   "paper_name": "FF-Me",
+   "name": "the phenylalanine dipeptide with a methyl group on the C-terminus only",
+   "geometry": "Protected at one end instead of two: one methyl group fewer than the answer, hence fewer added CH-pi contacts inside the cavity. The paper measures a 2.5-fold enhancement over the unprotected dipeptide.",
+   "measured": {
+    "Ka_water": {
+     "value": 268000.0,
+     "display": "(2.68 ± 0.84) × 10^5",
+     "locator": "Table 1, row 1•FF-Me, column Ka [M^-1]",
+     "source": {
+      "table": "Table 1",
+      "row": "1•FF-Me",
+      "column": "Ka [M^-1]"
+     }
+    }
+   },
+   "rule": "one_end_protected",
+   "reason": "只保护一端，实测 Ka 为 2.68 × 10⁵ M⁻¹，未达 3.5 × 10⁵。",
+   "plausibility": 3
+  },
+  {
+   "id": "FF",
+   "paper_name": "FF",
+   "name": "the unprotected phenylalanine dipeptide",
+   "geometry": "The parent guest: two phenyl side chains and free, charged termini at both ends, so no methyl groups are available for extra contacts with the panels and the polar ends remain exposed inside a cavity isolated from water.",
+   "measured": {
+    "Ka_water": {
+     "value": 107000.0,
+     "display": "(1.07 ± 0.15) × 10^5",
+     "locator": "Table 1, row 1•FF, column Ka [M^-1]",
+     "source": {
+      "table": "Table 1",
+      "row": "1•FF",
+      "column": "Ka [M^-1]"
+     }
+    }
+   },
+   "rule": "smallest_guest",
+   "reason": "分子最小、端基未保护，实测 Ka 为 1.07 × 10⁵ M⁻¹，比目标低三倍多——客体小并不等于更容易被封闭空腔握紧。",
+   "plausibility": 3
+  },
+  {
+   "id": "WF",
+   "paper_name": "WF",
+   "name": "the tryptophan-phenylalanine dipeptide",
+   "geometry": "One of the two phenyl side chains is replaced by the larger, bicyclic indole of tryptophan, so the guest's overall shape no longer matches the enclosed cavity as well; this is the guest the paper separates FF from in a competition experiment.",
+   "measured": {
+    "Ka_water": {
+     "value": 25900.0,
+     "display": "(2.59 ± 0.41) × 10^4",
+     "locator": "Table 1, row 1•WF, column Ka [M^-1]",
+     "source": {
+      "table": "Table 1",
+      "row": "1•WF",
+      "column": "Ka [M^-1]"
+     }
+    }
+   },
+   "rule": "bulkier_side_chain",
+   "reason": "把一个苯基换成更大的吲哚，实测 Ka 降到 2.59 × 10⁴ M⁻¹，四者中最弱。",
+   "plausibility": 3
+  }
+ ],
+ "paper_choice": "FF-3Me",
+ "paper_choice_locator": "Results：\"ITC studies revealed that C-terminal and C,N-terminal protections on FF with methyl groups enhance the host–guest interactions (2.5-fold for FF-Me and 4.4-fold for FF-3Me based on Ka) with 1 under the same conditions ... likely due to additional hydrophobic CH−π interactions\"；Table 1 给出四个候选的实测 Ka",
+ "naive_cue": {
+  "heuristic": "封闭空腔容积有限，所以最小的客体最容易被完整包住",
+  "picks": "FF",
+  "is_correct": false,
+  "note": "最小的未保护二肽实测最弱之一（1.07 × 10⁵）：两端加上甲基反而把 Ka 提到 4.4 倍，因为甲基与芳香面板之间多出疏水 CH–π 接触。"
+ },
+ "scale": {
+  "input_nm": 1.8,
+  "reasoning_nm": 0.6,
+  "definition": "客体在封闭空腔内的整体尺寸与形状（二肽长约 0.6 nm；原文未给空腔直径数值，本项为估算）"
+ },
+ "notes": [
+  "**保留意见**：原文对甲基化增强的解释是\"额外的疏水 CH–π 接触\"，这是接触数而非单一几何长度；WF 变弱的几何解释（吲哚比苯基大）是候选描述里的合理表述，但原文未逐项给出尺寸数值。是否算\"几何是判据\"须 L1 判定。",
+  "原文还测了游离苯丙氨酸 F（无可测结合）与三肽，并用竞争实验说明封闭空腔能从 FF/WF/WW 混合物中选出 FF；这些不作候选（F 与 WW 在表 1 中无数值）。",
+  "原文自己的目标客体是 FF（用于从混合物中选择性捕获），而本题按\"实测最强\"设定目标，答案是 FF-3Me（原文用作参照客体）。`paper_choice` 取的是原文报告的实测最强者，措辞已写入 paper_choice_locator；这与 zhai2025 卡的情形类似，须 L1 判断是否符合\"原文选定者\"的原意。",
+  "表 1 另有 ΔH、TΔS、ΔG 三列（kJ/mol），按本族裕度规则不适用，本题只用 Ka 列。"
+ ],
+ "paper_xml": {
+  "path": "inputs/paper-candidates/PMC10598568.xml",
+  "sha256": "3d26e4630be0acc65bb61c8f09b6c0e9777b66a66b084ba3a3969b1d9b0d237f"
+ },
+ "derived_from_card": null,
+ "resolved_from": {
+  "pointer_card": "assets/families/design/pointers/shuto2023-closed-cavity-ptr.json",
+  "pointer_sha256": "e84e727c5369f3e160dcc15a50ed61542f923deeb1fdcf74f32928a75f8c5cd8",
+  "paper_xml": "inputs/paper-candidates/PMC10598568.xml",
+  "paper_xml_sha256": "3d26e4630be0acc65bb61c8f09b6c0e9777b66a66b084ba3a3969b1d9b0d237f",
+  "tool": "tools/resolve_design_cards.py"
+ }
+}

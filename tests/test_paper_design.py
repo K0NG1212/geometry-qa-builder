@@ -31,7 +31,7 @@ def check(spec, built, **packet_change):
 
 class FamilyTests(unittest.TestCase):
     def test_six_cards_and_every_position_passes(self):
-        self.assertEqual(len(SPECS), 6)                  # 3 papers x 2 targets each
+        self.assertEqual(len(SPECS), 15)                 # 3 papers x 2 targets (v39) + 9 cards from the B3 pilot
         for spec in SPECS:
             for target in (1, 2, 3, 4):
                 s, built = build(spec['id'], target)
