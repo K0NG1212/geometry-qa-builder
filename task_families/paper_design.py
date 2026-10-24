@@ -100,6 +100,32 @@ def value_of(card, candidate, name):
     return measured(candidate, name)
 
 
+def clear_of(con, card, value):
+    """Is a measured value far enough from the threshold that the answer does not hang on the last digit?
+
+    Two kinds, because what counts as "far enough" depends on the quantity:
+      * ratio (the default): value/threshold outside [1/margin, margin]. For quantities with a true zero and a
+        multiplicative scale - binding constants, uptakes, separation factors, fluxes.
+      * absolute: |value - threshold| >= margin, in the property's own unit. For quantities where a ratio means
+        nothing: a logarithm (log K: a ratio of logarithms is not a ratio of constants) and a temperature on a
+        shifted scale (Tm in degrees Celsius: 53 and 46 differ by 1.16-fold only because of where zero sits).
+        Energies (kJ/mol) and differences (delta-Tm, which may be negative) belong here too.
+    """
+    threshold, margin = float(con['value']), float(con.get('margin', card['margin']))
+    kind = con.get('margin_kind', 'ratio')
+    if kind == 'absolute':
+        if margin <= 0:
+            raise ValueError('An absolute margin must be positive: %s' % con['key'])
+        return abs(value - threshold) >= margin
+    if kind != 'ratio':
+        raise ValueError('Unknown margin kind %r for %s' % (kind, con['key']))
+    if margin <= 1:
+        raise ValueError('A ratio margin must exceed 1: %s' % con['key'])
+    if threshold == 0:
+        raise ValueError('A ratio margin cannot be measured against a threshold of zero: %s' % con['key'])
+    return value / threshold >= margin or value / threshold <= 1 / margin
+
+
 def evaluate(card):
     """For each candidate: the constraints it fails. Also checks the stated margin to every threshold."""
     failures = {}
@@ -107,8 +133,8 @@ def evaluate(card):
         bad = []
         for con in card['constraints']:
             value, bound = value_of(card, c, con['property'])
-            threshold, margin = float(con['value']), float(con.get('margin', card['margin']))
-            if threshold == 0 or not (value / threshold >= margin or value / threshold <= 1 / margin):
+            threshold = float(con['value'])
+            if not clear_of(con, card, value):
                 raise ValueError('Candidate %s sits within the margin of the %s threshold' % (c['id'], con['key']))
             if not decide(con['op'], value, threshold, bound):
                 bad.append(con['key'])

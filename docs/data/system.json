@@ -18,10 +18,10 @@
   ],
   "independent_checked": 336,
   "independent_passed": 336,
-  "tests": 425,
-  "code_lines": 8877,
-  "generator_lines": 5863,
-  "checker_lines": 3014,
+  "tests": 430,
+  "code_lines": 8918,
+  "generator_lines": 5889,
+  "checker_lines": 3029,
   "abilities": {
    "perception": 15,
    "inference": 21,
@@ -278,7 +278,7 @@
      "path": "templates/registry.json",
      "url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/templates/registry.json",
      "lines": 3335,
-     "sha256": "6c046ba82e8e03d8c9f4fc04f2eb55981763c090db06536c689f8bb7d979723d"
+     "sha256": "6dde358580a7f61fe183e37ac5a29deee57ab1280376710ec683f6fb0a93dd31"
     },
     {
      "path": "enumerators.py",
@@ -2424,7 +2424,7 @@
      "narrowest_pore_cue / pore_too_wide / interpenetrated_network（孔口几何的三种误判）"
     ],
     "validation": "独立检查器（checkers/paper_design.py:design_choice）读取哈希核对的设计卡，核对 candidates.txt 与卡片逐行一致，从题干文本中重新解析每个阈值（卡片只提供比较方向），用 Decimal 重新判定，并要求唯一满足者即原文选定者。单侧界（原文只给 “> 16”）只允许判定其能判定的一侧，另一侧直接报错。",
-    "limits": "程序保证：四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干印出的阈值就是代码执行的阈值。程序不能保证：所给结构描述是否足以推出答案而非靠记忆（著名材料有被认出的风险），以及结构描述是否忠于原文；两者须 L1 对照原文位置核对，难度由 L4 判定。Chetry 2026 严格说是“在已有材料中筛选”而非“为目标改造结构”，是否计入路线① 待导师审定。"
+    "limits": "程序保证：裕度按量的性质选择 ratio 或 absolute（摄氏温度与对数量不得用倍数裕度）、四个候选都有实测值、恰好一个满足全部约束、该候选即原文选定者、题干印出的阈值就是代码执行的阈值。程序不能保证：所给结构描述是否足以推出答案而非靠记忆（著名材料有被认出的风险），以及结构描述是否忠于原文；两者须 L1 对照原文位置核对，难度由 L4 判定。Chetry 2026 严格说是“在已有材料中筛选”而非“为目标改造结构”，是否计入路线① 待导师审定。"
    },
    "checker": "checkers/paper_design.py:design_choice",
    "checker_url": "https://github.com/K0NG1212/geometry-qa-builder/blob/main/checkers/paper_design.py",

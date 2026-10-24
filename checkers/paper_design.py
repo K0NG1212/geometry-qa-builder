@@ -60,9 +60,25 @@ def targets(card, question):
         need(stated in question, 'Target %s is not stated in the question' % con['key'])
         need(con['display'] in con['text'], 'Threshold %s is not printed in its own target text' % con['key'])
         need(con['op'] in OPS, 'Unknown comparison ' + con['op'])
-        out.append((con['key'], con['property'], con['op'], number(con['display'])))
-    need(len({k for k, _, _, _ in out}) == len(out), 'Constraint keys must be distinct')
+        kind = con.get('margin_kind', 'ratio')
+        need(kind in ('ratio', 'absolute'), 'Unknown margin kind %r for %s' % (kind, con['key']))
+        out.append((con['key'], con['property'], con['op'], number(con['display']), kind,
+                    Decimal(repr(con['margin'])) if 'margin' in con else None))
+    need(len({k for k, _, _, _, _, _ in out}) == len(out), 'Constraint keys must be distinct')
     return out
+
+
+def far_enough(kind, margin, value, threshold):
+    """Re-derived margin test. A ratio margin suits a quantity with a true zero (binding constants, uptakes);
+    an absolute margin suits one where a ratio is meaningless - a logarithm, or a temperature on a shifted
+    scale - and is read in the property's own unit."""
+    if kind == 'absolute':
+        need(margin > 0, 'An absolute margin must be positive')
+        return abs(value - threshold) >= margin
+    need(margin > 1, 'A ratio margin must exceed 1')
+    need(threshold != 0, 'A ratio margin cannot be measured against a threshold of zero')
+    ratio = value / threshold
+    return ratio >= margin or ratio <= 1 / margin
 
 
 def value_of(card, candidate, name):
@@ -105,11 +121,10 @@ def design_choice(packet, key):
         for o in packet['options']:
             c = by_text[o['value']]
             bad = []
-            for name, prop, op, threshold in constraints:
+            for name, prop, op, threshold, kind, own_margin in constraints:
                 value, bound = value_of(card, c, prop)
-                need(threshold != 0, 'A threshold of zero cannot carry a margin')
-                ratio = value / threshold
-                need(ratio >= margin or ratio <= 1 / margin, 'Candidate %s sits within the margin of %s' % (c['id'], name))
+                need(far_enough(kind, own_margin if own_margin is not None else margin, value, threshold),
+                     'Candidate %s sits within the %s margin of %s' % (c['id'], kind, name))
                 if not satisfied(op, value, threshold, bound):
                     bad.append(name)
             failures[c['id']] = bad

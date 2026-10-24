@@ -3390,7 +3390,7 @@
     "solvent_change_insufficient（换溶剂不改变几何）",
     "narrowest_pore_cue / pore_too_wide / interpenetrated_network（孔口几何的三种误判）"
    ],
-   "four_choice_validation": "四个候选必须对每条受约束的性质都有实测值且带原文位置（“未测过”不会被当成“不行”）；每个候选与每个阈值之间必须有 margin（默认 1.2 倍）的距离；恰好一个候选满足全部约束。",
+   "four_choice_validation": "四个候选必须对每条受约束的性质都有实测值且带原文位置（“未测过”不会被当成“不行”）；每个候选与每个阈值之间必须有 margin 的距离，裕度分两种（2026-10-24 起）：ratio（默认 1.2 倍，用于有真实零点的量——结合常数、吸附量、分离因子、通量）与 absolute（按性质本身的单位给绝对差，用于倍数无意义的量——对数量 log K、摄氏温度 Tm、能量 kJ/mol、可为负的差值 ΔTm）；两端各自实现并有测试；恰好一个候选满足全部约束。",
    "legacy_families": [],
    "legacy_qa": [],
    "code": [

@@ -3,11 +3,14 @@ import copy
 import json
 import sys
 import unittest
+from decimal import Decimal
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 import checkers  # noqa: E402
+from checkers import paper_design as checker_design  # noqa: E402
+from checkers.common import CheckError  # noqa: E402
 from task_families import paper_design  # noqa: E402
 
 MANIFEST = {x['id']: x for x in json.loads((ROOT / 'templates/family-manifest.json').read_text(encoding='utf-8'))['items']}
@@ -173,6 +176,72 @@ class CheckerTests(unittest.TestCase):
         built = copy.deepcopy(built)
         built['input_hashes'][spec['asset']] = '0' * 64
         self.assertIn('hash mismatch', check(spec, built)['problem'])
+
+
+class MarginKindTests(unittest.TestCase):
+    """B1e: a ratio margin suits a quantity with a true zero, an absolute one a logarithm or a Celsius
+    temperature. Both the family and the checker must agree on which test applies."""
+
+    CARD = dict(margin=1.2)
+
+    def con(self, value, **kw):
+        return dict(dict(key='k', property='p', op='>=', value=value), **kw)
+
+    def near(self, con, value):
+        """The family and the checker must reach the same verdict on the same numbers."""
+        own = con.get('margin')
+        mine = paper_design.clear_of(con, self.CARD, value)
+        theirs = checker_design.far_enough(con.get('margin_kind', 'ratio'),
+                                           Decimal(repr(own)) if own is not None else Decimal(repr(self.CARD['margin'])),
+                                           Decimal(repr(value)), Decimal(repr(con['value'])))
+        self.assertEqual(mine, theirs, (con, value))
+        return mine
+
+    def test_ratio_margin_is_the_default_and_unchanged(self):
+        self.assertTrue(self.near(self.con(1e5), 2.5e5))           # 2.5x above
+        self.assertTrue(self.near(self.con(1e5), 4.7e3))           # far below
+        self.assertFalse(self.near(self.con(1e5), 1.1e5))          # 1.1x: inside the margin
+
+    def test_a_celsius_threshold_needs_an_absolute_margin(self):
+        hot = self.con(59, margin=2, margin_kind='absolute')
+        self.assertTrue(self.near(hot, 61.2))                      # 2.2 degrees clear
+        self.assertTrue(self.near(hot, 55.4))                      # 3.6 degrees clear
+        self.assertFalse(self.near(hot, 60.5))                     # 1.5 degrees: too close
+        # Why a Celsius card must not use the ratio test: what counts as "clear" then depends on where zero
+        # sits. The same 1.2-fold margin rejects a 1.5 K gap just above 59 degrees but accepts a 10 K one.
+        self.assertFalse(self.near(self.con(59), 60.5))
+        self.assertTrue(self.near(self.con(49), 59))
+
+    def test_an_absolute_margin_accepts_negative_values_and_zero_thresholds(self):
+        shift = self.con(0, margin=1.5, margin_kind='absolute')    # a delta-Tm, which may be negative
+        self.assertTrue(self.near(shift, -3.8))
+        self.assertTrue(self.near(shift, 8.1))
+        self.assertFalse(self.near(shift, 0.8))
+
+    def test_bad_margins_are_refused_on_both_sides(self):
+        with self.assertRaises(ValueError):
+            paper_design.clear_of(self.con(5, margin=0, margin_kind='absolute'), self.CARD, 9)
+        with self.assertRaises(ValueError):
+            paper_design.clear_of(self.con(5, margin=1.0), self.CARD, 9)
+        with self.assertRaises(ValueError):
+            paper_design.clear_of(self.con(0), self.CARD, 9)        # ratio against zero
+        with self.assertRaises(ValueError):
+            paper_design.clear_of(self.con(5, margin_kind='logarithmic'), self.CARD, 9)
+        for bad in (dict(kind='absolute', margin=Decimal(0)), dict(kind='ratio', margin=Decimal(1))):
+            with self.assertRaises(CheckError):
+                checker_design.far_enough(bad['kind'], bad['margin'], Decimal(9), Decimal(5))
+
+    @unittest.skipUnless((ROOT / 'docs/assets/families/design/resolved/kim2024-ace2-disulfide-ptr.json').exists(),
+                         'the absolute-margin card is not present')
+    def test_the_celsius_card_builds_and_passes_at_every_position(self):
+        spec = dict(id='FA-DES-ACE2-SS', family='design_choice', scope='B1e 验证用例',
+                    asset='assets/families/design/resolved/kim2024-ace2-disulfide-ptr.json')
+        for target in (1, 2, 3, 4):
+            built = paper_design.build(dict(spec, target_position=target), ROOT, SEED)
+            self.assertEqual(built['correct_label'], 'ABCD'[target - 1])
+            answer = [o['value'] for o in built['options'] if o['label'] == built['correct_label']][0]
+            self.assertTrue(answer.startswith('M2:'), answer)
+            self.assertEqual(check(spec, built)['status'], 'pass')
 
 
 if __name__ == '__main__':

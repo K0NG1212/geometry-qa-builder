@@ -78,7 +78,7 @@ class RenderingTests(unittest.TestCase):
 @NEEDS_XML
 class ResolvedCardTests(unittest.TestCase):
     def test_every_pointer_card_resolves_to_the_stored_card_and_passes(self):
-        self.assertEqual(len(POINTERS), 15)              # 6 from v39 + 9 written in the B3 pilot
+        self.assertEqual(len(POINTERS), 16)              # 6 from v39 + 9 from the B3 pilot + 1 from B1e
         for p in POINTERS:
             rel = 'assets/families/design/pointers/' + p.name
             self.assertEqual(resolve_design_cards.dump(resolve_design_cards.resolve(rel)),

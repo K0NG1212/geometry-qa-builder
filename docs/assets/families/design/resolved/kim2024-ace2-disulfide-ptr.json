@@ -1,0 +1,148 @@
+{
+ "kind": "design_card",
+ "family": "design_choice",
+ "id": "kim2024-ace2-disulfide-ptr",
+ "paper": "paper-kim-ace2-disulfide",
+ "citation": "Kim, Kim, Park, Kim, Ryu & Bashkin et al., \"Disulfide Bond Engineering of Soluble ACE2 for Thermal Stability Enhancement\", Int. J. Mol. Sci. 25, 9919 (2024), doi:10.3390/ijms25189919 (Europe PMC PMC11432317)",
+ "short_citation": "Kim et al., Int. J. Mol. Sci. (2024)",
+ "license": "CC BY 4.0; facts and numbers only, no text or figures reproduced",
+ "setting": "Soluble ACE2 is being developed as a decoy that binds the SARS-CoV-2 spike protein, and a more heat-stable version would survive storage better. The authors therefore introduced an extra disulfide bond by mutating two residues to cysteine, and they chose the pairs by two stated principles: the C-alpha atoms of the pair had to be 4.5 to 7.0 angstrom apart, since the average C-alpha separation of disulfide bonds in natural proteins is 5.6 angstrom, and the beta-carbons had to point toward each other so the bond can actually form. Nine such pairs were made. They differ in what part of the fold the new bond staples: one long extended loop runs from residue 331 to 347, while other pairs join two helices, or a helix to a loop. Every mutant was expressed as an Fc fusion and its melting temperature was measured by a thermal shift assay; the wild type melts at 53.1 degrees Celsius. All four candidates below have C-alpha separations inside the 4.5 to 7.0 angstrom window, so the window alone does not separate them.",
+ "goal": "You need a variant that survives a storage step at elevated temperature, so you need the melting point pushed to at least 59 degrees Celsius, nearly six degrees above the wild type.",
+ "ask": "Which candidate mutant should you choose?",
+ "margin": 1.2,
+ "properties": {
+  "Tm_C": {
+   "label": "melting temperature of the Fc fusion (degrees Celsius, thermal shift assay)",
+   "locator": "Table 1, column Tm"
+  }
+ },
+ "constraints": [
+  {
+   "key": "stability",
+   "property": "Tm_C",
+   "op": ">=",
+   "value": 59,
+   "display": "59",
+   "text": "the measured melting temperature is at least 59 degrees Celsius",
+   "margin": 2,
+   "margin_kind": "absolute"
+  }
+ ],
+ "candidates": [
+  {
+   "id": "M2",
+   "paper_name": "I54C/K341C (M2)",
+   "name": "the I54C/K341C mutant, which ties residue 54 to residue 341",
+   "geometry": "Residue 341 lies in the long extended loop that runs from 331 to 347, so this new bond fastens that loop back to the body of the protein. The two C-alpha atoms are 6.0 angstrom apart, inside the stated window and close to the 5.6 angstrom average of natural disulfide bonds.",
+   "measured": {
+    "Tm_C": {
+     "value": 61.2,
+     "display": "61.2",
+     "locator": "Table 1, row I54C/K341C (M2), column Tm (°C)",
+     "source": {
+      "table": "Table 1",
+      "row": "I54C/K341C (M2)",
+      "column": "Tm (°C)"
+     }
+    }
+   },
+   "rule": "correct",
+   "plausibility": 3
+  },
+  {
+   "id": "M4",
+   "paper_name": "M62C/S47C (M4)",
+   "name": "the M62C/S47C mutant, which ties residue 62 to residue 47",
+   "geometry": "Both residues sit in helices, so this bond pins one helix to another; a helix is already held in shape by its own backbone hydrogen bonds. The two C-alpha atoms are 4.8 angstrom apart, the shortest separation of the four and the closest to the lower edge of the stated window.",
+   "measured": {
+    "Tm_C": {
+     "value": 55.4,
+     "display": "55.4",
+     "locator": "Table 1, row M62C/S47C (M4), column Tm (°C)",
+     "source": {
+      "table": "Table 1",
+      "row": "M62C/S47C (M4)",
+      "column": "Tm (°C)"
+     }
+    }
+   },
+   "rule": "helix_to_helix",
+   "reason": "钉住的是两段本身已经刚硬的螺旋，Cα 距离 4.8 Å 虽在窗口内，实测 Tm 只有 55.4 °C，比目标低 3.6 °C。",
+   "plausibility": 3
+  },
+  {
+   "id": "M6",
+   "paper_name": "V364C/V298C (M6)",
+   "name": "the V364C/V298C mutant, which ties residue 364 to residue 298",
+   "geometry": "Another helix-to-helix pair. The two C-alpha atoms are 6.6 angstrom apart, near the upper edge of the stated window, so the two cysteines have to be drawn further together than in the other candidates for the bond to close.",
+   "measured": {
+    "Tm_C": {
+     "value": 49.3,
+     "display": "49.3",
+     "locator": "Table 1, row V364C/V298C (M6), column Tm (°C)",
+     "source": {
+      "table": "Table 1",
+      "row": "V364C/V298C (M6)",
+      "column": "Tm (°C)"
+     }
+    }
+   },
+   "rule": "helix_to_helix_long",
+   "reason": "同为螺旋–螺旋，且 Cα 距离 6.6 Å 接近窗口上限，实测 Tm 为 49.3 °C，比野生型还低 3.8 °C。",
+   "plausibility": 3
+  },
+  {
+   "id": "M3",
+   "paper_name": "I21C/E87C (M3)",
+   "name": "the I21C/E87C mutant, which ties residue 21 to residue 87",
+   "geometry": "This pair joins a helix to a loop rather than fastening the long 331 to 347 loop. The two C-alpha atoms are 6.6 angstrom apart, near the upper edge of the stated window.",
+   "measured": {
+    "Tm_C": {
+     "value": 45.8,
+     "display": "45.8",
+     "locator": "Table 1, row I21C/E87C (M3), column Tm (°C)",
+     "source": {
+      "table": "Table 1",
+      "row": "I21C/E87C (M3)",
+      "column": "Tm (°C)"
+     }
+    }
+   },
+   "rule": "helix_to_loop",
+   "reason": "螺旋与环之间的配对，实测 Tm 为 45.8 °C，是四者中最低、比野生型低 7.3 °C。",
+   "plausibility": 3
+  }
+ ],
+ "paper_choice": "M2",
+ "paper_choice_locator": "Results：\"The right-shifted graph (red line) in , which was the I54C/K341C mutant (M2), exhibited the most significant increase in the melting temperature\"；并称 \"The disulfide bond formation between residues in helices or between residues in loop/strand and helix did not improve Tm, and in some cases, Tm was decreased\"；Table 1 给出四个候选的 Cα 距离与实测 Tm",
+ "naive_cue": {
+  "heuristic": "螺旋本身刚硬，把两段螺旋钉在一起最能提高热稳定性",
+  "picks": "M4",
+  "is_correct": false,
+  "note": "原文的实测结果正好相反：钉螺旋–螺旋或螺旋–环都没有提高 Tm，有的还降低；真正有效的是把那段长而伸展的 331–347 环固定回蛋白主体。"
+ },
+ "scale": {
+  "input_nm": 8.0,
+  "reasoning_nm": 0.6,
+  "definition": "被突变的两个残基之间的 Cα 距离（原文窗口 4.5–7.0 Å，四个候选为 4.8–6.6 Å）"
+ },
+ "notes": [
+  "**本卡是 B1e 的验证用例**：目标量是摄氏温度，倍数裕度没有意义（53 °C 与 46 °C 只因零点位置而相差 1.16 倍），所以这条约束用 `margin_kind: \"absolute\"`、裕度 2 °C。四个候选与阈值 59 °C 的距离分别为 2.2、3.6、9.7、13.2 °C。",
+  "**保留意见**：四个候选的 Cα 距离都在原文给出的 4.5–7.0 Å 窗口内，所以答案不是由距离决定，而是由\"钉住的是柔性长环还是本已刚硬的螺旋\"决定。这是结构性的几何论证，但不是单一的长度判据；是否算\"几何是判据\"须 L1 判定。",
+  "原文九个突变体中 M1（N53C/Q340C）同样固定 331–347 环，Cα 距离 5.9 Å、实测 Tm 56.6 °C，仅比 M2 低 4.6 °C；原文把差别归于侧链取向对相互作用残基的稳定作用不同。**本卡刻意不收 M1 作候选**，因为仅凭卡片里的结构描述无法在 M1 与 M2 之间做出有依据的区分。",
+  "表 1 还有 ΔTm 列（含负值）：负值使倍数裕度完全失效，若将来要用 ΔTm 出题，同样要用绝对裕度。",
+  "原文把突变体做成 Fc 融合蛋白测 Tm，所测的是融合蛋白而非裸的 sACE2；题干已写明这一点。"
+ ],
+ "paper_xml": {
+  "path": "inputs/paper-candidates/PMC11432317.xml",
+  "sha256": "2f84f3625147663ddca55c2900144c41b0d26007b4c1fe5b6153d49d0f416268"
+ },
+ "derived_from_card": null,
+ "resolved_from": {
+  "pointer_card": "assets/families/design/pointers/kim2024-ace2-disulfide-ptr.json",
+  "pointer_sha256": "278708f528257a1f0ef5bad2a455d16fa5aa9bfcef7c0556ad3083421147e901",
+  "paper_xml": "inputs/paper-candidates/PMC11432317.xml",
+  "paper_xml_sha256": "2f84f3625147663ddca55c2900144c41b0d26007b4c1fe5b6153d49d0f416268",
+  "tool": "tools/resolve_design_cards.py"
+ }
+}
