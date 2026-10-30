@@ -25,6 +25,9 @@ THRESHOLDS = {
     'FA-RXN-TARGET-ANGLE': ('at most 132 degrees', 'at most 140 degrees'),
     'FA-DES-CHE-SIEVE': ('at least 12', 'at least 4'),
     'FA-DES-VIN-MV': ('at least 5 × 10^4 M^-1', 'at least 5 × 10^3 M^-1'),
+    'FA-DES-TWZ-DABCO': ('at least 1 × 10^6 M^-1', 'at least 1 × 10^4 M^-1'),
+    'FA-DES-ZEOLITE-FAU': ('at least 2000', 'at least 200'),
+    'FA-DES-LECTIN-GLCA': ('at least 1 × 10^4 M^-1', 'at least 1 × 10^2 M^-1'),
 }
 
 
