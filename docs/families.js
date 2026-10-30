@@ -98,12 +98,23 @@
   $('fam-checker-code').textContent=Object.entries(i.checker_code||{}).map(([k,v])=>'# ==== '+k+'\n'+v).join('\n');
   $('cov-status').innerHTML='<option value="all">全部状态</option>'+Object.keys(cov.axes.status).map(k=>`<option value="${esc(k)}">${esc(STATUS[k]||k)}</option>`).join('');
   table();
-  const order=['vortex_geometry','vortex_inference','vortex_design','cholesteric_geometry','cholesteric_optics','cholesteric_design','diffraction_design','disulfide_design','fret_design','secondary_structure','binding_evidence_choice','binding_design_choice','qdot_optics','qdot_design','moire_geometry','moire_inference','moire_design','opal_geometry','opal_bragg','opal_design','superlattice_shell','superlattice_metric','superlattice_saxs','superlattice_design','assembly_extent','assembly_rg','capsid_architecture','debye_intensity','scattering_q_design','stereo_relationship','stereo_property_inference','stereo_design_selection','named_bond_distance','coordination_shell','first_diffraction_peak','fret_efficiency','guinier_intensity','named_bond_angle','backbone_torsion','force_path_derivative','kinematic_extinction','conformer_target_selection','extent_choice_v2','rotational_line','isotopologue_design','hbond_geometry','hbond_criteria','evidence_quantity','evidence_elimination'];
-  const present=order.filter(x=>fam.teacher_answers.some(t=>t.family===x));
-  $('fam-select').innerHTML=present.map(x=>{const t=fam.teacher_answers.find(y=>y.family===x);return `<option value="${esc(x)}">${esc(ABILITY[t.ability])} · ${esc(familyName(x))}</option>`}).join('');
+  // Every family in the run must be selectable, so the list is built from the data and nothing else. A
+  // hand-kept reading order used to live here; families added later were missing from it, and ?instance=
+  // for one of their questions then rendered an empty workbench (3 families, 20 questions, found 2026-10-30).
+  const ORDER=['perception','inference','design'];
+  const families=[...new Set(fam.teacher_answers.map(t=>t.family))].map(f=>({id:f,ability:fam.teacher_answers.find(t=>t.family===f).ability}))
+   .sort((a,b)=>ORDER.indexOf(a.ability)-ORDER.indexOf(b.ability)||familyName(a.id).localeCompare(familyName(b.id),'zh'));
+  $('fam-select').innerHTML=families.map(f=>`<option value="${esc(f.id)}">${esc(ABILITY[f.ability])} · ${esc(familyName(f.id))}</option>`).join('');
   const r=fam.report;$('fam-summary').textContent=`运行 ${fam.run}：尝试 ${r.attempted} 例，程序核验通过 ${r.passed} 例，构造失败 ${r.failures.length} 例（已记录原因）；模型调用 0；全部待人工审核。构造阶段不直接写入题库，去重后的暂计入库见上方“160 道原型”进度。`;
   const want=new URLSearchParams(location.search).get('instance'),hit=want&&fam.teacher_answers.find(t=>t.id===want);
-  if(hit){$('fam-select').value=hit.family;renderFamily();$('fam-instance').value=hit.id;renderInstance();$('workbench').scrollIntoView()}else renderFamily();
+  if(hit){
+   $('fam-select').value=hit.family;renderFamily();$('fam-instance').value=hit.id;renderInstance();$('workbench').scrollIntoView();
+  }else{
+   renderFamily();
+   // A link that asks for an instance this run does not contain must say so. Showing an unrelated instance
+   // instead would let a reviewer believe they are reading the question they clicked through from.
+   if(want)$('fam-meta').textContent=`链接请求的实例 ${want} 不在本次运行（${fam.run}）里：可能是题号写错，或该实例属于更早的运行。下方显示的是另一个实例，不是你点进来的那一道。`;
+  }
   fetch('data/coverage-plan.json').then(r=>r.ok?r.json():Promise.reject(r.status)).then(renderPlan).catch(()=>{$('plan-summary').textContent='覆盖规划加载失败。'});
  }).catch(e=>{$('fam-summary').textContent='记录加载失败：'+e.message;$('load-error').hidden=false});
 })();

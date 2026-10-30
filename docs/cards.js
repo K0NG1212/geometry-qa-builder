@@ -118,7 +118,8 @@
   }
 
   function meta(c) {
-    const src = /^https?:/.test(c.source) ? `<a href="${esc(c.source)}" target="_blank" rel="noopener">${esc(c.source)}</a>` : esc(c.source);
+    const links = sourceLinks(c.source).map(([text, href]) => `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(text)}</a>`).join(' · ');
+    const src = links ? `${links}<br>${esc(c.source)}` : esc(c.source);
     return `<div>考点：${esc(c.objective)}</div><div>尺度：${esc(c.size)}</div><div>来源：${src}</div>
       <div>版本：${esc(c.version)} · 题型族 ${esc(c.family)}</div>
       <div><a href="index.html?qa=${encodeURIComponent(c.id)}#questions">在问题池打开完整详情</a>${c.trace ? ` · <a href="${esc(c.trace)}">题型工作台记录（选项核验、独立检查）</a>` : ''}</div>`;

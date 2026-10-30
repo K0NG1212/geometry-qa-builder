@@ -298,14 +298,17 @@
       "input": "",
       "output": "",
       "guarantees": [
-        "测试覆盖检查器独立性、篡改题干会被发现、答案位置平衡、导入校验等"
+        "测试覆盖检查器独立性、篡改题干会被发现、答案位置平衡、导入校验等",
+        "网站链接逐条可解析：目标文件存在、?instance= 在本次运行里、页内锚点有对应元素；坏链则 check_links.py 返回非 0"
       ],
       "limits": "",
-      "command": "python -m unittest discover -s tests",
+      "command": "python -m unittest discover -s tests && python tools/check_links.py",
       "files": [
         "tests/test_checkers.py",
         "tests/test_enumeration.py",
-        "tests/test_review.py"
+        "tests/test_review.py",
+        "tools/check_links.py",
+        "tests/test_docs_links.py"
       ]
     }
   ],

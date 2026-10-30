@@ -26,13 +26,13 @@
 | 2 资产 | 生成题目附件；确定性，重跑后旧资产应逐字节不变 | `python tools/build_<类>_assets.py` → `docs/assets/families/<类>/`（含 `sources.json`） | M1 |
 | 3 题型族 | 写族函数，复用 `kit.py`；在 `FAMILIES` 中登记 | `task_families/<模块>.py`、`task_families/__init__.py` | M3–M4 |
 | 4 检查器 | 独立重算，并登记 | `checkers/<模块>.py`、`checkers/families.py` | M5 |
-| 5 注册表与规格 | 注册表加行（考点、条件、错误机制、局限）；写实例规格；网页族顺序加名。已有枚举器的族先跑容量探针（也是大样本压力测试：答案位置、拒绝原因、独立检查） | `templates/registry.json`、`templates/family-manifest.json`、`docs/families.js`；`python tools/enumerate_instances.py --out runs/enum-vNN` | M3 |
+| 5 注册表与规格 | 注册表加行（考点、条件、错误机制、局限）；写实例规格。已有枚举器的族先跑容量探针（也是大样本压力测试：答案位置、拒绝原因、独立检查） | `templates/registry.json`、`templates/family-manifest.json`（网页的族下拉由运行数据推导，不要在 `docs/families.js` 里写族名）；`python tools/enumerate_instances.py --out runs/enum-vNN` | M3 |
 | 6 生成 | 新目录；按族轮换答案位置；构造不出唯一答案就拒绝 | `python family_engine.py --manifest templates/family-manifest.json --out runs/family-pilot-vNN` | M4 |
 | 7 独立复核 | 全部一致才继续；与上一版比较旧实例是否不变 | `python verify_all.py --run runs/family-pilot-vNN --out runs/family-pilot-vNN-independent-check.json` | M5 |
 | 8 导出 | 完整重放，代码哈希须与运行一致 | `python tools/export_family_workbench.py --run runs/family-pilot-vNN --public-development-examples` | M6 |
 | 9 入库 | 登记 new / supersede / reformat，然后导出目录与统计 | `templates/admission-map.json` → `python tools/admit_family_instances.py --date YYYY-MM-DD` → `tools/export_prototype.py`、`tools/export_admission_audit.py`、`tools/plan_coverage.py`、`tools/export_coverage.py`、`tools/export_modules.py` | M6 |
 | 10 挑选与审核材料 | 更新 160 道挑选、批量生产差距分析（暂定规则 `templates/batch-selection-rule.json`）、子领域像素图与旭日图页 `docs/subdomains.html`（草案 `templates/subdomain-draft.json`）、题目卡片页数据与格式检查清单、审核队列、Excel 审核表和出题系统展示页 | `python tools/select_prototype.py`、`python tools/batch_plan.py`、`python tools/subdomain_map.py`、`python tools/export_cards.py`、`python tools/format_check.py`、`python tools/review.py queue --date YYYY-MM-DD`、`python tools/review_sheet.py export`、`python tools/export_system.py` | — |
-| 11 测试与网页 | 全部测试；本地浏览器核对页面 | `python -m unittest discover -s tests`（约 6–9 分钟） | — |
+| 11 测试与网页 | 全部测试；查全站链接；**用 localhost 预览，自己点开新题的工作台链接**（线上 Pages 可能还没更新，看线上会误判） | `python -m unittest discover -s tests`（约 6–9 分钟）；`python tools/check_links.py`（内部链接，坏链返回非 0；加 `--online` 另查外部链接）；`python -m http.server 8765 --directory docs` 后开 `http://localhost:8765/templates.html?instance=<实例号>#workbench` | — |
 | 12 记录与提交 | PROJECT_STATUS 顶部加一节；提交（写实际模型）；推送后确认 Pages 已更新 | `git -c safe.directory=...`，不强推，不提交 `runs/`、`inputs/` | — |
 
 ## 三、审核（L0–L4）
