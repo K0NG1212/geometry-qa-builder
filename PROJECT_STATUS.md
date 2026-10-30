@@ -2,6 +2,18 @@
 
 > 交接入口：[HANDOFF_2026-10-24.md](HANDOFF_2026-10-24.md)（现状、下一条线候选、必读经验）；[HANDOFF_2026-10-21.md](HANDOFF_2026-10-21.md)（10-20 → 10-24 八条线的细节）；[HANDOFF_2026-10-19.md](HANDOFF_2026-10-19.md)（现状数字与待决事项）；[HANDOFF_2026-10-18.md](HANDOFF_2026-10-18.md)（证据题两族与子领域/旭日图）；[HANDOFF_2026-10-06.md](HANDOFF_2026-10-06.md)（协作方式与判断原则、批量选题规则、第六次会议记录）；[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（来源路线、代码地图、流程与经验）；[HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史。
 
+## W1：每题一个本地文件夹，336 个（2026-10-30，Claude Code 会话，模型 claude-opus-5）
+
+- **导师原话**："每一个题目就是你做一个 folder"，里面放 `info.json`（怎么抽的、原创性、locator、evidence）、论文原文、target 结构、source 文件。动机是第 25 条："你现在什么都没有，然后不知道题怎么来的，这个审核不了。"
+- **放在本地 `D:\GeoBench-data\qa\`**（用户 2026-10-30 定，不进 Git）：仓库只放生成工具 `tools/export_qa_folders.py`，可重复跑、幂等（只在内容变化时落盘，第二遍写 0 个文件）。已生成 **336 个文件夹 / 2517 个文件 / 14.3 MB**，另有 `index.json` 总表。
+- **每个文件夹**：`info.json`（导师要的四个字段 + 分类 + 未审核状态 + 站点链接）、`source/SOURCE.txt`（引文、可点链接、许可、归属、附件哈希）+ 论文全文副本（**15 道指针卡题有本地 XML**，其余题的来源是数据库或 arXiv/期刊，本机没有全文）、`student/`（`question.txt` 与 **485 个附件副本**，与考生看到的一致）、`reviewer/`（`answer.json`、`locators.json`、`limits.txt`）。
+- **答案不进 `info.json` 和 `student/`**：`info.json` 只写"值在 `reviewer/locators.json`"、"答案在 `reviewer/answer.json`"，实测值、重算量与答案位置都移到 `reviewer/`。原因是整个文件夹若被整包喂给模型，根目录的文件会被读到。
+- **发现一个评测时必须避开的坑**：部分实例号本身编码了答案（如 `FA-SREL-7029-SAME` 的正确答案就是 "same"），而实例号出现在 `info.json` 与公开的工作台链接里。**W3 跑模型时只能给 `student/`，不能给实例号**，已写进测试注释与交接文件。
+- **originality 如实分档**（按归属说明里的原话判，不猜；先按更具体的变换措辞判，再看是否点名数据库）：原样照抄 94、按说明约简 63、**本项目生成坐标 55**、点名数据库但未写变换 39、论文证据无坐标 27、CIF 对称操作展开 17、刚性旋转平移 15、论文实测值无坐标 15、格式转为 XYZ 11。其中"本项目生成坐标 55 道"正是导师第 6 次会质疑的那一类，现在每题的 `info.json` 都写明。
+- **测试 `tests/test_qa_folders.py`（5 项）**：每道题都有文件夹与四个字段、`coordinates` 不得是 `see_statement`、独立检查必须 pass；`info.json` 与 `student/` 不得出现 `is_correct`/`correct_label`/`option_audit`/`measured`/`excluded_candidates`，也不得有任何字段等于某个选项的值；目录里每个附件都在 `student/`；第二遍跑写 0 个文件。测试把文件夹建在临时目录，不碰 D 盘。
+- **仍缺的**：① 29 道题的 `checks` 里没有逐题的 `limits` 说明（`extent_choice_v2` 15、`named_bond_angle` 7、`backbone_torsion` 7）——族级 limits 在 `reviewer/limits.txt` 里有，逐题说明要改三个族的生成代码并重跑运行，留到下一批；② 非指针卡题没有本地论文副本（arXiv/期刊 PDF 未下载，**要用户批准**）；③ 5 道 SAMPL9 题缺行级 locator。
+- **题库未改动**：active 仍 336，最新运行仍 `runs/family-pilot-v42`；本次只加工具与测试（出题系统页公布的测试数 440 → 445）。
+
 ## W0：修掉"点开链接是空的"，并把全站 4486 条链接查了一遍（2026-10-30，Claude Code 会话，模型 claude-opus-5）
 
 - **第 8 次会议现场的问题**：导师点开 CND022 / CND023 的"题型工作台记录"链接，页面是空的（报错条"记录加载失败：Cannot read properties of undefined (reading 'ability')"）。当场怀疑是"推送后没更新"，实际不是。
