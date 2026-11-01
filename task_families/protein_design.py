@@ -35,7 +35,10 @@ def finish(spec, seed, correct, others, reason, question, text, digest, checks, 
     key = kit.validate_verdicts(options, [p[0] == 'correct' for p in order])
     audit = [dict(label=l, value=p[1], rule=p[0], reason=p[2], is_correct=p[0] == 'correct') for l, p in zip(kit.LABELS, order)]
     return dict(question=question, scope=spec['scope'],
-                inputs=[dict(name='%s-%s-design-excerpt.pdb' % (pdb, spec['id'].split('-')[-1]), format='pdb-excerpt', unit='angstrom', text=text)],
+                # Named after the chain, never after the instance id: an enumerated id ends in the residue
+                # numbers of the correct pair (EN-1A6M-DS-2-6 → the pair 2-6), so the old name handed the
+                # answer to anyone reading the attachment list (8 questions, found 2026-11-01).
+                inputs=[dict(name='%s-%s-design-excerpt.pdb' % (pdb, spec['chain'].strip() or '_'), format='pdb-excerpt', unit='angstrom', text=text)],
                 numeric=None, options=options, correct_label=key, option_audit=audit, excluded_candidates=[], rank=None, checks=checks,
                 scales=dict(input_nm=reasoning_nm, reasoning_nm=reasoning_nm, reasoning_definition=definition), input_hashes={spec['asset']: digest})
 

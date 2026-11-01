@@ -7,6 +7,7 @@ reviewer/ and never appear in info.json or student/, because a folder handed to 
 a second run writes nothing, so a re-run shows only what really changed.
 """
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -17,8 +18,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / 'tools'))
 import export_qa_folders  # noqa: E402
+from task_families import protein_design  # noqa: E402
 
 CATALOG = json.loads((ROOT / 'docs/data/catalog.json').read_text(encoding='utf-8'))
+MANIFEST = json.loads((ROOT / 'templates/family-manifest.json').read_text(encoding='utf-8'))
 WORKBENCH = json.loads((ROOT / 'docs/data/family-workbench.json').read_text(encoding='utf-8'))
 ADMITTED = [q for q in CATALOG['questions'] if q.get('lifecycle') == 'active' and q.get('familyInstance')]
 # Markers that would say which option is right. "reason" alone is not one of them: "reasoning" is a legitimate
@@ -108,6 +111,80 @@ class QaFolderTests(unittest.TestCase):
         again.run_all()
         self.assertEqual(again.written, 0)
         self.assertEqual(again.missing, [])
+
+
+FORMAT_WORDS = {'xyz', 'txt', 'pdb', 'cif', 'json', 'design', 'excerpt', 'cell'}
+
+
+def fields(name):
+    """A file name as the dash-separated fields it was built from. 1A6M stays whole: it is a structure id,
+    not the number 6."""
+    return {s.lower() for s in re.split(r'[^0-9A-Za-z]+', name) if s} - FORMAT_WORDS
+
+
+def words(value):
+    """An option value down to its letters and numbers, so that Glu6 is the residue Glu and the number 6."""
+    spaced = re.sub(r'(?<=[A-Za-z])(?=\d)|(?<=\d)(?=[A-Za-z])', ' ', str(value))
+    return {s.lower() for s in re.split(r'[^0-9A-Za-z]+', spaced) if s} - FORMAT_WORDS
+
+
+def telltale(names, options):
+    """What the file names give away: anything that belongs to the right option and to no other one.
+
+    Nothing is given away when every option names a file of its own -- then picking a file is the question,
+    and the candidate numbers belong in the names.
+    """
+    in_names = set().union(*(fields(n) for n in names))
+    if all(words(o['value']) & in_names for o in options):
+        return set()
+    right = next(o for o in options if o['is_correct'])
+    others = set().union(*(words(o['value']) for o in options if not o['is_correct']))
+    return (words(right['value']) - others) & in_names
+
+
+class AttachmentNameTests(unittest.TestCase):
+    """A file name is part of the student packet: the question prints it on its 附件 line and the folder
+    lists it. A name that singles out the right option answers the question without the geometry.
+
+    This is not hypothetical. protein_design named its excerpt after the tail of the instance id, and an
+    enumerated id ends in the residue numbers of the correct pair (EN-1A6M-DS-2-6 -> the pair 2-6), so eight
+    questions shipped with the answer in the file name.
+    """
+
+    # Those eight. The generator is fixed, but the published run still carries the old names and only a
+    # re-run replaces them. Each entry must therefore still be leaking: once a re-run clears one, the second
+    # test below fails and the entry is to be deleted -- the list cannot outlive the problem.
+    PENDING_RERUN = {'EN-1A6M-DS-2-6', 'EN-1A6M-FD-25-1-18', 'EN-1FHA-DS-6-9', 'EN-1FHA-FD-25-5-42',
+                     'EN-12E8-DS-7-21', 'EN-12E8-FD-25-1-11', 'EN-1HHK-DS-5-168', 'EN-1HHK-FD-25-1-16'}
+
+    def leaking(self):
+        teachers = {t['id']: t for t in WORKBENCH['teacher_answers']}
+        out = {}
+        for question in CATALOG['questions']:
+            teacher = teachers.get(question.get('familyInstance'))
+            names = [Path(a['url']).name for a in (question.get('attachments') or [])]
+            if teacher and names:
+                give = telltale(names, teacher['option_audit'])
+                if give:
+                    out[question['familyInstance']] = (question['id'], names, sorted(give))
+        return out
+
+    def test_no_published_attachment_name_gives_the_answer_away(self):
+        self.assertEqual({i: v for i, v in self.leaking().items() if i not in self.PENDING_RERUN}, {})
+
+    def test_the_pending_list_holds_nothing_the_latest_run_has_already_fixed(self):
+        fixed = sorted(self.PENDING_RERUN - set(self.leaking()))
+        self.assertEqual(fixed, [], 'delete these from PENDING_RERUN: %s' % fixed)
+
+    def test_the_fixed_generator_names_the_excerpt_after_the_chain(self):
+        specs = {x['id']: x for x in MANIFEST['items']}
+        build = {'disulfide_design': protein_design.build_disulfide, 'fret_design': protein_design.build_fret}
+        for instance in sorted(self.PENDING_RERUN):
+            spec = specs[instance]
+            packet = build[spec['family']](spec, ROOT, 'geobench-family-v1')
+            names = [i['name'] for i in packet['inputs']]
+            self.assertEqual(names, ['%s-%s-design-excerpt.pdb' % (spec['pdb'], spec['chain'])], instance)
+            self.assertEqual(telltale(names, packet['option_audit']), set(), instance)
 
 
 if __name__ == '__main__':
