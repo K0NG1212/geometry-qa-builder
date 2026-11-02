@@ -80,6 +80,32 @@ python tools/run_eval.py --provider seeded --form numeric
 记录里的 `answerer_is_a_model` 和 `model_calls` 就是用来防止把基线结果当成模型成绩的。
 记录写到 `runs/eval/`（不进 Git）。
 
+## 七、许可与发布（W2，2026-11-02 起）
+
+发布到 Hugging Face 之前，先跑一遍逐来源的许可审计，结论在 [LICENSING.md](LICENSING.md)：
+
+```text
+python tools/export_license_audit.py --print
+```
+
+**三类发布物分开看，只有第一类是转载问题**：上游坐标（照抄／对称展开／约简／旋转／转格式，必须允许再分发）、
+本项目按论文数值造的坐标（不依赖来源许可）、本项目转述的事实（事实不受保护，但句子不能逐词照搬）。
+
+许可**只从记录里读，不替来源断定**。强的在前：论文本机副本里出版方自己的声明（JATS `<permissions>` 块或 PDF
+上的许可行），然后才是本仓库的记录（`sources.json`、trace、数据集自带的许可文件）。两者不一致、或仓库里根本
+没写，审计就如实标出来，不抹平。全文不在本机时对应的卡记成 `checked: false` 并写明原因，**不会**把没测过的
+当成干净的。
+
+证据卡与设计卡的句子会和论文全文逐词比对，连续相同 **8 个词**以上进 L1 改写清单。改卡片会变动已发布资产的
+哈希，所以和下一次重跑题库一起做。
+
+新增一个来源时：把它的许可写进对应的 `sources.json` 和 `templates/family-manifest.json` 的实例条目，再把来源
+加进 `tools/export_license_audit.py` 的 `SOURCES` 表（否则 `tests/test_license.py` 会报这个来源没登记）。
+
+规模的算术（3000 道还差多少、三处上限各是多少）由 `python tools/export_scale_plan.py` 从数据算出，
+写进 [docs/data/scale-plan.json](docs/data/scale-plan.json) 与 [MEETING_2026-11-04.md](MEETING_2026-11-04.md)
+的标记区间，不手写数字。
+
 ## 五、例外：无法写成代码的题
 
 如果某类题确实不能由代码生成和复算（例如必须阅读论文作答的开放解释题），先告诉用户并征得同意。届时可以参考归档的 Builder 流程，但产出的题按旧模板题对待，必须全量人工审核，不能暂计入正式题库。
