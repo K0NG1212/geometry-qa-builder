@@ -18,15 +18,21 @@ python tools/build_moire_assets.py
 import hashlib
 import json
 import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from tools import paper_locators  # noqa: E402
+from tools.paper_locators import locators  # noqa: E402
+
 OUT = ROOT / 'docs/assets/families/moire'
 A_NM = 0.246
 PAPERS = dict(cao=dict(citation='Cao Y. et al., arXiv:1803.02342 (Nature 556, 43 (2018))', url='https://arxiv.org/abs/1803.02342',
-                       numbers='devices M1 1.16 deg, M2 1.05 deg, D1 1.08 deg; n_s = 4/A; a = 0.246 nm'),
+                       numbers='devices M1 1.16 deg, M2 1.05 deg, D1 1.08 deg; n_s = 4/A; a = 0.246 nm', **locators('cao')),
               kerelsky=dict(citation='Kerelsky A. et al., arXiv:1812.08776 (Nature 572, 95 (2019))', url='https://arxiv.org/abs/1812.08776',
-                            numbers='STM regions at 1.10 deg and 0.79 deg; lambda = a/(2 sin(theta/2)) without strain'))
+                            numbers='STM regions at 1.10 deg and 0.79 deg; lambda = a/(2 sin(theta/2)) without strain',
+                            **locators('kerelsky')))
 SAMPLES = {'M1': ('cao', 1.16), 'M2': ('cao', 1.05), 'D1': ('cao', 1.08), 'K110': ('kerelsky', 1.10), 'K079': ('kerelsky', 0.79)}
 MAP_RADIUS = 45.0
 
@@ -96,7 +102,8 @@ def main():
     (OUT / 'sources.json').write_text(json.dumps(dict(route='paper_parameter_model', papers=PAPERS, lattice_constant_nm=A_NM,
                                                       model='rigid twist (no lattice relaxation, no heterostrain); AA map within %.0f nm; '
                                                             'atomistic patch within 2.0 nm, layer spacing 3.35 A' % MAP_RADIUS,
-                                                      files=files), ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
+                                                      files=files, locators_note=paper_locators.NOTES['moire']),
+                                                 ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
     print(json.dumps({k: (v['points'], round(v['period_nm'], 3)) for k, v in files.items()}))
 
 

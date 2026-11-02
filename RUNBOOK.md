@@ -14,7 +14,7 @@
 3. **先审代码，再扩量。** 新族先出少量样例（约 3 道），经 L1（题型审定）和 L2（检查器审阅）人工通过后才批量生成。审核记录绑定代码哈希，代码改了就要重审。原型阶段的 43 个族是先生成后审核，从批量生产起按本条执行。
 4. **不合格就整族修改并重新生成**，不逐题手改，也不改旧运行。
 5. **干扰项来自真实的错误做法。** 注册表每族至少 3 种错误机制，各有理由；答案位置按批次平衡，超出容差时补充合理的错误机制，不放宽容差。
-6. **来源可核对。** 论文数字逐项核对原文，记在 `sources.json`（来源、许可、哈希、构建方式）。**凡从论文转录的事实、结论、实测值，每一条都要带原文位置**（节、表、图、页），存在审核侧供 L1 逐条对照；检查器强制，缺原文位置直接拒绝出题。只用数字，不转载文字或图。论文参数模型的题干必须写明 “Model conditions”。下载任何文件前先征得用户同意。
+6. **来源可核对。** 论文数字逐项核对原文，记在 `sources.json`（来源、许可、哈希、构建方式）。**凡从论文转录的事实、结论、实测值，每一条都要带原文位置**（节、表、图、页），存在审核侧供 L1 逐条对照；检查器强制，缺原文位置直接拒绝出题。**论文参数模型（按论文数值造坐标的那几族）同样要记位置**：数字在原文哪一节、哪个式、哪张图，写在 `tools/paper_locators.py`，由各自的 `tools/build_*_assets.py` 写进 `sources.json`（`tests/test_license.py` 的 `LocatorTests` 盯着）。只用数字，不转载文字或图。论文参数模型的题干必须写明 “Model conditions”。下载任何文件前先征得用户同意。
 7. **运行只追加。** 每次生成写入新的 `runs/` 目录；回归要求旧实例逐字节不变。
 8. **如实记录。** 写清模型身份（不确定写 unknown）、失败与原因；程序通过不等于人工审核。审核结论只能由具名的人填写。
 
@@ -111,6 +111,9 @@ python tools/export_license_audit.py --print
 - 把来源加进 `tools/export_license_audit.py` 的 `SOURCES` 表（否则 `tests/test_license.py` 会报这个来源没登记）；
 - **如果要发布它的坐标**，去它自己的许可页面读一遍，把原话、网址、日期写进 `docs/data/license-statements.json`
   的 `statements`（`covers` 填来源键），再把同一段抄进那个目录的 `sources.json` 的 `license_statement`。
+  **有 `tools/build_*_assets.py` 的目录，这一段要写进生成器**（`license_note.statement('<id>')`），不能只手工改 `sources.json`——
+  下次重跑资产时手工改的会被覆盖掉。`tests/test_license.py` 的
+  `test_a_generated_sources_file_gets_its_statement_from_the_builder` 盯着这一条。
   只读页面、不下载。
 
 LICENSING.md 里的四张表（结论、三类发布物、逐来源、许可页面原话）都由工具写在 `<!-- audit-*:begin -->` 标记之间，

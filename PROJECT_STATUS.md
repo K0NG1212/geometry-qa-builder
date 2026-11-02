@@ -2,6 +2,36 @@
 
 > 交接入口：[HANDOFF_2026-10-24.md](HANDOFF_2026-10-24.md)（现状、下一条线候选、必读经验）；[HANDOFF_2026-10-21.md](HANDOFF_2026-10-21.md)（10-20 → 10-24 八条线的细节）；[HANDOFF_2026-10-19.md](HANDOFF_2026-10-19.md)（现状数字与待决事项）；[HANDOFF_2026-10-18.md](HANDOFF_2026-10-18.md)（证据题两族与子领域/旭日图）；[HANDOFF_2026-10-06.md](HANDOFF_2026-10-06.md)（协作方式与判断原则、批量选题规则、第六次会议记录）；[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（来源路线、代码地图、流程与经验）；[HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史。
 
+## 论文参数题的原文位置：30 道补齐（2026-11-02，Claude Code 会话，模型 claude-opus-5）
+
+- **起因**：用户看一道 PDB 题和一道 QM7-X 题的页面，问「设计题的来源要精确到文中哪个部分，我们做了吗」。
+  查下来：论文来源的 **42 道**（`design_choice` 15 + `evidence_quantity` 12 + `evidence_elimination` 15）**覆盖率 100%**，
+  精确到表/行/列，`checkers/paper_design.py` 缺 locator 直接判失败；数据库/数据集驱动的 294 道本来就没有「文中位置」这回事。
+  **真正的缺口是 55 道「按论文数值造坐标」的题**：opal（Table 3）、superlattice（Table 1）、qdot（eqs. 2 and 6）记了位置，
+  **cholesteric / moire / vortex 共 30 道只写到「按论文…」，没有表号图号**。
+- **做了什么**：读本机全文（两篇 JATS XML、四篇 arXiv PDF，**没有下载任何新文件**），把每个取用的数字定位到节号、式号、图号，
+  写进新模块 [tools/paper_locators.py](tools/paper_locators.py)，由三个 `tools/build_*_assets.py` 写进各自的 `sources.json`。
+  六篇全文的 SHA-256 与 `inputs/papers/SHA256SUMS.txt` 下载时记的逐个一致，说明读的就是当时下载的那一份。
+- **位置举例**：HTP 107.5 μm⁻¹ → Shaban §2.1；ne/no → §2.2（λ = 589 nm，20 °C）；λc 585 ± 1 / 593 ± 3 nm → §3.5 与 Figure 9a,b；
+  M1 1.16° / M2 1.05° → Cao Fig. 1b 图注，**D1 1.08° → Extended Data Fig. 2 图注**；1.10° / 0.79° → Kerelsky Fig. 1 图注 (d–f)；
+  50.8–188.7 G → Cottet Figure 3 与 Figure 4A/4B 图注；a ≈ 0.855 μm → Schäfermeier 正文 Results（f = 1.35 μm⁻¹，a = 2/(√3 f)）。
+- **顺手查出三件事**：
+  ① `tools/build_vortex_assets.py` 的说明把三角点阵 d = 1.075 的出处写成 Fig. 5B，实际在 **Fig. 4B 图注**（Fig. 5 讲的是 |ψ6|），已改；
+  ② vortex 资产文件名 `508G / 561G / 1173G / 1887G` 是省掉小数点的写法，实际场是 **50.8 / 56.1 / 117.3 / 188.7 G**——
+  `field_T` 与间距都按实际值算，只有名字误导；改名会动已发布资产的哈希，留到下次重跑；
+  ③ cholesteric 的 5 个「model concentration」（2.20/2.40/2.90/3.00/3.40 wt%）**是本库在论文给的 0.5–4.0 wt% 范围内另取的设计候选**，
+  论文没有给这五个值——这一条现在写在 locators 里，不再只存在于代码注释。
+- **修掉一个自己刚埋的缺陷**：11-02 上午把许可原话手工抄进了 4 个 `sources.json`，而这 4 个文件是
+  `tools/build_{assembly,molecule,reaction,vortex}_assets.py` 生成的——**下次重跑资产会把手工改的覆盖掉**。
+  现在改成生成器从 [docs/data/license-statements.json](docs/data/license-statements.json) 读（新模块 `tools/license_note.py`），
+  重跑四个生成器后 `sources.json` 与手工版逐字节一致、资产一字未动，并加测试
+  `test_a_generated_sources_file_gets_its_statement_from_the_builder` 盯住这条规矩。
+- **还没做（页面上看不到）**：`docs/app.js` 的「3 · 来源与依据」只印出设计卡的文件名，不印 locator 本身，也没做成链接——
+  原文位置是**发布了的**（例如 `docs/assets/families/design/resolved/wilde2017-ceue-linker-ptr.json`，
+  站点上是 `assets/families/design/resolved/…`），但要自己拼 URL 才打得开。把 locator 显示在题目页上要改 `catalog.json` 的字段，
+  得跟 11/05–11/08 的重跑一起做。
+- **测试**：`tests/test_license.py` 22 → **26 项**（新增 `LocatorTests` 3 项 + 生成器那 1 项），全库 491 → 495。
+
 ## W2：许可审计 + 逐来源许可页面核对 + 3000 道的算术（2026-11-02，Claude Code 会话，模型 claude-opus-5）
 
 ### 许可审计（上传 Hugging Face 的前置）

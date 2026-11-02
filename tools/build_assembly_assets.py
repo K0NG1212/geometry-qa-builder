@@ -18,9 +18,13 @@ import gzip
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from tools import license_note  # noqa: E402
+
 RAW = ROOT / 'inputs/pdb'
 OUT = ROOT / 'docs/assets/families/assemblies'
 URL = 'https://files.rcsb.org/download/%s'
@@ -236,7 +240,9 @@ def main():
     for name, text in files.items():
         (OUT / name).write_text(text, encoding='utf-8', newline='\n')
         sources[name]['asset_sha256'] = hashlib.sha256(text.encode('utf-8')).hexdigest()
-    (OUT / 'sources.json').write_text(json.dumps(dict(license='wwPDB data: CC0 1.0', note='Raw downloads are kept locally in inputs/pdb (not in Git).',
+    (OUT / 'sources.json').write_text(json.dumps(dict(license='wwPDB data: CC0 1.0',
+                                                      license_statement=license_note.statement('rcsb-usage-policy'),
+                                                      note='Raw downloads are kept locally in inputs/pdb (not in Git).',
                                                       files=sources), ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
     print(json.dumps({k: v['points'] for k, v in sources.items()}))
 

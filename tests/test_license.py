@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / 'tools'))
 import export_license_audit as audit  # noqa: E402
+from tools import paper_locators  # noqa: E402
 
 AUDIT = json.loads((ROOT / 'docs/data/license-audit.json').read_text(encoding='utf-8'))
 CATALOG = json.loads((ROOT / 'docs/data/catalog.json').read_text(encoding='utf-8'))
@@ -89,6 +90,8 @@ class StatementTests(unittest.TestCase):
     # The sources.json files that repeat a statement next to the assets it covers.
     BESIDE_ASSETS = sorted(p.relative_to(ROOT).as_posix() for p in ROOT.glob('docs/**/sources*.json')
                            if 'license_statement' in json.loads(p.read_text(encoding='utf-8')))
+    BUILDERS = {p.relative_to(ROOT).as_posix(): p.read_text(encoding='utf-8')
+                for p in sorted((ROOT / 'tools').glob('build_*_assets.py'))}
 
     def test_every_statement_says_which_page_and_when(self):
         for sid, entry in self.RECORD['statements'].items():
@@ -135,6 +138,18 @@ class StatementTests(unittest.TestCase):
             for field in ('license', 'url', 'read_on', 'quote', 'obligation'):
                 self.assertEqual(block[field], entry[field], '%s 的 %s 与记录不一致' % (rel, field))
 
+    def test_a_generated_sources_file_gets_its_statement_from_the_builder(self):
+        """Half of these files are rewritten by a builder, so a hand-edited statement would vanish on the next run."""
+        generated = 0
+        for rel in self.BESIDE_ASSETS:
+            folder = rel.rsplit('/', 1)[0]
+            for name, text in self.BUILDERS.items():
+                if folder in text and "(OUT / 'sources.json')" in text:
+                    generated += 1
+                    self.assertIn('license_note.statement(', text,
+                                  '%s 会重写 %s，许可原话必须由它写出来，不能只手工改文件' % (name, rel))
+        self.assertTrue(generated, '没有找到会重写 sources.json 的生成器，这条测试失去意义')
+
     def test_a_page_that_could_not_be_opened_is_listed_not_claimed(self):
         for miss in self.RECORD.get('not_reachable', []):
             self.assertTrue(miss['why'], miss['url'])
@@ -142,6 +157,50 @@ class StatementTests(unittest.TestCase):
             self.assertIn('licence-page-unreachable', [f['id'] for f in AUDIT['findings']])
             # and no statement pretends to quote it
             self.assertNotIn(miss['url'], [e['url'] for e in self.RECORD['statements'].values()])
+
+
+class LocatorTests(unittest.TestCase):
+    """Where each borrowed number sits in its paper.
+
+    The design and evidence cards carry a locator per value (checkers/paper_design.py fails without one). The three
+    paper-parameter families take a handful of numbers from their papers and used to name only the paper, so a
+    reviewer had to hunt for the table; these pin the place, the date it was read and the copy it was read from.
+    """
+
+    FAMILIES = ('cholesteric', 'moire', 'vortex')
+
+    def sources(self, family):
+        return json.loads((ROOT / ('docs/assets/families/%s/sources.json' % family)).read_text(encoding='utf-8'))
+
+    def test_every_paper_parameter_family_says_where_each_number_sits(self):
+        for family in self.FAMILIES:
+            doc = self.sources(family)
+            self.assertEqual(doc['route'], 'paper_parameter_model', family)
+            self.assertTrue(doc['locators_note'], family)
+            for key, paper in doc['papers'].items():
+                self.assertTrue(paper.get('locators'), '%s/%s 没有记数字在原文的位置' % (family, key))
+                self.assertRegex(paper['locators_read_on'], r'^\d{4}-\d{2}-\d{2}$')
+                read = paper['full_text_read']
+                self.assertTrue(read['path'].startswith('inputs/papers/'), key)
+                self.assertRegex(read['sha256'], r'^[0-9a-f]{64}$')
+
+    def test_the_places_come_from_the_one_module_the_builders_share(self):
+        for family in self.FAMILIES:
+            for key, paper in self.sources(family)['papers'].items():
+                block = paper_locators.locators(key)
+                self.assertEqual(paper['locators'], dict(block['locators']), '%s/%s' % (family, key))
+                self.assertEqual(paper['full_text_read'], dict(block['full_text_read']), key)
+
+    def test_the_copy_that_was_read_is_the_copy_that_was_downloaded(self):
+        sums = ROOT / 'inputs/papers/SHA256SUMS.txt'
+        if not sums.exists():
+            self.skipTest('inputs/papers 不在本机（不入库）')
+        recorded = {}
+        for line in sums.read_text(encoding='utf-8').splitlines():
+            digest, _, name = line.partition(' ')
+            recorded['inputs/papers/' + name.lstrip('*').strip()] = digest
+        for path, digest in paper_locators.FULL_TEXT.values():
+            self.assertEqual(recorded.get(path), digest, '%s 与下载时记录的校验和不一致' % path)
 
 
 class RecordedLicenceTests(unittest.TestCase):

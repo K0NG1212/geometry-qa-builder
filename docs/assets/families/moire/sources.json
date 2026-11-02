@@ -4,12 +4,30 @@
   "cao": {
    "citation": "Cao Y. et al., arXiv:1803.02342 (Nature 556, 43 (2018))",
    "url": "https://arxiv.org/abs/1803.02342",
-   "numbers": "devices M1 1.16 deg, M2 1.05 deg, D1 1.08 deg; n_s = 4/A; a = 0.246 nm"
+   "numbers": "devices M1 1.16 deg, M2 1.05 deg, D1 1.08 deg; n_s = 4/A; a = 0.246 nm",
+   "locators": {
+    "lattice_constant_nm": "正文定义超晶格密度 ns = 4/A 的一段，同句给出石墨烯晶格常数 a = 0.246 nm。",
+    "twist_deg": "M1 θ = 1.16°、M2 θ = 1.05°：Fig. 1b 图注，以及正文介绍两个 magic-angle 器件的一段；D1 θ = 1.08°：Extended Data Fig. 2 图注与该节正文。"
+   },
+   "locators_read_on": "2026-11-02",
+   "full_text_read": {
+    "path": "inputs/papers/cao2018/cao2018-arxiv-1803.02342.pdf",
+    "sha256": "da2dcac4e18f41fa4ee3599a653f57c1e1b63c1d881bd3d0fe05dd3152cabea5"
+   }
   },
   "kerelsky": {
    "citation": "Kerelsky A. et al., arXiv:1812.08776 (Nature 572, 95 (2019))",
    "url": "https://arxiv.org/abs/1812.08776",
-   "numbers": "STM regions at 1.10 deg and 0.79 deg; lambda = a/(2 sin(theta/2)) without strain"
+   "numbers": "STM regions at 1.10 deg and 0.79 deg; lambda = a/(2 sin(theta/2)) without strain",
+   "locators": {
+    "period_relation": "正文（“tear and stack”一段）：莫尔周期 λ = a/(2 sin(θ/2))，不含晶格弛豫与异质应变。",
+    "twist_deg": "Fig. 1 图注 (d–f)：2.02° / 0.79° / 1.10° 的原子分辨 STM 形貌；Fig. 2a 的 LDOS 曲线同样按 3.48 / 2.02 / 1.59 / 1.10 / 0.79° 标注。"
+   },
+   "locators_read_on": "2026-11-02",
+   "full_text_read": {
+    "path": "inputs/papers/kerelsky2019/kerelsky2019-arxiv-1812.08776.pdf",
+    "sha256": "ef069115e3c393344bb2e87775961fabe43004054f0a501c589f6e549a9f20ef"
+   }
   }
  },
  "lattice_constant_nm": 0.246,
@@ -69,5 +87,6 @@
    "kind": "atomistic patch",
    "asset_sha256": "9661b02cf3f1beb1a95dfa01771a4171008c7f1be5a05a91605890ba22f711d6"
   }
- }
+ },
+ "locators_note": "每个取自论文的数都记了它在原文的位置（图注、正文段落），2026-11-02 读本机 PDF 核对，没有下载新文件。两篇都是 arXiv 预印本（非独占许可，不授权第三方转载），所以只记位置与数值，不转载原文句子与图。"
 }

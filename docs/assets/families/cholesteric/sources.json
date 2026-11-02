@@ -5,13 +5,35 @@
    "citation": "Shaban H. et al., Materials 17, 5080 (2024)",
    "doi": "https://doi.org/10.3390/ma17205080",
    "open_copy": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11509098/",
-   "license": "CC BY 4.0"
+   "license": "CC BY 4.0",
+   "locators": {
+    "e44": "§2.2 Preparation of LC Cell Samples：ne = 1.7904、no = 1.5484，λ = 589 nm，T = 20 °C（同一句另给 ε∥ = 22.4、ε⊥ = 5.2）。",
+    "htp_per_um": "§2.1 Materials：R5011 与 S5011 在 E44 中的 HTP = 107.5 μm⁻¹；§3.5 推导节距时复述同一数值。",
+    "measured_reflection_nm": "§3.5（Figure 9a,b）：λc = 585 ± 1 nm（E44 + 2.62 wt% R5011）、λc = 593 ± 3 nm（E44 + 2.57 wt% S5011），均在 20 °C。",
+    "model_concentrations": "§2.1 给出掺杂浓度范围 0.5–4.0 wt%。2.20 / 2.40 / 2.90 / 3.00 / 3.40 wt% 这五个浓度是本库在该范围内另取的设计候选，节距由式 (7) 算出，论文没有给这五个值。",
+    "pitch_nm": "§3.5 式 (7) p = 1/(HTP·c)：E44/R5011 p = 0.355 μm、E44/S5011 p = 0.362 μm。"
+   },
+   "locators_read_on": "2026-11-02",
+   "full_text_read": {
+    "path": "inputs/papers/shaban2024/shaban2024-PMC11509098.xml",
+    "sha256": "221d5c74d191071399f7140592e5f8f66035eb30ff8c5c26eabd465674349ee7"
+   }
   },
   "dinc": {
    "citation": "Dinc R. U. et al., Org. Chem. Front. (2024)",
    "doi": "https://doi.org/10.1039/d4qo01672f",
    "open_copy": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11492181/",
-   "license": "CC BY 3.0"
+   "license": "CC BY 3.0",
+   "locators": {
+    "average_refractive_index": "Introduction：胆甾相聚合物的平均折射率「典型约 1.6」。本库按 λ = n·p 用这个 1.6 反推节距（419 / 377 nm）。",
+    "concentration": "Experimental · Preparation of CLC polymer coatings：LRCD 5.6 wt%（56.2 mg 对 920.8 mg Lumogen S1065）、RRCD 4.7 wt%。",
+    "measured_reflection_nm": "Results and discussion（Fig. 3）：LRCD 涂层反射峰 670 nm、RRCD 涂层反射带 603 nm。"
+   },
+   "locators_read_on": "2026-11-02",
+   "full_text_read": {
+    "path": "inputs/papers/dinc2024/dinc2024-PMC11492181.xml",
+    "sha256": "0d5e717d7de7e11502f712f07ad36086a847be90f84e61457e3a05c0fc135d3b"
+   }
   }
  },
  "htp_per_um": 107.5,
@@ -104,5 +126,6 @@
    "sites": 301,
    "asset_sha256": "89b20d1431cfbc25a611ccb5294bb76852583d8ee3ab769da6fde9527765dd31"
   }
- }
+ },
+ "locators_note": "每个取自论文的数都记了它在原文的位置（节号、式号、图号），2026-11-02 读本机全文核对，没有下载新文件。两篇都是 CC BY，但这里只记位置与数值，不转载原文句子。"
 }

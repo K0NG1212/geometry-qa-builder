@@ -8,9 +8,13 @@ Deterministic; nothing is downloaded. SAMPL9 guests and hosts are used directly 
 """
 import hashlib
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from tools import license_note  # noqa: E402
+
 OUT = ROOT / 'docs/assets/families/molecules'
 FORMULA_ORDER = ('C', 'H', 'N', 'O', 'S', 'Cl')
 
@@ -44,6 +48,7 @@ def main():
                                  derived_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
                                  asset_sha256=hashlib.sha256(text.encode('utf-8')).hexdigest(), **data['source'])
     (OUT / 'sources.json').write_text(json.dumps(dict(note='XYZ copies of QM7-X geometries already in the repository; no new download.',
+                                                      license_statement=license_note.statement('zenodo-qm7x'),
                                                       files=sources), ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
     print(len(sources), 'molecules')
 

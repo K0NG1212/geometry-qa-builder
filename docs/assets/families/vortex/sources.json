@@ -13,12 +13,30 @@
  "papers": {
   "cottet": {
    "citation": "Cottet M. J. G. et al., arXiv:1401.4062 (MgB2, cryo-Lorentz TEM, 5 K)",
-   "url": "https://arxiv.org/abs/1401.4062"
+   "url": "https://arxiv.org/abs/1401.4062",
+   "locators": {
+    "field_T": "Figure 3（5 K 下不同磁场的涡旋图像序列，磁场标在每幅图上）与同一段正文：序列从 50.8 G 起、升到 188.7 G；56.1 G 另见 Figure 4A 图注，56.1 G 与 117.3 G 见 Figure 4B 图注的放大图。",
+    "triangular_lattice_d": "Figure 4B 图注：三角点阵 d = 1.075、正方点阵 d = 1（rij = d·√(Φ0/B)）。（Fig. 5 讲的是六重参数 |ψ6|，不是这个值。）"
+   },
+   "locators_read_on": "2026-11-02",
+   "full_text_read": {
+    "path": "inputs/papers/cottet2014/cottet2014-arxiv-1401.4062.pdf",
+    "sha256": "874e6ec52fbed67bc893695c522cc0d45e5db013386d0baa01262209113e8c90"
+   }
   },
   "schaefermeier": {
    "citation": "Schaefermeier C. et al., arXiv:2602.13060 (BSCCO-2212, scanning NV magnetometry, 71 K)",
    "url": "https://arxiv.org/abs/2602.13060",
-   "license": "CC BY-NC-ND 4.0 (numbers only are used)"
+   "license": "CC BY-NC-ND 4.0 (numbers only are used)",
+   "locators": {
+    "conditions": "T = 71 K、Bz = 3.7 mT 场冷：Figure 2 图注与方法一节。",
+    "measured_spacing_nm": "正文 Results（Figure 2，BSCCO-2212）：FFT 一阶峰半径 f = 1.35 μm⁻¹，按 a = 2/(√3 f) 得 a ≈ 0.855 μm，对应有效场约 3.26 mT。"
+   },
+   "locators_read_on": "2026-11-02",
+   "full_text_read": {
+    "path": "inputs/papers/schaefermeier2026/schaefermeier2026-arxiv-2602.13060.pdf",
+    "sha256": "0b6a7a9c5ceb9c3250d2b67b1ec8c95aa2d81ac6884b12e291e03660389409a5"
+   }
   }
  },
  "phi0_Wb": 2.067833848e-15,
@@ -64,5 +82,6 @@
    "vortices": 97,
    "asset_sha256": "016f9906a19a3a60746d9d7a6de095d18230d2774e4cc682e3fc33afba12ace0"
   }
- }
+ },
+ "locators_note": "每个取自论文的数都记了它在原文的位置（图号、图注、正文段落），2026-11-02 读本机 PDF 核对，没有下载新文件。Schäfermeier 2026 是 CC BY-NC-ND，Cottet 2014 是 arXiv 非独占许可，所以只记位置与数值，不转载原文句子与图。另：文件名里的 508G / 561G / 1173G / 1887G 是省掉小数点的写法，实际场是 50.8 / 56.1 / 117.3 / 188.7 G（field_T 与间距都按实际值算）；改名会动已发布资产的哈希，留到下次重跑。"
 }

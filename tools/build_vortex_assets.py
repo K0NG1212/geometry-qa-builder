@@ -3,7 +3,7 @@
 Numbers only (no text or figures redistributed):
   * Cottet et al., "Quantitative imaging of flux vortices in type-II superconductor MgB2 using Cryo-Lorentz Transmission
     Electron Microscopy", arXiv:1401.4062: MgB2 single crystal at 5 K, applied fields 50.8, 56.1, 117.3 and 188.7 G; measured
-    vortex spacings compared with the triangular-lattice value r = 1.075 (Phi0/B)^1/2 (their Fig. 5B).
+    vortex spacings compared with the triangular-lattice value r = 1.075 (Phi0/B)^1/2 (their Fig. 4B).
   * Schaefermeier et al., "Quantitative imaging of Abrikosov vortices by scanning quantum magnetometry", arXiv:2602.13060
     (CC BY-NC-ND 4.0): BSCCO-2212 single crystal at 71 K, field-cooled at 3.7 mT, measured lattice constant a ~ 0.855 um
     (effective field ~3.26 mT from B = (2/sqrt 3) Phi0 / a^2).
@@ -17,14 +17,21 @@ python tools/build_vortex_assets.py
 import hashlib
 import json
 import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from tools import license_note, paper_locators  # noqa: E402
+from tools.paper_locators import locators  # noqa: E402
+
 OUT = ROOT / 'docs/assets/families/vortex'
 PHI0 = 2.067833848e-15            # Wb, h / 2e
-PAPERS = dict(cottet=dict(citation='Cottet M. J. G. et al., arXiv:1401.4062 (MgB2, cryo-Lorentz TEM, 5 K)', url='https://arxiv.org/abs/1401.4062'),
+PAPERS = dict(cottet=dict(citation='Cottet M. J. G. et al., arXiv:1401.4062 (MgB2, cryo-Lorentz TEM, 5 K)',
+                          url='https://arxiv.org/abs/1401.4062', **locators('cottet')),
               schaefermeier=dict(citation='Schaefermeier C. et al., arXiv:2602.13060 (BSCCO-2212, scanning NV magnetometry, 71 K)',
-                                 url='https://arxiv.org/abs/2602.13060', license='CC BY-NC-ND 4.0 (numbers only are used)'))
+                                 url='https://arxiv.org/abs/2602.13060', license='CC BY-NC-ND 4.0 (numbers only are used)',
+                                 **locators('schaefermeier')))
 SAMPLES = {'MgB2-508G': ('cottet', 5.08e-3, None), 'MgB2-561G': ('cottet', 5.61e-3, None), 'MgB2-1173G': ('cottet', 11.73e-3, None),
            'MgB2-1887G': ('cottet', 18.87e-3, None), 'BSCCO-855nm': ('schaefermeier', None, 855.0)}
 
@@ -59,10 +66,13 @@ def main():
         (OUT / name).write_text(text, encoding='utf-8', newline='\n')
         files[name] = dict(paper=paper, field_T=b, measured_spacing_nm=a_measured, spacing_nm=a, vortices=len(pts),
                            asset_sha256=hashlib.sha256(text.encode('utf-8')).hexdigest())
-    (OUT / 'sources.json').write_text(json.dumps(dict(route='paper_parameter_model', papers=PAPERS, phi0_Wb=PHI0,
+    (OUT / 'sources.json').write_text(json.dumps(dict(route='paper_parameter_model',
+                                                      license_statement=license_note.statement('arxiv-schaefermeier'), papers=PAPERS,
+                                                      phi0_Wb=PHI0,
                                                       model='ideal triangular lattice, one flux quantum per vortex; a = (2 Phi0/(sqrt3 B))^1/2 '
                                                             '(MgB2 fields) or the measured a (BSCCO); centres within 5.2 a; SHA-256-derived rotation',
-                                                      files=files), ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
+                                                      files=files, locators_note=paper_locators.NOTES['vortex']),
+                                                 ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
     print(json.dumps({k: (v['vortices'], round(v['spacing_nm'], 2)) for k, v in files.items()}))
 
 

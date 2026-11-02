@@ -18,15 +18,22 @@ python tools/build_cholesteric_assets.py
 import hashlib
 import json
 import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from tools import paper_locators  # noqa: E402
+from tools.paper_locators import locators  # noqa: E402
+
 OUT = ROOT / 'docs/assets/families/cholesteric'
 HTP = 107.5            # /um, R5011 or S5011 in E44
 PAPERS = dict(shaban=dict(citation='Shaban H. et al., Materials 17, 5080 (2024)', doi='https://doi.org/10.3390/ma17205080',
-                          open_copy='https://pmc.ncbi.nlm.nih.gov/articles/PMC11509098/', license='CC BY 4.0'),
+                          open_copy='https://pmc.ncbi.nlm.nih.gov/articles/PMC11509098/', license='CC BY 4.0',
+                          **locators('shaban')),
               dinc=dict(citation='Dinc R. U. et al., Org. Chem. Front. (2024)', doi='https://doi.org/10.1039/d4qo01672f',
-                        open_copy='https://pmc.ncbi.nlm.nih.gov/articles/PMC11492181/', license='CC BY 3.0'))
+                        open_copy='https://pmc.ncbi.nlm.nih.gov/articles/PMC11492181/', license='CC BY 3.0',
+                        **locators('dinc')))
 # name: (paper, handedness +1 right / -1 left, pitch nm, description, measured reflection nm or None)
 FILMS = {'E44-R5011-2.62wt': ('shaban', +1, 1e3 / (HTP * 0.0262), 'E44 + 2.62 wt% R5011', 585.0),
          'E44-S5011-2.57wt': ('shaban', -1, 1e3 / (HTP * 0.0257), 'E44 + 2.57 wt% S5011', 593.0),
@@ -86,7 +93,8 @@ def main():
     (OUT / 'sources.json').write_text(json.dumps(dict(route='paper_parameter_model', papers=PAPERS, htp_per_um=HTP,
                                                       e44=dict(ne=1.7904, no=1.5484, wavelength_nm=589, T_C=20),
                                                       model='ideal uniform twist; sites every 5 nm over 1500 nm along a SHA-256-derived axis',
-                                                      files=files), ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
+                                                      files=files, locators_note=paper_locators.NOTES['cholesteric']),
+                                                 ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
     print(json.dumps({k: (v['handedness'], round(v['pitch_nm'], 2)) for k, v in files.items()}))
 
 

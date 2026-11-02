@@ -15,9 +15,13 @@ stay on the reviewer side, in sources.json, together with the source file and it
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from tools import license_note  # noqa: E402
+
 OUT = ROOT / 'docs/assets/families/reaction'
 CITATION = ('Carare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, "Global properties of the energy landscape: '
             'a testing and training arena for machine learned potentials", npj Comput. Mater. (2025), '
@@ -83,6 +87,7 @@ def main():
         print('%-34s %2d atoms  E = %s eV' % (name, len(rows), energy))
     sources = dict(
         kind='reaction_sources', updated='2026-10-19', citation=CITATION, license=LICENSE,
+        license_statement=license_note.statement('figshare-landscape17'),
         dataset='Landscape17 (Figshare doi:10.6084/m9.figshare.29949230), local copy inputs/landscape17/ '
                 '(not in the repository; checksums in its SOURCES.md)',
         built_by='python tools/build_reaction_assets.py --landscape17 '
