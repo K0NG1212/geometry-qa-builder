@@ -7,15 +7,16 @@
 ### 许可审计（上传 Hugging Face 的前置）
 
 - **做了什么**：新增 `tools/export_license_audit.py` → [docs/data/license-audit.json](docs/data/license-audit.json)，
-  结论写成 [LICENSING.md](LICENSING.md)，规则由 `tests/test_license.py`（21 项）钉住。逐来源核了 **37 个来源**
+  结论写成 [LICENSING.md](LICENSING.md)，规则由 `tests/test_license.py`（22 项）钉住。逐来源核了 **37 个来源**
   （336 道在库题 + 1 张已发布但未用的卡）。
 - **结论**：**不可发布 0 个**；可直接发布 30 个；上传前要复核 6 个（都不阻塞，全是「来源不许转载原文 + 卡里有逐词相同短句」）；**要先做决定的 1 个：OE62**。
 - **三类发布物分开看**，只有第一类是转载问题：上游坐标 239 道、本项目按论文数值造的坐标 55 道、本项目转述的事实 42 道。
-- **许可只从记录读，不替来源断定**，三级证据：21 个来源的本机副本里有出版方自己的声明（JATS `<permissions>` 块或 PDF 许可行）；
+- **许可只从记录读，不替来源断定**，四层证据（出版方本机副本 > 来源许可页面 > 仅本项目记录 > 不依赖）：
+  21 个来源的本机副本里有出版方自己的声明（JATS `<permissions>` 块或 PDF 许可行）；
   **10 个来源的许可页面在 11-02 逐页读过**，原话、网址与日期记在
   [docs/data/license-statements.json](docs/data/license-statements.json) 和各自的 `sources.json`
   （PDB、COD、QM7-X、SAMPL9、Landscape17、OE62、Schäfermeier 2026）；只剩 **4 个**（四篇 arXiv 预印本）
-  仅凭本项目记录，而它们都不发布坐标、只用数值，不是阻塞项。**凡是本库发布其坐标的来源，许可现在都由来源自己确认。**
+  仅凭本项目记录，而它们都不发布坐标、只用数值，不是阻塞项；另有 2 个来源的许可本审计不依赖。**凡是本库发布其坐标的来源，许可现在都由来源自己确认。**
   有一页打不开（`https://www.wwpdb.org/about/usage-policies`，本会话浏览器被拒），改以 RCSB 使用政策页为证——
   该页正是转述 wwPDB 政策，两处同指 CC0 1.0；读不到这件事本身也记在 findings 里，没有当成读到了。
 - **OE62 是 CC BY-SA 4.0（相同方式共享）**，QNP023–QNP027 这 5 道发布了它的 `xyz_pbe_relaxed` 坐标原样。
@@ -36,6 +37,32 @@
   11-02 没有顺手"修"它：两个版本都允许再分发，差别在署名条款措辞，选哪个是人的判断。
 - **四个 arXiv 预印本说清楚了一件事**：arXiv 非独占许可是作者授权 arXiv 分发，**不是**授权第三方转载。
   这四篇一个字都没转载，依据是"事实与数值不受版权保护"，不是依据许可。
+
+- **许可记录放在没被哈希固定的文件里**：`docs/data/family-workbench.json` 的 `input_hashes` 覆盖 208 个已发布资产，
+  改它们会让 `evaluation/exam.py` 的附件校验失败，所以每条许可原话抄在资产旁边的 `sources.json`（不被哈希覆盖），
+  资产与 trace 一个字没动。原先没有 `sources.json` 的三处新建了：`docs/assets/families/conformers/`（QM7-X）、
+  `docs/assets/families/hostguest/`（SAMPL9）、`docs/assets/qa/sources-oe62.json`（OE62，逐题对到 CSD 代号）。
+  一条测试强制这些抄录与 `license-statements.json` **逐词一致**——写测试当天就抓到一处漂移（QM7-X 的格式转换说法）。
+- **LICENSING.md 的四张表改成生成的**：`<!-- audit-summary -->`、`<!-- audit-classes -->`、`<!-- audit-sources -->`、
+  `<!-- audit-statements -->` 四个标记区间由 `tools/export_license_audit.py` 重写，一条测试把表钉在生成结果上，
+  手改表格会变红。沿用 MEETING_2026-11-04.md 里 `scale-plan` 标记块的办法，防数字漂移。
+
+### 本线收尾（2026-11-02）
+
+- **已提交推送**：`df0474f`（审计 + 3000 道算术）与 `fbf6c77`（逐来源许可页面核对），都在 `origin/main`，没有 force。
+- **验证**：完整测试 **491 项 OK**（2568 秒）；因为后台跑启动后又改过 LICENSING.md 的散文，`tests.test_license` 单独复跑 22 项 OK；
+  `tools/check_links.py` 4509 条链接、内部 3553、坏链 0。
+- **这条线不再有可程序化推进的部分**，剩下的四件事都要人或外部批准，不要在没有这些答复的情况下接着改许可代码：
+
+  | 待决 | 卡在谁 | 什么时候 |
+  |---|---|---|
+  | OE62 的 CC BY-SA 4.0 路线（① 整库 / ② 主库 CC BY + 5 道子集（建议）/ ③ 撤掉 5 道） | 导师 | 11/04 组会 |
+  | Rando 2025 的 CC BY 3.0 vs 4.0（两版都允许再分发，差别在署名措辞） | 人 | 上传前，和重跑一起改 |
+  | COD 的引用要求（52 道里 43 道受影响），数据卡怎么写 | 人 | 冻结前 |
+  | 16 张 ≥8 词逐词相同的卡改写（其中 8 张来源不许转载，优先） | 用户（L1 审核） | 11/05 起每天 30 分钟 |
+
+- **等 11/05–11/08 的 A1 重跑才生效的**：25 条许可修正进已发布数据（之后删 `PENDING_RERUN_BLANK` / `PENDING_RERUN_MIT`）；
+  SAMPL9 / QM7-X 题的 `asset_record` 字段会新增指向这三个新 `sources.json`（本次只改仓库记录，已发布数据未重跑，这是预期差异，没有测试钉它）。
 
 ### 3000 道的算术
 
