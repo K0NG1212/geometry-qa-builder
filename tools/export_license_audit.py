@@ -14,9 +14,11 @@ because only the first is a redistribution question at all:
                          card's prose is scanned against the paper's own full text.
 
 The licence of a source is read off a record, never asserted. Strongest first: the publisher's own
-<permissions> block in the JATS XML we hold locally, or a licence line in the PDF; then a repo record
-(docs/assets/.../sources.json, a trace, the dataset's own licence file). Where the two disagree, or where
-nothing in the repo states the licence, the row says so and the finding is listed instead of smoothed over.
+<permissions> block in the JATS XML we hold locally, or a licence line in the PDF; then the source's own
+licence page, quoted with the date it was read, in docs/data/license-statements.json; then a repo record
+(docs/assets/.../sources.json, a trace, the dataset's own licence file) that an assistant wrote at download
+time. Where two of these disagree, or where nothing states the licence, the row says so and the finding is
+listed instead of smoothed over.
 
     python tools/export_license_audit.py          # writes docs/data/license-audit.json
     python tools/export_license_audit.py --print  # and prints the per-source table
@@ -36,6 +38,10 @@ import export_qa_folders as folders            # the same provenance labels the 
 # factual clauses overlap unavoidably ("the critical current is largest at B = 0"); the threshold marks where
 # a sentence stops being a restatement and starts being a copy.
 QUOTE_WORDS = 8
+
+# What each source's own licence page says, quoted with the date it was read. Written by hand from the pages
+# themselves (2026-11-02, read-only, nothing downloaded); this file is the evidence, not this tool.
+STATEMENTS_FILE = 'docs/data/license-statements.json'
 
 LICENCES = {
     'CC0-1.0': dict(label='CC0 1.0', republish=True, attribution=False, share_alike=False),
@@ -68,11 +74,14 @@ SOURCES = {
     'cod-mof': dict(name='Crystallography Open Database（MOF）', kind='database', declared='public-domain',
                     where=['docs/assets/materials/sources-cod-2026-10-03.json']),
     'qm7x': dict(name='QM7-X（Zenodo 4288677）', kind='dataset', declared='CC-BY-4.0',
-                 where=['docs/assets/families/conformers/QM7X-7032-i1-opt.json']),
+                 where=['docs/assets/families/conformers/sources.json',
+                        'docs/assets/families/molecules/sources.json',
+                        'docs/assets/families/conformers/QM7X-7032-i1-opt.json']),
     'oe62': dict(name='OE62（TUM mediaTUM 1507656）', kind='dataset', declared='CC-BY-SA-4.0',
-                 where=['docs/data/traces/QNP007.json']),
+                 where=['docs/assets/qa/sources-oe62.json', 'docs/data/traces/QNP007.json']),
     'sampl9': dict(name='SAMPL9 挑战赛（samplchallenges/SAMPL9）', kind='dataset', declared='CC-BY-4.0',
-                   where=['docs/data/SAMPL9-LICENSE.txt', 'docs/pilot-chem.html'],
+                   where=['docs/assets/families/hostguest/sources.json',
+                          'docs/data/SAMPL9-LICENSE.txt', 'docs/pilot-chem.html'],
                    also='仓库 README 的 LICENSE 节：代码 MIT，其余材料 CC BY 4.0。我们用的是主客体结构与 ITC 实测表，属“其余材料”'),
     'paper-landscape17-azobenzene': dict(name='Landscape17（Figshare 29949230）', kind='dataset', declared='CC-BY-4.0',
                                          where=['docs/assets/families/reaction/sources.json']),
@@ -179,10 +188,30 @@ PUBLISHES = {'database_verbatim': 'upstream_coordinates', 'database_reduced': 'u
 PUBLISHES_LABEL = {'upstream_coordinates': '上游坐标（照抄／展开／约简／旋转／转格式）',
                    'our_coordinates': '本项目生成的坐标（只用论文数值）',
                    'our_text': '本项目转述的事实（证据卡／设计卡，无坐标）'}
+PUBLISHES_SHORT = {'upstream_coordinates': '上游坐标', 'our_coordinates': '本项目坐标', 'our_text': '本项目转述'}
+PUBLISHES_NEED = {'upstream_coordinates': '必须允许再分发', 'our_coordinates': '不依赖来源许可',
+                  'our_text': '事实不受保护，但句子不能逐词照搬'}
+CONFIRMATION_LABEL = {'publisher_copy': '出版方副本', 'publisher_page': '来源许可页面',
+                      'repo_record_only': '仅本项目记录', 'not_relied_on': '不依赖'}
+VERDICT_LABEL = {'clear': '可发布', 'recheck': '上传前复核', 'decision_open': '待定', 'blocked': '不可发布'}
+
+# LICENSING.md keeps the three tables this tool generates between these markers, so a count in the page can
+# never disagree with docs/data/license-audit.json.
+LICENSING = ROOT / 'LICENSING.md'
 
 
 def read(rel):
     return json.loads((ROOT / rel).read_text(encoding='utf-8'))
+
+
+def statements():
+    """One entry per source whose own licence page has been read, keyed by the source it covers."""
+    out = {}
+    for sid, entry in read(STATEMENTS_FILE)['statements'].items():
+        for key in entry['covers']:
+            assert key not in out, 'two statements cover %s' % key
+            out[key] = dict(entry, id=sid)
+    return out
 
 
 def words(text):
@@ -322,6 +351,8 @@ def build():
                  if q.get('lifecycle') == 'active' and q.get('familyInstance')]
 
     rows, findings = [], []
+    pages = statements()
+    record = read(STATEMENTS_FILE)
     scan = quote_scan()
     by_source = {}
     for question in questions:
@@ -339,16 +370,22 @@ def build():
             label = PUBLISHES[folders.coordinates_kind(question, card)]
             kinds[label] = kinds.get(label, 0) + 1
         stated, statement = (licence_in(source['fulltext']) if source.get('fulltext') else (None, None))
+        page = pages.get(key)
         declared = source['declared']
-        licence = stated or declared
+        licence = stated or (page['license'] if page else None) or declared
         terms = LICENCES.get(licence) if licence else None
         where = [w for w in source['where'] if (ROOT / w).exists()]
+        if page:
+            where = where + [STATEMENTS_FILE]
         flagged = [r for r in scan if r['source'] == key and r.get('needs_rewording')]
         unchecked = [r for r in scan if r['source'] == key and not r['checked']]
-        # Who says so. A licence the source's own copy states is settled; one that only a record of ours
-        # states was written down by an assistant from the database's web page at download time, and is what
-        # a pre-upload check has to look at again.
-        confirmation = 'publisher_copy' if stated else ('repo_record_only' if licence else 'not_relied_on')
+        # Who says so. A licence the source's own copy states is settled; one quoted from the source's own
+        # licence page with the date it was read is the next best thing, because the page can be opened again
+        # and the quote says what was on it; one that only a record of ours states was written down by an
+        # assistant from the database's web page at download time, and is what a pre-upload check looks at.
+        confirmation = ('publisher_copy' if stated else
+                        'publisher_page' if page else
+                        'repo_record_only' if licence else 'not_relied_on')
         republished = 'upstream_coordinates' in kinds
         if republished and terms and not terms['republish']:
             verdict, note = 'blocked', '不能转载的来源却发布了它的坐标'
@@ -369,6 +406,9 @@ def build():
             license=licence, license_label=terms['label'] if terms else '不依赖许可（只用事实数值）',
             declared_in_repo=declared, stated_by_source=stated, source_statement=statement,
             confirmation=confirmation, evidence_paths=where,
+            confirmed_by_page=(None if not page else
+                               dict(statement=page['id'], url=page['url'], read_on=page['read_on'],
+                                    quote=page['quote'], obligation=page['obligation'])),
             fulltext_checked=source.get('fulltext') if stated else None,
             obligations=([] if not terms else
                          ([] if not terms['attribution'] else ['署名'])
@@ -382,6 +422,12 @@ def build():
                                  what='仓库记作 %s，论文自带的 JATS 许可块写的是 %s' % (declared, stated),
                                  where=where + [source['fulltext']],
                                  fix='以出版方声明为准：上传前在出版方页面确认，然后改仓库记录'))
+        if page and declared and page['license'] != declared:
+            findings.append(dict(id='licence-page-mismatch:' + key, severity='must_check',
+                                 what='仓库记作 %s，来源自己的许可页面（%s，%s 读）写的是 %s'
+                                      % (declared, page['url'], page['read_on'], page['license']),
+                                 where=where,
+                                 fix='以来源页面为准：改 tools/export_license_audit.py 的 SOURCES 与对应 sources.json'))
         if verdict == 'decision_open':
             findings.append(dict(id='licence-share-alike:' + key, severity='decision',
                                  what='%s 是相同方式共享许可，本库发布了它的坐标（%d 道）' % (licence, len(mine)),
@@ -418,8 +464,10 @@ def build():
             what='%d 个数据库／数据集的坐标已发布，而许可只有我们自己的记录：%s'
                  % (len(record_only), '、'.join(r['source'] for r in record_only)),
             where=sorted({p for r in record_only for p in r['evidence_paths']}),
-            fix='上传前逐个到来源页面核对一次（PDB CC0、COD 公有领域、QM7-X / OE62 / Landscape17 的 CC 声明），'
-                '把看到的原话和日期写进对应的 sources.json（PDB 与 COD 是下载时记的，SAMPL9 的分节许可只写在仓库外的 README 里）'))
+            fix='到来源的许可页面读一次，把原话、网址与日期写进 %s 和对应的 sources.json' % STATEMENTS_FILE))
+    for miss in record.get('not_reachable', []):
+        findings.append(dict(id='licence-page-unreachable', severity='note', what=miss['why'],
+                             where=[STATEMENTS_FILE], fix='想要一手页面就自己打开一次 ' + miss['url']))
     reword = [r for r in scan if r.get('needs_rewording')]
     if reword:
         findings.append(dict(id='card-prose-verbatim', severity='must_check',
@@ -434,14 +482,106 @@ def build():
         kind='license_audit', date=date.today().isoformat(), bank_run=workbench['run'],
         questions=len(questions), sources=len(SOURCES),
         scope='逐来源核对：我们从它那里发布了什么、它的许可允许什么、许可写在哪。'
-              '只读本仓库记录与本机论文全文，不联网；没有记录的写成 unverified，不替它断定。',
+              '许可只从记录读——出版方本机副本、来源许可页面的抄录（%s）、仓库自己的记录；'
+              '只有我们自己记录的会写明，不替来源断定。' % STATEMENTS_FILE,
         verdicts=published,
+        confirmations={k: sum(1 for r in rows if r['confirmation'] == k)
+                       for k in ('publisher_copy', 'publisher_page', 'repo_record_only', 'not_relied_on')},
+        statements=dict(file=STATEMENTS_FILE, read_on=record['read_on'],
+                        pages=len(record['statements']), sources_covered=len(pages),
+                        not_reachable=[m['url'] for m in record.get('not_reachable', [])]),
         quote_threshold=QUOTE_WORDS,
         quote_scan=scan,
         pending_rerun=dict(
             note='下面这些已在 templates/family-manifest.json 改好，但要等下一次重跑题库才会进已发布数据。',
             published_without_license=missing, published_as_mit=mit),
         rows=rows, findings=findings)
+
+
+def summary_table(audit):
+    """How many sources, and how many of each verdict. Every number comes from `audit`."""
+    out = ['| | |', '|---|---|',
+           '| 来源 | %d 个（%d 道在库题 + 1 张已发布但未用的卡） |' % (audit['sources'], audit['questions']),
+           '| 不可发布 | **%d 个** |' % audit['verdicts']['blocked'],
+           '| 可直接发布 | %d 个 |' % audit['verdicts']['clear'],
+           '| 上传前要复核 | %d 个（原因见下，都不是阻塞项） |' % audit['verdicts']['recheck']]
+    open_ = [r for r in audit['rows'] if r['verdict'] == 'decision_open']
+    out.append('| 要先做决定的 | **%d 个：%s** |'
+               % (len(open_), '、'.join('%s（%s）' % (r['source'].upper(), r['license_label']) for r in open_)))
+    out += ['| 许可由来源自己确认 | %d 个（出版方本机副本 %d + 来源许可页面 %d，%s 读） |'
+            % (audit['confirmations']['publisher_copy'] + audit['confirmations']['publisher_page'],
+               audit['confirmations']['publisher_copy'], audit['confirmations']['publisher_page'],
+               audit['statements']['read_on']),
+            '| 许可只有本项目记录 | %d 个（都不发布它的坐标） |' % audit['confirmations']['repo_record_only']]
+    return '\n'.join(out)
+
+
+def class_table(audit):
+    totals = {}
+    for row in audit['rows']:
+        for kind, n in row['publishes'].items():
+            totals[kind] = totals.get(kind, 0) + n
+    out = ['| 类别 | 道数 | 含义 | 许可要求 |', '|---|---|---|---|']
+    meaning = {'upstream_coordinates': '附件里的数字是来源自己的（照抄、对称展开、约简成质心、刚性旋转、转格式）',
+               'our_coordinates': '几何是本项目按论文印出的标量（晶格常数、转角、螺距）造的',
+               'our_text': '证据卡／设计卡：本项目转述的事实与数值，每条带原文位置'}
+    for kind in ('upstream_coordinates', 'our_coordinates', 'our_text'):
+        out.append('| %s | %d | %s | %s |'
+                   % (PUBLISHES_SHORT[kind], totals.get(kind, 0), meaning[kind], PUBLISHES_NEED[kind]))
+    return '\n'.join(out)
+
+
+def source_table(audit):
+    out = ['| 来源 | 道数 | 发布什么 | 许可 | 许可出处 | 判定 |', '|---|---|---|---|---|---|']
+    for row in audit['rows']:
+        licence = row['license_label']
+        if row['stated_by_source'] and row['declared_in_repo'] and row['stated_by_source'] != row['declared_in_repo']:
+            licence += ' ← 原记作 ' + LICENCES[row['declared_in_repo']]['label']
+        where = CONFIRMATION_LABEL[row['confirmation']]
+        if row['confirmation'] == 'publisher_page':
+            where += '（%s 读）' % row['confirmed_by_page']['read_on']
+        cells = [row['name'], str(row['questions']),
+                 '、'.join('%s %d' % (PUBLISHES_SHORT[k], n) for k, n in row['publishes'].items()) or '—',
+                 licence, where, VERDICT_LABEL[row['verdict']]]
+        if row['verdict'] in ('decision_open', 'blocked'):
+            cells = ['**%s**' % c for c in cells]
+        out.append('| %s |' % ' | '.join(cells))
+    return '\n'.join(out)
+
+
+def statements_table(audit):
+    """What each source's own licence page says, quoted, with the date it was read."""
+    record = read(STATEMENTS_FILE)['statements']
+    out = ['| 来源页面 | 覆盖哪些来源 | 看到的原话 | 许可 | 义务 |', '|---|---|---|---|---|']
+    order = {}
+    for row in audit['rows']:
+        if row['confirmed_by_page']:
+            order.setdefault(row['confirmed_by_page']['statement'], []).append(row['name'])
+    for sid, names in order.items():
+        entry = record[sid]
+        out.append('| [%s](%s)（%s 读） | %s | `%s`%s | %s | %s |'
+                   % (entry['name'], entry['url'], entry['read_on'], '；'.join(names), entry['quote'],
+                      '<br>—— %s' % entry['quote_is'] if entry.get('quote_is') else '',
+                      LICENCES[entry['license']]['label'], entry['obligation']))
+    return '\n'.join(out)
+
+
+BLOCKS = {'audit-summary': summary_table, 'audit-classes': class_table, 'audit-sources': source_table,
+          'audit-statements': statements_table}
+
+
+def refresh(audit, path=LICENSING):
+    """Rewrite each generated table in place; leave the prose around it alone."""
+    if not path.exists():
+        return
+    text = path.read_text(encoding='utf-8')
+    for name, build_table in BLOCKS.items():
+        begin, end = '<!-- %s:begin -->' % name, '<!-- %s:end -->' % name
+        if begin not in text:
+            continue
+        block = '%s\n\n%s\n\n%s' % (begin, build_table(audit), end)
+        text = re.sub(re.escape(begin) + r'.*?' + re.escape(end), lambda m: block, text, flags=re.S)
+    path.write_bytes(text.replace('\r\n', '\n').encode('utf-8'))
 
 
 def main():
@@ -451,6 +591,7 @@ def main():
     audit = build()
     out = ROOT / 'docs/data/license-audit.json'
     out.write_bytes((json.dumps(audit, ensure_ascii=False, indent=1) + '\n').encode('utf-8'))
+    refresh(audit)
     print('License audit: %d sources, %d questions; %s' %
           (audit['sources'], audit['questions'],
            '，'.join('%s %d' % (k, v) for k, v in audit['verdicts'].items())))

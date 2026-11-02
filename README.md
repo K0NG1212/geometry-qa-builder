@@ -30,6 +30,7 @@
 | builder_modules/ | 七个模块目录，各有代码、格式、说明；AI 模块另有提示词 |
 | RUNBOOK.md | Codex 逐步执行说明，无需安装全局 Skill |
 | LICENSING.md | 逐来源许可审计（上传 Hugging Face 的前置），由 `tools/export_license_audit.py` 生成 |
+| docs/data/license-statements.json | 各来源许可页面上的原话、网址与阅读日期（2026-11-02 只读抄录），审计里最强证据之一 |
 | builder.py、prompts/、schemas/、modules/ | 保留旧版核心、共用工具和兼容文件 |
 | tests/ | 来源、计算、快照、续跑和失败路径测试 |
 | tools/replay_demo.py | 无模型调用的合成软件回放 |

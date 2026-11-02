@@ -1,0 +1,40 @@
+{
+ "kind": "qa_sources",
+ "updated": "2026-11-02",
+ "upstream": "OE62 分子轨道能数据集（TUM mediaTUM 记录 1507656，doi:10.14459/2019mp1507656），df_62k.json 的 xyz_pbe_relaxed 坐标",
+ "license": "CC BY-SA 4.0（相同方式共享）",
+ "license_statement": {
+  "statement": "mediatum-oe62",
+  "record": "docs/data/license-statements.json",
+  "license": "CC-BY-SA-4.0",
+  "url": "https://mediatum.ub.tum.de/1507656",
+  "read_on": "2026-11-02",
+  "quote": "by-sa, http://creativecommons.org/licenses/by-sa/4.0",
+  "quote_is": "记录的 Rechte（权利）字段；记录 2019-07-11 发布，负责人 Oberhofer, Harald",
+  "obligation": "署名 + 相同方式共享。署名：Stuke, Kunkel, Golze, Todorović, Margraf, Reuter, Rinke & Oberhofer，doi:10.14459/2019mp1507656，论文 doi:10.1038/s41597-020-0385-y。"
+ },
+ "why_this_file": "这 5 个附件是 OE62 的坐标原样，而 CC BY-SA 4.0 是传染性许可：发布它们会影响整库能用什么许可上传 Hugging Face。2026-11-02 在来源页面确认了这一条（原先只有我们自己的记录），决定仍未做（见 docs/data/license-audit.json 的 licence-share-alike:oe62，三条路列在 LICENSING.md 与 MEETING_2026-11-04.md）。",
+ "files": {
+  "QNP007-MAJHUB.xyz": {
+   "molecule": "MAJHUB",
+   "instance": "FC-QNP007"
+  },
+  "QNP008-JIMHOC.xyz": {
+   "molecule": "JIMHOC",
+   "instance": "FC-QNP008"
+  },
+  "QNP009-KEGPOC.xyz": {
+   "molecule": "KEGPOC",
+   "instance": "FC-QNP009"
+  },
+  "QNP010-KEWGID.xyz": {
+   "molecule": "KEWGID",
+   "instance": "FC-QNP010"
+  },
+  "QNP011-PEKZAG.xyz": {
+   "molecule": "PEKZAG",
+   "instance": "FC-QNP011"
+  }
+ },
+ "note": "坐标为 OE62 的 PBE+vdW 松弛构型，逐位照抄；最大原子间距等答案由本项目计算，不是转载的数值。其余 OE62 字段（PBE0 与 G0W0@PBE0 轨道能）只在教师侧。"
+}

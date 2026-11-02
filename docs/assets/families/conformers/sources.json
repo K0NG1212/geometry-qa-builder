@@ -1,0 +1,25 @@
+{
+ "kind": "conformer_sources",
+ "updated": "2026-11-02",
+ "upstream": "QM7-X（Zenodo 记录 4288677，Version 2.0），PBE0+MBD 性质 / DFTB3+MBD 优化构型",
+ "license": "CC BY 4.0",
+ "license_statement": {
+  "statement": "zenodo-qm7x",
+  "record": "docs/data/license-statements.json",
+  "license": "CC-BY-4.0",
+  "url": "https://zenodo.org/records/4288677",
+  "read_on": "2026-11-02",
+  "quote": "Creative Commons Attribution 4.0 International",
+  "quote_is": "记录的 Rights / License 字段（Version 2.0，2020-11-23 发布）",
+  "obligation": "署名：Hoja, Medrano Sandonas, Ernst, Vazquez-Mayagoitia, DiStasio Jr. & Tkatchenko, Sci. Data 8, 43 (2021)，doi:10.1038/s41597-021-00812-2，并指明本库改了格式（HDF5 → XYZ / JSON，只取坐标与所需标量）。"
+ },
+ "why_this_file": "本目录的每个 JSON 都是考生附件，内容进了题库的 input_hashes，不能再改；许可记录因此单独放这里。2026-11-02 许可审计（LICENSING.md）把 QM7-X 的许可从“只有我们自己的记录”升级为出版方确认。",
+ "covers": [
+  "docs/assets/families/conformers/QM7X-*.json（本目录，构型选择题）",
+  "docs/assets/families/force-path/QM7X-*.json（力—路径题）",
+  "docs/assets/families/stereo/QM7X-*.json（立体化学题）",
+  "docs/assets/families/molecules/QM7X-*.xyz（另见该目录的 sources.json）",
+  "docs/assets/qa/QNP002-7035-opt.xyz、QNP003-7070-opt.xyz、QNP004-7002-opt.xyz、QNP005-7040-opt.xyz、QNP006-7122-opt.xyz"
+ ],
+ "note": "许可允许再分发与改编，没有相同方式共享条款；本库发布 QM7-X 坐标不牵连整库许可。原始 HDF5 分卷不在仓库里（见 inputs/ 的记录）。"
+}

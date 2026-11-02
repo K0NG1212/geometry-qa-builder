@@ -1,0 +1,114 @@
+{
+ "kind": "license_statements",
+ "note": "来源自己的许可页面上的原话。2026-11-02 用内置浏览器只读打开各页面抄录，没有下载任何文件。这是许可审计里 confirmation = publisher_page 的一级证据：tools/export_license_audit.py 读本文件，tests/test_license.py 校验它与各 sources.json 的记载一致。本文件只抄许可条款本身（允许做什么、要求什么），不抄来源的其他正文。",
+ "read_on": "2026-11-02",
+ "read_by": "Claude Code 会话，模型 claude-opus-5",
+ "statements": {
+  "rcsb-usage-policy": {
+   "name": "RCSB PDB 使用政策页",
+   "covers": [
+    "pdb-bio-nm",
+    "pdb-dna-origami",
+    "pdb-1aa5-vancomycin"
+   ],
+   "license": "CC0-1.0",
+   "url": "https://www.rcsb.org/pages/usage-policy",
+   "page_title": "RCSB PDB: Usage Policies",
+   "read_on": "2026-11-02",
+   "quote": "The wwPDB policy states that data files contained in the PDB archive are available under the CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.",
+   "obligation": "许可本身无强制义务。同页另说：鼓励使用者署名 PDB 结构数据的原作者（encouraged，不是条件）。本库照此在每道题的 attribution 里写原沉积作者与 PDB 编号。",
+   "also": "同页把 RCSB 的软件（MIT / Apache 2.0）、Molecule of the Month 插图（CC BY 4.0）与站上文章（保留版权）分开写。本库只用 PDB 档案里的坐标文件，三者都没有用。"
+  },
+  "cod-home": {
+   "name": "Crystallography Open Database 首页许可声明",
+   "covers": [
+    "cod-materials-cell",
+    "cod-mof"
+   ],
+   "license": "public-domain",
+   "url": "https://www.crystallography.net/cod/",
+   "page_title": "Crystallography Open Database",
+   "read_on": "2026-11-02",
+   "quote": "All data in the COD and the database itself are dedicated to the public domain and licensed under the CC0 License.",
+   "obligation": "许可本身无强制义务。同句之后另说：使用者应致谢结构数据的原作者（should acknowledge）。COD 的 CIF 文件头同样要求引用原始文献——本库 52 道 COD 题里只有 9 道在许可字段里记了原始文献，其余要在 L1 补齐。",
+   "also": "页面导航里的 License 链接直接指向 https://creativecommons.org/publicdomain/zero/1.0/ ；首页另写明数据由贡献者置于公有领域。"
+  },
+  "zenodo-qm7x": {
+   "name": "QM7-X 的 Zenodo 记录（4288677，Version 2.0）",
+   "covers": [
+    "qm7x"
+   ],
+   "license": "CC-BY-4.0",
+   "url": "https://zenodo.org/records/4288677",
+   "page_title": "QM7-X: A comprehensive dataset of quantum-mechanical properties spanning the chemical space of small organic molecules | Zenodo",
+   "read_on": "2026-11-02",
+   "quote": "Creative Commons Attribution 4.0 International",
+   "quote_is": "记录的 Rights / License 字段（Version 2.0，2020-11-23 发布）",
+   "obligation": "署名：Hoja, Medrano Sandonas, Ernst, Vazquez-Mayagoitia, DiStasio Jr. & Tkatchenko, Sci. Data 8, 43 (2021)，doi:10.1038/s41597-021-00812-2，并指明本库改了格式（HDF5 → XYZ / JSON，只取坐标与所需标量）。",
+   "also": "许可允许再分发与改编，没有相同方式共享条款，因此本库发布 QM7-X 坐标不受整库许可牵连。"
+  },
+  "sampl9-readme": {
+   "name": "SAMPL9 仓库 README 的 LICENSE 节",
+   "covers": [
+    "sampl9"
+   ],
+   "license": "CC-BY-4.0",
+   "url": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/master/README.md",
+   "page_title": "samplchallenges/SAMPL9 README（## LICENSE 节）",
+   "read_on": "2026-11-02",
+   "quote": "MIT for all software/code / CC-BY 4.0 for all other materials",
+   "quote_is": "LICENSE 节的两条分项；引语前一句说明这里的材料按情况分别适用 CC-BY 与 MIT 两种许可",
+   "obligation": "署名：SAMPL9 挑战赛（samplchallenges/SAMPL9）与 ITC 实测数据的提供者（WP6 为 Isaacs 组，bCD 为 Gilson 组）；README 另请致谢 NIH R01GM124270（David L. Mobley, UC Irvine）。",
+   "also": "这一条直接否掉了本库原先的记法：本库用的是主客体 3D 结构与 ITC 实测表，属“其余材料”，归 CC BY 4.0，不是 MIT。13 个族实例的许可字段已据此改好（manifest 已改，已发布数据等 11/05–11/08 重跑）。"
+  },
+  "figshare-landscape17": {
+   "name": "Landscape17 的 Figshare 条目（29949230）",
+   "covers": [
+    "paper-landscape17-azobenzene"
+   ],
+   "license": "CC-BY-4.0",
+   "url": "https://figshare.com/articles/dataset/Landscape17/29949230",
+   "page_title": "Item - Landscape17 - figshare",
+   "read_on": "2026-11-02",
+   "quote": "CC BY 4.0",
+   "quote_is": "条目的 LICENCE 字段（数据集 2025-08-22 发布，Vlad Cărare 等）",
+   "obligation": "署名：Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, npj Comput. Mater. (2025)，doi:10.1038/s41524-025-01878-x，数据集 doi:10.6084/m9.figshare.29949230；并指明本库去掉了力列与能量注释，只留坐标。",
+   "also": "条目页请求引用上面那篇论文（please consider citing）。论文本身另有许可，本库没有转载论文正文。"
+  },
+  "mediatum-oe62": {
+   "name": "OE62 的 TUM mediaTUM 记录（1507656）",
+   "covers": [
+    "oe62"
+   ],
+   "license": "CC-BY-SA-4.0",
+   "url": "https://mediatum.ub.tum.de/1507656",
+   "page_title": "\"OE62-dataset\" of molecular orbital energies — mediaTUM",
+   "read_on": "2026-11-02",
+   "quote": "by-sa, http://creativecommons.org/licenses/by-sa/4.0",
+   "quote_is": "记录的 Rechte（权利）字段；记录 2019-07-11 发布，负责人 Oberhofer, Harald",
+   "obligation": "署名 + 相同方式共享。署名：Stuke, Kunkel, Golze, Todorović, Margraf, Reuter, Rinke & Oberhofer，doi:10.14459/2019mp1507656，论文 doi:10.1038/s41597-020-0385-y。",
+   "also": "这一条把 OE62 的相同方式共享从“我们自己的记录”变成出版方确认：5 道题发布了 OE62 的 xyz_pbe_relaxed 坐标，整库许可必须先定（见 findings 的 licence-share-alike:oe62）。"
+  },
+  "arxiv-schaefermeier": {
+   "name": "arXiv:2602.13060 摘要页的权利栏",
+   "covers": [
+    "paper-schaefermeier-bscco-vortex"
+   ],
+   "license": "CC-BY-NC-ND-4.0",
+   "url": "https://arxiv.org/abs/2602.13060",
+   "page_title": "[2602.13060] Quantitative imaging of Abrikosov vortices by scanning quantum magnetometry",
+   "read_on": "2026-11-02",
+   "quote": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+   "quote_is": "摘要页 “Rights to this article” 一栏的许可链接与图标（页面上只有图标和 view license 两个字，许可由链接本身给出）",
+   "obligation": "署名 + 不得改编 + 非商业。本库只用该文的数值（涡旋点阵常数等），不转载文字与图，因此这些限制不影响发布；记录在案是为了别人不会误以为可以再分发原文。",
+   "also": "2026-11-02 许可审计原来把这一条列为“本机副本里没有许可行、只有我们自己的记录”（arXiv PDF 内页不印许可）；摘要页补上了这一环。"
+  }
+ },
+ "not_reachable": [
+  {
+   "url": "https://www.wwpdb.org/about/usage-policies",
+   "tried_on": "2026-11-02",
+   "why": "本会话的内置浏览器打不开该站（导航被拒绝）。wwPDB 的原话改以 RCSB 使用政策页为证——该页正是转述 wwPDB 政策，两处同指 CC0 1.0。上传前若要 wwPDB 的一手页面，自己打开一次即可。"
+  }
+ ]
+}

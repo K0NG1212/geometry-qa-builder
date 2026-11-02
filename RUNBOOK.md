@@ -91,16 +91,30 @@ python tools/export_license_audit.py --print
 **三类发布物分开看，只有第一类是转载问题**：上游坐标（照抄／对称展开／约简／旋转／转格式，必须允许再分发）、
 本项目按论文数值造的坐标（不依赖来源许可）、本项目转述的事实（事实不受保护，但句子不能逐词照搬）。
 
-许可**只从记录里读，不替来源断定**。强的在前：论文本机副本里出版方自己的声明（JATS `<permissions>` 块或 PDF
-上的许可行），然后才是本仓库的记录（`sources.json`、trace、数据集自带的许可文件）。两者不一致、或仓库里根本
-没写，审计就如实标出来，不抹平。全文不在本机时对应的卡记成 `checked: false` 并写明原因，**不会**把没测过的
-当成干净的。
+许可**只从记录里读，不替来源断定**。强的在前：
+
+1. 论文本机副本里出版方自己的声明（JATS `<permissions>` 块或 PDF 上的许可行）；
+2. 来源自己的许可页面，原话、网址与阅读日期记在 [docs/data/license-statements.json](docs/data/license-statements.json)，
+   并在对应的 `sources.json` 里重复一份（测试要求两处逐字一致）；
+3. 本仓库下载时记的那一条（`sources.json`、trace、数据集自带的许可文件）。
+
+几级不一致、或仓库里根本没写，审计就如实标出来，不抹平。全文不在本机时对应的卡记成 `checked: false` 并写明原因，
+**不会**把没测过的当成干净的；许可页面打不开时记进 `not_reachable` 并出一条 findings，也不会当成读到了。
+**凡是本库发布其坐标的来源，许可必须到第 1 或第 2 级**——只有第 3 级就说明上传前还没核对。
 
 证据卡与设计卡的句子会和论文全文逐词比对，连续相同 **8 个词**以上进 L1 改写清单。改卡片会变动已发布资产的
 哈希，所以和下一次重跑题库一起做。
 
-新增一个来源时：把它的许可写进对应的 `sources.json` 和 `templates/family-manifest.json` 的实例条目，再把来源
-加进 `tools/export_license_audit.py` 的 `SOURCES` 表（否则 `tests/test_license.py` 会报这个来源没登记）。
+新增一个来源时：
+
+- 把它的许可写进对应的 `sources.json` 和 `templates/family-manifest.json` 的实例条目；
+- 把来源加进 `tools/export_license_audit.py` 的 `SOURCES` 表（否则 `tests/test_license.py` 会报这个来源没登记）；
+- **如果要发布它的坐标**，去它自己的许可页面读一遍，把原话、网址、日期写进 `docs/data/license-statements.json`
+  的 `statements`（`covers` 填来源键），再把同一段抄进那个目录的 `sources.json` 的 `license_statement`。
+  只读页面、不下载。
+
+LICENSING.md 里的四张表（结论、三类发布物、逐来源、许可页面原话）都由工具写在 `<!-- audit-*:begin -->` 标记之间，
+不手写数字；`tests/test_license.py` 会把页面上的数字和 JSON 对一遍。
 
 规模的算术（3000 道还差多少、三处上限各是多少）由 `python tools/export_scale_plan.py` 从数据算出，
 写进 [docs/data/scale-plan.json](docs/data/scale-plan.json) 与 [MEETING_2026-11-04.md](MEETING_2026-11-04.md)

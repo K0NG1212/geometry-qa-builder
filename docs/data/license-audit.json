@@ -4,12 +4,27 @@
  "bank_run": "family-pilot-v42",
  "questions": 336,
  "sources": 37,
- "scope": "逐来源核对：我们从它那里发布了什么、它的许可允许什么、许可写在哪。只读本仓库记录与本机论文全文，不联网；没有记录的写成 unverified，不替它断定。",
+ "scope": "逐来源核对：我们从它那里发布了什么、它的许可允许什么、许可写在哪。许可只从记录读——出版方本机副本、来源许可页面的抄录（docs/data/license-statements.json）、仓库自己的记录；只有我们自己记录的会写明，不替来源断定。",
  "verdicts": {
-  "clear": 22,
-  "recheck": 14,
+  "clear": 30,
+  "recheck": 6,
   "decision_open": 1,
   "blocked": 0
+ },
+ "confirmations": {
+  "publisher_copy": 21,
+  "publisher_page": 10,
+  "repo_record_only": 4,
+  "not_relied_on": 2
+ },
+ "statements": {
+  "file": "docs/data/license-statements.json",
+  "read_on": "2026-11-02",
+  "pages": 7,
+  "sources_covered": 10,
+  "not_reachable": [
+   "https://www.wwpdb.org/about/usage-policies"
+  ]
  },
  "quote_threshold": 8,
  "quote_scan": [
@@ -519,16 +534,24 @@
    "declared_in_repo": "CC0-1.0",
    "stated_by_source": null,
    "source_statement": null,
-   "confirmation": "repo_record_only",
+   "confirmation": "publisher_page",
    "evidence_paths": [
     "docs/assets/families/assemblies/sources.json",
-    "docs/assets/bio/sources-2026-10-03.json"
+    "docs/assets/bio/sources-2026-10-03.json",
+    "docs/data/license-statements.json"
    ],
+   "confirmed_by_page": {
+    "statement": "rcsb-usage-policy",
+    "url": "https://www.rcsb.org/pages/usage-policy",
+    "read_on": "2026-11-02",
+    "quote": "The wwPDB policy states that data files contained in the PDB archive are available under the CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.",
+    "obligation": "许可本身无强制义务。同页另说：鼓励使用者署名 PDB 结构数据的原作者（encouraged，不是条件）。本库照此在每道题的 attribution 里写原沉积作者与 PDB 编号。"
+   },
    "fulltext_checked": null,
    "obligations": [],
    "also": null,
-   "verdict": "recheck",
-   "verdict_note": "发布了它的坐标，而许可只有我们自己的记录，没有本机可核对的上游副本",
+   "verdict": "clear",
+   "verdict_note": "",
    "cards_to_reword": [],
    "cards_unchecked": []
   },
@@ -554,16 +577,24 @@
    "declared_in_repo": "public-domain",
    "stated_by_source": null,
    "source_statement": null,
-   "confirmation": "repo_record_only",
+   "confirmation": "publisher_page",
    "evidence_paths": [
     "docs/assets/materials/sources-cod-2026-10-03.json",
-    "docs/assets/materials/sources-noncubic.json"
+    "docs/assets/materials/sources-noncubic.json",
+    "docs/data/license-statements.json"
    ],
+   "confirmed_by_page": {
+    "statement": "cod-home",
+    "url": "https://www.crystallography.net/cod/",
+    "read_on": "2026-11-02",
+    "quote": "All data in the COD and the database itself are dedicated to the public domain and licensed under the CC0 License.",
+    "obligation": "许可本身无强制义务。同句之后另说：使用者应致谢结构数据的原作者（should acknowledge）。COD 的 CIF 文件头同样要求引用原始文献——本库 52 道 COD 题里只有 9 道在许可字段里记了原始文献，其余要在 L1 补齐。"
+   },
    "fulltext_checked": null,
    "obligations": [],
    "also": "COD 文件头要求引用原始文献；52 道中只有 9 道在许可字段里记了原始文献",
-   "verdict": "recheck",
-   "verdict_note": "发布了它的坐标，而许可只有我们自己的记录，没有本机可核对的上游副本",
+   "verdict": "clear",
+   "verdict_note": "",
    "cards_to_reword": [],
    "cards_unchecked": []
   },
@@ -594,17 +625,27 @@
    "declared_in_repo": "CC-BY-4.0",
    "stated_by_source": null,
    "source_statement": null,
-   "confirmation": "repo_record_only",
+   "confirmation": "publisher_page",
    "evidence_paths": [
-    "docs/assets/families/conformers/QM7X-7032-i1-opt.json"
+    "docs/assets/families/conformers/sources.json",
+    "docs/assets/families/molecules/sources.json",
+    "docs/assets/families/conformers/QM7X-7032-i1-opt.json",
+    "docs/data/license-statements.json"
    ],
+   "confirmed_by_page": {
+    "statement": "zenodo-qm7x",
+    "url": "https://zenodo.org/records/4288677",
+    "read_on": "2026-11-02",
+    "quote": "Creative Commons Attribution 4.0 International",
+    "obligation": "署名：Hoja, Medrano Sandonas, Ernst, Vazquez-Mayagoitia, DiStasio Jr. & Tkatchenko, Sci. Data 8, 43 (2021)，doi:10.1038/s41597-021-00812-2，并指明本库改了格式（HDF5 → XYZ / JSON，只取坐标与所需标量）。"
+   },
    "fulltext_checked": null,
    "obligations": [
     "署名"
    ],
    "also": null,
-   "verdict": "recheck",
-   "verdict_note": "发布了它的坐标，而许可只有我们自己的记录，没有本机可核对的上游副本",
+   "verdict": "clear",
+   "verdict_note": "",
    "cards_to_reword": [],
    "cards_unchecked": []
   },
@@ -632,18 +673,27 @@
    "declared_in_repo": "CC-BY-4.0",
    "stated_by_source": null,
    "source_statement": null,
-   "confirmation": "repo_record_only",
+   "confirmation": "publisher_page",
    "evidence_paths": [
+    "docs/assets/families/hostguest/sources.json",
     "docs/data/SAMPL9-LICENSE.txt",
-    "docs/pilot-chem.html"
+    "docs/pilot-chem.html",
+    "docs/data/license-statements.json"
    ],
+   "confirmed_by_page": {
+    "statement": "sampl9-readme",
+    "url": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/master/README.md",
+    "read_on": "2026-11-02",
+    "quote": "MIT for all software/code / CC-BY 4.0 for all other materials",
+    "obligation": "署名：SAMPL9 挑战赛（samplchallenges/SAMPL9）与 ITC 实测数据的提供者（WP6 为 Isaacs 组，bCD 为 Gilson 组）；README 另请致谢 NIH R01GM124270（David L. Mobley, UC Irvine）。"
+   },
    "fulltext_checked": null,
    "obligations": [
     "署名"
    ],
    "also": "仓库 README 的 LICENSE 节：代码 MIT，其余材料 CC BY 4.0。我们用的是主客体结构与 ITC 实测表，属“其余材料”",
-   "verdict": "recheck",
-   "verdict_note": "发布了它的坐标，而许可只有我们自己的记录，没有本机可核对的上游副本",
+   "verdict": "clear",
+   "verdict_note": "",
    "cards_to_reword": [],
    "cards_unchecked": []
   },
@@ -677,6 +727,7 @@
     "docs/assets/families/evidence/sources.json",
     "docs/assets/families/moire/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": null,
    "obligations": [
     "署名",
@@ -712,17 +763,25 @@
    "declared_in_repo": "CC-BY-4.0",
    "stated_by_source": null,
    "source_statement": null,
-   "confirmation": "repo_record_only",
+   "confirmation": "publisher_page",
    "evidence_paths": [
-    "docs/assets/families/reaction/sources.json"
+    "docs/assets/families/reaction/sources.json",
+    "docs/data/license-statements.json"
    ],
+   "confirmed_by_page": {
+    "statement": "figshare-landscape17",
+    "url": "https://figshare.com/articles/dataset/Landscape17/29949230",
+    "read_on": "2026-11-02",
+    "quote": "CC BY 4.0",
+    "obligation": "署名：Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, npj Comput. Mater. (2025)，doi:10.1038/s41524-025-01878-x，数据集 doi:10.6084/m9.figshare.29949230；并指明本库去掉了力列与能量注释，只留坐标。"
+   },
    "fulltext_checked": null,
    "obligations": [
     "署名"
    ],
    "also": null,
-   "verdict": "recheck",
-   "verdict_note": "发布了它的坐标，而许可只有我们自己的记录，没有本机可核对的上游副本",
+   "verdict": "clear",
+   "verdict_note": "",
    "cards_to_reword": [],
    "cards_unchecked": []
   },
@@ -755,6 +814,7 @@
     "docs/assets/families/evidence/sources.json",
     "docs/assets/families/vortex/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": null,
    "obligations": [
     "署名",
@@ -794,6 +854,7 @@
    "evidence_paths": [
     "docs/assets/families/superlattices/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": null,
    "obligations": [],
    "also": "只用 Table 1 的数值（事实数据），不转载任何内容",
@@ -831,6 +892,7 @@
    "evidence_paths": [
     "docs/assets/families/cholesteric/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/papers/shaban2024/shaban2024-PMC11509098.xml",
    "obligations": [
     "署名"
@@ -866,15 +928,23 @@
    "declared_in_repo": "CC0-1.0",
    "stated_by_source": null,
    "source_statement": null,
-   "confirmation": "repo_record_only",
+   "confirmation": "publisher_page",
    "evidence_paths": [
-    "docs/assets/families/assemblies/sources.json"
+    "docs/assets/families/assemblies/sources.json",
+    "docs/data/license-statements.json"
    ],
+   "confirmed_by_page": {
+    "statement": "rcsb-usage-policy",
+    "url": "https://www.rcsb.org/pages/usage-policy",
+    "read_on": "2026-11-02",
+    "quote": "The wwPDB policy states that data files contained in the PDB archive are available under the CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.",
+    "obligation": "许可本身无强制义务。同页另说：鼓励使用者署名 PDB 结构数据的原作者（encouraged，不是条件）。本库照此在每道题的 attribution 里写原沉积作者与 PDB 编号。"
+   },
    "fulltext_checked": null,
    "obligations": [],
    "also": null,
-   "verdict": "recheck",
-   "verdict_note": "发布了它的坐标，而许可只有我们自己的记录，没有本机可核对的上游副本",
+   "verdict": "clear",
+   "verdict_note": "",
    "cards_to_reword": [],
    "cards_unchecked": []
   },
@@ -900,15 +970,23 @@
    "declared_in_repo": "public-domain",
    "stated_by_source": null,
    "source_statement": null,
-   "confirmation": "repo_record_only",
+   "confirmation": "publisher_page",
    "evidence_paths": [
-    "docs/assets/materials/sources-cod-2026-10-03.json"
+    "docs/assets/materials/sources-cod-2026-10-03.json",
+    "docs/data/license-statements.json"
    ],
+   "confirmed_by_page": {
+    "statement": "cod-home",
+    "url": "https://www.crystallography.net/cod/",
+    "read_on": "2026-11-02",
+    "quote": "All data in the COD and the database itself are dedicated to the public domain and licensed under the CC0 License.",
+    "obligation": "许可本身无强制义务。同句之后另说：使用者应致谢结构数据的原作者（should acknowledge）。COD 的 CIF 文件头同样要求引用原始文献——本库 52 道 COD 题里只有 9 道在许可字段里记了原始文献，其余要在 L1 补齐。"
+   },
    "fulltext_checked": null,
    "obligations": [],
    "also": null,
-   "verdict": "recheck",
-   "verdict_note": "发布了它的坐标，而许可只有我们自己的记录，没有本机可核对的上游副本",
+   "verdict": "clear",
+   "verdict_note": "",
    "cards_to_reword": [],
    "cards_unchecked": []
   },
@@ -940,6 +1018,7 @@
    "evidence_paths": [
     "docs/assets/families/evidence/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "../paper-batch-v04-001/materials/hbond-article.xml",
    "obligations": [
     "署名"
@@ -979,6 +1058,7 @@
     "docs/assets/families/evidence/sources.json",
     "docs/assets/families/moire/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": null,
    "obligations": [
     "署名",
@@ -1017,6 +1097,7 @@
    "evidence_paths": [
     "docs/assets/families/opals/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/papers/gazmeh2025/gazmeh2025-scirep.pdf",
    "obligations": [
     "署名",
@@ -1047,10 +1128,19 @@
    "declared_in_repo": "CC-BY-SA-4.0",
    "stated_by_source": null,
    "source_statement": null,
-   "confirmation": "repo_record_only",
+   "confirmation": "publisher_page",
    "evidence_paths": [
-    "docs/data/traces/QNP007.json"
+    "docs/assets/qa/sources-oe62.json",
+    "docs/data/traces/QNP007.json",
+    "docs/data/license-statements.json"
    ],
+   "confirmed_by_page": {
+    "statement": "mediatum-oe62",
+    "url": "https://mediatum.ub.tum.de/1507656",
+    "read_on": "2026-11-02",
+    "quote": "by-sa, http://creativecommons.org/licenses/by-sa/4.0",
+    "obligation": "署名 + 相同方式共享。署名：Stuke, Kunkel, Golze, Todorović, Margraf, Reuter, Rinke & Oberhofer，doi:10.14459/2019mp1507656，论文 doi:10.1038/s41597-020-0385-y。"
+   },
    "fulltext_checked": null,
    "obligations": [
     "署名",
@@ -1086,6 +1176,7 @@
    "evidence_paths": [
     "docs/assets/families/qdots/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": null,
    "obligations": [],
    "also": "只用拟合系数（事实数据），不转载任何内容，因此不依赖许可",
@@ -1121,6 +1212,7 @@
    "evidence_paths": [
     "docs/assets/families/opals/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/papers/fookes2023/fookes2023-PMC9920682.xml",
    "obligations": [
     "署名"
@@ -1150,15 +1242,23 @@
    "declared_in_repo": "CC0-1.0",
    "stated_by_source": null,
    "source_statement": null,
-   "confirmation": "repo_record_only",
+   "confirmation": "publisher_page",
    "evidence_paths": [
-    "docs/assets/families/assemblies/sources.json"
+    "docs/assets/families/assemblies/sources.json",
+    "docs/data/license-statements.json"
    ],
+   "confirmed_by_page": {
+    "statement": "rcsb-usage-policy",
+    "url": "https://www.rcsb.org/pages/usage-policy",
+    "read_on": "2026-11-02",
+    "quote": "The wwPDB policy states that data files contained in the PDB archive are available under the CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.",
+    "obligation": "许可本身无强制义务。同页另说：鼓励使用者署名 PDB 结构数据的原作者（encouraged，不是条件）。本库照此在每道题的 attribution 里写原沉积作者与 PDB 编号。"
+   },
    "fulltext_checked": null,
    "obligations": [],
    "also": null,
-   "verdict": "recheck",
-   "verdict_note": "发布了它的坐标，而许可只有我们自己的记录，没有本机可核对的上游副本",
+   "verdict": "clear",
+   "verdict_note": "",
    "cards_to_reword": [],
    "cards_unchecked": []
   },
@@ -1189,6 +1289,7 @@
    "evidence_paths": [
     "docs/assets/families/cholesteric/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/papers/dinc2024/dinc2024-PMC11492181.xml",
    "obligations": [
     "署名"
@@ -1223,6 +1324,7 @@
    "evidence_paths": [
     "docs/assets/families/evidence/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/papers/jiang2015/jiang2015-PMC4519040.xml",
    "obligations": [
     "署名",
@@ -1261,10 +1363,18 @@
    "declared_in_repo": "CC-BY-NC-ND-4.0",
    "stated_by_source": null,
    "source_statement": "copy states no licence",
-   "confirmation": "repo_record_only",
+   "confirmation": "publisher_page",
    "evidence_paths": [
-    "docs/assets/families/vortex/sources.json"
+    "docs/assets/families/vortex/sources.json",
+    "docs/data/license-statements.json"
    ],
+   "confirmed_by_page": {
+    "statement": "arxiv-schaefermeier",
+    "url": "https://arxiv.org/abs/2602.13060",
+    "read_on": "2026-11-02",
+    "quote": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+    "obligation": "署名 + 不得改编 + 非商业。本库只用该文的数值（涡旋点阵常数等），不转载文字与图，因此这些限制不影响发布；记录在案是为了别人不会误以为可以再分发原文。"
+   },
    "fulltext_checked": null,
    "obligations": [
     "署名",
@@ -1299,6 +1409,7 @@
    "evidence_paths": [
     "docs/assets/families/design/resolved"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/paper-candidates/PMC6274253.xml",
    "obligations": [
     "署名"
@@ -1332,6 +1443,7 @@
    "evidence_paths": [
     "docs/assets/families/design/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/papers/chetry2026/chetry2026-PMC13022808.xml",
    "obligations": [
     "署名"
@@ -1366,6 +1478,7 @@
    "evidence_paths": [
     "docs/assets/families/evidence/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/papers/filip2014/filip2014-ncomms.pdf",
    "obligations": [
     "署名",
@@ -1402,6 +1515,7 @@
    "evidence_paths": [
     "docs/assets/families/design/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/papers/rando2025/rando2025-PMC11639902.xml",
    "obligations": [
     "署名"
@@ -1435,6 +1549,7 @@
    "evidence_paths": [
     "docs/assets/families/design/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/papers/vincent2025/vincent2025-PMC12415320.xml",
    "obligations": [
     "署名"
@@ -1473,6 +1588,7 @@
    "evidence_paths": [
     "docs/assets/families/evidence/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/papers/kcsa2017/kcsa2017-PMC5711375.xml",
    "obligations": [
     "署名"
@@ -1506,6 +1622,7 @@
    "evidence_paths": [
     "docs/assets/families/design/resolved"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/paper-candidates/PMC8317625.xml",
    "obligations": [
     "署名"
@@ -1539,6 +1656,7 @@
    "evidence_paths": [
     "docs/assets/families/design/resolved"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/paper-candidates/PMC8777861.xml",
    "obligations": [
     "署名"
@@ -1572,6 +1690,7 @@
    "evidence_paths": [
     "docs/assets/families/design/resolved"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/paper-candidates/PMC8399176.xml",
    "obligations": [
     "署名"
@@ -1607,6 +1726,7 @@
    "evidence_paths": [
     "docs/assets/families/design/resolved"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/paper-candidates/PMC5477839.xml",
    "obligations": [
     "署名"
@@ -1640,6 +1760,7 @@
    "evidence_paths": [
     "docs/assets/families/evidence/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": null,
    "obligations": [
     "署名",
@@ -1674,6 +1795,7 @@
    "evidence_paths": [
     "docs/assets/families/evidence/sources.json"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/papers/rasmussen2011/rasmussen2011-PMC3184188.xml",
    "obligations": [
     "署名",
@@ -1710,6 +1832,7 @@
    "evidence_paths": [
     "docs/assets/families/design/resolved"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/paper-candidates/PMC10598568.xml",
    "obligations": [
     "署名"
@@ -1743,6 +1866,7 @@
    "evidence_paths": [
     "docs/assets/families/design/resolved"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/paper-candidates/PMC5382913.xml",
    "obligations": [
     "署名"
@@ -1776,6 +1900,7 @@
    "evidence_paths": [
     "docs/assets/families/design/resolved"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/paper-candidates/PMC12464755.xml",
    "obligations": [
     "署名"
@@ -1805,6 +1930,7 @@
    "evidence_paths": [
     "docs/assets/families/design/resolved"
    ],
+   "confirmed_by_page": null,
    "fulltext_checked": "inputs/paper-candidates/PMC11432317.xml",
    "obligations": [
     "署名"
@@ -1824,7 +1950,9 @@
    "severity": "decision",
    "what": "CC-BY-SA-4.0 是相同方式共享许可，本库发布了它的坐标（5 道）",
    "where": [
-    "docs/data/traces/QNP007.json"
+    "docs/assets/qa/sources-oe62.json",
+    "docs/data/traces/QNP007.json",
+    "docs/data/license-statements.json"
    ],
    "fix": "三条路：整库 CC BY-SA；这几道单独成一个 CC BY-SA 子集；或撤掉这几道"
   },
@@ -1848,20 +1976,13 @@
    "fix": "11/05–11/08 A1 重跑时一起带出；重跑后 tests/test_license.py 的待办清单会变红，删掉即可"
   },
   {
-   "id": "licence-recorded-by-us-only",
-   "severity": "must_check",
-   "what": "8 个数据库／数据集的坐标已发布，而许可只有我们自己的记录：pdb-bio-nm、cod-materials-cell、qm7x、sampl9、paper-landscape17-azobenzene、pdb-dna-origami、cod-mof、pdb-1aa5-vancomycin",
+   "id": "licence-page-unreachable",
+   "severity": "note",
+   "what": "本会话的内置浏览器打不开该站（导航被拒绝）。wwPDB 的原话改以 RCSB 使用政策页为证——该页正是转述 wwPDB 政策，两处同指 CC0 1.0。上传前若要 wwPDB 的一手页面，自己打开一次即可。",
    "where": [
-    "docs/assets/bio/sources-2026-10-03.json",
-    "docs/assets/families/assemblies/sources.json",
-    "docs/assets/families/conformers/QM7X-7032-i1-opt.json",
-    "docs/assets/families/reaction/sources.json",
-    "docs/assets/materials/sources-cod-2026-10-03.json",
-    "docs/assets/materials/sources-noncubic.json",
-    "docs/data/SAMPL9-LICENSE.txt",
-    "docs/pilot-chem.html"
+    "docs/data/license-statements.json"
    ],
-   "fix": "上传前逐个到来源页面核对一次（PDB CC0、COD 公有领域、QM7-X / OE62 / Landscape17 的 CC 声明），把看到的原话和日期写进对应的 sources.json（PDB 与 COD 是下载时记的，SAMPL9 的分节许可只写在仓库外的 README 里）"
+   "fix": "想要一手页面就自己打开一次 https://www.wwpdb.org/about/usage-policies"
   },
   {
    "id": "card-prose-verbatim",

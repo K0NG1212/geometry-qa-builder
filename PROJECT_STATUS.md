@@ -2,23 +2,30 @@
 
 > 交接入口：[HANDOFF_2026-10-24.md](HANDOFF_2026-10-24.md)（现状、下一条线候选、必读经验）；[HANDOFF_2026-10-21.md](HANDOFF_2026-10-21.md)（10-20 → 10-24 八条线的细节）；[HANDOFF_2026-10-19.md](HANDOFF_2026-10-19.md)（现状数字与待决事项）；[HANDOFF_2026-10-18.md](HANDOFF_2026-10-18.md)（证据题两族与子领域/旭日图）；[HANDOFF_2026-10-06.md](HANDOFF_2026-10-06.md)（协作方式与判断原则、批量选题规则、第六次会议记录）；[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（来源路线、代码地图、流程与经验）；[HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史。
 
-## W2：许可审计 + 3000 道的算术（2026-11-02，Claude Code 会话，模型 claude-opus-5）
+## W2：许可审计 + 逐来源许可页面核对 + 3000 道的算术（2026-11-02，Claude Code 会话，模型 claude-opus-5）
 
 ### 许可审计（上传 Hugging Face 的前置）
 
 - **做了什么**：新增 `tools/export_license_audit.py` → [docs/data/license-audit.json](docs/data/license-audit.json)，
-  结论写成 [LICENSING.md](LICENSING.md)，规则由 `tests/test_license.py`（13 项）钉住。逐来源核了 **37 个来源**
+  结论写成 [LICENSING.md](LICENSING.md)，规则由 `tests/test_license.py`（21 项）钉住。逐来源核了 **37 个来源**
   （336 道在库题 + 1 张已发布但未用的卡）。
-- **结论**：**不可发布 0 个**；可直接发布 22 个；上传前要复核 14 个（都不阻塞）；**要先做决定的 1 个：OE62**。
+- **结论**：**不可发布 0 个**；可直接发布 30 个；上传前要复核 6 个（都不阻塞，全是「来源不许转载原文 + 卡里有逐词相同短句」）；**要先做决定的 1 个：OE62**。
 - **三类发布物分开看**，只有第一类是转载问题：上游坐标 239 道、本项目按论文数值造的坐标 55 道、本项目转述的事实 42 道。
-- **许可只从记录读，不替来源断定**：21 个来源的本机副本里有出版方自己的声明（JATS `<permissions>` 块或 PDF 许可行），
-  这是最强证据；其余只有本项目下载时记的那一条，标成 `repo_record_only` 并进上传前清单。
+- **许可只从记录读，不替来源断定**，三级证据：21 个来源的本机副本里有出版方自己的声明（JATS `<permissions>` 块或 PDF 许可行）；
+  **10 个来源的许可页面在 11-02 逐页读过**，原话、网址与日期记在
+  [docs/data/license-statements.json](docs/data/license-statements.json) 和各自的 `sources.json`
+  （PDB、COD、QM7-X、SAMPL9、Landscape17、OE62、Schäfermeier 2026）；只剩 **4 个**（四篇 arXiv 预印本）
+  仅凭本项目记录，而它们都不发布坐标、只用数值，不是阻塞项。**凡是本库发布其坐标的来源，许可现在都由来源自己确认。**
+  有一页打不开（`https://www.wwpdb.org/about/usage-policies`，本会话浏览器被拒），改以 RCSB 使用政策页为证——
+  该页正是转述 wwPDB 政策，两处同指 CC0 1.0；读不到这件事本身也记在 findings 里，没有当成读到了。
 - **OE62 是 CC BY-SA 4.0（相同方式共享）**，QNP023–QNP027 这 5 道发布了它的 `xyz_pbe_relaxed` 坐标原样。
+  这一条 11-02 在 mediaTUM 的权利栏确认过（原话 `by-sa, http://creativecommons.org/licenses/by-sa/4.0`），不是记录有误。
   相同方式共享会和整库许可相互作用，**必须先定**：① 整库 CC BY-SA；② 主库 CC BY 4.0 + 这 5 道单列 CC BY-SA 子集（建议）；
   ③ 撤掉这 5 道（量子 × 1–10 nm 格从 10 掉到 5）。已记入 findings，测试会盯着这个决定不许悄悄消失。
 - **查出并已修（25 条，`templates/family-manifest.json`）**：12 道题的许可字段是空的（OE62 5、COD MOF 3、PDB 1AA5 4）；
   **13 道 SAMPL9 题记成了 MIT**——MIT 只覆盖代码，主客体结构与 ITC 实测表属"其余材料"，是 CC BY 4.0
-  （本仓库 `docs/pilot-chem.html` 早就写对了，是族实例的字段记反了）。**已发布数据要等 11/05–11/08 重跑才生效**，
+  （SAMPL9 的 README 原话：代码 MIT、其余材料 CC BY 4.0；本仓库 `docs/pilot-chem.html` 早就写对了，是族实例的字段记反了。
+  同样把 5 条还写着「(MIT License)」的来源说明一并改了）。**已发布数据要等 11/05–11/08 重跑才生效**，
   `tests/test_license.py` 里按 `PENDING_RERUN` 的老办法列着这 25 个实例号，重跑后会变红、提醒删名单。
 - **逐词比对**：49 张证据／设计卡在考生那里可见的句子，全部与论文全文逐词比过（**0 张未检**）。
   最长连续相同 **12 词**（`filip2014-rbcs.json`），没有一张到整句。≥8 词的 **16 张**进 L1 改写清单，
@@ -26,6 +33,7 @@
   Cao / Kerelsky / Cottet 的 arXiv 非独占）优先。
 - **一处许可对不上**：Rando 2025（Chem. Sci.）仓库记作 CC BY 4.0，论文自带的 JATS 许可块写的是 CC BY 3.0。
   以出版方页面为准，上传前确认后统一改（改卡片会变动已发布资产哈希，和重跑一起做）。
+  11-02 没有顺手"修"它：两个版本都允许再分发，差别在署名条款措辞，选哪个是人的判断。
 - **四个 arXiv 预印本说清楚了一件事**：arXiv 非独占许可是作者授权 arXiv 分发，**不是**授权第三方转载。
   这四篇一个字都没转载，依据是"事实与数值不受版权保护"，不是依据许可。
 

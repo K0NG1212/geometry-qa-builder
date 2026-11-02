@@ -1,0 +1,27 @@
+{
+ "kind": "hostguest_sources",
+ "updated": "2026-11-02",
+ "upstream": "SAMPL9 盲预测挑战赛，samplchallenges/SAMPL9（主体与客体 3D 结构 host_guest/WP6、host_guest/bCD；ITC 实测表 experimental_data/experimental_measurements.csv）",
+ "license": "CC BY 4.0（SAMPL9 的“其余材料”；MIT 只覆盖该仓库的代码）",
+ "license_statement": {
+  "statement": "sampl9-readme",
+  "record": "docs/data/license-statements.json",
+  "license": "CC-BY-4.0",
+  "url": "https://raw.githubusercontent.com/samplchallenges/SAMPL9/master/README.md",
+  "read_on": "2026-11-02",
+  "quote": "MIT for all software/code / CC-BY 4.0 for all other materials",
+  "quote_is": "LICENSE 节的两条分项；引语前一句说明这里的材料按情况分别适用 CC-BY 与 MIT 两种许可",
+  "obligation": "署名：SAMPL9 挑战赛（samplchallenges/SAMPL9）与 ITC 实测数据的提供者（WP6 为 Isaacs 组，bCD 为 Gilson 组）；README 另请致谢 NIH R01GM124270（David L. Mobley, UC Irvine）。"
+ },
+ "why_this_file": "2026-11-02 许可审计（LICENSING.md）发现本库把这些结构记作 MIT。MIT 只覆盖 SAMPL9 仓库的代码，主客体结构与 ITC 实测表属 README 所说的“其余材料”，归 CC BY 4.0。本文件记下在来源页面看到的原话，把这条判定从“只有我们自己的记录”变成出版方确认。",
+ "we_publish": {
+  "upstream_coordinates": [
+   "docs/assets/families/hostguest/WP6-G1.xyz … WP6-G13.xyz（13 个客体，SAMPL9 提供的 3D 结构）",
+   "docs/assets/families/hostguest/WP6-binding.json（主体 WP6 与四个候选客体的坐标；ITC 实测结合自由能只在教师侧）",
+   "docs/assets/qa/WP6.xyz、docs/assets/qa/BCD.xyz、docs/assets/qa/DMBCD.xyz（主体结构）"
+  ],
+  "not_published": "ITC 原始滴定数据、仓库里的分析脚本与提交文件都没有收进来。"
+ },
+ "instances": 13,
+ "note": "13 个族实例的许可字段已在 templates/family-manifest.json 改成 CC BY 4.0；已发布的题库仍带旧字符串，要等 11/05–11/08 重跑才会生效（见 tests/test_license.py 的 PENDING_RERUN_MIT）。"
+}
