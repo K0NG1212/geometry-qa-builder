@@ -138,6 +138,7 @@
     '筛查清单': 'Screening list', '题型总表': 'Family table', '题型工作台': 'Workbench',
     '下一批 L3 抽样计划（l3-batch-001）': 'Next L3 sampling plan (l3-batch-001)',
   };
+  const plural = (n, word) => `${n} ${word}${Number(n) === 1 ? '' : 's'}`;
   const RULES = [
     [/^显示 (\d+) \/ (\d+) 道完整候选 · 待独立审核$/, (m) => `Showing ${m[1]} / ${m[2]} complete candidates · awaiting review`],
     [/^(\d+) 道题 · 点击格子查看该格题目（细分到子领域的坐标系见下一张图）$/,
@@ -148,12 +149,14 @@
     [/^(\d+) 个空缺 · 二级子领域（叶子） (\d+) \/ (\d+) · 共 (\d+) 道。像素 = 一级子领域 × 解题推理尺度。$/,
       (m) => `${m[1]} empty · level-2 subdomains (leaves) ${m[2]} / ${m[3]} · ${m[4]} questions in all. A pixel is one level-1 subdomain at one reasoning scale.`],
     [/^查看 ([A-Z]{3}\d+) 详情$/, (m) => `Details of ${m[1]}`],
+    [/^(\d+) 道（点题号看完整题目、附件与来源）$/,
+      (m) => `${plural(m[1], 'question')} (click an id for the full question, its attachment and its source)`],
     [/^(.+) · (0\.1–1|1–10|10–100|100–1000) nm：(\d+) 道，点开看题号$/,
-      (m) => `${m[1]} · ${m[2]} nm: ${m[3]} questions, click to list their ids`],
+      (m) => `${m[1]} · ${m[2]} nm: ${plural(m[3], 'question')}, click to list their ids`],
     [/^(.+) · (0\.1–1|1–10|10–100|100–1000) nm：有意义但还没有题$/,
       (m) => `${m[1]} · ${m[2]} nm: meaningful, but no question yet`],
     [/^(.+) (0\.1–1|1–10|10–100|100–1000) nm：(\d+) 道，查看题目$/,
-      (m) => `${m[1]} ${m[2]} nm: ${m[3]} questions, see them`],
+      (m) => `${m[1]} ${m[2]} nm: ${plural(m[3], 'question')}, see them`],
   ];
 
   const translate = (text) => {

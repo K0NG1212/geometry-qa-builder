@@ -75,7 +75,10 @@
       if (open) { list.hidden = true; return; }
       cell.classList.add('open');
       list.hidden = false;
-      list.innerHTML = `<p><b>${esc(pixel.name)} · ${LABEL[pixel.scale]}</b> · ${pixel.questions} 道（点题号看完整题目、附件与来源）</p>` +
+      // Three nodes, not one string: i18n.js translates a whole text node, so the subdomain name has to sit on
+      // its own for the dictionary to find it, and the count on its own for the plural rule to rewrite it.
+      list.innerHTML = `<p><b>${esc(pixel.name)}</b> · ${LABEL[pixel.scale]} · ` +
+        `<span>${pixel.questions} 道（点题号看完整题目、附件与来源）</span></p>` +
         (pixel.ids || []).map(id => `<button type="button" class="text-button" data-question="${esc(id)}">${esc(id)}</button>`).join(' ');
       list.scrollIntoView({block: 'nearest', behavior: 'smooth'});
     });
