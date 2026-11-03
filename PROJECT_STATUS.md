@@ -2,7 +2,24 @@
 
 > 交接入口：[HANDOFF_2026-11-03.md](HANDOFF_2026-11-03.md)（现状、第 9 次组会定的四周排程、两个 agent 的分工、必读经验）；[HANDOFF_2026-10-24.md](HANDOFF_2026-10-24.md)（10-24 的现状与候选清单）；[HANDOFF_2026-10-21.md](HANDOFF_2026-10-21.md)（10-20 → 10-24 八条线的细节）；[HANDOFF_2026-10-19.md](HANDOFF_2026-10-19.md)（现状数字与待决事项）；[HANDOFF_2026-10-18.md](HANDOFF_2026-10-18.md)（证据题两族与子领域/旭日图）；[HANDOFF_2026-10-06.md](HANDOFF_2026-10-06.md)（协作方式与判断原则、批量选题规则、第六次会议记录）；[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（来源路线、代码地图、流程与经验）；[HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史。
 
+## 更正：`f04b86c` 的提交信息只说了它一半的内容（2026-11-03，Claude Code 会话，模型 claude-opus-5）
+
+- **事实**：`f04b86c` 的标题是 "Say who owns tests/ and the three shared documents"，正文只讲交接规则。
+  它实际包含 **19 个文件**，除了 `HANDOFF_2026-11-03.md`，还带着**下面那一节「W1 评测 pipeline」的全部代码**
+  ——`evaluation/benchmark.py`、`budget.py`、`remote.py`、`models.json`、`tools/benchmark.py`、
+  `tests/test_benchmark.py`（421 行）、`PROJECT_STATUS.md` 的 W1 段落，以及 `RUNBOOK.md`、`tools/` 四个文件的改动。
+  **那批是上一个会话写的**，当时还没提交，躺在共享工作区里。
+- **怎么发生的**：本会话在共享工作区里用了 `git add -A`，它分不清哪些文件是谁的。
+- **后果有多大**：代码本身是完整的，`tests/test_benchmark.py` 23 项全绿，`main` 没有被弄坏。
+  损失是**一条提交信息与内容不符的 commit**，以及推了没有审过的代码。
+- **为什么不改历史**：已经推到 GitHub，按本项目规矩不 force-push。记录写在这里，
+  以后查 `evaluation/` 的来历时以本节为准，不要以 `f04b86c` 的提交信息为准。
+- **已经做的防再犯**：两个 agent 分到各自的工作目录，只有 Claude 这一侧碰 git，且**不许再用 `git add -A`**
+  （见 `HANDOFF_2026-11-03.md` 第 0 节）。
+
 ## W1 评测 pipeline：接上真模型、估价、模型 × 学科表（2026-11-03，Claude Code 会话，模型 claude-opus-5）
+
+> 这一节的代码由 `f04b86c` 带入，而那条 commit 的信息没有提到它——原因见上一节的更正。
 
 - **导师 T2 的原话**：「不要、不要，你现在已经可以跑模型了……先搞几个简单的 DeepSeek、Flash，把 pipeline
   搭起来，这是最重要的」。11-02 已有 harness（出卷、按规则评分、三个基线），这次补的是**真模型那一段**。
