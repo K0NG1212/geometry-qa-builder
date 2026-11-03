@@ -17,12 +17,12 @@
  },
  "summary": {
   "selected": 160,
-  "reserve": 176,
+  "reserve": 711,
   "out_of_range": [],
   "abilities": {
    "perception": 59,
-   "inference": 55,
-   "design": 46
+   "inference": 53,
+   "design": 48
   },
   "forms": {
    "family": 160,
@@ -33,7 +33,7 @@
   "family_units": 49,
   "legacy_units": 0,
   "pending_decision": {
-   "measurement_condition_design": 11,
+   "measurement_condition_design": 9,
    "experimental_evidence": 5
   },
   "full_cells": 16
@@ -43,8 +43,8 @@
    "cell": "chemistry 0.1-1",
    "domain": "chemistry",
    "bin": "0.1-1",
-   "available": 57,
-   "eligible": 57,
+   "available": 63,
+   "eligible": 63,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -612,9 +612,69 @@
      "source": "paper-landscape17-azobenzene",
      "pending": null,
      "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP047",
+     "ability": "perception",
+     "form": "family",
+     "unit": "stereo_relationship",
+     "instance": "EN-QM7X7044-SREL-Geom-m7044-i1-c1-opt-Geom-m7044-i1-c2-opt",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP048",
+     "ability": "perception",
+     "form": "family",
+     "unit": "stereo_relationship",
+     "instance": "EN-QM7X7038-SREL-Geom-m7038-i2-c1-opt-Geom-m7038-i2-c2-opt",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP049",
+     "ability": "perception",
+     "form": "family",
+     "unit": "stereo_relationship",
+     "instance": "EN-QM7X7089-SREL-Geom-m7089-i1-c1-opt-Geom-m7089-i2-c1-opt",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP050",
+     "ability": "perception",
+     "form": "family",
+     "unit": "stereo_relationship",
+     "instance": "EN-QM7X7034-SREL-Geom-m7034-i1-c1-opt-Geom-m7034-i1-c2-opt",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP051",
+     "ability": "perception",
+     "form": "family",
+     "unit": "stereo_relationship",
+     "instance": "EN-QM7X7114-SREL-Geom-m7114-i1-c2-opt-Geom-m7114-i2-c2-opt",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "CNP052",
+     "ability": "perception",
+     "form": "family",
+     "unit": "stereo_relationship",
+     "instance": "EN-QM7X7030-SREL-Geom-m7030-i1-c2-opt-Geom-m7030-i1-c4-opt",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 57 道，其中经独立检查 57 道"
+   "rationale": "可用 63 道，其中经独立检查 63 道"
   },
   {
    "cell": "chemistry 1-10",
@@ -990,32 +1050,14 @@
    "cell": "biology 0.1-1",
    "domain": "biology",
    "bin": "0.1-1",
-   "available": 25,
-   "eligible": 25,
+   "available": 154,
+   "eligible": 154,
    "abilities": {
     "perception": 4,
     "inference": 3,
     "design": 3
    },
    "selected": [
-    {
-     "id": "BNP014",
-     "ability": "perception",
-     "form": "family",
-     "unit": "backbone_torsion",
-     "instance": "FA-TOR-1UBQ-V26",
-     "source": "pdb-bio-nm",
-     "pending": null
-    },
-    {
-     "id": "BNP015",
-     "ability": "perception",
-     "form": "family",
-     "unit": "backbone_torsion",
-     "instance": "FA-TOR-6LYZ-T43",
-     "source": "pdb-bio-nm",
-     "pending": null
-    },
     {
      "id": "BNP038",
      "ability": "perception",
@@ -1035,13 +1077,22 @@
      "pending": null
     },
     {
-     "id": "BNI024",
-     "ability": "inference",
+     "id": "BNP062",
+     "ability": "perception",
      "form": "family",
-     "unit": "secondary_structure",
-     "instance": "FA-SS-1UBQ-43",
+     "unit": "backbone_torsion",
+     "instance": "EN-1U7G-TOR-30-PSI",
      "source": "pdb-bio-nm",
-     "pending": "experimental_evidence"
+     "pending": null
+    },
+    {
+     "id": "BNP071",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1G31-TOR-109-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null
     },
     {
      "id": "BNI047",
@@ -1053,31 +1104,22 @@
      "pending": null
     },
     {
-     "id": "BNI053",
+     "id": "BNI064",
      "ability": "inference",
      "form": "family",
      "unit": "secondary_structure",
-     "instance": "EN-12E8-SS-3",
+     "instance": "EN-1U7G-SS-330",
      "source": "pdb-bio-nm",
      "pending": "experimental_evidence"
     },
     {
-     "id": "BND003",
-     "ability": "design",
+     "id": "BNI076",
+     "ability": "inference",
      "form": "family",
-     "unit": "disulfide_design",
-     "instance": "FA-DS-1UBQ-A",
+     "unit": "secondary_structure",
+     "instance": "EN-1ONJ-SS-15",
      "source": "pdb-bio-nm",
-     "pending": null
-    },
-    {
-     "id": "BND016",
-     "ability": "design",
-     "form": "family",
-     "unit": "disulfide_design",
-     "instance": "EN-1A6M-DS-2-6",
-     "source": "pdb-bio-nm",
-     "pending": null
+     "pending": "experimental_evidence"
     },
     {
      "id": "BND024",
@@ -1087,9 +1129,37 @@
      "instance": "FA-DES-CEUE-LINKER",
      "source": "paper-wilde-ceue-licam",
      "pending": null
+    },
+    {
+     "id": "BND025",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-2B2F-DS-33-185",
+     "source": "pdb-bio-nm",
+     "pending": null
+    },
+    {
+     "id": "BND041",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1WNR-DS-4-8",
+     "source": "pdb-bio-nm",
+     "pending": null
     }
    ],
    "reserve": [
+    {
+     "id": "BND003",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "FA-DS-1UBQ-A",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
     {
      "id": "BND004",
      "ability": "design",
@@ -1106,6 +1176,16 @@
      "form": "family",
      "unit": "disulfide_design",
      "instance": "FA-DS-6LYZ",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND016",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1A6M-DS-2-6",
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -1141,6 +1221,526 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "BND026",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-3W4T-DS-70-151",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND027",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-3W4T-DS-378-437",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND028",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-2B2F-DS-37-381",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND029",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1U7G-DS-73-152",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND030",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-3M73-DS-271-287",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND031",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1ONJ-DS-6-13",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND032",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1U7G-DS-220-226",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND033",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-3W4T-DS-368-426",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND034",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1U7G-DS-220-227",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND035",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1G31-DS-11-53",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND036",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-3W4T-DS-386-394",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND037",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-3M73-DS-84-144",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND038",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1U7G-DS-138-369",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND039",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1G31-DS-11-17",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND040",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-3M73-DS-271-288",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND042",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1G31-DS-76-99",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND043",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1G31-DS-83-88",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND044",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-3M73-DS-26-268",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND045",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-2B2F-DS-186-189",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND046",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-2B2F-DS-61-130",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND047",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-2LZM-DS-125-128",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND048",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1WNR-DS-72-83",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND049",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-2LZM-DS-81-84",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND050",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-5PTI-DS-24-27",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND051",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1PGA-DS-20-25",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND052",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-7RSA-DS-4-118",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND053",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1WNR-DS-48-52",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND054",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1NXB-DS-27-52",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND055",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-7RSA-DS-107-122",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND056",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1VB0-DS-45-49",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND057",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-7RSA-DS-109-119",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND058",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1VB0-DS-27-36",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND059",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1NXB-DS-4-39",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND060",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1WNR-DS-14-36",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND061",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-2LZM-DS-120-125",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND062",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-5PTI-DS-20-35",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND063",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1PGA-DS-34-39",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND064",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1VB0-DS-4-38",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND065",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-2LZM-DS-139-146",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND066",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-5PTI-DS-4-42",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND067",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1VB0-DS-2-57",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND068",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-7RSA-DS-48-80",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND069",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-5PTI-DS-21-45",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND070",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1NXB-DS-5-15",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND071",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1NXB-DS-26-61",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND072",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1ONJ-DS-45-49",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND073",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1ONJ-DS-2-57",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND074",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1PGA-DS-20-26",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND075",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-1ONJ-DS-27-36",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND076",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-3NDS-DS-6-10",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND077",
+     "ability": "design",
+     "form": "family",
+     "unit": "disulfide_design",
+     "instance": "EN-3NDS-DS-28-51",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI024",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "FA-SS-1UBQ-43",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "BNI025",
      "ability": "inference",
      "form": "family",
@@ -1171,6 +1771,16 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "BNI053",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-12E8-SS-3",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "BNI055",
      "ability": "inference",
      "form": "family",
@@ -1181,11 +1791,271 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "BNI057",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-2B2F-SS-59",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI058",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-3W4T-SS-27",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI059",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-2LZM-SS-69",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI060",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-2LZM-SS-93",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI061",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-2B2F-SS-167",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI062",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-3W4T-SS-412",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI063",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-1U7G-SS-263",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI065",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-1U7G-SS-354",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI066",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-3M73-SS-160",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI067",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-1G31-SS-27",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI068",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-5PTI-SS-20",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI069",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-1NXB-SS-15",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI070",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-3M73-SS-65",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI071",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-2LZM-SS-145",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI072",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-7RSA-SS-74",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI073",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-3M73-SS-170",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI074",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-7RSA-SS-113",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI075",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-1WNR-SS-2",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI077",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-1PGA-SS-36",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI078",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-1WNR-SS-8",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI079",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-1PGA-SS-6",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI080",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-1PGA-SS-31",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI081",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-1ONJ-SS-27",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI082",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-5PTI-SS-45",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "BNP013",
      "ability": "perception",
      "form": "family",
      "unit": "backbone_torsion",
      "instance": "FA-TOR-1CRN-G20",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP014",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "FA-TOR-1UBQ-V26",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP015",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "FA-TOR-6LYZ-T43",
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -1239,9 +2109,489 @@
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP047",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-2LZM-TOR-159-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP048",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-3W4T-TOR-309-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP049",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-5PTI-TOR-39-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP050",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-2B2F-TOR-89-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP051",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-2LZM-TOR-87-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP052",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-2B2F-TOR-82-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP053",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-2B2F-TOR-64-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP054",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1ONJ-TOR-59-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP055",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-2B2F-TOR-373-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP056",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-2LZM-TOR-33-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP057",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-3W4T-TOR-30-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP058",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1WNR-TOR-7-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP059",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-7RSA-TOR-64-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP060",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1G31-TOR-37-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP061",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1U7G-TOR-52-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP063",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-5PTI-TOR-22-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP064",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-3W4T-TOR-174-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP065",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-3W4T-TOR-278-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP066",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-2LZM-TOR-159-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP067",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-7RSA-TOR-94-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP068",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1G31-TOR-15-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP069",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1VB0-TOR-19-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP070",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1PGA-TOR-15-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP072",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1U7G-TOR-250-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP073",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-7RSA-TOR-101-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP074",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-3M73-TOR-269-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP075",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-3M73-TOR-305-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP076",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-3M73-TOR-182-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP077",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-3M73-TOR-97-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP078",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1G31-TOR-39-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP079",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1VB0-TOR-56-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP080",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1ONJ-TOR-35-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP081",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-5PTI-TOR-12-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP082",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1WNR-TOR-68-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP083",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-5PTI-TOR-5-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP084",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1PGA-TOR-9-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP085",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1ONJ-TOR-17-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP086",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1VB0-TOR-18-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP087",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1WNR-TOR-49-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP088",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1NXB-TOR-40-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP089",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-3NDS-TOR-50-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP090",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1VB0-TOR-47-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP091",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1NXB-TOR-50-PHI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP092",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1PGA-TOR-38-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP093",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1NXB-TOR-11-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP094",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1NXB-TOR-20-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP095",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1PGA-TOR-17-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP096",
+     "ability": "perception",
+     "form": "family",
+     "unit": "backbone_torsion",
+     "instance": "EN-1ONJ-TOR-20-PSI",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 25 道，其中经独立检查 25 道"
+   "rationale": "可用 154 道，其中经独立检查 154 道"
   },
   {
    "cell": "biology 1-10",
@@ -1524,8 +2874,8 @@
    "cell": "biology 10-100",
    "domain": "biology",
    "bin": "10-100",
-   "available": 43,
-   "eligible": 43,
+   "available": 73,
+   "eligible": 73,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -1569,15 +2919,6 @@
      "pending": null
     },
     {
-     "id": "BNI017",
-     "ability": "inference",
-     "form": "family",
-     "unit": "guinier_intensity",
-     "instance": "FA-ASM-GUIN-1A34",
-     "source": "pdb-bio-nm",
-     "pending": null
-    },
-    {
      "id": "BNI033",
      "ability": "inference",
      "form": "family",
@@ -1596,13 +2937,52 @@
      "pending": null
     },
     {
+     "id": "BNI083",
+     "ability": "inference",
+     "form": "family",
+     "unit": "guinier_intensity",
+     "instance": "EN-7ARQ-GUIN-12",
+     "source": "pdb-bio-nm",
+     "pending": null
+    },
+    {
+     "id": "BND096",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1CWP-QDES-30-CP",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design"
+    },
+    {
+     "id": "BND107",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1A34-QDES-30",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design"
+    },
+    {
+     "id": "BND108",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1STM-QDES-70",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design"
+    }
+   ],
+   "reserve": [
+    {
      "id": "BND009",
      "ability": "design",
      "form": "family",
      "unit": "scattering_q_design",
      "instance": "FA-QDES-1AON",
      "source": "pdb-bio-nm",
-     "pending": "measurement_condition_design"
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
     },
     {
      "id": "BND010",
@@ -1611,19 +2991,9 @@
      "unit": "scattering_q_design",
      "instance": "FA-QDES-1KX5",
      "source": "pdb-bio-nm",
-     "pending": "measurement_condition_design"
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
     },
-    {
-     "id": "BND015",
-     "ability": "design",
-     "form": "family",
-     "unit": "scattering_q_design",
-     "instance": "FA-QDES-2FT1",
-     "source": "pdb-bio-nm",
-     "pending": "measurement_condition_design"
-    }
-   ],
-   "reserve": [
     {
      "id": "BND011",
      "ability": "design",
@@ -1665,6 +3035,226 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "BND015",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "FA-QDES-2FT1",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND078",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-7ARQ-QDES-30-staple",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND080",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-2BUK-QDES-70",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND083",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-2FT1-QDES-30-gp5",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND089",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-7ARQ-QDES-30-scaffold",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND090",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-7ARQ-QDES-70-staple",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND091",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1SVA-QDES-30-VP1",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND092",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-2BUK-QDES-50",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND093",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-7ARQ-QDES-50-scaffold",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND094",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-2FT1-QDES-70-gp5",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND095",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1CWP-QDES-70-CP",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND097",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1SVA-QDES-70-VP1",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND098",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-2BUK-QDES-30",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND099",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1AON-QDES-70",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND100",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1KX5-QDES-30",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND101",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1RYP-QDES-30",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND102",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1STM-QDES-50",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND103",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1A34-QDES-70",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND104",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1RYP-QDES-70",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND105",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1AON-QDES-30",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND106",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1STM-QDES-30",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND109",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-1KX5-QDES-70",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "BNI015",
      "ability": "inference",
      "form": "family",
@@ -1680,6 +3270,16 @@
      "form": "family",
      "unit": "guinier_intensity",
      "instance": "FA-ASM-GUIN-1KX5",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI017",
+     "ability": "inference",
+     "form": "family",
+     "unit": "guinier_intensity",
+     "instance": "FA-ASM-GUIN-1A34",
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -1810,6 +3410,46 @@
      "form": "family",
      "unit": "capsid_architecture",
      "instance": "FA-ASM-HEX-2FT1",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI084",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "EN-2BUK-CAPSID-T-CP",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI085",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "EN-1A34-CAPSID-T-CP",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI086",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "EN-1STM-CAPSID-capsomers-CP",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI087",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "EN-2FT1-CAPSID-capsomers-gp5",
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -1953,31 +3593,32 @@
      "source": "pdb-bio-nm",
      "pending": null,
      "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP103",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "EN-7ARQ-EXT-staple",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 43 道，其中经独立检查 43 道"
+   "rationale": "可用 73 道，其中经独立检查 73 道"
   },
   {
    "cell": "biology 100-1000",
    "domain": "biology",
    "bin": "100-1000",
-   "available": 10,
-   "eligible": 10,
+   "available": 27,
+   "eligible": 27,
    "abilities": {
-    "perception": 3,
-    "inference": 5,
-    "design": 2
+    "perception": 4,
+    "inference": 3,
+    "design": 3
    },
    "selected": [
-    {
-     "id": "BNP023",
-     "ability": "perception",
-     "form": "family",
-     "unit": "assembly_extent",
-     "instance": "FA-ASM-EXT-6CGR",
-     "source": "pdb-bio-nm",
-     "pending": null
-    },
     {
      "id": "BNP024",
      "ability": "perception",
@@ -1988,29 +3629,29 @@
      "pending": null
     },
     {
-     "id": "BNP025",
+     "id": "BNP097",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_rg",
+     "instance": "EN-6NCL-RG-P13",
+     "source": "pdb-bio-nm",
+     "pending": null
+    },
+    {
+     "id": "BNP100",
      "ability": "perception",
      "form": "family",
      "unit": "assembly_extent",
-     "instance": "FA-ASM-EXT-6NCL",
+     "instance": "EN-6CGR-EXT-pUL17",
      "source": "pdb-bio-nm",
      "pending": null
     },
     {
-     "id": "BNI019",
-     "ability": "inference",
+     "id": "BNP104",
+     "ability": "perception",
      "form": "family",
-     "unit": "capsid_architecture",
-     "instance": "FA-ASM-T-6CGR",
-     "source": "pdb-bio-nm",
-     "pending": null
-    },
-    {
-     "id": "BNI020",
-     "ability": "inference",
-     "form": "family",
-     "unit": "capsid_architecture",
-     "instance": "FA-ASM-CAPS-6CGR",
+     "unit": "assembly_extent",
+     "instance": "EN-6NCL-EXT-P9",
      "source": "pdb-bio-nm",
      "pending": null
     },
@@ -2051,24 +3692,204 @@
      "pending": "measurement_condition_design"
     },
     {
+     "id": "BND081",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-6NCL-QDES-50-P10",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design"
+    },
+    {
+     "id": "BND084",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-6NCL-QDES-70-P5",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design"
+    }
+   ],
+   "reserve": [
+    {
      "id": "BND002",
      "ability": "design",
      "form": "family",
      "unit": "scattering_q_design",
      "instance": "FA-QDES-6NCL",
      "source": "pdb-bio-nm",
-     "pending": "measurement_condition_design"
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND079",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-6CGR-QDES-70-VP23",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND082",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-6CGR-QDES-70-VP5",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND085",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-6CGR-QDES-30-pUL36",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND086",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-6NCL-QDES-30-P2",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND087",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-6NCL-QDES-50-P1",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BND088",
+     "ability": "design",
+     "form": "family",
+     "unit": "scattering_q_design",
+     "instance": "EN-6CGR-QDES-70-VP19C",
+     "source": "pdb-bio-nm",
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI019",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "FA-ASM-T-6CGR",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI020",
+     "ability": "inference",
+     "form": "family",
+     "unit": "capsid_architecture",
+     "instance": "FA-ASM-CAPS-6CGR",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP023",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "FA-ASM-EXT-6CGR",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP025",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "FA-ASM-EXT-6NCL",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP098",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "EN-6NCL-EXT-P5",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP099",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "EN-6CGR-EXT-VP23",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP101",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "EN-6NCL-EXT-P2",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP102",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "EN-6NCL-EXT-P1",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP105",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "EN-6CGR-EXT-VP19C",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNP106",
+     "ability": "perception",
+     "form": "family",
+     "unit": "assembly_extent",
+     "instance": "EN-6CGR-EXT-pUL36",
+     "source": "pdb-bio-nm",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "reserve": [],
-   "rationale": "可用 10 道，其中经独立检查 10 道"
+   "rationale": "可用 27 道，其中经独立检查 27 道"
   },
   {
    "cell": "materials 0.1-1",
    "domain": "materials",
    "bin": "0.1-1",
-   "available": 47,
-   "eligible": 47,
+   "available": 165,
+   "eligible": 165,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -2076,38 +3897,38 @@
    },
    "selected": [
     {
-     "id": "MNP011",
-     "ability": "perception",
-     "form": "family",
-     "unit": "coordination_shell",
-     "instance": "FA-COORD-MGO",
-     "source": "cod-materials-cell",
-     "pending": null
-    },
-    {
-     "id": "MNP024",
-     "ability": "perception",
-     "form": "family",
-     "unit": "coordination_shell",
-     "instance": "FA-COORD-QUARTZ",
-     "source": "cod-materials-cell",
-     "pending": null
-    },
-    {
-     "id": "MNP034",
-     "ability": "perception",
-     "form": "family",
-     "unit": "coordination_shell",
-     "instance": "FA-COORD-ALNI",
-     "source": "cod-materials-cell",
-     "pending": null
-    },
-    {
      "id": "MNP037",
      "ability": "perception",
      "form": "family",
      "unit": "coordination_shell",
      "instance": "FA-COORD-PENTACENE",
+     "source": "cod-materials-cell",
+     "pending": null
+    },
+    {
+     "id": "MNP040",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD7241894-COORD-O-N",
+     "source": "cod-materials-cell",
+     "pending": null
+    },
+    {
+     "id": "MNP051",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD1000028-COORD-Si-Cl",
+     "source": "cod-materials-cell",
+     "pending": null
+    },
+    {
+     "id": "MNP062",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD4127359-COORD-I-Pb",
      "source": "cod-materials-cell",
      "pending": null
     },
@@ -2130,20 +3951,11 @@
      "pending": null
     },
     {
-     "id": "MNI043",
+     "id": "MNI091",
      "ability": "inference",
      "form": "family",
      "unit": "first_diffraction_peak",
-     "instance": "FA-PEAK-PARA-I",
-     "source": "cod-materials-cell",
-     "pending": null
-    },
-    {
-     "id": "MND007",
-     "ability": "design",
-     "form": "family",
-     "unit": "diffraction_design",
-     "instance": "FA-XD-CRYSTAL-CU",
+     "instance": "EN-COD9004137-PEAK-Mo",
      "source": "cod-materials-cell",
      "pending": null
     },
@@ -2164,9 +3976,28 @@
      "instance": "FA-DES-ZEOLITE-FAU",
      "source": "paper-ikeda-fau-methanol",
      "pending": null
+    },
+    {
+     "id": "MND045",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1100043-XD-WAVE-35",
+     "source": "cod-materials-cell",
+     "pending": null
     }
    ],
    "reserve": [
+    {
+     "id": "MND007",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "FA-XD-CRYSTAL-CU",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
     {
      "id": "MND008",
      "ability": "design",
@@ -2194,6 +4025,376 @@
      "unit": "design_choice",
      "instance": "FA-DES-CHE-SIEVE",
      "source": "paper-chetry-mof-isotopologue",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND018",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008802-XD-WAVE-35",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND019",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008789-XD-ANODE-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND021",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1574067-XD-ANODE-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND022",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1536825-XD-ANODE-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND026",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008789-XD-CRYSTAL-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND027",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008678-XD-WAVE-35",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND028",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD5000216-XD-CRYSTAL-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND030",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD4320505-XD-ANODE-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND031",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9000657-XD-CRYSTAL-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND032",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008678-XD-CRYSTAL-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND034",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9006483-XD-CRYSTAL-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND035",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1538281-XD-CRYSTAL-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND037",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1000028-XD-ANODE-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND038",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD5000216-XD-ANODE-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND040",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD4320505-XD-ANODE-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND041",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008565-XD-WAVE-20",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND042",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008565-XD-CRYSTAL-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND043",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD4320505-XD-CRYSTAL-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND044",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9007060-XD-CRYSTAL-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND046",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD4320505-XD-CRYSTAL-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND048",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008802-XD-ANODE-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND049",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008678-XD-WAVE-20",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND050",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1538281-XD-ANODE-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND052",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1536825-XD-ANODE-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND053",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1100043-XD-ANODE-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND054",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9007060-XD-WAVE-35",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND055",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1000028-XD-WAVE-35",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND056",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD5000216-XD-ANODE-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND057",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1536825-XD-WAVE-20",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND058",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1574067-XD-WAVE-35",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND059",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008802-XD-CRYSTAL-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND060",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008789-XD-ANODE-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND061",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008565-XD-ANODE-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND062",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9011073-XD-ANODE-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND063",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9006483-XD-ANODE-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND064",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008802-XD-WAVE-20",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND066",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1538281-XD-ANODE-Co",
+     "source": "cod-materials-cell",
      "pending": null,
      "reason": "本格已满 10 道"
     },
@@ -2378,6 +4579,16 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "MNI043",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "FA-PEAK-PARA-I",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "MNI044",
      "ability": "inference",
      "form": "family",
@@ -2408,6 +4619,506 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "MNI048",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1000053-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI049",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9002806-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI050",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9008863-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI052",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9008506-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI056",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD5000181-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI057",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD5000216-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI059",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9000657-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI060",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1538281-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI061",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1100043-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI062",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1000028-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI066",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD2100187-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI075",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD5000035-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI079",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD4320505-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI080",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1011242-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI081",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9007060-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI082",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9006483-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI084",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1536825-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI087",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD9007496-PEAK-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI088",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1000028-PEAK-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI089",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD9000657-PEAK-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI090",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD2100187-PEAK-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI092",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD2100187-PEAK-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI093",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1536825-PEAK-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI096",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD2105052-PEAK-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI097",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD9008506-PEAK-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI098",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1535012-PEAK-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI100",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD9008084-PEAK-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI102",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD9008565-PEAK-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI103",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD5000216-PEAK-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI104",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1100043-PEAK-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI105",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD9008863-PEAK-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI106",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1100043-PEAK-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI107",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1574067-PEAK-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI108",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD5000181-PEAK-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI109",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD2105052-PEAK-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI110",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1000028-PEAK-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI112",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD9007496-PEAK-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI113",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD9008802-PEAK-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI114",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1547350-PEAK-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI115",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1535012-PEAK-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI116",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD9008789-PEAK-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI117",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1536825-PEAK-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI118",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD7217892-PEAK-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI119",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1536825-PEAK-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI120",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD9011073-PEAK-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI122",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1000053-PEAK-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI123",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1527502-PEAK-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI127",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1538801-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI130",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9008834-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP011",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "FA-COORD-MGO",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "MNP012",
      "ability": "perception",
      "form": "family",
@@ -2433,6 +5144,16 @@
      "form": "family",
      "unit": "coordination_shell",
      "instance": "FA-COORD-ZNO",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP024",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "FA-COORD-QUARTZ",
      "source": "cod-materials-cell",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -2498,6 +5219,16 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "MNP034",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "FA-COORD-ALNI",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "MNP035",
      "ability": "perception",
      "form": "family",
@@ -2536,16 +5267,286 @@
      "source": "cod-materials-cell",
      "pending": null,
      "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP041",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD9008802-COORD-Al-Al",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP042",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD9008834-COORD-N-B",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP043",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD1000028-COORD-Si-Si",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP044",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD9008834-COORD-N-N",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP045",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD1011242-COORD-Ca-Ca",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP046",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD1547350-COORD-Ca-O",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP047",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD1000028-COORD-Si-O",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP048",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD7101243-COORD-C-O",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP049",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD7129847-COORD-H-Ni",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP050",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD7217892-COORD-P-Ca",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP052",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD1100043-COORD-S-Zn",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP053",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD1536825-COORD-Ga-N",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP054",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD2103865-COORD-Mn-O",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP055",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD1527502-COORD-K-F",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP056",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD1535012-COORD-C-C",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP057",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD4320505-COORD-Ni-O",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP058",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD4115045-COORD-O-C",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP059",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD9002806-COORD-Sr-Sr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP060",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD1527502-COORD-K-K",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP061",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD7129847-COORD-C-Al",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP063",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD9004141-COORD-Ti-Ti",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP064",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD2300112-COORD-Zn-Zn",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP065",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD7101243-COORD-N-C",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP066",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD9017413-COORD-C-Ca",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP067",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD7241894-COORD-O-H",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP068",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD9008834-COORD-B-B",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNP069",
+     "ability": "perception",
+     "form": "family",
+     "unit": "coordination_shell",
+     "instance": "EN-COD2300112-COORD-O-O",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 47 道，其中经独立检查 47 道"
+   "rationale": "可用 165 道，其中经独立检查 165 道"
   },
   {
    "cell": "materials 1-10",
    "domain": "materials",
    "bin": "1-10",
-   "available": 13,
-   "eligible": 13,
+   "available": 59,
+   "eligible": 59,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -2589,15 +5590,6 @@
      "pending": null
     },
     {
-     "id": "MNI013",
-     "ability": "inference",
-     "form": "family",
-     "unit": "kinematic_extinction",
-     "instance": "FA-EXT-SALEM2",
-     "source": "cod-mof",
-     "pending": null
-    },
-    {
      "id": "MNI019",
      "ability": "inference",
      "form": "family",
@@ -2607,14 +5599,52 @@
      "pending": null
     },
     {
-     "id": "MNI045",
+     "id": "MNI085",
      "ability": "inference",
      "form": "family",
-     "unit": "first_diffraction_peak",
-     "instance": "FA-PEAK-PENTACENE",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1503581-EXT",
      "source": "cod-materials-cell",
      "pending": null
     },
+    {
+     "id": "MNI099",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD1516287-PEAK-Co",
+     "source": "cod-materials-cell",
+     "pending": null
+    },
+    {
+     "id": "MND017",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD4118591-XD-CRYSTAL-Mo",
+     "source": "cod-materials-cell",
+     "pending": null
+    },
+    {
+     "id": "MND033",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1516287-XD-ANODE-Mo",
+     "source": "cod-materials-cell",
+     "pending": null
+    },
+    {
+     "id": "MND039",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD9008565-XD-CRYSTAL-Cu",
+     "source": "cod-materials-cell",
+     "pending": null
+    }
+   ],
+   "reserve": [
     {
      "id": "MND010",
      "ability": "design",
@@ -2622,7 +5652,8 @@
      "unit": "diffraction_design",
      "instance": "FA-XD-ANODE-MOF5",
      "source": "cod-materials-cell",
-     "pending": "measurement_condition_design"
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
     },
     {
      "id": "MND011",
@@ -2631,7 +5662,8 @@
      "unit": "diffraction_design",
      "instance": "FA-XD-ANODE-SALEM2",
      "source": "cod-materials-cell",
-     "pending": "measurement_condition_design"
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
     },
     {
      "id": "MND012",
@@ -2640,10 +5672,119 @@
      "unit": "diffraction_design",
      "instance": "FA-XD-WAVE-MOF5",
      "source": "cod-materials-cell",
-     "pending": "measurement_condition_design"
-    }
-   ],
-   "reserve": [
+     "pending": "measurement_condition_design",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND016",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD4118591-XD-WAVE-20",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND020",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD4118591-XD-ANODE-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND023",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1516287-XD-ANODE-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND024",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1000028-XD-CRYSTAL-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND025",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD4118891-XD-ANODE-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND029",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD4118891-XD-ANODE-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND036",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD4118591-XD-CRYSTAL-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND047",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD4118891-XD-WAVE-35",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND051",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD4118891-XD-ANODE-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MND065",
+     "ability": "design",
+     "form": "family",
+     "unit": "diffraction_design",
+     "instance": "EN-COD1516287-XD-ANODE-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI013",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "FA-EXT-SALEM2",
+     "source": "cod-mof",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
     {
      "id": "MNI014",
      "ability": "inference",
@@ -2665,6 +5806,326 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "MNI045",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "FA-PEAK-PENTACENE",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI051",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9007496-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI053",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9017413-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI054",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1527502-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI055",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1541795-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI058",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD7101243-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI063",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD7217892-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI064",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD4115045-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI065",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD4118591-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI067",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9008084-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI068",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD2105052-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI069",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9014501-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI070",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD7129847-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI071",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD4124498-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI072",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD2104364-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI073",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1535012-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI074",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1547350-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI076",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD7241894-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI077",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD2107249-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI078",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1515464-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI083",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD4127359-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI086",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9011073-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI094",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD2012157-PEAK-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI095",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD4118591-PEAK-Cr",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI101",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD4118591-PEAK-Co",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI111",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD4118891-PEAK-Cu",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI121",
+     "ability": "inference",
+     "form": "family",
+     "unit": "first_diffraction_peak",
+     "instance": "EN-COD7129847-PEAK-Mo",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI124",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1529037-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI125",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9009146-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI126",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD4124624-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI128",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1521678-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI129",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD2103865-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "MNP029",
      "ability": "perception",
      "form": "family",
@@ -2675,7 +6136,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 13 道，其中经独立检查 13 道"
+   "rationale": "可用 59 道，其中经独立检查 59 道"
   },
   {
    "cell": "materials 10-100",
@@ -2904,8 +6365,8 @@
    "cell": "quantum 0.1-1",
    "domain": "quantum",
    "bin": "0.1-1",
-   "available": 17,
-   "eligible": 17,
+   "available": 190,
+   "eligible": 190,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -2922,38 +6383,29 @@
      "pending": null
     },
     {
-     "id": "QNP014",
-     "ability": "perception",
-     "form": "family",
-     "unit": "named_bond_distance",
-     "instance": "FA-DIST-7002-NN",
-     "source": "qm7x",
-     "pending": null
-    },
-    {
-     "id": "QNP015",
-     "ability": "perception",
-     "form": "family",
-     "unit": "named_bond_distance",
-     "instance": "FA-DIST-7122-CN",
-     "source": "qm7x",
-     "pending": null
-    },
-    {
-     "id": "QNP016",
+     "id": "QNP043",
      "ability": "perception",
      "form": "family",
      "unit": "named_bond_angle",
-     "instance": "FA-ANG-7040-OSO",
+     "instance": "EN-SAMPL9-WP6-G8-ANG-10-11-13",
      "source": "qm7x",
      "pending": null
     },
     {
-     "id": "QNI021",
-     "ability": "inference",
+     "id": "QNP052",
+     "ability": "perception",
      "form": "family",
-     "unit": "rotational_line",
-     "instance": "FA-ROT-7029-111",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-DMBCD-ANG-82-31-88",
+     "source": "qm7x",
+     "pending": null
+    },
+    {
+     "id": "QNP113",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7089-DMAX",
      "source": "qm7x",
      "pending": null
     },
@@ -2976,6 +6428,15 @@
      "pending": null
     },
     {
+     "id": "QNI046",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-QM7X-7030-ROT-111",
+     "source": "qm7x",
+     "pending": null
+    },
+    {
      "id": "QND003",
      "ability": "design",
      "form": "family",
@@ -2985,20 +6446,20 @@
      "pending": null
     },
     {
-     "id": "QND004",
+     "id": "QND031",
      "ability": "design",
      "form": "family",
-     "unit": "conformer_target_selection",
-     "instance": "FA-CONF-7032-max_dipole",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G5-ISO-111-21-33-38-51",
      "source": "qm7x",
      "pending": null
     },
     {
-     "id": "QND013",
+     "id": "QND063",
      "ability": "design",
      "form": "family",
      "unit": "isotopologue_design",
-     "instance": "FA-ISO-7095-111",
+     "instance": "EN-SAMPL9-WP6-G4-ISO-110-15-18-19-20",
      "source": "qm7x",
      "pending": null
     }
@@ -3020,6 +6481,506 @@
      "form": "family",
      "unit": "conformer_target_selection",
      "instance": "FA-CONF-7206-min_energy",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND004",
+     "ability": "design",
+     "form": "family",
+     "unit": "conformer_target_selection",
+     "instance": "FA-CONF-7032-max_dipole",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND013",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "FA-ISO-7095-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND014",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G12-ISO-110-19-22-33-45",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND015",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7033-ISO-110-9-10-13-15",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND017",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7063-ISO-111-9-12-13-14",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND018",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7052-ISO-110-9-11-12-14",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND019",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G12-ISO-110-22-27-45-47",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND020",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G5-ISO-110-22-32-46-47",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND021",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7114-ISO-110-8-9-12-14",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND022",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G5-ISO-110-38-39-41-51",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND023",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G5-ISO-101-21-33-34-46",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND024",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G1-ISO-111-20-26-27-34",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND025",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G1-ISO-111-16-19-26-30",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND027",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G7-ISO-110-8-13-16-20",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND028",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G12-ISO-110-22-38-45-46",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND029",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7038-ISO-110-8-9-12-13",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND032",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G6-ISO-101-10-11-17-23",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND033",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G12-ISO-111-19-23-31-45",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND034",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7110-ISO-101-10-11-12-13",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND035",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G7-ISO-101-8-11-20-21",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND037",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G1-ISO-111-18-21-34-36",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND039",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G6-ISO-110-12-15-23-25",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND040",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G1-ISO-111-30-33-34-36",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND041",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7050-ISO-110-8-13-15-16",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND042",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7208-ISO-111-10-11-12-13",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND043",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G4-ISO-111-12-17-19-20",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND044",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G3-ISO-111-9-10-21-22",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND045",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7038-ISO-110-8-9-10-11",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND046",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G3-ISO-110-13-18-20-21",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND047",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7114-ISO-110-8-9-10-14",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND048",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7033-ISO-111-10-12-14-15",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND049",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7038-ISO-111-8-10-12-14",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND050",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7165-ISO-101-8-9-12-13",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND051",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7034-ISO-101-8-9-10-15",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND052",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7089-ISO-111-8-9-10-13",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND054",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7052-ISO-110-8-12-13-15",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND055",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7044-ISO-101-8-9-12-13",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND056",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G6-ISO-101-19-20-22-23",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND057",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G3-ISO-110-10-16-21-22",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND058",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G4-ISO-111-13-16-19-20",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND059",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7030-ISO-111-8-11-13-15",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND060",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7032-ISO-110-8-14-16-17",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND061",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7063-ISO-111-9-10-13-15",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND062",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7089-ISO-111-8-11-12-13",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND064",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G3-ISO-111-9-14-20-21",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND065",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G11-ISO-110-9-17-19-20",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND068",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G6-ISO-101-19-22-23-24",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND069",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7033-ISO-111-10-12-13-15",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND070",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-QM7X-7050-ISO-110-8-10-11-16",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI021",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "FA-ROT-7029-111",
      "source": "qm7x",
      "pending": null,
      "reason": "本格已满 10 道"
@@ -3065,6 +7026,186 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "QNI039",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-SAMPL9-WP6-G7-ROT-110",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI040",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-QM7X-7034-ROT-110",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI041",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-SAMPL9-WP6-G7-ROT-101",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI042",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-SAMPL9-WP6-G3-ROT-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI043",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-QM7X-7034-ROT-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI044",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-QM7X-7063-ROT-110",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI045",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-SAMPL9-WP6-G5-ROT-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI047",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-QM7X-7114-ROT-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI048",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-SAMPL9-WP6-G12-ROT-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI049",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-QM7X-7052-ROT-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI050",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-SAMPL9-WP6-G1-ROT-101",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI051",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-QM7X-7089-ROT-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI052",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-QM7X-7111-ROT-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI053",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-QM7X-7208-ROT-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI054",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-SAMPL9-WP6-G4-ROT-110",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI055",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-QM7X-7082-ROT-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI056",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-QM7X-7063-ROT-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNI057",
+     "ability": "inference",
+     "form": "family",
+     "unit": "rotational_line",
+     "instance": "EN-QM7X-7032-ROT-111",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "QNP012",
      "ability": "perception",
      "form": "family",
@@ -3073,20 +7214,1070 @@
      "source": "qm7x",
      "pending": null,
      "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP014",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "FA-DIST-7002-NN",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP015",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "FA-DIST-7122-CN",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP016",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "FA-ANG-7040-OSO",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP028",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7063-ANG-2-3-6",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP029",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7033-ANG-6-4-7",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP030",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7165-ANG-1-2-3",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP031",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-ANG-31-27-38",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP032",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7111-ANG-4-2-5",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP033",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G3-ANG-2-6-7",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP034",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7044-ANG-3-2-4",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP035",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7110-ANG-1-2-5",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP036",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-ANG-105-102-113",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP037",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-ANG-62-64-70",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP038",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7089-ANG-4-3-7",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP039",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G3-ANG-5-4-7",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP040",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G1-ANG-1-3-5",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP041",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7052-ANG-4-3-5",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP042",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G7-ANG-1-2-4",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP044",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-BCD-ANG-22-21-59",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP045",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7111-ANG-3-2-5",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP046",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7208-ANG-3-4-7",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP047",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G5-ANG-6-9-19",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP048",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-DMBCD-ANG-3-2-43",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP049",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-DMBCD-ANG-18-17-61",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP050",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-ANG-72-70-74",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP051",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G4-ANG-3-6-4",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP053",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G3-ANG-4-7-8",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP054",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7114-ANG-6-4-7",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP055",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-DMBCD-ANG-14-13-67",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP056",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-BCD-ANG-39-40-41",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP057",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7208-ANG-2-3-4",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP058",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7206-ANG-5-4-7",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP059",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G5-ANG-1-7-11",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP060",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-BCD-ANG-32-33-69",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP061",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7111-ANG-3-2-4",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP062",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-BCD-ANG-61-19-65",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP063",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G12-ANG-12-17-13",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP064",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G12-ANG-5-1-6",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP065",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G12-ANG-10-18-16",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP066",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G5-ANG-9-6-10",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP067",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G6-ANG-5-7-8",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP068",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G3-ANG-5-3-6",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP069",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G6-ANG-7-8-9",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP070",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G12-ANG-8-9-17",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP071",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7063-ANG-1-2-3",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP072",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7208-ANG-2-6-5",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP073",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G1-ANG-8-10-12",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP074",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G1-ANG-5-7-9",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP075",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7052-ANG-5-3-6",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP076",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-SAMPL9-WP6-G1-ANG-10-12-13",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP077",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_angle",
+     "instance": "EN-QM7X-7034-ANG-5-4-7",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP078",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-DMBCD-BOND-11-54",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP079",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-BCD-BOND-14-15",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP080",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-DMBCD-BOND-39-40",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP081",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-QM7X-7052-BOND-2-7",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP082",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-WP6-BOND-112-114",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP083",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-BCD-BOND-31-32",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP084",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-WP6-BOND-113-117",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP085",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-WP6-G12-BOND-3-6",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP086",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-BCD-BOND-25-26",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP087",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-WP6-G12-BOND-5-9",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP088",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-BCD-BOND-41-42",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP089",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-WP6-G12-BOND-8-9",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP090",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-WP6-G11-BOND-4-5",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP091",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-QM7X-7052-BOND-1-2",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP092",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-QM7X-7082-BOND-3-4",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP093",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-QM7X-7050-BOND-3-4",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP094",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-QM7X-7038-BOND-3-4",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP095",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-SAMPL9-WP6-G8-BOND-9-13",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP096",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7032-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP097",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7034-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP098",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G6-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP100",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G4-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP101",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7050-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP102",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G7-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP103",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G11-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP105",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7032-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP106",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7111-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP107",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7165-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP108",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G4-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP109",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7038-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP110",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G7-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP111",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7082-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP112",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7052-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP114",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7063-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP115",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7206-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP116",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7208-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP117",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7110-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP118",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7110-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP119",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7034-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP120",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7044-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP121",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G12-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP122",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G3-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP123",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7030-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP124",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7033-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP125",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7208-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP126",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G1-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP130",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7111-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP133",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7114-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP134",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7043-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP135",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7063-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP136",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G11-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP138",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7033-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP139",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G12-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP140",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-QM7X-7044-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 17 道，其中经独立检查 17 道"
+   "rationale": "可用 190 道，其中经独立检查 190 道"
   },
   {
    "cell": "quantum 1-10",
    "domain": "quantum",
    "bin": "1-10",
-   "available": 10,
-   "eligible": 10,
+   "available": 26,
+   "eligible": 26,
    "abilities": {
-    "perception": 5,
+    "perception": 4,
     "inference": 3,
-    "design": 2
+    "design": 3
    },
    "selected": [
     {
@@ -3108,15 +8299,6 @@
      "pending": null
     },
     {
-     "id": "QNP025",
-     "ability": "perception",
-     "form": "family",
-     "unit": "extent_choice_v2",
-     "instance": "FC-QNP009",
-     "source": "oe62",
-     "pending": null
-    },
-    {
      "id": "QNP026",
      "ability": "perception",
      "form": "family",
@@ -3126,12 +8308,12 @@
      "pending": null
     },
     {
-     "id": "QNP027",
+     "id": "QNP104",
      "ability": "perception",
      "form": "family",
      "unit": "extent_choice_v2",
-     "instance": "FC-QNP011",
-     "source": "oe62",
+     "instance": "EN-SAMPL9-BCD-RG",
+     "source": "qm7x",
      "pending": null
     },
     {
@@ -3171,17 +8353,187 @@
      "pending": null
     },
     {
+     "id": "QND016",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G8-ISO-111-18-21-25-26",
+     "source": "qm7x",
+     "pending": null
+    },
+    {
+     "id": "QND067",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G10-ISO-110-22-27-29-31",
+     "source": "qm7x",
+     "pending": null
+    }
+   ],
+   "reserve": [
+    {
      "id": "QND009",
      "ability": "design",
      "form": "family",
      "unit": "qdot_design",
      "instance": "FA-QD-DES-565",
      "source": "paper-yu-cdse-2003",
-     "pending": null
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND026",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G10-ISO-111-17-29-34-36",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND030",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G8-ISO-110-18-30-31-32",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND036",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G8-ISO-111-18-29-31-36",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND038",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G8-ISO-110-18-25-27-33",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND053",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G10-ISO-111-22-31-36-38",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QND066",
+     "ability": "design",
+     "form": "family",
+     "unit": "isotopologue_design",
+     "instance": "EN-SAMPL9-WP6-G10-ISO-110-29-30-33-36",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP025",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "FC-QNP009",
+     "source": "oe62",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP027",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "FC-QNP011",
+     "source": "oe62",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP099",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-DMBCD-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP127",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G8-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP128",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G8-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP129",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-BCD-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP131",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-DMBCD-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP132",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-DMAX",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP137",
+     "ability": "perception",
+     "form": "family",
+     "unit": "extent_choice_v2",
+     "instance": "EN-SAMPL9-WP6-G10-RG",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "reserve": [],
-   "rationale": "可用 10 道，其中经独立检查 10 道"
+   "rationale": "可用 26 道，其中经独立检查 26 道"
   },
   {
    "cell": "quantum 10-100",
@@ -3510,37 +8862,32 @@
  ],
  "selected_ids": [
   "BND001",
-  "BND002",
-  "BND003",
   "BND007",
-  "BND009",
-  "BND010",
-  "BND015",
-  "BND016",
   "BND019",
   "BND021",
   "BND024",
+  "BND025",
+  "BND041",
+  "BND081",
+  "BND084",
+  "BND096",
+  "BND107",
+  "BND108",
   "BNI011",
   "BNI012",
-  "BNI017",
-  "BNI019",
-  "BNI020",
   "BNI021",
   "BNI022",
   "BNI023",
-  "BNI024",
   "BNI033",
   "BNI037",
   "BNI046",
   "BNI047",
   "BNI048",
-  "BNI053",
-  "BNP014",
-  "BNP015",
+  "BNI064",
+  "BNI076",
+  "BNI083",
   "BNP020",
-  "BNP023",
   "BNP024",
-  "BNP025",
   "BNP031",
   "BNP034",
   "BNP036",
@@ -3549,6 +8896,11 @@
   "BNP040",
   "BNP041",
   "BNP042",
+  "BNP062",
+  "BNP071",
+  "BNP097",
+  "BNP100",
+  "BNP104",
   "CND004",
   "CND005",
   "CND006",
@@ -3595,13 +8947,12 @@
   "MND004",
   "MND005",
   "MND006",
-  "MND007",
-  "MND010",
-  "MND011",
-  "MND012",
   "MND014",
   "MND015",
-  "MNI013",
+  "MND017",
+  "MND033",
+  "MND039",
+  "MND045",
   "MNI019",
   "MNI020",
   "MNI021",
@@ -3612,9 +8963,9 @@
   "MNI036",
   "MNI037",
   "MNI038",
-  "MNI043",
-  "MNI045",
-  "MNP011",
+  "MNI085",
+  "MNI091",
+  "MNI099",
   "MNP013",
   "MNP014",
   "MNP015",
@@ -3624,28 +8975,29 @@
   "MNP019",
   "MNP020",
   "MNP021",
-  "MNP024",
   "MNP028",
   "MNP030",
-  "MNP034",
   "MNP037",
+  "MNP040",
+  "MNP051",
+  "MNP062",
   "QND003",
-  "QND004",
   "QND005",
   "QND006",
   "QND007",
   "QND008",
-  "QND009",
   "QND010",
   "QND011",
   "QND012",
-  "QND013",
+  "QND016",
+  "QND031",
+  "QND063",
+  "QND067",
   "QNI012",
   "QNI014",
   "QNI015",
   "QNI016",
   "QNI017",
-  "QNI021",
   "QNI023",
   "QNI028",
   "QNI029",
@@ -3654,10 +9006,8 @@
   "QNI032",
   "QNI033",
   "QNI038",
+  "QNI046",
   "QNP013",
-  "QNP014",
-  "QNP015",
-  "QNP016",
   "QNP017",
   "QNP018",
   "QNP019",
@@ -3666,8 +9016,10 @@
   "QNP022",
   "QNP023",
   "QNP024",
-  "QNP025",
   "QNP026",
-  "QNP027"
+  "QNP043",
+  "QNP052",
+  "QNP104",
+  "QNP113"
  ]
 }

@@ -1,9 +1,9 @@
 {
  "kind": "enumeration_capacity",
- "date": "2026-10-06",
+ "date": "2026-11-03",
  "seed": "geobench-enum-v1",
- "sample_per_structure": 40,
- "run": "enum-v34",
+ "sample_per_structure": 2,
+ "run": "enum-v35",
  "structures": {
   "pdb": [
    "1UBQ",
@@ -15,7 +15,28 @@
    "1PGA",
    "2LZM",
    "7RSA",
-   "355D"
+   "355D",
+   "1FHA",
+   "12E8",
+   "1HHK",
+   "1NXB",
+   "1ONJ",
+   "1VB0",
+   "3NDS",
+   "477D",
+   "1HJP",
+   "2B2F",
+   "1U7G",
+   "3W4T",
+   "3M73",
+   "1WNR",
+   "1G31",
+   "4GLG",
+   "4GLH",
+   "4F3U",
+   "3T8P",
+   "1DCW",
+   "1JUC"
   ],
   "cod": [
    "COD 9008678",
@@ -34,7 +55,49 @@
    "COD 1100043",
    "COD 1000028",
    "COD 1516287",
-   "COD 4118891"
+   "COD 4118891",
+   "COD 5000216",
+   "COD 9000657",
+   "COD 9008506",
+   "COD 9008802",
+   "COD 1521678",
+   "COD 1527502",
+   "COD 2103865",
+   "COD 2104364",
+   "COD 2105052",
+   "COD 2012157",
+   "COD 1011242",
+   "COD 2100187",
+   "COD 2107249",
+   "COD 9008084",
+   "COD 4320505",
+   "COD 4124498",
+   "COD 9006483",
+   "COD 9002806",
+   "COD 7101243",
+   "COD 4115045",
+   "COD 7241894",
+   "COD 4118591",
+   "COD 1538281",
+   "COD 1000026",
+   "COD 1541795",
+   "COD 9008834",
+   "COD 7129847",
+   "COD 9014501",
+   "COD 9008863",
+   "COD 1536825",
+   "COD 1538801",
+   "COD 4127359",
+   "COD 1503581",
+   "COD 1515464",
+   "COD 5000181",
+   "COD 7217892",
+   "COD 9017413",
+   "COD 9011073",
+   "COD 1535012",
+   "COD 4124624",
+   "COD 9009146",
+   "COD 1529037"
   ],
   "molecules": [
    "QM7X-7029",
@@ -90,439 +153,1066 @@
   ]
  },
  "totals": {
-  "proposals": 28464,
-  "sampled": 3505,
-  "accepted": 3052,
-  "checker_pass": 3052,
-  "checker_checked": 3052,
-  "estimated_admissible": 27634,
+  "proposals": 338046,
+  "sampled": 873,
+  "accepted": 728,
+  "checker_pass": 728,
+  "checker_checked": 728,
+  "estimated_admissible": 336091,
   "positions": {
-   "A": 711,
-   "B": 786,
-   "C": 778,
-   "D": 777
+   "A": 164,
+   "B": 210,
+   "C": 200,
+   "D": 154
   },
-  "position_balance_ok": true
+  "position_balance_ok": false
  },
  "rows": [
   {
    "family": "backbone_torsion",
-   "structure": "1A6M",
-   "proposals": 252,
-   "sampled": 40,
-   "accepted": 30,
-   "rejected": {
-    "Residue window missing, has alternate locations or unsupported torsion": 10
-   },
-   "checker_pass": 30,
+   "structure": "12E8",
+   "proposals": 427,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 189,
+   "estimated_admissible": 427,
    "cells": {
-    "biology 0.1-1": 30
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "1A6M",
+   "proposals": 251,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Residue window missing, has alternate locations or unsupported torsion": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 126,
+   "cells": {
+    "biology 0.1-1": 1
    }
   },
   {
    "family": "backbone_torsion",
    "structure": "1CRN",
    "proposals": 91,
-   "sampled": 40,
-   "accepted": 39,
-   "rejected": {
-    "Residue window missing, has alternate locations or unsupported torsion": 1
-   },
-   "checker_pass": 39,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 89,
+   "estimated_admissible": 91,
    "cells": {
-    "biology 0.1-1": 39
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "1FHA",
+   "proposals": 343,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 343,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "1G31",
+   "proposals": 210,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 210,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "1HHK",
+   "proposals": 549,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 549,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "1NXB",
+   "proposals": 120,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 120,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "1ONJ",
+   "proposals": 110,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 110,
+   "cells": {
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "backbone_torsion",
    "structure": "1PGA",
-   "proposals": 112,
-   "sampled": 40,
-   "accepted": 39,
-   "rejected": {
-    "Residue window missing, has alternate locations or unsupported torsion": 1
-   },
-   "checker_pass": 39,
+   "proposals": 108,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 109,
+   "estimated_admissible": 108,
    "cells": {
-    "biology 0.1-1": 39
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "1U7G",
+   "proposals": 717,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 717,
+   "cells": {
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "backbone_torsion",
    "structure": "1UBQ",
    "proposals": 151,
-   "sampled": 40,
-   "accepted": 38,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 151,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "1VB0",
+   "proposals": 102,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
     "Residue window missing, has alternate locations or unsupported torsion": 2
    },
-   "checker_pass": 38,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 143,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "1WNR",
+   "proposals": 147,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Residue window missing, has alternate locations or unsupported torsion": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 74,
    "cells": {
-    "biology 0.1-1": 38
+    "biology 0.1-1": 1
+   }
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "2B2F",
+   "proposals": 778,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 778,
+   "cells": {
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "backbone_torsion",
    "structure": "2LZM",
-   "proposals": 328,
-   "sampled": 40,
-   "accepted": 40,
+   "proposals": 324,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 328,
+   "estimated_admissible": 324,
    "cells": {
-    "biology 0.1-1": 40
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "3M73",
+   "proposals": 574,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 574,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "3NDS",
+   "proposals": 59,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Residue window missing, has alternate locations or unsupported torsion": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "backbone_torsion",
+   "structure": "3W4T",
+   "proposals": 888,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 888,
+   "cells": {
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "backbone_torsion",
    "structure": "5PTI",
-   "proposals": 112,
-   "sampled": 40,
-   "accepted": 37,
-   "rejected": {
-    "Residue window missing, has alternate locations or unsupported torsion": 3
-   },
-   "checker_pass": 37,
+   "proposals": 108,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 104,
+   "estimated_admissible": 108,
    "cells": {
-    "biology 0.1-1": 37
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "backbone_torsion",
    "structure": "6LYZ",
    "proposals": 257,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 257,
    "cells": {
-    "biology 0.1-1": 40
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "backbone_torsion",
    "structure": "7RSA",
-   "proposals": 222,
-   "sampled": 40,
-   "accepted": 29,
+   "proposals": 219,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Residue window missing, has alternate locations or unsupported torsion": 11
+    "Residue window missing, has alternate locations or unsupported torsion": 1
    },
-   "checker_pass": 29,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 161,
+   "estimated_admissible": 110,
    "cells": {
-    "biology 0.1-1": 29
+    "biology 0.1-1": 1
    }
   },
   {
    "family": "secondary_structure",
-   "structure": "1A6M",
-   "proposals": 126,
-   "sampled": 40,
-   "accepted": 26,
+   "structure": "12E8",
+   "proposals": 213,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
-    "Residue window missing or has alternate locations": 8,
-    "Dihedral class disagrees with": 4,
-    "Nearest reference conformation not clear enough": 2
+    "Dihedral class disagrees with": 2
    },
-   "checker_pass": 26,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 82,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "1A6M",
+   "proposals": 125,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 125,
    "cells": {
-    "biology 0.1-1": 26
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "secondary_structure",
    "structure": "1CRN",
    "proposals": 45,
-   "sampled": 40,
-   "accepted": 23,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
     "Nearest reference conformation not clear enough": 1,
-    "Dihedral class disagrees with": 14,
-    "Residue window missing or has alternate locations": 2
+    "Dihedral class disagrees with": 1
    },
-   "checker_pass": 23,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 26,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "1FHA",
+   "proposals": 172,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 172,
    "cells": {
-    "biology 0.1-1": 23
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "secondary_structure",
-   "structure": "1PGA",
-   "proposals": 56,
-   "sampled": 40,
-   "accepted": 27,
+   "structure": "1G31",
+   "proposals": 106,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
-    "Dihedral class disagrees with": 10,
-    "Residue window missing or has alternate locations": 2,
+    "Dihedral class disagrees with": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "1HHK",
+   "proposals": 274,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 274,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "1NXB",
+   "proposals": 61,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Dihedral class disagrees with": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "1ONJ",
+   "proposals": 55,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Dihedral class disagrees with": 1,
     "Nearest reference conformation not clear enough": 1
    },
-   "checker_pass": 27,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 38,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "1PGA",
+   "proposals": 53,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 53,
    "cells": {
-    "biology 0.1-1": 27
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "1U7G",
+   "proposals": 357,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 357,
+   "cells": {
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "secondary_structure",
    "structure": "1UBQ",
    "proposals": 75,
-   "sampled": 40,
-   "accepted": 18,
-   "rejected": {
-    "Nearest reference conformation not clear enough": 9,
-    "Dihedral class disagrees with": 11,
-    "Residue window missing or has alternate locations": 2
-   },
-   "checker_pass": 18,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 34,
+   "estimated_admissible": 75,
    "cells": {
-    "biology 0.1-1": 18
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "secondary_structure",
-   "structure": "2LZM",
-   "proposals": 164,
-   "sampled": 40,
-   "accepted": 26,
+   "structure": "1VB0",
+   "proposals": 53,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
-    "Dihedral class disagrees with": 11,
-    "Nearest reference conformation not clear enough": 3
+    "Dihedral class disagrees with": 2
    },
-   "checker_pass": 26,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 107,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "1WNR",
+   "proposals": 73,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 73,
    "cells": {
-    "biology 0.1-1": 26
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "2B2F",
+   "proposals": 389,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Nearest reference conformation not clear enough": 1,
+    "Dihedral class disagrees with": 1
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "2LZM",
+   "proposals": 161,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 161,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "3M73",
+   "proposals": 286,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 286,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "3NDS",
+   "proposals": 30,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Residue window missing or has alternate locations": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "secondary_structure",
+   "structure": "3W4T",
+   "proposals": 444,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 444,
+   "cells": {
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "secondary_structure",
    "structure": "5PTI",
-   "proposals": 56,
-   "sampled": 40,
-   "accepted": 9,
+   "proposals": 54,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
-    "Dihedral class disagrees with": 17,
-    "Nearest reference conformation not clear enough": 8,
-    "Residue window missing or has alternate locations": 6
+    "Dihedral class disagrees with": 2
    },
-   "checker_pass": 9,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 13,
-   "cells": {
-    "biology 0.1-1": 9
-   }
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
    "family": "secondary_structure",
    "structure": "6LYZ",
    "proposals": 128,
-   "sampled": 40,
-   "accepted": 17,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Dihedral class disagrees with": 19,
-    "Nearest reference conformation not clear enough": 4
+    "Dihedral class disagrees with": 1
    },
-   "checker_pass": 17,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 54,
+   "estimated_admissible": 64,
    "cells": {
-    "biology 0.1-1": 17
+    "biology 0.1-1": 1
    }
   },
   {
    "family": "secondary_structure",
    "structure": "7RSA",
-   "proposals": 111,
-   "sampled": 40,
-   "accepted": 16,
+   "proposals": 109,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
-    "Dihedral class disagrees with": 11,
-    "Nearest reference conformation not clear enough": 5,
-    "Residue window missing or has alternate locations": 8
+    "Dihedral class disagrees with": 2
    },
-   "checker_pass": 16,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 44,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "12E8",
+   "proposals": 14255,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 14255,
    "cells": {
-    "biology 0.1-1": 16
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_efficiency",
    "structure": "1A6M",
-   "proposals": 3748,
-   "sampled": 40,
-   "accepted": 40,
+   "proposals": 3747,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 3748,
+   "estimated_admissible": 3747,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_efficiency",
    "structure": "1CRN",
    "proposals": 99,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 99,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1DCW",
+   "proposals": 14,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 14,
+   "cells": {
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_efficiency",
    "structure": "1EHZ",
    "proposals": 1244,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 1244,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1FHA",
+   "proposals": 8127,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 8127,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1G31",
+   "proposals": 2517,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2517,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1HHK",
+   "proposals": 26656,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 26656,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1JUC",
+   "proposals": 17,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 17,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1NXB",
+   "proposals": 426,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 426,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1ONJ",
+   "proposals": 382,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 382,
+   "cells": {
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_efficiency",
    "structure": "1PGA",
    "proposals": 198,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 198,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1U7G",
+   "proposals": 43958,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 43958,
+   "cells": {
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_efficiency",
    "structure": "1UBQ",
    "proposals": 560,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 560,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1VB0",
+   "proposals": 339,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 339,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "1WNR",
+   "proposals": 699,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 699,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "2B2F",
+   "proposals": 53025,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 53025,
+   "cells": {
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_efficiency",
    "structure": "2LZM",
    "proposals": 6933,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 6933,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_efficiency",
    "structure": "355D",
    "proposals": 24,
-   "sampled": 24,
-   "accepted": 24,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 24,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 24,
    "cells": {
-    "biology 1-10": 24
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "3M73",
+   "proposals": 27259,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 27259,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "3NDS",
+   "proposals": 75,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 75,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "3T8P",
+   "proposals": 14,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 14,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "3W4T",
+   "proposals": 74496,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 74496,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "477D",
+   "proposals": 18,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 18,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "4F3U",
+   "proposals": 21,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 21,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "4GLG",
+   "proposals": 21,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 21,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_efficiency",
+   "structure": "4GLH",
+   "proposals": 21,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 21,
+   "cells": {
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_efficiency",
    "structure": "5PTI",
    "proposals": 261,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 261,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_efficiency",
    "structure": "6LYZ",
    "proposals": 3160,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 3160,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_efficiency",
    "structure": "7RSA",
    "proposals": 2590,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 2590,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "12E8",
+   "proposals": 24,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 24,
+   "cells": {
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "disulfide_design",
    "structure": "1A6M",
-   "proposals": 13,
-   "sampled": 13,
-   "accepted": 13,
+   "proposals": 12,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 13,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 13,
+   "estimated_admissible": 12,
    "cells": {
-    "biology 0.1-1": 13
+    "biology 0.1-1": 2
    }
   },
   {
@@ -541,418 +1231,1281 @@
   },
   {
    "family": "disulfide_design",
-   "structure": "1PGA",
-   "proposals": 5,
-   "sampled": 5,
-   "accepted": 5,
+   "structure": "1FHA",
+   "proposals": 27,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 5,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 5,
+   "estimated_admissible": 27,
    "cells": {
-    "biology 0.1-1": 5
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "1G31",
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 8,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "1HHK",
+   "proposals": 33,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 33,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "1ONJ",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "biology 0.1-1": 1
+   }
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "1PGA",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "1U7G",
+   "proposals": 38,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 38,
+   "cells": {
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "disulfide_design",
    "structure": "1UBQ",
    "proposals": 9,
-   "sampled": 9,
-   "accepted": 9,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 9,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 9,
    "cells": {
-    "biology 0.1-1": 9
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "1VB0",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "biology 0.1-1": 1
+   }
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "1WNR",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "2B2F",
+   "proposals": 66,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 66,
+   "cells": {
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "disulfide_design",
    "structure": "2LZM",
-   "proposals": 18,
-   "sampled": 18,
-   "accepted": 18,
+   "proposals": 14,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 18,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 18,
+   "estimated_admissible": 14,
    "cells": {
-    "biology 0.1-1": 18
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "3M73",
+   "proposals": 40,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 40,
+   "cells": {
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "disulfide_design",
+   "structure": "3W4T",
+   "proposals": 58,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 58,
+   "cells": {
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "disulfide_design",
    "structure": "5PTI",
-   "proposals": 8,
-   "sampled": 8,
-   "accepted": 8,
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 8,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 8,
+   "estimated_admissible": 4,
    "cells": {
-    "biology 0.1-1": 8
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "disulfide_design",
    "structure": "6LYZ",
    "proposals": 15,
-   "sampled": 15,
-   "accepted": 15,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 15,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 15,
    "cells": {
-    "biology 0.1-1": 15
+    "biology 0.1-1": 2
    }
   },
   {
    "family": "disulfide_design",
    "structure": "7RSA",
-   "proposals": 9,
-   "sampled": 9,
-   "accepted": 9,
+   "proposals": 5,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 9,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 9,
+   "estimated_admissible": 5,
    "cells": {
-    "biology 0.1-1": 9
+    "biology 0.1-1": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "12E8",
+   "proposals": 3128,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3128,
+   "cells": {
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_design",
    "structure": "1A6M",
-   "proposals": 884,
-   "sampled": 40,
-   "accepted": 40,
+   "proposals": 883,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 884,
+   "estimated_admissible": 883,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_design",
    "structure": "1CRN",
    "proposals": 50,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 50,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "1DCW",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "biology 1-10": 1
    }
   },
   {
    "family": "fret_design",
    "structure": "1EHZ",
    "proposals": 263,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 263,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "1FHA",
+   "proposals": 1695,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 1695,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "1G31",
+   "proposals": 606,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 606,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "1HHK",
+   "proposals": 5254,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 5254,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "1JUC",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "1NXB",
+   "proposals": 133,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 133,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "1ONJ",
+   "proposals": 130,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 130,
+   "cells": {
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_design",
    "structure": "1PGA",
    "proposals": 90,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 90,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "1U7G",
+   "proposals": 8338,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 8338,
+   "cells": {
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_design",
    "structure": "1UBQ",
    "proposals": 229,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 229,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "1VB0",
+   "proposals": 106,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 106,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "1WNR",
+   "proposals": 200,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 200,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "2B2F",
+   "proposals": 10240,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 10240,
+   "cells": {
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_design",
    "structure": "2LZM",
    "proposals": 1527,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 1527,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_design",
    "structure": "355D",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 6,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 6,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 6,
    "cells": {
-    "biology 1-10": 6
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "3M73",
+   "proposals": 5329,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 5329,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "3NDS",
+   "proposals": 29,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 29,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "3T8P",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "3W4T",
+   "proposals": 14003,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 14003,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "477D",
+   "proposals": 6,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 6,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "4F3U",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "4GLG",
+   "proposals": 5,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 5,
+   "cells": {
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "fret_design",
+   "structure": "4GLH",
+   "proposals": 5,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 5,
+   "cells": {
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_design",
    "structure": "5PTI",
    "proposals": 103,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 103,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_design",
    "structure": "6LYZ",
    "proposals": 831,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 831,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
    }
   },
   {
    "family": "fret_design",
    "structure": "7RSA",
    "proposals": 652,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 652,
    "cells": {
-    "biology 1-10": 40
+    "biology 1-10": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1000026",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "coordination_shell",
    "structure": "1000028",
-   "proposals": 25,
-   "sampled": 25,
-   "accepted": 25,
+   "proposals": 22,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 25,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 25,
+   "estimated_admissible": 22,
    "cells": {
-    "materials 0.1-1": 24,
-    "materials 1-10": 1
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "coordination_shell",
    "structure": "1000053",
    "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 3,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 3,
    "cells": {
-    "materials 0.1-1": 3
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1011242",
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 7,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "coordination_shell",
    "structure": "1100043",
-   "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 4,
+   "estimated_admissible": 3,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "coordination_shell",
-   "structure": "1516287",
-   "proposals": 15,
-   "sampled": 15,
-   "accepted": 13,
+   "structure": "1503581",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Fewer than three distinct distractors": 2
+    "Fewer than three distinct distractors": 1
    },
-   "checker_pass": 13,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 13,
+   "estimated_admissible": 2,
    "cells": {
-    "materials 0.1-1": 11,
-    "materials 1-10": 1,
     "materials out-of-range": 1
    }
   },
   {
    "family": "coordination_shell",
-   "structure": "1547350",
-   "proposals": 9,
-   "sampled": 9,
-   "accepted": 9,
+   "structure": "1515464",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 9,
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials out-of-range": 1,
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1516287",
+   "proposals": 15,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 15,
+   "cells": {
+    "materials 0.1-1": 1,
+    "materials 1-10": 1
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1521678",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials out-of-range": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1527502",
+   "proposals": 6,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 6,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1529037",
+   "proposals": 9,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 9,
    "cells": {
-    "materials 0.1-1": 9
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1536825",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1538281",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1538801",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1541795",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "1547350",
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 8,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "coordination_shell",
    "structure": "1574067",
    "proposals": 9,
-   "sampled": 9,
-   "accepted": 9,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 9,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 9,
    "cells": {
-    "materials 0.1-1": 9
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "2012157",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials out-of-range": 1,
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "2100187",
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 8,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "2103865",
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Fewer than three distinct distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "2104364",
+   "proposals": 15,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 15,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "2105052",
+   "proposals": 15,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 15,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "2107249",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Fewer than three distinct distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "materials 0.1-1": 1
    }
   },
   {
    "family": "coordination_shell",
    "structure": "2300112",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 3,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 3,
+   "estimated_admissible": 1,
    "cells": {
-    "materials 0.1-1": 3
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "4115045",
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Fewer than three distinct distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "4118591",
+   "proposals": 16,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 16,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "coordination_shell",
    "structure": "4118891",
    "proposals": 15,
-   "sampled": 15,
-   "accepted": 13,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 15,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "4124498",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "4124624",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
     "Fewer than three distinct distractors": 2
    },
-   "checker_pass": 13,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 13,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "4127359",
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Fewer than three distinct distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 11,
-    "materials out-of-range": 2
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "4320505",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "coordination_shell",
    "structure": "5000035",
    "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 3,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 3,
    "cells": {
-    "materials 0.1-1": 3
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "5000181",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Fewer than three distinct distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "materials out-of-range": 1
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "7101243",
+   "proposals": 14,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 14,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "7129847",
+   "proposals": 14,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Fewer than three distinct distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 7,
+   "cells": {
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "7217892",
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 8,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "7241894",
+   "proposals": 14,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Fewer than three distinct distractors": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "9002806",
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 8,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "coordination_shell",
    "structure": "9004137",
    "proposals": 4,
-   "sampled": 4,
-   "accepted": 3,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
     "Fewer than three distinct distractors": 1
    },
-   "checker_pass": 3,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 3,
+   "estimated_admissible": 2,
    "cells": {
-    "materials 0.1-1": 3
+    "materials 0.1-1": 1
    }
   },
   {
    "family": "coordination_shell",
    "structure": "9004141",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 3,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 3,
+   "estimated_admissible": 2,
    "cells": {
-    "materials 0.1-1": 3
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "9006483",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "coordination_shell",
    "structure": "9007060",
    "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "coordination_shell",
    "structure": "9007496",
    "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "9008084",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
@@ -971,7 +2524,49 @@
   },
   {
    "family": "coordination_shell",
-   "structure": "9008565",
+   "structure": "9008678",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "9008789",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "9008802",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "9008834",
    "proposals": 1,
    "sampled": 1,
    "accepted": 1,
@@ -985,325 +2580,917 @@
   },
   {
    "family": "coordination_shell",
-   "structure": "9008678",
+   "structure": "9008863",
    "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "coordination_shell",
-   "structure": "9008789",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
-   "rejected": {},
-   "checker_pass": 3,
+   "structure": "9009146",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Fewer than three distinct distractors": 1
+   },
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 3,
+   "estimated_admissible": 2,
    "cells": {
-    "materials 0.1-1": 3
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "9011073",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "9014501",
+   "proposals": 9,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 9,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "coordination_shell",
+   "structure": "9017413",
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Fewer than three distinct distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1000026",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "1000028",
-   "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 4,
+   "estimated_admissible": 2,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "1000053",
-   "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1011242",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "1100043",
-   "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1503581",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 1-10": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1515464",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 1-10": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "1516287",
-   "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 1-10": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1521678",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 1-10": 4
+    "materials 1-10": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1527502",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1529037",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1535012",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1536825",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1538281",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1538801",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "1541795",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 1-10": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "1547350",
-   "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 4,
+   "estimated_admissible": 3,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "1574067",
-   "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "2012157",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 1-10": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "2100187",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "2103865",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "2104364",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "2105052",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "2107249",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 1-10": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "2300112",
    "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "4115045",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 1-10": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "4118591",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "materials 1-10": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "4118891",
-   "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 1-10": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "4124498",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 1-10": 4
+    "materials 1-10": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "4124624",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "4127359",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "4320505",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "5000035",
    "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "5000181",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "5000216",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "7101243",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 1-10": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "7129847",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 1-10": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "7217892",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "7241894",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "9000657",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "9002806",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "9004137",
-   "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 4,
+   "estimated_admissible": 3,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "9004141",
    "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "9006483",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "9007060",
    "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "9007496",
-   "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 4,
+   "estimated_admissible": 2,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "9008084",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "9008506",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "9008564",
    "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "9008565",
-   "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 4,
+   "estimated_admissible": 3,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "9008678",
    "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "first_diffraction_peak",
    "structure": "9008789",
-   "proposals": 4,
-   "sampled": 4,
-   "accepted": 4,
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 4,
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "9008802",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "9008834",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 4
+    "materials 0.1-1": 2
    }
   },
   {
-   "family": "kinematic_extinction",
-   "structure": "1000028",
-   "proposals": 1,
-   "sampled": 1,
-   "accepted": 1,
+   "family": "first_diffraction_peak",
+   "structure": "9008863",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 1,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 1,
+   "estimated_admissible": 3,
    "cells": {
-    "materials 0.1-1": 1
+    "materials 0.1-1": 2
    }
   },
   {
-   "family": "kinematic_extinction",
-   "structure": "1000053",
-   "proposals": 1,
-   "sampled": 1,
-   "accepted": 1,
+   "family": "first_diffraction_peak",
+   "structure": "9009146",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 1,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 1,
+   "estimated_admissible": 4,
    "cells": {
-    "materials 0.1-1": 1
+    "materials 0.1-1": 2
    }
   },
   {
-   "family": "kinematic_extinction",
-   "structure": "1100043",
-   "proposals": 1,
-   "sampled": 1,
-   "accepted": 1,
+   "family": "first_diffraction_peak",
+   "structure": "9011073",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 1,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 1,
+   "estimated_admissible": 3,
    "cells": {
-    "materials 0.1-1": 1
+    "materials 0.1-1": 2
    }
   },
   {
+   "family": "first_diffraction_peak",
+   "structure": "9014501",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 4,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "first_diffraction_peak",
+   "structure": "9017413",
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "First reflection too weak to be unambiguous": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
    "family": "kinematic_extinction",
-   "structure": "1547350",
+   "structure": "1000026",
    "proposals": 1,
    "sampled": 1,
-   "accepted": 1,
-   "rejected": {},
-   "checker_pass": 1,
+   "accepted": 0,
+   "rejected": {
+    "Need at least one extinct and three clearly nonzero reflections": 1
+   },
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "materials 1-10": 1
-   }
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
    "family": "kinematic_extinction",
@@ -1321,59 +3508,17 @@
   },
   {
    "family": "kinematic_extinction",
-   "structure": "5000035",
+   "structure": "2012157",
    "proposals": 1,
    "sampled": 1,
-   "accepted": 1,
-   "rejected": {},
-   "checker_pass": 1,
+   "accepted": 0,
+   "rejected": {
+    "Need at least one extinct and three clearly nonzero reflections": 1
+   },
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "materials 0.1-1": 1
-   }
-  },
-  {
-   "family": "kinematic_extinction",
-   "structure": "9007060",
-   "proposals": 1,
-   "sampled": 1,
-   "accepted": 1,
-   "rejected": {},
-   "checker_pass": 1,
-   "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "materials 0.1-1": 1
-   }
-  },
-  {
-   "family": "kinematic_extinction",
-   "structure": "9007496",
-   "proposals": 1,
-   "sampled": 1,
-   "accepted": 1,
-   "rejected": {},
-   "checker_pass": 1,
-   "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "materials 1-10": 1
-   }
-  },
-  {
-   "family": "kinematic_extinction",
-   "structure": "9008565",
-   "proposals": 1,
-   "sampled": 1,
-   "accepted": 1,
-   "rejected": {},
-   "checker_pass": 1,
-   "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "materials 0.1-1": 1
-   }
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
    "family": "kinematic_extinction",
@@ -1390,587 +3535,733 @@
    "cells": {}
   },
   {
+   "family": "kinematic_extinction",
+   "structure": "9008802",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 0,
+   "rejected": {
+    "Need at least one extinct and three clearly nonzero reflections": 1
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
    "family": "diffraction_design",
    "structure": "1000028",
-   "proposals": 10,
-   "sampled": 10,
-   "accepted": 10,
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 10,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 10,
+   "estimated_admissible": 7,
    "cells": {
-    "materials 0.1-1": 8,
-    "materials 1-10": 2
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "diffraction_design",
    "structure": "1000053",
    "proposals": 10,
-   "sampled": 10,
-   "accepted": 10,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 10,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 10,
    "cells": {
-    "materials 0.1-1": 10
+    "materials 1-10": 1,
+    "materials 0.1-1": 1
    }
   },
   {
    "family": "diffraction_design",
    "structure": "1100043",
-   "proposals": 10,
-   "sampled": 10,
-   "accepted": 9,
-   "rejected": {
-    "Winning margin too small": 1
-   },
-   "checker_pass": 9,
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 9,
+   "estimated_admissible": 8,
    "cells": {
-    "materials 0.1-1": 7,
-    "materials 1-10": 2
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "diffraction_design",
    "structure": "1516287",
-   "proposals": 10,
-   "sampled": 10,
-   "accepted": 10,
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 10,
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 7,
+   "cells": {
+    "materials 1-10": 2
+   }
+  },
+  {
+   "family": "diffraction_design",
+   "structure": "1529037",
+   "proposals": 10,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 10,
    "cells": {
-    "materials 1-10": 10
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "diffraction_design",
+   "structure": "1536825",
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 7,
+   "cells": {
+    "materials 0.1-1": 1,
+    "materials 1-10": 1
+   }
+  },
+  {
+   "family": "diffraction_design",
+   "structure": "1538281",
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 7,
+   "cells": {
+    "materials 1-10": 1,
+    "materials 0.1-1": 1
+   }
+  },
+  {
+   "family": "diffraction_design",
+   "structure": "1538801",
+   "proposals": 10,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 10,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "diffraction_design",
    "structure": "1574067",
-   "proposals": 10,
-   "sampled": 10,
-   "accepted": 10,
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 10,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 10,
+   "estimated_admissible": 8,
    "cells": {
-    "materials 0.1-1": 8,
-    "materials 1-10": 2
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "diffraction_design",
+   "structure": "4118591",
+   "proposals": 6,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Winning margin too small": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "materials 1-10": 1
    }
   },
   {
    "family": "diffraction_design",
    "structure": "4118891",
-   "proposals": 10,
-   "sampled": 10,
-   "accepted": 10,
+   "proposals": 6,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 10,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 10,
+   "estimated_admissible": 6,
    "cells": {
-    "materials 1-10": 10
+    "materials 1-10": 2
+   }
+  },
+  {
+   "family": "diffraction_design",
+   "structure": "4320505",
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 7,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "diffraction_design",
+   "structure": "5000216",
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 8,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "diffraction_design",
+   "structure": "9000657",
+   "proposals": 9,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 9,
+   "cells": {
+    "materials 0.1-1": 1,
+    "materials 1-10": 1
+   }
+  },
+  {
+   "family": "diffraction_design",
+   "structure": "9006483",
+   "proposals": 9,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 9,
+   "cells": {
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "diffraction_design",
    "structure": "9007060",
-   "proposals": 10,
-   "sampled": 10,
-   "accepted": 9,
-   "rejected": {
-    "Winning margin too small": 1
-   },
-   "checker_pass": 9,
+   "proposals": 9,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 9,
    "cells": {
-    "materials 0.1-1": 7,
-    "materials 1-10": 2
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "diffraction_design",
    "structure": "9008564",
    "proposals": 10,
-   "sampled": 10,
-   "accepted": 10,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 10,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 10,
    "cells": {
-    "materials 0.1-1": 7,
-    "materials 1-10": 3
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "diffraction_design",
    "structure": "9008565",
-   "proposals": 10,
-   "sampled": 10,
-   "accepted": 9,
-   "rejected": {
-    "Winning margin too small": 1
-   },
-   "checker_pass": 9,
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 9,
+   "estimated_admissible": 8,
    "cells": {
-    "materials 0.1-1": 7,
-    "materials 1-10": 2
+    "materials 0.1-1": 1,
+    "materials 1-10": 1
    }
   },
   {
    "family": "diffraction_design",
    "structure": "9008678",
-   "proposals": 10,
-   "sampled": 10,
-   "accepted": 9,
-   "rejected": {
-    "Winning margin too small": 1
-   },
-   "checker_pass": 9,
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 9,
+   "estimated_admissible": 7,
    "cells": {
-    "materials 0.1-1": 7,
-    "materials 1-10": 2
+    "materials 0.1-1": 2
    }
   },
   {
    "family": "diffraction_design",
    "structure": "9008789",
-   "proposals": 10,
-   "sampled": 10,
-   "accepted": 10,
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 10,
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 8,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "diffraction_design",
+   "structure": "9008802",
+   "proposals": 6,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 6,
+   "cells": {
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "diffraction_design",
+   "structure": "9008834",
+   "proposals": 10,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 10,
    "cells": {
-    "materials 0.1-1": 8,
-    "materials 1-10": 2
+    "materials 0.1-1": 2
+   }
+  },
+  {
+   "family": "diffraction_design",
+   "structure": "9011073",
+   "proposals": 9,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 9,
+   "cells": {
+    "materials 1-10": 1,
+    "materials 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7029",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 5,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 5,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 5,
+   "estimated_admissible": 6,
    "cells": {
-    "quantum 0.1-1": 5
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7030",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 4,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
+    "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 4,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 4,
+   "estimated_admissible": 3,
    "cells": {
-    "quantum 0.1-1": 4
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7032",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 5,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 5,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 5,
+   "estimated_admissible": 6,
    "cells": {
-    "quantum 0.1-1": 5
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7033",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 3,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 3
-   },
-   "checker_pass": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 3,
+   "estimated_admissible": 6,
    "cells": {
-    "quantum 0.1-1": 3
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7034",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 5,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
     "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 5,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 5,
+   "estimated_admissible": 3,
    "cells": {
-    "quantum 0.1-1": 5
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7038",
-   "proposals": 6,
-   "sampled": 6,
-   "accepted": 2,
+   "proposals": 5,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 4
+    "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
    "estimated_admissible": 2,
    "cells": {
-    "quantum 0.1-1": 2
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7043",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 2,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 4
+    "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 3,
    "cells": {
-    "quantum 0.1-1": 2
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7044",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 3,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 3
+    "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 3,
+   "checker_pass": 1,
    "checker_fail": 0,
    "estimated_admissible": 3,
    "cells": {
-    "quantum 0.1-1": 3
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7050",
-   "proposals": 6,
-   "sampled": 6,
-   "accepted": 4,
+   "proposals": 5,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
+    "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 4,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 4,
+   "estimated_admissible": 2,
    "cells": {
-    "quantum 0.1-1": 4
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7052",
-   "proposals": 6,
-   "sampled": 6,
-   "accepted": 4,
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
+    "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 4,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 4,
+   "estimated_admissible": 2,
    "cells": {
-    "quantum 0.1-1": 4
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7063",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 3,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 3
+    "Target answer rank not reachable with plausible distractors": 2
    },
-   "checker_pass": 3,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 3,
-   "cells": {
-    "quantum 0.1-1": 3
-   }
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7082",
-   "proposals": 7,
-   "sampled": 7,
-   "accepted": 6,
+   "proposals": 6,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
     "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 6,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 6,
+   "estimated_admissible": 3,
    "cells": {
-    "quantum 0.1-1": 6
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7089",
    "proposals": 7,
-   "sampled": 7,
-   "accepted": 4,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 3
-   },
-   "checker_pass": 4,
-   "checker_fail": 0,
-   "estimated_admissible": 4,
-   "cells": {
-    "quantum 0.1-1": 4
-   }
-  },
-  {
-   "family": "named_bond_distance",
-   "structure": "QM7X-7095",
-   "proposals": 6,
-   "sampled": 6,
-   "accepted": 5,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 5,
-   "checker_fail": 0,
-   "estimated_admissible": 5,
-   "cells": {
-    "quantum 0.1-1": 5
-   }
-  },
-  {
-   "family": "named_bond_distance",
-   "structure": "QM7X-7110",
-   "proposals": 7,
-   "sampled": 7,
-   "accepted": 4,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 3
-   },
-   "checker_pass": 4,
-   "checker_fail": 0,
-   "estimated_admissible": 4,
-   "cells": {
-    "quantum 0.1-1": 4
-   }
-  },
-  {
-   "family": "named_bond_distance",
-   "structure": "QM7X-7111",
-   "proposals": 7,
-   "sampled": 7,
-   "accepted": 4,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 3
-   },
-   "checker_pass": 4,
-   "checker_fail": 0,
-   "estimated_admissible": 4,
-   "cells": {
-    "quantum 0.1-1": 4
-   }
-  },
-  {
-   "family": "named_bond_distance",
-   "structure": "QM7X-7114",
-   "proposals": 6,
-   "sampled": 6,
+   "sampled": 2,
    "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 4
-   },
+   "rejected": {},
    "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 7,
    "cells": {
     "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_distance",
-   "structure": "QM7X-7165",
-   "proposals": 7,
-   "sampled": 7,
-   "accepted": 4,
+   "structure": "QM7X-7095",
+   "proposals": 6,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 3
+    "Target answer rank not reachable with plausible distractors": 2
    },
-   "checker_pass": 4,
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "named_bond_distance",
+   "structure": "QM7X-7110",
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
    "checker_fail": 0,
    "estimated_admissible": 4,
    "cells": {
-    "quantum 0.1-1": 4
+    "quantum 0.1-1": 1
    }
+  },
+  {
+   "family": "named_bond_distance",
+   "structure": "QM7X-7111",
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "named_bond_distance",
+   "structure": "QM7X-7114",
+   "proposals": 6,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "named_bond_distance",
+   "structure": "QM7X-7165",
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7206",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 4,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
-   },
-   "checker_pass": 4,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 4,
+   "estimated_admissible": 6,
    "cells": {
-    "quantum 0.1-1": 4
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "QM7X-7208",
    "proposals": 8,
-   "sampled": 8,
-   "accepted": 6,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
+    "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 6,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 6,
+   "estimated_admissible": 4,
    "cells": {
-    "quantum 0.1-1": 6
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-BCD",
-   "proposals": 84,
-   "sampled": 40,
-   "accepted": 31,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 9
-   },
-   "checker_pass": 31,
+   "proposals": 80,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 65,
+   "estimated_admissible": 80,
    "cells": {
-    "chemistry 0.1-1": 31
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-DMBCD",
-   "proposals": 98,
-   "sampled": 40,
-   "accepted": 28,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 12
-   },
-   "checker_pass": 28,
+   "proposals": 96,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 69,
+   "estimated_admissible": 96,
    "cells": {
-    "chemistry 0.1-1": 28
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-WP6",
-   "proposals": 108,
-   "sampled": 40,
-   "accepted": 24,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 16
-   },
-   "checker_pass": 24,
+   "proposals": 105,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 65,
+   "estimated_admissible": 105,
    "cells": {
-    "chemistry 0.1-1": 24
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-WP6-G1",
    "proposals": 13,
-   "sampled": 13,
-   "accepted": 5,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 8
+    "Target answer rank not reachable with plausible distractors": 2
    },
-   "checker_pass": 5,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 5,
-   "cells": {
-    "chemistry 0.1-1": 5
-   }
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-WP6-G10",
    "proposals": 16,
-   "sampled": 16,
-   "accepted": 10,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 6
+    "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 10,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 10,
+   "estimated_admissible": 8,
    "cells": {
-    "chemistry 0.1-1": 10
+    "chemistry 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-WP6-G11",
-   "proposals": 5,
-   "sampled": 5,
+   "proposals": 4,
+   "sampled": 2,
    "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 4
+    "Target answer rank not reachable with plausible distractors": 1
    },
    "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 1,
+   "estimated_admissible": 2,
    "cells": {
     "chemistry 0.1-1": 1
    }
@@ -1978,676 +4269,652 @@
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-WP6-G12",
-   "proposals": 20,
-   "sampled": 20,
-   "accepted": 12,
+   "proposals": 17,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 8
+    "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 12,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 12,
+   "estimated_admissible": 8,
    "cells": {
-    "chemistry 0.1-1": 12
+    "chemistry 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-WP6-G13",
    "proposals": 15,
-   "sampled": 15,
-   "accepted": 9,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 6
+    "Target answer rank not reachable with plausible distractors": 2
    },
-   "checker_pass": 9,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 9,
-   "cells": {
-    "chemistry 0.1-1": 9
-   }
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-WP6-G2",
    "proposals": 17,
-   "sampled": 17,
-   "accepted": 7,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 10
-   },
-   "checker_pass": 7,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 7,
+   "estimated_admissible": 17,
    "cells": {
-    "chemistry 0.1-1": 7
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-WP6-G3",
    "proposals": 9,
-   "sampled": 9,
-   "accepted": 6,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 3
+    "Target answer rank not reachable with plausible distractors": 2
    },
-   "checker_pass": 6,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 6,
-   "cells": {
-    "chemistry 0.1-1": 6
-   }
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-WP6-G4",
    "proposals": 5,
-   "sampled": 5,
-   "accepted": 2,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 3
+    "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
    "estimated_admissible": 2,
    "cells": {
-    "chemistry 0.1-1": 2
+    "chemistry 0.1-1": 1
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-WP6-G5",
    "proposals": 22,
-   "sampled": 22,
-   "accepted": 13,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 9
-   },
-   "checker_pass": 13,
-   "checker_fail": 0,
-   "estimated_admissible": 13,
-   "cells": {
-    "chemistry 0.1-1": 13
-   }
-  },
-  {
-   "family": "named_bond_distance",
-   "structure": "SAMPL9-WP6-G6",
-   "proposals": 9,
-   "sampled": 9,
-   "accepted": 5,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 4
-   },
-   "checker_pass": 5,
-   "checker_fail": 0,
-   "estimated_admissible": 5,
-   "cells": {
-    "chemistry 0.1-1": 5
-   }
-  },
-  {
-   "family": "named_bond_distance",
-   "structure": "SAMPL9-WP6-G7",
-   "proposals": 7,
-   "sampled": 7,
+   "sampled": 2,
    "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 5
-   },
+   "rejected": {},
    "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 22,
    "cells": {
     "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_distance",
-   "structure": "SAMPL9-WP6-G8",
-   "proposals": 17,
-   "sampled": 17,
-   "accepted": 10,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 7
-   },
-   "checker_pass": 10,
+   "structure": "SAMPL9-WP6-G6",
+   "proposals": 9,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 10,
+   "estimated_admissible": 9,
    "cells": {
-    "chemistry 0.1-1": 10
+    "chemistry 0.1-1": 2
+   }
+  },
+  {
+   "family": "named_bond_distance",
+   "structure": "SAMPL9-WP6-G7",
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "named_bond_distance",
+   "structure": "SAMPL9-WP6-G8",
+   "proposals": 16,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 16,
+   "cells": {
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_distance",
    "structure": "SAMPL9-WP6-G9",
    "proposals": 14,
-   "sampled": 14,
-   "accepted": 5,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 9
+    "Target answer rank not reachable with plausible distractors": 2
    },
-   "checker_pass": 5,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 5,
-   "cells": {
-    "chemistry 0.1-1": 5
-   }
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7029",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 6,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 6,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 6,
    "cells": {
-    "quantum 0.1-1": 6
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7030",
    "proposals": 7,
-   "sampled": 7,
-   "accepted": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 7,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 7,
    "cells": {
-    "quantum 0.1-1": 7
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7032",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 6,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 6,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 6,
    "cells": {
-    "quantum 0.1-1": 6
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7033",
-   "proposals": 8,
-   "sampled": 8,
-   "accepted": 8,
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 8,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 8,
+   "estimated_admissible": 7,
    "cells": {
-    "quantum 0.1-1": 8
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7034",
-   "proposals": 9,
-   "sampled": 9,
-   "accepted": 9,
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 9,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 9,
+   "estimated_admissible": 8,
    "cells": {
-    "quantum 0.1-1": 9
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7038",
    "proposals": 8,
-   "sampled": 8,
-   "accepted": 8,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 8,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 8,
    "cells": {
-    "quantum 0.1-1": 8
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7043",
    "proposals": 8,
-   "sampled": 8,
-   "accepted": 8,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 8,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 8,
    "cells": {
-    "quantum 0.1-1": 8
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7044",
-   "proposals": 9,
-   "sampled": 9,
-   "accepted": 9,
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 9,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 9,
+   "estimated_admissible": 8,
    "cells": {
-    "quantum 0.1-1": 9
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7050",
    "proposals": 8,
-   "sampled": 8,
-   "accepted": 8,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 8,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 8,
    "cells": {
-    "quantum 0.1-1": 8
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7052",
-   "proposals": 9,
-   "sampled": 9,
-   "accepted": 9,
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 9,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 9,
+   "estimated_admissible": 7,
    "cells": {
-    "quantum 0.1-1": 9
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7063",
-   "proposals": 8,
-   "sampled": 8,
-   "accepted": 8,
+   "proposals": 6,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 8,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 8,
+   "estimated_admissible": 6,
    "cells": {
-    "quantum 0.1-1": 8
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7082",
    "proposals": 8,
-   "sampled": 8,
-   "accepted": 8,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 8,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 8,
    "cells": {
-    "quantum 0.1-1": 8
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7089",
-   "proposals": 8,
-   "sampled": 8,
-   "accepted": 8,
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 8,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 8,
+   "estimated_admissible": 7,
    "cells": {
-    "quantum 0.1-1": 8
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7095",
    "proposals": 6,
-   "sampled": 6,
-   "accepted": 6,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 6,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 6,
    "cells": {
-    "quantum 0.1-1": 6
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7110",
-   "proposals": 11,
-   "sampled": 11,
-   "accepted": 11,
+   "proposals": 10,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 11,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 11,
+   "estimated_admissible": 10,
    "cells": {
-    "quantum 0.1-1": 11
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7111",
-   "proposals": 11,
-   "sampled": 11,
-   "accepted": 11,
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 11,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 11,
+   "estimated_admissible": 8,
    "cells": {
-    "quantum 0.1-1": 11
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7114",
-   "proposals": 8,
-   "sampled": 8,
-   "accepted": 8,
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 8,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 8,
+   "estimated_admissible": 7,
    "cells": {
-    "quantum 0.1-1": 8
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7165",
-   "proposals": 11,
-   "sampled": 11,
-   "accepted": 11,
+   "proposals": 10,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 11,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 11,
+   "estimated_admissible": 10,
    "cells": {
-    "quantum 0.1-1": 11
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7206",
-   "proposals": 8,
-   "sampled": 8,
-   "accepted": 8,
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 8,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 8,
+   "estimated_admissible": 7,
    "cells": {
-    "quantum 0.1-1": 8
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "QM7X-7208",
-   "proposals": 12,
-   "sampled": 12,
-   "accepted": 12,
+   "proposals": 9,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 12,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 12,
+   "estimated_admissible": 9,
    "cells": {
-    "quantum 0.1-1": 12
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-BCD",
-   "proposals": 125,
-   "sampled": 40,
-   "accepted": 40,
+   "proposals": 121,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 125,
+   "estimated_admissible": 121,
    "cells": {
-    "chemistry 0.1-1": 40
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-DMBCD",
-   "proposals": 139,
-   "sampled": 40,
-   "accepted": 40,
+   "proposals": 135,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 139,
+   "estimated_admissible": 135,
    "cells": {
-    "chemistry 0.1-1": 40
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6",
-   "proposals": 149,
-   "sampled": 40,
-   "accepted": 40,
+   "proposals": 145,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 149,
+   "estimated_admissible": 145,
    "cells": {
-    "chemistry 0.1-1": 40
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G1",
-   "proposals": 14,
-   "sampled": 14,
-   "accepted": 14,
+   "proposals": 10,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 14,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 14,
+   "estimated_admissible": 10,
    "cells": {
-    "chemistry 0.1-1": 14
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G10",
    "proposals": 24,
-   "sampled": 24,
-   "accepted": 18,
-   "rejected": {
-    "Fewer than three separated misconception distractors": 6
-   },
-   "checker_pass": 18,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 18,
+   "estimated_admissible": 24,
    "cells": {
-    "chemistry 0.1-1": 18
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G11",
    "proposals": 7,
-   "sampled": 7,
-   "accepted": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 7,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 7,
    "cells": {
-    "chemistry 0.1-1": 7
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G12",
-   "proposals": 34,
-   "sampled": 34,
-   "accepted": 34,
+   "proposals": 30,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 34,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 34,
+   "estimated_admissible": 30,
    "cells": {
-    "chemistry 0.1-1": 34
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G13",
    "proposals": 20,
-   "sampled": 20,
-   "accepted": 16,
-   "rejected": {
-    "Fewer than three separated misconception distractors": 4
-   },
-   "checker_pass": 16,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 16,
+   "estimated_admissible": 20,
    "cells": {
-    "chemistry 0.1-1": 16
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G2",
    "proposals": 26,
-   "sampled": 26,
-   "accepted": 26,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 26,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 26,
    "cells": {
-    "chemistry 0.1-1": 26
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G3",
-   "proposals": 13,
-   "sampled": 13,
-   "accepted": 13,
+   "proposals": 9,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 13,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 13,
+   "estimated_admissible": 9,
    "cells": {
-    "chemistry 0.1-1": 13
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G4",
-   "proposals": 7,
-   "sampled": 7,
-   "accepted": 7,
+   "proposals": 6,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 7,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 7,
+   "estimated_admissible": 6,
    "cells": {
-    "chemistry 0.1-1": 7
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G5",
-   "proposals": 42,
-   "sampled": 40,
-   "accepted": 27,
+   "proposals": 39,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
-    "Fewer than three separated misconception distractors": 13
+    "Fewer than three separated misconception distractors": 1
    },
-   "checker_pass": 27,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 28,
+   "estimated_admissible": 20,
    "cells": {
-    "chemistry 0.1-1": 27
+    "chemistry 0.1-1": 1
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G6",
-   "proposals": 10,
-   "sampled": 10,
-   "accepted": 10,
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 10,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 10,
+   "estimated_admissible": 8,
    "cells": {
-    "chemistry 0.1-1": 10
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G7",
-   "proposals": 8,
-   "sampled": 8,
-   "accepted": 8,
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 8,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 8,
+   "estimated_admissible": 7,
    "cells": {
-    "chemistry 0.1-1": 8
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G8",
-   "proposals": 24,
-   "sampled": 24,
-   "accepted": 18,
-   "rejected": {
-    "Fewer than three separated misconception distractors": 6
-   },
-   "checker_pass": 18,
+   "proposals": 23,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 18,
+   "estimated_admissible": 23,
    "cells": {
-    "chemistry 0.1-1": 18
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "named_bond_angle",
    "structure": "SAMPL9-WP6-G9",
    "proposals": 24,
-   "sampled": 24,
-   "accepted": 7,
+   "sampled": 2,
+   "accepted": 0,
    "rejected": {
-    "Fewer than three separated misconception distractors": 17
+    "Fewer than three separated misconception distractors": 2
    },
-   "checker_pass": 7,
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 7,
-   "cells": {
-    "chemistry 0.1-1": 7
-   }
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
    "family": "extent_choice_v2",
@@ -2666,169 +4933,99 @@
   {
    "family": "extent_choice_v2",
    "structure": "QM7X-7030",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 1,
    "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "QM7X-7032",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "QM7X-7033",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "QM7X-7034",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "extent_choice_v2",
    "structure": "QM7X-7038",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 1,
    "cells": {
-    "quantum 0.1-1": 2
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "extent_choice_v2",
    "structure": "QM7X-7043",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 1,
    "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "QM7X-7044",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "extent_choice_v2",
    "structure": "QM7X-7050",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 1,
    "cells": {
-    "quantum 0.1-1": 2
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "extent_choice_v2",
    "structure": "QM7X-7052",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 1,
    "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "QM7X-7063",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "extent_choice_v2",
    "structure": "QM7X-7082",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 1,
    "cells": {
-    "quantum 0.1-1": 2
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "extent_choice_v2",
    "structure": "QM7X-7089",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 1,
    "cells": {
-    "quantum 0.1-1": 2
+    "quantum 0.1-1": 1
    }
   },
   {
@@ -2847,647 +5044,53 @@
   },
   {
    "family": "extent_choice_v2",
-   "structure": "QM7X-7110",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "QM7X-7111",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
    "structure": "QM7X-7114",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 1,
    "cells": {
-    "quantum 0.1-1": 2
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "extent_choice_v2",
    "structure": "QM7X-7165",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 1,
    "cells": {
-    "quantum 0.1-1": 2
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "extent_choice_v2",
    "structure": "QM7X-7206",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 1,
    "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "QM7X-7208",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-BCD",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 1-10": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-DMBCD",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 1-10": 2
+    "quantum 0.1-1": 1
    }
   },
   {
    "family": "extent_choice_v2",
    "structure": "SAMPL9-WP6",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 1-10": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G1",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G10",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 1-10": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G11",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G12",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G13",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 1-10": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G2",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 1-10": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G3",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G4",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G5",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G6",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G7",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 0.1-1": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G8",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 1-10": 2
-   }
-  },
-  {
-   "family": "extent_choice_v2",
-   "structure": "SAMPL9-WP6-G9",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7029",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7030",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
-   "rejected": {},
-   "checker_pass": 3,
-   "checker_fail": 0,
-   "estimated_admissible": 3,
-   "cells": {
-    "quantum 0.1-1": 3
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7032",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
-   "rejected": {},
-   "checker_pass": 3,
-   "checker_fail": 0,
-   "estimated_admissible": 3,
-   "cells": {
-    "quantum 0.1-1": 3
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7033",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7034",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7038",
-   "proposals": 3,
-   "sampled": 3,
+   "proposals": 1,
+   "sampled": 1,
    "accepted": 1,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
-   },
-   "checker_pass": 1,
-   "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "quantum 0.1-1": 1
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7043",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 1,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
-   },
-   "checker_pass": 1,
-   "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "quantum 0.1-1": 1
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7044",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7050",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 1,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
-   },
-   "checker_pass": 1,
-   "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "quantum 0.1-1": 1
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7052",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7063",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 1,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
-   },
-   "checker_pass": 1,
-   "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "quantum 0.1-1": 1
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7082",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7089",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
    "rejected": {},
-   "checker_pass": 3,
-   "checker_fail": 0,
-   "estimated_admissible": 3,
-   "cells": {
-    "quantum 0.1-1": 3
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7095",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
-   "rejected": {},
-   "checker_pass": 3,
-   "checker_fail": 0,
-   "estimated_admissible": 3,
-   "cells": {
-    "quantum 0.1-1": 3
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7110",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7111",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7114",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7165",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7206",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 1,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
-   },
-   "checker_pass": 1,
-   "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "quantum 0.1-1": 1
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "QM7X-7208",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "quantum 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "SAMPL9-WP6-G1",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "chemistry 0.1-1": 2
-   }
-  },
-  {
-   "family": "rotational_line",
-   "structure": "SAMPL9-WP6-G10",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 1,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
-   },
    "checker_pass": 1,
    "checker_fail": 0,
    "estimated_admissible": 1,
@@ -3496,14 +5099,12 @@
    }
   },
   {
-   "family": "rotational_line",
-   "structure": "SAMPL9-WP6-G11",
-   "proposals": 3,
-   "sampled": 3,
+   "family": "extent_choice_v2",
+   "structure": "SAMPL9-WP6-G1",
+   "proposals": 1,
+   "sampled": 1,
    "accepted": 1,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
-   },
+   "rejected": {},
    "checker_pass": 1,
    "checker_fail": 0,
    "estimated_admissible": 1,
@@ -3512,31 +5113,469 @@
    }
   },
   {
-   "family": "rotational_line",
-   "structure": "SAMPL9-WP6-G12",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
+   "family": "extent_choice_v2",
+   "structure": "SAMPL9-WP6-G10",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 3,
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "chemistry 1-10": 1
+   }
+  },
+  {
+   "family": "extent_choice_v2",
+   "structure": "SAMPL9-WP6-G13",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "chemistry 1-10": 2
+   }
+  },
+  {
+   "family": "extent_choice_v2",
+   "structure": "SAMPL9-WP6-G2",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "chemistry 1-10": 2
+   }
+  },
+  {
+   "family": "extent_choice_v2",
+   "structure": "SAMPL9-WP6-G3",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "chemistry 0.1-1": 1
+   }
+  },
+  {
+   "family": "extent_choice_v2",
+   "structure": "SAMPL9-WP6-G5",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "chemistry 0.1-1": 2
+   }
+  },
+  {
+   "family": "extent_choice_v2",
+   "structure": "SAMPL9-WP6-G6",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "chemistry 0.1-1": 1
+   }
+  },
+  {
+   "family": "extent_choice_v2",
+   "structure": "SAMPL9-WP6-G9",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "chemistry 0.1-1": 2
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7029",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "quantum 0.1-1": 2
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7030",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "quantum 0.1-1": 2
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7032",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "quantum 0.1-1": 1
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7033",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "quantum 0.1-1": 1
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7034",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "quantum 0.1-1": 1
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7038",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "quantum 0.1-1": 1
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7043",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 3,
    "cells": {
-    "chemistry 0.1-1": 3
+    "quantum 0.1-1": 2
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7044",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "quantum 0.1-1": 1
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7050",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "quantum 0.1-1": 1
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7052",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "quantum 0.1-1": 1
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7063",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
+   "rejected": {},
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "quantum 0.1-1": 1
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7082",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "quantum 0.1-1": 1
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7089",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7095",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "quantum 0.1-1": 1
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7110",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "quantum 0.1-1": 2
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7111",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "quantum 0.1-1": 1
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7114",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "quantum 0.1-1": 2
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7165",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "quantum 0.1-1": 2
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7206",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "quantum 0.1-1": 2
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "QM7X-7208",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 1,
+   "cells": {
+    "quantum 0.1-1": 1
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "SAMPL9-WP6-G1",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "chemistry 0.1-1": 2
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "SAMPL9-WP6-G10",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "chemistry 1-10": 2
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "SAMPL9-WP6-G11",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "chemistry 0.1-1": 2
+   }
+  },
+  {
+   "family": "rotational_line",
+   "structure": "SAMPL9-WP6-G12",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "rotational_line",
    "structure": "SAMPL9-WP6-G13",
    "proposals": 3,
-   "sampled": 3,
+   "sampled": 2,
    "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
+   "rejected": {},
    "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 2,
+   "estimated_admissible": 3,
    "cells": {
     "chemistry 1-10": 2
    }
@@ -3558,25 +5597,25 @@
   {
    "family": "rotational_line",
    "structure": "SAMPL9-WP6-G3",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 3,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 3,
+   "estimated_admissible": 2,
    "cells": {
-    "chemistry 0.1-1": 3
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "rotational_line",
    "structure": "SAMPL9-WP6-G4",
-   "proposals": 3,
-   "sampled": 3,
+   "proposals": 2,
+   "sampled": 2,
    "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
+    "Target answer rank not reachable with plausible distractors": 1
    },
    "checker_pass": 1,
    "checker_fail": 0,
@@ -3588,12 +5627,10 @@
   {
    "family": "rotational_line",
    "structure": "SAMPL9-WP6-G5",
-   "proposals": 3,
-   "sampled": 3,
+   "proposals": 2,
+   "sampled": 2,
    "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
+   "rejected": {},
    "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 2,
@@ -3605,44 +5642,44 @@
    "family": "rotational_line",
    "structure": "SAMPL9-WP6-G6",
    "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 3,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 3,
    "cells": {
-    "chemistry 0.1-1": 3
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "rotational_line",
    "structure": "SAMPL9-WP6-G7",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 1,
    "rejected": {},
-   "checker_pass": 3,
+   "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 3,
+   "estimated_admissible": 1,
    "cells": {
-    "chemistry 0.1-1": 3
+    "chemistry 0.1-1": 1
    }
   },
   {
    "family": "rotational_line",
    "structure": "SAMPL9-WP6-G8",
    "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
     "Target answer rank not reachable with plausible distractors": 1
    },
-   "checker_pass": 2,
+   "checker_pass": 1,
    "checker_fail": 0,
    "estimated_admissible": 2,
    "cells": {
-    "chemistry 1-10": 2
+    "chemistry 1-10": 1
    }
   },
   {
@@ -3663,494 +5700,524 @@
    "family": "isotopologue_design",
    "structure": "QM7X-7029",
    "proposals": 9,
-   "sampled": 9,
-   "accepted": 9,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 9,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 9,
    "cells": {
-    "quantum 0.1-1": 9
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7030",
-   "proposals": 10,
-   "sampled": 10,
-   "accepted": 10,
+   "proposals": 9,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 10,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 10,
+   "estimated_admissible": 9,
    "cells": {
-    "quantum 0.1-1": 10
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7032",
-   "proposals": 12,
-   "sampled": 12,
-   "accepted": 12,
+   "proposals": 11,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 12,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 12,
+   "estimated_admissible": 11,
    "cells": {
-    "quantum 0.1-1": 12
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7033",
-   "proposals": 11,
-   "sampled": 11,
-   "accepted": 11,
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 11,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 11,
+   "estimated_admissible": 8,
    "cells": {
-    "quantum 0.1-1": 11
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7034",
-   "proposals": 5,
-   "sampled": 5,
-   "accepted": 5,
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 5,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 5,
+   "estimated_admissible": 4,
    "cells": {
-    "quantum 0.1-1": 5
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7038",
-   "proposals": 7,
-   "sampled": 7,
-   "accepted": 7,
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 7,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 7,
+   "estimated_admissible": 4,
    "cells": {
-    "quantum 0.1-1": 7
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7043",
    "proposals": 7,
-   "sampled": 7,
-   "accepted": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 7,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 7,
    "cells": {
-    "quantum 0.1-1": 7
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7044",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 3,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 3,
+   "estimated_admissible": 2,
    "cells": {
-    "quantum 0.1-1": 3
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7050",
-   "proposals": 7,
-   "sampled": 7,
-   "accepted": 7,
+   "proposals": 5,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 7,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 7,
+   "estimated_admissible": 5,
    "cells": {
-    "quantum 0.1-1": 7
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7052",
-   "proposals": 7,
-   "sampled": 7,
-   "accepted": 7,
+   "proposals": 5,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 7,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 7,
+   "estimated_admissible": 5,
    "cells": {
-    "quantum 0.1-1": 7
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7063",
-   "proposals": 10,
-   "sampled": 10,
-   "accepted": 10,
+   "proposals": 8,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 10,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 10,
+   "estimated_admissible": 8,
    "cells": {
-    "quantum 0.1-1": 10
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7082",
    "proposals": 5,
-   "sampled": 5,
-   "accepted": 5,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 5,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 5,
    "cells": {
-    "quantum 0.1-1": 5
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7089",
-   "proposals": 5,
-   "sampled": 5,
-   "accepted": 5,
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 5,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 5,
+   "estimated_admissible": 3,
    "cells": {
-    "quantum 0.1-1": 5
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7095",
    "proposals": 10,
-   "sampled": 10,
-   "accepted": 10,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 10,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 10,
    "cells": {
-    "quantum 0.1-1": 10
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7110",
-   "proposals": 7,
-   "sampled": 7,
-   "accepted": 7,
+   "proposals": 6,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 7,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 7,
+   "estimated_admissible": 6,
    "cells": {
-    "quantum 0.1-1": 7
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7111",
    "proposals": 7,
-   "sampled": 7,
-   "accepted": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 7,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 7,
    "cells": {
-    "quantum 0.1-1": 7
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7114",
-   "proposals": 9,
-   "sampled": 9,
-   "accepted": 9,
+   "proposals": 7,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 9,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 9,
+   "estimated_admissible": 7,
    "cells": {
-    "quantum 0.1-1": 9
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7165",
-   "proposals": 5,
-   "sampled": 5,
-   "accepted": 5,
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 5,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 5,
+   "estimated_admissible": 4,
    "cells": {
-    "quantum 0.1-1": 5
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7206",
    "proposals": 3,
-   "sampled": 3,
-   "accepted": 3,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 3,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 3,
    "cells": {
-    "quantum 0.1-1": 3
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "QM7X-7208",
-   "proposals": 5,
-   "sampled": 5,
-   "accepted": 5,
+   "proposals": 4,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 5,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 5,
+   "estimated_admissible": 4,
    "cells": {
-    "quantum 0.1-1": 5
+    "quantum 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G1",
-   "proposals": 47,
-   "sampled": 40,
-   "accepted": 40,
+   "proposals": 43,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 47,
+   "estimated_admissible": 43,
    "cells": {
-    "chemistry 0.1-1": 40
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G10",
-   "proposals": 53,
-   "sampled": 40,
-   "accepted": 40,
+   "proposals": 49,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 53,
+   "estimated_admissible": 49,
    "cells": {
-    "chemistry 1-10": 40
+    "chemistry 1-10": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G11",
-   "proposals": 22,
-   "sampled": 22,
-   "accepted": 22,
+   "proposals": 21,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 22,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 22,
+   "estimated_admissible": 21,
    "cells": {
-    "chemistry 0.1-1": 22
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G12",
-   "proposals": 53,
-   "sampled": 40,
-   "accepted": 40,
+   "proposals": 49,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 53,
+   "estimated_admissible": 49,
    "cells": {
-    "chemistry 0.1-1": 40
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G13",
    "proposals": 16,
-   "sampled": 16,
-   "accepted": 16,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 16,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 16,
    "cells": {
-    "chemistry 1-10": 16
+    "chemistry 1-10": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G2",
    "proposals": 53,
-   "sampled": 40,
-   "accepted": 40,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 53,
    "cells": {
-    "chemistry 1-10": 40
+    "chemistry 1-10": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G3",
-   "proposals": 20,
-   "sampled": 20,
-   "accepted": 20,
+   "proposals": 16,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 20,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 20,
+   "estimated_admissible": 16,
    "cells": {
-    "chemistry 0.1-1": 20
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G4",
-   "proposals": 23,
-   "sampled": 23,
-   "accepted": 23,
+   "proposals": 20,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 23,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 23,
+   "estimated_admissible": 20,
    "cells": {
-    "chemistry 0.1-1": 23
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G5",
-   "proposals": 74,
-   "sampled": 40,
-   "accepted": 40,
+   "proposals": 70,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 40,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 74,
+   "estimated_admissible": 70,
    "cells": {
-    "chemistry 0.1-1": 40
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G6",
-   "proposals": 29,
-   "sampled": 29,
-   "accepted": 29,
+   "proposals": 25,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 29,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 29,
+   "estimated_admissible": 25,
    "cells": {
-    "chemistry 0.1-1": 29
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G7",
-   "proposals": 18,
-   "sampled": 18,
-   "accepted": 18,
+   "proposals": 16,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 18,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 18,
+   "estimated_admissible": 16,
    "cells": {
-    "chemistry 0.1-1": 18
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G8",
-   "proposals": 33,
-   "sampled": 33,
-   "accepted": 33,
+   "proposals": 29,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 33,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 33,
+   "estimated_admissible": 29,
    "cells": {
-    "chemistry 1-10": 33
+    "chemistry 1-10": 2
    }
   },
   {
    "family": "isotopologue_design",
    "structure": "SAMPL9-WP6-G9",
    "proposals": 22,
-   "sampled": 22,
-   "accepted": 22,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 22,
+   "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 22,
    "cells": {
-    "chemistry 0.1-1": 22
+    "chemistry 0.1-1": 2
    }
   },
   {
    "family": "assembly_extent",
    "structure": "6CGR-T",
-   "proposals": 6,
-   "sampled": 6,
-   "accepted": 6,
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 6,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 6,
+   "estimated_admissible": 2,
    "cells": {
-    "biology 100-1000": 6
+    "biology 100-1000": 2
    }
   },
   {
    "family": "assembly_extent",
    "structure": "6NCL-T",
-   "proposals": 14,
-   "sampled": 14,
-   "accepted": 14,
+   "proposals": 10,
+   "sampled": 2,
+   "accepted": 2,
    "rejected": {},
-   "checker_pass": 14,
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 14,
+   "estimated_admissible": 10,
    "cells": {
-    "biology 100-1000": 14
+    "biology 100-1000": 2
    }
   },
   {
-   "family": "assembly_extent",
+   "family": "assembly_rg",
+   "structure": "6CGR-T",
+   "proposals": 6,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 3,
+   "cells": {
+    "biology 100-1000": 1
+   }
+  },
+  {
+   "family": "assembly_rg",
+   "structure": "6NCL-T",
+   "proposals": 14,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 14,
+   "cells": {
+    "biology 100-1000": 2
+   }
+  },
+  {
+   "family": "assembly_rg",
    "structure": "7ARQ-T",
    "proposals": 1,
    "sampled": 1,
@@ -4164,45 +6231,87 @@
    }
   },
   {
-   "family": "assembly_rg",
+   "family": "scattering_q_design",
    "structure": "6CGR-T",
-   "proposals": 6,
-   "sampled": 6,
-   "accepted": 4,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
-   },
-   "checker_pass": 4,
+   "proposals": 16,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 4,
+   "estimated_admissible": 16,
    "cells": {
-    "biology 100-1000": 4
+    "biology 100-1000": 2
    }
   },
   {
-   "family": "assembly_rg",
+   "family": "scattering_q_design",
    "structure": "6NCL-T",
-   "proposals": 15,
-   "sampled": 15,
-   "accepted": 12,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 3
-   },
-   "checker_pass": 12,
+   "proposals": 40,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
    "checker_fail": 0,
-   "estimated_admissible": 12,
+   "estimated_admissible": 40,
    "cells": {
-    "biology 100-1000": 12
+    "biology 100-1000": 2
    }
   },
   {
-   "family": "assembly_rg",
+   "family": "scattering_q_design",
    "structure": "7ARQ-T",
-   "proposals": 1,
-   "sampled": 1,
-   "accepted": 0,
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 2,
+   "rejected": {},
+   "checker_pass": 2,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "chemistry 10-100": 2
+   }
+  },
+  {
+   "family": "guinier_intensity",
+   "structure": "1A34",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 1,
    "rejected": {
     "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "biology 10-100": 1
+   }
+  },
+  {
+   "family": "guinier_intensity",
+   "structure": "1AON",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 1,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 1
+   },
+   "checker_pass": 1,
+   "checker_fail": 0,
+   "estimated_admissible": 2,
+   "cells": {
+    "biology 10-100": 1
+   }
+  },
+  {
+   "family": "guinier_intensity",
+   "structure": "1KX5",
+   "proposals": 3,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Target answer rank not reachable with plausible distractors": 2
    },
    "checker_pass": 0,
    "checker_fail": 0,
@@ -4210,197 +6319,13 @@
    "cells": {}
   },
   {
-   "family": "scattering_q_design",
-   "structure": "1A34",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "biology 10-100": 2
-   }
-  },
-  {
-   "family": "scattering_q_design",
-   "structure": "1AON",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "biology 10-100": 2
-   }
-  },
-  {
-   "family": "scattering_q_design",
-   "structure": "1CWP-T",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "biology 10-100": 2
-   }
-  },
-  {
-   "family": "scattering_q_design",
-   "structure": "1KX5",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "biology 10-100": 2
-   }
-  },
-  {
-   "family": "scattering_q_design",
+   "family": "guinier_intensity",
    "structure": "1RYP",
    "proposals": 2,
    "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "biology 10-100": 2
-   }
-  },
-  {
-   "family": "scattering_q_design",
-   "structure": "1STM",
-   "proposals": 3,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 3,
-   "cells": {
-    "biology 10-100": 2
-   }
-  },
-  {
-   "family": "scattering_q_design",
-   "structure": "1SVA-T",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "biology 10-100": 2
-   }
-  },
-  {
-   "family": "scattering_q_design",
-   "structure": "2BUK",
-   "proposals": 3,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 3,
-   "cells": {
-    "biology 10-100": 2
-   }
-  },
-  {
-   "family": "scattering_q_design",
-   "structure": "2FT1-T",
-   "proposals": 2,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "biology 10-100": 2
-   }
-  },
-  {
-   "family": "scattering_q_design",
-   "structure": "6CGR-T",
-   "proposals": 20,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 20,
-   "cells": {
-    "biology 100-1000": 2
-   }
-  },
-  {
-   "family": "scattering_q_design",
-   "structure": "6NCL-T",
-   "proposals": 44,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 44,
-   "cells": {
-    "biology 100-1000": 2
-   }
-  },
-  {
-   "family": "scattering_q_design",
-   "structure": "7ARQ-T",
-   "proposals": 6,
-   "sampled": 2,
-   "accepted": 2,
-   "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 6,
-   "cells": {
-    "chemistry 10-100": 2
-   }
-  },
-  {
-   "family": "guinier_intensity",
-   "structure": "1A34",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "biology 10-100": 2
-   }
-  },
-  {
-   "family": "guinier_intensity",
-   "structure": "1AON",
-   "proposals": 3,
-   "sampled": 3,
    "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
+    "Target answer rank not reachable with plausible distractors": 1
    },
    "checker_pass": 1,
    "checker_fail": 0,
@@ -4411,59 +6336,27 @@
   },
   {
    "family": "guinier_intensity",
-   "structure": "1KX5",
+   "structure": "1STM",
    "proposals": 3,
-   "sampled": 3,
+   "sampled": 2,
    "accepted": 1,
    "rejected": {
-    "Target answer rank not reachable with plausible distractors": 2
+    "Target answer rank not reachable with plausible distractors": 1
    },
    "checker_pass": 1,
    "checker_fail": 0,
-   "estimated_admissible": 1,
+   "estimated_admissible": 2,
    "cells": {
     "biology 10-100": 1
    }
   },
   {
    "family": "guinier_intensity",
-   "structure": "1RYP",
+   "structure": "7ARQ-T",
    "proposals": 2,
    "sampled": 2,
    "accepted": 2,
    "rejected": {},
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "biology 10-100": 2
-   }
-  },
-  {
-   "family": "guinier_intensity",
-   "structure": "1STM",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
-   "checker_pass": 2,
-   "checker_fail": 0,
-   "estimated_admissible": 2,
-   "cells": {
-    "biology 10-100": 2
-   }
-  },
-  {
-   "family": "guinier_intensity",
-   "structure": "7ARQ-T",
-   "proposals": 3,
-   "sampled": 3,
-   "accepted": 2,
-   "rejected": {
-    "Target answer rank not reachable with plausible distractors": 1
-   },
    "checker_pass": 2,
    "checker_fail": 0,
    "estimated_admissible": 2,
@@ -4472,273 +6365,529 @@
    }
   },
   {
-   "family": "capsid_architecture",
-   "structure": "1A34-T",
+   "family": "stereo_relationship",
+   "structure": "QM7X-7165",
    "proposals": 1,
    "sampled": 1,
-   "accepted": 1,
-   "rejected": {},
-   "checker_pass": 1,
+   "accepted": 0,
+   "rejected": {
+    "Enantiomers must have equal lowest energies; dataset gap 0.1532 eV": 1
+   },
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "biology 10-100": 1
-   }
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
-   "family": "capsid_architecture",
-   "structure": "1STM-T",
-   "proposals": 1,
-   "sampled": 1,
-   "accepted": 1,
-   "rejected": {},
-   "checker_pass": 1,
+   "family": "stereo_property_inference",
+   "structure": "QM7X-7029",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Differences below the stated margins": 2
+   },
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "biology 10-100": 1
-   }
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
-   "family": "capsid_architecture",
-   "structure": "2BUK-T",
-   "proposals": 1,
-   "sampled": 1,
-   "accepted": 1,
-   "rejected": {},
-   "checker_pass": 1,
+   "family": "stereo_property_inference",
+   "structure": "QM7X-7033",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Differences below the stated margins": 2
+   },
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "biology 10-100": 1
-   }
+   "estimated_admissible": 0,
+   "cells": {}
   },
   {
-   "family": "capsid_architecture",
-   "structure": "2FT1-T",
+   "family": "stereo_property_inference",
+   "structure": "QM7X-7038",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Differences below the stated margins": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_property_inference",
+   "structure": "QM7X-7043",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Differences below the stated margins": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_property_inference",
+   "structure": "QM7X-7052",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Property comparison needs diastereomers": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_property_inference",
+   "structure": "QM7X-7111",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Property comparison needs diastereomers": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_property_inference",
+   "structure": "QM7X-7165",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Enantiomers must have equal lowest energies; dataset gap 0.1532 eV": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_property_inference",
+   "structure": "QM7X-7208",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Property comparison needs diastereomers": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_design_selection",
+   "structure": "QM7X-7030",
    "proposals": 1,
    "sampled": 1,
-   "accepted": 1,
-   "rejected": {},
-   "checker_pass": 1,
+   "accepted": 0,
+   "rejected": {
+    "Design template expects exactly two stereoisomers": 1
+   },
+   "checker_pass": 0,
    "checker_fail": 0,
-   "estimated_admissible": 1,
-   "cells": {
-    "biology 10-100": 1
-   }
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_design_selection",
+   "structure": "QM7X-7034",
+   "proposals": 1,
+   "sampled": 1,
+   "accepted": 0,
+   "rejected": {
+    "Design template expects exactly two stereoisomers": 1
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_design_selection",
+   "structure": "QM7X-7038",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "No S0 with both a lower diastereomer and a lower same-configuration conformer": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_design_selection",
+   "structure": "QM7X-7043",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "No S0 with both a lower diastereomer and a lower same-configuration conformer": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_design_selection",
+   "structure": "QM7X-7044",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Design template expects exactly two stereoisomers": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_design_selection",
+   "structure": "QM7X-7082",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "No S0 with both a lower diastereomer and a lower same-configuration conformer": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_design_selection",
+   "structure": "QM7X-7089",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "No S0 with both a lower diastereomer and a lower same-configuration conformer": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_design_selection",
+   "structure": "QM7X-7111",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "Candidate D": 1,
+    "Candidate A": 1
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_design_selection",
+   "structure": "QM7X-7114",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "No S0 with both a lower diastereomer and a lower same-configuration conformer": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_design_selection",
+   "structure": "QM7X-7165",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "No S0 with both a lower diastereomer and a lower same-configuration conformer": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
+  },
+  {
+   "family": "stereo_design_selection",
+   "structure": "QM7X-7208",
+   "proposals": 2,
+   "sampled": 2,
+   "accepted": 0,
+   "rejected": {
+    "No S0 with both a lower diastereomer and a lower same-configuration conformer": 2
+   },
+   "checker_pass": 0,
+   "checker_fail": 0,
+   "estimated_admissible": 0,
+   "cells": {}
   }
  ],
  "position_balance": {
   "backbone_torsion": {
    "counts": {
-    "A": 70,
-    "B": 75,
-    "C": 72,
-    "D": 75
+    "A": 8,
+    "B": 9,
+    "C": 8,
+    "D": 10
    },
-   "max_deviation": 3.0,
-   "tolerance": 43.8,
+   "max_deviation": 1.2,
+   "tolerance": 5.2,
    "ok": true
   },
   "secondary_structure": {
    "counts": {
-    "A": 33,
-    "B": 45,
-    "C": 36,
-    "D": 48
+    "A": 4,
+    "B": 4,
+    "C": 6,
+    "D": 7
    },
-   "max_deviation": 7.5,
-   "tolerance": 24.3,
+   "max_deviation": 1.8,
+   "tolerance": 4,
    "ok": true
   },
   "fret_efficiency": {
    "counts": {
-    "A": 90,
-    "B": 91,
-    "C": 116,
-    "D": 87
+    "A": 13,
+    "B": 15,
+    "C": 19,
+    "D": 13
    },
-   "max_deviation": 20.0,
-   "tolerance": 57.6,
+   "max_deviation": 4.0,
+   "tolerance": 9.0,
    "ok": true
   },
   "disulfide_design": {
    "counts": {
-    "A": 19,
-    "B": 20,
-    "C": 20,
-    "D": 19
+    "A": 8,
+    "B": 9,
+    "C": 9,
+    "D": 9
    },
-   "max_deviation": 0.5,
-   "tolerance": 11.7,
+   "max_deviation": 0.8,
+   "tolerance": 5.2,
    "ok": true
   },
   "fret_design": {
    "counts": {
-    "A": 92,
-    "B": 91,
-    "C": 91,
-    "D": 92
+    "A": 15,
+    "B": 15,
+    "C": 14,
+    "D": 15
    },
-   "max_deviation": 0.5,
-   "tolerance": 54.9,
+   "max_deviation": 0.8,
+   "tolerance": 8.8,
    "ok": true
   },
   "coordination_shell": {
    "counts": {
-    "A": 28,
-    "B": 27,
-    "C": 25,
-    "D": 25
+    "A": 24,
+    "B": 23,
+    "C": 23,
+    "D": 19
    },
-   "max_deviation": 1.8,
-   "tolerance": 15.8,
+   "max_deviation": 3.2,
+   "tolerance": 13.3,
    "ok": true
   },
   "first_diffraction_peak": {
    "counts": {
-    "A": 17,
-    "B": 23,
-    "C": 17,
-    "D": 11
+    "A": 24,
+    "B": 46,
+    "C": 37,
+    "D": 8
    },
-   "max_deviation": 6.0,
-   "tolerance": 10.2,
+   "max_deviation": 20.8,
+   "tolerance": 17.2,
+   "ok": false
+  },
+  "diffraction_design": {
+   "counts": {
+    "A": 9,
+    "B": 14,
+    "C": 16,
+    "D": 6
+   },
+   "max_deviation": 5.2,
+   "tolerance": 6.8,
    "ok": true
   },
-  "kinematic_extinction": {
+  "named_bond_distance": {
    "counts": {
-    "A": 2,
-    "B": 2,
-    "C": 2,
-    "D": 2
+    "A": 13,
+    "B": 12,
+    "C": 8,
+    "D": 5
+   },
+   "max_deviation": 4.5,
+   "tolerance": 5.7,
+   "ok": true
+  },
+  "named_bond_angle": {
+   "counts": {
+    "A": 11,
+    "B": 14,
+    "C": 20,
+    "D": 24
+   },
+   "max_deviation": 6.8,
+   "tolerance": 10.3,
+   "ok": true
+  },
+  "extent_choice_v2": {
+   "counts": {
+    "A": 5,
+    "B": 10,
+    "C": 7,
+    "D": 5
+   },
+   "max_deviation": 3.2,
+   "tolerance": 4.0,
+   "ok": true
+  },
+  "rotational_line": {
+   "counts": {
+    "A": 11,
+    "B": 16,
+    "C": 8,
+    "D": 14
+   },
+   "max_deviation": 4.2,
+   "tolerance": 7.3,
+   "ok": true
+  },
+  "isotopologue_design": {
+   "counts": {
+    "A": 16,
+    "B": 16,
+    "C": 17,
+    "D": 17
+   },
+   "max_deviation": 0.5,
+   "tolerance": 9.9,
+   "ok": true
+  },
+  "assembly_extent": {
+   "counts": {
+    "A": 1,
+    "B": 1,
+    "C": 1,
+    "D": 1
    },
    "max_deviation": 0.0,
    "tolerance": 4,
    "ok": true
   },
-  "diffraction_design": {
-   "counts": {
-    "A": 19,
-    "B": 30,
-    "C": 37,
-    "D": 20
-   },
-   "max_deviation": 10.5,
-   "tolerance": 15.9,
-   "ok": true
-  },
-  "named_bond_distance": {
-   "counts": {
-    "A": 77,
-    "B": 84,
-    "C": 55,
-    "D": 33
-   },
-   "max_deviation": 29.2,
-   "tolerance": 37.4,
-   "ok": true
-  },
-  "named_bond_angle": {
-   "counts": {
-    "A": 91,
-    "B": 100,
-    "C": 110,
-    "D": 193
-   },
-   "max_deviation": 69.5,
-   "tolerance": 74.1,
-   "ok": true
-  },
-  "extent_choice_v2": {
-   "counts": {
-    "A": 13,
-    "B": 23,
-    "C": 24,
-    "D": 12
-   },
-   "max_deviation": 6.0,
-   "tolerance": 10.8,
-   "ok": true
-  },
-  "rotational_line": {
-   "counts": {
-    "A": 10,
-    "B": 24,
-    "C": 17,
-    "D": 15
-   },
-   "max_deviation": 7.5,
-   "tolerance": 9.9,
-   "ok": true
-  },
-  "isotopologue_design": {
-   "counts": {
-    "A": 132,
-    "B": 131,
-    "C": 132,
-    "D": 132
-   },
-   "max_deviation": 0.8,
-   "tolerance": 79.0,
-   "ok": true
-  },
-  "assembly_extent": {
-   "counts": {
-    "A": 5,
-    "B": 6,
-    "C": 5,
-    "D": 5
-   },
-   "max_deviation": 0.8,
-   "tolerance": 4,
-   "ok": true
-  },
   "assembly_rg": {
    "counts": {
-    "A": 5,
-    "B": 5,
-    "C": 6,
+    "A": 1,
+    "B": 1,
+    "C": 2,
     "D": 0
    },
-   "max_deviation": 4.0,
+   "max_deviation": 1.0,
    "tolerance": 4,
    "ok": true
   },
   "scattering_q_design": {
    "counts": {
-    "A": 6,
-    "B": 6,
-    "C": 7,
-    "D": 5
+    "A": 1,
+    "B": 3,
+    "C": 2,
+    "D": 0
    },
-   "max_deviation": 1.0,
+   "max_deviation": 1.5,
    "tolerance": 4,
    "ok": true
   },
   "guinier_intensity": {
    "counts": {
     "A": 0,
-    "B": 3,
-    "C": 4,
-    "D": 3
+    "B": 2,
+    "C": 3,
+    "D": 1
    },
-   "max_deviation": 2.5,
-   "tolerance": 4,
-   "ok": true
-  },
-  "capsid_architecture": {
-   "counts": {
-    "A": 2,
-    "B": 0,
-    "C": 2,
-    "D": 0
-   },
-   "max_deviation": 1.0,
+   "max_deviation": 1.5,
    "tolerance": 4,
    "ok": true
   }
  },
  "model_calls": 0,
+ "families": {
+  "exhausted": [
+   "binding_design_choice",
+   "binding_evidence_choice",
+   "capsid_architecture",
+   "conformer_target_selection",
+   "force_path_derivative"
+  ],
+  "unprobed": {}
+ },
+ "rank_fallbacks": {
+  "diffraction_design": {
+   "1->2": 2,
+   "4->3": 4
+  },
+  "extent_choice_v2": {
+   "4->3": 1,
+   "3->2": 1,
+   "1->2": 2
+  },
+  "first_diffraction_peak": {
+   "3->2": 8,
+   "4->3": 14,
+   "4->2": 7,
+   "1->2": 3,
+   "1->3": 1,
+   "2->3": 1
+  },
+  "fret_efficiency": {
+   "1->2": 1,
+   "4->3": 2,
+   "1->3": 1,
+   "2->3": 1
+  },
+  "named_bond_angle": {
+   "1->3": 4,
+   "2->4": 8,
+   "3->4": 7,
+   "4->2": 3,
+   "1->4": 3,
+   "3->2": 3,
+   "2->1": 2,
+   "4->1": 3,
+   "1->2": 4,
+   "3->1": 1,
+   "4->3": 5,
+   "2->3": 4
+  },
+  "scattering_q_design": {
+   "4->3": 1,
+   "1->2": 1
+  }
+ },
  "note": "Capacity probe only: nothing is admitted to the catalog. Estimates scale the acceptance rate of the sample to all proposals of the same family and structure."
 }

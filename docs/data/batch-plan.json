@@ -3,13 +3,13 @@
  "rule_version": "0.1.0",
  "status": "provisional",
  "status_note": "暂定规则（2026-10-06 用户同意暂用），待导师确认；改动只改本文件并重跑 tools/batch_plan.py。",
- "enumeration_run": "enum-v34",
+ "enumeration_run": "enum-v35",
  "summary": {
   "target": 1230,
-  "max_selectable": 682,
-  "max_balanced": 682,
+  "max_selectable": 755,
+  "max_balanced": 744,
   "cells_meeting_rule": 2,
-  "paper_parameter_share_of_selectable": 0.081,
+  "paper_parameter_share_of_selectable": 0.073,
   "max_paper_parameter_share": 0.25
  },
  "cells": [
@@ -25,7 +25,7 @@
     "inference": 3,
     "design": 2
    },
-   "sources": 27,
+   "sources": 39,
    "paper_systems": [],
    "ability_max": {
     "perception": 75,
@@ -33,8 +33,8 @@
     "design": 29
    },
    "pool": {
-    "admitted": 17,
-    "enumerated": 471
+    "admitted": 190,
+    "enumerated": 381
    },
    "family_flow": {
     "named_bond_distance": 25,
@@ -58,23 +58,23 @@
     "inference": 7,
     "design": 4
    },
-   "sources": 53,
+   "sources": 57,
    "paper_systems": [],
    "ability_max": {
-    "perception": 82,
-    "inference": 36,
+    "perception": 77,
+    "inference": 34,
     "design": 41
    },
    "pool": {
-    "admitted": 57,
-    "enumerated": 1251
+    "admitted": 63,
+    "enumerated": 1263
    },
    "family_flow": {
     "isotopologue_design": 25,
     "named_bond_distance": 25,
-    "rotational_line": 21,
-    "named_bond_angle": 9,
-    "stereo_relationship": 8,
+    "rotational_line": 19,
+    "stereo_relationship": 14,
+    "named_bond_angle": 5,
     "stereo_property_inference": 4,
     "stereo_design_selection": 3,
     "hbond_geometry": 3,
@@ -87,78 +87,74 @@
    "cell": "chemistry 1-10",
    "tier": "A",
    "target": 100,
-   "max_selectable": 47,
-   "max_balanced": 47,
+   "max_selectable": 41,
+   "max_balanced": 41,
    "families": 6,
    "families_by_ability": {
     "perception": 1,
     "inference": 3,
     "design": 2
    },
-   "sources": 13,
+   "sources": 11,
    "paper_systems": [],
    "ability_max": {
-    "perception": 18,
-    "inference": 12,
+    "perception": 10,
+    "inference": 15,
     "design": 18
    },
    "pool": {
     "admitted": 12,
-    "enumerated": 176
+    "enumerated": 163
    },
    "family_flow": {
-    "extent_choice_v2": 17,
     "isotopologue_design": 16,
-    "rotational_line": 8,
+    "rotational_line": 11,
+    "extent_choice_v2": 8,
     "binding_evidence_choice": 3,
     "binding_design_choice": 2,
     "first_diffraction_peak": 1
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 47 / 100 道",
+    "最多只能选 41 / 100 道",
     "感知 族 1 个，需 ≥ 2",
-    "感知 最多 18 道，需 ≥ 23",
-    "推断 最多 12 道，需 ≥ 23",
+    "感知 最多 10 道，需 ≥ 23",
+    "推断 最多 15 道，需 ≥ 23",
     "设计 最多 18 道，需 ≥ 23",
-    "来源 13 个，需 ≥ 15"
+    "来源 11 个，需 ≥ 15"
    ]
   },
   {
    "cell": "materials 0.1-1",
    "tier": "A",
    "target": 100,
-   "max_selectable": 92,
-   "max_balanced": 92,
+   "max_selectable": 100,
+   "max_balanced": 96,
    "families": 7,
    "families_by_ability": {
     "perception": 1,
     "inference": 4,
     "design": 2
    },
-   "sources": 31,
+   "sources": 62,
    "paper_systems": [],
    "ability_max": {
     "perception": 25,
-    "inference": 39,
+    "inference": 52,
     "design": 28
    },
    "pool": {
-    "admitted": 47,
-    "enumerated": 235
+    "admitted": 165,
+    "enumerated": 565
    },
    "family_flow": {
+    "kinematic_extinction": 25,
     "coordination_shell": 25,
     "first_diffraction_peak": 25,
-    "diffraction_design": 25,
-    "kinematic_extinction": 12,
-    "design_choice": 3,
-    "evidence_quantity": 1,
-    "evidence_elimination": 1
+    "diffraction_design": 25
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 92 / 100 道",
     "感知 族 1 个，需 ≥ 2"
    ]
   },
@@ -166,38 +162,37 @@
    "cell": "materials 1-10",
    "tier": "A",
    "target": 100,
-   "max_selectable": 40,
-   "max_balanced": 40,
+   "max_selectable": 83,
+   "max_balanced": 76,
    "families": 5,
    "families_by_ability": {
     "perception": 2,
     "inference": 2,
     "design": 1
    },
-   "sources": 16,
+   "sources": 39,
    "paper_systems": [],
    "ability_max": {
-    "perception": 7,
-    "inference": 13,
+    "perception": 8,
+    "inference": 50,
     "design": 25
    },
    "pool": {
-    "admitted": 13,
-    "enumerated": 49
+    "admitted": 59,
+    "enumerated": 94
    },
    "family_flow": {
-    "diffraction_design": 20,
-    "first_diffraction_peak": 9,
-    "kinematic_extinction": 4,
-    "coordination_shell": 4,
+    "kinematic_extinction": 25,
+    "first_diffraction_peak": 25,
+    "diffraction_design": 25,
+    "coordination_shell": 5,
     "extent_choice_v2": 3
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 40 / 100 道",
+    "最多只能选 83 / 100 道",
     "题型族 5 个，需 ≥ 6",
-    "感知 最多 7 道，需 ≥ 23",
-    "推断 最多 13 道，需 ≥ 23",
+    "感知 最多 8 道，需 ≥ 23",
     "设计 族 1 个，需 ≥ 2"
    ]
   },
@@ -205,15 +200,15 @@
    "cell": "biology 0.1-1",
    "tier": "A",
    "target": 100,
-   "max_selectable": 74,
-   "max_balanced": 74,
+   "max_selectable": 80,
+   "max_balanced": 80,
    "families": 6,
    "families_by_ability": {
     "perception": 2,
     "inference": 2,
     "design": 2
    },
-   "sources": 13,
+   "sources": 23,
    "paper_systems": [],
    "ability_max": {
     "perception": 28,
@@ -221,21 +216,20 @@
     "design": 26
    },
    "pool": {
-    "admitted": 25,
-    "enumerated": 1856
+    "admitted": 154,
+    "enumerated": 8510
    },
    "family_flow": {
     "backbone_torsion": 25,
     "secondary_structure": 25,
-    "disulfide_design": 19,
+    "disulfide_design": 25,
     "named_bond_distance": 3,
     "evidence_elimination": 1,
     "design_choice": 1
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 74 / 100 道",
-    "来源 13 个，需 ≥ 15"
+    "最多只能选 80 / 100 道"
    ]
   },
   {
@@ -250,7 +244,7 @@
     "inference": 4,
     "design": 1
    },
-   "sources": 21,
+   "sources": 38,
    "paper_systems": [],
    "ability_max": {
     "perception": 3,
@@ -259,7 +253,7 @@
    },
    "pool": {
     "admitted": 27,
-    "enumerated": 23452
+    "enumerated": 325007
    },
    "family_flow": {
     "fret_efficiency": 25,
@@ -281,79 +275,77 @@
    "cell": "biology 10-100",
    "tier": "A",
    "target": 100,
-   "max_selectable": 68,
-   "max_balanced": 68,
+   "max_selectable": 74,
+   "max_balanced": 74,
    "families": 6,
    "families_by_ability": {
     "perception": 2,
     "inference": 3,
     "design": 1
    },
-   "sources": 9,
+   "sources": 10,
    "paper_systems": [],
    "ability_max": {
-    "perception": 18,
+    "perception": 19,
     "inference": 30,
     "design": 25
    },
    "pool": {
-    "admitted": 43,
-    "enumerated": 32
+    "admitted": 73,
+    "enumerated": 7
    },
    "family_flow": {
-    "scattering_q_design": 23,
+    "scattering_q_design": 25,
     "guinier_intensity": 13,
     "capsid_architecture": 12,
-    "assembly_extent": 9,
+    "assembly_extent": 10,
     "assembly_rg": 9,
-    "debye_intensity": 2
+    "debye_intensity": 5
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 68 / 100 道",
-    "感知 最多 18 道，需 ≥ 23",
+    "最多只能选 74 / 100 道",
+    "感知 最多 19 道，需 ≥ 23",
     "设计 族 1 个，需 ≥ 2",
-    "来源 9 个，需 ≥ 15"
+    "来源 10 个，需 ≥ 15"
    ]
   },
   {
    "cell": "quantum 1-10",
    "tier": "B",
    "target": 60,
-   "max_selectable": 10,
-   "max_balanced": 10,
-   "families": 3,
+   "max_selectable": 26,
+   "max_balanced": 26,
+   "families": 4,
    "families_by_ability": {
     "perception": 1,
     "inference": 1,
-    "design": 1
+    "design": 2
    },
-   "sources": 6,
+   "sources": 11,
    "paper_systems": [
     "quantum_dot.py"
    ],
    "ability_max": {
-    "perception": 5,
+    "perception": 13,
     "inference": 3,
-    "design": 2
+    "design": 10
    },
    "pool": {
-    "admitted": 10,
+    "admitted": 26,
     "enumerated": 0
    },
    "family_flow": {
-    "extent_choice_v2": 5,
+    "extent_choice_v2": 13,
+    "isotopologue_design": 8,
     "qdot_optics": 3,
     "qdot_design": 2
    },
    "meets_rule": false,
    "gaps": [
-    "最多只能选 10 / 60 道",
-    "题型族 3 个，需 ≥ 4",
-    "感知 最多 5 道，需 ≥ 13",
+    "最多只能选 26 / 60 道",
     "推断 最多 3 道，需 ≥ 13",
-    "设计 最多 2 道，需 ≥ 13",
-    "来源 6 个，需 ≥ 8"
+    "设计 最多 10 道，需 ≥ 13"
    ]
   },
   {
@@ -377,12 +369,12 @@
    },
    "pool": {
     "admitted": 10,
-    "enumerated": 9
+    "enumerated": 5
    },
    "family_flow": {
-    "assembly_extent": 3,
+    "assembly_rg": 3,
     "guinier_intensity": 3,
-    "assembly_rg": 2
+    "assembly_extent": 2
    },
    "meets_rule": false,
    "gaps": [
@@ -413,8 +405,8 @@
     "design": 8
    },
    "pool": {
-    "admitted": 10,
-    "enumerated": 100
+    "admitted": 27,
+    "enumerated": 85
    },
    "family_flow": {
     "assembly_extent": 8,

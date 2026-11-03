@@ -1,0 +1,1414 @@
+{
+ "kind": "a1_download_plan",
+ "version": "0.1.0",
+ "date": "2026-11-02",
+ "status": "provisional",
+ "note": "按 docs/data/subdomain-map.json 的空像素点名。条目由 COD 与 RCSB 的检索接口返回，没有一个是凭记忆写的；COD CIF 约 7 KB 一个，PDB 结构约 200 KB 一个（docs/assets/bio 现有 14 个共 2.8 MB）。100-1000 nm 的空格下载解决不了，要论文参数模型，单列在 database=paper 的行里。",
+ "totals": {
+  "cod": 50,
+  "pdb": 30,
+  "paper": 0
+ },
+ "pixels_meaningful": 74,
+ "pixels_empty": 30,
+ "targets": [
+  {
+   "pixel": "P2 0.1-1",
+   "subdomain": "磁性",
+   "database": "cod",
+   "wanted": 4,
+   "why": "磁性这一格一道题都没有；磁性氧化物的晶胞与配位壳层是最直接的几何量",
+   "families": [
+    "coordination_shell",
+    "first_diffraction_peak",
+    "kinematic_extinction"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "2107249",
+     "formula": "Fe3 O4",
+     "cell_volume_A3": 2356.13,
+     "a": "11.868",
+     "b": "11.851",
+     "c": "16.752",
+     "spacegroup": "P b c m",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/2107249.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "9008084",
+     "formula": "Cr2 O3",
+     "cell_volume_A3": 289.817,
+     "a": "4.9607",
+     "b": "4.9607",
+     "c": "13.599",
+     "spacegroup": "R -3 c :H",
+     "name": "Eskolaite",
+     "url": "https://www.crystallography.net/cod/9008084.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "1514226",
+     "formula": "Mn O",
+     "cell_volume_A3": 90.398,
+     "a": "4.488",
+     "b": "4.488",
+     "c": "4.488",
+     "spacegroup": "F m -3 m",
+     "name": "Manganese Oxide",
+     "url": "https://www.crystallography.net/cod/1514226.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "4320505",
+     "formula": "Ni O",
+     "cell_volume_A3": 74.139,
+     "a": "4.20097",
+     "b": "4.20097",
+     "c": "4.20097",
+     "spacegroup": "F m -3 m",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/4320505.cif",
+     "license": "COD: public domain (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "M7 0.1-1",
+   "subdomain": "表面与界面",
+   "database": "cod",
+   "wanted": 4,
+   "why": "表面与界面整个一级分类都是空的；先用常见表面材料的体相晶胞把 0.1-1 nm 撑起来",
+   "families": [
+    "coordination_shell",
+    "first_diffraction_peak",
+    "named_bond_distance"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "4124498",
+     "formula": "O2 Ti",
+     "cell_volume_A3": 1577.6,
+     "a": "15.62",
+     "b": "7.81",
+     "c": "12.932",
+     "spacegroup": "P 1",
+     "name": "Ti O2",
+     "url": "https://www.crystallography.net/cod/4124498.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "9006483",
+     "formula": "Mg O",
+     "cell_volume_A3": 87.842,
+     "a": "4.4453",
+     "b": "4.4453",
+     "c": "4.4453",
+     "spacegroup": "F m -3 m",
+     "name": "Periclase",
+     "url": "https://www.crystallography.net/cod/9006483.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "1101168",
+     "formula": "Al2 O3",
+     "cell_volume_A3": 499.05,
+     "a": "7.932",
+     "b": "7.932",
+     "c": "7.932",
+     "spacegroup": "F d -3 m",
+     "name": "eta- Al-oxid_fit2gnn",
+     "url": "https://www.crystallography.net/cod/1101168.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "9002806",
+     "formula": "O3 Sr Ti",
+     "cell_volume_A3": 237.891,
+     "a": "5.5202",
+     "b": "5.5202",
+     "c": "7.8067",
+     "spacegroup": "P b n m",
+     "name": "Tausonite",
+     "url": "https://www.crystallography.net/cod/9002806.cif",
+     "license": "COD: public domain (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "B5 0.1-1",
+   "subdomain": "毒素",
+   "database": "pdb",
+   "wanted": 4,
+   "why": "毒素这一格是空的，而毒素正是「结构 → 性质」最有故事的一类",
+   "families": [
+    "backbone_torsion",
+    "secondary_structure",
+    "disulfide_design",
+    "named_bond_distance"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "1NXB",
+     "title": "STRUCTURE AND FUNCTION OF SNAKE VENOM CURARIMIMETIC NEUROTOXINS",
+     "method": "X-ray",
+     "resolution_A": 1.38,
+     "chains": 1,
+     "atoms": 543,
+     "url": "https://files.rcsb.org/download/1NXB.pdb",
+     "page": "https://www.rcsb.org/structure/1NXB",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "1ONJ",
+     "title": "Crystal structure of Atratoxin-b from Chinese cobra venom of Naja atra",
+     "method": "X-ray",
+     "resolution_A": 1.555,
+     "chains": 1,
+     "atoms": 593,
+     "url": "https://files.rcsb.org/download/1ONJ.pdb",
+     "page": "https://www.rcsb.org/structure/1ONJ",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "1VB0",
+     "title": "Atomic resolution structure of atratoxin-b, one short-chain neurotoxin from Naja atra",
+     "method": "X-ray",
+     "resolution_A": 0.92,
+     "chains": 1,
+     "atoms": 652,
+     "url": "https://files.rcsb.org/download/1VB0.pdb",
+     "page": "https://www.rcsb.org/structure/1VB0",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "3NDS",
+     "title": "Crystal structure of engineered Naja Nigricollis toxin alpha",
+     "method": "X-ray",
+     "resolution_A": 1.2,
+     "chains": 1,
+     "atoms": 836,
+     "url": "https://files.rcsb.org/download/3NDS.pdb",
+     "page": "https://www.rcsb.org/structure/3NDS",
+     "license": "wwPDB (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "B7 0.1-1",
+   "subdomain": "核酸与核蛋白",
+   "database": "pdb",
+   "wanted": 4,
+   "why": "核酸只有 1EHZ / 355D / 1BNA 三个，核酸与核蛋白 0.1-1 nm 是空的",
+   "families": [
+    "backbone_torsion",
+    "named_bond_distance",
+    "named_bond_angle"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "4GLG",
+     "title": "DNA dodecamer containing 5-methyl cytosine",
+     "method": "X-ray",
+     "resolution_A": 1.72,
+     "chains": 2,
+     "atoms": 579,
+     "url": "https://files.rcsb.org/download/4GLG.pdb",
+     "page": "https://www.rcsb.org/structure/4GLG",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "4GLH",
+     "title": "DNA dodecamer containing 5-hydroxymethyl cytosine",
+     "method": "X-ray",
+     "resolution_A": 1.662,
+     "chains": 2,
+     "atoms": 560,
+     "url": "https://files.rcsb.org/download/4GLH.pdb",
+     "page": "https://www.rcsb.org/structure/4GLH",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "4F3U",
+     "title": "Crystal structure of 5-hydroxy-2'-deoxycytidine base paired with 2'-deoxyguanosine in Dickerson Drew Dodecamer",
+     "method": "X-ray",
+     "resolution_A": 1.401,
+     "chains": 2,
+     "atoms": 583,
+     "url": "https://files.rcsb.org/download/4F3U.pdb",
+     "page": "https://www.rcsb.org/structure/4F3U",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "477D",
+     "title": "CALCIUM FORM OF THE B-DNA DODECAMER GGCGAATTCGCG",
+     "method": "X-ray",
+     "resolution_A": 1.7,
+     "chains": 2,
+     "atoms": 611,
+     "url": "https://files.rcsb.org/download/477D.pdb",
+     "page": "https://www.rcsb.org/structure/477D",
+     "license": "wwPDB (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "C5 1-10",
+   "subdomain": "反应与催化",
+   "database": "cod",
+   "wanted": 5,
+   "why": "反应与催化 1-10 nm 是空的；沸石骨架的孔径与笼径正好落在这一档",
+   "families": [
+    "coordination_shell",
+    "first_diffraction_peak",
+    "scattering_q_design",
+    "diffraction_design"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "1529445",
+     "formula": "C448 Al638 N56 Na560 O5866 Si2002 Sr11",
+     "cell_volume_A3": 166978.0,
+     "a": "55.0664",
+     "b": "55.0664",
+     "c": "55.0664",
+     "spacegroup": "I m -3 m",
+     "name": "Na_exchanged_PST_20",
+     "url": "https://www.crystallography.net/cod/1529445.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "zeolite"
+    },
+    {
+     "id": "1529444",
+     "formula": "C448 Al638 N56 Na162 O5843 Si2002 Sr210",
+     "cell_volume_A3": 166772.0,
+     "a": "55.0437",
+     "b": "55.0437",
+     "c": "55.0437",
+     "spacegroup": "I m -3 m",
+     "name": "as made PST-20",
+     "url": "https://www.crystallography.net/cod/1529444.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "zeolite"
+    },
+    {
+     "id": "1529442",
+     "formula": "C305 Al334 N38 Na296 O3692 Si1106",
+     "cell_volume_A3": 91557.6,
+     "a": "45.0711",
+     "b": "45.0711",
+     "c": "45.0711",
+     "spacegroup": "I m -3 m",
+     "name": "as_made_ZSM-25",
+     "url": "https://www.crystallography.net/cod/1529442.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "zeolite"
+    },
+    {
+     "id": "1529443",
+     "formula": "Al325 Na285 O3726 Si1115",
+     "cell_volume_A3": 90665.0,
+     "a": "44.9242",
+     "b": "44.9242",
+     "c": "44.9242",
+     "spacegroup": "I m -3 m",
+     "name": "calcinedhy_drated_ZSM-25",
+     "url": "https://www.crystallography.net/cod/1529443.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "zeolite"
+    },
+    {
+     "id": "9001947",
+     "formula": "Al48 Ba1.2 Ca22.48 Cl0.224 Cu12 H524 K2.88 O305.862 Si48 Sr4.32",
+     "cell_volume_A3": 31614.4,
+     "a": "31.62",
+     "b": "31.62",
+     "c": "31.62",
+     "spacegroup": "F m -3 m",
+     "name": "Tschortnerite",
+     "url": "https://www.crystallography.net/cod/9001947.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "zeolite"
+    }
+   ]
+  },
+  {
+   "pixel": "C6 1-10",
+   "subdomain": "高分子化学",
+   "database": "cod",
+   "wanted": 4,
+   "why": "高分子化学三格全空；链周期与晶胞是最小可用的几何量",
+   "families": [
+    "named_bond_distance",
+    "named_bond_angle",
+    "first_diffraction_peak",
+    "extent_choice_v2"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "7101243",
+     "formula": "C19 H36 N4 O4",
+     "cell_volume_A3": 2163.6,
+     "a": "9.676",
+     "b": "12.826",
+     "c": "17.434",
+     "spacegroup": "P 21 21 21",
+     "name": "4,6-Bis-methylcabamoyl-2,2,8,8-Tetramethyl carbamoyl- nonanedioic acid bis-methylamide",
+     "url": "https://www.crystallography.net/cod/7101243.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "isotactic"
+    },
+    {
+     "id": "4115045",
+     "formula": "C22 H22 O6",
+     "cell_volume_A3": 1950.9,
+     "a": "35.644",
+     "b": "5.6923",
+     "c": "9.7803",
+     "spacegroup": "C 1 2/c 1",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/4115045.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "syndiotactic"
+    },
+    {
+     "id": "7241894",
+     "formula": "C13 H22 N2 O5",
+     "cell_volume_A3": 2900.1,
+     "a": "10.9462",
+     "b": "13.6297",
+     "c": "19.4386",
+     "spacegroup": "P b c n",
+     "name": "1,5-pentanediamine-Isophthalate",
+     "url": "https://www.crystallography.net/cod/7241894.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "nylon"
+    },
+    {
+     "id": "1568882",
+     "formula": "C17 H13 N O3",
+     "cell_volume_A3": 5834.6,
+     "a": "29.6286",
+     "b": "29.6286",
+     "c": "7.6747",
+     "spacegroup": "R -3 :H",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/1568882.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "polyester"
+    }
+   ]
+  },
+  {
+   "pixel": "C3 1-10",
+   "subdomain": "无机与配位化学",
+   "database": "cod",
+   "wanted": 4,
+   "why": "无机与配位化学 1-10 nm 只有 1 道；MOF 的大晶胞与金属配位壳层同时能出感知与推断题",
+   "families": [
+    "coordination_shell",
+    "scattering_q_design",
+    "first_diffraction_peak"
+   ],
+   "questions_now": 1,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "4000663",
+     "formula": "C H Cr O",
+     "cell_volume_A3": 701860.0,
+     "a": "88.86899",
+     "b": "88.86899",
+     "c": "88.86899",
+     "spacegroup": "F d -3 m :2",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/4000663.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "metal-organic framework"
+    },
+    {
+     "id": "4131667",
+     "formula": "C228 H138 N36 O65 Zn20",
+     "cell_volume_A3": 466729.0,
+     "a": "77.569",
+     "b": "77.569",
+     "c": "77.569",
+     "spacegroup": "F 4 3 2",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/4131667.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "metal-organic framework"
+    },
+    {
+     "id": "4001058",
+     "formula": "C306 H102 Al51 O374",
+     "cell_volume_A3": 368401.0,
+     "a": "71.687",
+     "b": "71.687",
+     "c": "71.687",
+     "spacegroup": "F d -3 m :2",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/4001058.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "metal-organic framework"
+    },
+    {
+     "id": "4118591",
+     "formula": "C26 H12 Cu O4",
+     "cell_volume_A3": 324328.0,
+     "a": "68.706",
+     "b": "68.706",
+     "c": "68.706",
+     "spacegroup": "F m -3 m",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/4118591.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "metal-organic framework"
+    }
+   ]
+  },
+  {
+   "pixel": "P1 1-10",
+   "subdomain": "超导",
+   "database": "cod",
+   "wanted": 4,
+   "why": "超导 1-10 nm 与 10-100 nm 都空着；BSCCO 这类层状超导体的 c 轴本身就是 3 nm 量级",
+   "families": [
+    "first_diffraction_peak",
+    "kinematic_extinction",
+    "coordination_shell"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "1526963",
+     "formula": "Ba2 Cu3 O7 Y",
+     "cell_volume_A3": 173.519,
+     "a": "3.8856",
+     "b": "3.8211",
+     "c": "11.6869",
+     "spacegroup": "P m m m",
+     "name": "Ba2 Y Cu3 O7",
+     "url": "https://www.crystallography.net/cod/1526963.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "2101436",
+     "formula": "Bi2 Ca Cu2 O8 Sr2",
+     "cell_volume_A3": 8155.0,
+     "a": "37.754",
+     "b": "5.4109",
+     "c": "41.07",
+     "spacegroup": "C 1 c 1",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/2101436.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "1538281",
+     "formula": "Nb3 Sn",
+     "cell_volume_A3": 149.13,
+     "a": "5.303",
+     "b": "5.303",
+     "c": "5.303",
+     "spacegroup": "P m -3 n",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/1538281.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "1000026",
+     "formula": "B2 Mg",
+     "cell_volume_A3": 29.04,
+     "a": "3.085",
+     "b": "3.085",
+     "c": "3.523",
+     "spacegroup": "P 6/m m m",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/1000026.cif",
+     "license": "COD: public domain (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "P3 1-10",
+   "subdomain": "二维材料与莫尔物理",
+   "database": "cod",
+   "wanted": 4,
+   "why": "二维材料 0.1-1 nm 只有 1 道、1-10 nm 是空的；层间距与超胞周期是现成的几何量",
+   "families": [
+    "first_diffraction_peak",
+    "kinematic_extinction",
+    "named_bond_distance"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "4124624",
+     "formula": "Mo S2",
+     "cell_volume_A3": 159.75,
+     "a": "3.171",
+     "b": "3.171",
+     "c": "18.34499",
+     "spacegroup": "R 3 m :H",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/4124624.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "1541795",
+     "formula": "C",
+     "cell_volume_A3": 280.385,
+     "a": "2.46",
+     "b": "2.46",
+     "c": "53.5",
+     "spacegroup": "R -3 m :H",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/1541795.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "9008834",
+     "formula": "B N",
+     "cell_volume_A3": 47.242,
+     "a": "3.615",
+     "b": "3.615",
+     "c": "3.615",
+     "spacegroup": "F -4 3 m",
+     "name": "Qingsongite",
+     "url": "https://www.crystallography.net/cod/9008834.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "9009146",
+     "formula": "Se2 W",
+     "cell_volume_A3": 121.58,
+     "a": "3.29",
+     "b": "3.29",
+     "c": "12.97",
+     "spacegroup": "P 63/m m c",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/9009146.cif",
+     "license": "COD: public domain (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "M1 1-10",
+   "subdomain": "金属与合金",
+   "database": "cod",
+   "wanted": 4,
+   "why": "金属与合金 1-10 nm 是空的；金属间化合物的大晶胞落在这一档",
+   "families": [
+    "coordination_shell",
+    "first_diffraction_peak",
+    "kinematic_extinction"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "8107722",
+     "formula": "Al7.33 Mg4.36",
+     "cell_volume_A3": 22507.2,
+     "a": "28.2341",
+     "b": "28.2341",
+     "c": "28.2341",
+     "spacegroup": "F d -3 m :2",
+     "name": "Aluminium magnesium (7.33/4.36)",
+     "url": "https://www.crystallography.net/cod/8107722.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "intermetallic"
+    },
+    {
+     "id": "2105469",
+     "formula": "Al220.86 Cu13.7 Ta150",
+     "cell_volume_A3": 6169.9,
+     "a": "13.512",
+     "b": "13.512",
+     "c": "39.022",
+     "spacegroup": "P 63/m m c",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/2105469.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "intermetallic"
+    },
+    {
+     "id": "7129847",
+     "formula": "C118 H100 Al2 Ni2",
+     "cell_volume_A3": 4483.0,
+     "a": "14.305",
+     "b": "15.217",
+     "c": "21.403",
+     "spacegroup": "P 1 n 1",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/7129847.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "intermetallic"
+    },
+    {
+     "id": "4000723",
+     "formula": "C12 Al2.66 Fe8 La20.71 Te4.34",
+     "cell_volume_A3": 4323.7,
+     "a": "16.2911",
+     "b": "16.2911",
+     "c": "16.2911",
+     "spacegroup": "F m -3 m",
+     "name": "lanthanum-tellurium-aluminium-manganese carbide",
+     "url": "https://www.crystallography.net/cod/4000723.cif",
+     "license": "COD: public domain (CC0)",
+     "keyword": "intermetallic"
+    }
+   ]
+  },
+  {
+   "pixel": "M2 1-10",
+   "subdomain": "陶瓷与氧化物",
+   "database": "cod",
+   "wanted": 4,
+   "why": "这一格枚举估计已有 13 道产能却一道没选上；大晶胞氧化物能把它直接填起来",
+   "families": [
+    "coordination_shell",
+    "first_diffraction_peak",
+    "scattering_q_design"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 13,
+   "entries": [
+    {
+     "id": "2102958",
+     "formula": "Al14 Ca12 O33",
+     "cell_volume_A3": 1753.4,
+     "a": "12.0585",
+     "b": "12.0585",
+     "c": "12.0585",
+     "spacegroup": "I -4 3 d",
+     "name": "mayenite",
+     "url": "https://www.crystallography.net/cod/2102958.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "1529037",
+     "formula": "Al5 O12 Y3",
+     "cell_volume_A3": 1732.32,
+     "a": "12.01",
+     "b": "12.01",
+     "c": "12.01",
+     "spacegroup": "I a -3 d",
+     "name": "Al5 Y3 O12",
+     "url": "https://www.crystallography.net/cod/1529037.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "9014501",
+     "formula": "Mg2 O4 Si",
+     "cell_volume_A3": 550.748,
+     "a": "5.7391",
+     "b": "11.5134",
+     "c": "8.335",
+     "spacegroup": "I m m a",
+     "name": "Wadsleyite",
+     "url": "https://www.crystallography.net/cod/9014501.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "9002096",
+     "formula": "Al2 Mg O4",
+     "cell_volume_A3": 553.099,
+     "a": "8.20857",
+     "b": "8.20857",
+     "c": "8.20857",
+     "spacegroup": "F d -3 m :2",
+     "name": "Spinel",
+     "url": "https://www.crystallography.net/cod/9002096.cif",
+     "license": "COD: public domain (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "M3 1-10",
+   "subdomain": "半导体",
+   "database": "cod",
+   "wanted": 4,
+   "why": "这一格枚举估计有 7 道产能也没选上；补几个半导体晶胞顺便覆盖卤化物钙钛矿子领域",
+   "families": [
+    "first_diffraction_peak",
+    "kinematic_extinction",
+    "coordination_shell"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 7,
+   "entries": [
+    {
+     "id": "9008863",
+     "formula": "Cd Se",
+     "cell_volume_A3": 112.41,
+     "a": "4.3",
+     "b": "4.3",
+     "c": "7.02",
+     "spacegroup": "P 63 m c",
+     "name": "Cadmoselite",
+     "url": "https://www.crystallography.net/cod/9008863.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "1536825",
+     "formula": "Ga N",
+     "cell_volume_A3": 63.283,
+     "a": "3.985",
+     "b": "3.985",
+     "c": "3.985",
+     "spacegroup": "F m -3 m",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/1536825.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "1538801",
+     "formula": "In P",
+     "cell_volume_A3": 203.297,
+     "a": "5.88",
+     "b": "5.88",
+     "c": "5.88",
+     "spacegroup": "F -4 3 m",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/1538801.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "4127359",
+     "formula": "Cs I3 Pb",
+     "cell_volume_A3": 949.21,
+     "a": "8.8637",
+     "b": "12.4838",
+     "c": "8.5783",
+     "spacegroup": "P n m a",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/4127359.cif",
+     "license": "COD: public domain (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "M5 1-10",
+   "subdomain": "有机与高分子材料",
+   "database": "cod",
+   "wanted": 4,
+   "why": "有机与高分子材料 1-10 nm 只有 1 道；并五苯、红荧烯这类有机半导体晶体的分子长轴正好 1-2 nm",
+   "families": [
+    "named_bond_distance",
+    "extent_choice_v2",
+    "first_diffraction_peak"
+   ],
+   "questions_now": 1,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "1503581",
+     "formula": "C22 H14",
+     "cell_volume_A3": 2854.4,
+     "a": "7.521",
+     "b": "16.456",
+     "c": "23.063",
+     "spacegroup": "P 21 21 21",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/1503581.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "1515464",
+     "formula": "C42 H28",
+     "cell_volume_A3": 5679.8,
+     "a": "16.7865",
+     "b": "9.2933",
+     "c": "36.414",
+     "spacegroup": "I 1 2/a 1",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/1515464.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "5000181",
+     "formula": "C14 H10",
+     "cell_volume_A3": 484.44,
+     "a": "8.441",
+     "b": "6.14",
+     "c": "9.438",
+     "spacegroup": "P 1 21 1",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/5000181.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "1507183",
+     "formula": "C18 H12",
+     "cell_volume_A3": 2564.81,
+     "a": "6.1073",
+     "b": "23.4255",
+     "c": "17.989",
+     "spacegroup": "P 1 21/c 1",
+     "name": "2-(phenylethynyl)azulene",
+     "url": "https://www.crystallography.net/cod/1507183.cif",
+     "license": "COD: public domain (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "M8 1-10",
+   "subdomain": "生物与仿生材料",
+   "database": "cod",
+   "wanted": 4,
+   "why": "生物与仿生材料 1-10 / 10-100 两格都空；羟基磷灰石与碳酸钙是生物矿物的标准体系",
+   "families": [
+    "coordination_shell",
+    "first_diffraction_peak",
+    "named_bond_distance"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "7217892",
+     "formula": "Ca5 H O13 P3",
+     "cell_volume_A3": 1060.4,
+     "a": "9.426",
+     "b": "18.856",
+     "c": "6.887",
+     "spacegroup": "P 1 1 21/b",
+     "name": "Pentacalcium tris(phosphate(V)) hydroxide",
+     "url": "https://www.crystallography.net/cod/7217892.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "9017413",
+     "formula": "C Ca O3",
+     "cell_volume_A3": 2226.84,
+     "a": "12.358",
+     "b": "7.106",
+     "c": "25.741",
+     "spacegroup": "C 1",
+     "name": "Vaterite",
+     "url": "https://www.crystallography.net/cod/9017413.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "6000693",
+     "formula": "Ca O4 S",
+     "cell_volume_A3": 530.86,
+     "a": "12.0777",
+     "b": "6.9723",
+     "c": "6.304",
+     "spacegroup": "C 2 2 2",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/6000693.cif",
+     "license": "COD: public domain (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "P5 1-10",
+   "subdomain": "原子与分子物理",
+   "database": "cod",
+   "wanted": 3,
+   "why": "原子与分子物理 1-10 nm 只有 2 道；富勒烯团簇的笼径与转动常数都能出题",
+   "families": [
+    "extent_choice_v2",
+    "rotational_line",
+    "isotopologue_design"
+   ],
+   "questions_now": 2,
+   "enumerated_estimate": 162,
+   "entries": [
+    {
+     "id": "9011073",
+     "formula": "C60",
+     "cell_volume_A3": 2899.74,
+     "a": "14.26",
+     "b": "14.26",
+     "c": "14.26",
+     "spacegroup": "F m -3",
+     "name": "Buckminsterfullerene",
+     "url": "https://www.crystallography.net/cod/9011073.cif",
+     "license": "COD: public domain (CC0)"
+    },
+    {
+     "id": "1535012",
+     "formula": "C70",
+     "cell_volume_A3": 3098.29,
+     "a": "17.303",
+     "b": "9.99",
+     "c": "17.924",
+     "spacegroup": "C c m m",
+     "name": "",
+     "url": "https://www.crystallography.net/cod/1535012.cif",
+     "license": "COD: public domain (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "C7 1-10",
+   "subdomain": "化学生物学与 DNA 纳米技术",
+   "database": "pdb",
+   "wanted": 4,
+   "why": "DNA 纳米技术 1-10 nm 是空的，而我们已有 7ARQ 这种 origami，中间这一档缺一个台阶",
+   "families": [
+    "backbone_torsion",
+    "extent_choice_v2",
+    "named_bond_distance"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "3T8P",
+     "title": "Crystal structure of d(CGGGTACCCG)4 as a four-way Holliday junction",
+     "method": "X-ray",
+     "resolution_A": 2.35,
+     "chains": 2,
+     "atoms": 423,
+     "url": "https://files.rcsb.org/download/3T8P.pdb",
+     "page": "https://www.rcsb.org/structure/3T8P",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "1DCW",
+     "title": "STRUCTURE OF A FOUR-WAY JUNCTION IN AN INVERTED REPEAT SEQUENCE.",
+     "method": "X-ray",
+     "resolution_A": 2.1,
+     "chains": 4,
+     "atoms": 900,
+     "url": "https://files.rcsb.org/download/1DCW.pdb",
+     "page": "https://www.rcsb.org/structure/1DCW",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "1JUC",
+     "title": "Crystal Structure Analysis of a Holliday Junction Formed by CCGGTACCGG",
+     "method": "X-ray",
+     "resolution_A": 2.35,
+     "chains": 2,
+     "atoms": 447,
+     "url": "https://files.rcsb.org/download/1JUC.pdb",
+     "page": "https://www.rcsb.org/structure/1JUC",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "1HJP",
+     "title": "HOLLIDAY JUNCTION BINDING PROTEIN RUVA FROM E. COLI",
+     "method": "X-ray",
+     "resolution_A": 2.5,
+     "chains": 1,
+     "atoms": 1458,
+     "url": "https://files.rcsb.org/download/1HJP.pdb",
+     "page": "https://www.rcsb.org/structure/1HJP",
+     "license": "wwPDB (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "B4 1-10",
+   "subdomain": "膜蛋白",
+   "database": "pdb",
+   "wanted": 4,
+   "why": "膜蛋白 0.1-1 与 1-10 各只有 1 道；跨膜螺旋的几何是现成的推断题材料",
+   "families": [
+    "secondary_structure",
+    "backbone_torsion",
+    "fret_design",
+    "fret_efficiency"
+   ],
+   "questions_now": 1,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "2B2F",
+     "title": "Ammonium Transporter Amt-1 from A.fulgidus (Native)",
+     "method": "X-ray",
+     "resolution_A": 1.72,
+     "chains": 1,
+     "atoms": 3044,
+     "url": "https://files.rcsb.org/download/2B2F.pdb",
+     "page": "https://www.rcsb.org/structure/2B2F",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "1U7G",
+     "title": "Crystal Structure of Ammonia Channel AmtB from E. Coli",
+     "method": "X-ray",
+     "resolution_A": 1.4,
+     "chains": 1,
+     "atoms": 3286,
+     "url": "https://files.rcsb.org/download/1U7G.pdb",
+     "page": "https://www.rcsb.org/structure/1U7G",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "3W4T",
+     "title": "Crystal structure of MATE P26A mutant",
+     "method": "X-ray",
+     "resolution_A": 2.096,
+     "chains": 1,
+     "atoms": 3520,
+     "url": "https://files.rcsb.org/download/3W4T.pdb",
+     "page": "https://www.rcsb.org/structure/3W4T",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "3M73",
+     "title": "Crystal Structure of Plant SLAC1 homolog TehA",
+     "method": "X-ray",
+     "resolution_A": 1.15,
+     "chains": 1,
+     "atoms": 3005,
+     "url": "https://files.rcsb.org/download/3M73.pdb",
+     "page": "https://www.rcsb.org/structure/3M73",
+     "license": "wwPDB (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "B8 1-10",
+   "subdomain": "大分子机器",
+   "database": "pdb",
+   "wanted": 4,
+   "why": "大分子机器这一格是空的，而它正是「几何 → 功能」最直观的一类",
+   "families": [
+    "assembly_extent",
+    "assembly_rg",
+    "secondary_structure",
+    "scattering_q_design"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "1WNR",
+     "title": "Crystal structure of the Cpn10 from Thermus thermophilus HB8",
+     "method": "X-ray",
+     "resolution_A": 2.9,
+     "chains": 7,
+     "atoms": 4211,
+     "url": "https://files.rcsb.org/download/1WNR.pdb",
+     "page": "https://www.rcsb.org/structure/1WNR",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "1P3H",
+     "title": "Crystal Structure of the Mycobacterium tuberculosis chaperonin 10 tetradecamer",
+     "method": "X-ray",
+     "resolution_A": 2.8,
+     "chains": 14,
+     "atoms": 10690,
+     "url": "https://files.rcsb.org/download/1P3H.pdb",
+     "page": "https://www.rcsb.org/structure/1P3H",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "1G31",
+     "title": "GP31 CO-CHAPERONIN FROM BACTERIOPHAGE T4",
+     "method": "X-ray",
+     "resolution_A": 2.3,
+     "chains": 7,
+     "atoms": 6267,
+     "url": "https://files.rcsb.org/download/1G31.pdb",
+     "page": "https://www.rcsb.org/structure/1G31",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "8WU4",
+     "title": "Cryo-EM structure of native H. thermoluteolus TH-1 GroEL",
+     "method": "EM",
+     "resolution_A": 3.3,
+     "chains": 14,
+     "atoms": 54670,
+     "url": "https://files.rcsb.org/download/8WU4.pdb",
+     "page": "https://www.rcsb.org/structure/8WU4",
+     "license": "wwPDB (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "M6 10-100",
+   "subdomain": "纳米材料与组装",
+   "database": "pdb",
+   "wanted": 4,
+   "why": "纳米材料与组装 1-10 与 100-1000 两格空着、10-100 也薄；人工蛋白笼是现成的组装体",
+   "families": [
+    "assembly_extent",
+    "assembly_rg",
+    "capsid_architecture",
+    "guinier_intensity"
+   ],
+   "questions_now": 10,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "8TL7",
+     "title": "CryoEM Structure of a Computationally Designed T3 Tetrahedral Nanocage",
+     "method": "EM",
+     "resolution_A": 4.05,
+     "chains": 12,
+     "atoms": 50388,
+     "url": "https://files.rcsb.org/download/8TL7.pdb",
+     "page": "https://www.rcsb.org/structure/8TL7",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "7DQO",
+     "title": "Marsupenaeus japonicus ferritin mutant-D132R",
+     "method": "X-ray",
+     "resolution_A": 1.701,
+     "chains": 12,
+     "atoms": 17425,
+     "url": "https://files.rcsb.org/download/7DQO.pdb",
+     "page": "https://www.rcsb.org/structure/7DQO",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "9UOL",
+     "title": "Cryo-EM structure of pyrene-modified TIP60 double mutant (G12C/S50C) with addition of Nile Red",
+     "method": "EM",
+     "resolution_A": 3.8,
+     "chains": 60,
+     "atoms": 63180,
+     "url": "https://files.rcsb.org/download/9UOL.pdb",
+     "page": "https://www.rcsb.org/structure/9UOL",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "5GOU",
+     "title": "Structure of a 16-mer protein nanocage fabricated from its 24-mer analogue by subunit interface redesign",
+     "method": "X-ray",
+     "resolution_A": 2.91,
+     "chains": 16,
+     "atoms": 18625,
+     "url": "https://files.rcsb.org/download/5GOU.pdb",
+     "page": "https://www.rcsb.org/structure/5GOU",
+     "license": "wwPDB (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "P4 10-100",
+   "subdomain": "纳米与介观物理",
+   "database": "pdb",
+   "wanted": 3,
+   "why": "纳米与介观物理 10-100 nm 是空的；壳状蛋白的腔体直径接上量子点那一档",
+   "families": [
+    "assembly_extent",
+    "assembly_rg",
+    "capsid_architecture"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "9SQR",
+     "title": "Symmetry relaxed reconstruction of Rhodospirillum rubrum encapsulin:encapsulated ferritin nanocompartment",
+     "method": "EM",
+     "resolution_A": 3.73,
+     "chains": 80,
+     "atoms": 119496,
+     "url": "https://files.rcsb.org/download/9SQR.pdb",
+     "page": "https://www.rcsb.org/structure/9SQR",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "3DKT",
+     "title": "Crystal structure of Thermotoga maritima encapsulin",
+     "method": "X-ray",
+     "resolution_A": 3.104,
+     "chains": 20,
+     "atoms": 22070,
+     "url": "https://files.rcsb.org/download/3DKT.pdb",
+     "page": "https://www.rcsb.org/structure/3DKT",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "8IKA",
+     "title": "Cryo-EM structure of the encapsulin shell from Mycobacterium tuberculosis",
+     "method": "EM",
+     "resolution_A": 2.75,
+     "chains": 60,
+     "atoms": 122040,
+     "url": "https://files.rcsb.org/download/8IKA.pdb",
+     "page": "https://www.rcsb.org/structure/8IKA",
+     "license": "wwPDB (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "B8 10-100",
+   "subdomain": "大分子机器（组装体）",
+   "database": "pdb",
+   "wanted": 3,
+   "why": "给大分子机器补一个 10-100 nm 的台阶，和 1-10 nm 的那批成对",
+   "families": [
+    "assembly_extent",
+    "assembly_rg",
+    "scattering_q_design"
+   ],
+   "questions_now": 9,
+   "enumerated_estimate": 7,
+   "entries": [
+    {
+     "id": "10PL",
+     "title": "Asymmetric architecture and adaptation of Treponema flagella",
+     "method": "EM",
+     "resolution_A": 3.44,
+     "chains": 25,
+     "atoms": 53608,
+     "url": "https://files.rcsb.org/download/10PL.pdb",
+     "page": "https://www.rcsb.org/structure/10PL",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "9U7Y",
+     "title": "Structure of the tip region of the intial complex in bacterial flagellar filament assembly at 3.68 angstroms resolution, conformation 3.",
+     "method": "EM",
+     "resolution_A": 3.68,
+     "chains": 60,
+     "atoms": 181886,
+     "url": "https://files.rcsb.org/download/9U7Y.pdb",
+     "page": "https://www.rcsb.org/structure/9U7Y",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "9MCG",
+     "title": "Structure of the intial complex in filament assembly at 3.31 angstroms resolution, conformation 1.",
+     "method": "EM",
+     "resolution_A": 3.31,
+     "chains": 72,
+     "atoms": 220655,
+     "url": "https://files.rcsb.org/download/9MCG.pdb",
+     "page": "https://www.rcsb.org/structure/9MCG",
+     "license": "wwPDB (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "C8 10-100",
+   "subdomain": "液晶与胶体化学",
+   "database": "paper",
+   "wanted": 0,
+   "why": "液晶 100-1000 nm 已有 10 道（胆甾相），10-100 nm 要另找一篇短螺距或胶体晶体的论文",
+   "families": [
+    "cholesteric_geometry",
+    "cholesteric_optics",
+    "opal_bragg"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [],
+   "note": "要论文，不是下载：按论文实测数值建模（tier C）"
+  },
+  {
+   "pixel": "C6 10-100 / C6 100-1000",
+   "subdomain": "高分子化学",
+   "database": "paper",
+   "wanted": 0,
+   "why": "片晶厚度（10-100 nm）与球晶（100-1000 nm）只能按论文数值建模",
+   "families": [
+    "superlattice_metric",
+    "guinier_intensity"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [],
+   "note": "要论文，不是下载：按论文实测数值建模（tier C）"
+  },
+  {
+   "pixel": "C7 100-1000",
+   "subdomain": "化学生物学与 DNA 纳米技术",
+   "database": "paper",
+   "wanted": 0,
+   "why": "DNA origami 的微米级阵列要按论文的晶格常数建模",
+   "families": [
+    "superlattice_saxs",
+    "superlattice_metric"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [],
+   "note": "要论文，不是下载：按论文实测数值建模（tier C）"
+  },
+  {
+   "pixel": "P2 1-10 / P2 100-1000",
+   "subdomain": "磁性",
+   "database": "paper",
+   "wanted": 0,
+   "why": "斯格明子晶格与磁畴周期是 100-1000 nm，只能按论文实测周期建模（已有 muhlbauer 可用）",
+   "families": [
+    "vortex_geometry",
+    "vortex_design",
+    "vortex_inference"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [],
+   "note": "要论文，不是下载：按论文实测数值建模（tier C）"
+  },
+  {
+   "pixel": "P7 1-10 / P7 10-100 / P7 100-1000",
+   "subdomain": "软物质与生物物理",
+   "database": "paper",
+   "wanted": 0,
+   "why": "软物质整个一级分类都是空的：胶体堆积、聚合物链统计、膜与囊泡三条都要论文参数模型",
+   "families": [
+    "guinier_intensity",
+    "debye_intensity",
+    "opal_geometry"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [],
+   "note": "要论文，不是下载：按论文实测数值建模（tier C）"
+  },
+  {
+   "pixel": "P1 10-100",
+   "subdomain": "超导",
+   "database": "paper",
+   "wanted": 0,
+   "why": "超导 10-100 nm 是相干长度与穿透深度的尺度，按论文实测值建模（已有 cottet / schaefermeier）",
+   "families": [
+    "vortex_geometry",
+    "vortex_inference"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [],
+   "note": "要论文，不是下载：按论文实测数值建模（tier C）"
+  },
+  {
+   "pixel": "M5 10-100 / M8 10-100 / M6 100-1000 / M7 1-10",
+   "subdomain": "材料其余空格",
+   "database": "paper",
+   "wanted": 0,
+   "why": "聚合物晶片、生物矿物的介观结构、纳米粒子超晶格、界面重构，都是论文参数模型的活",
+   "families": [
+    "superlattice_saxs",
+    "superlattice_shell",
+    "opal_geometry"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [],
+   "note": "要论文，不是下载：按论文实测数值建模（tier C）"
+  }
+ ]
+}

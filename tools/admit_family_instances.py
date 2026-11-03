@@ -27,12 +27,31 @@ UNITS = {'angstrom': ' Å', 'degree': '°', 'eV': ' eV', 'nm': ' nm', 'nm^-1': '
          'um^-2': ' μm⁻²', 'um^-1': ' μm⁻¹', '1e-15 Wb': ' ×10⁻¹⁵ Wb', 'mT': ' mT'}
 
 
+PLACEHOLDER_ATTRIBUTION = '见各题来源。'
+
+
 def read(path):
     return json.loads(Path(path).read_text(encoding='utf-8'))
 
 
 def option_text(options):
     return '\n'.join('%s. %s%s' % (o['label'], o['value'], UNITS.get(o.get('unit'), '')) for o in options)
+
+
+def attribution_of(entry, family, teacher):
+    """The provenance line for one record.
+
+    Most families draw on one database, so the family states it once. extent_choice_v2 draws on five (OE62, QM7-X,
+    SAMPL9, the PDB, COD) and said "见各题来源。" instead -- fine while its 15 records were written by hand with their
+    own line, but the enumerator then admitted 45 more that inherited the placeholder, and the placeholder names no
+    database and no handling, so tools/export_qa_folders.py could not say what the coordinates in the attachment are.
+    For such a family the line is built from the instance's own source and licence.
+    """
+    if entry.get('attribution'):
+        return entry['attribution']
+    if family['attribution'] != PLACEHOLDER_ATTRIBUTION:
+        return family['attribution']
+    return '%s；%s' % (teacher['source'], teacher['license'])
 
 
 def build_record(entry, family, student, teacher, numeric, check, run, date):
@@ -70,7 +89,7 @@ def build_record(entry, family, student, teacher, numeric, check, run, date):
         publicDemo=True, question=student['question'], modelInput=instructions, answer=answer,
         source=teacher['source'], inputSizeNm=teacher['scales']['input_nm'], reasoningSizeNm=teacher['scales']['reasoning_nm'],
         sizeDefinition=family['sizeDefinition'], batchId=run, benchmarkReady=False,
-        releaseRole='public_development_example', rubric=rubric, attribution=family['attribution'],
+        releaseRole='public_development_example', rubric=rubric, attribution=attribution_of(entry, family, teacher),
         batchReport='templates.html#workbench', traceUrl='templates.html?instance=%s#workbench' % inst,
         inputInstructions=instructions, sourceRoute='raw_structure_or_simulation', prototypeScreeningPassed=True,
         policyReview='暂计：题型族实例经独立检查器自动核验通过（L0）；题型与检查器尚待人工审定，未做逐题专家审核。',

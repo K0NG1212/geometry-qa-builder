@@ -1,8 +1,8 @@
 {
  "kind": "license_audit",
- "date": "2026-11-02",
- "bank_run": "family-pilot-v42",
- "questions": 336,
+ "date": "2026-11-03",
+ "bank_run": "family-pilot-v45",
+ "questions": 871,
  "sources": 37,
  "scope": "逐来源核对：我们从它那里发布了什么、它的许可允许什么、许可写在哪。许可只从记录读——出版方本机副本、来源许可页面的抄录（docs/data/license-statements.json）、仓库自己的记录；只有我们自己记录的会写明，不替来源断定。",
  "verdicts": {
@@ -472,42 +472,15 @@
  ],
  "pending_rerun": {
   "note": "下面这些已在 templates/family-manifest.json 改好，但要等下一次重跑题库才会进已发布数据。",
-  "published_without_license": [
-   "FC-CNP007",
-   "FC-CNP008",
-   "FC-CNP009",
-   "FC-CNP011",
-   "FC-MNP006",
-   "FC-MNP007",
-   "FC-MNP010",
-   "FC-QNP007",
-   "FC-QNP008",
-   "FC-QNP009",
-   "FC-QNP010",
-   "FC-QNP011"
-  ],
-  "published_as_mit": [
-   "FA-ANG-BCD",
-   "FA-ANG-DMBCD",
-   "FA-ANG-WP6",
-   "FA-DIST-WP6-C20O22",
-   "FA-HG-DES1",
-   "FA-HG-DES2",
-   "FA-HG-EV1",
-   "FA-HG-EV2",
-   "FA-HG-EV3",
-   "FA-ISO-G13-111",
-   "FA-ISO-G9-110",
-   "FA-ROT-G2-110",
-   "FA-ROT-G9-101"
-  ]
+  "published_without_license": [],
+  "published_as_mit": []
  },
  "rows": [
   {
    "source": "pdb-bio-nm",
    "name": "RCSB PDB / wwPDB",
    "kind": "database",
-   "questions": 99,
+   "questions": 275,
    "families": [
     "assembly_extent",
     "assembly_rg",
@@ -524,7 +497,7 @@
     "secondary_structure"
    ],
    "publishes": {
-    "upstream_coordinates": 99
+    "upstream_coordinates": 275
    },
    "publishes_label": [
     "上游坐标（照抄／展开／约简／旋转／转格式）"
@@ -556,55 +529,13 @@
    "cards_unchecked": []
   },
   {
-   "source": "cod-materials-cell",
-   "name": "Crystallography Open Database",
-   "kind": "database",
-   "questions": 52,
-   "families": [
-    "coordination_shell",
-    "diffraction_design",
-    "first_diffraction_peak",
-    "kinematic_extinction"
-   ],
-   "publishes": {
-    "upstream_coordinates": 52
-   },
-   "publishes_label": [
-    "上游坐标（照抄／展开／约简／旋转／转格式）"
-   ],
-   "license": "public-domain",
-   "license_label": "公有领域（COD 贡献者声明）",
-   "declared_in_repo": "public-domain",
-   "stated_by_source": null,
-   "source_statement": null,
-   "confirmation": "publisher_page",
-   "evidence_paths": [
-    "docs/assets/materials/sources-cod-2026-10-03.json",
-    "docs/assets/materials/sources-noncubic.json",
-    "docs/data/license-statements.json"
-   ],
-   "confirmed_by_page": {
-    "statement": "cod-home",
-    "url": "https://www.crystallography.net/cod/",
-    "read_on": "2026-11-02",
-    "quote": "All data in the COD and the database itself are dedicated to the public domain and licensed under the CC0 License.",
-    "obligation": "许可本身无强制义务。同句之后另说：使用者应致谢结构数据的原作者（should acknowledge）。COD 的 CIF 文件头同样要求引用原始文献——本库 52 道 COD 题里只有 9 道在许可字段里记了原始文献，其余要在 L1 补齐。"
-   },
-   "fulltext_checked": null,
-   "obligations": [],
-   "also": "COD 文件头要求引用原始文献；52 道中只有 9 道在许可字段里记了原始文献",
-   "verdict": "clear",
-   "verdict_note": "",
-   "cards_to_reword": [],
-   "cards_unchecked": []
-  },
-  {
    "source": "qm7x",
    "name": "QM7-X（Zenodo 4288677）",
    "kind": "dataset",
-   "questions": 31,
+   "questions": 226,
    "families": [
     "conformer_target_selection",
+    "extent_choice_v2",
     "force_path_derivative",
     "isotopologue_design",
     "named_bond_angle",
@@ -615,7 +546,7 @@
     "stereo_relationship"
    ],
    "publishes": {
-    "upstream_coordinates": 31
+    "upstream_coordinates": 226
    },
    "publishes_label": [
     "上游坐标（照抄／展开／约简／旋转／转格式）"
@@ -644,6 +575,49 @@
     "署名"
    ],
    "also": null,
+   "verdict": "clear",
+   "verdict_note": "",
+   "cards_to_reword": [],
+   "cards_unchecked": []
+  },
+  {
+   "source": "cod-materials-cell",
+   "name": "Crystallography Open Database",
+   "kind": "database",
+   "questions": 216,
+   "families": [
+    "coordination_shell",
+    "diffraction_design",
+    "first_diffraction_peak",
+    "kinematic_extinction"
+   ],
+   "publishes": {
+    "upstream_coordinates": 216
+   },
+   "publishes_label": [
+    "上游坐标（照抄／展开／约简／旋转／转格式）"
+   ],
+   "license": "public-domain",
+   "license_label": "公有领域（COD 贡献者声明）",
+   "declared_in_repo": "public-domain",
+   "stated_by_source": null,
+   "source_statement": null,
+   "confirmation": "publisher_page",
+   "evidence_paths": [
+    "docs/assets/materials/sources-cod-2026-10-03.json",
+    "docs/assets/materials/sources-noncubic.json",
+    "docs/data/license-statements.json"
+   ],
+   "confirmed_by_page": {
+    "statement": "cod-home",
+    "url": "https://www.crystallography.net/cod/",
+    "read_on": "2026-11-02",
+    "quote": "All data in the COD and the database itself are dedicated to the public domain and licensed under the CC0 License.",
+    "obligation": "许可本身无强制义务。同句之后另说：使用者应致谢结构数据的原作者（should acknowledge）。COD 的 CIF 文件头同样要求引用原始文献——本库 52 道 COD 题里只有 9 道在许可字段里记了原始文献，其余要在 L1 补齐。"
+   },
+   "fulltext_checked": null,
+   "obligations": [],
+   "also": "COD 文件头要求引用原始文献；52 道中只有 9 道在许可字段里记了原始文献",
    "verdict": "clear",
    "verdict_note": "",
    "cards_to_reword": [],
@@ -1965,15 +1939,6 @@
     "inputs/papers/rando2025/rando2025-PMC11639902.xml"
    ],
    "fix": "以出版方声明为准：上传前在出版方页面确认，然后改仓库记录"
-  },
-  {
-   "id": "published-licence-stale",
-   "severity": "pending_rerun",
-   "what": "已发布数据里还有 12 道没有许可、13 道记作 MIT；清单已在 manifest 改好，要等下一次重跑题库才会生效",
-   "where": [
-    "docs/data/family-workbench.json"
-   ],
-   "fix": "11/05–11/08 A1 重跑时一起带出；重跑后 tests/test_license.py 的待办清单会变红，删掉即可"
   },
   {
    "id": "licence-page-unreachable",

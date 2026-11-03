@@ -119,7 +119,11 @@ def build(spec, root, seed):
                     input_hashes=hashes)
     info = crystal_info(spec, root)
     d, target = info['first']['d'], spec['target_2theta']
-    inputs = [dict(name=spec['id'] + '-cell.txt', format='fractional-cell-table', unit='fractional; a in angstrom', text=info['text'])]
+    # An enumerated id ends in the line whose angle set the target (EN-COD9008789-XD-ANODE-Cu), and in anode mode
+    # that line is the answer, so the table is named after the crystal -- the convention crystal mode already uses.
+    # Hand-written specs have no COD number and their ids name the crystal, so they keep their published names.
+    table = 'COD%s' % spec['cod'] if spec.get('cod') else spec['id']
+    inputs = [dict(name=table + '-cell.txt', format='fractional-cell-table', unit='fractional; a in angstrom', text=info['text'])]
     common = ('The table lists every atom of one conventional cubic cell of %s. %s Weights: %s.' % (spec['name'], RULE_TEXT, weights_text(spec['weights'])))
     scales = dict(input_nm=info['a'] / 10, reasoning_nm=d / 10, reasoning_definition='首个非零反射的晶面间距 d')
     base_checks = dict(first=SHOW(info['first']['hkl']), d_A=d, lowest_index=SHOW(info['lowest']['hkl']), a_A=info['a'], target_2theta=target,

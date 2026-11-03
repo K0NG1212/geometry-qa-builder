@@ -67,22 +67,31 @@ def _operation(text):
 
 # Elements seen in the registered CIFs. A symbol outside this set is refused rather than guessed: a CIF
 # written "FE" would otherwise be read as fluorine by the leading-letters rule, silently changing the answer.
-CIF_ELEMENTS = {'H', 'B', 'C', 'N', 'O', 'F', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'K', 'Ca', 'Ti',
-                'Mn', 'Fe', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Rb', 'Sr', 'Zr', 'Cd',
-                'In', 'Sn', 'Sb', 'Te', 'I', 'Cs', 'Ba', 'Au', 'Hg', 'Pb', 'Bi'}
+CIF_ELEMENTS = {
+    'H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar',
+    'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr',
+    'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe',
+    'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu',
+    'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn',
+    'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U'}                # up to U, which is where enumerators.Z stops too
 
 
 def _element(symbol, label):
-    m = re.match(r'([A-Za-z]{1,2})', symbol or label)
+    """The element of one atom site. _atom_site_type_symbol is the element itself ('Nb', 'Y+3'), so it is never
+    shortened: an unknown symbol is an error, not a one-letter guess. Only a label ('Ow1', 'C2a') may be shortened,
+    and only to a one-letter element. Shortening a symbol used to read Nb3Sn as N6Sn2 and Cr2O3 as C12O18 -- the
+    independent checker (checkers/cells.py, which keeps the two letters) is what caught it."""
+    source = symbol if symbol and symbol not in ('?', '.') else label
+    m = re.match(r'([A-Za-z]{1,2})', source or '')
     if not m:
         raise ValueError('No element in %r / %r' % (symbol, label))
     token = m.group(1)
     name = token.capitalize()
-    if name not in CIF_ELEMENTS:
-        name = token[0].upper()                      # "O1"/"C2a": a one-letter symbol followed by a label suffix
-    if name not in CIF_ELEMENTS:
-        raise ValueError('Unknown element %r in %r / %r' % (token, symbol, label))
-    return name
+    if name in CIF_ELEMENTS:
+        return name
+    if source is label and token[0].upper() in CIF_ELEMENTS:
+        return token[0].upper()                      # "Ow1": a one-letter symbol followed by a label suffix
+    raise ValueError('Unknown element %r in %r / %r' % (token, symbol, label))
 
 
 def snap(x):

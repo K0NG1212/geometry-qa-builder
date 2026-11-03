@@ -38,11 +38,17 @@ SCOPE = {
     'rotational': '单一构象的刚性转子（QM7-X 为 DFTB3+MBD 优化几何，SAMPL9 为挑战赛提供的 3D 结构）；坐标原样；同位素质量与常数见题干；不含振动平均与离心畸变。',
     'crystal': '常规晶胞按 CIF 全部对称操作展开（task_families/cell.py）；周期晶体；衍射题为运动学模型与原子序数权重。',
 }
-# Atomic numbers (angle-independent scattering weights stated in the question) and the X-ray lines already used by
-# diffraction_design in templates/family-manifest.json.
-Z = {'H': 1, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Na': 11, 'Mg': 12, 'Al': 13, 'Si': 14, 'P': 15, 'S': 16, 'Cl': 17, 'K': 19, 'Ca': 20,
-     'Ti': 22, 'Fe': 26, 'Co': 27, 'Ni': 28, 'Cu': 29, 'Zn': 30, 'Ga': 31, 'Ge': 32, 'Se': 34, 'Br': 35, 'Sr': 38, 'Zr': 40,
-     'Mo': 42, 'Cd': 48, 'Sn': 50, 'I': 53, 'Cs': 55, 'Ba': 56, 'W': 74, 'Au': 79, 'Pb': 82}
+# Atomic numbers (angle-independent scattering weights stated in the question). The table covers every element
+# task_families/cell.py can read, so a crystal is never skipped merely because its element was missing here.
+Z = {'H': 1, 'He': 2, 'Li': 3, 'Be': 4, 'B': 5, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Ne': 10, 'Na': 11, 'Mg': 12, 'Al': 13,
+     'Si': 14, 'P': 15, 'S': 16, 'Cl': 17, 'Ar': 18, 'K': 19, 'Ca': 20, 'Sc': 21, 'Ti': 22, 'V': 23, 'Cr': 24, 'Mn': 25,
+     'Fe': 26, 'Co': 27, 'Ni': 28, 'Cu': 29, 'Zn': 30, 'Ga': 31, 'Ge': 32, 'As': 33, 'Se': 34, 'Br': 35, 'Kr': 36,
+     'Rb': 37, 'Sr': 38, 'Y': 39, 'Zr': 40, 'Nb': 41, 'Mo': 42, 'Tc': 43, 'Ru': 44, 'Rh': 45, 'Pd': 46, 'Ag': 47,
+     'Cd': 48, 'In': 49, 'Sn': 50, 'Sb': 51, 'Te': 52, 'I': 53, 'Xe': 54, 'Cs': 55, 'Ba': 56, 'La': 57, 'Ce': 58,
+     'Pr': 59, 'Nd': 60, 'Pm': 61, 'Sm': 62, 'Eu': 63, 'Gd': 64, 'Tb': 65, 'Dy': 66, 'Ho': 67, 'Er': 68, 'Tm': 69,
+     'Yb': 70, 'Lu': 71, 'Hf': 72, 'Ta': 73, 'W': 74, 'Re': 75, 'Os': 76, 'Ir': 77, 'Pt': 78, 'Au': 79, 'Hg': 80,
+     'Tl': 81, 'Pb': 82, 'Bi': 83, 'Po': 84, 'At': 85, 'Rn': 86, 'Fr': 87, 'Ra': 88, 'Ac': 89, 'Th': 90, 'Pa': 91,
+     'U': 92}
 LINES = (('Cu', 1.54056), ('Mo', 0.7093), ('Co', 1.78897), ('Cr', 2.2897))
 
 
@@ -56,6 +62,8 @@ def load_crystals(root):
 
 def domain_of(spec):
     """Benchmark domain of an enumerated spec, from the structure registries."""
+    if spec.get('domain'):
+        return spec['domain']
     if spec.get('molecule'):
         return next(m['domain'] for m in load_molecules(ROOT) if m['molecule'] == spec['molecule'])
     if spec.get('assembly'):
@@ -521,9 +529,165 @@ ASSEMBLY_ENUMERATORS = dict(assembly_extent=assembly_extent, assembly_rg=assembl
                             capsid_architecture=capsid_architecture)
 
 
+# ------------------------------------------------------------------ E1: the families that had no enumerator
+# These families are driven by committed JSON assets (QM7-X stereoisomers, conformer pools, force paths, the SAMPL9
+# binding table) rather than by a structure registry, so they enumerate over the asset files themselves. Each one only
+# proposes; whether a proposal becomes a question is still the family's decision at generation time.
+QM7X_SOURCE = ('QM7-X, Hoja et al., Sci. Data 8, 43 (2021) https://www.nature.com/articles/s41597-021-00812-2 ; '
+               'data https://zenodo.org/records/4288677')
+SAMPL9_SOURCE = ('SAMPL9 host-guest challenge (\u4ee3\u7801 MIT\uff1b\u7ed3\u6784\u4e0e\u5b9e\u6d4b\u8868\u7b49'
+                 '\u5176\u4f59\u6750\u6599 CC BY 4.0\uff0c\u89c1 docs/data/license-statements.json): '
+                 'https://github.com/samplchallenges/SAMPL9 ; experimental_data/experimental_measurements.csv '
+                 '(ITC, Isaacs lab); guest structures host_guest/WP6/guest_files')
+SAMPL9_SCOPE = ('\u4e3b\u4f53\u4e0e\u5ba2\u4f53\u4e3a SAMPL9 \u63d0\u4f9b\u7684 3D \u7ed3\u6784\uff1b'
+                '\u7b54\u6848\u4f9d\u636e\u5b9e\u6d4b ITC \u7ed3\u5408\u81ea\u7531\u80fd\uff081\u00d7 PBS\uff0c'
+                'pH 7.40\uff0c298.15 K\uff0c1:1\uff09\uff0c\u8bc1\u636e\u53ea\u5728\u5ba1\u6838\u4fa7\u3002')
+SAMPL9_LICENSE = 'SAMPL9 \u975e\u8f6f\u4ef6\u6750\u6599 (CC BY 4.0)'
+SAME_ISOMER, OTHER_ISOMER = '\u540c\u4e00', '\u4e24\u4e2a\u4e0d\u540c'
+SCOPE_SREL = 'QM7-X \u5206\u5b50 %s %s\u7acb\u4f53\u5f02\u6784\u4f53\u7684\u4e24\u4e2a\u6784\u8c61\u3002'
+SCOPE_SPROP = ('QM7-X \u5206\u5b50 %s \u4e24\u4e2a\u975e\u5bf9\u6620\u4f53\u5404\u81ea\u7684\u6570\u636e\u96c6'
+               '\u6700\u4f4e\u80fd\u6784\u8c61\uff1b\u6027\u8d28\u4e3a PBE0+MBD \u8ba1\u7b97\u503c\u3002')
+SCOPE_SDES = ('QM7-X \u5206\u5b50 %s \u7684\u7acb\u4f53\u5f02\u6784\u4f53\u4e0e\u6784\u8c61\uff1b'
+              '\u6784\u9020\u5f02\u6784\u4f53\u53d6\u540c\u5206\u5b50\u5f0f\u7684 %s\uff1b'
+              '\u80fd\u91cf\u4e3a PBE0+MBD \u8ba1\u7b97\u503c\u3002')
+SCOPE_CONF = ('QM7-X \u5206\u5b50 %s \u540c\u4e00\u7acb\u4f53\u5f02\u6784\u4f53\uff08%s\uff09\u7684 '
+              'DFTB3+MBD \u4f18\u5316\u6784\u8c61\uff1b\u53ea\u5141\u8bb8\u5355\u952e\u65cb\u8f6c\uff1b'
+              '\u6027\u8d28\u4e3a\u6570\u636e\u96c6 PBE0+MBD \u8ba1\u7b97\u503c\u3002')
+SCOPE_FP = ('QM7-X \u5206\u5b50 %s\uff1aA \u4e3a DFTB3+MBD \u4f18\u5316\u7ed3\u6784\uff0cB \u4e3a\u914d\u5bf9'
+            '\u4f4d\u79fb\u7ed3\u6784\uff1bB \u5904 PBE0+MBD \u603b\u529b\uff1b\u53ea\u95ee \u03bb=1 '
+            '\u5904\u65b9\u5411\u5bfc\u6570\u3002')
+MAX_CONFORMER_PAIRS = 12          # per stereo asset, so one molecule cannot flood its family
+MAX_GUEST_SETS = 12               # per host table
+
+
+def load_asset_files(root, folder, pattern='*.json'):
+    """Every committed asset of one family folder, in name order, with its parsed contents."""
+    out = []
+    for path in sorted((root / 'docs/assets/families' / folder).glob(pattern)):
+        if path.name.startswith('sources'):
+            continue
+        try:
+            out.append(('assets/families/%s/%s' % (folder, path.name), json.loads(path.read_text(encoding='utf-8'))))
+        except (ValueError, OSError):
+            continue
+    return out
+
+
+def load_stereo(root):
+    return [dict(asset=asset, data=data) for asset, data in load_asset_files(root, 'stereo', 'QM7X-*.json')]
+
+
+def load_conformer_pools(root):
+    return [dict(asset=asset, data=data) for asset, data in load_asset_files(root, 'conformers', 'QM7X-*.json')]
+
+
+def load_force_paths(root):
+    return [dict(asset=asset, data=data) for asset, data in load_asset_files(root, 'force-path', 'QM7X-*.json')]
+
+
+def load_binding_tables(root):
+    return [dict(asset=asset, data=data) for asset, data in load_asset_files(root, 'hostguest', '*-binding.json')]
+
+
+def qm7x_base(a, family, key):
+    molecule = a['data'].get('molecule')
+    return dict(id='EN-QM7X%s-%s' % (molecule, key), family=family, asset=a['asset'], molecule='QM7X-%s' % molecule,
+                source=QM7X_SOURCE, license='CC BY 4.0', domain='quantum')
+
+
+def stereo_relationship(root, a):
+    """Every pair of conformers of one stereo asset: whether they are the same isomer is what the family asks."""
+    conformers = a['data'].get('conformers', [])
+    pairs = [(x, y) for i, x in enumerate(conformers) for y in conformers[i + 1:]]
+    pairs.sort(key=lambda pair: kit.digest('srel', pair[0]['id'], pair[1]['id']))
+    for s0, x in pairs[:MAX_CONFORMER_PAIRS]:
+        same = s0.get('isomer') == x.get('isomer')
+        yield dict(qm7x_base(a, 'stereo_relationship', 'SREL'),
+                   id='EN-QM7X%s-SREL-%s-%s' % (a['data']['molecule'], s0['id'], x['id']),
+                   s0=dict(asset=a['asset'], id=s0['id']), x=dict(asset=a['asset'], id=x['id']),
+                   scope=SCOPE_SREL % (a['data']['molecule'], SAME_ISOMER if same else OTHER_ISOMER))
+
+
+def stereo_property_inference(root, a):
+    """Each ordered pair of stereoisomers of one molecule; the family compares their lowest-energy conformers."""
+    isomers = sorted({c.get('isomer') for c in a['data'].get('conformers', []) if c.get('isomer')})
+    for s0 in isomers:
+        for x in isomers:
+            if s0 != x:
+                yield dict(qm7x_base(a, 'stereo_property_inference', 'SPROP-%s-%s' % (s0, x)), s0_isomer=s0,
+                           x_isomer=x, scope=SCOPE_SPROP % a['data']['molecule'])
+
+
+def stereo_design_selection(root, a):
+    """A molecule plus a constitutional isomer of it: another stereo asset with the same formula."""
+    mates = [b for b in load_stereo(ROOT)
+             if b['asset'] != a['asset'] and b['data'].get('formula') == a['data'].get('formula')]
+    for mate in sorted(mates, key=lambda b: b['asset'])[:2]:
+        yield dict(qm7x_base(a, 'stereo_design_selection', 'SDES-%s' % mate['data']['molecule']),
+                   mate_asset=mate['asset'], scope=SCOPE_SDES % (a['data']['molecule'], mate['data']['molecule']))
+
+
+def conformer_target_selection(root, a):
+    """Each conformer of the pool as the starting point, for each stated objective."""
+    conformers = a['data'].get('conformers', [])
+    for s0 in sorted(conformers, key=lambda c: kit.digest('conf', c['id']))[:4]:
+        for objective in ('min_energy', 'max_dipole'):
+            yield dict(qm7x_base(a, 'conformer_target_selection', 'CONF-%s-%s' % (s0['id'], objective)),
+                       objective=objective, s0=s0['id'],
+                       scope=SCOPE_CONF % (a['data']['molecule'], a['data'].get('isomer', 'i1')))
+
+
+def force_path_derivative(root, a):
+    """Both directions of the same displaced pair; the sign of the derivative is the point of the question.
+
+    One molecule can have several displaced pairs (7040 is committed as c1-d1 and c1-d2), so the id names the
+    asset's own pair and not just the molecule -- the same thing the hand-written FA-FP-QM7X-7040-D1/-D2 do.
+    """
+    pair = Path(a['asset']).stem.split('-', 2)[2].upper()                  # QM7X-7040-c1-d2 -> C1-D2
+    for direction in ('A_to_B', 'B_to_A'):
+        yield dict(qm7x_base(a, 'force_path_derivative', 'FP-%s-%s' % (pair, direction)), direction=direction,
+                   scope=SCOPE_FP % a['data']['molecule'])
+
+
+def binding_sets(a):
+    """Four guests of the measured table, in a deterministic order; the family checks that one is the clear best."""
+    guests = sorted(a['data'].get('guests', {}))
+    quads = [guests[i:i + 4] for i in range(max(len(guests) - 3, 0))]
+    quads.sort(key=lambda q: kit.digest('hg', *q))
+    return quads[:MAX_GUEST_SETS]
+
+
+def binding_evidence_choice(root, a):
+    host = a['asset'].split('/')[-1].split('-')[0]
+    for quad in binding_sets(a):
+        yield dict(id='EN-%s-EV-%s' % (host, ''.join(quad)), family='binding_evidence_choice', asset=a['asset'],
+                   molecule='SAMPL9-%s' % host, source=SAMPL9_SOURCE, license=SAMPL9_LICENSE, domain='chemistry',
+                   scope=SAMPL9_SCOPE, guests=quad)
+
+
+def binding_design_choice(root, a):
+    host = a['asset'].split('/')[-1].split('-')[0]
+    for quad in binding_sets(a):
+        for reference in quad:
+            others = [g for g in quad if g != reference]
+            yield dict(id='EN-%s-DES-%s-%s' % (host, reference, ''.join(others)), family='binding_design_choice',
+                       asset=a['asset'], molecule='SAMPL9-%s' % host, source=SAMPL9_SOURCE, license=SAMPL9_LICENSE,
+                       domain='chemistry', scope=SAMPL9_SCOPE, reference=reference, gain=2.0,
+                       guests=others + [reference])
+
+
+STEREO_ENUMERATORS = dict(stereo_relationship=stereo_relationship, stereo_property_inference=stereo_property_inference,
+                          stereo_design_selection=stereo_design_selection)
+CONFORMER_ENUMERATORS = dict(conformer_target_selection=conformer_target_selection)
+FORCE_PATH_ENUMERATORS = dict(force_path_derivative=force_path_derivative)
+BINDING_ENUMERATORS = dict(binding_evidence_choice=binding_evidence_choice,
+                           binding_design_choice=binding_design_choice)
+
+
 ENUMERATORS = dict(backbone_torsion=backbone_torsion, secondary_structure=secondary_structure, fret_efficiency=fret_efficiency,
                    disulfide_design=disulfide_design, fret_design=fret_design, **CRYSTAL_ENUMERATORS, **MOLECULE_ENUMERATORS,
-                   **ASSEMBLY_ENUMERATORS)
+                   **ASSEMBLY_ENUMERATORS, **STEREO_ENUMERATORS, **CONFORMER_ENUMERATORS, **FORCE_PATH_ENUMERATORS,
+                   **BINDING_ENUMERATORS)
 
 
 def propose(root, families=None):
@@ -534,7 +698,11 @@ def propose(root, families=None):
             continue
         items = (load_crystals(root) if family in CRYSTAL_ENUMERATORS else
                  load_molecules(root) if family in MOLECULE_ENUMERATORS else
-                 load_assemblies(root) if family in ASSEMBLY_ENUMERATORS else load_structures(root))
+                 load_assemblies(root) if family in ASSEMBLY_ENUMERATORS else
+                 load_stereo(root) if family in STEREO_ENUMERATORS else
+                 load_conformer_pools(root) if family in CONFORMER_ENUMERATORS else
+                 load_force_paths(root) if family in FORCE_PATH_ENUMERATORS else
+                 load_binding_tables(root) if family in BINDING_ENUMERATORS else load_structures(root))
         out[family] = [spec for s in items for spec in fn(root, s)]
     return out
 

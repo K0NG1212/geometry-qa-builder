@@ -1,25 +1,25 @@
 {
  "kind": "scale_plan",
- "date": "2026-11-02",
+ "date": "2026-11-03",
  "target": 3000,
  "bank": {
-  "run": "family-pilot-v42",
-  "questions": 336,
+  "run": "family-pilot-v45",
+  "questions": 871,
   "families": 52,
   "cells": 16,
   "cell_target": 10
  },
- "gap": 2664,
+ "gap": 2129,
  "enumeration": {
-  "run": "enum-v34",
-  "proposals": 28464,
-  "sampled": 3505,
-  "accepted": 3052,
-  "estimated_admissible": 27634,
-  "structures": 78,
+  "run": "enum-v35",
+  "proposals": 338046,
+  "sampled": 873,
+  "accepted": 728,
+  "estimated_admissible": 336091,
+  "structures": 133,
   "structures_by_kind": {
-   "pdb": 10,
-   "cod": 17,
+   "pdb": 31,
+   "cod": 59,
    "molecules": 36,
    "assemblies": 12
   }
@@ -27,19 +27,19 @@
  "source_caps": [
   {
    "max_per_source": 8,
-   "questions": 557,
-   "structures": 78,
-   "per_structure": 7.14,
-   "structures_for_target": 420,
-   "more_structures_needed": 342
+   "questions": 977,
+   "structures": 133,
+   "per_structure": 7.35,
+   "structures_for_target": 408,
+   "more_structures_needed": 275
   },
   {
    "max_per_source": 15,
-   "questions": 978,
-   "structures": 78,
-   "per_structure": 12.54,
-   "structures_for_target": 239,
-   "more_structures_needed": 161
+   "questions": 1631,
+   "structures": 133,
+   "per_structure": 12.26,
+   "structures_for_target": 245,
+   "more_structures_needed": 112
   }
  ],
  "family_cap": {
@@ -47,19 +47,17 @@
   "families": 52,
   "ceiling": 3120,
   "per_family_for_target": 57.7,
-  "enumerable_families": 19,
-  "enumerable_ceiling": 1140,
+  "enumerable_families": 21,
+  "enumerable_ceiling": 1260,
   "database_without_enumerator": [
    "binding_design_choice",
    "binding_evidence_choice",
+   "capsid_architecture",
    "conformer_target_selection",
    "debye_intensity",
    "force_path_derivative",
    "reaction_geometry_target",
-   "reaction_mechanism_choice",
-   "stereo_design_selection",
-   "stereo_property_inference",
-   "stereo_relationship"
+   "reaction_mechanism_choice"
   ],
   "paper_driven": 23
  },
@@ -77,7 +75,7 @@
   "version": "0.1.0",
   "status": "provisional",
   "target": 1230,
-  "max_selectable": 682,
+  "max_selectable": 755,
   "note": "选题规则现在的目标是 1230 道，不是 3000 道：R1 要按新目标重写"
  },
  "levers": [
@@ -89,13 +87,13 @@
   },
   {
    "id": "A1",
-   "what": "来源结构从 78 个扩到 420 个左右",
+   "what": "来源结构从 133 个扩到 408 个左右",
    "why": "唯一能把量做上去的路；PDB / COD / QM7-X 都免费可下载、许可清楚（见 LICENSING.md）",
    "blocked_on": "用户批准下载批次"
   },
   {
    "id": "E1",
-   "what": "给 10 个数据库驱动但没有枚举器的族写枚举器",
+   "what": "给 8 个数据库驱动但没有枚举器的族写枚举器",
    "why": "写了就能跟结构一起扩，等于提高每个结构的产出，少下载一批结构",
    "blocked_on": "不卡"
   },

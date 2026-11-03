@@ -204,17 +204,32 @@ class LocatorTests(unittest.TestCase):
 
 
 class RecordedLicenceTests(unittest.TestCase):
-    # Instances whose published licence string is still the old one. The manifest is already right; these
-    # become right when the bank is re-made.
-    PENDING_RERUN_BLANK = {'FC-QNP007', 'FC-QNP008', 'FC-QNP009', 'FC-QNP010', 'FC-QNP011',
-                           'FC-MNP006', 'FC-MNP007', 'FC-MNP010',
-                           'FC-CNP007', 'FC-CNP008', 'FC-CNP009', 'FC-CNP011'}
-    PENDING_RERUN_MIT = {'FA-ANG-BCD', 'FA-ANG-WP6', 'FA-ANG-DMBCD', 'FA-HG-EV1', 'FA-HG-EV2', 'FA-HG-EV3',
-                         'FA-HG-DES1', 'FA-HG-DES2', 'FA-ROT-G9-101', 'FA-ROT-G2-110', 'FA-ISO-G9-110',
-                         'FA-ISO-G13-111', 'FA-DIST-WP6-C20O22'}
+    # Instances whose published licence string was still the old one. The re-run of 2026-11-03
+    # (family-pilot-v44) replaced them, so both lists are empty and the assertions below now simply say that
+    # no published instance is missing a licence or calls a structure MIT.
+    PENDING_RERUN_BLANK = set()
+    PENDING_RERUN_MIT = set()
 
     def test_the_manifest_records_a_licence_for_every_instance(self):
         self.assertEqual(sorted(i for i, s in MANIFEST.items() if not s.get('license')), [])
+
+    def test_the_structure_registry_states_the_licence_the_enumerators_will_copy(self):
+        """templates/structures.json is where the E1 enumerators read a structure's licence from.
+
+        Its 16 SAMPL9 molecules said "SAMPL9 repository (MIT)". That was wrong but harmless while only
+        hand-written instances existed; the moment an enumerator read it, 105 proposed instances inherited it.
+        A registry field nothing reads yet is still a claim this project makes about someone else's licence.
+        """
+        registry = json.loads((ROOT / 'templates/structures.json').read_text(encoding='utf-8'))
+        rows = [row for key in ('structures', 'crystals', 'molecules', 'assemblies') for row in registry[key]]
+        self.assertGreater(len(rows), 130)
+        for row in rows:
+            name = row.get('molecule') or row.get('pdb') or row.get('cod') or row.get('assembly') or row.get('asset')
+            self.assertTrue(row.get('license'), name)
+            self.assertTrue(row.get('source'), name)
+            for field in ('license', 'source'):
+                if 'MIT' in row[field]:
+                    self.assertIn('CC BY 4.0', row[field], '%s / %s' % (name, field))
 
     def test_the_manifest_never_calls_a_structure_or_a_measurement_table_mit(self):
         # MIT covers the SAMPL9 repository's software; the host/guest structures and the ITC table are

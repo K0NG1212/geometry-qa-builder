@@ -1,0 +1,69 @@
+The excerpt contains the ATOM records of the 8 residues involved, from chain A of PDB entry 1PGA (protein G B1 domain, X-ray), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?
+
+选项：
+A. Ala20–Thr25
+B. Tyr33–Val39
+C. Val21–Ala26
+D. Thr44–Thr53
+
+附件：1PGA-A-design-excerpt.pdb（均为本题完整输入）。范围：ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。 只回答一个字母 A、B、C 或 D。
+
+===== 1PGA-A-design-excerpt.pdb =====
+ATOM    149  N   ALA A  20      27.930  33.807  31.698  1.00 11.79           N
+ATOM    150  CA  ALA A  20      26.954  34.653  31.011  1.00 11.11           C
+ATOM    151  C   ALA A  20      25.998  35.271  32.023  1.00 11.25           C
+ATOM    152  O   ALA A  20      25.861  34.745  33.095  1.00 10.25           O
+ATOM    153  CB  ALA A  20      26.175  33.859  29.917  1.00 10.30           C
+ATOM    154  N   VAL A  21      25.406  36.414  31.687  1.00 11.64           N
+ATOM    155  CA  VAL A  21      24.428  37.125  32.548  1.00 13.50           C
+ATOM    156  C   VAL A  21      23.176  36.342  32.872  1.00 13.35           C
+ATOM    157  O   VAL A  21      22.648  36.441  33.968  1.00 13.80           O
+ATOM    158  CB  VAL A  21      23.894  38.488  31.924  1.00 15.00           C
+ATOM    159  CG1 VAL A  21      24.715  39.622  32.402  1.00 13.17           C
+ATOM    160  CG2 VAL A  21      23.842  38.429  30.361  1.00 13.88           C
+ATOM    179  N   THR A  25      21.411  34.253  27.198  1.00  7.31           N
+ATOM    180  CA  THR A  25      22.642  34.663  26.595  1.00  7.61           C
+ATOM    181  C   THR A  25      23.567  33.440  26.482  1.00  8.29           C
+ATOM    182  O   THR A  25      24.190  33.275  25.431  1.00  7.36           O
+ATOM    183  CB  THR A  25      23.295  35.861  27.358  1.00  9.87           C
+ATOM    184  OG1 THR A  25      22.376  36.945  27.421  1.00 15.99           O
+ATOM    185  CG2 THR A  25      24.436  36.418  26.612  1.00  7.83           C
+ATOM    186  N   ALA A  26      23.632  32.570  27.510  1.00  6.72           N
+ATOM    187  CA  ALA A  26      24.499  31.366  27.438  1.00  9.64           C
+ATOM    188  C   ALA A  26      24.004  30.444  26.304  1.00 10.01           C
+ATOM    189  O   ALA A  26      24.795  29.892  25.550  1.00 10.49           O
+ATOM    190  CB  ALA A  26      24.554  30.606  28.803  1.00  6.87           C
+ATOM    245  N   TYR A  33      28.656  28.118  19.451  1.00  8.39           N
+ATOM    246  CA  TYR A  33      29.773  27.206  19.679  1.00  6.40           C
+ATOM    247  C   TYR A  33      29.509  25.862  18.941  1.00  5.87           C
+ATOM    248  O   TYR A  33      30.320  25.372  18.149  1.00  4.80           O
+ATOM    249  CB  TYR A  33      29.946  27.000  21.178  1.00  6.67           C
+ATOM    250  CG  TYR A  33      31.015  25.993  21.502  1.00  6.95           C
+ATOM    251  CD1 TYR A  33      32.355  26.338  21.387  1.00  7.21           C
+ATOM    252  CD2 TYR A  33      30.689  24.686  21.899  1.00  6.38           C
+ATOM    253  CE1 TYR A  33      33.374  25.417  21.669  1.00  9.67           C
+ATOM    254  CE2 TYR A  33      31.674  23.754  22.177  1.00  6.66           C
+ATOM    255  CZ  TYR A  33      33.027  24.125  22.072  1.00  8.46           C
+ATOM    256  OH  TYR A  33      34.039  23.263  22.408  1.00  9.40           O
+ATOM    290  N   VAL A  39      28.018  20.735  14.895  1.00  9.93           N
+ATOM    291  CA  VAL A  39      26.982  20.057  15.673  1.00 11.05           C
+ATOM    292  C   VAL A  39      25.623  20.694  15.351  1.00 13.05           C
+ATOM    293  O   VAL A  39      25.519  21.922  15.147  1.00 13.46           O
+ATOM    294  CB  VAL A  39      27.256  20.156  17.179  1.00 11.99           C
+ATOM    295  CG1 VAL A  39      26.190  19.386  17.992  1.00 11.01           C
+ATOM    296  CG2 VAL A  39      28.618  19.623  17.474  1.00 12.09           C
+ATOM    332  N   THR A  44      18.341  20.860  25.397  1.00  6.73           N
+ATOM    333  CA  THR A  44      17.568  20.872  26.600  1.00  7.41           C
+ATOM    334  C   THR A  44      18.370  21.803  27.458  1.00  7.32           C
+ATOM    335  O   THR A  44      19.564  22.051  27.162  1.00  8.30           O
+ATOM    336  CB  THR A  44      17.477  19.475  27.325  1.00  6.34           C
+ATOM    337  OG1 THR A  44      18.768  19.116  27.844  1.00  8.74           O
+ATOM    338  CG2 THR A  44      16.965  18.331  26.382  1.00  4.42           C
+ATOM    406  N   THR A  53      22.359  20.748  27.052  1.00  5.79           N
+ATOM    407  CA  THR A  53      22.885  19.561  26.411  1.00  5.92           C
+ATOM    408  C   THR A  53      22.419  19.621  24.955  1.00  5.65           C
+ATOM    409  O   THR A  53      21.309  20.087  24.688  1.00  6.81           O
+ATOM    410  CB  THR A  53      22.400  18.226  27.067  1.00  5.16           C
+ATOM    411  OG1 THR A  53      21.054  17.997  26.672  1.00  9.40           O
+ATOM    412  CG2 THR A  53      22.407  18.291  28.569  1.00  5.06           C
+END

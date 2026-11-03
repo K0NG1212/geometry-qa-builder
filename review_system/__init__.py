@@ -242,6 +242,9 @@ def reviewer_packet(teacher, record):
         return dict(correct_label=teacher['correct_label'], numeric_answer=teacher.get('numeric_answer'),
                     option_audit=[{k: o.get(k) for k in ('label', 'value', 'rule', 'source_id', 'reason', 'is_correct') if k in o} for o in teacher['option_audit']],
                     source=teacher['source'], license=teacher.get('license'), limits=(teacher.get('checks') or {}).get('limits'),
+                    # The recomputed quantities, not only the conclusion: without them a reviewing model can just
+                    # agree or disagree with a sentence, instead of following d -> 2theta -> margin for itself.
+                    checks={k: v for k, v in (teacher.get('checks') or {}).items() if k != 'limits'},
                     scales=teacher.get('scales'))
     return dict(answer=record.get('answer'), source=record.get('source'), attribution=record.get('attribution'),
                 validation=record.get('validation'), rubric=record.get('rubric'))

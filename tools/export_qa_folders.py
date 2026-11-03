@@ -29,6 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 DEFAULT_OUT = Path('D:/GeoBench-data/qa')
+NEWLINE = chr(10)
 SITE = 'https://k0ng1212.github.io/geometry-qa-builder/'
 RUNBOOK_STEPS = ['3 题型族', '4 独立检查器', '5 注册表与规格', '6 生成', '7 独立复核', '8 导出', '9 入库', '10 挑选与审核材料']
 # What the coordinates in the attachments actually are. Each rule is a phrase the attribution text itself uses,
@@ -96,6 +97,31 @@ def asset_group(paths):
         if len(parts) > 1:
             return 'docs/assets/' + parts[1]
     return None
+
+
+def show(value, places=6):
+    """A number a person reads: 21.535119868514066 is noise, 21.5351 is the angle."""
+    if isinstance(value, float):
+        return '%.*g' % (places, value)
+    if isinstance(value, dict):
+        return '{%s}' % ', '.join('%s: %s' % (k, show(v)) for k, v in value.items())
+    if isinstance(value, (list, tuple)):
+        return '[%s]' % ', '.join(show(v) for v in value)
+    return str(value)
+
+
+def indent(text, prefix='  '):
+    return NEWLINE.join(prefix + line for line in str(text).splitlines()) or prefix + '—'
+
+
+def quote(text, head=40, tail=5):
+    """The attachment as it is; a long one is cut in the middle so the sheet stays readable."""
+    lines = str(text or '').splitlines()
+    if len(lines) <= head + tail + 1:
+        return indent(NEWLINE.join(lines), '      ')
+    middle = '      …（共 %d 行，中间省略 %d 行）' % (len(lines), len(lines) - head - tail)
+    kept = ['      ' + x for x in lines[:head]] + [middle] + ['      ' + x for x in lines[-tail:]]
+    return NEWLINE.join(kept)
 
 
 class Export:
@@ -204,7 +230,10 @@ class Export:
             out['paper_conclusion_locator'] = checks.get('paper_conclusion_locator')
         else:
             out['scope'] = (self.student.get(teacher['id']) or {}).get('scope')
-            out['recomputed'] = {k: v for k, v in checks.items() if not isinstance(v, (dict, list))}
+            # Keep the dicts and lists: 'lines' (2theta per X-ray line) and 'candidates' are the
+            # intermediate values a reviewer follows, and dropping them left locators.json saying less
+            # than reviewer/answer.json already does.
+            out['recomputed'] = {k: v for k, v in checks.items() if k != 'limits'}
         return out
 
     def public_locator(self, teacher, card):
@@ -223,6 +252,7 @@ class Export:
                                   'problem': check.get('problem')},
             'option_order_rule': teacher.get('option_order'),       # the rule, not which option is right
             'answer_in': 'reviewer/answer.json',
+            'readable_sheet': 'reviewer/EVIDENCE.txt',              # answer, attachment and derivation in one file
         }
         if card and card.get('paper_xml'):
             block['paper_full_text'] = {'file': Path(card['paper_xml']['path']).name,
@@ -257,6 +287,61 @@ class Export:
         lines += ['', '附件哈希：'] + ['  %s  %s' % (h, p) for p, h in sorted((teacher.get('input_hashes') or {}).items())]
         lines += ['', '本文件由 tools/export_qa_folders.py 生成，运行 %s。' % (question.get('familyRun') or self.run)]
         return '\n'.join(lines) + '\n'
+
+    # ---------- the readable evidence sheet ----------
+    def evidence_text(self, question, teacher, card, row):
+        """One file an auditor -- a person, or another model -- can read start to finish.
+
+        Every piece of this was already in the folder, but spread over four files: the attachment in student/,
+        the derivation in reviewer/answer.json, the source in source/SOURCE.txt, the scope in locators.json.
+        Whoever checked a question had to join them by hand, which is why nobody could check a thousand of
+        them. Here they are in reading order: the answer, the attachment lines it rests on, the quantities the
+        generator computed, why the other three options fail, what the second checker did, and what none of it
+        covers.
+        """
+        qid, packet = question['id'], (self.student.get(teacher['id']) or {})
+        checks = {k: v for k, v in (teacher.get('checks') or {}).items() if k != 'limits'}
+        check = self.checks.get(teacher['id'], {})
+        out = ['%s · %s' % (qid, question.get('title') or ''),
+               '答案：%s' % (question.get('answer') or teacher.get('correct_label') or '—'), '',
+               '一、题目（考生看到的全部）',
+               indent(packet.get('question') or question.get('question') or '—')]
+        if packet.get('options'):
+            out += ['  选项：'] + ['    %s. %s %s' % (o['label'], o['value'], o.get('unit') or '')
+                                 for o in packet['options']]
+        out += ['', '二、证据：附件原样引用']
+        for item in packet.get('inputs') or []:
+            out += ['  %s（%s；%s）' % (item.get('name'), item.get('format'), item.get('unit') or '—'),
+                    quote(item.get('text'))]
+        for path, digest in sorted((teacher.get('input_hashes') or {}).items()):
+            out.append('  上游文件 %s  sha256 %s' % (path, digest))
+        out += ['  来源：%s' % (question.get('source') or '—'),
+                '  许可：%s' % (teacher.get('license') or question.get('attributionLicenseUrl') or '—')]
+        where = self.locator(teacher, card)
+        for key in ('paper', 'paper_choice_locator', 'properties', 'per_candidate', 'facts',
+                    'paper_conclusion_locator', 'scope'):
+            if where.get(key):
+                out.append('  原文位置 · %s：%s' % (key, show(where[key])))
+        out += ['', '三、推导（程序算出来的量，不是转述）']
+        out += ['  %s = %s' % (k, show(v)) for k, v in checks.items()] or ['  —']
+        out += ['', '四、四个选项为什么对或错']
+        for option in teacher.get('option_audit') or []:
+            out.append('  %s %s  [%s]%s' % (option['label'], option['value'], option.get('rule') or '—',
+                                            '  ← 正确' if option.get('is_correct') else ''))
+            if option.get('reason'):
+                out.append('      %s' % option['reason'])
+        out += ['', '五、独立检查器（另一套代码重算）',
+                '  方法：%s' % (check.get('method') or '—'),
+                '  结论：%s%s' % (check.get('status') or '—',
+                                '（%s）' % check['problem'] if check.get('problem') else '')]
+        if check.get('parameters'):
+            out.append('  它自己算出来的：%s' % show(check['parameters']))
+        out += ['', '六、这题保证不了什么',
+                indent(row.get('limits') or (teacher.get('checks') or {}).get('limits') or '—'),
+                '  本题未经任何人工审核（L1–L4 全部 pending）。程序只核验指定量，不保证科学意义与难度。', '',
+                '本文件由 tools/export_qa_folders.py 生成，运行 %s，%s。'
+                % (question.get('familyRun') or self.run, date.today().isoformat())]
+        return NEWLINE.join(out) + NEWLINE
 
     def question(self, question):
         qid = question['id']
@@ -299,6 +384,7 @@ class Export:
             'rank': teacher.get('rank'), 'rank_shortcuts': teacher.get('rank_shortcuts'),
             'independent_check': self.checks.get(teacher['id'])})
         self.put_json(folder / 'reviewer' / 'locators.json', self.locator(teacher, card))
+        self.put(folder / 'reviewer' / 'EVIDENCE.txt', self.evidence_text(question, teacher, card, row))
         self.put(folder / 'reviewer' / 'limits.txt', '\n\n'.join(
             ['%s · 题型族 %s（%s）' % (qid, question['family'], row.get('name') or '—'),
              '考点：%s' % (row.get('concept') or '—'),

@@ -1,0 +1,32 @@
+{
+ "kind": "batch_selection",
+ "date": "2026-11-02",
+ "rule": "templates/batch-selection-rule.json",
+ "rule_version": "0.1.0",
+ "caps": {
+  "max_per_family_source": 4,
+  "max_per_source": 15,
+  "max_per_family": 60
+ },
+ "note": "tools/select_batch.py 选出的批次：按稀缺优先（没题的结构先上）、确定性顺序；选中只是进清单，是否成题由 family_engine 判定，入库另走 admit。",
+ "candidates": 12859,
+ "chosen": 8,
+ "blocked": {
+  "族×来源上限 4": 7994,
+  "族上限 60": 4855,
+  "来源上限 15": 2
+ },
+ "by_family": {
+  "kinematic_extinction": 8
+ },
+ "ids": [
+  "EN-COD1529037-EXT",
+  "EN-COD9009146-EXT",
+  "EN-COD4124624-EXT",
+  "EN-COD1538801-EXT",
+  "EN-COD1000026-EXT",
+  "EN-COD1521678-EXT",
+  "EN-COD2103865-EXT",
+  "EN-COD9008834-EXT"
+ ]
+}

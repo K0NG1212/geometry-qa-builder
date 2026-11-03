@@ -4,9 +4,9 @@
  const bins=['0.1–1 nm','1–10 nm','10–100 nm','100–1000 nm'];
  const inside=(n,i)=>Number.isFinite(n)&&n>=10**(i-1)&&(n<10**i||(i===3&&n===1000));
  const section=$('#coverage').closest('.section-block');
- section.querySelector('h2').textContent='完整题目与真实缺口。';
+ section.querySelector('h2').textContent='四个领域 × 四个尺度（总览）。';
  section.querySelector('.map-top p').textContent='4 个领域 × 4 个尺度';
- const captionBase='按解题推理尺度统计；每格目标 10 道，感知 / 推断 / 设计各约 3 道。所有题目都已通过自动核验、仍待人工审核（见审核体系）。按论文参数构建的模型题在题干中写明 Model conditions。每格具体选哪 10 道（提议规则，待教授确认）见审核页“160 道原型挑选”。';section.querySelector('.caption').textContent=captionBase;
+ const captionBase='按解题推理尺度统计。每格 10 道是 160 道原型期的配额，题库已经扩到这个数的数倍，所以这里只当总览看；真正planned against的坐标系是下面那张按子领域细分的。所有题目都已通过程序核验与独立检查器，仍待人工审核。';section.querySelector('.caption').textContent=captionBase;
  const controls=document.createElement('div');controls.className='framework-controls';
  controls.innerHTML='<label>能力 <select id="framework-ability"><option value="">全部能力</option><option value="perception">感知</option><option value="inference">推断</option><option value="design">生成 / 设计</option></select></label><span id="framework-count"></span>';
  section.querySelector('.map-scroll').before(controls);$('#coverage').classList.add('framework-map','compact-map');
@@ -21,15 +21,15 @@
     const all=rows.filter(q=>q.domain===domain&&inside(q.reasoningSizeNm,i));
     const n=all.length,c=k=>all.filter(q=>q.ability===k).length,sel=ability?c(ability):n;capped+=Math.min(n,10);
     const state=n===0?'empty':n>=10?(n>10?'over':'full'):'partial';
-    const note=n===0?'尚无题目':n>10?`超额 ${n-10}（定稿时挑选）`:n===10?'已满':`缺 ${10-n}`;
+    const note=n===0?'尚无题目':'';
     html+=`<button type="button" class="map-cell cov-cell ${state}" data-domain="${domain}" data-scale="${i}" data-ability="${ability}" aria-label="${label} ${bins[i]}：${n} 道，查看题目">
-      <strong>${n} <span>/ 10</span></strong><em>${note}</em>
+      <strong>${n}</strong><em>${note}</em>
       <small><i class="p">感知 ${c('perception')}</i><i class="i">推断 ${c('inference')}</i><i class="d">设计 ${c('design')}</i></small>
       ${n?`<b>${ability?`查看${abilities[ability][0]} ${sel} 道 →`:'查看题目 →'}</b>`:''}</button>`;
    }
   }
   $('#coverage').innerHTML=html;
-  $('#framework-count').textContent=`${rows.length} 道完整候选 · 每格按 10 道封顶的有效覆盖 ${capped} / 160 · 点击格子查看该格题目`;
+  $('#framework-count').textContent=`${rows.length} 道题 · 点击格子查看该格题目（细分到子领域的坐标系见下一张图）`;
   const empty=$('#coverage').querySelectorAll('.cov-cell.empty').length;section.querySelector('.caption').textContent=captionBase+(empty?` 目前有 ${empty} 格尚无题目。`:'');
  };
  coverage=render;$('#framework-ability').onchange=e=>{ability=e.target.value;render()};

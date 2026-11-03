@@ -21,6 +21,7 @@ SCALES = ['0.1-1', '1-10', '10-100', '100-1000']
 TAXONOMY = 'templates/subdomain-draft.json'
 OUT = 'docs/data/subdomain-map.json'
 PDB_ID = re.compile(r'\b([0-9][A-Z0-9]{3})\b')
+COD_ID = re.compile(r'/cod/(\d+)')
 
 
 def read(rel):
@@ -55,6 +56,18 @@ class Tree:
                 return self.cod_names[key]
         return None
 
+    def _by_cod(self, text, family):
+        """The leaf of the one crystal a question is about, from the COD number in its source link.
+
+        A single crystal's leaf is a fact about that crystal, so it beats matching substance names in prose: the
+        name table only knows 20 names, which sent a Cu extinction question and every superconductor, 2D material
+        and halide-perovskite question to M2a ("simple oxides and halides"). diffraction_design is excluded because
+        its four options are four different crystals -- the question is about the comparison, not about one of them.
+        """
+        if family == 'diffraction_design':
+            return None
+        return next((self.cod[i] for i in COD_ID.findall(text) if i in self.cod), None)
+
     def question(self, q):
         """Leaf id for a catalog question; raises KeyError if no rule applies."""
         text = ' '.join(str(q.get(k, '')) for k in ('title', 'source', 'question', 'answer'))
@@ -76,6 +89,9 @@ class Tree:
             return self.family.get(family, 'C4a') if family in self.family and self.family[family] != 'C1a' else 'C4a'
         if paper in self.paper:
             return self.paper[paper]
+        hit = self._by_cod(text, family)
+        if hit:
+            return hit
         if q['domain'] == 'materials':
             hit = self._named_crystal(text)
             if hit:

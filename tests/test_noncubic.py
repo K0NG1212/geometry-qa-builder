@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT))
 import checkers  # noqa: E402
 import verify_all  # noqa: E402
 from checkers import cells as checker_cells  # noqa: E402
+from enumerators import Z  # noqa: E402
 from task_families import cell as generator_cells  # noqa: E402
 
 WORKBENCH = json.loads((ROOT / 'docs/data/family-workbench.json').read_text(encoding='utf-8'))
@@ -36,6 +37,26 @@ class ExpansionTests(unittest.TestCase):
             cp, ca = checker_cells.cif_cell(path)
             self.assertEqual(gp, cp, path.name)
             self.assertEqual(Counter(e for e, _ in ga), Counter(e for e, _ in ca), path.name)
+
+    def test_manifest_weights_name_the_elements_the_reader_finds(self):
+        """Weights are written by the enumerator and read by the diffraction families as weights[element].
+
+        They were written while cell.py still shortened 'Nb' to 'N' and 'Cr' to 'C', so Nb3Sn carried {'N': 7,
+        'Sn': 50}: kinematic_extinction refused it and diffraction_design raised KeyError('Nb'). A spec whose weight
+        table does not name exactly the elements of its own CIF is stale, whatever the numbers say.
+        """
+        manifest = json.loads((ROOT / 'templates/family-manifest.json').read_text(encoding='utf-8'))
+        seen = 0
+        for spec in manifest['items']:
+            for entry in [spec] + list(spec.get('candidates', [])):
+                if not (isinstance(entry, dict) and entry.get('weights') and entry.get('source_kind') == 'cif_general'):
+                    continue
+                _, atoms = generator_cells.read_cif(ROOT / 'docs' / entry['asset'])
+                self.assertEqual(set(entry['weights']), {e for e, _ in atoms}, '%s / %s' % (spec['id'], entry['asset']))
+                for element, weight in entry['weights'].items():
+                    self.assertEqual(weight, Z[element], '%s / %s' % (spec['id'], element))
+                seen += 1
+        self.assertGreater(seen, 100)
 
     def test_known_compositions(self):
         expect = {'9004141': {'Ti': 2, 'O': 4}, '9004137': {'Ti': 8, 'O': 16}, '2300112': {'Zn': 2, 'O': 2}, '5000035': {'Si': 3, 'O': 6}}

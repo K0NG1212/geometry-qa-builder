@@ -9,7 +9,8 @@
    (SLOW below) are sampled at most twice per structure.
 3. verify_all re-checks every generated instance with the independent checkers.
 4. A capacity summary (no answers) is written to <out>/capacity.json and docs/data/enumeration-capacity.json:
-   proposals, sampled, accepted by the family, rejection reasons, checker agreement and an estimate
+   proposals, sampled, accepted by the family, rejection reasons, checker agreement, which enumerators have
+   nothing left to propose, the answer-position rotations the engine could not reach, and an estimate
    of admissible instances (proposals x acceptance rate in the sample).
 
 Nothing is admitted to the catalog: batch production starts only after the family passes L1/L2 review.
@@ -99,6 +100,37 @@ def structure_groups():
                 assemblies=sorted({a['pdb'] for a in enumerators.load_assemblies(ROOT)}))
 
 
+def family_accounting(proposals, rows):
+    """Every enumerator has to be accounted for. A family with no rows either has nothing left to propose (all of
+    its candidates are in the manifest already) or was left out of the probe, and those two must not look alike:
+    the summary published on 2026-11-03 covered 3 of the 26 families and only the family count gave it away.
+    """
+    out, seen = dict(exhausted=[], unprobed={}), None
+    for family in sorted(set(enumerators.ENUMERATORS) - {r['family'] for r in rows}):
+        specs = proposals.get(family)
+        if specs is None:                                  # --summarize proposes only the families it sampled
+            seen = existing_signatures() if seen is None else seen
+            specs = [s for s in enumerators.propose(ROOT, [family]).get(family, [])
+                     if enumerators.signature(s) not in seen]
+        if specs:
+            out['unprobed'][family] = len(specs)
+        else:
+            out['exhausted'].append(family)
+    return out
+
+
+def rank_fallbacks(keys):
+    """Numeric families whose answer could not be placed at the position the engine asked for, counted as
+    target->achieved. The option values are fixed by the physics, so kit.choose_numeric falls back to the nearest
+    reachable rank; a family that keeps falling back cannot have balanced answer positions at scale."""
+    out = {}
+    for k in keys:
+        rank = k.get('rank')
+        if rank and rank['achieved'] != rank['target']:
+            out.setdefault(k['family'], Counter())['%d->%d' % (rank['target'], rank['achieved'])] += 1
+    return {f: dict(c) for f, c in sorted(out.items())}
+
+
 def summarize(out, proposals, picked, report, check, per_structure, seed, date):
     failed = {f['id']: f['reason'] for f in report['failures']}
     checked = {r['id']: r['status'] for r in check['results']}
@@ -134,6 +166,7 @@ def summarize(out, proposals, picked, report, check, per_structure, seed, date):
     totals['position_balance_ok'] = all(b['ok'] for b in balance.values())
     summary = dict(kind='enumeration_capacity', date=date or datetime.date.today().isoformat(), seed=seed, sample_per_structure=per_structure,
                    run=out.name, structures=structure_groups(), totals=totals, rows=rows, position_balance=balance, model_calls=0,
+                   families=family_accounting(proposals, rows), rank_fallbacks=rank_fallbacks(keys),
                    note='Capacity probe only: nothing is admitted to the catalog. Estimates scale the acceptance rate of the sample to all '
                         'proposals of the same family and structure.')
     for path in (out / 'capacity.json', ROOT / 'docs/data/enumeration-capacity.json'):

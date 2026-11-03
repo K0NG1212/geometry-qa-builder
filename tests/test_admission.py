@@ -123,5 +123,33 @@ class CoveragePlanTests(unittest.TestCase):
             self.assertEqual(ready, expected, (c['domain'], c['cell']))
 
 
+class AnswerPositionTests(unittest.TestCase):
+    """What a model could win by always answering the same letter. The capacity probe checks this on the
+    proposals (tests/test_enumeration.py); here it is checked on the bank that is actually published, which is
+    what a benchmark result would be read off."""
+
+    def counts(self):
+        active = {q['familyInstance'] for q in CATALOG['questions']
+                  if q['lifecycle'] == 'active' and q.get('familyInstance')}
+        out = {}
+        for t in WORKBENCH['teacher_answers']:
+            if t['id'] in active:
+                out.setdefault(t['family'], Counter())[t['correct_label']] += 1
+        return out
+
+    def test_no_family_leans_on_one_position(self):
+        for family, c in self.counts().items():
+            n = sum(c.values())
+            worst = max(abs(c.get(label, 0) - n / 4) for label in 'ABCD')
+            self.assertLessEqual(worst, max(4, 0.15 * n), '%s %s' % (family, dict(c)))     # production tolerance
+
+    def test_always_answering_one_letter_stays_near_chance(self):
+        total = Counter()
+        for c in self.counts().values():
+            total += c
+        best = max(total.values()) / sum(total.values())
+        self.assertLessEqual(best, 0.30, dict(total))               # chance is 0.25; 0.30 is the batch tolerance
+
+
 if __name__ == '__main__':
     unittest.main()

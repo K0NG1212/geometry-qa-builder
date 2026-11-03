@@ -1,0 +1,67 @@
+The excerpt contains the ATOM records of the 8 residues involved, from chain A of PDB entry 2B2F (Ammonium Transporter Amt-1 from A.fulgidus (Native) (X-ray, 1.72 Å)), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?
+
+选项：
+A. Ala227–Ala259
+B. Asn205–Thr223
+C. Ser186–Leu189
+D. Ile9–Leu210
+
+附件：2B2F-A-design-excerpt.pdb（均为本题完整输入）。范围：ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。 只回答一个字母 A、B、C 或 D。
+
+===== 2B2F-A-design-excerpt.pdb =====
+ATOM     61  N   ILE A   9       6.405  -0.497  15.168  1.00 16.20           N
+ATOM     62  CA  ILE A   9       7.580  -0.938  14.429  1.00 16.96           C
+ATOM     63  C   ILE A   9       7.264  -2.102  13.500  1.00 17.58           C
+ATOM     64  O   ILE A   9       7.880  -2.244  12.440  1.00 18.46           O
+ATOM     65  CB  ILE A   9       8.727  -1.302  15.373  1.00 16.93           C
+ATOM     66  CG1 ILE A   9       9.051  -0.088  16.250  1.00 18.59           C
+ATOM     67  CG2 ILE A   9       9.970  -1.681  14.583  1.00 16.60           C
+ATOM     68  CD1 ILE A   9       9.274   1.200  15.462  1.00 18.53           C
+ATOM   1407  N   SER A 186       6.589   4.583 -19.197  1.00 16.21           N
+ATOM   1408  CA  SER A 186       5.337   4.686 -18.461  1.00 14.92           C
+ATOM   1409  C   SER A 186       5.478   5.581 -17.251  1.00 14.71           C
+ATOM   1410  O   SER A 186       5.874   5.136 -16.169  1.00 11.16           O
+ATOM   1411  CB  SER A 186       4.860   3.305 -18.006  1.00 16.37           C
+ATOM   1412  OG  SER A 186       3.646   3.430 -17.283  1.00 16.09           O
+ATOM   1428  N   LEU A 189       3.501   4.449 -14.224  1.00 12.46           N
+ATOM   1429  CA  LEU A 189       4.108   3.376 -13.444  1.00 12.82           C
+ATOM   1430  C   LEU A 189       5.069   3.996 -12.444  1.00 14.17           C
+ATOM   1431  O   LEU A 189       5.152   3.576 -11.291  1.00 14.46           O
+ATOM   1432  CB  LEU A 189       4.869   2.424 -14.363  1.00 11.88           C
+ATOM   1433  CG  LEU A 189       5.570   1.267 -13.642  1.00 12.99           C
+ATOM   1434  CD1 LEU A 189       4.553   0.478 -12.811  1.00 10.75           C
+ATOM   1435  CD2 LEU A 189       6.253   0.376 -14.676  1.00 10.03           C
+ATOM   1558  N   ASN A 205      11.170   6.958   8.296  1.00 20.61           N
+ATOM   1559  CA  ASN A 205      11.552   7.996   9.244  1.00 19.91           C
+ATOM   1560  C   ASN A 205      10.784   7.865  10.554  1.00 20.46           C
+ATOM   1561  O   ASN A 205      11.370   7.937  11.632  1.00 23.41           O
+ATOM   1562  CB  ASN A 205      11.311   9.382   8.637  1.00 17.28           C
+ATOM   1563  CG  ASN A 205      12.310   9.722   7.549  1.00 16.64           C
+ATOM   1564  OD1 ASN A 205      13.160   8.902   7.200  1.00 18.19           O
+ATOM   1565  ND2 ASN A 205      12.215  10.930   7.007  1.00 13.49           N
+ATOM   1585  N   LEU A 210      11.935   4.080  16.961  1.00 22.26           N
+ATOM   1586  CA  LEU A 210      11.794   2.754  17.544  1.00 22.11           C
+ATOM   1587  C   LEU A 210      10.739   2.699  18.636  1.00 21.93           C
+ATOM   1588  O   LEU A 210      10.790   1.845  19.523  1.00 22.00           O
+ATOM   1589  CB  LEU A 210      13.144   2.260  18.064  1.00 22.20           C
+ATOM   1590  CG  LEU A 210      14.191   2.129  16.950  1.00 22.20           C
+ATOM   1591  CD1 LEU A 210      15.506   1.630  17.522  1.00 22.74           C
+ATOM   1592  CD2 LEU A 210      13.696   1.159  15.886  1.00 21.84           C
+ATOM   1673  N   THR A 223       9.064  15.130   8.053  1.00 18.24           N
+ATOM   1674  CA  THR A 223       9.310  14.351   6.852  1.00 17.78           C
+ATOM   1675  C   THR A 223       8.364  14.840   5.753  1.00 18.60           C
+ATOM   1676  O   THR A 223       8.798  15.145   4.642  1.00 17.25           O
+ATOM   1677  CB  THR A 223       9.104  12.855   7.123  1.00 17.55           C
+ATOM   1678  OG1 THR A 223      10.144  12.386   7.993  1.00 17.61           O
+ATOM   1679  CG2 THR A 223       9.158  12.066   5.827  1.00 20.32           C
+ATOM   1701  N   ALA A 227       9.413  17.089   2.276  1.00 18.70           N
+ATOM   1702  CA  ALA A 227       9.008  16.530   0.991  1.00 17.17           C
+ATOM   1703  C   ALA A 227       8.197  17.554   0.197  1.00 17.30           C
+ATOM   1704  O   ALA A 227       8.461  17.794  -0.985  1.00 18.02           O
+ATOM   1705  CB  ALA A 227       8.186  15.259   1.207  1.00 15.52           C
+ATOM   1919  N   ALA A 259      16.736  14.204   2.195  1.00 17.60           N
+ATOM   1920  CA  ALA A 259      17.426  15.202   3.001  1.00 19.53           C
+ATOM   1921  C   ALA A 259      16.967  15.232   4.460  1.00 19.66           C
+ATOM   1922  O   ALA A 259      17.779  15.417   5.360  1.00 21.78           O
+ATOM   1923  CB  ALA A 259      17.262  16.588   2.369  1.00 17.18           C
+END

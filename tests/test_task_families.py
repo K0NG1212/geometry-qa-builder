@@ -292,10 +292,16 @@ class MigratedFamilyTests(unittest.TestCase):
 
 class ExtentAndEngineTests(unittest.TestCase):
     def test_extent_v2_same_answers_as_numeric_engine(self):
+        """Only the conversions of the old numeric questions carry the answer the numeric engine gave; the
+        enumerated instances are molecules that never had a numeric question, and for those the independent
+        checker is what re-derives the extent."""
+        seen = 0
         for s in MANIFEST['items']:
-            if s['family'] == 'extent_choice_v2':
+            if s['family'] == 'extent_choice_v2' and s.get('legacy_numeric_reference') is not None:
                 built = extent_choice.build(dict(s, target_position=1), ROOT, SEED)
-                self.assertTrue(built['checks']['legacy_agreement'])
+                self.assertTrue(built['checks']['legacy_agreement'], s['id'])
+                seen += 1
+        self.assertEqual(seen, 15)                                     # the fifteen converted numeric questions
 
     def test_engine_run_separation_balance_and_history(self):
         with tempfile.TemporaryDirectory() as tmp:

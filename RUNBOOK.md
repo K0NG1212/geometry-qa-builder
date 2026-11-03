@@ -27,10 +27,13 @@
 | 3 题型族 | 写族函数，复用 `kit.py`；在 `FAMILIES` 中登记 | `task_families/<模块>.py`、`task_families/__init__.py` | M3–M4 |
 | 4 检查器 | 独立重算，并登记 | `checkers/<模块>.py`、`checkers/families.py` | M5 |
 | 5 注册表与规格 | 注册表加行（考点、条件、错误机制、局限）；写实例规格。已有枚举器的族先跑容量探针（也是大样本压力测试：答案位置、拒绝原因、独立检查） | `templates/registry.json`、`templates/family-manifest.json`（网页的族下拉由运行数据推导，不要在 `docs/families.js` 里写族名）；`python tools/enumerate_instances.py --out runs/enum-vNN` | M3 |
+| 5b 扩来源 | 按 `docs/data/subdomain-map.json` 的空像素点名下结构：先出清单，再下载，再用各自的读取器验一遍，读不进来的（部分占据、未知元素、链太短）当场丢掉并记原因 | `python tools/plan_a1.py` → `templates/a1-download-plan.json`；`python tools/fetch_a1.py --kind cod\|pdb`；`python tools/validate_a1.py` | M1 |
+| 5c 正式选题 | 从枚举提案里按多样性上限挑实例进清单（稀缺优先：没题的结构先上）。**这是把题做多的唯一正路——加结构，不是同一个结构多出题** | `python tools/select_batch.py --dry-run` 看数，`--write` 写入 `templates/family-manifest.json` 与 `templates/batch-selection-<日期>.json` | M3 |
 | 6 生成 | 新目录；按族轮换答案位置；构造不出唯一答案就拒绝 | `python family_engine.py --manifest templates/family-manifest.json --out runs/family-pilot-vNN` | M4 |
+| 6b 剪枝与稳定 | 批量扩题时，枚举提案里族自己判定做不成题的要从清单里拿掉，否则每次运行都再报一遍。**拿掉一条会改同族后面每一条的目标答案位置**（`family_engine.py:60` 按族内次序分配），`strict_rank` 的实例因此可能换一条被拒，所以剪一次不收敛：先按运行结果剪，再按族逐轮复算到不再有新失败（2026-11-03 跑了 6 轮、98 秒）。推理尺度掉出申报窗口（0.1–1000 nm）的也在这里丢掉——不然 `tools/export_admission_audit.py` 会和 16 格统计对不上 | `python tools/prune_manifest.py --run runs/family-pilot-vNN --dry-run` / `--write`（可用 `--keep-also` 保留“失败原因已在工作区修好”的那些）→ `python tools/stabilize_manifest.py --dirty <刚被剪的族名> --write --batch stabilize-<日期>`；两步的原因都记进 `templates/pruned-instances.json`。清单稳定后换新目录重跑第 6 步 | M4 |
 | 7 独立复核 | 全部一致才继续；与上一版比较旧实例是否不变 | `python verify_all.py --run runs/family-pilot-vNN --out runs/family-pilot-vNN-independent-check.json` | M5 |
 | 8 导出 | 完整重放，代码哈希须与运行一致 | `python tools/export_family_workbench.py --run runs/family-pilot-vNN --public-development-examples` | M6 |
-| 9 入库 | 登记 new / supersede / reformat，然后导出目录与统计 | `templates/admission-map.json` → `python tools/admit_family_instances.py --date YYYY-MM-DD` → `tools/export_prototype.py`、`tools/export_admission_audit.py`、`tools/plan_coverage.py`、`tools/export_coverage.py`、`tools/export_modules.py` | M6 |
+| 9 入库 | 登记 new / supersede / reformat，然后导出目录与统计。批量入库时目录号由工具按 `<域>N<能力><序号>` 续号，不要手写几百条 | `python tools/extend_admission_map.py --dry-run` / `--write` → `templates/admission-map.json` → `python tools/admit_family_instances.py --date YYYY-MM-DD` → `tools/export_prototype.py`、`tools/export_admission_audit.py`、`tools/plan_coverage.py`、`tools/export_coverage.py`、`tools/export_modules.py` | M6 |
 | 10 挑选与审核材料 | 新题入库后必须重跑一遍每题文件夹（导师要的 info.json 四字段）；更新 160 道挑选、批量生产差距分析（暂定规则 `templates/batch-selection-rule.json`）、子领域像素图与旭日图页 `docs/subdomains.html`（草案 `templates/subdomain-draft.json`）、题目卡片页数据与格式检查清单、审核队列、Excel 审核表和出题系统展示页 | `python tools/select_prototype.py`、`python tools/batch_plan.py`、`python tools/subdomain_map.py`、`python tools/export_cards.py`、`python tools/format_check.py`、`python tools/review.py queue --date YYYY-MM-DD`、`python tools/review_sheet.py export`、`python tools/export_system.py`、`python tools/export_qa_folders.py`（每题一个本地文件夹，写 D 盘，不进 Git） | — |
 | 11 测试与网页 | 全部测试；查全站链接；**用 localhost 预览，自己点开新题的工作台链接**（线上 Pages 可能还没更新，看线上会误判） | `python -m unittest discover -s tests`（约 6–9 分钟）；`python tools/check_links.py`（内部链接，坏链返回非 0；加 `--online` 另查外部链接）；`python -m http.server 8765 --directory docs` 后开 `http://localhost:8765/templates.html?instance=<实例号>#workbench` | — |
 | 12 记录与提交 | PROJECT_STATUS 顶部加一节；提交（写实际模型）；推送后确认 Pages 已更新 | `git -c safe.directory=...`，不强推，不提交 `runs/`、`inputs/` | — |
@@ -52,7 +55,8 @@
 按优先级排列。每一项都不得削弱第一部分的任何一条原则。
 
 1. **总控脚本**：一条命令按顺序跑完第 6–10 步，任一步失败就停。
-2. **实例枚举器**：已为 17 个族实现（`enumerators.py`、`tools/enumerate_instances.py`）。待做：批量生产时的“正式选题”一步，要求按答案位置等量选取（键长、Guinier、组装体回转半径的某些位置可达性低，接受率不同会使位置不均）；Debye 强度的枚举器尚未启用（见 enumerators.py 注释）；QM7-X 立体化学、受力路径、构象设计与论文参数族尚无枚举器。
+2. **实例枚举器**：已为 **26 个族**实现（`enumerators.py`、`tools/enumerate_instances.py`）。2026-11-02 补上（E1）：QM7-X 立体化学三族、构象设计、受力路径、SAMPL9 主客体两族——**但这七个族的接受率很低**，族自己的前提（必须是非对映体、能量差要超过阈值、模板只认两个立体异构体）会挡掉大部分提案，探针里 58 条提案只成 12 道，且全部来自 `stereo_relationship`。**“正式选题”一步已实现**（`tools/select_batch.py`，按族×来源 4 / 来源 8 / 族 60 三条上限，稀缺优先）。仍待做：按答案位置等量选取（键长、Guinier、组装体回转半径的某些位置可达性低，接受率不同会使位置不均）；Debye 强度的枚举器仍未启用（见 enumerators.py 注释）；反应路径两族要手写卡片，不是枚举能解决的；论文参数族同理。
+   **`fret_efficiency` 与 `fret_design` 要从批量枚举里排除**：它们按残基对枚举，蛋白一大就是 O(n²)（446 残基的 3W4T 单族要跑几分钟以上），而两条上限（族 60、族×来源 4）决定它们最多只能贡献几十道。批量选题用 `--families` 把这两族排掉，需要时单独小批量跑。
 3. **增量运行**：按族代码哈希缓存，未改动的族不重跑。
 4. **题干措辞变体**：每族几种确定性措辞，与检查器的解析同步测试。
 5. **低成本难度检查**：例如只给题干、不给附件看模型能否猜中；L4 数据回来后淘汰没人选的错误机制。

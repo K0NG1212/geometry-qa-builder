@@ -1,0 +1,78 @@
+The excerpt contains the ATOM records of the 8 residues involved, from chain A of PDB entry 1WNR (Crystal structure of the Cpn10 from Thermus thermophilus HB8 (X-ray, 2.90 Å)), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?
+
+选项：
+A. Val39–Val64
+B. Arg46–Val54
+C. Pro4–Arg8
+D. Lys36–Val65
+
+附件：1WNR-A-design-excerpt.pdb（均为本题完整输入）。范围：ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。 只回答一个字母 A、B、C 或 D。
+
+===== 1WNR-A-design-excerpt.pdb =====
+ATOM     26  N   PRO A   4     153.028 120.621   7.999  1.00 53.12           N
+ATOM     27  CA  PRO A   4     152.359 119.339   7.767  1.00 51.92           C
+ATOM     28  C   PRO A   4     151.793 118.848   9.086  1.00 50.70           C
+ATOM     29  O   PRO A   4     152.422 119.004  10.139  1.00 51.05           O
+ATOM     30  CB  PRO A   4     153.488 118.431   7.276  1.00 52.07           C
+ATOM     31  CG  PRO A   4     154.619 119.344   6.978  1.00 52.28           C
+ATOM     32  CD  PRO A   4     154.483 120.437   7.984  1.00 52.42           C
+ATOM     53  N   ARG A   8     152.940 113.564   8.485  1.00 48.90           N
+ATOM     54  CA  ARG A   8     153.138 114.035   7.127  1.00 46.90           C
+ATOM     55  C   ARG A   8     154.337 114.921   6.884  1.00 46.18           C
+ATOM     56  O   ARG A   8     154.988 115.377   7.820  1.00 45.41           O
+ATOM     57  CB  ARG A   8     151.883 114.768   6.677  1.00 45.10           C
+ATOM     58  CG  ARG A   8     150.750 113.837   6.379  1.00 45.46           C
+ATOM     59  CD  ARG A   8     149.445 114.570   6.165  1.00 46.11           C
+ATOM     60  NE  ARG A   8     148.697 114.650   7.412  1.00 45.46           N
+ATOM     61  CZ  ARG A   8     147.411 114.345   7.528  1.00 46.35           C
+ATOM     62  NH1 ARG A   8     146.711 113.941   6.473  1.00 46.30           N
+ATOM     63  NH2 ARG A   8     146.832 114.415   8.713  1.00 48.51           N
+ATOM    129  N   LYS A  36     160.223 112.147  -7.392  1.00 63.20           N
+ATOM    130  CA  LYS A  36     161.282 112.543  -6.487  1.00 60.99           C
+ATOM    131  C   LYS A  36     160.877 113.924  -5.986  1.00 59.55           C
+ATOM    132  O   LYS A  36     160.210 114.686  -6.691  1.00 59.71           O
+ATOM    133  CB  LYS A  36     162.633 112.626  -7.206  1.00 62.44           C
+ATOM    134  CG  LYS A  36     163.085 111.358  -7.916  1.00 65.22           C
+ATOM    135  CD  LYS A  36     164.410 111.608  -8.652  1.00 68.33           C
+ATOM    136  CE  LYS A  36     164.824 110.441  -9.542  1.00 69.48           C
+ATOM    137  NZ  LYS A  36     166.119 110.725 -10.208  1.00 70.42           N
+ATOM    151  N   VAL A  39     162.289 117.151   0.622  1.00 49.44           N
+ATOM    152  CA  VAL A  39     161.505 117.325   1.828  1.00 49.53           C
+ATOM    153  C   VAL A  39     161.824 118.709   2.351  1.00 49.69           C
+ATOM    154  O   VAL A  39     162.984 119.003   2.601  1.00 48.02           O
+ATOM    155  CB  VAL A  39     161.890 116.262   2.888  1.00 47.74           C
+ATOM    156  CG1 VAL A  39     161.248 116.588   4.216  1.00 46.03           C
+ATOM    157  CG2 VAL A  39     161.469 114.880   2.409  1.00 45.32           C
+ATOM    193  N   ARG A  46     153.658 110.117  13.779  1.00 67.94           N
+ATOM    194  CA  ARG A  46     152.584 109.229  14.207  1.00 70.43           C
+ATOM    195  C   ARG A  46     152.536 109.036  15.709  1.00 70.51           C
+ATOM    196  O   ARG A  46     153.569 108.921  16.355  1.00 69.93           O
+ATOM    197  CB  ARG A  46     152.754 107.861  13.535  1.00 72.07           C
+ATOM    198  CG  ARG A  46     151.877 106.758  14.105  1.00 76.13           C
+ATOM    199  CD  ARG A  46     152.209 105.417  13.477  1.00 79.06           C
+ATOM    200  NE  ARG A  46     153.629 105.346  13.148  1.00 82.94           N
+ATOM    201  CZ  ARG A  46     154.291 104.222  12.884  1.00 84.85           C
+ATOM    202  NH1 ARG A  46     153.649 103.053  12.916  1.00 83.28           N
+ATOM    203  NH2 ARG A  46     155.592 104.275  12.577  1.00 83.97           N
+ATOM    260  N   VAL A  54     156.192 108.614  17.358  1.00 75.94           N
+ATOM    261  CA  VAL A  54     157.289 108.186  16.482  1.00 73.39           C
+ATOM    262  C   VAL A  54     157.589 109.276  15.436  1.00 72.47           C
+ATOM    263  O   VAL A  54     156.752 109.583  14.571  1.00 72.45           O
+ATOM    264  CB  VAL A  54     156.921 106.887  15.729  1.00 72.68           C
+ATOM    265  CG1 VAL A  54     158.115 106.371  14.946  1.00 71.86           C
+ATOM    266  CG2 VAL A  54     156.427 105.854  16.700  1.00 71.68           C
+ATOM    336  N   VAL A  64     163.293 112.381  -1.398  1.00 50.63           N
+ATOM    337  CA  VAL A  64     162.557 111.152  -1.142  1.00 50.56           C
+ATOM    338  C   VAL A  64     161.939 110.688  -2.447  1.00 51.42           C
+ATOM    339  O   VAL A  64     161.791 111.470  -3.372  1.00 51.86           O
+ATOM    340  CB  VAL A  64     161.408 111.366  -0.088  1.00 49.50           C
+ATOM    341  CG1 VAL A  64     161.988 111.723   1.270  1.00 46.97           C
+ATOM    342  CG2 VAL A  64     160.456 112.471  -0.555  1.00 47.99           C
+ATOM    343  N   VAL A  65     161.588 109.410  -2.511  1.00 53.14           N
+ATOM    344  CA  VAL A  65     160.942 108.818  -3.685  1.00 53.41           C
+ATOM    345  C   VAL A  65     159.563 108.396  -3.222  1.00 54.46           C
+ATOM    346  O   VAL A  65     159.431 107.723  -2.204  1.00 54.20           O
+ATOM    347  CB  VAL A  65     161.668 107.546  -4.159  1.00 53.27           C
+ATOM    348  CG1 VAL A  65     160.929 106.932  -5.335  1.00 50.69           C
+ATOM    349  CG2 VAL A  65     163.105 107.876  -4.505  1.00 52.38           C
+END

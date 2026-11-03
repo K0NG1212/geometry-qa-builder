@@ -1,0 +1,79 @@
+The excerpt contains the ATOM records of the 7 residues involved, from chain A of PDB entry 1VB0 (Atomic resolution structure of atratoxin-b, one short-chain neurotoxin from Naja atra (X-ray, 0.92 Å)), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?
+
+选项：
+A. Ser29–Arg32
+B. His4–Arg38
+C. Tyr24–Asn61
+D. Tyr24–Asn60
+
+附件：1VB0-A-design-excerpt.pdb（均为本题完整输入）。范围：ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。 只回答一个字母 A、B、C 或 D。
+
+===== 1VB0-A-design-excerpt.pdb =====
+ATOM     24  N   HIS A   4      22.520  40.578 -27.744  1.00  5.95           N
+ATOM     25  CA  HIS A   4      22.876  40.606 -29.161  1.00  6.04           C
+ATOM     26  C   HIS A   4      22.289  39.373 -29.863  1.00  5.82           C
+ATOM     27  O   HIS A   4      22.114  38.292 -29.292  1.00  6.05           O
+ATOM     28  CB  HIS A   4      24.403  40.602 -29.340  1.00  5.95           C
+ATOM     29  CG  HIS A   4      24.999  41.920 -29.046  1.00  6.23           C
+ATOM     30  ND1 HIS A   4      24.942  42.929 -29.966  1.00  7.31           N
+ATOM     31  CD2 HIS A   4      25.578  42.488 -27.940  1.00  6.68           C
+ATOM     32  CE1 HIS A   4      25.492  44.032 -29.419  1.00  7.68           C
+ATOM     33  NE2 HIS A   4      25.907  43.795 -28.186  1.00  7.64           N
+ATOM    173  N   TYR A  24      23.287  34.298 -25.013  1.00  6.30           N
+ATOM    174  CA  TYR A  24      24.272  33.334 -25.414  1.00  6.87           C
+ATOM    175  C   TYR A  24      25.010  33.829 -26.650  1.00  5.99           C
+ATOM    176  O   TYR A  24      24.500  34.563 -27.511  1.00  5.99           O
+ATOM    177  CB  TYR A  24      23.686  31.933 -25.714  1.00  8.12           C
+ATOM    178  CG  TYR A  24      22.879  31.819 -26.961  1.00  8.30           C
+ATOM    179  CD1 TYR A  24      23.439  31.563 -28.191  1.00  9.53           C
+ATOM    180  CD2 TYR A  24      21.499  32.028 -26.951  1.00  8.81           C
+ATOM    181  CE1 TYR A  24      22.698  31.486 -29.328  1.00 11.31           C
+ATOM    182  CE2 TYR A  24      20.746  31.942 -28.076  1.00  9.47           C
+ATOM    183  CZ  TYR A  24      21.361  31.658 -29.285  1.00 10.62           C
+ATOM    184  OH  TYR A  24      20.604  31.594 -30.434  1.00 12.66           O
+ATOM    244  N   SER A  29      34.228  26.774 -36.111  1.00  8.77           N
+ATOM    245  CA  SER A  29      34.758  27.094 -37.421  1.00  9.47           C
+ATOM    246  C   SER A  29      34.431  26.067 -38.475  1.00  9.09           C
+ATOM    247  O   SER A  29      34.370  24.862 -38.210  1.00 10.96           O
+ATOM    248  CB  SER A  29      36.259  27.241 -37.332  1.00 14.44           C
+ATOM    249  OG  SER A  29      36.559  28.378 -36.527  1.00 17.76           O
+ATOM    268  N   ARG A  32      35.587  28.311 -43.988  1.00  9.28           N
+ATOM    269  CA  ARG A  32      35.733  29.737 -44.191  1.00  9.88           C
+ATOM    270  C   ARG A  32      36.159  30.463 -42.914  1.00 12.02           C
+ATOM    271  O   ARG A  32      36.632  31.577 -43.121  1.00 22.29           O
+ATOM    272  CB  ARG A  32      34.453  30.345 -44.751  1.00  9.19           C
+ATOM    273  CG  ARG A  32      34.171  29.886 -46.185  1.00  9.84           C
+ATOM    274  CD  ARG A  32      32.974  30.603 -46.761  1.00 10.82           C
+ATOM    275  NE  ARG A  32      31.731  30.084 -46.232  1.00 12.04           N
+ATOM    276  CZ  ARG A  32      30.626  30.822 -46.105  1.00 10.28           C
+ATOM    277  NH1 ARG A  32      30.591  32.120 -46.400  1.00 11.33           N
+ATOM    278  NH2 ARG A  32      29.552  30.187 -45.676  1.00 11.63           N
+ATOM    324  N   ARG A  38      24.070  34.196 -31.916  1.00  6.89           N
+ATOM    325  CA  ARG A  38      23.865  34.975 -30.694  1.00  6.65           C
+ATOM    326  C   ARG A  38      22.359  35.072 -30.447  1.00  6.75           C
+ATOM    327  O   ARG A  38      21.563  35.271 -31.382  1.00  7.47           O
+ATOM    328  CB  ARG A  38      24.422  36.378 -30.844  1.00  6.82           C
+ATOM    329  CG  ARG A  38      25.924  36.446 -31.016  1.00  6.98           C
+ATOM    330  CD  ARG A  38      26.340  37.869 -31.206  1.00  6.82           C
+ATOM    331  NE  ARG A  38      27.789  38.080 -31.407  1.00  7.37           N
+ATOM    332  CZ  ARG A  38      28.413  38.023 -32.594  1.00  7.49           C
+ATOM    333  NH1 ARG A  38      27.759  37.646 -33.685  1.00  8.04           N
+ATOM    334  NH2 ARG A  38      29.690  38.314 -32.642  1.00  9.80           N
+ATOM    491  N   ASN A  60      26.814  39.439 -24.759  1.00  5.96           N
+ATOM    492  CA  ASN A  60      27.137  38.382 -25.705  1.00  6.12           C
+ATOM    493  C   ASN A  60      27.555  38.886 -27.096  1.00  6.13           C
+ATOM    494  O   ASN A  60      27.370  38.202 -28.081  1.00  7.11           O
+ATOM    495  CB  ASN A  60      25.947  37.419 -25.861  1.00  5.78           C
+ATOM    496  CG  ASN A  60      24.743  38.120 -26.476  1.00  5.80           C
+ATOM    497  OD1 ASN A  60      24.542  39.327 -26.252  1.00  6.10           O
+ATOM    498  ND2 ASN A  60      23.979  37.363 -27.237  1.00  5.88           N
+ATOM    499  N   ASN A  61      28.163  40.075 -27.162  1.00  6.76           N
+ATOM    500  CA  ASN A  61      28.697  40.547 -28.449  1.00  8.04           C
+ATOM    501  C   ASN A  61      29.924  39.725 -28.802  1.00  8.83           C
+ATOM    502  O   ASN A  61      30.758  39.415 -27.920  1.00 10.62           O
+ATOM    503  CB  ASN A  61      28.985  42.032 -28.410  1.00  8.65           C
+ATOM    504  CG  ASN A  61      29.048  42.691 -29.787  1.00  9.82           C
+ATOM    505  OD1 ASN A  61      28.548  42.162 -30.797  1.00 11.62           O
+ATOM    506  ND2 ASN A  61      29.640  43.866 -29.828  1.00 12.94           N
+ATOM    507  OXT ASN A  61      30.065  39.339 -29.974  1.00 12.64           O
+END

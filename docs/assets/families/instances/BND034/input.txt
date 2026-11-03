@@ -1,0 +1,65 @@
+The excerpt contains the ATOM records of the 8 residues involved, from chain A of PDB entry 1U7G (Crystal Structure of Ammonia Channel AmtB from E. Coli (X-ray, 1.40 Å)), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?
+
+选项：
+A. Ala108–Val112
+B. Ile169–Ile359
+C. Lys7–Ser94
+D. Ala220–Ala227
+
+附件：1U7G-A-design-excerpt.pdb（均为本题完整输入）。范围：ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。 只回答一个字母 A、B、C 或 D。
+
+===== 1U7G-A-design-excerpt.pdb =====
+ATOM     26  N   LYS A   7      53.446 -26.895 -14.462  1.00 15.04           N
+ATOM     27  CA  LYS A   7      53.404 -27.767 -15.639  1.00 14.26           C
+ATOM     28  C   LYS A   7      52.326 -27.344 -16.614  1.00 12.70           C
+ATOM     29  O   LYS A   7      52.487 -27.575 -17.809  1.00 13.86           O
+ATOM     30  CB  LYS A   7      53.205 -29.205 -15.169  1.00 13.48           C
+ATOM     31  CG  LYS A   7      54.483 -29.781 -14.534  1.00 15.37           C
+ATOM     32  CD  LYS A   7      54.476 -31.294 -14.502  1.00 22.50           C
+ATOM     33  CE  LYS A   7      53.324 -31.919 -13.808  1.00 30.98           C
+ATOM     34  NZ  LYS A   7      53.464 -33.392 -13.529  1.00 26.01           N
+ATOM    701  N   SER A  94      56.966 -18.704 -15.087  1.00 16.22           N
+ATOM    702  CA  SER A  94      56.431 -19.890 -14.439  1.00 16.44           C
+ATOM    703  C   SER A  94      56.674 -21.129 -15.306  1.00 14.47           C
+ATOM    704  O   SER A  94      55.985 -22.111 -15.123  1.00 15.65           O
+ATOM    705  CB  SER A  94      54.932 -19.693 -14.221  1.00 16.76           C
+ATOM    706  OG  SER A  94      54.303 -19.349 -15.450  1.00 18.22           O
+ATOM    819  N   ALA A 108      61.832 -15.289 -33.418  1.00 12.75           N
+ATOM    820  CA  ALA A 108      62.907 -14.877 -34.335  1.00 12.93           C
+ATOM    821  C   ALA A 108      62.684 -15.514 -35.707  1.00 12.94           C
+ATOM    822  O   ALA A 108      62.928 -14.912 -36.729  1.00 14.10           O
+ATOM    823  CB  ALA A 108      64.278 -15.273 -33.777  1.00 12.94           C
+ATOM    845  N   VAL A 112      62.121 -13.570 -39.309  1.00 13.22           N
+ATOM    846  CA  VAL A 112      63.003 -13.762 -40.475  1.00 13.24           C
+ATOM    847  C   VAL A 112      62.232 -14.394 -41.608  1.00 14.18           C
+ATOM    848  O   VAL A 112      62.447 -14.006 -42.776  1.00 15.52           O
+ATOM    849  CB  VAL A 112      64.210 -14.630 -40.065  1.00 14.25           C
+ATOM    850  CG1 VAL A 112      64.984 -15.185 -41.276  1.00 15.54           C
+ATOM    851  CG2 VAL A 112      65.110 -13.763 -39.193  1.00 14.83           C
+ATOM   1271  N   ILE A 169      56.909  -4.630 -37.339  1.00 15.04           N
+ATOM   1272  CA  ILE A 169      57.540  -3.448 -37.961  1.00 15.24           C
+ATOM   1273  C   ILE A 169      58.989  -3.704 -38.323  1.00 15.79           C
+ATOM   1274  O   ILE A 169      59.516  -3.303 -39.340  1.00 17.28           O
+ATOM   1275  CB  ILE A 169      57.427  -2.286 -36.979  1.00 19.38           C
+ATOM   1276  CG1 ILE A 169      55.953  -1.909 -36.771  1.00 20.17           C
+ATOM   1277  CG2 ILE A 169      58.230  -1.064 -37.412  1.00 16.74           C
+ATOM   1278  CD1 ILE A 169      55.789  -0.912 -35.626  1.00 19.33           C
+ATOM   1657  N   ALA A 220      51.605 -14.298 -23.107  1.00 12.69           N
+ATOM   1658  CA  ALA A 220      51.277 -14.165 -21.674  1.00 14.10           C
+ATOM   1659  C   ALA A 220      52.265 -14.951 -20.819  1.00 14.03           C
+ATOM   1660  O   ALA A 220      52.483 -14.632 -19.635  1.00 17.88           O
+ATOM   1661  CB  ALA A 220      49.869 -14.644 -21.390  1.00 16.12           C
+ATOM   1703  N   ALA A 227      46.394 -14.716 -21.123  1.00 11.75           N
+ATOM   1704  CA  ALA A 227      46.424 -15.587 -22.309  1.00 11.67           C
+ATOM   1705  C   ALA A 227      45.025 -15.638 -22.886  1.00 12.51           C
+ATOM   1706  O   ALA A 227      44.844 -15.550 -24.127  1.00 14.20           O
+ATOM   1707  CB  ALA A 227      46.943 -16.969 -21.966  1.00 12.72           C
+ATOM   2634  N   ILE A 359      58.069   2.910 -32.141  1.00 17.75           N
+ATOM   2635  CA  ILE A 359      57.920   2.720 -33.589  1.00 18.72           C
+ATOM   2636  C   ILE A 359      59.084   3.341 -34.344  1.00 18.91           C
+ATOM   2637  O   ILE A 359      59.719   2.700 -35.194  1.00 20.92           O
+ATOM   2638  CB  ILE A 359      56.599   3.299 -34.106  1.00 20.02           C
+ATOM   2639  CG1 ILE A 359      55.439   2.456 -33.560  1.00 18.97           C
+ATOM   2640  CG2 ILE A 359      56.540   3.383 -35.616  1.00 19.75           C
+ATOM   2641  CD1 ILE A 359      54.106   3.166 -33.573  1.00 20.76           C
+END

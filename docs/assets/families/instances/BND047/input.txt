@@ -1,0 +1,87 @@
+The excerpt contains the ATOM records of the 8 residues involved, from chain A of PDB entry 2LZM (T4 lysozyme, X-ray), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?
+
+选项：
+A. Arg125–Glu128
+B. Met1–Trp158
+C. Glu64–Gln69
+D. Leu99–Val103
+
+附件：2LZM-A-design-excerpt.pdb（均为本题完整输入）。范围：ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。 只回答一个字母 A、B、C 或 D。
+
+===== 2LZM-A-design-excerpt.pdb =====
+ATOM      1  N   MET A   1      44.209  -3.284   8.853  1.00 29.12           N
+ATOM      2  CA  MET A   1      43.783  -1.951   8.984  1.00 19.55           C
+ATOM      3  C   MET A   1      42.371  -1.965   9.526  1.00 22.27           C
+ATOM      4  O   MET A   1      41.674  -2.930   9.258  1.00 18.31           O
+ATOM      5  CB  MET A   1      43.904  -1.314   7.599  1.00  8.40           C
+ATOM      6  CG  MET A   1      43.398   0.111   7.644  1.00 30.36           C
+ATOM      7  SD  MET A   1      44.596   1.376   7.226  1.00 39.80           S
+ATOM      8  CE  MET A   1      45.913   0.959   8.356  1.00 44.83           C
+ATOM    492  N   GLU A  64      42.836   9.854  23.060  1.00 18.22           N
+ATOM    493  CA  GLU A  64      42.264   8.630  22.574  1.00 10.67           C
+ATOM    494  C   GLU A  64      40.877   8.393  23.158  1.00  9.19           C
+ATOM    495  O   GLU A  64      40.060   7.660  22.583  1.00 13.89           O
+ATOM    496  CB  GLU A  64      43.192   7.458  22.843  1.00 16.32           C
+ATOM    497  CG  GLU A  64      44.541   7.815  22.259  1.00 31.70           C
+ATOM    498  CD  GLU A  64      45.459   6.673  22.414  1.00 48.55           C
+ATOM    499  OE1 GLU A  64      45.681   6.158  23.505  1.00 54.59           O
+ATOM    500  OE2 GLU A  64      45.914   6.244  21.256  1.00 47.09           O
+ATOM    537  N   GLN A  69      35.017   7.866  21.891  1.00  5.64           N
+ATOM    538  CA  GLN A  69      33.616   8.361  21.949  1.00  6.11           C
+ATOM    539  C   GLN A  69      33.103   8.825  20.604  1.00 14.02           C
+ATOM    540  O   GLN A  69      31.919   8.597  20.293  1.00 15.03           O
+ATOM    541  CB  GLN A  69      33.432   9.583  22.853  1.00 14.36           C
+ATOM    542  CG  GLN A  69      33.725   9.178  24.295  1.00 10.90           C
+ATOM    543  CD  GLN A  69      33.967  10.273  25.316  1.00 23.94           C
+ATOM    544  OE1 GLN A  69      34.052   9.926  26.471  1.00 16.88           O
+ATOM    545  NE2 GLN A  69      33.920  11.557  24.972  1.00 14.44           N
+ATOM    768  N   LEU A  99      32.229   4.868   4.910  1.00  5.64           N
+ATOM    769  CA  LEU A  99      31.095   5.690   5.228  1.00  1.84           C
+ATOM    770  C   LEU A  99      31.260   6.236   6.644  1.00  6.01           C
+ATOM    771  O   LEU A  99      30.901   7.377   6.906  1.00 11.32           O
+ATOM    772  CB  LEU A  99      29.776   4.829   5.127  1.00  8.01           C
+ATOM    773  CG  LEU A  99      28.401   5.536   5.276  1.00 17.72           C
+ATOM    774  CD1 LEU A  99      28.167   6.512   4.119  1.00 17.17           C
+ATOM    775  CD2 LEU A  99      27.216   4.554   5.440  1.00 19.89           C
+ATOM    800  N   VAL A 103      31.119  10.292   7.819  1.00 10.61           N
+ATOM    801  CA  VAL A 103      30.268  10.706   8.954  1.00 16.72           C
+ATOM    802  C   VAL A 103      31.079  11.399  10.062  1.00 12.99           C
+ATOM    803  O   VAL A 103      30.728  12.462  10.523  1.00 20.52           O
+ATOM    804  CB  VAL A 103      29.300   9.630   9.479  1.00 14.25           C
+ATOM    805  CG1 VAL A 103      28.566  10.194  10.694  1.00 10.24           C
+ATOM    806  CG2 VAL A 103      28.253   9.200   8.422  1.00 13.50           C
+ATOM    969  N   ARG A 125      27.160   0.225  -7.602  1.00 21.66           N
+ATOM    970  CA  ARG A 125      27.693   0.862  -8.824  1.00 23.83           C
+ATOM    971  C   ARG A 125      28.887   1.754  -8.395  1.00 18.92           C
+ATOM    972  O   ARG A 125      28.860   3.021  -8.345  1.00 17.51           O
+ATOM    973  CB  ARG A 125      26.614   1.708  -9.484  1.00  8.78           C
+ATOM    974  CG  ARG A 125      25.383   0.911  -9.764  1.00 18.13           C
+ATOM    975  CD  ARG A 125      24.366   1.767 -10.441  1.00 30.03           C
+ATOM    976  NE  ARG A 125      23.311   0.929 -10.970  1.00 54.04           N
+ATOM    977  CZ  ARG A 125      22.722   1.177 -12.149  1.00 53.37           C
+ATOM    978  NH1 ARG A 125      23.057   2.258 -12.887  1.00 48.51           N
+ATOM    979  NH2 ARG A 125      21.778   0.324 -12.601  1.00 41.52           N
+ATOM   1002  N   GLU A 128      30.522   4.424 -10.742  1.00 14.71           N
+ATOM   1003  CA  GLU A 128      29.607   5.550 -10.853  1.00  9.85           C
+ATOM   1004  C   GLU A 128      29.541   6.385  -9.587  1.00 22.55           C
+ATOM   1005  O   GLU A 128      29.453   7.616  -9.648  1.00 21.34           O
+ATOM   1006  CB  GLU A 128      28.176   5.130 -11.218  1.00 23.90           C
+ATOM   1007  CG  GLU A 128      28.199   4.448 -12.567  1.00 40.46           C
+ATOM   1008  CD  GLU A 128      28.391   2.943 -12.513  1.00 53.10           C
+ATOM   1009  OE1 GLU A 128      29.215   2.303 -11.783  1.00 38.60           O
+ATOM   1010  OE2 GLU A 128      27.598   2.399 -13.433  1.00 54.00           O
+ATOM   1245  N   TRP A 158      42.038  -1.741   1.150  1.00 12.43           N
+ATOM   1246  CA  TRP A 158      42.703  -0.721   1.939  1.00 13.16           C
+ATOM   1247  C   TRP A 158      43.899  -0.132   1.234  1.00 13.92           C
+ATOM   1248  O   TRP A 158      44.755   0.522   1.796  1.00 21.60           O
+ATOM   1249  CB  TRP A 158      43.140  -1.298   3.308  1.00 11.40           C
+ATOM   1250  CG  TRP A 158      42.048  -1.569   4.311  1.00 29.25           C
+ATOM   1251  CD1 TRP A 158      41.651  -2.798   4.753  1.00 17.59           C
+ATOM   1252  CD2 TRP A 158      41.230  -0.605   5.019  1.00 22.53           C
+ATOM   1253  NE1 TRP A 158      40.660  -2.669   5.710  1.00 30.43           N
+ATOM   1254  CE2 TRP A 158      40.371  -1.342   5.895  1.00 24.28           C
+ATOM   1255  CE3 TRP A 158      41.201   0.790   5.055  1.00 19.56           C
+ATOM   1256  CZ2 TRP A 158      39.509  -0.725   6.805  1.00 19.16           C
+ATOM   1257  CZ3 TRP A 158      40.369   1.381   5.971  1.00 27.14           C
+ATOM   1258  CH2 TRP A 158      39.503   0.644   6.789  1.00 29.13           C
+END

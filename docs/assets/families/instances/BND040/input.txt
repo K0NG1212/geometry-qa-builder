@@ -1,0 +1,75 @@
+The excerpt contains the ATOM records of the 8 residues involved, from chain A of PDB entry 3M73 (Crystal Structure of Plant SLAC1 homolog TehA (X-ray, 1.15 Å)), copied unchanged (angstrom). To engineer a new disulfide bond, both residues of one pair will be mutated to cysteine. Use these screening windows: Cα–Cα distance between 4.4 and 6.8 Å and Cβ–Cβ distance between 3.45 and 4.50 Å (both inclusive). Exactly one of the four candidate pairs meets both windows. Which pair should you mutate?
+
+选项：
+A. Leu236–Phe239
+B. Ala271–Phe288
+C. Ala26–Asn269
+D. Val147–Ile175
+
+附件：3M73-A-design-excerpt.pdb（均为本题完整输入）。范围：ATOM 片段逐行照抄；筛选窗口为题干给出的几何标准；不评估二面角与稳定性。 只回答一个字母 A、B、C 或 D。
+
+===== 3M73-A-design-excerpt.pdb =====
+ATOM    200  N   ALA A  26      22.284 -24.241   4.783  1.00 11.73           N
+ATOM    201  CA  ALA A  26      22.873 -23.012   5.301  1.00 11.63           C
+ATOM    202  C   ALA A  26      21.989 -22.378   6.380  1.00 12.60           C
+ATOM    203  O   ALA A  26      22.477 -21.978   7.446  1.00 13.11           O
+ATOM    204  CB  ALA A  26      23.121 -22.033   4.165  1.00 12.18           C
+ATOM   1250  N   VAL A 147      34.675 -33.226  -8.331  1.00  9.43           N
+ATOM   1251  CA  VAL A 147      34.949 -32.360  -7.182  1.00  8.53           C
+ATOM   1252  C   VAL A 147      33.707 -32.275  -6.308  1.00  8.23           C
+ATOM   1253  O   VAL A 147      33.726 -32.710  -5.151  1.00  8.89           O
+ATOM   1254  CB  VAL A 147      35.425 -30.985  -7.651  1.00  8.06           C
+ATOM   1255  CG1 VAL A 147      35.587 -30.062  -6.474  1.00  8.95           C
+ATOM   1256  CG2 VAL A 147      36.745 -31.132  -8.400  1.00  8.95           C
+ATOM   1462  N   ILE A 175      41.967 -32.355  -3.897  1.00  7.01           N
+ATOM   1463  CA  ILE A 175      43.079 -32.546  -4.796  1.00  6.61           C
+ATOM   1464  C   ILE A 175      42.576 -32.639  -6.241  1.00  6.90           C
+ATOM   1465  O   ILE A 175      43.203 -32.080  -7.137  1.00  7.27           O
+ATOM   1466  CB  ILE A 175      43.978 -33.703  -4.322  1.00  7.05           C
+ATOM   1467  CG1 ILE A 175      44.592 -33.327  -2.955  1.00  8.10           C
+ATOM   1468  CG2 ILE A 175      45.076 -33.972  -5.341  1.00  7.76           C
+ATOM   1469  CD1 ILE A 175      45.369 -34.420  -2.288  1.00  9.92           C
+ATOM   1987  N   LEU A 236      37.994 -14.210  -4.562  1.00  8.36           N
+ATOM   1988  CA  LEU A 236      38.656 -13.806  -5.792  1.00  9.20           C
+ATOM   1989  C   LEU A 236      37.818 -14.246  -6.991  1.00  8.08           C
+ATOM   1990  O   LEU A 236      37.531 -13.459  -7.915  1.00  8.93           O
+ATOM   1991  CB  LEU A 236      40.052 -14.418  -5.866  1.00  9.67           C
+ATOM   1992  CG  LEU A 236      40.881 -13.983  -7.067  1.00 10.81           C
+ATOM   1993  CD1 LEU A 236      41.427 -12.611  -6.871  1.00 12.97           C
+ATOM   1994  CD2 LEU A 236      41.976 -15.007  -7.341  1.00 12.72           C
+ATOM   2012  N   PHE A 239      34.627 -12.222  -7.425  1.00  9.43           N
+ATOM   2013  CA  PHE A 239      34.874 -10.940  -8.059  1.00  9.55           C
+ATOM   2014  C   PHE A 239      35.076 -11.086  -9.539  1.00  9.16           C
+ATOM   2015  O   PHE A 239      34.552 -10.292 -10.327  1.00 10.35           O
+ATOM   2016  CB  PHE A 239      36.051 -10.230  -7.415  1.00 10.17           C
+ATOM   2017  CG  PHE A 239      35.827  -9.864  -5.974  1.00 14.15           C
+ATOM   2018  CD1 PHE A 239      34.574  -9.858  -5.391  1.00 16.99           C
+ATOM   2019  CD2 PHE A 239      36.882  -9.833  -5.125  1.00 16.01           C
+ATOM   2020  CE1 PHE A 239      34.415  -9.576  -4.046  1.00 20.38           C
+ATOM   2021  CE2 PHE A 239      36.728  -9.546  -3.792  1.00 19.19           C
+ATOM   2022  CZ  PHE A 239      35.489  -9.423  -3.268  1.00 20.79           C
+ATOM   2262  N   ASN A 269      26.443 -21.216   3.387  1.00 10.98           N
+ATOM   2263  CA  ASN A 269      26.667 -22.198   4.416  1.00 11.16           C
+ATOM   2264  C   ASN A 269      27.955 -21.922   5.185  1.00 10.68           C
+ATOM   2265  O   ASN A 269      27.992 -21.892   6.416  1.00 11.33           O
+ATOM   2266  CB  ASN A 269      26.677 -23.590   3.797  1.00 11.91           C
+ATOM   2267  CG  ASN A 269      26.441 -24.682   4.818  1.00 15.86           C
+ATOM   2268  OD1 ASN A 269      25.824 -24.486   5.860  1.00 16.66           O
+ATOM   2269  ND2 ASN A 269      26.903 -25.859   4.506  1.00 23.49           N
+ATOM   2276  N   ALA A 271      29.507 -19.114   5.407  1.00 11.14           N
+ATOM   2277  CA  ALA A 271      29.361 -17.867   6.161  1.00 11.03           C
+ATOM   2278  C   ALA A 271      28.814 -18.100   7.560  1.00 10.84           C
+ATOM   2279  O   ALA A 271      29.193 -17.428   8.478  1.00 11.33           O
+ATOM   2280  CB  ALA A 271      28.503 -16.895   5.404  1.00 11.83           C
+ATOM   2413  N   PHE A 288      26.267 -14.064   3.220  1.00 12.36           N
+ATOM   2414  CA  PHE A 288      25.012 -14.738   3.459  1.00 12.66           C
+ATOM   2415  C   PHE A 288      23.840 -14.009   2.777  1.00 13.01           C
+ATOM   2416  O   PHE A 288      22.998 -14.612   2.127  1.00 13.53           O
+ATOM   2417  CB  PHE A 288      24.772 -14.867   4.956  1.00 12.78           C
+ATOM   2418  CG  PHE A 288      23.631 -15.779   5.296  1.00 12.95           C
+ATOM   2419  CD1 PHE A 288      23.820 -17.141   5.391  1.00 13.24           C
+ATOM   2420  CD2 PHE A 288      22.352 -15.284   5.479  1.00 14.78           C
+ATOM   2421  CE1 PHE A 288      22.776 -17.983   5.675  1.00 14.40           C
+ATOM   2422  CE2 PHE A 288      21.303 -16.124   5.749  1.00 15.50           C
+ATOM   2423  CZ  PHE A 288      21.505 -17.472   5.834  1.00 15.28           C
+END
