@@ -62,27 +62,62 @@
 5. **低成本难度检查**：例如只给题干、不给附件看模型能否猜中；L4 数据回来后淘汰没人选的错误机制。
 6. **关键族的检查器由另一会话或另一模型独立重写**，降低“同一作者犯同一种错”的风险。
 
-## 六、评测（W3，2026-11-02 起）
+## 六、评测（2026-11-02 起，2026-11-03 接上真模型）
 
 被测模型只拿到考生包：题干、范围、附件内容、四个选项或数值作答要求。**实例号不给**——有些实例号本身
-就是答案（`FA-SREL-7029-SAME`），而且 56 道题的附件名就是实例号，harness 会在提示词里把它改成普通名字。
+就是答案（`FA-SREL-7029-SAME`），而且 169 道题的附件名就是实例号，harness 会在提示词里把它改成普通名字。
 答案与实测值只在 `evaluation/scoring.py` 里加载，提示词那边读不到。
 
-评分按规则，不让另一个模型当裁判：选择题比字母，数值题按记录的容差比数。**读不出的回答记 `unparsed`，
-不算错**——那是 harness 的问题，混进错误率里会把它藏起来。
+评分按规则，不让另一个模型当裁判：选择题比字母，数值题按记录的容差比数。**四种结局，三种分母待遇**：
 
-两个维度，每次只变一个：**form**（`choice` 336 道 / `numeric` 186 道）与 **setting**（`coords` 不许跑代码 /
-`coords+code` 可以跑代码 / `renders` 只给渲染图——**还没实现，调用会报错说明只有 169 道有坐标文件可渲染**）。
+| 结局 | 什么意思 | 进分母吗 |
+|---|---|---|
+| `correct` / `wrong` | 问到了，答对或答错 | 进 |
+| `unparsed` | 问到了，但回答的格式读不出来 | **进**——模型被问到了，格式是它的问题 |
+| `error` | 调用重试完还是失败（429/5xx/超时） | **不进**，把 429 混进错误率会读成"它化学不行" |
+| `oversize` | 提示词超过该模型的上下文窗口，**一个请求都没发** | **不进**，否则量的是窗口不是模型 |
+
+`oversize` 不是小数目：题库的 token 量极不均匀（见下），64k 窗口的模型有 53 道送不进去，**其中 45 道是
+生物**。若把它们算错，生物那一列会因为 harness 的原因而难看。
+
+两个维度，每次只变一个：**form**（`choice` 871 道 / `numeric` 464 道）与 **setting**（`coords` 不许跑代码 /
+`coords+code` 可以跑代码 / `renders` 只给渲染图——**还没实现，调用会报错说明只有 507 道带坐标文件**）。
+
+### 先估价，再花钱
 
 ```text
-python tools/run_eval.py --provider seeded --form choice --setting coords
-python tools/run_eval.py --provider seeded --form numeric
+python tools/benchmark.py --estimate
 ```
 
-内置的只有不看题的基线（`seeded`、`always-a`、`blank`），用来量"白给分"：四选一 22.0%–24.7%，数值题 0%。
-**接真模型要 API 密钥与预算，仓库不内置密钥、不自己联网**；provider 必须如实报自己的名字与调用次数，
-记录里的 `answerer_is_a_model` 和 `model_calls` 就是用来防止把基线结果当成模型成绩的。
-记录写到 `runs/eval/`（不进 Git）。
+按 tiktoken 实测（不是按字符估），871 道提示词合计 **9.97 M token**，但**分布极偏**：中位数 1 203 token，
+而带坐标倾倒的 137 道（16%）占掉 **88%** 的 token；按学科 biology 7.46M / materials 1.16M / chemistry 0.85M /
+quantum 0.51M。最大的一道 154 887 token。价格与窗口写在 `evaluation/models.json`，**本仓库不联网核对，
+花钱之前用户要对着厂商当前页面核一遍**（核完把 `verified_by_user_on` 填上日期）。
+
+### 跑
+
+```text
+python tools/benchmark.py seeded always-a                       # 基线，免费
+python tools/benchmark.py deepseek-chat --sample 30             # 约 35 万 token、US$0.1：先验接线
+python tools/benchmark.py deepseek-chat gemini-2.5-flash seeded --workers 8
+python tools/run_eval.py --provider seeded --form numeric        # 单个作答者的老入口，仍可用
+```
+
+**第一次花钱先 `--sample 30`**：四个学科均摊、按题号等距取，每次取到的是同一批（含一道 11.9 万 token 的，
+正好验超窗那条路）。model_id 写错或窗口填错，30 个请求就能发现，不用 871 个。
+
+**API 密钥只从环境变量读**（哪个变量看 `models.json` 的 `key_env`），仓库不内置密钥，密钥不写进任何记录、
+日志或报错信息。**不会重复花钱**：每个回答追加到 `runs/eval/cache/<作答者>-<form>-<setting>.jsonl`，
+并盖上**这道题提示词的哈希**。同一条命令再跑一遍一个请求都不发；跑到第 700 道断了就从第 700 道接着跑；
+`--sample 30` 问过的 30 道，全量跑时直接取缓存、不再付一次；题库重跑后**只有提示词真的变了的那几道**
+会重问，其余照常复用。
+
+**模型自己报名字**：记录里的 `answerer` 是回包里的 `model` 字段，不是我们配置文件写的；回包没报就
+`named_itself: false`，只能按请求的 id 记。`answerer_is_a_model` 和 `model_calls` 用来防止把基线当成模型成绩。
+花费按回包自报的 usage 算，不是按估的。
+
+输出：`runs/eval/<日期>-benchmark-<form>-<setting>.json` 与同名 `.md`（可直接贴给导师的「模型 × 学科」表，
+每格带自己的分母，窗口不同的两个模型不会被当成考了同一张卷）。记录都在 `runs/`，不进 Git。
 
 ## 七、许可与发布（W2，2026-11-02 起）
 

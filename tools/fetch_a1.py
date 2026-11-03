@@ -65,7 +65,20 @@ def rows_of(plan, kind):
             yield target, entry
 
 
-def pdb_kind(entry):
+def pdb_kind(entry, coordinates=None):
+    # Classify the chain we actually register, rather than a title such as
+    # HOLLIDAY JUNCTION BINDING PROTEIN (1HJP), which is a protein.
+    if coordinates is not None:
+        names = set()
+        for line in coordinates.splitlines():
+            if line.startswith('ENDMDL'):
+                break
+            if line.startswith('ATOM  ') and len(line) > 21 and line[21] == 'A' and line[16] in ' A':
+                names.add(line[12:16].strip())
+        if 'CA' in names:
+            return 'protein'
+        if names & {'P', "C1'"}:
+            return 'nucleic'
     text = (entry.get('title') or '').lower()
     return 'nucleic' if any(word in text for word in NUCLEIC) else 'protein'
 
@@ -112,7 +125,7 @@ def main():
                                                 name='%s (%s, COD %s)' % (label, entry['formula'], entry['id'])))
         else:
             data['structures'].append(OrderedDict(
-                pdb=entry['id'], asset=asset, chain='A', kind=pdb_kind(entry),
+                pdb=entry['id'], asset=asset, chain='A', kind=pdb_kind(entry, blob.decode('utf-8')),
                 context='%s (%s, %s)' % (entry['title'], entry['method'] or 'experimental',
                                          ('%.2f Å' % entry['resolution_A']) if entry.get('resolution_A') else '分辨率未记录'),
                 source=entry['page'], license=where['licence']))

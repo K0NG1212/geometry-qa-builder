@@ -1,4 +1,4 @@
-"""W3: the evaluation harness must ask fairly and score by rule.
+"""The evaluation harness must ask fairly and score by rule.
 
 What these pin: a prompt carries the student packet and nothing from the teacher side (the instance id
 included -- some ids spell their own answer); every admitted question is on the exam and its files resolve
@@ -52,10 +52,10 @@ class ExamTests(unittest.TestCase):
                 self.assertNotIn(marker, prompt, '%s: prompt carries %s' % (question.id, marker))
 
     def test_a_file_renamed_to_hide_its_instance_id_is_never_named_in_the_question(self):
-        # 56 attachments are named after their instance (FA-PEAK-B5H9-cell.txt), so the prompt renames
+        # 169 attachments are named after their instance (FA-PEAK-B5H9-cell.txt), so the prompt renames
         # them. That is only safe while no question text points at the published name.
         renamed = [(q, i) for q in self.questions for i in q.inputs if i['name'] != i['published_name']]
-        self.assertGreater(len(renamed), 50)
+        self.assertGreater(len(renamed), 150)
         for question, item in renamed:
             self.assertNotIn(item['published_name'], question.text + question.scope, question.id)
         names = {i['name'] for q in self.questions for i in q.inputs}
@@ -73,7 +73,7 @@ class ExamTests(unittest.TestCase):
         self.assertFalse(exam.SETTINGS['renders']['available'])
         with self.assertRaises(ValueError) as refused:
             self.questions[0].prompt('renders')
-        self.assertIn('169', str(refused.exception))      # says which part of the bank it could cover
+        self.assertIn('507', str(refused.exception))      # says which part of the bank it could cover
 
 
 class ScoringTests(unittest.TestCase):

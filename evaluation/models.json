@@ -1,0 +1,33 @@
+{
+ "kind": "geobench_eval_models",
+ "note": "评测用的模型表。端点与环境变量名由接手的 AI 填，但【价格、上下文窗口、模型 id 必须由用户对着厂商当前页面核过再花钱】——这些数字会变，本仓库不联网核对。context_tokens 决定哪些题根本送不进去（见 tools/benchmark.py --estimate），填错会让一整个学科的分数因为技术原因而不是模型能力而难看。",
+ "verified_by_user_on": null,
+ "models": {
+  "deepseek-chat": {
+   "label": "DeepSeek V3（chat）",
+   "api": "openai-chat",
+   "endpoint": "https://api.deepseek.com/v1/chat/completions",
+   "model_id": "deepseek-chat",
+   "key_env": "DEEPSEEK_API_KEY",
+   "context_tokens": 65536,
+   "max_output_tokens": 512,
+   "usd_per_million_input": 0.27,
+   "usd_per_million_output": 1.1,
+   "priced_on": "2026-11-03",
+   "price_source": "未核；用户按 platform.deepseek.com 的当前定价改"
+  },
+  "gemini-2.5-flash": {
+   "label": "Gemini 2.5 Flash",
+   "api": "openai-chat",
+   "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+   "model_id": "gemini-2.5-flash",
+   "key_env": "GEMINI_API_KEY",
+   "context_tokens": 1048576,
+   "max_output_tokens": 512,
+   "usd_per_million_input": 0.3,
+   "usd_per_million_output": 2.5,
+   "priced_on": "2026-11-03",
+   "price_source": "未核；用户按 ai.google.dev 的当前定价改"
+  }
+ }
+}

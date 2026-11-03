@@ -63,6 +63,14 @@ def grade(question, key, reply):
                 given=str(given), expected=str(want), tolerance=str(tolerance))
 
 
+def not_asked(question, result, detail):
+    """A question the model never got to answer: the call failed (`error`), or the prompt does not fit the
+    model's context window (`oversize`). Both are harness or capacity facts, not wrong answers, so they are
+    recorded here and kept out of the score's denominator."""
+    assert result in ('error', 'oversize'), result
+    return dict(id=question.id, result=result, given=None, expected=None, detail=detail)
+
+
 def cells(root=ROOT):
     """Which of the 16 domain × size cells each question sits in, taken from the published coverage data
     rather than recomputed, so a report and the coverage page cannot disagree."""
@@ -72,7 +80,13 @@ def cells(root=ROOT):
 
 
 def tally(results, questions, root=ROOT):
-    """Scores overall and per group. Unparsed replies are counted and kept out of the rate's numerator."""
+    """Scores overall and per group.
+
+    The denominator is what the model was actually asked. An unparsed reply stays in it -- the model was
+    shown the question and answered in a shape we could not read, and hiding that would flatter it. A
+    question recorded as `error` or `oversize` was never put to the model, so it is counted and reported
+    but left out; without that, a 64k window would show up as a model being bad at biology.
+    """
     by_id = {q.id: q for q in questions}
     cell_of = cells(root)
     groups = dict(ability={}, family={}, domain={}, cell={})
@@ -80,15 +94,18 @@ def tally(results, questions, root=ROOT):
         question = by_id[row['id']]
         for name, value in (('ability', question.ability), ('family', question.family),
                             ('domain', question.domain), ('cell', cell_of.get(question.id, '未分格'))):
-            bucket = groups[name].setdefault(value, dict(n=0, correct=0, unparsed=0))
+            bucket = groups[name].setdefault(value, dict(n=0, asked=0, correct=0, unparsed=0,
+                                                         error=0, oversize=0))
             bucket['n'] += 1
-            bucket['correct'] += row['result'] == 'correct'
-            bucket['unparsed'] += row['result'] == 'unparsed'
+            bucket['asked'] += row['result'] in ('correct', 'wrong', 'unparsed')
+            for outcome in ('correct', 'unparsed', 'error', 'oversize'):
+                bucket[outcome] += row['result'] == outcome
     for name in groups:
         for bucket in groups[name].values():
-            bucket['score'] = round(bucket['correct'] / bucket['n'], 4) if bucket['n'] else None
-    total = len(results)
-    correct = sum(r['result'] == 'correct' for r in results)
-    unparsed = sum(r['result'] == 'unparsed' for r in results)
-    return dict(n=total, correct=correct, unparsed=unparsed,
-                score=round(correct / total, 4) if total else None, groups=groups)
+            bucket['score'] = round(bucket['correct'] / bucket['asked'], 4) if bucket['asked'] else None
+    counts = {outcome: sum(r['result'] == outcome for r in results)
+              for outcome in ('correct', 'wrong', 'unparsed', 'error', 'oversize')}
+    asked = counts['correct'] + counts['wrong'] + counts['unparsed']
+    return dict(n=len(results), asked=asked, correct=counts['correct'], wrong=counts['wrong'],
+                unparsed=counts['unparsed'], error=counts['error'], oversize=counts['oversize'],
+                score=round(counts['correct'] / asked, 4) if asked else None, groups=groups)

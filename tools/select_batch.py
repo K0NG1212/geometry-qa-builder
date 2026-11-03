@@ -9,7 +9,7 @@ than by asking one structure many times.
 
 The caps come from templates/batch-selection-rule.json and act together, counting what the manifest already holds:
   * max_per_family_source  4   one structure answers at most four questions of the same family
-  * max_per_source         8   one structure answers at most eight questions in all
+  * max_per_source        15   one structure answers at most fifteen questions in all
   * max_per_family        60   one family holds at most sixty questions
 Order is deterministic (SHA-256 of the signature) and the pass is greedy with the scarcest first: a structure with
 no questions yet is served before one that already has some, and within a structure the families it has never been
@@ -17,6 +17,7 @@ used for come first. Nothing is admitted to the catalog here -- that is still fa
 tools/admit_family_instances.py.
 """
 import argparse
+import datetime
 import json
 import sys
 from collections import Counter, OrderedDict, defaultdict
@@ -29,7 +30,7 @@ from task_families import kit  # noqa: E402
 
 MANIFEST = ROOT / 'templates/family-manifest.json'
 RULE = ROOT / 'templates/batch-selection-rule.json'
-RECORD = ROOT / 'templates/batch-selection-2026-11-02.json'
+PRUNED = ROOT / 'templates/pruned-instances.json'
 # Enumerated per residue pair, so O(n^2) in chain length: 3W4T alone (446 residues) takes minutes, and the two
 # caps (60 per family, 4 per family and source) let these two contribute a few dozen questions at most. Left out
 # unless asked for, because the no-argument run is the one someone tries first and it does not come back.
@@ -54,7 +55,14 @@ def main():
     parser.add_argument('--include-slow', action='store_true',
                         help='连 %s 一起枚举（按残基对展开，蛋白一大就要几分钟一族）' % '、'.join(SLOW_FAMILIES))
     parser.add_argument('--limit', type=int, default=0, help='最多选这么多道（0 表示不限）')
+    parser.add_argument('--date', default=datetime.date.today().isoformat(), help='批次记录日期')
+    parser.add_argument('--batch', default='', help='同日补选批次后缀，避免覆盖先前的选题记录')
     args = parser.parse_args()
+    datetime.date.fromisoformat(args.date)
+    record = ROOT / ('templates/batch-selection-%s%s.json' %
+                     (args.date, '-' + args.batch if args.batch else ''))
+    if args.write and record.exists():
+        parser.error('批次记录已存在；用 --batch 保留新一轮的独立记录')
     if not args.write and not args.dry_run:
         parser.error('要么 --dry-run，要么 --write')
 
@@ -68,6 +76,10 @@ def main():
     held_pair = Counter((item.get('family'), source_of(item)) for item in manifest['items'])
     signatures = {enumerators.signature(item) for item in manifest['items']}
     taken_ids = {item['id'] for item in manifest['items']}
+    # Pruning is persistent: a rejected proposal must not re-enter on the next top-up.
+    if PRUNED.exists():
+        for batch in read(PRUNED).get('batches', {}).values():
+            taken_ids.update(batch.get('ids', {}))
 
     if args.families:
         families = args.families.split(',')
@@ -125,8 +137,8 @@ def main():
     if args.write and chosen:
         manifest['items'].extend(chosen)
         MANIFEST.write_bytes((json.dumps(manifest, ensure_ascii=False, indent=1) + '\n').encode('utf-8'))
-        RECORD.write_bytes((json.dumps(OrderedDict(
-            kind='batch_selection', date='2026-11-02', rule='templates/batch-selection-rule.json',
+        record.write_bytes((json.dumps(OrderedDict(
+            kind='batch_selection', date=args.date, rule='templates/batch-selection-rule.json',
             rule_version=read(RULE)['version'], caps=OrderedDict(
                 max_per_family_source=per_family_source, max_per_source=max_per_source, max_per_family=max_per_family),
             note='tools/select_batch.py 选出的批次：按稀缺优先（没题的结构先上）、确定性顺序；'
@@ -135,7 +147,7 @@ def main():
             by_family=OrderedDict(sorted(by_family.items())),
             ids=[spec['id'] for spec in chosen]), ensure_ascii=False, indent=1) + '\n').encode('utf-8'))
         print('\n已写入 %s（清单现在 %d 条）和 %s' % (MANIFEST.relative_to(ROOT).as_posix(), len(manifest['items']),
-                                             RECORD.relative_to(ROOT).as_posix()))
+                                             record.relative_to(ROOT).as_posix()))
 
 
 if __name__ == '__main__':

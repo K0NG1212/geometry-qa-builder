@@ -38,6 +38,11 @@ def check_structure(asset, chain, kind='protein'):
     text = (ROOT / 'docs' / asset).read_text(encoding='utf-8')
     residues, order, altloc = read_pdb_residues(text, chain)
     usable = [n for n in order if n not in altloc]
+    names = {atom for n in usable for atom in residues[n]['atoms']}
+    expected = {'CA'} if kind == 'protein' else {'P', "C1'"}
+    if not names & expected:
+        raise ValueError('链 %s 的原子记录与登记类型 %s 不符（缺少 %s）' %
+                         (chain, kind, '/'.join(sorted(expected))))
     least = MIN_RESIDUES[kind]
     if len(usable) < least:
         raise ValueError('链 %s 只有 %d 个可用残基（少于 %d）' % (chain, len(usable), least))
