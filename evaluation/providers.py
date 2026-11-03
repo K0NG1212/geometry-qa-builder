@@ -10,6 +10,8 @@ produced it would be a fabricated result.
 """
 import hashlib
 
+from review_system import audit
+
 from . import budget, remote
 
 LABELS = ('A', 'B', 'C', 'D')
@@ -46,10 +48,40 @@ def seeded_label(question):
     return LABELS[digest[0] % 4]
 
 
+def shortcut(rule):
+    """A baseline that answers from the four option strings alone, never from the question.
+
+    `seeded` measures the floor for guessing at random; these measure the floor for guessing *well*. The
+    bank's own audit found rules of this kind scoring up to 0.46 on the questions they will commit to
+    (REVIEW_ISSUES.md), so a model's number has to be read against them rather than against 0.25.
+
+    The rules are imported rather than re-implemented so that the floor printed in a score table and the
+    leak reported by the audit cannot drift apart. review_system reads only the published bank -- it is not
+    part of the question generators, so this does not breach the harness's independence.
+
+    A rule abstains when the four options do not give it what it needs -- no numbers to sort, two options
+    tied on length. Where it abstains this baseline falls back to the seeded guess, because the floor worth
+    reporting is the one a whole exam yields: a cheat that applies to a fifth of the bank and abstains
+    elsewhere would otherwise print as a low score and read as harmless. The audit reports the other
+    number, the hit rate over the questions the rule will commit to, which is what diagnoses the leak.
+    """
+    def pick(question):
+        seen = dict(question=question.text, scope=question.scope, options=question.options)
+        return rule(seen) or seeded_label(question)
+    return pick
+
+
 BASELINES = {
     'always-a': lambda: Mock('baseline-always-a', lambda q: 'A'),
+    'always-b': lambda: Mock('baseline-always-b', lambda q: 'B'),
     'seeded': lambda: Mock('baseline-seeded', seeded_label),
     'blank': lambda: Mock('baseline-blank', lambda q: ''),
+    'shortcut-2nd-smallest': lambda: Mock('baseline-shortcut-2nd-smallest',
+                                          shortcut(lambda s: audit.by_number(s, 1))),
+    'shortcut-longest': lambda: Mock('baseline-shortcut-longest',
+                                     shortcut(lambda s: audit.by_length(s, True))),
+    'shortcut-stem-overlap': lambda: Mock('baseline-shortcut-stem-overlap',
+                                          shortcut(audit.by_stem_overlap)),
 }
 
 

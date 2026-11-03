@@ -31,7 +31,7 @@ SETTINGS = {
         label='只给渲染图，不给坐标',
         instruction='',
         available=False,
-        unavailable_because='渲染器还没写；且只有 507/871 道题带真坐标文件（.pdb/.xyz/.cif）可渲染，报分时必须说明是子集'),
+        unavailable_because='渲染器还没写；且只有 497/871 道题带原子级三维坐标附件（xyz 或 pdb 片段）可直接渲染，报分时必须说明是子集'),
 }
 
 

@@ -73,7 +73,7 @@ class ExamTests(unittest.TestCase):
         self.assertFalse(exam.SETTINGS['renders']['available'])
         with self.assertRaises(ValueError) as refused:
             self.questions[0].prompt('renders')
-        self.assertIn('507', str(refused.exception))      # says which part of the bank it could cover
+        self.assertIn('497', str(refused.exception))      # says which part of the bank it could cover
 
 
 class ScoringTests(unittest.TestCase):
