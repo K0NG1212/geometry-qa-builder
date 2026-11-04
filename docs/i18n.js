@@ -57,8 +57,8 @@
     '每格左上角是题数，下面是 感知·推断·设计 的拆分。「缺」= 这个像素有意义但还没有题（教授看的就是这 20 格）；「·」= 这个子领域在这个尺度上没有题可做，不算缺口。所有题都已通过程序核验与独立检查器，仍待人工审核。':
       'Each cell shows the number of questions and, below it, the perception·inference·design split. "gap" = the pixel is meaningful but still empty; "·" = no question of this subdomain is possible at this scale, so it is not a gap. Every question passed the generator checks and the independent checker; none has been reviewed by a person yet.',
     // the 32 level-1 subdomains of the detailed map (names only; the data behind them is generated)
-    '超导': 'Superconductivity', '磁性': 'Magnetism', '二维材料与莫尔物理': '2D materials & moire physics',
-    '纳米与介观物理': 'Nano- & mesoscale physics', '原子与分子物理': 'Atomic & molecular physics',
+    '超导': 'Superconductivity', '磁性': 'Magnetism', '二维材料与莫尔物理': '2D materials & moiré physics',
+    '纳米与介观物理': 'Nanoscale & mesoscopic physics', '原子与分子物理': 'Atomic & molecular physics',
     '光子学': 'Photonics', '软物质与生物物理': 'Soft matter & biophysics',
     '有机化学': 'Organic chemistry', '物理与量子化学': 'Physical & quantum chemistry',
     '无机与配位化学': 'Inorganic & coordination chemistry', '超分子化学': 'Supramolecular chemistry',
