@@ -87,8 +87,8 @@
     '理解方法 ↗': 'Read the method ↗',
     // question pool
     '把问题，逐一说清楚。': 'One question at a time, stated in full.',
-    '这里只展示材料齐全、通过当前初筛的完整候选题；均待独立人工审核。 ·':
-      'Only complete candidates that passed the current screening are shown; all still await independent human review. ·',
+    '这里只展示材料齐全、通过当前初筛的完整候选题；均待独立人工审核。':
+      'Only complete candidates that passed the current screening are shown; all still await independent human review.',
     '搜索问题': 'Search', '编号、题目或论文': 'id, title or paper', '领域': 'Domain', '全部领域': 'All domains',
     '推理尺度': 'Reasoning scale', '全部尺度': 'All scales', '审核状态': 'Status', '全部状态': 'All statuses',
     '有数值答案': 'Has a numeric answer', '重置': 'Reset', '导出当前目录 ↓': 'Export this list ↓',
@@ -336,8 +336,8 @@
     [/^显示 (\d+) \/ (\d+) 道完整候选 · 待独立审核$/, (m) => `Showing ${m[1]} / ${m[2]} complete candidates · awaiting review`],
     [/^(\d+) 道题 · 点击格子查看该格题目（细分到子领域的坐标系见下一张图）$/,
       (m) => `${m[1]} questions · click a cell to list them (the subdomain-level map is below)`],
-    [/^原型目标 (\d+) · 当前候选 (\d+) · 每格按 10 道封顶的有效覆盖 ([\d ]+\/[\d ]+) · 待独立人工审核 (\d+) · 正式通过 (\d+)。$/,
-      (m) => `Prototype target ${m[1]} · candidates ${m[2]} · coverage capped at 10 per cell ${m[3]} · awaiting human review ${m[4]} · formally approved ${m[5]}.`],
+    [/^原型目标 (\d+) · 每格按 10 道封顶的有效覆盖 ([\d ]+\/[\d ]+)(（\d+ 格空缺）)?。$/,
+      (m) => `Prototype target ${m[1]} · coverage capped at 10 per cell ${m[2]}${m[3] ? ' (' + m[3].replace(/[（）]/g, '').replace(' 格空缺', ' cells empty') + ')' : ''}.`],
     [/^(\d+) \/ (\d+) 个有意义像素有题 · $/, (m) => `${m[1]} / ${m[2]} meaningful pixels have questions · `],
     [/^(\d+) 个空缺 · 二级子领域（叶子） (\d+) \/ (\d+) · 共 (\d+) 道。像素 = 一级子领域 × 解题推理尺度。$/,
       (m) => `${m[1]} empty · level-2 subdomains (leaves) ${m[2]} / ${m[3]} · ${m[4]} questions in all. A pixel is one level-1 subdomain at one reasoning scale.`],
