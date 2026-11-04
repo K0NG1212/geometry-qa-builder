@@ -86,7 +86,8 @@ def fragment(page, name):
     if any(pattern % name in html for pattern in ('id="%s"', 'data-view="%s"', 'name="%s"')):
         return True
     for src in re.findall(r'<script[^>]+src="([^"]+)"', html):
-        js = page.parent / src
+        # tools/stamp_assets.py appends ?v=<hash>, which is not part of the path on disk
+        js = page.parent / src.split('?')[0]
         if js.exists() and 'location.hash' in js.read_text(encoding='utf-8'):
             return None
     return False
