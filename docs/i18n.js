@@ -10,6 +10,15 @@
     // header and navigation
     '概览': 'Overview', '问题池': 'Question pool', '题目卡片': 'Question cards', '子领域': 'Subdomains',
     '分类与方法': 'Taxonomy & method', '出题系统': 'Generation system', '题型': 'Task families', '审核': 'Review',
+    // 2026-11-04: 分类与方法 / 出题系统 / 审核 合成一页后的新词
+    '方法与审核': 'Method & review', '审核队列': 'Review queue', '题型 ↗': 'Task families ↗',
+    '方法与审核 · GeoBench': 'Method & review · GeoBench',
+    '审核体系 · GeoBench': 'Review system · GeoBench',
+    '审核队列 · GeoBench': 'Review queue · GeoBench',
+    '本页分区': 'Sections on this page',
+    '这一节已经并进「方法与审核」。': 'This section has moved into Method & review.',
+    '打开「方法与审核」↗': 'Open Method & review ↗',
+    '这个地址保留着，旧链接仍然有效。': 'This address is kept, so older links still work.',
     'GeoBench 首页': 'GeoBench home', '主导航': 'Main navigation',
     // hero
     '从几何理解，': 'From geometry,', '走向科学推理。': 'to scientific reasoning.',
