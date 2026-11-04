@@ -146,6 +146,190 @@
     '一个题型，': 'One task family,', '多份结构，同一套验证。': 'many structures, one set of checks.',
     '筛查清单': 'Screening list', '题型总表': 'Family table', '题型工作台': 'Workbench',
     '下一批 L3 抽样计划（l3-batch-001）': 'Next L3 sampling plan (l3-batch-001)',
+
+    // 方法与审核 (2026-11-04). These three pages had never been through the English pass; the
+    // merge put them behind a top-level entry, which is how it showed. Terms follow what the
+    // repository already uses: task family, independent checker, student packet, answer key,
+    // reasoning scale, distractor, cell, family sign-off, checker review, stratified sampling.
+    '01 / 两种尺度，分别记录': '01 / Two scales, recorded separately',
+    '输入尺度描述模型看到的对象；推理尺度描述解题需要关注的范围。例如，输入完整蛋白质而只分析一个原子接触，两者不能混为一谈。':
+      'Input scale describes the object the model is shown; reasoning scale describes the range the question actually turns on. A whole protein given as input with a single atomic contact to analyse is not the same number.',
+    '主图默认按解题推理尺度分为0.1–1、1–10、10–100和100–1000 nm，保留输入尺度切换。尺寸及测量定义见每道题。':
+      'The main map is binned by reasoning scale into 0.1–1, 1–10, 10–100 and 100–1000 nm, with an input-scale view kept alongside. Each question states its sizes and how they were measured.',
+    '02 / 学科是层级，不是四个互斥标签': '02 / Disciplines are a hierarchy, not four exclusive labels',
+    '电子结构 · 原子力 · 振动与势能曲率': 'Electronic structure · atomic forces · vibrations and curvature of the potential',
+    '立体化学 · 构象分析 · 结构与性质': 'Stereochemistry · conformational analysis · structure and property',
+    '晶体与缺陷 · 聚合物 · 凝聚态结构': 'Crystals and defects · polymers · condensed-matter structure',
+    '结构生物学 · 生物分子识别 · 多分子复合物': 'Structural biology · biomolecular recognition · multi-molecule complexes',
+    '子领域细分草案 v0.2：领域 → 第一层 → 叶子，可缩放旭日图 ↗':
+      'Subdomain draft v0.2: domain → first level → leaf, as a zoomable sunburst ↗',
+    '以上为工作分类示例。允许跨领域标签，按具体问题归类，不因论文使用 DFT 或研究药物就直接决定领域。':
+      'These are working examples. Cross-domain labels are allowed: a question is filed by what it asks, not by whether its paper used DFT or studied a drug.',
+    '03 / 从感知到设计': '03 / From perception to design',
+    '从结构中识别、测量或比较几何关系。': 'Identify, measure or compare a geometric relation in a structure.',
+    '在明确条件下，联系几何与物理后果；单纯数值比较不自动成为物理推断。':
+      'Under stated conditions, connect geometry to a physical consequence; comparing two numbers is not by itself a physical inference.',
+    '提出满足约束的结构；结构操作、有效性与目标性质达成需要分别评分。':
+      'Propose a structure that meets the constraints; the edit, its validity and whether the target property is reached are scored separately.',
+    '04 / 模型设计题型，程序构建实例': '04 / Models design the task family, code builds the instances',
+    '来源整理 → 题型设计 → 输入与答案规则 → 检查通用构建程序 → 批量实例化 → 自动检查与人工抽审。':
+      'Sources collected → task family designed → input and answer rules → the shared builder is reviewed → instances generated in batches → automatic checks and human spot-checks.',
+    '当前题目从真实结构与性质数据构建。完整题干、输入附件、答案和评分依据齐全，并通过初筛后，才能进入当前题库。程序检查只验证指定量，不证明领域正确性或题目难度；待审核与正式可用之间保持明确区别。':
+      'Questions are built from real structures and measured properties. One enters the bank only with a complete stem, its input attachments, an answer and the basis for scoring, and after passing automated screening. The programmatic checks verify the stated quantity only; they do not establish scientific correctness or difficulty. Awaiting review and formally approved are kept apart.',
+    '代码出题，独立复算，': 'Code generates. A separate checker',
+    '人审代码。': 'recomputes. People review the code.',
+    '每个题型是一段确定性代码，批量生成题目；另一段不共享任何代码的检查器从题干重新计算每道题。':
+      'A task family is one piece of deterministic code that generates questions in batches; a checker that shares no code with it recomputes every question from the stem.',
+    '代码经人审定后，同一题型的所有题都可复现、可核对。出题全程不调用任何模型。':
+      'Once the code is signed off, every question of that family is reproducible and checkable. No model is called anywhere in generation.',
+    '题型族': 'Task families',
+    '读取中…': 'Loading…',
+    '九条质量原则': 'Nine quality principles',
+    '原则全文与命令见仓库': 'Full principles and commands are in the repository',
+    '。旧的逐题 AI 流程（': '. The older per-question AI pipeline (',
+    '）已归档，只用于追溯旧运行；M0–M6 仍作为阶段名称对照。':
+      ') is archived and kept only to trace old runs; M0–M6 remain as stage names for reference.',
+    '从来源到正式题：五个阶段，十二步': 'From source to approved question: five stages, twelve steps',
+    '每一步做什么、保证什么': 'What each step does and what it guarantees',
+    '选择一步，查看输入输出、保证、局限、命令与代码。':
+      'Pick a step to see its inputs and outputs, guarantees, limits, command and code.',
+    '题型族目录': 'Task-family catalogue',
+    '数据路线': 'Data route',
+    '实例': 'Instances',
+    '覆盖格': 'Cells covered',
+    '独立检查方法': 'Independent check',
+    '独立性与可复现': 'Independence and reproducibility',
+    '扩展能力：枚举器探针': 'Capacity: the enumerator probe',
+    '结构': 'Structures',
+    '候选': 'Candidates',
+    '抽样': 'Sampled',
+    '题型接受': 'Accepted by the family',
+    '独立检查通过': 'Passed the independent check',
+    '估计可出': 'Estimated yield',
+    '探针发现并修正的问题': 'What the probe found and what was fixed',
+    '第一次探针（runs/enum-v01、v02）显示 FRET 效率题在大量实例上“正确项总是最大”：当 E > 0.5 时，登记的错误机制全部给出更小的值。只看原来 3 道题时这个问题看不出来。修正方法是给题型族加一种给出更大值的真实错误（用最近重原子对代替标记原子），并允许从题设 R0 列表中选取使目标秩可达的值。修正后答案位置均衡，已有 3 道题按新版本重新生成（v19）。':
+      'The first probe (runs/enum-v01, v02) showed that across many instances of the FRET-efficiency family the correct option was always the largest: above E > 0.5 every registered mistake gives a smaller value. With only the original 3 questions the pattern was invisible. The fix adds a real mistake that gives a larger value (the nearest heavy-atom pair in place of the labelled atoms) and lets R0 be taken from the list in the stem so the target rank is reachable. Answer positions are balanced after the fix, and the 3 existing questions were regenerated (v19).',
+    '批量选题规则与差距（暂定）': 'Batch selection rules and gaps (provisional)',
+    '每格：能选多少、还差什么': 'Per cell: how many are selectable, and what is missing',
+    '每格显示“在全部上限下最多能选 / 目标”；绿色条为最多可选，金色条为同时满足能力比例时的可选。点击格子查看缺口。':
+      'Each cell shows "the most selectable under all caps / target". The green bar is that maximum; the gold bar is what stays selectable while the ability proportions are also met. Click a cell for its gap.',
+    '规则': 'Rules',
+    '待导师确认': 'Awaiting the advisor\'s confirmation',
+    '如何复现': 'How to reproduce',
+    '以下命令在仓库根目录运行，不需要任何 API Key。生成与复核都是确定性的：同样的代码和规格得到逐字节相同的结果。':
+      'Run these from the repository root; no API key is needed. Generation and re-checking are deterministic: the same code and the same spec give byte-identical results.',
+    '未能加载 data/system.json，请通过 HTTP 服务打开并刷新。':
+      'Could not load data/system.json. Open the page over HTTP and refresh.',
+    '加载中…': 'Loading…',
+    'GeoBench · 出题系统': 'GeoBench · Generation system',
+    '层级': 'Level',
+    '频率': 'Frequency',
+    '做什么': 'What it does',
+    'L0 自动核验': 'L0 Automatic verification',
+    '每个实例': 'Every instance',
+    '独立检查器重算、四项唯一、答案键一致、无泄漏、来源哈希':
+      'Independent checker recomputes; four distinct options; answer key agrees; no leakage; source hashes',
+    '已运行': 'Running',
+    'L1 题型审定': 'L1 Family sign-off',
+    '每个题型一次': 'Once per task family',
+    '人工读题型卡片（考点、题干、物理条件、干扰机制、限制）与两个样例，结论为通过或修改；记录绑定生成代码与注册表行的哈希，任一改变即失效':
+      'A person reads the family card (what it tests, the stem, the physical conditions, the distractor mechanisms, the limits) and two samples, and records pass or revise. The record is bound to hashes of the generating code and its registry row; a change to either voids it',
+    '工具已建，未运行': 'Tooling built, not yet run',
+    'L2 检查器审阅': 'L2 Checker review',
+    '人工读独立检查器代码（可附一次模型代码审阅）；记录绑定检查器代码哈希':
+      'A person reads the independent checker\'s code (a model code review may be attached); the record is bound to the checker\'s code hash',
+    'L3 分层抽查': 'L3 Stratified sampling',
+    '每批': 'Every batch',
+    '按 题型 × 来源 × 尺度格 分层；新题型或新来源首批全检，稳定后每层 max(2, 10%)；轻量模型答固定四问，被标记的全部转人工，另抽模型判“通过”的题给人工校准':
+      'Stratified by task family × source × scale cell. The first batch of a new family or source is checked in full; once it is stable, max(2, 10%) per stratum. A light model answers four fixed questions; everything it flags goes to a person, and some it passed are sampled too, to calibrate',
+    'L4 难度测试': 'L4 Difficulty measurement',
+    '每批（不属于审核）': 'Every batch (not part of review)',
+    '模型实际作答学生包，得到正确率': 'Models answer the student packets and a score comes out',
+    '未建（用户决定暂缓）': 'Not built (deferred)',
+    '实例状态：生成 → L0（可暂计配额）→ L1 + L2（题型已审定）→ L3 抽查通过 → 正式计入。抽查不合格：改题型模板，整个题型重新生成一批，不逐题手工修补。':
+      'Instance states: generated → L0 (may count provisionally) → L1 + L2 (family signed off) → passed L3 → formally counted. When a spot-check fails, the family template is changed and the whole family is regenerated; questions are not patched one at a time.',
+    'L1 / L2 可以离线审：': 'L1 and L2 can be reviewed offline:',
+    '下载审核表': 'download the review sheet',
+    '，每个审核单元一行，含题型卡片、两个样例、代码链接，只填黄色四列（决定、审核人姓名、日期、意见）。交回后运行':
+      ' — one row per review unit, with the family card, two samples and links to the code. Fill in the four yellow columns only (decision, reviewer name, date, comment). When it comes back, run',
+    'python tools/review_sheet.py import --file 文件名.xlsx --dry-run':
+      'python tools/review_sheet.py import --file yourfile.xlsx --dry-run',
+    '检查，再去掉 --dry-run 写入。导入会核对每行的绑定哈希：导出后代码或注册表改过的行会被拒收，需要重新导出；审核人必须是作出判断的本人，AI 助手不能代填。':
+      'to check it, then drop --dry-run to write. The import verifies each row\'s bound hash: a row whose code or registry entry changed after export is refused and has to be exported again. The reviewer must be the person who made the judgement; an AI assistant may not fill it in for them.',
+    '格': 'Cells',
+    '感知 / 推断 / 设计': 'Perception / inference / design',
+    '选中（* 待教授决定类别；† 旧模板题；‡ 旧题的四选一版本）':
+      'Selected (* category awaiting the advisor; † old-template question; ‡ four-option version of an old question)',
+    '备用': 'Spare',
+    '说明': 'Notes',
+    '全部': 'All',
+    '旧模板': 'Old template',
+    '单元': 'Unit',
+    '检查器': 'Checker',
+    '层（单元 | 来源 | 尺度格）': 'Stratum (unit | source | scale cell)',
+    '层内': 'In stratum',
+    '抽取': 'To sample',
+    '抽中': 'Sampled',
+    '未能加载 data/review-queue.json，请通过 HTTP 服务打开并刷新。':
+      'Could not load data/review-queue.json. Open the page over HTTP and refresh.',
+    '2026-09-22 专项筛查：42 保留待审 · 32 小修 · 6 重构 ↗':
+      '2026-09-22 targeted screening: 42 kept for review · 32 minor fixes · 6 rebuilt ↗',
+    '· 原 80 道均保留，待修项暂停当前配额。': '· All 80 were kept; those awaiting fixes are held out of the current quota.',
+    '完整题目，才进入审核队列。': 'Only complete questions enter the review queue.',
+    '任务方向是研究规划；候选题需要实际材料、可作答题干、答案与评分依据。通过辅助初筛后，仍须独立人工审核。':
+      'A task direction is research planning. A candidate question needs real material, an answerable stem, an answer and a basis for scoring. Passing the assisted screening does not replace independent human review.',
+    '人工审核队列': 'Human review queue',
+    '材料批次：原批次 10 道（当前以复查为准） · 材料 × 0.1–1 nm ↗':
+      'Materials batch: 10 in the original batch (the re-check governs) · materials × 0.1–1 nm ↗',
+    '材料 1–10nm 批次：原批次 10 道（当前以复查为准） · 材料 × 1–10 nm ↗':
+      'Materials 1–10 nm batch: 10 in the original batch (the re-check governs) · materials × 1–10 nm ↗',
+    '生物批次：两格已各补满 10/10 · 生物 × 0.1–1 nm 与 1–10 nm ↗':
+      'Biology batch: both cells filled to 10/10 · biology × 0.1–1 nm and 1–10 nm ↗',
+    '化学批次：原批次 10 道（当前以复查为准） · 化学 × 0.1–1 nm ↗':
+      'Chemistry batch: 10 in the original batch (the re-check governs) · chemistry × 0.1–1 nm ↗',
+    '化学 1–10nm 批次：原批次 10 道（当前以复查为准） · 化学 × 1–10 nm ↗':
+      'Chemistry 1–10 nm batch: 10 in the original batch (the re-check governs) · chemistry × 1–10 nm ↗',
+    '量子批次：原批次 10 道（当前以复查为准） · 量子 × 0.1–1 nm ↗':
+      'Quantum batch: 10 in the original batch (the re-check governs) · quantum × 0.1–1 nm ↗',
+    '量子 1–10nm 批次：原批次 10 道（当前以复查为准） · 量子 × 1–10 nm ↗':
+      'Quantum 1–10 nm batch: 10 in the original batch (the re-check governs) · quantum × 1–10 nm ↗',
+    '上一批论文构题：4道新增候选与6项暂缓原因 ↗': 'Last paper-sourced batch: 4 new candidates, and why 6 were deferred ↗',
+    '这些题可以直接审阅完整材料。审核重点包括科学意义、几何是否必要、答案适用条件、评分可执行性和难度。当前没有专家审核通过的记录。':
+      'These can be reviewed with their full material in hand. What matters: scientific meaning, whether the geometry is necessary, the conditions under which the answer holds, whether the scoring can be carried out, and difficulty. No expert sign-off has been recorded yet.',
+    'Q02：从方向到完整实例': 'Q02: from a direction to a complete instance',
+    'Q02“力与位移”是方向编号；QNP001 是该方向下第一个完整题目，使用 QM7-X 官方 8000 分片中的分子 7001，匹配 c1-opt 与 c1-d1，包含全部 14 个原子的 A/B 坐标和 B 处原子力。':
+      'Q02 "force and displacement" is a direction number; QNP001 is the first complete question under it. It uses molecule 7001 from the official QM7-X 8000 shard, matching c1-opt with c1-d1, and carries the A and B coordinates of all 14 atoms together with the atomic forces at B.',
+    '2026-09-21 更新：': '2026-09-21 update:',
+    '量子 × 0.1–1 nm 已在 q02-force-v04-002（见': 'quantum × 0.1–1 nm was filled by q02-force-v04-002 (see',
+    '量子批次页 ↗': 'the quantum batch page ↗',
+    '）补满到': ') to',
+    '，新增 5 个不同分子（7002/7035/7040/7070/7122）共 9 道候选：5 道感知改用通用 xyz_distance/xyz_angle 数值验证器，4 道推断延续下方方法并新增偶极矩变化任务。以下 QNP001 原有记录未改写。':
+      ', with 5 further molecules (7002/7035/7040/7070/7122) giving 9 candidates: 5 perception questions now use the generic xyz_distance / xyz_angle numeric verifier, and 4 inference questions follow the method below with a new dipole-change task. The original QNP001 record below is unchanged.',
+    '打开 QNP001 完整题目 →': 'Open the full QNP001 question →',
+    '查看 M0–M6 输入输出 ↗': 'See the M0–M6 inputs and outputs ↗',
+    '结果：力与指定形变的点积约 −1.8479 eV，表示 B 处瞬时力投影反对沿该方向继续形变。它不是有限能量差，也不能证明 A 是稳定极小值。输入和推理范围均约 0.694 nm，属于量子 × 0.1–1 nm。':
+      'Result: the dot product of the force with the given displacement is about −1.8479 eV, meaning the instantaneous force at B opposes further displacement along that direction. It is not a finite energy difference, and it does not establish that A is a stable minimum. Input and reasoning both span about 0.694 nm, so this is quantum × 0.1–1 nm.',
+    '数值由补充计算器计算，并用 Decimal 算术复核；当前通用流程走 evidence_review，解释部分仍需人工语义审核。没有将补充计算器冒称为已接入的通用自动评分器。':
+      'The numbers come from a supplementary calculator and were re-checked in Decimal arithmetic; the general pipeline currently routes this through evidence_review, and the explanation still needs a person to read it. The supplementary calculator is not presented as a general automatic grader already wired in.',
+    'QM7-X 官方来源与数据许可 ↗': 'QM7-X: official source and data licence ↗',
+    '补充计算器代码 ↗': 'Supplementary calculator code ↗',
+    '16 个格子的当前缺口': 'Current gaps across the 16 cells',
+    '按解题推理尺度，每格目标 10 道。感知、推断、设计各约 3 道是软目标；所有数字来自当前目录，不把规划方向和历史归档算作完成题。':
+      'Binned by reasoning scale, the target is 10 per cell. About 3 each of perception, inference and design is a soft target. Every number comes from the current catalogue; planned directions and archived material are not counted as finished questions.',
+    '初筛／目标': 'Screened / target',
+    '感知／推断／设计': 'Perception / inference / design',
+    '初筛缺口': 'Screening gap',
+    '当前完整候选：准入检查': 'Current complete candidates: the admission check',
+    '检查完整题干、实际附件、答案与评分、来源与考点、两种实测尺度、初筛记录及是否属于当前原型。未满足的条目先补材料或重构，不混入人工审核队列。这是材料和状态检查，不替代科学内容复审。':
+      'It checks for a complete stem, the actual attachments, an answer and its scoring, the source and what the question tests, both measured scales, the screening record, and whether it belongs to the current prototype. Anything that fails is completed or rebuilt first rather than joining the human review queue. This checks material and state; it does not replace review of the science.',
+    '旧题与规划方向历史存档 ↗': 'Archive of old questions and planned directions ↗',
+    '统计载入失败，请刷新或下载检查记录。': 'The statistics could not be loaded. Refresh, or download the check record.',
+    '查看统一标准、16格缺口与人工审核队列 ↗': 'See the shared standard, the 16-cell gaps and the human review queue ↗',
+    '问题在哪里，空白在哪里。': 'Where the questions are, and where the blanks are.',
+    '科学领域 × 输入对象尺度': 'Scientific domain × input object scale',
+    '只展示当前完整候选，按实际推理尺度统计每格10道的目标与缺口；不是模型性能热力图。':
+      'Shows current complete candidates only, counting the target of 10 per cell and the gap by measured reasoning scale. It is not a heatmap of model performance.',
+    '目录 v': 'Catalogue v',
   };
   const plural = (n, word) => `${n} ${word}${Number(n) === 1 ? '' : 's'}`;
   const RULES = [
