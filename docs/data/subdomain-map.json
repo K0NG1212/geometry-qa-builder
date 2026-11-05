@@ -1,13 +1,13 @@
 {
  "kind": "subdomain_pixel_map",
- "taxonomy_version": "0.2.2",
+ "taxonomy_version": "0.2.5",
  "taxonomy_status": "draft",
  "note": "Draft taxonomy pending the advisor; assignment is automatic (by structure, source and family) and individual questions may need manual reassignment.",
  "summary": {
   "level1": 32,
-  "leaves": 89,
-  "meaningful_pixels": 77,
-  "pixels_with_questions": 57,
+  "leaves": 92,
+  "meaningful_pixels": 79,
+  "pixels_with_questions": 59,
   "empty_meaningful_pixels": 20,
   "pixels_with_enumerator": 50,
   "leaves_with_questions": 57,
@@ -15,27 +15,32 @@
    "P7"
   ],
   "domain_changes": {
-   "quantum -> chemistry": 132,
-   "materials -> physics": 30,
-   "chemistry -> physics": 4,
+   "quantum -> chemistry": 84,
+   "materials -> physics": 35,
+   "chemistry -> physics": 66,
    "materials -> chemistry": 18,
-   "biology -> chemistry": 6
+   "chemistry -> biology": 11
   },
-  "active_questions": 871,
+  "active_questions": 988,
   "questions_outside_meaningful_pixels": [],
   "planning_total": 2500,
   "mean_target_per_pixel": 32
  },
  "pixels": [
   {
-   "questions": 1,
+   "questions": 6,
    "abilities": {
-    "perception": 0,
-    "inference": 1,
+    "perception": 4,
+    "inference": 2,
     "design": 0
    },
    "ids": [
-    "MNI060"
+    "MNI060",
+    "MNP070",
+    "MNP071",
+    "MNP073",
+    "MNP074",
+    "MNI131"
    ],
    "enumerated_estimate": 20,
    "l1": "P1",
@@ -327,10 +332,10 @@
    "meaningful": false
   },
   {
-   "questions": 76,
+   "questions": 102,
    "abilities": {
     "perception": 1,
-    "inference": 24,
+    "inference": 50,
     "design": 51
    },
    "ids": [
@@ -409,7 +414,33 @@
     "MNI098",
     "MNP056",
     "MNI115",
-    "MNI120"
+    "MNI120",
+    "QNI058",
+    "CNI042",
+    "QNI059",
+    "QNI060",
+    "CNI045",
+    "QNI061",
+    "CNI047",
+    "QNI062",
+    "QNI063",
+    "QNI064",
+    "QNI065",
+    "QNI066",
+    "CNI050",
+    "CNI051",
+    "QNI067",
+    "QNI068",
+    "QNI069",
+    "QNI070",
+    "QNI071",
+    "QNI072",
+    "CNI052",
+    "CNI053",
+    "CNI055",
+    "CNI056",
+    "CNI057",
+    "CNI058"
    ],
    "enumerated_estimate": 466,
    "l1": "P5",
@@ -419,10 +450,10 @@
    "meaningful": true
   },
   {
-   "questions": 12,
+   "questions": 22,
    "abilities": {
     "perception": 0,
-    "inference": 3,
+    "inference": 13,
     "design": 9
    },
    "ids": [
@@ -437,7 +468,17 @@
     "QND066",
     "QND067",
     "MNI073",
-    "MNI086"
+    "MNI086",
+    "CNI038",
+    "CNI039",
+    "CNI040",
+    "CNI041",
+    "CNI043",
+    "CNI044",
+    "CNI046",
+    "CNI048",
+    "CNI049",
+    "CNI054"
    ],
    "enumerated_estimate": 162,
    "l1": "P5",
@@ -609,9 +650,9 @@
    "meaningful": true
   },
   {
-   "questions": 94,
+   "questions": 65,
    "abilities": {
-    "perception": 87,
+    "perception": 58,
     "inference": 4,
     "design": 3
    },
@@ -639,52 +680,20 @@
     "QNP028",
     "QNP029",
     "QNP030",
-    "QNP031",
     "QNP032",
-    "QNP033",
     "QNP034",
     "QNP035",
-    "QNP036",
-    "QNP037",
     "QNP038",
-    "QNP039",
-    "QNP040",
     "QNP041",
-    "QNP042",
-    "QNP043",
-    "QNP044",
     "QNP045",
     "QNP046",
-    "QNP047",
-    "QNP048",
-    "QNP049",
-    "QNP050",
-    "QNP051",
-    "QNP052",
-    "QNP053",
     "QNP054",
-    "QNP055",
-    "QNP056",
     "QNP057",
     "QNP058",
-    "QNP059",
-    "QNP060",
     "QNP061",
-    "QNP062",
-    "QNP063",
-    "QNP064",
-    "QNP065",
-    "QNP066",
-    "QNP067",
-    "QNP068",
-    "QNP069",
-    "QNP070",
     "QNP071",
     "QNP072",
-    "QNP073",
-    "QNP074",
     "QNP075",
-    "QNP076",
     "QNP077",
     "CNP047",
     "CNP048",
@@ -692,24 +701,27 @@
     "CNP050",
     "CNP051",
     "CNP052",
-    "QNP078",
-    "QNP079",
-    "QNP080",
     "QNP081",
-    "QNP082",
-    "QNP083",
-    "QNP084",
-    "QNP085",
-    "QNP086",
-    "QNP087",
-    "QNP088",
-    "QNP089",
-    "QNP090",
     "QNP091",
     "QNP092",
     "QNP093",
     "QNP094",
-    "QNP095"
+    "QNP141",
+    "QNP142",
+    "QNP143",
+    "QNP144",
+    "QNP148",
+    "QNP149",
+    "QNP150",
+    "QNP151",
+    "QNP152",
+    "QNP153",
+    "QNP154",
+    "QNP155",
+    "QNP156",
+    "QNP157",
+    "QNP158",
+    "QNP159"
    ],
    "enumerated_estimate": 485,
    "l1": "C1",
@@ -977,9 +989,9 @@
    "meaningful": false
   },
   {
-   "questions": 15,
+   "questions": 71,
    "abilities": {
-    "perception": 4,
+    "perception": 60,
     "inference": 0,
     "design": 11
    },
@@ -998,7 +1010,63 @@
     "CND023",
     "CND024",
     "CND025",
-    "CND026"
+    "CND026",
+    "QNP031",
+    "QNP033",
+    "QNP036",
+    "QNP037",
+    "QNP039",
+    "QNP040",
+    "QNP042",
+    "QNP043",
+    "QNP044",
+    "QNP047",
+    "QNP048",
+    "QNP049",
+    "QNP050",
+    "QNP051",
+    "QNP052",
+    "QNP053",
+    "QNP055",
+    "QNP056",
+    "QNP059",
+    "QNP060",
+    "QNP062",
+    "QNP063",
+    "QNP064",
+    "QNP065",
+    "QNP066",
+    "QNP067",
+    "QNP068",
+    "QNP069",
+    "QNP070",
+    "QNP073",
+    "QNP074",
+    "QNP076",
+    "QNP078",
+    "QNP079",
+    "QNP080",
+    "QNP082",
+    "QNP083",
+    "QNP084",
+    "QNP085",
+    "QNP086",
+    "QNP087",
+    "QNP088",
+    "QNP089",
+    "QNP090",
+    "QNP095",
+    "CNP061",
+    "CNP062",
+    "CNP063",
+    "CNP064",
+    "CNP065",
+    "CNP067",
+    "CNP068",
+    "CNP069",
+    "CNP070",
+    "CNP071",
+    "CNP072"
    ],
    "enumerated_estimate": 682,
    "l1": "C4",
@@ -1216,13 +1284,19 @@
    "meaningful": false
   },
   {
-   "questions": 0,
+   "questions": 5,
    "abilities": {
     "perception": 0,
     "inference": 0,
-    "design": 0
+    "design": 5
    },
-   "ids": [],
+   "ids": [
+    "CND028",
+    "CND029",
+    "CND033",
+    "CND038",
+    "CND040"
+   ],
    "enumerated_estimate": 51,
    "l1": "C7",
    "domain": "chemistry",
@@ -1429,9 +1503,9 @@
    "meaningful": false
   },
   {
-   "questions": 65,
+   "questions": 66,
    "abilities": {
-    "perception": 11,
+    "perception": 12,
     "inference": 21,
     "design": 33
    },
@@ -1500,7 +1574,8 @@
     "MNI112",
     "MNI114",
     "MNI116",
-    "MNI122"
+    "MNI122",
+    "MNP075"
    ],
    "enumerated_estimate": 177,
    "l1": "M2",
@@ -1563,11 +1638,11 @@
    "meaningful": false
   },
   {
-   "questions": 34,
+   "questions": 38,
    "abilities": {
-    "perception": 7,
+    "perception": 9,
     "inference": 19,
-    "design": 8
+    "design": 10
    },
    "ids": [
     "MNI012",
@@ -1603,7 +1678,11 @@
     "MNP069",
     "MNI117",
     "MNI119",
-    "MNI127"
+    "MNI127",
+    "MNP072",
+    "MND068",
+    "MND069",
+    "MNP081"
    ],
    "enumerated_estimate": 80,
    "l1": "M3",
@@ -1680,11 +1759,11 @@
    "meaningful": true
   },
   {
-   "questions": 23,
+   "questions": 24,
    "abilities": {
     "perception": 5,
     "inference": 6,
-    "design": 12
+    "design": 13
    },
    "ids": [
     "MNI013",
@@ -1709,7 +1788,8 @@
     "MND051",
     "MND065",
     "MNI099",
-    "MNI111"
+    "MNI111",
+    "MND067"
    ],
    "enumerated_estimate": 26,
    "l1": "M4",
@@ -1749,9 +1829,9 @@
    "meaningful": false
   },
   {
-   "questions": 11,
+   "questions": 12,
    "abilities": {
-    "perception": 5,
+    "perception": 6,
     "inference": 6,
     "design": 0
    },
@@ -1766,7 +1846,8 @@
     "MNP049",
     "MNI108",
     "MNI109",
-    "MNP061"
+    "MNP061",
+    "MNP080"
    ],
    "enumerated_estimate": 50,
    "l1": "M5",
@@ -2133,10 +2214,10 @@
    "meaningful": false
   },
   {
-   "questions": 27,
+   "questions": 32,
    "abilities": {
     "perception": 11,
-    "inference": 7,
+    "inference": 12,
     "design": 9
    },
    "ids": [
@@ -2166,7 +2247,12 @@
     "BND063",
     "BND066",
     "BND069",
-    "BND074"
+    "BND074",
+    "BNI094",
+    "BNI095",
+    "BNI101",
+    "BNI102",
+    "BNI105"
    ],
    "enumerated_estimate": 602,
    "l1": "B2",
@@ -2229,10 +2315,10 @@
    "meaningful": false
   },
   {
-   "questions": 6,
+   "questions": 13,
    "abilities": {
     "perception": 2,
-    "inference": 1,
+    "inference": 8,
     "design": 3
    },
    "ids": [
@@ -2241,7 +2327,14 @@
     "BND016",
     "BNP044",
     "BND018",
-    "BND024"
+    "BND024",
+    "BNI090",
+    "BNI091",
+    "BNI092",
+    "BNI093",
+    "BNI096",
+    "BNI100",
+    "BNI108"
    ],
    "enumerated_estimate": 805,
    "l1": "B3",
@@ -2283,7 +2376,7 @@
    "domain": "biology",
    "name": "转运与储存蛋白",
    "scale": "10-100",
-   "meaningful": false
+   "meaningful": true
   },
   {
    "questions": 0,
@@ -2406,10 +2499,10 @@
    "meaningful": false
   },
   {
-   "questions": 30,
+   "questions": 33,
    "abilities": {
-    "perception": 13,
-    "inference": 3,
+    "perception": 14,
+    "inference": 5,
     "design": 14
    },
    "ids": [
@@ -2442,7 +2535,10 @@
     "BND073",
     "BND075",
     "BND076",
-    "BND077"
+    "BND077",
+    "BNP131",
+    "BNI109",
+    "BNI110"
    ],
    "enumerated_estimate": 232,
    "l1": "B5",
@@ -2638,13 +2734,20 @@
    "meaningful": true
   },
   {
-   "questions": 0,
+   "questions": 6,
    "abilities": {
-    "perception": 0,
-    "inference": 0,
+    "perception": 2,
+    "inference": 4,
     "design": 0
    },
-   "ids": [],
+   "ids": [
+    "BNI088",
+    "BNI089",
+    "BNP107",
+    "BNP108",
+    "BNI103",
+    "BNI104"
+   ],
    "enumerated_estimate": 0,
    "l1": "B7",
    "domain": "biology",
@@ -2653,18 +2756,29 @@
    "meaningful": true
   },
   {
-   "questions": 5,
+   "questions": 16,
    "abilities": {
     "perception": 0,
     "inference": 4,
-    "design": 1
+    "design": 12
    },
    "ids": [
     "BNI009",
     "BNI013",
     "BNI014",
     "BND006",
-    "BNI043"
+    "BNI043",
+    "CND027",
+    "CND030",
+    "CND031",
+    "CND032",
+    "CND034",
+    "CND035",
+    "CND036",
+    "CND037",
+    "CND039",
+    "CND041",
+    "CND042"
    ],
    "enumerated_estimate": 1638,
    "l1": "B7",
@@ -2804,10 +2918,10 @@
    "meaningful": false
   },
   {
-   "questions": 6,
+   "questions": 11,
    "abilities": {
     "perception": 2,
-    "inference": 2,
+    "inference": 7,
     "design": 2
    },
    "ids": [
@@ -2816,7 +2930,12 @@
     "BND020",
     "BNP046",
     "BNI055",
-    "BND022"
+    "BND022",
+    "BNI097",
+    "BNI098",
+    "BNI099",
+    "BNI106",
+    "BNI107"
    ],
    "enumerated_estimate": 1307,
    "l1": "B9",
@@ -2858,7 +2977,7 @@
    "domain": "biology",
    "name": "免疫与识别",
    "scale": "10-100",
-   "meaningful": false
+   "meaningful": true
   },
   {
    "questions": 0,
@@ -2907,14 +3026,19 @@
    "name": "涡旋晶格与磁通"
   },
   {
-   "questions": 1,
+   "questions": 6,
    "abilities": {
-    "perception": 0,
-    "inference": 1,
+    "perception": 4,
+    "inference": 2,
     "design": 0
    },
    "ids": [
-    "MNI060"
+    "MNI060",
+    "MNP070",
+    "MNP071",
+    "MNP073",
+    "MNP074",
+    "MNI131"
    ],
    "enumerated_estimate": 23,
    "leaf": "P1b",
@@ -3089,10 +3213,10 @@
    "name": "等离激元纳米结构"
   },
   {
-   "questions": 82,
+   "questions": 118,
    "abilities": {
     "perception": 0,
-    "inference": 22,
+    "inference": 58,
     "design": 60
    },
    "ids": [
@@ -3177,7 +3301,43 @@
     "QNI054",
     "QNI055",
     "QNI056",
-    "QNI057"
+    "QNI057",
+    "CNI038",
+    "QNI058",
+    "CNI039",
+    "CNI040",
+    "CNI041",
+    "CNI042",
+    "QNI059",
+    "CNI043",
+    "QNI060",
+    "CNI044",
+    "CNI045",
+    "QNI061",
+    "CNI046",
+    "CNI047",
+    "QNI062",
+    "QNI063",
+    "QNI064",
+    "CNI048",
+    "QNI065",
+    "CNI049",
+    "QNI066",
+    "CNI050",
+    "CNI051",
+    "QNI067",
+    "QNI068",
+    "QNI069",
+    "QNI070",
+    "QNI071",
+    "QNI072",
+    "CNI052",
+    "CNI053",
+    "CNI054",
+    "CNI055",
+    "CNI056",
+    "CNI057",
+    "CNI058"
    ],
    "enumerated_estimate": 613,
    "leaf": "P5a",
@@ -3303,9 +3463,9 @@
    "name": "膜与囊泡"
   },
   {
-   "questions": 73,
+   "questions": 44,
    "abilities": {
-    "perception": 73,
+    "perception": 44,
     "inference": 0,
     "design": 0
    },
@@ -3318,71 +3478,42 @@
     "QNP028",
     "QNP029",
     "QNP030",
-    "QNP031",
     "QNP032",
-    "QNP033",
     "QNP034",
     "QNP035",
-    "QNP036",
-    "QNP037",
     "QNP038",
-    "QNP039",
-    "QNP040",
     "QNP041",
-    "QNP042",
-    "QNP043",
-    "QNP044",
     "QNP045",
     "QNP046",
-    "QNP047",
-    "QNP048",
-    "QNP049",
-    "QNP050",
-    "QNP051",
-    "QNP052",
-    "QNP053",
     "QNP054",
-    "QNP055",
-    "QNP056",
     "QNP057",
     "QNP058",
-    "QNP059",
-    "QNP060",
     "QNP061",
-    "QNP062",
-    "QNP063",
-    "QNP064",
-    "QNP065",
-    "QNP066",
-    "QNP067",
-    "QNP068",
-    "QNP069",
-    "QNP070",
     "QNP071",
     "QNP072",
-    "QNP073",
-    "QNP074",
     "QNP075",
-    "QNP076",
     "QNP077",
-    "QNP078",
-    "QNP079",
-    "QNP080",
     "QNP081",
-    "QNP082",
-    "QNP083",
-    "QNP084",
-    "QNP085",
-    "QNP086",
-    "QNP087",
-    "QNP088",
-    "QNP089",
-    "QNP090",
     "QNP091",
     "QNP092",
     "QNP093",
     "QNP094",
-    "QNP095"
+    "QNP141",
+    "QNP142",
+    "QNP143",
+    "QNP144",
+    "QNP148",
+    "QNP149",
+    "QNP150",
+    "QNP151",
+    "QNP152",
+    "QNP153",
+    "QNP154",
+    "QNP155",
+    "QNP156",
+    "QNP157",
+    "QNP158",
+    "QNP159"
    ],
    "enumerated_estimate": 485,
    "leaf": "C1a",
@@ -3648,9 +3779,9 @@
    "name": "金属簇与有机金属"
   },
   {
-   "questions": 8,
+   "questions": 64,
    "abilities": {
-    "perception": 4,
+    "perception": 60,
     "inference": 0,
     "design": 4
    },
@@ -3662,7 +3793,63 @@
     "CND016",
     "CND017",
     "CND021",
-    "CND025"
+    "CND025",
+    "QNP031",
+    "QNP033",
+    "QNP036",
+    "QNP037",
+    "QNP039",
+    "QNP040",
+    "QNP042",
+    "QNP043",
+    "QNP044",
+    "QNP047",
+    "QNP048",
+    "QNP049",
+    "QNP050",
+    "QNP051",
+    "QNP052",
+    "QNP053",
+    "QNP055",
+    "QNP056",
+    "QNP059",
+    "QNP060",
+    "QNP062",
+    "QNP063",
+    "QNP064",
+    "QNP065",
+    "QNP066",
+    "QNP067",
+    "QNP068",
+    "QNP069",
+    "QNP070",
+    "QNP073",
+    "QNP074",
+    "QNP076",
+    "QNP078",
+    "QNP079",
+    "QNP080",
+    "QNP082",
+    "QNP083",
+    "QNP084",
+    "QNP085",
+    "QNP086",
+    "QNP087",
+    "QNP088",
+    "QNP089",
+    "QNP090",
+    "QNP095",
+    "CNP061",
+    "CNP062",
+    "CNP063",
+    "CNP064",
+    "CNP065",
+    "CNP067",
+    "CNP068",
+    "CNP069",
+    "CNP070",
+    "CNP071",
+    "CNP072"
    ],
    "enumerated_estimate": 683,
    "leaf": "C4a",
@@ -3818,11 +4005,11 @@
    "name": "树枝状与超支化高分子"
   },
   {
-   "questions": 16,
+   "questions": 21,
    "abilities": {
     "perception": 5,
     "inference": 4,
-    "design": 7
+    "design": 12
    },
    "ids": [
     "CNP020",
@@ -3840,7 +4027,12 @@
     "BND089",
     "BND090",
     "BND093",
-    "BNP103"
+    "BNP103",
+    "CND028",
+    "CND029",
+    "CND033",
+    "CND038",
+    "CND040"
    ],
    "enumerated_estimate": 56,
    "leaf": "C7a",
@@ -4023,15 +4215,16 @@
    "name": "简单氧化物与卤化物"
   },
   {
-   "questions": 2,
+   "questions": 3,
    "abilities": {
-    "perception": 0,
+    "perception": 1,
     "inference": 2,
     "design": 0
    },
    "ids": [
     "MNI107",
-    "MNI124"
+    "MNI124",
+    "MNP075"
    ],
    "enumerated_estimate": 43,
    "leaf": "M2b",
@@ -4068,11 +4261,11 @@
    "name": "硅酸盐与矿物"
   },
   {
-   "questions": 32,
+   "questions": 36,
    "abilities": {
-    "perception": 6,
+    "perception": 8,
     "inference": 17,
-    "design": 9
+    "design": 11
    },
    "ids": [
     "MNI012",
@@ -4106,7 +4299,11 @@
     "MNP069",
     "MNI117",
     "MNI119",
-    "MNI127"
+    "MNI127",
+    "MNP072",
+    "MND068",
+    "MND069",
+    "MNP081"
    ],
    "enumerated_estimate": 80,
    "leaf": "M3a",
@@ -4148,11 +4345,11 @@
    "name": "缺陷与掺杂"
   },
   {
-   "questions": 25,
+   "questions": 26,
    "abilities": {
     "perception": 5,
     "inference": 6,
-    "design": 14
+    "design": 15
    },
    "ids": [
     "MNI013",
@@ -4179,7 +4376,8 @@
     "MND051",
     "MND065",
     "MNI099",
-    "MNI111"
+    "MNI111",
+    "MND067"
    ],
    "enumerated_estimate": 49,
    "leaf": "M4a",
@@ -4218,9 +4416,9 @@
    "name": "沸石"
   },
   {
-   "questions": 12,
+   "questions": 13,
    "abilities": {
-    "perception": 4,
+    "perception": 5,
     "inference": 8,
     "design": 0
    },
@@ -4236,7 +4434,8 @@
     "MNP049",
     "MNI109",
     "MNP061",
-    "MNI121"
+    "MNI121",
+    "MNP080"
    ],
    "enumerated_estimate": 46,
    "leaf": "M5a",
@@ -4495,10 +4694,10 @@
    "name": "转移酶与激酶"
   },
   {
-   "questions": 34,
+   "questions": 39,
    "abilities": {
     "perception": 14,
-    "inference": 10,
+    "inference": 15,
     "design": 10
    },
    "ids": [
@@ -4535,7 +4734,12 @@
     "BND063",
     "BND066",
     "BND069",
-    "BND074"
+    "BND074",
+    "BNI094",
+    "BNI095",
+    "BNI101",
+    "BNI102",
+    "BNI105"
    ],
    "enumerated_estimate": 2192,
    "leaf": "B2a",
@@ -4558,10 +4762,10 @@
    "name": "信号与调控蛋白"
   },
   {
-   "questions": 5,
+   "questions": 8,
    "abilities": {
     "perception": 1,
-    "inference": 2,
+    "inference": 5,
     "design": 2
    },
    "ids": [
@@ -4569,7 +4773,10 @@
     "BNI049",
     "BNI050",
     "BND016",
-    "BND017"
+    "BND017",
+    "BNI096",
+    "BNI100",
+    "BNI108"
    ],
    "enumerated_estimate": 4893,
    "leaf": "B3a",
@@ -4578,10 +4785,10 @@
    "name": "氧结合蛋白"
   },
   {
-   "questions": 5,
+   "questions": 9,
    "abilities": {
     "perception": 1,
-    "inference": 1,
+    "inference": 5,
     "design": 3
    },
    "ids": [
@@ -4589,7 +4796,11 @@
     "BNI052",
     "BND018",
     "BND019",
-    "BND024"
+    "BND024",
+    "BNI090",
+    "BNI091",
+    "BNI092",
+    "BNI093"
    ],
    "enumerated_estimate": 10364,
    "leaf": "B3b",
@@ -4704,10 +4915,10 @@
    "name": "成孔毒素"
   },
   {
-   "questions": 30,
+   "questions": 33,
    "abilities": {
-    "perception": 13,
-    "inference": 3,
+    "perception": 14,
+    "inference": 5,
     "design": 14
    },
    "ids": [
@@ -4740,7 +4951,10 @@
     "BND073",
     "BND075",
     "BND076",
-    "BND077"
+    "BND077",
+    "BNP131",
+    "BNI109",
+    "BNI110"
    ],
    "enumerated_estimate": 1852,
    "leaf": "B5b",
@@ -4882,15 +5096,32 @@
    "name": "病毒膜融合与刺突蛋白"
   },
   {
-   "questions": 2,
+   "questions": 19,
    "abilities": {
-    "perception": 0,
-    "inference": 2,
-    "design": 0
+    "perception": 2,
+    "inference": 6,
+    "design": 11
    },
    "ids": [
     "BNI014",
-    "BNI043"
+    "BNI043",
+    "BNI088",
+    "BNI089",
+    "CND027",
+    "CND030",
+    "CND031",
+    "CND032",
+    "CND034",
+    "CND035",
+    "CND036",
+    "CND037",
+    "CND039",
+    "CND041",
+    "CND042",
+    "BNP107",
+    "BNP108",
+    "BNI103",
+    "BNI104"
    ],
    "enumerated_estimate": 131,
    "leaf": "B7a",
@@ -5012,10 +5243,52 @@
    "name": "能量转换"
   },
   {
-   "questions": 5,
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B8d",
+   "l1": "B8",
+   "domain": "biology",
+   "name": "蛋白纳米区室与封装"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B8e",
+   "l1": "B8",
+   "domain": "biology",
+   "name": "细胞运动与鞭毛装置"
+  },
+  {
+   "questions": 0,
+   "abilities": {
+    "perception": 0,
+    "inference": 0,
+    "design": 0
+   },
+   "ids": [],
+   "enumerated_estimate": 0,
+   "leaf": "B8f",
+   "l1": "B8",
+   "domain": "biology",
+   "name": "核酸复制与修复机器"
+  },
+  {
+   "questions": 7,
    "abilities": {
     "perception": 1,
-    "inference": 2,
+    "inference": 4,
     "design": 2
    },
    "ids": [
@@ -5023,7 +5296,9 @@
     "BNI053",
     "BNI054",
     "BND020",
-    "BND021"
+    "BND021",
+    "BNI098",
+    "BNI099"
    ],
    "enumerated_estimate": 17834,
    "leaf": "B9a",
@@ -5032,10 +5307,10 @@
    "name": "抗体与抗原"
   },
   {
-   "questions": 5,
+   "questions": 8,
    "abilities": {
     "perception": 1,
-    "inference": 2,
+    "inference": 5,
     "design": 2
    },
    "ids": [
@@ -5043,7 +5318,10 @@
     "BNI055",
     "BNI056",
     "BND022",
-    "BND023"
+    "BND023",
+    "BNI097",
+    "BNI106",
+    "BNI107"
    ],
    "enumerated_estimate": 32766,
    "leaf": "B9b",
@@ -5745,7 +6023,8 @@
      "name": "转运与储存蛋白",
      "scales": [
       "0.1-1",
-      "1-10"
+      "1-10",
+      "10-100"
      ],
      "data_sources": "PDB",
      "selection_criterion": "按配体类型",
@@ -5880,7 +6159,7 @@
       "10-100"
      ],
      "data_sources": "PDB、EMDB",
-     "selection_criterion": "按功能（折叠 / 降解 / 翻译 / 能量转换）",
+     "selection_criterion": "按功能与装置类型（折叠/降解、翻译/转录、能量转换、纳米区室/封装、细胞运动、核酸复制/修复）",
      "leaves": [
       {
        "id": "B8a",
@@ -5896,6 +6175,21 @@
        "id": "B8c",
        "name": "能量转换",
        "examples": "ATP 合酶"
+      },
+      {
+       "id": "B8d",
+       "name": "蛋白纳米区室与封装",
+       "examples": "encapsulin：3DKT、8IKA、9SQR"
+      },
+      {
+       "id": "B8e",
+       "name": "细胞运动与鞭毛装置",
+       "examples": "鞭毛丝、钩与初始装配复合物：10PL、9U7Y、9MCG"
+      },
+      {
+       "id": "B8f",
+       "name": "核酸复制与修复机器",
+       "examples": "DNA replication helicase and RecG branch migration/repair complexes：7APD、9WM1"
       }
      ]
     },
@@ -5904,7 +6198,8 @@
      "name": "免疫与识别",
      "scales": [
       "0.1-1",
-      "1-10"
+      "1-10",
+      "10-100"
      ],
      "data_sources": "PDB、SAbDab（许可待查）",
      "selection_criterion": "按复合物类型",
@@ -9407,6 +9702,474 @@
   ],
   "MNI130": [
    "9008834 · 晶体衍射消光判别（四选一）",
+   "inference"
+  ],
+  "CNI038": [
+   "SAMPL9-bCD-PMZ · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "QNI058": [
+   "QM7X-7040-I1-C1-OPT · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI039": [
+   "SAMPL9-bCD-CPZ · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI040": [
+   "SAMPL9-bCD-TDZ · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI041": [
+   "SAMPL9-bCD-TDZ · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI042": [
+   "SAMPL9-bCD-PMT · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "QNI059": [
+   "QM7X-7035-I1-C1-OPT · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI043": [
+   "SAMPL9-bCD-TDZ · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "QNI060": [
+   "QM7X-7040-I1-C1-OPT · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI044": [
+   "SAMPL9-bCD-PMZ · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI045": [
+   "SAMPL9-bCD-PMT · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "QNI061": [
+   "QM7X-7001-I1-C1-OPT · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI046": [
+   "SAMPL9-bCD-CPZ · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI047": [
+   "SAMPL9-bCD-PMT · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "QNI062": [
+   "QM7X-7035-I1-C1-OPT · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNP061": [
+   "SAMPL9-bCD-CPZ · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "CNP062": [
+   "SAMPL9-bCD-PMZ · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "CNP063": [
+   "SAMPL9-bCD-PMT · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP141": [
+   "QM7X-7040-I1-C1-OPT · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP142": [
+   "QM7X-7035-I1-C1-OPT · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP143": [
+   "QM7X-7035-I1-C1-OPT · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "BNI088": [
+   "1HJP · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI089": [
+   "1HJP · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "CND027": [
+   "4F3U · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND028": [
+   "1JUC · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND029": [
+   "3T8P · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND030": [
+   "477D · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND031": [
+   "355D · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND032": [
+   "4GLG · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND033": [
+   "1JUC · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND034": [
+   "4F3U · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND035": [
+   "4GLG · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND036": [
+   "355D · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND037": [
+   "4GLH · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND038": [
+   "3T8P · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND039": [
+   "4GLH · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND040": [
+   "1JUC · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND041": [
+   "355D · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "CND042": [
+   "4GLG · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "design"
+  ],
+  "MNP070": [
+   "1000026 · 配位壳层（四选一）",
+   "perception"
+  ],
+  "MNP071": [
+   "1000026 · 配位壳层（四选一）",
+   "perception"
+  ],
+  "MNP072": [
+   "9008564 · 配位壳层（四选一）",
+   "perception"
+  ],
+  "MNP073": [
+   "1000026 · 配位壳层（四选一）",
+   "perception"
+  ],
+  "MNP074": [
+   "1000026 · 配位壳层（四选一）",
+   "perception"
+  ],
+  "CNP064": [
+   "SAMPL9-bCD-CPZ · 命名化学键角（四选一）",
+   "perception"
+  ],
+  "QNP144": [
+   "QM7X-7040-I1-C1-OPT · 命名化学键角（四选一）",
+   "perception"
+  ],
+  "CNP065": [
+   "SAMPL9-bCD-PMZ · 命名化学键角（四选一）",
+   "perception"
+  ],
+  "BNP107": [
+   "1HJP · 蛋白主链二面角 φ/ψ（四选一）",
+   "perception"
+  ],
+  "BNP108": [
+   "1HJP · 蛋白主链二面角 φ/ψ（四选一）",
+   "perception"
+  ],
+  "MND067": [
+   "9008564 · 衍射设计：选晶体、选谱线或定波长（四选一）",
+   "design"
+  ],
+  "MND068": [
+   "9008564 · 衍射设计：选晶体、选谱线或定波长（四选一）",
+   "design"
+  ],
+  "MND069": [
+   "9008564 · 衍射设计：选晶体、选谱线或定波长（四选一）",
+   "design"
+  ],
+  "MNI131": [
+   "1000026 · first_diffraction_peak（四选一）",
+   "inference"
+  ],
+  "QNI063": [
+   "QM7X-7095 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "QNI064": [
+   "QM7X-7095 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI048": [
+   "SAMPL9-WP6-G13 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "MNP075": [
+   "1529037 · 配位壳层（四选一）",
+   "perception"
+  ],
+  "QNI065": [
+   "QM7X-7029 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI049": [
+   "SAMPL9-WP6-G2 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "QNI066": [
+   "QM7X-7206 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI050": [
+   "SAMPL9-WP6-G9 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI051": [
+   "SAMPL9-WP6-G9 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "QNI067": [
+   "QM7X-7165 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "BNI090": [
+   "1FHA · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI091": [
+   "1FHA · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI092": [
+   "1FHA · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI093": [
+   "1FHA · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI094": [
+   "1CRN · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI095": [
+   "1CRN · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI096": [
+   "1A6M · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI097": [
+   "1HHK · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI098": [
+   "12E8 · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI099": [
+   "12E8 · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI100": [
+   "1A6M · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI101": [
+   "1UBQ · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI102": [
+   "1UBQ · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "QNP148": [
+   "QM7X-7043 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP149": [
+   "QM7X-7043 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP150": [
+   "QM7X-7043 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "MNP080": [
+   "2104364 · 配位壳层（四选一）",
+   "perception"
+  ],
+  "CNP067": [
+   "SAMPL9-WP6-G13 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "CNP068": [
+   "SAMPL9-WP6-G13 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP151": [
+   "QM7X-7095 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP152": [
+   "QM7X-7206 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "BNP131": [
+   "3NDS · 蛋白主链二面角 φ/ψ（四选一）",
+   "perception"
+  ],
+  "QNI068": [
+   "QM7X-7110 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "QNI069": [
+   "QM7X-7110 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "BNI103": [
+   "1HJP · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI104": [
+   "1HJP · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "QNI070": [
+   "QM7X-7044 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "QNI071": [
+   "QM7X-7111 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "QNI072": [
+   "QM7X-7089 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "BNI105": [
+   "1CRN · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "CNI052": [
+   "SAMPL9-WP6-G6 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI053": [
+   "SAMPL9-WP6-G7 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "BNI106": [
+   "1HHK · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI107": [
+   "1HHK · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "MNP081": [
+   "1538801 · 配位壳层（四选一）",
+   "perception"
+  ],
+  "QNP153": [
+   "QM7X-7082 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP154": [
+   "QM7X-7032 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP155": [
+   "QM7X-7165 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "BNI108": [
+   "1A6M · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "CNI054": [
+   "SAMPL9-WP6-G8 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNP069": [
+   "SAMPL9-WP6-G2 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP156": [
+   "QM7X-7029 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP157": [
+   "QM7X-7029 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "CNP070": [
+   "SAMPL9-WP6-G9 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "BNI109": [
+   "3NDS · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "BNI110": [
+   "1VB0 · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+   "inference"
+  ],
+  "CNI055": [
+   "SAMPL9-WP6-G5 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI056": [
+   "SAMPL9-WP6-G5 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNI057": [
+   "SAMPL9-WP6-G1 · 转动跃迁频率（四选一）",
+   "inference"
+  ],
+  "CNP071": [
+   "SAMPL9-bCD-TDZ · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "CNP072": [
+   "SAMPL9-bCD-TDZ · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP158": [
+   "QM7X-7030 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "QNP159": [
+   "QM7X-7030 · 命名局部距离（四选一）",
+   "perception"
+  ],
+  "CNI058": [
+   "SAMPL9-WP6-G12 · 转动跃迁频率（四选一）",
    "inference"
   ]
  }

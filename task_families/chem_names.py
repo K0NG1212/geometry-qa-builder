@@ -18,6 +18,7 @@ from . import kit
 
 VALENCE = {'C': (4,), 'N': (3, 4), 'O': (2, 1), 'S': (2, 4, 6), 'Si': (4,), 'F': (1,), 'Cl': (1,), 'Br': (1,), 'I': (1,),
            'H': (1,), 'P': (3, 5)}
+HALOGEN = {'F': 'fluorine', 'Cl': 'chlorine', 'Br': 'bromine', 'I': 'iodine'}
 ORDER_WORD = {1: 'single', 2: 'double', 3: 'triple', 'aromatic': 'aromatic', 'delocalized': 'delocalized'}
 SYMBOL = {1: '–', 2: '=', 3: '≡', 'aromatic': '–', 'delocalized': '–'}
 MAX_SOLUTIONS = 20000
@@ -183,7 +184,11 @@ class Molecule:
             if 'aromatic' in orders:
                 return 'aromatic carbon' + where
             if 'delocalized' in orders:
-                return None
+                # A five-membered heteroaromatic ring (thiazole, imidazole, ...) has two Kekule
+                # assignments, so step 1 leaves its bonds 'delocalized' rather than 'aromatic', which it
+                # reserves for six-membered rings. The ring position is not in doubt even though the bond
+                # order is, so name the role and let the bond words keep saying 'delocalized'.
+                return 'delocalized ring carbon' + where if self.ring.get(i) == 5 else None
             if 3 in orders:
                 return 'sp carbon (triple bond)'
             if 2 in orders:
@@ -231,9 +236,14 @@ class Molecule:
                 if 'O' in rest:
                     return 'sulfonic acid sulfur (SO3H)'
                 return 'sulfone sulfur (SO2)' + where
-            if len(heavy) == 2 and orders == {1}:
+            if len(heavy) == 2 and orders <= {1, 'delocalized'}:
                 return 'ring sulfur' + where if self.ring.get(i) else 'thioether sulfur (C–S–C)'
             return None
+        if e in HALOGEN:
+            if len(heavy) != 1 or h or self.elements[heavy[0]] != 'C':
+                return None
+            ring = 'aryl' if 'aromatic' in {self.bond_order(heavy[0], k) for k in self.heavy(heavy[0])} else 'alkyl'
+            return '%s %s (C–%s)' % (ring, HALOGEN[e], e)
         if e == 'Si':
             return 'silicon of the trimethylsilyl group' if sum(self.hcount(j) == 3 for j in heavy) == 3 else None
         return None

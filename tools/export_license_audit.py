@@ -70,7 +70,8 @@ SOURCES = {
     'cod-materials-cell': dict(name='Crystallography Open Database', kind='database', declared='public-domain',
                                where=['docs/assets/materials/sources-cod-2026-10-03.json',
                                       'docs/assets/materials/sources-noncubic.json'],
-                               also='COD 文件头要求引用原始文献；52 道中只有 9 道在许可字段里记了原始文献'),
+                               also='COD 文件头要求引用原始文献；%(questions)d 道中只有 %(cited)d 道'
+                                    '在许可字段里记了原始文献'),
     'cod-mof': dict(name='Crystallography Open Database（MOF）', kind='database', declared='public-domain',
                     where=['docs/assets/materials/sources-cod-2026-10-03.json']),
     'qm7x': dict(name='QM7-X（Zenodo 4288677）', kind='dataset', declared='CC-BY-4.0',
@@ -87,7 +88,7 @@ SOURCES = {
                                          where=['docs/assets/families/reaction/sources.json']),
     'hbond2021': dict(name='Altun, Bleda & Trindle, Molecules 26, 2623 (2021)', kind='paper', declared='CC-BY-4.0',
                       where=['docs/assets/families/evidence/sources.json'],
-                      fulltext='../paper-batch-v04-001/materials/hbond-article.xml'),
+                      fulltext='inputs/papers/altun2021/altun2021-PMC8124485.xml'),
     'paper-cao-magic-angle': dict(name='Cao et al., Nature 556, 43 (2018) / arXiv:1803.02342', kind='paper',
                                   declared='arxiv-nonexclusive',
                                   where=['docs/assets/families/evidence/sources.json', 'docs/assets/families/moire/sources.json'],
@@ -399,6 +400,13 @@ def build():
             verdict, note = 'clear', '只用数值与事实，不依赖该来源的许可'
         else:
             verdict, note = 'clear', ''
+        # A note that quotes a count has the count filled in from the bank. COD's read '52 道' through two
+        # expansions, because prose is not recounted; the figure beside it ('9 道') happened to stay true,
+        # which is exactly how a stale number survives a reading.
+        also = source.get('also')
+        if also and '%(' in also:
+            cited = sum(1 for q in mine if '原始文献' in (q.get('attribution') or ''))
+            also = also % dict(questions=len(mine), cited=cited)
         rows.append(dict(
             source=key, name=source['name'], kind=source['kind'], questions=len(mine),
             families=sorted(families), publishes=kinds,
@@ -414,7 +422,7 @@ def build():
                          ([] if not terms['attribution'] else ['署名'])
                          + (['相同方式共享'] if terms['share_alike'] else [])
                          + ([] if terms['republish'] else ['不得转载原文内容，只能用事实与数值'])),
-            also=source.get('also'), verdict=verdict, verdict_note=note,
+            also=also, verdict=verdict, verdict_note=note,
             cards_to_reword=[r['card'] for r in flagged],
             cards_unchecked=[r['card'] for r in unchecked]))
         if stated and declared and stated != declared:

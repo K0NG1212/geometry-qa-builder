@@ -369,6 +369,15 @@ class WholeBankTests(unittest.TestCase):
         self.assertIn('%d/%d' % (cartesian, len(active)),
                       exam.SETTINGS['renders']['unavailable_because'])
 
+    def test_the_numeric_share_quoted_by_the_exam_is_the_count_in_the_bank(self):
+        """evaluation/exam.py's own docstring tells a reader how much of the bank the numeric form covers.
+        It sat at `464 of the 871` for a whole expansion because prose is not recounted. Same lesson as the
+        renderable count above: a figure that a reader will take as fact gets counted here."""
+        from evaluation import exam
+        active = {q.instance for q in audit.bank()}
+        numeric = len(exam.load(form='numeric'))
+        self.assertIn('%d of the %d' % (numeric, len(active)), exam.__doc__)
+
     def test_a_shortcut_baseline_answers_with_a_label_on_every_question(self):
         from evaluation import exam, providers
         answerer = providers.get('shortcut-2nd-smallest')

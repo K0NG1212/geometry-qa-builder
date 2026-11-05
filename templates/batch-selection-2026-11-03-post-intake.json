@@ -1,0 +1,63 @@
+{
+ "kind": "batch_selection",
+ "date": "2026-11-03",
+ "rule": "templates/batch-selection-rule.json",
+ "rule_version": "0.1.0",
+ "caps": {
+  "max_per_family_source": 4,
+  "max_per_source": 15,
+  "max_per_family": 60
+ },
+ "note": "tools/select_batch.py 选出的批次：按稀缺优先（没题的结构先上）、确定性顺序；选中只是进清单，是否成题由 family_engine 判定，入库另走 admit。",
+ "candidates": 12745,
+ "chosen": 38,
+ "blocked": {
+  "族上限 60": 7576,
+  "族×来源上限 4": 5131
+ },
+ "by_family": {
+  "assembly_extent": 13,
+  "assembly_rg": 13,
+  "guinier_intensity": 12
+ },
+ "ids": [
+  "EN-8WU4-RG",
+  "EN-3DKT-RG",
+  "EN-9SQR-RG",
+  "EN-9UOL-RG",
+  "EN-7DQO-RG",
+  "EN-5GOU-RG",
+  "EN-8TL7-RG",
+  "EN-8IKA-RG",
+  "EN-10PL-RG",
+  "EN-9U7Y-RG-ALL",
+  "EN-1P3H-RG",
+  "EN-9MCG-RG-ALL",
+  "EN-5GOU-EXT",
+  "EN-9UOL-EXT",
+  "EN-8TL7-EXT",
+  "EN-9U7Y-EXT-ALL",
+  "EN-8WU4-EXT",
+  "EN-10PL-EXT",
+  "EN-8IKA-EXT",
+  "EN-3DKT-EXT",
+  "EN-9MCG-EXT-ALL",
+  "EN-7DQO-EXT",
+  "EN-1P3H-EXT",
+  "EN-9SQR-EXT",
+  "EN-7DQO-GUIN-09",
+  "EN-7DQO-GUIN-05",
+  "EN-1P3H-GUIN-05",
+  "EN-3DKT-GUIN-12",
+  "EN-8TL7-GUIN-12",
+  "EN-10PL-GUIN-05",
+  "EN-8WU4-GUIN-09",
+  "EN-5GOU-GUIN-12",
+  "EN-1P3H-GUIN-12",
+  "EN-10PL-GUIN-09",
+  "EN-8TL7-GUIN-09",
+  "EN-5GOU-GUIN-05",
+  "EN-1BNA-RG",
+  "EN-1BNA-EXT"
+ ]
+}

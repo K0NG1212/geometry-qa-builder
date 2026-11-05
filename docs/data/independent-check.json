@@ -2,17 +2,17 @@
  "kind": "independent_check",
  "checker_version": "0.1.0",
  "origin": {
-  "source": "family-pilot-v45"
+  "source": "family-pilot-v55"
  },
- "checked": 871,
- "passed": 871,
+ "checked": 988,
+ "passed": 988,
  "failed": [],
  "by_family": {
   "named_bond_angle": {
-   "pass": 57
+   "pass": 60
   },
   "backbone_torsion": {
-   "pass": 57
+   "pass": 60
   },
   "force_path_derivative": {
    "pass": 5
@@ -36,13 +36,13 @@
    "pass": 3
   },
   "named_bond_distance": {
-   "pass": 29
+   "pass": 53
   },
   "coordination_shell": {
-   "pass": 52
+   "pass": 60
   },
   "first_diffraction_peak": {
-   "pass": 59
+   "pass": 60
   },
   "fret_efficiency": {
    "pass": 8
@@ -63,7 +63,7 @@
    "pass": 8
   },
   "scattering_q_design": {
-   "pass": 44
+   "pass": 60
   },
   "superlattice_shell": {
    "pass": 1
@@ -96,7 +96,7 @@
    "pass": 3
   },
   "secondary_structure": {
-   "pass": 32
+   "pass": 55
   },
   "binding_evidence_choice": {
    "pass": 3
@@ -111,7 +111,7 @@
    "pass": 2
   },
   "diffraction_design": {
-   "pass": 57
+   "pass": 60
   },
   "disulfide_design": {
    "pass": 60
@@ -138,7 +138,7 @@
    "pass": 3
   },
   "rotational_line": {
-   "pass": 22
+   "pass": 58
   },
   "isotopologue_design": {
    "pass": 60
@@ -17000,6 +17000,2285 @@
    },
    "weakest_nonzero": 0.166667,
    "method": "separate cos/sin sums over the student table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-PMZ-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "542.9706416035",
+   "rounded": "543.0",
+   "label": "B",
+   "nearest_distractor_gap": "70.0293583965",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 396.0259,
+     "B": 216.9591,
+     "C": 146.9448
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7040-I1-C1-OPT-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "4354.0941909356",
+   "rounded": "4354.1",
+   "label": "C",
+   "nearest_distractor_gap": "115.2941909356",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 2789.1335,
+     "B": 1908.8653,
+     "C": 1564.9607
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-CPZ-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "373.3325291930",
+   "rounded": "373.3",
+   "label": "D",
+   "nearest_distractor_gap": "28.4325291930",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 253.3211,
+     "B": 211.9957,
+     "C": 120.0115
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-TDZ-ROT-101",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "234.3838940684",
+   "rounded": "234.4",
+   "label": "A",
+   "nearest_distractor_gap": "54.5161059316",
+   "parameters": {
+    "transition": "1_01",
+    "constants_MHz": {
+     "A": 201.713,
+     "B": 144.4471,
+     "C": 89.9368
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-TDZ-ROT-110",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "346.1600855210",
+   "rounded": "346.2",
+   "label": "B",
+   "nearest_distractor_gap": "39.9399144790",
+   "parameters": {
+    "transition": "1_10",
+    "constants_MHz": {
+     "A": 201.713,
+     "B": 144.4471,
+     "C": 89.9368
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-PMT-ROT-110",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "675.6738265430",
+   "rounded": "675.7",
+   "label": "C",
+   "nearest_distractor_gap": "35.7738265430",
+   "parameters": {
+    "transition": "1_10",
+    "constants_MHz": {
+     "A": 348.908,
+     "B": 326.7658,
+     "C": 208.1321
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7035-I1-C1-OPT-ROT-110",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "4823.1592360414",
+   "rounded": "4823.2",
+   "label": "D",
+   "nearest_distractor_gap": "252.1592360414",
+   "parameters": {
+    "transition": "1_10",
+    "constants_MHz": {
+     "A": 2910.1334,
+     "B": 1913.0258,
+     "C": 1594.9797
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-TDZ-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "291.6497607766",
+   "rounded": "291.6",
+   "label": "A",
+   "nearest_distractor_gap": "30.6502392234",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 201.713,
+     "B": 144.4471,
+     "C": 89.9368
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7040-I1-C1-OPT-ROT-101",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "3473.8259407290",
+   "rounded": "3473.8",
+   "label": "B",
+   "nearest_distractor_gap": "343.8740592710",
+   "parameters": {
+    "transition": "1_01",
+    "constants_MHz": {
+     "A": 2789.1335,
+     "B": 1908.8653,
+     "C": 1564.9607
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-PMZ-ROT-110",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "612.9850173471",
+   "rounded": "613.0",
+   "label": "C",
+   "nearest_distractor_gap": "249.0850173471",
+   "parameters": {
+    "transition": "1_10",
+    "constants_MHz": {
+     "A": 396.0259,
+     "B": 216.9591,
+     "C": 146.9448
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-PMT-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "557.0401555846",
+   "rounded": "557.0",
+   "label": "D",
+   "nearest_distractor_gap": "22.1401555846",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 348.908,
+     "B": 326.7658,
+     "C": 208.1321
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7001-I1-C1-OPT-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "5888.1216005521",
+   "rounded": "5888.1",
+   "label": "A",
+   "nearest_distractor_gap": "400.5783994479",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 4559.7402,
+     "B": 1728.9685,
+     "C": 1328.3814
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-CPZ-ROT-101",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "332.0071668871",
+   "rounded": "332.0",
+   "label": "B",
+   "nearest_distractor_gap": "9.9928331129",
+   "parameters": {
+    "transition": "1_01",
+    "constants_MHz": {
+     "A": 253.3211,
+     "B": 211.9957,
+     "C": 120.0115
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-PMT-ROT-101",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "534.8979394481",
+   "rounded": "534.9",
+   "label": "C",
+   "nearest_distractor_gap": "11.2979394481",
+   "parameters": {
+    "transition": "1_01",
+    "constants_MHz": {
+     "A": 348.908,
+     "B": 326.7658,
+     "C": 208.1321
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7035-I1-C1-OPT-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "4505.1130665552",
+   "rounded": "4505.1",
+   "label": "D",
+   "nearest_distractor_gap": "225.6130665552",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 2910.1334,
+     "B": 1913.0258,
+     "C": 1594.9797
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-CPZ-BOND-11-20",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.7817659779",
+   "rounded": "1.782",
+   "label": "A",
+   "nearest_distractor_gap": "0.0282340221",
+   "parameters": {
+    "atoms": [
+     [
+      "C11",
+      "11"
+     ],
+     [
+      "S20",
+      "20"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-PMZ-BOND-8-12",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.4066815560",
+   "rounded": "1.407",
+   "label": "B",
+   "nearest_distractor_gap": "0.3186815560",
+   "parameters": {
+    "atoms": [
+     [
+      "C8",
+      "8"
+     ],
+     [
+      "C12",
+      "12"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-PMT-BOND-16-17",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.5277833616",
+   "rounded": "1.528",
+   "label": "C",
+   "nearest_distractor_gap": "0.0587833616",
+   "parameters": {
+    "atoms": [
+     [
+      "C16",
+      "16"
+     ],
+     [
+      "C17",
+      "17"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7040-I1-C1-OPT-BOND-2-3",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.8523157992",
+   "rounded": "1.852",
+   "label": "D",
+   "nearest_distractor_gap": "0.3253157992",
+   "parameters": {
+    "atoms": [
+     [
+      "C2",
+      "2"
+     ],
+     [
+      "S3",
+      "3"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7035-I1-C1-OPT-BOND-3-6",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.8483842042",
+   "rounded": "1.848",
+   "label": "A",
+   "nearest_distractor_gap": "0.0276157958",
+   "parameters": {
+    "atoms": [
+     [
+      "S3",
+      "3"
+     ],
+     [
+      "C6",
+      "6"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7035-I1-C1-OPT-BOND-2-3",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.8761191710",
+   "rounded": "1.876",
+   "label": "B",
+   "nearest_distractor_gap": "0.3451191710",
+   "parameters": {
+    "atoms": [
+     [
+      "C2",
+      "2"
+     ],
+     [
+      "S3",
+      "3"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HJP-SS-28",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "parameters": {
+    "phi": -111.8851378110444,
+    "psi": 128.90329640618998,
+    "distances": {
+     "right-handed α-helix": 184.26705630443348,
+     "β-strand": 8.188635241504977,
+     "polyproline II": 40.24446866249712,
+     "left-handed α-helix": 187.69746864477332
+    },
+    "record": "SHEET"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HJP-SS-167",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "parameters": {
+    "phi": -65.71334129943416,
+    "psi": -33.50960149279054,
+    "distances": {
+     "right-handed α-helix": 16.059675229709487,
+     "β-strand": 172.28589928721064,
+     "polyproline II": 178.75099959143074,
+     "left-handed α-helix": 146.76634513879316
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-4F3U-QDES-30",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "1.3095484198",
+   "rounded": "1.310",
+   "label": "D",
+   "nearest_distractor_gap": "0.3095484198",
+   "parameters": {
+    "target": 0.3,
+    "rg_nm": 1.4264787225367224,
+    "points": 20
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1JUC-QDES-30",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "1.3422176395",
+   "rounded": "1.342",
+   "label": "A",
+   "nearest_distractor_gap": "0.3267823605",
+   "parameters": {
+    "target": 0.3,
+    "rg_nm": 1.4052216764734538,
+    "points": 18
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-3T8P-QDES-30",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "1.3751332410",
+   "rounded": "1.375",
+   "label": "B",
+   "nearest_distractor_gap": "0.5771332410",
+   "parameters": {
+    "target": 0.3,
+    "rg_nm": 1.3752013219395178,
+    "points": 18
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-477D-QDES-70",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "0.7277854481",
+   "rounded": "0.728",
+   "label": "C",
+   "nearest_distractor_gap": "0.1692145519",
+   "parameters": {
+    "target": 0.7,
+    "rg_nm": 1.4143794720989982,
+    "points": 22
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-355D-QDES-50",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "1.0154137721",
+   "rounded": "1.015",
+   "label": "D",
+   "nearest_distractor_gap": "0.0584137721",
+   "parameters": {
+    "target": 0.5,
+    "rg_nm": 1.404066507962138,
+    "points": 22
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-4GLG-QDES-70",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "0.7289558002",
+   "rounded": "0.729",
+   "label": "A",
+   "nearest_distractor_gap": "0.2050441998",
+   "parameters": {
+    "target": 0.7,
+    "rg_nm": 1.4112076630142,
+    "points": 20
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1JUC-QDES-70",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "0.7336786836",
+   "rounded": "0.734",
+   "label": "B",
+   "nearest_distractor_gap": "0.3013213164",
+   "parameters": {
+    "target": 0.7,
+    "rg_nm": 1.4052216764734538,
+    "points": 18
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-4F3U-QDES-70",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "0.7210524832",
+   "rounded": "0.721",
+   "label": "C",
+   "nearest_distractor_gap": "0.2229475168",
+   "parameters": {
+    "target": 0.7,
+    "rg_nm": 1.4264787225367224,
+    "points": 20
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-4GLG-QDES-50",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "1.0112079748",
+   "rounded": "1.011",
+   "label": "D",
+   "nearest_distractor_gap": "0.0782079748",
+   "parameters": {
+    "target": 0.5,
+    "rg_nm": 1.4112076630142,
+    "points": 20
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-355D-QDES-30",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "1.3283086115",
+   "rounded": "1.328",
+   "label": "A",
+   "nearest_distractor_gap": "0.2446913885",
+   "parameters": {
+    "target": 0.3,
+    "rg_nm": 1.404066507962138,
+    "points": 22
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-4GLH-QDES-50",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "1.0064825159",
+   "rounded": "1.006",
+   "label": "B",
+   "nearest_distractor_gap": "0.2775174841",
+   "parameters": {
+    "target": 0.5,
+    "rg_nm": 1.4167450632964986,
+    "points": 20
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-3T8P-QDES-70",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "0.7500519354",
+   "rounded": "0.750",
+   "label": "C",
+   "nearest_distractor_gap": "0.1730519354",
+   "parameters": {
+    "target": 0.7,
+    "rg_nm": 1.3752013219395178,
+    "points": 18
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-4GLH-QDES-70",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "0.7257811031",
+   "rounded": "0.726",
+   "label": "D",
+   "nearest_distractor_gap": "0.1767811031",
+   "parameters": {
+    "target": 0.7,
+    "rg_nm": 1.4167450632964986,
+    "points": 20
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1JUC-QDES-50",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "1.0203036988",
+   "rounded": "1.020",
+   "label": "A",
+   "nearest_distractor_gap": "0.2706963012",
+   "parameters": {
+    "target": 0.5,
+    "rg_nm": 1.4052216764734538,
+    "points": 18
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-355D-QDES-70",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "0.7323414659",
+   "rounded": "0.732",
+   "label": "B",
+   "nearest_distractor_gap": "0.2406585341",
+   "parameters": {
+    "target": 0.7,
+    "rg_nm": 1.404066507962138,
+    "points": 22
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-4GLG-QDES-30",
+   "family": "scattering_q_design",
+   "checker_version": "0.1.0",
+   "recomputed": "1.3239444499",
+   "rounded": "1.324",
+   "label": "C",
+   "nearest_distractor_gap": "0.1179444499",
+   "parameters": {
+    "target": 0.3,
+    "rg_nm": 1.4112076630142,
+    "points": 20
+   },
+   "method": "orientation-average quadrature; march + Illinois regula falsi",
+   "status": "pass"
+  },
+  {
+   "id": "EN-COD1000026-COORD-B-Mg",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "recomputed": "6 at 2.5051 Å",
+   "parameters": {
+    "partner": "Mg",
+    "cell": {
+     "a": 3.085,
+     "b": 3.085,
+     "c": 3.523,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 3
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "EN-COD1000026-COORD-B-B",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "recomputed": "3 at 1.7811 Å",
+   "parameters": {
+    "partner": "B",
+    "cell": {
+     "a": 3.085,
+     "b": 3.085,
+     "c": 3.523,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 3
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "EN-COD9008564-COORD-C-C",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "recomputed": "4 at 1.5445 Å",
+   "parameters": {
+    "partner": "C",
+    "mu4_node": false
+   },
+   "method": "own periodic neighbour search over 27 cells",
+   "status": "pass"
+  },
+  {
+   "id": "EN-COD1000026-COORD-Mg-Mg",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "recomputed": "6 at 3.0850 Å",
+   "parameters": {
+    "partner": "Mg",
+    "cell": {
+     "a": 3.085,
+     "b": 3.085,
+     "c": 3.523,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 3
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "EN-COD1000026-COORD-Mg-B",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "recomputed": "12 at 2.5051 Å",
+   "parameters": {
+    "partner": "B",
+    "cell": {
+     "a": 3.085,
+     "b": 3.085,
+     "c": 3.523,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 3
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-CPZ-ANG-5-6-12",
+   "family": "named_bond_angle",
+   "checker_version": "0.1.0",
+   "recomputed": "119.5277420055",
+   "rounded": "119.53",
+   "label": "C",
+   "nearest_distractor_gap": "1.5722579945",
+   "parameters": {
+    "atoms": [
+     [
+      "C5",
+      "5"
+     ],
+     [
+      "C6",
+      "6"
+     ],
+     [
+      "C12",
+      "12"
+     ]
+    ],
+    "vertex": "C6"
+   },
+   "method": "law of cosines from three Decimal distances",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7040-I1-C1-OPT-ANG-4-3-6",
+   "family": "named_bond_angle",
+   "checker_version": "0.1.0",
+   "recomputed": "106.7284929254",
+   "rounded": "106.73",
+   "label": "B",
+   "nearest_distractor_gap": "4.2815070746",
+   "parameters": {
+    "atoms": [
+     [
+      "O4",
+      "4"
+     ],
+     [
+      "S3",
+      "3"
+     ],
+     [
+      "N6",
+      "6"
+     ]
+    ],
+    "vertex": "S3"
+   },
+   "method": "law of cosines from three Decimal distances",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-PMZ-ANG-3-1-5",
+   "family": "named_bond_angle",
+   "checker_version": "0.1.0",
+   "recomputed": "119.9722407315",
+   "rounded": "119.97",
+   "label": "C",
+   "nearest_distractor_gap": "2.0377592685",
+   "parameters": {
+    "atoms": [
+     [
+      "C3",
+      "3"
+     ],
+     [
+      "C1",
+      "1"
+     ],
+     [
+      "C5",
+      "5"
+     ]
+    ],
+    "vertex": "C1"
+   },
+   "method": "law of cosines from three Decimal distances",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HJP-TOR-56-PSI",
+   "family": "backbone_torsion",
+   "checker_version": "0.1.0",
+   "recomputed": "-26.5443813369",
+   "rounded": "-26.5",
+   "label": "B",
+   "nearest_distractor_gap": "53.0443813369",
+   "parameters": {
+    "atoms": "N(56)–CA(56)–C(56)–N(57)"
+   },
+   "method": "acos of plane normals with triple-product sign",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HJP-TOR-78-PSI",
+   "family": "backbone_torsion",
+   "checker_version": "0.1.0",
+   "recomputed": "124.8404231072",
+   "rounded": "124.8",
+   "label": "C",
+   "nearest_distractor_gap": "69.6404231072",
+   "parameters": {
+    "atoms": "N(78)–CA(78)–C(78)–N(79)"
+   },
+   "method": "acos of plane normals with triple-product sign",
+   "status": "pass"
+  },
+  {
+   "id": "EN-COD9008564-XD-CRYSTAL-Mo",
+   "family": "diffraction_design",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "parameters": {
+    "values": {
+     "COD9008564-cell.txt": 19.8338,
+     "COD1536825-cell.txt": 17.7345,
+     "COD1516287-cell.txt": 2.726,
+     "COD9008802-cell.txt": 14.142
+    }
+   },
+   "method": "own structure-factor search; Bragg law",
+   "status": "pass"
+  },
+  {
+   "id": "EN-COD9008564-XD-ANODE-Cr",
+   "family": "diffraction_design",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "parameters": {
+    "values": {
+     "A": 67.5516,
+     "B": 43.9314,
+     "C": 19.8338,
+     "D": 51.49
+    }
+   },
+   "method": "own structure-factor search; Bragg law",
+   "status": "pass"
+  },
+  {
+   "id": "EN-COD9008564-XD-ANODE-Cu",
+   "family": "diffraction_design",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "parameters": {
+    "values": {
+     "A": 19.8338,
+     "B": 43.9314,
+     "C": 51.49,
+     "D": 67.5516
+    }
+   },
+   "method": "own structure-factor search; Bragg law",
+   "status": "pass"
+  },
+  {
+   "id": "EN-COD1000026-PEAK-Co",
+   "family": "first_diffraction_peak",
+   "checker_version": "0.1.0",
+   "recomputed": "29.4166714788",
+   "rounded": "29.42",
+   "label": "B",
+   "nearest_distractor_gap": "4.2933285212",
+   "parameters": {
+    "weights": {
+     "B": 5,
+     "Mg": 12
+    },
+    "wavelength_A": 1.78897,
+    "reflection": [
+     0,
+     0,
+     -1
+    ],
+    "cell": {
+     "a": 3.085,
+     "b": 3.085,
+     "c": 3.523,
+     "alpha": 90.0,
+     "beta": 90.0,
+     "gamma": 120.0
+    },
+    "cif_atoms": 3
+   },
+   "method": "metric-tensor d-spacings, all (h k l) within ±5, own structure-factor sum; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7095-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "3554.9978139331",
+   "rounded": "3555.0",
+   "label": "A",
+   "nearest_distractor_gap": "600.9021860669",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 2544.6372,
+     "B": 1658.2621,
+     "C": 1010.3606
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7095-ROT-110",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "4202.8993413102",
+   "rounded": "4202.9",
+   "label": "B",
+   "nearest_distractor_gap": "647.8993413102",
+   "parameters": {
+    "transition": "1_10",
+    "constants_MHz": {
+     "A": 2544.6372,
+     "B": 1658.2621,
+     "C": 1010.3606
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G13-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "3117.4913439986",
+   "rounded": "3117.5",
+   "label": "C",
+   "nearest_distractor_gap": "333.9913439986",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 2834.107,
+     "B": 309.1666,
+     "C": 283.3844
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-COD1529037-COORD-Y-Al",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "recomputed": "2 at 3.0025 Å",
+   "parameters": {
+    "partner": "Al",
+    "mu4_node": false
+   },
+   "method": "own periodic neighbour search over 27 cells",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7029-ROT-110",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "5349.4620761940",
+   "rounded": "5349.5",
+   "label": "D",
+   "nearest_distractor_gap": "281.0620761940",
+   "parameters": {
+    "transition": "1_10",
+    "constants_MHz": {
+     "A": 4110.9777,
+     "B": 1238.4844,
+     "C": 957.4179
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G2-ROT-101",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "420.1419541333",
+   "rounded": "420.1",
+   "label": "A",
+   "nearest_distractor_gap": "141.4580458667",
+   "parameters": {
+    "transition": "1_01",
+    "constants_MHz": {
+     "A": 1510.495,
+     "B": 213.7782,
+     "C": 206.3637
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7206-ROT-110",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "5700.5950873425",
+   "rounded": "5700.6",
+   "label": "B",
+   "nearest_distractor_gap": "726.4049126575",
+   "parameters": {
+    "transition": "1_10",
+    "constants_MHz": {
+     "A": 4257.2584,
+     "B": 1443.3367,
+     "C": 1428.2694
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G9-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "2181.8609850176",
+   "rounded": "2181.9",
+   "label": "C",
+   "nearest_distractor_gap": "138.9390149824",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 1312.2616,
+     "B": 1008.528,
+     "C": 869.5994
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G9-ROT-110",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "2320.7896087000",
+   "rounded": "2320.8",
+   "label": "D",
+   "nearest_distractor_gap": "83.2896087000",
+   "parameters": {
+    "transition": "1_10",
+    "constants_MHz": {
+     "A": 1312.2616,
+     "B": 1008.528,
+     "C": 869.5994
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7165-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "4964.6883593838",
+   "rounded": "4964.7",
+   "label": "A",
+   "nearest_distractor_gap": "377.2116406162",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 3181.6562,
+     "B": 2160.2704,
+     "C": 1783.0321
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1FHA-SS-76",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "parameters": {
+    "phi": -89.39848033369618,
+    "psi": -6.473853151701449,
+    "distances": {
+     "right-handed α-helix": 51.88477721165193,
+     "β-strand": 139.86266692709444,
+     "polyproline II": 152.15664436541394,
+     "left-handed α-helix": 155.85880794778765
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1FHA-SS-16",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "parameters": {
+    "phi": -65.25318700515847,
+    "psi": -47.7887279216119,
+    "distances": {
+     "right-handed α-helix": 8.290789315647006,
+     "β-strand": 186.0270015591207,
+     "polyproline II": 167.4951040288317,
+     "left-handed α-helix": 154.6956517615011
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1FHA-SS-150",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "parameters": {
+    "phi": -52.10275558565008,
+    "psi": -50.815448094935725,
+    "distances": {
+     "right-handed α-helix": 6.2081113890643325,
+     "β-strand": 191.61716896061438,
+     "polyproline II": 165.77349271230676,
+     "left-handed α-helix": 146.53079253998172
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1FHA-SS-113",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "parameters": {
+    "phi": -61.150009597446534,
+    "psi": -47.663874411138075,
+    "distances": {
+     "right-handed α-helix": 4.202773952125229,
+     "β-strand": 187.15708279719811,
+     "polyproline II": 167.90831176937667,
+     "left-handed α-helix": 151.39575253752804
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1CRN-SS-35",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "parameters": {
+    "phi": -124.13055801678567,
+    "psi": 158.1273196531204,
+    "distances": {
+     "right-handed α-helix": 168.79590912540442,
+     "β-strand": 28.428992602602808,
+     "polyproline II": 50.854087862392575,
+     "left-handed α-helix": 210.5791025925252
+    },
+    "record": "SHEET"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1CRN-SS-28",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "parameters": {
+    "phi": -68.77828892856441,
+    "psi": -25.486562275483067,
+    "distances": {
+     "right-handed α-helix": 24.526640471361155,
+     "β-strand": 163.70624524841227,
+     "polyproline II": 170.60005159778993,
+     "left-handed α-helix": 145.17051930855283
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1A6M-SS-131",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "parameters": {
+    "phi": -64.94726258158273,
+    "psi": -38.894572948978514,
+    "distances": {
+     "right-handed α-helix": 11.351516648450795,
+     "β-strand": 177.64059409064987,
+     "polyproline II": 176.39211707564002,
+     "left-handed α-helix": 149.16102880185858
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HHK-SS-171",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "parameters": {
+    "phi": -68.33836226523505,
+    "psi": -38.96155663666962,
+    "distances": {
+     "right-handed α-helix": 13.898742049666803,
+     "β-strand": 176.6831413421343,
+     "polyproline II": 176.16444294775752,
+     "left-handed α-helix": 151.98386188911854
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-12E8-SS-176",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "parameters": {
+    "phi": -148.24183532790732,
+    "psi": 139.37142990630696,
+    "distances": {
+     "right-handed α-helix": 196.14268496883955,
+     "β-strand": 29.75609116092802,
+     "polyproline II": 73.45779225854741,
+     "left-handed α-helix": 180.2292168201658
+    },
+    "record": "SHEET"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-12E8-SS-80",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "parameters": {
+    "phi": -127.76141478756395,
+    "psi": 114.67307563254796,
+    "distances": {
+     "right-handed α-helix": 176.4804839273319,
+     "β-strand": 17.180051515353817,
+     "polyproline II": 60.856299854448324,
+     "left-handed α-helix": 187.851555524102
+    },
+    "record": "SHEET"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1A6M-SS-16",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "parameters": {
+    "phi": -70.5221090009372,
+    "psi": -36.67015912924662,
+    "distances": {
+     "right-handed α-helix": 17.016258232887562,
+     "β-strand": 173.8591488587343,
+     "polyproline II": 178.38605229329931,
+     "left-handed α-helix": 152.520765185467
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1UBQ-SS-23",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "parameters": {
+    "phi": -61.32752359514392,
+    "psi": -37.209914234161545,
+    "distances": {
+     "right-handed α-helix": 10.703889002087054,
+     "β-strand": 177.20500812808325,
+     "polyproline II": 178.31503359970952,
+     "left-handed α-helix": 145.23330367200282
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1UBQ-SS-12",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "parameters": {
+    "phi": -119.94472152007317,
+    "psi": 131.7568059088998,
+    "distances": {
+     "right-handed α-helix": 189.51525961249564,
+     "β-strand": 1.7576753715883504,
+     "polyproline II": 46.855204430793826,
+     "left-handed α-helix": 196.19671409505094
+    },
+    "record": "SHEET"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7043-BOND-1-2",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.4900632432",
+   "rounded": "1.490",
+   "label": "C",
+   "nearest_distractor_gap": "0.0299367568",
+   "parameters": {
+    "atoms": [
+     [
+      "C1",
+      "1"
+     ],
+     [
+      "C2",
+      "2"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7043-BOND-4-7",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.6247538750",
+   "rounded": "1.625",
+   "label": "D",
+   "nearest_distractor_gap": "0.1687538750",
+   "parameters": {
+    "atoms": [
+     [
+      "S4",
+      "4"
+     ],
+     [
+      "O7",
+      "7"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7043-BOND-2-3",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.3410816982",
+   "rounded": "1.341",
+   "label": "A",
+   "nearest_distractor_gap": "0.1489183018",
+   "parameters": {
+    "atoms": [
+     [
+      "C2",
+      "2"
+     ],
+     [
+      "C3",
+      "3"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-COD2104364-COORD-O-N",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "recomputed": "1 at 2.2769 Å",
+   "parameters": {
+    "partner": "N",
+    "cell": {
+     "a": 7.0915,
+     "b": 9.2149,
+     "c": 11.6015,
+     "alpha": 90.0,
+     "beta": 97.865,
+     "gamma": 90.0
+    },
+    "cif_atoms": 80
+   },
+   "method": "metric-tensor neighbour search over 125 cells; own CIF expansion",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G13-BOND-11-13",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.4601893713",
+   "rounded": "1.460",
+   "label": "B",
+   "nearest_distractor_gap": "0.3661893713",
+   "parameters": {
+    "atoms": [
+     [
+      "C11",
+      "11"
+     ],
+     [
+      "N13",
+      "13"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G13-BOND-2-6",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.3874905405",
+   "rounded": "1.387",
+   "label": "C",
+   "nearest_distractor_gap": "0.0474905405",
+   "parameters": {
+    "atoms": [
+     [
+      "C2",
+      "2"
+     ],
+     [
+      "C6",
+      "6"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7095-BOND-5-6",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.3955437039",
+   "rounded": "1.396",
+   "label": "D",
+   "nearest_distractor_gap": "0.0255437039",
+   "parameters": {
+    "atoms": [
+     [
+      "N5",
+      "5"
+     ],
+     [
+      "C6",
+      "6"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7206-BOND-2-3",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.5014715914",
+   "rounded": "1.501",
+   "label": "A",
+   "nearest_distractor_gap": "0.3515284086",
+   "parameters": {
+    "atoms": [
+     [
+      "C2",
+      "2"
+     ],
+     [
+      "C3",
+      "3"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-3NDS-TOR-33-PHI",
+   "family": "backbone_torsion",
+   "checker_version": "0.1.0",
+   "recomputed": "-78.5553744103",
+   "rounded": "-78.6",
+   "label": "D",
+   "nearest_distractor_gap": "60.6553744103",
+   "parameters": {
+    "atoms": "C(32)–N(33)–CA(33)–C(33)"
+   },
+   "method": "acos of plane normals with triple-product sign",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7110-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "5399.9407673836",
+   "rounded": "5399.9",
+   "label": "B",
+   "nearest_distractor_gap": "114.4592326164",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 3724.1001,
+     "B": 1790.2951,
+     "C": 1675.8407
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7110-ROT-110",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "5514.3951431673",
+   "rounded": "5514.4",
+   "label": "C",
+   "nearest_distractor_gap": "638.4951431673",
+   "parameters": {
+    "transition": "1_10",
+    "constants_MHz": {
+     "A": 3724.1001,
+     "B": 1790.2951,
+     "C": 1675.8407
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HJP-SS-168",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "parameters": {
+    "phi": -70.51108361178538,
+    "psi": -39.77966311153219,
+    "distances": {
+     "right-handed α-helix": 15.319355245819732,
+     "β-strand": 176.84537554469742,
+     "polyproline II": 175.27782754715025,
+     "left-handed α-helix": 154.23938009990425
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HJP-SS-50",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "parameters": {
+    "phi": -130.30478872289274,
+    "psi": 113.15871443343171,
+    "distances": {
+     "right-handed α-helix": 176.13746296196467,
+     "β-strand": 19.743798270802866,
+     "polyproline II": 63.816041260920855,
+     "left-handed α-helix": 184.9340733708342
+    },
+    "record": "SHEET"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7044-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "4910.1874800530",
+   "rounded": "4910.2",
+   "label": "D",
+   "nearest_distractor_gap": "525.3874800530",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 3194.6487,
+     "B": 2058.2369,
+     "C": 1715.5388
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7111-ROT-101",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "3498.3455845552",
+   "rounded": "3498.3",
+   "label": "A",
+   "nearest_distractor_gap": "124.0544154448",
+   "parameters": {
+    "transition": "1_01",
+    "constants_MHz": {
+     "A": 3700.9371,
+     "B": 1811.1795,
+     "C": 1687.1661
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7089-ROT-110",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "6462.4413105148",
+   "rounded": "6462.4",
+   "label": "B",
+   "nearest_distractor_gap": "1019.2586894852",
+   "parameters": {
+    "transition": "1_10",
+    "constants_MHz": {
+     "A": 4672.7083,
+     "B": 1789.733,
+     "C": 1304.6552
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1CRN-SS-17",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "parameters": {
+    "phi": -77.06851912309854,
+    "psi": -16.126706523334917,
+    "distances": {
+     "right-handed α-helix": 36.822624972840586,
+     "β-strand": 152.30274590315372,
+     "polyproline II": 161.13998363664905,
+     "left-handed α-helix": 148.186871538419
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G6-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "3118.5325859562",
+   "rounded": "3118.5",
+   "label": "C",
+   "nearest_distractor_gap": "368.4325859562",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 2111.0974,
+     "B": 1393.6835,
+     "C": 1007.4352
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G7-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "5400.8506530422",
+   "rounded": "5400.9",
+   "label": "D",
+   "nearest_distractor_gap": "167.6506530422",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 3485.3391,
+     "B": 2528.8797,
+     "C": 1915.5116
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HHK-SS-46",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "parameters": {
+    "phi": -120.87658867216953,
+    "psi": 146.9017918035493,
+    "distances": {
+     "right-handed α-helix": 177.95739194106278,
+     "β-strand": 16.924508083566323,
+     "polyproline II": 45.915990681455206,
+     "left-handed α-helix": 204.0109036380357
+    },
+    "record": "SHEET"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1HHK-SS-214",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "B",
+   "parameters": {
+    "phi": -124.59294485547169,
+    "psi": 121.58566274876729,
+    "distances": {
+     "right-handed α-helix": 181.6313075399611,
+     "β-strand": 9.586251291453106,
+     "polyproline II": 54.84242307149018,
+     "left-handed α-helix": 193.37036591219353
+    },
+    "record": "SHEET"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-COD1538801-COORD-P-In",
+   "family": "coordination_shell",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "recomputed": "4 at 2.5461 Å",
+   "parameters": {
+    "partner": "In",
+    "mu4_node": false
+   },
+   "method": "own periodic neighbour search over 27 cells",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7082-BOND-3-7",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.8486593082",
+   "rounded": "1.849",
+   "label": "B",
+   "nearest_distractor_gap": "0.1243406918",
+   "parameters": {
+    "atoms": [
+     [
+      "C3",
+      "3"
+     ],
+     [
+      "S7",
+      "7"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7032-BOND-3-4",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.4568795166",
+   "rounded": "1.457",
+   "label": "C",
+   "nearest_distractor_gap": "0.0751204834",
+   "parameters": {
+    "atoms": [
+     [
+      "C3",
+      "3"
+     ],
+     [
+      "N4",
+      "4"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7165-BOND-2-5",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.8818087554",
+   "rounded": "1.882",
+   "label": "D",
+   "nearest_distractor_gap": "0.4158087554",
+   "parameters": {
+    "atoms": [
+     [
+      "C2",
+      "2"
+     ],
+     [
+      "S5",
+      "5"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1A6M-SS-72",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "C",
+   "parameters": {
+    "phi": -62.66375498289809,
+    "psi": -42.30180404040611,
+    "distances": {
+     "right-handed α-helix": 7.358747568781474,
+     "β-strand": 181.59118003977963,
+     "polyproline II": 173.13823907161657,
+     "left-handed α-helix": 149.31251274249644
+    },
+    "record": "HELIX"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G8-ROT-101",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "302.0664864581",
+   "rounded": "302.1",
+   "label": "A",
+   "nearest_distractor_gap": "302.0335135419",
+   "parameters": {
+    "transition": "1_01",
+    "constants_MHz": {
+     "A": 1090.1219,
+     "B": 153.0508,
+     "C": 149.0157
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G2-BOND-13-16",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.5277856525",
+   "rounded": "1.528",
+   "label": "A",
+   "nearest_distractor_gap": "0.9382143475",
+   "parameters": {
+    "atoms": [
+     [
+      "C13",
+      "13"
+     ],
+     [
+      "N16",
+      "16"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7029-BOND-5-6",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.6955122318",
+   "rounded": "1.696",
+   "label": "B",
+   "nearest_distractor_gap": "0.3185122318",
+   "parameters": {
+    "atoms": [
+     [
+      "C5",
+      "5"
+     ],
+     [
+      "S6",
+      "6"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7029-BOND-3-4",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.4128610995",
+   "rounded": "1.413",
+   "label": "C",
+   "nearest_distractor_gap": "0.0458610995",
+   "parameters": {
+    "atoms": [
+     [
+      "C3",
+      "3"
+     ],
+     [
+      "N4",
+      "4"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G9-BOND-4-10",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.5408932474",
+   "rounded": "1.541",
+   "label": "D",
+   "nearest_distractor_gap": "0.0208932474",
+   "parameters": {
+    "atoms": [
+     [
+      "C4",
+      "4"
+     ],
+     [
+      "C10",
+      "10"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-3NDS-SS-36",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "D",
+   "parameters": {
+    "phi": -113.3431583080698,
+    "psi": 136.033356389264,
+    "distances": {
+     "right-handed α-helix": 185.71953165722087,
+     "β-strand": 8.984148854025776,
+     "polyproline II": 39.37763942492815,
+     "left-handed α-helix": 192.20751840733448
+    },
+    "record": "SHEET"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-1VB0-SS-29",
+   "family": "secondary_structure",
+   "checker_version": "0.1.0",
+   "label": "A",
+   "parameters": {
+    "phi": -116.4514542785954,
+    "psi": 148.3098943472738,
+    "distances": {
+     "right-handed α-helix": 175.09227942929417,
+     "β-strand": 18.650587329765994,
+     "polyproline II": 41.58339166543057,
+     "left-handed α-helix": 200.87085822491886
+    },
+    "record": "SHEET"
+   },
+   "method": "acos dihedrals; nearest reference; HELIX/SHEET evidence",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G5-ROT-110",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "769.1910584823",
+   "rounded": "769.2",
+   "label": "B",
+   "nearest_distractor_gap": "39.4910584823",
+   "parameters": {
+    "transition": "1_10",
+    "constants_MHz": {
+     "A": 448.9479,
+     "B": 320.2431,
+     "C": 280.7926
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G5-ROT-101",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "601.0356839983",
+   "rounded": "601.0",
+   "label": "C",
+   "nearest_distractor_gap": "17.3356839983",
+   "parameters": {
+    "transition": "1_01",
+    "constants_MHz": {
+     "A": 448.9479,
+     "B": 320.2431,
+     "C": 280.7926
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G1-ROT-111",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "1224.2155157249",
+   "rounded": "1224.2",
+   "label": "D",
+   "nearest_distractor_gap": "86.1155157249",
+   "parameters": {
+    "transition": "1_11",
+    "constants_MHz": {
+     "A": 795.4154,
+     "B": 709.3285,
+     "C": 428.8001
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-TDZ-BOND-15-17",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.5345491194",
+   "rounded": "1.535",
+   "label": "A",
+   "nearest_distractor_gap": "0.9544508806",
+   "parameters": {
+    "atoms": [
+     [
+      "C15",
+      "15"
+     ],
+     [
+      "C17",
+      "17"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-bCD-TDZ-BOND-18-23",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.5096254502",
+   "rounded": "1.510",
+   "label": "B",
+   "nearest_distractor_gap": "0.4176254502",
+   "parameters": {
+    "atoms": [
+     [
+      "C18",
+      "18"
+     ],
+     [
+      "N23",
+      "23"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7030-BOND-2-4",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.4094196769",
+   "rounded": "1.409",
+   "label": "C",
+   "nearest_distractor_gap": "0.0554196769",
+   "parameters": {
+    "atoms": [
+     [
+      "C2",
+      "2"
+     ],
+     [
+      "N4",
+      "4"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-QM7X-7030-BOND-1-2",
+   "family": "named_bond_distance",
+   "checker_version": "0.1.0",
+   "recomputed": "1.4954174690",
+   "rounded": "1.495",
+   "label": "D",
+   "nearest_distractor_gap": "0.0864174690",
+   "parameters": {
+    "atoms": [
+     [
+      "C1",
+      "1"
+     ],
+     [
+      "C2",
+      "2"
+     ]
+    ]
+   },
+   "method": "Decimal distance; own bonding rule",
+   "status": "pass"
+  },
+  {
+   "id": "EN-SAMPL9-WP6-G12-ROT-101",
+   "family": "rotational_line",
+   "checker_version": "0.1.0",
+   "recomputed": "605.4274339395",
+   "rounded": "605.4",
+   "label": "A",
+   "nearest_distractor_gap": "118.9725660605",
+   "parameters": {
+    "transition": "1_01",
+    "constants_MHz": {
+     "A": 929.9703,
+     "B": 306.6921,
+     "C": 298.7354
+    }
+   },
+   "method": "Decimal centre of mass and inertia tensor; closed-form cubic eigenvalues; J=1 level table",
    "status": "pass"
   }
  ],

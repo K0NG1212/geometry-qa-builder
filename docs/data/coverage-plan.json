@@ -3,15 +3,15 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 871,
+  "current_total": 988,
   "capped_total": 160,
   "over_target_cells": [
    "quantum 0.1-1",
-   "quantum 1-10",
    "quantum 10-100",
    "quantum 100-1000",
    "chemistry 0.1-1",
    "chemistry 1-10",
+   "chemistry 10-100",
    "chemistry 100-1000",
    "materials 0.1-1",
    "materials 1-10",
@@ -21,11 +21,11 @@
    "biology 10-100",
    "biology 100-1000"
   ],
-  "provisional_total": 871,
-  "ability_gaps": 0,
-  "gap_slots": 0,
+  "provisional_total": 988,
+  "ability_gaps": 1,
+  "gap_slots": 1,
   "gaps_by_best_route": {
-   "ready": 0,
+   "ready": 1,
    "migrate": 0,
    "build": 0,
    "none": 0
@@ -37,12 +37,12 @@
    "domain": "quantum",
    "cell": "0.1-1",
    "target": 10,
-   "current": 190,
-   "provisional": 190,
+   "current": 132,
+   "provisional": 132,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 110,
+     "current": 70,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -69,7 +69,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 26,
+     "current": 34,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -104,7 +104,7 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 54,
+     "current": 28,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -131,12 +131,12 @@
    "domain": "quantum",
    "cell": "1-10",
    "target": 10,
-   "current": 26,
-   "provisional": 26,
+   "current": 10,
+   "provisional": 10,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 13,
+     "current": 5,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -184,9 +184,9 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 10,
+     "current": 2,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 1,
      "routes": [
       {
        "family": "isotopologue_design",
@@ -371,12 +371,12 @@
    "domain": "chemistry",
    "cell": "0.1-1",
    "target": 10,
-   "current": 63,
-   "provisional": 63,
+   "current": 174,
+   "provisional": 174,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 30,
+     "current": 97,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -421,7 +421,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 16,
+     "current": 34,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -481,7 +481,7 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 17,
+     "current": 43,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -526,12 +526,12 @@
    "domain": "chemistry",
    "cell": "1-10",
    "target": 10,
-   "current": 12,
-   "provisional": 12,
+   "current": 54,
+   "provisional": 54,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 4,
+     "current": 12,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -552,7 +552,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 5,
+     "current": 15,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -585,7 +585,7 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 3,
+     "current": 27,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -622,12 +622,12 @@
    "domain": "chemistry",
    "cell": "10-100",
    "target": 10,
-   "current": 10,
-   "provisional": 10,
+   "current": 16,
+   "provisional": 16,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 4,
+     "current": 5,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -642,7 +642,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 3,
+     "current": 4,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -675,7 +675,7 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 3,
+     "current": 7,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -782,12 +782,12 @@
    "domain": "materials",
    "cell": "0.1-1",
    "target": 10,
-   "current": 165,
-   "provisional": 165,
+   "current": 176,
+   "provisional": 176,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 47,
+     "current": 55,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -814,7 +814,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 74,
+     "current": 75,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -837,7 +837,7 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 44,
+     "current": 46,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -864,8 +864,8 @@
    "domain": "materials",
    "cell": "1-10",
    "target": 10,
-   "current": 59,
-   "provisional": 59,
+   "current": 60,
+   "provisional": 60,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -919,7 +919,7 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 16,
+     "current": 17,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -1069,12 +1069,12 @@
    "domain": "biology",
    "cell": "0.1-1",
    "target": 10,
-   "current": 154,
-   "provisional": 154,
+   "current": 180,
+   "provisional": 180,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 60,
+     "current": 63,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -1116,7 +1116,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 33,
+     "current": 56,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -1257,12 +1257,12 @@
    "domain": "biology",
    "cell": "10-100",
    "target": 10,
-   "current": 73,
-   "provisional": 73,
+   "current": 67,
+   "provisional": 67,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 19,
+     "current": 18,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -1277,7 +1277,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 23,
+     "current": 22,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -1304,7 +1304,7 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 31,
+     "current": 27,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [

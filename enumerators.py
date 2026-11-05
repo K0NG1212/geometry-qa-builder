@@ -465,6 +465,14 @@ def assembly_base(p, family, key, component):
     return spec
 
 
+# assembly_extent proposes without strict_rank, unlike its three siblings below, and 2026-11-05 showed why that
+# matters at scale: Dmax is a maximum, so 9 of the family's 11 misconception rules necessarily land below the answer
+# and only 9 of 60 instances could even assemble three higher candidates. The published positions came out A2 B20
+# C23 D15, which tests/test_admission.AnswerPositionTests refuses at n = 60 (it passed at n = 22 only on the
+# tolerance's absolute floor). strict_rank does not rescue it either (measured: still A2, 46 instances). So this
+# batch's 38 enumerated proposals were held out (templates/pruned-instances.json, hold-2026-11-05-assembly-extent),
+# the same answer the comment below gives for debye_intensity: the family waits for an L1 review that can give it a
+# plausible OVER-estimate rule. Enumerating it again before that will reproduce the same imbalance.
 def assembly_extent(root, p):
     if not p['subunits_only']:
         for c in components(p):

@@ -1,6 +1,6 @@
 {
  "kind": "subdomain_taxonomy",
- "version": "0.2.2",
+ "version": "0.2.5",
  "status": "draft",
  "status_note": "Two-level discipline tree for the advisor (2026-10-13), replacing the one-level v0.1.0 draft (24 sub-domains, kept in git history). Follows the sixth meeting: split by discipline categories, keep splitting further. Not yet confirmed; nothing else in the repository depends on it except the read-only pixel map and the cards filter.",
  "planning_total": 2500,
@@ -706,7 +706,8 @@
      "name": "转运与储存蛋白",
      "scales": [
       "0.1-1",
-      "1-10"
+      "1-10",
+      "10-100"
      ],
      "data_sources": "PDB",
      "selection_criterion": "按配体类型",
@@ -721,7 +722,8 @@
        "name": "金属与小分子载体",
        "examples": "铁蛋白、转铁蛋白"
       }
-     ]
+     ],
+     "scales_note": "10–100 nm applies to measured deposited ferritin-carrier point sets such as 7DQO; not every B3 leaf is represented at this scale."
     },
     {
      "id": "B4",
@@ -841,7 +843,7 @@
       "10-100"
      ],
      "data_sources": "PDB、EMDB",
-     "selection_criterion": "按功能（折叠 / 降解 / 翻译 / 能量转换）",
+     "selection_criterion": "按功能与装置类型（折叠/降解、翻译/转录、能量转换、纳米区室/封装、细胞运动、核酸复制/修复）",
      "leaves": [
       {
        "id": "B8a",
@@ -857,6 +859,21 @@
        "id": "B8c",
        "name": "能量转换",
        "examples": "ATP 合酶"
+      },
+      {
+       "id": "B8d",
+       "name": "蛋白纳米区室与封装",
+       "examples": "encapsulin：3DKT、8IKA、9SQR"
+      },
+      {
+       "id": "B8e",
+       "name": "细胞运动与鞭毛装置",
+       "examples": "鞭毛丝、钩与初始装配复合物：10PL、9U7Y、9MCG"
+      },
+      {
+       "id": "B8f",
+       "name": "核酸复制与修复机器",
+       "examples": "DNA replication helicase and RecG branch migration/repair complexes：7APD、9WM1"
       }
      ],
      "scales_note": "机器内部的单个二面角、键长与二硫键筛选都是 0.1-1 nm 的推理"
@@ -866,7 +883,8 @@
      "name": "免疫与识别",
      "scales": [
       "0.1-1",
-      "1-10"
+      "1-10",
+      "10-100"
      ],
      "data_sources": "PDB、SAbDab（许可待查）",
      "selection_criterion": "按复合物类型",
@@ -881,7 +899,8 @@
        "name": "MHC 与 T 细胞受体",
        "examples": "肽结合槽"
       }
-     ]
+     ],
+     "scales_note": "10–100 nm applies to whole deposited immune complexes whose measured extent reaches it: 12E8 (Fab) 10.7 nm 与 1HHK (肽/MHC) 12.9 nm；抗原决定簇与结合界面本身仍是 0.1–1 nm 的推理。"
     }
    ]
   }
@@ -889,6 +908,8 @@
  "assignment": {
   "note": "把现有题归到叶子子领域；按题目问的对象（结构）归，不按测量技术。领域随叶子而定，因此“量子”改为“物理”后，分子电子结构题会归到化学 C2。",
   "pdb": {
+   "10PL": "B8e",
+   "10QQ": "B8a",
    "12E8": "B9a",
    "1A34": "B6a",
    "1A6M": "B3a",
@@ -901,13 +922,17 @@
    "1EHZ": "B7b",
    "1FHA": "B3b",
    "1G31": "B8a",
+   "1G65": "B8a",
    "1HHK": "B9b",
    "1HJP": "B7a",
+   "1HQM": "B8b",
    "1JUC": "C7a",
    "1KX5": "B7c",
    "1NXB": "B5b",
    "1ONJ": "B5b",
+   "1P3H": "B8a",
    "1PGA": "B2a",
+   "1Q3S": "B8a",
    "1RYP": "B8a",
    "1STM": "B6a",
    "1SVA": "B6a",
@@ -916,10 +941,12 @@
    "1VB0": "B5b",
    "1WNR": "B8a",
    "2B2F": "B4b",
+   "2BA0": "B8b",
    "2BUK": "B6a",
    "2FT1": "B6b",
    "2LZM": "B1a",
    "355D": "B7a",
+   "3KO1": "B8a",
    "3M73": "B4a",
    "3NDS": "B5b",
    "3T8P": "C7a",
@@ -932,8 +959,18 @@
    "6CGR": "B6a",
    "6LYZ": "B1a",
    "6NCL": "B6a",
+   "6RD7": "B8c",
+   "6ZWW": "B8b",
    "7ARQ": "C7a",
-   "7RSA": "B1a"
+   "7JG5": "B8c",
+   "7RAK": "B8a",
+   "7RSA": "B1a",
+   "8WU4": "B8a",
+   "9F9T": "B8a",
+   "9KCF": "B8a",
+   "9MCG": "B8e",
+   "9U7Y": "B8e",
+   "9ZO4": "B8b"
   },
   "cod": {
    "1000026": "P1b",
@@ -1134,7 +1171,14 @@
    "FA-DES-PILLAR-C8": "C4b",
    "FA-DES-HEMICUC-SBF6": "C4a",
    "FA-DES-CAPSULE-FF3ME": "C4c",
-   "FA-DES-ZEOLITE-FAU": "M4c"
+   "FA-DES-ZEOLITE-FAU": "M4c",
+   "EN-8IKA-EXT": "B8d",
+   "EN-3DKT-EXT": "B8d",
+   "EN-9SQR-EXT": "B8d",
+   "EN-5GOU-EXT": "B8d",
+   "EN-8TL7-EXT": "B8d",
+   "EN-9UOL-EXT": "B8d",
+   "EN-7DQO-EXT": "B3b"
   }
  }
 }

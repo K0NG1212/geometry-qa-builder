@@ -180,6 +180,34 @@ class AttachmentNameTests(unittest.TestCase):
     FORMERLY_LEAKING = {'EN-1A6M-DS-2-6', 'EN-1A6M-FD-25-1-18', 'EN-1FHA-DS-6-9', 'EN-1FHA-FD-25-5-42',
                         'EN-12E8-DS-7-21', 'EN-12E8-FD-25-1-11', 'EN-1HHK-DS-5-168', 'EN-1HHK-FD-25-1-16'}
 
+    # Keep all 24 historical regressions while checking every newly registered anode too.
+    FORMERLY_LEAKING_ANODE = {
+        'EN-COD1000028-XD-ANODE-Mo',
+        'EN-COD1100043-XD-ANODE-Co',
+        'EN-COD1516287-XD-ANODE-Cr',
+        'EN-COD1516287-XD-ANODE-Cu',
+        'EN-COD1516287-XD-ANODE-Mo',
+        'EN-COD1536825-XD-ANODE-Co',
+        'EN-COD1536825-XD-ANODE-Cu',
+        'EN-COD1538281-XD-ANODE-Co',
+        'EN-COD1538281-XD-ANODE-Mo',
+        'EN-COD1574067-XD-ANODE-Cr',
+        'EN-COD4118591-XD-ANODE-Mo',
+        'EN-COD4118891-XD-ANODE-Co',
+        'EN-COD4118891-XD-ANODE-Cu',
+        'EN-COD4118891-XD-ANODE-Mo',
+        'EN-COD4320505-XD-ANODE-Co',
+        'EN-COD4320505-XD-ANODE-Cr',
+        'EN-COD5000216-XD-ANODE-Co',
+        'EN-COD5000216-XD-ANODE-Cu',
+        'EN-COD9006483-XD-ANODE-Co',
+        'EN-COD9008565-XD-ANODE-Co',
+        'EN-COD9008789-XD-ANODE-Cr',
+        'EN-COD9008789-XD-ANODE-Cu',
+        'EN-COD9008802-XD-ANODE-Mo',
+        'EN-COD9011073-XD-ANODE-Mo',
+    }
+
     def leaking(self):
         teachers = {t['id']: t for t in WORKBENCH['teacher_answers']}
         out = {}
@@ -210,9 +238,9 @@ class AttachmentNameTests(unittest.TestCase):
             self.assertEqual(telltale(names, packet['option_audit']), set(), instance)
 
     def test_the_fixed_generator_names_the_cell_table_after_the_crystal(self):
-        """The 24 anode questions: the table is named COD<number>, so no name carries the chosen line."""
+        """Every anode table is named COD<number>; the original 24 cases must stay covered."""
         anode = [x for x in MANIFEST['items'] if x['family'] == 'diffraction_design' and x['mode'] == 'anode' and x.get('cod')]
-        self.assertEqual(len(anode), 24)
+        self.assertTrue(self.FORMERLY_LEAKING_ANODE <= {x['id'] for x in anode})
         for spec in anode:
             packet = diffraction_design.build(dict(spec, target_position=1), ROOT, 'geobench-family-v1')
             names = [i['name'] for i in packet['inputs']]

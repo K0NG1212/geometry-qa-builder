@@ -32,6 +32,24 @@ SHORT = {'Major capsid protein': 'VP5', 'Small capsomere-interacting protein': '
          'Triplex capsid protein 2': 'VP23', 'Capsid vertex component 1': 'pUL25', 'Capsid vertex component 2': 'pUL17',
          'Large tegument protein deneddylase': 'pUL36'}
 
+# These local PDB copies are reduced as deposited models, never expanded to a biological assembly.
+# Some copies were already published under docs/assets/bio before this batch; no download is needed.
+DEPOSITED_MODELS = (
+    ('12E8', 'docs/assets/bio/12E8.pdb', '2E8 Fab fragment', 'biology'),
+    ('1HHK', 'docs/assets/bio/1HHK.pdb', 'peptide/MHC HLA-A2 complexes', 'biology'),
+    ('1WNR', 'inputs/pdb/1WNR.pdb', 'Thermus thermophilus Cpn10', 'biology'),
+    ('1G31', 'inputs/pdb/1G31.pdb', 'bacteriophage T4 gp31 co-chaperonin', 'biology'),
+    ('355D', 'docs/assets/bio/355D.pdb', 'B-DNA dodecamer', 'chemistry'),
+    ('477D', 'inputs/pdb/477D.pdb', 'calcium-form B-DNA dodecamer', 'chemistry'),
+    ('4GLG', 'inputs/pdb/4GLG.pdb', 'DNA dodecamer containing 5-methylcytosine', 'chemistry'),
+    ('4GLH', 'inputs/pdb/4GLH.pdb', 'DNA dodecamer containing 5-hydroxymethylcytosine', 'chemistry'),
+    ('4F3U', 'inputs/pdb/4F3U.pdb', "DNA dodecamer containing 5-hydroxy-2'-deoxycytidine", 'chemistry'),
+    ('3T8P', 'inputs/pdb/3T8P.pdb', 'two deposited DNA chains from a Holliday-junction crystal entry', 'chemistry'),
+    ('1DCW', 'inputs/pdb/1DCW.pdb', 'four deposited DNA chains from an inverted-repeat four-way-junction entry', 'chemistry'),
+    ('1JUC', 'inputs/pdb/1JUC.pdb', 'two deposited DNA chains from a Holliday-junction crystal entry', 'chemistry'),
+    ('1BNA', 'docs/assets/bio/1BNA.pdb', 'B-DNA dodecamer (two deposited DNA chains)', 'chemistry'),
+)
+
 
 def read(name):
     raw = (RAW / name).read_bytes()
@@ -166,6 +184,159 @@ def extra_assets(files, sources):
                              reduction='CA centroid per protein chain, expanded by the operators of assembly 1 (_pdbx_struct_assembly_gen)')
 
 
+
+def deposited_assets(files, sources):
+    """Reuse local PDB files for the selected positive-occupancy ATOM CA/P points of the first model.
+
+    This pre-filter applies only to this batch. The older residue-point assets keep their original byte contract.
+    Modified residues written as HETATM, missing phosphate atoms and unrecorded symmetry copies are not inferred.
+    """
+    from collections import Counter
+
+    for pdb, raw_path, what, domain in DEPOSITED_MODELS:
+        raw = (ROOT / raw_path).read_bytes()
+        text = raw.decode('utf-8')
+        lines = []
+        for line in text.splitlines():
+            if line.startswith('ENDMDL'):
+                break
+            lines.append(line)
+        selected = [line for line in lines if line.startswith('ATOM') and line[16] in ' A'
+                    and line[12:16].strip() in ('CA', 'P') and float(line[54:60]) > 0]
+        keys = [(line[21], line[22:27], line[12:16].strip()) for line in selected]
+        if len(keys) < 2 or len(set(keys)) != len(keys):
+            raise ValueError('Too few or duplicate residue marker records in ' + pdb)
+        excluded = [line for line in lines if line.startswith('ATOM') and float(line[54:60]) <= 0]
+        omitted = [line for line in lines if line.startswith('HETATM') and line[16] in ' A'
+                   and line[12:16].strip() in ('CA', 'P')]
+        filtered = '\n'.join(line for line in lines if line not in excluded) + '\n'
+        pts = pdb_residue_points(filtered)
+        if len(pts) != len(selected):
+            raise ValueError('Residue-point reader and selected records disagree for ' + pdb)
+        chains = dict(sorted(Counter(line[21] for line in selected).items()))
+        atoms = dict(sorted(Counter(line[12:16].strip() for line in selected).items()))
+        omitted_residues = dict(sorted(Counter(line[17:20].strip() for line in omitted).items()))
+        zero_markers = sum(line[16] in ' A' and line[12:16].strip() in ('CA', 'P') for line in excluded)
+        name = '%s-deposited-residue-points.xyz' % pdb
+        comment = ('%s %s: selected positive-occupancy ATOM CA as C and P as P, first deposited model, '
+                   'original record order, no HETATM or symmetry expansion, angstrom' % (pdb, what))
+        files[name] = xyz(pts, comment)
+        sources[name] = dict(
+            pdb=pdb, source=URL % (pdb + '.pdb'), raw_path=raw_path,
+            sha256=hashlib.sha256(raw).hexdigest(), bytes=len(raw), points=len(pts),
+            title=' '.join(line[10:80].strip() for line in text.splitlines() if line.startswith('TITLE')),
+            model='first deposited MODEL; the unnumbered deposited model when MODEL is absent',
+            chains=chains, selected_atom_names=atoms,
+            excluded_zero_occupancy_atom_records=len(excluded), excluded_zero_occupancy_marker_records=zero_markers,
+            omitted_hetatm_ca_or_p_records=len(omitted), omitted_hetatm_residue_names=omitted_residues,
+            reduction='Keep ATOM records of the first deposited model with occupancy > 0, alternate location blank or A, '
+                      'and atom name CA or P; preserve original record order and coordinates; label CA as C and P as P. '
+                      'Apply no crystallographic or biological-assembly symmetry operators.',
+            limits=['This is only the selected deposited point set, not a claim of a complete biological assembly.',
+                    'All HETATM records are omitted, including modified nucleotides and ions; absent markers are not reconstructed.',
+                    'Zero-occupancy ATOM records are excluded; retained coordinates are a static deposited model, not solution dynamics.',
+                    'Points carry equal weight in the geometric/scattering tasks; C and P labels do not imply atomic-mass or scattering-factor weights.'])
+
+
+
+def a1_mmcif_deposited_assets(files, sources):
+    """A1 second pass: one representation per new PDB entry, selected by the actual positive-occupancy CA count.
+
+    Do not apply assembly or crystal operators. Over 20,000 selected CA points use one CA centroid per deposited
+    protein chain. No capsid or complete-particle claim is inferred from the title, chain count or planned pixel.
+    """
+    import math
+    from collections import Counter
+
+    index_path = RAW / 'a1-assemblies.json'
+    if not index_path.exists():
+        return
+    index = json.loads(index_path.read_text(encoding='utf-8'))
+    registry = json.loads((ROOT / 'templates/structures.json').read_text(encoding='utf-8'))
+    for pdb, record in sorted(index['files'].items()):
+        # Future application must not add a second representation with the same EN-{PDB}-... id space.
+        prior = [p for p in registry['assemblies'] if p['pdb'] == pdb]
+        if prior and not all(p['asset'].rsplit('/', 1)[-1].startswith(pdb + '-a1-deposited-CA') for p in prior):
+            # Reuse an already registered deposited-point representation; do not create a second ID space.
+            continue
+        path = ROOT / record['raw_path']
+        raw = path.read_bytes()
+        if hashlib.sha256(raw).hexdigest() != record['sha256']:
+            raise ValueError('A1 raw input hash differs from the download record: ' + pdb)
+        text = gzip.decompress(raw).decode('utf-8')
+        rows = cif_loop(text, '_atom_site')
+        if not rows:
+            raise ValueError('Missing atom_site rows: ' + pdb)
+        model = rows[0].get('pdbx_PDB_model_num', '1')
+        points, groups, selected_keys, excluded = [], {}, set(), Counter()
+        for row in rows:
+            if row.get('pdbx_PDB_model_num', '1') != model:
+                continue
+            if row['label_atom_id'] != 'CA':
+                continue
+            if row['group_PDB'] != 'ATOM':
+                excluded['HETATM_CA'] += 1
+                continue
+            if row['label_alt_id'] not in ('.', '?', 'A'):
+                excluded['other_alternate_CA'] += 1
+                continue
+            if float(row['occupancy']) <= 0:
+                excluded['zero_occupancy_CA'] += 1
+                continue
+            chain = row['label_asym_id']
+            if not chain or any(c.isspace() for c in chain):
+                raise ValueError('Unusable deposited chain label: ' + pdb)
+            key = (chain, row['label_seq_id'], row.get('pdbx_PDB_ins_code', '?'))
+            if key in selected_keys:
+                raise ValueError('Duplicate selected residue CA: %s %s' % (pdb, key))
+            selected_keys.add(key)
+            point = tuple(float(row[k]) for k in ('Cartn_x', 'Cartn_y', 'Cartn_z'))
+            if not all(math.isfinite(x) for x in point):
+                raise ValueError('Non-finite coordinate: ' + pdb)
+            points.append(point)
+            groups.setdefault(chain, []).append(point)
+        if len(points) < 2:
+            raise ValueError('Fewer than two selected protein CA points: ' + pdb)
+        if len(points) > 20000:
+            name = pdb + '-a1-deposited-CA-chain-centroids.txt'
+            reduced = [('ALL', ch, centroid(pts)) for ch, pts in sorted(groups.items())]
+            if len(reduced) < 12:
+                raise ValueError('Too few chain-centroid points for the existing table enumerator: ' + pdb)
+            comment = (pdb + ' first deposited model: one equal-weight point at the centroid of the selected '
+                       'positive-occupancy ATOM CA coordinates of each protein chain; component ALL; '
+                       'no assembly/crystal symmetry expansion; angstrom')
+            body = table(reduced, comment)
+            representation = 'equal-weight deposited-chain CA centroids'
+            kind = 'table'
+            n = len(reduced)
+        else:
+            name = pdb + '-a1-deposited-CA.xyz'
+            comment = (pdb + ' first deposited model: positive-occupancy ATOM CA coordinates as equal-weight C points; '
+                       'original record order, alternate location blank or A; no symmetry expansion; angstrom')
+            body = xyz([('C', point) for point in points], comment)
+            representation, kind, n = 'equal-weight selected deposited ATOM CA points', 'xyz', len(points)
+        existing_path = OUT / name
+        if existing_path.exists() and existing_path.read_bytes() != body.encode('utf-8'):
+            raise ValueError('Refusing to overwrite an existing A1 representation: ' + name)
+        files[name] = body
+        sources[name] = dict(
+            pdb=pdb, source=record['url'], page=record['page'], raw_path=record['raw_path'],
+            sha256=record['sha256'], bytes=len(raw), points=n, original_selected_CA=len(points),
+            model=model, chains={ch: len(pts) for ch, pts in sorted(groups.items())},
+            excluded_CA_records=dict(excluded), representation=representation, suggested_registry_kind=kind,
+            planned_pixel=record['planned_pixel'], planned_subdomain=record.get('planned_subdomain'),
+            selection_reason=record.get('why'), title=record['title'],
+            coordinate_precision='Coordinates and chain centroids serialized to 0.001 angstrom by the existing builder.',
+            reduction='First deposited model only; ATOM CA, occupancy > 0, alternate location blank or A. '
+                      'No symmetry operators; no missing atom reconstruction. Over 20000 selected CA points, '
+                      'replace each protein chain by its selected-CA centroid and weight every retained centroid equally.',
+            limits=['The represented point set is not asserted to be a complete biological assembly or a native solution particle.',
+                    'Chain centroids have different extent and radius of gyration from the residue points; report only the stated representation.',
+                    'Equal-weight points are not mass weighting or atom-specific scattering-factor weighting.',
+                    'No capsid architecture is inferred. Missing residues, HETATM and unselected alternate conformers are omitted.',
+                    'The planned pixel is a source-selection goal; assign the final scale from measured geometry.'])
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     sources, files = {}, {}
@@ -237,6 +408,8 @@ def main():
                                                  components={c: sum(1 for x in rows if x[0] == c) for c in ('scaffold', 'staple')},
                                                  reduction="C1' atom of every nucleotide of the deposited model (single copy; no symmetry operators)")
     extra_assets(files, sources)
+    deposited_assets(files, sources)
+    a1_mmcif_deposited_assets(files, sources)
     for name, text in files.items():
         (OUT / name).write_text(text, encoding='utf-8', newline='\n')
         sources[name]['asset_sha256'] = hashlib.sha256(text.encode('utf-8')).hexdigest()

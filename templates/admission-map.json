@@ -1,5 +1,5 @@
 {
- "version": "0.13.0",
+ "version": "0.14.0",
  "decision": "User 2026-09-28/29: family instances count toward the 160 prototype after de-duplication; provisional until the L1–L3 review system is built and run.",
  "rules": {
   "new": "Genuinely new question: added as a new catalog record (provisional).",
@@ -264,7 +264,7 @@
    "scale": "host_molecule",
    "reasoning": "molecular",
    "paper": "sampl9",
-   "attribution": "SAMPL9 主客体挑战（MIT License）：实测 ITC 数据（Isaacs 课题组）与客体结构；转录表见 docs/assets/families/hostguest/WP6-binding.json。",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；WP6 主客体结构与 Isaacs 课题组 ITC 实测表，见 docs/assets/families/hostguest/WP6-binding.json；MIT 仅覆盖上游代码。",
    "sizeDefinition": "输入与推理：主体 WP6 最大原子间距（约 1.8 nm）。",
    "learningObjective": "由主体与客体的三维结构推断哪一个客体与 WP6 结合最强（以实测 ITC 结合自由能为证据）。"
   },
@@ -273,7 +273,7 @@
    "scale": "host_molecule",
    "reasoning": "molecular",
    "paper": "sampl9",
-   "attribution": "SAMPL9 主客体挑战（MIT License）：实测 ITC 数据（Isaacs 课题组）与客体结构；转录表见 docs/assets/families/hostguest/WP6-binding.json。",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；WP6 主客体结构与 Isaacs 课题组 ITC 实测表，见 docs/assets/families/hostguest/WP6-binding.json；MIT 仅覆盖上游代码。",
    "sizeDefinition": "输入与推理：主体 WP6 最大原子间距（约 1.8 nm）。",
    "learningObjective": "从参考客体出发，选出使实测结合增强达到目标幅度的替换客体（有实验证据的设计）。"
   },
@@ -2161,7 +2161,7 @@
    "domain": "chemistry",
    "scale": "host_molecule",
    "reasoning": "atom_pair",
-   "attribution": "SAMPL9 挑战赛 WP6 主体结构（MIT），坐标原样。",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。",
    "learningObjective": "测定主体分子中按化学含义指定的键长（羧酸根 C–O，离域键），原子由成键关系与官能团确认。",
    "sizeDefinition": "输入：主体分子最大原子间距；推理：两成键原子间距。"
   },
@@ -3422,13 +3422,19 @@
    "instance": "EN-SAMPL9-WP6-G12-ISO-110-19-22-33-45",
    "action": "new",
    "catalog_id": "QND014",
-   "title": "SAMPL9-WP6-G12 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G12 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G7-ROT-110",
    "action": "new",
    "catalog_id": "QNI039",
-   "title": "SAMPL9-WP6-G7 · 转动跃迁频率（四选一）"
+   "title": "SAMPL9-WP6-G7 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7033-ISO-110-9-10-13-15",
@@ -3440,7 +3446,10 @@
    "instance": "EN-SAMPL9-WP6-G8-ISO-111-18-21-25-26",
    "action": "new",
    "catalog_id": "QND016",
-   "title": "SAMPL9-WP6-G8 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G8 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7063-ISO-111-9-12-13-14",
@@ -3464,13 +3473,19 @@
    "instance": "EN-SAMPL9-WP6-G12-ISO-110-22-27-45-47",
    "action": "new",
    "catalog_id": "QND019",
-   "title": "SAMPL9-WP6-G12 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G12 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G5-ISO-110-22-32-46-47",
    "action": "new",
    "catalog_id": "QND020",
-   "title": "SAMPL9-WP6-G5 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G5 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7114-ISO-110-8-9-12-14",
@@ -3482,43 +3497,64 @@
    "instance": "EN-SAMPL9-WP6-G5-ISO-110-38-39-41-51",
    "action": "new",
    "catalog_id": "QND022",
-   "title": "SAMPL9-WP6-G5 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G5 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G5-ISO-101-21-33-34-46",
    "action": "new",
    "catalog_id": "QND023",
-   "title": "SAMPL9-WP6-G5 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G5 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G1-ISO-111-20-26-27-34",
    "action": "new",
    "catalog_id": "QND024",
-   "title": "SAMPL9-WP6-G1 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G1 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G1-ISO-111-16-19-26-30",
    "action": "new",
    "catalog_id": "QND025",
-   "title": "SAMPL9-WP6-G1 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G1 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G10-ISO-111-17-29-34-36",
    "action": "new",
    "catalog_id": "QND026",
-   "title": "SAMPL9-WP6-G10 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G10 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G7-ISO-110-8-13-16-20",
    "action": "new",
    "catalog_id": "QND027",
-   "title": "SAMPL9-WP6-G7 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G7 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G12-ISO-110-22-38-45-46",
    "action": "new",
    "catalog_id": "QND028",
-   "title": "SAMPL9-WP6-G12 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G12 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7038-ISO-110-8-9-12-13",
@@ -3530,31 +3566,46 @@
    "instance": "EN-SAMPL9-WP6-G8-ISO-110-18-30-31-32",
    "action": "new",
    "catalog_id": "QND030",
-   "title": "SAMPL9-WP6-G8 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G8 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G5-ISO-111-21-33-38-51",
    "action": "new",
    "catalog_id": "QND031",
-   "title": "SAMPL9-WP6-G5 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G5 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G6-ISO-101-10-11-17-23",
    "action": "new",
    "catalog_id": "QND032",
-   "title": "SAMPL9-WP6-G6 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G6 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G12-ISO-111-19-23-31-45",
    "action": "new",
    "catalog_id": "QND033",
-   "title": "SAMPL9-WP6-G12 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G12 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G7-ROT-101",
    "action": "new",
    "catalog_id": "QNI041",
-   "title": "SAMPL9-WP6-G7 · 转动跃迁频率（四选一）"
+   "title": "SAMPL9-WP6-G7 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7110-ISO-101-10-11-12-13",
@@ -3566,37 +3617,55 @@
    "instance": "EN-SAMPL9-WP6-G7-ISO-101-8-11-20-21",
    "action": "new",
    "catalog_id": "QND035",
-   "title": "SAMPL9-WP6-G7 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G7 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G8-ISO-111-18-29-31-36",
    "action": "new",
    "catalog_id": "QND036",
-   "title": "SAMPL9-WP6-G8 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G8 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G1-ISO-111-18-21-34-36",
    "action": "new",
    "catalog_id": "QND037",
-   "title": "SAMPL9-WP6-G1 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G1 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G8-ISO-110-18-25-27-33",
    "action": "new",
    "catalog_id": "QND038",
-   "title": "SAMPL9-WP6-G8 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G8 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G6-ISO-110-12-15-23-25",
    "action": "new",
    "catalog_id": "QND039",
-   "title": "SAMPL9-WP6-G6 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G6 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G1-ISO-111-30-33-34-36",
    "action": "new",
    "catalog_id": "QND040",
-   "title": "SAMPL9-WP6-G1 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G1 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7050-ISO-110-8-13-15-16",
@@ -3614,13 +3683,19 @@
    "instance": "EN-SAMPL9-WP6-G4-ISO-111-12-17-19-20",
    "action": "new",
    "catalog_id": "QND043",
-   "title": "SAMPL9-WP6-G4 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G4 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G3-ISO-111-9-10-21-22",
    "action": "new",
    "catalog_id": "QND044",
-   "title": "SAMPL9-WP6-G3 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G3 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7038-ISO-110-8-9-10-11",
@@ -3632,13 +3707,19 @@
    "instance": "EN-SAMPL9-WP6-G3-ROT-111",
    "action": "new",
    "catalog_id": "QNI042",
-   "title": "SAMPL9-WP6-G3 · 转动跃迁频率（四选一）"
+   "title": "SAMPL9-WP6-G3 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G3-ISO-110-13-18-20-21",
    "action": "new",
    "catalog_id": "QND046",
-   "title": "SAMPL9-WP6-G3 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G3 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7114-ISO-110-8-9-10-14",
@@ -3686,7 +3767,10 @@
    "instance": "EN-SAMPL9-WP6-G10-ISO-111-22-31-36-38",
    "action": "new",
    "catalog_id": "QND053",
-   "title": "SAMPL9-WP6-G10 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G10 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7052-ISO-110-8-12-13-15",
@@ -3704,19 +3788,28 @@
    "instance": "EN-SAMPL9-WP6-G6-ISO-101-19-20-22-23",
    "action": "new",
    "catalog_id": "QND056",
-   "title": "SAMPL9-WP6-G6 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G6 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G3-ISO-110-10-16-21-22",
    "action": "new",
    "catalog_id": "QND057",
-   "title": "SAMPL9-WP6-G3 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G3 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G4-ISO-111-13-16-19-20",
    "action": "new",
    "catalog_id": "QND058",
-   "title": "SAMPL9-WP6-G4 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G4 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7030-ISO-111-8-11-13-15",
@@ -3746,37 +3839,55 @@
    "instance": "EN-SAMPL9-WP6-G4-ISO-110-15-18-19-20",
    "action": "new",
    "catalog_id": "QND063",
-   "title": "SAMPL9-WP6-G4 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G4 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G3-ISO-111-9-14-20-21",
    "action": "new",
    "catalog_id": "QND064",
-   "title": "SAMPL9-WP6-G3 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G3 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G11-ISO-110-9-17-19-20",
    "action": "new",
    "catalog_id": "QND065",
-   "title": "SAMPL9-WP6-G11 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G11 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G10-ISO-110-29-30-33-36",
    "action": "new",
    "catalog_id": "QND066",
-   "title": "SAMPL9-WP6-G10 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G10 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G10-ISO-110-22-27-29-31",
    "action": "new",
    "catalog_id": "QND067",
-   "title": "SAMPL9-WP6-G10 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G10 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G6-ISO-101-19-22-23-24",
    "action": "new",
    "catalog_id": "QND068",
-   "title": "SAMPL9-WP6-G6 · 单氘代位点设计（四选一）"
+   "title": "SAMPL9-WP6-G6 · 单氘代位点设计（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7033-ISO-111-10-12-13-15",
@@ -3800,7 +3911,10 @@
    "instance": "EN-SAMPL9-WP6-G5-ROT-111",
    "action": "new",
    "catalog_id": "QNI045",
-   "title": "SAMPL9-WP6-G5 · 转动跃迁频率（四选一）"
+   "title": "SAMPL9-WP6-G5 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7030-ROT-111",
@@ -3818,7 +3932,10 @@
    "instance": "EN-SAMPL9-WP6-G12-ROT-111",
    "action": "new",
    "catalog_id": "QNI048",
-   "title": "SAMPL9-WP6-G12 · 转动跃迁频率（四选一）"
+   "title": "SAMPL9-WP6-G12 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7052-ROT-111",
@@ -3830,7 +3947,10 @@
    "instance": "EN-SAMPL9-WP6-G1-ROT-101",
    "action": "new",
    "catalog_id": "QNI050",
-   "title": "SAMPL9-WP6-G1 · 转动跃迁频率（四选一）"
+   "title": "SAMPL9-WP6-G1 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7089-ROT-111",
@@ -3854,7 +3974,10 @@
    "instance": "EN-SAMPL9-WP6-G4-ROT-110",
    "action": "new",
    "catalog_id": "QNI054",
-   "title": "SAMPL9-WP6-G4 · 转动跃迁频率（四选一）"
+   "title": "SAMPL9-WP6-G4 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7082-ROT-111",
@@ -4412,7 +4535,10 @@
    "instance": "EN-SAMPL9-WP6-ANG-31-27-38",
    "action": "new",
    "catalog_id": "QNP031",
-   "title": "SAMPL9-WP6 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-2LZM-TOR-33-PHI",
@@ -4436,7 +4562,10 @@
    "instance": "EN-SAMPL9-WP6-G3-ANG-2-6-7",
    "action": "new",
    "catalog_id": "QNP033",
-   "title": "SAMPL9-WP6-G3 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G3 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-1WNR-TOR-7-PHI",
@@ -4514,7 +4643,10 @@
    "instance": "EN-SAMPL9-WP6-ANG-105-102-113",
    "action": "new",
    "catalog_id": "QNP036",
-   "title": "SAMPL9-WP6 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-1G31-TOR-15-PHI",
@@ -4574,7 +4706,10 @@
    "instance": "EN-SAMPL9-WP6-ANG-62-64-70",
    "action": "new",
    "catalog_id": "QNP037",
-   "title": "SAMPL9-WP6 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-3M73-TOR-97-PHI",
@@ -4616,7 +4751,10 @@
    "instance": "EN-SAMPL9-WP6-G3-ANG-5-4-7",
    "action": "new",
    "catalog_id": "QNP039",
-   "title": "SAMPL9-WP6-G3 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G3 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-3W4T-DS-70-151",
@@ -4628,7 +4766,10 @@
    "instance": "EN-SAMPL9-WP6-G1-ANG-1-3-5",
    "action": "new",
    "catalog_id": "QNP040",
-   "title": "SAMPL9-WP6-G1 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G1 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-5PTI-TOR-12-PHI",
@@ -4670,7 +4811,10 @@
    "instance": "EN-SAMPL9-WP6-G7-ANG-1-2-4",
    "action": "new",
    "catalog_id": "QNP042",
-   "title": "SAMPL9-WP6-G7 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G7 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-1VB0-TOR-18-PSI",
@@ -4718,7 +4862,10 @@
    "instance": "EN-SAMPL9-WP6-G8-ANG-10-11-13",
    "action": "new",
    "catalog_id": "QNP043",
-   "title": "SAMPL9-WP6-G8 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G8 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-1NXB-TOR-50-PHI",
@@ -4730,7 +4877,10 @@
    "instance": "EN-SAMPL9-BCD-ANG-22-21-59",
    "action": "new",
    "catalog_id": "QNP044",
-   "title": "SAMPL9-BCD · 命名化学键角（四选一）"
+   "title": "SAMPL9-BCD · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7111-ANG-3-2-5",
@@ -4754,7 +4904,10 @@
    "instance": "EN-SAMPL9-WP6-G5-ANG-6-9-19",
    "action": "new",
    "catalog_id": "QNP047",
-   "title": "SAMPL9-WP6-G5 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G5 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-3M73-DS-271-287",
@@ -4766,13 +4919,19 @@
    "instance": "EN-SAMPL9-DMBCD-ANG-3-2-43",
    "action": "new",
    "catalog_id": "QNP048",
-   "title": "SAMPL9-DMBCD · 命名化学键角（四选一）"
+   "title": "SAMPL9-DMBCD · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-DMBCD-ANG-18-17-61",
    "action": "new",
    "catalog_id": "QNP049",
-   "title": "SAMPL9-DMBCD · 命名化学键角（四选一）"
+   "title": "SAMPL9-DMBCD · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-1ONJ-DS-6-13",
@@ -4784,13 +4943,19 @@
    "instance": "EN-SAMPL9-WP6-ANG-72-70-74",
    "action": "new",
    "catalog_id": "QNP050",
-   "title": "SAMPL9-WP6 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G4-ANG-3-6-4",
    "action": "new",
    "catalog_id": "QNP051",
-   "title": "SAMPL9-WP6-G4 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G4 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-1PGA-TOR-38-PSI",
@@ -4808,13 +4973,19 @@
    "instance": "EN-SAMPL9-DMBCD-ANG-82-31-88",
    "action": "new",
    "catalog_id": "QNP052",
-   "title": "SAMPL9-DMBCD · 命名化学键角（四选一）"
+   "title": "SAMPL9-DMBCD · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G3-ANG-4-7-8",
    "action": "new",
    "catalog_id": "QNP053",
-   "title": "SAMPL9-WP6-G3 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G3 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-1U7G-DS-220-226",
@@ -4832,13 +5003,19 @@
    "instance": "EN-SAMPL9-DMBCD-ANG-14-13-67",
    "action": "new",
    "catalog_id": "QNP055",
-   "title": "SAMPL9-DMBCD · 命名化学键角（四选一）"
+   "title": "SAMPL9-DMBCD · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-BCD-ANG-39-40-41",
    "action": "new",
    "catalog_id": "QNP056",
-   "title": "SAMPL9-BCD · 命名化学键角（四选一）"
+   "title": "SAMPL9-BCD · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7208-ANG-2-3-4",
@@ -4862,7 +5039,10 @@
    "instance": "EN-SAMPL9-WP6-G5-ANG-1-7-11",
    "action": "new",
    "catalog_id": "QNP059",
-   "title": "SAMPL9-WP6-G5 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G5 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-3W4T-DS-368-426",
@@ -4880,7 +5060,10 @@
    "instance": "EN-SAMPL9-BCD-ANG-32-33-69",
    "action": "new",
    "catalog_id": "QNP060",
-   "title": "SAMPL9-BCD · 命名化学键角（四选一）"
+   "title": "SAMPL9-BCD · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-1G31-DS-11-53",
@@ -4898,13 +5081,19 @@
    "instance": "EN-SAMPL9-BCD-ANG-61-19-65",
    "action": "new",
    "catalog_id": "QNP062",
-   "title": "SAMPL9-BCD · 命名化学键角（四选一）"
+   "title": "SAMPL9-BCD · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G12-ANG-12-17-13",
    "action": "new",
    "catalog_id": "QNP063",
-   "title": "SAMPL9-WP6-G12 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G12 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-1PGA-TOR-17-PSI",
@@ -4922,13 +5111,19 @@
    "instance": "EN-SAMPL9-WP6-G12-ANG-5-1-6",
    "action": "new",
    "catalog_id": "QNP064",
-   "title": "SAMPL9-WP6-G12 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G12 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G12-ANG-10-18-16",
    "action": "new",
    "catalog_id": "QNP065",
-   "title": "SAMPL9-WP6-G12 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G12 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-3M73-DS-84-144",
@@ -4946,13 +5141,19 @@
    "instance": "EN-SAMPL9-WP6-G5-ANG-9-6-10",
    "action": "new",
    "catalog_id": "QNP066",
-   "title": "SAMPL9-WP6-G5 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G5 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G6-ANG-5-7-8",
    "action": "new",
    "catalog_id": "QNP067",
-   "title": "SAMPL9-WP6-G6 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G6 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-1U7G-DS-138-369",
@@ -4982,7 +5183,10 @@
    "instance": "EN-SAMPL9-WP6-G3-ANG-5-3-6",
    "action": "new",
    "catalog_id": "QNP068",
-   "title": "SAMPL9-WP6-G3 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G3 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-1G31-DS-76-99",
@@ -4994,13 +5198,19 @@
    "instance": "EN-SAMPL9-WP6-G6-ANG-7-8-9",
    "action": "new",
    "catalog_id": "QNP069",
-   "title": "SAMPL9-WP6-G6 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G6 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G12-ANG-8-9-17",
    "action": "new",
    "catalog_id": "QNP070",
-   "title": "SAMPL9-WP6-G12 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G12 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7063-ANG-1-2-3",
@@ -5030,7 +5240,10 @@
    "instance": "EN-SAMPL9-WP6-G1-ANG-8-10-12",
    "action": "new",
    "catalog_id": "QNP073",
-   "title": "SAMPL9-WP6-G1 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G1 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-2B2F-DS-186-189",
@@ -5042,7 +5255,10 @@
    "instance": "EN-SAMPL9-WP6-G1-ANG-5-7-9",
    "action": "new",
    "catalog_id": "QNP074",
-   "title": "SAMPL9-WP6-G1 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G1 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7052-ANG-5-3-6",
@@ -5054,7 +5270,10 @@
    "instance": "EN-SAMPL9-WP6-G1-ANG-10-12-13",
    "action": "new",
    "catalog_id": "QNP076",
-   "title": "SAMPL9-WP6-G1 · 命名化学键角（四选一）"
+   "title": "SAMPL9-WP6-G1 · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-2B2F-DS-61-130",
@@ -5528,19 +5747,28 @@
    "instance": "EN-SAMPL9-DMBCD-BOND-11-54",
    "action": "new",
    "catalog_id": "QNP078",
-   "title": "SAMPL9-DMBCD · 命名局部距离（四选一）"
+   "title": "SAMPL9-DMBCD · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-BCD-BOND-14-15",
    "action": "new",
    "catalog_id": "QNP079",
-   "title": "SAMPL9-BCD · 命名局部距离（四选一）"
+   "title": "SAMPL9-BCD · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-DMBCD-BOND-39-40",
    "action": "new",
    "catalog_id": "QNP080",
-   "title": "SAMPL9-DMBCD · 命名局部距离（四选一）"
+   "title": "SAMPL9-DMBCD · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7052-BOND-2-7",
@@ -5552,55 +5780,82 @@
    "instance": "EN-SAMPL9-WP6-BOND-112-114",
    "action": "new",
    "catalog_id": "QNP082",
-   "title": "SAMPL9-WP6 · 命名局部距离（四选一）"
+   "title": "SAMPL9-WP6 · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-BCD-BOND-31-32",
    "action": "new",
    "catalog_id": "QNP083",
-   "title": "SAMPL9-BCD · 命名局部距离（四选一）"
+   "title": "SAMPL9-BCD · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-BOND-113-117",
    "action": "new",
    "catalog_id": "QNP084",
-   "title": "SAMPL9-WP6 · 命名局部距离（四选一）"
+   "title": "SAMPL9-WP6 · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G12-BOND-3-6",
    "action": "new",
    "catalog_id": "QNP085",
-   "title": "SAMPL9-WP6-G12 · 命名局部距离（四选一）"
+   "title": "SAMPL9-WP6-G12 · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-BCD-BOND-25-26",
    "action": "new",
    "catalog_id": "QNP086",
-   "title": "SAMPL9-BCD · 命名局部距离（四选一）"
+   "title": "SAMPL9-BCD · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G12-BOND-5-9",
    "action": "new",
    "catalog_id": "QNP087",
-   "title": "SAMPL9-WP6-G12 · 命名局部距离（四选一）"
+   "title": "SAMPL9-WP6-G12 · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-BCD-BOND-41-42",
    "action": "new",
    "catalog_id": "QNP088",
-   "title": "SAMPL9-BCD · 命名局部距离（四选一）"
+   "title": "SAMPL9-BCD · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G12-BOND-8-9",
    "action": "new",
    "catalog_id": "QNP089",
-   "title": "SAMPL9-WP6-G12 · 命名局部距离（四选一）"
+   "title": "SAMPL9-WP6-G12 · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G11-BOND-4-5",
    "action": "new",
    "catalog_id": "QNP090",
-   "title": "SAMPL9-WP6-G11 · 命名局部距离（四选一）"
+   "title": "SAMPL9-WP6-G11 · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7052-BOND-1-2",
@@ -5630,19 +5885,28 @@
    "instance": "EN-SAMPL9-WP6-G8-BOND-9-13",
    "action": "new",
    "catalog_id": "QNP095",
-   "title": "SAMPL9-WP6-G8 · 命名局部距离（四选一）"
+   "title": "SAMPL9-WP6-G8 · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-7ARQ-GUIN-12",
    "action": "new",
    "catalog_id": "BNI083",
-   "title": "7ARQ · guinier_intensity（四选一）"
+   "title": "7ARQ · guinier_intensity（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-dna-origami",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：每个核苷酸一个点（C1′）；冷冻电镜 10 Å 赝原子模型，只在螺旋束整体尺度上可靠，不用于碱基对细节。"
   },
   {
    "instance": "EN-7ARQ-QDES-30-staple",
    "action": "new",
    "catalog_id": "BND078",
-   "title": "7ARQ-T · 测量条件设计：使散射强度降到目标的 q（四选一）"
+   "title": "7ARQ-T · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-dna-origami",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：每个核苷酸一个点（C1′）；冷冻电镜 10 Å 赝原子模型，只在螺旋束整体尺度上可靠，不用于碱基对细节。"
   },
   {
    "instance": "EN-6NCL-RG-P13",
@@ -5726,7 +5990,10 @@
    "instance": "EN-7ARQ-QDES-30-scaffold",
    "action": "new",
    "catalog_id": "BND089",
-   "title": "7ARQ-T · 测量条件设计：使散射强度降到目标的 q（四选一）"
+   "title": "7ARQ-T · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-dna-origami",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：每个核苷酸一个点（C1′）；冷冻电镜 10 Å 赝原子模型，只在螺旋束整体尺度上可靠，不用于碱基对细节。"
   },
   {
    "instance": "EN-1STM-CAPSID-capsomers-CP",
@@ -5738,7 +6005,10 @@
    "instance": "EN-7ARQ-QDES-70-staple",
    "action": "new",
    "catalog_id": "BND090",
-   "title": "7ARQ-T · 测量条件设计：使散射强度降到目标的 q（四选一）"
+   "title": "7ARQ-T · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-dna-origami",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：每个核苷酸一个点（C1′）；冷冻电镜 10 Å 赝原子模型，只在螺旋束整体尺度上可靠，不用于碱基对细节。"
   },
   {
    "instance": "EN-1SVA-QDES-30-VP1",
@@ -5756,7 +6026,10 @@
    "instance": "EN-7ARQ-QDES-50-scaffold",
    "action": "new",
    "catalog_id": "BND093",
-   "title": "7ARQ-T · 测量条件设计：使散射强度降到目标的 q（四选一）"
+   "title": "7ARQ-T · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-dna-origami",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：每个核苷酸一个点（C1′）；冷冻电镜 10 Å 赝原子模型，只在螺旋束整体尺度上可靠，不用于碱基对细节。"
   },
   {
    "instance": "EN-2FT1-QDES-70-gp5",
@@ -5828,7 +6101,10 @@
    "instance": "EN-7ARQ-EXT-staple",
    "action": "new",
    "catalog_id": "BNP103",
-   "title": "7ARQ-T · assembly_extent（四选一）"
+   "title": "7ARQ-T · assembly_extent（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-dna-origami",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：每个核苷酸一个点（C1′）；冷冻电镜 10 Å 赝原子模型，只在螺旋束整体尺度上可靠，不用于碱基对细节。"
   },
   {
    "instance": "EN-6NCL-EXT-P9",
@@ -5864,19 +6140,28 @@
    "instance": "EN-SAMPL9-WP6-G6-RG",
    "action": "new",
    "catalog_id": "QNP098",
-   "title": "SAMPL9-WP6-G6 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G6 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-DMBCD-DMAX",
    "action": "new",
    "catalog_id": "QNP099",
-   "title": "SAMPL9-DMBCD · extent_choice_v2（四选一）"
+   "title": "SAMPL9-DMBCD · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G4-DMAX",
    "action": "new",
    "catalog_id": "QNP100",
-   "title": "SAMPL9-WP6-G4 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G4 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7050-RG",
@@ -5888,19 +6173,28 @@
    "instance": "EN-SAMPL9-WP6-G7-DMAX",
    "action": "new",
    "catalog_id": "QNP102",
-   "title": "SAMPL9-WP6-G7 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G7 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G11-RG",
    "action": "new",
    "catalog_id": "QNP103",
-   "title": "SAMPL9-WP6-G11 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G11 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-BCD-RG",
    "action": "new",
    "catalog_id": "QNP104",
-   "title": "SAMPL9-BCD · extent_choice_v2（四选一）"
+   "title": "SAMPL9-BCD · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7032-DMAX",
@@ -5924,7 +6218,10 @@
    "instance": "EN-SAMPL9-WP6-G4-RG",
    "action": "new",
    "catalog_id": "QNP108",
-   "title": "SAMPL9-WP6-G4 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G4 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7038-RG",
@@ -5936,7 +6233,10 @@
    "instance": "EN-SAMPL9-WP6-G7-RG",
    "action": "new",
    "catalog_id": "QNP110",
-   "title": "SAMPL9-WP6-G7 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G7 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7082-DMAX",
@@ -6002,13 +6302,19 @@
    "instance": "EN-SAMPL9-WP6-G12-RG",
    "action": "new",
    "catalog_id": "QNP121",
-   "title": "SAMPL9-WP6-G12 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G12 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G3-RG",
    "action": "new",
    "catalog_id": "QNP122",
-   "title": "SAMPL9-WP6-G3 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G3 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7030-RG",
@@ -6032,25 +6338,37 @@
    "instance": "EN-SAMPL9-WP6-G1-DMAX",
    "action": "new",
    "catalog_id": "QNP126",
-   "title": "SAMPL9-WP6-G1 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G1 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G8-DMAX",
    "action": "new",
    "catalog_id": "QNP127",
-   "title": "SAMPL9-WP6-G8 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G8 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G8-RG",
    "action": "new",
    "catalog_id": "QNP128",
-   "title": "SAMPL9-WP6-G8 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G8 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-BCD-DMAX",
    "action": "new",
    "catalog_id": "QNP129",
-   "title": "SAMPL9-BCD · extent_choice_v2（四选一）"
+   "title": "SAMPL9-BCD · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7111-RG",
@@ -6062,13 +6380,19 @@
    "instance": "EN-SAMPL9-DMBCD-RG",
    "action": "new",
    "catalog_id": "QNP131",
-   "title": "SAMPL9-DMBCD · extent_choice_v2（四选一）"
+   "title": "SAMPL9-DMBCD · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-DMAX",
    "action": "new",
    "catalog_id": "QNP132",
-   "title": "SAMPL9-WP6 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7114-RG",
@@ -6092,13 +6416,19 @@
    "instance": "EN-SAMPL9-WP6-G11-DMAX",
    "action": "new",
    "catalog_id": "QNP136",
-   "title": "SAMPL9-WP6-G11 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G11 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-SAMPL9-WP6-G10-RG",
    "action": "new",
    "catalog_id": "QNP137",
-   "title": "SAMPL9-WP6-G10 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G10 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7033-RG",
@@ -6110,7 +6440,10 @@
    "instance": "EN-SAMPL9-WP6-G12-DMAX",
    "action": "new",
    "catalog_id": "QNP139",
-   "title": "SAMPL9-WP6-G12 · extent_choice_v2（四选一）"
+   "title": "SAMPL9-WP6-G12 · extent_choice_v2（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   },
   {
    "instance": "EN-QM7X-7044-DMAX",
@@ -6627,6 +6960,977 @@
    "action": "new",
    "catalog_id": "MNI130",
    "title": "9008834 · 晶体衍射消光判别（四选一）"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-PMZ-ROT-111",
+   "action": "new",
+   "catalog_id": "CNI038",
+   "title": "SAMPL9-bCD-PMZ · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-QM7X-7040-I1-C1-OPT-ROT-111",
+   "action": "new",
+   "catalog_id": "QNI058",
+   "title": "QM7X-7040-I1-C1-OPT · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-CPZ-ROT-111",
+   "action": "new",
+   "catalog_id": "CNI039",
+   "title": "SAMPL9-bCD-CPZ · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-TDZ-ROT-101",
+   "action": "new",
+   "catalog_id": "CNI040",
+   "title": "SAMPL9-bCD-TDZ · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-TDZ-ROT-110",
+   "action": "new",
+   "catalog_id": "CNI041",
+   "title": "SAMPL9-bCD-TDZ · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-PMT-ROT-110",
+   "action": "new",
+   "catalog_id": "CNI042",
+   "title": "SAMPL9-bCD-PMT · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-QM7X-7035-I1-C1-OPT-ROT-110",
+   "action": "new",
+   "catalog_id": "QNI059",
+   "title": "QM7X-7035-I1-C1-OPT · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-TDZ-ROT-111",
+   "action": "new",
+   "catalog_id": "CNI043",
+   "title": "SAMPL9-bCD-TDZ · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-QM7X-7040-I1-C1-OPT-ROT-101",
+   "action": "new",
+   "catalog_id": "QNI060",
+   "title": "QM7X-7040-I1-C1-OPT · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-PMZ-ROT-110",
+   "action": "new",
+   "catalog_id": "CNI044",
+   "title": "SAMPL9-bCD-PMZ · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-PMT-ROT-111",
+   "action": "new",
+   "catalog_id": "CNI045",
+   "title": "SAMPL9-bCD-PMT · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-QM7X-7001-I1-C1-OPT-ROT-111",
+   "action": "new",
+   "catalog_id": "QNI061",
+   "title": "QM7X-7001-I1-C1-OPT · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-CPZ-ROT-101",
+   "action": "new",
+   "catalog_id": "CNI046",
+   "title": "SAMPL9-bCD-CPZ · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-PMT-ROT-101",
+   "action": "new",
+   "catalog_id": "CNI047",
+   "title": "SAMPL9-bCD-PMT · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-QM7X-7035-I1-C1-OPT-ROT-111",
+   "action": "new",
+   "catalog_id": "QNI062",
+   "title": "QM7X-7035-I1-C1-OPT · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-CPZ-BOND-11-20",
+   "action": "new",
+   "catalog_id": "CNP061",
+   "title": "SAMPL9-bCD-CPZ · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-PMZ-BOND-8-12",
+   "action": "new",
+   "catalog_id": "CNP062",
+   "title": "SAMPL9-bCD-PMZ · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-PMT-BOND-16-17",
+   "action": "new",
+   "catalog_id": "CNP063",
+   "title": "SAMPL9-bCD-PMT · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-QM7X-7040-I1-C1-OPT-BOND-2-3",
+   "action": "new",
+   "catalog_id": "QNP141",
+   "title": "QM7X-7040-I1-C1-OPT · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7035-I1-C1-OPT-BOND-3-6",
+   "action": "new",
+   "catalog_id": "QNP142",
+   "title": "QM7X-7035-I1-C1-OPT · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7035-I1-C1-OPT-BOND-2-3",
+   "action": "new",
+   "catalog_id": "QNP143",
+   "title": "QM7X-7035-I1-C1-OPT · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-1HJP-SS-28",
+   "action": "new",
+   "catalog_id": "BNI088",
+   "title": "1HJP · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1HJP-SS-167",
+   "action": "new",
+   "catalog_id": "BNI089",
+   "title": "1HJP · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-4F3U-QDES-30",
+   "action": "new",
+   "catalog_id": "CND027",
+   "title": "4F3U · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 20 点，排除 0 个零占据率 CA/P 记录，略过 2 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-1JUC-QDES-30",
+   "action": "new",
+   "catalog_id": "CND028",
+   "title": "1JUC · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 18 点，排除 0 个零占据率 CA/P 记录，略过 0 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-3T8P-QDES-30",
+   "action": "new",
+   "catalog_id": "CND029",
+   "title": "3T8P · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 18 点，排除 0 个零占据率 CA/P 记录，略过 1 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-477D-QDES-70",
+   "action": "new",
+   "catalog_id": "CND030",
+   "title": "477D · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 22 点，排除 0 个零占据率 CA/P 记录，略过 4 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-355D-QDES-50",
+   "action": "new",
+   "catalog_id": "CND031",
+   "title": "355D · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 22 点，排除 0 个零占据率 CA/P 记录，略过 0 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-4GLG-QDES-70",
+   "action": "new",
+   "catalog_id": "CND032",
+   "title": "4GLG · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 20 点，排除 0 个零占据率 CA/P 记录，略过 2 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-1JUC-QDES-70",
+   "action": "new",
+   "catalog_id": "CND033",
+   "title": "1JUC · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 18 点，排除 0 个零占据率 CA/P 记录，略过 0 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-4F3U-QDES-70",
+   "action": "new",
+   "catalog_id": "CND034",
+   "title": "4F3U · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 20 点，排除 0 个零占据率 CA/P 记录，略过 2 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-4GLG-QDES-50",
+   "action": "new",
+   "catalog_id": "CND035",
+   "title": "4GLG · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 20 点，排除 0 个零占据率 CA/P 记录，略过 2 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-355D-QDES-30",
+   "action": "new",
+   "catalog_id": "CND036",
+   "title": "355D · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 22 点，排除 0 个零占据率 CA/P 记录，略过 0 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-4GLH-QDES-50",
+   "action": "new",
+   "catalog_id": "CND037",
+   "title": "4GLH · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 20 点，排除 0 个零占据率 CA/P 记录，略过 2 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-3T8P-QDES-70",
+   "action": "new",
+   "catalog_id": "CND038",
+   "title": "3T8P · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 18 点，排除 0 个零占据率 CA/P 记录，略过 1 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-4GLH-QDES-70",
+   "action": "new",
+   "catalog_id": "CND039",
+   "title": "4GLH · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 20 点，排除 0 个零占据率 CA/P 记录，略过 2 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-1JUC-QDES-50",
+   "action": "new",
+   "catalog_id": "CND040",
+   "title": "1JUC · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 18 点，排除 0 个零占据率 CA/P 记录，略过 0 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-355D-QDES-70",
+   "action": "new",
+   "catalog_id": "CND041",
+   "title": "355D · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 22 点，排除 0 个零占据率 CA/P 记录，略过 0 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-4GLG-QDES-30",
+   "action": "new",
+   "catalog_id": "CND042",
+   "title": "4GLG · 测量条件设计：使散射强度降到目标的 q（四选一）",
+   "domain": "chemistry",
+   "paper": "pdb-bio-nm",
+   "attribution": "RCSB PDB (wwPDB, CC0)；按 docs/assets/families/assemblies/sources.json 约简；约简表示：仅沉积模型的第一模型内、占据率 > 0、altLoc 为空或 A 的 ATOM CA/P 点；CA 记为 C，P 记为 P；保持原坐标与原记录顺序，全部点等权。未使用任何晶体或生物组装体对称操作；不代表完整生物组装体或溶液动态。全部 HETATM（含修饰残基和离子）不纳入，缺失原子不补全。本项保留 20 点，排除 0 个零占据率 CA/P 记录，略过 2 个 HETATM CA/P 记录。",
+   "sizeDefinition": "输入：全部提供的约简点集最大间距；推理：题目指定点集的最大间距。",
+   "learningObjective": "为给定的等权沉积模型点集选择使取向平均散射强度首次降至目标的测量 q。"
+  },
+  {
+   "instance": "EN-COD1000026-COORD-B-Mg",
+   "action": "new",
+   "catalog_id": "MNP070",
+   "title": "1000026 · 配位壳层（四选一）"
+  },
+  {
+   "instance": "EN-COD1000026-COORD-B-B",
+   "action": "new",
+   "catalog_id": "MNP071",
+   "title": "1000026 · 配位壳层（四选一）"
+  },
+  {
+   "instance": "EN-COD9008564-COORD-C-C",
+   "action": "new",
+   "catalog_id": "MNP072",
+   "title": "9008564 · 配位壳层（四选一）"
+  },
+  {
+   "instance": "EN-COD1000026-COORD-Mg-Mg",
+   "action": "new",
+   "catalog_id": "MNP073",
+   "title": "1000026 · 配位壳层（四选一）"
+  },
+  {
+   "instance": "EN-COD1000026-COORD-Mg-B",
+   "action": "new",
+   "catalog_id": "MNP074",
+   "title": "1000026 · 配位壳层（四选一）"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-CPZ-ANG-5-6-12",
+   "action": "new",
+   "catalog_id": "CNP064",
+   "title": "SAMPL9-bCD-CPZ · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-QM7X-7040-I1-C1-OPT-ANG-4-3-6",
+   "action": "new",
+   "catalog_id": "QNP144",
+   "title": "QM7X-7040-I1-C1-OPT · 命名化学键角（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-PMZ-ANG-3-1-5",
+   "action": "new",
+   "catalog_id": "CNP065",
+   "title": "SAMPL9-bCD-PMZ · 命名化学键角（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-1HJP-TOR-56-PSI",
+   "action": "new",
+   "catalog_id": "BNP107",
+   "title": "1HJP · 蛋白主链二面角 φ/ψ（四选一）"
+  },
+  {
+   "instance": "EN-1HJP-TOR-78-PSI",
+   "action": "new",
+   "catalog_id": "BNP108",
+   "title": "1HJP · 蛋白主链二面角 φ/ψ（四选一）"
+  },
+  {
+   "instance": "EN-COD9008564-XD-CRYSTAL-Mo",
+   "action": "new",
+   "catalog_id": "MND067",
+   "title": "9008564 · 衍射设计：选晶体、选谱线或定波长（四选一）"
+  },
+  {
+   "instance": "EN-COD9008564-XD-ANODE-Cr",
+   "action": "new",
+   "catalog_id": "MND068",
+   "title": "9008564 · 衍射设计：选晶体、选谱线或定波长（四选一）"
+  },
+  {
+   "instance": "EN-COD9008564-XD-ANODE-Cu",
+   "action": "new",
+   "catalog_id": "MND069",
+   "title": "9008564 · 衍射设计：选晶体、选谱线或定波长（四选一）"
+  },
+  {
+   "instance": "EN-COD1000026-PEAK-Co",
+   "action": "new",
+   "catalog_id": "MNI131",
+   "title": "1000026 · first_diffraction_peak（四选一）"
+  },
+  {
+   "instance": "EN-QM7X-7095-ROT-111",
+   "action": "new",
+   "catalog_id": "QNI063",
+   "title": "QM7X-7095 · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7095-ROT-110",
+   "action": "new",
+   "catalog_id": "QNI064",
+   "title": "QM7X-7095 · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G13-ROT-111",
+   "action": "new",
+   "catalog_id": "CNI048",
+   "title": "SAMPL9-WP6-G13 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-COD1529037-COORD-Y-Al",
+   "action": "new",
+   "catalog_id": "MNP075",
+   "title": "1529037 · 配位壳层（四选一）"
+  },
+  {
+   "instance": "EN-QM7X-7029-ROT-110",
+   "action": "new",
+   "catalog_id": "QNI065",
+   "title": "QM7X-7029 · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G2-ROT-101",
+   "action": "new",
+   "catalog_id": "CNI049",
+   "title": "SAMPL9-WP6-G2 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-QM7X-7206-ROT-110",
+   "action": "new",
+   "catalog_id": "QNI066",
+   "title": "QM7X-7206 · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G9-ROT-111",
+   "action": "new",
+   "catalog_id": "CNI050",
+   "title": "SAMPL9-WP6-G9 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G9-ROT-110",
+   "action": "new",
+   "catalog_id": "CNI051",
+   "title": "SAMPL9-WP6-G9 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-QM7X-7165-ROT-111",
+   "action": "new",
+   "catalog_id": "QNI067",
+   "title": "QM7X-7165 · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-1FHA-SS-76",
+   "action": "new",
+   "catalog_id": "BNI090",
+   "title": "1FHA · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1FHA-SS-16",
+   "action": "new",
+   "catalog_id": "BNI091",
+   "title": "1FHA · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1FHA-SS-150",
+   "action": "new",
+   "catalog_id": "BNI092",
+   "title": "1FHA · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1FHA-SS-113",
+   "action": "new",
+   "catalog_id": "BNI093",
+   "title": "1FHA · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1CRN-SS-35",
+   "action": "new",
+   "catalog_id": "BNI094",
+   "title": "1CRN · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1CRN-SS-28",
+   "action": "new",
+   "catalog_id": "BNI095",
+   "title": "1CRN · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1A6M-SS-131",
+   "action": "new",
+   "catalog_id": "BNI096",
+   "title": "1A6M · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1HHK-SS-171",
+   "action": "new",
+   "catalog_id": "BNI097",
+   "title": "1HHK · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-12E8-SS-176",
+   "action": "new",
+   "catalog_id": "BNI098",
+   "title": "12E8 · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-12E8-SS-80",
+   "action": "new",
+   "catalog_id": "BNI099",
+   "title": "12E8 · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1A6M-SS-16",
+   "action": "new",
+   "catalog_id": "BNI100",
+   "title": "1A6M · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1UBQ-SS-23",
+   "action": "new",
+   "catalog_id": "BNI101",
+   "title": "1UBQ · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1UBQ-SS-12",
+   "action": "new",
+   "catalog_id": "BNI102",
+   "title": "1UBQ · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-QM7X-7043-BOND-1-2",
+   "action": "new",
+   "catalog_id": "QNP148",
+   "title": "QM7X-7043 · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7043-BOND-4-7",
+   "action": "new",
+   "catalog_id": "QNP149",
+   "title": "QM7X-7043 · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7043-BOND-2-3",
+   "action": "new",
+   "catalog_id": "QNP150",
+   "title": "QM7X-7043 · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-COD2104364-COORD-O-N",
+   "action": "new",
+   "catalog_id": "MNP080",
+   "title": "2104364 · 配位壳层（四选一）"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G13-BOND-11-13",
+   "action": "new",
+   "catalog_id": "CNP067",
+   "title": "SAMPL9-WP6-G13 · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G13-BOND-2-6",
+   "action": "new",
+   "catalog_id": "CNP068",
+   "title": "SAMPL9-WP6-G13 · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-QM7X-7095-BOND-5-6",
+   "action": "new",
+   "catalog_id": "QNP151",
+   "title": "QM7X-7095 · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7206-BOND-2-3",
+   "action": "new",
+   "catalog_id": "QNP152",
+   "title": "QM7X-7206 · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-3NDS-TOR-33-PHI",
+   "action": "new",
+   "catalog_id": "BNP131",
+   "title": "3NDS · 蛋白主链二面角 φ/ψ（四选一）"
+  },
+  {
+   "instance": "EN-QM7X-7110-ROT-111",
+   "action": "new",
+   "catalog_id": "QNI068",
+   "title": "QM7X-7110 · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7110-ROT-110",
+   "action": "new",
+   "catalog_id": "QNI069",
+   "title": "QM7X-7110 · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-1HJP-SS-168",
+   "action": "new",
+   "catalog_id": "BNI103",
+   "title": "1HJP · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1HJP-SS-50",
+   "action": "new",
+   "catalog_id": "BNI104",
+   "title": "1HJP · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-QM7X-7044-ROT-111",
+   "action": "new",
+   "catalog_id": "QNI070",
+   "title": "QM7X-7044 · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7111-ROT-101",
+   "action": "new",
+   "catalog_id": "QNI071",
+   "title": "QM7X-7111 · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7089-ROT-110",
+   "action": "new",
+   "catalog_id": "QNI072",
+   "title": "QM7X-7089 · 转动跃迁频率（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-1CRN-SS-17",
+   "action": "new",
+   "catalog_id": "BNI105",
+   "title": "1CRN · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G6-ROT-111",
+   "action": "new",
+   "catalog_id": "CNI052",
+   "title": "SAMPL9-WP6-G6 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G7-ROT-111",
+   "action": "new",
+   "catalog_id": "CNI053",
+   "title": "SAMPL9-WP6-G7 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-1HHK-SS-46",
+   "action": "new",
+   "catalog_id": "BNI106",
+   "title": "1HHK · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1HHK-SS-214",
+   "action": "new",
+   "catalog_id": "BNI107",
+   "title": "1HHK · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-COD1538801-COORD-P-In",
+   "action": "new",
+   "catalog_id": "MNP081",
+   "title": "1538801 · 配位壳层（四选一）"
+  },
+  {
+   "instance": "EN-QM7X-7082-BOND-3-7",
+   "action": "new",
+   "catalog_id": "QNP153",
+   "title": "QM7X-7082 · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7032-BOND-3-4",
+   "action": "new",
+   "catalog_id": "QNP154",
+   "title": "QM7X-7032 · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7165-BOND-2-5",
+   "action": "new",
+   "catalog_id": "QNP155",
+   "title": "QM7X-7165 · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-1A6M-SS-72",
+   "action": "new",
+   "catalog_id": "BNI108",
+   "title": "1A6M · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G8-ROT-101",
+   "action": "new",
+   "catalog_id": "CNI054",
+   "title": "SAMPL9-WP6-G8 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G2-BOND-13-16",
+   "action": "new",
+   "catalog_id": "CNP069",
+   "title": "SAMPL9-WP6-G2 · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-QM7X-7029-BOND-5-6",
+   "action": "new",
+   "catalog_id": "QNP156",
+   "title": "QM7X-7029 · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7029-BOND-3-4",
+   "action": "new",
+   "catalog_id": "QNP157",
+   "title": "QM7X-7029 · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G9-BOND-4-10",
+   "action": "new",
+   "catalog_id": "CNP070",
+   "title": "SAMPL9-WP6-G9 · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-3NDS-SS-36",
+   "action": "new",
+   "catalog_id": "BNI109",
+   "title": "3NDS · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-1VB0-SS-29",
+   "action": "new",
+   "catalog_id": "BNI110",
+   "title": "1VB0 · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G5-ROT-110",
+   "action": "new",
+   "catalog_id": "CNI055",
+   "title": "SAMPL9-WP6-G5 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G5-ROT-101",
+   "action": "new",
+   "catalog_id": "CNI056",
+   "title": "SAMPL9-WP6-G5 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G1-ROT-111",
+   "action": "new",
+   "catalog_id": "CNI057",
+   "title": "SAMPL9-WP6-G1 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-TDZ-BOND-15-17",
+   "action": "new",
+   "catalog_id": "CNP071",
+   "title": "SAMPL9-bCD-TDZ · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-SAMPL9-bCD-TDZ-BOND-18-23",
+   "action": "new",
+   "catalog_id": "CNP072",
+   "title": "SAMPL9-bCD-TDZ · 命名局部距离（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
+  },
+  {
+   "instance": "EN-QM7X-7030-BOND-2-4",
+   "action": "new",
+   "catalog_id": "QNP158",
+   "title": "QM7X-7030 · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-QM7X-7030-BOND-1-2",
+   "action": "new",
+   "catalog_id": "QNP159",
+   "title": "QM7X-7030 · 命名局部距离（四选一）",
+   "domain": "quantum",
+   "paper": "qm7x",
+   "attribution": "QM7-X (Hoja et al., Sci. Data 2021) · CC BY 4.0；提供的几何坐标原样。"
+  },
+  {
+   "instance": "EN-SAMPL9-WP6-G12-ROT-101",
+   "action": "new",
+   "catalog_id": "CNI058",
+   "title": "SAMPL9-WP6-G12 · 转动跃迁频率（四选一）",
+   "domain": "chemistry",
+   "paper": "sampl9",
+   "attribution": "SAMPL9 challenge contributors (samplchallenges/SAMPL9) · CC BY 4.0；主体或客体结构由 PDB 转为 XYZ，保留提供构象的原子顺序与坐标；结构与实测表属非软件材料，MIT 仅覆盖上游代码。"
   }
  ],
  "retire": [

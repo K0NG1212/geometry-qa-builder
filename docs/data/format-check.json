@@ -1,12 +1,12 @@
 {
  "kind": "format_check",
  "date": "2026-10-13",
- "checked": 871,
- "with_issues": 40,
+ "checked": 988,
+ "with_issues": 41,
  "by_severity": {
   "high": 0,
   "medium": 0,
-  "low": 40
+  "low": 41
  },
  "by_rule": {
   "not_four_choice": 0,
@@ -17,7 +17,7 @@
   "binary_inside": 0,
   "main_record_old_format": 0,
   "two_binaries_combined": 17,
-  "mirror_pair": 23,
+  "mirror_pair": 24,
   "precision_collapse": 0
  },
  "rules": {
@@ -73,10 +73,10 @@
   }
  },
  "answer_positions": {
-  "A": 202,
-  "B": 239,
-  "C": 234,
-  "D": 196
+  "A": 230,
+  "B": 269,
+  "C": 264,
+  "D": 225
  },
  "note": "Automatic rules plus findings checked by hand (REVIEWED). Read-only; fixes follow the RUNBOOK (whole-family regeneration, supersede or archive), not edits of single questions.",
  "items": [
@@ -421,6 +421,21 @@
      "severity": "low",
      "label": "选项中正负成对",
      "detail": "选项：-164.6 / -134.4 / 15.4 / 164.6"
+    }
+   ],
+   "suggestion": ""
+  },
+  {
+   "id": "BNP107",
+   "title": "1HJP · 蛋白主链二面角 φ/ψ（四选一）",
+   "legacy": false,
+   "worst": "low",
+   "issues": [
+    {
+     "rule": "mirror_pair",
+     "severity": "low",
+     "label": "选项中正负成对",
+     "detail": "选项：-84.5 / -26.5 / 26.5 / 153.5"
     }
    ],
    "suggestion": ""

@@ -5,6 +5,7 @@ from collections import Counter
 from pathlib import Path
 
 from tools.admit_family_instances import admit
+from tools.extend_admission_map import metadata_overrides, repair_metadata, MIXED_MOLECULE_FAMILIES
 from tools.plan_coverage import plan
 from builder_modules.m0_scope.coverage import summarize
 
@@ -18,6 +19,8 @@ POLICY = read('builder_modules/m0_scope/prototype-policy.json')
 REGISTRY = read('templates/registry.json')
 FEASIBILITY = read('templates/scale-feasibility.json')
 BY_ID = {q['id']: q for q in CATALOG['questions']}
+MANIFEST = {s['id']: s for s in read('templates/family-manifest.json')['items']}
+STRUCTURES = read('templates/structures.json')
 
 
 class AdmissionMapTests(unittest.TestCase):
@@ -84,6 +87,74 @@ class AdmissionMapTests(unittest.TestCase):
         fake.update(action='reformat', catalog_id='QNP002')     # a reformat link must target an active legacy record
         with self.assertRaisesRegex(ValueError, 'Reformat target'):
             admit(CATALOG, WORKBENCH, INDEPENDENT, bad, '2026-09-29')
+
+
+class SourceMetadataTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        rebuilt, _ = admit(CATALOG, WORKBENCH, INDEPENDENT, AMAP, CATALOG['updated'])
+        cls.records = {q['familyInstance']: q for q in rebuilt['questions'] if q.get('familyInstance')}
+
+    def test_mixed_molecule_admission_follows_the_registered_source(self):
+        molecules = {(r['molecule'], r['asset']): r for r in STRUCTURES['molecules']}
+        seen = set()
+        for instance, q in self.records.items():
+            spec = MANIFEST.get(instance, {})
+            if not instance.startswith('EN-') or spec.get('family') not in MIXED_MOLECULE_FAMILIES or not spec.get('molecule'):
+                continue
+            row = molecules[(spec['molecule'], spec['asset'])]
+            sampl9 = 'sampl9' in row['source'].lower()
+            expected_paper = 'sampl9' if sampl9 else 'qm7x'
+            self.assertEqual((q['domain'], q['paper']), (row['domain'], expected_paper), instance)
+            self.assertEqual(q['source'], spec['source'], instance)
+            self.assertIn('CC BY 4.0', q['attribution'], instance)
+            self.assertIn('SAMPL9' if sampl9 else 'QM7-X', q['attribution'], instance)
+            if sampl9:
+                self.assertNotIn('QM7-X', q['attribution'], instance)
+            seen.add(expected_paper)
+        self.assertEqual(seen, {'sampl9', 'qm7x'})
+
+    def test_assembly_admission_uses_the_actual_point_set_and_domain(self):
+        assemblies = {r['asset']: r for r in STRUCTURES['assemblies']}
+        checked = 0
+        for instance, q in self.records.items():
+            spec = MANIFEST.get(instance, {})
+            if spec.get('asset') not in assemblies or not spec.get('assembly'):
+                continue
+            row = assemblies[spec['asset']]
+            self.assertEqual(q['domain'], row['domain'], instance)
+            self.assertEqual(q['paper'], 'pdb-dna-origami' if row['pdb'] == '7ARQ' else 'pdb-bio-nm', instance)
+            if 'deposited' in Path(row['asset']).name:
+                self.assertIn(row['scope'], q['attribution'], instance)
+                self.assertIn('RCSB PDB', q['attribution'], instance)
+                self.assertIn('CC0', q['attribution'], instance)
+            checked += 1
+        self.assertGreater(checked, 0)
+
+    def test_new_dna_fret_metadata_uses_pdb_nucleic_source(self):
+        row = next(r for r in STRUCTURES['structures'] if r['kind'] == 'nucleic')
+        for family in ('fret_efficiency', 'fret_design'):
+            metadata = metadata_overrides(dict(row, id='EN-DNA-FRET-REGRESSION', family=family), STRUCTURES)
+            self.assertEqual((metadata['domain'], metadata['paper']), ('chemistry', 'pdb-bio-nm'))
+            self.assertIn('RCSB PDB', metadata['attribution'])
+            self.assertIn('ATOM', metadata['attribution'])
+            self.assertIn('虚拟 FRET', metadata['attribution'])
+
+    def test_repairs_preserve_ids_and_handwritten_scientific_overrides(self):
+        spec = next(s for s in MANIFEST.values() if s['id'].startswith('EN-SAMPL9-') and s['family'] in MIXED_MOLECULE_FAMILIES)
+        entry = dict(instance=spec['id'], catalog_id='QNP999', action='new', title='kept',
+                     learningObjective='hand-written scientific objective', sizeDefinition='hand-written scale definition')
+        original = dict(families={}, instances=[entry])
+        repaired, changed = repair_metadata(original, {spec['id']: spec}, STRUCTURES)
+        got = repaired['instances'][0]
+        self.assertEqual((got['instance'], got['catalog_id']), (entry['instance'], 'QNP999'))
+        self.assertEqual((got['learningObjective'], got['sizeDefinition']),
+                         ('hand-written scientific objective', 'hand-written scale definition'))
+        self.assertNotIn('domain', original['instances'][0])
+        self.assertEqual(changed, [spec['id']])
+        # Stereo tasks retain their scientific chemistry classification even though QM7-X is a quantum dataset.
+        self.assertEqual(metadata_overrides(dict(spec, family='stereo_relationship'), STRUCTURES), {})
+
 
 
 class CoveragePlanTests(unittest.TestCase):
