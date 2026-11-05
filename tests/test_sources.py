@@ -80,6 +80,43 @@ class ExtractionTests(unittest.TestCase):
             xml.unlink()
 
 
+class PlaceTests(unittest.TestCase):
+    """A passage is reported with the page or heading it sits under, read off the source."""
+
+    def test_an_xml_passage_is_placed_under_its_own_heading_not_the_card_s_locator(self):
+        xml = ROOT / 'reviews' / '_t3.xml'
+        xml.write_text('<article><title-group><article-title>Hydrogen bonding</article-title>'
+                       '</title-group><sec><title>2.5. Vibrations</title><p>nothing here</p></sec>'
+                       '<table-wrap><label>Table 3</label><td>3087</td></table-wrap></article>',
+                       encoding='utf-8')
+        try:
+            labels = [label for label, _ in sources.segments(xml)]
+            self.assertIn('小节「2.5. Vibrations」', labels)
+            self.assertIn('Table 3 一带', labels)
+            # <title-group> must not be mistaken for <title>, or the front matter swallows the paper
+            self.assertNotIn('Hydrogen bonding', ' '.join(labels))
+            best = sources.best_located(sources.segments(xml), ['3087'], [])
+            self.assertEqual(best[0][1], 'Table 3 一带')
+        finally:
+            xml.unlink()
+
+    def test_a_pdf_is_split_on_its_page_breaks(self):
+        """pdftotext marks pages with a form feed, so the page a passage sits on costs nothing."""
+        seen = []
+
+        def fake(path):
+            return 'first page 111\fsecond page 222'
+
+        real, sources.pdf_text = sources.pdf_text, fake
+        try:
+            segs = sources.segments(ROOT / 'reviews' / '_t.pdf')
+            seen = [label for label, _ in segs]
+            self.assertEqual(seen, ['PDF 第 1 页', 'PDF 第 2 页'])
+            self.assertEqual(sources.best_located(segs, ['222'], [])[0][1], 'PDF 第 2 页')
+        finally:
+            sources.pdf_text = real
+
+
 @unittest.skipUnless(MANIFEST.exists(), 'still需要先跑 --fetch')
 class HeldSourceTests(unittest.TestCase):
 
@@ -107,13 +144,46 @@ class HeldSourceTests(unittest.TestCase):
 
     @unittest.skipUnless(PROBE.exists(), 'still需要先跑 --probe')
     def test_no_fact_of_a_held_paper_is_unsupported(self):
+        """Changed 2026-11-05: the verdict to fail on is 'check', not "anything but pass".
+
+        A fact with no numbers and no named terms used to come out 'pass' although nothing had been
+        looked for -- 17 of the 100 facts. Those are now 'no_tokens' and counted apart, so this test has
+        to name the failing verdict rather than treating every non-pass as a failure."""
         bad = []
         for name, entry in json.loads(PROBE.read_text(encoding='utf-8')).items():
             if entry.get('unverifiable'):
                 continue
             bad += ['%s %s 缺 %s %s' % (name, f['id'], f['missing_numbers'], f['missing_terms'])
-                    for f in entry['facts'] if f['verdict'] != 'pass']
+                    for f in entry['facts'] if f['verdict'] == 'check']
         self.assertEqual(bad, [])
+
+    @unittest.skipUnless(PROBE.exists(), 'still需要先跑 --probe')
+    def test_a_fact_with_nothing_to_look_for_is_not_called_a_pass(self):
+        """"Both vHs peaks are present and unsplit" has no number and no named term in it. Passing it
+        would be the checker certifying its own blind spot."""
+        for name, entry in json.loads(PROBE.read_text(encoding='utf-8')).items():
+            for fact in entry.get('facts', []):
+                if fact['numbers'] + fact['named'] == 0:
+                    self.assertEqual(fact['verdict'], 'no_tokens',
+                                     '%s %s 没有可核验的词却判了 %s' % (name, fact['id'], fact['verdict']))
+
+    @unittest.skipUnless(PROBE.exists(), 'still需要先跑 --probe')
+    def test_a_checked_fact_records_where_in_the_paper_it_was_found(self):
+        for name, entry in json.loads(PROBE.read_text(encoding='utf-8')).items():
+            for fact in entry.get('facts', []):
+                if fact['verdict'] == 'pass':
+                    self.assertTrue(fact.get('where'), '%s %s 没记在原文哪里' % (name, fact['id']))
+
+    @unittest.skipUnless(PROBE.exists(), 'still需要先跑 --probe')
+    def test_the_committed_report_carries_no_source_text(self):
+        """Four of these papers are PMC author manuscripts and one is CC BY-NC-ND. The manifest and this
+        report are the only things committed, so they hold counts and places, never the paper's words."""
+        allowed = {'id', 'locator', 'numbers', 'named', 'missing_numbers', 'missing_terms',
+                   'where', 'found_here', 'verdict', 'page_note'}
+        for name, entry in json.loads(PROBE.read_text(encoding='utf-8')).items():
+            self.assertLessEqual(set(entry) - {'paper', 'facts'}, {'unverifiable'})
+            for fact in entry.get('facts', []):
+                self.assertLessEqual(set(fact), allowed, '%s 多了不该记的字段' % name)
 
     @unittest.skipUnless(PROBE.exists(), 'still需要先跑 --probe')
     def test_an_unverifiable_card_is_reported_as_such_not_passed(self):

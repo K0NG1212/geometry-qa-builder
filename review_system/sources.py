@@ -155,22 +155,59 @@ def link_for(ident):
 INLINE = ('sub', 'sup', 'italic', 'bold', 'sc', 'underline', 'overline', 'monospace', 'roman', 'xref')
 
 
-def text_of(path):
-    """The source's own words, as plain text: JATS body for XML, pdftotext for PDF.
-
-    Tables are kept. Locators point at them ("Table 1"), and an extractor that drops them reports the
-    numbers in them as absent from the paper, which is the opposite of what this file is for."""
-    path = Path(path)
-    if path.suffix == '.xml':
-        raw = path.read_text(encoding='utf-8', errors='replace')
-        raw = re.sub(r'</?(?:%s)(?:\s[^>]*)?>' % '|'.join(INLINE), '', raw)
-        return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', raw))
-    out = subprocess.run(['pdftotext', '-q', '-enc', 'UTF-8', str(path), '-'],
-                         capture_output=True)
+def pdf_text(path):
+    """A PDF's text with its page breaks intact: pdftotext separates pages with a form feed."""
+    out = subprocess.run(['pdftotext', '-q', '-enc', 'UTF-8', str(path), '-'], capture_output=True)
     if out.returncode == 0 and out.stdout.strip():
-        return re.sub(r'\s+', ' ', out.stdout.decode('utf-8', 'replace'))
+        return out.stdout.decode('utf-8', 'replace')
     from pypdf import PdfReader                                    # fallback, slower and rougher
-    return re.sub(r'\s+', ' ', ' '.join(p.extract_text() or '' for p in PdfReader(str(path)).pages))
+    return '\f'.join(p.extract_text() or '' for p in PdfReader(str(path)).pages)
+
+
+def label_of(markup, width=58):
+    text = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', markup)).strip()
+    return text[:width] + ('…' if len(text) > width else '')
+
+
+def segments(path):
+    """The source cut into labelled pieces, so a passage can be reported with where in the paper it is.
+
+    A reader needs a place, not only a sentence: "it is in the paper somewhere" is not a locator. A PDF
+    has pages and pdftotext marks them with a form feed, so the page a passage sits on is free. JATS XML
+    has no pages at all; what a reader can navigate to there is the heading above the passage -- a section
+    title, or a "Table 3" label -- which is also the form the cards' own locators take. These labels are
+    read off the source, never off the card, so a card that claims "Table 3" can be checked against where
+    its numbers actually are.
+
+    Tables are kept, here as everywhere in this file. Locators point at them ("Table 1"), and an extractor
+    that drops them reports the numbers in them as absent from the paper."""
+    path = Path(path)
+    if path.suffix != '.xml':
+        return [('PDF 第 %d 页' % i, re.sub(r'\s+', ' ', page).strip())
+                for i, page in enumerate(pdf_text(path).split('\f'), 1) if page.strip()]
+    raw = path.read_text(encoding='utf-8', errors='replace')
+    raw = re.sub(r'</?(?:%s)(?:\s[^>]*)?>' % '|'.join(INLINE), '', raw)
+    cuts = [(0, '文章开头（题目、作者、摘要）')]
+    # `<title ...>`, not `<title-group>` or `<article-title>`: matching those swallows the whole front
+    # matter into one label.
+    for m in re.finditer(r'<title(?:\s[^>]*)?>(.*?)</title>', raw, re.S):
+        cuts.append((m.start(), '小节「%s」' % label_of(m.group(1))))
+    for m in re.finditer(r'<label(?:\s[^>]*)?>(.*?)</label>', raw, re.S):
+        name = label_of(m.group(1), 24)
+        if re.match(r'(?:Table|Figure|Fig\.?|Scheme|Box)\b', name, re.I):
+            cuts.append((m.start(), '%s 一带' % name.rstrip('.')))
+    cuts.sort()
+    out = []
+    for (start, label), (end, _) in zip(cuts, cuts[1:] + [(len(raw), '')]):
+        body = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', raw[start:end])).strip()
+        if body:
+            out.append((label, body))
+    return out
+
+
+def text_of(path):
+    """The whole source as one run of text, for asking whether it says a thing anywhere at all."""
+    return ' '.join(body for _, body in segments(path))
 
 
 # What in a fact can be looked for in the source: numbers with their units, and named entities such as
@@ -213,6 +250,18 @@ def sentences(text, token, width=2):
     return hits
 
 
+def prose(passage, step=0.5):
+    """How sentence-like a passage is: letters per digit, in coarse steps.
+
+    A fact with a single number ("about 0.6 nm thick") matches that number anywhere, and in a PDF the
+    densest place for a bare number is a figure's axis labels, which pdftotext renders as a drift of
+    digits. Among passages that carry the fact equally well, the one that reads like a sentence is the one
+    the fact was written from. Coarse steps so this only breaks ties and never outranks coverage."""
+    letters = sum(c.isalpha() for c in passage)
+    digits = sum(c.isdigit() for c in passage)
+    return round(letters / (1 + digits) / step)
+
+
 def best_passages(text, numbers, named, keep=2):
     """The passages that carry the most of this fact at once.
 
@@ -231,10 +280,10 @@ def best_passages(text, numbers, named, keep=2):
     scored = []
     for passage in dict.fromkeys(windows.values()):
         score = sum(1 for t in wanted if found(t, passage))
-        scored.append((score, -len(passage), passage))
+        scored.append((score, prose(passage), -len(passage), passage))
     scored.sort(reverse=True)
     out = []
-    for score, _, passage in scored:
+    for score, _, _, passage in scored:
         if out and score < 2:
             break
         core = passage[len(passage) // 3:len(passage) // 3 + 110]
@@ -245,39 +294,113 @@ def best_passages(text, numbers, named, keep=2):
         out.append((score, passage))
         if len(out) >= keep or score == len(wanted):
             break
-    return out or ([(1, scored[0][2])] if scored else [])
+    return out or ([(1, scored[0][3])] if scored else [])
+
+
+def best_located(segs, numbers, named, keep=2):
+    """The best passages across a labelled source, each with the page or heading it sits under.
+
+    Scoring runs inside a segment and the winners are merged, so a passage is always reported with a
+    place a reader can turn to."""
+    cands = []
+    for label, text in segs:
+        for score, passage in best_passages(text, numbers, named, keep=keep):
+            cands.append((score, prose(passage), -len(passage), label, passage))
+    cands.sort(reverse=True)
+    out = []
+    for score, _, _, label, passage in cands:
+        if out and score < 2:
+            break
+        core = passage[len(passage) // 3:len(passage) // 3 + 110]
+        if any(core in kept or kept[len(kept) // 3:len(kept) // 3 + 110] in passage
+               for _, _, kept in out):
+            continue
+        out.append((score, label, passage))
+        if len(out) >= keep or score == len(numbers) + len(named):
+            break
+    return out
+
+
+def page_gap(locator, where):
+    """When the card claims a page and the search found another one, say which.
+
+    Not an error: a card's "p. 5" may be the page of the journal version or of the main text alone, while
+    the file we hold is the arXiv PDF with its figures and supplement bound in. But a reviewer should see
+    the disagreement here, not discover it while pointing at a page in a meeting."""
+    if not locator or not where or not where.startswith('PDF 第'):
+        return None
+    claimed = set()
+    for m in re.finditer(r'pp?\.?\s*(\d{1,3})(?:\s*[-–]\s*(\d{1,3}))?', locator):
+        first, last = int(m.group(1)), int(m.group(2) or m.group(1))
+        claimed.update(range(min(first, last), max(first, last) + 1))
+    page = int(re.search(r'\d+', where).group(0))
+    if claimed and page not in claimed:
+        return '卡片记的是 p. %s，而这段在 PDF 第 %d 页（两套页码可能不同，要人确认）' % (
+            '/'.join(str(n) for n in sorted(claimed)), page)
+    return None
 
 
 def probe(cards, held):
-    """Per fact: which of its numbers and named terms are in the source, and which are not."""
+    """Per fact: which of its numbers and named terms are in the source, which are not, and where.
+
+    `where` is the page or heading the best passage sits under -- a place, not the passage itself. The
+    passages are the paper's own words and several of these papers are not ours to redistribute, so what
+    is recorded here, and committed, carries no source text at all."""
     report = {}
-    texts = {}
+    sources_text = {}
     for name, card in sorted(cards.items()):
         row = held.get(card['paper'] or '', {})
         entry = report.setdefault(name, dict(paper=card['paper'], facts=[]))
         if not row.get('held'):
             entry['unverifiable'] = row.get('reason', '源文件未取得')
             continue
-        if card['paper'] not in texts:
-            texts[card['paper']] = text_of(row['file'])
-        text = texts[card['paper']]
+        if card['paper'] not in sources_text:
+            segs = segments(row['file'])
+            sources_text[card['paper']] = (segs, ' '.join(b for _, b in segs))
+        segs, text = sources_text[card['paper']]
         for fact in card['facts']:
             numbers, named = tokens(fact.get('text', ''))
             missing_n = [t for t in numbers if not found(t, text)]
             missing_t = [t for t in named if not found(t, text)]
+            best = best_located(segs, numbers, named, keep=1)
+            if not numbers and not named:
+                # Nothing in this fact can be looked for: it states a shape or a trend in words only
+                # ("both vHs peaks are present and unsplit"). Calling that a pass would be this tool
+                # rubber-stamping its own blind spot, which is worse than having no tool.
+                verdict = 'no_tokens'
+            elif missing_n or missing_t:
+                verdict = 'check'
+            else:
+                verdict = 'pass'
+            where = best[0][1] if best else None
+            note = page_gap(fact.get('locator'), where)
             entry['facts'].append(dict(
                 id=fact.get('id'), locator=fact.get('locator'),
                 numbers=len(numbers), named=len(named),
                 missing_numbers=missing_n, missing_terms=missing_t,
-                verdict='pass' if not missing_n and not missing_t else 'check'))
+                where=where, found_here=best[0][0] if best else 0,
+                verdict=verdict, **({'page_note': note} if note else {})))
     return report
+
+
+def tally(report):
+    """How many facts were actually checked, as opposed to merely not flagged."""
+    counts = dict(facts=0, passed=0, flagged=0, no_tokens=0, unverifiable_cards=0)
+    for entry in report.values():
+        if entry.get('unverifiable'):
+            counts['unverifiable_cards'] += 1
+            continue
+        for fact in entry['facts']:
+            counts['facts'] += 1
+            counts[{'pass': 'passed', 'check': 'flagged'}.get(fact['verdict'], 'no_tokens')] += 1
+    return counts
 
 
 QA = (ROOT / 'runs').resolve().parent / 'qa'
 BAR = '-' * 78
 
 
-def sheet_for(card_name, card, row, text, report):
+def sheet_for(card_name, card, row, segs, report):
     """What a reviewer needs to check one card against the paper, as one readable file."""
     out = ['证据核对 · %s' % card_name, BAR,
            '论文  ：%s' % (card['citation'] or '（卡片未记引文）'),
@@ -285,12 +408,16 @@ def sheet_for(card_name, card, row, text, report):
            '许可  ：%s' % (card['license'] or '（未标）')]
     if row.get('held'):
         out += ['本地副本：%s' % row['file'],
-                '        sha256 %s · %d 字节 · 取自 %s' % (row['sha256'][:16], row['bytes'], row['url'])]
+                '        sha256 %s · %d 字节 · 取自 %s' % (row['sha256'][:16], row['bytes'], row['url']),
+                '这个文件夹里：%s 就是论文原件，论文核对.html 是能直接读的渲染版（都由 '
+                'python -m review_system.stock 放进来）' % Path(row['file']).name]
     else:
         out += ['本地副本：**未取得** —— %s' % row.get('reason', ''),
                 '        这张卡的事实无法机械核验，只能你自己点开链接看。']
-    out += ['', '怎么用这份文件：每条事实下面是**原文里带着它的数字与专名的那一段**，照抄未改。',
-            '拿它去原文里搜，一下就能定位。对不上就是问题，请记进 REVIEW_ISSUES.md。', '']
+    out += ['', '怎么用这份文件：每条事实下面是**原文里带着它的数字与专名的那一段**，照抄未改，',
+            '前面标着它在原文的**第几页**（PDF）或**哪个小节、哪张表**（全文 XML）——这个位置是从',
+            '源文件里读出来的，不是抄卡片上的。翻到那一页搜那个数字就能对上。',
+            '对不上就是问题，请记进 REVIEW_ISSUES.md。', '']
 
     facts = {f['id']: f for f in report.get('facts', [])}
     for fact in card['facts']:
@@ -303,9 +430,17 @@ def sheet_for(card_name, card, row, text, report):
             out += ['  原文：未取得副本，无法摘录。', '']
             continue
         numbers, named = tokens(fact.get('text', ''))
+        if not numbers and not named:
+            out += ['  这条没有数字也没有专名，**程序核不了**：它说的是定性的事（形状、趋势、有没有）。',
+                    '    请照上面「卡片记的位置」自己读原文判断，结论写进 REVIEW_ISSUES.md。', '']
+            continue
         out.append('  要找的：数字 %s；专名 %s' % (numbers or '无', named or '无'))
-        passages = best_passages(text, numbers, named)
-        for score, passage in passages:
+        passages = best_located(segs, numbers, named)
+        for score, label, passage in passages:
+            out.append('  在原文的位置：%s' % label)
+            gap = page_gap(fact.get('locator'), label)
+            if gap:
+                out.append('  注意：%s' % gap)
             out.append('  原文（命中 %d/%d 项）：…%s…' % (score, len(numbers) + len(named), passage))
         if not passages:
             out.append('  原文：没找到含这些词的段落——**这条要人看**。')
@@ -320,7 +455,7 @@ def write_sheets(cards, held, report):
     if not QA.exists():
         print('找不到题目文件夹 %s，跳过' % QA)
         return 0
-    texts, written, by_card = {}, 0, {}
+    segs_by_paper, written, by_card = {}, 0, {}
     for folder in sorted(QA.iterdir()):
         info = folder / 'info.json'
         if not info.is_dir() and info.exists():
@@ -333,9 +468,9 @@ def write_sheets(cards, held, report):
             continue
         card = cards[name]
         row = held.get(card['paper'] or '', {})
-        if row.get('held') and card['paper'] not in texts:
-            texts[card['paper']] = text_of(row['file'])
-        body = sheet_for(name, card, row, texts.get(card['paper'], ''), report.get(name, {}))
+        if row.get('held') and card['paper'] not in segs_by_paper:
+            segs_by_paper[card['paper']] = segments(row['file'])
+        body = sheet_for(name, card, row, segs_by_paper.get(card['paper'], []), report.get(name, {}))
         (folder / 'source' / 'SOURCE_CHECK.txt').write_text(body, encoding='utf-8', newline='')
         written += 1
         by_card[name] = by_card.get(name, 0) + 1
@@ -384,14 +519,21 @@ def main(argv=None):
             if entry.get('unverifiable'):
                 print('  %-26s 无法核验：%s' % (name, entry['unverifiable']))
                 continue
-            flags = [f for f in entry['facts'] if f['verdict'] != 'pass']
+            flags = [f for f in entry['facts'] if f['verdict'] == 'check']
+            blind = [f for f in entry['facts'] if f['verdict'] == 'no_tokens']
             bad += len(flags)
-            print('  %-26s %d 条事实，%d 条对不上' % (name, len(entry['facts']), len(flags)))
+            print('  %-26s %d 条事实，%d 条对不上%s'
+                  % (name, len(entry['facts']), len(flags),
+                     '，%d 条没有可核验的词' % len(blind) if blind else ''))
             for f in flags:
                 print('      %s 缺数字 %s 缺专名 %s' % (f['id'], f['missing_numbers'], f['missing_terms']))
         out = MANIFEST.with_name('source-probe.json')
         out.write_text(json.dumps(report, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
-        print('逐条结果写到', out, '；对不上的共', bad, '条')
+        c = tally(report)
+        print('逐条结果写到', out)
+        print('合计 %d 条事实：%d 条在原文里核到、%d 条对不上、%d 条没有数字也没有专名（程序核不了，要人读），'
+              '另有 %d 张卡因为源文件未取得而整张无法核验'
+              % (c['facts'], c['passed'], c['flagged'], c['no_tokens'], c['unverifiable_cards']))
         if args.sheet:
             write_sheets(cards, held, report)
         return 0
