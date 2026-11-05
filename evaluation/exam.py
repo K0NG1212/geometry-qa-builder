@@ -7,7 +7,7 @@ carry it by accident. The instance id is teacher side too: some ids spell out th
 Questions are addressed by their catalog id (BND016), which says nothing about the answer.
 
 Two forms of the same question exist. The choice form offers four labelled options; the numeric form asks for
-the number itself and exists for 464 of the 871, and the pair is what tells us how much of a score is
+the number itself and exists for 547 of the 988, and the pair is what tells us how much of a score is
 four-way guessing.
 """
 import hashlib
@@ -31,7 +31,7 @@ SETTINGS = {
         label='只给渲染图，不给坐标',
         instruction='',
         available=False,
-        unavailable_because='渲染器还没写；且只有 497/871 道题带原子级三维坐标附件（xyz 或 pdb 片段）可直接渲染，报分时必须说明是子集'),
+        unavailable_because='渲染器还没写；且只有 602/988 道题带原子级三维坐标附件（xyz 或 pdb 片段）可直接渲染，报分时必须说明是子集'),
 }
 
 

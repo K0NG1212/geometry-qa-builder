@@ -1,20 +1,20 @@
 {
  "kind": "review_queue",
- "date": "2026-11-03",
+ "date": "2026-11-05",
  "summary": {
   "scope": "selection",
   "units_all_active": 52,
-  "units": 49,
-  "families": 49,
+  "units": 47,
+  "families": 47,
   "legacy_units": 0,
   "L1": {
-   "pending": 49,
+   "pending": 47,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
   "L2": {
-   "pending": 49,
+   "pending": 47,
    "approved": 0,
    "revise": 0,
    "stale": 0
@@ -34,8 +34,8 @@
   },
   "next_l3_batch": "l3-batch-001",
   "l3_sample": 160,
-  "l3_strata": 101,
-  "l3_steady_state_sample": 141,
+  "l3_strata": 98,
+  "l3_steady_state_sample": 139,
   "model_calls": 0,
   "reviews_recorded": {
    "L1": 0,
@@ -539,310 +539,6 @@
         "label": "D",
         "rule": "opposite_sign",
         "reason": "符号约定取反：相当于把镜像手性当成原构象。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "binding_design_choice",
-   "kind": "family",
-   "ability": "design",
-   "registry_id": "binding_design_choice",
-   "generator": "task_families/hostguest.py",
-   "checker": "checkers/hostguest.py",
-   "checker_function": "binding_design_choice",
-   "bindings": {
-    "L1": {
-     "registry_row": "4724f3745c0952bf8a5c9f2cc1fe095eb08a10992a7c22a5b19b7f89e722f7fb",
-     "task_families/hostguest.py": "5bab67681ba00790a7253e631a4d5fff91cf9ef722bfe368b989c8b5448e50f1"
-    },
-    "L2": {
-     "checkers/hostguest.py": "d6c8fb867e6d313c84cce0e6e3fa51e3497a11e4a0e9f826095a804dd5a46654",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 2,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "客体设计选择（实测证据）",
-     "concept": "从参考客体出发，在四个候选替换中选出唯一一个使实测结合增强至少给定幅度的；四个候选均有实测值，且都离阈值 ≥ 0.3 kcal/mol。",
-     "inputs": "WP6 主体与四个候选客体 XYZ。",
-     "physical_conditions": "与主客体结合证据题相同：ITC，1× PBS，pH 7.40，298.15 K，1:1。",
-     "reasoning_scale": "主客体复合物",
-     "scale_limits": "结合强弱取决于电荷、尺寸匹配、溶剂化等，不能单凭几何算出；几何附件只用于识别候选客体。",
-     "source_basis": "SAMPL9 WP6（MIT）",
-     "answer_method": "实测 ΔG 与阈值比较。",
-     "distractor_mechanisms": [
-      "improves_but_below_target",
-      "weakens_binding",
-      "dication_not_sufficient"
-     ],
-     "four_choice_validation": "恰好一个候选达到目标；阈值附近无候选。",
-     "principle": "有实验证据的设计题（A3）：S0 → S1，候选全部有测量值。",
-     "validation": "独立检查器重算每个候选的改善幅度与阈值关系。",
-     "limits": "实验误差约 0.02–0.06 kcal/mol，阈值附近不放候选；只用 WP6（条件有文档）；“设计”指在实测候选中选择，不预测新分子。",
-     "template_review": "本轮新建（A2/A3），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-HG-DES1",
-      "question": "The files give the SAMPL9 WP6 host (a carboxylated pillar[6]arene; host file shown with 12 carboxylates) and four candidate guests as 3D structures (XYZ, angstrom). Binding to WP6 was measured by isothermal titration calorimetry in 1× PBS at pH 7.40 and 298.15 K; all complexes are 1:1. You start from guest G7 (cyclohexylammonium), whose measured binding free energy to WP6 under these conditions is -6.97 kcal/mol, and want a replacement guest that binds WP6 at least 2.0 kcal/mol more strongly (measured ΔG ≤ -8.97 kcal/mol). Exactly one of the four candidates achieves this in the measured data. Which one?",
-      "options": [
-       {
-        "label": "A",
-        "value": "G1: cyclododecylammonium (WP6-G1.xyz)"
-       },
-       {
-        "label": "B",
-        "value": "G2: 4-(1,1-dimethylpiperidin-1-ium-4-yl)-1,1-dimethyl-piperidin-1-ium (WP6-G2.xyz)"
-       },
-       {
-        "label": "C",
-        "value": "G6: cyclooctylammonium (WP6-G6.xyz)"
-       },
-       {
-        "label": "D",
-        "value": "G3: norbornan-2-ylammonium (WP6-G3.xyz)"
-       }
-      ],
-      "inputs": [
-       "WP6.xyz",
-       "WP6-G2.xyz",
-       "WP6-G6.xyz",
-       "WP6-G3.xyz",
-       "WP6-G1.xyz"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "weakens_binding",
-        "reason": "实测 ΔG = -6.43，反而减弱 0.54 kcal/mol。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "实测 ΔG = -10.44，改善 3.47 kcal/mol，达到目标。"
-       },
-       {
-        "label": "C",
-        "rule": "improves_but_below_target",
-        "reason": "实测 ΔG = -7.99，只改善 1.02 kcal/mol，未达 2.0。"
-       },
-       {
-        "label": "D",
-        "rule": "improves_but_below_target",
-        "reason": "实测 ΔG = -7.91，只改善 0.94 kcal/mol，未达 2.0。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-HG-DES2",
-      "question": "The files give the SAMPL9 WP6 host (a carboxylated pillar[6]arene; host file shown with 12 carboxylates) and four candidate guests as 3D structures (XYZ, angstrom). Binding to WP6 was measured by isothermal titration calorimetry in 1× PBS at pH 7.40 and 298.15 K; all complexes are 1:1. You start from guest G13 (1-methyl-4-(1-methylpyridin-1-ium-4-yl)pyridin-1-ium), whose measured binding free energy to WP6 under these conditions is -8.47 kcal/mol, and want a replacement guest that binds WP6 at least 1.8 kcal/mol more strongly (measured ΔG ≤ -10.27 kcal/mol). Exactly one of the four candidates achieves this in the measured data. Which one?",
-      "options": [
-       {
-        "label": "A",
-        "value": "G6: cyclooctylammonium (WP6-G6.xyz)"
-       },
-       {
-        "label": "B",
-        "value": "G10: trimethyl-[[4-[(trimethylammonio)methyl]phenyl]methyl]ammonium (WP6-G10.xyz)"
-       },
-       {
-        "label": "C",
-        "value": "G12: trimethyl-[6-(trimethylammonio)-2-adamantyl]ammonium (WP6-G12.xyz)"
-       },
-       {
-        "label": "D",
-        "value": "G5: [3,5-dimethyl-7-(trimethylammonio)-1-adamantyl]-trimethyl-ammonium (WP6-G5.xyz)"
-       }
-      ],
-      "inputs": [
-       "WP6.xyz",
-       "WP6-G12.xyz",
-       "WP6-G10.xyz",
-       "WP6-G5.xyz",
-       "WP6-G6.xyz"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "weakens_binding",
-        "reason": "实测 ΔG = -7.99，反而减弱 0.48 kcal/mol。"
-       },
-       {
-        "label": "B",
-        "rule": "dication_not_sufficient",
-        "reason": "双阳离子（仅凭电荷会以为结合更强），实测 ΔG = -9.83，变化 +1.36 kcal/mol，未达 1.8。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "实测 ΔG = -10.84，改善 2.37 kcal/mol，达到目标。"
-       },
-       {
-        "label": "D",
-        "rule": "dication_not_sufficient",
-        "reason": "双阳离子（仅凭电荷会以为结合更强），实测 ΔG = -5.40，变化 -3.07 kcal/mol，未达 1.8。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "binding_evidence_choice",
-   "kind": "family",
-   "ability": "inference",
-   "registry_id": "binding_evidence_choice",
-   "generator": "task_families/hostguest.py",
-   "checker": "checkers/hostguest.py",
-   "checker_function": "binding_evidence_choice",
-   "bindings": {
-    "L1": {
-     "registry_row": "22ac3d460b3899c5eb58ff269af9766e3ee32d5d9a8abf680f42feda995556a0",
-     "task_families/hostguest.py": "5bab67681ba00790a7253e631a4d5fff91cf9ef722bfe368b989c8b5448e50f1"
-    },
-    "L2": {
-     "checkers/hostguest.py": "d6c8fb867e6d313c84cce0e6e3fa51e3497a11e4a0e9f826095a804dd5a46654",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 1,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "主客体结合强弱（实测证据）",
-     "concept": "给 WP6 主体与四个客体的 3D 结构，推断哪一个结合最强；答案依据 SAMPL9 实测 ITC ΔG（证据只在审核侧），最强者须领先 ≥ 0.8 kcal/mol。",
-     "inputs": "WP6 主体与四个客体 XYZ（SAMPL9 结构）。",
-     "physical_conditions": "ITC，1× PBS，pH 7.40，298.15 K，1:1。",
-     "reasoning_scale": "主客体复合物（主体最大原子间距）",
-     "scale_limits": "结合强弱取决于电荷、尺寸匹配、溶剂化等，不能单凭几何算出。",
-     "source_basis": "SAMPL9 WP6 主客体挑战（MIT）：实测结合自由能与客体结构",
-     "answer_method": "按实测 ΔG 排序；领先幅度检查。",
-     "distractor_mechanisms": [
-      "next_strongest",
-      "dication_but_weaker",
-      "weaker_binder"
-     ],
-     "four_choice_validation": "四个候选均有实测值；最强者领先 ≥ 0.8 kcal/mol。",
-     "principle": "证据型推断（A2）：答案来自实验，不来自计算。",
-     "validation": "独立检查器读取转录表（哈希核对），核对客体文件与名称一一对应、题干写明条件，并重新排序。",
-     "limits": "实验误差约 0.02–0.06 kcal/mol；只用 WP6（条件有文档）。",
-     "template_review": "本轮新建（A2/A3），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-HG-EV1",
-      "question": "The files give the SAMPL9 WP6 host (a carboxylated pillar[6]arene; host file shown with 12 carboxylates) and four candidate guests as 3D structures (XYZ, angstrom). Binding to WP6 was measured by isothermal titration calorimetry in 1× PBS at pH 7.40 and 298.15 K; all complexes are 1:1. Which guest binds WP6 most strongly, i.e. has the most negative measured binding free energy?",
-      "options": [
-       {
-        "label": "A",
-        "value": "G7: cyclohexylammonium (WP6-G7.xyz)"
-       },
-       {
-        "label": "B",
-        "value": "G1: cyclododecylammonium (WP6-G1.xyz)"
-       },
-       {
-        "label": "C",
-        "value": "G12: trimethyl-[6-(trimethylammonio)-2-adamantyl]ammonium (WP6-G12.xyz)"
-       },
-       {
-        "label": "D",
-        "value": "G6: cyclooctylammonium (WP6-G6.xyz)"
-       }
-      ],
-      "inputs": [
-       "WP6.xyz",
-       "WP6-G12.xyz",
-       "WP6-G6.xyz",
-       "WP6-G7.xyz",
-       "WP6-G1.xyz"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "weaker_binder",
-        "reason": "实测 ΔG = -6.97 kcal/mol，比最强弱 3.87。"
-       },
-       {
-        "label": "B",
-        "rule": "weaker_binder",
-        "reason": "实测 ΔG = -6.43 kcal/mol，比最强弱 4.41。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "实测 ΔG = -10.84 ± 0.03 kcal/mol，最负；领先 2.85。"
-       },
-       {
-        "label": "D",
-        "rule": "next_strongest",
-        "reason": "实测 ΔG = -7.99 kcal/mol，次强，比最强弱 2.85。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-HG-EV2",
-      "question": "The files give the SAMPL9 WP6 host (a carboxylated pillar[6]arene; host file shown with 12 carboxylates) and four candidate guests as 3D structures (XYZ, angstrom). Binding to WP6 was measured by isothermal titration calorimetry in 1× PBS at pH 7.40 and 298.15 K; all complexes are 1:1. Which guest binds WP6 most strongly, i.e. has the most negative measured binding free energy?",
-      "options": [
-       {
-        "label": "A",
-        "value": "G4: trimethylsilylmethylammonium (WP6-G4.xyz)"
-       },
-       {
-        "label": "B",
-        "value": "G5: [3,5-dimethyl-7-(trimethylammonio)-1-adamantyl]-trimethyl-ammonium (WP6-G5.xyz)"
-       },
-       {
-        "label": "C",
-        "value": "G9: (3-hydroxy-1-adamantyl)ammonium (WP6-G9.xyz)"
-       },
-       {
-        "label": "D",
-        "value": "G10: trimethyl-[[4-[(trimethylammonio)methyl]phenyl]methyl]ammonium (WP6-G10.xyz)"
-       }
-      ],
-      "inputs": [
-       "WP6.xyz",
-       "WP6-G10.xyz",
-       "WP6-G4.xyz",
-       "WP6-G9.xyz",
-       "WP6-G5.xyz"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "next_strongest",
-        "reason": "实测 ΔG = -7.77 kcal/mol，次强，比最强弱 2.06。"
-       },
-       {
-        "label": "B",
-        "rule": "dication_but_weaker",
-        "reason": "虽为双阳离子，实测 ΔG = -5.40 kcal/mol，比最强弱 4.43（仅凭电荷判断会误选）。"
-       },
-       {
-        "label": "C",
-        "rule": "weaker_binder",
-        "reason": "实测 ΔG = -6.23 kcal/mol，比最强弱 3.60。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "实测 ΔG = -9.83 ± 0.04 kcal/mol，最负；领先 2.06。"
        }
       ]
      }
@@ -1722,50 +1418,50 @@
       ]
      },
      {
-      "instance": "EN-COD4127359-COORD-I-Pb",
-      "question": "The table lists every atom of one conventional cell (cell parameters in the first line of the table) of Cs I3 Pb (Cs I3 Pb, COD 4127359). Treat the crystal as infinite and periodic. Around the I atom at fractional (0.0030, 0.2500, 0.9354), how many Pb atoms lie at the shortest I–Pb distance (atoms within 0.001 Å of it count as the same distance), and what is that distance? Distances are rounded to 0.001 Å.",
+      "instance": "EN-COD1538801-COORD-P-In",
+      "question": "The table lists every atom of one conventional cubic cell of In P (In P, COD 1538801). Treat the crystal as infinite and periodic. Around the P atom at fractional (0.2500, 0.2500, 0.2500), how many In atoms form the nearest shell, and at what distance? Distances are rounded to 0.001 Å.",
       "options": [
        {
         "label": "A",
-        "value": "4 at 3.170 Å"
+        "value": "12 at 4.875 Å"
        },
        {
         "label": "B",
-        "value": "2 at 4.429 Å"
+        "value": "12 at 2.546 Å"
        },
        {
         "label": "C",
-        "value": "2 at 6.565 Å"
+        "value": "4 at 2.546 Å"
        },
        {
         "label": "D",
-        "value": "2 at 3.170 Å"
+        "value": "12 at 4.158 Å"
        }
       ],
       "inputs": [
-       "EN-COD4127359-COORD-I-Pb-cell.txt"
+       "EN-COD1538801-COORD-P-In-cell.txt"
       ],
-      "correct_label": "D",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
-        "rule": "merged_first_two_shells",
-        "reason": "把前两个壳层合并计数。"
-       },
-       {
-        "label": "B",
-        "rule": "same_species_shell",
-        "reason": "数成与中心同种元素的最近壳层。"
-       },
-       {
-        "label": "C",
         "rule": "second_shell",
         "reason": "报告了第二壳层（更远的一组）而非最近壳层。"
        },
        {
-        "label": "D",
+        "label": "B",
+        "rule": "mixed_shells",
+        "reason": "距离取最近壳层，个数却取第二壳层。"
+       },
+       {
+        "label": "C",
         "rule": "correct",
-        "reason": "含周期映像的最近壳层：2 个，距离 3.1699 Å。"
+        "reason": "含周期映像的最近壳层：4 个，距离 2.5461 Å。"
+       },
+       {
+        "label": "D",
+        "rule": "same_species_shell",
+        "reason": "数成与中心同种元素的最近壳层。"
        }
       ]
      }
@@ -1792,7 +1488,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 4,
+   "instances": 3,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -2689,7 +2385,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 14,
+   "instances": 15,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -3464,7 +3160,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 3,
+   "instances": 4,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -3548,49 +3244,49 @@
       ]
      },
      {
-      "instance": "FA-ASM-GUIN-7ARQ",
-      "question": "The table lists the C1' atom of every nucleotide of a DNA-origami 16-helix bundle (PDB 7ARQ). Treat each supplied point as an identical point scatterer. In the Guinier approximation (which applies at this q), what is the normalized small-angle scattering intensity I(q)/I(0) at q = 0.12 nm⁻¹?",
+      "instance": "FA-ASM-GUIN-1A34",
+      "question": "The XYZ file lists the capsid-protein Cα atoms (60 copies) of the satellite tobacco mosaic virus capsid (PDB 1A34). Treat each supplied point as an identical point scatterer. In the Guinier approximation (which applies at this q), what is the normalized small-angle scattering intensity I(q)/I(0) at q = 0.14 nm⁻¹?",
       "options": [
        {
         "label": "A",
-        "value": "0.252",
+        "value": "0.348",
         "unit": ""
        },
        {
         "label": "B",
-        "value": "0.281",
+        "value": "0.703",
         "unit": ""
        },
        {
         "label": "C",
-        "value": "0.655",
+        "value": "0.839",
         "unit": ""
        },
        {
         "label": "D",
-        "value": "0.812",
+        "value": "0.889",
         "unit": ""
        }
       ],
       "inputs": [
-       "7ARQ-nucleotide-points.txt"
+       "1A34-capsid-CA.xyz"
       ],
-      "correct_label": "C",
+      "correct_label": "B",
       "audit": [
        {
         "label": "A",
-        "rule": "half_dmax_as_rg",
-        "reason": "把最大尺寸的一半当作回转半径。"
-       },
-       {
-        "label": "B",
         "rule": "missing_one_third",
         "reason": "指数中漏掉 1/3。"
        },
        {
-        "label": "C",
+        "label": "B",
         "rule": "correct",
-        "reason": "等权 Rg = 9.3858 nm，qRg = 1.126 ≤ 1.3，I/I0 = exp(−q²Rg²/3)。"
+        "reason": "等权 Rg = 7.3397 nm，qRg = 1.028 ≤ 1.3，I/I0 = exp(−q²Rg²/3)。"
+       },
+       {
+        "label": "C",
+        "rule": "amplitude_not_intensity",
+        "reason": "报告了散射振幅比（强度的平方根）而非强度比。"
        },
        {
         "label": "D",
@@ -3808,98 +3504,98 @@
     },
     "samples": [
      {
-      "instance": "EN-SAMPL9-WP6-G10-ISO-110-22-27-29-31",
-      "question": "The supplied XYZ is guest G10 (trimethyl-[[4-[(trimethylammonio)methyl]phenyl]methyl]ammonium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (42 atoms, angstrom); rows are counted from 1 after the two header lines. Model conditions: a rigid rotor at exactly the supplied geometry (no vibrational averaging, no centrifugal distortion); masses of the most abundant isotopes: C 12.000000 u, H 1.007825 u, N 14.003074 u; rotational constants A ≥ B ≥ C are h/(8π²I) with I_a ≤ I_b ≤ I_c the principal moments of inertia about the centre of mass; h = 6.62607015×10⁻³⁴ J s, 1 u = 1.66053906660×10⁻²⁷ kg. You will record the rotational spectrum of one singly deuterated isotopologue: exactly one of the hydrogen atoms H22, H27, H29, H31 (rows counted from 1 after the two XYZ header lines) is replaced by deuterium, D 2.014102 u, at the same position. Candidates: H22 is bonded to C7, the methyl carbon (CH3); H27 is bonded to C9, the methyl carbon (CH3); H29 is bonded to C9, the methyl carbon (CH3); H31 is bonded to C10, the methyl carbon (CH3). You want the largest change in the frequency of the J_KaKc = 1_10 ← 0_00 transition relative to the parent molecule (largest absolute shift). Exactly one candidate gives the largest shift. Which hydrogen should be substituted?",
+      "instance": "EN-QM7X-7038-ISO-110-8-9-12-13",
+      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7038 (C3H7NO2S, 14 atoms, angstrom); rows are counted from 1 after the two header lines. Model conditions: a rigid rotor at exactly the supplied geometry (no vibrational averaging, no centrifugal distortion); masses of the most abundant isotopes: C 12.000000 u, H 1.007825 u, N 14.003074 u, O 15.994915 u, S 31.972071 u; rotational constants A ≥ B ≥ C are h/(8π²I) with I_a ≤ I_b ≤ I_c the principal moments of inertia about the centre of mass; h = 6.62607015×10⁻³⁴ J s, 1 u = 1.66053906660×10⁻²⁷ kg. You will record the rotational spectrum of one singly deuterated isotopologue: exactly one of the hydrogen atoms H8, H9, H12, H13 (rows counted from 1 after the two XYZ header lines) is replaced by deuterium, D 2.014102 u, at the same position. Candidates: H8 is bonded to C1, the methyl carbon (CH3); H9 is bonded to C1, the methyl carbon (CH3); H12 is bonded to C3, the alkene carbon (C=C); H13 is bonded to N7, the sulfonamide nitrogen (NH2). You want the largest change in the frequency of the J_KaKc = 1_10 ← 0_00 transition relative to the parent molecule (largest absolute shift). Exactly one candidate gives the largest shift. Which hydrogen should be substituted?",
       "options": [
        {
         "label": "A",
-        "value": "H31 (row 31)"
+        "value": "H13 (row 13)"
        },
        {
         "label": "B",
-        "value": "H27 (row 27)"
+        "value": "H12 (row 12)"
        },
        {
         "label": "C",
-        "value": "H29 (row 29)"
+        "value": "H8 (row 8)"
        },
        {
         "label": "D",
-        "value": "H22 (row 22)"
+        "value": "H9 (row 9)"
        }
       ],
       "inputs": [
-       "WP6-G10.xyz"
+       "QM7X-7038.xyz"
       ],
-      "correct_label": "C",
+      "correct_label": "A",
       "audit": [
        {
         "label": "A",
-        "rule": "smaller_shift",
-        "reason": "谱线位移 -7.62 MHz，小于正确项。"
+        "rule": "correct",
+        "reason": "取代后 1_10 ← 0_00 位移 -159.52 MHz，最大（第二名 -89.13 MHz）。"
        },
        {
         "label": "B",
-        "rule": "best_for_other_line:101",
-        "reason": "对 1_01 ← 0_00 跃迁位移最大（-6.21 MHz），看错了谱线。"
+        "rule": "smaller_shift",
+        "reason": "谱线位移 -89.13 MHz，小于正确项。"
        },
        {
         "label": "C",
-        "rule": "correct",
-        "reason": "取代后 1_10 ← 0_00 位移 -10.36 MHz，最大（第二名 -7.62 MHz）。"
+        "rule": "farthest_from_centre_of_mass",
+        "reason": "离质心最远（3.98 Å），但谱线位移取决于到相应主轴的距离，不是到质心的距离。"
        },
        {
         "label": "D",
         "rule": "smaller_shift",
-        "reason": "谱线位移 -7.26 MHz，小于正确项。"
+        "reason": "谱线位移 -84.56 MHz，小于正确项。"
        }
       ]
      },
      {
-      "instance": "EN-SAMPL9-WP6-G4-ISO-110-15-18-19-20",
-      "question": "The supplied XYZ is guest G4 (trimethylsilylmethylammonium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (20 atoms, angstrom); rows are counted from 1 after the two header lines. Model conditions: a rigid rotor at exactly the supplied geometry (no vibrational averaging, no centrifugal distortion); masses of the most abundant isotopes: C 12.000000 u, H 1.007825 u, N 14.003074 u, Si 27.976927 u; rotational constants A ≥ B ≥ C are h/(8π²I) with I_a ≤ I_b ≤ I_c the principal moments of inertia about the centre of mass; h = 6.62607015×10⁻³⁴ J s, 1 u = 1.66053906660×10⁻²⁷ kg. You will record the rotational spectrum of one singly deuterated isotopologue: exactly one of the hydrogen atoms H15, H18, H19, H20 (rows counted from 1 after the two XYZ header lines) is replaced by deuterium, D 2.014102 u, at the same position. Candidates: H15 is bonded to C3, the methyl carbon (CH3); H18 is bonded to N5, the ammonium nitrogen (NH3+); H19 is bonded to N5, the ammonium nitrogen (NH3+); H20 is bonded to N5, the ammonium nitrogen (NH3+). You want the largest change in the frequency of the J_KaKc = 1_10 ← 0_00 transition relative to the parent molecule (largest absolute shift). Exactly one candidate gives the largest shift. Which hydrogen should be substituted?",
+      "instance": "EN-QM7X-7044-ISO-101-8-9-12-13",
+      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7044 (C3H6O3S, 13 atoms, angstrom); rows are counted from 1 after the two header lines. Model conditions: a rigid rotor at exactly the supplied geometry (no vibrational averaging, no centrifugal distortion); masses of the most abundant isotopes: C 12.000000 u, H 1.007825 u, O 15.994915 u, S 31.972071 u; rotational constants A ≥ B ≥ C are h/(8π²I) with I_a ≤ I_b ≤ I_c the principal moments of inertia about the centre of mass; h = 6.62607015×10⁻³⁴ J s, 1 u = 1.66053906660×10⁻²⁷ kg. You will record the rotational spectrum of one singly deuterated isotopologue: exactly one of the hydrogen atoms H8, H9, H12, H13 (rows counted from 1 after the two XYZ header lines) is replaced by deuterium, D 2.014102 u, at the same position. Candidates: H8 is bonded to C1, the methyl carbon (CH3); H9 is bonded to C1, the methyl carbon (CH3); H12 is bonded to C3, the alkene carbon (C=C); H13 is bonded to O7, the sulfonic acid hydroxyl oxygen (S–OH). You want the largest change in the frequency of the J_KaKc = 1_01 ← 0_00 transition relative to the parent molecule (largest absolute shift). Exactly one candidate gives the largest shift. Which hydrogen should be substituted?",
       "options": [
        {
         "label": "A",
-        "value": "H15 (row 15)"
+        "value": "H13 (row 13)"
        },
        {
         "label": "B",
-        "value": "H19 (row 19)"
+        "value": "H9 (row 9)"
        },
        {
         "label": "C",
-        "value": "H20 (row 20)"
+        "value": "H8 (row 8)"
        },
        {
         "label": "D",
-        "value": "H18 (row 18)"
+        "value": "H12 (row 12)"
        }
       ],
       "inputs": [
-       "WP6-G4.xyz"
+       "QM7X-7044.xyz"
       ],
       "correct_label": "C",
       "audit": [
        {
         "label": "A",
-        "rule": "smaller_shift",
-        "reason": "谱线位移 -62.56 MHz，小于正确项。"
+        "rule": "best_for_other_line:110",
+        "reason": "对 1_10 ← 0_00 跃迁位移最大（-126.07 MHz），看错了谱线。"
        },
        {
         "label": "B",
         "rule": "smaller_shift",
-        "reason": "谱线位移 -54.93 MHz，小于正确项。"
+        "reason": "谱线位移 -66.78 MHz，小于正确项。"
        },
        {
         "label": "C",
         "rule": "correct",
-        "reason": "取代后 1_10 ← 0_00 位移 -74.26 MHz，最大（第二名 -62.56 MHz）。"
+        "reason": "取代后 1_01 ← 0_00 位移 -131.96 MHz，最大（第二名 -66.78 MHz）。"
        },
        {
         "label": "D",
-        "rule": "best_for_single_constant:A",
-        "reason": "只看转动常数 A 的变化时它最大（-17.85 MHz），忽略了谱线是两个常数之和。"
+        "rule": "best_for_other_line:111",
+        "reason": "对 1_11 ← 0_00 跃迁位移最大（-134.49 MHz），看错了谱线。"
        }
       ]
      }
@@ -4547,7 +4243,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 3,
+   "instances": 2,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -4575,54 +4271,54 @@
     },
     "samples": [
      {
-      "instance": "EN-SAMPL9-DMBCD-ANG-82-31-88",
-      "question": "The supplied XYZ is one heptakis(2,6-di-O-methyl)-beta-cyclodextrin host conformer (189 atoms, angstrom) from the SAMPL9 host–guest challenge; rows are counted from 1 after the two header lines. Atoms O82–C31–O88 form the angle at C31, the methine carbon (CH) in the 6-membered ring, between its single C–O bond to O82, the ether oxygen (C–O–C) in the 6-membered ring, and its single C–O bond to O88, the ether oxygen (C–O–C) in the 35-membered ring (O82 = row 82, C31 = row 31, O88 = row 88; rows counted from 1 after the two XYZ header lines). What is the O82–C31–O88 bond angle at C31 in this supplied conformer?",
+      "instance": "EN-QM7X-7208-ANG-3-4-7",
+      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7208 (C4H6N2S, 13 atoms, angstrom); rows are counted from 1 after the two header lines. Atoms N3–C4–C7 form the angle at C4, the methine carbon (CH) in the 3-membered ring, between its single C–N bond to N3, the thioamide N–H nitrogen in the 5-membered ring, and its single C–C bond to C7, the methylene carbon (CH2) in the 3-membered ring (N3 = row 3, C4 = row 4, C7 = row 7; rows counted from 1 after the two XYZ header lines). What is the N3–C4–C7 bond angle at C4 in this supplied conformer?",
       "options": [
        {
         "label": "A",
-        "value": "109.20",
+        "value": "60.23",
         "unit": "degree"
        },
        {
         "label": "B",
-        "value": "111.22",
+        "value": "104.51",
         "unit": "degree"
        },
        {
         "label": "C",
-        "value": "113.87",
+        "value": "116.12",
         "unit": "degree"
        },
        {
         "label": "D",
-        "value": "117.90",
+        "value": "120.81",
         "unit": "degree"
        }
       ],
       "inputs": [
-       "DMBCD.xyz"
+       "QM7X-7208.xyz"
       ],
-      "correct_label": "B",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
-        "rule": "other_neighbor:O82-C31-C(row 32)",
-        "reason": "顶点正确，但另一端选成与 C31 相连的 C(row 32)。"
+        "rule": "other_neighbor:C(row 5)-C4-C7",
+        "reason": "顶点正确，但一端选成与 C4 相连的 C(row 5)。"
        },
        {
         "label": "B",
+        "rule": "other_neighbor:N3-C4-C(row 5)",
+        "reason": "顶点正确，但另一端选成与 C4 相连的 C(row 5)。"
+       },
+       {
+        "label": "C",
         "rule": "correct",
         "reason": "按向量夹角公式在指定顶点计算；另以 atan2 实现复核。"
        },
        {
-        "label": "C",
-        "rule": "angle_at_adjacent_atom:C31-O82-C(row 35)",
-        "reason": "测成相邻原子 O82 处的键角，而非题目指定的顶点 C31。"
-       },
-       {
         "label": "D",
-        "rule": "angle_at_adjacent_atom:C31-O88-C(row 40)",
-        "reason": "测成相邻原子 O88 处的键角，而非题目指定的顶点 C31。"
+        "rule": "other_neighbor:H(row 9)-C4-C7",
+        "reason": "顶点正确，但一端选成与 C4 相连的 H(row 9)。"
        }
       ]
      },
@@ -4701,7 +4397,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 4,
+   "instances": 5,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -4730,91 +4426,91 @@
     },
     "samples": [
      {
-      "instance": "FA-DIST-1CRN-SS16",
-      "question": "The excerpt gives the SSBOND record and the ATOM records of Cys16 and Cys26 of crambin (PDB 1CRN, chain A), copied unchanged (angstrom). In this supplied structure, atoms SG(Cys16) and SG(Cys26) form the disulfide bridge listed in the SSBOND record. What is this bond length?",
+      "instance": "EN-QM7X-7032-BOND-3-4",
+      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7032 (C4H10N2S, 17 atoms, angstrom); rows are counted from 1 after the two header lines. In this supplied structure, atoms C3 (row 3) and N4 (row 4) form the single C–N bond between C3, the methylene carbon (CH2), and N4, the thioamide N–H nitrogen. What is this bond length?",
       "options": [
        {
         "label": "A",
-        "value": "1.813",
+        "value": "1.105",
         "unit": "angstrom"
        },
        {
         "label": "B",
-        "value": "2.051",
+        "value": "1.358",
         "unit": "angstrom"
        },
        {
         "label": "C",
-        "value": "3.013",
+        "value": "1.457",
         "unit": "angstrom"
        },
        {
         "label": "D",
-        "value": "3.033",
+        "value": "1.532",
         "unit": "angstrom"
        }
       ],
       "inputs": [
-       "1CRN-excerpt.pdb"
+       "QM7X-7032.xyz"
       ],
-      "correct_label": "B",
+      "correct_label": "C",
       "audit": [
        {
         "label": "A",
-        "rule": "other_bond:SG(Cys16)-CB(Cys16)",
-        "reason": "量成 SG(Cys16) 的另一根键（到 CB(Cys16)）。"
+        "rule": "other_bond:C3-H13",
+        "reason": "量成 C3 的另一根键（到 H13）。"
        },
        {
         "label": "B",
+        "rule": "other_bond:N4-C5",
+        "reason": "量成 N4 的另一根键（到 C5）。"
+       },
+       {
+        "label": "C",
         "rule": "correct",
         "reason": "两指定原子的欧氏距离；另以 Decimal 实现复核。"
        },
        {
-        "label": "C",
-        "rule": "one_bond_too_far:SG(Cys26)-CB(Cys16)",
-        "reason": "多数了一根键：量成 SG(Cys26) 到 SG(Cys16) 之外的 CB(Cys16) 的距离。"
-       },
-       {
         "label": "D",
-        "rule": "one_bond_too_far:SG(Cys16)-CB(Cys26)",
-        "reason": "多数了一根键：量成 SG(Cys16) 到 SG(Cys26) 之外的 CB(Cys26) 的距离。"
+        "rule": "other_bond:C3-C2",
+        "reason": "量成 C3 的另一根键（到 C2）。"
        }
       ]
      },
      {
-      "instance": "FA-DIST-6LYZ-SS30",
-      "question": "The excerpt gives the SSBOND record and the ATOM records of Cys30 and Cys115 of hen egg-white lysozyme (PDB 6LYZ, chain A), copied unchanged (angstrom). In this supplied structure, atoms SG(Cys30) and SG(Cys115) form the disulfide bridge listed in the SSBOND record. What is this bond length?",
+      "instance": "EN-QM7X-7035-I1-C1-OPT-BOND-2-3",
+      "question": "The supplied XYZ is the DFTB3+MBD-optimized reference geometry Geom-m7035-i1-c1-opt of QM7-X molecule 7035 (C4H10O2S, 17 atoms, angstrom); rows are counted from 1 after the two header lines. In this supplied structure, atoms C2 (row 2) and S3 (row 3) form the single C–S bond between C2, the methine carbon (CH), and S3, the sulfone sulfur (SO2). What is this bond length?",
       "options": [
        {
         "label": "A",
-        "value": "1.821",
+        "value": "1.531",
         "unit": "angstrom"
        },
        {
         "label": "B",
-        "value": "2.042",
+        "value": "1.876",
         "unit": "angstrom"
        },
        {
         "label": "C",
-        "value": "2.100",
+        "value": "2.769",
         "unit": "angstrom"
        },
        {
         "label": "D",
-        "value": "3.112",
+        "value": "2.902",
         "unit": "angstrom"
        }
       ],
       "inputs": [
-       "6LYZ-excerpt.pdb"
+       "QM7X-7035-i1-c1-opt.xyz"
       ],
       "correct_label": "B",
       "audit": [
        {
         "label": "A",
-        "rule": "other_bond:SG(Cys115)-CB(Cys115)",
-        "reason": "量成 SG(Cys115) 的另一根键（到 CB(Cys115)）。"
+        "rule": "other_bond:C2-C7",
+        "reason": "量成 C2 的另一根键（到 C7）。"
        },
        {
         "label": "B",
@@ -4823,13 +4519,13 @@
        },
        {
         "label": "C",
-        "rule": "covalent_radii_sum",
-        "reason": "用共价半径之和估计，没有测量这一结构。"
+        "rule": "one_bond_too_far:S3-C7",
+        "reason": "多数了一根键：量成 S3 到 C2 之外的 C7 的距离。"
        },
        {
         "label": "D",
-        "rule": "one_bond_too_far:SG(Cys30)-CB(Cys115)",
-        "reason": "多数了一根键：量成 SG(Cys30) 到 SG(Cys115) 之外的 CB(Cys115) 的距离。"
+        "rule": "one_bond_too_far:C2-C6",
+        "reason": "多数了一根键：量成 C2 到 S3 之外的 C6 的距离。"
        }
       ]
      }
@@ -5330,7 +5026,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 1,
+   "instances": 2,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -5358,57 +5054,6 @@
      "template_review": "本轮新建（A2/A3），待人工审核。"
     },
     "samples": [
-     {
-      "instance": "FA-QD-DES-590",
-      "question": "The four XYZ files list every atom of four model zinc-blende CdSe nanocrystals (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. Model conditions: each nanocrystal is an ideal spherical cut from bulk zinc-blende CdSe (assumed lattice constant 6.08 Å) without ligands, surface relaxation or shape anisotropy; the empirical curves above were calibrated by Yu et al. on real nanocrystals whose sizes were measured by TEM, and are applied here to these ideal particles. You must choose one nanocrystal for a device such that its first excitonic absorption peak is closest to 590 nm. Which file should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "CdSe-QD-D.xyz"
-       },
-       {
-        "label": "B",
-        "value": "CdSe-QD-C.xyz"
-       },
-       {
-        "label": "C",
-        "value": "CdSe-QD-B.xyz"
-       },
-       {
-        "label": "D",
-        "value": "CdSe-QD-E.xyz"
-       }
-      ],
-      "inputs": [
-       "CdSe-QD-B.xyz",
-       "CdSe-QD-C.xyz",
-       "CdSe-QD-D.xyz",
-       "CdSe-QD-E.xyz"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "吸收峰 592.4 nm，最接近目标。"
-       },
-       {
-        "label": "B",
-        "rule": "farther_from_target",
-        "reason": "吸收峰 578.1 nm，离目标更远。"
-       },
-       {
-        "label": "C",
-        "rule": "bounding_box_diagonal",
-        "reason": "用包围盒对角线时它的吸收峰（618.3 nm）最接近目标。"
-       },
-       {
-        "label": "D",
-        "rule": "radius_as_diameter",
-        "reason": "把半径当直径时它的吸收峰（514.1 nm）最接近目标。"
-       }
-      ]
-     },
      {
       "instance": "FA-QD-DES-565",
       "question": "The four XYZ files list every atom of four model zinc-blende CdSe nanocrystals (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. Model conditions: each nanocrystal is an ideal spherical cut from bulk zinc-blende CdSe (assumed lattice constant 6.08 Å) without ligands, surface relaxation or shape anisotropy; the empirical curves above were calibrated by Yu et al. on real nanocrystals whose sizes were measured by TEM, and are applied here to these ideal particles. You must choose one nanocrystal for a device such that it is the smallest particle whose first excitonic absorption peak lies at or beyond 565 nm. Which file should you choose?",
@@ -5457,6 +5102,57 @@
         "label": "D",
         "rule": "passes_if_bounding_box_diagonal",
         "reason": "吸收峰 561.1 nm，未达到 565 nm；若用包围盒对角线会误判为满足。"
+       }
+      ]
+     },
+     {
+      "instance": "FA-QD-DES-590",
+      "question": "The four XYZ files list every atom of four model zinc-blende CdSe nanocrystals (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. Model conditions: each nanocrystal is an ideal spherical cut from bulk zinc-blende CdSe (assumed lattice constant 6.08 Å) without ligands, surface relaxation or shape anisotropy; the empirical curves above were calibrated by Yu et al. on real nanocrystals whose sizes were measured by TEM, and are applied here to these ideal particles. You must choose one nanocrystal for a device such that its first excitonic absorption peak is closest to 590 nm. Which file should you choose?",
+      "options": [
+       {
+        "label": "A",
+        "value": "CdSe-QD-D.xyz"
+       },
+       {
+        "label": "B",
+        "value": "CdSe-QD-C.xyz"
+       },
+       {
+        "label": "C",
+        "value": "CdSe-QD-B.xyz"
+       },
+       {
+        "label": "D",
+        "value": "CdSe-QD-E.xyz"
+       }
+      ],
+      "inputs": [
+       "CdSe-QD-B.xyz",
+       "CdSe-QD-C.xyz",
+       "CdSe-QD-D.xyz",
+       "CdSe-QD-E.xyz"
+      ],
+      "correct_label": "A",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "correct",
+        "reason": "吸收峰 592.4 nm，最接近目标。"
+       },
+       {
+        "label": "B",
+        "rule": "farther_from_target",
+        "reason": "吸收峰 578.1 nm，离目标更远。"
+       },
+       {
+        "label": "C",
+        "rule": "bounding_box_diagonal",
+        "reason": "用包围盒对角线时它的吸收峰（618.3 nm）最接近目标。"
+       },
+       {
+        "label": "D",
+        "rule": "radius_as_diameter",
+        "reason": "把半径当直径时它的吸收峰（514.1 nm）最接近目标。"
        }
       ]
      }
@@ -5789,7 +5485,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 2,
+   "instances": 3,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -5823,106 +5519,106 @@
     },
     "samples": [
      {
-      "instance": "EN-QM7X-7030-ROT-111",
-      "question": "The supplied XYZ is the DFTB3+MBD-optimized geometry of QM7-X molecule 7030 (C4H8N2S, 15 atoms, angstrom); rows are counted from 1 after the two header lines. Model conditions: a rigid rotor at exactly the supplied geometry (no vibrational averaging, no centrifugal distortion); masses of the most abundant isotopes: C 12.000000 u, H 1.007825 u, N 14.003074 u, S 31.972071 u; rotational constants A ≥ B ≥ C are h/(8π²I) with I_a ≤ I_b ≤ I_c the principal moments of inertia about the centre of mass; h = 6.62607015×10⁻³⁴ J s, 1 u = 1.66053906660×10⁻²⁷ kg. Predict the frequency of the J_KaKc = 1_11 ← 0_00 rotational transition of this molecule, in MHz.",
+      "instance": "EN-QM7X-7040-I1-C1-OPT-ROT-101",
+      "question": "The supplied XYZ is the DFTB3+MBD-optimized reference geometry Geom-m7040-i1-c1-opt of QM7-X molecule 7040 (C3H9NO2S, 16 atoms, angstrom); rows are counted from 1 after the two header lines. Model conditions: a rigid rotor at exactly the supplied geometry (no vibrational averaging, no centrifugal distortion); masses of the most abundant isotopes: C 12.000000 u, H 1.007825 u, N 14.003074 u, O 15.994915 u, S 31.972071 u; rotational constants A ≥ B ≥ C are h/(8π²I) with I_a ≤ I_b ≤ I_c the principal moments of inertia about the centre of mass; h = 6.62607015×10⁻³⁴ J s, 1 u = 1.66053906660×10⁻²⁷ kg. Predict the frequency of the J_KaKc = 1_01 ← 0_00 rotational transition of this molecule, in MHz.",
       "options": [
        {
         "label": "A",
-        "value": "2635.4",
+        "value": "2629.2",
         "unit": "MHz"
        },
        {
         "label": "B",
-        "value": "4674.8",
+        "value": "3473.8",
         "unit": "MHz"
        },
        {
         "label": "C",
-        "value": "5133.9",
+        "value": "3817.7",
         "unit": "MHz"
        },
        {
         "label": "D",
-        "value": "5724.7",
+        "value": "4354.1",
         "unit": "MHz"
        }
       ],
       "inputs": [
-       "QM7X-7030.xyz"
+       "QM7X-7040-i1-c1-opt.xyz"
       ],
       "correct_label": "B",
       "audit": [
        {
         "label": "A",
-        "rule": "other_J1_level:101",
-        "reason": "能级标号对错：算成 1_01 ← 0_00 跃迁（B + C）。"
+        "rule": "polar_moment_as_I",
+        "reason": "把对质心的 Σmr²（极惯量，等于三个主惯量之和的一半）当作转动惯量，再按 2B 计算。"
        },
        {
         "label": "B",
         "rule": "correct",
-        "reason": "质心 → 惯量张量 → Jacobi 对角化 → A、B、C → 1_11 ← 0_00 = A + C。"
+        "reason": "质心 → 惯量张量 → Jacobi 对角化 → A、B、C → 1_01 ← 0_00 = B + C。"
        },
        {
         "label": "C",
-        "rule": "other_J1_level:110",
-        "reason": "能级标号对错：算成 1_10 ← 0_00 跃迁（A + B）。"
+        "rule": "linear_rotor_2B",
+        "reason": "套用线型分子公式 ν(J=1←0) = 2B，忽略了非对称陀螺 J = 1 能级按 K 分裂。"
        },
        {
         "label": "D",
-        "rule": "heavy_atoms_only",
-        "reason": "只计重原子、忽略氢原子的贡献。"
+        "rule": "other_J1_level:111",
+        "reason": "能级标号对错：算成 1_11 ← 0_00 跃迁（A + C）。"
        }
       ]
      },
      {
-      "instance": "FA-ROT-G2-110",
-      "question": "The supplied XYZ is guest G2 (4-(1,1-dimethylpiperidin-1-ium-4-yl)-1,1-dimethyl-piperidin-1-ium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (46 atoms, angstrom); rows are counted from 1 after the two header lines. Model conditions: a rigid rotor at exactly the supplied geometry (no vibrational averaging, no centrifugal distortion); masses of the most abundant isotopes: C 12.000000 u, H 1.007825 u, N 14.003074 u; rotational constants A ≥ B ≥ C are h/(8π²I) with I_a ≤ I_b ≤ I_c the principal moments of inertia about the centre of mass; h = 6.62607015×10⁻³⁴ J s, 1 u = 1.66053906660×10⁻²⁷ kg. Predict the frequency of the J_KaKc = 1_10 ← 0_00 rotational transition of this molecule, in MHz.",
+      "instance": "EN-SAMPL9-WP6-G2-ROT-101",
+      "question": "The supplied XYZ is guest G2 (4-(1,1-dimethylpiperidin-1-ium-4-yl)-1,1-dimethyl-piperidin-1-ium) of the SAMPL9 WP6 host–guest challenge, one 3D structure (46 atoms, angstrom); rows are counted from 1 after the two header lines. Model conditions: a rigid rotor at exactly the supplied geometry (no vibrational averaging, no centrifugal distortion); masses of the most abundant isotopes: C 12.000000 u, H 1.007825 u, N 14.003074 u; rotational constants A ≥ B ≥ C are h/(8π²I) with I_a ≤ I_b ≤ I_c the principal moments of inertia about the centre of mass; h = 6.62607015×10⁻³⁴ J s, 1 u = 1.66053906660×10⁻²⁷ kg. Predict the frequency of the J_KaKc = 1_01 ← 0_00 rotational transition of this molecule, in MHz.",
       "options": [
        {
         "label": "A",
-        "value": "679.2",
+        "value": "420.1",
         "unit": "MHz"
        },
        {
         "label": "B",
-        "value": "1724.3",
+        "value": "561.6",
         "unit": "MHz"
        },
        {
         "label": "C",
-        "value": "2455.1",
+        "value": "1716.9",
         "unit": "MHz"
        },
        {
         "label": "D",
-        "value": "3448.5",
+        "value": "1724.3",
         "unit": "MHz"
        }
       ],
       "inputs": [
        "WP6-G2.xyz"
       ],
-      "correct_label": "B",
+      "correct_label": "A",
       "audit": [
        {
         "label": "A",
+        "rule": "correct",
+        "reason": "质心 → 惯量张量 → Jacobi 对角化 → A、B、C → 1_01 ← 0_00 = B + C。"
+       },
+       {
+        "label": "B",
         "rule": "unrotated_tensor_diagonal",
         "reason": "直接用输入坐标系中惯量张量的对角元当主转动惯量，没有对角化。"
        },
        {
-        "label": "B",
-        "rule": "correct",
-        "reason": "质心 → 惯量张量 → Jacobi 对角化 → A、B、C → 1_10 ← 0_00 = A + B。"
-       },
-       {
         "label": "C",
-        "rule": "heavy_atoms_only",
-        "reason": "只计重原子、忽略氢原子的贡献。"
+        "rule": "other_J1_level:111",
+        "reason": "能级标号对错：算成 1_11 ← 0_00 跃迁（A + C）。"
        },
        {
         "label": "D",
-        "rule": "four_pi_squared",
-        "reason": "转动常数写成 h/(4π²I)，结果大了一倍。"
+        "rule": "other_J1_level:110",
+        "reason": "能级标号对错：算成 1_10 ← 0_00 跃迁（A + B）。"
        }
       ]
      }
@@ -6135,98 +5831,98 @@
     },
     "samples": [
      {
-      "instance": "EN-1ONJ-SS-15",
-      "question": "The excerpt contains residues 14–16 of chain A from PDB entry 1ONJ (Crystal structure of Atratoxin-b from Chinese cobra venom of Naja atra (X-ray, 1.55 Å)), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone dihedrals φ and ψ of Lys15 (IUPAC sign convention) and assign the residue to the nearest of these reference backbone conformations, measuring distance in the (φ, ψ) plane with 360° periodicity: right-handed α-helix (φ −57°, ψ −47°), β-strand (φ −120°, ψ +130°), polyproline II (φ −75°, ψ +145°), left-handed α-helix (φ +57°, ψ +47°). Which conformation does Lys15 adopt?",
+      "instance": "EN-1CRN-SS-35",
+      "question": "The excerpt contains residues 34–36 of chain A from PDB entry 1CRN (crambin, X-ray), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone dihedrals φ and ψ of Ile35 (IUPAC sign convention) and assign the residue to the nearest of these reference backbone conformations, measuring distance in the (φ, ψ) plane with 360° periodicity: right-handed α-helix (φ −57°, ψ −47°), β-strand (φ −120°, ψ +130°), polyproline II (φ −75°, ψ +145°), left-handed α-helix (φ +57°, ψ +47°). Which conformation does Ile35 adopt?",
       "options": [
        {
         "label": "A",
+        "value": "β-strand"
+       },
+       {
+        "label": "B",
         "value": "right-handed α-helix"
        },
        {
-        "label": "B",
+        "label": "C",
         "value": "left-handed α-helix"
        },
        {
-        "label": "C",
-        "value": "polyproline II"
-       },
-       {
         "label": "D",
-        "value": "β-strand"
+        "value": "polyproline II"
        }
       ],
       "inputs": [
-       "1ONJ-A15-excerpt.pdb"
+       "1CRN-A35-excerpt.pdb"
       ],
-      "correct_label": "D",
+      "correct_label": "A",
       "audit": [
        {
         "label": "A",
-        "rule": "other_reference",
-        "reason": "距离 175°，明显更远。"
+        "rule": "correct",
+        "reason": "φ = -124.1°，ψ = 158.1°，最近参考构象（28°）；与条目 SHEET 记录一致。"
        },
        {
         "label": "B",
         "rule": "other_reference",
-        "reason": "距离 201°，明显更远。"
+        "reason": "距离 169°，明显更远。"
        },
        {
         "label": "C",
-        "rule": "second_nearest_reference",
-        "reason": "次近的参考构象（距离 61°，正确者 30°）；两者易混。"
+        "rule": "other_reference",
+        "reason": "距离 211°，明显更远。"
        },
        {
         "label": "D",
-        "rule": "correct",
-        "reason": "φ = -134.9°，ψ = 156.5°，最近参考构象（30°）；与条目 SHEET 记录一致。"
+        "rule": "second_nearest_reference",
+        "reason": "次近的参考构象（距离 51°，正确者 28°）；两者易混。"
        }
       ]
      },
      {
-      "instance": "EN-1U7G-SS-330",
-      "question": "The excerpt contains residues 329–331 of chain A from PDB entry 1U7G (Crystal Structure of Ammonia Channel AmtB from E. Coli (X-ray, 1.40 Å)), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone dihedrals φ and ψ of Gly330 (IUPAC sign convention) and assign the residue to the nearest of these reference backbone conformations, measuring distance in the (φ, ψ) plane with 360° periodicity: right-handed α-helix (φ −57°, ψ −47°), β-strand (φ −120°, ψ +130°), polyproline II (φ −75°, ψ +145°), left-handed α-helix (φ +57°, ψ +47°). Which conformation does Gly330 adopt?",
+      "instance": "EN-1VB0-SS-29",
+      "question": "The excerpt contains residues 28–30 of chain A from PDB entry 1VB0 (Atomic resolution structure of atratoxin-b, one short-chain neurotoxin from Naja atra (X-ray, 0.92 Å)), ATOM records copied unchanged (coordinates in angstrom). Compute the backbone dihedrals φ and ψ of Ser29 (IUPAC sign convention) and assign the residue to the nearest of these reference backbone conformations, measuring distance in the (φ, ψ) plane with 360° periodicity: right-handed α-helix (φ −57°, ψ −47°), β-strand (φ −120°, ψ +130°), polyproline II (φ −75°, ψ +145°), left-handed α-helix (φ +57°, ψ +47°). Which conformation does Ser29 adopt?",
       "options": [
        {
         "label": "A",
-        "value": "left-handed α-helix"
-       },
-       {
-        "label": "B",
         "value": "β-strand"
        },
        {
+        "label": "B",
+        "value": "right-handed α-helix"
+       },
+       {
         "label": "C",
-        "value": "polyproline II"
+        "value": "left-handed α-helix"
        },
        {
         "label": "D",
-        "value": "right-handed α-helix"
+        "value": "polyproline II"
        }
       ],
       "inputs": [
-       "1U7G-A330-excerpt.pdb"
+       "1VB0-A29-excerpt.pdb"
       ],
-      "correct_label": "D",
+      "correct_label": "A",
       "audit": [
        {
         "label": "A",
-        "rule": "second_nearest_reference",
-        "reason": "次近的参考构象（距离 141°，正确者 30°）；两者易混。"
+        "rule": "correct",
+        "reason": "φ = -116.5°，ψ = 148.3°，最近参考构象（19°）；与条目 SHEET 记录一致。"
        },
        {
         "label": "B",
         "rule": "other_reference",
-        "reason": "距离 158°，明显更远。"
+        "reason": "距离 175°，明显更远。"
        },
        {
         "label": "C",
         "rule": "other_reference",
-        "reason": "距离 164°，明显更远。"
+        "reason": "距离 201°，明显更远。"
        },
        {
         "label": "D",
-        "rule": "correct",
-        "reason": "φ = -67.5°，ψ = -18.9°，最近参考构象（30°）；与条目 HELIX 记录一致。"
+        "rule": "second_nearest_reference",
+        "reason": "次近的参考构象（距离 42°，正确者 19°）；两者易混。"
        }
       ]
      }
@@ -7610,8 +7306,8 @@
    "sample": 2,
    "rule": "first batch: all",
    "ids": [
-    "CNP020",
-    "CNP022"
+    "BNP103",
+    "CNP020"
    ]
   },
   {
@@ -7664,31 +7360,6 @@
    "ids": [
     "BNP062",
     "BNP071"
-   ]
-  },
-  {
-   "stratum": "binding_design_choice | sampl9 | chemistry 1-10",
-   "unit": "binding_design_choice",
-   "source": "sampl9",
-   "cell": "chemistry 1-10",
-   "size": 2,
-   "sample": 2,
-   "rule": "first batch: all",
-   "ids": [
-    "CND007",
-    "CND008"
-   ]
-  },
-  {
-   "stratum": "binding_evidence_choice | sampl9 | chemistry 1-10",
-   "unit": "binding_evidence_choice",
-   "source": "sampl9",
-   "cell": "chemistry 1-10",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "CNI014"
    ]
   },
   {
@@ -7800,10 +7471,10 @@
    "sample": 4,
    "rule": "first batch: all",
    "ids": [
-    "MNP037",
     "MNP040",
     "MNP051",
-    "MNP062"
+    "MNP062",
+    "MNP081"
    ]
   },
   {
@@ -7848,11 +7519,10 @@
    "unit": "debye_intensity",
    "source": "pdb-dna-origami",
    "cell": "chemistry 10-100",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "CNI012",
     "CNI013"
    ]
   },
@@ -8153,13 +7823,15 @@
    "unit": "extent_choice_v2",
    "source": "oe62",
    "cell": "quantum 1-10",
-   "size": 3,
-   "sample": 3,
+   "size": 5,
+   "sample": 5,
    "rule": "first batch: all",
    "ids": [
     "QNP023",
     "QNP024",
-    "QNP026"
+    "QNP025",
+    "QNP026",
+    "QNP027"
    ]
   },
   {
@@ -8167,12 +7839,11 @@
    "unit": "extent_choice_v2",
    "source": "pdb-1aa5-vancomycin",
    "cell": "chemistry 1-10",
-   "size": 4,
-   "sample": 4,
+   "size": 3,
+   "sample": 3,
    "rule": "first batch: all",
    "ids": [
     "CNP034",
-    "CNP035",
     "CNP036",
     "CNP037"
    ]
@@ -8204,10 +7875,10 @@
    ]
   },
   {
-   "stratum": "extent_choice_v2 | qm7x | quantum 1-10",
+   "stratum": "extent_choice_v2 | sampl9 | chemistry 1-10",
    "unit": "extent_choice_v2",
-   "source": "qm7x",
-   "cell": "quantum 1-10",
+   "source": "sampl9",
+   "cell": "chemistry 1-10",
    "size": 1,
    "sample": 1,
    "rule": "first batch: all",
@@ -8334,7 +8005,7 @@
    "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "BNI083"
+    "BNI017"
    ]
   },
   {
@@ -8342,10 +8013,11 @@
    "unit": "guinier_intensity",
    "source": "pdb-dna-origami",
    "cell": "chemistry 10-100",
-   "size": 1,
-   "sample": 1,
+   "size": 2,
+   "sample": 2,
    "rule": "first batch: all",
    "ids": [
+    "BNI083",
     "CNI011"
    ]
   },
@@ -8370,21 +8042,8 @@
    "sample": 2,
    "rule": "first batch: all",
    "ids": [
-    "QND031",
-    "QND063"
-   ]
-  },
-  {
-   "stratum": "isotopologue_design | qm7x | quantum 1-10",
-   "unit": "isotopologue_design",
-   "source": "qm7x",
-   "cell": "quantum 1-10",
-   "size": 2,
-   "sample": 2,
-   "rule": "first batch: all",
-   "ids": [
-    "QND016",
-    "QND067"
+    "QND029",
+    "QND055"
    ]
   },
   {
@@ -8396,7 +8055,7 @@
    "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "CND012"
+    "QND063"
    ]
   },
   {
@@ -8404,11 +8063,13 @@
    "unit": "isotopologue_design",
    "source": "sampl9",
    "cell": "chemistry 1-10",
-   "size": 1,
-   "sample": 1,
+   "size": 3,
+   "sample": 3,
    "rule": "first batch: all",
    "ids": [
-    "CND013"
+    "QND016",
+    "QND066",
+    "QND067"
    ]
   },
   {
@@ -8479,12 +8140,11 @@
    "unit": "named_bond_angle",
    "source": "qm7x",
    "cell": "quantum 0.1-1",
-   "size": 2,
-   "sample": 2,
+   "size": 1,
+   "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "QNP043",
-    "QNP052"
+    "QNP046"
    ]
   },
   {
@@ -8496,19 +8156,7 @@
    "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "CNP032"
-   ]
-  },
-  {
-   "stratum": "named_bond_distance | paper-landscape17-azobenzene | chemistry 0.1-1",
-   "unit": "named_bond_distance",
-   "source": "paper-landscape17-azobenzene",
-   "cell": "chemistry 0.1-1",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "CNP044"
+    "QNP043"
    ]
   },
   {
@@ -8529,11 +8177,24 @@
    "unit": "named_bond_distance",
    "source": "qm7x",
    "cell": "quantum 0.1-1",
+   "size": 2,
+   "sample": 2,
+   "rule": "first batch: all",
+   "ids": [
+    "QNP143",
+    "QNP154"
+   ]
+  },
+  {
+   "stratum": "named_bond_distance | sampl9 | chemistry 0.1-1",
+   "unit": "named_bond_distance",
+   "source": "sampl9",
+   "cell": "chemistry 0.1-1",
    "size": 1,
    "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "QNP013"
+    "CNP068"
    ]
   },
   {
@@ -8605,11 +8266,12 @@
    "unit": "qdot_design",
    "source": "paper-yu-cdse-2003",
    "cell": "quantum 1-10",
-   "size": 1,
-   "sample": 1,
+   "size": 2,
+   "sample": 2,
    "rule": "first batch: all",
    "ids": [
-    "QND008"
+    "QND008",
+    "QND009"
    ]
   },
   {
@@ -8647,7 +8309,7 @@
    "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "QNI046"
+    "QNI060"
    ]
   },
   {
@@ -8655,11 +8317,12 @@
    "unit": "rotational_line",
    "source": "sampl9",
    "cell": "chemistry 1-10",
-   "size": 1,
-   "sample": 1,
+   "size": 2,
+   "sample": 2,
    "rule": "first batch: all",
    "ids": [
-    "CNI022"
+    "CNI046",
+    "CNI049"
    ]
   },
   {
@@ -8699,9 +8362,9 @@
    "sample": 3,
    "rule": "first batch: all",
    "ids": [
-    "CND004",
-    "CND005",
-    "CND006"
+    "BND078",
+    "BND089",
+    "CND005"
    ]
   },
   {
@@ -8713,8 +8376,8 @@
    "sample": 2,
    "rule": "first batch: all",
    "ids": [
-    "BNI064",
-    "BNI076"
+    "BNI094",
+    "BNI110"
    ]
   },
   {
@@ -8851,25 +8514,21 @@
   "QND003": "L0",
   "CNP016": "L0",
   "CNI008": "L0",
-  "QNP013": "L0",
   "MNP013": "L0",
   "MNP014": "L0",
   "MNI019": "L0",
   "BNI011": "L0",
   "BNI012": "L0",
   "BNP020": "L0",
+  "BNI017": "L0",
   "BNP024": "L0",
   "BNI021": "L0",
   "CNP020": "L0",
   "CNP021": "L0",
-  "CNP022": "L0",
   "CNP023": "L0",
   "CNI011": "L0",
-  "CNI012": "L0",
   "CNI013": "L0",
-  "CND004": "L0",
   "CND005": "L0",
-  "CND006": "L0",
   "BNI022": "L0",
   "BND001": "L0",
   "MNP015": "L0",
@@ -8899,13 +8558,11 @@
   "QND006": "L0",
   "QND007": "L0",
   "BNI023": "L0",
-  "CNI014": "L0",
-  "CND007": "L0",
-  "CND008": "L0",
   "QNI014": "L0",
   "QNI015": "L0",
   "QNI016": "L0",
   "QND008": "L0",
+  "QND009": "L0",
   "BND007": "L0",
   "QNP020": "L0",
   "QNP021": "L0",
@@ -8927,9 +8584,6 @@
   "BNP036": "L0",
   "BNI033": "L0",
   "BNI037": "L0",
-  "CNI022": "L0",
-  "CND012": "L0",
-  "CND013": "L0",
   "BNP038": "L0",
   "BNP039": "L0",
   "BNP040": "L0",
@@ -8937,14 +8591,14 @@
   "BNP042": "L0",
   "CNP029": "L0",
   "QNI023": "L0",
-  "CNP032": "L0",
   "QNP023": "L0",
   "QNP024": "L0",
+  "QNP025": "L0",
   "QNP026": "L0",
+  "QNP027": "L0",
   "MNP028": "L0",
   "MNP030": "L0",
   "CNP034": "L0",
-  "CNP035": "L0",
   "CNP036": "L0",
   "CNP037": "L0",
   "QNI028": "L0",
@@ -8965,23 +8619,20 @@
   "BNI048": "L0",
   "CNI032": "L0",
   "CNI033": "L0",
-  "MNP037": "L0",
   "BND019": "L0",
   "BND021": "L0",
   "MND014": "L0",
-  "CNP044": "L0",
   "CND019": "L0",
   "BND024": "L0",
   "CND021": "L0",
   "MND015": "L0",
   "QND016": "L0",
-  "QND031": "L0",
+  "QND029": "L0",
+  "QND055": "L0",
   "QND063": "L0",
+  "QND066": "L0",
   "QND067": "L0",
-  "QNI046": "L0",
-  "BNI064": "L0",
   "MND017": "L0",
-  "BNI076": "L0",
   "MND033": "L0",
   "MND039": "L0",
   "MND045": "L0",
@@ -8989,15 +8640,18 @@
   "BNP071": "L0",
   "BND025": "L0",
   "QNP043": "L0",
-  "QNP052": "L0",
+  "QNP046": "L0",
   "BND041": "L0",
   "MNI085": "L0",
   "BNI083": "L0",
+  "BND078": "L0",
   "BNP097": "L0",
   "BND081": "L0",
   "BND084": "L0",
+  "BND089": "L0",
   "BND096": "L0",
   "BNP100": "L0",
+  "BNP103": "L0",
   "BNP104": "L0",
   "QNP104": "L0",
   "QNP113": "L0",
@@ -9007,7 +8661,16 @@
   "MNP051": "L0",
   "MNP062": "L0",
   "BND107": "L0",
-  "BND108": "L0"
+  "BND108": "L0",
+  "QNI060": "L0",
+  "CNI046": "L0",
+  "QNP143": "L0",
+  "CNI049": "L0",
+  "BNI094": "L0",
+  "CNP068": "L0",
+  "MNP081": "L0",
+  "QNP154": "L0",
+  "BNI110": "L0"
  },
  "forms": {
   "QND003": {
@@ -9021,10 +8684,6 @@
   "CNI008": {
    "form": "family",
    "instance": "FA-SPROP-7089"
-  },
-  "QNP013": {
-   "form": "family",
-   "instance": "FA-DIST-7070-CCl"
   },
   "MNP013": {
    "form": "family",
@@ -9050,6 +8709,10 @@
    "form": "family",
    "instance": "FA-ASM-RG-1KX5"
   },
+  "BNI017": {
+   "form": "family",
+   "instance": "FA-ASM-GUIN-1A34"
+  },
   "BNP024": {
    "form": "family",
    "instance": "FA-ASM-RG-6CGR"
@@ -9066,10 +8729,6 @@
    "form": "family",
    "instance": "FA-ASM-RG-7ARQ"
   },
-  "CNP022": {
-   "form": "family",
-   "instance": "FA-ASM-EXT-7ARQ-SCAF"
-  },
   "CNP023": {
    "form": "family",
    "instance": "FA-ASM-RG-7ARQ-SCAF"
@@ -9078,25 +8737,13 @@
    "form": "family",
    "instance": "FA-ASM-GUIN-7ARQ"
   },
-  "CNI012": {
-   "form": "family",
-   "instance": "FA-DEB-7ARQ-018"
-  },
   "CNI013": {
    "form": "family",
    "instance": "FA-DEB-7ARQ-030"
   },
-  "CND004": {
-   "form": "family",
-   "instance": "FA-QDES-7ARQ-050"
-  },
   "CND005": {
    "form": "family",
    "instance": "FA-QDES-7ARQ-030"
-  },
-  "CND006": {
-   "form": "family",
-   "instance": "FA-QDES-7ARQ-SCAF-020"
   },
   "BNI022": {
    "form": "family",
@@ -9214,18 +8861,6 @@
    "form": "family",
    "instance": "FA-ASM-T-6NCL"
   },
-  "CNI014": {
-   "form": "family",
-   "instance": "FA-HG-EV1"
-  },
-  "CND007": {
-   "form": "family",
-   "instance": "FA-HG-DES1"
-  },
-  "CND008": {
-   "form": "family",
-   "instance": "FA-HG-DES2"
-  },
   "QNI014": {
    "form": "family",
    "instance": "FA-QD-PEAK-C"
@@ -9241,6 +8876,10 @@
   "QND008": {
    "form": "family",
    "instance": "FA-QD-DES-590"
+  },
+  "QND009": {
+   "form": "family",
+   "instance": "FA-QD-DES-565"
   },
   "BND007": {
    "form": "family",
@@ -9326,18 +8965,6 @@
    "form": "family",
    "instance": "FA-ASM-CAPS-1CWP"
   },
-  "CNI022": {
-   "form": "family",
-   "instance": "FA-ROT-G2-110"
-  },
-  "CND012": {
-   "form": "family",
-   "instance": "FA-ISO-G9-110"
-  },
-  "CND013": {
-   "form": "family",
-   "instance": "FA-ISO-G13-111"
-  },
   "BNP038": {
    "form": "family",
    "instance": "FA-DIST-6LYZ-SS30"
@@ -9366,10 +8993,6 @@
    "form": "family",
    "instance": "FA-FP-QM7X-7040-D2"
   },
-  "CNP032": {
-   "form": "family",
-   "instance": "FA-ANG-WP6"
-  },
   "QNP023": {
    "form": "family",
    "instance": "FC-QNP007"
@@ -9378,9 +9001,17 @@
    "form": "family",
    "instance": "FC-QNP008"
   },
+  "QNP025": {
+   "form": "family",
+   "instance": "FC-QNP009"
+  },
   "QNP026": {
    "form": "family",
    "instance": "FC-QNP010"
+  },
+  "QNP027": {
+   "form": "family",
+   "instance": "FC-QNP011"
   },
   "MNP028": {
    "form": "family",
@@ -9393,10 +9024,6 @@
   "CNP034": {
    "form": "family",
    "instance": "FC-CNP007"
-  },
-  "CNP035": {
-   "form": "family",
-   "instance": "FC-CNP008"
   },
   "CNP036": {
    "form": "family",
@@ -9478,10 +9105,6 @@
    "form": "family",
    "instance": "FA-PEAK-K2CUF4"
   },
-  "MNP037": {
-   "form": "family",
-   "instance": "FA-COORD-PENTACENE"
-  },
   "BND019": {
    "form": "family",
    "instance": "EN-1FHA-FD-25-5-42"
@@ -9493,10 +9116,6 @@
   "MND014": {
    "form": "family",
    "instance": "FA-DES-CHE-FLOW"
-  },
-  "CNP044": {
-   "form": "family",
-   "instance": "FA-RXN-TS01-NN"
   },
   "CND019": {
    "form": "family",
@@ -9518,33 +9137,29 @@
    "form": "family",
    "instance": "EN-SAMPL9-WP6-G8-ISO-111-18-21-25-26"
   },
-  "QND031": {
+  "QND029": {
    "form": "family",
-   "instance": "EN-SAMPL9-WP6-G5-ISO-111-21-33-38-51"
+   "instance": "EN-QM7X-7038-ISO-110-8-9-12-13"
+  },
+  "QND055": {
+   "form": "family",
+   "instance": "EN-QM7X-7044-ISO-101-8-9-12-13"
   },
   "QND063": {
    "form": "family",
    "instance": "EN-SAMPL9-WP6-G4-ISO-110-15-18-19-20"
   },
+  "QND066": {
+   "form": "family",
+   "instance": "EN-SAMPL9-WP6-G10-ISO-110-29-30-33-36"
+  },
   "QND067": {
    "form": "family",
    "instance": "EN-SAMPL9-WP6-G10-ISO-110-22-27-29-31"
   },
-  "QNI046": {
-   "form": "family",
-   "instance": "EN-QM7X-7030-ROT-111"
-  },
-  "BNI064": {
-   "form": "family",
-   "instance": "EN-1U7G-SS-330"
-  },
   "MND017": {
    "form": "family",
    "instance": "EN-COD4118591-XD-CRYSTAL-Mo"
-  },
-  "BNI076": {
-   "form": "family",
-   "instance": "EN-1ONJ-SS-15"
   },
   "MND033": {
    "form": "family",
@@ -9574,9 +9189,9 @@
    "form": "family",
    "instance": "EN-SAMPL9-WP6-G8-ANG-10-11-13"
   },
-  "QNP052": {
+  "QNP046": {
    "form": "family",
-   "instance": "EN-SAMPL9-DMBCD-ANG-82-31-88"
+   "instance": "EN-QM7X-7208-ANG-3-4-7"
   },
   "BND041": {
    "form": "family",
@@ -9590,6 +9205,10 @@
    "form": "family",
    "instance": "EN-7ARQ-GUIN-12"
   },
+  "BND078": {
+   "form": "family",
+   "instance": "EN-7ARQ-QDES-30-staple"
+  },
   "BNP097": {
    "form": "family",
    "instance": "EN-6NCL-RG-P13"
@@ -9602,6 +9221,10 @@
    "form": "family",
    "instance": "EN-6NCL-QDES-70-P5"
   },
+  "BND089": {
+   "form": "family",
+   "instance": "EN-7ARQ-QDES-30-scaffold"
+  },
   "BND096": {
    "form": "family",
    "instance": "EN-1CWP-QDES-30-CP"
@@ -9609,6 +9232,10 @@
   "BNP100": {
    "form": "family",
    "instance": "EN-6CGR-EXT-pUL17"
+  },
+  "BNP103": {
+   "form": "family",
+   "instance": "EN-7ARQ-EXT-staple"
   },
   "BNP104": {
    "form": "family",
@@ -9649,6 +9276,42 @@
   "BND108": {
    "form": "family",
    "instance": "EN-1STM-QDES-70"
+  },
+  "QNI060": {
+   "form": "family",
+   "instance": "EN-QM7X-7040-I1-C1-OPT-ROT-101"
+  },
+  "CNI046": {
+   "form": "family",
+   "instance": "EN-SAMPL9-bCD-CPZ-ROT-101"
+  },
+  "QNP143": {
+   "form": "family",
+   "instance": "EN-QM7X-7035-I1-C1-OPT-BOND-2-3"
+  },
+  "CNI049": {
+   "form": "family",
+   "instance": "EN-SAMPL9-WP6-G2-ROT-101"
+  },
+  "BNI094": {
+   "form": "family",
+   "instance": "EN-1CRN-SS-35"
+  },
+  "CNP068": {
+   "form": "family",
+   "instance": "EN-SAMPL9-WP6-G13-BOND-2-6"
+  },
+  "MNP081": {
+   "form": "family",
+   "instance": "EN-COD1538801-COORD-P-In"
+  },
+  "QNP154": {
+   "form": "family",
+   "instance": "EN-QM7X-7032-BOND-3-4"
+  },
+  "BNI110": {
+   "form": "family",
+   "instance": "EN-1VB0-SS-29"
   }
  },
  "note": "Tooling only: no L1/L2/L3 review has been run yet. Records are written by tools/review.py with a named human reviewer. Scope: the 160 selection (proposal pending the professor); reserve questions are reviewed later."

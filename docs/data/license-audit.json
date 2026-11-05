@@ -1,8 +1,8 @@
 {
  "kind": "license_audit",
- "date": "2026-11-03",
- "bank_run": "family-pilot-v45",
- "questions": 871,
+ "date": "2026-11-05",
+ "bank_run": "family-pilot-v55",
+ "questions": 988,
  "sources": 37,
  "scope": "逐来源核对：我们从它那里发布了什么、它的许可允许什么、许可写在哪。许可只从记录读——出版方本机副本、来源许可页面的抄录（docs/data/license-statements.json）、仓库自己的记录；只有我们自己记录的会写明，不替来源断定。",
  "verdicts": {
@@ -480,7 +480,7 @@
    "source": "pdb-bio-nm",
    "name": "RCSB PDB / wwPDB",
    "kind": "database",
-   "questions": 275,
+   "questions": 311,
    "families": [
     "assembly_extent",
     "assembly_rg",
@@ -497,7 +497,7 @@
     "secondary_structure"
    ],
    "publishes": {
-    "upstream_coordinates": 275
+    "upstream_coordinates": 311
    },
    "publishes_label": [
     "上游坐标（照抄／展开／约简／旋转／转格式）"
@@ -529,10 +529,53 @@
    "cards_unchecked": []
   },
   {
+   "source": "cod-materials-cell",
+   "name": "Crystallography Open Database",
+   "kind": "database",
+   "questions": 228,
+   "families": [
+    "coordination_shell",
+    "diffraction_design",
+    "first_diffraction_peak",
+    "kinematic_extinction"
+   ],
+   "publishes": {
+    "upstream_coordinates": 228
+   },
+   "publishes_label": [
+    "上游坐标（照抄／展开／约简／旋转／转格式）"
+   ],
+   "license": "public-domain",
+   "license_label": "公有领域（COD 贡献者声明）",
+   "declared_in_repo": "public-domain",
+   "stated_by_source": null,
+   "source_statement": null,
+   "confirmation": "publisher_page",
+   "evidence_paths": [
+    "docs/assets/materials/sources-cod-2026-10-03.json",
+    "docs/assets/materials/sources-noncubic.json",
+    "docs/data/license-statements.json"
+   ],
+   "confirmed_by_page": {
+    "statement": "cod-home",
+    "url": "https://www.crystallography.net/cod/",
+    "read_on": "2026-11-02",
+    "quote": "All data in the COD and the database itself are dedicated to the public domain and licensed under the CC0 License.",
+    "obligation": "许可本身无强制义务。同句之后另说：使用者应致谢结构数据的原作者（should acknowledge）。COD 的 CIF 文件头同样要求引用原始文献——本库 52 道 COD 题里只有 9 道在许可字段里记了原始文献，其余要在 L1 补齐。"
+   },
+   "fulltext_checked": null,
+   "obligations": [],
+   "also": "COD 文件头要求引用原始文献；228 道中只有 9 道在许可字段里记了原始文献",
+   "verdict": "clear",
+   "verdict_note": "",
+   "cards_to_reword": [],
+   "cards_unchecked": []
+  },
+  {
    "source": "qm7x",
    "name": "QM7-X（Zenodo 4288677）",
    "kind": "dataset",
-   "questions": 226,
+   "questions": 152,
    "families": [
     "conformer_target_selection",
     "extent_choice_v2",
@@ -546,7 +589,7 @@
     "stereo_relationship"
    ],
    "publishes": {
-    "upstream_coordinates": 226
+    "upstream_coordinates": 152
    },
    "publishes_label": [
     "上游坐标（照抄／展开／约简／旋转／转格式）"
@@ -581,63 +624,21 @@
    "cards_unchecked": []
   },
   {
-   "source": "cod-materials-cell",
-   "name": "Crystallography Open Database",
-   "kind": "database",
-   "questions": 216,
-   "families": [
-    "coordination_shell",
-    "diffraction_design",
-    "first_diffraction_peak",
-    "kinematic_extinction"
-   ],
-   "publishes": {
-    "upstream_coordinates": 216
-   },
-   "publishes_label": [
-    "上游坐标（照抄／展开／约简／旋转／转格式）"
-   ],
-   "license": "public-domain",
-   "license_label": "公有领域（COD 贡献者声明）",
-   "declared_in_repo": "public-domain",
-   "stated_by_source": null,
-   "source_statement": null,
-   "confirmation": "publisher_page",
-   "evidence_paths": [
-    "docs/assets/materials/sources-cod-2026-10-03.json",
-    "docs/assets/materials/sources-noncubic.json",
-    "docs/data/license-statements.json"
-   ],
-   "confirmed_by_page": {
-    "statement": "cod-home",
-    "url": "https://www.crystallography.net/cod/",
-    "read_on": "2026-11-02",
-    "quote": "All data in the COD and the database itself are dedicated to the public domain and licensed under the CC0 License.",
-    "obligation": "许可本身无强制义务。同句之后另说：使用者应致谢结构数据的原作者（should acknowledge）。COD 的 CIF 文件头同样要求引用原始文献——本库 52 道 COD 题里只有 9 道在许可字段里记了原始文献，其余要在 L1 补齐。"
-   },
-   "fulltext_checked": null,
-   "obligations": [],
-   "also": "COD 文件头要求引用原始文献；52 道中只有 9 道在许可字段里记了原始文献",
-   "verdict": "clear",
-   "verdict_note": "",
-   "cards_to_reword": [],
-   "cards_unchecked": []
-  },
-  {
    "source": "sampl9",
    "name": "SAMPL9 挑战赛（samplchallenges/SAMPL9）",
    "kind": "dataset",
-   "questions": 13,
+   "questions": 150,
    "families": [
     "binding_design_choice",
     "binding_evidence_choice",
+    "extent_choice_v2",
     "isotopologue_design",
     "named_bond_angle",
     "named_bond_distance",
     "rotational_line"
    ],
    "publishes": {
-    "upstream_coordinates": 13
+    "upstream_coordinates": 150
    },
    "publishes_label": [
     "上游坐标（照抄／展开／约简／旋转／转格式）"
@@ -666,6 +667,49 @@
     "署名"
    ],
    "also": "仓库 README 的 LICENSE 节：代码 MIT，其余材料 CC BY 4.0。我们用的是主客体结构与 ITC 实测表，属“其余材料”",
+   "verdict": "clear",
+   "verdict_note": "",
+   "cards_to_reword": [],
+   "cards_unchecked": []
+  },
+  {
+   "source": "pdb-dna-origami",
+   "name": "RCSB PDB / wwPDB（DNA 折纸）",
+   "kind": "database",
+   "questions": 16,
+   "families": [
+    "assembly_extent",
+    "assembly_rg",
+    "debye_intensity",
+    "guinier_intensity",
+    "scattering_q_design"
+   ],
+   "publishes": {
+    "upstream_coordinates": 16
+   },
+   "publishes_label": [
+    "上游坐标（照抄／展开／约简／旋转／转格式）"
+   ],
+   "license": "CC0-1.0",
+   "license_label": "CC0 1.0",
+   "declared_in_repo": "CC0-1.0",
+   "stated_by_source": null,
+   "source_statement": null,
+   "confirmation": "publisher_page",
+   "evidence_paths": [
+    "docs/assets/families/assemblies/sources.json",
+    "docs/data/license-statements.json"
+   ],
+   "confirmed_by_page": {
+    "statement": "rcsb-usage-policy",
+    "url": "https://www.rcsb.org/pages/usage-policy",
+    "read_on": "2026-11-02",
+    "quote": "The wwPDB policy states that data files contained in the PDB archive are available under the CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.",
+    "obligation": "许可本身无强制义务。同页另说：鼓励使用者署名 PDB 结构数据的原作者（encouraged，不是条件）。本库照此在每道题的 attribution 里写原沉积作者与 PDB 编号。"
+   },
+   "fulltext_checked": null,
+   "obligations": [],
+   "also": null,
    "verdict": "clear",
    "verdict_note": "",
    "cards_to_reword": [],
@@ -880,49 +924,6 @@
    "cards_unchecked": []
   },
   {
-   "source": "pdb-dna-origami",
-   "name": "RCSB PDB / wwPDB（DNA 折纸）",
-   "kind": "database",
-   "questions": 10,
-   "families": [
-    "assembly_extent",
-    "assembly_rg",
-    "debye_intensity",
-    "guinier_intensity",
-    "scattering_q_design"
-   ],
-   "publishes": {
-    "upstream_coordinates": 10
-   },
-   "publishes_label": [
-    "上游坐标（照抄／展开／约简／旋转／转格式）"
-   ],
-   "license": "CC0-1.0",
-   "license_label": "CC0 1.0",
-   "declared_in_repo": "CC0-1.0",
-   "stated_by_source": null,
-   "source_statement": null,
-   "confirmation": "publisher_page",
-   "evidence_paths": [
-    "docs/assets/families/assemblies/sources.json",
-    "docs/data/license-statements.json"
-   ],
-   "confirmed_by_page": {
-    "statement": "rcsb-usage-policy",
-    "url": "https://www.rcsb.org/pages/usage-policy",
-    "read_on": "2026-11-02",
-    "quote": "The wwPDB policy states that data files contained in the PDB archive are available under the CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.",
-    "obligation": "许可本身无强制义务。同页另说：鼓励使用者署名 PDB 结构数据的原作者（encouraged，不是条件）。本库照此在每道题的 attribution 里写原沉积作者与 PDB 编号。"
-   },
-   "fulltext_checked": null,
-   "obligations": [],
-   "also": null,
-   "verdict": "clear",
-   "verdict_note": "",
-   "cards_to_reword": [],
-   "cards_unchecked": []
-  },
-  {
    "source": "cod-mof",
    "name": "Crystallography Open Database（MOF）",
    "kind": "database",
@@ -993,7 +994,7 @@
     "docs/assets/families/evidence/sources.json"
    ],
    "confirmed_by_page": null,
-   "fulltext_checked": "../paper-batch-v04-001/materials/hbond-article.xml",
+   "fulltext_checked": "inputs/papers/altun2021/altun2021-PMC8124485.xml",
    "obligations": [
     "署名"
    ],

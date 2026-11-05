@@ -1,0 +1,45 @@
+{
+ "kind": "batch_selection",
+ "date": "2026-11-04",
+ "rule": "templates/batch-selection-rule.json",
+ "rule_version": "0.1.0",
+ "caps": {
+  "max_per_family_source": 4,
+  "max_per_source": 15,
+  "max_per_family": 60
+ },
+ "note": "tools/select_batch.py 选出的批次：按稀缺优先（没题的结构先上）、确定性顺序；选中只是进清单，是否成题由 family_engine 判定，入库另走 admit。",
+ "candidates": 13806,
+ "chosen": 18,
+ "blocked": {
+  "族上限 60": 8499,
+  "族×来源上限 4": 5273,
+  "来源上限 15": 16
+ },
+ "by_family": {
+  "assembly_rg": 1,
+  "named_bond_distance": 11,
+  "rotational_line": 1,
+  "secondary_structure": 5
+ },
+ "ids": [
+  "EN-SAMPL9-bCD-TDZ-BOND-15-17",
+  "EN-SAMPL9-bCD-TDZ-BOND-18-23",
+  "EN-SAMPL9-bCD-TDZ-BOND-13-14",
+  "EN-SAMPL9-bCD-TDZ-BOND-8-22",
+  "EN-SAMPL9-WP6-G2-BOND-9-10",
+  "EN-SAMPL9-WP6-G2-BOND-2-9",
+  "EN-SAMPL9-WP6-G2-BOND-7-16",
+  "EN-QM7X-7030-BOND-2-4",
+  "EN-QM7X-7030-BOND-1-2",
+  "EN-QM7X-7030-BOND-2-3",
+  "EN-SAMPL9-bCD-PMT-BOND-1-5",
+  "EN-3NDS-SS-54",
+  "EN-3NDS-SS-44",
+  "EN-3NDS-SS-31",
+  "EN-6LYZ-SS-61",
+  "EN-6LYZ-SS-79",
+  "EN-6NCL-RG-P11",
+  "EN-SAMPL9-WP6-G12-ROT-101"
+ ]
+}

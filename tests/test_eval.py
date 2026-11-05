@@ -73,7 +73,12 @@ class ExamTests(unittest.TestCase):
         self.assertFalse(exam.SETTINGS['renders']['available'])
         with self.assertRaises(ValueError) as refused:
             self.questions[0].prompt('renders')
-        self.assertIn('497', str(refused.exception))      # says which part of the bank it could cover
+        cartesian = sum(1 for p in WORKBENCH['student_packets']
+                        if p['id'] in {q['familyInstance'] for q in ADMITTED}
+                        and any(i.get('format') in ('xyz', 'pdb-excerpt') for i in (p['inputs'] or [])))
+        # Says which part of the bank it could cover, counted rather than written in. test_audit owns the
+        # authoritative version of this check; a literal here only went red on every expansion.
+        self.assertIn('%d/%d' % (cartesian, len(ADMITTED)), str(refused.exception))
 
 
 class ScoringTests(unittest.TestCase):

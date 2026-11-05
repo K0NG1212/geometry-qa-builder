@@ -8,8 +8,11 @@ Raw downloads are kept under inputs/ (not in Git) and the published copy is the 
 written to a sources file next to the assets, together with the licence wording the database publishes itself
 (tools/license_note.py). Entries already registered are skipped, so the tool can be re-run.
 
-The plan's large assemblies (12+ chains, the 10-100 nm pixels) are NOT handled here: they need the reduction that
-tools/build_assembly_assets.py does per structure (deposited operators, chain centroids), which is a second pass.
+A1 second pass (after the separate download authorization):
+  python tools/fetch_a1.py --kind pdb --assemblies --dry-run
+  python tools/fetch_a1.py --kind pdb --assemblies --date YYYY-MM-DD
+This only downloads official mmCIF into inputs/pdb and records its hash. Run the existing assembly builder next;
+the large models are never registered as ordinary chain-A proteins.
 """
 import argparse
 import hashlib
@@ -83,13 +86,95 @@ def pdb_kind(entry, coordinates=None):
     return 'nucleic' if any(word in text for word in NUCLEIC) else 'protein'
 
 
+
+def fetch_large_assemblies(plan, dry_run, date, plan_label='templates/a1-download-plan.json', include_small=False):
+    """A1 second pass: raw official mmCIF only; never append these entries to the chain-A registry."""
+    import gzip
+    index_path = ROOT / 'inputs/pdb/a1-assemblies.json'
+    index = json.loads(index_path.read_text(encoding='utf-8'), object_pairs_hook=OrderedDict) if index_path.exists() else {}
+    files, failures = OrderedDict(index.get('files', {})), OrderedDict()
+    for target, entry in rows_of(plan, 'pdb'):
+        if (entry.get('chains') or 0) <= ASSEMBLY_CHAINS and not include_small:
+            continue
+        ident = entry['id'].upper()
+        name = ident + '.cif.gz'
+        url = 'https://files.rcsb.org/download/' + name
+        if dry_run:
+            print('%-8s %-9s %s -> inputs/pdb/%s (raw only; no chain-A registration)' %
+                  (ident, target['pixel'], url, name))
+            continue
+        path = ROOT / 'inputs/pdb' / name
+        fetched = not path.exists()
+        try:
+            blob = fetch(url) if fetched else path.read_bytes()
+            plain = gzip.decompress(blob)
+            text = plain.decode('utf-8')
+            if not text.lstrip().startswith('data_') or '_atom_site.' not in text:
+                raise ValueError('The response is not a coordinate mmCIF data block')
+            digest = hashlib.sha256(blob).hexdigest()
+            prior = files.get(ident, {})
+            if prior.get('sha256') and prior['sha256'] != digest:
+                raise ValueError('Existing raw file differs from its recorded SHA-256; review before replacing it')
+            if fetched:
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(blob)
+            files[ident] = OrderedDict(
+                id=ident, raw_path=path.relative_to(ROOT).as_posix(), url=url, page=entry['page'],
+                downloaded=date if fetched else prior.get('downloaded'), recorded_on=date,
+                bytes=len(blob), sha256=digest, decompressed_sha256=hashlib.sha256(plain).hexdigest(),
+                format='gzip-compressed mmCIF', title=entry['title'], method=entry.get('method'),
+                resolution_A=entry.get('resolution_A'), planned_chains=entry.get('chains'),
+                planned_atoms=entry.get('atoms'), planned_pixel=target['pixel'],
+                planned_subdomain=target['subdomain'], why=target['why'],
+                disposition='raw_download_only; reduce the deposited model in tools/build_assembly_assets.py')
+            print('%-8s %9d compressed bytes  %s' % (ident, len(blob), path.relative_to(ROOT).as_posix()))
+        except (OSError, ValueError, EOFError) as exc:
+            failures[ident] = str(exc)
+            print('FAILED %s: %s' % (ident, exc))
+    if dry_run:
+        return
+    index_path.parent.mkdir(parents=True, exist_ok=True)
+    index_path.write_bytes((json.dumps(OrderedDict(
+        kind='a1_assembly_downloads', plan=plan_label, recorded_on=date,
+        license='wwPDB (CC0)', license_statement=license_note.statement('rcsb-usage-policy'),
+        note='Raw official coordinate files only. No symmetry expansion, biological-assembly claim, '
+             'capsid classification or chain-A/FRET registration is made by downloading them.',
+        files=files, failures=failures), ensure_ascii=False, indent=1) + '\n').encode('utf-8'))
+    print('Next A1 step: python tools/build_assembly_assets.py; inspect actual point counts and reduction limits before registration.')
+    if failures:
+        raise SystemExit(1)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--kind', choices=sorted(WHERE), required=True)
     parser.add_argument('--dry-run', action='store_true')
+    parser.add_argument('--assemblies', action='store_true', help='A1 second pass: raw mmCIF for planned PDB entries with >10 chains')
+    parser.add_argument('--date', help='date recorded for downloads (YYYY-MM-DD)')
+    parser.add_argument('--plan', type=Path, default=PLAN, help='A1 plan JSON (defaults to templates/a1-download-plan.json)')
+    parser.add_argument('--include-small', action='store_true', help='with --assemblies, include planned PDBs at or below the chain threshold')
     args = parser.parse_args()
+    plan_path = args.plan if args.plan.is_absolute() else ROOT / args.plan
+    plan_path = plan_path.resolve()
+    try:
+        plan_label = plan_path.relative_to(ROOT).as_posix()
+    except ValueError:
+        parser.error('--plan must be inside the repository')
+    if args.assemblies:
+        if args.kind != 'pdb':
+            parser.error('--assemblies requires --kind pdb')
+        if args.include_small is False and plan_path != PLAN.resolve() and any(
+                (e.get('chains') or 0) <= ASSEMBLY_CHAINS
+                for target in json.loads(plan_path.read_text(encoding='utf-8'))['targets']
+                if target['database'] == 'pdb' for e in target['entries']):
+            parser.error('the custom plan includes small PDBs; pass --include-small to process its complete authorized list')
+        import datetime
+        plan = json.loads(plan_path.read_text(encoding='utf-8'))
+        fetch_large_assemblies(plan, args.dry_run, args.date or datetime.date.today().isoformat(),
+                               plan_label=plan_label, include_small=args.include_small)
+        return
     where = WHERE[args.kind]
-    plan = json.loads(PLAN.read_text(encoding='utf-8'))
+    plan = json.loads(plan_path.read_text(encoding='utf-8'))
     data = registry()
     known = {str(item.get('cod') or item.get('pdb') or '').upper() for item in data[where['section']]}
     known |= {str(item.get('pdb') or '').upper() for item in data['assemblies']}

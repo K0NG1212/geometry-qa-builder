@@ -12,6 +12,7 @@ re-made on 11/05-11/08 -- so the stale instances are listed here by name. When t
 goes red and is deleted.
 """
 import json
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -236,7 +237,11 @@ class RecordedLicenceTests(unittest.TestCase):
         # "all other materials", which its README puts under CC BY 4.0.
         self.assertEqual(sorted(i for i, s in MANIFEST.items() if 'MIT' in s['license']), [])
         sampl9 = [q['familyInstance'] for q in ADMITTED if q['paper'] == 'sampl9']
-        self.assertEqual(len(sampl9), 13)
+        admitted_ids = {q['familyInstance'] for q in ADMITTED}
+        expected = sorted(instance for instance, spec in MANIFEST.items()
+                          if instance in admitted_ids and 'sampl9' in spec.get('source', '').lower())
+        self.assertTrue(expected)     # compare real instances, not two empty sets
+        self.assertEqual(sorted(sampl9), expected)
         for instance in sampl9:
             self.assertIn('CC BY 4.0', MANIFEST[instance]['license'], instance)
             # The provenance line must not call the whole challenge MIT either: the README splits it.
@@ -297,6 +302,19 @@ class WrittenUpTests(unittest.TestCase):
                 self.assertIn(str(number), text, '%s 少了 %d' % (page, number))
         # The card count belongs to the page that lists the cards.
         self.assertIn(str(len(AUDIT['quote_scan'])), (ROOT / 'LICENSING.md').read_text(encoding='utf-8'))
+
+    def test_the_hand_written_cod_finding_quotes_the_same_counts_as_the_audit(self):
+        """Finding 4 sits below the generated tables, so the table test above does not reach it. It read
+        "52 道" through two expansions while the bank grew to 228 COD questions. Both copies of a count have
+        to come from the same place, and the generated one is now computed from the catalog."""
+        row = next(r for r in AUDIT['rows'] if r['source'] == 'cod-materials-cell')
+        counts = re.findall(r'\d+', row['also'])
+        self.assertEqual(len(counts), 2, row['also'])
+        lines = [ln for ln in (ROOT / 'LICENSING.md').read_text(encoding='utf-8').splitlines()
+                 if 'COD 的引用要求' in ln]
+        self.assertEqual(len(lines), 1, lines)
+        for number in counts:
+            self.assertIn(number, lines[0], lines[0])
 
     def test_the_tables_in_licensing_are_the_generated_ones(self):
         # Four tables (verdicts, the three publish kinds, the per-source rows, the quoted pages) live between

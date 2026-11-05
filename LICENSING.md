@@ -11,7 +11,7 @@
 
 | | |
 |---|---|
-| 来源 | 37 个（871 道在库题 + 1 张已发布但未用的卡） |
+| 来源 | 37 个（988 道在库题 + 1 张已发布但未用的卡） |
 | 不可发布 | **0 个** |
 | 可直接发布 | 30 个 |
 | 上传前要复核 | 6 个（原因见下，都不是阻塞项） |
@@ -34,7 +34,7 @@
 
 | 类别 | 道数 | 含义 | 许可要求 |
 |---|---|---|---|
-| 上游坐标 | 774 | 附件里的数字是来源自己的（照抄、对称展开、约简成质心、刚性旋转、转格式） | 必须允许再分发 |
+| 上游坐标 | 891 | 附件里的数字是来源自己的（照抄、对称展开、约简成质心、刚性旋转、转格式） | 必须允许再分发 |
 | 本项目坐标 | 55 | 几何是本项目按论文印出的标量（晶格常数、转角、螺距）造的 | 不依赖来源许可 |
 | 本项目转述 | 42 | 证据卡／设计卡：本项目转述的事实与数值，每条带原文位置 | 事实不受保护，但句子不能逐词照搬 |
 
@@ -52,16 +52,16 @@
 
 | 来源 | 道数 | 发布什么 | 许可 | 许可出处 | 判定 |
 |---|---|---|---|---|---|
-| RCSB PDB / wwPDB | 275 | 上游坐标 275 | CC0 1.0 | 来源许可页面（2026-11-02 读） | 可发布 |
-| QM7-X（Zenodo 4288677） | 226 | 上游坐标 226 | CC BY 4.0 | 来源许可页面（2026-11-02 读） | 可发布 |
-| Crystallography Open Database | 216 | 上游坐标 216 | 公有领域（COD 贡献者声明） | 来源许可页面（2026-11-02 读） | 可发布 |
-| SAMPL9 挑战赛（samplchallenges/SAMPL9） | 13 | 上游坐标 13 | CC BY 4.0 | 来源许可页面（2026-11-02 读） | 可发布 |
+| RCSB PDB / wwPDB | 311 | 上游坐标 311 | CC0 1.0 | 来源许可页面（2026-11-02 读） | 可发布 |
+| Crystallography Open Database | 228 | 上游坐标 228 | 公有领域（COD 贡献者声明） | 来源许可页面（2026-11-02 读） | 可发布 |
+| QM7-X（Zenodo 4288677） | 152 | 上游坐标 152 | CC BY 4.0 | 来源许可页面（2026-11-02 读） | 可发布 |
+| SAMPL9 挑战赛（samplchallenges/SAMPL9） | 150 | 上游坐标 150 | CC BY 4.0 | 来源许可页面（2026-11-02 读） | 可发布 |
+| RCSB PDB / wwPDB（DNA 折纸） | 16 | 上游坐标 16 | CC0 1.0 | 来源许可页面（2026-11-02 读） | 可发布 |
 | Cao et al., Nature 556, 43 (2018) / arXiv:1803.02342 | 11 | 本项目坐标 7、本项目转述 4 | arXiv 非独占许可（授权 arXiv 分发，不授权第三方转载） | 仅本项目记录 | 上传前复核 |
 | Landscape17（Figshare 29949230） | 11 | 上游坐标 11 | CC BY 4.0 | 来源许可页面（2026-11-02 读） | 可发布 |
 | Cottet et al., arXiv:1401.4062 | 10 | 本项目坐标 8、本项目转述 2 | arXiv 非独占许可（授权 arXiv 分发，不授权第三方转载） | 仅本项目记录 | 上传前复核 |
 | Hill et al., Nano Lett. 8, 2341 (2008) | 10 | 本项目坐标 10 | 不依赖许可（只用事实数值） | 不依赖 | 可发布 |
 | Shaban et al., Materials 17, 5080 (2024) | 10 | 本项目坐标 8、本项目转述 2 | CC BY 4.0 | 出版方副本 | 可发布 |
-| RCSB PDB / wwPDB（DNA 折纸） | 10 | 上游坐标 10 | CC0 1.0 | 来源许可页面（2026-11-02 读） | 可发布 |
 | Crystallography Open Database（MOF） | 9 | 上游坐标 9 | 公有领域（COD 贡献者声明） | 来源许可页面（2026-11-02 读） | 可发布 |
 | Altun, Bleda & Trindle, Molecules 26, 2623 (2021) | 9 | 上游坐标 5、本项目转述 4 | CC BY 4.0 | 出版方副本 | 可发布 |
 | Kerelsky et al., Nature 572, 95 (2019) / arXiv:1812.08776 | 7 | 本项目坐标 3、本项目转述 4 | arXiv 非独占许可（授权 arXiv 分发，不授权第三方转载） | 仅本项目记录 | 上传前复核 |
@@ -118,8 +118,8 @@ OE62 是 **CC BY-SA 4.0**（相同方式共享），而 QNP023–QNP027 这 5 �
 | 来源页面 | 覆盖哪些来源 | 看到的原话 | 许可 | 义务 |
 |---|---|---|---|---|
 | [RCSB PDB 使用政策页](https://www.rcsb.org/pages/usage-policy)（2026-11-02 读） | RCSB PDB / wwPDB；RCSB PDB / wwPDB（DNA 折纸）；RCSB PDB 1AA5 | `The wwPDB policy states that data files contained in the PDB archive are available under the CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.` | CC0 1.0 | 许可本身无强制义务。同页另说：鼓励使用者署名 PDB 结构数据的原作者（encouraged，不是条件）。本库照此在每道题的 attribution 里写原沉积作者与 PDB 编号。 |
-| [QM7-X 的 Zenodo 记录（4288677，Version 2.0）](https://zenodo.org/records/4288677)（2026-11-02 读） | QM7-X（Zenodo 4288677） | `Creative Commons Attribution 4.0 International`<br>—— 记录的 Rights / License 字段（Version 2.0，2020-11-23 发布） | CC BY 4.0 | 署名：Hoja, Medrano Sandonas, Ernst, Vazquez-Mayagoitia, DiStasio Jr. & Tkatchenko, Sci. Data 8, 43 (2021)，doi:10.1038/s41597-021-00812-2，并指明本库改了格式（HDF5 → XYZ / JSON，只取坐标与所需标量）。 |
 | [Crystallography Open Database 首页许可声明](https://www.crystallography.net/cod/)（2026-11-02 读） | Crystallography Open Database；Crystallography Open Database（MOF） | `All data in the COD and the database itself are dedicated to the public domain and licensed under the CC0 License.` | 公有领域（COD 贡献者声明） | 许可本身无强制义务。同句之后另说：使用者应致谢结构数据的原作者（should acknowledge）。COD 的 CIF 文件头同样要求引用原始文献——本库 52 道 COD 题里只有 9 道在许可字段里记了原始文献，其余要在 L1 补齐。 |
+| [QM7-X 的 Zenodo 记录（4288677，Version 2.0）](https://zenodo.org/records/4288677)（2026-11-02 读） | QM7-X（Zenodo 4288677） | `Creative Commons Attribution 4.0 International`<br>—— 记录的 Rights / License 字段（Version 2.0，2020-11-23 发布） | CC BY 4.0 | 署名：Hoja, Medrano Sandonas, Ernst, Vazquez-Mayagoitia, DiStasio Jr. & Tkatchenko, Sci. Data 8, 43 (2021)，doi:10.1038/s41597-021-00812-2，并指明本库改了格式（HDF5 → XYZ / JSON，只取坐标与所需标量）。 |
 | [SAMPL9 仓库 README 的 LICENSE 节](https://raw.githubusercontent.com/samplchallenges/SAMPL9/master/README.md)（2026-11-02 读） | SAMPL9 挑战赛（samplchallenges/SAMPL9） | `MIT for all software/code / CC-BY 4.0 for all other materials`<br>—— LICENSE 节的两条分项；引语前一句说明这里的材料按情况分别适用 CC-BY 与 MIT 两种许可 | CC BY 4.0 | 署名：SAMPL9 挑战赛（samplchallenges/SAMPL9）与 ITC 实测数据的提供者（WP6 为 Isaacs 组，bCD 为 Gilson 组）；README 另请致谢 NIH R01GM124270（David L. Mobley, UC Irvine）。 |
 | [Landscape17 的 Figshare 条目（29949230）](https://figshare.com/articles/dataset/Landscape17/29949230)（2026-11-02 读） | Landscape17（Figshare 29949230） | `CC BY 4.0`<br>—— 条目的 LICENCE 字段（数据集 2025-08-22 发布，Vlad Cărare 等） | CC BY 4.0 | 署名：Cărare, Thiemann, Morrow, Wales, Pyzer-Knapp & Dicks, npj Comput. Mater. (2025)，doi:10.1038/s41524-025-01878-x，数据集 doi:10.6084/m9.figshare.29949230；并指明本库去掉了力列与能量注释，只留坐标。 |
 | [OE62 的 TUM mediaTUM 记录（1507656）](https://mediatum.ub.tum.de/1507656)（2026-11-02 读） | OE62（TUM mediaTUM 1507656） | `by-sa, http://creativecommons.org/licenses/by-sa/4.0`<br>—— 记录的 Rechte（权利）字段；记录 2019-07-11 发布，负责人 Oberhofer, Harald | CC BY-SA 4.0 | 署名 + 相同方式共享。署名：Stuke, Kunkel, Golze, Todorović, Margraf, Reuter, Rinke & Oberhofer，doi:10.14459/2019mp1507656，论文 doi:10.1038/s41597-020-0385-y。 |
@@ -143,7 +143,7 @@ OE62 是 **CC BY-SA 4.0**（相同方式共享），而 QNP023–QNP027 这 5 �
    这一条没有在 11-02 一并处理：两个版本都允许再分发，差别只在署名条款的措辞，要选哪个是人的判断，不该由工具替你定。
 3. ~~**Schäfermeier 2026 的 CC BY-NC-ND 无法本机核对**（arXiv PDF 里没有许可行）。~~
    **2026-11-02 做完**：arXiv:2602.13060 摘要页的权利栏确认是 CC BY-NC-ND 4.0。我们只用该文数值，不受影响。
-4. **COD 的引用要求**：COD 文件头要求引用原始文献，52 道里只有 9 道在许可字段记了原始文献。数据卡里要么逐条补，要么统一说明。
+4. **COD 的引用要求**：COD 文件头要求引用原始文献，228 道里只有 9 道在许可字段记了原始文献。数据卡里要么逐条补，要么统一说明。
    COD 首页的说法是「使用者应致谢结构数据的原作者」（should acknowledge），不是许可条件，但要做。
 5. **16 张卡里有逐词相同的短句要改写**（下节）。
 

@@ -11,7 +11,6 @@ Deterministic; nothing is downloaded. Existing XYZ files must remain byte-for-by
 """
 import csv
 import hashlib
-import re
 import json
 import sys
 from pathlib import Path
@@ -20,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools import license_note  # noqa: E402
 from tools.build_hostguest_assets import guest_xyz  # noqa: E402
-from task_families import kit  # noqa: E402
+from task_families import kit, chem_names  # noqa: E402
 
 OUT = ROOT / 'docs/assets/families/molecules'
 FORMULA_ORDER = ('C', 'H', 'N', 'O', 'S', 'Cl')
@@ -30,7 +29,6 @@ def formula(elements):
     counts = {e: elements.count(e) for e in set(elements)}
     order = [e for e in FORMULA_ORDER if e in counts] + sorted(e for e in counts if e not in FORMULA_ORDER)
     return ''.join('%s%s' % (e, counts[e] if counts[e] > 1 else '') for e in order)
-
 
 
 def write_asset(name, text):
@@ -58,12 +56,20 @@ def force_references():
 
 
 def add_local_sources(sources, seen):
+    skipped = {}
     for (mol, conformer), ((elements, points), data, paths) in sorted(force_references().items()):
         if mol in seen:
             continue
         # reference_id contains the isomer, conformer and opt dimensions; displacement d1/d2 is not part of this asset.
         suffix = conformer.split('-i', 1)[1]
         name = 'QM7X-%s-i%s.xyz' % (mol, suffix)
+        try:
+            chem_names.Molecule(elements, points, 0)
+        except ValueError as exc:
+            skipped[name] = dict(reason='Existing chemical-name reader rejected the neutral reference: ' + str(exc),
+                                 reference_id=conformer,
+                                 inputs=[p.relative_to(ROOT).as_posix() for p in paths])
+            continue
         text = '\n'.join([str(len(elements)),
             'QM7-X molecule %s (%s), conformer %s, DFTB3+MBD-optimized geometry, angstrom'
             % (mol, formula(elements), conformer)] +
@@ -79,7 +85,6 @@ def add_local_sources(sources, seen):
 
     table = ROOT / 'inputs/sampl9/experimental_data_experimental_measurements.csv'
     raw_table = table.read_bytes()
-    skipped = {}
     rows = [r for r in csv.DictReader(raw_table.decode('utf-8').splitlines(), delimiter=';')
             if r['ID'].startswith('bCD-')]
     for row in sorted(rows, key=lambda r: r['ID']):
