@@ -2,6 +2,30 @@
 
 > 交接入口：[HANDOFF_2026-11-03.md](HANDOFF_2026-11-03.md)（现状、第 9 次组会定的四周排程、两个 agent 的分工、必读经验）；[HANDOFF_2026-10-24.md](HANDOFF_2026-10-24.md)（10-24 的现状与候选清单）；[HANDOFF_2026-10-21.md](HANDOFF_2026-10-21.md)（10-20 → 10-24 八条线的细节）；[HANDOFF_2026-10-19.md](HANDOFF_2026-10-19.md)（现状数字与待决事项）；[HANDOFF_2026-10-18.md](HANDOFF_2026-10-18.md)（证据题两族与子领域/旭日图）；[HANDOFF_2026-10-06.md](HANDOFF_2026-10-06.md)（协作方式与判断原则、批量选题规则、第六次会议记录）；[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（来源路线、代码地图、流程与经验）；[HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史。
 
+## 每题 folder 按导师板书重做：可复现的 source + instruction + QA.json（2026-11-09，Claude Code 会话，模型 claude-opus-5）
+
+- **第 10 次组会（11-05）的板书**：`source/`（paper/doc/fullData、data、instruction、.py）+ `QA.json` + `info.json`，
+  **QA 不单独建文件夹**，**`student/` 不进这个文件夹**（导师原话：这个文件夹只用于质量核查，
+  不包含真正测试模型时用的那一份）。整理稿见 `inputs/meetings/第10次-2026-11-05-整理稿.md`（本地）。
+- **988 道全部重导**，`tools/export_qa_folders.py` 重写。每道题现在是：
+  `info.json`（文件清单 + 出处）、`QA.json`（题目与答案）、
+  `source/{SOURCE.txt, instruction.md, data/, 论文原件, recompute.py, recompute.out.txt}`。
+  旧的 `student/` 与 `reviewer/` 共 1976 个目录已删除。
+- **可复现是真跑出来的，不是声称的**：每道题的 `source/recompute.py` 读 `QA.json` 与 `data/`、
+  调独立检查器重算，导出时逐条执行并把输出存成 `recompute.out.txt`。
+  **988 / 988 重算与 QA.json 一致，0 道对不上。**
+  脚本依赖题库根目录的 `_toolkit/`（检查器代码 + 它要核哈希的 292 个附件原件，全树一份），不需要本仓库。
+- **本项目构造的数据必须自报家门**（用户 2026-11-09 要求）：55 道题的 `data/` 是按论文参数构造的模型
+  （理想三角涡旋点阵、理想 FCC 超晶格、从闪锌矿切出的量子点等）。这些题的 `instruction.md` 开头有警告，
+  第 2 节写明构造规则、参数取自哪篇论文的哪一处、本文件用的参数值；`info.json` 有机器可读的 `data_origin`。
+  其余各类也都写明是"原样照抄/只换格式/约简/对称展开/刚性变换/论文事实转述"中的哪一种。
+- **整棵树 111 MB**（论文用硬链接，不重复占盘），仍然只在 `D:\GeoBench-data\qa`，不进 Git。
+- 另有 **13 个文件夹的题目已不在目录里**（BNI111-114、MNI132-137、QNP160-162），仍是旧版式；
+  导出工具现在会把它们列出来，**删不删由用户定**。
+- 测试：`tests/test_qa_folders.py` 重写为 15 项，新增的三条分别钉住
+  「`info.json` 的文件清单必须和磁盘完全一致」「构造出来的数据必须有警告和构造规则，没构造的不许挂警告」
+  「评测侧不读这些文件夹」。
+
 ## 证据链回到原文 + 第 10 次组会改了方向（2026-11-05，Claude Code 会话，模型 claude-opus-5）
 
 - **最新交接文件是 [HANDOFF_2026-11-05.md](HANDOFF_2026-11-05.md)**，接手请先读它，再看下面这些历史段落。

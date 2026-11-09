@@ -1,10 +1,17 @@
-"""W1: the per-question folders (tools/export_qa_folders.py) must be traceable and must not leak the answer.
+"""Each question's folder must be enough for someone else to make that question again.
 
-The folders themselves live outside the repository (D:/GeoBench-data/qa by default), so these tests build them
-into a temporary directory instead. What they pin: every admitted question gets a folder with the four fields the
-advisor asked for (how to extract, originality, locator, evidence); the answer and the measured values stay in
-reviewer/ and never appear in info.json or student/, because a folder handed to a model is read from the top; and
-a second run writes nothing, so a re-run shows only what really changed.
+The shape is the advisor's whiteboard (2026-11-05): source/ holds the paper or data plus an instruction
+saying how to get from them to the question; QA.json is the question and its answer; info.json says what
+every file in the folder is. The folder is the *quality-checking* copy -- it is explicitly not what a model
+under test is given, which is why the answer sits in it openly and why there is no student/ any more.
+
+So what these tests pin is no longer "the answer must not leak into this file" but "a reader has everything
+and is told what it is": every file on disk is listed in info.json and nothing listed is missing; the
+instruction names each file and says how to recompute; the attachment in source/data/ is byte-for-byte the
+published asset; a computed question ships a runnable recompute.py and the toolkit it needs; and a second
+run writes nothing.
+
+The folders live outside the repository (D:/GeoBench-data/qa), so these build them into a temp directory.
 """
 import json
 import re
@@ -24,49 +31,132 @@ CATALOG = json.loads((ROOT / 'docs/data/catalog.json').read_text(encoding='utf-8
 MANIFEST = json.loads((ROOT / 'templates/family-manifest.json').read_text(encoding='utf-8'))
 WORKBENCH = json.loads((ROOT / 'docs/data/family-workbench.json').read_text(encoding='utf-8'))
 ADMITTED = [q for q in CATALOG['questions'] if q.get('lifecycle') == 'active' and q.get('familyInstance')]
-# Markers that would say which option is right. "reason" alone is not one of them: "reasoning" is a legitimate
-# classification field, and the engine already scans the packets themselves for its own word list.
-LEAK_MARKERS = ('is_correct', 'correct_label', 'option_audit', '"measured"', 'excluded_candidates')
-
-
-def leaves(node):
-    """Every text value in a JSON tree, so a copied-in answer can be spotted exactly. Numbers are left out:
-    info.json legitimately carries counts such as model_calls 0, and an option whose value is "0" would match
-    one of those without anything having leaked."""
-    if isinstance(node, dict):
-        return set().union(*(leaves(v) for v in node.values())) if node else set()
-    if isinstance(node, list):
-        return set().union(*(leaves(v) for v in node)) if node else set()
-    return {node} if isinstance(node, str) and len(node) >= 3 else set()
 
 
 class QaFolderTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.dir = Path(tempfile.mkdtemp(prefix='qa-folders-'))
-        cls.export = export_qa_folders.Export(cls.dir, papers=False)
-        cls.index = cls.export.run_all()
+        # A stale folder from the old layout, to pin that exporting clears it rather than leaving a
+        # half-old folder in which student/ still holds a packet nobody maintains.
+        stale = cls.dir / ADMITTED[0]['id'] / 'student'
+        stale.mkdir(parents=True)
+        (stale / 'question.txt').write_text('old layout', encoding='utf-8')
+        cls.export = export_qa_folders.Export(cls.dir, papers=False, recompute=False)
+        cls.export.run_all()
         cls.teacher = {t['id']: t for t in WORKBENCH['teacher_answers']}
 
     @classmethod
     def tearDownClass(cls):
         shutil.rmtree(cls.dir, ignore_errors=True)
 
-    def test_every_admitted_question_has_a_folder_with_the_four_fields(self):
-        self.assertEqual(len(self.index), len(ADMITTED))
+    def test_every_admitted_question_has_the_four_things_the_whiteboard_names(self):
         for question in ADMITTED:
             folder = self.dir / question['id']
-            for name in ('info.json', 'source/SOURCE.txt', 'student/question.txt',
-                         'reviewer/answer.json', 'reviewer/locators.json', 'reviewer/limits.txt'):
+            for name in ('info.json', 'QA.json', 'source/SOURCE.txt', 'source/instruction.md'):
                 self.assertTrue((folder / name).exists(), '%s/%s' % (question['id'], name))
+
+    def test_the_old_layout_is_gone(self):
+        """student/ is the package a model under test is given and has no place in the quality copy;
+        reviewer/ was four files that instruction.md and QA.json now carry between them."""
+        self.assertFalse((self.dir / ADMITTED[0]['id'] / 'student').exists())
+        for question in ADMITTED[:50]:
+            folder = self.dir / question['id']
+            self.assertFalse((folder / 'student').exists(), question['id'])
+            self.assertFalse((folder / 'reviewer').exists(), question['id'])
+
+    def test_info_json_lists_every_file_in_the_folder_and_only_files_that_are_there(self):
+        """The advisor's words: "要把所有的 folder、它的功能介绍清楚"。A manifest that is missing a file,
+        or names one that is not there, is worse than none -- a checker would trust it."""
+        for question in ADMITTED:
+            folder = self.dir / question['id']
             info = json.loads((folder / 'info.json').read_text(encoding='utf-8'))
-            self.assertTrue(info['how_to_extract']['generator_code'], question['id'])
-            self.assertTrue(info['how_to_extract']['independent_checker'], question['id'])
-            self.assertTrue(info['originality']['statement'], question['id'])
-            self.assertNotEqual(info['originality']['coordinates'], 'see_statement', question['id'])
-            self.assertTrue(info['locator']['asset_files'], question['id'])
-            self.assertTrue(info['evidence']['asset_hashes'], question['id'])
-            self.assertEqual(info['evidence']['independent_check']['status'], 'pass', question['id'])
+            listed = {f['path'] for f in info['files']}
+            on_disk = {str(p.relative_to(folder)).replace('\\', '/')
+                       for p in folder.rglob('*') if p.is_file()}
+            self.assertEqual(listed, on_disk, question['id'])
+            for entry in info['files']:
+                self.assertTrue(entry['role'].strip(), '%s: %s 没写作用' % (question['id'], entry['path']))
+
+    def test_qa_json_is_the_question_and_the_answer(self):
+        for question in ADMITTED:
+            qa = json.loads((self.dir / question['id'] / 'QA.json').read_text(encoding='utf-8'))
+            teacher = self.teacher[question['familyInstance']]
+            self.assertTrue(qa['question']['text'], question['id'])
+            self.assertEqual(len(qa['question']['options']), 4, question['id'])
+            self.assertEqual(qa['answer']['label'], teacher['correct_label'], question['id'])
+            self.assertEqual(qa['family_instance'], question['familyInstance'])
+            # Everything recompute.py needs to rebuild the checker's packet and key.
+            self.assertTrue(qa['input_hashes'], question['id'])
+            for item in qa['question']['attachments']:
+                self.assertTrue(item['file'].startswith('data/'), question['id'])
+                self.assertTrue(item['format'], '%s: %s 没记格式' % (question['id'], item['file']))
+
+    def test_the_attachment_in_the_folder_is_the_published_asset_byte_for_byte(self):
+        for question in ADMITTED:
+            folder = self.dir / question['id']
+            for attachment in question.get('attachments') or []:
+                local = folder / 'source' / 'data' / Path(attachment['url']).name
+                self.assertTrue(local.exists(), '%s/%s' % (question['id'], local.name))
+                self.assertEqual(local.read_bytes(), (ROOT / 'docs' / attachment['url']).read_bytes(),
+                                 question['id'])
+
+    def test_the_instruction_tells_a_reader_what_to_open_and_what_to_run(self):
+        for question in ADMITTED:
+            folder = self.dir / question['id']
+            text = (folder / 'source' / 'instruction.md').read_text(encoding='utf-8')
+            info = json.loads((folder / 'info.json').read_text(encoding='utf-8'))
+            for heading in ('## 0 这个文件夹里有什么', '## 1 这道题问什么', '## 2 数据从哪来',
+                            '## 3 怎么算出答案', '## 4 答案应该是', '## 7 这题保证不了什么'):
+                self.assertIn(heading, text, question['id'])
+            for entry in info['files']:                     # every file is named in the instruction too
+                name = entry['path'].split('/')[-1]
+                if name not in ('instruction.md',):
+                    self.assertIn(name, text, '%s: instruction 没提 %s' % (question['id'], name))
+            self.assertIn('本题未经任何人工审核', text, question['id'])
+            for noise in ('21.535119868514066', '0.00000000000'):   # floats cut to what a person reads
+                self.assertNotIn(noise, text, question['id'])
+
+    def test_a_computed_question_ships_a_runnable_recompute_and_the_toolkit_it_needs(self):
+        import checkers
+        with_py = [q for q in ADMITTED
+                   if (self.dir / q['id'] / 'source' / 'recompute.py').exists()]
+        self.assertGreater(len(with_py), len(ADMITTED) // 2, '多数题应当能重算')
+        for question in with_py:
+            script = (self.dir / question['id'] / 'source' / 'recompute.py').read_text(encoding='utf-8')
+            self.assertIn('../QA.json', script, question['id'])
+            self.assertIn('_toolkit', script, question['id'])
+            self.assertIn(question['family'], script, question['id'])
+        toolkit = self.dir / '_toolkit'
+        for module in (ROOT / 'checkers').glob('*.py'):
+            self.assertTrue((toolkit / 'checkers' / module.name).exists(), module.name)
+        for question in with_py:                        # and the assets the checker hashes
+            qa = json.loads((self.dir / question['id'] / 'QA.json').read_text(encoding='utf-8'))
+            for rel in qa['input_hashes']:
+                self.assertTrue((toolkit / 'docs' / rel).exists(), '%s 缺 %s' % (question['id'], rel))
+        self.assertTrue(checkers.VERSION in (toolkit / 'README.md').read_text(encoding='utf-8'))
+
+    def test_data_we_built_ourselves_says_so_and_gives_the_rule(self):
+        """Some attachments are models this project constructed from numbers a paper reports -- an
+        ideal triangular vortex lattice at the paper's field, a sphere cut from ideal zinc blende.
+        Mistaking one for measured data would be our fault, not the reader's, so the folder has to say
+        it in the file the reader opens, and say how it was built."""
+        built = []
+        for question in ADMITTED:
+            folder = self.dir / question['id']
+            info = json.loads((folder / 'info.json').read_text(encoding='utf-8'))
+            text = (folder / 'source' / 'instruction.md').read_text(encoding='utf-8')
+            origin = info['data_origin']
+            self.assertTrue(origin['what_it_is'].strip(), question['id'])
+            if origin['constructed_by_this_project']:
+                built.append(question['id'])
+                self.assertTrue(origin['construction_rule'], '%s 标了构造却没有规则' % question['id'])
+                self.assertIn('本项目构造的', text, question['id'])
+                self.assertIn('### 怎么构造的', text, question['id'])
+                self.assertIn(origin['construction_rule'][:40], text, question['id'])
+            else:
+                self.assertNotIn('本项目构造的', text, '%s 不是构造的却挂了警告' % question['id'])
+        self.assertGreater(len(built), 0, '没有一道题标为构造，说明判定失效了')
 
     def test_the_folder_says_plainly_that_nothing_is_human_reviewed(self):
         for question in ADMITTED:
@@ -74,62 +164,24 @@ class QaFolderTests(unittest.TestCase):
             self.assertIn('未经', info['review']['note'])
             self.assertEqual([info['review'][level] for level in ('L1', 'L2', 'L3', 'L4')], ['pending'] * 4)
             self.assertEqual(info['how_to_extract']['model_calls'], 0)
+            self.assertTrue(info['how_to_extract']['generator_code'], question['id'])
+            self.assertTrue(info['originality']['statement'], question['id'])
+            self.assertNotEqual(info['originality']['coordinates'], 'see_statement', question['id'])
 
-    def test_info_json_and_student_do_not_carry_the_answer(self):
-        for question in ADMITTED:
-            folder = self.dir / question['id']
-            info = (folder / 'info.json').read_text(encoding='utf-8')
-            student = (folder / 'student/question.txt').read_text(encoding='utf-8')
-            teacher = self.teacher[question['familyInstance']]
-            right = next(o for o in teacher['option_audit'] if o['is_correct'])
-            for marker in LEAK_MARKERS:
-                self.assertNotIn(marker, info, '%s: info.json carries %s' % (question['id'], marker))
-                self.assertNotIn(marker, student, '%s: question.txt carries %s' % (question['id'], marker))
-            # Which option is right must be in neither file: not as a label, not as the audit's wording, and
-            # not as the value only the right option has.
-            self.assertNotIn(str(right.get('reason') or 'nothing to look for'), info, question['id'])
-            self.assertNotIn(str(right.get('reason') or 'nothing to look for'), student, question['id'])
-            # No field of info.json may be an option's value. Substring matching would cry wolf here: for
-            # stereo_relationship the right value is the word "same", which also sits inside a distractor
-            # mechanism's name -- and inside the instance id FA-SREL-7029-SAME, which is why a model is given
-            # student/ only and never the instance id.
-            values = {str(o['value']) for o in teacher['option_audit'] if len(str(o['value'])) >= 3}
-            self.assertEqual(values & leaves(json.loads(info)), set(), question['id'])
-            self.assertIn('reviewer/answer.json', info, question['id'])
-            answer = json.loads((folder / 'reviewer/answer.json').read_text(encoding='utf-8'))
-            self.assertEqual(answer['correct_label'], teacher['correct_label'], question['id'])
-
-    def test_the_student_folder_holds_every_attachment_the_question_names(self):
-        for question in ADMITTED:
-            for attachment in question.get('attachments') or []:
-                name = Path(attachment['url']).name
-                self.assertTrue((self.dir / question['id'] / 'student' / name).exists(),
-                                '%s/%s' % (question['id'], name))
-
-    def test_every_folder_has_one_readable_evidence_sheet(self):
-        """What a reviewer opens. The pieces were always in the folder, but spread over four JSON files; this
-        sheet is the one file that can be read start to finish, by a person or by another model."""
-        for question in ADMITTED:
-            sheet = (self.dir / question['id'] / 'reviewer/EVIDENCE.txt').read_text(encoding='utf-8')
-            teacher = self.teacher[question['familyInstance']]
-            self.assertIn(question['id'], sheet)
-            self.assertIn('答案：', sheet)
-            self.assertIn(str(next(o for o in teacher['option_audit'] if o['is_correct'])['value']), sheet)
-            self.assertIn('二、证据：附件原样引用', sheet)
-            self.assertIn('五、独立检查器', sheet)
-            self.assertIn('本题未经任何人工审核', sheet)
-            for marker in ('21.535119868514066', '0.00000000000'):      # floats are cut to what a person reads
-                self.assertNotIn(marker, sheet, question['id'])
-            info = (self.dir / question['id'] / 'info.json').read_text(encoding='utf-8')
-            student = (self.dir / question['id'] / 'student/question.txt').read_text(encoding='utf-8')
-            self.assertIn('reviewer/EVIDENCE.txt', info)                # info.json says where it is
-            self.assertNotIn('二、证据', student)                        # but the sheet itself stays reviewer-side
+    def test_the_folder_is_not_what_a_model_under_test_is_given(self):
+        """The whole layout rests on this split, so it is worth a test rather than a comment: the exam
+        side builds its prompts from the published workbench, never from these folders."""
+        exam = (ROOT / 'evaluation' / 'exam.py').read_text(encoding='utf-8')
+        self.assertIn('family-workbench.json', exam)
+        for marker in ('GeoBench-data', 'qa/', 'QA.json'):
+            self.assertNotIn(marker, exam.split('"""', 2)[2])     # docstring may mention it; code may not
 
     def test_a_second_run_writes_nothing(self):
-        again = export_qa_folders.Export(self.dir, papers=False)
+        again = export_qa_folders.Export(self.dir, papers=False, recompute=False)
         again.run_all()
         self.assertEqual(again.written, 0)
         self.assertEqual(again.missing, [])
+        self.assertEqual(again.removed, 0)
 
 
 FORMAT_WORDS = {'xyz', 'txt', 'pdb', 'cif', 'json', 'design', 'excerpt', 'cell'}
