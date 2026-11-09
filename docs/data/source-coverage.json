@@ -1,0 +1,249 @@
+{
+ "kind": "source_coverage",
+ "note_zh": "分子（我们用到多少）来自本仓库；分母（源里有多少）来自 docs/content/external-counts.json，每个数字带出处。覆盖率按「分层」算，不按条目总数算：见 DATA_SOURCES.md 的说明。",
+ "note_en": "Numerators come from this repository; denominators come from docs/content/external-counts.json with a provenance on every number. Coverage is measured over strata, not over entry totals; DATA_SOURCES.md explains why.",
+ "external_counts_fetched_on": "2026-11-09",
+ "questions_by_source": {
+  "rcsb_pdb": 331,
+  "cod": 237,
+  "qm7x": 152,
+  "papers": 113,
+  "sampl9": 150,
+  "oe62": 5
+ },
+ "questions_total": 988,
+ "rcsb_pdb": {
+  "questions": 331,
+  "distinct_entries": 49,
+  "entries": [
+   "12E8",
+   "1A34",
+   "1A6M",
+   "1AA5",
+   "1AON",
+   "1BNA",
+   "1CRN",
+   "1CWP",
+   "1EHZ",
+   "1FHA",
+   "1G31",
+   "1HHK",
+   "1HJP",
+   "1JUC",
+   "1KX5",
+   "1NXB",
+   "1ONJ",
+   "1PGA",
+   "1RYP",
+   "1STM",
+   "1SVA",
+   "1U7G",
+   "1UBQ",
+   "1VB0",
+   "1WNR",
+   "2B2F",
+   "2BUK",
+   "2FT1",
+   "2LZM",
+   "355D",
+   "3J9C",
+   "3M73",
+   "3NDS",
+   "3SN6",
+   "3T8P",
+   "3W4T",
+   "477D",
+   "4F3U",
+   "4GLG",
+   "4GLH",
+   "5PTI",
+   "5VK6",
+   "5VKE",
+   "5VKH",
+   "6CGR",
+   "6LYZ",
+   "6NCL",
+   "7ARQ",
+   "7RSA"
+  ],
+  "methods": {
+   "X-RAY DIFFRACTION": 45,
+   "ELECTRON MICROSCOPY": 4
+  },
+  "polymer_types": {
+   "Protein (only)": 35,
+   "Protein/NA": 3,
+   "Protein/Oligosaccharide": 1,
+   "Nucleic acid (only)": 10
+  },
+  "resolution": {
+   "known": 49,
+   "at_or_below_2A": 27,
+   "median": 1.93
+  },
+  "ec_strata": [
+   {
+    "ec": "1",
+    "zh": "氧化还原酶",
+    "en": "oxidoreductases",
+    "in_source": 22760,
+    "ours": 2
+   },
+   {
+    "ec": "2",
+    "zh": "转移酶",
+    "en": "transferases",
+    "in_source": 45156,
+    "ours": 0
+   },
+   {
+    "ec": "3",
+    "zh": "水解酶",
+    "en": "hydrolases",
+    "in_source": 60660,
+    "ours": 6
+   },
+   {
+    "ec": "4",
+    "zh": "裂合酶",
+    "en": "lyases",
+    "in_source": 10530,
+    "ours": 1
+   },
+   {
+    "ec": "5",
+    "zh": "异构酶",
+    "en": "isomerases",
+    "in_source": 6509,
+    "ours": 1
+   },
+   {
+    "ec": "6",
+    "zh": "连接酶",
+    "en": "ligases",
+    "in_source": 4746,
+    "ours": 0
+   },
+   {
+    "ec": "7",
+    "zh": "易位酶",
+    "en": "translocases",
+    "in_source": 2911,
+    "ours": 0
+   }
+  ],
+  "entries_with_ec": 9,
+  "ec_classes_covered": 4
+ },
+ "cod": {
+  "questions": 237,
+  "cif_files": 57,
+  "space_groups_used": 38,
+  "space_groups_possible": 230,
+  "entries_in_source": 533630,
+  "by_space_group": {
+   "F m -3 m": 8,
+   "F -4 3 m": 3,
+   "P m -3 m": 3,
+   "R -3 c :H": 3,
+   "F d -3 m :1": 2,
+   "I 1 2/a 1": 2,
+   "P 21 21 21": 2,
+   "P 63 m c": 2,
+   "P 63/m m c": 2,
+   "P b c a": 2,
+   "C 1": 1,
+   "C 1 2/c 1": 1,
+   "C c m m": 1,
+   "F m -3": 1,
+   "I 4/m m m": 1,
+   "I a -3 d": 1,
+   "I m -3 m": 1,
+   "I m m a": 1,
+   "P -1": 1,
+   "P -4 3 n": 1,
+   "P 1": 1,
+   "P 1 1 21/b": 1,
+   "P 1 21 1": 1,
+   "P 1 21/n 1": 1,
+   "P 1 n 1": 1,
+   "P 32 2 1": 1,
+   "P 41": 1,
+   "P 42/m n m": 1,
+   "P 6/m m m": 1,
+   "P 63/m": 1,
+   "P b c m": 1,
+   "P b c n": 1,
+   "P b n m": 1,
+   "P m -3 n": 1,
+   "P m c n": 1,
+   "P n m a": 1,
+   "R -3 m :H": 1,
+   "R 3 m :H": 1
+  },
+  "cif_without_space_group": 0
+ },
+ "qm7x": {
+  "questions": 152,
+  "distinct_molecules": 23,
+  "formulae_in_source": 7000,
+  "equilibrium_structures_in_source": 40000,
+  "heavy_atoms_max_in_source": 7,
+  "by_heavy_atom_count": {
+   "7": 23
+  },
+  "by_heavy_elements": {
+   "CNS": 8,
+   "COS": 10,
+   "CNOS": 5
+  },
+  "molecules_without_local_xyz": []
+ },
+ "sampl9": {
+  "questions": 150,
+  "hosts_used": 3,
+  "by_host": {
+   "WP6": 106,
+   "BCD": 27,
+   "DMBCD": 8
+  },
+  "distinct_guest_complexes": 17,
+  "questions_without_a_host_name": 9,
+  "hosts_in_challenge": 3
+ },
+ "papers": {
+  "questions": 118,
+  "distinct_labels": 29,
+  "by_label": {
+   "paper-cao-magic-angle": 11,
+   "paper-landscape17-azobenzene": 11,
+   "paper-dna-au-superlattice": 10,
+   "paper-cottet-mgb2-vortex": 10,
+   "paper-shaban-cholesteric": 10,
+   "hbond2021": 9,
+   "paper-ps-opal-rulers": 7,
+   "paper-kerelsky-tbg-stm": 7,
+   "paper-yu-cdse-2003": 5,
+   "oe62": 5,
+   "paper-silica-opal": 4,
+   "paper-schaefermeier-bscco-vortex": 3,
+   "paper-dinc-isosorbide": 3,
+   "paper-jiang-anthrax-pa-pore": 3,
+   "paper-filip-perovskite-steric": 2,
+   "paper-vincent-molecular-clips": 2,
+   "paper-rando-bambusuril": 2,
+   "paper-chetry-mof-isotopologue": 2,
+   "paper-blom-bisporphyrin-tweezers": 2,
+   "paper-muhlbauer-mnsi-skyrmion": 1,
+   "paper-cuello-kcsa-gating": 1,
+   "paper-rasmussen-b2ar-gs": 1,
+   "paper-wilde-ceue-licam": 1,
+   "paper-zhai-synthetic-lectin": 1,
+   "paper-dellasala-prismarene": 1,
+   "paper-gomez-pillararene-alkylsulfonate": 1,
+   "paper-kaabel-cychc8-anions": 1,
+   "paper-shuto-closed-cavity-dipeptide": 1,
+   "paper-ikeda-fau-methanol": 1
+  }
+ }
+}

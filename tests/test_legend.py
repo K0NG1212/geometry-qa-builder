@@ -238,11 +238,21 @@ class LegendPageTests(unittest.TestCase):
         for anchor in ('abilities', 'scales', 'ids', 'taxonomy', 'gaps', 'abbr'):
             self.assertIn('id="%s"' % anchor, LEGEND_HTML, anchor)
 
-    def test_the_page_reads_the_two_content_files_and_nothing_generated(self):
+    def test_the_page_reads_hand_written_prose_and_computed_numbers_from_separate_places(self):
+        """Prose is written by hand under content/; every number is computed into data/source-coverage.json.
+
+        Until the sources section (C1, 2026-11-09) this test said the page reads nothing from data/ at all,
+        because everything it showed was prose. That stopped being right: a coverage figure that is typed by
+        hand goes stale the moment a question is added, so the figures have to come from the generated file.
+        What still has to hold is the split -- the page may read the coverage file, and nothing else
+        generated, so no number on it is hand-maintained and no prose on it is machine-generated."""
         js = (DOCS / 'legend.js').read_text(encoding='utf-8')
-        self.assertIn("fetch('content/legend.json')", js)
-        self.assertIn("fetch('content/gap-reasons.json')", js)
-        self.assertNotIn("data/", js.split('*/', 1)[1])          # content is hand-written, not generated
+        body = js.split('*/', 1)[1]
+        for hand in ('content/legend.json', 'content/gap-reasons.json', 'content/sources.json'):
+            self.assertIn("fetch('%s')" % hand, js, hand)
+        self.assertIn("fetch('data/source-coverage.json')", js)
+        others = [m for m in re.findall(r"fetch\('(data/[^']+)'\)", body) if m != 'data/source-coverage.json']
+        self.assertEqual(others, [], '读图指南只许读 data/source-coverage.json 这一个生成文件')
 
 
 class FoldTests(unittest.TestCase):

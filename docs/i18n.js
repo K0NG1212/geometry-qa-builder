@@ -7,6 +7,11 @@
    a question title or an option value is never touched. Default is English; the choice is remembered. */
 (() => {
   const DICT = {
+    // 2026-11-09: C1 的新词（读图指南页第 07 节：数据源与覆盖）
+    '数据源与覆盖': 'Sources and coverage',
+    '为什么是这些源，采样到什么程度。': 'Why these sources, and how much of them we sample.',
+    '完整论证 ↗': 'The full argument ↗',
+    '覆盖缺口': 'Coverage gaps',
     // 2026-11-09: B1-B6 的新词（读图指南页、概览页折叠、坐标表与细坐标图的新说明）
     '读图指南': 'Legend',
     '读图指南 ↗': 'Legend ↗',

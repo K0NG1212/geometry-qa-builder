@@ -1,0 +1,73 @@
+{
+ "kind": "external_source_counts",
+ "note_zh": "覆盖率的分母。每个数字都写明是怎么来的：api = 本项目直接查了对方的检索接口（查询语句写在 query 字段，可重跑）；cited = 引对方论文或官网公布的数字，附出处与读取日期。不得手填来源不明的数字。",
+ "note_en": "The denominators behind every coverage figure. Each number states how it was obtained: api means this project queried the source's own search service (the query is recorded and can be re-run); cited means the number is published by the source and is given with its reference and the date it was read. No number may be entered without a provenance.",
+ "fetched_on": "2026-11-09",
+ "sources": {
+  "rcsb_pdb": {
+   "name": "RCSB Protein Data Bank",
+   "url": "https://www.rcsb.org/",
+   "service": "https://search.rcsb.org/rcsbsearch/v2/query",
+   "counts": {
+    "experimental_entries": {"n": 262513, "provenance": "api",
+      "query": "structure_determination_methodology = experimental"},
+    "xray": {"n": 209240, "provenance": "api",
+      "query": "experimental AND exptl.method = X-RAY DIFFRACTION"},
+    "xray_resolution_2A_or_better": {"n": 106057, "provenance": "api",
+      "query": "experimental AND X-RAY DIFFRACTION AND resolution_combined <= 2.0"},
+    "protein_only": {"n": 224965, "provenance": "api",
+      "query": "experimental AND selected_polymer_entity_types = Protein (only)"},
+    "nucleic_acid_only": {"n": 5198, "provenance": "api",
+      "query": "experimental AND selected_polymer_entity_types = Nucleic acid (only)"},
+    "protein_na_complex": {"n": 17234, "provenance": "api",
+      "query": "experimental AND selected_polymer_entity_types = Protein/NA"},
+    "ec_1": {"n": 22760, "provenance": "api", "query": "experimental AND rcsb_ec_lineage.id = 1"},
+    "ec_2": {"n": 45156, "provenance": "api", "query": "experimental AND rcsb_ec_lineage.id = 2"},
+    "ec_3": {"n": 60660, "provenance": "api", "query": "experimental AND rcsb_ec_lineage.id = 3"},
+    "ec_4": {"n": 10530, "provenance": "api", "query": "experimental AND rcsb_ec_lineage.id = 4"},
+    "ec_5": {"n": 6509, "provenance": "api", "query": "experimental AND rcsb_ec_lineage.id = 5"},
+    "ec_6": {"n": 4746, "provenance": "api", "query": "experimental AND rcsb_ec_lineage.id = 6"},
+    "ec_7": {"n": 2911, "provenance": "api", "query": "experimental AND rcsb_ec_lineage.id = 7"}
+   }
+  },
+  "cod": {
+   "name": "Crystallography Open Database",
+   "url": "https://www.crystallography.net/cod/",
+   "counts": {
+    "entries": {"n": 533630, "provenance": "cited",
+      "reference": "COD 英国镜像 cds.dl.ac.uk 新闻页，2026-04-30 更新；格拉纳达镜像同期给 533828。两个镜像都按日更新，所以总数随查询时间变动。",
+      "read_on": "2026-11-09"},
+    "space_groups_possible": {"n": 230, "provenance": "cited",
+      "reference": "三维空间群的数目是晶体学定理，不是数据库统计。",
+      "read_on": "2026-11-09"}
+   }
+  },
+  "qm7x": {
+   "name": "QM7-X",
+   "url": "https://doi.org/10.1038/s41597-021-00812-2",
+   "counts": {
+    "molecular_formulae": {"n": 7000, "provenance": "cited",
+      "reference": "QM7-X 数据描述论文（Hoja et al., Sci Data 8, 43, 2021）：约 7k 个最多 7 个重原子（C、N、O、S、Cl）的分子式，取自 GDB13。",
+      "read_on": "2026-11-09"},
+    "equilibrium_structures": {"n": 40000, "provenance": "cited",
+      "reference": "同上：DFTB 优化后得到约 40k 个（亚）稳定平衡结构。",
+      "read_on": "2026-11-09"},
+    "all_structures": {"n": 4200000, "provenance": "cited",
+      "reference": "同上：每个平衡结构再按 DFTB3+MBD 简正模式位移生成 100 个非平衡结构，合计约 420 万个结构、42 个物理化学性质。注意「42」是性质数，不是分子数。",
+      "read_on": "2026-11-09"},
+    "heavy_atoms_max": {"n": 7, "provenance": "cited",
+      "reference": "同上：最多 7 个重原子。",
+      "read_on": "2026-11-09"}
+   }
+  },
+  "sampl9": {
+   "name": "SAMPL9 host-guest challenge",
+   "url": "https://github.com/samplchallenges/SAMPL9",
+   "counts": {
+    "hosts": {"n": 3, "provenance": "cited",
+      "reference": "SAMPL9 主客体赛道公开的主体：WP6（柱[6]芳烃）、bCD（β-环糊精）、与其二甲基衍生物 DMBCD。",
+      "read_on": "2026-11-09"}
+   }
+  }
+ }
+}

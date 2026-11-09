@@ -34,3 +34,10 @@ details.fold[open]>summary::before{content:"\2212"}
 details.fold[open]>summary{color:var(--muted);font-size:12px}
 details.fold>summary:hover::before{border-color:var(--ink);color:var(--ink)}
 details.fold>.section-block{padding-top:0}
+/* 07 / SOURCES on the legend page: why each source, and how much of it we sample (C1) */
+.lg-src{border:1px solid var(--line);border-radius:4px;padding:16px 18px;margin:14px 0}
+.lg-src h4{margin:0 0 2px;font-size:15px;font-weight:600}
+.lg-src .n{font-size:11px;color:var(--muted);margin:0 0 10px}
+.lg-src dl{display:grid;grid-template-columns:104px 1fr;gap:5px 14px;margin:0;font-size:13px}
+.lg-src dt{color:var(--muted)}.lg-src dd{margin:0;line-height:1.7}
+.lg-gap{font-size:12.5px;background:#fdf3f1;border-left:3px solid var(--gap-uncollected);padding:10px 14px;margin:8px 0;line-height:1.75}

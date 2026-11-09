@@ -1,0 +1,80 @@
+{
+ "kind": "source_rationale",
+ "status": "draft",
+ "status_zh": "为什么选这个源、它覆盖和不覆盖什么。完整论证与逐层覆盖率在仓库的 DATA_SOURCES.md；这里是摘要。数字由 review_system/datasources.py 算出，分母带出处。未经导师确认。",
+ "status_en": "Why each source was chosen and what it does and does not cover. The full argument and the stratum-by-stratum coverage are in DATA_SOURCES.md; this is the summary. The figures are computed by review_system/datasources.py and every denominator carries its provenance. Not yet confirmed by the advisor.",
+ "why_strata_zh": "覆盖率按分层算，不按条目总数算：49 / 262513 是 0.02%，任何题库都不可能把这个数字做上去。该问的是「子领域树声明的那些层，每层都有结构吗」—— B1 说按 EC 大类取代表、M2 说按结构原型、C2 说按元素组成与大小分层，所以就按这些口径报，并且把空的层直接列出来。",
+ "why_strata_en": "Coverage is measured over strata, not over entry totals: 49 of 262513 entries is 0.02%, and no benchmark will ever move that number. The question worth asking is whether each stratum the subdomain tree declares actually holds a structure — B1 says one representative per EC class, M2 says one per structure prototype, C2 says stratified by element composition and size — so those are the axes reported here, with the empty strata named.",
+ "sources": [
+  {
+   "key": "rcsb_pdb",
+   "name": "RCSB PDB",
+   "why_zh": "它不是「一个选择」，而是这类对象的结构空间本身：实验测定的生物大分子结构在全世界只有一个档案（wwPDB）。",
+   "why_en": "Not one option among several: it is the structure space for these objects. There is a single worldwide archive of experimentally determined biomacromolecular structures (wwPDB).",
+   "covers_zh": "262 513 个实验测定条目；X 射线 209 240，其中分辨率 ≤ 2.0 Å 的 106 057。",
+   "covers_en": "262513 experimentally determined entries; 209240 by X-ray, of which 106057 at 2.0 Å or better.",
+   "misses_zh": "膜片与囊泡这类没有原子坐标的对象；碳纳米管这类不在库里的体系；只在计算里存在的结构。",
+   "misses_en": "Objects with no atomic coordinates, such as membrane patches and vesicles; systems the archive does not hold, such as carbon nanotubes; anything that exists only in a calculation.",
+   "alternatives_zh": "CATH / SCOP / OPM / PDBTM / SAbDab / VIPERdb 都是长在 PDB 上的注释层，不是另一个结构池。AlphaFold DB 是预测结构，刻意排除：本库的答案必须由实测坐标算出。",
+   "alternatives_en": "CATH, SCOP, OPM, PDBTM, SAbDab and VIPERdb are annotation layers on top of PDB, not separate pools of structures. AlphaFold DB holds predictions and is deliberately excluded: answers here must follow from measured coordinates."
+  },
+  {
+   "key": "cod",
+   "name": "COD",
+   "why_zh": "唯一一个「实测 + 公有领域 + 可再分发」的大型晶体结构库。本库要公开发布题目附件，这三个条件必须同时成立。",
+   "why_en": "The only large crystal-structure collection that is measured, public domain and redistributable at once. Since the question attachments are published, all three have to hold.",
+   "covers_zh": "约 533 630 个条目（镜像按日更新，总数随查询时间变动）。",
+   "covers_en": "About 533630 entries; the mirrors update daily, so the total moves with the date it is read.",
+   "misses_zh": "非晶与液晶相、纳米组装体的超晶格，以及任何只在计算里存在的晶体。",
+   "misses_en": "Amorphous and liquid-crystalline phases, the superlattices of nanoscale assemblies, and any crystal that exists only in a calculation.",
+   "alternatives_zh": "CSD 与 ICSD 内容更全但订阅制、不可再分发；Materials Project / AFLOW / OQMD 是计算结构；PubChem3D 是计算构象，是 QM7-X 的同类而不是 COD 的同类。",
+   "alternatives_en": "CSD and ICSD are larger but licensed and not redistributable; Materials Project, AFLOW and OQMD hold computed structures; PubChem3D holds computed conformers and is a counterpart to QM7-X, not to COD."
+  },
+  {
+   "key": "qm7x",
+   "name": "QM7-X",
+   "why_zh": "本库唯一的计算数据源。可以用，是因为这些题问「给定这组坐标，距离／夹角／跨度是多少」，答案由给出的坐标算出，与坐标是测的还是算的无关。选它是因为它同时给平衡结构与非平衡构象（构象题只需要这个），并附 42 个性质。",
+   "why_en": "The one computed source used here. It is admissible because these questions ask what a distance, angle or extent is in the coordinates given, and the answer follows from those coordinates whether they were measured or computed. It was chosen because it carries both equilibrium structures and non-equilibrium conformers, which is what conformer questions need, along with 42 properties.",
+   "covers_zh": "约 7 000 个最多 7 个重原子（C、N、O、S、Cl）的分子式，约 40 000 个平衡结构，合计约 420 万个结构。注意常被引错的「42」是性质数，不是分子数。",
+   "covers_en": "About 7000 molecular formulae with up to seven heavy atoms (C, N, O, S, Cl), about 40000 equilibrium structures and about 4.2 million structures in all. The often-misquoted 42 is the number of properties, not of molecules.",
+   "misses_zh": "重原子超过 7 个的分子；任何结论依赖「真实分子确实如此」的题都不用计算数据集。",
+   "misses_en": "Molecules with more than seven heavy atoms. No question whose conclusion depends on a real molecule actually being that way uses a computed dataset.",
+   "alternatives_zh": "QM9 更大但只有平衡结构；ANI-1x / GEOM / Transition1x 各有侧重；PubChem3D 的构象来自单一构象发生器，没有量子化学性质。",
+   "alternatives_en": "QM9 is larger but holds equilibrium structures only; ANI-1x, GEOM and Transition1x each cover something narrower; PubChem3D's conformers come from one conformer generator and carry no quantum-chemical properties."
+  },
+  {
+   "key": "sampl9",
+   "name": "SAMPL9",
+   "why_zh": "超分子主客体题需要主体与客体都有公开坐标、且结合数据由盲测产生的体系。SAMPL 挑战正是为此设计的。",
+   "why_en": "Supramolecular host-guest questions need a system where both host and guest have public coordinates and the binding data came from a blind challenge. The SAMPL challenges are built for exactly that.",
+   "covers_zh": "3 个主体：WP6（柱[6]芳烃）、bCD（β-环糊精）、DMBCD（二甲基衍生物）。",
+   "covers_en": "Three hosts: WP6 (pillar[6]arene), bCD (beta-cyclodextrin) and DMBCD (its dimethyl derivative).",
+   "misses_zh": "葫芦脲、杯芳烃、竹环等主体家族 —— 子领域树 C4 写的是四个家族，SAMPL9 只给前两类，其余走单篇论文。",
+   "misses_en": "Host families such as cucurbiturils, calixarenes and bambusurils. Subdomain C4 names four families but SAMPL9 supplies only the first two; the rest come from individual papers.",
+   "alternatives_zh": "没有同类的公开盲测集；更广的主体家族只能靠单篇论文。",
+   "alternatives_en": "There is no comparable public blind-challenge set; wider host families have to come from individual papers."
+  },
+  {
+   "key": "papers",
+   "name": "单篇论文 / Individual papers",
+   "why_zh": "有些对象任何数据库都不收：莫尔超晶格的转角与周期、磁通格子的间距、蛋白石的球径、胆甾相的螺距、DNA 折纸的整体尺寸。这些参数只存在于论文的正文、表格与图里，所以论文是这些子领域唯一的来源。",
+   "why_en": "Some objects are in no database at all: the twist angle and period of a moire superlattice, the spacing of a flux lattice, the sphere diameter of an opal, the pitch of a cholesteric phase, the overall size of a DNA origami. Those parameters exist only in the text, tables and figures of papers, which makes papers the only source for these subdomains.",
+   "covers_zh": "每条事实都回到原文的哪一页或哪一小节，标签由程序切分原文得到；论文原件硬链接进每道题的文件夹，并生成可点击的核对页。",
+   "covers_en": "Every fact is traced to a page or a section of the source, with the label cut out of the source by program; the paper itself is hard-linked into each question's folder with a clickable checking page.",
+   "misses_zh": "100 条事实里 83 条能机器定位；17 条既没有数字也没有专有名词，判定为「无法核」而不是「通过」。",
+   "misses_en": "Of 100 facts, 83 can be located by machine; 17 contain neither a number nor a named term and are recorded as uncheckable rather than as passing.",
+   "alternatives_zh": "无 —— 这是定义上的唯一来源。",
+   "alternatives_en": "None: by definition this is the only source."
+  }
+ ],
+ "gaps": [
+  {"zh": "EC 2 / 6 / 7 三个大类没有酶题，其中 EC 2 是 PDB 第二大类（45 156 个条目）。子领域树 B1 说「按 EC 大类各取代表」，实际只覆盖 4 / 7 类。",
+   "en": "No enzyme questions in EC classes 2, 6 or 7, and EC 2 is the second-largest class in the PDB (45156 entries). Subdomain B1 says it takes one representative per EC class; in fact only 4 of 7 are covered."},
+  {"zh": "B1 还声明「分辨率 ≤ 2 Å」，但用到的 49 个条目里 22 个不满足（最差 10.0 Å，是一个 DNA 折纸的冷冻电镜结构）。",
+   "en": "B1 also declares a 2 A resolution limit, but 22 of the 49 entries used do not meet it (the worst is 10.0 A, a cryo-EM DNA origami)."},
+  {"zh": "QM7-X 用到的 23 个分子全部取在数据集的尺寸上限（7 个重原子）、全部含硫、没有一个含氯、没有一个是纯 C/N/O —— 而纯 C/N/O 正是有机小分子里最常见的一类。",
+   "en": "All 23 QM7-X molecules used sit at the dataset's size limit of seven heavy atoms, all contain sulfur, none contains chlorine and none is pure C/N/O, which is the commonest kind of small organic molecule."},
+  {"zh": "COD 用到的 38 个空间群偏高对称（立方高对称占 15 / 57），低对称只有零星几个。高对称晶胞里很多距离和角度由对称性决定，所以 M 系列的几何题偏容易 —— 这是难度上的系统性偏差。",
+   "en": "The 38 space groups used from COD lean to high symmetry (15 of 57 files are high-symmetry cubic) with only a few low-symmetry ones. In a high-symmetry cell many distances and angles follow from symmetry alone, so the materials questions are systematically easier than they look."}
+ ]
+}

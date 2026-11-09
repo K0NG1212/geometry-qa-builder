@@ -20,7 +20,9 @@
   Promise.all([
     fetch('content/legend.json').then((r) => { if (!r.ok) throw Error('legend ' + r.status); return r.json(); }),
     fetch('content/gap-reasons.json').then((r) => (r.ok ? r.json() : null)).catch(() => null),
-  ]).then(([L, gaps]) => {
+    fetch('content/sources.json').then((r) => (r.ok ? r.json() : null)).catch(() => null),
+    fetch('data/source-coverage.json').then((r) => (r.ok ? r.json() : null)).catch(() => null),
+  ]).then(([L, gaps, S, cov]) => {
     $('lg-status').textContent = pick(L.status_zh, L.status_en);
 
     // 01 abilities
@@ -97,6 +99,56 @@
           `<td>${esc(en ? r.en : r.zh)}</td></tr>`).join('') + '</tbody></table>';
     } else {
       $('lg-gap-intro').textContent = pick('空白格理由暂时无法载入。', 'The reasons for the blank cells could not be loaded.');
+    }
+
+    // 07 sources: why each one, and how much of its structure space the pool samples (C1)
+    if (S && cov) {
+      const n = (v) => (v == null ? '—' : v.toLocaleString('en-US'));
+      $('lg-src-intro').innerHTML = esc(of(S, 'why_strata')) +
+        `<br><span class="lg-note">${esc(pick(S.status_zh, S.status_en))}</span>`;
+
+      const ec = cov.rcsb_pdb.ec_strata;
+      $('lg-src-strata').innerHTML =
+        `<h3 style="font-size:14px;margin:22px 0 6px">${esc(pick('逐层覆盖', 'Coverage by stratum'))}</h3>` +
+        '<table class="lg-table"><thead><tr>' +
+        `<th>${esc(pick('分层口径', 'Stratum'))}</th><th>${esc(pick('源里有', 'In the source'))}</th>` +
+        `<th>${esc(pick('我们用到', 'Ours'))}</th></tr></thead><tbody>` +
+        ec.map((s) => `<tr><td class="term"${s.ours ? '' : ' style="color:var(--gap-uncollected)"'}>` +
+          `EC ${esc(s.ec)} ${esc(pick(s.zh, s.en))}</td><td>${n(s.in_source)}</td>` +
+          `<td${s.ours ? '' : ' style="color:var(--gap-uncollected);font-weight:600"'}>${s.ours}` +
+          `${s.ours ? '' : esc(pick('　空缺', '　empty'))}</td></tr>`).join('') +
+        `<tr><td class="term">${esc(pick('PDB 分辨率 ≤ 2.0 Å', 'PDB entries at 2.0 A or better'))}</td>` +
+        `<td>${n(cov.rcsb_pdb.resolution.known)} ${esc(pick('个用到的条目', 'entries used'))}</td>` +
+        `<td>${cov.rcsb_pdb.resolution.at_or_below_2A}</td></tr>` +
+        `<tr><td class="term">${esc(pick('COD 空间群', 'COD space groups'))}</td>` +
+        `<td>${n(cov.cod.space_groups_possible)}</td><td>${cov.cod.space_groups_used}</td></tr>` +
+        `<tr><td class="term">${esc(pick('QM7-X 分子式', 'QM7-X formulae'))}</td>` +
+        `<td>${n(cov.qm7x.formulae_in_source)}</td><td>${cov.qm7x.distinct_molecules}</td></tr>` +
+        `<tr><td class="term">${esc(pick('SAMPL9 主体', 'SAMPL9 hosts'))}</td>` +
+        `<td>${cov.sampl9.hosts_in_challenge}</td><td>${cov.sampl9.hosts_used}</td></tr>` +
+        '</tbody></table>';
+
+      const counts = cov.questions_by_source;
+      const distinct = {rcsb_pdb: [cov.rcsb_pdb.distinct_entries, '个 PDB 条目', 'PDB entries'],
+                        cod: [cov.cod.cif_files, '个 CIF', 'CIF files'],
+                        qm7x: [cov.qm7x.distinct_molecules, '个分子', 'molecules'],
+                        sampl9: [cov.sampl9.hosts_used, '个主体', 'hosts'],
+                        papers: [cov.papers.distinct_labels, '个来源标识', 'source labels']};
+      $('lg-src-list').innerHTML = S.sources.map((s) => {
+        const d = distinct[s.key] || [];
+        const head = en
+          ? `${counts[s.key] || 0} questions · ${d[0]} ${d[2] || ''}`
+          : `${counts[s.key] || 0} 道题 · ${d[0]} ${d[1] || ''}`;
+        return `<div class="lg-src"><h4>${esc(s.name)}</h4><p class="n">${esc(head)}</p><dl>` +
+          [['为什么选它', 'Why this one', 'why'], ['覆盖什么', 'Covers', 'covers'],
+           ['不覆盖什么', 'Does not cover', 'misses'], ['替代与为什么没用', 'Alternatives', 'alternatives']]
+            .map(([zh, enLabel, field]) =>
+              `<dt>${esc(pick(zh, enLabel))}</dt><dd>${esc(of(s, field))}</dd>`).join('') +
+          '</dl></div>';
+      }).join('');
+
+      $('lg-src-gaps').innerHTML = S.gaps.map((g) =>
+        `<p class="lg-gap">${esc(pick(g.zh, g.en))}</p>`).join('');
     }
 
     // 06 abbreviations
