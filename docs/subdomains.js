@@ -5,7 +5,8 @@
   const SCALES = ['0.1-1', '1-10', '10-100', '100-1000'];
   const SCALE_LABEL = { '0.1-1': '0.1–1 nm', '1-10': '1–10 nm', '10-100': '10–100 nm', '100-1000': '100–1000 nm' };
   const SHORT = { physics: '物理', chemistry: '化学', materials: '材料', biology: '生物' };
-  const ABILITY = { perception: '感知', inference: '推理', design: '设计' };
+  // 感知 / 推断 / 设计 -- the same three names the maps and the badges use (B1).
+  const ABILITY = { perception: '感知', inference: '推断', design: '设计' };
   const R = 82, RINGS = 4, TAU = 2 * Math.PI, NS = 'http://www.w3.org/2000/svg';
   const DURATION = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 650;
   const $ = id => document.getElementById(id);

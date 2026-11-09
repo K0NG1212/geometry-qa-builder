@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="GeoBench 读图指南：能力与配色、两种尺度与区间边界的理由、三套编号与所有缩写、分类依据、空白格的四种理由。"><title>读图指南 · GeoBench</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css?v=058d5380">
+<style>
+.lg-toc{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12px;padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:8px}
+.lg-toc a{color:var(--muted)}
+.lg-q{margin:16px 0 0;padding-left:14px;border-left:3px solid var(--green)}
+.lg-q b{display:block;font-size:14px;margin-bottom:4px}
+.lg-q p{margin:0;font-size:13.5px;line-height:1.75}
+.lg-table{width:100%;border-collapse:collapse;font-size:13px}
+.lg-table th,.lg-table td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.lg-table th{font-size:12px;color:var(--muted);font-weight:600}
+.lg-table td.term{white-space:nowrap;font-weight:600;width:1%}
+.lg-ab{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.lg-ab div{border:1px solid var(--line);border-radius:4px;padding:14px 16px}
+.lg-ab div.p{border-top:3px solid var(--ab-p);background:var(--ab-p-tint)}
+.lg-ab div.i{border-top:3px solid var(--ab-i);background:var(--ab-i-tint)}
+.lg-ab div.d{border-top:3px solid var(--ab-d);background:var(--ab-d-tint)}
+.lg-ab b{display:block;font-size:15px;margin-bottom:3px}
+.lg-ab code{font-size:11px;color:var(--muted)}
+.lg-ab p{font-size:13px;margin:6px 0 0;line-height:1.7}
+.lg-id{border:1px solid var(--line);border-radius:4px;padding:16px 18px;margin:14px 0}
+.lg-id h3{margin:0;font-size:15px}
+.lg-id .shape{font:12px/1.6 monospace;color:var(--muted);margin:4px 0 10px}
+.lg-id .shape em{font-style:normal;background:#eef1e8;padding:1px 6px;border-radius:3px;color:var(--ink)}
+.lg-warn{font-size:12.5px;background:#fdf3f1;border-left:3px solid var(--gap-uncollected);padding:10px 14px;margin:10px 0 0;line-height:1.7}
+.lg-note{font-size:12px;color:var(--muted);margin:6px 0 0}
+@media(max-width:820px){.lg-ab{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header class="site-header"><a class="brand" href="index.html" aria-label="GeoBench 首页"><span class="brand-mark">g<span>·</span></span><span>GeoBench<small>RESEARCH ATLAS</small></span></a><nav aria-label="主导航"><a href="index.html">概览</a><a href="cards.html">题目卡片</a><a href="subdomains.html">子领域</a><a href="legend.html" aria-current="page">读图指南</a><a href="system.html">方法与审核</a><a href="https://github.com/K0NG1212/geometry-qa-builder" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
+<main id="main">
+<section class="section-block">
+<div class="eyebrow">HOW TO READ THIS ATLAS</div>
+<h1 style="font-size:30px;margin:6px 0 10px">图上每个记号的意思。</h1>
+<p class="caption" id="lg-status">加载中…</p>
+<nav class="lg-toc" aria-label="本页分区"><a href="#abilities">能力与配色</a><a href="#scales">两种尺度与边界</a><a href="#ids">三套编号</a><a href="#taxonomy">分类依据</a><a href="#gaps">空白格的理由</a><a href="#abbr">缩写表</a></nav>
+</section>
+
+<section class="section-block" id="abilities"><div class="section-heading"><div><div class="eyebrow">01 / ABILITY</div><h2>三个能力层级，三种颜色。</h2></div></div>
+<p id="lg-ab-intro"></p><div class="lg-ab" id="lg-abilities"></div>
+<p class="lg-note">坐标表每一格的三个数字就是这三层；格子里那条比例条按三者占比分色，悬停显示能力名与占比。</p></section>
+
+<section class="section-block" id="scales"><div class="section-heading"><div><div class="eyebrow">02 / SCALE</div><h2>为什么是 0.1 到 1000 nm。</h2></div></div>
+<p id="lg-scale-intro"></p><div id="lg-scale-kinds"></div><div id="lg-scale-why"></div></section>
+
+<section class="section-block" id="ids"><div class="section-heading"><div><div class="eyebrow">03 / IDENTIFIERS</div><h2>三套编号，互不相同。</h2></div></div>
+<div id="lg-ids"></div></section>
+
+<section class="section-block" id="taxonomy"><div class="section-heading"><div><div class="eyebrow">04 / TAXONOMY</div><h2>分类依据。</h2></div><a class="text-link" href="subdomains.html">旭日图 ↗</a></div>
+<div id="lg-taxonomy"></div></section>
+
+<section class="section-block" id="gaps"><div class="section-heading"><div><div class="eyebrow">05 / BLANKS</div><h2>空白格为什么空着。</h2></div><a class="text-link" href="index.html#pixel-section">细坐标图 ↗</a></div>
+<p id="lg-gap-intro"></p><div id="lg-gap-kinds"></div><div class="table-scroll" id="lg-gap-table"></div></section>
+
+<section class="section-block" id="abbr"><div class="section-heading"><div><div class="eyebrow">06 / ABBREVIATIONS</div><h2>所有缩写。</h2></div></div>
+<div id="lg-abbr"></div></section>
+
+<div id="lg-error" class="empty" hidden><h2>读图指南暂时无法载入</h2><p>请刷新页面重试。</p></div>
+</main>
+<footer><a href="index.html">返回概览 ↗</a><a class="footer-brand" href="index.html">GeoBench</a><p>Research in progress. Evidence before scale.</p></footer>
+<script src="legend.js?v=ee124e6e" defer></script><script src="i18n.js?v=cfe2444e" defer></script>
+</body></html>

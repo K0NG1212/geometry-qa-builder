@@ -13,10 +13,16 @@
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c =>
     ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 
-  fetch('data/subdomain-map.json').then(r => {
-    if (!r.ok) throw Error('subdomain-map ' + r.status);
-    return r.json();
-  }).then(map => {
+  Promise.all([
+    fetch('data/subdomain-map.json').then(r => {
+      if (!r.ok) throw Error('subdomain-map ' + r.status);
+      return r.json();
+    }),
+    // Hand-written, and allowed to be missing: the map still renders, the cells just lose their reason.
+    fetch('content/gap-reasons.json').then(r => (r.ok ? r.json() : null)).catch(() => null),
+  ]).then(([map, reasons]) => {
+    const KINDS = (reasons && reasons.kinds) || {};
+    const WHY = (reasons && reasons.pixels) || {};
     const at = {};
     map.pixels.forEach(p => { at[p.l1 + '|' + p.scale] = p; });
     const s = map.summary;
@@ -30,6 +36,35 @@
       : `<b>${s.pixels_with_questions} / ${s.meaningful_pixels}</b> 个有意义像素有题 · ` +
         `<b>${s.empty_meaningful_pixels}</b> 个空缺 · 二级子领域（叶子） ${s.leaves_with_questions} / ${s.leaves} · ` +
         `共 ${s.active_questions} 道。像素 = 一级子领域 × 解题推理尺度。`;
+    const kindOf = (key) => (WHY[key] && WHY[key].kind) || null;
+    const reasonOf = (key) => {
+      const r = WHY[key];
+      return r ? (en ? r.en : r.zh) : null;
+    };
+    const kindName = (kind) => {
+      const k = KINDS[kind];
+      return k ? (en ? k.en : k.zh) : kind;
+    };
+    const blank = (l1, bin, name, which) => {
+      const key = l1 + '|' + bin;
+      const kind = kindOf(key);
+      const why = reasonOf(key);
+      const head = `${name} · ${LABEL[bin]}`;
+      const title = kind
+        ? (en ? `${head} — ${kindName(kind)}: ${why}` : `${head} — ${kindName(kind)}：${why}`)
+        : (which === 'na'
+            ? (en ? `${head}: no question of this subdomain exists at this scale`
+                  : `${head}：这个尺度上没有这个子领域的题可做`)
+            : (en ? `${head}: meaningful, but no question yet` : `${head}：有意义但还没有题`));
+      const mark = (kind && KINDS[kind] && KINDS[kind].mark) || (which === 'na' ? '·' : '缺');
+      return `<div class="pix-cell ${which}"${kind ? ` data-kind="${esc(kind)}"` : ''} ` +
+        `title="${esc(title)}">${esc(mark)}</div>`;
+    };
+    const kindKey = Object.keys(KINDS).length
+      ? '<div class="gap-key">' + Object.entries(KINDS).map(([id, k]) =>
+          `<b title="${esc(en ? k.gloss_en : k.gloss_zh)}"><em style="color:var(--gap-${id})">${esc(k.mark)}</em>` +
+          `${esc(en ? k.en : k.zh)}</b>`).join('') + '</div>'
+      : '';
     let html = '<p class="pix-summary">' + summary +
       '<a class="text-link" href="subdomains.html">旭日图与二级子领域 ↗</a></p>';
 
@@ -43,25 +78,51 @@
         for (const bin of BINS) {
           const pixel = at[l1.id + '|' + bin];
           if (!pixel || !pixel.meaningful) {
-            html += '<div class="pix-cell na" title="这个尺度上没有这个子领域的题可做">·</div>';
+            html += blank(l1.id, bin, l1.name, 'na');
             continue;
           }
           const n = pixel.questions || 0;
           const a = pixel.abilities || {};
           if (!n) {
-            html += `<div class="pix-cell gap" title="${esc(l1.name)} · ${LABEL[bin]}：有意义但还没有题">缺</div>`;
+            html += blank(l1.id, bin, l1.name, 'gap');
             continue;
           }
+          const parts = [['p', a.perception || 0], ['i', a.inference || 0], ['d', a.design || 0]];
+          const split = parts.map(([cls, v]) => (v ? `<span class="${cls}" style="flex:${v}"></span>` : '')).join('');
+          const names = en ? ['Perception', 'Inference', 'Design'] : ['感知', '推断', '设计'];
+          const hover = parts.map(([, v], i) => `${names[i]} ${v}`).join(en ? ', ' : '、');
           html += `<button type="button" class="pix-cell has" data-pixel="${esc(l1.id + '|' + bin)}" ` +
             `title="${esc(l1.name)} · ${LABEL[bin]}：${n} 道，点开看题号">` +
-            `<strong>${n}</strong><small>${a.perception || 0}·${a.inference || 0}·${a.design || 0}</small></button>`;
+            `<strong>${n}</strong><small title="${esc(hover)}">` +
+            parts.map(([cls, v], i) => `<b class="ab-${cls}" title="${esc(names[i] + ' ' + v)}">${v}</b>`)
+              .join('<em>·</em>') +
+            `</small><span class="pix-split" title="${esc(hover)}">${split}</span></button>`;
         }
       }
       html += '</div></div>';
     }
-    html += '<p class="caption">每格左上角是题数，下面是 感知·推断·设计 的拆分。' +
-      '「缺」= 这个像素有意义但还没有题（教授看的就是这 20 格）；「·」= 这个子领域在这个尺度上没有题可做，不算缺口。' +
+    const rows = Object.entries(WHY).sort((x, y) => x[0].localeCompare(y[0]));
+    const table = rows.length
+      ? '<details class="gap-reasons"><summary>' +
+        (en ? `Why each of the ${rows.length} blank cells is blank (${reasons.counts.gap} real gaps, ` +
+              `${reasons.counts.na} outside the subdomain\u2019s scales)`
+            : `${rows.length} 个空白格，逐格的理由（其中真正的缺口 ${reasons.counts.gap} 个，` +
+              `尺度之外 ${reasons.counts.na} 个）`) +
+        '</summary><p class="caption">' + esc(en ? reasons.status_en : reasons.status_zh) + '</p>' +
+        '<table><thead><tr>' +
+        (en ? '<th>Cell</th><th>Subdomain</th><th>Scale</th><th>Kind</th><th>Reason</th>'
+            : '<th>格</th><th>子领域</th><th>尺度</th><th>哪一种</th><th>理由</th>') +
+        '</tr></thead><tbody>' +
+        rows.map(([key, r]) => `<tr><td class="kind">${esc(key)}</td><td>${esc(r.name)}</td>` +
+          `<td class="kind">${LABEL[r.scale]}</td>` +
+          `<td class="kind" style="color:var(--gap-${esc(r.kind)})">${esc(kindName(r.kind))}</td>` +
+          `<td>${esc(en ? r.en : r.zh)}</td></tr>`).join('') +
+        '</tbody></table></details>'
+      : '';
+    html += '<p class="caption">每格左上角是题数，下面是 感知·推断·设计 的拆分（三个数字与下面那条比例条用全站统一的三种颜色，悬停显示能力名）。' +
+      '空白格每一格都写了理由：悬停看一句话，下面的表格列出全部。' +
       '所有题都已通过程序核验与独立检查器，仍待人工审核。</p>' +
+      kindKey + table +
       '<div id="pixel-list" hidden></div>';
     host.innerHTML = html;
 

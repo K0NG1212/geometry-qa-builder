@@ -7,6 +7,38 @@
    a question title or an option value is never touched. Default is English; the choice is remembered. */
 (() => {
   const DICT = {
+    // 2026-11-09: B1-B6 的新词（读图指南页、概览页折叠、坐标表与细坐标图的新说明）
+    '读图指南': 'Legend',
+    '读图指南 ↗': 'Legend ↗',
+    '读图指南 · GeoBench': 'Legend · GeoBench',
+    '四领域 × 四尺度': 'Four domains x four scales',
+    '子领域坐标系': 'Subdomain coordinates',
+    '细到子领域的坐标系：一级子领域 × 四个尺度，每个空白格都写了理由':
+      'The detailed coordinate system: level-1 subdomains x four scales, with a reason on every blank cell',
+    '问题池：可搜索、按能力／领域／尺度筛选、导出 CSV':
+      'The question pool: search it, filter by ability, domain or scale, export CSV',
+    '每道题的来处：来源、任务定义与证据': 'Where each question comes from: source, task definition, evidence',
+    '图上每个记号的意思。': 'What every mark on the atlas means.',
+    '能力与配色': 'Abilities and colours',
+    '两种尺度与边界': 'The two scales and their bounds',
+    '三套编号': 'The three id systems',
+    '分类依据': 'Basis of the classification',
+    '空白格的理由': 'Why the blanks are blank',
+    '缩写表': 'Abbreviations',
+    '三个能力层级，三种颜色。': 'Three ability levels, three colours.',
+    '为什么是 0.1 到 1000 nm。': 'Why 0.1 to 1000 nm.',
+    '三套编号，互不相同。': 'Three id systems, none of them the same.',
+    '分类依据。': 'What the classification is based on.',
+    '空白格为什么空着。': 'Why a blank cell is blank.',
+    '所有缩写。': 'Every abbreviation.',
+    '坐标表每一格的三个数字就是这三层；格子里那条比例条按三者占比分色，悬停显示能力名与占比。':
+      'The three numbers in each cell of the coverage table are these three levels; the bar inside a cell is coloured by their shares, and hovering names the ability and its share.',
+    '细坐标图 ↗': 'Detailed map ↗',
+    '返回概览 ↗': 'Back to the overview ↗',
+    '读图指南暂时无法载入': 'The legend cannot be loaded right now',
+    '请刷新页面重试。': 'Please reload the page.',
+    '每格左上角是题数，下面是 感知·推断·设计 的拆分（三个数字与下面那条比例条用全站统一的三种颜色，悬停显示能力名）。空白格每一格都写了理由：悬停看一句话，下面的表格列出全部。所有题都已通过程序核验与独立检查器，仍待人工审核。':
+      'Each cell shows its question count and, below it, the split into perception, inference and design; the three numbers and the bar use the same three colours as the rest of the site, and hovering names the ability. Every blank cell carries a reason: hover for one sentence, or open the table below for all of them. Every question has passed program verification and an independent checker, and all still await human review.',
     // header and navigation
     '概览': 'Overview', '问题池': 'Question pool', '题目卡片': 'Question cards', '子领域': 'Subdomains',
     '分类与方法': 'Taxonomy & method', '出题系统': 'Generation system', '题型': 'Task families', '审核': 'Review',
@@ -54,8 +86,6 @@
     '缺': 'gap', '量子 / 电子结构': 'Quantum / electronic structure', '化学': 'Chemistry', '材料': 'Materials',
     '生物': 'Biology', '物理（原“量子”）': 'Physics (formerly "quantum")',
     '这个尺度上没有这个子领域的题可做': 'No question of this subdomain exists at this scale',
-    '每格左上角是题数，下面是 感知·推断·设计 的拆分。「缺」= 这个像素有意义但还没有题（教授看的就是这 20 格）；「·」= 这个子领域在这个尺度上没有题可做，不算缺口。所有题都已通过程序核验与独立检查器，仍待人工审核。':
-      'Each cell shows the number of questions and, below it, the perception·inference·design split. "gap" = the pixel is meaningful but still empty; "·" = no question of this subdomain is possible at this scale, so it is not a gap. Every question passed the generator checks and the independent checker; none has been reviewed by a person yet.',
     // the 32 level-1 subdomains of the detailed map (names only; the data behind them is generated)
     '超导': 'Superconductivity', '磁性': 'Magnetism', '二维材料与莫尔物理': '2D materials & moiré physics',
     '纳米与介观物理': 'Nanoscale & mesoscopic physics', '原子与分子物理': 'Atomic & molecular physics',

@@ -1,0 +1,475 @@
+{
+ "kind": "atlas_legend",
+ "status": "draft",
+ "status_zh": "本页解释图上出现的每个记号与缩写。各项依据写在条目里；标为 draft 的部分未经导师确认。",
+ "status_en": "This page explains every mark and abbreviation used on the atlas. Each entry says what it rests on; the parts marked draft are not yet confirmed by the advisor.",
+ "abilities": {
+  "zh": "能力分三层。坐标表每格的三个数字就是这三层，全站用同一组颜色。",
+  "en": "Three ability levels. The three numbers in every cell of the coverage table are these levels, and the same three colours are used site-wide.",
+  "items": [
+   {
+    "key": "perception",
+    "letter": "P",
+    "token": "--ab-p",
+    "zh": "感知",
+    "en": "Perception",
+    "def_zh": "从给定的坐标或图里读出一个几何量：两原子距离、三原子夹角、整体跨度。答案由坐标直接算出。",
+    "def_en": "Read one geometric quantity off the given coordinates or picture: a distance between two atoms, an angle over three, the overall extent. The answer follows from the coordinates alone."
+   },
+   {
+    "key": "inference",
+    "letter": "I",
+    "token": "--ab-i",
+    "zh": "推断",
+    "en": "Inference",
+    "def_zh": "在题干写明的条件下，把几何和物理化学后果联系起来。单纯比两个数的大小不算推断。",
+    "def_en": "Under conditions stated in the stem, connect geometry to a physical or chemical consequence. Comparing two numbers is not by itself inference."
+   },
+   {
+    "key": "design",
+    "letter": "D",
+    "token": "--ab-d",
+    "zh": "生成 / 设计",
+    "en": "Generation / design",
+    "def_zh": "在给定约束下选出或构造一个满足要求的结构或参数，答案要能被独立检查器判定。",
+    "def_en": "Choose or construct a structure or parameter that satisfies given constraints, in a form an independent checker can decide."
+   }
+  ]
+ },
+ "scales": {
+  "zh": "两种尺度，四个区间。区间边界是 0.1、1、10、100、1000 nm。",
+  "en": "Two kinds of scale, four bins. The bin edges are 0.1, 1, 10, 100 and 1000 nm.",
+  "kinds": [
+   {
+    "zh": "输入尺度",
+    "en": "Input scale",
+    "def_zh": "给模型看的整个对象有多大。",
+    "def_en": "How large the whole object handed to the model is."
+   },
+   {
+    "zh": "推理尺度",
+    "en": "Reasoning scale",
+    "def_zh": "解这道题实际需要理解的几何范围。坐标表与像素图都按这个分格 —— 给一整个蛋白、只问一处原子接触，算 0.1–1 nm。",
+    "def_en": "The geometric range the question actually requires. Both maps bin by this one: hand over a whole protein but ask about a single atomic contact and it counts as 0.1-1 nm."
+   }
+  ],
+  "bins": [
+   "0.1–1 nm",
+   "1–10 nm",
+   "10–100 nm",
+   "100–1000 nm"
+  ],
+  "boundaries": [
+   {
+    "q_zh": "为什么下界是 0.1 nm，没有 0.01 nm？",
+    "q_en": "Why does it start at 0.1 nm and not 0.01 nm?",
+    "a_zh": "0.1 nm = 1 Å，正好是共价键长的量级（C–C 约 0.154 nm，C–H 约 0.11 nm）。再往下一个十倍是 0.01 nm，那里只剩原子核与内层电子，没有可问的分子几何 —— 所有来源（PDB、COD、量子化学数据集）给的也都是原子位置，不是核内结构。所以 0.1 nm 不是随手取的圆整数，它是「一根键」这个最小几何单元。",
+    "a_en": "0.1 nm is 1 angstrom, the length of a covalent bond (C-C about 0.154 nm, C-H about 0.11 nm). One decade below that, at 0.01 nm, nothing is left but nuclei and core electrons, where there is no molecular geometry to ask about; every source used here (PDB, COD, the quantum-chemistry sets) gives atomic positions, not sub-nuclear structure. So 0.1 nm is not a round number picked by hand: it is one bond, the smallest geometric unit there is."
+   },
+   {
+    "q_zh": "为什么上界到 1000 nm 就停了，没有 10000 nm？",
+    "q_en": "Why does it stop at 1000 nm rather than 10000 nm?",
+    "a_zh": "1000 nm = 1 µm，是可见光波长（约 400–700 nm）往上的第一个整十倍。本库最大的对象是光子晶体与胆甾相这类周期与可见光相当的结构，它们的特征长度正好压在 100–1000 nm 这一格。再往上一个十倍（1–10 µm）就进入连续介质与显微形貌，没有原子坐标，也不再是「分子几何」—— 本库的任何来源都不提供那个尺度上逐原子的位置。",
+    "a_en": "1000 nm is 1 micrometre, the first decade above visible wavelengths (about 400-700 nm). The largest objects here are photonic crystals and cholesteric phases, whose periods are comparable to visible light and sit squarely in the 100-1000 nm bin. One decade further up, at 1-10 micrometres, one is in continuum mechanics and microscopy morphology: no atomic coordinates, and no longer molecular geometry. None of the sources used here supplies per-atom positions at that scale."
+   },
+   {
+    "q_zh": "为什么按十倍分格，而不是等分？",
+    "q_en": "Why decades rather than equal steps?",
+    "a_zh": "从一根键（0.1 nm）到一个光子晶体周期（1000 nm）跨了四个数量级。等分会让 99% 的题挤进第一格；按十倍分，每格里的对象大致是同一类东西（键 → 分子 / 蛋白 → 复合体 / 纳米结构 → 光学周期结构），格子才有意义。",
+    "a_en": "From one bond (0.1 nm) to one photonic-crystal period (1000 nm) is four orders of magnitude. Equal steps would push 99% of the questions into the first bin. With decades, each bin holds roughly one kind of object (bond, molecule or protein, complex or nanostructure, optical-period structure), which is what makes the bin mean something."
+   }
+  ]
+ },
+ "ids": {
+  "zh": "图上有三套编号，互不相同。",
+  "en": "Three different id systems appear on the atlas.",
+  "systems": [
+   {
+    "name_zh": "题目编号",
+    "name_en": "Question id",
+    "example": "BNI042",
+    "shape_zh": "3 个字母 + 3 位数字",
+    "shape_en": "three letters plus three digits",
+    "parts": [
+     {
+      "pos_zh": "第 1 个字母：领域",
+      "pos_en": "letter 1: domain",
+      "detail_zh": "B 生物 · C 化学 · M 材料 · Q 量子（现已改称物理）",
+      "detail_en": "B biology, C chemistry, M materials, Q quantum (now renamed physics)"
+     },
+     {
+      "pos_zh": "第 2 个字母：固定是 N",
+      "pos_en": "letter 2: always N",
+      "detail_zh": "代码里写死的字母（tools/extend_admission_map.py 里的 '%sN%s'），不编码任何信息，是历史遗留。",
+      "detail_en": "A literal in the code ('%sN%s' in tools/extend_admission_map.py). It encodes nothing and is a historical leftover."
+     },
+     {
+      "pos_zh": "第 3 个字母：能力",
+      "pos_en": "letter 3: ability",
+      "detail_zh": "P 感知 · I 推断 · D 生成 / 设计",
+      "detail_en": "P perception, I inference, D generation / design"
+     },
+     {
+      "pos_zh": "3 位数字：序号",
+      "pos_en": "three digits: sequence number",
+      "detail_zh": "在同一个 3 字母前缀里顺序递增。不是全局唯一 —— BND001、BNI001、BNP001 三道不同的题都存在；完整编号（前缀 + 序号）才唯一。",
+      "detail_en": "Runs in sequence within one three-letter prefix. It is not globally unique: BND001, BNI001 and BNP001 are three different questions. Only the full id is unique."
+     }
+    ],
+    "caveats": [
+     {
+      "zh": "首字母是建题时的领域，之后分类改过，所以编号不等于现在的领域：子领域树把「量子」改称「物理」并把分子电子结构题移到化学，于是 QNP 系列里有 64 道现在归化学。按现在的分类看题，要看子领域（P/C/M/B + 数字），不要看编号首字母。",
+      "en": "The first letter is the domain at the time the question was made. The taxonomy later renamed quantum to physics and moved molecular electronic-structure questions to chemistry, so 64 questions in the QNP series are chemistry today. To read the current classification use the subdomain id, not the first letter of the question id."
+     },
+     {
+      "zh": "存档里还有几种旧前缀：CNM（早期几何计算测试）、HBP / HBI（氢键批次）、以及 v0.1 试点的单字母 L / U / G / X / I。它们都已退役，不在当前 988 道里。",
+      "en": "The archive also holds older prefixes: CNM (early geometry-calculation tests), HBP/HBI (the hydrogen-bond batch) and the single letters L, U, G, X and I from the v0.1 pilot. All are retired and none is among the current 988 questions."
+     }
+    ]
+   },
+   {
+    "name_zh": "题型实例编号",
+    "name_en": "Family-instance id",
+    "example": "EN-1UBQ-TOR-26",
+    "shape_zh": "前缀 + 来源 + 任务 + 参数",
+    "shape_en": "prefix, source, task, parameters",
+    "parts": [
+     {
+      "pos_zh": "FA-",
+      "pos_en": "FA-",
+      "detail_zh": "手工写进 templates/family-manifest.json 的实例（303 个）。",
+      "detail_en": "Instances written into templates/family-manifest.json by hand (303 of them)."
+     },
+     {
+      "pos_zh": "EN-",
+      "pos_en": "EN-",
+      "detail_zh": "枚举器批量生成的实例（671 个），id 在 enumerators.py 里按 'EN-<结构>-<任务键>' 拼出来。",
+      "detail_en": "Instances generated in bulk by the enumerator (671), with ids assembled in enumerators.py as EN-<structure>-<task key>."
+     },
+     {
+      "pos_zh": "FC-",
+      "pos_en": "FC-",
+      "detail_zh": "2026-10 格式修正时为旧题重做的实例（15 个），后面直接接它取代的旧题号，如 FC-QNP007。",
+      "detail_en": "Instances made in the October 2026 format fix to replace an older question (15), carrying that question's id, as in FC-QNP007."
+     }
+    ],
+    "caveats": [
+     {
+      "zh": "题目编号和实例编号是两套东西：一道题对应一个实例，但两者的字符串没有关系（BNI042 的实例可能叫 EN-1UBQ-TOR-26）。templates.html?instance=… 的深链用的是实例编号。",
+      "en": "The two are separate: one question maps to one instance, but the strings are unrelated (the instance behind BNI042 may be called EN-1UBQ-TOR-26). The templates.html?instance=... deep links use instance ids."
+     }
+    ]
+   },
+   {
+    "name_zh": "子领域编号",
+    "name_en": "Subdomain id",
+    "example": "B8d",
+    "shape_zh": "领域字母 + 一级序号 (+ 二级字母)",
+    "shape_en": "domain letter, level-1 number, optional level-2 letter",
+    "parts": [
+     {
+      "pos_zh": "P / C / M / B",
+      "pos_en": "P / C / M / B",
+      "detail_zh": "物理 physics · 化学 chemistry · 材料 materials · 生物 biology。注意这里的 P 是物理，和能力里的 P（感知）不是一回事。",
+      "detail_en": "Physics, chemistry, materials, biology. Note this P means physics, not the P of perception."
+     },
+     {
+      "pos_zh": "数字",
+      "pos_en": "number",
+      "detail_zh": "一级子领域，共 32 个（P1–P7、C1–C8、M1–M8、B1–B9）。",
+      "detail_en": "The level-1 subdomain; there are 32 (P1-P7, C1-C8, M1-M8, B1-B9)."
+     },
+     {
+      "pos_zh": "末尾小写字母",
+      "pos_en": "trailing lower-case letter",
+      "detail_zh": "二级子领域（叶子），共 92 个。每道题归且只归一个叶子。",
+      "detail_en": "The level-2 subdomain (leaf); there are 92. Every question belongs to exactly one leaf."
+     }
+    ],
+    "caveats": []
+   }
+  ]
+ },
+ "taxonomy_basis": {
+  "q_zh": "分类依据是什么？是按 arXiv 分的吗？",
+  "q_en": "What is the classification based on? Is it arXiv's?",
+  "a_zh": "只有物理那一支参照 arXiv，其余三支各按自己学科的通行分法。四支的依据写在子领域树里（templates/subdomain-draft.json 的 scheme 字段），列在下面。",
+  "a_en": "Only the physics branch follows arXiv; the other three follow the usual divisions of their own field. The basis of each branch is recorded in the subdomain tree (the scheme field of templates/subdomain-draft.json) and listed below.",
+  "schemes": [
+   {
+    "domain": "physics",
+    "zh": "物理",
+    "en": "Physics",
+    "basis_zh": "参照 arXiv 的 cond-mat 与 physics 子类；按物理现象分，不按测量技术分。",
+    "basis_en": "Follows arXiv's cond-mat and physics subcategories; split by physical phenomenon, not by measurement technique."
+   },
+   {
+    "domain": "chemistry",
+    "zh": "化学",
+    "en": "Chemistry",
+    "basis_zh": "参照化学的学科分支：有机、物理与量子、无机与配位、超分子、反应与催化、高分子、化学生物学、液晶与胶体。",
+    "basis_en": "Follows the branches of chemistry: organic, physical and quantum, inorganic and coordination, supramolecular, reactions and catalysis, polymer, chemical biology, liquid crystals and colloids."
+   },
+   {
+    "domain": "materials",
+    "zh": "材料",
+    "en": "Materials",
+    "basis_zh": "参照材料类别：金属、陶瓷、半导体、多孔与框架、有机与高分子、纳米与组装、表界面、生物与仿生。",
+    "basis_en": "Follows material classes: metals, ceramics, semiconductors, porous and framework, organic and polymer, nano and assembly, surfaces and interfaces, biological and bioinspired."
+   },
+   {
+    "domain": "biology",
+    "zh": "生物",
+    "en": "Biology",
+    "basis_zh": "按蛋白与核酸的功能和类别分，参照 EC 酶分类、CATH / SCOP 折叠分类与 PDB 功能注释。这是回应第六次组会上「细胞毒性蛋白、病毒蛋白是完全不同的子域」。",
+    "basis_en": "Split by the function and class of proteins and nucleic acids, following EC enzyme classes, the CATH/SCOP fold classifications and PDB function annotations. This answers the sixth meeting's point that cytotoxic proteins and viral proteins are entirely different subdomains."
+   }
+  ],
+  "rules_zh": [
+   "按题目问的对象（结构、物质）归叶子，不按测量技术：同样是 FRET，标记在溶菌酶上归 B1a，在 tRNA 上归 B7b。",
+   "领域随叶子而定：「量子」改称「物理」后，分子电子结构与构象题归化学 C2，分子光谱归物理 P5。",
+   "一题一个叶子；跨领域的题按主对象归一处，不重复计数。",
+   "每个一级子领域列出有意义的尺度，之外的尺度不设目标 —— 这就是像素图上那些「·」。"
+  ],
+  "rules_en": [
+   "A question is filed by the object it asks about (a structure, a substance), not by the measurement technique: FRET on lysozyme goes to B1a, FRET on tRNA to B7b.",
+   "The domain follows the leaf: after quantum was renamed physics, molecular electronic-structure and conformation questions became chemistry C2, while molecular spectroscopy became physics P5.",
+   "One question, one leaf. A question spanning fields is filed under its main object and never counted twice.",
+   "Each level-1 subdomain lists the scales that are meaningful for it; no target is set outside them, and those are the dots on the pixel map."
+  ],
+  "caveat_zh": "子领域树本身还是 draft（templates/subdomain-draft.json，v0.2.5，status: draft），归属由程序按结构、来源与题型族自动判定，个别题可能需要人工改判。",
+  "caveat_en": "The tree itself is still a draft (templates/subdomain-draft.json, v0.2.5, status draft). Assignment is automatic, from structure, source and task family, and individual questions may need manual reassignment."
+ },
+ "abbreviations": [
+  {
+   "group_zh": "结构与坐标数据库",
+   "group_en": "Structure and coordinate databases",
+   "items": [
+    {
+     "t": "PDB",
+     "zh": "Protein Data Bank，蛋白与核酸的实验测定结构库。本库生物题的坐标几乎都来自这里。",
+     "en": "Protein Data Bank: experimentally determined structures of proteins and nucleic acids. Nearly all coordinates behind the biology questions come from it."
+    },
+    {
+     "t": "COD",
+     "zh": "Crystallography Open Database，公有领域的晶体结构库。材料与无机题的晶胞来自这里。",
+     "en": "Crystallography Open Database: public-domain crystal structures, the source of the unit cells behind the materials and inorganic questions."
+    },
+    {
+     "t": "EMDB",
+     "zh": "Electron Microscopy Data Bank，冷冻电镜密度图与模型库。",
+     "en": "Electron Microscopy Data Bank: cryo-EM maps and models."
+    },
+    {
+     "t": "NDB",
+     "zh": "Nucleic Acid Database，核酸结构库。",
+     "en": "Nucleic Acid Database."
+    },
+    {
+     "t": "CoRE MOF",
+     "zh": "Computation-Ready Experimental MOF database，整理过的实验 MOF 结构集。",
+     "en": "Computation-Ready Experimental MOF database."
+    },
+    {
+     "t": "IZA",
+     "zh": "International Zeolite Association，其沸石骨架类型库。",
+     "en": "International Zeolite Association, whose zeolite framework-type database is used."
+    },
+    {
+     "t": "C2DB",
+     "zh": "Computational 2D Materials Database，计算二维材料库（许可待查）。",
+     "en": "Computational 2D Materials Database (licence not yet checked)."
+    },
+    {
+     "t": "MAGNDATA",
+     "zh": "公开磁结构库（许可待查）。",
+     "en": "A public magnetic-structure database (licence not yet checked)."
+    },
+    {
+     "t": "VIPERdb",
+     "zh": "病毒衣壳结构库。",
+     "en": "A database of viral capsid structures."
+    },
+    {
+     "t": "OPM / PDBTM",
+     "zh": "两个膜蛋白取向 / 跨膜区标注库。",
+     "en": "Two databases annotating membrane-protein orientation and transmembrane regions."
+    },
+    {
+     "t": "SAbDab",
+     "zh": "抗体结构库（许可待查）。",
+     "en": "Structural Antibody Database (licence not yet checked)."
+    }
+   ]
+  },
+  {
+   "group_zh": "量子化学与分子数据集",
+   "group_en": "Quantum-chemistry and molecule datasets",
+   "items": [
+    {
+     "t": "QM7-X",
+     "zh": "约 4.2 万个小有机分子、含构象的几何与性质数据集。本库大量感知题的 xyz 来自它。",
+     "en": "A dataset of roughly 42000 small organic molecules with conformers, geometries and properties; the source of many perception questions' xyz files."
+    },
+    {
+     "t": "QM9",
+     "zh": "13.4 万个小有机分子的几何与性质数据集。",
+     "en": "A dataset of 134000 small organic molecules with geometries and properties."
+    },
+    {
+     "t": "OE62",
+     "zh": "有机分子电子结构数据集。",
+     "en": "A dataset of organic-molecule electronic structures."
+    },
+    {
+     "t": "GEOM",
+     "zh": "分子构象集合数据集。",
+     "en": "A dataset of molecular conformer ensembles."
+    },
+    {
+     "t": "ANI-1x",
+     "zh": "分子力场训练用的构型与能量数据集。",
+     "en": "A dataset of configurations and energies used to train molecular force fields."
+    },
+    {
+     "t": "Transition1x",
+     "zh": "反应过渡态路径数据集。",
+     "en": "A dataset of reaction transition-state pathways."
+    },
+    {
+     "t": "PubChem3D",
+     "zh": "PubChem 的三维构象集合。",
+     "en": "PubChem's three-dimensional conformer collection."
+    },
+    {
+     "t": "CCCBDB",
+     "zh": "NIST Computational Chemistry Comparison and Benchmark Database，实测光谱常数与计算值对照库。",
+     "en": "The NIST Computational Chemistry Comparison and Benchmark Database, comparing measured spectroscopic constants with computed ones."
+    },
+    {
+     "t": "SAMPL",
+     "zh": "公开的盲测挑战系列（本库用到第 9 届的主客体体系）。",
+     "en": "A series of open blind-prediction challenges; the ninth round's host-guest systems are used here."
+    }
+   ]
+  },
+  {
+   "group_zh": "分类体系",
+   "group_en": "Classification systems",
+   "items": [
+    {
+     "t": "EC",
+     "zh": "Enzyme Commission 酶分类号，生物子领域 B1 按它的大类取代表。",
+     "en": "Enzyme Commission number; subdomain B1 takes representatives from its top-level classes."
+    },
+    {
+     "t": "CATH / SCOP",
+     "zh": "两套蛋白折叠分类（类 / 构架 / 拓扑 / 同源）。B2 按 CATH 类别取样。",
+     "en": "Two protein fold classifications (class, architecture, topology, homology). B2 samples by CATH class."
+    },
+    {
+     "t": "T 数",
+     "zh": "病毒衣壳的三角剖分数，决定衣壳的对称与大小。B6 按它选题。",
+     "en": "The triangulation number of a viral capsid, which fixes its symmetry and size; B6 selects by it."
+    },
+    {
+     "t": "arXiv",
+     "zh": "预印本库。其 cond-mat / physics 子类是物理支分类的参照。",
+     "en": "The preprint server whose cond-mat and physics subcategories the physics branch follows."
+    }
+   ]
+  },
+  {
+   "group_zh": "科学术语",
+   "group_en": "Scientific terms",
+   "items": [
+    {
+     "t": "MOF",
+     "zh": "Metal-Organic Framework，金属有机框架。",
+     "en": "Metal-organic framework."
+    },
+    {
+     "t": "TMD",
+     "zh": "Transition Metal Dichalcogenide，过渡金属硫族化合物（如 MoS₂）。",
+     "en": "Transition-metal dichalcogenide, such as MoS2."
+    },
+    {
+     "t": "hBN",
+     "zh": "hexagonal Boron Nitride，六方氮化硼。",
+     "en": "Hexagonal boron nitride."
+    },
+    {
+     "t": "FRET",
+     "zh": "Förster Resonance Energy Transfer，荧光共振能量转移，距离越近效率越高，常用来定距离。",
+     "en": "Forster resonance energy transfer; its efficiency rises as the donor-acceptor distance falls, so it is used to measure distances."
+    },
+    {
+     "t": "STM",
+     "zh": "Scanning Tunneling Microscopy，扫描隧道显微术。",
+     "en": "Scanning tunnelling microscopy."
+    },
+    {
+     "t": "MHC",
+     "zh": "Major Histocompatibility Complex，主要组织相容性复合体。",
+     "en": "Major histocompatibility complex."
+    },
+    {
+     "t": "Å",
+     "zh": "埃，0.1 nm。晶体学与 PDB 坐标的常用单位。",
+     "en": "Angstrom, 0.1 nm; the usual unit of crystallographic and PDB coordinates."
+    },
+    {
+     "t": "nm",
+     "zh": "纳米，10⁻⁹ m。本库所有尺度都用 nm。",
+     "en": "Nanometre, 1e-9 m; every scale on this site is in nm."
+    }
+   ]
+  },
+  {
+   "group_zh": "本项目的术语",
+   "group_en": "Terms of this project",
+   "items": [
+    {
+     "t": "LLM / VLM",
+     "zh": "大语言模型 / 视觉语言模型，本库要评测的对象。",
+     "en": "Large language model and vision-language model: what this benchmark evaluates."
+    },
+    {
+     "t": "QA",
+     "zh": "一道题（question + answer），本库的基本单位。",
+     "en": "One question with its answer, the unit of this benchmark."
+    },
+    {
+     "t": "题型族 / family",
+     "zh": "一个可参数化的出题模板加它的独立检查器。换一个结构或参数就得到一道新题。",
+     "en": "A parameterisable question template with its own independent checker. Changing the structure or a parameter yields a new question."
+    },
+    {
+     "t": "族实例 / instance",
+     "zh": "题型族代入一组具体参数后的那一道题，有自己的 FA- / EN- / FC- 编号。",
+     "en": "One question obtained by giving a family a concrete set of parameters; it carries its own FA-, EN- or FC- id."
+    },
+    {
+     "t": "独立检查器 / checker",
+     "zh": "与出题代码分开写的核验程序，重新算一遍答案并判定正确选项。导师口中的「轻量化检验脚本」。",
+     "en": "A verification program written separately from the generator, which recomputes the answer and decides the correct option."
+    },
+    {
+     "t": "L0–L4",
+     "zh": "审核层级：L0 自动核验（独立检查器重算、四项唯一、答案键一致、来源哈希，每个实例都跑）· L1 题型审定（人工读题型卡片与两个样例）· L2 检查器审阅（人工读独立检查器代码）· L3 分层抽查（按题型 × 来源 × 尺度格抽样）· L4 难度测试（模型实际作答，不算审核）。当前 988 道全部只到 L0：L1–L4 的工具已建但一次都没运行，所以每道题的 info.json 里 L1–L4 都是 pending。",
+     "en": "Review levels: L0, automatic verification (the independent checker recomputes, the four options are distinct, the answer key agrees, source hashes match; run on every instance); L1, family sign-off (a person reads the family card and two samples); L2, checker review (a person reads the independent checker code); L3, stratified spot checks by family, source and scale cell; L4, difficulty testing, which is not review. All 988 questions stand at L0 only: the tools for L1-L4 are built but have never been run, which is why L1-L4 read pending in every question’s info.json."
+    },
+    {
+     "t": "像素 / pixel",
+     "zh": "细坐标图上的一格 = 一个一级子领域 × 一个推理尺度。",
+     "en": "One cell of the detailed map: one level-1 subdomain at one reasoning scale."
+    },
+    {
+     "t": "生命周期 lifecycle",
+     "zh": "active 当前在库 · rework 待重做 · backlog 待排 · archived 已归档（只在历史存档页可见）。",
+     "en": "active, in the pool; rework, to be redone; backlog, queued; archived, retired and visible only on the archive page."
+    }
+   ]
+  }
+ ]
+}
