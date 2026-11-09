@@ -13,6 +13,8 @@
   let en = true;
   try { en = (localStorage.getItem('geobench-lang') || 'en') === 'en'; } catch (err) { /* private mode */ }
   const pick = (zh, enText) => (en ? enText : zh);
+  // the same bin labels the two maps print, so the table reads like the figure it explains
+  const SCALE = {'0.1-1': '0.1–1 nm', '1-10': '1–10 nm', '10-100': '10–100 nm', '100-1000': '100–1000 nm'};
   const of = (obj, field) => (en ? obj[field + '_en'] : obj[field + '_zh']);
 
   Promise.all([
@@ -89,7 +91,7 @@
             : '<th>格</th><th>子领域</th><th>尺度</th><th>哪一种</th><th>理由</th>') +
         '</tr></thead><tbody>' + rows.map(([key, r]) =>
           `<tr><td class="term">${esc(key)}</td><td class="term">${esc(r.name)}</td>` +
-          `<td class="term">${esc(r.scale)} nm</td>` +
+          `<td class="term">${esc(SCALE[r.scale] || r.scale + ' nm')}</td>` +
           `<td class="term" style="color:var(--gap-${esc(r.kind)})">` +
           `${esc(pick(gaps.kinds[r.kind].zh, gaps.kinds[r.kind].en))}</td>` +
           `<td>${esc(en ? r.en : r.zh)}</td></tr>`).join('') + '</tbody></table>';

@@ -40,7 +40,13 @@
   `test_subdomains`、`test_asset_stamps`、`test_cards`、`test_system_page` 共 67 项全绿。
   全仓库测试数 623 → 654。
 - **未做**：理由文本、尺度边界理由与分类依据都是本项目手写，**未经导师确认**，文件里都标了 draft。
-  本机没有 Node，无法在本地做 JS 语法/运行检查；推上 GitHub Pages 后在浏览器里逐页核对（结果见下一条）。
+  本机没有 Node，无法在本地做 JS 语法/运行检查，改动是**推上 GitHub Pages 后在浏览器里实测核对的**：
+  概览页无控制台报错，16 个格子各有比例条（48 段）、悬停文字如 "Perception: 70 of 132 questions in this cell (53%)"；
+  细坐标图 128 格里 69 格带理由（41 / 8 / 1 / 19，与文件一致），59 格有比例条，理由表 69 行；
+  三个折叠区状态正确（细坐标图展开、另两个折起）；读图指南页三套编号、4 条分类依据、4 条归属规则、
+  4 种空白格、5 组 40 条缩写全部渲染，中英两种语言都试过。
+  顺带发现一个**旧 bug**：原 `framework.js` 在 index.html 上执行到 `$('#method-scale').innerHTML` 会抛异常
+  （这个元素只在别的页面有），IIFE 后面的代码全部不执行。现在那一句加了存在性判断。
 
 ## 每题 folder 按导师板书重做：可复现的 source + instruction + QA.json（2026-11-09，Claude Code 会话，模型 claude-opus-5）
 
