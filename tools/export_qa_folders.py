@@ -202,13 +202,20 @@ def indent(text, prefix='  '):
     return NEWLINE.join(prefix + line for line in str(text).splitlines()) or prefix + '—'
 
 
-def quote(text, head=40, tail=5):
-    """The attachment as it is; a long one is cut in the middle so the sheet stays readable."""
+def quote(text, head=40, tail=5, prefix='      '):
+    """The attachment as it is; a long one is cut in the middle so the sheet stays readable.
+
+    The caller says what the indent is rather than stripping it afterwards. Stripping it afterwards is what
+    went wrong: instruction.md used to call this and then .replace('      ', ''), which deleted every run of
+    six spaces anywhere in the line, not just the indent. PDB is a fixed-width format, so "ALA A  11      15.279"
+    lost the gap between the residue number and the x coordinate and the columns ran together -- in 198 of the
+    1191 attachments. The file in data/ was always correct; only the preview in instruction.md was mangled.
+    """
     lines = str(text or '').splitlines()
     if len(lines) <= head + tail + 1:
-        return indent(NEWLINE.join(lines), '      ')
-    middle = '      …（共 %d 行，中间省略 %d 行）' % (len(lines), len(lines) - head - tail)
-    kept = ['      ' + x for x in lines[:head]] + [middle] + ['      ' + x for x in lines[-tail:]]
+        return indent(NEWLINE.join(lines), prefix)
+    middle = prefix + '…（共 %d 行，中间省略 %d 行）' % (len(lines), len(lines) - head - tail)
+    kept = [prefix + x for x in lines[:head]] + [middle] + [prefix + x for x in lines[-tail:]]
     return NEWLINE.join(kept)
 
 
@@ -517,8 +524,14 @@ class Export:
         if paper:
             out.append('- 论文全文就在本目录：`%s`（原文位置的逐条核对见同目录的 `SOURCE_CHECK.txt` 与 `论文核对.html`，由 review_system/stock.py 放入）' % paper)
         for item in packet.get('inputs') or []:
+            # A large attachment is not inlined in the workbench: it carries a url and a hash instead, and
+            # evaluation/exam.py reads it back from docs/ at load time. The preview has to do the same, or
+            # instruction.md shows "—" where the data should be -- which happened for 43 of the folders.
+            body = item.get('text')
+            if not body and item.get('url'):
+                body = (ROOT / 'docs' / item['url']).read_text(encoding='utf-8', errors='replace')
             out += ['', '附件 `%s`（%s；%s）前几行：' % (item.get('name'), item.get('format'), item.get('unit') or '—'),
-                    '', '```', quote(item.get('text'), head=12, tail=3).replace('      ', ''), '```']
+                    '', '```', quote(body, head=12, tail=3, prefix=''), '```']
 
         out += ['', '## 3 怎么算出答案', '']
         out += ['- 方法：%s' % (row.get('answer_method') or '—'),

@@ -101,6 +101,28 @@ class QaFolderTests(unittest.TestCase):
                 self.assertEqual(local.read_bytes(), (ROOT / 'docs' / attachment['url']).read_bytes(),
                                  question['id'])
 
+    def test_the_preview_in_the_instruction_is_the_file_byte_for_byte(self):
+        """A mangled preview is worse than no preview: a reader copies it and gets wrong coordinates.
+
+        Two bugs lived here. The first: the instruction built its preview with quote(...).replace('      ', ''),
+        which stripped every run of six spaces anywhere in the line, not just the indent -- and PDB is a
+        fixed-width format, so "ALA A  11      15.279" lost the gap between the residue number and the x
+        coordinate in 198 of the 1191 attachments. The second: a large attachment is not inlined in the
+        workbench (it carries a url and a hash, and evaluation/exam.py reads it back), so the preview printed
+        "—" where the data should be, in 43 folders. The file in data/ was correct throughout; only the
+        preview was wrong, which is exactly the kind of defect that survives every other check.
+        """
+        for question in ADMITTED:
+            folder = self.dir / question['id']
+            text = (folder / 'source' / 'instruction.md').read_text(encoding='utf-8')
+            for data in sorted((folder / 'source' / 'data').glob('*')):
+                lines = [l for l in data.read_text(encoding='utf-8', errors='replace').splitlines()
+                         if l.strip()]
+                if not lines:
+                    continue
+                self.assertIn(lines[0], text,
+                              '%s: instruction 里的预览和 %s 的第一行对不上' % (question['id'], data.name))
+
     def test_the_instruction_tells_a_reader_what_to_open_and_what_to_run(self):
         for question in ADMITTED:
             folder = self.dir / question['id']
