@@ -7,6 +7,12 @@
    a question title or an option value is never touched. Default is English; the choice is remembered. */
 (() => {
   const DICT = {
+    // 2026-11-10: 第 5 条的新词（读图指南页第 08 节：同类工作与 baseline）
+    '同类工作与 baseline': 'Related work and baselines',
+    '同类工作跑什么 baseline。': 'What the comparable benchmarks run as baselines.',
+    '完整调研 ↗': 'The full survey ↗',
+    '三点结论': 'Three conclusions',
+    '对我们评测的硬要求': 'What this requires of our evaluation',
     // 2026-11-09: C1 的新词（读图指南页第 07 节：数据源与覆盖）
     '数据源与覆盖': 'Sources and coverage',
     '为什么是这些源，采样到什么程度。': 'Why these sources, and how much of them we sample.',

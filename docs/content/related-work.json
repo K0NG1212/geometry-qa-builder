@@ -1,0 +1,158 @@
+{
+ "kind": "related_work_baselines",
+ "status": "draft",
+ "status_zh": "同类 benchmark 的 baseline 表。调研由用户 2026-11-09 完成，baseline 一列于 2026-11-10 逐篇拉取 arXiv 摘要页核对：摘要写了才填，没写就标「摘要未写」，不从正文推断也不靠记忆。完整论证与文献对比表在仓库的 RELATED_WORK.md。未经导师确认。",
+ "status_en": "Baselines of comparable benchmarks. The survey was done by the user on 2026-11-09; the baseline column was checked against each paper's arXiv abstract page on 2026-11-10, filling a cell only where the abstract states it and marking the rest as not stated. The full argument and the comparison tables are in RELATED_WORK.md in the repository. Not yet confirmed by the advisor.",
+ "method_zh": "只写摘要页明确写出的内容。要填正文级细节（每个模型的分数、容差、工具预算）得精读 PDF，那是下一轮。",
+ "method_en": "Only what the abstract states. Filling in paper-level detail (per-model scores, tolerances, tool budgets) needs a close reading of the PDFs, which is the next round.",
+ "works": [
+  {
+   "id": "RW-M03",
+   "name": "MiSI-Bench",
+   "url": "https://arxiv.org/abs/2512.10867",
+   "scale_zh": "163k+ 问答、587k+ 图像，约 4,000 个分子结构，9 个任务",
+   "scale_en": "163k+ QA pairs, 587k+ images, about 4000 molecular structures, nine tasks",
+   "baselines_zh": "多个 SOTA VLM，另有一个微调的 7B 模型",
+   "baselines_en": "Several state-of-the-art VLMs plus one fine-tuned 7B model",
+   "human": "yes",
+   "human_zh": "有。摘要明写当前 SOTA VLM 显著低于人类水平，而微调的 7B 在空间变换任务上反超人类",
+   "human_en": "Yes. The abstract states that current state-of-the-art VLMs perform significantly below human level, while a fine-tuned 7B model surpasses humans on spatial-transformation tasks",
+   "reporting_zh": "按任务类别分别报（基础空间变换 vs 复杂关系识别），并与人类水平对照",
+   "reporting_en": "Reported per task category (elementary spatial transformations versus complex relational identification), against the human level"
+  },
+  {
+   "id": "RW-P04",
+   "name": "ProteinGeoBench",
+   "url": "https://arxiv.org/abs/2610.26829",
+   "scale_zh": "131 个蛋白结构任务",
+   "scale_en": "131 protein-structure tasks",
+   "baselines_zh": "4 个 frontier 模型共 4,249 次 rollout，另 26 个模型共 4,486 次试验",
+   "baselines_en": "4249 rollouts from four frontier models, plus 4486 further trials across 26 models",
+   "human": "not_stated",
+   "human_zh": "摘要未写",
+   "human_en": "Not stated in the abstract",
+   "reporting_zh": "四个 frontier 模型中三个落在 0.031 以内（0.785–0.816），差异不可分辨，第四个 0.707；按任务类型分报（元数据查询 vs 数值计算）；并且报了评测预算的影响 —— 以每题跑一次计，23.9% 的 bootstrap 重采样会把另一个模型排在第一",
+   "reporting_en": "Three of the four frontier models fall within 0.031 of one another (0.785 to 0.816) with no difference resolved, the fourth scores 0.707; results are split by task type (metadata lookup versus numeric calculation); and the evaluation budget itself is reported, with one run per task putting a different model first in 23.9% of bootstrap replicates"
+  },
+  {
+   "id": "RW-C03",
+   "name": "AtomWorld",
+   "url": "https://arxiv.org/abs/2510.04704",
+   "scale_zh": "10 种基础操作 × 4 类建模",
+   "scale_en": "Ten fundamental actions across four modelling categories",
+   "baselines_zh": "多个 LLM，其中 Claude Opus 4.6 表现最好",
+   "baselines_en": "Several LLMs, with Claude Opus 4.6 performing best",
+   "human": "not_stated",
+   "human_zh": "摘要未写",
+   "human_en": "Not stated in the abstract",
+   "reporting_zh": "成功率随建模复杂度显著下降，最难的低于 12%；采用可验证指标",
+   "reporting_en": "Success rates fall markedly as modelling complexity rises, below 12% on the hardest, under verifiable metrics"
+  },
+  {
+   "id": "RW-C05",
+   "name": "SCALAR",
+   "url": "https://arxiv.org/abs/2601.22312",
+   "scale_zh": "约 100,000 个结构，由 DFT 验证过的晶胞扩胞与几何截取得到，几个原子到 18,000+ 原子",
+   "scale_en": "About 100000 structures obtained by supercell expansion and geometric truncation from DFT-validated unit cells, spanning a few atoms to over 18000",
+   "baselines_zh": "材料基础模型（摘要未列具体型号）",
+   "baselines_en": "Materials foundation models; the abstract does not name them",
+   "human": "not_stated",
+   "human_zh": "摘要未写",
+   "human_en": "Not stated in the abstract",
+   "reporting_zh": "三个任务（CIF→性质、带显式物理推理的 CoT 变体、逆向检索）；指标分成结构幻觉 / 一致性 / 推理差距三类",
+   "reporting_en": "Three tasks (CIF to property, a chain-of-thought variant with explicit physics-grounded reasoning, and inverse retrieval), with metrics split into structural hallucination, consistency and reasoning gaps"
+  },
+  {
+   "id": "RW-C06",
+   "name": "CARAT",
+   "url": "https://arxiv.org/abs/2609.38340",
+   "scale_zh": "同一问题与答案跨 8 个配对视图",
+   "scale_en": "One question and gold answer held fixed across eight matched views",
+   "baselines_zh": "材料 LLM，含配对微调",
+   "baselines_en": "Materials LLMs, including matched fine-tuning",
+   "human": "not_stated",
+   "human_zh": "摘要未写",
+   "human_en": "Not stated in the abstract",
+   "reporting_zh": "把自己的提升做了拆解：grounded 视图比 formula 输入高 17.3 分；GraphSpace 比普通周期图高 19.3 分，但拆开后 —— 普通表示已含所需字段时只有 1.96 分，完全缺字段时 46.7 分。也就是说 headline 主要在量「表示是否印出了答案」",
+   "reporting_en": "The paper decomposes its own gain: the grounded view is worth 17.3 points over formula inputs, and GraphSpace beats a plain periodic graph by 19.3 points, but that margin splits into 1.96 points where the plain rendering already carries what the question needs and 46.7 points where it omits those fields, so the headline mostly measures whether the representation prints the answer"
+  },
+  {
+   "id": "RW-C04",
+   "name": "xCrysAlloys",
+   "url": "https://aclanthology.org/2025.knowllm-1.5/",
+   "scale_zh": "—",
+   "scale_en": "—",
+   "baselines_zh": "本轮未核对（ACL Anthology 页，非 arXiv）",
+   "baselines_en": "Not checked this round; the paper is on ACL Anthology rather than arXiv",
+   "human": "unchecked",
+   "human_zh": "未核对",
+   "human_en": "Not checked",
+   "reporting_zh": "未核对",
+   "reporting_en": "Not checked"
+  },
+  {
+   "id": "RW-G04",
+   "name": "SSI-Bench",
+   "url": "https://proceedings.mlr.press/v306/yang26ar.html",
+   "scale_zh": "1,000 道几何与拓扑排序题",
+   "scale_en": "1000 geometry and topology ordering questions",
+   "baselines_zh": "本轮未核对（PMLR 页）",
+   "baselines_en": "Not checked this round; the paper is on PMLR",
+   "human": "unchecked",
+   "human_zh": "未核对",
+   "human_en": "Not checked",
+   "reporting_zh": "未核对",
+   "reporting_en": "Not checked"
+  },
+  {
+   "id": "RW-X01",
+   "name": "SciReasoner",
+   "url": "https://arxiv.org/abs/2607.07708",
+   "scale_zh": "—",
+   "scale_en": "—",
+   "baselines_zh": "本轮未核对",
+   "baselines_en": "Not checked this round",
+   "human": "unchecked",
+   "human_zh": "未核对",
+   "human_en": "Not checked",
+   "reporting_zh": "未核对",
+   "reporting_en": "Not checked"
+  }
+ ],
+ "takeaways": [
+  {
+   "zh": "human baseline 只有 MiSI-Bench 明确有。所以「同类工作都做了人类线」不成立；但有了它，才说得出「SOTA 显著低于人类、微调小模型在某类任务上反超」这种结论。",
+   "en": "Only MiSI-Bench clearly has a human baseline, so it is not the case that comparable work all has one. But having it is what lets a paper say that state-of-the-art models fall below humans while a fine-tuned small model passes them on one task family."
+  },
+  {
+   "zh": "ProteinGeoBench 把「评测配置」本身当成研究对象，不只是跑分：它报出以每题跑一次计，23.9% 的 bootstrap 重采样会换掉第一名。这是最该学的一点。",
+   "en": "ProteinGeoBench treats the evaluation configuration as an object of study rather than just scoring models: with one run per task, 23.9% of bootstrap replicates put a different model first. This is the lesson most worth taking."
+  },
+  {
+   "zh": "CARAT 对自己的提升做了拆解，明说 headline 数字大部分来自「表示里是否印出了答案字段」。这种自我审查比多报一个点的准确率有说服力。",
+   "en": "CARAT decomposes its own improvement and says plainly that the headline number mostly reflects whether the representation prints the answer field. That kind of self-scrutiny carries more weight than another point of accuracy."
+  }
+ ],
+ "requirements": [
+  {
+   "from": "RW-P04",
+   "zh": "每题必须多次重复并报置信区间。单次跑分的排名不可信：ProteinGeoBench 报出，以每题跑一次计，23.9% 的 bootstrap 重采样会把另一个模型排在第一。这是别人用 4,249 + 4,486 次试验证出来的，不是我们的猜测。",
+   "en": "Every question must be run several times and reported with a confidence interval. A ranking from a single run is not trustworthy: ProteinGeoBench reports that with one run per task, 23.9% of bootstrap replicates put a different model first. That was established over 4249 plus 4486 trials, not guessed."
+  },
+  {
+   "from": "RW-P04",
+   "zh": "几何题必须单独报，不能和容易的查询题混在一个总分里稀释：数值题占 131 个任务中的 28 个，却占「四个模型全错的 12 个任务」的一半。",
+   "en": "Geometry questions have to be reported on their own rather than diluted into one total with easy lookups: numeric tasks are 28 of the 131 but half of the twelve tasks all four models fail."
+  },
+  {
+   "from": "RW-C06",
+   "zh": "必须做捷径排查：同一道题把结构证据抽掉或换掉，看答案是否跟着变。CARAT 的 19.3 分提升里，表示完全缺字段时是 46.7 分、已含所需字段时只有 1.96 分 —— 可见不做对照就分不清模型在读结构还是在读答案。四选一本身不印答案字段，但这组对照仍要主动做并报出来。",
+   "en": "A shortcut control is required: take the structural evidence out of a question, or swap it, and see whether the answer follows. Of CARAT’s 19.3-point gain, 46.7 points come from cases where the representation omits the needed fields and only 1.96 where it already carries them, so without the control one cannot tell reading structure from reading the answer. The four-option form does not print the answer field, but the control still has to be run and reported."
+  },
+  {
+   "from": "RW-M03",
+   "zh": "human baseline 是加分项而不是标配（五篇里只有一篇有），但有了它结论才立得住。可以先做小规模：每格抽少量题，报人类正确率区间。",
+   "en": "A human baseline is a bonus rather than standard practice, since only one of the five has one, but it is what makes a conclusion stand. A small version would do: a few questions per cell, reported as an interval."
+  }
+ ]
+}

@@ -2,6 +2,39 @@
 
 > 交接入口：[HANDOFF_2026-11-03.md](HANDOFF_2026-11-03.md)（现状、第 9 次组会定的四周排程、两个 agent 的分工、必读经验）；[HANDOFF_2026-10-24.md](HANDOFF_2026-10-24.md)（10-24 的现状与候选清单）；[HANDOFF_2026-10-21.md](HANDOFF_2026-10-21.md)（10-20 → 10-24 八条线的细节）；[HANDOFF_2026-10-19.md](HANDOFF_2026-10-19.md)（现状数字与待决事项）；[HANDOFF_2026-10-18.md](HANDOFF_2026-10-18.md)（证据题两族与子领域/旭日图）；[HANDOFF_2026-10-06.md](HANDOFF_2026-10-06.md)（协作方式与判断原则、批量选题规则、第六次会议记录）；[HANDOFF_2026-09-30.md](HANDOFF_2026-09-30.md)（来源路线、代码地图、流程与经验）；[HANDOFF_2026-09-24.md](HANDOFF_2026-09-24.md) 保留历史。
 
+## 相关工作 baseline 表 + 骨架设计（导师书面第 5、4 条，2026-11-10，Claude Code 会话，模型 claude-opus-5）
+
+### 第 5 条 相关工作 → [RELATED_WORK.md](RELATED_WORK.md) + 读图指南第 08 节
+
+- **调研本体是用户 2026-11-09 自己做的**（原稿 `D:\BAK\桌面\GeoBench\Geobench-related-work.md`）：
+  21 篇、五个分组、稳定的本地文献 ID、每条都标了证据层级。文件里写明了哪几节是用户原文。
+- **本会话补的是组会 D1 点名要的那张 baseline 表**：逐篇拉 arXiv 摘要页核对，
+  **摘要写了才填，没写就标「摘要未写」**，不从正文推断也不靠记忆。核到 5 篇，3 篇（xCrysAlloys、
+  SSI-Bench、SciReasoner 不在 arXiv）标未核对。
+- **human baseline 只有 MiSI-Bench 明确有**（SOTA 显著低于人类；微调 7B 在空间变换任务上反超）。
+  所以「同类工作都做了人类线」不成立。
+- **最该学的一条**：ProteinGeoBench 把评测配置本身当研究对象 —— **以每题跑一次计，
+  23.9% 的 bootstrap 重采样会把另一个模型排在第一**（4,249 + 4,486 次试验）。
+- **四条硬要求**已落进 SCAFFOLD 的函数签名：`repeats`、`control`（捷径对照）、`by`（分层报告）、`ci`。
+
+### 第 4 条 骨架设计 → [SCAFFOLD.md](SCAFFOLD.md)
+
+- **按他规定的三步走，这份只走到第二步**：① 人设计（第 1–5 节）② 人自己挑毛病（第 7 节）
+  ③ 定稿后才让 LLM 实现（第 8 节是清单，**现在一行代码都没写**）。
+- **真正要定的是四条边界**，不是目录名：出题↔核验、手写↔生成、教师侧↔被测侧、在用↔退役。
+- **评测侧的函数契约**：`main / run / report / baseline / budget`，其中 `repeats`、`control`、
+  `by`、`ci` 四项**现在的 `evaluation/run.py` 都没有**（它跑一遍就完）。
+- **"delete those not important"** 的回答是**不删、归档**：8 个 `HANDOFF_*.md` + 13 个一次性脚本
+  → `archive/` 与 `oneoff/`；根目录 29 个 `.md` 可降到 9 个。
+  `modules/` 与 `builder_modules/` **各被引用 19 处**，动之前要先改引用。
+- **自己挑出来的 6 个毛病**写在第 7 节，其中第 1 条是**反对自己**：纯改名（`task_families/` →
+  `generate/families/`）收益只有"看起来整齐"，代价是所有 import、路径、链接、测试全要动，
+  **可能不值**；建议只做低风险的两件，改名那批先不动。
+- **测试**：新增 `tests/test_related_work.py` 19 项。盯的不是腐烂而是**编造** —— baseline 这一列
+  很容易凭记忆填，填错了会进论文，所以每格必须带「来源写了/没写/未核对」标记，
+  未核对的行不许有内容；另外盯 SCAFFOLD 是否真的把四条要求落成了函数参数。
+  全仓库 670 → **689**，相关 90 项全绿。
+
 ## 数据源选择与覆盖率（C1，2026-11-09，Claude Code 会话，模型 claude-opus-5）
 
 - **回答导师书面第 1 条**（*why choose this source, e.g., PDB, whether this source cover the structure

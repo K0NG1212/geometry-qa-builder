@@ -22,7 +22,8 @@
     fetch('content/gap-reasons.json').then((r) => (r.ok ? r.json() : null)).catch(() => null),
     fetch('content/sources.json').then((r) => (r.ok ? r.json() : null)).catch(() => null),
     fetch('data/source-coverage.json').then((r) => (r.ok ? r.json() : null)).catch(() => null),
-  ]).then(([L, gaps, S, cov]) => {
+    fetch('content/related-work.json').then((r) => (r.ok ? r.json() : null)).catch(() => null),
+  ]).then(([L, gaps, S, cov, RW]) => {
     $('lg-status').textContent = pick(L.status_zh, L.status_en);
 
     // 01 abilities
@@ -149,6 +150,35 @@
 
       $('lg-src-gaps').innerHTML = S.gaps.map((g) =>
         `<p class="lg-gap">${esc(pick(g.zh, g.en))}</p>`).join('');
+    }
+
+    // 08 related work: what the comparable benchmarks run as baselines (D1)
+    if (RW) {
+      const HUMAN = {yes: ['有', 'Yes'], not_stated: ['摘要未写', 'Not stated'],
+                     unchecked: ['未核对', 'Not checked']};
+      $('lg-rw-intro').innerHTML = esc(of(RW, 'method')) +
+        `<br><span class="lg-note">${esc(pick(RW.status_zh, RW.status_en))}</span>`;
+      $('lg-rw-table').innerHTML =
+        '<table class="lg-table"><thead><tr>' +
+        (en ? '<th>ID</th><th>Work</th><th>Scale</th><th>Baselines</th><th>Human</th><th>How reported</th>'
+            : '<th>ID</th><th>工作</th><th>规模</th><th>跑了什么 baseline</th><th>人类线</th><th>怎么报结果</th>') +
+        '</tr></thead><tbody>' +
+        RW.works.map((w) => {
+          const h = HUMAN[w.human] || ['—', '—'];
+          const colour = w.human === 'yes' ? 'var(--ab-p)'
+            : (w.human === 'unchecked' ? 'var(--gap-absent)' : 'var(--gap-hard)');
+          return `<tr><td class="term">${esc(w.id)}</td>` +
+            `<td class="term"><a class="text-link" href="${esc(w.url)}" target="_blank" ` +
+            `rel="noopener">${esc(w.name)}</a></td>` +
+            `<td>${esc(of(w, 'scale'))}</td><td>${esc(of(w, 'baselines'))}</td>` +
+            `<td class="term" style="color:${colour}">${esc(pick(h[0], h[1]))}</td>` +
+            `<td>${esc(of(w, 'reporting'))}</td></tr>`;
+        }).join('') + '</tbody></table>';
+      // a <p> cannot contain a <p>: the browser would close the outer one and the styling would fall off
+      $('lg-rw-takeaways').innerHTML = RW.takeaways.map((t2) =>
+        `<div class="lg-q" style="margin:10px 0"><p>${esc(pick(t2.zh, t2.en))}</p></div>`).join('');
+      $('lg-rw-req').innerHTML = RW.requirements.map((r) =>
+        `<p class="lg-warn">${esc(r.from)} — ${esc(pick(r.zh, r.en))}</p>`).join('');
     }
 
     // 06 abbreviations
