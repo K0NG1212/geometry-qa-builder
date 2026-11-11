@@ -70,8 +70,17 @@ def run(out, per_structure=40, seed='geobench-enum-v1', families=None, date=None
     out.mkdir(parents=True)
     manifest = dict(kind='enumerated_sample', version='0.1.0', seed=seed, items=picked)
     (out / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
-    report = family_engine.run(out / 'manifest.json', out / 'run', seed)
-    check = verify_all.verify(*verify_all.load(run=out / 'run'))
+    if picked:
+        report = family_engine.run(out / 'manifest.json', out / 'run', seed)
+        check = verify_all.verify(*verify_all.load(run=out / 'run'))
+    else:
+        # A targeted probe of already-manifested card families can be genuinely
+        # empty. Record exhaustion rather than sending an empty batch to the engine.
+        (out / 'run').mkdir()
+        (out / 'run/private-answers.json').write_text('[]\n', encoding='utf-8')
+        report = dict(passed=0, failures=[], correct_position_counts={})
+        check = dict(kind='independent_check', checked=0, passed=0, failed=[], by_family={}, results=[])
+        (out / 'run/verification.json').write_text(json.dumps(report) + '\n', encoding='utf-8')
     (out / 'independent-check.json').write_text(json.dumps(check, ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
     return summarize(out, proposals, picked, report, check, per_structure, seed, date)
 
@@ -105,13 +114,12 @@ def family_accounting(proposals, rows):
     its candidates are in the manifest already) or was left out of the probe, and those two must not look alike:
     the summary published on 2026-11-03 covered 3 of the 26 families and only the family count gave it away.
     """
-    out, seen = dict(exhausted=[], unprobed={}), None
+    out = dict(exhausted=[], unprobed={})
     for family in sorted(set(enumerators.ENUMERATORS) - {r['family'] for r in rows}):
         specs = proposals.get(family)
-        if specs is None:                                  # --summarize proposes only the families it sampled
-            seen = existing_signatures() if seen is None else seen
-            specs = [s for s in enumerators.propose(ROOT, [family]).get(family, [])
-                     if enumerators.signature(s) not in seen]
+        if specs is None:                                  # omitted by a targeted --families probe
+            out['unprobed'][family] = 'not requested'
+            continue
         if specs:
             out['unprobed'][family] = len(specs)
         else:
@@ -147,12 +155,17 @@ def summarize(out, proposals, picked, report, check, per_structure, seed, date):
         worst = max(abs(c.get(l, 0) - n / 4) for l in kit.LABELS)
         balance[family] = dict(counts={l: c.get(l, 0) for l in kit.LABELS}, max_deviation=round(worst, 1), tolerance=round(limit, 1),
                                ok=worst <= limit)
+    # Index once: the former per-structure scans traversed the full proposal list
+    # again for every structure, making the summary take hours for FRET pairs.
+    picked_by_group = {}
+    for spec in picked:
+        picked_by_group.setdefault((spec['family'], enumerators.structure_of(spec)), []).append(spec['id'])
     rows = []
     for family, specs in proposals.items():
-        for pdb in sorted({enumerators.structure_of(s) for s in specs}):
-            ids = [s['id'] for s in picked if s['family'] == family and enumerators.structure_of(s) == pdb]
+        counts = Counter(enumerators.structure_of(spec) for spec in specs)
+        for pdb, n in sorted(counts.items()):
+            ids = picked_by_group.get((family, pdb), [])
             built = [i for i in ids if i not in failed]
-            n = sum(enumerators.structure_of(s) == pdb for s in specs)
             rows.append(dict(family=family, structure=pdb, proposals=n, sampled=len(ids), accepted=len(built),
                              rejected=dict(Counter(reason_kind(failed[i]) for i in ids if i in failed)),
                              checker_pass=sum(checked.get(i) == 'pass' for i in built),

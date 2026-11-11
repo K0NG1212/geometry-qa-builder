@@ -56,10 +56,10 @@
     "blocked": 1
    }
   },
-  "development_instances": 988,
+  "development_instances": 946,
   "instance_failures": 1,
-  "independent_pass": 988,
-  "independent_checked": 988,
+  "independent_pass": 946,
+  "independent_checked": 946,
   "legacy_candidates": 80,
   "legacy_decisions": {
    "retain": 42,
@@ -68,7 +68,7 @@
   },
   "note": "“支持的题型”与“已生成实例”分开计数；全部实例待人工审核，未计入题库配额。"
  },
- "family_run": "family-pilot-v55",
+ "family_run": "family-pilot-v58",
  "rows": [
   {
    "id": "global_extent",
@@ -631,10 +631,13 @@
     "EN-SAMPL9-bCD-TDZ-BOND-15-17",
     "EN-SAMPL9-bCD-TDZ-BOND-18-23",
     "EN-QM7X-7030-BOND-2-4",
-    "EN-QM7X-7030-BOND-1-2"
+    "EN-QM7X-7030-BOND-1-2",
+    "EN-QM7X-7001-I1-C1-OPT-BOND-3-7",
+    "EN-QM7X-7001-I1-C1-OPT-BOND-4-5",
+    "EN-QM7X-7001-I1-C1-OPT-BOND-2-3"
    ],
-   "instance_count": 53,
-   "independent_pass": 53,
+   "instance_count": 56,
+   "independent_pass": 56,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "0.1-1"
@@ -1226,18 +1229,11 @@
     "superlattice_metric"
    ],
    "independent_checker": "checkers/superlattice.py:superlattice_shell, superlattice_quantity",
-   "instance_ids": [
-    "FA-SL-SHELL-X",
-    "FA-SL-EDGE-26",
-    "FA-SL-EDGE-52",
-    "FA-SL-D111-39"
-   ],
-   "instance_count": 4,
-   "independent_pass": 4,
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "10-100"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -1296,17 +1292,11 @@
     "superlattice_saxs"
    ],
    "independent_checker": "checkers/superlattice.py:superlattice_quantity",
-   "instance_ids": [
-    "FA-SL-QSTAR-X",
-    "FA-SL-Q200-13",
-    "FA-SL-GOLD-52"
-   ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "10-100"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -1361,17 +1351,11 @@
     "superlattice_design"
    ],
    "independent_checker": "checkers/superlattice.py:superlattice_design",
-   "instance_ids": [
-    "FA-SL-DES-QSTAR",
-    "FA-SL-DES-NN",
-    "FA-SL-DES-GOLD"
-   ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "10-100"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -1397,7 +1381,7 @@
     "choice",
     "numeric"
    ],
-   "source_basis": "Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（聚苯乙烯球径与实测反射峰）；Fookes et al., Sensors 23, 1433 (2023) 参数表（二氧化硅 266 nm、n_eff 1.35、30°）",
+   "source_basis": "Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（聚苯乙烯球径与实测反射峰）；Fookes et al., Sensors 23, 1433 (2023) 参数表（二氧化硅 266 nm、n_eff 1.35、30°） CC BY 实测值卡另见 docs/assets/families/thin-paper/opal_fcc_111_spacing.json。",
    "answer_method": "中心球周围分壳，核对 12/6 与 √2 比例，并与论文球径一致。",
    "distractor_mechanisms": [
     "cell_edge",
@@ -1410,13 +1394,15 @@
     "third_shell_distance",
     "face_diagonal"
    ],
-   "four_choice_validation": "与正确值 > 3 nm；升序排列，秩按批次轮换。",
+   "four_choice_validation": "与正确值 > 3 nm；升序排列，秩按批次轮换。 论文值卡新族另有三条恒高、三条恒低规则，A–D 数值秩可达；独立 Decimal 检查。",
    "legacy_families": [],
    "legacy_qa": [],
    "code": [
     "task_families/photonic.py",
     "checkers/superlattice.py",
-    "tools/build_opal_assets.py"
+    "tools/build_opal_assets.py",
+    "task_families/thin_paper.py",
+    "checkers/thin_paper.py"
    ],
    "tests": [
     "tests/test_task_families.py",
@@ -1425,20 +1411,15 @@
    "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成，sources.json 记录参数、出处与实测值。",
    "gap": "两篇论文（聚苯乙烯 7 个样品、二氧化硅 1 个）。",
    "engine_families": [
-    "opal_geometry"
+    "opal_geometry",
+    "opal_fcc_111_spacing"
    ],
-   "independent_checker": "checkers/superlattice.py:opal_quantity",
-   "instance_ids": [
-    "FA-OP-DIAM-S8",
-    "FA-OP-D111-S2",
-    "FA-OP-EDGE-SIO2"
-   ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "independent_checker": "checkers/superlattice.py:opal_quantity; checkers/thin_paper.py:opal_fcc_111_spacing",
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "100-1000"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -1499,18 +1480,11 @@
     "opal_bragg"
    ],
    "independent_checker": "checkers/superlattice.py:opal_quantity",
-   "instance_ids": [
-    "FA-OP-PEAK-S3",
-    "FA-OP-PEAK-S7-WATER",
-    "FA-OP-PEAK-SIO2-30",
-    "FA-OP-ANGLE-SIO2"
-   ],
-   "instance_count": 4,
-   "independent_pass": 4,
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "100-1000"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -1564,17 +1538,11 @@
     "opal_design"
    ],
    "independent_checker": "checkers/superlattice.py:opal_design",
-   "instance_ids": [
-    "FA-OP-DES-540",
-    "FA-OP-DES-820",
-    "FA-OP-DES-BELOW700"
-   ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "100-1000"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -1600,7 +1568,7 @@
     "choice",
     "numeric"
    ],
-   "source_basis": "Cao et al., arXiv:1803.02342（Nature 2018）器件 M1/M2/D1 转角与 n_s = 4/A 定义；Kerelsky et al., arXiv:1812.08776（Nature 2019）STM 区域 1.10°、0.79°",
+   "source_basis": "Cao et al., arXiv:1803.02342（Nature 2018）器件 M1/M2/D1 转角与 n_s = 4/A 定义；Kerelsky et al., arXiv:1812.08776（Nature 2019）STM 区域 1.10°、0.79° CC BY 实测值卡另见 docs/assets/families/thin-paper/moire_triangular_cell_area.json。",
    "answer_method": "中心位点周围 6 个等距近邻，核对与论文转角给出的周期一致。",
    "distractor_mechanisms": [
     "aa_to_ab_distance",
@@ -1613,13 +1581,15 @@
     "hexagon_twice",
     "ab_spacing_cell"
    ],
-   "four_choice_validation": "与正确值 > 0.3 nm 或 3 nm²；升序排列，秩按批次轮换。",
+   "four_choice_validation": "与正确值 > 0.3 nm 或 3 nm²；升序排列，秩按批次轮换。 论文值卡新族另有三条恒高、三条恒低规则，A–D 数值秩可达；独立 Decimal 检查。",
    "legacy_families": [],
    "legacy_qa": [],
    "code": [
     "task_families/moire.py",
     "checkers/moire.py",
-    "tools/build_moire_assets.py"
+    "tools/build_moire_assets.py",
+    "task_families/thin_paper.py",
+    "checkers/thin_paper.py"
    ],
    "tests": [
     "tests/test_task_families.py",
@@ -1628,20 +1598,15 @@
    "builder_modules": "族引擎内等价实现；资产由论文转角确定性生成，sources.json 记录出处与模型。",
    "gap": "两篇论文的 5 个转角（0.79–1.16°）。",
    "engine_families": [
-    "moire_geometry"
+    "moire_geometry",
+    "moire_triangular_cell_area"
    ],
-   "independent_checker": "checkers/moire.py:moire_quantity",
-   "instance_ids": [
-    "FA-MO-PERIOD-K079",
-    "FA-MO-AREA-M2",
-    "FA-MO-PERIOD-D1"
-   ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "independent_checker": "checkers/moire.py:moire_quantity; checkers/thin_paper.py:moire_triangular_cell_area",
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "10-100"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -1702,18 +1667,11 @@
     "moire_inference"
    ],
    "independent_checker": "checkers/moire.py:moire_quantity",
-   "instance_ids": [
-    "FA-MO-ATOMS-K110",
-    "FA-MO-NFULL-M1",
-    "FA-MO-NHALF-K079",
-    "FA-MO-TWIST-D1"
-   ],
-   "instance_count": 4,
-   "independent_pass": 4,
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "10-100"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -1767,17 +1725,11 @@
     "moire_design"
    ],
    "independent_checker": "checkers/moire.py:moire_design",
-   "instance_ids": [
-    "FA-MO-DES-HALF",
-    "FA-MO-DES-PERIOD",
-    "FA-MO-DES-FULL"
-   ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "10-100"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -1881,10 +1833,14 @@
     "EN-1HHK-SS-214",
     "EN-1A6M-SS-72",
     "EN-3NDS-SS-36",
-    "EN-1VB0-SS-29"
+    "EN-1VB0-SS-29",
+    "EN-9MMZ-SS-127",
+    "EN-1IN7-SS-186",
+    "EN-1IN6-SS-108",
+    "EN-5W79-SS-506"
    ],
-   "instance_count": 55,
-   "independent_pass": 55,
+   "instance_count": 59,
+   "independent_pass": 59,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "0.1-1"
@@ -2033,7 +1989,7 @@
     "choice",
     "numeric"
    ],
-   "source_basis": "Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003)：CdSe 尺寸多项式与 ε = 5857 D^2.65",
+   "source_basis": "Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003)：CdSe 尺寸多项式与 ε = 5857 D^2.65 CC BY 实测值卡另见 docs/assets/families/thin-paper/qdot_exciton_photon_energy.json。",
    "answer_method": "二分法反解 D(λ)；Beer–Lambert。",
    "distractor_mechanisms": [
     "bounding_box_diagonal",
@@ -2044,13 +2000,15 @@
     "exponent_as_factor",
     "path_in_mm"
    ],
-   "four_choice_validation": "与正确值 > 3 nm、0.1×10⁵ 或 0.05 µM；升序排列，秩按批次轮换。",
+   "four_choice_validation": "与正确值 > 3 nm、0.1×10⁵ 或 0.05 µM；升序排列，秩按批次轮换。 论文值卡新族另有三条恒高、三条恒低规则，A–D 数值秩可达；独立 Decimal 检查。",
    "legacy_families": [],
    "legacy_qa": [],
    "code": [
     "task_families/quantum_dot.py",
     "checkers/quantum_dot.py",
-    "tools/build_qdot_assets.py"
+    "tools/build_qdot_assets.py",
+    "task_families/thin_paper.py",
+    "checkers/thin_paper.py"
    ],
    "tests": [
     "tests/test_task_families.py",
@@ -2059,20 +2017,15 @@
    "builder_modules": "族引擎内等价实现。",
    "gap": "5 个模型粒子。",
    "engine_families": [
-    "qdot_optics"
+    "qdot_optics",
+    "qdot_exciton_photon_energy"
    ],
-   "independent_checker": "checkers/quantum_dot.py:qdot_quantity",
-   "instance_ids": [
-    "FA-QD-PEAK-C",
-    "FA-QD-EPS-E",
-    "FA-QD-CONC-B"
-   ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "independent_checker": "checkers/quantum_dot.py:qdot_quantity; checkers/thin_paper.py:qdot_exciton_photon_energy",
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "1-10"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -2125,16 +2078,11 @@
     "qdot_design"
    ],
    "independent_checker": "checkers/quantum_dot.py:qdot_design",
-   "instance_ids": [
-    "FA-QD-DES-590",
-    "FA-QD-DES-565"
-   ],
-   "instance_count": 2,
-   "independent_pass": 2,
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "1-10"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -2490,17 +2438,11 @@
     "vortex_geometry"
    ],
    "independent_checker": "checkers/mesoscale.py:vortex_quantity",
-   "instance_ids": [
-    "FA-VX-SPACING-561",
-    "FA-VX-DENSITY-1173",
-    "FA-VX-SPACING-BSCCO"
-   ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "100-1000"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -2526,7 +2468,7 @@
     "choice",
     "numeric"
    ],
-   "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm）",
+   "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm） CC BY 实测值卡另见 docs/assets/families/thin-paper/vortex_gl_parameter.json。",
    "answer_method": "B = Φ0/A_cell；Φ = B·A_cell；q10 = 4π/(√3 a)。",
    "distractor_mechanisms": [
     "square_lattice",
@@ -2543,13 +2485,15 @@
     "second_order_peak",
     "square_lattice_q"
    ],
-   "four_choice_validation": "与正确值 > 0.15 mT、0.15×10⁻¹⁵ Wb 或 0.5 μm⁻¹；升序排列，秩按批次轮换。",
+   "four_choice_validation": "与正确值 > 0.15 mT、0.15×10⁻¹⁵ Wb 或 0.5 μm⁻¹；升序排列，秩按批次轮换。 论文值卡新族另有三条恒高、三条恒低规则，A–D 数值秩可达；独立 Decimal 检查。",
    "legacy_families": [],
    "legacy_qa": [],
    "code": [
     "task_families/vortex.py",
     "checkers/mesoscale.py",
-    "tools/build_vortex_assets.py"
+    "tools/build_vortex_assets.py",
+    "task_families/thin_paper.py",
+    "checkers/thin_paper.py"
    ],
    "tests": [
     "tests/test_task_families.py",
@@ -2558,21 +2502,15 @@
    "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
    "gap": "与涡旋晶格几何相同：MgB2 四个磁场 + BSCCO 一个样品。",
    "engine_families": [
-    "vortex_inference"
+    "vortex_inference",
+    "vortex_gl_parameter"
    ],
-   "independent_checker": "checkers/mesoscale.py:vortex_quantity",
-   "instance_ids": [
-    "FA-VX-FIELD-BSCCO",
-    "FA-VX-FIELD-508",
-    "FA-VX-FLUX-1887",
-    "FA-VX-SANS-1173"
-   ],
-   "instance_count": 4,
-   "independent_pass": 4,
+   "independent_checker": "checkers/mesoscale.py:vortex_quantity; checkers/thin_paper.py:vortex_gl_parameter",
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "100-1000"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -2627,17 +2565,11 @@
     "vortex_design"
    ],
    "independent_checker": "checkers/mesoscale.py:vortex_design",
-   "instance_ids": [
-    "FA-VX-DES-SPACING",
-    "FA-VX-DES-SANS",
-    "FA-VX-DES-DENSITY"
-   ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "100-1000"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -2691,17 +2623,11 @@
     "cholesteric_geometry"
    ],
    "independent_checker": "checkers/mesoscale.py:cholesteric_quantity",
-   "instance_ids": [
-    "FA-CH-PITCH-R5011",
-    "FA-CH-HAND-S5011",
-    "FA-CH-PITCH-LRCD"
-   ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "100-1000"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -2727,7 +2653,7 @@
     "choice",
     "numeric"
    ],
-   "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层）",
+   "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层） CC BY 实测值卡另见 docs/assets/families/thin-paper/cholesteric_band_center.json。",
    "answer_method": "λc = ⟨n⟩p；Δλ = Δn·p；HTP = 1/(p c)。",
    "distractor_mechanisms": [
     "extraordinary_index",
@@ -2742,13 +2668,15 @@
     "reflection_for_pitch",
     "nm_um_slip"
    ],
-   "four_choice_validation": "与正确值 > 5–8 nm 或 5 μm⁻¹；升序排列，秩按批次轮换。",
+   "four_choice_validation": "与正确值 > 5–8 nm 或 5 μm⁻¹；升序排列，秩按批次轮换。 论文值卡新族另有三条恒高、三条恒低规则，A–D 数值秩可达；独立 Decimal 检查。",
    "legacy_families": [],
    "legacy_qa": [],
    "code": [
     "task_families/cholesteric.py",
     "checkers/mesoscale.py",
-    "tools/build_cholesteric_assets.py"
+    "tools/build_cholesteric_assets.py",
+    "task_families/thin_paper.py",
+    "checkers/thin_paper.py"
    ],
    "tests": [
     "tests/test_task_families.py",
@@ -2757,21 +2685,15 @@
    "builder_modules": "族引擎内等价实现；资产由论文参数确定性生成。",
    "gap": "与胆甾液晶几何相同：Shaban 两种掺杂 + Dinc 两种涂层 + 模型浓度。",
    "engine_families": [
-    "cholesteric_optics"
+    "cholesteric_optics",
+    "cholesteric_band_center"
    ],
-   "independent_checker": "checkers/mesoscale.py:cholesteric_quantity",
-   "instance_ids": [
-    "FA-CH-LAMBDA-R5011",
-    "FA-CH-BAND-R5011",
-    "FA-CH-HTP-S5011",
-    "FA-CH-LAMBDA-RRCD"
-   ],
-   "instance_count": 4,
-   "independent_pass": 4,
+   "independent_checker": "checkers/mesoscale.py:cholesteric_quantity; checkers/thin_paper.py:cholesteric_band_center",
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "100-1000"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -2825,17 +2747,11 @@
     "cholesteric_design"
    ],
    "independent_checker": "checkers/mesoscale.py:cholesteric_design",
-   "instance_ids": [
-    "FA-CH-DES-550",
-    "FA-CH-DES-LEFT600",
-    "FA-CH-DES-BELOW620"
-   ],
-   "instance_count": 3,
-   "independent_pass": 3,
+   "instance_ids": [],
+   "instance_count": 0,
+   "independent_pass": 0,
    "instance_failures": 0,
-   "instance_reasoning_cells": [
-    "100-1000"
-   ],
+   "instance_reasoning_cells": [],
    "legacy_decisions": {},
    "legacy_choice_v01": 0
   },
@@ -3357,10 +3273,16 @@
     "EN-COD1538801-EXT",
     "EN-COD1521678-EXT",
     "EN-COD2103865-EXT",
-    "EN-COD9008834-EXT"
+    "EN-COD9008834-EXT",
+    "EN-COD7234259-EXT",
+    "EN-COD1523423-EXT",
+    "EN-COD7243051-EXT",
+    "EN-COD2310687-EXT",
+    "EN-COD7241895-EXT",
+    "EN-COD9017412-EXT"
    ],
-   "instance_count": 54,
-   "independent_pass": 54,
+   "instance_count": 60,
+   "independent_pass": 60,
    "instance_failures": 0,
    "instance_reasoning_cells": [
     "0.1-1",

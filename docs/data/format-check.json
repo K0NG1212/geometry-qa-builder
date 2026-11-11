@@ -1,12 +1,12 @@
 {
  "kind": "format_check",
  "date": "2026-10-13",
- "checked": 988,
- "with_issues": 41,
+ "checked": 946,
+ "with_issues": 40,
  "by_severity": {
   "high": 0,
   "medium": 0,
-  "low": 41
+  "low": 40
  },
  "by_rule": {
   "not_four_choice": 0,
@@ -16,7 +16,7 @@
   "needs_explanation": 0,
   "binary_inside": 0,
   "main_record_old_format": 0,
-  "two_binaries_combined": 17,
+  "two_binaries_combined": 16,
   "mirror_pair": 24,
   "precision_collapse": 0
  },
@@ -73,10 +73,10 @@
   }
  },
  "answer_positions": {
-  "A": 230,
-  "B": 269,
-  "C": 264,
-  "D": 225
+  "A": 225,
+  "B": 257,
+  "C": 250,
+  "D": 214
  },
  "note": "Automatic rules plus findings checked by hand (REVIEWED). Read-only; fixes follow the RUNBOOK (whole-family regeneration, supersede or archive), not edits of single questions.",
  "items": [
@@ -556,21 +556,6 @@
      "severity": "low",
      "label": "两个二选一拼成四选一",
      "detail": "证据计算族的设计：数值（正确 / 登记的错误做法）× 结论（原文 / 原文排除的解释）。"
-    }
-   ],
-   "suggestion": ""
-  },
-  {
-   "id": "CNP025",
-   "title": "胆甾液晶（E44 + S5011）· 手性与螺距（四选一）",
-   "legacy": false,
-   "worst": "low",
-   "issues": [
-    {
-     "rule": "two_binaries_combined",
-     "severity": "low",
-     "label": "两个二选一拼成四选一",
-     "detail": "选项：right-handed, pitch 362.0 nm / left-handed, pitch 181.0 nm / left-handed, pitch 362.0 nm / right-handed, pitch 181.0 nm"
     }
    ],
    "suggestion": ""

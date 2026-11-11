@@ -1,6 +1,6 @@
 """Reusable task families. Each family id maps to one build function and one
 ability; the engine never dispatches by question ID."""
-from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire, hostguest, quantum_dot, diffraction_design, protein_design, vortex, cholesteric, rotational, hbond, evidence, paper_design, reaction_path
+from . import local_geometry, force_path, extinction, conformer_design, extent_choice, stereo, crystal, scattering, assembly, superlattice, photonic, moire, hostguest, quantum_dot, diffraction_design, protein_design, vortex, cholesteric, rotational, hbond, evidence, paper_design, reaction_path, thin_paper
 
 FAMILIES = {
     'named_bond_angle': dict(build=local_geometry.build_bond_angle, ability='perception',
@@ -107,4 +107,14 @@ FAMILIES = {
         output='choice', version=reaction_path.VERSION, module='task_families/reaction_path.py'),
     'reaction_geometry_target': dict(build=reaction_path.build_target, ability='design',
         output='choice', version=reaction_path.VERSION, module='task_families/reaction_path.py'),
+    'opal_fcc_111_spacing': dict(build=thin_paper.build, ability='perception',
+        output='choice+numeric', version=thin_paper.VERSION, module='task_families/thin_paper.py'),
+    'moire_triangular_cell_area': dict(build=thin_paper.build, ability='perception',
+        output='choice+numeric', version=thin_paper.VERSION, module='task_families/thin_paper.py'),
+    'cholesteric_band_center': dict(build=thin_paper.build, ability='inference',
+        output='choice+numeric', version=thin_paper.VERSION, module='task_families/thin_paper.py'),
+    'vortex_gl_parameter': dict(build=thin_paper.build, ability='inference',
+        output='choice+numeric', version=thin_paper.VERSION, module='task_families/thin_paper.py'),
+    'qdot_exciton_photon_energy': dict(build=thin_paper.build, ability='inference',
+        output='choice+numeric', version=thin_paper.VERSION, module='task_families/thin_paper.py'),
 }

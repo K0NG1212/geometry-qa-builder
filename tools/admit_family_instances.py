@@ -170,6 +170,23 @@ def admit(catalog, workbench, independent, amap, date):
             raise ValueError('Retire needs an existing legacy record and a stated reason: ' + entry['id'])
         old.update(lifecycle='archived', lifecycleLabel='历史归档', lifecycleReason=entry['reason'],
                    lifecycleReviewedAt=entry['date'], restartFrom='不再计入（见原因）')
+    # Family instances retired as a policy rather than as a failure (2026-11-11: the paper-parameter models, whose
+    # coordinates this project generated). The retire list above only knows legacy records, and a family record
+    # cannot simply drop out of the map: its catalog entry would stay active with nothing behind it. So it is
+    # archived here, with its reason, and only once its instance has left the manifest -- a retired instance that
+    # is still published in this run is a contradiction and is refused. The record keeps its attachments and its
+    # familyInstance for traceability but loses traceUrl, because templates.html?instance=<it> no longer resolves.
+    for entry in amap.get('retire_family', []):
+        old = records.get(entry['catalog_id'])
+        if not old or old.get('familyInstance') != entry['instance'] or not entry.get('reason'):
+            raise ValueError('retire_family needs the record it retires, that record\'s instance and a stated reason: '
+                             + entry['catalog_id'])
+        if entry['instance'] in teachers:
+            raise ValueError('A retired family instance is still published in this run: ' + entry['instance'])
+        old.update(lifecycle='archived', lifecycleLabel='历史归档', lifecycleReason=entry['reason'],
+                   lifecycleReviewedAt=entry['date'], restartFrom='不再计入（见原因）',
+                   lastPublishedRun=entry['last_run'])
+        old.pop('traceUrl', None)
     catalog['lifecycleCounts'] = dict(Counter(q['lifecycle'] for q in catalog['questions']))
     catalog['counts']['candidates'] = len(catalog['questions'])
     catalog['updated'] = date

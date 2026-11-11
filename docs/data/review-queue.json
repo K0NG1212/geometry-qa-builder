@@ -1,41 +1,41 @@
 {
  "kind": "review_queue",
- "date": "2026-11-05",
+ "date": "2026-11-11",
  "summary": {
   "scope": "selection",
-  "units_all_active": 52,
-  "units": 47,
-  "families": 47,
+  "units_all_active": 57,
+  "units": 29,
+  "families": 29,
   "legacy_units": 0,
   "L1": {
-   "pending": 47,
+   "pending": 29,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
   "L2": {
-   "pending": 47,
+   "pending": 29,
    "approved": 0,
    "revise": 0,
    "stale": 0
   },
-  "instances": 160,
+  "instances": 120,
   "forms": {
-   "family": 160,
+   "family": 120,
    "family-version": 0,
    "legacy": 0
   },
   "stages": {
    "not-verified": 0,
-   "L0": 160,
+   "L0": 120,
    "L1+L2": 0,
    "L3": 0,
    "formal": 0
   },
   "next_l3_batch": "l3-batch-001",
-  "l3_sample": 160,
-  "l3_strata": 98,
-  "l3_steady_state_sample": 139,
+  "l3_sample": 120,
+  "l3_strata": 77,
+  "l3_steady_state_sample": 106,
   "model_calls": 0,
   "reviews_recorded": {
    "L1": 0,
@@ -404,7 +404,7 @@
      "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/families.py": "420248f438e9c8f23c6ac9ca4151d385886fec47f8a3b470c548d05e332a304d",
+     "checkers/families.py": "5c2d7f0e31c83dc36a33b466e0426e7c5acd30aaa5ebd6746cbd9a2409210bfb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -705,471 +705,6 @@
    }
   },
   {
-   "unit": "cholesteric_design",
-   "kind": "family",
-   "ability": "design",
-   "registry_id": "cholesteric_design",
-   "generator": "task_families/cholesteric.py",
-   "checker": "checkers/mesoscale.py",
-   "checker_function": "cholesteric_design",
-   "bindings": {
-    "L1": {
-     "registry_row": "b11976c6ac025c6229d5eac3631b920c6bf6727c223781dbaafe5db30dfd490d",
-     "task_families/cholesteric.py": "a4072a8c071da8195827357707ad2b722ab99215104cbc90af1eac3456313dbe"
-    },
-    "L2": {
-     "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "胆甾液晶结构色设计",
-     "concept": "在四份膜中选择：反射最接近目标色、左手且最接近目标、或在反射上限内掺杂量最少。",
-     "inputs": "胆甾液晶指向矢场（每行 \"site x y z nx ny nz\"，每 5 nm 一点，1.5 μm，任意取向）；设计题给四份。",
-     "physical_conditions": "理想均匀扭曲的螺旋（平面 Grandjean 织构）；λc = ⟨n⟩p，Δλ = Δn·p，p = 1/(HTP·c)；题干写明 Model conditions。",
-     "reasoning_scale": "螺距 p（274–423 nm）",
-     "scale_limits": "按论文参数构建的模型；模型反射与实测相差约 1–2%。",
-     "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层）",
-     "answer_method": "逐份拟合螺距与手性，按目标规则选择。",
-     "distractor_mechanisms": [
-      "extraordinary_index",
-      "half_pitch",
-      "right_handed_closer",
-      "right_handed",
-      "reflects_too_red",
-      "meets_but_more_dopant",
-      "farther_from_target"
-     ],
-     "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明误选原因。",
-     "principle": "设计 = 推断的逆问题（选掺杂浓度或膜）。",
-     "validation": "独立检查器（checkers/mesoscale.py:cholesteric_design）逐个文件把指向矢投影到垂直于螺旋轴的平面、解卷绕后线性拟合出螺距与手性，再按题干目标规则重新选择。",
-     "limits": "非实测浓度的候选为按论文 HTP 计算的模型。",
-     "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-CH-DES-550",
-      "question": "The four files list the director fields of four model cholesteric liquid-crystal films (files named by composition; columns site x y z in nm and the unit director nx ny nz, n equivalent to −n). Model conditions: the only measured inputs are those reported by Shaban et al. (Materials 2024) for the nematic host E44 doped with the chiral dopant R5011 or S5011: the helical twisting power (107.5 μm⁻¹), the dopant concentration and the host refractive indices (ne = 1.7904, no = 1.5484 at 589 nm, 20 °C); the director twists uniformly about a straight helix axis (ideal planar Grandjean texture) with no defects, surface-anchoring distortion or temperature gradient, which is the idealization behind the paper's relations p = 1/(HTP·c) and λc = p·(ne + no)/2. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. For the E44 films use the average refractive index (ne + no)/2 of E44. You must choose one film such that its normal-incidence reflection band is centred as close as possible to 550 nm. Which film should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "E44-R5011-2.20wt (clc-E44-R5011-2.20wt.txt)"
-       },
-       {
-        "label": "B",
-        "value": "E44-R5011-2.90wt (clc-E44-R5011-2.90wt.txt)"
-       },
-       {
-        "label": "C",
-        "value": "E44-R5011-2.62wt (clc-E44-R5011-2.62wt.txt)"
-       },
-       {
-        "label": "D",
-        "value": "E44-R5011-3.40wt (clc-E44-R5011-3.40wt.txt)"
-       }
-      ],
-      "inputs": [
-       "clc-E44-R5011-2.20wt.txt",
-       "clc-E44-R5011-2.62wt.txt",
-       "clc-E44-R5011-2.90wt.txt",
-       "clc-E44-R5011-3.40wt.txt"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "half_pitch",
-        "reason": "用 p/2 计算时它的反射（352.9 nm）最接近目标。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "反射中心 535.5 nm，最接近目标。"
-       },
-       {
-        "label": "C",
-        "rule": "farther_from_target",
-        "reason": "反射 592.7 nm。"
-       },
-       {
-        "label": "D",
-        "rule": "farther_from_target",
-        "reason": "反射 456.7 nm。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-CH-DES-BELOW620",
-      "question": "The four files list the director fields of four model cholesteric liquid-crystal films (files named by composition; columns site x y z in nm and the unit director nx ny nz, n equivalent to −n). Model conditions: the only measured inputs are those reported by Shaban et al. (Materials 2024) for the nematic host E44 doped with the chiral dopant R5011 or S5011: the helical twisting power (107.5 μm⁻¹), the dopant concentration and the host refractive indices (ne = 1.7904, no = 1.5484 at 589 nm, 20 °C); the director twists uniformly about a straight helix axis (ideal planar Grandjean texture) with no defects, surface-anchoring distortion or temperature gradient, which is the idealization behind the paper's relations p = 1/(HTP·c) and λc = p·(ne + no)/2. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. For the E44 films use the average refractive index (ne + no)/2 of E44. You must choose one film such that as little dopant as possible is used while the normal-incidence reflection band is centred at or below 620 nm. Which film should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "E44-R5011-3.00wt (clc-E44-R5011-3.00wt.txt)"
-       },
-       {
-        "label": "B",
-        "value": "E44-R5011-2.20wt (clc-E44-R5011-2.20wt.txt)"
-       },
-       {
-        "label": "C",
-        "value": "E44-R5011-2.40wt (clc-E44-R5011-2.40wt.txt)"
-       },
-       {
-        "label": "D",
-        "value": "E44-R5011-2.62wt (clc-E44-R5011-2.62wt.txt)"
-       }
-      ],
-      "inputs": [
-       "clc-E44-R5011-2.20wt.txt",
-       "clc-E44-R5011-2.40wt.txt",
-       "clc-E44-R5011-2.62wt.txt",
-       "clc-E44-R5011-3.00wt.txt"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "meets_but_more_dopant",
-        "reason": "反射 517.6 nm 满足，但掺杂剂更多。"
-       },
-       {
-        "label": "B",
-        "rule": "reflects_too_red",
-        "reason": "反射 705.9 nm，超过 620 nm；只看螺距 p（422.8 nm）会误判为满足。"
-       },
-       {
-        "label": "C",
-        "rule": "reflects_too_red",
-        "reason": "反射 647.1 nm，超过 620 nm；只看螺距 p（387.6 nm）会误判为满足。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "满足上限的候选中掺杂剂最少（反射 592.7 nm）。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "cholesteric_geometry",
-   "kind": "family",
-   "ability": "perception",
-   "registry_id": "cholesteric_geometry",
-   "generator": "task_families/cholesteric.py",
-   "checker": "checkers/mesoscale.py",
-   "checker_function": "cholesteric_quantity",
-   "bindings": {
-    "L1": {
-     "registry_row": "c0583543736c7f4a9fbb7b29fdb8d99df863b938d33b30861134008e391d76c8",
-     "task_families/cholesteric.py": "a4072a8c071da8195827357707ad2b722ab99215104cbc90af1eac3456313dbe"
-    },
-    "L2": {
-     "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "胆甾液晶螺旋几何（螺距 / 手性）",
-     "concept": "从指向矢场识别胆甾螺旋的螺距（转 360° 的距离）与手性（右手定则）。",
-     "inputs": "胆甾液晶指向矢场（每行 \"site x y z nx ny nz\"，每 5 nm 一点，1.5 μm，任意取向）；设计题给四份。",
-     "physical_conditions": "理想均匀扭曲的螺旋（平面 Grandjean 织构）；λc = ⟨n⟩p，Δλ = Δn·p，p = 1/(HTP·c)；题干写明 Model conditions。",
-     "reasoning_scale": "螺距 p（274–423 nm）",
-     "scale_limits": "按论文参数构建的模型；模型反射与实测相差约 1–2%。",
-     "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层）",
-     "answer_method": "每步转角求螺距；(n_i × n_i+1)·前进方向 的符号定手性。",
-     "distractor_mechanisms": [
-      "half_pitch",
-      "double_pitch",
-      "quarter_pitch",
-      "reflection_wavelength",
-      "opposite_handedness",
-      "both_wrong"
-     ],
-     "four_choice_validation": "数值与正确值 > 10 nm；手性题四项为手性 × {p, p/2}。",
-     "principle": "胆甾相：指向矢绕螺旋轴均匀扭转，n 与 −n 等价。",
-     "validation": "独立检查器投影解卷绕后线性拟合。",
-     "limits": "理想均匀扭曲：不含缺陷线、表面锚定与螺距梯度；手性按题干给出的右手定则判断。",
-     "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-CH-HAND-S5011",
-      "question": "The file lists the director (unit vector of average molecular orientation, n equivalent to −n) at sites along the helix axis of a model cholesteric liquid-crystal film; columns are site x y z (nm) nx ny nz. Model conditions: the only measured inputs are those reported by Shaban et al. (Materials 2024) for the nematic host E44 doped with the chiral dopant R5011 or S5011: the helical twisting power (107.5 μm⁻¹), the dopant concentration and the host refractive indices (ne = 1.7904, no = 1.5484 at 589 nm, 20 °C); the director twists uniformly about a straight helix axis (ideal planar Grandjean texture) with no defects, surface-anchoring distortion or temperature gradient, which is the idealization behind the paper's relations p = 1/(HTP·c) and λc = p·(ne + no)/2. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. A helix is right-handed if, with the right thumb pointing along the direction of travel along the helix axis, the director turns in the sense of the curled fingers; otherwise it is left-handed. What are the handedness and the helical pitch p (the distance over which the director rotates by 360°) of this helix?",
-      "options": [
-       {
-        "label": "A",
-        "value": "right-handed, pitch 362.0 nm"
-       },
-       {
-        "label": "B",
-        "value": "left-handed, pitch 181.0 nm"
-       },
-       {
-        "label": "C",
-        "value": "left-handed, pitch 362.0 nm"
-       },
-       {
-        "label": "D",
-        "value": "right-handed, pitch 181.0 nm"
-       }
-      ],
-      "inputs": [
-       "clc-E44-S5011-2.57wt.txt"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "opposite_handedness",
-        "reason": "螺距对，但手性判反（转向与右手定则比较时看错方向）。"
-       },
-       {
-        "label": "B",
-        "rule": "half_pitch",
-        "reason": "手性对，但报告了 p/2（指向矢转 180° 的距离）。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "每步转角给出 p = 361.958 nm；(n_i × n_i+1)·前进方向 的符号给出左手。"
-       },
-       {
-        "label": "D",
-        "rule": "both_wrong",
-        "reason": "手性判反且报告了 p/2。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-CH-PITCH-LRCD",
-      "question": "The file lists the director (unit vector of average molecular orientation, n equivalent to −n) at sites along the helix axis of a model cholesteric liquid-crystal film; columns are site x y z (nm) nx ny nz. Model conditions: the only measured input is the reflection wavelength reported by Dinc et al. (Org. Chem. Front. 2024) for this cholesteric polymer coating, converted to a pitch with the paper's average refractive index of 1.6; the director twists uniformly about a straight helix axis with no defects, which is the idealization behind the paper's relation λ = n·p. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. What is the helical pitch p (the distance along the helix axis over which the director rotates by 360°), in nm?",
-      "options": [
-       {
-        "label": "A",
-        "value": "209.37",
-        "unit": "nm"
-       },
-       {
-        "label": "B",
-        "value": "418.75",
-        "unit": "nm"
-       },
-       {
-        "label": "C",
-        "value": "670.00",
-        "unit": "nm"
-       },
-       {
-        "label": "D",
-        "value": "837.50",
-        "unit": "nm"
-       }
-      ],
-      "inputs": [
-       "clc-LRCD-coating.txt"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "half_pitch",
-        "reason": "报告了 p/2（n 与 −n 等价时的光学周期），而螺距是指向矢转 360° 的距离。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "由指向矢每步转角得螺距 p = 418.750 nm；λc = ⟨n⟩p，Δλ = Δn·p，HTP = 1/(p c)。"
-       },
-       {
-        "label": "C",
-        "rule": "reflection_wavelength",
-        "reason": "报告了反射波长 n·p 而非螺距。"
-       },
-       {
-        "label": "D",
-        "rule": "double_pitch",
-        "reason": "报告了两个螺距。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "cholesteric_optics",
-   "kind": "family",
-   "ability": "inference",
-   "registry_id": "cholesteric_optics",
-   "generator": "task_families/cholesteric.py",
-   "checker": "checkers/mesoscale.py",
-   "checker_function": "cholesteric_quantity",
-   "bindings": {
-    "L1": {
-     "registry_row": "55218cc2ac2ac021a7bd35a790055e91ca5eebb5a2f191cfe8ca0ba1ddf668e5",
-     "task_families/cholesteric.py": "a4072a8c071da8195827357707ad2b722ab99215104cbc90af1eac3456313dbe"
-    },
-    "L2": {
-     "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 2,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "胆甾液晶选择反射与扭曲力（推断）",
-     "concept": "由螺距与题给折射率推断反射中心波长和带宽，或由螺距与浓度推断手性掺杂剂的螺旋扭曲力 HTP。",
-     "inputs": "胆甾液晶指向矢场（每行 \"site x y z nx ny nz\"，每 5 nm 一点，1.5 μm，任意取向）；设计题给四份。",
-     "physical_conditions": "理想均匀扭曲的螺旋（平面 Grandjean 织构）；λc = ⟨n⟩p，Δλ = Δn·p，p = 1/(HTP·c)；题干写明 Model conditions。",
-     "reasoning_scale": "螺距 p（274–423 nm）",
-     "scale_limits": "按论文参数构建的模型；模型反射与实测相差约 1–2%。",
-     "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层）",
-     "answer_method": "λc = ⟨n⟩p；Δλ = Δn·p；HTP = 1/(p c)。",
-     "distractor_mechanisms": [
-      "extraordinary_index",
-      "ordinary_index",
-      "half_pitch",
-      "no_index",
-      "double_pitch",
-      "central_wavelength",
-      "relative_birefringence",
-      "half_birefringence",
-      "percent_not_fraction",
-      "reflection_for_pitch",
-      "nm_um_slip"
-     ],
-     "four_choice_validation": "与正确值 > 5–8 nm 或 5 μm⁻¹；升序排列，秩按批次轮换。",
-     "principle": "布拉格选择反射：λc = ⟨n⟩p，带宽 Δn·p；HTP 由掺杂剂分子手性决定。",
-     "validation": "独立检查器由拟合螺距与题干参数计算。",
-     "limits": "模型值与实测相差约 1–2%（审核侧列出实测值）。",
-     "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-CH-BAND-R5011",
-      "question": "The file lists the director (unit vector of average molecular orientation, n equivalent to −n) at sites along the helix axis of a model cholesteric liquid-crystal film; columns are site x y z (nm) nx ny nz. Model conditions: the only measured inputs are those reported by Shaban et al. (Materials 2024) for the nematic host E44 doped with the chiral dopant R5011 or S5011: the helical twisting power (107.5 μm⁻¹), the dopant concentration and the host refractive indices (ne = 1.7904, no = 1.5484 at 589 nm, 20 °C); the director twists uniformly about a straight helix axis (ideal planar Grandjean texture) with no defects, surface-anchoring distortion or temperature gradient, which is the idealization behind the paper's relations p = 1/(HTP·c) and λc = p·(ne + no)/2. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. At normal incidence, what is the width Δλ of the selective (Bragg) reflection band, in nm? Use the average refractive index (ne + no)/2 of the host and its birefringence ne − no.",
-      "options": [
-       {
-        "label": "A",
-        "value": "43.0",
-        "unit": "nm"
-       },
-       {
-        "label": "B",
-        "value": "51.5",
-        "unit": "nm"
-       },
-       {
-        "label": "C",
-        "value": "85.9",
-        "unit": "nm"
-       },
-       {
-        "label": "D",
-        "value": "592.7",
-        "unit": "nm"
-       }
-      ],
-      "inputs": [
-       "clc-E44-R5011-2.62wt.txt"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "half_pitch",
-        "reason": "用 p/2 计算带宽。"
-       },
-       {
-        "label": "B",
-        "rule": "relative_birefringence",
-        "reason": "用 Δn/⟨n⟩ 代替 Δn。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "由指向矢每步转角得螺距 p = 355.051 nm；λc = ⟨n⟩p，Δλ = Δn·p，HTP = 1/(p c)。"
-       },
-       {
-        "label": "D",
-        "rule": "central_wavelength",
-        "reason": "报告了反射中心波长。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-CH-LAMBDA-RRCD",
-      "question": "The file lists the director (unit vector of average molecular orientation, n equivalent to −n) at sites along the helix axis of a model cholesteric liquid-crystal film; columns are site x y z (nm) nx ny nz. Model conditions: the only measured input is the reflection wavelength reported by Dinc et al. (Org. Chem. Front. 2024) for this cholesteric polymer coating, converted to a pitch with the paper's average refractive index of 1.6; the director twists uniformly about a straight helix axis with no defects, which is the idealization behind the paper's relation λ = n·p. Each file samples the director every 5 nm over 1.5 μm along an arbitrarily oriented axis. At normal incidence, what is the central wavelength λc of the selective (Bragg) reflection band, in nm? Use the average refractive index 1.6.",
-      "options": [
-       {
-        "label": "A",
-        "value": "376.9",
-        "unit": "nm"
-       },
-       {
-        "label": "B",
-        "value": "565.3",
-        "unit": "nm"
-       },
-       {
-        "label": "C",
-        "value": "603.0",
-        "unit": "nm"
-       },
-       {
-        "label": "D",
-        "value": "659.5",
-        "unit": "nm"
-       }
-      ],
-      "inputs": [
-       "clc-RRCD-coating.txt"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "no_index",
-        "reason": "忽略折射率，直接取螺距。"
-       },
-       {
-        "label": "B",
-        "rule": "ordinary_index",
-        "reason": "用 no 代替平均折射率。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "由指向矢每步转角得螺距 p = 376.875 nm；λc = ⟨n⟩p，Δλ = Δn·p，HTP = 1/(p c)。"
-       },
-       {
-        "label": "D",
-        "rule": "extraordinary_index",
-        "reason": "用 ne 代替平均折射率。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
    "unit": "conformer_target_selection",
    "kind": "family",
    "ability": "design",
@@ -1183,7 +718,7 @@
      "task_families/conformer_design.py": "c1df20bcb3ca7c59938dcfc28012c37beca3d235e0181495fb2b6d9e9d54a211"
     },
     "L2": {
-     "checkers/families.py": "420248f438e9c8f23c6ac9ca4151d385886fec47f8a3b470c548d05e332a304d",
+     "checkers/families.py": "5c2d7f0e31c83dc36a33b466e0426e7c5acd30aaa5ebd6746cbd9a2409210bfb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2095,7 +1630,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 8,
+   "instances": 12,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -2169,50 +1704,50 @@
       ]
      },
      {
-      "instance": "FA-EVE-COT-BEND",
-      "question": "Cryo-Lorentz TEM images of flux vortices in a 300 nm thick MgB2 lamella (pre-tilted by 45°) at 5 K, for fields between 50.8 and 188.7 G. The attached evidence.txt gives the evidence (facts E1–E4 from Cottet et al., arXiv:1401.4062; numbers as reported in the paper). Which explanation of the dark bands is consistent with all of these observations?",
+      "instance": "FA-EVE-CAO-POCKETS",
+      "question": "Shubnikov-de Haas oscillations of a magic-angle twisted bilayer graphene (MA-TBG) device are mapped against carrier density n and magnetic field on the hole side; ns is the density that fills one superlattice band (4 electrons per moiré cell). The attached evidence.txt gives the evidence (facts E1–E5 from Cao et al., Nature 556, 43 (2018); numbers as reported in the paper). Which explanation of the extra Landau fan is consistent with all of these observations?",
       "options": [
        {
         "label": "A",
-        "value": "Ferromagnetic domains of a magnetic impurity phase in the crystal."
+        "value": "A doubled unit cell from strain or a charge density wave, which halves the filling factors of the ordinary single-particle bands."
        },
        {
         "label": "B",
-        "value": "Vortex-free Meissner domains of an intermediate (type-1.5) superconducting state."
+        "value": "Small Fermi pockets of quasiparticles counted from the half-filling correlated insulator, with half the usual degeneracy; the carriers above the superconducting dome are only |n| - ns/2."
        },
        {
         "label": "C",
-        "value": "Bend contours: diffraction contrast where local bending of the thin crystal meets the Bragg condition; they hide vortices but do not change the vortex lattice."
+        "value": "Fractional Landau fans of the Hofstadter butterfly of the moiré superlattice."
        },
        {
         "label": "D",
-        "value": "Lines of strong pinning centres that hold the vortices in place."
+        "value": "The ordinary single-particle Fermi surface of all |n| carriers, with the usual four-fold degeneracy."
        }
       ],
       "inputs": [
        "evidence.txt"
       ],
-      "correct_label": "C",
+      "correct_label": "B",
       "audit": [
        {
         "label": "A",
-        "rule": "magnetic_domains",
-        "reason": "与 E2 矛盾：磁畴是样品的固有磁结构，不会因轻微倾转改变位置。（Results (bend-contour test)）"
+        "rule": "cell_doubling",
+        "reason": "与 E1 矛盾：晶胞加倍要求事先破缺自旋或谷简并，但从电中性点和 −ns 出发的扇仍是四重简并。（Quantum oscillations (p. 7): would require spin or valley degeneracy to be broken a priori）"
        },
        {
         "label": "B",
-        "rule": "meissner_domains",
-        "reason": "与 E2、E3 矛盾：磁性的无涡旋畴不会随样品轻微倾转而移动，也不会被涡旋穿越。（Introduction and Results: no stripes or gossamer patterns; conventional type-II behaviour）"
+        "rule": "correct",
+        "reason": "与全部事实一致，即原文结论（Quantum oscillations (p. 8): small Fermi surfaces from the correlated insulating state; halved degeneracy）。"
        },
        {
         "label": "C",
-        "rule": "correct",
-        "reason": "与全部事实一致，即原文结论（Results: bend contours due to diffraction contrast; crossing curves confirm they do not affect the lattice）。"
+        "rule": "hofstadter_butterfly",
+        "reason": "与 E3 矛盾：Hofstadter 分形通常要 10 T 以上才明显，而这个扇在约 1 T 就出现。（Quantum oscillations (p. 7): Hofstadter features need fields > 10 T）"
        },
        {
         "label": "D",
-        "rule": "pinning_lines",
-        "reason": "与 E2、E3 矛盾：钉扎线是固定缺陷，不随倾转移动，且会阻止涡旋在区域间移动。（Results: no vortex pinning except at the edge）"
+        "rule": "large_fermi_surface",
+        "reason": "与 E4 矛盾：半填充附近测得 M = 2，面积随 |n| − ns/2 变化，不是全部载流子的大费米面。（Quantum oscillations (p. 8): M = 2 near the correlated state）"
        }
       ]
      }
@@ -2239,7 +1774,7 @@
    },
    "L1": "pending",
    "L2": "pending",
-   "instances": 8,
+   "instances": 10,
    "L1_record": null,
    "L2_record": null,
    "card": {
@@ -2266,6 +1801,54 @@
      "template_review": "2026-10-16 新建（导师第六次会议“证据 → 结论”），待 L1/L2 人工审核；L1 须逐条对照原文位置。"
     },
     "samples": [
+     {
+      "instance": "FA-EVQ-CAO-COHERENCE",
+      "question": "Twisted bilayer graphene near the magic angle (MA-TBG) becomes superconducting when doped slightly away from half filling of its flat band. The attached evidence.txt gives the evidence (facts E1–E3 from Cao et al., Nature 556, 43 (2018); numbers as reported in the paper). Estimate the mean spacing between the carriers that form the condensate (one over the square root of their areal density) and compare it with the coherence length. Choose the option in which both the value and the conclusion are correct.",
+      "options": [
+       {
+        "label": "A",
+        "value": "Mean carrier spacing ≈ 8.2 nm. The coherence length is many times this spacing, as in a conventional weak-coupling BCS superconductor in which each pair overlaps many others."
+       },
+       {
+        "label": "B",
+        "value": "Mean carrier spacing ≈ 25.8 nm. The coherence length is many times this spacing, as in a conventional weak-coupling BCS superconductor in which each pair overlaps many others."
+       },
+       {
+        "label": "C",
+        "value": "Mean carrier spacing ≈ 8.2 nm. The coherence length is only about twice this spacing, so a pair is hardly larger than the distance between carriers: MA-TBG is a strong-coupling superconductor close to the BCS-BEC crossover."
+       },
+       {
+        "label": "D",
+        "value": "Mean carrier spacing ≈ 25.8 nm. The coherence length is only about twice this spacing, so a pair is hardly larger than the distance between carriers: MA-TBG is a strong-coupling superconductor close to the BCS-BEC crossover."
+       }
+      ],
+      "inputs": [
+       "evidence.txt"
+      ],
+      "correct_label": "D",
+      "audit": [
+       {
+        "label": "A",
+        "rule": "total_gate_density+weak_coupling_bcs",
+        "reason": "数值来自错误做法（用栅极诱导的总密度 |n|（从电中性点算起）求间距，忽略了量子振荡显示真正参与的只是从半填充算起的 n′。），结论也是原文排除的解释。"
+       },
+       {
+        "label": "B",
+        "rule": "weak_coupling_bcs",
+        "reason": "数值正确，但结论是原文排除的解释：原文据 ξ 与粒子间距同量级判断为强耦合、接近 BCS-BEC 交叉；弱耦合 BCS 的结论与之相反。（Discussion (p. 8-9): Tc/TF and ξ vs spacing place MA-TBG far from weak-coupling BCS）"
+       },
+       {
+        "label": "C",
+        "rule": "total_gate_density",
+        "reason": "结论措辞取自原文，但数值来自错误做法：用栅极诱导的总密度 |n|（从电中性点算起）求间距，忽略了量子振荡显示真正参与的只是从半填充算起的 n′。"
+       },
+       {
+        "label": "D",
+        "rule": "correct",
+        "reason": "数值按原文数据计算正确，结论即原文结论（Discussion, last paragraph before Summary (p. 9): coherence length of the same order as the inter-particle distance (~26 nm)）。"
+       }
+      ]
+     },
      {
       "instance": "FA-EVQ-CAO-PAULI",
       "question": "The superconducting state of an atomically thin MA-TBG device (Tc about 0.5 K) was suppressed with magnetic fields perpendicular and parallel to the layers. The attached evidence.txt gives the evidence (facts E1–E4 from Cao et al., Nature 556, 43 (2018); numbers as reported in the paper). Estimate the in-plane critical field that orbital (Ginzburg-Landau thin-film) pair breaking would give for this thickness and coherence length, and compare it with the measurement. Choose the option in which both the value and the conclusion are correct.",
@@ -2313,54 +1896,6 @@
         "reason": "结论措辞取自原文，但数值来自错误做法：套用垂直场的 GL 公式 Φ0/(2πξ²)，忽略了平行场下轨道效应受膜厚 d 限制。"
        }
       ]
-     },
-     {
-      "instance": "FA-EVQ-CAO-SQUID",
-      "question": "In an MA-TBG device (twist angle 1.16°), transport near the boundary between the superconducting dome and the half-filling insulator shows oscillations in a perpendicular magnetic field B. The attached evidence.txt gives the evidence (facts E1–E3 from Cao et al., Nature 556, 43 (2018); numbers as reported in the paper). Treat the oscillation as flux quantization through a superconducting loop and find the effective loop area. Choose the option in which both the value and the conclusion are correct.",
-      "options": [
-       {
-        "label": "A",
-        "value": "Effective loop area ≈ 0.092 µm². The loop is roughly a tenth of the device area, so the oscillation comes from SQUID-like superconducting loops around insulating islands: the superconducting state is spatially inhomogeneous on this scale."
-       },
-       {
-        "label": "B",
-        "value": "Effective loop area ≈ 0.092 µm². The loop is essentially the whole device, so the oscillation shows a single uniform superconducting ring spanning the Hall bar."
-       },
-       {
-        "label": "C",
-        "value": "Effective loop area ≈ 0.184 µm². The loop is essentially the whole device, so the oscillation shows a single uniform superconducting ring spanning the Hall bar."
-       },
-       {
-        "label": "D",
-        "value": "Effective loop area ≈ 0.184 µm². The loop is roughly a tenth of the device area, so the oscillation comes from SQUID-like superconducting loops around insulating islands: the superconducting state is spatially inhomogeneous on this scale."
-       }
-      ],
-      "inputs": [
-       "evidence.txt"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "数值按原文数据计算正确，结论即原文结论（Methods, Phase-coherent transport (p. 15): S ≈ 0.09 µm² vs ~1 µm² device; Josephson junction arrays around insulating islands）。"
-       },
-       {
-        "label": "B",
-        "rule": "uniform_whole_device",
-        "reason": "数值正确，但结论是原文排除的解释：算出的面积远小于器件面积，原文据此推断存在绝缘“岛”与不均匀性，不是整个器件一个均匀环。（Methods (p. 15): the area is compared with ~1 µm² and attributed to inhomogeneity）"
-       },
-       {
-        "label": "C",
-        "rule": "normal_flux_quantum+uniform_whole_device",
-        "reason": "数值来自错误做法（用正常态磁通量子 h/e（量子霍尔用）而不是超导磁通量子 h/2e，面积大了一倍。），结论也是原文排除的解释。"
-       },
-       {
-        "label": "D",
-        "rule": "normal_flux_quantum",
-        "reason": "结论措辞取自原文，但数值来自错误做法：用正常态磁通量子 h/e（量子霍尔用）而不是超导磁通量子 h/2e，面积大了一倍。"
-       }
-      ]
      }
     ]
    }
@@ -2379,7 +1914,7 @@
      "task_families/extent_choice.py": "e1ddb871279c3ae81c1e5e74590674b8f3fd71efdcd2c1c281a722ea123f4bf4"
     },
     "L2": {
-     "checkers/families.py": "420248f438e9c8f23c6ac9ca4151d385886fec47f8a3b470c548d05e332a304d",
+     "checkers/families.py": "5c2d7f0e31c83dc36a33b466e0426e7c5acd30aaa5ebd6746cbd9a2409210bfb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -2694,7 +2229,7 @@
      "task_families/force_path.py": "9ec4307787cd1993d35463f958a81162c70cbe580a2f21278691496866f025af"
     },
     "L2": {
-     "checkers/families.py": "420248f438e9c8f23c6ac9ca4151d385886fec47f8a3b470c548d05e332a304d",
+     "checkers/families.py": "5c2d7f0e31c83dc36a33b466e0426e7c5acd30aaa5ebd6746cbd9a2409210bfb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3616,7 +3151,7 @@
      "task_families/extinction.py": "f9721343ded2f4de07dfaf787d4b59f4322cbaf782248414430677ddfad71e1f"
     },
     "L2": {
-     "checkers/families.py": "420248f438e9c8f23c6ac9ca4151d385886fec47f8a3b470c548d05e332a304d",
+     "checkers/families.py": "5c2d7f0e31c83dc36a33b466e0426e7c5acd30aaa5ebd6746cbd9a2409210bfb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -3750,480 +3285,6 @@
    }
   },
   {
-   "unit": "moire_design",
-   "kind": "family",
-   "ability": "design",
-   "registry_id": "moire_design",
-   "generator": "task_families/moire.py",
-   "checker": "checkers/moire.py",
-   "checker_function": "moire_design",
-   "bindings": {
-    "L1": {
-     "registry_row": "376b8a1e3fec67a922b5be6abb29bc4e1cb51c73ffcffd6590e853464792385a",
-     "task_families/moire.py": "16a16b7b7816642de68f12c460964e86d96ba2ccb8b8b0e8f9d03ff2c8a0377c"
-    },
-    "L2": {
-     "checkers/moire.py": "ceee9cd8039687cea219647978e575bb01c97d8c964b596fafb8df7b5d750a50",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "转角石墨烯样品选择设计",
-     "concept": "在论文实际样品中选一个，使半满或完全填满密度、或莫尔周期最接近目标；四个候选各有 AA 图。",
-     "inputs": "转角双层石墨烯模型：AA 堆垛区中心图（nm，每行 \"AA x y\"，相当于 STM 形貌亮点，确定性旋转）或 AA 位点附近两层全部碳原子（Å）；设计题给四个候选图。",
-     "physical_conditions": "刚性转角（无晶格弛豫、无异质应变）；石墨烯晶格常数 0.246 nm；自旋×谷四重简并（n_s = 4/A）。",
-     "reasoning_scale": "莫尔周期 λ（12–18 nm）",
-     "scale_limits": "按论文转角构建的模型；实测样品常有少量异质应变，使莫尔周期偏离理想值（Kerelsky et al. 讨论）。",
-     "source_basis": "Cao et al., arXiv:1803.02342（Nature 2018）器件 M1/M2/D1 转角与 n_s = 4/A 定义；Kerelsky et al., arXiv:1812.08776（Nature 2019）STM 区域 1.10°、0.79°",
-     "answer_method": "逐个候选由 AA 图计算周期与面积，按目标规则取唯一最优；要求领先幅度足够。",
-     "distractor_mechanisms": [
-      "full_filling",
-      "no_degeneracy",
-      "spin_only",
-      "square_cell",
-      "aa_to_ab_distance",
-      "second_neighbour",
-      "farther_from_target"
-     ],
-     "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明在哪种错误下会被选中。",
-     "principle": "设计 = 推断的逆问题：按目标密度或周期选择转角。",
-     "validation": "独立检查器逐文件重算并按题干目标重选。",
-     "limits": "候选样品的周期与载流子密度由刚性转角模型从论文转角算出，不是逐样品实测值；不含弛豫与应变。",
-     "template_review": "本轮新建（A4），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-MO-DES-FULL",
-      "question": "The four files list the centres of the AA-stacked regions (nm) of model twisted bilayer graphene samples (files named by sample; each built from that sample's published twist angle; rigid twist without relaxation or strain). Model conditions: the only measured input is the twist angle reported by Cao et al. (Nature 2018; device twist angles from transport) or Kerelsky et al. (Nature 2019; STM); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. You must choose one sample such that the superlattice density n_s (complete filling of one set of spin- and valley-degenerate moiré bands) is closest to 2.8 × 10¹² cm⁻². Which sample should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "M1 (TBG-M1-AA-map.txt)"
-       },
-       {
-        "label": "B",
-        "value": "K110 (TBG-K110-AA-map.txt)"
-       },
-       {
-        "label": "C",
-        "value": "K079 (TBG-K079-AA-map.txt)"
-       },
-       {
-        "label": "D",
-        "value": "D1 (TBG-D1-AA-map.txt)"
-       }
-      ],
-      "inputs": [
-       "TBG-K079-AA-map.txt",
-       "TBG-D1-AA-map.txt",
-       "TBG-K110-AA-map.txt",
-       "TBG-M1-AA-map.txt"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "no_degeneracy",
-        "reason": "漏掉自旋×谷简并时它最接近目标（0.782）。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "正确计算为 2.813，最接近目标。"
-       },
-       {
-        "label": "C",
-        "rule": "farther_from_target",
-        "reason": "正确计算为 1.451，离目标更远。"
-       },
-       {
-        "label": "D",
-        "rule": "farther_from_target",
-        "reason": "正确计算为 2.712，离目标更远。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-MO-DES-HALF",
-      "question": "The four files list the centres of the AA-stacked regions (nm) of model twisted bilayer graphene samples (files named by sample; each built from that sample's published twist angle; rigid twist without relaxation or strain). Model conditions: the only measured input is the twist angle reported by Cao et al. (Nature 2018; device twist angles from transport) or Kerelsky et al. (Nature 2019; STM); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. You must choose one sample such that half filling of one set of spin- and valley-degenerate moiré bands occurs at a carrier density closest to 1.3 × 10¹² cm⁻². Which sample should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "D1 (TBG-D1-AA-map.txt)"
-       },
-       {
-        "label": "B",
-        "value": "K110 (TBG-K110-AA-map.txt)"
-       },
-       {
-        "label": "C",
-        "value": "M1 (TBG-M1-AA-map.txt)"
-       },
-       {
-        "label": "D",
-        "value": "M2 (TBG-M2-AA-map.txt)"
-       }
-      ],
-      "inputs": [
-       "TBG-M2-AA-map.txt",
-       "TBG-D1-AA-map.txt",
-       "TBG-K110-AA-map.txt",
-       "TBG-M1-AA-map.txt"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "farther_from_target",
-        "reason": "正确计算为 1.356，离目标更远。"
-       },
-       {
-        "label": "B",
-        "rule": "farther_from_target",
-        "reason": "正确计算为 1.407，离目标更远。"
-       },
-       {
-        "label": "C",
-        "rule": "no_degeneracy",
-        "reason": "漏掉自旋×谷简并时它最接近目标（0.782）。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "正确计算为 1.282，最接近目标。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "moire_geometry",
-   "kind": "family",
-   "ability": "perception",
-   "registry_id": "moire_geometry",
-   "generator": "task_families/moire.py",
-   "checker": "checkers/moire.py",
-   "checker_function": "moire_quantity",
-   "bindings": {
-    "L1": {
-     "registry_row": "47e7195d3cb97de72f478620b07f349f9a2871c88ada9559f946c358e199dc45",
-     "task_families/moire.py": "16a16b7b7816642de68f12c460964e86d96ba2ccb8b8b0e8f9d03ff2c8a0377c"
-    },
-    "L2": {
-     "checkers/moire.py": "ceee9cd8039687cea219647978e575bb01c97d8c964b596fafb8df7b5d750a50",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "转角石墨烯莫尔晶格几何（周期 / 晶胞面积）",
-     "concept": "从 AA 堆垛区中心图识别莫尔晶格：莫尔周期与莫尔晶胞面积（10–100 nm 尺度）。",
-     "inputs": "转角双层石墨烯模型：AA 堆垛区中心图（nm，每行 \"AA x y\"，相当于 STM 形貌亮点，确定性旋转）或 AA 位点附近两层全部碳原子（Å）；设计题给四个候选图。",
-     "physical_conditions": "刚性转角（无晶格弛豫、无异质应变）；石墨烯晶格常数 0.246 nm；自旋×谷四重简并（n_s = 4/A）。",
-     "reasoning_scale": "莫尔周期 λ（12–18 nm）",
-     "scale_limits": "按论文转角构建的模型；实测样品常有少量异质应变，使莫尔周期偏离理想值（Kerelsky et al. 讨论）。",
-     "source_basis": "Cao et al., arXiv:1803.02342（Nature 2018）器件 M1/M2/D1 转角与 n_s = 4/A 定义；Kerelsky et al., arXiv:1812.08776（Nature 2019）STM 区域 1.10°、0.79°",
-     "answer_method": "中心位点周围 6 个等距近邻，核对与论文转角给出的周期一致。",
-     "distractor_mechanisms": [
-      "aa_to_ab_distance",
-      "row_spacing",
-      "second_neighbour",
-      "half_period",
-      "double_period",
-      "square_cell",
-      "triangle_only",
-      "hexagon_twice",
-      "ab_spacing_cell"
-     ],
-     "four_choice_validation": "与正确值 > 0.3 nm 或 3 nm²；升序排列，秩按批次轮换。",
-     "principle": "刚性转角：λ = a/(2 sin(θ/2))；三角晶格晶胞面积 (√3/2)λ²。",
-     "validation": "独立检查器由最近邻矢量选初基基矢，验证所有位点为整数组合，面积取叉积。",
-     "limits": "理想刚性转角：不含晶格弛豫（AB/BA 畴重构）、异质应变与转角不均匀；小转角下实测周期可能偏离模型。",
-     "template_review": "本轮新建（A4），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-MO-AREA-M2",
-      "question": "The file lists the centres of the AA-stacked regions (the bright spots of an STM topograph) of a model twisted bilayer graphene sample, coordinates in nm (rigid twist without lattice relaxation or strain; built from a published twist angle). Model conditions: the only measured input is the twist angle reported by Cao et al. (Nature 2018; device twist angles from transport); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. What is the area of one moiré unit cell, in nm²?",
-      "options": [
-       {
-        "label": "A",
-        "value": "52.0",
-        "unit": "nm^2"
-       },
-       {
-        "label": "B",
-        "value": "156.1",
-        "unit": "nm^2"
-       },
-       {
-        "label": "C",
-        "value": "180.2",
-        "unit": "nm^2"
-       },
-       {
-        "label": "D",
-        "value": "312.1",
-        "unit": "nm^2"
-       }
-      ],
-      "inputs": [
-       "TBG-M2-AA-map.txt"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "ab_spacing_cell",
-        "reason": "用 AA–AB 距离当作晶格常数。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "θ = 1.05°，λ = a/(2 sin(θ/2)) = 13.4238 nm，A = (√3/2)λ²，n_s = 4/A。"
-       },
-       {
-        "label": "C",
-        "rule": "square_cell",
-        "reason": "按正方形晶胞 λ² 计算。"
-       },
-       {
-        "label": "D",
-        "rule": "hexagon_twice",
-        "reason": "面积多乘了 2。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-MO-PERIOD-D1",
-      "question": "The file lists the centres of the AA-stacked regions (the bright spots of an STM topograph) of a model twisted bilayer graphene sample, coordinates in nm (rigid twist without lattice relaxation or strain; built from a published twist angle). Model conditions: the only measured input is the twist angle reported by Cao et al. (Nature 2018; device twist angles from transport); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. What is the moiré period (the moiré lattice constant), in nm?",
-      "options": [
-       {
-        "label": "A",
-        "value": "7.53",
-        "unit": "nm"
-       },
-       {
-        "label": "B",
-        "value": "11.30",
-        "unit": "nm"
-       },
-       {
-        "label": "C",
-        "value": "13.05",
-        "unit": "nm"
-       },
-       {
-        "label": "D",
-        "value": "22.60",
-        "unit": "nm"
-       }
-      ],
-      "inputs": [
-       "TBG-D1-AA-map.txt"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "aa_to_ab_distance",
-        "reason": "报告了 AA 到 AB 区中心的距离 λ/√3。"
-       },
-       {
-        "label": "B",
-        "rule": "row_spacing",
-        "reason": "报告了相邻 AA 行的间距 (√3/2)λ。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "θ = 1.08°，λ = a/(2 sin(θ/2)) = 13.0509 nm，A = (√3/2)λ²，n_s = 4/A。"
-       },
-       {
-        "label": "D",
-        "rule": "second_neighbour",
-        "reason": "报告了次近邻 AA 距离 √3λ。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "moire_inference",
-   "kind": "family",
-   "ability": "inference",
-   "registry_id": "moire_inference",
-   "generator": "task_families/moire.py",
-   "checker": "checkers/moire.py",
-   "checker_function": "moire_quantity",
-   "bindings": {
-    "L1": {
-     "registry_row": "a7970eb95097f6d375859f5764b7128b24a31cd28724fe8c69fed8bc1259f437",
-     "task_families/moire.py": "16a16b7b7816642de68f12c460964e86d96ba2ccb8b8b0e8f9d03ff2c8a0377c"
-    },
-    "L2": {
-     "checkers/moire.py": "ceee9cd8039687cea219647978e575bb01c97d8c964b596fafb8df7b5d750a50",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 1,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "转角石墨烯莫尔推断（周期、载流子密度、转角）",
-     "concept": "由原子坐标推断两层转角并求莫尔周期；由莫尔晶胞推断完全填满与半满一组自旋×谷简并能带的载流子密度；由莫尔周期反推转角。",
-     "inputs": "转角双层石墨烯模型：AA 堆垛区中心图（nm，每行 \"AA x y\"，相当于 STM 形貌亮点，确定性旋转）或 AA 位点附近两层全部碳原子（Å）；设计题给四个候选图。",
-     "physical_conditions": "刚性转角（无晶格弛豫、无异质应变）；石墨烯晶格常数 0.246 nm；自旋×谷四重简并（n_s = 4/A）。",
-     "reasoning_scale": "莫尔周期 λ（12–18 nm）",
-     "scale_limits": "按论文转角构建的模型；实测样品常有少量异质应变，使莫尔周期偏离理想值（Kerelsky et al. 讨论）。",
-     "source_basis": "Cao et al., arXiv:1803.02342（Nature 2018）器件 M1/M2/D1 转角与 n_s = 4/A 定义；Kerelsky et al., arXiv:1812.08776（Nature 2019）STM 区域 1.10°、0.79°",
-     "answer_method": "λ = a/(2 sin(θ/2))；n_s = 4/A（A = (√3/2)λ²），半满 n_s/2；θ = 2 arcsin(a/2λ)。",
-     "distractor_mechanisms": [
-      "sin_full_angle",
-      "bond_length_as_lattice_constant",
-      "angle_of_one_layer",
-      "second_neighbour",
-      "layer_spacing_as_lattice_constant",
-      "no_degeneracy",
-      "spin_only",
-      "square_cell",
-      "eight_per_cell",
-      "ab_distance_as_period",
-      "full_filling",
-      "half_angle",
-      "radians_as_degrees"
-     ],
-     "four_choice_validation": "与正确值 > 0.3 nm、0.05×10¹² cm⁻² 或 0.05°；升序排列，秩按批次轮换。",
-     "principle": "莫尔几何与能带填充：每个莫尔晶胞 4 个态（自旋×谷）填满一组能带。",
-     "validation": "原子块：独立检查器用每层晶格矢量的六重相位平均求取向，再求转角与晶格常数；AA 图：叉积面积。",
-     "limits": "刚性转角模型；n_s 定义沿用 Cao et al.。",
-     "template_review": "本轮新建（A4），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-MO-NHALF-K079",
-      "question": "The file lists the centres of the AA-stacked regions (the bright spots of an STM topograph) of a model twisted bilayer graphene sample, coordinates in nm (rigid twist without lattice relaxation or strain; built from a published twist angle). Model conditions: the only measured input is the twist angle reported by Kerelsky et al. (Nature 2019; STM); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. What carrier density corresponds to half filling of one set of spin- and valley-degenerate moiré bands (where correlated insulators appear), in units of 10¹² cm⁻²?",
-      "options": [
-       {
-        "label": "A",
-        "value": "0.363",
-        "unit": "10^12 cm^-2"
-       },
-       {
-        "label": "B",
-        "value": "0.628",
-        "unit": "10^12 cm^-2"
-       },
-       {
-        "label": "C",
-        "value": "0.725",
-        "unit": "10^12 cm^-2"
-       },
-       {
-        "label": "D",
-        "value": "1.451",
-        "unit": "10^12 cm^-2"
-       }
-      ],
-      "inputs": [
-       "TBG-K079-AA-map.txt"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "no_degeneracy",
-        "reason": "每个晶胞只算 1 个电子，漏掉自旋×谷四重简并。"
-       },
-       {
-        "label": "B",
-        "rule": "square_cell",
-        "reason": "晶胞面积按 λ² 计算。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "θ = 0.79°，λ = a/(2 sin(θ/2)) = 17.8416 nm，A = (√3/2)λ²，n_s = 4/A。"
-       },
-       {
-        "label": "D",
-        "rule": "full_filling",
-        "reason": "报告了完全填满（n_s）而非半满。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-MO-ATOMS-K110",
-      "question": "The XYZ file lists all carbon atoms of both layers of a model twisted bilayer graphene near an AA-stacked site (angstrom; rigid twist, layer spacing 3.35 Å; built from a published twist angle). Model conditions: the only measured input is the twist angle reported by Kerelsky et al. (Nature 2019; STM); both layers are ideal, unstrained graphene sheets (lattice constant 0.246 nm) rigidly rotated against each other, with no lattice relaxation, heterostrain or substrate effects, which is the idealization behind the moiré formulas used in the paper; real samples show slight heterostrain. Assuming the two layers are unstrained and rigidly twisted, what is the moiré period (the moiré lattice constant) of this bilayer, in nm?",
-      "options": [
-       {
-        "label": "A",
-        "value": "12.81",
-        "unit": "nm"
-       },
-       {
-        "label": "B",
-        "value": "17.45",
-        "unit": "nm"
-       },
-       {
-        "label": "C",
-        "value": "22.19",
-        "unit": "nm"
-       },
-       {
-        "label": "D",
-        "value": "25.63",
-        "unit": "nm"
-       }
-      ],
-      "inputs": [
-       "TBG-K110-atoms.xyz"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "θ = 1.10°，λ = a/(2 sin(θ/2)) = 12.8136 nm，A = (√3/2)λ²，n_s = 4/A。"
-       },
-       {
-        "label": "B",
-        "rule": "layer_spacing_as_lattice_constant",
-        "reason": "把层间距 0.335 nm 当作晶格常数。"
-       },
-       {
-        "label": "C",
-        "rule": "second_neighbour",
-        "reason": "报告了次近邻 AA 距离 √3λ。"
-       },
-       {
-        "label": "D",
-        "rule": "angle_of_one_layer",
-        "reason": "用单层相对参考方向的转角 θ/2 代替两层之间的转角。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
    "unit": "named_bond_angle",
    "kind": "family",
    "ability": "perception",
@@ -4237,7 +3298,7 @@
      "task_families/local_geometry.py": "5f7867f2d96cbff718aa367ea23637bb59e567ddd8363e00e346bf046c4917f2"
     },
     "L2": {
-     "checkers/families.py": "420248f438e9c8f23c6ac9ca4151d385886fec47f8a3b470c548d05e332a304d",
+     "checkers/families.py": "5c2d7f0e31c83dc36a33b466e0426e7c5acd30aaa5ebd6746cbd9a2409210bfb",
      "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
     }
    },
@@ -4526,789 +3587,6 @@
         "label": "D",
         "rule": "one_bond_too_far:C2-C6",
         "reason": "多数了一根键：量成 C2 到 S3 之外的 C6 的距离。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "opal_bragg",
-   "kind": "family",
-   "ability": "inference",
-   "registry_id": "opal_bragg",
-   "generator": "task_families/photonic.py",
-   "checker": "checkers/superlattice.py",
-   "checker_function": "opal_quantity",
-   "bindings": {
-    "L1": {
-     "registry_row": "ea940b6de5bae7708e45f58827b0da223da93741328ee8ecdc2177dc31548cdc",
-     "task_families/photonic.py": "3afa16d6c06b6f3367a963632644cd375dbc0caab3e8bcca42a2b6ede7d9585c"
-    },
-    "L2": {
-     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "胶体光子晶体 Bragg 反射与结构色",
-     "concept": "由球心坐标与题给折射率推断结构色：一级 Bragg–Snell 反射波长（正入射或斜入射），或达到目标波长所需的入射角。",
-     "inputs": "胶体晶体（蛋白石）晶粒模型的球心坐标（nm，每行 \"sphere x y z\"，177 个，经确定性旋转）；设计题给四个候选文件。",
-     "physical_conditions": "接触球理想 FCC；密排面平行于膜面；有效折射率 n_eff² = Σ f_i n_i²（或题给 n_eff）；Bragg–Snell 一级反射。",
-     "reasoning_scale": "晶格周期：常规晶胞边长 a（约 295–522 nm）",
-     "scale_limits": "按论文球径构建的模型；不含尺寸分布、堆垛缺陷与多面衍射；审核侧附实测峰值供比较。",
-     "source_basis": "Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（聚苯乙烯球径与实测反射峰）；Fookes et al., Sensors 23, 1433 (2023) 参数表（二氧化硅 266 nm、n_eff 1.35、30°）",
-     "answer_method": "λ = 2 d111 √(n_eff² − sin²θ)；n_eff² = f n_s² + (1−f) n_m²，f = π/(3√2)。",
-     "distractor_mechanisms": [
-      "diameter_as_spacing",
-      "cell_edge_as_spacing",
-      "no_factor_two",
-      "d200_planes",
-      "linear_index_average",
-      "no_index",
-      "sphere_index",
-      "voids_as_air",
-      "no_refraction",
-      "ignore_angle",
-      "angle_from_surface",
-      "refraction_angle_inside",
-      "sin_not_squared"
-     ],
-     "four_choice_validation": "波长与正确值 > 5 nm，角度 > 1°；升序排列，秩按批次轮换。",
-     "principle": "Bragg 定律加表面折射（Bragg–Snell）；有效介质近似。",
-     "validation": "独立检查器由倒格子求 d111，由初基胞体积求球体积分数，再按题干的有效介质规则计算。",
-     "limits": "有效介质与理想晶格假设；模型值与实测峰相差约 1%（审核侧列出）。",
-     "template_review": "本轮新建（A4），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-OP-ANGLE-SIO2",
-      "question": "The file lists the sphere centres (nm) of a model silica opal crystallite built from a published sphere diameter; neighbouring spheres touch. Model conditions: the only measured input is the sphere diameter reported by Fookes et al. (Sensors 2023; SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. Model the film as this lattice with its close-packed planes parallel to the film surface, and use an effective refractive index of 1.35 for the film. At what angle of incidence from the film normal, in degrees (light incident from air), does the first-order Bragg reflection from the close-packed planes occur at a vacuum wavelength of 500 nm?",
-      "options": [
-       {
-        "label": "A",
-        "value": "29.8",
-        "unit": "degree"
-       },
-       {
-        "label": "B",
-        "value": "31.5",
-        "unit": "degree"
-       },
-       {
-        "label": "C",
-        "value": "44.9",
-        "unit": "degree"
-       },
-       {
-        "label": "D",
-        "value": "75.7",
-        "unit": "degree"
-       }
-      ],
-      "inputs": [
-       "opal-SiO2-266.xyz"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "sin_not_squared",
-        "reason": "解出 sinθ 时未开方。"
-       },
-       {
-        "label": "B",
-        "rule": "no_refraction",
-        "reason": "用 λ = 2 d n cosθ 反解，忽略折射。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "sin²θ = n_eff² − (λ/2d111)²，d111 = 217.1881 nm，n_eff = 1.350。"
-       },
-       {
-        "label": "D",
-        "rule": "diameter_as_spacing",
-        "reason": "把球径当作密排面间距。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-OP-PEAK-S7-WATER",
-      "question": "The file lists the sphere centres (nm) of a model polystyrene opal crystallite built from a published sphere diameter; neighbouring spheres touch. Model conditions: the only measured input is the sphere diameter reported by Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. Model the film as this lattice with its close-packed planes parallel to the film surface. The spheres have refractive index 1.59 and the voids are filled with a medium of refractive index 1.33; take the effective index from the volume-weighted average of the squared refractive indices (n_eff² = Σ f_i n_i²), using the sphere volume fraction of this packing. Light is incident along the film normal. What is the vacuum wavelength, in nm, of the first-order Bragg reflection from the close-packed planes?",
-      "options": [
-       {
-        "label": "A",
-        "value": "560.4",
-        "unit": "nm"
-       },
-       {
-        "label": "B",
-        "value": "583.6",
-        "unit": "nm"
-       },
-       {
-        "label": "C",
-        "value": "686.3",
-        "unit": "nm"
-       },
-       {
-        "label": "D",
-        "value": "970.6",
-        "unit": "nm"
-       }
-      ],
-      "inputs": [
-       "opal-PS-S7.xyz"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "λ = 2 d111 √(n_eff² − sin²θ)，d111 = 183.5158 nm，n_eff = 1.52679。"
-       },
-       {
-        "label": "B",
-        "rule": "sphere_index",
-        "reason": "用球的折射率代替有效折射率。"
-       },
-       {
-        "label": "C",
-        "rule": "diameter_as_spacing",
-        "reason": "把球径当作密排面间距。"
-       },
-       {
-        "label": "D",
-        "rule": "cell_edge_as_spacing",
-        "reason": "把常规晶胞边长当作面间距。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "opal_design",
-   "kind": "family",
-   "ability": "design",
-   "registry_id": "opal_design",
-   "generator": "task_families/photonic.py",
-   "checker": "checkers/superlattice.py",
-   "checker_function": "opal_design",
-   "bindings": {
-    "L1": {
-     "registry_row": "ab42f18734c176ee9b383c7eed0bce524647e38098344d4feb10e266cd7236d5",
-     "task_families/photonic.py": "3afa16d6c06b6f3367a963632644cd375dbc0caab3e8bcca42a2b6ede7d9585c"
-    },
-    "L2": {
-     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "结构色设计：选择球径样品",
-     "concept": "在论文实际合成的四个聚苯乙烯样品中选一个，使膜的正入射反射最接近目标波长，或在波长上限内球径最大；四个候选各有模型晶粒。",
-     "inputs": "胶体晶体（蛋白石）晶粒模型的球心坐标（nm，每行 \"sphere x y z\"，177 个，经确定性旋转）；设计题给四个候选文件。",
-     "physical_conditions": "接触球理想 FCC；密排面平行于膜面；有效折射率 n_eff² = Σ f_i n_i²（或题给 n_eff）；Bragg–Snell 一级反射。",
-     "reasoning_scale": "晶格周期：常规晶胞边长 a（约 295–522 nm）",
-     "scale_limits": "按论文球径构建的模型；不含尺寸分布、堆垛缺陷与多面衍射；审核侧附实测峰值供比较。",
-     "source_basis": "Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（聚苯乙烯球径与实测反射峰）；Fookes et al., Sensors 23, 1433 (2023) 参数表（二氧化硅 266 nm、n_eff 1.35、30°）",
-     "answer_method": "逐个候选由坐标计算反射波长，按目标规则取唯一最优；要求领先幅度足够。",
-     "distractor_mechanisms": [
-      "diameter_as_spacing",
-      "no_index",
-      "linear_index_average",
-      "sphere_index",
-      "passes_if_no_index",
-      "satisfies_but_smaller",
-      "farther_from_target"
-     ],
-     "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明在哪种错误下会被选中。",
-     "principle": "设计 = 推断的逆问题；论文将这些样品用作“反射标尺”。",
-     "validation": "独立检查器逐文件分析晶格并按题干目标重选。",
-     "limits": "候选性质来自模型；实测峰值列于审核侧。",
-     "template_review": "本轮新建（A4），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-OP-DES-540",
-      "question": "The four files list the sphere centres (nm) of model opal crystallites made from four different polystyrene sphere batches (files named by sample; each built from that sample's published sphere diameter; neighbouring spheres touch). Model conditions: the only measured input is the sphere diameter reported by Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. Model the film as this lattice with its close-packed planes parallel to the film surface. The spheres have refractive index 1.59 and the voids are filled with a medium of refractive index 1.00; take the effective index from the volume-weighted average of the squared refractive indices (n_eff² = Σ f_i n_i²), using the sphere volume fraction of this packing. You must choose one sample for a new film such that its first-order normal-incidence Bragg reflection from the close-packed planes is closest to 540 nm. Which sample should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "S8 (opal-PS-S8.xyz)"
-       },
-       {
-        "label": "B",
-        "value": "S5 (opal-PS-S5.xyz)"
-       },
-       {
-        "label": "C",
-        "value": "S6 (opal-PS-S6.xyz)"
-       },
-       {
-        "label": "D",
-        "value": "S7 (opal-PS-S7.xyz)"
-       }
-      ],
-      "inputs": [
-       "opal-PS-S5.xyz",
-       "opal-PS-S6.xyz",
-       "opal-PS-S7.xyz",
-       "opal-PS-S8.xyz"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "diameter_as_spacing",
-        "reason": "把球径当作密排面间距时它的反射（609.8 nm）最接近目标。"
-       },
-       {
-        "label": "B",
-        "rule": "no_index",
-        "reason": "忽略折射率时它的反射（422.3 nm）最接近目标。"
-       },
-       {
-        "label": "C",
-        "rule": "farther_from_target",
-        "reason": "正确模型下反射在 593.9 nm，离目标更远。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "正确模型下反射在 535.9 nm，最接近目标。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-OP-DES-820",
-      "question": "The four files list the sphere centres (nm) of model opal crystallites made from four different polystyrene sphere batches (files named by sample; each built from that sample's published sphere diameter; neighbouring spheres touch). Model conditions: the only measured input is the sphere diameter reported by Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. Model the film as this lattice with its close-packed planes parallel to the film surface. The spheres have refractive index 1.59 and the voids are filled with a medium of refractive index 1.00; take the effective index from the volume-weighted average of the squared refractive indices (n_eff² = Σ f_i n_i²), using the sphere volume fraction of this packing. You must choose one sample for a new film such that its first-order normal-incidence Bragg reflection from the close-packed planes is closest to 820 nm. Which sample should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "S3 (opal-PS-S3.xyz)"
-       },
-       {
-        "label": "B",
-        "value": "S4 (opal-PS-S4.xyz)"
-       },
-       {
-        "label": "C",
-        "value": "S2 (opal-PS-S2.xyz)"
-       },
-       {
-        "label": "D",
-        "value": "S5 (opal-PS-S5.xyz)"
-       }
-      ],
-      "inputs": [
-       "opal-PS-S2.xyz",
-       "opal-PS-S3.xyz",
-       "opal-PS-S4.xyz",
-       "opal-PS-S5.xyz"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "正确模型下反射在 815.0 nm，最接近目标。"
-       },
-       {
-        "label": "B",
-        "rule": "sphere_index",
-        "reason": "用球的折射率代替有效折射率时它的反射（849.0 nm）最接近目标。"
-       },
-       {
-        "label": "C",
-        "rule": "no_index",
-        "reason": "忽略折射率时它的反射（603.2 nm）最接近目标。"
-       },
-       {
-        "label": "D",
-        "rule": "diameter_as_spacing",
-        "reason": "把球径当作密排面间距时它的反射（755.2 nm）最接近目标。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "opal_geometry",
-   "kind": "family",
-   "ability": "perception",
-   "registry_id": "opal_geometry",
-   "generator": "task_families/photonic.py",
-   "checker": "checkers/superlattice.py",
-   "checker_function": "opal_quantity",
-   "bindings": {
-    "L1": {
-     "registry_row": "f01beb20a4e98f0a57f44558b86be69fefae16161a8bb5052a092e0de31a3e54",
-     "task_families/photonic.py": "3afa16d6c06b6f3367a963632644cd375dbc0caab3e8bcca42a2b6ede7d9585c"
-    },
-    "L2": {
-     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "胶体光子晶体几何（球径 / 密排面间距 / 晶胞）",
-     "concept": "从旋转后的球心坐标识别接触球 FCC：球径（最近邻距离）、最密排面间距、常规晶胞边长，均在 100–1000 nm。",
-     "inputs": "胶体晶体（蛋白石）晶粒模型的球心坐标（nm，每行 \"sphere x y z\"，177 个，经确定性旋转）；设计题给四个候选文件。",
-     "physical_conditions": "接触球理想 FCC；密排面平行于膜面；有效折射率 n_eff² = Σ f_i n_i²（或题给 n_eff）；Bragg–Snell 一级反射。",
-     "reasoning_scale": "晶格周期：常规晶胞边长 a（约 295–522 nm）",
-     "scale_limits": "按论文球径构建的模型；不含尺寸分布、堆垛缺陷与多面衍射；审核侧附实测峰值供比较。",
-     "source_basis": "Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（聚苯乙烯球径与实测反射峰）；Fookes et al., Sensors 23, 1433 (2023) 参数表（二氧化硅 266 nm、n_eff 1.35、30°）",
-     "answer_method": "中心球周围分壳，核对 12/6 与 √2 比例，并与论文球径一致。",
-     "distractor_mechanisms": [
-      "cell_edge",
-      "radius",
-      "d111",
-      "half_cell_edge",
-      "d200",
-      "in_layer_row_spacing",
-      "nearest_neighbour",
-      "third_shell_distance",
-      "face_diagonal"
-     ],
-     "four_choice_validation": "与正确值 > 3 nm；升序排列，秩按批次轮换。",
-     "principle": "接触球 FCC：最近邻 = 球径 D，a = √2·D，d111 = a/√3。",
-     "validation": "独立检查器由初基基矢与倒格子求 d111 与常规边长。",
-     "limits": "理想接触球 FCC：不含堆垛层错、球径分布、烧结或收缩；有效折射率用体积加权近似（或题给 n_eff）。",
-     "template_review": "本轮新建（A4），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-OP-D111-S2",
-      "question": "The file lists the sphere centres (nm) of a model polystyrene opal crystallite built from a published sphere diameter; neighbouring spheres touch. Model conditions: the only measured input is the sphere diameter reported by Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. What is the spacing between adjacent close-packed (most densely populated) planes of sphere centres, in nm?",
-      "options": [
-       {
-        "label": "A",
-        "value": "301.6",
-        "unit": "nm"
-       },
-       {
-        "label": "B",
-        "value": "319.9",
-        "unit": "nm"
-       },
-       {
-        "label": "C",
-        "value": "369.4",
-        "unit": "nm"
-       },
-       {
-        "label": "D",
-        "value": "522.4",
-        "unit": "nm"
-       }
-      ],
-      "inputs": [
-       "opal-PS-S2.xyz"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "由坐标：12 个最近邻在 369.3800 nm（= 球径），6 个次近邻在 a = 522.3822 nm。"
-       },
-       {
-        "label": "B",
-        "rule": "in_layer_row_spacing",
-        "reason": "算成密排层内相邻原子行的间距。"
-       },
-       {
-        "label": "C",
-        "rule": "nearest_neighbour",
-        "reason": "把最近邻间距当作面间距。"
-       },
-       {
-        "label": "D",
-        "rule": "cell_edge",
-        "reason": "报告了晶胞边长而非面间距。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-OP-DIAM-S8",
-      "question": "The file lists the sphere centres (nm) of a model polystyrene opal crystallite built from a published sphere diameter; neighbouring spheres touch. Model conditions: the only measured input is the sphere diameter reported by Gazmeh et al. (Sci. Rep. 2025, Table 3; field-emission SEM); the spheres are identical (no size dispersion), touch their neighbours and sit on an ideal close-packed lattice without stacking faults, vacancies or cracks, which is the idealization behind the paper's Bragg-law estimate of the reflection peak. Each crystallite is a finite cut of 177 spheres in an arbitrary orientation. What is the sphere diameter, in nm?",
-      "options": [
-       {
-        "label": "A",
-        "value": "104.4",
-        "unit": "nm"
-       },
-       {
-        "label": "B",
-        "value": "147.7",
-        "unit": "nm"
-       },
-       {
-        "label": "C",
-        "value": "170.5",
-        "unit": "nm"
-       },
-       {
-        "label": "D",
-        "value": "208.8",
-        "unit": "nm"
-       }
-      ],
-      "inputs": [
-       "opal-PS-S8.xyz"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "radius",
-        "reason": "报告了半径。"
-       },
-       {
-        "label": "B",
-        "rule": "half_cell_edge",
-        "reason": "取晶胞边长的一半。"
-       },
-       {
-        "label": "C",
-        "rule": "d111",
-        "reason": "报告了密排面间距。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "由坐标：12 个最近邻在 208.8500 nm（= 球径），6 个次近邻在 a = 295.3585 nm。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "qdot_design",
-   "kind": "family",
-   "ability": "design",
-   "registry_id": "qdot_design",
-   "generator": "task_families/quantum_dot.py",
-   "checker": "checkers/quantum_dot.py",
-   "checker_function": "qdot_design",
-   "bindings": {
-    "L1": {
-     "registry_row": "62c99392e4811dfc72a9aee4d940e5e76d159856b306de55953f8dd173651429",
-     "task_families/quantum_dot.py": "cce686e77411c9425c57ad6bb806f75765b1d1d82180914cca699e2aaae5e3db"
-    },
-    "L2": {
-     "checkers/quantum_dot.py": "d1cdad3a661f98dddac3c5d6bedfcd68e9bb6cb223a03624526e7d96cf3af63f",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 2,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "量子点粒径选择设计",
-     "concept": "在四个纳米晶模型中选一个，使第一激子吸收峰最接近目标，或选吸收峰不短于阈值的最小粒子（推断的逆问题）。",
-     "inputs": "四个 CdSe 纳米晶模型 XYZ。",
-     "physical_conditions": "题干给出 Yu 2003 的经验多项式、适用范围与 Model conditions（与 CdSe 量子点光学题相同）。",
-     "reasoning_scale": "候选最大粒径",
-     "scale_limits": "经验曲线只在拟合尺寸范围内可靠；模型无配体。",
-     "source_basis": "Yu et al. (2003) 经验曲线",
-     "answer_method": "逐个候选反解吸收峰，按目标规则选择。",
-     "distractor_mechanisms": [
-      "radius_as_diameter",
-      "two_rg",
-      "bounding_box_diagonal",
-      "passes_if_bounding_box_diagonal",
-      "meets_but_larger",
-      "farther_from_target"
-     ],
-     "four_choice_validation": "恰好一个候选满足目标；领先幅度或阈值距离足够。",
-     "principle": "设计 = 推断的逆问题。",
-     "validation": "独立检查器（checkers/quantum_dot.py:qdot_design）逐个文件用 Decimal 复核最大间距，用多项式求根（numpy.roots）反解吸收峰，再按题干目标规则重新选择。",
-     "limits": "候选为按论文曲线构建的理想球形 CdSe 模型粒子（晶格常数 6.08 Å 为假设），不是实测样品；答案只取决于所给坐标与题干曲线。",
-     "template_review": "本轮新建（A2/A3），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-QD-DES-565",
-      "question": "The four XYZ files list every atom of four model zinc-blende CdSe nanocrystals (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. Model conditions: each nanocrystal is an ideal spherical cut from bulk zinc-blende CdSe (assumed lattice constant 6.08 Å) without ligands, surface relaxation or shape anisotropy; the empirical curves above were calibrated by Yu et al. on real nanocrystals whose sizes were measured by TEM, and are applied here to these ideal particles. You must choose one nanocrystal for a device such that it is the smallest particle whose first excitonic absorption peak lies at or beyond 565 nm. Which file should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "CdSe-QD-D.xyz"
-       },
-       {
-        "label": "B",
-        "value": "CdSe-QD-C.xyz"
-       },
-       {
-        "label": "C",
-        "value": "CdSe-QD-A.xyz"
-       },
-       {
-        "label": "D",
-        "value": "CdSe-QD-B.xyz"
-       }
-      ],
-      "inputs": [
-       "CdSe-QD-A.xyz",
-       "CdSe-QD-B.xyz",
-       "CdSe-QD-C.xyz",
-       "CdSe-QD-D.xyz"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "meets_but_larger",
-        "reason": "吸收峰 592.4 nm 满足要求，但粒子更大（D = 4.26 nm）。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "满足要求的粒子中最小（D = 3.76 nm，吸收峰 578.1 nm）。"
-       },
-       {
-        "label": "C",
-        "rule": "passes_if_bounding_box_diagonal",
-        "reason": "吸收峰 536.6 nm，未达到 565 nm；若用包围盒对角线会误判为满足。"
-       },
-       {
-        "label": "D",
-        "rule": "passes_if_bounding_box_diagonal",
-        "reason": "吸收峰 561.1 nm，未达到 565 nm；若用包围盒对角线会误判为满足。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-QD-DES-590",
-      "question": "The four XYZ files list every atom of four model zinc-blende CdSe nanocrystals (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. Model conditions: each nanocrystal is an ideal spherical cut from bulk zinc-blende CdSe (assumed lattice constant 6.08 Å) without ligands, surface relaxation or shape anisotropy; the empirical curves above were calibrated by Yu et al. on real nanocrystals whose sizes were measured by TEM, and are applied here to these ideal particles. You must choose one nanocrystal for a device such that its first excitonic absorption peak is closest to 590 nm. Which file should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "CdSe-QD-D.xyz"
-       },
-       {
-        "label": "B",
-        "value": "CdSe-QD-C.xyz"
-       },
-       {
-        "label": "C",
-        "value": "CdSe-QD-B.xyz"
-       },
-       {
-        "label": "D",
-        "value": "CdSe-QD-E.xyz"
-       }
-      ],
-      "inputs": [
-       "CdSe-QD-B.xyz",
-       "CdSe-QD-C.xyz",
-       "CdSe-QD-D.xyz",
-       "CdSe-QD-E.xyz"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "吸收峰 592.4 nm，最接近目标。"
-       },
-       {
-        "label": "B",
-        "rule": "farther_from_target",
-        "reason": "吸收峰 578.1 nm，离目标更远。"
-       },
-       {
-        "label": "C",
-        "rule": "bounding_box_diagonal",
-        "reason": "用包围盒对角线时它的吸收峰（618.3 nm）最接近目标。"
-       },
-       {
-        "label": "D",
-        "rule": "radius_as_diameter",
-        "reason": "把半径当直径时它的吸收峰（514.1 nm）最接近目标。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "qdot_optics",
-   "kind": "family",
-   "ability": "inference",
-   "registry_id": "qdot_optics",
-   "generator": "task_families/quantum_dot.py",
-   "checker": "checkers/quantum_dot.py",
-   "checker_function": "qdot_quantity",
-   "bindings": {
-    "L1": {
-     "registry_row": "eea0a3f2ee513f0537ad3bd1e551313bd15b497089955526efde906729afaee9",
-     "task_families/quantum_dot.py": "cce686e77411c9425c57ad6bb806f75765b1d1d82180914cca699e2aaae5e3db"
-    },
-    "L2": {
-     "checkers/quantum_dot.py": "d1cdad3a661f98dddac3c5d6bedfcd68e9bb6cb223a03624526e7d96cf3af63f",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "CdSe 量子点尺寸与光学（经验曲线）",
-     "concept": "由纳米晶模型坐标确定粒径（最大原子间距），用 Yu et al. (2003) 的经验曲线推断第一激子吸收峰、摩尔消光系数，或由吸光度求浓度。",
-     "inputs": "闪锌矿 CdSe 纳米晶模型 XYZ（本项目构建）。",
-     "physical_conditions": "题干给出经验多项式、适用范围与消光定律。",
-     "reasoning_scale": "纳米晶最大原子间距",
-     "scale_limits": "经验曲线只在拟合尺寸范围内可靠；模型无配体。",
-     "source_basis": "Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003)：CdSe 尺寸多项式与 ε = 5857 D^2.65",
-     "answer_method": "二分法反解 D(λ)；Beer–Lambert。",
-     "distractor_mechanisms": [
-      "bounding_box_diagonal",
-      "two_rg",
-      "radius_as_diameter",
-      "diameter_in_angstrom",
-      "cubic_exponent",
-      "exponent_as_factor",
-      "path_in_mm"
-     ],
-     "four_choice_validation": "与正确值 > 3 nm、0.1×10⁵ 或 0.05 µM；升序排列，秩按批次轮换。",
-     "principle": "量子限域：粒径越小吸收越蓝移（经验标定）。",
-     "validation": "独立检查器用 Decimal 复核最大间距，用多项式求根（numpy.roots）反解。",
-     "limits": "论文参数模型；晶格常数 6.08 Å 为模型假设，答案只取决于所给坐标。",
-     "template_review": "本轮新建（A2/A3），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-QD-CONC-B",
-      "question": "The XYZ file lists every atom of a model zinc-blende CdSe nanocrystal (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. Model conditions: the nanocrystal is an ideal spherical cut from bulk zinc-blende CdSe (assumed lattice constant 6.08 Å) without ligands, surface relaxation or shape anisotropy; the empirical curves above were calibrated by Yu et al. on real nanocrystals whose sizes were measured by TEM, and are applied here to this ideal particle. A dilute solution of these nanocrystals has an absorbance of 0.25 at the first excitonic peak in a 1.0 cm cuvette. What is the nanocrystal concentration, in µM (Beer–Lambert law)?",
-      "options": [
-       {
-        "label": "A",
-        "value": "0.464",
-        "unit": "uM"
-       },
-       {
-        "label": "B",
-        "value": "1.826",
-        "unit": "uM"
-       },
-       {
-        "label": "C",
-        "value": "3.464",
-        "unit": "uM"
-       },
-       {
-        "label": "D",
-        "value": "11.462",
-        "unit": "uM"
-       }
-      ],
-      "inputs": [
-       "CdSe-QD-B.xyz"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "bounding_box_diagonal",
-        "reason": "用包围盒对角线代替最大原子间距。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "c = A/(ε l) = 0.25/(136902 × 1.0) = 1.8261 µM。"
-       },
-       {
-        "label": "C",
-        "rule": "two_rg",
-        "reason": "用 2 倍回转半径代替直径。"
-       },
-       {
-        "label": "D",
-        "rule": "radius_as_diameter",
-        "reason": "把半径当作直径代入。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-QD-EPS-E",
-      "question": "The XYZ file lists every atom of a model zinc-blende CdSe nanocrystal (no ligands; angstrom). Use the empirical CdSe sizing curve of Yu et al. (Chem. Mater. 2003): D = 1.6122e-9·λ⁴ − 2.6575e-6·λ³ + 1.6242e-3·λ² − 0.4277·λ + 41.57, with D the particle diameter in nm and λ the wavelength of the first excitonic absorption peak in nm (valid for 400–700 nm), and its extinction law ε = 5857·D^2.65 M⁻¹ cm⁻¹ at that peak. Take D as the largest distance between any two atoms of the supplied nanocrystal. Model conditions: the nanocrystal is an ideal spherical cut from bulk zinc-blende CdSe (assumed lattice constant 6.08 Å) without ligands, surface relaxation or shape anisotropy; the empirical curves above were calibrated by Yu et al. on real nanocrystals whose sizes were measured by TEM, and are applied here to this ideal particle. What is its molar extinction coefficient at the first excitonic peak, in units of 10⁵ M⁻¹ cm⁻¹?",
-      "options": [
-       {
-        "label": "A",
-        "value": "2.092",
-        "unit": "1e5 M^-1 cm^-1"
-       },
-       {
-        "label": "B",
-        "value": "4.132",
-        "unit": "1e5 M^-1 cm^-1"
-       },
-       {
-        "label": "C",
-        "value": "7.250",
-        "unit": "1e5 M^-1 cm^-1"
-       },
-       {
-        "label": "D",
-        "value": "17.251",
-        "unit": "1e5 M^-1 cm^-1"
-       }
-      ],
-      "inputs": [
-       "CdSe-QD-E.xyz"
-      ],
-      "correct_label": "B",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "two_rg",
-        "reason": "用 2 倍回转半径代替直径。"
-       },
-       {
-        "label": "B",
-        "rule": "correct",
-        "reason": "ε = 5857 × 4.9837^2.65 = 413219 M⁻¹ cm⁻¹。"
-       },
-       {
-        "label": "C",
-        "rule": "cubic_exponent",
-        "reason": "指数误用 3（体积标度）。"
-       },
-       {
-        "label": "D",
-        "rule": "bounding_box_diagonal",
-        "reason": "用包围盒对角线代替最大原子间距。"
        }
       ]
      }
@@ -6221,1053 +4499,6 @@
      }
     ]
    }
-  },
-  {
-   "unit": "superlattice_design",
-   "kind": "family",
-   "ability": "design",
-   "registry_id": "superlattice_design",
-   "generator": "task_families/superlattice.py",
-   "checker": "checkers/superlattice.py",
-   "checker_function": "superlattice_design",
-   "bindings": {
-    "L1": {
-     "registry_row": "cd057523b20a3ae564ac58349e2912ba1657952bb25d2fdf2c78d184ae666a0b",
-     "task_families/superlattice.py": "7815e908c5d30f5f208fcae8f35b76afeb33003452a00e781b1973a0520a62e6"
-    },
-    "L2": {
-     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "超晶格连接子设计选择",
-     "concept": "在论文实际做出的四种 DNA 连接子中选择一种，使超晶格达到目标（首个 Bragg 反射、最近邻间距，或在金含量约束下间距最大）；四个候选各有模型晶粒。",
-     "inputs": "DNA 连接金纳米粒子超晶格晶粒模型的粒子中心 XYZ（nm，约 177 个，经确定性旋转）；设计题给四个候选文件。",
-     "physical_conditions": "理想无限 FCC 晶格（按论文 SAXS 晶胞边长）；粒子视为相同点散射体；金核直径 10.3 nm 在题干给出。",
-     "reasoning_scale": "晶格周期（常规晶胞边长 a，约 40–77 nm）",
-     "scale_limits": "按论文参数构建的模型，不是实测粒子坐标；不含位置无序、峰宽与形状因子。",
-     "source_basis": "Hill et al., Nano Lett. 8, 2341 (2008) 表 1：五种 DNA 连接子的 SAXS 晶胞边长（论文参数模型）",
-     "answer_method": "逐个候选由坐标计算性质，按目标规则取唯一最优；要求领先幅度足够。",
-     "distractor_mechanisms": [
-      "q_from_nearest_neighbour",
-      "q_200_as_first",
-      "cell_edge_as_spacing",
-      "plane_spacing_as_spacing",
-      "diameter_as_radius_passes",
-      "highest_gold_not_largest_spacing",
-      "satisfies_but_smaller_spacing",
-      "farther_from_target"
-     ],
-     "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明在哪种错误下会被选中。",
-     "principle": "设计 = 推断的逆问题；论文本身即以此线性关系设计连接子长度。",
-     "validation": "独立检查器逐文件分析晶格并按题干目标重选。",
-     "limits": "候选性质来自按 SAXS 参数构建的模型；没有新的实验证据。",
-     "template_review": "本轮新建（A4），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-SL-DES-GOLD",
-      "question": "The four XYZ files list the gold-nanoparticle centres (nm) of model crystallites of DNA-linked gold-nanoparticle superlattices assembled with four different duplex DNA linkers; each file is named after its linker and was built from that linker's published SAXS unit-cell size. Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. You must choose one linker for a new superlattice such that the nearest-neighbour spacing is as large as possible while at least 1.0 % of the volume is gold (solid gold cores of diameter 10.3 nm; perfect infinite lattice). Which linker should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "39-linker (Au-FCC-39-linker.xyz)"
-       },
-       {
-        "label": "B",
-        "value": "X-linker (Au-FCC-X-linker.xyz)"
-       },
-       {
-        "label": "C",
-        "value": "13-linker (Au-FCC-13-linker.xyz)"
-       },
-       {
-        "label": "D",
-        "value": "26-linker (Au-FCC-26-linker.xyz)"
-       }
-      ],
-      "inputs": [
-       "Au-FCC-X-linker.xyz",
-       "Au-FCC-13-linker.xyz",
-       "Au-FCC-26-linker.xyz",
-       "Au-FCC-39-linker.xyz"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "diameter_as_radius_passes",
-        "reason": "金含量 0.744% 低于要求；若把直径当半径（×8）会误判为满足。"
-       },
-       {
-        "label": "B",
-        "rule": "highest_gold_not_largest_spacing",
-        "reason": "金含量最高（3.630%），但间距不是满足条件中最大的。"
-       },
-       {
-        "label": "C",
-        "rule": "satisfies_but_smaller_spacing",
-        "reason": "满足金含量（2.367%），但间距 32.46 nm 不是最大。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "满足金含量（1.236%）的候选中最近邻最大（40.31 nm）。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-SL-DES-NN",
-      "question": "The four XYZ files list the gold-nanoparticle centres (nm) of model crystallites of DNA-linked gold-nanoparticle superlattices assembled with four different duplex DNA linkers; each file is named after its linker and was built from that linker's published SAXS unit-cell size. Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. You must choose one linker for a new superlattice such that the centre-to-centre nearest-neighbour spacing of the particles is closest to 45 nm. Which linker should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "13-linker (Au-FCC-13-linker.xyz)"
-       },
-       {
-        "label": "B",
-        "value": "52-linker (Au-FCC-52-linker.xyz)"
-       },
-       {
-        "label": "C",
-        "value": "39-linker (Au-FCC-39-linker.xyz)"
-       },
-       {
-        "label": "D",
-        "value": "26-linker (Au-FCC-26-linker.xyz)"
-       }
-      ],
-      "inputs": [
-       "Au-FCC-13-linker.xyz",
-       "Au-FCC-26-linker.xyz",
-       "Au-FCC-39-linker.xyz",
-       "Au-FCC-52-linker.xyz"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "cell_edge_as_spacing",
-        "reason": "把常规晶胞边长当作最近邻间距时它最接近目标。"
-       },
-       {
-        "label": "B",
-        "rule": "plane_spacing_as_spacing",
-        "reason": "把密排面间距当作粒子间距时它最接近目标。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "最近邻 47.7297 nm，最接近目标。"
-       },
-       {
-        "label": "D",
-        "rule": "farther_from_target",
-        "reason": "按正确定义离目标更远（D = 40.3051）。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "superlattice_metric",
-   "kind": "family",
-   "ability": "perception",
-   "registry_id": "superlattice_geometry",
-   "generator": "task_families/superlattice.py",
-   "checker": "checkers/superlattice.py",
-   "checker_function": "superlattice_quantity",
-   "bindings": {
-    "L1": {
-     "registry_row": "ed528804599fe13763af3d1f0c278a50e076acd8d355004a2e7b04d856434985",
-     "task_families/superlattice.py": "7815e908c5d30f5f208fcae8f35b76afeb33003452a00e781b1973a0520a62e6"
-    },
-    "L2": {
-     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "纳米粒子超晶格几何（最近邻壳层 / 晶胞 / 密排面间距）",
-     "concept": "从旋转后的粒子中心坐标识别晶格：最近邻壳层（个数与距离）、常规立方晶胞边长、最密排面间距，均在晶格周期尺度（10–100 nm）。",
-     "inputs": "DNA 连接金纳米粒子超晶格晶粒模型的粒子中心 XYZ（nm，约 177 个，经确定性旋转）；设计题给四个候选文件。",
-     "physical_conditions": "理想无限 FCC 晶格（按论文 SAXS 晶胞边长）；粒子视为相同点散射体；金核直径 10.3 nm 在题干给出。",
-     "reasoning_scale": "晶格周期（常规晶胞边长 a，约 40–77 nm）",
-     "scale_limits": "按论文参数构建的模型，不是实测粒子坐标；不含位置无序、峰宽与形状因子。",
-     "source_basis": "Hill et al., Nano Lett. 8, 2341 (2008) 表 1：五种 DNA 连接子的 SAXS 晶胞边长（论文参数模型）",
-     "answer_method": "中心粒子周围分壳（容差 1e-4 nm），核对 12/6 与 √2 比例（FCC），并与表 1 晶胞边长一致。",
-     "distractor_mechanisms": [
-      "second_shell",
-      "surface_particle",
-      "bcc_assumption",
-      "nearest_neighbour",
-      "face_diagonal",
-      "primitive_cell_root",
-      "d200",
-      "in_layer_row_spacing",
-      "d220"
-     ],
-     "four_choice_validation": "壳层选项互不相同；数值与正确值 > 1 nm；升序排列，秩按批次轮换。",
-     "principle": "FCC：12 个最近邻在 a/√2，6 个次近邻在 a；最密排面 {111}，d = a/√3。",
-     "validation": "独立检查器从坐标选初基基矢（最小体积），验证所有粒子落在整数格点上，常规边长 = (4V)^(1/3)，面间距 = 2π/|G|min。",
-     "limits": "理想无限 FCC 点阵：不含晶格缺陷、有限晶粒、粒径分布与 DNA 连接子的柔性；数值只对应论文 SAXS 晶胞边长所给的理想结构。",
-     "template_review": "本轮新建（A4），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-SL-D111-39",
-      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. What is the spacing between adjacent close-packed (most densely populated) lattice planes of the particles, in nm?",
-      "options": [
-       {
-        "label": "A",
-        "value": "38.97",
-        "unit": "nm"
-       },
-       {
-        "label": "B",
-        "value": "41.34",
-        "unit": "nm"
-       },
-       {
-        "label": "C",
-        "value": "47.73",
-        "unit": "nm"
-       },
-       {
-        "label": "D",
-        "value": "67.50",
-        "unit": "nm"
-       }
-      ],
-      "inputs": [
-       "Au-FCC-39-linker.xyz"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "由坐标得 FCC：最近邻 12 个 47.7297 nm，第二壳层 6 个 a = 67.5000 nm；按定义计算。"
-       },
-       {
-        "label": "B",
-        "rule": "in_layer_row_spacing",
-        "reason": "算成密排层内相邻原子行的间距。"
-       },
-       {
-        "label": "C",
-        "rule": "nearest_neighbour",
-        "reason": "把最近邻间距当作面间距。"
-       },
-       {
-        "label": "D",
-        "rule": "cell_edge",
-        "reason": "报告了晶胞边长而非面间距。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-SL-EDGE-26",
-      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. What is the edge length of the conventional cubic unit cell of this particle lattice, in nm?",
-      "options": [
-       {
-        "label": "A",
-        "value": "32.91",
-        "unit": "nm"
-       },
-       {
-        "label": "B",
-        "value": "40.31",
-        "unit": "nm"
-       },
-       {
-        "label": "C",
-        "value": "57.00",
-        "unit": "nm"
-       },
-       {
-        "label": "D",
-        "value": "69.81",
-        "unit": "nm"
-       }
-      ],
-      "inputs": [
-       "Au-FCC-26-linker.xyz"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "d111",
-        "reason": "报告了密排面间距。"
-       },
-       {
-        "label": "B",
-        "rule": "nearest_neighbour",
-        "reason": "把最近邻间距当作晶胞边长。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "由坐标得 FCC：最近邻 12 个 40.3051 nm，第二壳层 6 个 a = 57.0000 nm；按定义计算。"
-       },
-       {
-        "label": "D",
-        "rule": "third_shell_distance",
-        "reason": "把第三近邻距离当作晶胞边长。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "superlattice_saxs",
-   "kind": "family",
-   "ability": "inference",
-   "registry_id": "superlattice_scattering",
-   "generator": "task_families/superlattice.py",
-   "checker": "checkers/superlattice.py",
-   "checker_function": "superlattice_quantity",
-   "bindings": {
-    "L1": {
-     "registry_row": "a13cb8da263aaf06948ad282164fd11dbf2647aa0c3b4b4996f3cae28be143dd",
-     "task_families/superlattice.py": "7815e908c5d30f5f208fcae8f35b76afeb33003452a00e781b1973a0520a62e6"
-    },
-    "L2": {
-     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "纳米粒子超晶格 SAXS 反射与金含量",
-     "concept": "由粒子坐标推断可观测量：第一与第二个非零 Bragg 反射的 q（q = 4π sinθ/λ），以及给定金核直径时的金体积百分数。",
-     "inputs": "DNA 连接金纳米粒子超晶格晶粒模型的粒子中心 XYZ（nm，约 177 个，经确定性旋转）；设计题给四个候选文件。",
-     "physical_conditions": "理想无限 FCC 晶格（按论文 SAXS 晶胞边长）；粒子视为相同点散射体；金核直径 10.3 nm 在题干给出。",
-     "reasoning_scale": "晶格周期（常规晶胞边长 a，约 40–77 nm）",
-     "scale_limits": "按论文参数构建的模型，不是实测粒子坐标；不含位置无序、峰宽与形状因子。",
-     "source_basis": "Hill et al., Nano Lett. 8, 2341 (2008) 表 1：五种 DNA 连接子的 SAXS 晶胞边长（论文参数模型）",
-     "answer_method": "q* = 2π√3/a，q(200) = 4π/a；金含量 = 4·(4/3)πr³/a³。",
-     "distractor_mechanisms": [
-      "q_100_forbidden",
-      "q_from_nearest_neighbour",
-      "q_200",
-      "q_111_first_peak",
-      "q_220",
-      "missing_two_pi",
-      "per_angstrom",
-      "one_particle_per_cell",
-      "two_particles_per_cell",
-      "diameter_as_radius",
-      "four_per_primitive_cell"
-     ],
-     "four_choice_validation": "与正确值 > 0.005 nm⁻¹ 或 0.05 个百分点；升序排列，秩按批次轮换。",
-     "principle": "布拉维格子的 Bragg 反射在倒格矢 G 处；FCC 的最短 G 为 {111}。",
-     "validation": "独立检查器由初基基矢求倒格子，枚举 |G| 并按容差归并；金含量用初基胞体积（每胞 1 个粒子）。",
-     "limits": "点散射体、无限完美晶格；实测 SAXS 峰宽与形状因子不在题内。",
-     "template_review": "本轮新建（A4），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-SL-GOLD-52",
-      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. Each particle is a solid gold sphere with a core diameter of 10.3 nm and the DNA shell contains no gold. Treating the lattice as perfect and infinite, what percentage of the total volume is gold?",
-      "options": [
-       {
-        "label": "A",
-        "value": "0.509",
-        "unit": "%"
-       },
-       {
-        "label": "B",
-        "value": "1.440",
-        "unit": "%"
-       },
-       {
-        "label": "C",
-        "value": "2.037",
-        "unit": "%"
-       },
-       {
-        "label": "D",
-        "value": "4.074",
-        "unit": "%"
-       }
-      ],
-      "inputs": [
-       "Au-FCC-52-linker.xyz"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "由坐标得 FCC：最近邻 12 个 54.1644 nm，第二壳层 6 个 a = 76.6000 nm；按定义计算。"
-       },
-       {
-        "label": "B",
-        "rule": "nearest_neighbour_as_cell_edge",
-        "reason": "用最近邻间距当作常规晶胞边长（仍按每胞 4 个粒子）。"
-       },
-       {
-        "label": "C",
-        "rule": "four_per_primitive_cell",
-        "reason": "用初基胞体积 a³/4，却仍按 4 个粒子计。"
-       },
-       {
-        "label": "D",
-        "rule": "diameter_as_radius",
-        "reason": "把直径当半径代入球体积。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-SL-Q200-13",
-      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. Treat the particles as identical point scatterers on a perfect, infinite lattice with this geometry. At what q (in nm⁻¹, q = 4π sinθ/λ) does the second distinct Bragg reflection with nonzero intensity appear?",
-      "options": [
-       {
-        "label": "A",
-        "value": "0.0436",
-        "unit": "nm^-1"
-       },
-       {
-        "label": "B",
-        "value": "0.1369",
-        "unit": "nm^-1"
-       },
-       {
-        "label": "C",
-        "value": "0.2371",
-        "unit": "nm^-1"
-       },
-       {
-        "label": "D",
-        "value": "0.2738",
-        "unit": "nm^-1"
-       }
-      ],
-      "inputs": [
-       "Au-FCC-13-linker.xyz"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "missing_two_pi",
-        "reason": "漏掉 2π。"
-       },
-       {
-        "label": "B",
-        "rule": "q_100_forbidden",
-        "reason": "把消光的 (100) 当作反射。"
-       },
-       {
-        "label": "C",
-        "rule": "q_111_first_peak",
-        "reason": "报告了第一个反射 (111)。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "由坐标得 FCC：最近邻 12 个 32.4562 nm，第二壳层 6 个 a = 45.9000 nm；按定义计算。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "superlattice_shell",
-   "kind": "family",
-   "ability": "perception",
-   "registry_id": "superlattice_geometry",
-   "generator": "task_families/superlattice.py",
-   "checker": "checkers/superlattice.py",
-   "checker_function": "superlattice_shell",
-   "bindings": {
-    "L1": {
-     "registry_row": "ed528804599fe13763af3d1f0c278a50e076acd8d355004a2e7b04d856434985",
-     "task_families/superlattice.py": "7815e908c5d30f5f208fcae8f35b76afeb33003452a00e781b1973a0520a62e6"
-    },
-    "L2": {
-     "checkers/superlattice.py": "c03a5a7bd5ced3e525f1c4d5b2c9a27971d3bc5af7a4c95115a13984f6e24fee",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 1,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "纳米粒子超晶格几何（最近邻壳层 / 晶胞 / 密排面间距）",
-     "concept": "从旋转后的粒子中心坐标识别晶格：最近邻壳层（个数与距离）、常规立方晶胞边长、最密排面间距，均在晶格周期尺度（10–100 nm）。",
-     "inputs": "DNA 连接金纳米粒子超晶格晶粒模型的粒子中心 XYZ（nm，约 177 个，经确定性旋转）；设计题给四个候选文件。",
-     "physical_conditions": "理想无限 FCC 晶格（按论文 SAXS 晶胞边长）；粒子视为相同点散射体；金核直径 10.3 nm 在题干给出。",
-     "reasoning_scale": "晶格周期（常规晶胞边长 a，约 40–77 nm）",
-     "scale_limits": "按论文参数构建的模型，不是实测粒子坐标；不含位置无序、峰宽与形状因子。",
-     "source_basis": "Hill et al., Nano Lett. 8, 2341 (2008) 表 1：五种 DNA 连接子的 SAXS 晶胞边长（论文参数模型）",
-     "answer_method": "中心粒子周围分壳（容差 1e-4 nm），核对 12/6 与 √2 比例（FCC），并与表 1 晶胞边长一致。",
-     "distractor_mechanisms": [
-      "second_shell",
-      "surface_particle",
-      "bcc_assumption",
-      "nearest_neighbour",
-      "face_diagonal",
-      "primitive_cell_root",
-      "d200",
-      "in_layer_row_spacing",
-      "d220"
-     ],
-     "four_choice_validation": "壳层选项互不相同；数值与正确值 > 1 nm；升序排列，秩按批次轮换。",
-     "principle": "FCC：12 个最近邻在 a/√2，6 个次近邻在 a；最密排面 {111}，d = a/√3。",
-     "validation": "独立检查器从坐标选初基基矢（最小体积），验证所有粒子落在整数格点上，常规边长 = (4V)^(1/3)，面间距 = 2π/|G|min。",
-     "limits": "理想无限 FCC 点阵：不含晶格缺陷、有限晶粒、粒径分布与 DNA 连接子的柔性；数值只对应论文 SAXS 晶胞边长所给的理想结构。",
-     "template_review": "本轮新建（A4），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-SL-SHELL-X",
-      "question": "The XYZ file lists the centres of the gold nanoparticles in a model crystallite of a DNA-linked gold-nanoparticle superlattice (coordinates in nm; built from a published SAXS unit-cell size). Model conditions: the only measured input is the unit-cell size that Hill et al. (Nano Lett. 2008, Table 1) obtained from SAXS; the particle centres sit on an ideal, perfectly ordered lattice with no vacancies, stacking faults, positional (thermal) disorder or particle-size dispersion, which is the idealization the paper uses to index its SAXS peaks. Each crystallite is a finite cut of about 177 particles in an arbitrary orientation. For the particle nearest the centroid of all particles, how many particles form its nearest-neighbour shell, and at what centre-to-centre distance? Distances are rounded to 0.01 nm.",
-      "options": [
-       {
-        "label": "A",
-        "value": "6 at 39.80 nm"
-       },
-       {
-        "label": "B",
-        "value": "8 at 28.14 nm"
-       },
-       {
-        "label": "C",
-        "value": "5 at 28.14 nm"
-       },
-       {
-        "label": "D",
-        "value": "12 at 28.14 nm"
-       }
-      ],
-      "inputs": [
-       "Au-FCC-X-linker.xyz"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "second_shell",
-        "reason": "报告了第二壳层（常规晶胞边长处的 6 个）。"
-       },
-       {
-        "label": "B",
-        "rule": "bcc_assumption",
-        "reason": "误认作体心立方，按 8 个最近邻计。"
-       },
-       {
-        "label": "C",
-        "rule": "surface_particle",
-        "reason": "数的是晶粒表面粒子的最近邻（表面缺配位）。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "中心粒子的最近壳层：12 个，28.142850 nm（= a/√2）。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "vortex_design",
-   "kind": "family",
-   "ability": "design",
-   "registry_id": "vortex_design",
-   "generator": "task_families/vortex.py",
-   "checker": "checkers/mesoscale.py",
-   "checker_function": "vortex_design",
-   "bindings": {
-    "L1": {
-     "registry_row": "5d6d04e7e623cd521fb7475a109dba5cedbb11d5b15ea0aa980bf9b090576d2e",
-     "task_families/vortex.py": "205f5e61f90c2a6c94bcebe79138d724d0e1596242dfb6ad2a3eacb123971ed5"
-    },
-    "L2": {
-     "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "涡旋晶格磁场选择设计",
-     "concept": "在论文实际施加的四个磁场中选一个，使涡旋间距或中子散射峰最接近目标，或在密度要求下磁场最低。",
-     "inputs": "涡旋中心位置图（nm，每行 \"V x y\"，约 97 个，确定性旋转）；设计题给四张不同磁场的图。",
-     "physical_conditions": "理想三角涡旋晶格，每个涡旋一个磁通量子 h/2e；题干写明 Model conditions。",
-     "reasoning_scale": "涡旋晶格间距 a（356–855 nm）",
-     "scale_limits": "按论文实测磁场或实测晶格常数构建的模型；不含钉扎无序；论文指出 188.7 G 时单个涡旋已难分辨。",
-     "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm）",
-     "answer_method": "逐张图计算晶胞，按目标规则选择；领先幅度检查。",
-     "distractor_mechanisms": [
-      "row_spacing",
-      "second_neighbour",
-      "two_pi_over_a",
-      "second_order_peak",
-      "passes_if_square_cell",
-      "meets_but_higher_field",
-      "too_sparse",
-      "farther_from_target"
-     ],
-     "four_choice_validation": "恰好一个候选满足目标；每个错误选项注明误选原因。",
-     "principle": "设计 = 推断的逆问题（选磁场）。",
-     "validation": "独立检查器（checkers/mesoscale.py:vortex_design）逐个文件由涡旋中心求初基晶胞，算出间距、密度或散射峰，再按题干目标规则重新选择。",
-     "limits": "候选为论文实测磁场的理想模型。",
-     "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-VX-DES-DENSITY",
-      "question": "The four files list the vortex centres (nm) in model images of the Abrikosov vortex lattice of an MgB2 crystal at four applied fields (files named by field). Model conditions: the only measured input is the applied magnetic field of each image reported by Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. You must choose one applied field such that the field is as low as possible while the areal vortex density is at least 4 vortices per square micrometre. Which field should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "117.3 G (11.73 mT) (vortex-MgB2-1173G.txt)"
-       },
-       {
-        "label": "B",
-        "value": "188.7 G (18.87 mT) (vortex-MgB2-1887G.txt)"
-       },
-       {
-        "label": "C",
-        "value": "50.8 G (5.08 mT) (vortex-MgB2-508G.txt)"
-       },
-       {
-        "label": "D",
-        "value": "56.1 G (5.61 mT) (vortex-MgB2-561G.txt)"
-       }
-      ],
-      "inputs": [
-       "vortex-MgB2-508G.txt",
-       "vortex-MgB2-561G.txt",
-       "vortex-MgB2-1173G.txt",
-       "vortex-MgB2-1887G.txt"
-      ],
-      "correct_label": "A",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "correct",
-        "reason": "满足密度要求的候选中磁场最低（密度 5.67 /μm²）。"
-       },
-       {
-        "label": "B",
-        "rule": "meets_but_higher_field",
-        "reason": "密度 9.13 /μm² 满足，但磁场更高。"
-       },
-       {
-        "label": "C",
-        "rule": "too_sparse",
-        "reason": "密度 2.46 /μm²，未达到 4。"
-       },
-       {
-        "label": "D",
-        "rule": "too_sparse",
-        "reason": "密度 2.71 /μm²，未达到 4。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-VX-DES-SANS",
-      "question": "The four files list the vortex centres (nm) in model images of the Abrikosov vortex lattice of an MgB2 crystal at four applied fields (files named by field). Model conditions: the only measured input is the applied magnetic field of each image reported by Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. You must choose one applied field such that the first-order small-angle-neutron-scattering Bragg peak of the vortex lattice (q = 4π sinθ/λ) is closest to 20 μm⁻¹. Which field should you choose?",
-      "options": [
-       {
-        "label": "A",
-        "value": "50.8 G (5.08 mT) (vortex-MgB2-508G.txt)"
-       },
-       {
-        "label": "B",
-        "value": "117.3 G (11.73 mT) (vortex-MgB2-1173G.txt)"
-       },
-       {
-        "label": "C",
-        "value": "56.1 G (5.61 mT) (vortex-MgB2-561G.txt)"
-       },
-       {
-        "label": "D",
-        "value": "188.7 G (18.87 mT) (vortex-MgB2-1887G.txt)"
-       }
-      ],
-      "inputs": [
-       "vortex-MgB2-508G.txt",
-       "vortex-MgB2-561G.txt",
-       "vortex-MgB2-1173G.txt",
-       "vortex-MgB2-1887G.txt"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "farther_from_target",
-        "reason": "正确计算为 10.58，离目标更远。"
-       },
-       {
-        "label": "B",
-        "rule": "farther_from_target",
-        "reason": "正确计算为 16.08，离目标更远。"
-       },
-       {
-        "label": "C",
-        "rule": "second_order_peak",
-        "reason": "用第二个峰时它最接近目标（19.26）。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "正确计算为 20.40，最接近目标。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "vortex_geometry",
-   "kind": "family",
-   "ability": "perception",
-   "registry_id": "vortex_geometry",
-   "generator": "task_families/vortex.py",
-   "checker": "checkers/mesoscale.py",
-   "checker_function": "vortex_quantity",
-   "bindings": {
-    "L1": {
-     "registry_row": "f46a19e8fb78eba9474eaa9da0dcd92a04ea2f2aaca446a95cb6a949c6740624",
-     "task_families/vortex.py": "205f5e61f90c2a6c94bcebe79138d724d0e1596242dfb6ad2a3eacb123971ed5"
-    },
-    "L2": {
-     "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 3,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "超导涡旋晶格几何（间距 / 密度）",
-     "concept": "从涡旋中心图识别 Abrikosov 涡旋晶格：晶格间距与涡旋面密度。",
-     "inputs": "涡旋中心位置图（nm，每行 \"V x y\"，约 97 个，确定性旋转）；设计题给四张不同磁场的图。",
-     "physical_conditions": "理想三角涡旋晶格，每个涡旋一个磁通量子 h/2e；题干写明 Model conditions。",
-     "reasoning_scale": "涡旋晶格间距 a（356–855 nm）",
-     "scale_limits": "按论文实测磁场或实测晶格常数构建的模型；不含钉扎无序；论文指出 188.7 G 时单个涡旋已难分辨。",
-     "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm）",
-     "answer_method": "中心涡旋 6 个等距近邻；与论文参数一致。",
-     "distractor_mechanisms": [
-      "row_spacing",
-      "second_neighbour",
-      "double_spacing",
-      "square_cell",
-      "half_density",
-      "circle_cell"
-     ],
-     "four_choice_validation": "与正确值 > 10 nm 或 0.15 /μm²；升序排列，秩按批次轮换。",
-     "principle": "三角涡旋晶格：a = (2Φ0/(√3B))^1/2，n = B/Φ0。",
-     "validation": "独立检查器由初基晶胞面积计算。",
-     "limits": "理想三角涡旋晶格：不含钉扎无序、晶界与有限尺寸效应；间距只对应论文实测磁场下的理想模型。",
-     "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-VX-DENSITY-1173",
-      "question": "The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor in a perpendicular magnetic field. Model conditions: the only measured input is the applied magnetic field (117.3 G = 11.73 mT) reported by Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. How many vortices are there per square micrometre (areal vortex density)?",
-      "options": [
-       {
-        "label": "A",
-        "value": "2.836",
-        "unit": "um^-2"
-       },
-       {
-        "label": "B",
-        "value": "4.913",
-        "unit": "um^-2"
-       },
-       {
-        "label": "C",
-        "value": "5.673",
-        "unit": "um^-2"
-       },
-       {
-        "label": "D",
-        "value": "6.255",
-        "unit": "um^-2"
-       }
-      ],
-      "inputs": [
-       "vortex-MgB2-1173G.txt"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "half_density",
-        "reason": "晶胞面积多乘了 2。"
-       },
-       {
-        "label": "B",
-        "rule": "square_cell",
-        "reason": "每个涡旋按 a² 的正方形面积计。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "三角涡旋晶格：a = 451.173 nm，B = 2Φ0/(√3 a²) = 11.7300 mT，n = B/Φ0。"
-       },
-       {
-        "label": "D",
-        "rule": "circle_cell",
-        "reason": "每个涡旋按直径为 a 的圆面积计。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-VX-SPACING-561",
-      "question": "The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor in a perpendicular magnetic field. Model conditions: the only measured input is the applied magnetic field (56.1 G = 5.61 mT) reported by Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. What is the vortex lattice spacing (centre-to-centre distance between neighbouring vortices), in nm?",
-      "options": [
-       {
-        "label": "A",
-        "value": "565.0",
-        "unit": "nm"
-       },
-       {
-        "label": "B",
-        "value": "607.1",
-        "unit": "nm"
-       },
-       {
-        "label": "C",
-        "value": "652.4",
-        "unit": "nm"
-       },
-       {
-        "label": "D",
-        "value": "1130.0",
-        "unit": "nm"
-       }
-      ],
-      "inputs": [
-       "vortex-MgB2-561G.txt"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "row_spacing",
-        "reason": "报告了相邻涡旋行的间距（√3/2）a。"
-       },
-       {
-        "label": "B",
-        "rule": "square_lattice_guess",
-        "reason": "按正方格子由密度反推间距。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "三角涡旋晶格：a = 652.396 nm，B = 2Φ0/(√3 a²) = 5.6100 mT，n = B/Φ0。"
-       },
-       {
-        "label": "D",
-        "rule": "second_neighbour",
-        "reason": "报告了次近邻距离 √3 a。"
-       }
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "unit": "vortex_inference",
-   "kind": "family",
-   "ability": "inference",
-   "registry_id": "vortex_inference",
-   "generator": "task_families/vortex.py",
-   "checker": "checkers/mesoscale.py",
-   "checker_function": "vortex_quantity",
-   "bindings": {
-    "L1": {
-     "registry_row": "668af507fbf1b4f9b94c80e5f48026a05ed2e0e7e3c381e12b125abfd7dbb48b",
-     "task_families/vortex.py": "205f5e61f90c2a6c94bcebe79138d724d0e1596242dfb6ad2a3eacb123971ed5"
-    },
-    "L2": {
-     "checkers/mesoscale.py": "55a3a182757904d2fc9680a142005bb6015d5926687a73e3ac51f71da824342f",
-     "checkers/common.py": "fbc9f4eb287114ac4720d27edc1ea40e25f80da0e1cff6bdee06fbdca2b73aed"
-    }
-   },
-   "L1": "pending",
-   "L2": "pending",
-   "instances": 1,
-   "L1_record": null,
-   "L2_record": null,
-   "card": {
-    "template": {
-     "name": "超导涡旋晶格推断（磁场 / 磁通量子 / 中子散射峰）",
-     "concept": "由涡旋图推断磁感应强度（每个涡旋一个 h/2e）、每个涡旋携带的磁通，以及小角中子散射首个 Bragg 峰。",
-     "inputs": "涡旋中心位置图（nm，每行 \"V x y\"，约 97 个，确定性旋转）；设计题给四张不同磁场的图。",
-     "physical_conditions": "理想三角涡旋晶格，每个涡旋一个磁通量子 h/2e；题干写明 Model conditions。",
-     "reasoning_scale": "涡旋晶格间距 a（356–855 nm）",
-     "scale_limits": "按论文实测磁场或实测晶格常数构建的模型；不含钉扎无序；论文指出 188.7 G 时单个涡旋已难分辨。",
-     "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm）",
-     "answer_method": "B = Φ0/A_cell；Φ = B·A_cell；q10 = 4π/(√3 a)。",
-     "distractor_mechanisms": [
-      "square_lattice",
-      "flux_h_over_e",
-      "flux_h_over_4e",
-      "gauss_mT_slip",
-      "second_neighbour_as_spacing",
-      "h_over_e",
-      "square_cell",
-      "triangle_cell",
-      "hbar_over_2e",
-      "two_pi_over_a",
-      "missing_two_pi",
-      "second_order_peak",
-      "square_lattice_q"
-     ],
-     "four_choice_validation": "与正确值 > 0.15 mT、0.15×10⁻¹⁵ Wb 或 0.5 μm⁻¹；升序排列，秩按批次轮换。",
-     "principle": "磁通量子化：每个涡旋携带 Φ0 = h/2e。",
-     "validation": "独立检查器由晶胞面积与题干 Φ0 或 B 计算。",
-     "limits": "理想三角涡旋晶格：不含钉扎无序、晶界与有限尺寸效应；磁场、磁通与散射峰按每个涡旋一个磁通量子的理想关系计算。",
-     "template_review": "本轮新建（补 100–1000 空格），待人工审核。"
-    },
-    "samples": [
-     {
-      "instance": "FA-VX-FIELD-BSCCO",
-      "question": "The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor in a perpendicular magnetic field. Model conditions: the only measured input is the measured vortex lattice constant (0.855 μm) reported by Schaefermeier et al. (arXiv:2602.13060; BSCCO-2212, scanning NV magnetometry at 71 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. Each vortex carries one superconducting flux quantum Φ0 = h/(2e) = 2.0678 × 10⁻¹⁵ Wb. What is the magnetic induction B inside the superconductor that produces this lattice, in mT?",
-      "options": [
-       {
-        "label": "A",
-        "value": "1.633",
-        "unit": "mT"
-       },
-       {
-        "label": "B",
-        "value": "2.829",
-        "unit": "mT"
-       },
-       {
-        "label": "C",
-        "value": "3.266",
-        "unit": "mT"
-       },
-       {
-        "label": "D",
-        "value": "6.533",
-        "unit": "mT"
-       }
-      ],
-      "inputs": [
-       "vortex-BSCCO-855nm.txt"
-      ],
-      "correct_label": "C",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "flux_h_over_4e",
-        "reason": "磁通量子多除了 2。"
-       },
-       {
-        "label": "B",
-        "rule": "square_lattice",
-        "reason": "按正方格子 B = Φ0/a²。"
-       },
-       {
-        "label": "C",
-        "rule": "correct",
-        "reason": "三角涡旋晶格：a = 855.000 nm，B = 2Φ0/(√3 a²) = 3.2663 mT，n = B/Φ0。"
-       },
-       {
-        "label": "D",
-        "rule": "flux_h_over_e",
-        "reason": "用 h/e（单电子磁通量子）代替 h/2e。"
-       }
-      ]
-     },
-     {
-      "instance": "FA-VX-FIELD-508",
-      "question": "The file lists the vortex centres (nm) seen in a model image of the Abrikosov vortex lattice of a type-II superconductor in a perpendicular magnetic field. Model conditions: the only measured input is the applied magnetic field (50.8 G = 5.08 mT) reported by Cottet et al. (arXiv:1401.4062; MgB2, cryo-Lorentz TEM at 5 K); the vortices form an ideal triangular lattice with exactly one superconducting flux quantum per vortex, no pinning disorder, lattice defects or thermal motion, and a uniform field, which is the idealization the paper compares its images with; the map is a finite patch of about 97 vortices in an arbitrary orientation. Each vortex carries one superconducting flux quantum Φ0 = h/(2e) = 2.0678 × 10⁻¹⁵ Wb. What is the magnetic induction B inside the superconductor that produces this lattice, in mT?",
-      "options": [
-       {
-        "label": "A",
-        "value": "1.693",
-        "unit": "mT"
-       },
-       {
-        "label": "B",
-        "value": "2.540",
-        "unit": "mT"
-       },
-       {
-        "label": "C",
-        "value": "4.399",
-        "unit": "mT"
-       },
-       {
-        "label": "D",
-        "value": "5.080",
-        "unit": "mT"
-       }
-      ],
-      "inputs": [
-       "vortex-MgB2-508G.txt"
-      ],
-      "correct_label": "D",
-      "audit": [
-       {
-        "label": "A",
-        "rule": "second_neighbour_as_spacing",
-        "reason": "把次近邻距离 √3a 当作晶格间距。"
-       },
-       {
-        "label": "B",
-        "rule": "flux_h_over_4e",
-        "reason": "磁通量子多除了 2。"
-       },
-       {
-        "label": "C",
-        "rule": "square_lattice",
-        "reason": "按正方格子 B = Φ0/a²。"
-       },
-       {
-        "label": "D",
-        "rule": "correct",
-        "reason": "三角涡旋晶格：a = 685.584 nm，B = 2Φ0/(√3 a²) = 5.0800 mT，n = B/Φ0。"
-       }
-      ]
-     }
-    ]
-   }
   }
  ],
  "l3_plan": [
@@ -7385,69 +4616,6 @@
    "ids": [
     "BNI021",
     "BNI023"
-   ]
-  },
-  {
-   "stratum": "cholesteric_design | paper-shaban-cholesteric | chemistry 100-1000",
-   "unit": "cholesteric_design",
-   "source": "paper-shaban-cholesteric",
-   "cell": "chemistry 100-1000",
-   "size": 3,
-   "sample": 3,
-   "rule": "first batch: all",
-   "ids": [
-    "CND009",
-    "CND010",
-    "CND011"
-   ]
-  },
-  {
-   "stratum": "cholesteric_geometry | paper-dinc-isosorbide | chemistry 100-1000",
-   "unit": "cholesteric_geometry",
-   "source": "paper-dinc-isosorbide",
-   "cell": "chemistry 100-1000",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "CNP026"
-   ]
-  },
-  {
-   "stratum": "cholesteric_geometry | paper-shaban-cholesteric | chemistry 100-1000",
-   "unit": "cholesteric_geometry",
-   "source": "paper-shaban-cholesteric",
-   "cell": "chemistry 100-1000",
-   "size": 2,
-   "sample": 2,
-   "rule": "first batch: all",
-   "ids": [
-    "CNP024",
-    "CNP025"
-   ]
-  },
-  {
-   "stratum": "cholesteric_optics | paper-dinc-isosorbide | chemistry 100-1000",
-   "unit": "cholesteric_optics",
-   "source": "paper-dinc-isosorbide",
-   "cell": "chemistry 100-1000",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "CNI020"
-   ]
-  },
-  {
-   "stratum": "cholesteric_optics | paper-shaban-cholesteric | chemistry 100-1000",
-   "unit": "cholesteric_optics",
-   "source": "paper-shaban-cholesteric",
-   "cell": "chemistry 100-1000",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "CNI018"
    ]
   },
   {
@@ -7626,15 +4794,28 @@
    ]
   },
   {
-   "stratum": "evidence_elimination | paper-cottet-mgb2-vortex | quantum 100-1000",
+   "stratum": "evidence_elimination | paper-cao-magic-angle | quantum 10-100",
    "unit": "evidence_elimination",
-   "source": "paper-cottet-mgb2-vortex",
-   "cell": "quantum 100-1000",
+   "source": "paper-cao-magic-angle",
+   "cell": "quantum 10-100",
    "size": 1,
    "sample": 1,
    "rule": "first batch: all",
    "ids": [
-    "QNI033"
+    "QNI034"
+   ]
+  },
+  {
+   "stratum": "evidence_elimination | paper-cottet-mgb2-vortex | quantum 100-1000",
+   "unit": "evidence_elimination",
+   "source": "paper-cottet-mgb2-vortex",
+   "cell": "quantum 100-1000",
+   "size": 2,
+   "sample": 2,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI033",
+    "QNI037"
    ]
   },
   {
@@ -7666,11 +4847,13 @@
    "unit": "evidence_elimination",
    "source": "paper-kerelsky-tbg-stm",
    "cell": "quantum 10-100",
-   "size": 1,
-   "sample": 1,
+   "size": 3,
+   "sample": 3,
    "rule": "first batch: all",
    "ids": [
-    "QNI032"
+    "QNI032",
+    "QNI035",
+    "QNI036"
    ]
   },
   {
@@ -7719,6 +4902,18 @@
    "rule": "first batch: all",
    "ids": [
     "QNI029"
+   ]
+  },
+  {
+   "stratum": "evidence_quantity | paper-cao-magic-angle | quantum 10-100",
+   "unit": "evidence_quantity",
+   "source": "paper-cao-magic-angle",
+   "cell": "quantum 10-100",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "QNI027"
    ]
   },
   {
@@ -7791,6 +4986,18 @@
    "rule": "first batch: all",
    "ids": [
     "QNI031"
+   ]
+  },
+  {
+   "stratum": "evidence_quantity | paper-shaban-cholesteric | chemistry 100-1000",
+   "unit": "evidence_quantity",
+   "source": "paper-shaban-cholesteric",
+   "cell": "chemistry 100-1000",
+   "size": 1,
+   "sample": 1,
+   "rule": "first batch: all",
+   "ids": [
+    "CNI025"
    ]
   },
   {
@@ -8085,57 +5292,6 @@
    ]
   },
   {
-   "stratum": "moire_design | paper-cao-magic-angle | quantum 10-100",
-   "unit": "moire_design",
-   "source": "paper-cao-magic-angle",
-   "cell": "quantum 10-100",
-   "size": 3,
-   "sample": 3,
-   "rule": "first batch: all",
-   "ids": [
-    "QND005",
-    "QND006",
-    "QND007"
-   ]
-  },
-  {
-   "stratum": "moire_geometry | paper-cao-magic-angle | quantum 10-100",
-   "unit": "moire_geometry",
-   "source": "paper-cao-magic-angle",
-   "cell": "quantum 10-100",
-   "size": 2,
-   "sample": 2,
-   "rule": "first batch: all",
-   "ids": [
-    "QNP018",
-    "QNP019"
-   ]
-  },
-  {
-   "stratum": "moire_geometry | paper-kerelsky-tbg-stm | quantum 10-100",
-   "unit": "moire_geometry",
-   "source": "paper-kerelsky-tbg-stm",
-   "cell": "quantum 10-100",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "QNP017"
-   ]
-  },
-  {
-   "stratum": "moire_inference | paper-kerelsky-tbg-stm | quantum 10-100",
-   "unit": "moire_inference",
-   "source": "paper-kerelsky-tbg-stm",
-   "cell": "quantum 10-100",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "QNI012"
-   ]
-  },
-  {
    "stratum": "named_bond_angle | qm7x | quantum 0.1-1",
    "unit": "named_bond_angle",
    "source": "qm7x",
@@ -8195,97 +5351,6 @@
    "rule": "first batch: all",
    "ids": [
     "CNP068"
-   ]
-  },
-  {
-   "stratum": "opal_bragg | paper-ps-opal-rulers | materials 100-1000",
-   "unit": "opal_bragg",
-   "source": "paper-ps-opal-rulers",
-   "cell": "materials 100-1000",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "MNI024"
-   ]
-  },
-  {
-   "stratum": "opal_bragg | paper-silica-opal | materials 100-1000",
-   "unit": "opal_bragg",
-   "source": "paper-silica-opal",
-   "cell": "materials 100-1000",
-   "size": 2,
-   "sample": 2,
-   "rule": "first batch: all",
-   "ids": [
-    "MNI025",
-    "MNI026"
-   ]
-  },
-  {
-   "stratum": "opal_design | paper-ps-opal-rulers | materials 100-1000",
-   "unit": "opal_design",
-   "source": "paper-ps-opal-rulers",
-   "cell": "materials 100-1000",
-   "size": 3,
-   "sample": 3,
-   "rule": "first batch: all",
-   "ids": [
-    "MND004",
-    "MND005",
-    "MND006"
-   ]
-  },
-  {
-   "stratum": "opal_geometry | paper-ps-opal-rulers | materials 100-1000",
-   "unit": "opal_geometry",
-   "source": "paper-ps-opal-rulers",
-   "cell": "materials 100-1000",
-   "size": 2,
-   "sample": 2,
-   "rule": "first batch: all",
-   "ids": [
-    "MNP019",
-    "MNP020"
-   ]
-  },
-  {
-   "stratum": "opal_geometry | paper-silica-opal | materials 100-1000",
-   "unit": "opal_geometry",
-   "source": "paper-silica-opal",
-   "cell": "materials 100-1000",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "MNP021"
-   ]
-  },
-  {
-   "stratum": "qdot_design | paper-yu-cdse-2003 | quantum 1-10",
-   "unit": "qdot_design",
-   "source": "paper-yu-cdse-2003",
-   "cell": "quantum 1-10",
-   "size": 2,
-   "sample": 2,
-   "rule": "first batch: all",
-   "ids": [
-    "QND008",
-    "QND009"
-   ]
-  },
-  {
-   "stratum": "qdot_optics | paper-yu-cdse-2003 | quantum 1-10",
-   "unit": "qdot_optics",
-   "source": "paper-yu-cdse-2003",
-   "cell": "quantum 1-10",
-   "size": 3,
-   "sample": 3,
-   "rule": "first batch: all",
-   "ids": [
-    "QNI014",
-    "QNI015",
-    "QNI016"
    ]
   },
   {
@@ -8403,111 +5468,6 @@
    "ids": [
     "CNP016"
    ]
-  },
-  {
-   "stratum": "superlattice_design | paper-dna-au-superlattice | materials 10-100",
-   "unit": "superlattice_design",
-   "source": "paper-dna-au-superlattice",
-   "cell": "materials 10-100",
-   "size": 3,
-   "sample": 3,
-   "rule": "first batch: all",
-   "ids": [
-    "MND001",
-    "MND002",
-    "MND003"
-   ]
-  },
-  {
-   "stratum": "superlattice_metric | paper-dna-au-superlattice | materials 10-100",
-   "unit": "superlattice_metric",
-   "source": "paper-dna-au-superlattice",
-   "cell": "materials 10-100",
-   "size": 3,
-   "sample": 3,
-   "rule": "first batch: all",
-   "ids": [
-    "MNP016",
-    "MNP017",
-    "MNP018"
-   ]
-  },
-  {
-   "stratum": "superlattice_saxs | paper-dna-au-superlattice | materials 10-100",
-   "unit": "superlattice_saxs",
-   "source": "paper-dna-au-superlattice",
-   "cell": "materials 10-100",
-   "size": 3,
-   "sample": 3,
-   "rule": "first batch: all",
-   "ids": [
-    "MNI020",
-    "MNI021",
-    "MNI022"
-   ]
-  },
-  {
-   "stratum": "superlattice_shell | paper-dna-au-superlattice | materials 10-100",
-   "unit": "superlattice_shell",
-   "source": "paper-dna-au-superlattice",
-   "cell": "materials 10-100",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "MNP015"
-   ]
-  },
-  {
-   "stratum": "vortex_design | paper-cottet-mgb2-vortex | quantum 100-1000",
-   "unit": "vortex_design",
-   "source": "paper-cottet-mgb2-vortex",
-   "cell": "quantum 100-1000",
-   "size": 3,
-   "sample": 3,
-   "rule": "first batch: all",
-   "ids": [
-    "QND010",
-    "QND011",
-    "QND012"
-   ]
-  },
-  {
-   "stratum": "vortex_geometry | paper-cottet-mgb2-vortex | quantum 100-1000",
-   "unit": "vortex_geometry",
-   "source": "paper-cottet-mgb2-vortex",
-   "cell": "quantum 100-1000",
-   "size": 2,
-   "sample": 2,
-   "rule": "first batch: all",
-   "ids": [
-    "QNP020",
-    "QNP021"
-   ]
-  },
-  {
-   "stratum": "vortex_geometry | paper-schaefermeier-bscco-vortex | quantum 100-1000",
-   "unit": "vortex_geometry",
-   "source": "paper-schaefermeier-bscco-vortex",
-   "cell": "quantum 100-1000",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "QNP022"
-   ]
-  },
-  {
-   "stratum": "vortex_inference | paper-schaefermeier-bscco-vortex | quantum 100-1000",
-   "unit": "vortex_inference",
-   "source": "paper-schaefermeier-bscco-vortex",
-   "cell": "quantum 100-1000",
-   "size": 1,
-   "sample": 1,
-   "rule": "first batch: all",
-   "ids": [
-    "QNI017"
-   ]
   }
  ],
  "stages": {
@@ -8531,54 +5491,8 @@
   "CND005": "L0",
   "BNI022": "L0",
   "BND001": "L0",
-  "MNP015": "L0",
-  "MNP016": "L0",
-  "MNP017": "L0",
-  "MNP018": "L0",
-  "MNI020": "L0",
-  "MNI021": "L0",
-  "MNI022": "L0",
-  "MND001": "L0",
-  "MND002": "L0",
-  "MND003": "L0",
-  "MNP019": "L0",
-  "MNP020": "L0",
-  "MNP021": "L0",
-  "MNI024": "L0",
-  "MNI025": "L0",
-  "MNI026": "L0",
-  "MND004": "L0",
-  "MND005": "L0",
-  "MND006": "L0",
-  "QNP017": "L0",
-  "QNP018": "L0",
-  "QNP019": "L0",
-  "QNI012": "L0",
-  "QND005": "L0",
-  "QND006": "L0",
-  "QND007": "L0",
   "BNI023": "L0",
-  "QNI014": "L0",
-  "QNI015": "L0",
-  "QNI016": "L0",
-  "QND008": "L0",
-  "QND009": "L0",
   "BND007": "L0",
-  "QNP020": "L0",
-  "QNP021": "L0",
-  "QNP022": "L0",
-  "QNI017": "L0",
-  "QND010": "L0",
-  "QND011": "L0",
-  "QND012": "L0",
-  "CNP024": "L0",
-  "CNP025": "L0",
-  "CNP026": "L0",
-  "CNI018": "L0",
-  "CNI020": "L0",
-  "CND009": "L0",
-  "CND010": "L0",
-  "CND011": "L0",
   "BNP031": "L0",
   "BNP034": "L0",
   "BNP036": "L0",
@@ -8601,14 +5515,20 @@
   "CNP034": "L0",
   "CNP036": "L0",
   "CNP037": "L0",
+  "QNI027": "L0",
   "QNI028": "L0",
   "QNI029": "L0",
   "QNI030": "L0",
   "QNI031": "L0",
   "QNI032": "L0",
   "QNI033": "L0",
+  "CNI025": "L0",
   "CNI026": "L0",
   "CNI029": "L0",
+  "QNI034": "L0",
+  "QNI035": "L0",
+  "QNI036": "L0",
+  "QNI037": "L0",
   "CNI031": "L0",
   "MNI036": "L0",
   "QNI038": "L0",
@@ -8753,197 +5673,13 @@
    "form": "family",
    "instance": "FA-QDES-6CGR"
   },
-  "MNP015": {
-   "form": "family",
-   "instance": "FA-SL-SHELL-X"
-  },
-  "MNP016": {
-   "form": "family",
-   "instance": "FA-SL-EDGE-26"
-  },
-  "MNP017": {
-   "form": "family",
-   "instance": "FA-SL-EDGE-52"
-  },
-  "MNP018": {
-   "form": "family",
-   "instance": "FA-SL-D111-39"
-  },
-  "MNI020": {
-   "form": "family",
-   "instance": "FA-SL-QSTAR-X"
-  },
-  "MNI021": {
-   "form": "family",
-   "instance": "FA-SL-Q200-13"
-  },
-  "MNI022": {
-   "form": "family",
-   "instance": "FA-SL-GOLD-52"
-  },
-  "MND001": {
-   "form": "family",
-   "instance": "FA-SL-DES-QSTAR"
-  },
-  "MND002": {
-   "form": "family",
-   "instance": "FA-SL-DES-NN"
-  },
-  "MND003": {
-   "form": "family",
-   "instance": "FA-SL-DES-GOLD"
-  },
-  "MNP019": {
-   "form": "family",
-   "instance": "FA-OP-DIAM-S8"
-  },
-  "MNP020": {
-   "form": "family",
-   "instance": "FA-OP-D111-S2"
-  },
-  "MNP021": {
-   "form": "family",
-   "instance": "FA-OP-EDGE-SIO2"
-  },
-  "MNI024": {
-   "form": "family",
-   "instance": "FA-OP-PEAK-S7-WATER"
-  },
-  "MNI025": {
-   "form": "family",
-   "instance": "FA-OP-PEAK-SIO2-30"
-  },
-  "MNI026": {
-   "form": "family",
-   "instance": "FA-OP-ANGLE-SIO2"
-  },
-  "MND004": {
-   "form": "family",
-   "instance": "FA-OP-DES-540"
-  },
-  "MND005": {
-   "form": "family",
-   "instance": "FA-OP-DES-820"
-  },
-  "MND006": {
-   "form": "family",
-   "instance": "FA-OP-DES-BELOW700"
-  },
-  "QNP017": {
-   "form": "family",
-   "instance": "FA-MO-PERIOD-K079"
-  },
-  "QNP018": {
-   "form": "family",
-   "instance": "FA-MO-AREA-M2"
-  },
-  "QNP019": {
-   "form": "family",
-   "instance": "FA-MO-PERIOD-D1"
-  },
-  "QNI012": {
-   "form": "family",
-   "instance": "FA-MO-NHALF-K079"
-  },
-  "QND005": {
-   "form": "family",
-   "instance": "FA-MO-DES-HALF"
-  },
-  "QND006": {
-   "form": "family",
-   "instance": "FA-MO-DES-PERIOD"
-  },
-  "QND007": {
-   "form": "family",
-   "instance": "FA-MO-DES-FULL"
-  },
   "BNI023": {
    "form": "family",
    "instance": "FA-ASM-T-6NCL"
   },
-  "QNI014": {
-   "form": "family",
-   "instance": "FA-QD-PEAK-C"
-  },
-  "QNI015": {
-   "form": "family",
-   "instance": "FA-QD-EPS-E"
-  },
-  "QNI016": {
-   "form": "family",
-   "instance": "FA-QD-CONC-B"
-  },
-  "QND008": {
-   "form": "family",
-   "instance": "FA-QD-DES-590"
-  },
-  "QND009": {
-   "form": "family",
-   "instance": "FA-QD-DES-565"
-  },
   "BND007": {
    "form": "family",
    "instance": "FA-FD-1UBQ"
-  },
-  "QNP020": {
-   "form": "family",
-   "instance": "FA-VX-SPACING-561"
-  },
-  "QNP021": {
-   "form": "family",
-   "instance": "FA-VX-DENSITY-1173"
-  },
-  "QNP022": {
-   "form": "family",
-   "instance": "FA-VX-SPACING-BSCCO"
-  },
-  "QNI017": {
-   "form": "family",
-   "instance": "FA-VX-FIELD-BSCCO"
-  },
-  "QND010": {
-   "form": "family",
-   "instance": "FA-VX-DES-SPACING"
-  },
-  "QND011": {
-   "form": "family",
-   "instance": "FA-VX-DES-SANS"
-  },
-  "QND012": {
-   "form": "family",
-   "instance": "FA-VX-DES-DENSITY"
-  },
-  "CNP024": {
-   "form": "family",
-   "instance": "FA-CH-PITCH-R5011"
-  },
-  "CNP025": {
-   "form": "family",
-   "instance": "FA-CH-HAND-S5011"
-  },
-  "CNP026": {
-   "form": "family",
-   "instance": "FA-CH-PITCH-LRCD"
-  },
-  "CNI018": {
-   "form": "family",
-   "instance": "FA-CH-BAND-R5011"
-  },
-  "CNI020": {
-   "form": "family",
-   "instance": "FA-CH-LAMBDA-RRCD"
-  },
-  "CND009": {
-   "form": "family",
-   "instance": "FA-CH-DES-550"
-  },
-  "CND010": {
-   "form": "family",
-   "instance": "FA-CH-DES-LEFT600"
-  },
-  "CND011": {
-   "form": "family",
-   "instance": "FA-CH-DES-BELOW620"
   },
   "BNP031": {
    "form": "family",
@@ -9033,6 +5769,10 @@
    "form": "family",
    "instance": "FC-CNP011"
   },
+  "QNI027": {
+   "form": "family",
+   "instance": "FA-EVQ-CAO-COHERENCE"
+  },
   "QNI028": {
    "form": "family",
    "instance": "FA-EVQ-CAO-SQUID"
@@ -9057,6 +5797,10 @@
    "form": "family",
    "instance": "FA-EVE-COT-BEND"
   },
+  "CNI025": {
+   "form": "family",
+   "instance": "FA-EVQ-SHA-BAND"
+  },
   "CNI026": {
    "form": "family",
    "instance": "FA-EVQ-DIN-HTP"
@@ -9064,6 +5808,22 @@
   "CNI029": {
    "form": "family",
    "instance": "FA-EVE-SHA-IONS"
+  },
+  "QNI034": {
+   "form": "family",
+   "instance": "FA-EVE-CAO-POCKETS"
+  },
+  "QNI035": {
+   "form": "family",
+   "instance": "FA-EVE-KER-BANDWIDTH"
+  },
+  "QNI036": {
+   "form": "family",
+   "instance": "FA-EVE-KER-GAP"
+  },
+  "QNI037": {
+   "form": "family",
+   "instance": "FA-EVE-COT-LATTICE"
   },
   "CNI031": {
    "form": "family",

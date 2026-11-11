@@ -3,29 +3,25 @@
  "basis": "prototype-policy + registry",
  "summary": {
   "target_total": 160,
-  "current_total": 988,
-  "capped_total": 160,
+  "current_total": 946,
+  "capped_total": 120,
   "over_target_cells": [
    "quantum 0.1-1",
-   "quantum 10-100",
-   "quantum 100-1000",
    "chemistry 0.1-1",
    "chemistry 1-10",
    "chemistry 10-100",
-   "chemistry 100-1000",
    "materials 0.1-1",
    "materials 1-10",
-   "materials 100-1000",
    "biology 0.1-1",
    "biology 1-10",
    "biology 10-100",
    "biology 100-1000"
   ],
-  "provisional_total": 988,
-  "ability_gaps": 1,
-  "gap_slots": 1,
+  "provisional_total": 946,
+  "ability_gaps": 14,
+  "gap_slots": 41,
   "gaps_by_best_route": {
-   "ready": 1,
+   "ready": 14,
    "migrate": 0,
    "build": 0,
    "none": 0
@@ -37,12 +33,12 @@
    "domain": "quantum",
    "cell": "0.1-1",
    "target": 10,
-   "current": 132,
-   "provisional": 132,
+   "current": 135,
+   "provisional": 135,
    "remaining": 0,
    "abilities": {
     "perception": {
-     "current": 70,
+     "current": 73,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -131,9 +127,9 @@
    "domain": "quantum",
    "cell": "1-10",
    "target": 10,
-   "current": 10,
-   "provisional": 10,
-   "remaining": 0,
+   "current": 5,
+   "provisional": 5,
+   "remaining": 5,
    "abilities": {
     "perception": {
      "current": 5,
@@ -157,9 +153,9 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 3,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 3,
      "routes": [
       {
        "family": "qdot_optics",
@@ -184,9 +180,9 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 2,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 1,
+     "shortfall": 3,
      "routes": [
       {
        "family": "isotopologue_design",
@@ -219,14 +215,14 @@
    "domain": "quantum",
    "cell": "10-100",
    "target": 10,
-   "current": 17,
-   "provisional": 17,
-   "remaining": 0,
+   "current": 7,
+   "provisional": 7,
+   "remaining": 3,
    "abilities": {
     "perception": {
-     "current": 3,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 3,
      "routes": [
       {
        "family": "moire_geometry",
@@ -239,7 +235,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 11,
+     "current": 7,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -266,9 +262,9 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 3,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 3,
      "routes": [
       {
        "family": "moire_design",
@@ -295,14 +291,14 @@
    "domain": "quantum",
    "cell": "100-1000",
    "target": 10,
-   "current": 14,
-   "provisional": 14,
-   "remaining": 0,
+   "current": 4,
+   "provisional": 4,
+   "remaining": 6,
    "abilities": {
     "perception": {
-     "current": 3,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 3,
      "routes": [
       {
        "family": "vortex_geometry",
@@ -315,7 +311,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 8,
+     "current": 4,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -342,9 +338,9 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 3,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 3,
      "routes": [
       {
        "family": "vortex_design",
@@ -706,14 +702,14 @@
    "domain": "chemistry",
    "cell": "100-1000",
    "target": 10,
-   "current": 13,
-   "provisional": 13,
-   "remaining": 0,
+   "current": 3,
+   "provisional": 3,
+   "remaining": 7,
    "abilities": {
     "perception": {
-     "current": 3,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 3,
      "routes": [
       {
        "family": "cholesteric_geometry",
@@ -726,7 +722,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 7,
+     "current": 3,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -753,9 +749,9 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 3,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 3,
      "routes": [
       {
        "family": "cholesteric_design",
@@ -782,8 +778,8 @@
    "domain": "materials",
    "cell": "0.1-1",
    "target": 10,
-   "current": 176,
-   "provisional": 176,
+   "current": 179,
+   "provisional": 179,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -814,7 +810,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 75,
+     "current": 78,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -864,8 +860,8 @@
    "domain": "materials",
    "cell": "1-10",
    "target": 10,
-   "current": 60,
-   "provisional": 60,
+   "current": 63,
+   "provisional": 63,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -896,7 +892,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 38,
+     "current": 41,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [
@@ -940,14 +936,14 @@
    "domain": "materials",
    "cell": "10-100",
    "target": 10,
-   "current": 10,
-   "provisional": 10,
-   "remaining": 0,
+   "current": 0,
+   "provisional": 0,
+   "remaining": 10,
    "abilities": {
     "perception": {
-     "current": 4,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 3,
      "routes": [
       {
        "family": "superlattice_geometry",
@@ -960,9 +956,9 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 3,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 3,
      "routes": [
       {
        "family": "superlattice_scattering",
@@ -975,9 +971,9 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 3,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 3,
      "routes": [
       {
        "family": "superlattice_design",
@@ -1005,14 +1001,14 @@
    "domain": "materials",
    "cell": "100-1000",
    "target": 10,
-   "current": 11,
-   "provisional": 11,
-   "remaining": 0,
+   "current": 1,
+   "provisional": 1,
+   "remaining": 9,
    "abilities": {
     "perception": {
-     "current": 3,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 3,
      "routes": [
       {
        "family": "opal_geometry",
@@ -1025,9 +1021,9 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 5,
+     "current": 1,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 2,
      "routes": [
       {
        "family": "opal_bragg",
@@ -1040,9 +1036,9 @@
      "best_route": "ready"
     },
     "design": {
-     "current": 3,
+     "current": 0,
      "soft_target": 3,
-     "shortfall": 0,
+     "shortfall": 3,
      "routes": [
       {
        "family": "opal_design",
@@ -1069,8 +1065,8 @@
    "domain": "biology",
    "cell": "0.1-1",
    "target": 10,
-   "current": 180,
-   "provisional": 180,
+   "current": 184,
+   "provisional": 184,
    "remaining": 0,
    "abilities": {
     "perception": {
@@ -1116,7 +1112,7 @@
      "best_route": "ready"
     },
     "inference": {
-     "current": 56,
+     "current": 60,
      "soft_target": 3,
      "shortfall": 0,
      "routes": [

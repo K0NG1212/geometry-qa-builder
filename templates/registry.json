@@ -909,7 +909,7 @@
         "100-1000"
       ],
       "scale_limits": "按论文球径构建的模型；不含尺寸分布、堆垛缺陷与多面衍射；审核侧附实测峰值供比较。",
-      "source_basis": "Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（聚苯乙烯球径与实测反射峰）；Fookes et al., Sensors 23, 1433 (2023) 参数表（二氧化硅 266 nm、n_eff 1.35、30°）",
+      "source_basis": "Gazmeh et al., Sci. Rep. 15, 38349 (2025) 表 3（聚苯乙烯球径与实测反射峰）；Fookes et al., Sensors 23, 1433 (2023) 参数表（二氧化硅 266 nm、n_eff 1.35、30°） CC BY 实测值卡另见 docs/assets/families/thin-paper/opal_fcc_111_spacing.json。",
       "answer_method": "中心球周围分壳，核对 12/6 与 √2 比例，并与论文球径一致。",
       "distractor_mechanisms": [
         "cell_edge",
@@ -922,16 +922,19 @@
         "third_shell_distance",
         "face_diagonal"
       ],
-      "four_choice_validation": "与正确值 > 3 nm；升序排列，秩按批次轮换。",
+      "four_choice_validation": "与正确值 > 3 nm；升序排列，秩按批次轮换。 论文值卡新族另有三条恒高、三条恒低规则，A–D 数值秩可达；独立 Decimal 检查。",
       "engine_families": [
-        "opal_geometry"
+        "opal_geometry",
+        "opal_fcc_111_spacing"
       ],
       "legacy_families": [],
       "legacy_qa": [],
       "code": [
         "task_families/photonic.py",
         "checkers/superlattice.py",
-        "tools/build_opal_assets.py"
+        "tools/build_opal_assets.py",
+        "task_families/thin_paper.py",
+        "checkers/thin_paper.py"
       ],
       "tests": [
         "tests/test_task_families.py",
@@ -943,7 +946,7 @@
       "limits": "理想接触球 FCC：不含堆垛层错、球径分布、烧结或收缩；有效折射率用体积加权近似（或题给 n_eff）。",
       "gap": "两篇论文（聚苯乙烯 7 个样品、二氧化硅 1 个）。",
       "template_review": "本轮新建（A4），待人工审核。",
-      "independent_checker": "checkers/superlattice.py:opal_quantity"
+      "independent_checker": "checkers/superlattice.py:opal_quantity; checkers/thin_paper.py:opal_fcc_111_spacing"
     },
     {
       "id": "opal_bragg",
@@ -1087,7 +1090,7 @@
         "10-100"
       ],
       "scale_limits": "按论文转角构建的模型；实测样品常有少量异质应变，使莫尔周期偏离理想值（Kerelsky et al. 讨论）。",
-      "source_basis": "Cao et al., arXiv:1803.02342（Nature 2018）器件 M1/M2/D1 转角与 n_s = 4/A 定义；Kerelsky et al., arXiv:1812.08776（Nature 2019）STM 区域 1.10°、0.79°",
+      "source_basis": "Cao et al., arXiv:1803.02342（Nature 2018）器件 M1/M2/D1 转角与 n_s = 4/A 定义；Kerelsky et al., arXiv:1812.08776（Nature 2019）STM 区域 1.10°、0.79° CC BY 实测值卡另见 docs/assets/families/thin-paper/moire_triangular_cell_area.json。",
       "answer_method": "中心位点周围 6 个等距近邻，核对与论文转角给出的周期一致。",
       "distractor_mechanisms": [
         "aa_to_ab_distance",
@@ -1100,16 +1103,19 @@
         "hexagon_twice",
         "ab_spacing_cell"
       ],
-      "four_choice_validation": "与正确值 > 0.3 nm 或 3 nm²；升序排列，秩按批次轮换。",
+      "four_choice_validation": "与正确值 > 0.3 nm 或 3 nm²；升序排列，秩按批次轮换。 论文值卡新族另有三条恒高、三条恒低规则，A–D 数值秩可达；独立 Decimal 检查。",
       "engine_families": [
-        "moire_geometry"
+        "moire_geometry",
+        "moire_triangular_cell_area"
       ],
       "legacy_families": [],
       "legacy_qa": [],
       "code": [
         "task_families/moire.py",
         "checkers/moire.py",
-        "tools/build_moire_assets.py"
+        "tools/build_moire_assets.py",
+        "task_families/thin_paper.py",
+        "checkers/thin_paper.py"
       ],
       "tests": [
         "tests/test_task_families.py",
@@ -1121,7 +1127,7 @@
       "limits": "理想刚性转角：不含晶格弛豫（AB/BA 畴重构）、异质应变与转角不均匀；小转角下实测周期可能偏离模型。",
       "gap": "两篇论文的 5 个转角（0.79–1.16°）。",
       "template_review": "本轮新建（A4），待人工审核。",
-      "independent_checker": "checkers/moire.py:moire_quantity"
+      "independent_checker": "checkers/moire.py:moire_quantity; checkers/thin_paper.py:moire_triangular_cell_area"
     },
     {
       "id": "moire_inference",
@@ -1420,7 +1426,7 @@
         "1-10"
       ],
       "scale_limits": "经验曲线只在拟合尺寸范围内可靠；模型无配体。",
-      "source_basis": "Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003)：CdSe 尺寸多项式与 ε = 5857 D^2.65",
+      "source_basis": "Yu, Qu, Guo, Peng, Chem. Mater. 15, 2854 (2003)：CdSe 尺寸多项式与 ε = 5857 D^2.65 CC BY 实测值卡另见 docs/assets/families/thin-paper/qdot_exciton_photon_energy.json。",
       "answer_method": "二分法反解 D(λ)；Beer–Lambert。",
       "distractor_mechanisms": [
         "bounding_box_diagonal",
@@ -1431,16 +1437,19 @@
         "exponent_as_factor",
         "path_in_mm"
       ],
-      "four_choice_validation": "与正确值 > 3 nm、0.1×10⁵ 或 0.05 µM；升序排列，秩按批次轮换。",
+      "four_choice_validation": "与正确值 > 3 nm、0.1×10⁵ 或 0.05 µM；升序排列，秩按批次轮换。 论文值卡新族另有三条恒高、三条恒低规则，A–D 数值秩可达；独立 Decimal 检查。",
       "engine_families": [
-        "qdot_optics"
+        "qdot_optics",
+        "qdot_exciton_photon_energy"
       ],
       "legacy_families": [],
       "legacy_qa": [],
       "code": [
         "task_families/quantum_dot.py",
         "checkers/quantum_dot.py",
-        "tools/build_qdot_assets.py"
+        "tools/build_qdot_assets.py",
+        "task_families/thin_paper.py",
+        "checkers/thin_paper.py"
       ],
       "tests": [
         "tests/test_task_families.py",
@@ -1452,7 +1461,7 @@
       "limits": "论文参数模型；晶格常数 6.08 Å 为模型假设，答案只取决于所给坐标。",
       "gap": "5 个模型粒子。",
       "template_review": "本轮新建（A2/A3），待人工审核。",
-      "independent_checker": "checkers/quantum_dot.py:qdot_quantity"
+      "independent_checker": "checkers/quantum_dot.py:qdot_quantity; checkers/thin_paper.py:qdot_exciton_photon_energy"
     },
     {
       "id": "qdot_design",
@@ -1747,7 +1756,7 @@
         "100-1000"
       ],
       "scale_limits": "按论文实测磁场或实测晶格常数构建的模型；不含钉扎无序；论文指出 188.7 G 时单个涡旋已难分辨。",
-      "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm）",
+      "source_basis": "Cottet et al., arXiv:1401.4062（MgB2，低温洛伦兹透射电镜，四个实测磁场）；Schaefermeier et al., arXiv:2602.13060（BSCCO，NV 扫描磁强计，a ≈ 0.855 μm） CC BY 实测值卡另见 docs/assets/families/thin-paper/vortex_gl_parameter.json。",
       "answer_method": "B = Φ0/A_cell；Φ = B·A_cell；q10 = 4π/(√3 a)。",
       "distractor_mechanisms": [
         "square_lattice",
@@ -1764,16 +1773,19 @@
         "second_order_peak",
         "square_lattice_q"
       ],
-      "four_choice_validation": "与正确值 > 0.15 mT、0.15×10⁻¹⁵ Wb 或 0.5 μm⁻¹；升序排列，秩按批次轮换。",
+      "four_choice_validation": "与正确值 > 0.15 mT、0.15×10⁻¹⁵ Wb 或 0.5 μm⁻¹；升序排列，秩按批次轮换。 论文值卡新族另有三条恒高、三条恒低规则，A–D 数值秩可达；独立 Decimal 检查。",
       "engine_families": [
-        "vortex_inference"
+        "vortex_inference",
+        "vortex_gl_parameter"
       ],
       "legacy_families": [],
       "legacy_qa": [],
       "code": [
         "task_families/vortex.py",
         "checkers/mesoscale.py",
-        "tools/build_vortex_assets.py"
+        "tools/build_vortex_assets.py",
+        "task_families/thin_paper.py",
+        "checkers/thin_paper.py"
       ],
       "tests": [
         "tests/test_task_families.py",
@@ -1785,7 +1797,7 @@
       "limits": "理想三角涡旋晶格：不含钉扎无序、晶界与有限尺寸效应；磁场、磁通与散射峰按每个涡旋一个磁通量子的理想关系计算。",
       "gap": "与涡旋晶格几何相同：MgB2 四个磁场 + BSCCO 一个样品。",
       "template_review": "本轮新建（补 100–1000 空格），待人工审核。",
-      "independent_checker": "checkers/mesoscale.py:vortex_quantity"
+      "independent_checker": "checkers/mesoscale.py:vortex_quantity; checkers/thin_paper.py:vortex_gl_parameter"
     },
     {
       "id": "vortex_design",
@@ -1923,7 +1935,7 @@
         "100-1000"
       ],
       "scale_limits": "按论文参数构建的模型；模型反射与实测相差约 1–2%。",
-      "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层）",
+      "source_basis": "Shaban et al., Materials 17, 5080 (2024)（E44 + R5011/S5011，HTP 107.5 μm⁻¹）；Dinc et al., Org. Chem. Front. (2024)（反应型异山梨醇掺杂剂涂层） CC BY 实测值卡另见 docs/assets/families/thin-paper/cholesteric_band_center.json。",
       "answer_method": "λc = ⟨n⟩p；Δλ = Δn·p；HTP = 1/(p c)。",
       "distractor_mechanisms": [
         "extraordinary_index",
@@ -1938,16 +1950,19 @@
         "reflection_for_pitch",
         "nm_um_slip"
       ],
-      "four_choice_validation": "与正确值 > 5–8 nm 或 5 μm⁻¹；升序排列，秩按批次轮换。",
+      "four_choice_validation": "与正确值 > 5–8 nm 或 5 μm⁻¹；升序排列，秩按批次轮换。 论文值卡新族另有三条恒高、三条恒低规则，A–D 数值秩可达；独立 Decimal 检查。",
       "engine_families": [
-        "cholesteric_optics"
+        "cholesteric_optics",
+        "cholesteric_band_center"
       ],
       "legacy_families": [],
       "legacy_qa": [],
       "code": [
         "task_families/cholesteric.py",
         "checkers/mesoscale.py",
-        "tools/build_cholesteric_assets.py"
+        "tools/build_cholesteric_assets.py",
+        "task_families/thin_paper.py",
+        "checkers/thin_paper.py"
       ],
       "tests": [
         "tests/test_task_families.py",
@@ -1959,7 +1974,7 @@
       "limits": "模型值与实测相差约 1–2%（审核侧列出实测值）。",
       "gap": "与胆甾液晶几何相同：Shaban 两种掺杂 + Dinc 两种涂层 + 模型浓度。",
       "template_review": "本轮新建（补 100–1000 空格），待人工审核。",
-      "independent_checker": "checkers/mesoscale.py:cholesteric_quantity"
+      "independent_checker": "checkers/mesoscale.py:cholesteric_quantity; checkers/thin_paper.py:cholesteric_band_center"
     },
     {
       "id": "cholesteric_design",

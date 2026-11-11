@@ -1,9 +1,7 @@
 """A1: name the structures to download, pixel by pixel, from the databases themselves.
 
-The bank has 336 questions in 44 of the 74 meaningful pixels of the subdomain map; 30 meaningful pixels hold nothing and
-seven hold one or two. Those gaps cannot be enumerated away -- a zeolite question needs a zeolite -- so the only lever is
-more source structures (A1). This tool turns each empty or thin pixel into a concrete download list by asking COD and RCSB
-for real entries: no identifier here is written from memory.
+The current pixel counts are read from docs/data/subdomain-map.json at runtime. This tool turns empty or thin pixels
+into a concrete download list by asking COD and RCSB for real entries: no identifier here is written from memory.
 
 Columns of the grid need different kinds of structure, because a question is filed by the scale its reasoning lives at:
   * 0.1-1 nm     an ordinary unit cell, a bond, a coordination shell   -> COD cells, small PDB chains
@@ -63,14 +61,15 @@ TARGETS = [
          elements=['C', 'O'], min_volume=5000,
          why='无机与配位化学 1-10 nm 只有 1 道；MOF 的大晶胞与金属配位壳层同时能出感知与推断题',
          families=['coordination_shell', 'scattering_q_design', 'first_diffraction_peak']),
-    dict(pixel='P1 1-10', name='超导', want=4, db='cod',
+    dict(pixel='P1 1-10', name='超导', want=12, db='cod',
          formulas=['Ba2 Cu3 O7 Y', 'Bi2 Ca Cu2 O8 Sr2', 'Nb3 Sn', 'B2 Mg', 'Fe Se'],
+         texts=['superconductor', 'cuprate', 'intermetallic'],
          why='超导 1-10 nm 与 10-100 nm 都空着；BSCCO 这类层状超导体的 c 轴本身就是 3 nm 量级',
          families=['first_diffraction_peak', 'kinematic_extinction', 'coordination_shell']),
     dict(pixel='P3 1-10', name='二维材料与莫尔物理', want=4, db='cod', formulas=['Mo S2', 'C', 'B N', 'Se2 W'],
          why='二维材料 0.1-1 nm 只有 1 道、1-10 nm 是空的；层间距与超胞周期是现成的几何量',
          families=['first_diffraction_peak', 'kinematic_extinction', 'named_bond_distance']),
-    dict(pixel='M1 1-10', name='金属与合金', want=4, db='cod', text='intermetallic', elements=['Al'], min_volume=1500,
+    dict(pixel='M1 1-10', name='金属与合金', want=16, db='cod', text='intermetallic', elements=['Al'], min_volume=1500,
          why='金属与合金 1-10 nm 是空的；金属间化合物的大晶胞落在这一档',
          families=['coordination_shell', 'first_diffraction_peak', 'kinematic_extinction']),
     dict(pixel='M2 1-10', name='陶瓷与氧化物', want=4, db='cod',
@@ -92,15 +91,15 @@ TARGETS = [
          elements=['C'], only_elements=['C'], min_max_edge=10,
          why='原子与分子物理 1-10 nm 只有 2 道；富勒烯团簇的笼径与转动常数都能出题',
          families=['extent_choice_v2', 'rotational_line', 'isotopologue_design']),
-    dict(pixel='C7 1-10', name='化学生物学与 DNA 纳米技术', want=4, db='pdb', text='Holliday junction four-way DNA',
+    dict(pixel='C7 1-10', name='化学生物学与 DNA 纳米技术', want=10, db='pdb', text='Holliday junction four-way DNA',
          resolution=3.0,
          why='DNA 纳米技术 1-10 nm 是空的，而我们已有 7ARQ 这种 origami，中间这一档缺一个台阶',
          families=['backbone_torsion', 'extent_choice_v2', 'named_bond_distance']),
-    dict(pixel='B4 1-10', name='膜蛋白', want=4, db='pdb', text='membrane transporter alpha-helical', resolution=2.2,
+    dict(pixel='B4 1-10', name='膜蛋白', want=12, db='pdb', text='membrane transporter alpha-helical', resolution=2.2,
          chains=1,
          why='膜蛋白 0.1-1 与 1-10 各只有 1 道；跨膜螺旋的几何是现成的推断题材料',
          families=['secondary_structure', 'backbone_torsion', 'fret_design', 'fret_efficiency']),
-    dict(pixel='B8 1-10', name='大分子机器', want=4, db='pdb', text='chaperonin', resolution=3.5, min_chains=7,
+    dict(pixel='B8 1-10', name='大分子机器', want=24, db='pdb', text='chaperonin', resolution=3.5, min_chains=7,
          why='大分子机器这一格是空的，而它正是「几何 → 功能」最直观的一类',
          families=['assembly_extent', 'assembly_rg', 'secondary_structure', 'scattering_q_design']),
 
@@ -143,6 +142,7 @@ TARGETS = [
 
 
 CACHE = ROOT / 'inputs/a1-query-cache'
+PRIORITY = ('B8 1-10', 'M1 1-10', 'P1 1-10')
 
 
 def get(url, timeout=60, tries=4):
@@ -188,7 +188,7 @@ def cod_row(row, formula_fallback=''):
                 license='COD: public domain (CC0)')
 
 
-def cod_entries(target):
+def cod_entries(target, excluded=frozenset()):
     """Real COD entries for one pixel: exact formulas when they are known, else a keyword plus an element filter."""
     out, seen = [], set()
     for formula in target.get('formulas', []):
@@ -197,7 +197,7 @@ def cod_entries(target):
         rows = [r for r in rows if long_enough(r, target)]
         rows.sort(key=lambda r: -float(r['vol']))
         for row in rows:                                   # one entry per formula keeps the chemistry spread out
-            if row['file'] not in seen:
+            if row['file'] not in seen and row['file'].upper() not in excluded:
                 seen.add(row['file'])
                 out.append(cod_row(row, formula))
                 break
@@ -229,7 +229,7 @@ def cod_entries(target):
             if depth >= len(shortlist):
                 continue
             entry = shortlist[depth]
-            if entry['id'] in seen or entry['formula'] in picked_formulas:
+            if entry['id'] in seen or entry['id'].upper() in excluded or entry['formula'] in picked_formulas:
                 continue
             seen.add(entry['id'])
             picked_formulas.add(entry['formula'])
@@ -237,7 +237,7 @@ def cod_entries(target):
     return out[:target['want']]
 
 
-def pdb_entries(target):
+def pdb_entries(target, excluded=frozenset()):
     nodes = [dict(type='terminal', service='full_text', parameters=dict(value=target['text']))]
     if target.get('resolution'):
         nodes.append(dict(type='terminal', service='text', parameters=dict(
@@ -251,11 +251,13 @@ def pdb_entries(target):
             attribute='rcsb_entry_info.deposited_polymer_entity_instance_count', operator='greater_or_equal',
             value=target['min_chains'])))
     query = dict(query=dict(type='group', logical_operator='and', nodes=nodes), return_type='entry',
-                 request_options=dict(paginate=dict(start=0, rows=max(target['want'] * 3, 10)),
+                 request_options=dict(paginate=dict(start=0, rows=max(target['want'] * 10, 100)),
                                       results_content_type=['experimental']))
     hits = get(RCSB % urllib.parse.quote(json.dumps(query)))
     out = []
     for hit in (hits.get('result_set', []) if isinstance(hits, dict) else []):
+        if hit['identifier'].upper() in excluded:
+            continue
         entry = get(ENTRY % hit['identifier'])
         info = entry.get('rcsb_entry_info', {})
         out.append(dict(id=hit['identifier'], title=(entry.get('struct', {}).get('title') or '').strip(),
@@ -274,8 +276,11 @@ def pdb_entries(target):
 def build():
     pixels = {p['l1'] + ' ' + p['scale']: p for p in json.loads(MAP.read_text(encoding='utf-8'))['pixels']
               if p['meaningful']}
+    registry = json.loads((ROOT / 'templates/structures.json').read_text(encoding='utf-8'))
+    excluded = {str(item.get('cod') or item.get('pdb') or '').upper()
+                for section in ('crystals', 'structures', 'assemblies') for item in registry[section]}
     plan, totals = [], dict(cod=0, pdb=0, paper=0)
-    for target in TARGETS:
+    for target in sorted(TARGETS, key=lambda t: (PRIORITY.index(t['pixel']) if t['pixel'] in PRIORITY else len(PRIORITY))):
         row = dict(pixel=target['pixel'], subdomain=target['name'], database=target['db'], wanted=target['want'],
                    why=target['why'], families=target['families'])
         key = ' '.join(target['pixel'].split(' ')[:2])
@@ -283,19 +288,20 @@ def build():
             row['questions_now'] = pixels[key]['questions']
             row['enumerated_estimate'] = pixels[key]['enumerated_estimate']
         if target['db'] == 'cod':
-            row['entries'] = cod_entries(target)
+            row['entries'] = cod_entries(target, excluded)
         elif target['db'] == 'pdb':
-            row['entries'] = pdb_entries(target)
+            row['entries'] = pdb_entries(target, excluded)
         else:
             row['entries'] = []
             row['note'] = '要论文，不是下载：按论文实测数值建模（tier C）'
         totals[target['db']] += len(row['entries'])
+        excluded.update(entry['id'].upper() for entry in row['entries'])
         plan.append(row)
         print('%-40s %-6s %d/%d' % (target['pixel'], target['db'], len(row['entries']), target['want']))
-    return dict(kind='a1_download_plan', version='0.1.0', date='2026-11-02', status='provisional',
+    return dict(kind='a1_download_plan', version='0.1.0', date='2026-11-07', status='provisional',
                 note='按 docs/data/subdomain-map.json 的空像素点名。条目由 COD 与 RCSB 的检索接口返回，没有一个是凭记忆写的；'
-                     'COD CIF 约 7 KB 一个，PDB 结构约 200 KB 一个（docs/assets/bio 现有 14 个共 2.8 MB）。'
-                     '100-1000 nm 的空格下载解决不了，要论文参数模型，单列在 database=paper 的行里。',
+                     '文件大小以下载后的实际字节数为准。100-1000 nm 的空格下载解决不了，要论文参数模型，'
+                     '单列在 database=paper 的行里。',
                 totals=totals, pixels_meaningful=len(pixels),
                 pixels_empty=sum(1 for p in pixels.values() if p['questions'] == 0), targets=plan)
 

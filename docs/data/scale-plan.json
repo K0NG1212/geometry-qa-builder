@@ -1,17 +1,17 @@
 {
  "kind": "scale_plan",
- "date": "2026-11-05",
+ "date": "2026-11-11",
  "target": 3000,
  "bank": {
-  "run": "family-pilot-v55",
-  "questions": 988,
-  "families": 52,
+  "run": "family-pilot-v58",
+  "questions": 946,
+  "families": 34,
   "cells": 16,
   "cell_target": 10
  },
- "gap": 2012,
+ "gap": 2054,
  "enumeration": {
-  "run": "enum-v35",
+  "run": "enum-v35 + enum-v39 targeted",
   "proposals": 338046,
   "sampled": 873,
   "accepted": 728,
@@ -44,63 +44,85 @@
  ],
  "family_cap": {
   "max_per_family": 60,
-  "families": 52,
-  "ceiling": 3120,
-  "per_family_for_target": 57.7,
-  "enumerable_families": 21,
-  "enumerable_ceiling": 1260,
-  "database_without_enumerator": [
+  "families": 34,
+  "ceiling": 2040,
+  "per_family_for_target": 88.2,
+  "implemented_enumerator_families": 28,
+  "implemented_enumerator_ceiling": 1680,
+  "database_enumerator_productive": [
+   "assembly_extent",
+   "assembly_rg",
+   "backbone_torsion",
+   "coordination_shell",
+   "diffraction_design",
+   "disulfide_design",
+   "extent_choice_v2",
+   "first_diffraction_peak",
+   "fret_design",
+   "fret_efficiency",
+   "guinier_intensity",
+   "isotopologue_design",
+   "named_bond_angle",
+   "named_bond_distance",
+   "rotational_line",
+   "scattering_q_design",
+   "secondary_structure"
+  ],
+  "database_enumerator_exhausted": [
    "binding_design_choice",
    "binding_evidence_choice",
    "capsid_architecture",
    "conformer_target_selection",
-   "debye_intensity",
    "force_path_derivative",
    "reaction_geometry_target",
    "reaction_mechanism_choice"
   ],
-  "paper_driven": 23
+  "database_enumerator_unprobed": [],
+  "database_no_enumerator": [
+   "debye_intensity"
+  ],
+  "paper_driven": 5
  },
  "papers": {
-  "questions": 102,
-  "papers": 27,
-  "per_paper": 3.78,
+  "questions": 47,
+  "papers": 24,
+  "per_paper": 1.96,
   "share_cap": 0.25,
   "questions_at_share": 900,
-  "papers_at_share": 238,
-  "papers_at_rule_cap": 199
+  "papers_at_share": 460,
+  "papers_at_rule_cap": 383
  },
  "selection_rule": {
   "file": "docs/data/batch-plan.json",
   "version": "0.1.0",
   "status": "provisional",
   "target": 1230,
-  "max_selectable": 763,
+  "max_selectable": 708,
   "note": "选题规则现在的目标是 1230 道，不是 3000 道：R1 要按新目标重写"
  },
  "levers": [
   {
    "id": "R1",
    "what": "改每族 60 道的全局上限",
-   "why": "不改，上限就是 3120 道，3000 道没有余量（等于每族 57.7 道）",
+   "why": "不改，上限就是 2040 道，3000 道没有余量（等于每族 88.2 道）",
    "blocked_on": "导师对 Q2 的答复"
   },
   {
    "id": "A1",
    "what": "来源结构从 133 个扩到 408 个左右",
-   "why": "唯一能把量做上去的路；PDB / COD / QM7-X 都免费可下载、许可清楚（见 LICENSING.md）",
-   "blocked_on": "用户批准下载批次"
+   "why": "PDB / COD 来源可持续补充，但当前 60 道族上限与来源 8 道上限使新增结构的边际产出明显低于历史均值",
+   "blocked_on": "PDB、COD、Europe PMC 开放获取全文已有长期下载授权；新增站点及受限内容另核许可"
   },
   {
    "id": "E1",
-   "what": "给 8 个数据库驱动但没有枚举器的族写枚举器",
+   "what": "给 1 个数据库驱动但没有枚举器的族写枚举器",
    "why": "写了就能跟结构一起扩，等于提高每个结构的产出，少下载一批结构",
    "blocked_on": "不卡"
   },
   {
    "id": "Q2",
    "what": "确认「论文题 30%」",
-   "why": "按 30% 要 900 道论文题 ≈ 238 篇论文的手工卡，做不到；改成固定 300 道则现有 27 篇够起步",
+   "why": "按 30% 要 900 道论文题 ≈ 460 篇论文的手工卡，做不到；改成固定 300 道则现有 24 篇够起步",
    "blocked_on": "导师"
   }
  ]

@@ -1,8 +1,8 @@
 {
  "kind": "license_audit",
- "date": "2026-11-05",
- "bank_run": "family-pilot-v55",
- "questions": 988,
+ "date": "2026-11-11",
+ "bank_run": "family-pilot-v58",
+ "questions": 946,
  "sources": 37,
  "scope": "逐来源核对：我们从它那里发布了什么、它的许可允许什么、许可写在哪。许可只从记录读——出版方本机副本、来源许可页面的抄录（docs/data/license-statements.json）、仓库自己的记录；只有我们自己记录的会写明，不替来源断定。",
  "verdicts": {
@@ -480,7 +480,7 @@
    "source": "pdb-bio-nm",
    "name": "RCSB PDB / wwPDB",
    "kind": "database",
-   "questions": 311,
+   "questions": 315,
    "families": [
     "assembly_extent",
     "assembly_rg",
@@ -497,7 +497,7 @@
     "secondary_structure"
    ],
    "publishes": {
-    "upstream_coordinates": 311
+    "upstream_coordinates": 315
    },
    "publishes_label": [
     "上游坐标（照抄／展开／约简／旋转／转格式）"
@@ -532,7 +532,7 @@
    "source": "cod-materials-cell",
    "name": "Crystallography Open Database",
    "kind": "database",
-   "questions": 228,
+   "questions": 234,
    "families": [
     "coordination_shell",
     "diffraction_design",
@@ -540,7 +540,7 @@
     "kinematic_extinction"
    ],
    "publishes": {
-    "upstream_coordinates": 228
+    "upstream_coordinates": 234
    },
    "publishes_label": [
     "上游坐标（照抄／展开／约简／旋转／转格式）"
@@ -565,7 +565,7 @@
    },
    "fulltext_checked": null,
    "obligations": [],
-   "also": "COD 文件头要求引用原始文献；228 道中只有 9 道在许可字段里记了原始文献",
+   "also": "COD 文件头要求引用原始文献；234 道中只有 9 道在许可字段里记了原始文献",
    "verdict": "clear",
    "verdict_note": "",
    "cards_to_reword": [],
@@ -575,7 +575,7 @@
    "source": "qm7x",
    "name": "QM7-X（Zenodo 4288677）",
    "kind": "dataset",
-   "questions": 152,
+   "questions": 155,
    "families": [
     "conformer_target_selection",
     "extent_choice_v2",
@@ -589,7 +589,7 @@
     "stereo_relationship"
    ],
    "publishes": {
-    "upstream_coordinates": 152
+    "upstream_coordinates": 155
    },
    "publishes_label": [
     "上游坐标（照抄／展开／约简／旋转／转格式）"
@@ -716,50 +716,6 @@
    "cards_unchecked": []
   },
   {
-   "source": "paper-cao-magic-angle",
-   "name": "Cao et al., Nature 556, 43 (2018) / arXiv:1803.02342",
-   "kind": "paper",
-   "questions": 11,
-   "families": [
-    "evidence_elimination",
-    "evidence_quantity",
-    "moire_design",
-    "moire_geometry",
-    "moire_inference"
-   ],
-   "publishes": {
-    "our_coordinates": 7,
-    "our_text": 4
-   },
-   "publishes_label": [
-    "本项目生成的坐标（只用论文数值）",
-    "本项目转述的事实（证据卡／设计卡，无坐标）"
-   ],
-   "license": "arxiv-nonexclusive",
-   "license_label": "arXiv 非独占许可（授权 arXiv 分发，不授权第三方转载）",
-   "declared_in_repo": "arxiv-nonexclusive",
-   "stated_by_source": null,
-   "source_statement": "copy states no licence",
-   "confirmation": "repo_record_only",
-   "evidence_paths": [
-    "docs/assets/families/evidence/sources.json",
-    "docs/assets/families/moire/sources.json"
-   ],
-   "confirmed_by_page": null,
-   "fulltext_checked": null,
-   "obligations": [
-    "署名",
-    "不得转载原文内容，只能用事实与数值"
-   ],
-   "also": null,
-   "verdict": "recheck",
-   "verdict_note": "该来源不允许转载原文，而卡片里有逐词相同的句子",
-   "cards_to_reword": [
-    "docs/assets/families/evidence/cao2018-squid.json"
-   ],
-   "cards_unchecked": []
-  },
-  {
    "source": "paper-landscape17-azobenzene",
    "name": "Landscape17（Figshare 29949230）",
    "kind": "dataset",
@@ -801,126 +757,6 @@
    "verdict": "clear",
    "verdict_note": "",
    "cards_to_reword": [],
-   "cards_unchecked": []
-  },
-  {
-   "source": "paper-cottet-mgb2-vortex",
-   "name": "Cottet et al., arXiv:1401.4062",
-   "kind": "paper",
-   "questions": 10,
-   "families": [
-    "evidence_elimination",
-    "vortex_design",
-    "vortex_geometry",
-    "vortex_inference"
-   ],
-   "publishes": {
-    "our_coordinates": 8,
-    "our_text": 2
-   },
-   "publishes_label": [
-    "本项目生成的坐标（只用论文数值）",
-    "本项目转述的事实（证据卡／设计卡，无坐标）"
-   ],
-   "license": "arxiv-nonexclusive",
-   "license_label": "arXiv 非独占许可（授权 arXiv 分发，不授权第三方转载）",
-   "declared_in_repo": "arxiv-nonexclusive",
-   "stated_by_source": null,
-   "source_statement": "copy states no licence",
-   "confirmation": "repo_record_only",
-   "evidence_paths": [
-    "docs/assets/families/evidence/sources.json",
-    "docs/assets/families/vortex/sources.json"
-   ],
-   "confirmed_by_page": null,
-   "fulltext_checked": null,
-   "obligations": [
-    "署名",
-    "不得转载原文内容，只能用事实与数值"
-   ],
-   "also": null,
-   "verdict": "recheck",
-   "verdict_note": "该来源不允许转载原文，而卡片里有逐词相同的句子",
-   "cards_to_reword": [
-    "docs/assets/families/evidence/cottet2014-bend.json"
-   ],
-   "cards_unchecked": []
-  },
-  {
-   "source": "paper-dna-au-superlattice",
-   "name": "Hill et al., Nano Lett. 8, 2341 (2008)",
-   "kind": "paper",
-   "questions": 10,
-   "families": [
-    "superlattice_design",
-    "superlattice_metric",
-    "superlattice_saxs",
-    "superlattice_shell"
-   ],
-   "publishes": {
-    "our_coordinates": 10
-   },
-   "publishes_label": [
-    "本项目生成的坐标（只用论文数值）"
-   ],
-   "license": null,
-   "license_label": "不依赖许可（只用事实数值）",
-   "declared_in_repo": null,
-   "stated_by_source": null,
-   "source_statement": null,
-   "confirmation": "not_relied_on",
-   "evidence_paths": [
-    "docs/assets/families/superlattices/sources.json"
-   ],
-   "confirmed_by_page": null,
-   "fulltext_checked": null,
-   "obligations": [],
-   "also": "只用 Table 1 的数值（事实数据），不转载任何内容",
-   "verdict": "clear",
-   "verdict_note": "只用数值与事实，不依赖该来源的许可",
-   "cards_to_reword": [],
-   "cards_unchecked": []
-  },
-  {
-   "source": "paper-shaban-cholesteric",
-   "name": "Shaban et al., Materials 17, 5080 (2024)",
-   "kind": "paper",
-   "questions": 10,
-   "families": [
-    "cholesteric_design",
-    "cholesteric_geometry",
-    "cholesteric_optics",
-    "evidence_elimination",
-    "evidence_quantity"
-   ],
-   "publishes": {
-    "our_coordinates": 8,
-    "our_text": 2
-   },
-   "publishes_label": [
-    "本项目生成的坐标（只用论文数值）",
-    "本项目转述的事实（证据卡／设计卡，无坐标）"
-   ],
-   "license": "CC-BY-4.0",
-   "license_label": "CC BY 4.0",
-   "declared_in_repo": "CC-BY-4.0",
-   "stated_by_source": "CC-BY-4.0",
-   "source_statement": "© 2024 by the authors. 2024 https://creativecommons.org/licenses/by/4.0/ Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) licens",
-   "confirmation": "publisher_copy",
-   "evidence_paths": [
-    "docs/assets/families/cholesteric/sources.json"
-   ],
-   "confirmed_by_page": null,
-   "fulltext_checked": "inputs/papers/shaban2024/shaban2024-PMC11509098.xml",
-   "obligations": [
-    "署名"
-   ],
-   "also": null,
-   "verdict": "clear",
-   "verdict_note": "",
-   "cards_to_reword": [
-    "docs/assets/families/evidence/shaban2024-ions.json"
-   ],
    "cards_unchecked": []
   },
   {
@@ -1005,86 +841,6 @@
    "cards_unchecked": []
   },
   {
-   "source": "paper-kerelsky-tbg-stm",
-   "name": "Kerelsky et al., Nature 572, 95 (2019) / arXiv:1812.08776",
-   "kind": "paper",
-   "questions": 7,
-   "families": [
-    "evidence_elimination",
-    "evidence_quantity",
-    "moire_geometry",
-    "moire_inference"
-   ],
-   "publishes": {
-    "our_coordinates": 3,
-    "our_text": 4
-   },
-   "publishes_label": [
-    "本项目生成的坐标（只用论文数值）",
-    "本项目转述的事实（证据卡／设计卡，无坐标）"
-   ],
-   "license": "arxiv-nonexclusive",
-   "license_label": "arXiv 非独占许可（授权 arXiv 分发，不授权第三方转载）",
-   "declared_in_repo": "arxiv-nonexclusive",
-   "stated_by_source": null,
-   "source_statement": "copy states no licence",
-   "confirmation": "repo_record_only",
-   "evidence_paths": [
-    "docs/assets/families/evidence/sources.json",
-    "docs/assets/families/moire/sources.json"
-   ],
-   "confirmed_by_page": null,
-   "fulltext_checked": null,
-   "obligations": [
-    "署名",
-    "不得转载原文内容，只能用事实与数值"
-   ],
-   "also": null,
-   "verdict": "recheck",
-   "verdict_note": "该来源不允许转载原文，而卡片里有逐词相同的句子",
-   "cards_to_reword": [
-    "docs/assets/families/evidence/kerelsky2019-gap.json"
-   ],
-   "cards_unchecked": []
-  },
-  {
-   "source": "paper-ps-opal-rulers",
-   "name": "Gazmeh et al., Sci. Rep. 15, 38349 (2025)",
-   "kind": "paper",
-   "questions": 7,
-   "families": [
-    "opal_bragg",
-    "opal_design",
-    "opal_geometry"
-   ],
-   "publishes": {
-    "our_coordinates": 7
-   },
-   "publishes_label": [
-    "本项目生成的坐标（只用论文数值）"
-   ],
-   "license": "CC-BY-NC-ND-4.0",
-   "license_label": "CC BY-NC-ND 4.0",
-   "declared_in_repo": "CC-BY-NC-ND-4.0",
-   "stated_by_source": "CC-BY-NC-ND-4.0",
-   "source_statement": "Open Access This article is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives a link to the Creative Commons licence, and indicate if you modified the licensed material. Y ou do not have other third party material in",
-   "confirmation": "publisher_copy",
-   "evidence_paths": [
-    "docs/assets/families/opals/sources.json"
-   ],
-   "confirmed_by_page": null,
-   "fulltext_checked": "inputs/papers/gazmeh2025/gazmeh2025-scirep.pdf",
-   "obligations": [
-    "署名",
-    "不得转载原文内容，只能用事实与数值"
-   ],
-   "also": null,
-   "verdict": "clear",
-   "verdict_note": "",
-   "cards_to_reword": [],
-   "cards_unchecked": []
-  },
-  {
    "source": "oe62",
    "name": "OE62（TUM mediaTUM 1507656）",
    "kind": "dataset",
@@ -1128,74 +884,81 @@
    "cards_unchecked": []
   },
   {
-   "source": "paper-yu-cdse-2003",
-   "name": "Yu, Qu, Guo & Peng, Chem. Mater. 15, 2854 (2003)",
-   "kind": "paper",
-   "questions": 5,
-   "families": [
-    "qdot_design",
-    "qdot_optics"
-   ],
-   "publishes": {
-    "our_coordinates": 5
-   },
-   "publishes_label": [
-    "本项目生成的坐标（只用论文数值）"
-   ],
-   "license": null,
-   "license_label": "不依赖许可（只用事实数值）",
-   "declared_in_repo": null,
-   "stated_by_source": null,
-   "source_statement": null,
-   "confirmation": "not_relied_on",
-   "evidence_paths": [
-    "docs/assets/families/qdots/sources.json"
-   ],
-   "confirmed_by_page": null,
-   "fulltext_checked": null,
-   "obligations": [],
-   "also": "只用拟合系数（事实数据），不转载任何内容，因此不依赖许可",
-   "verdict": "clear",
-   "verdict_note": "只用数值与事实，不依赖该来源的许可",
-   "cards_to_reword": [],
-   "cards_unchecked": []
-  },
-  {
-   "source": "paper-silica-opal",
-   "name": "Fookes, Polo Parada & Fidalgo, Sensors 23, 1433 (2023)",
+   "source": "paper-cao-magic-angle",
+   "name": "Cao et al., Nature 556, 43 (2018) / arXiv:1803.02342",
    "kind": "paper",
    "questions": 4,
    "families": [
-    "evidence_quantity",
-    "opal_bragg",
-    "opal_geometry"
+    "evidence_elimination",
+    "evidence_quantity"
    ],
    "publishes": {
-    "our_coordinates": 3,
-    "our_text": 1
+    "our_text": 4
    },
    "publishes_label": [
-    "本项目生成的坐标（只用论文数值）",
     "本项目转述的事实（证据卡／设计卡，无坐标）"
    ],
-   "license": "CC-BY-4.0",
-   "license_label": "CC BY 4.0",
-   "declared_in_repo": "CC-BY-4.0",
-   "stated_by_source": "CC-BY-4.0",
-   "source_statement": "© 2023 by the authors. 2023 https://creativecommons.org/licenses/by/4.0/ Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) licens",
-   "confirmation": "publisher_copy",
+   "license": "arxiv-nonexclusive",
+   "license_label": "arXiv 非独占许可（授权 arXiv 分发，不授权第三方转载）",
+   "declared_in_repo": "arxiv-nonexclusive",
+   "stated_by_source": null,
+   "source_statement": "copy states no licence",
+   "confirmation": "repo_record_only",
    "evidence_paths": [
-    "docs/assets/families/opals/sources.json"
+    "docs/assets/families/evidence/sources.json",
+    "docs/assets/families/moire/sources.json"
    ],
    "confirmed_by_page": null,
-   "fulltext_checked": "inputs/papers/fookes2023/fookes2023-PMC9920682.xml",
+   "fulltext_checked": null,
    "obligations": [
-    "署名"
+    "署名",
+    "不得转载原文内容，只能用事实与数值"
    ],
    "also": null,
-   "verdict": "clear",
-   "verdict_note": "",
-   "cards_to_reword": [],
+   "verdict": "recheck",
+   "verdict_note": "该来源不允许转载原文，而卡片里有逐词相同的句子",
+   "cards_to_reword": [
+    "docs/assets/families/evidence/cao2018-squid.json"
+   ],
+   "cards_unchecked": []
+  },
+  {
+   "source": "paper-kerelsky-tbg-stm",
+   "name": "Kerelsky et al., Nature 572, 95 (2019) / arXiv:1812.08776",
+   "kind": "paper",
+   "questions": 4,
+   "families": [
+    "evidence_elimination",
+    "evidence_quantity"
+   ],
+   "publishes": {
+    "our_text": 4
+   },
+   "publishes_label": [
+    "本项目转述的事实（证据卡／设计卡，无坐标）"
+   ],
+   "license": "arxiv-nonexclusive",
+   "license_label": "arXiv 非独占许可（授权 arXiv 分发，不授权第三方转载）",
+   "declared_in_repo": "arxiv-nonexclusive",
+   "stated_by_source": null,
+   "source_statement": "copy states no licence",
+   "confirmation": "repo_record_only",
+   "evidence_paths": [
+    "docs/assets/families/evidence/sources.json",
+    "docs/assets/families/moire/sources.json"
+   ],
+   "confirmed_by_page": null,
+   "fulltext_checked": null,
+   "obligations": [
+    "署名",
+    "不得转载原文内容，只能用事实与数值"
+   ],
+   "also": null,
+   "verdict": "recheck",
+   "verdict_note": "该来源不允许转载原文，而卡片里有逐词相同的句子",
+   "cards_to_reword": [
+    "docs/assets/families/evidence/kerelsky2019-gap.json"
+   ],
    "cards_unchecked": []
   },
   {
@@ -1231,44 +994,6 @@
    },
    "fulltext_checked": null,
    "obligations": [],
-   "also": null,
-   "verdict": "clear",
-   "verdict_note": "",
-   "cards_to_reword": [],
-   "cards_unchecked": []
-  },
-  {
-   "source": "paper-dinc-isosorbide",
-   "name": "Dinç et al., Org. Chem. Front. (2024)",
-   "kind": "paper",
-   "questions": 3,
-   "families": [
-    "cholesteric_geometry",
-    "cholesteric_optics",
-    "evidence_quantity"
-   ],
-   "publishes": {
-    "our_coordinates": 2,
-    "our_text": 1
-   },
-   "publishes_label": [
-    "本项目生成的坐标（只用论文数值）",
-    "本项目转述的事实（证据卡／设计卡，无坐标）"
-   ],
-   "license": "CC-BY-3.0",
-   "license_label": "CC BY 3.0",
-   "declared_in_repo": "CC-BY-3.0",
-   "stated_by_source": "CC-BY-3.0",
-   "source_statement": "This journal is © the Partner Organisations This article is licensed under a Creative Commons Attribution 3.0 Unported Licence . You can use material from this article in other publications without requesting further permissions from the RS",
-   "confirmation": "publisher_copy",
-   "evidence_paths": [
-    "docs/assets/families/cholesteric/sources.json"
-   ],
-   "confirmed_by_page": null,
-   "fulltext_checked": "inputs/papers/dinc2024/dinc2024-PMC11492181.xml",
-   "obligations": [
-    "署名"
-   ],
    "also": null,
    "verdict": "clear",
    "verdict_note": "",
@@ -1313,52 +1038,6 @@
     "docs/assets/families/evidence/jiang2015-sequence.json",
     "docs/assets/families/evidence/jiang2015-channel.json"
    ],
-   "cards_unchecked": []
-  },
-  {
-   "source": "paper-schaefermeier-bscco-vortex",
-   "name": "Schäfermeier et al., arXiv:2602.13060",
-   "kind": "paper",
-   "questions": 3,
-   "families": [
-    "evidence_quantity",
-    "vortex_geometry",
-    "vortex_inference"
-   ],
-   "publishes": {
-    "our_coordinates": 2,
-    "our_text": 1
-   },
-   "publishes_label": [
-    "本项目生成的坐标（只用论文数值）",
-    "本项目转述的事实（证据卡／设计卡，无坐标）"
-   ],
-   "license": "CC-BY-NC-ND-4.0",
-   "license_label": "CC BY-NC-ND 4.0",
-   "declared_in_repo": "CC-BY-NC-ND-4.0",
-   "stated_by_source": null,
-   "source_statement": "copy states no licence",
-   "confirmation": "publisher_page",
-   "evidence_paths": [
-    "docs/assets/families/vortex/sources.json",
-    "docs/data/license-statements.json"
-   ],
-   "confirmed_by_page": {
-    "statement": "arxiv-schaefermeier",
-    "url": "https://arxiv.org/abs/2602.13060",
-    "read_on": "2026-11-02",
-    "quote": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
-    "obligation": "署名 + 不得改编 + 非商业。本库只用该文的数值（涡旋点阵常数等），不转载文字与图，因此这些限制不影响发布；记录在案是为了别人不会误以为可以再分发原文。"
-   },
-   "fulltext_checked": null,
-   "obligations": [
-    "署名",
-    "不得转载原文内容，只能用事实与数值"
-   ],
-   "also": null,
-   "verdict": "clear",
-   "verdict_note": "",
-   "cards_to_reword": [],
    "cards_unchecked": []
   },
   {
@@ -1427,6 +1106,44 @@
    "verdict": "clear",
    "verdict_note": "",
    "cards_to_reword": [],
+   "cards_unchecked": []
+  },
+  {
+   "source": "paper-cottet-mgb2-vortex",
+   "name": "Cottet et al., arXiv:1401.4062",
+   "kind": "paper",
+   "questions": 2,
+   "families": [
+    "evidence_elimination"
+   ],
+   "publishes": {
+    "our_text": 2
+   },
+   "publishes_label": [
+    "本项目转述的事实（证据卡／设计卡，无坐标）"
+   ],
+   "license": "arxiv-nonexclusive",
+   "license_label": "arXiv 非独占许可（授权 arXiv 分发，不授权第三方转载）",
+   "declared_in_repo": "arxiv-nonexclusive",
+   "stated_by_source": null,
+   "source_statement": "copy states no licence",
+   "confirmation": "repo_record_only",
+   "evidence_paths": [
+    "docs/assets/families/evidence/sources.json",
+    "docs/assets/families/vortex/sources.json"
+   ],
+   "confirmed_by_page": null,
+   "fulltext_checked": null,
+   "obligations": [
+    "署名",
+    "不得转载原文内容，只能用事实与数值"
+   ],
+   "also": null,
+   "verdict": "recheck",
+   "verdict_note": "该来源不允许转载原文，而卡片里有逐词相同的句子",
+   "cards_to_reword": [
+    "docs/assets/families/evidence/cottet2014-bend.json"
+   ],
    "cards_unchecked": []
   },
   {
@@ -1499,6 +1216,43 @@
    "verdict": "clear",
    "verdict_note": "",
    "cards_to_reword": [],
+   "cards_unchecked": []
+  },
+  {
+   "source": "paper-shaban-cholesteric",
+   "name": "Shaban et al., Materials 17, 5080 (2024)",
+   "kind": "paper",
+   "questions": 2,
+   "families": [
+    "evidence_elimination",
+    "evidence_quantity"
+   ],
+   "publishes": {
+    "our_text": 2
+   },
+   "publishes_label": [
+    "本项目转述的事实（证据卡／设计卡，无坐标）"
+   ],
+   "license": "CC-BY-4.0",
+   "license_label": "CC BY 4.0",
+   "declared_in_repo": "CC-BY-4.0",
+   "stated_by_source": "CC-BY-4.0",
+   "source_statement": "© 2024 by the authors. 2024 https://creativecommons.org/licenses/by/4.0/ Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) licens",
+   "confirmation": "publisher_copy",
+   "evidence_paths": [
+    "docs/assets/families/cholesteric/sources.json"
+   ],
+   "confirmed_by_page": null,
+   "fulltext_checked": "inputs/papers/shaban2024/shaban2024-PMC11509098.xml",
+   "obligations": [
+    "署名"
+   ],
+   "also": null,
+   "verdict": "clear",
+   "verdict_note": "",
+   "cards_to_reword": [
+    "docs/assets/families/evidence/shaban2024-ions.json"
+   ],
    "cards_unchecked": []
   },
   {
@@ -1599,6 +1353,40 @@
    ],
    "confirmed_by_page": null,
    "fulltext_checked": "inputs/paper-candidates/PMC8317625.xml",
+   "obligations": [
+    "署名"
+   ],
+   "also": null,
+   "verdict": "clear",
+   "verdict_note": "",
+   "cards_to_reword": [],
+   "cards_unchecked": []
+  },
+  {
+   "source": "paper-dinc-isosorbide",
+   "name": "Dinç et al., Org. Chem. Front. (2024)",
+   "kind": "paper",
+   "questions": 1,
+   "families": [
+    "evidence_quantity"
+   ],
+   "publishes": {
+    "our_text": 1
+   },
+   "publishes_label": [
+    "本项目转述的事实（证据卡／设计卡，无坐标）"
+   ],
+   "license": "CC-BY-3.0",
+   "license_label": "CC BY 3.0",
+   "declared_in_repo": "CC-BY-3.0",
+   "stated_by_source": "CC-BY-3.0",
+   "source_statement": "This journal is © the Partner Organisations This article is licensed under a Creative Commons Attribution 3.0 Unported Licence . You can use material from this article in other publications without requesting further permissions from the RS",
+   "confirmation": "publisher_copy",
+   "evidence_paths": [
+    "docs/assets/families/cholesteric/sources.json"
+   ],
+   "confirmed_by_page": null,
+   "fulltext_checked": "inputs/papers/dinc2024/dinc2024-PMC11492181.xml",
    "obligations": [
     "署名"
    ],
@@ -1785,6 +1573,48 @@
    "cards_unchecked": []
   },
   {
+   "source": "paper-schaefermeier-bscco-vortex",
+   "name": "Schäfermeier et al., arXiv:2602.13060",
+   "kind": "paper",
+   "questions": 1,
+   "families": [
+    "evidence_quantity"
+   ],
+   "publishes": {
+    "our_text": 1
+   },
+   "publishes_label": [
+    "本项目转述的事实（证据卡／设计卡，无坐标）"
+   ],
+   "license": "CC-BY-NC-ND-4.0",
+   "license_label": "CC BY-NC-ND 4.0",
+   "declared_in_repo": "CC-BY-NC-ND-4.0",
+   "stated_by_source": null,
+   "source_statement": "copy states no licence",
+   "confirmation": "publisher_page",
+   "evidence_paths": [
+    "docs/assets/families/vortex/sources.json",
+    "docs/data/license-statements.json"
+   ],
+   "confirmed_by_page": {
+    "statement": "arxiv-schaefermeier",
+    "url": "https://arxiv.org/abs/2602.13060",
+    "read_on": "2026-11-02",
+    "quote": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+    "obligation": "署名 + 不得改编 + 非商业。本库只用该文的数值（涡旋点阵常数等），不转载文字与图，因此这些限制不影响发布；记录在案是为了别人不会误以为可以再分发原文。"
+   },
+   "fulltext_checked": null,
+   "obligations": [
+    "署名",
+    "不得转载原文内容，只能用事实与数值"
+   ],
+   "also": null,
+   "verdict": "clear",
+   "verdict_note": "",
+   "cards_to_reword": [],
+   "cards_unchecked": []
+  },
+  {
    "source": "paper-shuto-closed-cavity-dipeptide",
    "name": "Shuto et al., JACS Au 3, 2905 (2023)",
    "kind": "paper",
@@ -1809,6 +1639,40 @@
    ],
    "confirmed_by_page": null,
    "fulltext_checked": "inputs/paper-candidates/PMC10598568.xml",
+   "obligations": [
+    "署名"
+   ],
+   "also": null,
+   "verdict": "clear",
+   "verdict_note": "",
+   "cards_to_reword": [],
+   "cards_unchecked": []
+  },
+  {
+   "source": "paper-silica-opal",
+   "name": "Fookes, Polo Parada & Fidalgo, Sensors 23, 1433 (2023)",
+   "kind": "paper",
+   "questions": 1,
+   "families": [
+    "evidence_quantity"
+   ],
+   "publishes": {
+    "our_text": 1
+   },
+   "publishes_label": [
+    "本项目转述的事实（证据卡／设计卡，无坐标）"
+   ],
+   "license": "CC-BY-4.0",
+   "license_label": "CC BY 4.0",
+   "declared_in_repo": "CC-BY-4.0",
+   "stated_by_source": "CC-BY-4.0",
+   "source_statement": "© 2023 by the authors. 2023 https://creativecommons.org/licenses/by/4.0/ Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) licens",
+   "confirmation": "publisher_copy",
+   "evidence_paths": [
+    "docs/assets/families/opals/sources.json"
+   ],
+   "confirmed_by_page": null,
+   "fulltext_checked": "inputs/papers/fookes2023/fookes2023-PMC9920682.xml",
    "obligations": [
     "署名"
    ],
@@ -1889,6 +1753,32 @@
    "cards_unchecked": []
   },
   {
+   "source": "paper-dna-au-superlattice",
+   "name": "Hill et al., Nano Lett. 8, 2341 (2008)",
+   "kind": "paper",
+   "questions": 0,
+   "families": [],
+   "publishes": {},
+   "publishes_label": [],
+   "license": null,
+   "license_label": "不依赖许可（只用事实数值）",
+   "declared_in_repo": null,
+   "stated_by_source": null,
+   "source_statement": null,
+   "confirmation": "not_relied_on",
+   "evidence_paths": [
+    "docs/assets/families/superlattices/sources.json"
+   ],
+   "confirmed_by_page": null,
+   "fulltext_checked": null,
+   "obligations": [],
+   "also": "只用 Table 1 的数值（事实数据），不转载任何内容",
+   "verdict": "clear",
+   "verdict_note": "只用数值与事实，不依赖该来源的许可",
+   "cards_to_reword": [],
+   "cards_unchecked": []
+  },
+  {
    "source": "paper-kim-ace2-disulfide",
    "name": "Kim et al., Int. J. Mol. Sci. 25, 9919 (2024)",
    "kind": "paper",
@@ -1916,6 +1806,61 @@
    "cards_to_reword": [
     "docs/assets/families/design/resolved/kim2024-ace2-disulfide-ptr.json"
    ],
+   "cards_unchecked": []
+  },
+  {
+   "source": "paper-ps-opal-rulers",
+   "name": "Gazmeh et al., Sci. Rep. 15, 38349 (2025)",
+   "kind": "paper",
+   "questions": 0,
+   "families": [],
+   "publishes": {},
+   "publishes_label": [],
+   "license": "CC-BY-NC-ND-4.0",
+   "license_label": "CC BY-NC-ND 4.0",
+   "declared_in_repo": "CC-BY-NC-ND-4.0",
+   "stated_by_source": "CC-BY-NC-ND-4.0",
+   "source_statement": "Open Access This article is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives a link to the Creative Commons licence, and indicate if you modified the licensed material. Y ou do not have other third party material in",
+   "confirmation": "publisher_copy",
+   "evidence_paths": [
+    "docs/assets/families/opals/sources.json"
+   ],
+   "confirmed_by_page": null,
+   "fulltext_checked": "inputs/papers/gazmeh2025/gazmeh2025-scirep.pdf",
+   "obligations": [
+    "署名",
+    "不得转载原文内容，只能用事实与数值"
+   ],
+   "also": null,
+   "verdict": "clear",
+   "verdict_note": "",
+   "cards_to_reword": [],
+   "cards_unchecked": []
+  },
+  {
+   "source": "paper-yu-cdse-2003",
+   "name": "Yu, Qu, Guo & Peng, Chem. Mater. 15, 2854 (2003)",
+   "kind": "paper",
+   "questions": 0,
+   "families": [],
+   "publishes": {},
+   "publishes_label": [],
+   "license": null,
+   "license_label": "不依赖许可（只用事实数值）",
+   "declared_in_repo": null,
+   "stated_by_source": null,
+   "source_statement": null,
+   "confirmation": "not_relied_on",
+   "evidence_paths": [
+    "docs/assets/families/qdots/sources.json"
+   ],
+   "confirmed_by_page": null,
+   "fulltext_checked": null,
+   "obligations": [],
+   "also": "只用拟合系数（事实数据），不转载任何内容，因此不依赖许可",
+   "verdict": "clear",
+   "verdict_note": "只用数值与事实，不依赖该来源的许可",
+   "cards_to_reword": [],
    "cards_unchecked": []
   }
  ],

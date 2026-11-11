@@ -121,7 +121,12 @@ class SelectionTests(unittest.TestCase):
         active = sorted(q['id'] for q in CATALOG['questions'] if q['lifecycle'] == 'active')
         self.assertEqual(len(SELECTION['cells']), 16)
         for c in SELECTION['cells']:
-            self.assertEqual(len(c['selected']), 10, c['cell'])
+            # Ten where ten exist. Since 2026-11-11 (the paper-parameter models retired) six of the sixteen
+            # prototype cells hold fewer; select_prototype then takes every one it has and says what is
+            # missing -- the advisor's rule for a cell that cannot be filled is to say so, not to pad it.
+            self.assertEqual(len(c['selected']), min(10, c['available']), c['cell'])
+            if c['available'] < 10:
+                self.assertIn(str(c['available']), c['rationale'], c['cell'])
             self.assertTrue(all(s['form'] != 'legacy' or s['unit'].startswith('legacy:') for s in c['selected']))
         both = sorted([s['id'] for c in SELECTION['cells'] for s in c['selected']] + [r['id'] for c in SELECTION['cells'] for r in c['reserve']])
         self.assertEqual(both, active)

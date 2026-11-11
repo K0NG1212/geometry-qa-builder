@@ -16,27 +16,27 @@
   "experimental_evidence": "证据型题（SAMPL9 实测 ΔG、HELIX/SHEET 指认）是否符合要求"
  },
  "summary": {
-  "selected": 160,
-  "reserve": 828,
+  "selected": 120,
+  "reserve": 826,
   "out_of_range": [],
   "abilities": {
-   "perception": 60,
-   "inference": 53,
-   "design": 47
+   "perception": 44,
+   "inference": 46,
+   "design": 30
   },
   "forms": {
-   "family": 160,
+   "family": 120,
    "family-version": 0,
    "legacy": 0
   },
-  "review_units": 47,
-  "family_units": 47,
+  "review_units": 29,
+  "family_units": 29,
   "legacy_units": 0,
   "pending_decision": {
    "measurement_condition_design": 9,
    "experimental_evidence": 2
   },
-  "full_cells": 16
+  "full_cells": 10
  },
  "cells": [
   {
@@ -2504,57 +2504,21 @@
    "cell": "chemistry 100-1000",
    "domain": "chemistry",
    "bin": "100-1000",
-   "available": 13,
-   "eligible": 13,
+   "available": 3,
+   "eligible": 3,
    "abilities": {
-    "perception": 3,
-    "inference": 4,
-    "design": 3
+    "perception": 0,
+    "inference": 3,
+    "design": 0
    },
    "selected": [
     {
-     "id": "CNP024",
-     "ability": "perception",
-     "form": "family",
-     "unit": "cholesteric_geometry",
-     "instance": "FA-CH-PITCH-R5011",
-     "source": "paper-shaban-cholesteric",
-     "pending": null
-    },
-    {
-     "id": "CNP025",
-     "ability": "perception",
-     "form": "family",
-     "unit": "cholesteric_geometry",
-     "instance": "FA-CH-HAND-S5011",
-     "source": "paper-shaban-cholesteric",
-     "pending": null
-    },
-    {
-     "id": "CNP026",
-     "ability": "perception",
-     "form": "family",
-     "unit": "cholesteric_geometry",
-     "instance": "FA-CH-PITCH-LRCD",
-     "source": "paper-dinc-isosorbide",
-     "pending": null
-    },
-    {
-     "id": "CNI018",
+     "id": "CNI025",
      "ability": "inference",
      "form": "family",
-     "unit": "cholesteric_optics",
-     "instance": "FA-CH-BAND-R5011",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-SHA-BAND",
      "source": "paper-shaban-cholesteric",
-     "pending": null
-    },
-    {
-     "id": "CNI020",
-     "ability": "inference",
-     "form": "family",
-     "unit": "cholesteric_optics",
-     "instance": "FA-CH-LAMBDA-RRCD",
-     "source": "paper-dinc-isosorbide",
      "pending": null
     },
     {
@@ -2574,75 +2538,17 @@
      "instance": "FA-EVE-SHA-IONS",
      "source": "paper-shaban-cholesteric",
      "pending": null
-    },
-    {
-     "id": "CND009",
-     "ability": "design",
-     "form": "family",
-     "unit": "cholesteric_design",
-     "instance": "FA-CH-DES-550",
-     "source": "paper-shaban-cholesteric",
-     "pending": null
-    },
-    {
-     "id": "CND010",
-     "ability": "design",
-     "form": "family",
-     "unit": "cholesteric_design",
-     "instance": "FA-CH-DES-LEFT600",
-     "source": "paper-shaban-cholesteric",
-     "pending": null
-    },
-    {
-     "id": "CND011",
-     "ability": "design",
-     "form": "family",
-     "unit": "cholesteric_design",
-     "instance": "FA-CH-DES-BELOW620",
-     "source": "paper-shaban-cholesteric",
-     "pending": null
     }
    ],
-   "reserve": [
-    {
-     "id": "CNI017",
-     "ability": "inference",
-     "form": "family",
-     "unit": "cholesteric_optics",
-     "instance": "FA-CH-LAMBDA-R5011",
-     "source": "paper-shaban-cholesteric",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "CNI019",
-     "ability": "inference",
-     "form": "family",
-     "unit": "cholesteric_optics",
-     "instance": "FA-CH-HTP-S5011",
-     "source": "paper-shaban-cholesteric",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "CNI025",
-     "ability": "inference",
-     "form": "family",
-     "unit": "evidence_quantity",
-     "instance": "FA-EVQ-SHA-BAND",
-     "source": "paper-shaban-cholesteric",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    }
-   ],
-   "rationale": "可用 13 道，其中经独立检查 13 道"
+   "reserve": [],
+   "rationale": "可用 3 道，其中经独立检查 3 道；缺少能力：perception、design；不足 10 道"
   },
   {
    "cell": "biology 0.1-1",
    "domain": "biology",
    "bin": "0.1-1",
-   "available": 180,
-   "eligible": 180,
+   "available": 184,
+   "eligible": 184,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -3852,6 +3758,46 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "BNI111",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-9MMZ-SS-127",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI112",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-1IN7-SS-186",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI113",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-1IN6-SS-108",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "BNI114",
+     "ability": "inference",
+     "form": "family",
+     "unit": "secondary_structure",
+     "instance": "EN-5W79-SS-506",
+     "source": "pdb-bio-nm",
+     "pending": "experimental_evidence",
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "BNP013",
      "ability": "perception",
      "form": "family",
@@ -4442,7 +4388,7 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 180 道，其中经独立检查 180 道"
+   "rationale": "可用 184 道，其中经独立检查 184 道"
   },
   {
    "cell": "biology 1-10",
@@ -5679,8 +5625,8 @@
    "cell": "materials 0.1-1",
    "domain": "materials",
    "bin": "0.1-1",
-   "available": 176,
-   "eligible": 176,
+   "available": 179,
+   "eligible": 179,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -6930,6 +6876,36 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "MNI132",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD7234259-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI133",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD1523423-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI135",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD2310687-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "MNP011",
      "ability": "perception",
      "form": "family",
@@ -7440,14 +7416,14 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 176 道，其中经独立检查 176 道"
+   "rationale": "可用 179 道，其中经独立检查 179 道"
   },
   {
    "cell": "materials 1-10",
    "domain": "materials",
    "bin": "1-10",
-   "available": 60,
-   "eligible": 60,
+   "available": 63,
+   "eligible": 63,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -8037,6 +8013,36 @@
      "reason": "本格已满 10 道"
     },
     {
+     "id": "MNI134",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD7243051-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI136",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD7241895-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "MNI137",
+     "ability": "inference",
+     "form": "family",
+     "unit": "kinematic_extinction",
+     "instance": "EN-COD9017412-EXT",
+     "source": "cod-materials-cell",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
      "id": "MNP029",
      "ability": "perception",
      "form": "family",
@@ -8047,180 +8053,35 @@
      "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 60 道，其中经独立检查 60 道"
+   "rationale": "可用 63 道，其中经独立检查 63 道"
   },
   {
    "cell": "materials 10-100",
    "domain": "materials",
    "bin": "10-100",
-   "available": 10,
-   "eligible": 10,
+   "available": 0,
+   "eligible": 0,
    "abilities": {
-    "perception": 4,
-    "inference": 3,
-    "design": 3
+    "perception": 0,
+    "inference": 0,
+    "design": 0
    },
-   "selected": [
-    {
-     "id": "MNP015",
-     "ability": "perception",
-     "form": "family",
-     "unit": "superlattice_shell",
-     "instance": "FA-SL-SHELL-X",
-     "source": "paper-dna-au-superlattice",
-     "pending": null
-    },
-    {
-     "id": "MNP016",
-     "ability": "perception",
-     "form": "family",
-     "unit": "superlattice_metric",
-     "instance": "FA-SL-EDGE-26",
-     "source": "paper-dna-au-superlattice",
-     "pending": null
-    },
-    {
-     "id": "MNP017",
-     "ability": "perception",
-     "form": "family",
-     "unit": "superlattice_metric",
-     "instance": "FA-SL-EDGE-52",
-     "source": "paper-dna-au-superlattice",
-     "pending": null
-    },
-    {
-     "id": "MNP018",
-     "ability": "perception",
-     "form": "family",
-     "unit": "superlattice_metric",
-     "instance": "FA-SL-D111-39",
-     "source": "paper-dna-au-superlattice",
-     "pending": null
-    },
-    {
-     "id": "MNI020",
-     "ability": "inference",
-     "form": "family",
-     "unit": "superlattice_saxs",
-     "instance": "FA-SL-QSTAR-X",
-     "source": "paper-dna-au-superlattice",
-     "pending": null
-    },
-    {
-     "id": "MNI021",
-     "ability": "inference",
-     "form": "family",
-     "unit": "superlattice_saxs",
-     "instance": "FA-SL-Q200-13",
-     "source": "paper-dna-au-superlattice",
-     "pending": null
-    },
-    {
-     "id": "MNI022",
-     "ability": "inference",
-     "form": "family",
-     "unit": "superlattice_saxs",
-     "instance": "FA-SL-GOLD-52",
-     "source": "paper-dna-au-superlattice",
-     "pending": null
-    },
-    {
-     "id": "MND001",
-     "ability": "design",
-     "form": "family",
-     "unit": "superlattice_design",
-     "instance": "FA-SL-DES-QSTAR",
-     "source": "paper-dna-au-superlattice",
-     "pending": null
-    },
-    {
-     "id": "MND002",
-     "ability": "design",
-     "form": "family",
-     "unit": "superlattice_design",
-     "instance": "FA-SL-DES-NN",
-     "source": "paper-dna-au-superlattice",
-     "pending": null
-    },
-    {
-     "id": "MND003",
-     "ability": "design",
-     "form": "family",
-     "unit": "superlattice_design",
-     "instance": "FA-SL-DES-GOLD",
-     "source": "paper-dna-au-superlattice",
-     "pending": null
-    }
-   ],
+   "selected": [],
    "reserve": [],
-   "rationale": "可用 10 道，其中经独立检查 10 道"
+   "rationale": "可用 0 道，其中经独立检查 0 道；缺少能力：perception、inference、design；不足 10 道"
   },
   {
    "cell": "materials 100-1000",
    "domain": "materials",
    "bin": "100-1000",
-   "available": 11,
-   "eligible": 11,
+   "available": 1,
+   "eligible": 1,
    "abilities": {
-    "perception": 3,
-    "inference": 4,
-    "design": 3
+    "perception": 0,
+    "inference": 1,
+    "design": 0
    },
    "selected": [
-    {
-     "id": "MNP019",
-     "ability": "perception",
-     "form": "family",
-     "unit": "opal_geometry",
-     "instance": "FA-OP-DIAM-S8",
-     "source": "paper-ps-opal-rulers",
-     "pending": null
-    },
-    {
-     "id": "MNP020",
-     "ability": "perception",
-     "form": "family",
-     "unit": "opal_geometry",
-     "instance": "FA-OP-D111-S2",
-     "source": "paper-ps-opal-rulers",
-     "pending": null
-    },
-    {
-     "id": "MNP021",
-     "ability": "perception",
-     "form": "family",
-     "unit": "opal_geometry",
-     "instance": "FA-OP-EDGE-SIO2",
-     "source": "paper-silica-opal",
-     "pending": null
-    },
-    {
-     "id": "MNI024",
-     "ability": "inference",
-     "form": "family",
-     "unit": "opal_bragg",
-     "instance": "FA-OP-PEAK-S7-WATER",
-     "source": "paper-ps-opal-rulers",
-     "pending": null
-    },
-    {
-     "id": "MNI025",
-     "ability": "inference",
-     "form": "family",
-     "unit": "opal_bragg",
-     "instance": "FA-OP-PEAK-SIO2-30",
-     "source": "paper-silica-opal",
-     "pending": null
-    },
-    {
-     "id": "MNI026",
-     "ability": "inference",
-     "form": "family",
-     "unit": "opal_bragg",
-     "instance": "FA-OP-ANGLE-SIO2",
-     "source": "paper-silica-opal",
-     "pending": null
-    },
     {
      "id": "MNI036",
      "ability": "inference",
@@ -8229,55 +8090,17 @@
      "instance": "FA-EVQ-FOO-LAYERS",
      "source": "paper-silica-opal",
      "pending": null
-    },
-    {
-     "id": "MND004",
-     "ability": "design",
-     "form": "family",
-     "unit": "opal_design",
-     "instance": "FA-OP-DES-540",
-     "source": "paper-ps-opal-rulers",
-     "pending": null
-    },
-    {
-     "id": "MND005",
-     "ability": "design",
-     "form": "family",
-     "unit": "opal_design",
-     "instance": "FA-OP-DES-820",
-     "source": "paper-ps-opal-rulers",
-     "pending": null
-    },
-    {
-     "id": "MND006",
-     "ability": "design",
-     "form": "family",
-     "unit": "opal_design",
-     "instance": "FA-OP-DES-BELOW700",
-     "source": "paper-ps-opal-rulers",
-     "pending": null
     }
    ],
-   "reserve": [
-    {
-     "id": "MNI023",
-     "ability": "inference",
-     "form": "family",
-     "unit": "opal_bragg",
-     "instance": "FA-OP-PEAK-S3",
-     "source": "paper-ps-opal-rulers",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    }
-   ],
-   "rationale": "可用 11 道，其中经独立检查 11 道"
+   "reserve": [],
+   "rationale": "可用 1 道，其中经独立检查 1 道；缺少能力：perception、design；不足 10 道"
   },
   {
    "cell": "quantum 0.1-1",
    "domain": "quantum",
    "bin": "0.1-1",
-   "available": 132,
-   "eligible": 132,
+   "available": 135,
+   "eligible": 135,
    "abilities": {
     "perception": 4,
     "inference": 3,
@@ -9595,20 +9418,50 @@
      "source": "qm7x",
      "pending": null,
      "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP160",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-QM7X-7001-I1-C1-OPT-BOND-3-7",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP161",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-QM7X-7001-I1-C1-OPT-BOND-4-5",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
+    },
+    {
+     "id": "QNP162",
+     "ability": "perception",
+     "form": "family",
+     "unit": "named_bond_distance",
+     "instance": "EN-QM7X-7001-I1-C1-OPT-BOND-2-3",
+     "source": "qm7x",
+     "pending": null,
+     "reason": "本格已满 10 道"
     }
    ],
-   "rationale": "可用 132 道，其中经独立检查 132 道"
+   "rationale": "可用 135 道，其中经独立检查 135 道"
   },
   {
    "cell": "quantum 1-10",
    "domain": "quantum",
    "bin": "1-10",
-   "available": 10,
-   "eligible": 10,
+   "available": 5,
+   "eligible": 5,
    "abilities": {
     "perception": 5,
-    "inference": 3,
-    "design": 2
+    "inference": 0,
+    "design": 0
    },
    "selected": [
     {
@@ -9655,102 +9508,30 @@
      "instance": "FC-QNP011",
      "source": "oe62",
      "pending": null
-    },
-    {
-     "id": "QNI014",
-     "ability": "inference",
-     "form": "family",
-     "unit": "qdot_optics",
-     "instance": "FA-QD-PEAK-C",
-     "source": "paper-yu-cdse-2003",
-     "pending": null
-    },
-    {
-     "id": "QNI015",
-     "ability": "inference",
-     "form": "family",
-     "unit": "qdot_optics",
-     "instance": "FA-QD-EPS-E",
-     "source": "paper-yu-cdse-2003",
-     "pending": null
-    },
-    {
-     "id": "QNI016",
-     "ability": "inference",
-     "form": "family",
-     "unit": "qdot_optics",
-     "instance": "FA-QD-CONC-B",
-     "source": "paper-yu-cdse-2003",
-     "pending": null
-    },
-    {
-     "id": "QND008",
-     "ability": "design",
-     "form": "family",
-     "unit": "qdot_design",
-     "instance": "FA-QD-DES-590",
-     "source": "paper-yu-cdse-2003",
-     "pending": null
-    },
-    {
-     "id": "QND009",
-     "ability": "design",
-     "form": "family",
-     "unit": "qdot_design",
-     "instance": "FA-QD-DES-565",
-     "source": "paper-yu-cdse-2003",
-     "pending": null
     }
    ],
    "reserve": [],
-   "rationale": "可用 10 道，其中经独立检查 10 道"
+   "rationale": "可用 5 道，其中经独立检查 5 道；缺少能力：inference、design；不足 10 道"
   },
   {
    "cell": "quantum 10-100",
    "domain": "quantum",
    "bin": "10-100",
-   "available": 17,
-   "eligible": 17,
+   "available": 7,
+   "eligible": 7,
    "abilities": {
-    "perception": 3,
-    "inference": 4,
-    "design": 3
+    "perception": 0,
+    "inference": 7,
+    "design": 0
    },
    "selected": [
     {
-     "id": "QNP017",
-     "ability": "perception",
-     "form": "family",
-     "unit": "moire_geometry",
-     "instance": "FA-MO-PERIOD-K079",
-     "source": "paper-kerelsky-tbg-stm",
-     "pending": null
-    },
-    {
-     "id": "QNP018",
-     "ability": "perception",
-     "form": "family",
-     "unit": "moire_geometry",
-     "instance": "FA-MO-AREA-M2",
-     "source": "paper-cao-magic-angle",
-     "pending": null
-    },
-    {
-     "id": "QNP019",
-     "ability": "perception",
-     "form": "family",
-     "unit": "moire_geometry",
-     "instance": "FA-MO-PERIOD-D1",
-     "source": "paper-cao-magic-angle",
-     "pending": null
-    },
-    {
-     "id": "QNI012",
+     "id": "QNI027",
      "ability": "inference",
      "form": "family",
-     "unit": "moire_inference",
-     "instance": "FA-MO-NHALF-K079",
-     "source": "paper-kerelsky-tbg-stm",
+     "unit": "evidence_quantity",
+     "instance": "FA-EVQ-CAO-COHERENCE",
+     "source": "paper-cao-magic-angle",
      "pending": null
     },
     {
@@ -9772,92 +9553,13 @@
      "pending": null
     },
     {
-     "id": "QNI038",
-     "ability": "inference",
-     "form": "family",
-     "unit": "evidence_elimination",
-     "instance": "FA-EVE-MUH-SKYRMION",
-     "source": "paper-muhlbauer-mnsi-skyrmion",
-     "pending": null
-    },
-    {
-     "id": "QND005",
-     "ability": "design",
-     "form": "family",
-     "unit": "moire_design",
-     "instance": "FA-MO-DES-HALF",
-     "source": "paper-cao-magic-angle",
-     "pending": null
-    },
-    {
-     "id": "QND006",
-     "ability": "design",
-     "form": "family",
-     "unit": "moire_design",
-     "instance": "FA-MO-DES-PERIOD",
-     "source": "paper-cao-magic-angle",
-     "pending": null
-    },
-    {
-     "id": "QND007",
-     "ability": "design",
-     "form": "family",
-     "unit": "moire_design",
-     "instance": "FA-MO-DES-FULL",
-     "source": "paper-cao-magic-angle",
-     "pending": null
-    }
-   ],
-   "reserve": [
-    {
-     "id": "QNI010",
-     "ability": "inference",
-     "form": "family",
-     "unit": "moire_inference",
-     "instance": "FA-MO-ATOMS-K110",
-     "source": "paper-kerelsky-tbg-stm",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "QNI011",
-     "ability": "inference",
-     "form": "family",
-     "unit": "moire_inference",
-     "instance": "FA-MO-NFULL-M1",
-     "source": "paper-cao-magic-angle",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "QNI013",
-     "ability": "inference",
-     "form": "family",
-     "unit": "moire_inference",
-     "instance": "FA-MO-TWIST-D1",
-     "source": "paper-cao-magic-angle",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "QNI027",
-     "ability": "inference",
-     "form": "family",
-     "unit": "evidence_quantity",
-     "instance": "FA-EVQ-CAO-COHERENCE",
-     "source": "paper-cao-magic-angle",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
      "id": "QNI034",
      "ability": "inference",
      "form": "family",
      "unit": "evidence_elimination",
      "instance": "FA-EVE-CAO-POCKETS",
      "source": "paper-cao-magic-angle",
-     "pending": null,
-     "reason": "本格已满 10 道"
+     "pending": null
     },
     {
      "id": "QNI035",
@@ -9866,8 +9568,7 @@
      "unit": "evidence_elimination",
      "instance": "FA-EVE-KER-BANDWIDTH",
      "source": "paper-kerelsky-tbg-stm",
-     "pending": null,
-     "reason": "本格已满 10 道"
+     "pending": null
     },
     {
      "id": "QNI036",
@@ -9876,60 +9577,33 @@
      "unit": "evidence_elimination",
      "instance": "FA-EVE-KER-GAP",
      "source": "paper-kerelsky-tbg-stm",
-     "pending": null,
-     "reason": "本格已满 10 道"
+     "pending": null
+    },
+    {
+     "id": "QNI038",
+     "ability": "inference",
+     "form": "family",
+     "unit": "evidence_elimination",
+     "instance": "FA-EVE-MUH-SKYRMION",
+     "source": "paper-muhlbauer-mnsi-skyrmion",
+     "pending": null
     }
    ],
-   "rationale": "可用 17 道，其中经独立检查 17 道"
+   "reserve": [],
+   "rationale": "可用 7 道，其中经独立检查 7 道；缺少能力：perception、design；不足 10 道"
   },
   {
    "cell": "quantum 100-1000",
    "domain": "quantum",
    "bin": "100-1000",
-   "available": 14,
-   "eligible": 14,
+   "available": 4,
+   "eligible": 4,
    "abilities": {
-    "perception": 3,
+    "perception": 0,
     "inference": 4,
-    "design": 3
+    "design": 0
    },
    "selected": [
-    {
-     "id": "QNP020",
-     "ability": "perception",
-     "form": "family",
-     "unit": "vortex_geometry",
-     "instance": "FA-VX-SPACING-561",
-     "source": "paper-cottet-mgb2-vortex",
-     "pending": null
-    },
-    {
-     "id": "QNP021",
-     "ability": "perception",
-     "form": "family",
-     "unit": "vortex_geometry",
-     "instance": "FA-VX-DENSITY-1173",
-     "source": "paper-cottet-mgb2-vortex",
-     "pending": null
-    },
-    {
-     "id": "QNP022",
-     "ability": "perception",
-     "form": "family",
-     "unit": "vortex_geometry",
-     "instance": "FA-VX-SPACING-BSCCO",
-     "source": "paper-schaefermeier-bscco-vortex",
-     "pending": null
-    },
-    {
-     "id": "QNI017",
-     "ability": "inference",
-     "form": "family",
-     "unit": "vortex_inference",
-     "instance": "FA-VX-FIELD-BSCCO",
-     "source": "paper-schaefermeier-bscco-vortex",
-     "pending": null
-    },
     {
      "id": "QNI028",
      "ability": "inference",
@@ -9958,76 +9632,17 @@
      "pending": null
     },
     {
-     "id": "QND010",
-     "ability": "design",
-     "form": "family",
-     "unit": "vortex_design",
-     "instance": "FA-VX-DES-SPACING",
-     "source": "paper-cottet-mgb2-vortex",
-     "pending": null
-    },
-    {
-     "id": "QND011",
-     "ability": "design",
-     "form": "family",
-     "unit": "vortex_design",
-     "instance": "FA-VX-DES-SANS",
-     "source": "paper-cottet-mgb2-vortex",
-     "pending": null
-    },
-    {
-     "id": "QND012",
-     "ability": "design",
-     "form": "family",
-     "unit": "vortex_design",
-     "instance": "FA-VX-DES-DENSITY",
-     "source": "paper-cottet-mgb2-vortex",
-     "pending": null
-    }
-   ],
-   "reserve": [
-    {
-     "id": "QNI018",
-     "ability": "inference",
-     "form": "family",
-     "unit": "vortex_inference",
-     "instance": "FA-VX-FIELD-508",
-     "source": "paper-cottet-mgb2-vortex",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "QNI019",
-     "ability": "inference",
-     "form": "family",
-     "unit": "vortex_inference",
-     "instance": "FA-VX-FLUX-1887",
-     "source": "paper-cottet-mgb2-vortex",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
-     "id": "QNI020",
-     "ability": "inference",
-     "form": "family",
-     "unit": "vortex_inference",
-     "instance": "FA-VX-SANS-1173",
-     "source": "paper-cottet-mgb2-vortex",
-     "pending": null,
-     "reason": "本格已满 10 道"
-    },
-    {
      "id": "QNI037",
      "ability": "inference",
      "form": "family",
      "unit": "evidence_elimination",
      "instance": "FA-EVE-COT-LATTICE",
      "source": "paper-cottet-mgb2-vortex",
-     "pending": null,
-     "reason": "本格已满 10 道"
+     "pending": null
     }
    ],
-   "rationale": "可用 14 道，其中经独立检查 14 道"
+   "reserve": [],
+   "rationale": "可用 4 道，其中经独立检查 4 道；缺少能力：perception、design；不足 10 道"
   }
  ],
  "selected_ids": [
@@ -10076,16 +9691,12 @@
   "BNP103",
   "BNP104",
   "CND005",
-  "CND009",
-  "CND010",
-  "CND011",
   "CND019",
   "CND021",
   "CNI008",
   "CNI011",
   "CNI013",
-  "CNI018",
-  "CNI020",
+  "CNI025",
   "CNI026",
   "CNI029",
   "CNI031",
@@ -10097,20 +9708,11 @@
   "CNP020",
   "CNP021",
   "CNP023",
-  "CNP024",
-  "CNP025",
-  "CNP026",
   "CNP029",
   "CNP034",
   "CNP036",
   "CNP037",
   "CNP068",
-  "MND001",
-  "MND002",
-  "MND003",
-  "MND004",
-  "MND005",
-  "MND006",
   "MND014",
   "MND015",
   "MND017",
@@ -10118,12 +9720,6 @@
   "MND039",
   "MND045",
   "MNI019",
-  "MNI020",
-  "MNI021",
-  "MNI022",
-  "MNI024",
-  "MNI025",
-  "MNI026",
   "MNI036",
   "MNI037",
   "MNI038",
@@ -10132,13 +9728,6 @@
   "MNI099",
   "MNP013",
   "MNP014",
-  "MNP015",
-  "MNP016",
-  "MNP017",
-  "MNP018",
-  "MNP019",
-  "MNP020",
-  "MNP021",
   "MNP028",
   "MNP030",
   "MNP040",
@@ -10146,40 +9735,26 @@
   "MNP062",
   "MNP081",
   "QND003",
-  "QND005",
-  "QND006",
-  "QND007",
-  "QND008",
-  "QND009",
-  "QND010",
-  "QND011",
-  "QND012",
   "QND016",
   "QND029",
   "QND055",
   "QND063",
   "QND066",
   "QND067",
-  "QNI012",
-  "QNI014",
-  "QNI015",
-  "QNI016",
-  "QNI017",
   "QNI023",
+  "QNI027",
   "QNI028",
   "QNI029",
   "QNI030",
   "QNI031",
   "QNI032",
   "QNI033",
+  "QNI034",
+  "QNI035",
+  "QNI036",
+  "QNI037",
   "QNI038",
   "QNI060",
-  "QNP017",
-  "QNP018",
-  "QNP019",
-  "QNP020",
-  "QNP021",
-  "QNP022",
   "QNP023",
   "QNP024",
   "QNP025",

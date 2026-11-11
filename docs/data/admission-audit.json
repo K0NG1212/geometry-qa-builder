@@ -1,13 +1,13 @@
 {
-  "date": "2026-11-05",
+  "date": "2026-11-11",
   "scope": "对全部目录记录采用相同准入清单；2026-09-22 专项审读处置见 screening.html；本统计不代表完整 M0–M6 重跑。",
   "target": 160,
-  "screened": 988,
+  "screened": 946,
   "remaining_screened": 0,
-  "screened_over_target": 828,
+  "screened_over_target": 786,
   "formal_ready": 0,
   "remaining_formal": 160,
-  "human_review_count": 988,
+  "human_review_count": 946,
   "human_review_ids": [
     "BNP013",
     "BNP014",
@@ -83,36 +83,6 @@
     "CND006",
     "BNI022",
     "BND001",
-    "MNP015",
-    "MNP016",
-    "MNP017",
-    "MNP018",
-    "MNI020",
-    "MNI021",
-    "MNI022",
-    "MND001",
-    "MND002",
-    "MND003",
-    "MNP019",
-    "MNP020",
-    "MNP021",
-    "MNI023",
-    "MNI024",
-    "MNI025",
-    "MNI026",
-    "MND004",
-    "MND005",
-    "MND006",
-    "QNP017",
-    "QNP018",
-    "QNP019",
-    "QNI010",
-    "QNI011",
-    "QNI012",
-    "QNI013",
-    "QND005",
-    "QND006",
-    "QND007",
     "BNP025",
     "BNI023",
     "BND002",
@@ -124,11 +94,6 @@
     "CNI016",
     "CND007",
     "CND008",
-    "QNI014",
-    "QNI015",
-    "QNI016",
-    "QND008",
-    "QND009",
     "MND007",
     "MND008",
     "MND009",
@@ -144,26 +109,6 @@
     "BND009",
     "BND010",
     "BND011",
-    "QNP020",
-    "QNP021",
-    "QNP022",
-    "QNI017",
-    "QNI018",
-    "QNI019",
-    "QNI020",
-    "QND010",
-    "QND011",
-    "QND012",
-    "CNP024",
-    "CNP025",
-    "CNP026",
-    "CNI017",
-    "CNI018",
-    "CNI019",
-    "CNI020",
-    "CND009",
-    "CND010",
-    "CND011",
     "MNP022",
     "MNP023",
     "MNP024",
@@ -996,13 +941,26 @@
     "CNP072",
     "QNP158",
     "QNP159",
-    "CNI058"
+    "CNI058",
+    "MNI132",
+    "MNI133",
+    "MNI134",
+    "MNI135",
+    "MNI136",
+    "MNI137",
+    "BNI111",
+    "BNI112",
+    "BNI113",
+    "BNI114",
+    "QNP160",
+    "QNP161",
+    "QNP162"
   ],
   "lifecycle_counts": {
     "rework": 33,
     "backlog": 18,
-    "archived": 62,
-    "active": 988
+    "archived": 117,
+    "active": 946
   },
   "records": [
     {
@@ -4374,7 +4332,7 @@
     {
       "id": "MNP015",
       "title": "金纳米粒子超晶格（X 连接子）· 最近邻壳层（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4382,17 +4340,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNP016",
       "title": "金纳米粒子超晶格（26 连接子）· 常规晶胞边长（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4400,17 +4358,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNP017",
       "title": "金纳米粒子超晶格（52 连接子）· 常规晶胞边长（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4418,17 +4376,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNP018",
       "title": "金纳米粒子超晶格（39 连接子）· 密排面间距（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4436,17 +4394,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNI020",
       "title": "金纳米粒子超晶格（X 连接子）· 首个 Bragg 反射 q*（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4454,17 +4412,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNI021",
       "title": "金纳米粒子超晶格（13 连接子）· 第二个 Bragg 反射（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4472,17 +4430,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNI022",
       "title": "金纳米粒子超晶格（52 连接子）· 金体积百分数（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4490,17 +4448,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MND001",
       "title": "超晶格连接子选择 · 目标 q* = 0.19 nm⁻¹（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4508,17 +4466,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MND002",
       "title": "超晶格连接子选择 · 目标间距 45 nm（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4526,17 +4484,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MND003",
       "title": "超晶格连接子选择 · 金含量 ≥ 1% 下间距最大（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4544,17 +4502,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNP019",
       "title": "聚苯乙烯胶体晶体（S8）· 球径（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4562,17 +4520,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNP020",
       "title": "聚苯乙烯胶体晶体（S2）· 密排面间距（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4580,17 +4538,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNP021",
       "title": "二氧化硅胶体晶体（266 nm）· 常规晶胞边长（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4598,17 +4556,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNI023",
       "title": "聚苯乙烯胶体晶体（S3）· 正入射反射波长（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4616,17 +4574,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNI024",
       "title": "聚苯乙烯胶体晶体（S7）· 空隙充水后的反射波长（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4634,17 +4592,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNI025",
       "title": "二氧化硅胶体晶体 · 30° 入射的反射波长（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4652,17 +4610,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MNI026",
       "title": "二氧化硅胶体晶体 · 反射落在 500 nm 的入射角（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4670,17 +4628,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MND004",
       "title": "结构色设计 · 选样使反射最接近 540 nm（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4688,17 +4646,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MND005",
       "title": "结构色设计 · 选样使反射最接近 820 nm（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4706,17 +4664,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "MND006",
       "title": "结构色设计 · 反射低于 700 nm 时球径最大（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4724,17 +4682,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNP017",
       "title": "转角石墨烯（0.79°，STM 区域）· 莫尔周期（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4742,17 +4700,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNP018",
       "title": "转角石墨烯（器件 M2）· 莫尔晶胞面积（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4760,17 +4718,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNP019",
       "title": "转角石墨烯（器件 D1）· 莫尔周期（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4778,17 +4736,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNI010",
       "title": "转角石墨烯（1.10°）· 由两层原子求莫尔周期（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4796,17 +4754,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNI011",
       "title": "转角石墨烯（器件 M1）· 超晶格密度 n_s（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4814,17 +4772,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNI012",
       "title": "转角石墨烯（0.79°）· 半满载流子密度（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4832,17 +4790,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNI013",
       "title": "转角石墨烯（器件 D1）· 由莫尔图反推转角（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4850,17 +4808,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QND005",
       "title": "转角石墨烯选样 · 半满密度最接近 1.3×10¹² cm⁻²（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4868,17 +4826,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QND006",
       "title": "转角石墨烯选样 · 莫尔周期最接近 13.5 nm（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4886,17 +4844,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QND007",
       "title": "转角石墨烯选样 · n_s 最接近 2.8×10¹² cm⁻²（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -4904,11 +4862,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -5112,7 +5070,7 @@
     {
       "id": "QNI014",
       "title": "CdSe 量子点 · 第一激子吸收峰（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5120,17 +5078,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNI015",
       "title": "CdSe 量子点 · 摩尔消光系数（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5138,17 +5096,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNI016",
       "title": "CdSe 量子点 · 由吸光度求浓度（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5156,17 +5114,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QND008",
       "title": "CdSe 量子点设计 · 吸收峰最接近 590 nm（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5174,17 +5132,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QND009",
       "title": "CdSe 量子点设计 · 吸收峰 ≥ 565 nm 的最小粒子（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5192,11 +5150,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -5472,7 +5430,7 @@
     {
       "id": "QNP020",
       "title": "MgB2 涡旋晶格（56.1 G）· 涡旋间距（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5480,17 +5438,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNP021",
       "title": "MgB2 涡旋晶格（117.3 G）· 涡旋面密度（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5498,17 +5456,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNP022",
       "title": "BSCCO 涡旋晶格 · 涡旋间距（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5516,17 +5474,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNI017",
       "title": "BSCCO 涡旋晶格 · 由晶格反推磁场（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5534,17 +5492,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNI018",
       "title": "MgB2 涡旋晶格（50.8 G 样品）· 由晶格反推磁场（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5552,17 +5510,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNI019",
       "title": "MgB2 涡旋晶格（188.7 G）· 每个涡旋的磁通（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5570,17 +5528,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QNI020",
       "title": "MgB2 涡旋晶格（117.3 G）· 中子散射首峰（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5588,17 +5546,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QND010",
       "title": "涡旋晶格设计 · 间距最接近 450 nm 的磁场（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5606,17 +5564,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QND011",
       "title": "涡旋晶格设计 · 散射首峰最接近 20 μm⁻¹ 的磁场（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5624,17 +5582,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "QND012",
       "title": "涡旋晶格设计 · 密度 ≥ 4 /μm² 的最低磁场（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5642,17 +5600,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CNP024",
       "title": "胆甾液晶（E44 + R5011）· 螺距（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5660,17 +5618,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CNP025",
       "title": "胆甾液晶（E44 + S5011）· 手性与螺距（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5678,17 +5636,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CNP026",
       "title": "胆甾液晶涂层（LRCD）· 螺距（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5696,17 +5654,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CNI017",
       "title": "胆甾液晶（E44 + R5011）· 反射中心波长（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5714,17 +5672,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CNI018",
       "title": "胆甾液晶（E44 + R5011）· 反射带宽（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5732,17 +5690,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CNI019",
       "title": "胆甾液晶（E44 + S5011）· 螺旋扭曲力 HTP（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5750,17 +5708,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CNI020",
       "title": "胆甾液晶涂层（RRCD）· 反射中心波长（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5768,17 +5726,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CND009",
       "title": "结构色设计 · 反射最接近 550 nm 的掺杂浓度（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5786,17 +5744,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CND010",
       "title": "结构色设计 · 左手且反射最接近 600 nm 的膜（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5804,17 +5762,17 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
       "id": "CND011",
       "title": "结构色设计 · 反射 ≤ 620 nm 时掺杂最少（四选一）",
-      "lifecycle": "active",
+      "lifecycle": "archived",
       "checks": {
         "完整公开题干": true,
         "实际附件可用": true,
@@ -5822,11 +5780,11 @@
         "来源与学科考点": true,
         "两种实测尺度": true,
         "新版初筛记录": true,
-        "当前原型": true
+        "当前原型": false
       },
-      "human_review_queue": true,
-      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
-      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "human_review_queue": false,
+      "reason": "本项目按论文参数生成坐标的「论文参数模型题」。2026-11-11 用户决定题库不收自己生成的坐标：这与排除预测、计算结构的数据源立场矛盾；且答案若只取决于论文那个参数，坐标只是这个数的包装，若还取决于造结构时的选择，考的就是构造方式。同一批论文的证据题不受影响。剪枝记录见 templates/pruned-instances.json 的 retire-2026-11-11-paper-parameter-models。",
+      "next": "不再计入（见原因）",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     },
     {
@@ -20822,6 +20780,240 @@
       "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
       "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
       "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNI132",
+      "title": "7234259 · 晶体衍射消光判别（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNI133",
+      "title": "1523423 · 晶体衍射消光判别（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNI134",
+      "title": "7243051 · 晶体衍射消光判别（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNI135",
+      "title": "2310687 · 晶体衍射消光判别（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNI136",
+      "title": "7241895 · 晶体衍射消光判别（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "MNI137",
+      "title": "9017412 · 晶体衍射消光判别（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI111",
+      "title": "9MMZ · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI112",
+      "title": "1IN7 · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI113",
+      "title": "1IN6 · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "BNI114",
+      "title": "5W79 · 由 φ/ψ 推断二级结构（HELIX/SHEET 为证据）（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNP160",
+      "title": "QM7X-7001-I1-C1-OPT · 命名局部距离（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNP161",
+      "title": "QM7X-7001-I1-C1-OPT · 命名局部距离（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
+    },
+    {
+      "id": "QNP162",
+      "title": "QM7X-7001-I1-C1-OPT · 命名局部距离（四选一）",
+      "lifecycle": "active",
+      "checks": {
+        "完整公开题干": true,
+        "实际附件可用": true,
+        "参考答案与评分标准": true,
+        "来源与学科考点": true,
+        "两种实测尺度": true,
+        "新版初筛记录": true,
+        "当前原型": true
+      },
+      "human_review_queue": true,
+      "reason": "暂计入 160 原型（用户 2026-09-28 决定）：独立检查器自动核验通过；L1–L3 审核待审核系统建成后统一进行。",
+      "next": "L1 题型审定 → L2 检查器审阅 → L3 分层抽查",
+      "limits": "字段、附件存在性和已记录初筛状态的检查；不等于重跑M2–M5或独立领域审核。"
     }
   ],
   "directions": [
@@ -21027,11 +21219,11 @@
         1
       ],
       "target": 10,
-      "located_candidates": 142,
-      "screened_count": 132,
+      "located_candidates": 145,
+      "screened_count": 135,
       "remaining": 0,
       "abilities": {
-        "perception": 70,
+        "perception": 73,
         "inference": 34,
         "design": 28
       },
@@ -21172,7 +21364,10 @@
         "QNP156",
         "QNP157",
         "QNP158",
-        "QNP159"
+        "QNP159",
+        "QNP160",
+        "QNP161",
+        "QNP162"
       ],
       "provisional_ids": [
         "QND001",
@@ -21306,7 +21501,10 @@
         "QNP156",
         "QNP157",
         "QNP158",
-        "QNP159"
+        "QNP159",
+        "QNP160",
+        "QNP161",
+        "QNP162"
       ],
       "blocker": ""
     },
@@ -21318,24 +21516,19 @@
       ],
       "target": 10,
       "located_candidates": 20,
-      "screened_count": 10,
-      "remaining": 0,
+      "screened_count": 5,
+      "remaining": 5,
       "abilities": {
         "perception": 5,
-        "inference": 3,
-        "design": 2
+        "inference": 0,
+        "design": 0
       },
       "ability_shortfalls": {
         "perception": 0,
-        "inference": 0,
-        "design": 1
+        "inference": 3,
+        "design": 3
       },
       "qa_ids": [
-        "QNI014",
-        "QNI015",
-        "QNI016",
-        "QND008",
-        "QND009",
         "QNP023",
         "QNP024",
         "QNP025",
@@ -21343,18 +21536,13 @@
         "QNP027"
       ],
       "provisional_ids": [
-        "QNI014",
-        "QNI015",
-        "QNI016",
-        "QND008",
-        "QND009",
         "QNP023",
         "QNP024",
         "QNP025",
         "QNP026",
         "QNP027"
       ],
-      "blocker": ""
+      "blocker": "Still missing validated task/material coverage; absence is not proof the task is impossible."
     },
     {
       "domain": "quantum",
@@ -21364,29 +21552,19 @@
       ],
       "target": 10,
       "located_candidates": 17,
-      "screened_count": 17,
-      "remaining": 0,
+      "screened_count": 7,
+      "remaining": 3,
       "abilities": {
-        "perception": 3,
-        "inference": 11,
-        "design": 3
-      },
-      "ability_shortfalls": {
         "perception": 0,
-        "inference": 0,
+        "inference": 7,
         "design": 0
       },
+      "ability_shortfalls": {
+        "perception": 3,
+        "inference": 0,
+        "design": 3
+      },
       "qa_ids": [
-        "QNP017",
-        "QNP018",
-        "QNP019",
-        "QNI010",
-        "QNI011",
-        "QNI012",
-        "QNI013",
-        "QND005",
-        "QND006",
-        "QND007",
         "QNI027",
         "QNI030",
         "QNI032",
@@ -21396,16 +21574,6 @@
         "QNI038"
       ],
       "provisional_ids": [
-        "QNP017",
-        "QNP018",
-        "QNP019",
-        "QNI010",
-        "QNI011",
-        "QNI012",
-        "QNI013",
-        "QND005",
-        "QND006",
-        "QND007",
         "QNI027",
         "QNI030",
         "QNI032",
@@ -21414,7 +21582,7 @@
         "QNI036",
         "QNI038"
       ],
-      "blocker": ""
+      "blocker": "Still missing validated task/material coverage; absence is not proof the task is impossible."
     },
     {
       "domain": "quantum",
@@ -21424,51 +21592,31 @@
       ],
       "target": 10,
       "located_candidates": 14,
-      "screened_count": 14,
-      "remaining": 0,
+      "screened_count": 4,
+      "remaining": 6,
       "abilities": {
-        "perception": 3,
-        "inference": 8,
-        "design": 3
-      },
-      "ability_shortfalls": {
         "perception": 0,
-        "inference": 0,
+        "inference": 4,
         "design": 0
       },
+      "ability_shortfalls": {
+        "perception": 3,
+        "inference": 0,
+        "design": 3
+      },
       "qa_ids": [
-        "QNP020",
-        "QNP021",
-        "QNP022",
-        "QNI017",
-        "QNI018",
-        "QNI019",
-        "QNI020",
-        "QND010",
-        "QND011",
-        "QND012",
         "QNI028",
         "QNI031",
         "QNI033",
         "QNI037"
       ],
       "provisional_ids": [
-        "QNP020",
-        "QNP021",
-        "QNP022",
-        "QNI017",
-        "QNI018",
-        "QNI019",
-        "QNI020",
-        "QND010",
-        "QND011",
-        "QND012",
         "QNI028",
         "QNI031",
         "QNI033",
         "QNI037"
       ],
-      "blocker": ""
+      "blocker": "Still missing validated task/material coverage; absence is not proof the task is impossible."
     },
     {
       "domain": "chemistry",
@@ -22044,49 +22192,29 @@
       ],
       "target": 10,
       "located_candidates": 13,
-      "screened_count": 13,
-      "remaining": 0,
+      "screened_count": 3,
+      "remaining": 7,
       "abilities": {
-        "perception": 3,
-        "inference": 7,
-        "design": 3
-      },
-      "ability_shortfalls": {
         "perception": 0,
-        "inference": 0,
+        "inference": 3,
         "design": 0
       },
+      "ability_shortfalls": {
+        "perception": 3,
+        "inference": 0,
+        "design": 3
+      },
       "qa_ids": [
-        "CNP024",
-        "CNP025",
-        "CNP026",
-        "CNI017",
-        "CNI018",
-        "CNI019",
-        "CNI020",
-        "CND009",
-        "CND010",
-        "CND011",
         "CNI025",
         "CNI026",
         "CNI029"
       ],
       "provisional_ids": [
-        "CNP024",
-        "CNP025",
-        "CNP026",
-        "CNI017",
-        "CNI018",
-        "CNI019",
-        "CNI020",
-        "CND009",
-        "CND010",
-        "CND011",
         "CNI025",
         "CNI026",
         "CNI029"
       ],
-      "blocker": ""
+      "blocker": "Still missing validated task/material coverage; absence is not proof the task is impossible."
     },
     {
       "domain": "materials",
@@ -22095,12 +22223,12 @@
         1
       ],
       "target": 10,
-      "located_candidates": 186,
-      "screened_count": 176,
+      "located_candidates": 189,
+      "screened_count": 179,
       "remaining": 0,
       "abilities": {
         "perception": 55,
-        "inference": 75,
+        "inference": 78,
         "design": 46
       },
       "ability_shortfalls": {
@@ -22284,7 +22412,10 @@
         "MNI131",
         "MNP075",
         "MNP080",
-        "MNP081"
+        "MNP081",
+        "MNI132",
+        "MNI133",
+        "MNI135"
       ],
       "provisional_ids": [
         "MNI011",
@@ -22462,7 +22593,10 @@
         "MNI131",
         "MNP075",
         "MNP080",
-        "MNP081"
+        "MNP081",
+        "MNI132",
+        "MNI133",
+        "MNI135"
       ],
       "blocker": ""
     },
@@ -22473,12 +22607,12 @@
         10
       ],
       "target": 10,
-      "located_candidates": 70,
-      "screened_count": 60,
+      "located_candidates": 73,
+      "screened_count": 63,
       "remaining": 0,
       "abilities": {
         "perception": 5,
-        "inference": 38,
+        "inference": 41,
         "design": 17
       },
       "ability_shortfalls": {
@@ -22546,7 +22680,10 @@
         "MNI126",
         "MNI128",
         "MNI129",
-        "MND067"
+        "MND067",
+        "MNI134",
+        "MNI136",
+        "MNI137"
       ],
       "provisional_ids": [
         "MNI013",
@@ -22608,7 +22745,10 @@
         "MNI126",
         "MNI128",
         "MNI129",
-        "MND067"
+        "MND067",
+        "MNI134",
+        "MNI136",
+        "MNI137"
       ],
       "blocker": ""
     },
@@ -22620,43 +22760,21 @@
       ],
       "target": 10,
       "located_candidates": 10,
-      "screened_count": 10,
-      "remaining": 0,
+      "screened_count": 0,
+      "remaining": 10,
       "abilities": {
-        "perception": 4,
-        "inference": 3,
-        "design": 3
-      },
-      "ability_shortfalls": {
         "perception": 0,
         "inference": 0,
         "design": 0
       },
-      "qa_ids": [
-        "MNP015",
-        "MNP016",
-        "MNP017",
-        "MNP018",
-        "MNI020",
-        "MNI021",
-        "MNI022",
-        "MND001",
-        "MND002",
-        "MND003"
-      ],
-      "provisional_ids": [
-        "MNP015",
-        "MNP016",
-        "MNP017",
-        "MNP018",
-        "MNI020",
-        "MNI021",
-        "MNI022",
-        "MND001",
-        "MND002",
-        "MND003"
-      ],
-      "blocker": ""
+      "ability_shortfalls": {
+        "perception": 3,
+        "inference": 3,
+        "design": 3
+      },
+      "qa_ids": [],
+      "provisional_ids": [],
+      "blocker": "Still missing validated task/material coverage; absence is not proof the task is impossible."
     },
     {
       "domain": "materials",
@@ -22666,45 +22784,25 @@
       ],
       "target": 10,
       "located_candidates": 11,
-      "screened_count": 11,
-      "remaining": 0,
+      "screened_count": 1,
+      "remaining": 9,
       "abilities": {
-        "perception": 3,
-        "inference": 5,
-        "design": 3
-      },
-      "ability_shortfalls": {
         "perception": 0,
-        "inference": 0,
+        "inference": 1,
         "design": 0
       },
+      "ability_shortfalls": {
+        "perception": 3,
+        "inference": 2,
+        "design": 3
+      },
       "qa_ids": [
-        "MNP019",
-        "MNP020",
-        "MNP021",
-        "MNI023",
-        "MNI024",
-        "MNI025",
-        "MNI026",
-        "MND004",
-        "MND005",
-        "MND006",
         "MNI036"
       ],
       "provisional_ids": [
-        "MNP019",
-        "MNP020",
-        "MNP021",
-        "MNI023",
-        "MNI024",
-        "MNI025",
-        "MNI026",
-        "MND004",
-        "MND005",
-        "MND006",
         "MNI036"
       ],
-      "blocker": ""
+      "blocker": "Still missing validated task/material coverage; absence is not proof the task is impossible."
     },
     {
       "domain": "biology",
@@ -22713,12 +22811,12 @@
         1
       ],
       "target": 10,
-      "located_candidates": 190,
-      "screened_count": 180,
+      "located_candidates": 194,
+      "screened_count": 184,
       "remaining": 0,
       "abilities": {
         "perception": 63,
-        "inference": 56,
+        "inference": 60,
         "design": 61
       },
       "ability_shortfalls": {
@@ -22906,7 +23004,11 @@
         "BNI107",
         "BNI108",
         "BNI109",
-        "BNI110"
+        "BNI110",
+        "BNI111",
+        "BNI112",
+        "BNI113",
+        "BNI114"
       ],
       "provisional_ids": [
         "BNP013",
@@ -23088,7 +23190,11 @@
         "BNI107",
         "BNI108",
         "BNI109",
-        "BNI110"
+        "BNI110",
+        "BNI111",
+        "BNI112",
+        "BNI113",
+        "BNI114"
       ],
       "blocker": ""
     },

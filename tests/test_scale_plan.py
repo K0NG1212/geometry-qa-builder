@@ -47,9 +47,14 @@ class ArithmeticTests(unittest.TestCase):
         cap = PLAN['family_cap']
         self.assertEqual(cap['max_per_family'], BATCH['rule']['global']['max_per_family'])
         self.assertEqual(cap['ceiling'], cap['max_per_family'] * cap['families'])
-        self.assertEqual(cap['enumerable_ceiling'], cap['max_per_family'] * cap['enumerable_families'])
-        self.assertEqual(cap['enumerable_families'], len({r['family'] for r in CAPACITY['rows']}))
-        self.assertEqual(cap['enumerable_families'] + len(cap['database_without_enumerator'])
+        self.assertEqual(cap['implemented_enumerator_ceiling'],
+                         cap['max_per_family'] * cap['implemented_enumerator_families'])
+        self.assertEqual(cap['implemented_enumerator_families'], len(scale.enumerators.ENUMERATORS))
+        self.assertEqual(set(cap['database_enumerator_exhausted']),
+                         set(CAPACITY['families']['exhausted']))
+        self.assertEqual(set(cap['database_no_enumerator']),
+                         {'debye_intensity'})
+        self.assertEqual(cap['implemented_enumerator_families'] + len(cap['database_no_enumerator'])
                          + cap['paper_driven'], cap['families'])      # every family is in exactly one group
 
     def test_the_paper_arithmetic_counts_only_hand_made_cards(self):
@@ -58,7 +63,11 @@ class ArithmeticTests(unittest.TestCase):
                          sum(1 for q in ADMITTED if q['paper'] not in scale.DATABASES))
         self.assertEqual(papers['papers'],
                          len({q['paper'] for q in ADMITTED if q['paper'] not in scale.DATABASES}))
-        self.assertEqual(papers['papers_at_share'], round(papers['questions_at_share'] / papers['per_paper']))
+        # The tool divides by the exact papers-per-question ratio; per_paper in the JSON is rounded to two
+        # decimals for display, and 900 / 1.96 rounds to 459 where 900 / 1.9565... rounds to 460. Compare like
+        # with like (2026-11-11: the two first disagreed when the bank dropped to 946 questions).
+        self.assertEqual(papers['papers_at_share'],
+                         round(papers['questions_at_share'] / (papers['questions'] / papers['papers'])))
         self.assertGreater(papers['papers_at_share'], 100)            # 30% from papers is out of reach
 
     def test_the_bank_and_the_gap_agree_with_the_catalog(self):

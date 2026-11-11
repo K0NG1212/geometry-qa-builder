@@ -9,7 +9,7 @@ than by asking one structure many times.
 
 The caps come from templates/batch-selection-rule.json and act together, counting what the manifest already holds:
   * max_per_family_source  4   one structure answers at most four questions of the same family
-  * max_per_source        15   one structure answers at most fifteen questions in all
+  * max_per_source         8   one structure answers at most eight questions in all
   * max_per_family        60   one family holds at most sixty questions
 Order is deterministic (SHA-256 of the signature) and the pass is greedy with the scarcest first: a structure with
 no questions yet is served before one that already has some, and within a structure the families it has never been
@@ -31,6 +31,8 @@ from task_families import kit  # noqa: E402
 MANIFEST = ROOT / 'templates/family-manifest.json'
 RULE = ROOT / 'templates/batch-selection-rule.json'
 PRUNED = ROOT / 'templates/pruned-instances.json'
+A1_PLAN = ROOT / 'templates/a1-download-plan.json'
+A1_PRIORITY = {'B8 1-10': 0, 'M1 1-10': 1, 'P1 1-10': 2}
 # Enumerated per residue pair, so O(n^2) in chain length: 3W4T alone (446 residues) takes minutes, and the two
 # caps (60 per family, 4 per family and source) let these two contribute a few dozen questions at most. Left out
 # unless asked for, because the no-argument run is the one someone tries first and it does not come back.
@@ -99,8 +101,14 @@ def main():
             fresh.append((family, source_of(spec), signature, spec))
     print('去掉清单里已有的之后，候选 %d 道（%d 个族）' % (len(fresh), len({f for f, _, _, _ in fresh})))
 
-    # scarcest first: a structure with no questions, then a family this structure has never answered, then by hash
-    fresh.sort(key=lambda row: (held_source[row[1]], held_pair[(row[0], row[1])], held_family[row[0]],
+    # Scarcest first; when equally scarce, serve this A1 round's named empty pixels
+    # in their requested order before falling back to the deterministic hash.
+    planned = read(A1_PLAN) if args.date == '2026-11-07' and A1_PLAN.exists() else {'targets': []}
+    source_priority = {entry['id'].upper(): A1_PRIORITY.get(target['pixel'], len(A1_PRIORITY))
+                       for target in planned['targets'] for entry in target['entries']}
+    def priority(source):
+        return source_priority.get(str(source).removesuffix('-T').upper(), len(A1_PRIORITY))
+    fresh.sort(key=lambda row: (held_source[row[1]], held_pair[(row[0], row[1])], priority(row[1]), held_family[row[0]],
                                 kit.digest('select-2026-11-02', row[2])))
     chosen, blocked = [], Counter()
     for family, source, signature, spec in fresh:
@@ -141,7 +149,7 @@ def main():
             kind='batch_selection', date=args.date, rule='templates/batch-selection-rule.json',
             rule_version=read(RULE)['version'], caps=OrderedDict(
                 max_per_family_source=per_family_source, max_per_source=max_per_source, max_per_family=max_per_family),
-            note='tools/select_batch.py 选出的批次：按稀缺优先（没题的结构先上）、确定性顺序；'
+            note='tools/select_batch.py 选出的批次：按稀缺优先（没题的结构先上），同等稀缺时依 B8/M1/P1 空像素优先、确定性顺序；'
                  '选中只是进清单，是否成题由 family_engine 判定，入库另走 admit。',
             candidates=len(fresh), chosen=len(chosen), blocked=OrderedDict(blocked.most_common()),
             by_family=OrderedDict(sorted(by_family.items())),

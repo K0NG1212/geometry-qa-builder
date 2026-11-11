@@ -1,0 +1,181 @@
+{
+ "kind": "a1_download_plan",
+ "version": "0.1.0",
+ "date": "2026-11-07",
+ "status": "provisional",
+ "note": "Original A1 plan subset: authorized multi-chain PDB representations for B8, M6, P4.",
+ "totals": {
+  "cod": 0,
+  "pdb": 9,
+  "paper": 0
+ },
+ "pixels_meaningful": 79,
+ "pixels_empty": 20,
+ "targets": [
+  {
+   "pixel": "B8 1-10",
+   "subdomain": "大分子机器",
+   "database": "pdb",
+   "wanted": 24,
+   "why": "大分子机器这一格是空的，而它正是「几何 → 功能」最直观的一类",
+   "families": [
+    "assembly_extent",
+    "assembly_rg",
+    "secondary_structure",
+    "scattering_q_design"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 4022,
+   "entries": [
+    {
+     "id": "8WUC",
+     "title": "Cryo-EM structure of H. thermoluteolus GroEL-GroES2 football complex",
+     "method": "EM",
+     "resolution_A": 2.5,
+     "chains": 28,
+     "atoms": 65338,
+     "url": "https://files.rcsb.org/download/8WUC.pdb",
+     "page": "https://www.rcsb.org/structure/8WUC",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "6KS6",
+     "title": "TRiC at 0.2 mM ADP-AlFx, Conformation 1, 0.2-C1",
+     "method": "EM",
+     "resolution_A": 2.99,
+     "chains": 16,
+     "atoms": 65514,
+     "url": "https://files.rcsb.org/download/6KS6.pdb",
+     "page": "https://www.rcsb.org/structure/6KS6",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "9CPK",
+     "title": "D8 symmetry reconstruction of MmCPn in closed state",
+     "method": "EM",
+     "resolution_A": 2.56,
+     "chains": 16,
+     "atoms": 62256,
+     "url": "https://files.rcsb.org/download/9CPK.pdb",
+     "page": "https://www.rcsb.org/structure/9CPK",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "8P4M",
+     "title": "CryoEM structure of a C7-symmetrical GroEL7-GroES7 cage in presence of ADP-BeFx",
+     "method": "EM",
+     "resolution_A": 2.5,
+     "chains": 14,
+     "atoms": 32200,
+     "url": "https://files.rcsb.org/download/8P4M.pdb",
+     "page": "https://www.rcsb.org/structure/8P4M",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "9MN3",
+     "title": "E. coli GroES-GroEL-GroES football complex",
+     "method": "EM",
+     "resolution_A": 2.9,
+     "chains": 28,
+     "atoms": 64540,
+     "url": "https://files.rcsb.org/download/9MN3.pdb",
+     "page": "https://www.rcsb.org/structure/9MN3",
+     "license": "wwPDB (CC0)"
+    },
+    {
+     "id": "9WBT",
+     "title": "Crystal Structure of Escherichia coli GroEL with Magnesium Ions and a Phosphorylated Serine Residue-3.2A",
+     "method": "X-ray",
+     "resolution_A": 3.2,
+     "chains": 14,
+     "atoms": 54517,
+     "url": "https://files.rcsb.org/download/9WBT.pdb",
+     "page": "https://www.rcsb.org/structure/9WBT",
+     "license": "wwPDB (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "M6 10-100",
+   "subdomain": "纳米材料与组装",
+   "database": "pdb",
+   "wanted": 4,
+   "why": "纳米材料与组装 1-10 与 100-1000 两格空着、10-100 也薄；人工蛋白笼是现成的组装体",
+   "families": [
+    "assembly_extent",
+    "assembly_rg",
+    "capsid_architecture",
+    "guinier_intensity"
+   ],
+   "questions_now": 10,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "6JOB",
+     "title": "Ferritin variant with \"GMG\" motif",
+     "method": "Multiple methods",
+     "resolution_A": 2.93,
+     "chains": 12,
+     "atoms": 16956,
+     "url": "https://files.rcsb.org/download/6JOB.pdb",
+     "page": "https://www.rcsb.org/structure/6JOB",
+     "license": "wwPDB (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "P4 10-100",
+   "subdomain": "纳米与介观物理",
+   "database": "pdb",
+   "wanted": 3,
+   "why": "纳米与介观物理 10-100 nm 是空的；壳状蛋白的腔体直径接上量子点那一档",
+   "families": [
+    "assembly_extent",
+    "assembly_rg",
+    "capsid_architecture"
+   ],
+   "questions_now": 0,
+   "enumerated_estimate": 0,
+   "entries": [
+    {
+     "id": "9BKX",
+     "title": "Mycobacterium tuberculosis encapsulin in complex with DyP",
+     "method": "X-ray",
+     "resolution_A": 3.15,
+     "chains": 29,
+     "atoms": 42837,
+     "url": "https://files.rcsb.org/download/9BKX.pdb",
+     "page": "https://www.rcsb.org/structure/9BKX",
+     "license": "wwPDB (CC0)"
+    }
+   ]
+  },
+  {
+   "pixel": "B8 10-100",
+   "subdomain": "大分子机器（组装体）",
+   "database": "pdb",
+   "wanted": 3,
+   "why": "给大分子机器补一个 10-100 nm 的台阶，和 1-10 nm 的那批成对",
+   "families": [
+    "assembly_extent",
+    "assembly_rg",
+    "scattering_q_design"
+   ],
+   "questions_now": 13,
+   "enumerated_estimate": 3,
+   "entries": [
+    {
+     "id": "9PIM",
+     "title": "Outer Curvature of Thick Flagellar Filament from T.denticola",
+     "method": "EM",
+     "resolution_A": 2.7,
+     "chains": 18,
+     "atoms": 44298,
+     "url": "https://files.rcsb.org/download/9PIM.pdb",
+     "page": "https://www.rcsb.org/structure/9PIM",
+     "license": "wwPDB (CC0)"
+    }
+   ]
+  }
+ ]
+}

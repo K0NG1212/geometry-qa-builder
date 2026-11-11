@@ -20,10 +20,13 @@ What the three ceilings are:
 """
 import json
 import re
+import sys
 from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+import enumerators  # noqa: E402
 TARGET = 3000
 MEETING = ROOT / 'MEETING_2026-11-04.md'
 BEGIN, END = '<!-- scale-plan:begin -->', '<!-- scale-plan:end -->'
@@ -42,6 +45,7 @@ def build():
     workbench = read('docs/data/family-workbench.json')
     capacity = read('docs/data/enumeration-capacity.json')
     plan = read('docs/data/batch-plan.json')
+    selection_rule = read('templates/batch-selection-rule.json')
     progress = read('docs/data/prototype-progress.json')
     packets = {p['id']: p for p in workbench['student_packets']}
     questions = [q for q in catalog['questions']
@@ -52,7 +56,9 @@ def build():
     for row in capacity['rows']:
         per_structure[row['structure']] = per_structure.get(row['structure'], 0) + row['estimated_admissible']
     caps = []
-    for cap in (plan['rule']['tiers']['A']['max_per_source'], plan['rule']['global']['max_per_source']):
+    # The actual global source cap is eight. Keep fifteen as a clearly hypothetical
+    # comparison with the former rule so the meeting table still shows its effect.
+    for cap in (selection_rule['global']['max_per_source'], 15):
         total = sum(min(cap, v) for v in per_structure.values())
         yield_each = total / len(per_structure)
         caps.append(dict(max_per_source=cap, questions=total, structures=len(per_structure),
@@ -60,18 +66,22 @@ def build():
                          structures_for_target=round(TARGET / yield_each),
                          more_structures_needed=round(TARGET / yield_each) - len(per_structure)))
 
-    enumerable = sorted({row['family'] for row in capacity['rows']})
+    implemented = set(enumerators.ENUMERATORS)
+    productive = {row['family'] for row in capacity['rows'] if row['accepted'] > 0}
+    exhausted = set(capacity['families']['exhausted']) & implemented
+    unprobed = set(capacity['families']['unprobed']) & implemented
     database_only, paper_only, mixed = set(), set(), set()
     for family in sorted(families):
         kinds = {q['paper'] in DATABASES for q in questions
                  if packets[q['familyInstance']]['family'] == family}
         (database_only if kinds == {True} else paper_only if kinds == {False} else mixed).add(family)
+    truly_missing = database_only - implemented
     paper_questions = [q for q in questions if q['paper'] not in DATABASES]
     papers = {q['paper'] for q in paper_questions}
     per_paper = len(paper_questions) / len(papers)
-    paper_share = plan['rule']['global']['max_paper_parameter_share']
+    paper_share = selection_rule['global']['max_paper_parameter_share']
 
-    family_cap = plan['rule']['global']['max_per_family']
+    family_cap = selection_rule['global']['max_per_family']
     return dict(
         kind='scale_plan', date=date.today().isoformat(), target=TARGET,
         bank=dict(run=workbench['run'], questions=len(questions), families=len(families),
@@ -86,9 +96,12 @@ def build():
         family_cap=dict(max_per_family=family_cap, families=len(families),
                         ceiling=family_cap * len(families),
                         per_family_for_target=round(TARGET / len(families), 1),
-                        enumerable_families=len(enumerable),
-                        enumerable_ceiling=family_cap * len(enumerable),
-                        database_without_enumerator=sorted(database_only - set(enumerable)),
+                        implemented_enumerator_families=len(implemented),
+                        implemented_enumerator_ceiling=family_cap * len(implemented),
+                        database_enumerator_productive=sorted(database_only & productive),
+                        database_enumerator_exhausted=sorted(database_only & exhausted),
+                        database_enumerator_unprobed=sorted(database_only & unprobed),
+                        database_no_enumerator=sorted(truly_missing),
                         paper_driven=len(paper_only)),
         papers=dict(questions=len(paper_questions), papers=len(papers), per_paper=round(per_paper, 2),
                     share_cap=paper_share,
@@ -106,9 +119,9 @@ def build():
                      % (family_cap * len(families), TARGET, round(TARGET / len(families), 1)),
                  blocked_on='导师对 Q2 的答复'),
             dict(id='A1', what='来源结构从 %d 个扩到 %d 个左右' % (len(per_structure), caps[0]['structures_for_target']),
-                 why='唯一能把量做上去的路；PDB / COD / QM7-X 都免费可下载、许可清楚（见 LICENSING.md）',
-                 blocked_on='用户批准下载批次'),
-            dict(id='E1', what='给 %d 个数据库驱动但没有枚举器的族写枚举器' % len(database_only - set(enumerable)),
+                 why='PDB / COD 来源可持续补充，但当前 60 道族上限与来源 8 道上限使新增结构的边际产出明显低于历史均值',
+                 blocked_on='PDB、COD、Europe PMC 开放获取全文已有长期下载授权；新增站点及受限内容另核许可'),
+            dict(id='E1', what='给 %d 个数据库驱动但没有枚举器的族写枚举器' % len(truly_missing),
                  why='写了就能跟结构一起扩，等于提高每个结构的产出，少下载一批结构',
                  blocked_on='不卡'),
             dict(id='Q2', what='确认「论文题 30%」',
@@ -128,7 +141,7 @@ def table(plan):
                            plan['enumeration']['estimated_admissible']), '原始产能不缺'),
         ('但按暂定规则 `max_per_source = %d` 封顶' % low, '**%d**' % caps[low]['questions'],
          '产能被来源数卡住，不是被枚举卡住'),
-        ('改成 `max_per_source = %d`' % high, '%d' % caps[high]['questions'], '还是不够 %d' % plan['target']),
+        ('假设放宽到 `max_per_source = %d`' % high, '%d' % caps[high]['questions'], '仍不够 %d' % plan['target']),
         ('现有来源结构',
          '%d 个（%s）' % (plan['enumeration']['structures'],
                          ' + '.join('%s %d' % (k, v)
@@ -140,13 +153,16 @@ def table(plan):
                                                 plan['family_cap']['families']),
          '**%d**' % plan['family_cap']['ceiling'],
          '%d 道等于每族做满 %s 道，几乎没有余量' % (plan['target'], plan['family_cap']['per_family_for_target'])),
-        ('其中结构可枚举的族',
-         '%d 族（× %d = %d）' % (plan['family_cap']['enumerable_families'],
-                                plan['family_cap']['max_per_family'], plan['family_cap']['enumerable_ceiling']),
-         '枚举族顶多出 %d 道' % plan['family_cap']['enumerable_ceiling']),
-        ('数据库驱动但没写枚举器的族',
-         '%d 族' % len(plan['family_cap']['database_without_enumerator']),
-         '、'.join(plan['family_cap']['database_without_enumerator'])),
+        ('已有枚举器的族',
+         '%d 族（× %d = %d）' % (plan['family_cap']['implemented_enumerator_families'],
+                                plan['family_cap']['max_per_family'], plan['family_cap']['implemented_enumerator_ceiling']),
+         '容量探针有产出 %d 族、exhausted %d 族、未探测 %d 族' %
+         (len(plan['family_cap']['database_enumerator_productive']),
+          len(plan['family_cap']['database_enumerator_exhausted']),
+          len(plan['family_cap']['database_enumerator_unprobed']))),
+        ('数据库驱动但确实没有枚举器的族',
+         '%d 族' % len(plan['family_cap']['database_no_enumerator']),
+         '、'.join(plan['family_cap']['database_no_enumerator'])),
         ('论文驱动的族',
          '**%d 族，每篇论文只出 %.2f 道**' % (plan['family_cap']['paper_driven'], plan['papers']['per_paper']),
          '要 %d 道论文题（导师说的 30%%）≈ %d 篇论文的手工卡，做不到'
@@ -179,7 +195,7 @@ def main():
            '，'.join('%d→%d 道' % (c['max_per_source'], c['questions']) for c in plan['source_caps'])))
     print('Ceilings: 每族 %d × %d 族 = %d；可枚举 %d 族 = %d；论文 %.2f 道/篇' %
           (plan['family_cap']['max_per_family'], plan['family_cap']['families'], plan['family_cap']['ceiling'],
-           plan['family_cap']['enumerable_families'], plan['family_cap']['enumerable_ceiling'],
+           plan['family_cap']['implemented_enumerator_families'], plan['family_cap']['implemented_enumerator_ceiling'],
            plan['papers']['per_paper']))
 
 

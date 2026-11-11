@@ -158,11 +158,31 @@ class QaFolderTests(unittest.TestCase):
                 self.assertTrue((toolkit / 'docs' / rel).exists(), '%s 缺 %s' % (question['id'], rel))
         self.assertTrue(checkers.VERSION in (toolkit / 'README.md').read_text(encoding='utf-8'))
 
+    def test_no_admitted_question_uses_coordinates_we_generated(self):
+        """RUNBOOK principle 9 (2026-11-11): the bank takes no coordinates this project generated.
+
+        Until then the bank held 55 paper-parameter models -- an ideal lattice laid out at the one number a
+        paper measured -- and this test required each to say so in its folder, ending with an assertion that
+        at least one existed ("otherwise the detector is broken"). The rule turned round, so the assertion
+        does too: none may exist. That leaves the old worry standing, though -- zero could also mean the
+        detector stopped working -- so the detector is checked directly against the six asset groups the
+        retired families left behind, which still carry route=paper_parameter_model."""
+        built = [q['id'] for q in ADMITTED
+                 if json.loads((self.dir / q['id'] / 'info.json').read_text(encoding='utf-8'))
+                 ['data_origin']['constructed_by_this_project']]
+        self.assertEqual(built, [], 'RUNBOOK 原则 9：题库不收本项目生成的坐标')
+        for group in ('cholesteric', 'moire', 'opals', 'qdots', 'superlattices', 'vortex'):
+            # asset_record takes the group as asset_group() names it, i.e. the full docs/assets path
+            record = self.export.asset_record('docs/assets/families/' + group)
+            self.assertEqual(record.get('route'), 'paper_parameter_model', '%s 的构造标记丢了，判定会漏掉它' % group)
+
     def test_data_we_built_ourselves_says_so_and_gives_the_rule(self):
         """Some attachments are models this project constructed from numbers a paper reports -- an
         ideal triangular vortex lattice at the paper's field, a sphere cut from ideal zinc blende.
         Mistaking one for measured data would be our fault, not the reader's, so the folder has to say
-        it in the file the reader opens, and say how it was built."""
+        it in the file the reader opens, and say how it was built. (Since 2026-11-11 none may be admitted
+        at all -- see the test above -- but the self-identification stays, so that one which slipped
+        back in would still be visible as what it is.)"""
         built = []
         for question in ADMITTED:
             folder = self.dir / question['id']
@@ -178,7 +198,6 @@ class QaFolderTests(unittest.TestCase):
                 self.assertIn(origin['construction_rule'][:40], text, question['id'])
             else:
                 self.assertNotIn('本项目构造的', text, '%s 不是构造的却挂了警告' % question['id'])
-        self.assertGreater(len(built), 0, '没有一道题标为构造，说明判定失效了')
 
     def test_the_folder_says_plainly_that_nothing_is_human_reviewed(self):
         for question in ADMITTED:

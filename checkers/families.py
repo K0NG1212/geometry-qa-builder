@@ -269,6 +269,7 @@ from . import hbonds as _hbonds
 from . import evidence as _evidence
 from . import paper_design as _paper_design
 from . import reaction_path as _reaction_path
+from . import thin_paper as _thin_paper
 
 CHECKERS = {
     'stereo_relationship': _stereo.stereo_relationship,
@@ -292,4 +293,5 @@ CHECKERS = {
     **_evidence.CHECKERS,
     **_paper_design.CHECKERS,
     **_reaction_path.CHECKERS,
+    **_thin_paper.CHECKERS,
 }

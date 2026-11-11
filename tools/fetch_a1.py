@@ -30,13 +30,13 @@ from tools import license_note  # noqa: E402
 
 PLAN = ROOT / 'templates/a1-download-plan.json'
 REGISTRY = ROOT / 'templates/structures.json'
-DATE = '2026-11-02'
+DATE = '2026-11-07'
 WHERE = {
     'cod': dict(raw=ROOT / 'inputs/cod', published=ROOT / 'docs/assets/materials', section='crystals',
-                record=ROOT / 'docs/assets/materials/sources-a1-2026-11-02.json', statement='cod-home',
+                record=ROOT / 'docs/assets/materials/sources-a1-2026-11-07.json', statement='cod-home',
                 licence='COD: public domain (CC0)'),
     'pdb': dict(raw=ROOT / 'inputs/pdb', published=ROOT / 'docs/assets/bio', section='structures',
-                record=ROOT / 'docs/assets/bio/sources-a1-2026-11-02.json', statement='rcsb-usage-policy',
+                record=ROOT / 'docs/assets/bio/sources-a1-2026-11-07.json', statement='rcsb-usage-policy',
                 licence='wwPDB (CC0)'),
 }
 # A chain count above this needs the assembly reduction, not a raw chain; those rows wait for the second pass.
@@ -154,6 +154,7 @@ def main():
     parser.add_argument('--plan', type=Path, default=PLAN, help='A1 plan JSON (defaults to templates/a1-download-plan.json)')
     parser.add_argument('--include-small', action='store_true', help='with --assemblies, include planned PDBs at or below the chain threshold')
     args = parser.parse_args()
+    download_date = args.date or DATE
     plan_path = args.plan if args.plan.is_absolute() else ROOT / args.plan
     plan_path = plan_path.resolve()
     try:
@@ -170,7 +171,7 @@ def main():
             parser.error('the custom plan includes small PDBs; pass --include-small to process its complete authorized list')
         import datetime
         plan = json.loads(plan_path.read_text(encoding='utf-8'))
-        fetch_large_assemblies(plan, args.dry_run, args.date or datetime.date.today().isoformat(),
+        fetch_large_assemblies(plan, args.dry_run, download_date,
                                plan_label=plan_label, include_small=args.include_small)
         return
     where = WHERE[args.kind]
@@ -207,7 +208,8 @@ def main():
         if args.kind == 'cod':
             label = entry.get('name') or entry['formula']
             data['crystals'].append(OrderedDict(cod=entry['id'], asset=asset,
-                                                name='%s (%s, COD %s)' % (label, entry['formula'], entry['id'])))
+                                                name='%s (%s, COD %s)' % (label, entry['formula'], entry['id']),
+                                                source=entry['url'], license=where['licence']))
         else:
             data['structures'].append(OrderedDict(
                 pdb=entry['id'], asset=asset, chain='A', kind=pdb_kind(entry, blob.decode('utf-8')),
@@ -215,7 +217,7 @@ def main():
                                          ('%.2f Å' % entry['resolution_A']) if entry.get('resolution_A') else '分辨率未记录'),
                 source=entry['page'], license=where['licence']))
         record[name] = OrderedDict(id=entry['id'], pixel=target['pixel'], subdomain=target['subdomain'],
-                                   downloaded=DATE, url=entry['url'], bytes=len(blob), sha256=digest,
+                                   downloaded=download_date, url=entry['url'], bytes=len(blob), sha256=digest,
                                    asset_sha256=digest, why=target['why'])
         if args.kind == 'cod':
             record[name].update(formula=entry['formula'], cell_volume_A3=entry['cell_volume_A3'],
@@ -235,7 +237,7 @@ def main():
         files = existing.get('files', OrderedDict())
         files.update(record)
         where['record'].write_bytes((json.dumps(OrderedDict(
-            kind='a1_downloads', batch='A1', downloaded=DATE, database=args.kind, license=where['licence'],
+            kind='a1_downloads', batch='A1', downloaded=download_date, database=args.kind, license=where['licence'],
             license_statement=license_note.statement(where['statement']),
             note='按 templates/a1-download-plan.json 点名下载（docs/data/subdomain-map.json 的空像素）。'
                  '原始下载在 inputs/%s（不进 Git），发布副本逐字节相同，两处哈希相同。' % args.kind,

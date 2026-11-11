@@ -70,12 +70,15 @@ def domain_of(spec):
         return next(p['domain'] for p in load_assemblies(ROOT) if p['asset'] == spec['asset'])
     if spec.get('cod'):
         return 'materials'
+    if spec.get('reaction_card'):
+        return 'chemistry'
     return 'biology'
 
 
 def structure_of(spec):
     """Grouping key for sampling and capacity rows: PDB id or COD id."""
-    return spec.get('assembly') or spec.get('pdb') or spec.get('cod') or spec.get('molecule')
+    return (spec.get('assembly') or spec.get('pdb') or spec.get('cod') or spec.get('molecule')
+            or spec.get('reaction_card'))
 
 
 def residues_of(root, s):
@@ -692,10 +695,48 @@ BINDING_ENUMERATORS = dict(binding_evidence_choice=binding_evidence_choice,
                            binding_design_choice=binding_design_choice)
 
 
+def load_reaction_cards(root):
+    """Only published reaction cards; sources.json is provenance, not an instance."""
+    folder = root / 'docs/assets/families/reaction'
+    return [(path, json.loads(path.read_text(encoding='utf-8')))
+            for path in sorted(folder.glob('*.json')) if path.name != 'sources.json']
+
+
+REACTION_SCOPE = {
+    'reaction_mechanism_choice': ('The three attached structures are published Landscape17 stationary-point '
+                                  'coordinates. Apply only the classification rule printed in the question.'),
+    'reaction_geometry_target': ('The four attached structures are published Landscape17 coordinates. '
+                                 'Apply only the stated geometric target to the supplied coordinates.'),
+}
+
+
+def reaction_card_spec(path, card, family):
+    if card.get('kind') != 'reaction_card' or card.get('family') != family:
+        return
+    if card.get('dataset') != 'landscape17' or not card.get('citation') or not card.get('license'):
+        return
+    yield dict(id='EN-RXN-' + card['id'].upper(), family=family,
+               asset='assets/families/reaction/' + path.name, reaction_card=card['id'],
+               source=card['citation'] + '; provenance in docs/assets/families/reaction/sources.json',
+               license=card['license'], scope=REACTION_SCOPE[family], domain='chemistry')
+
+
+def reaction_geometry_target(root, item):
+    yield from reaction_card_spec(*item, 'reaction_geometry_target')
+
+
+def reaction_mechanism_choice(root, item):
+    yield from reaction_card_spec(*item, 'reaction_mechanism_choice')
+
+
+REACTION_ENUMERATORS = dict(reaction_geometry_target=reaction_geometry_target,
+                            reaction_mechanism_choice=reaction_mechanism_choice)
+
+
 ENUMERATORS = dict(backbone_torsion=backbone_torsion, secondary_structure=secondary_structure, fret_efficiency=fret_efficiency,
                    disulfide_design=disulfide_design, fret_design=fret_design, **CRYSTAL_ENUMERATORS, **MOLECULE_ENUMERATORS,
                    **ASSEMBLY_ENUMERATORS, **STEREO_ENUMERATORS, **CONFORMER_ENUMERATORS, **FORCE_PATH_ENUMERATORS,
-                   **BINDING_ENUMERATORS)
+                   **BINDING_ENUMERATORS, **REACTION_ENUMERATORS)
 
 
 def propose(root, families=None):
@@ -710,7 +751,8 @@ def propose(root, families=None):
                  load_stereo(root) if family in STEREO_ENUMERATORS else
                  load_conformer_pools(root) if family in CONFORMER_ENUMERATORS else
                  load_force_paths(root) if family in FORCE_PATH_ENUMERATORS else
-                 load_binding_tables(root) if family in BINDING_ENUMERATORS else load_structures(root))
+                 load_binding_tables(root) if family in BINDING_ENUMERATORS else
+                 load_reaction_cards(root) if family in REACTION_ENUMERATORS else load_structures(root))
         out[family] = [spec for s in items for spec in fn(root, s)]
     return out
 

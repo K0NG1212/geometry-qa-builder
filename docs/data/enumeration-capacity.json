@@ -3,7 +3,7 @@
  "date": "2026-11-03",
  "seed": "geobench-enum-v1",
  "sample_per_structure": 2,
- "run": "enum-v35",
+ "run": "enum-v35 + enum-v39 targeted",
  "structures": {
   "pdb": [
    "1UBQ",
@@ -6842,7 +6842,9 @@
    "binding_evidence_choice",
    "capsid_architecture",
    "conformer_target_selection",
-   "force_path_derivative"
+   "force_path_derivative",
+   "reaction_geometry_target",
+   "reaction_mechanism_choice"
   ],
   "unprobed": {}
  },
@@ -6889,5 +6891,14 @@
    "1->2": 1
   }
  },
- "note": "Capacity probe only: nothing is admitted to the catalog. Estimates scale the acceptance rate of the sample to all proposals of the same family and structure."
+ "note": "Capacity probe only: nothing is admitted to the catalog. Estimates scale the acceptance rate of the sample to all proposals of the same family and structure. The 455 rows are from 2026-11-03 before the A1 additions; only the two reaction-family exhausted findings come from enum-v39.",
+ "supplemental_probe": {
+  "run": "enum-v39",
+  "families": [
+   "reaction_geometry_target",
+   "reaction_mechanism_choice"
+  ],
+  "rows": 0,
+  "note": "Only these two reaction families were probed after enum-v35; all 455 capacity rows and totals remain the older pre-A1 baseline."
+ }
 }
